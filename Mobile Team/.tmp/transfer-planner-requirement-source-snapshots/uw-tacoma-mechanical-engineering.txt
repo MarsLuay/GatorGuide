@@ -2,367 +2,303 @@ Owner: uw-tacoma-mechanical-engineering
 Source: https://www.tacoma.uw.edu/set/programs/undergrad/me
 Title: B.S. in Mechanical Engineering | Engineering & Technology | University of Washington Tacoma
 
--
-"Engineering Something Amazing" - Heather Dillon is a big believer in human-centered design, and student-centered engineering education.
-"Frozen in Time" - Dr. Zhiquan (Andy) Shu’s research could help revolutionize organ transplants by extending the life of donated organs indefinitely.
-"Steeped in Engineering" - Assistant Professor Seung-Jin Lee uses coffee to teach first-year students about engineering.
-[Supplemental official source] UW Tacoma SET catalog page
-*All pre-requisite courses must be completed in the last seven years
-&copy; 2026 University of Washington Tacoma
-<a href="/set"
-<a href="/set/programs"
-<a href="/set/programs/undergrad"
-<a href="https://instagram.com/uwtacoma"
-<a href="https://www.facebook.com/uwtacoma"
-<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
-<a href="https://www.tacoma.uw.edu/"
-<a href="https://www.tiktok.com/@uwtacoma"
-<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
-<img
-<img class="mobile-hide desktop-show"
-<img class="mobile-show desktop-hide"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-05/abet-logo.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-07/heather-dillon-1000x-me-highlight.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/me-uwt.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/pexels-cheneymediaproductions-2641822.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/pexels-pixabay-2166.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/pexels-pixabay-532192.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/uwtnews_shu-feature.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/uwtnews-storyimage-coffee-walking.jpg"
-<span
->
->Engineering & Technology
->Home
->SET Academic Programs
->Undergraduate Programs
-15
-16
-1900 Commerce Street, Tacoma, WA 98402-3100
-2021-2022
-2022-2023
-2023-2024
-2024-2025
-2025 - 2026 Electives
-2025-2026
-24
-253-692-5860
-25Live
-35
-4-Year Schedule Planning
-46
-5 credits of computer programming (Courses in Python, Java, C, C++, or the equivalent of AMATH 301: Beginning Scientific Computing will meet this requirement. If you are not sure if the course you plan to take will count, please check with a SET advisor.)
-5-Year Schedule Planning
-67
-80
-85
-A minimum 2.0 grade for each course applied to the major.
-A minimum of 30 credits of required courses for the BSME must also be taken in residence at the UW Tacoma.
-A total of 180 quarter credits are required to complete the BSME program. Follow the ME Schedule Planning Grids (in the next tabs) to make sure you complete all courses required to graduate.
-ABET Accreditation
-About SET
-ABOUT UW TACOMA
-Academic advising
-Academic calendar
-Academic Policies
-Academic Support
-ACADEMICS
-Accessibility |
-Acknowledgement
-add
-Additional Details
-Administration
-Admission
-Admission Information
-Admission Requirements
-Admission Review
-Admission to the major is competitive. Please review the following prerequisites and application process carefully.
-Admissions
-Advising
-Advising Events
-Aerospace Engineer
-After being removed from the Mechanical Engineering major, a student must re-apply for admission in order to continue as an ME student in any status, matriculated or otherwise. The Admissions Committee will evaluate the student’s application requesting re-admission, and any extenuating circumstances, and will then recommend action.
-alt="ABET Engineering Accreditation Commission logo">
-alt="Block W - Link to UW Tacoma homepage"/>
-alt="Dr. Heather Dillon in front of bookshelves">
-alt="Graphic of a gold and purple robot husky">
-alt="Photo of a drone flying in the air">
-alt="Photo of a field of windmills at sunset">
-alt="Photo of a spaceship rocket taking off">
-alt="Photo of Andy Shu">
-alt="Photo of Seungjin Walking">
-alt="University of Washington Tacoma"/>
-An ability to acquire and apply new knowledge as needed, using appropriate learning strategies.
-An ability to apply engineering design to produce solutions that meet specified needs with consideration of public health, safety, and welfare, as well as global, cultural, social, environmental, and economic factors.
-An ability to communicate effectively with a range of audiences.
-An ability to develop and conduct appropriate experimentation, analyze and interpret data, and use engineering judgment to draw conclusions.
-An ability to function effectively on a team whose members together provide leadership, create a collaborative and inclusive environment, establish goals, plan tasks, and meet objectives.
-An ability to identify, formulate, and solve complex engineering problems by applying principles of engineering, science, and mathematics.
-An ability to recognize ethical and professional responsibilities in engineering situations and make informed judgments, which must consider the impact of engineering solutions in global, economic, environmental, and societal contexts.
-Annual Dean&#039;s Awards
-Any undergraduate Mechanical Engineering student who is denied permission to repeat a required course, or who does not earn the required grade of a 2.0 or higher after repeating the course for a third time, will be removed from the Mechanical Engineering major.
-Any undergraduate Mechanical Engineering student who is dismissed from the University for Low Scholarship will be removed from the Mechanical Engineering major.
-Application opens: January 28, 2026
-Applications are evaluated based on the following criteria:
-Apply
-apply now!
-Apply now!
-Apply Now!
-apply to me today!
-aria-label="University of Washington Tacoma Homepage">
-arrow_back_ios
-arrow_forward_ios
-At least 45 of the final 60 credits must be taken in residence at UW Tacoma.
-At least 84 credits must be taken from the ME required courses below and ME Senior Electives lists.
-Autumn 2026 applications are OPEN NOW!
-B.S. in Mechanical Engineering
 B.S. in Mechanical Engineering | Engineering & Technology | University of Washington Tacoma
-Back to Top
-Before starting the application, make sure you're ready to apply:
-Biomedical Engineer
-Bothell
-Breadcrumb
-Calculus I (TMATH 124), Calculus II (TMATH 125), Calculus III (TMATH 126)
-Calendar
-CAMPUS
-Campus Safety
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+height="0"
+width="0"
+style="display:none;
+visibility:hidden">
+Skip to main content
+Apply
 Canvas
-Center for Brazilian Studies
-Center for Data Science
-Certificate & Professional Programs
-Civil Engineering
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
-class="path2">
-class="uwt-icon uwt-icon-per-site-facebook">
-class="uwt-icon uwt-icon-per-site-instagram">
-class="uwt-icon uwt-icon-per-site-twitter">
-class="uwt-icon uwt-icon-per-site-youtube">
+Map
+Calendar
+Library
+Directory
+MyUW
+more_vert
+more_vert
 Close Search
-Community & Educational Partnerships
-Complete all Mechanical Engineering pre-requisite and required course work with a minimum GPA of 2.5 in coursework applied to the major.
-Completion of all prerequisite courses
-Completion of at least 45 college-level credits
-Completion Requirements
+<img
+src="/sites/default/files/sites/uwtd8main/W.svg"
+alt="Block W - Link to UW Tacoma homepage"/>
+<img class="mobile-hide desktop-show"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+alt="University of Washington Tacoma"/>
+<img class="mobile-show desktop-hide"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+alt="University of Washington Tacoma"/>
+Tools
+25Live
+Canvas
+Directory
+IT Help
+Library
+Map
+MyUW
+Office365
+Panopto
+Scout
+UW Gmail
+Workday
+Zoom
+Search
+School of
+Engineering & Technology
+<span
+class="path2">
+Make a Gift
+Engineering & Technology
+About SET
+expand_more
+Message from the Dean
+Mission, Vision, Values and Goals
+Diversity, Equity and Inclusion at SET
+SET Faculty Directory
+SET Staff Directory
+SET Advisory Board
+Programs
+expand_more
+Undergraduate Majors
+add
+Civil Engineering
 Computer Engineering
 Computer Science & Systems
-Contact
-Contact us |
-Content and form of personal statement and resume
-Core Courses
-Courses
-Courses in the Mechanical Engineering program may not be taken as S/NS (satisfactory/not satisfactory).
-Courses in the Mechanical Engineering program may not be taken by correspondence (distance learning) without prior ME faculty approval.
-CP133
-Credential Overview
-Cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course
-Current UW Tacoma students wishing to change to a Mechanical Engineering major from another major are required to apply for admission to the major and must follow the major requirements in place at the time of admission.
-Curriculum Details
-Curriculum Information
-Data Science Certificate
-Degrees Conferred
-Differential Equations (TMATH 207)
-Directory
-Diversity, Equity and Inclusion at SET
-Download the ME 4-year Planning Grid
-Download the ME 5-year Planning grid
-Dynamics - (TME 223 or UWS: ME 230)
-Each required TME course must be completed with a minimum grade of 2.0. If a grade below 2.0 is earned, the course must be repeated. Course credit will be awarded only once, but both grades will be used in computing the cumulative grade point average. The higher grade will be used when computing the ME major grade point average.
-Educational Objectives
-Elective Courses: 10 credits
-Electrical Circuits (TCES 215 or UWS: EE 215) is recommended but not required at the time of admission.
 Electrical Engineering
-Electromechanical Engineer
-email us
-End of Quarter Colloquia
-Engineering & Technology
-Engineering Fellowships
-Engineering Week
-Enrollment
-Enrollment and Graduation Data
-Equity & Inclusion
-Events
-expand_more
-Faculty & Research
-Financial Aid
-Find a Research Project
-Freshman Direct Admission Program
-Full Electives List
-General Chemistry I (TCHEM 142)
-GPA Requirements
-Grades in prerequisite courses -- individually and cumulatively (competitive applicants will have earned at least a 2.5 in each prerequisite course)
-Graduate Admission
-Graduate Certificate in Software Development Engineering
-Graduate Fellowships and Funding
-Graduate Programs
-Graduate Resources
-Have a question that isn't answered on this page? Send us an email to UWtech@uw.edu !
-Have a question that isn't answered on this page? Send us an email to UWtech@uw.edu .
-Have Questions?
-Have questions? Schedule an appointment with one of our Academic Advisors!
-Heather Dillon
-height="0"
-Housing
-How to Apply
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-05/abet-logo.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-07/heather-dillon-1000x-me-highlight.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/me-uwt.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/pexels-cheneymediaproductions-2641822.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/pexels-pixabay-2166.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/pexels-pixabay-532192.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/uwtnews_shu-feature.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/uwtnews-storyimage-coffee-walking.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-05/abet-logo.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-07/heather-dillon-1000x-me-highlight.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/me-uwt.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/pexels-cheneymediaproductions-2641822.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/pexels-pixabay-2166.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/pexels-pixabay-532192.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/uwtnews_shu-feature.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/uwtnews-storyimage-coffee-walking.jpg 980w,
-If a student does not achieve the required grade of 2.0 after repeating a required TME course, the student must request permission to take the course a third time. The petition to repeat a course and instructions are located on the School of Engineering and Technology website.
-If a student wishes to substitute a course taken at another institution for a TME required course, the student must submit a Petition to Substitute a Course form along with course syllabi to their academic advisor. The ME faculty will review the petition and inform the advisor if the substitution is approved. If a course is more than seven years old, the student will be required to repeat the course at UW Tacoma. Credit will not be awarded twice for the same course. A maximum of 15 credits may be awarded through course substitution.
-If you are not admitted to UWT, you cannot be admitted to the ME major , but you may hold off on accepting your offer of admission to UWT until you have your program admissions decision.
-Industry Capstone Program
 Information Technology
-Institutional Research
-Internships for Credit
-IT Help
-Jobs
-Keep an eye on this page for more info!
-Land
-Learn More >
-Library
-Low Scholarship
-M-F 8:00a-4:00p
+Mechanical Engineering
+SET Direct
+Minor in Applied Computing
+Graduate Programs
+add
 M.S. in Computer Science & Systems
 M.S. in Electrical & Computer Engineering
 M.S. in Information Technology
-Main Content
-Make a Gift
-Map
-Marine Engineer
 Master of Cybersecurity & Leadership
-Materials Engineer
-Matrix Algebra (TMATH 208) is recommended but not required.
-Mechanical Engineer
-Mechanical Engineering
-Mechanical Engineering Faculty & Staff
-Mechanical Engineering students must complete 15 credits of electives. Click the button below to view the current academic year course offerings:
-Mechanical Engineering transfer courses are held to the same 2.0 grade standard required for all Mechanical Engineering coursework.
-Mechanics of Materials (TME 222 or UWS: CEE 220)
-Mechatronics Engineer
-Message from the Dean
-Minimum cumulative GPA of 2.0 in all college coursework
-Minor in Applied Computing
-Mission, Vision, Values and Goals
-more_vert
-Multivariable Calculus (TMATH 324 or UWS: MATH 224)
-MySET Faculty and Staff Resources
-MyUW
-Need Advising?
-Need help planning your prerequisite courses? Not sure if your courses directly transfer to UWT? Connect with our Prospective Student Advisor, Noelle Wilson , for guidance!
-Newly Admitted Students
-Notes for Transfer Students:
-Office Hours:
-Office Location
-Office365
-Open Public Meetings
-Our graduates will be prepared to advance their studies through professional development, certifications, or post-graduate degrees.
-Our graduates will pursue excellence in collaboration and leadership with an emphasis on the importance of transformational diversity/ equity, integrity, and respect as they create work of value of their communities and society.
-Our graduates will thrive in careers that utilize specific principles, professional skills, and technical innovation.
-Overall previous academic performance
-Panopto
-Parking & transportation
 Ph.D. in Computer Science & Systems
-Physics I (TPHYS 121), Physics II (TPHYS 122), Physics III (TPHYS 123). If Physics I, II and III are completed and 18 quarter credits are not achieved, the remaining credits may be satisfied by any additional lab-based science course (besides General Chemistry I).
-Power Plant Engineer
-Preparing Students for a Thriving Career in Mechanical Engineering
-Prerequisites
-Prior to graduation, we have assessed and evaluated that each ME student has:
-Priority Deadline: July 1, 2026
-Privacy |
-Program Mission
-Program of Study: Doctor of Philosophy (Computer Science and Systems)
-Program of Study: Minor: Applied Computing
-Program Overview
-Programs
-Puyallup Tribe of Indians
-Quick Facts
-Ready to Apply?
-Required Core Courses: 15 credits
-Requirements: 25 credits
-Research
-Research and Technology Labs
-Research Showcase
-Resumes and Job Searching
-Rules Docket
-Schedule an Advising Session
-Schedule an Appointment
-School of
-School of Engineering and Technology
-Schools and programs
-Scout
-Search
-See the School of Engineering and Technology website for a list of approved courses.
-Selection Criteria
-Senior Electives
-SET Advisory Board
-SET Direct
-SET Faculty Directory
+Certificate & Professional Programs
+add
+Data Science Certificate
+Graduate Certificate in Software Development Engineering
+Industry Capstone Program
+Engineering Fellowships
+Admission
+expand_more
+Undergraduate Admission
+Graduate Admission
+Freshman Direct Admission Program
+Advising
+expand_more
+Advising Events
+Tuition & Aid
+expand_more
 SET Scholarships
-SET Staff Directory
-Seung-Jin Lee
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-Skip to main content
-src="/sites/default/files/sites/uwtd8main/W.svg"
-src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
-src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-05/abet-logo.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-07/heather-dillon-1000x-me-highlight.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/me-uwt.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/pexels-cheneymediaproductions-2641822.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/pexels-pixabay-2166.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/pexels-pixabay-532192.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/uwtnews_shu-feature.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/uwtnews-storyimage-coffee-walking.jpg 1940w,
-Statics (TME 221or UWS: AA 210)
-Strong applicants typically have grades of 3.0 and higher in prerequisite math, science, engineering and programming courses, as well as a solid cumulative GPA.
-Student Concerns
-Student Employee Resources
-Student Life
-Student Organizations
-Student Outcomes
+Graduate Fellowships and Funding
+Vicky L. Carwein and William B. Andrews Endowment for Graduate Programs
 Student Resources
+expand_more
 Student Success
-Students may be conditionally admitted into the ME program with prerequisites in progress, but all prerequisites must be completed in order to enroll. To qualify for admission to the ME program, you must first be admitted to UWT and be on track to complete the following by the end of summer quarter before starting the major*:
-Students Notified: Rolling decisions until program full
-Study Abroad
-style="display:none;
-T INST 310
-T INST 311
-T INST 312
-TCES 215 Electrical Circuits (5)
-Teaching and Learning Center
+add
+Find a Research Project
+Internships for Credit
+Resumes and Job Searching
+Undergraduate Resources
+Graduate Resources
+Academic Support
+Student Organizations
+Academic Policies
+add
+Student Concerns
 Technology Labs
-TEE 225 Engineering Ethics (5)
-Terms of Use |
-The admissions committee reviews applications on a rolling basis. Students will be notified of decisions by email.
-The B.S. in Mechanical Engineering program is accredited by the Engineering Accreditation Commission of ABET .
+Student Employee Resources
+Newly Admitted Students
+Faculty & Research
+expand_more
+MySET Faculty and Staff Resources
+Research and Technology Labs
+Center for Data Science
+Center for Brazilian Studies
+Community & Educational Partnerships
+Visiting Appointments
+Events
+expand_more
+Advising Events
+Annual Dean&#039;s Awards
+Engineering Week
+Women in Data Science (WiDS) Tacoma @ UW Tacoma
+End of Quarter Colloquia
+Research Showcase
+Open Public Meetings
+MyUW
+Map
+Tools
+Breadcrumb
+<a href="https://www.tacoma.uw.edu/"
+class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
+>Home
+<a href="/set"
+>Engineering & Technology
+<a href="/set/programs"
+>SET Academic Programs
+<a href="/set/programs/undergrad"
+>Undergraduate Programs
+B.S. in Mechanical Engineering
+B.S. in Mechanical Engineering
+Main Content
+Preparing Students for a Thriving Career in Mechanical Engineering
 The Bachelor of Science in Mechanical Engineering is designed to equip students with the skills and experience to apply principles of engineering, basic science, and mathematics to model, analyze, design, and realize physical systems, preparing graduates to work professionally in thermal or mechanical systems or pursue graduate study. With a high demand for Mechanical Engineers at the national, state, and regional levels, the Bureau of Labor Statistics predicts robust growth in mechanical engineering jobs (9% per year) in Washington State and the Tacoma area from 2016 to 2026, and the mean wage for mechanical engineers in Washington is notably high at $93,070.
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/me-uwt.png"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/me-uwt.png 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/me-uwt.png 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/me-uwt.png 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Graphic of a gold and purple robot husky">
+arrow_back_ios
+arrow_forward_ios
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/pexels-pixabay-532192.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/pexels-pixabay-532192.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/pexels-pixabay-532192.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/pexels-pixabay-532192.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Photo of a field of windmills at sunset">
+arrow_back_ios
+arrow_forward_ios
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/pexels-pixabay-2166.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/pexels-pixabay-2166.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/pexels-pixabay-2166.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/pexels-pixabay-2166.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Photo of a spaceship rocket taking off">
+arrow_back_ios
+arrow_forward_ios
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/pexels-cheneymediaproductions-2641822.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/pexels-cheneymediaproductions-2641822.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/pexels-cheneymediaproductions-2641822.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/pexels-cheneymediaproductions-2641822.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Photo of a drone flying in the air">
+arrow_back_ios
+arrow_forward_ios
+Quick Facts
+Autumn 2026 applications are OPEN NOW!
+Application opens: January 28, 2026
+Priority Deadline: July 1, 2026
+Students Notified: Rolling decisions until program full
+Keep an eye on this page for more info!
+apply now!
+What our Graduates do
 The Bureau of Labor Statistics predicts stable growth in the number of jobs for mechanical engineers ( 11% per year ) at the national level between 2022-2023. The national median pay for 2023 is $99,510 per year. The average pay for mechanical engineers in WA State for is $117,705 ( BLS, 2023 ). Kitsap county is one example of a metropolitan area with the highest concentration of mechanical engineering jobs ( BLS, 2023 ). Career options include:
-The faculty of the University of Washington Tacoma Mechanical Engineering program strive to serve our students and other constituents by continuously improving our educational program. We envision that:
-The ME 4-year schedule planning grid shows a sample pathway to complete the B.S. in Mechanical Engineering degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
-The ME 5-year schedule planning grid shows a sample pathway to complete the B.S. in Mechanical Engineering degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
-The minor curriculum provides a thorough grounding in computing applications and principles. It also provides the student the opportunity to work with key technologies such as database management and computer networks.
-The minor in Applied Computing is designed for students who want to be sophisticated users of computing technology and integrate these skills into his or her major field.
-The minor in Applied Computing is open to all students and does not require computer proficiency or prerequisites.
-The mission of Mechanical Engineering at UW Tacoma is to provide access to transformative engineering education in scientific principles, professional skills, and technical innovation to equip graduates who can collaborate to solve challenging problems and serve the community and society in an ethical and meaningful way.
-This program of study leads to the following credential:
-title="Follow UW Tacoma on Facebook">
-title="Follow UW Tacoma on Instagram">
-title="Follow UW Tacoma on Linkedin">
-title="Follow UW Tacoma on TikTok">
-title="Follow UW Tacoma on Youtube">
+Mechanical Engineer
+Aerospace Engineer
+Power Plant Engineer
+Biomedical Engineer
+Marine Engineer
+Materials Engineer
+Electromechanical Engineer
+Mechatronics Engineer
+Mechanical Engineering Faculty & Staff
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-07/heather-dillon-1000x-me-highlight.png"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-07/heather-dillon-1000x-me-highlight.png 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-07/heather-dillon-1000x-me-highlight.png 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-07/heather-dillon-1000x-me-highlight.png 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Dr. Heather Dillon in front of bookshelves">
+arrow_back_ios
+arrow_forward_ios
+Heather Dillon
+"Engineering Something Amazing" - Heather Dillon is a big believer in human-centered design, and student-centered engineering education.
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/uwtnews_shu-feature.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/uwtnews_shu-feature.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/uwtnews_shu-feature.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/uwtnews_shu-feature.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Photo of Andy Shu">
+arrow_back_ios
+arrow_forward_ios
+Zhiquan (Andy) Shu
+"Frozen in Time" - Dr. Zhiquan (Andy) Shu’s research could help revolutionize organ transplants by extending the life of donated organs indefinitely.
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-12/uwtnews-storyimage-coffee-walking.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-12/uwtnews-storyimage-coffee-walking.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-12/uwtnews-storyimage-coffee-walking.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-12/uwtnews-storyimage-coffee-walking.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Photo of Seungjin Walking">
+arrow_back_ios
+arrow_forward_ios
+Seung-Jin Lee
+"Steeped in Engineering" - Assistant Professor Seung-Jin Lee uses coffee to teach first-year students about engineering.
+Have questions? Schedule an appointment with one of our Academic Advisors!
+Schedule an Advising Session
+How to Apply
+Admission Information
+Admission Requirements
+Transfer Admission
+Selection Criteria
+Ready to Apply?
+Admission Requirements
+Admission to the major is competitive. Please review the following prerequisites and application process carefully.
+Prerequisites
+Students may be conditionally admitted into the ME program with prerequisites in progress, but all prerequisites must be completed in order to enroll. To qualify for admission to the ME program, you must first be admitted to UWT and be on track to complete the following by the end of summer quarter before starting the major*:
+Calculus I (TMATH 124), Calculus II (TMATH 125), Calculus III (TMATH 126)
+Differential Equations (TMATH 207)
+Multivariable Calculus (TMATH 324 or UWS: MATH 224)
+Physics I (TPHYS 121), Physics II (TPHYS 122), Physics III (TPHYS 123). If Physics I, II and III are completed and 18 quarter credits are not achieved, the remaining credits may be satisfied by any additional lab-based science course (besides General Chemistry I).
+General Chemistry I (TCHEM 142)
+Statics (TME 221or UWS: AA 210)
+Mechanics of Materials (TME 222 or UWS: CEE 220)
+Dynamics - (TME 223 or UWS: ME 230)
+5 credits of computer programming (Courses in Python, Java, C, C++, or the equivalent of AMATH 301: Beginning Scientific Computing will meet this requirement. If you are not sure if the course you plan to take will count, please check with a SET advisor.)
+Matrix Algebra (TMATH 208) is recommended but not required.
+Electrical Circuits (TCES 215 or UWS: EE 215) is recommended but not required at the time of admission.
+*All pre-requisite courses must be completed in the last seven years
+GPA Requirements
+Cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course
+Minimum cumulative GPA of 2.0 in all college coursework
+Transfer Admission
+Notes for Transfer Students:
+Transfer students at Washington State community colleges are encouraged to pursue the Associate of Science – Mechanical/Civil/Aero Major Related Program (MRP) or Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
+UW Seattle and UW Bothell students seeking to transfer to UW Tacoma also need to have a transfer application on file to be considered for admission.
+If you are not admitted to UWT, you cannot be admitted to the ME major , but you may hold off on accepting your offer of admission to UWT until you have your program admissions decision.
+Selection Criteria
+Strong applicants typically have grades of 3.0 and higher in prerequisite math, science, engineering and programming courses, as well as a solid cumulative GPA.
+Applications are evaluated based on the following criteria:
+Completion of all prerequisite courses
+Grades in prerequisite courses -- individually and cumulatively (competitive applicants will have earned at least a 2.5 in each prerequisite course)
+Overall previous academic performance
+Content and form of personal statement and resume
+Completion of at least 45 college-level credits
+Admission Review
+The admissions committee reviews applications on a rolling basis. Students will be notified of decisions by email.
+Ready to Apply?
+Before starting the application, make sure you're ready to apply:
+You've been admitted to UW Tacoma and met the requirements to apply to the major.
+You have completed at least 45 college-level credits.
+You will complete the prerequisite courses listed in the Admission Requirements tab by the end of summer quarter.
+You've earned a minimum grade of 2.0 in each prerequisite course completed and maintain a minimum cumulative prerequisite GPA of 2.5.
+You're meeting the July 1 application deadline. The application may close at any time after the priority deadline once the program reaches capacity.
+apply to me today!
+Ready to Apply?
+Visit the SET application page and submit your application today!
+Apply now!
+Have Questions?
+Have a question that isn't answered on this page? Send us an email to UWtech@uw.edu !
+email us
+Curriculum Details
+Curriculum Information
+Courses
+4-Year Schedule Planning
+5-Year Schedule Planning
+Senior Electives
+Courses
+A total of 180 quarter credits are required to complete the BSME program. Follow the ME Schedule Planning Grids (in the next tabs) to make sure you complete all courses required to graduate.
+At least 45 of the final 60 credits must be taken in residence at UW Tacoma.
+A minimum of 30 credits of required courses for the BSME must also be taken in residence at the UW Tacoma.
+At least 84 credits must be taken from the ME required courses below and ME Senior Electives lists.
+A minimum 2.0 grade for each course applied to the major.
+Complete all Mechanical Engineering pre-requisite and required course work with a minimum GPA of 2.5 in coursework applied to the major.
+Core Courses
+TCES 215 Electrical Circuits (5)
+TEE 225 Engineering Ethics (5)
 TME 310 Introduction to Computer Modeling I (2)
 TME 311 Introduction to Computer Modeling II (2)
 TME 315 Intro to 3D Modeling, Design, and Analysis (4)
@@ -375,6 +311,23 @@ TME 345 Machining Fundamentals (5)
 TME 351 Engineering Probability and Statistics (3)
 TME 373 System Dynamics and Controls (5)
 TME 403 Engineering Economy (2)
+TME 433 Heat Transfer (5)
+TME 435 Thermal System Design (4)
+TME 441 Mechatronics (5)
+TME 480 Senior Project I (2)
+TME 481 Senior Project II (3)
+TME 482 Senior Project III (4)
+TME Senior Electives (15 credits total)
+4-Year Schedule Planning
+The ME 4-year schedule planning grid shows a sample pathway to complete the B.S. in Mechanical Engineering degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
+Download the ME 4-year Planning Grid
+5-Year Schedule Planning
+The ME 5-year schedule planning grid shows a sample pathway to complete the B.S. in Mechanical Engineering degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
+Download the ME 5-year Planning grid
+Senior Electives
+Mechanical Engineering students must complete 15 credits of electives. Click the button below to view the current academic year course offerings:
+2025 - 2026 Electives
+Full Electives List
 TME 411 Transport Phenomena for Biomedical Engineering (4)
 TME 412 Introduction to Cryo-Biomedical Engineering (4)
 TME 415 Sustainable Engineering and Design (4)
@@ -383,51 +336,134 @@ TME 425 Energy Efficiency in Buildings (4)
 TME 426 Renewable Energy Systems (4)
 TME 431 Introduction to Commercial Aircraft Engineering (1)
 TME 432 Introduction to Innovative Manufacturing (2)
-TME 433 Heat Transfer (5)
-TME 435 Thermal System Design (4)
 TME 436 Power Plant Systems (4)
-TME 441 Mechatronics (5)
 TME 444 Mechanical Vibrations (4)
 TME 445 Manufacturing Processes (4)
 TME 447 Advanced Mechatronics (4)
 TME 449 Robotics (4)
 TME 478 Finite Element Analysis (4)
 TME 479 Computational Fluid Dynamics (4)
-TME 480 Senior Project I (2)
-TME 481 Senior Project II (3)
-TME 482 Senior Project III (4)
 TME 489 Engineering Research Methods (4)
 TME 490 Topics in Mechanical Engineering (1-5)
 TME 497 Internship in Mechanical Engineering (1-5)
 TME 499 Undergraduate Research in Mechanical Engineering (1-5)
-TME Senior Electives (15 credits total)
-Tools
-Transfer Admission
-Transfer students at Washington State community colleges are encouraged to pursue the Associate of Science – Mechanical/Civil/Aero Major Related Program (MRP) or Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
-Tribal Sponsor of UW Tacoma
-Tuition & Aid
-Undergraduate Admission
-Undergraduate Majors
-Undergraduate Resources
-University YMCA Student Center
-UW Gmail
-UW Seattle | UW
-UW Seattle and UW Bothell students seeking to transfer to UW Tacoma also need to have a transfer application on file to be considered for admission.
-UWNetID login
-uwtech@uw.edu
-Vicky L. Carwein and William B. Andrews Endowment for Graduate Programs
-visibility:hidden">
+Ready to Apply?
 Visit the SET application page and submit your application today!
-Visiting Appointments
-What our Graduates do
-width="0"
-Women in Data Science (WiDS) Tacoma @ UW Tacoma
-Workday
+Apply Now!
+Have Questions?
+Have a question that isn't answered on this page? Send us an email to UWtech@uw.edu .
+email us
+Need Advising?
+Need help planning your prerequisite courses? Not sure if your courses directly transfer to UWT? Connect with our Prospective Student Advisor, Noelle Wilson , for guidance!
+Schedule an Appointment
+Additional Details
+ABET Accreditation
+The B.S. in Mechanical Engineering program is accredited by the Engineering Accreditation Commission of ABET .
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-05/abet-logo.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-05/abet-logo.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-05/abet-logo.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-05/abet-logo.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="ABET Engineering Accreditation Commission logo">
+Program Mission
+The mission of Mechanical Engineering at UW Tacoma is to provide access to transformative engineering education in scientific principles, professional skills, and technical innovation to equip graduates who can collaborate to solve challenging problems and serve the community and society in an ethical and meaningful way.
+Educational Objectives
+The faculty of the University of Washington Tacoma Mechanical Engineering program strive to serve our students and other constituents by continuously improving our educational program. We envision that:
+Our graduates will thrive in careers that utilize specific principles, professional skills, and technical innovation.
+Our graduates will be prepared to advance their studies through professional development, certifications, or post-graduate degrees.
+Our graduates will pursue excellence in collaboration and leadership with an emphasis on the importance of transformational diversity/ equity, integrity, and respect as they create work of value of their communities and society.
+Student Outcomes
+Prior to graduation, we have assessed and evaluated that each ME student has:
+An ability to identify, formulate, and solve complex engineering problems by applying principles of engineering, science, and mathematics.
+An ability to apply engineering design to produce solutions that meet specified needs with consideration of public health, safety, and welfare, as well as global, cultural, social, environmental, and economic factors.
+An ability to communicate effectively with a range of audiences.
+An ability to recognize ethical and professional responsibilities in engineering situations and make informed judgments, which must consider the impact of engineering solutions in global, economic, environmental, and societal contexts.
+An ability to function effectively on a team whose members together provide leadership, create a collaborative and inclusive environment, establish goals, plan tasks, and meet objectives.
+An ability to develop and conduct appropriate experimentation, analyze and interpret data, and use engineering judgment to draw conclusions.
+An ability to acquire and apply new knowledge as needed, using appropriate learning strategies.
+Enrollment and Graduation Data
 Year
-You have completed at least 45 college-level credits.
-You will complete the prerequisite courses listed in the Admission Requirements tab by the end of summer quarter.
-You're meeting the July 1 application deadline. The application may close at any time after the priority deadline once the program reaches capacity.
-You've been admitted to UW Tacoma and met the requirements to apply to the major.
-You've earned a minimum grade of 2.0 in each prerequisite course completed and maintain a minimum cumulative prerequisite GPA of 2.5.
-Zhiquan (Andy) Shu
-Zoom
+Enrollment
+Degrees Conferred
+2025-2026
+85
+-
+2024-2025
+80
+35
+2023-2024
+67
+24
+2022-2023
+46
+16
+2021-2022
+15
+-
+Contact
+Engineering & Technology
+uwtech@uw.edu
+253-692-5860
+Office Hours:
+M-F 8:00a-4:00p
+Office Location
+CP133
+<span
+class="uwt-icon uwt-icon-per-site-facebook">
+<span
+class="uwt-icon uwt-icon-per-site-twitter">
+<span
+class="uwt-icon uwt-icon-per-site-instagram">
+<span
+class="uwt-icon uwt-icon-per-site-youtube">
+ACADEMICS
+Academic advising
+Academic calendar
+Canvas
+Library
+Schools and programs
+Study Abroad
+Teaching and Learning Center
+CAMPUS
+Campus Safety
+Equity & Inclusion
+Financial Aid
+Housing
+Information Technology
+Student Life
+University YMCA Student Center
+ABOUT UW TACOMA
+Administration
+Admissions
+Institutional Research
+Jobs
+Parking & transportation
+Research
+UWNetID login
+<a href="https://www.tacoma.uw.edu/"
+aria-label="University of Washington Tacoma Homepage">
+<a href="https://www.facebook.com/uwtacoma"
+title="Follow UW Tacoma on Facebook">
+<a href="https://instagram.com/uwtacoma"
+title="Follow UW Tacoma on Instagram">
+<a href="https://www.tiktok.com/@uwtacoma"
+title="Follow UW Tacoma on TikTok">
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+title="Follow UW Tacoma on Youtube">
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+title="Follow UW Tacoma on Linkedin">
+Puyallup Tribe of Indians
+Tribal Sponsor of UW Tacoma
+Learn More >
+Land
+Acknowledgement
+>
+UW Seattle | UW
+Bothell
+&copy; 2026 University of Washington Tacoma
+1900 Commerce Street, Tacoma, WA 98402-3100
+Contact us |
+Terms of Use |
+Privacy |
+Accessibility |
+Rules Docket

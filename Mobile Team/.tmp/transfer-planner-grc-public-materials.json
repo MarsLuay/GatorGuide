@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-13T22:35:27.586Z",
+  "generatedAt": "2026-04-14T06:29:21.670Z",
   "usedSnapshotFallback": false,
   "snapshotFallbackReason": null,
   "discoveryPages": {
@@ -10,21 +10,21 @@
     {
       "label": "2024-2025",
       "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf",
-      "outputPath": "C:\\Users\\Marwan\\GatorGuide\\Mobile Team\\.tmp\\2024-2025-Annual-Schedule.pdf",
+      "outputPath": "C:\\Users\\marwa\\GatorGuide\\Mobile Team\\.tmp\\2024-2025-Annual-Schedule.pdf",
       "ownerId": "grc-annual-schedule-2024-2025",
       "sourcePageUrl": "https://www.greenriver.edu/students/academics/class-schedules-catalog/index.html"
     },
     {
       "label": "2025-2026",
       "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf",
-      "outputPath": "C:\\Users\\Marwan\\GatorGuide\\Mobile Team\\.tmp\\2025-2026-Annual-Schedule.pdf",
+      "outputPath": "C:\\Users\\marwa\\GatorGuide\\Mobile Team\\.tmp\\2025-2026-Annual-Schedule.pdf",
       "ownerId": "grc-annual-schedule-2025-2026",
       "sourcePageUrl": "https://www.greenriver.edu/students/academics/class-schedules-catalog/index.html"
     },
     {
       "label": "2026-2027",
       "url": "https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2026-2027%20Annual%20Schedule.pdf",
-      "outputPath": "C:\\Users\\Marwan\\GatorGuide\\Mobile Team\\.tmp\\2026-2027-Annual-Schedule.pdf",
+      "outputPath": "C:\\Users\\marwa\\GatorGuide\\Mobile Team\\.tmp\\2026-2027-Annual-Schedule.pdf",
       "ownerId": "grc-annual-schedule-2026-2027",
       "sourcePageUrl": "https://www.greenriver.edu/students/academics/class-schedules-catalog/index.html"
     }

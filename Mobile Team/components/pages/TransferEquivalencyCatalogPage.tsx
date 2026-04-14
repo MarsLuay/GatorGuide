@@ -1,5 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { type Href, useLocalSearchParams, useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 
@@ -130,7 +130,7 @@ export default function TransferEquivalencyCatalogPage() {
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 36 }} showsVerticalScrollIndicator={false}>
         <AnimatedIconPressable
           onPress={() => {
-            router.replace(ROUTES.transferPlanner);
+            router.replace(ROUTES.transferPlanner as Href);
           }}
           className="flex-row items-center"
           containerStyle={{ alignSelf: "flex-start" }}

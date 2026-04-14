@@ -12,7 +12,7 @@ export const ROUTES = {
   questionnaire: "/questionnaire" as const,
   calendar: "/calendar" as Href,
   opportunityAdmin: "/opportunity-admin" as const,
-  transferPlanner: "/transfer-planner" as const,
+  transferPlanner: "/resources/transfer-planner" as const,
   transferEquivalencies: "/transfer-equivalencies" as const,
   compare: "/compare" as const,
   costCalculator: "/cost-calculator" as const,

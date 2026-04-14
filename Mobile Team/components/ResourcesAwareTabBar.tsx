@@ -7,18 +7,23 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 
-const PRIMARY_TAB_ROUTES = ["index", "resources", "profile", "settings"] as const;
-const TAB_ROUTE_ALIASES: Record<string, (typeof PRIMARY_TAB_ROUTES)[number]> = {
+const RESOURCES_TAB_ROUTE = "resources/index" as const;
+const PRIMARY_TAB_ROUTES = ["index", RESOURCES_TAB_ROUTE, "profile", "settings"] as const;
+type PrimaryTabRoute = (typeof PRIMARY_TAB_ROUTES)[number];
+
+const TAB_ROUTE_ALIASES: Record<string, PrimaryTabRoute> = {
   roadmap: "index",
   questionnaire: "index",
-  compare: "resources",
-  "cost-calculator": "resources",
-  "saved-colleges": "resources",
-  calendar: "resources",
-  "transfer-planner": "resources",
-  "college-search": "resources",
-  "opportunity-admin": "resources",
-  "college/[collegeId]": "resources",
+  resources: RESOURCES_TAB_ROUTE,
+  compare: RESOURCES_TAB_ROUTE,
+  "cost-calculator": RESOURCES_TAB_ROUTE,
+  "saved-colleges": RESOURCES_TAB_ROUTE,
+  calendar: RESOURCES_TAB_ROUTE,
+  "transfer-planner": RESOURCES_TAB_ROUTE,
+  "resources/transfer-planner": RESOURCES_TAB_ROUTE,
+  "college-search": RESOURCES_TAB_ROUTE,
+  "opportunity-admin": RESOURCES_TAB_ROUTE,
+  "college/[collegeId]": RESOURCES_TAB_ROUTE,
   language: "settings",
   about: "settings",
   privacy: "settings",
@@ -58,10 +63,10 @@ export function ResourcesAwareTabBar({
   }
 
   const visibleRoutes = modifiedState.routes.filter((route) =>
-    PRIMARY_TAB_ROUTES.includes(route.name as (typeof PRIMARY_TAB_ROUTES)[number])
+    PRIMARY_TAB_ROUTES.includes(route.name as PrimaryTabRoute)
   );
   const visibleRouteNames = modifiedState.routeNames.filter((routeName) =>
-    PRIMARY_TAB_ROUTES.includes(routeName as (typeof PRIMARY_TAB_ROUTES)[number])
+    PRIMARY_TAB_ROUTES.includes(routeName as PrimaryTabRoute)
   );
   const visibleRouteKeys = new Set(visibleRoutes.map((route) => route.key));
   const filteredDescriptors = Object.fromEntries(

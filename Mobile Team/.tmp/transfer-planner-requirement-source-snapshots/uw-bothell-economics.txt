@@ -12,11 +12,9 @@ Title: Bachelor of Economics - School of Business
 [Supplemental official source] Curriculum
 [Supplemental official source] Entrepreneurship Concentration
 [Supplemental official source] Finance Option and Concentration
-[Supplemental official source] Leadership & Strategic Innovation Option
 [Supplemental official source] Prerequisite Courses
 [Supplemental official source] Prerequisites
 [Supplemental official source] Supplemental official track and option pages
-[Supplemental official source] UW Bothell Economics curriculum
 * POLS & 201 is not standard across all community colleges.
 **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 **AP Statistics score not accepted
@@ -54,7 +52,6 @@ Title: Bachelor of Economics - School of Business
 5-10 credits
 55 Credits
 60 Credits
-90 credits
 90 Credits
 A project-based applied learning practicum focused on introducing students to the field of management consulting. Designed to serve an integrative role, bringing together the functional disciplines and components of the MBA curriculum in a summative project-based consulting experience.
 About
@@ -120,36 +117,23 @@ B BUS 301: Data Management ( BIS 215, or BBUS 215, or B MATH 215, or STMATH 341)
 B BUS 361 – Intermediate Accounting I
 B BUS 362 – Intermediate Accounting II (361)
 B BUS 373 – Cost Accounting
-B BUS 402 – Managing Work Teams
 B BUS 402 Managing Work Teams
 B BUS 427 Entrepreneurial Marketing (320)
 B BUS 441 – Business Project Management (340)
-B BUS 443 – Entrepreneurship Seminar
 B BUS 443 Entrepreneurship Seminar
-B BUS 444 – Product Development Lab
 B BUS 444 Product Development Lab
 B BUS 455 – Financial Risk Management (454)
 B BUS 456 – Entrepreneurial Finance (350)
 B BUS 456 Entrepreneurial Finance (350)
 B BUS 457 – Advanced Valuation (454)
 B BUS 459 – Special Topics in Finance (350)
-B BUS 460 – Sustainable Business
-B BUS 461 – Business, Government, and Society ( 300, 310 )
-B BUS 462 – Negotiations and Conflict Management (300, 320)
 B BUS 463 – Advanced Financial Accounting (362)
 B BUS 464 New Product Marketing (320)
 B BUS 465 – Applied Financial Accounting (350)
 B BUS 468 – Advanced Accounting and Analytics (363)
-B BUS 471 – Entrepreneurial Management
 B BUS 471 Entrepreneurial Management
-B BUS 472 – Managing Employees (300)
-B BUS 473 – Leadership and Decision Making ( 300 )
-B BUS 475 – Managing Innovation
-B BUS 476 – New Technology and Future Markets (320, 350)
 B BUS 476 New Technology & Future Markets (300, 320, 350)
-B BUS 477 – Human Resource Management (300)
 B BUS 478 Venture Startup, Management & Growth
-B BUS 479 – Special Topics in Management (300)
 B BUS 491 – Business Consulting
 B BUS 501
 B BUS 502
@@ -212,8 +196,6 @@ BBUs 466 &#8211; Applied Managerial Accounting (350)
 BBUS 467 – Advanced Taxation (450)
 BBUS 468 – Advanced Accounting and Analytics (363)
 BBUS 470 – Business Policy & Strategic Management
-BBUS 476 – New Technology and Future Markets (300, 320, 350)
-BBUS 477 – Human Resource Management (300)
 BBUS 480 – Global Environment of Business
 BBUS 490 – Special Topics in Business (300, 310)
 BBUS 490 – Special Topics in Business (300, 310), Only counts when approved for concentration; see your advisor before registering.
@@ -244,7 +226,6 @@ Choose two courses (10 credits) from the following:
 Close mobile menu
 COMMON TRANSFER COURSE NUMBERING
 Commuter Services
-Complete one of the following:
 Concentration Courses
 Considers some of the most important economic aspects of a business enterprise including demand and cost analysis, pricing strategy (including auctions), and the economics of information. Highlights the usefulness of game theory.
 Contact
@@ -341,7 +322,6 @@ General Education Requirements
 General Electives
 General Electives (any 300/400 level B BECN or B BUS course)
 General Electives (any 300/400 level UW course)
-General Electives (any 300/400 level UW courses)
 General MBA
 Get a Mentor
 Get Updates
@@ -368,7 +348,6 @@ Jobs
 Join an Info Session
 Law
 Leadership & Strategic Innovation Option
-Leadership & Strategic Innovation Option - School of Business
 Leadership and Ethical Decision Making
 Leadership and Ethical Decision Making (4)
 Leadership History
@@ -377,8 +356,6 @@ Leadership Social Responsibility
 Leadership Social Responsibility (4)
 Learn to innovate in data-driven, tech-focused industries.
 Library
-LSI curriculum
-LSI Electives (prerequisites in parentheses)
 Macroeconomics
 Management Concentration
 Management Consulting
@@ -467,7 +444,6 @@ REQUIRED COURSES
 Required Courses (prerequisites in parentheses)
 Required Electives
 Required Entrepreneurship Courses (prerequisites in parentheses)
-Required LSI Courses (prerequisites in parentheses)
 Requirements to declare the option
 Requirements to declare the Option or the Concentration
 Requires two of the following courses:
@@ -511,12 +487,10 @@ Strong industry partnerships connecting classroom learning to real life context.
 Students are also required to complete 20 credits of Accounting electives. Electives can be arranged across quarters as desired.
 Students in the Entrepreneurship concentration must complete the following courses for graduation.
 Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
-Students in the Leadership & Strategic Innovation option must complete the following courses for graduation.
 Students may NOT enroll in any Accounting courses until speaking to their advisor to determine whether they meet the requirements.
 Students pursuing the B.S. in Economics major must complete the following 55 credits for graduation.
 Students wanting to declare the Accounting option must meet the following requirements:
 Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
-Students wanting to declare the LSI Option must complete BBUS 300 and BBUS 307 with a minimum grade of 3.0 in each course.
 Study abroad tour that cultivates a rich understanding of business theory and a genuine global perspective. Develops an appreciation of national difference in culture and economic, legal, and political systems that affect business strategy, operations, and performance.
 Subscribe to Notifications
 Summer
@@ -538,7 +512,6 @@ The B.S. in Economics qualifies as a STEM-designated program categorized under �
 The comparison chart above is for students interested in applying to the UW Bothell School of Business only. It is not an approved equivalency guide for all campuses. If you have questions about the specific prerequisite courses needed for a program, please speak to an advisor.
 The Entrepreneurship Concentration prepares students to start their own companies, whether they be tech startups, local shops, or professional services. Students learn by developing actual startup ideas on real startup teams. They spot new business opportunities and create value propositions, which align products or services with customer needs. And they develop strategies and business models for their startups. The concentration prepares students (if interested) to compete in UW&#8217;s Dempsey Startup Competition or to apply to the Buerk Accelerator Program .
 The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
-The Leadership & Strategic Innovation (LSI) option will engage students in a rigorous study of leadership, strategy, and innovation. You will graduate ready to lead teams, manage innovation, and inspire employees. LSI graduates can go on to become project leads, managers, consultants, business development leads, HR analysts, market analysts, sales managers, entrepreneurs, and much more.
 The UW Bothell School of Business MBA Program blends rigorous academics with real-world experiences, preparing you to lead in any business environment. Learn from award-winning faculty, collaborate with peers, and apply your skills to real local and global challenges.
 There are three entry points into the B.S. in Economics major. These include students transferring from another institution, students directly admitted into the major from high school, and UWB pre-majors. Regardless of how you enter the B.S. in Economics major, the requirements are the same. The table below outlines the five prerequisite courses and their most common equivalents.
 This course is designed to introduce students to concepts, methods and tools of project management. Students will be exposed to topics such as exploring the processes of selecting and defining the project, planning the project, leading the project team, monitoring and controlling the execution of the project, and closing and evaluating the project.
@@ -571,7 +544,6 @@ Why hire a business student?
 Why study accounting?
 Why study Entrepreneurship?
 Why study finance?
-Why study Leadership & Strategic Innovation?
 Winter
 Workday Login
 Year One

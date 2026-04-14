@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run web:export",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/transfer-planner",
+      "destination": "/resources/transfer-planner",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/college/:collegeId",
+      "destination": "/college/[collegeId]"
+    }
+  ]
+}

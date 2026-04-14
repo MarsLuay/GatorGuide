@@ -1,6 +1,6 @@
 # Transfer Planner Equivalency Guide Parse
 
-Generated at: 2026-04-13T23:02:20.002Z
+Generated at: 2026-04-14T10:07:04.071Z
 Source: https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/
 HTTP status: 200
 Final URL: https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/
@@ -10,22 +10,25 @@ Snapshot hash: 6c99fc5126279a9b39d9c1fb2b33d95fa5d27ea9eb0b4537cadb8bd925cf036e
 
 - Departments: 67
 - Official guide rows parsed: 1316
-- Generated rules: 1316
-- Source-course-backed rules: 1316
-- Target-course-backed rules: 1289
+- Generated rules: 1336
+- Source-course-backed rules: 1324
+- Target-course-backed rules: 1309
 
 ## Rule Types
 
+- alternate-path: 1
+- chain-rule: 12
 - direct-course: 278
 - elective-credit: 770
+- full-credit-combo: 4
 - limited-credit: 175
 - no-credit: 14
-- sequence: 79
+- sequence: 82
 
 ## Rule Status
 
-- active: 570
-- legacy: 746
+- active: 588
+- legacy: 748
 
 ## Departments
 

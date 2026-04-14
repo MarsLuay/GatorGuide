@@ -2,50 +2,6 @@ Owner: uw-seattle-atmospheric-and-climate-science:pathway:data-science-option
 Source: https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html
 Title: 
 
-Home
-Students
-Parents
-Faculty & Staff
-Alumni
-College of the Environment
-Atmospheric and Climate Science
-408 Atmospheric Sciences
-206-543-4250
-Website
-Faculty Website
-Atmospheric sciences is a wide-ranging discipline that includes topics as diverse as weather forecasting, global warming, air quality, Pacific Northwest weather and climate, mountain weather, marine weather, El Nino, the ozone hole, ice ages, and the weather of Mars. It considers problems that are both scientifically challenging and critical for the welfare of modern society.
-Undergraduate Programs
-Program of Study: Major: Atmospheric and Climate Science
-Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry
-Bachelor of Science degree with a major in Atmospheric and Climate Science: Climate
-Bachelor of Science degree with a major in Atmospheric and Climate Science: Data Science
-Bachelor of Science degree with a major in Atmospheric and Climate Science: Meteorology
-Program of Study: Minor: Atmospheric Sciences
-Minor in Atmospheric Science
-Graduate Programs
-Program of Study: Doctor Of Philosophy (Atmospheric and Climate Science)
-Doctor Of Philosophy (Atmospheric and Climate Science)
-Doctor Of Philosophy (Atmospheric and Climate Science: Advanced Data Science)
-Doctor Of Philosophy (Atmospheric and Climate Science: Atmospheric Sciences and Astrobiology)
-Doctor Of Philosophy (Atmospheric and Climate Science: Data Science)
-Program of Study: Master Of Science (Atmospheric and Climate Science)
-Master Of Science (Atmospheric and Climate Science)
-Undergraduate Programs
-Atmospheric and Climate Science
-416 Atmospheric Sciences
-206-543-4576
-atmosadv@uw.edu
-Program of Study: Major: Atmospheric and Climate Science
-Program Overview
-Atmospheric and climate science is a wide-ranging discipline that includes topics as diverse as weather forecasting, global warming, air quality, Pacific Northwest weather and climate, mountain weather, marine weather, El Nino, the ozone hole, ice ages, and the weather of Mars. It considers problems that are both scientifically challenging and critical for the welfare of modern society. These problems are addressed with theory, measurements, and computer simulations.
-This program of study leads to the following credentials:
-Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry
-Bachelor of Science degree with a major in Atmospheric and Climate Science: Climate
-Bachelor of Science degree with a major in Atmospheric and Climate Science: Data Science
-Bachelor of Science degree with a major in Atmospheric and Climate Science: Meteorology
-Recommended Preparation
-Suggested First- and Second-Year Courses: English composition; ATMOS 220; MATH 124, MATH 125, MATH 126; PHYS 121, PHYS 122, PHYS 123. The first upper-division core course is ATMOS 301, which is offered autumn quarter only. Any lower-division atmospheric sciences courses except ATMOS 220 count as electives and not as part of the major.
-Admission Requirements
 Minimum course requirements: English composition; MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122, PHYS 123 (or PHYS 141, PHYS 142, PHYS 143)
 Grade requirements: Minimum 2.0 grade for each course required for admission; minimum 2.50 cumulative GPA in courses required for admission
 Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry
@@ -79,3 +35,35 @@ Additional Completion Requirements
 Option specific credits (31-40 credits)
 Requirements (22-25 credits): ATMOS 350; ATMOS 358, ATMOS 380, ATMOS 487; ATMOS 310 or CSE 160; ESS 431 or ESS 433; OCEAN 423 or OCEAN 450
 Electives (9-15 credits): minimum three courses from an approved list. See adviser for approved list of electives.
+Back to Top
+Bachelor of Science degree with a major in Atmospheric and Climate Science: Data Science
+Credential Overview
+The Data Science Option provides students with a strong foundation in data science skills with specific applications to meteorology-, climate-, and air pollution-related careers.
+Completion Requirements
+Minimum 85-98 credits, depending on credential/option
+Foundation requirements (30 credits): MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122, PHYS 123 (or PHYS 141, PHYS 142, PHYS 143)
+Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1 credit), ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, ATMOS 431.
+Additional requirements specified below
+Minimum 2.0 grade in courses applied to the major
+Pre-graduate Program for Physical Science, Mathematics, and Engineering Majors
+The following elective course sequence is suitable preparation for students interested in pursuing graduate study in atmospheric sciences: ATMOS 301, ATMOS 340, ATMOS 441.
+Additional Completion Requirements
+Option specific credits (28-39 credits)
+Requirements (28-39 credits):
+one of CSE 123, CSE 143, or CSE 163
+one of CSE 416/STAT 416, STAT 435, INFO 371, or ESS 469
+SOC 225 (3 credits)
+one of ATMOS 310, ATMOS 350, ATMOS 358, ATMOS 380, or ATMOS 458/CHEM 458
+one of the following options: (1) MATH 207, MATH 208, MATH 209; (2) AMATH 351 and AMATH 353
+CSE 414 or INFO 430
+one of CSE 412, HCDE 411, INFO 474, or STAT 451
+Note: Prerequisites for option specific courses could add up to 0-29 credits. See adviser for list of prerequisites.
+Back to Top
+Bachelor of Science degree with a major in Atmospheric and Climate Science: Meteorology
+Credential Overview
+The meteorology option provides students with a strong background in atmospheric dynamics, synoptic meteorology and weather forecasting.
+Completion Requirements
+Minimum 85-98 credits, depending on credential/option
+Foundation requirements (30 credits): MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122, PHYS 123 (or PHYS 141, PHYS 142, PHYS 143)
+Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1 credit), ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, ATMOS 431.
+Additional requirements specified below

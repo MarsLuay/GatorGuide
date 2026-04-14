@@ -1,94 +1,40 @@
 # Transfer Planner Source Link Summary
 
-Generated: 2026-04-13T22:44:28.475Z
+Generated: 2026-04-14T06:33:19.140Z
 
-- Total tracked source URLs: 484
-- Reachable: 484
+- Total tracked source URLs: 249
+- Reachable: 249
 - Failed: 0
 - Added since previous snapshot: 0
-- Changed since previous snapshot: 118
-- Removed since previous snapshot: 0
+- Changed since previous snapshot: 13
+- Removed since previous snapshot: 1
 
 ## Changed URLs
 
-- https://acms.washington.edu/admissions
-  - owners: uw-seattle-applied-and-computational-mathematical-sciences
-- https://acms.washington.edu/program-requirements-and-information
-  - owners: uw-seattle-applied-and-computational-mathematical-sciences
-- https://admissions.uwb.edu/register/mpw-aes
-  - owners: uw-bothell-american-and-ethnic-studies
-- https://admissions.uwb.edu/register/mpw-CLA
-  - owners: uw-bothell-culture-literature-and-the-arts
-- https://admissions.uwb.edu/register/mpw-compe
-  - owners: uw-bothell-computer-engineering
-- https://admissions.uwb.edu/register/mpw-crs
-  - owners: uw-bothell-conservation-and-restoration-science
-- https://admissions.uwb.edu/register/mpw-csse
-  - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
-- https://admissions.uwb.edu/register/mpw-DataVis-BA
-  - owners: uw-bothell-data-visualization-ba
-- https://admissions.uwb.edu/register/mpw-DataVis-BS
-  - owners: uw-bothell-data-visualization-bs
-- https://admissions.uwb.edu/register/mpw-EE
-  - owners: uw-bothell-electrical-engineering
-- https://admissions.uwb.edu/register/mpw-hs
-  - owners: uw-bothell-health-studies
-- https://admissions.uwb.edu/register/mpw-me
-  - owners: uw-bothell-mechanical-engineering
-- https://admissions.uwb.edu/register/mpw-psy
-  - owners: uw-bothell-psychology
 - https://aes.washington.edu/ba-american-ethnic-studies
   - owners: uw-seattle-american-ethnic-studies
-- https://ais.washington.edu/ba-american-indian-studies
-  - owners: uw-seattle-american-indian-studies
-- https://ais.washington.edu/undergraduate-programs
-  - owners: uw-seattle-american-indian-studies
-- https://amath.washington.edu/undergraduate-major-applied-mathematics
-  - owners: uw-seattle-applied-mathematics
-- https://art.washington.edu/admission-major-art-history
-  - owners: uw-seattle-art-history
-- https://art.washington.edu/art-history/ba-art-history
-  - owners: uw-seattle-art-history
-- https://art.washington.edu/art/undergraduate-program
-  - owners: uw-seattle-art
-- https://art.washington.edu/design
-  - owners: uw-seattle-design
-- https://art.washington.edu/design/bachelor-design-admissions
-  - owners: uw-seattle-design
-- https://asian.washington.edu/admissions-incoming-freshmen-current-students
-  - owners: uw-seattle-chinese
-- https://asian.washington.edu/ba-asian-languages-cultures
-  - owners: uw-seattle-asian-languages-and-cultures
-- https://asian.washington.edu/ba-chinese
-  - owners: uw-seattle-chinese
-- https://asian.washington.edu/ba-japanese
-  - owners: uw-seattle-japanese
-- https://asian.washington.edu/ba-korean
-  - owners: uw-seattle-korean
-- https://asian.washington.edu/ba-south-asian-languages-and-cultures
-  - owners: uw-seattle-south-asian-languages-and-cultures
-- https://astro.washington.edu/advising
-  - owners: uw-seattle-astronomy
-- https://astro.washington.edu/timeline-and-requirements
-  - owners: uw-seattle-astronomy
-- https://astro.washington.edu/undergraduate-program
-  - owners: uw-seattle-astronomy
-- https://catalog.greenriver.edu/
-  - owners: grc-catalog-2025-2026
-- https://catalog.greenriver.edu/content.php?catoid=10&navoid=624
-  - owners: grc-course-descriptions-2025-2026
-- https://chem.washington.edu/ba-biochemistry
-  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
 - https://chem.washington.edu/ba-chemistry
-  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
-- https://chem.washington.edu/bs-biochemistry
-  - owners: uw-seattle-biochemistry, uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
-- https://chem.washington.edu/bs-chemistry
-  - owners: uw-seattle-chemistry, uw-seattle-chemistry::acs-certified-bs-route, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
-- https://cinema.washington.edu/ba-comparative-literature
-  - owners: uw-seattle-comparative-literature
-- https://classics.washington.edu/ba-classical-studies
-  - owners: uw-seattle-classical-studies
-- https://classics.washington.edu/ba-classics
-  - owners: uw-seattle-classics
+  - owners: uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
+- https://classics.washington.edu/ba-latin
+  - owners: uw-seattle-latin
+- https://ischool.uw.edu/academics/informatics/curriculum
+  - owners: uw-seattle-informatics
+- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
+  - owners: uw-bothell-business-administration
+- https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+  - owners: uw-bothell-economics
+- https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+  - owners: uw-bothell-developmental-and-youth-studies
+- https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements
+  - owners: uw-bothell-educational-studies-elementary-education
+- https://www.uwb.edu/nhs/undergraduate/health-studies/overview
+  - owners: uw-bothell-health-studies
+- https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview
+  - owners: uw-bothell-nursing-first-year-rn-to-bsn, uw-bothell-nursing-rn-to-bsn
+- https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
+  - owners: uw-bothell-chemistry-ba, uw-bothell-chemistry-biochemistry, uw-bothell-chemistry-bs
+- https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum
+  - owners: uw-bothell-electrical-engineering
+- https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum
+  - owners: uw-bothell-mathematics
 

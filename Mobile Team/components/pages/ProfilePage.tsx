@@ -1040,14 +1040,64 @@ export default function ProfilePage() {
     </>
   );
 
+  const renderQuestionnaireAction = () => (
+    <View
+      className="rounded-full px-3 py-2 flex-row items-center border"
+      style={{
+        backgroundColor: "rgba(16,185,129,0.12)",
+        borderColor: "rgba(16,185,129,0.22)",
+      }}
+    >
+      <MaterialIcons
+        name={hasQuestionnaireData ? "edit" : "open-in-new"}
+        size={16}
+        color="#008f4e"
+      />
+      <Text className="text-sm font-semibold ml-1.5" style={{ color: "#008f4e" }}>
+        {hasQuestionnaireData ? t("profile.edit") : t("profile.complete")}
+      </Text>
+    </View>
+  );
+
   const renderMetadataCards = ({
     compact = false,
+    fillHeight = false,
   }: {
     compact?: boolean;
+    fillHeight?: boolean;
   } = {}) => (
-    <View className="flex-row flex-wrap gap-3">
+    <View
+      className="flex-row flex-wrap gap-3"
+      style={fillHeight ? { flex: 1, alignContent: "stretch" } : undefined}
+    >
       {profileSummaryCards.map((card) => {
         const isQuestionnaireCard = card.key === "questionnaire";
+        const sharedCardStyle = {
+          flexBasis: "47%" as const,
+          flexGrow: 1,
+          flexShrink: 1,
+          minHeight: compact ? 112 : 132,
+        };
+        const summaryContent = (
+          <View style={fillHeight ? { flex: 1, justifyContent: "space-evenly" } : undefined}>
+            <View className="w-10 h-10 rounded-full bg-emerald-500/10 items-center justify-center">
+              <MaterialIcons name={card.icon} size={20} color="#008f4e" />
+            </View>
+            <View className={fillHeight ? "" : "mt-3"}>
+              <Text className={`${secondaryTextClass} text-xs`} numberOfLines={compact ? 1 : 2}>
+                {card.label}
+              </Text>
+              <Text className={`${textClass} text-base font-semibold mt-1`} numberOfLines={compact ? 1 : 2}>
+                {card.value}
+              </Text>
+            </View>
+            {isQuestionnaireCard ? (
+              <View className={fillHeight ? "" : "mt-3"}>
+                {renderQuestionnaireAction()}
+              </View>
+            ) : null}
+          </View>
+        );
 
         return (
           isQuestionnaireCard ? (
@@ -1057,37 +1107,17 @@ export default function ProfilePage() {
               accessibilityRole="button"
               accessibilityLabel={t("profile.questionnaire")}
               className={`${cardBgClass} border rounded-2xl p-4`}
-              containerStyle={{ flexBasis: "47%", flexGrow: 1, minHeight: compact ? 112 : 132 }}
+              containerStyle={sharedCardStyle}
             >
-              <View className="w-10 h-10 rounded-full bg-emerald-500/10 items-center justify-center">
-                <MaterialIcons name={card.icon} size={20} color="#008f4e" />
-              </View>
-              <Text className={`${secondaryTextClass} text-xs mt-3`} numberOfLines={compact ? 1 : 2}>
-                {card.label}
-              </Text>
-              <Text className={`${textClass} text-base font-semibold mt-1`} numberOfLines={compact ? 1 : 2}>
-                {card.value}
-              </Text>
-              <View className="mt-3 flex-row items-center">
-                <Text className="text-emerald-500 text-xs font-semibold">{hasQuestionnaireData ? t("profile.edit") : t("profile.complete")}</Text>
-                <MaterialIcons name="open-in-new" size={14} color="#008f4e" style={{ marginLeft: 6 }} />
-              </View>
+              {summaryContent}
             </AnimatedCardPressable>
           ) : (
             <View
               key={card.key}
               className={`${cardBgClass} border rounded-2xl p-4`}
-              style={{ flexBasis: "47%", flexGrow: 1, minHeight: compact ? 112 : 132 }}
+              style={sharedCardStyle}
             >
-              <View className="w-10 h-10 rounded-full bg-emerald-500/10 items-center justify-center">
-                <MaterialIcons name={card.icon} size={20} color="#008f4e" />
-              </View>
-              <Text className={`${secondaryTextClass} text-xs mt-3`} numberOfLines={compact ? 1 : 2}>
-                {card.label}
-              </Text>
-              <Text className={`${textClass} text-base font-semibold mt-1`} numberOfLines={compact ? 1 : 2}>
-                {card.value}
-              </Text>
+              {summaryContent}
             </View>
           )
         )})}
@@ -1122,22 +1152,7 @@ export default function ProfilePage() {
               ) : null}
             </View>
 
-          <View
-            className="rounded-full px-3 py-2 flex-row items-center border"
-            style={{
-              backgroundColor: "rgba(16,185,129,0.12)",
-              borderColor: "rgba(16,185,129,0.22)",
-            }}
-          >
-            <MaterialIcons
-              name={hasQuestionnaireData ? "edit" : "open-in-new"}
-              size={16}
-              color="#008f4e"
-            />
-            <Text className="text-sm font-semibold ml-1.5" style={{ color: "#008f4e" }}>
-              {hasQuestionnaireData ? t("profile.edit") : t("profile.complete")}
-            </Text>
-          </View>
+          {renderQuestionnaireAction()}
         </View>
 
         <Text className={`text-sm ${secondaryTextClass}`}>
@@ -1323,10 +1338,12 @@ export default function ProfilePage() {
                     gap: desktopPanelGap,
                   }}
                 >
-                  <View className={`${cardBgClass} border rounded-2xl p-5`}>
-                    {renderMetadataCards({ compact: true })}
+                  <View
+                    className={`${cardBgClass} border rounded-2xl p-5`}
+                    style={{ flex: 1, minHeight: 0 }}
+                  >
+                    {renderMetadataCards({ compact: true, fillHeight: true })}
                   </View>
-                  {renderQuestionnaireCard({ fitToContainer: true })}
                 </View>
               </View>
             </View>
@@ -1425,8 +1442,8 @@ export default function ProfilePage() {
 
           <View className="px-6">
             {isWideLayout ? (
-              <View className="flex-row items-start gap-6">
-                <View className="flex-1 min-w-0 gap-4">
+              <View style={{ flexDirection: "row", alignItems: "stretch", gap: desktopPanelGap }}>
+                <View style={{ flex: 1, minWidth: 0, gap: desktopPanelGap }}>
                   <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
                     {renderProfileHero()}
                     <View className="px-6 py-6">
@@ -1436,9 +1453,16 @@ export default function ProfilePage() {
                   </View>
                 </View>
 
-                <View className="min-w-0 gap-4" style={{ width: sidebarWidth, flexShrink: 0 }}>
-                  {renderMetadataCards()}
-                  {renderQuestionnaireCard()}
+                <View
+                  className="min-w-0"
+                  style={{ width: sidebarWidth, flexShrink: 0, gap: desktopPanelGap }}
+                >
+                  <View
+                    className={`${cardBgClass} border rounded-2xl p-5`}
+                    style={{ flex: 1, minHeight: 0 }}
+                  >
+                    {renderMetadataCards({ fillHeight: true })}
+                  </View>
                 </View>
               </View>
             ) : (

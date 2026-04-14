@@ -2,12 +2,6 @@ Owner: uw-seattle-earth-and-space-sciences:pathway:bs-option-family:physics
 Source: https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html
 Title: 
 
-Elective Courses: 25 upper-division credits (300 and 400 level) with at least 10 credits at the 400 level (may not include independent study or seminar courses numbered ESS 489 through ESS 499.)
-Concentration (15 credits): 15 credits from one concentration area: business, education, interdisciplinary science, law and policy, or science communication (see department for approved list). Courses counted toward this requirement cannot be used for any other major requirements. Courses not on the approved list may count toward this requirement if approved in advance by ESS Advising.
-Minimum 2.00 cumulative GPA for all ESS-prefix courses.
-Back to Top
-Bachelor of Science degree with a major in Earth and Space Sciences: Biology
-Credential Overview
 The Bachelor of Science in Earth and Space Sciences: Biology Option is designed for students interested in geology and geophysics, and a career path in graduate studies or in the private sector where field and technology experiences and problem-solving skills are an important asset. The Biology Option enables students interested in paleontology and paleobiology to emphasize biology courses.
 Recommended Preparation
 Suggested First- and Second-Year Courses: MATH 124, MATH 125, and MATH 126 or ESS 310; PHYS 121, PHYS 122, PHYS 123 or PHYS 114/PHYS 117, PHYS 115/PHYS 118, PHYS 116/PHYS 119; CHEM 142.
@@ -72,36 +66,3 @@ Supporting science (34-37 credits): MATH 126, MATH 308, MATH 324 or MATH 136, MA
 ESS required 300-Level Core Courses (10 credits): two of ESS 311, ESS 312, ESS 313, ESS 314, ESS 316
 ESS Upper-Division Courses (19 credits): ESS 418; 15 credits from ESS 400-level courses or any ESS 300-level core course (ESS 311, ESS 312, ESS 313, ESS 314, ESS 316) not taken as a required course, above. May not include independent study or seminar courses numbered ESS 489 through ESS 499
 Minimum 2.00 cumulative GPA for all ESS-prefix courses
-Back to Top
-Program of Study: Minor: Earth and Space Sciences
-Program Overview
-The Minor in Earth and Space Sciences provides students maximum flexibility and interest by allowing them to sample from the full range of Earth and Space Sciences courses, including undergraduate courses in both geological sciences and geophysics. Recommended for general interest or for non-science majors intending to pursue graduate studies in a related field.
-This program of study leads to the following credential:
-Minor in Earth and Space Sciences
-Minor in Earth and Space Sciences
-Credential Overview
-The Minor in Earth and Space Sciences provides students maximum flexibility and interest by allowing them to sample from the full range of Earth and Space Sciences courses, including undergraduate courses in both geological sciences and geophysics. Recommended for general interest or for non-science majors intending to pursue graduate studies in a related field.
-Completion Requirements
-30 credits
-30 ESS credits with at least 15 at the upper-division level (300- or 400-level) of which at least 3 credits must be at the 400-level (may not include independent study or seminar courses numbered ESS 489 through ESS 499.)
-All courses must be completed with a minimum grade of 2.0.
-Back to Top
-Additional Information
-Student Outcomes and Opportunities
-Learning Objectives and Expected Outcomes: Students who graduate with an undergraduate degree in Earth and Space Sciences (ESS) have achieved these learning goals:
-Have a general knowledge of the basic areas of solid earth geology and geophysics, geobiology, surface processes, space physics, and analogues of processes within the solar system.
-Be proficient in one of the core disciplines through the completion of requirements in one of four options: standard (geology), (geo)biology, (geo)physics, or environmental.
-Think critically and obtain quantitative predictions using skill sets that involve multiple disciplines and all core sciences.
-Have obtained hands-on experience from extensive fieldwork and/or laboratory experience.
-Have the ability to communicate scientific information clearly and precisely, both orally and in writing.
-Have the ability to read, understand, and use scientific literature.
-Instructional and Research Facilities: See below, at end of graduate program requirements.
-Honors Options Available: With College Honors (Completion of Honors Core Curriculum and Departmental Honors); With Honors (Completion of Departmental Honors in the major). See adviser or department website for requirements.
-State Licensing Endorsement Available: Students interested in pursuing State Licensing for Geologists can receive guidance in course selection that meets state requirements for the geologist licensing examination (see adviser for requirements or visit department website).
-Research, Internships, and Service Learning: Job and internship possibilities are posted in the department and forwarded by email to all undergraduate students.
-Department Scholarships: A limited number of departmental scholarships are available. Scholarship applications are invited from all undergraduate students in the major during spring quarter. The awards are applicable to the following academic year.
-Student Organizations/Associations: Geo Club organizes field trips and social gatherings. Information about meetings and events is forwarded to undergraduate majors by email.
-Graduate Programs
-Earth and Space Sciences
-Program of Study: Doctor Of Philosophy (Earth And Space Sciences)
-This program of study leads to the following credentials:

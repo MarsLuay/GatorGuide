@@ -7,7 +7,6 @@ import {
   TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY,
   type TransferPlannerGrcCourseAvailabilityEntry,
 } from "../transfer-planner-grc-availability.generated";
-import { TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY } from "../transfer-planner-master-generated";
 import type {
   TransferPlannerCampus,
   TransferPlannerCampusId,
@@ -46,7 +45,7 @@ import type {
   TransferPlannerSourceLink,
 } from "./schema";
 
-const STRUCTURED_GRC_SOURCE_KINDS = new Set(["plan-checklist", "plan-course-list", "master-bank"]);
+const STRUCTURED_GRC_SOURCE_KINDS = new Set(["plan-checklist", "plan-course-list"]);
 const REFERENCE_COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const COMBINED_ENTRY_REFERENCE_PATTERN = /combined[- ]entry|combined entries|see .*combined/i;
 const QUARTER_LABELS: Record<string, string> = {
@@ -54,30 +53,6 @@ const QUARTER_LABELS: Record<string, string> = {
   fall: "Fall",
   winter: "Winter",
   spring: "Spring",
-};
-const TRANSFER_PLANNER_CHAIN_LABELS: Record<string, string> = {
-  "WRIT-SEQ": "Writing sequence",
-  "MATH-STEM": "STEM calculus sequence",
-  "MATH-BUS": "Business and applied math options",
-  "CS-NEW": "Modern CS sequence",
-  "CS-LEGACY": "Legacy CS sequence",
-  "PHYS-CALC": "Calculus-based physics sequence",
-  "PHYS-ALG": "Algebra-based physics sequence",
-  "CHEM-GEN": "General chemistry sequence",
-  "CHEM-ORG": "Organic chemistry sequence",
-  "BIO-MAJORS": "Biology majors sequence",
-  "BIO-ANAT": "Anatomy and physiology sequence",
-  "ACCT-COMBO": "Accounting full-credit combo",
-  "ASTR-COMBO": "Astronomy full-credit combo",
-  "HIST-US": "US history full-credit combo",
-  "ENGL-250": "English 250 full-credit combo",
-  "COMM-266": "CMST 266 credit rule",
-  "LANG-CHIN": "Chinese language sequence",
-  "LANG-FR": "French language sequence",
-  "LANG-GER": "German language sequence",
-  "LANG-JP": "Japanese language sequence",
-  "LANG-SP": "Spanish language sequence",
-  "NATRS-COMBO": "Natural resources ESRM combo",
 };
 const AUTO_TRACK_MATCH_EXAMPLE_LIMIT = 4;
 const MIN_AUTO_TRACK_MATCH_COUNT = 3;
@@ -1272,9 +1247,8 @@ function buildTrackReferenceCourseCodes(
 
 type TransferPlannerAutoMatchedTrackRecommendation = {
   trackId: string;
-  bestTrackSummary: string;
+  recommendedTrackSummary: string;
   whyThisTrack: string[];
-  financialAidNote: string;
   matchCount: number;
   matchedCourseCodes: string[];
   matchedCourseLabels: string[];
@@ -1282,7 +1256,7 @@ type TransferPlannerAutoMatchedTrackRecommendation = {
   totalTrackCourseCount: number;
 };
 
-function buildAutoTrackSummary(scope: {
+function buildAutoTrackRecommendationSummary(scope: {
   track: TransferPlannerTrack;
   matchCount: number;
   totalPlanCourseCount: number;
@@ -1308,11 +1282,6 @@ function buildAutoTrackWhyThisTrack(scope: {
     `This auto-match compares every hardcoded course in the current Green River transfer tracks against the major's tracked Green River classes and keeps the track with the highest concrete course overlap.`,
     `Use the remaining major-specific checklist items to add the classes that ${scope.track.code} does not cover by itself.`,
   ];
-}
-
-function buildAutoTrackFinancialAidNote(track: TransferPlannerTrack) {
-  void track;
-  return "";
 }
 
 export function getTransferPlannerAutoMatchedTrackRecommendation(
@@ -1382,7 +1351,7 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
 
   return {
     trackId: winner.track.id,
-    bestTrackSummary: buildAutoTrackSummary({
+    recommendedTrackSummary: buildAutoTrackRecommendationSummary({
       track: winner.track,
       matchCount: winner.matchCount,
       totalPlanCourseCount: planCourseCodes.length,
@@ -1393,7 +1362,6 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
       matchCount: winner.matchCount,
       totalTrackCourseCount: winner.trackCourseCodes.length,
     }),
-    financialAidNote: buildAutoTrackFinancialAidNote(winner.track),
     matchCount: winner.matchCount,
     matchedCourseCodes: [...winner.matchedCourseCodes],
     matchedCourseLabels: [...winner.matchedCourseLabels],
@@ -1404,9 +1372,8 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
 
 function applyAutoTrackRecommendation<T extends {
   bestTrackId: string | null | undefined;
-  bestTrackSummary?: string;
+  recommendedTrackSummary?: string;
   whyThisTrack?: string[];
-  financialAidNote?: string;
   grcCourseList?: string[];
   applicationChecklist?: TransferPlannerChecklistItem[];
   beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
@@ -1431,9 +1398,8 @@ function applyAutoTrackRecommendation<T extends {
   return {
     ...scope,
     bestTrackId: autoTrack.trackId,
-    bestTrackSummary: autoTrack.bestTrackSummary,
+    recommendedTrackSummary: autoTrack.recommendedTrackSummary,
     whyThisTrack: [...autoTrack.whyThisTrack],
-    financialAidNote: autoTrack.financialAidNote,
   };
 }
 
@@ -1631,10 +1597,10 @@ function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferP
       basePathway.degreeMapSections,
       basePathway.id
     ),
-    manualReviewNotes: sanitizePlannerOwnedStrings(
+    validationNotes: sanitizePlannerOwnedStrings(
       collectStructuredValidationNotes(
         basePlan.id,
-        basePathway.manualReviewNotes ?? basePlan.manualReviewNotes ?? [],
+        basePathway.validationNotes ?? basePlan.validationNotes ?? [],
         basePathway.id
       )
     ),
@@ -1652,13 +1618,12 @@ function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferP
     plannerNote: sanitizePlannerOwnedText(policy?.plannerNote ?? basePathway.plannerNote),
     bestTrackId:
       policy?.bestTrackId === undefined ? basePathway.bestTrackId : policy.bestTrackId,
-    bestTrackSummary: sanitizePlannerOwnedText(
-      policy?.bestTrackSummary ?? basePathway.bestTrackSummary
+    recommendedTrackSummary: sanitizePlannerOwnedText(
+      policy?.recommendedTrackSummary ?? basePathway.recommendedTrackSummary
     ),
     whyThisTrack: sanitizePlannerOwnedStrings(
       policy?.whyThisTrack.length ? [...policy.whyThisTrack] : [...(basePathway.whyThisTrack ?? [])]
     ),
-    financialAidNote: sanitizePlannerOwnedText(policy?.financialAidNote ?? basePathway.financialAidNote),
   } satisfies TransferPlannerMajorPathway);
 }
 
@@ -1673,11 +1638,12 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
     ...basePlan,
     summary: sanitizePlannerOwnedText(basePlan.summary),
     bestTrackId: policy?.bestTrackId ?? basePlan.bestTrackId,
-    bestTrackSummary: sanitizePlannerOwnedText(policy?.bestTrackSummary ?? basePlan.bestTrackSummary),
+    recommendedTrackSummary: sanitizePlannerOwnedText(
+      policy?.recommendedTrackSummary ?? basePlan.recommendedTrackSummary
+    ),
     whyThisTrack: sanitizePlannerOwnedStrings(
       policy?.whyThisTrack.length ? [...policy.whyThisTrack] : [...basePlan.whyThisTrack]
     ),
-    financialAidNote: sanitizePlannerOwnedText(policy?.financialAidNote ?? basePlan.financialAidNote),
     applicationChecklist,
     beforeEnrollmentChecklist: buildChecklistForPhase(
       basePlan.id,
@@ -1690,12 +1656,10 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
       basePlan.stayAtGrcChecklist
     ),
     advisorFlags: sanitizePlannerOwnedStrings(policy?.advisorFlags ?? basePlan.advisorFlags),
-    involvementIdeas: [...(policy?.involvementIdeas ?? basePlan.involvementIdeas)],
-    projectIdeas: [...(policy?.projectIdeas ?? basePlan.projectIdeas)],
     officialLinks: collectStructuredLinks(basePlan.id, basePlan.officialLinks),
     degreeMapSections: buildDegreeMapSections(basePlan.id, basePlan.degreeMapSections),
-    manualReviewNotes: sanitizePlannerOwnedStrings(
-      collectStructuredValidationNotes(basePlan.id, basePlan.manualReviewNotes ?? [])
+    validationNotes: sanitizePlannerOwnedStrings(
+      collectStructuredValidationNotes(basePlan.id, basePlan.validationNotes ?? [])
     ),
     grcCourseList: getStructuredCourseCodesForPlan(
       basePlan.id,
@@ -1929,14 +1893,13 @@ function buildStudentRuntimePathway(
         advisorFlags: [],
         officialLinks: [],
         degreeMapSections: [],
-        manualReviewNotes: [],
+        validationNotes: [],
         grcCourseList: studentVisibleTrackMatchCourseList,
         grcCourseListGuidance: undefined,
         plannerNote: undefined,
         bestTrackId: null,
-        bestTrackSummary: "",
+        recommendedTrackSummary: "",
         whyThisTrack: [],
-        financialAidNote: "",
     } satisfies TransferPlannerMajorPathway, {
       trackMatchCourseList: studentVisibleTrackMatchCourseList,
     }),
@@ -1994,18 +1957,15 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
         ...basePlan,
         summary: "",
         bestTrackId: null,
-        bestTrackSummary: "",
+        recommendedTrackSummary: "",
         whyThisTrack: [],
-        financialAidNote: "",
         applicationChecklist,
         beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
         stayAtGrcChecklist: prunedStayAtGrcChecklist,
         advisorFlags: [],
-        involvementIdeas: [],
-        projectIdeas: [],
         officialLinks: [],
         degreeMapSections: [],
-        manualReviewNotes: [],
+        validationNotes: [],
         grcCourseList: studentVisibleTrackMatchCourseList,
         grcCourseListGuidance: undefined,
         plannerNote: undefined,
@@ -2040,7 +2000,7 @@ function materializePlannerPathway(pathway: TransferPlannerMajorPathway): Transf
     ]),
     advisorFlags: sanitizePlannerOwnedStrings(pathway.advisorFlags ?? []),
     officialLinks: uniquePlannerLinks(pathway.officialLinks ?? []),
-    manualReviewNotes: sanitizePlannerOwnedStrings(pathway.manualReviewNotes ?? []),
+    validationNotes: sanitizePlannerOwnedStrings(pathway.validationNotes ?? []),
     grcCourseListGuidance: sanitizePlannerOwnedText(pathway.grcCourseListGuidance) || undefined,
     whyThisTrack: sanitizePlannerOwnedStrings(pathway.whyThisTrack ?? []),
   };
@@ -2104,9 +2064,9 @@ function mergePlannerPathwayWithPlan(
     degreeMapSections: (pathway.degreeMapSections ?? plan.degreeMapSections)?.map((section) =>
       sanitizeDegreeMapSection(section)
     ),
-    manualReviewNotes: sanitizePlannerOwnedStrings([
-      ...(plan.manualReviewNotes ?? []),
-      ...(pathway.manualReviewNotes ?? []),
+    validationNotes: sanitizePlannerOwnedStrings([
+      ...(plan.validationNotes ?? []),
+      ...(pathway.validationNotes ?? []),
     ]),
     grcCourseListGuidance: sanitizePlannerOwnedText(
       pathway.grcCourseListGuidance ?? plan.grcCourseListGuidance
@@ -2117,12 +2077,11 @@ function mergePlannerPathwayWithPlan(
         : plan.grcCourseList,
     plannerNote: sanitizePlannerOwnedText(pathway.plannerNote ?? plan.plannerNote),
     bestTrackId: pathway.bestTrackId === undefined ? plan.bestTrackId : pathway.bestTrackId,
-    bestTrackSummary: sanitizePlannerOwnedText(pathway.bestTrackSummary ?? plan.bestTrackSummary),
+    recommendedTrackSummary: sanitizePlannerOwnedText(
+      pathway.recommendedTrackSummary ?? plan.recommendedTrackSummary
+    ),
     whyThisTrack: sanitizePlannerOwnedStrings(
       pathway.whyThisTrack?.length ? pathway.whyThisTrack : plan.whyThisTrack
-    ),
-    financialAidNote: sanitizePlannerOwnedText(
-      pathway.financialAidNote ?? plan.financialAidNote
     ),
   });
 
@@ -2149,10 +2108,6 @@ const TRACK_REFERENCE_CODES_BY_ID = new Map(
         }),
       ] as const
   )
-);
-
-const CHAINS_BY_ID = new Map(
-  TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY.map((chain) => [chain.id, chain] as const)
 );
 
 const GRC_AVAILABILITY_BY_CODE = TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY as Record<
@@ -2376,22 +2331,6 @@ export function getTransferPlannerGrcCourseListGuidance(
 export function getTransferPlannerTrack(trackId: string | null) {
   if (!trackId) return null;
   return TRACKS_BY_ID.get(trackId) ?? null;
-}
-
-export function getTransferPlannerChainsForPlan(
-  plan: TransferPlannerMajorPlan | TransferPlannerResolvedMajorPlan | null | undefined
-) {
-  if (!plan?.chainIds?.length) return [];
-
-  return plan.chainIds
-    .map((chainId) => CHAINS_BY_ID.get(chainId) ?? null)
-    .filter(
-      (chain): chain is (typeof TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY)[number] => Boolean(chain)
-    );
-}
-
-export function getTransferPlannerChainLabel(chainId: string) {
-  return TRANSFER_PLANNER_CHAIN_LABELS[chainId] ?? chainId;
 }
 
 export function getTransferPlannerGrcCourseLatestPublishedQuarters(

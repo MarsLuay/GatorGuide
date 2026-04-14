@@ -275,7 +275,7 @@ const PRIMARY_TAB_LABELS = [
   { path: "/settings", label: "Settings", primaryTab: "settings" },
   { path: "/questionnaire", label: "Questionnaire", primaryTab: "home" },
   { path: "/calendar", label: "Deadline Calendar", primaryTab: "resources" },
-  { path: "/transfer-planner", label: "Transfer Planner", primaryTab: "resources" },
+  { path: "/resources/transfer-planner", label: "Transfer Planner", primaryTab: "resources" },
   { path: "/compare", label: "Compare Colleges", primaryTab: "resources" },
   { path: "/cost-calculator", label: "Cost Calculator", primaryTab: "resources" },
   { path: "/saved-colleges", label: "Saved Colleges", primaryTab: "resources" },
@@ -291,9 +291,10 @@ const PRIMARY_TAB_LABELS = [
   { path: "/forgot-password", label: "Forgot Password", primaryTab: "none" },
 ] as const;
 
-const VISIBLE_PRIMARY_TABS = ["index", "resources", "profile", "settings"] as const;
+const VISIBLE_PRIMARY_TABS = ["index", "resources/index", "profile", "settings"] as const;
 const HIDDEN_CHILD_ROUTES = [
   "calendar",
+  "resources/transfer-planner",
   "transfer-planner",
   "college-search",
   "opportunity-admin",

@@ -1,0 +1,13 @@
+node_modules
+functions/node_modules
+dist
+.expo
+.tmp
+logs
+.tools
+.tools/qa-web
+.env
+.env.*
+firebase-debug.log
+firestore-debug.log
+storage-debug.log

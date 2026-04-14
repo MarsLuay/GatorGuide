@@ -1,6 +1,6 @@
 Owner: uw-seattle-statistics:pathway:mathematical-statistics-track
-Source: https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks
-Title: Statistics B.S. tracks | University of Washington Department of Statistics
+Source: https://stat.uw.edu/academics/undergraduate/statistics-bs/major
+Title: Major Requirements | University of Washington Department of Statistics
 
 (Optional) Write up to 100 words: If you have overcome challenges in your educational journey that you would like the committee to be aware of, please describe them here. For example, you can use this space to tell us about:
 [Supplemental official source] Admissions
@@ -10,9 +10,7 @@ Title: Statistics B.S. tracks | University of Washington Department of Statistic
 [Supplemental official source] Honors Program
 [Supplemental official source] Internships & CPT
 [Supplemental official source] major requirements
-[Supplemental official source] Major Requirements
 [Supplemental official source] Statistics B.S.
-[Supplemental official source] UW Statistics B.S. major requirements
 &copy; 2026 University of Washington | Seattle, WA
 a detailed plan indicating which of the options they would like to pursue to obtain Departmental honors. In particular, according to the option chosen, the following will be needed:
 a list of relevant experiences (e.g., internships, projects)
@@ -28,6 +26,7 @@ Academics
 Accessibility
 Admission decisions
 Admissions
+Admissions | University of Washington Department of Statistics
 Admitted students have 2 business days from when the offer is sent to accept our offer by email. If admitted, students have 5 business days from when the offer was sent to declare STAT as their major, 10 business days for double majors. Non-response by the deadlines is considered a decline of our offer. Applicants are not allowed to defer admissions and they must be declared Statistics major in the Fall quarter immediately after notification of acceptance. Failure to do so can result in a withdrawal of our offer.
 All applicants will be evaluated using the following criteria:
 All tracks share the same set of admission and core requirements, differing on the structure of their breath requirements . Students do not need to select a particular track when applying to the program, but they must do so before graduation. To learn more about the admissions process visit the admissions page , while you can learn more about the different tracks in the Statistics B.S. Tracks page.
@@ -43,6 +42,7 @@ Applicants must have a minimum grade of 2.0 for each course required for admissi
 Application requirements
 Applications open on the first Friday of April and close on the third Friday of April at 5pm (Pacific Standard Time).
 Applied Statistics track : it allows students to explore the use of statistical methods in specific scientific domains .
+Apply Here
 Apply the fundamentals of probability theory to assess the quality of estimators, statistical tests, and models, as well as their uncertainty.
 Applying as a current UW undergraduate student
 Applying is very simple. Once applications open, please click here to start your application. You will be asked to submit written responses to the following prompts:
@@ -85,6 +85,7 @@ Directories
 Dismissal from the Major
 Diversity
 Double Major and Double Degree
+Double Major and Double Degree | University of Washington Department of Statistics
 Double major in CSE (B.S.) and Statistics (B.S.)
 Double major in Mathematics (B.S) and Statistics (B.S.)
 Double Majors
@@ -107,6 +108,7 @@ Font Awesome fontawesome.com -->Commitment to Diversity, Equity and Inclusion �
 Font Awesome fontawesome.com -->Direct to Major admissions for freshmen applicants ▾ Font Awesome fontawesome.com -->
 Font Awesome fontawesome.com -->Transfer Students ▾ Font Awesome fontawesome.com -->
 Footer menu
+For more information on the requirements of a thesis project, please click here .
 For students who plan to Double-Major but do not have a declared major: Please explain what other major you plan to take, why you wish to do so, and how you expect Statistics to complement your other major. (max 150 words)
 For students with a declared major: If statistics is your second major or you are planning to change your major to statistics, please explain why you wish to do so and how you expect Statistics to complement your other major. If statistics is your second major or you are planning to change your major to statistics, please explain why you wish to do so and how you expect Statistics to complement your other major. (max 150 words)
 Frame a scientific question and understand how to address it by appropriately designing a study, collecting data, performing a statistical analysis, and interpreting.
@@ -128,7 +130,6 @@ If the internship is approved, students have to enroll in STAT 497.
 If you are a transfer student and you are interested in the Statistics major, you are highly encouraged to contact the Statistics advisor ( statugradadv@stat.uw.edu ) as soon as possible. Our advising staff will help you plan the coursework in preparation for the Spring admissions cycle. When you submit the major’s admission application, please explain that you joined UW as a transfer student.
 If you are an international student on an active F-1 visa status, you must apply for a Curricular Practice Training (CPT) before you engage in an internship. The CPT serves as a work authorization as students engage in different types of activities related to their major. Please, review the UW ISS page regarding the CPT process. If you have questions about the process, you should refer these to your ISS adviser.
 If you are an international student, do not fill out the UW ISS CPT request form until your internship has been approved by the Statistics Advising Office. If you run into any problem, please email statugradadv@stat.uw.edu
-If you are interested in pursuing a degree in Statistics, in addition to the introductory courses needed to apply (STAT 311 or STAT 390, and STAT 394), typically taken during the sophomore year, you will be taking more advanced statistics classes focused on mathematical theory, computational methods or applications according to the track you choose. Here is a flow chart based on courses and interests that can help you make a decision on which track is more suitable for you.
 If you are not a Statistics major, but you would like (or you need) to take Statistics, please note that the Statistics Department offers several classes geared towards non majors who would like to understand statistics at different levels, either at a more conceptual and introductory level, or in its computational aspects or as a tool to gain visualize and communicate data and results.
 If you have read and understand information necessary to apply for internship credits, use this request form .
 If you have read and understand the information necessary to apply for CPT, use this request form .
@@ -218,11 +219,8 @@ STAT 497 and CPT process summary
 STAT/CSE 180 is a relatively recent alternative which introduces the essential elements of data science. It is a good choice for students looking for a hybrid between a computer course and a statistics course. It is not intended for students who have taken statistics courses such as STAT 220, 221, 311 or 390 or programming courses like CSE 160.
 Statistical Consulting
 Statistics B.S.
-Statistics B.S. | University of Washington Department of Statistics
-Statistics B.S. tracks
 Statistics B.S. Tracks
 Statistics is also the art of story-telling through the use of data, and what could be better than using graphical visualizations to do so? As the saying goes, A picture is worth a thousand words! STAT 451 is a new class offered by the Statistics Department with the goal of providing students with a comprehensive understanding of data visualization techniques using R. This class requires some computational background (see course catalogue for details on the pre-requisites) and it is geared towards majors and non-majors interested in boosting their data visualization techniques, starting from fundamentals but going all the way to the design and creation of interactive dashboards.
-Statistics is an increasingly important discipline, driven by the continuing proliferation of complex and rich data and by the evolution of the ways in which data are collected and used. Statistical analysis plays a central role in all disciplines that include making evidence-based decisions.
 Statistics Minor
 Statistics: Either STAT 311 (strongly recommended) or STAT 390.
 Student Awards
@@ -242,8 +240,8 @@ Students will be notified of probation or dismissal from the major as soon as pr
 Students will enroll in 1 credit of STAT 497 if part-time (less than 20 hours a week).
 Students will enroll in 2 credits of STAT 497 if the internship is full time (more than 20 hours a week).
 Students wishing to apply to the statistics major must complete the online application by the due date and time ( see important dates above).
-Studying statistics gives you the conceptual foundations and the necessary toolbox to intelligently extract information from the data and make insightful conclusions in any field of application. Having a deep understanding of theoretical, applied and ethical aspects of statistical analysis will make a difference in your career as well as giving you a solid background to pursue graduate studies.
 Terms
+The 2026 application cycle opened 04/03/2026 at 9am and it will close 04/17/2026 at 5pm
 The Department of Statistics believes diversity is integral to the well-being of our programs in particular and the field of statistics in general.
 The Department of Statistics offers various classes with the goal of introducing students to theory and applications of machine learning methodologies, technologies, and algorithms. The most popular options are STAT/CSE 416 and STAT 435. Students entering these classes should have some knowledge of probability, statistics, and algorithms, as reflected by these courses’ pre-requites (see the course catalog for more details on the pre-requisites). STAT/CSE 416 is a machine learning course designed for non-STAT and non-CSE majors and it requires some prior coursework in probability and statistics as well as a course in computer science. STAT/CSE 416 relies on programming in Python, while STAT 435 relies on programming in R. STAT 435 is geared towards Statistics majors and students with a stronger mathematical background. It covers similar topics to STAT/CSE 416, but it provides a deeper theoretical understanding of the methods.
 The Department of Statistics welcomes students who are willing to pursue a double major or a double degree. Juggling the requirements of two majors can be very challenging. While you can find general information on UW’s requirements for double majors and double degrees at this link , on this page we include details that should facilitate students who are pursuing a double major or double degree with Statistics. In particular, the Department of Statistics is working with other departments at UW to create preapproved paths which include courses that can and cannot double count towards the major. Please note that this is only a suggestion and students do not have to follow our pre-approved path.
@@ -259,7 +257,6 @@ The internship must occur after completing STAT 342 - Students who declare the S
 The internship must take place in the United States unless it is part of the UW Study Abroad Program.
 The MATH 124-125-126-208 (or, alternatively, MATH 134-135-135) sequence satisfies lower-division mathematics requirements for both majors.
 The MATH 124-125-126-208 (or, alternatively, MATH 134-135-135) sequence satisfies lower-division mathematics requirements for both majors. It can be double counted.
-The Mathematical S tatistics track provides a solid foundation for graduate studies in statistics and closely-related fields. The Data Science track emphasizes the link between statistics and computer science and it is perfect for those interested in the computational aspects of statistics, along with database management and coding. The Applied Statistics track is intended for students to explore the use of statistical methods in specific scientific domains. It is intended for those who have an interest in a specific applied discipline and would like to have a deep understanding of Statistics to be able to apply in their domain of choice. Students interested in pursuing graduate degrees in other applied disciplines, such as E conomics or other social sciences, may benefit from completing a statistics major in the Applied Statisti cs track.
 The program is characterized by an active community of students and Faculty that engages in several extra-curricular activities including the Directed Reading Program , DataFest and the Statistics and Probability Association .
 The request form will require you to include whether you need a CPT or not, the original job posting and a detailed training description from your employer. The description must be written on the company’s letterhead, be addressed to you, include a job title, provide a detailed job description (minimum a few sentences describing specific duties), the street address where employment will take place, number of hours you will work per week and the start and end dates of the employment.
 The Statistics Department offers several introductory courses which provide Natural World (NW) and Quantitative and Symbolic Reasoning (QSR) general education credits. Each course is geared towards a slightly different audience. For a full description of these courses, content and prerequisites, please visit our course catalog .
@@ -295,6 +292,5 @@ What will you do when you graduate?
 What will you learn?
 When to apply for internship or CPT credits
 Which Statistics Course?
-Why Statistics?
 With Direct to Major admission, freshmen applicants have the possibility of being admitted directly to the Statistics program as majors. Students coming in through this pathway are assured a spot in the major as long as they satisfy the continuation and honesty policy .
 Working Groups

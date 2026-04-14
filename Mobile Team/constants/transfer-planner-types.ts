@@ -45,14 +45,13 @@ export type TransferPlannerMajorPathway = {
   advisorFlags?: string[];
   officialLinks?: TransferPlannerLink[];
   degreeMapSections?: TransferPlannerDegreeMapSection[];
-  manualReviewNotes?: string[];
+  validationNotes?: string[];
   grcCourseList?: string[];
   grcCourseListGuidance?: string;
   plannerNote?: string;
   bestTrackId?: string | null;
-  bestTrackSummary?: string;
+  recommendedTrackSummary?: string;
   whyThisTrack?: string[];
-  financialAidNote?: string;
 };
 
 export type TransferPlannerTrackTerm = {
@@ -96,7 +95,6 @@ export type TransferPlannerCampus = {
   id: TransferPlannerCampusId;
   title: string;
   summary: string;
-  coverageNote: string;
   officialLinks: TransferPlannerLink[];
 };
 
@@ -107,26 +105,20 @@ export type TransferPlannerMajorPlan = {
   shortTitle: string;
   coverage: TransferPlannerCoverage;
   summary: string;
-  applicationWindow: string;
-  startQuarter: string;
   bestTrackId: string | null;
-  bestTrackSummary: string;
+  recommendedTrackSummary: string;
   whyThisTrack: string[];
-  financialAidNote: string;
   applicationChecklist: TransferPlannerChecklistItem[];
   beforeEnrollmentChecklist: TransferPlannerChecklistItem[];
   stayAtGrcChecklist: TransferPlannerChecklistItem[];
   advisorFlags: string[];
-  involvementIdeas: string[];
-  projectIdeas: string[];
   officialLinks: TransferPlannerLink[];
   degreeMapSections?: TransferPlannerDegreeMapSection[];
-  manualReviewNotes?: string[];
+  validationNotes?: string[];
   family?: string;
   grcCourseList?: string[];
   grcCourseListGuidance?: string;
   bankIds?: string[];
-  chainIds?: string[];
   plannerNote?: string;
   sourceType?: TransferPlannerSourceType;
   pathways?: TransferPlannerMajorPathway[];

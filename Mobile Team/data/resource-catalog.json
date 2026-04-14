@@ -7,7 +7,7 @@
       {
         "titleKey": "resources.transferPlanner",
         "descriptionKey": "resources.transferPlannerDesc",
-        "url": "app://transfer-planner",
+        "url": "app://resources/transfer-planner",
         "tags": [
           "transfer planner",
           "grc",

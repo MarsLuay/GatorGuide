@@ -73,6 +73,7 @@ export default function SettingsPage() {
   const [isSendingSupport, setIsSendingSupport] = useState(false);
   const [supportStatus, setSupportStatus] = useState<"" | "sent" | "error">("");
   const [supportStatusText, setSupportStatusText] = useState("");
+  const [isAdvancedSettingsOpen, setIsAdvancedSettingsOpen] = useState(false);
 
   const { theme, isDark, isGreen, setTheme } = useAppTheme();
   const { t, language } = useAppLanguage();
@@ -292,6 +293,9 @@ export default function SettingsPage() {
 
   const handleClearCacheNow = useCallback(() => {
     setShowClearCacheConfirm(true);
+  }, []);
+  const toggleAdvancedSettings = useCallback(() => {
+    setIsAdvancedSettingsOpen((currentValue) => !currentValue);
   }, []);
 
   const handleConfirmClearCache = useCallback(async () => {
@@ -619,6 +623,50 @@ export default function SettingsPage() {
       danger: true,
     },
   ];
+  const advancedMobileItems = advancedDesktopItems.filter(
+    (item) => item.key === "auto-clear" || item.key === "clear-cache"
+  );
+
+  const renderAdvancedRows = (
+    items: typeof advancedDesktopItems,
+    options?: {
+      rowPaddingVertical?: number;
+    }
+  ) =>
+    items.map((item, index) => {
+      const AdvancedRow = item.type === "toggle" ? Pressable : AnimatedCardPressable;
+
+      return (
+        <AdvancedRow
+          key={item.key}
+          onPress={item.onPress}
+          className={`${flexDirection} items-center px-4`}
+          style={{
+            paddingVertical: options?.rowPaddingVertical ?? 18,
+            borderTopWidth: index === 0 ? 0 : 1,
+            borderColor: dividerColor,
+          }}
+        >
+          <Ionicons name={item.icon} size={20} color={item.danger ? "#EF4444" : accentColor} />
+          <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
+            <Text className={`${isRTL ? "text-right" : ""} ${item.danger ? dangerTextClass : textClass}`}>
+              {item.label}
+            </Text>
+            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
+              {item.description}
+            </Text>
+          </View>
+
+          {item.type === "toggle" ? (
+            <View className={`w-12 h-6 rounded-full ${item.enabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
+              <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${item.enabled ? "ml-6" : "ml-0.5"}`} />
+            </View>
+          ) : (
+            <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
+          )}
+        </AdvancedRow>
+      );
+    });
 
   const handleDeleteConfirm = async () => {
     if (!isHydrated) return;
@@ -763,60 +811,42 @@ export default function SettingsPage() {
       </View>
 
       <View className={desktopPanelClass} style={{ marginTop: 24 }}>
-        <View className={`${flexDirection} items-start mb-5`}>
-          <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
-            <Ionicons name="construct-outline" size={20} color={accentColor} />
-          </View>
-          <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
-            <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
-              {t("settings.advanced")}
-            </Text>
-            <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
-              {t("settings.desktopAdvancedDescription")}
-            </Text>
-          </View>
-        </View>
-
-        <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`} style={{ maxHeight: 320 }}>
-          <ScrollView nestedScrollEnabled showsVerticalScrollIndicator>
-            <View className="px-4 py-4">
-              <Text className={`${secondaryTextClass} text-sm ${isRTL ? "text-right" : ""}`}>
-                {t("settings.desktopAdvancedCollapsedDescription")}
-              </Text>
+        <AnimatedCardPressable
+          onPress={toggleAdvancedSettings}
+          accessibilityRole="button"
+          accessibilityState={{ expanded: isAdvancedSettingsOpen }}
+        >
+          <View className={`${flexDirection} items-start justify-between gap-4`}>
+            <View className={`${flexDirection} items-start flex-1`}>
+              <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center">
+                <Ionicons name="construct-outline" size={20} color={accentColor} />
+              </View>
+              <View className={`flex-1 ${isRTL ? "mr-4" : "ml-4"}`}>
+                <Text className={`${isRTL ? "text-right" : ""} ${textClass} text-xl font-semibold`}>
+                  {t("settings.advanced")}
+                </Text>
+                <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} mt-1`} style={{ lineHeight: 21 }}>
+                  {isAdvancedSettingsOpen
+                    ? t("settings.desktopAdvancedDescription")
+                    : t("settings.desktopAdvancedCollapsedDescription")}
+                </Text>
+              </View>
             </View>
+            <Ionicons
+              name={isAdvancedSettingsOpen ? "chevron-up" : "chevron-down"}
+              size={22}
+              color={accessoryIconColor}
+            />
+          </View>
+        </AnimatedCardPressable>
 
-            {advancedDesktopItems.map((item) => {
-              const AdvancedRow = item.type === "toggle" ? Pressable : AnimatedCardPressable;
-
-              return (
-                <AdvancedRow
-                  key={item.key}
-                  onPress={item.onPress}
-                  className={`${flexDirection} items-center px-4`}
-                  style={{ paddingVertical: 18, borderTopWidth: 1, borderColor: dividerColor }}
-                >
-                  <Ionicons name={item.icon} size={20} color={item.danger ? "#EF4444" : accentColor} />
-                  <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                    <Text className={`${isRTL ? "text-right" : ""} ${item.danger ? dangerTextClass : textClass}`}>
-                      {item.label}
-                    </Text>
-                    <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                      {item.description}
-                    </Text>
-                  </View>
-
-                  {item.type === "toggle" ? (
-                    <View className={`w-12 h-6 rounded-full ${item.enabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
-                      <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${item.enabled ? "ml-6" : "ml-0.5"}`} />
-                    </View>
-                  ) : (
-                    <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
-                  )}
-                </AdvancedRow>
-              );
-            })}
-          </ScrollView>
-        </View>
+        {isAdvancedSettingsOpen ? (
+          <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`} style={{ marginTop: 20, maxHeight: 320 }}>
+            <ScrollView nestedScrollEnabled showsVerticalScrollIndicator>
+              {renderAdvancedRows(advancedDesktopItems)}
+            </ScrollView>
+          </View>
+        ) : null}
       </View>
 
       <View className={desktopPanelClass} style={{ marginTop: 24 }}>
@@ -915,43 +945,37 @@ export default function SettingsPage() {
                 {sections.map(renderSectionCard)}
 
                 <View style={{ width: sectionCardWidth }}>
-                  <Text className={`text-sm font-medium ${secondaryTextClass} mb-3 px-2`}>{t("settings.advanced")}</Text>
                   <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
-                    <View className="px-4 py-4">
-                      <Text className={`${secondaryTextClass} text-sm ${isRTL ? "text-right" : ""}`}>
-                        {t("settings.desktopAdvancedCollapsedDescription")}
-                      </Text>
-                    </View>
-
-                    <Pressable
-                      onPress={handleToggleAutoClearCache}
-                      className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
-                    >
-                      <Ionicons name="refresh-outline" size={20} color={accentColor} />
-                      <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                        <Text className={`${isRTL ? "text-right" : ""} ${textClass}`}>{t("settings.cacheAutoClear5d")}</Text>
-                        <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                          {t("settings.cacheAutoClearDescription")}
-                        </Text>
-                      </View>
-                      <View className={`w-12 h-6 rounded-full ${autoClearCacheEnabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
-                        <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${autoClearCacheEnabled ? "ml-6" : "ml-0.5"}`} />
-                      </View>
-                    </Pressable>
-
                     <AnimatedCardPressable
-                      onPress={handleClearCacheNow}
-                      className={`${flexDirection} items-center px-4 py-5 border-t ${cardBorderClass}`}
+                      onPress={toggleAdvancedSettings}
+                      accessibilityRole="button"
+                      accessibilityState={{ expanded: isAdvancedSettingsOpen }}
+                      className="px-4 py-4"
                     >
-                      <Ionicons name="trash-outline" size={20} color="#EF4444" />
-                      <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
-                        <Text className={`${isRTL ? "text-right" : ""} ${dangerTextClass}`}>{t("settings.clearCacheNow")}</Text>
-                        <Text className={`${isRTL ? "text-right" : ""} ${secondaryTextClass} text-xs mt-1`}>
-                          {t("settings.clearCacheDescription")}
-                        </Text>
+                      <View className={`${flexDirection} items-start justify-between gap-3`}>
+                        <View className={`${flexDirection} items-start flex-1`}>
+                          <View className="w-10 h-10 rounded-2xl bg-emerald-500/10 items-center justify-center">
+                            <Ionicons name="construct-outline" size={18} color={accentColor} />
+                          </View>
+                          <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
+                            <Text className={`text-sm font-medium ${secondaryTextClass} ${isRTL ? "text-right" : ""}`}>
+                              {t("settings.advanced")}
+                            </Text>
+                            <Text className={`${secondaryTextClass} text-sm mt-1 ${isRTL ? "text-right" : ""}`}>
+                              {isAdvancedSettingsOpen
+                                ? t("settings.desktopAdvancedDescription")
+                                : t("settings.desktopAdvancedCollapsedDescription")}
+                            </Text>
+                          </View>
+                        </View>
+                        <Ionicons
+                          name={isAdvancedSettingsOpen ? "chevron-up" : "chevron-down"}
+                          size={20}
+                          color={accessoryIconColor}
+                        />
                       </View>
-                      <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
                     </AnimatedCardPressable>
+                    {isAdvancedSettingsOpen ? renderAdvancedRows(advancedMobileItems, { rowPaddingVertical: 20 }) : null}
                   </View>
                 </View>
               </View>

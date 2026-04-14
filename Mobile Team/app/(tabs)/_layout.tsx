@@ -113,7 +113,7 @@ export default function TabLayout() {
         />
 
         <Tabs.Screen
-          name="resources"
+          name="resources/index"
           options={buildTabOptions(titles.resources, "library")}
         />
 
@@ -130,6 +130,7 @@ export default function TabLayout() {
         {/* Keep these routes inside the tab navigator, but hide them from the tab bar */}
         <Tabs.Screen name="calendar" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="opportunity-admin" options={{ tabBarButton: () => null }} />
+        <Tabs.Screen name="resources/transfer-planner" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="transfer-planner" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="transfer-equivalencies" options={{ tabBarButton: () => null }} />
         <Tabs.Screen name="college-search" options={{ tabBarButton: () => null }} />

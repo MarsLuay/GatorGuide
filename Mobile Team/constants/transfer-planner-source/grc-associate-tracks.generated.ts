@@ -8,7 +8,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-business-entrepreneurship-accounting-aaa",
     "code": "AAA",
     "title": "Accounting",
-    "summary": "Official Green River curriculum map for Accounting, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Accounting, AAA curriculum map.",
     "bestFor": [
       "Accounting"
     ],
@@ -88,7 +88,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-business-entrepreneurship-administrative-assistant-aaa",
     "code": "AAA",
     "title": "Administrative Assistant",
-    "summary": "Official Green River associates degree curriculum map for Administrative Assistant, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Administrative Assistant, AAA curriculum map.",
     "bestFor": [
       "Administrative Assistant"
     ],
@@ -215,7 +215,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-business-entrepreneurship-business-ab-dta-mrp",
     "code": "AB-DTA/MRP",
     "title": "Associate in Business",
-    "summary": "Official Green River transfer associate curriculum map for Associate in Business, AB-DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Business, AB-DTA/MRP curriculum map.",
     "bestFor": [
       "Associate in Business"
     ],
@@ -297,7 +297,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-business-entrepreneurship-business-applications-specialist-aaa",
     "code": "AAA",
     "title": "Business Applications Specialist",
-    "summary": "Official Green River associates degree curriculum map for Business Applications Specialist, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Business Applications Specialist, AAA curriculum map.",
     "bestFor": [
       "Business Applications Specialist"
     ],
@@ -409,7 +409,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-business-entrepreneurship-business-management-aaa",
     "code": "AAA",
     "title": "Business Management",
-    "summary": "Official Green River curriculum map for Business Management, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Business Management, AAA curriculum map.",
     "bestFor": [
       "Business Management"
     ],
@@ -515,7 +515,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-american-ethnic-studies-aa-dta-emphasis-american-ethnic-studies",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Emphasis in American Ethnic Studies",
-    "summary": "Official Green River curriculum map for Associate in Arts-DTA with Emphasis in American Ethnic Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Emphasis in American Ethnic Studies curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in American Ethnic Studies"
     ],
@@ -592,7 +592,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-anthropology-aa-dta-emphasis-anthropology",
     "code": "AA-DTA",
     "title": "Anthropology",
-    "summary": "Official Green River associate degree – transfer curriculum map for Anthropology, AA-DTA. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Anthropology, AA-DTA curriculum map.",
     "bestFor": [
       "Anthropology"
     ],
@@ -682,7 +682,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-court-reporting-captioning-realtime-transcription-aaa",
     "code": "AAA",
     "title": "Realtime Transcription",
-    "summary": "Official Green River associate degree curriculum map for Realtime Transcription, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Realtime Transcription, AAA curriculum map.",
     "bestFor": [
       "Realtime Transcription"
     ],
@@ -800,7 +800,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-criminal-justice-aas-t",
     "code": "AAS-T",
     "title": "Criminal Justice",
-    "summary": "Official Green River associate degree - transfer curriculum map for Criminal Justice, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Criminal Justice, AAS-T curriculum map.",
     "bestFor": [
       "Criminal Justice"
     ],
@@ -897,7 +897,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-criminal-justice-forensic-technology-aas-t",
     "code": "AAS-T",
     "title": "Forensic",
-    "summary": "Official Green River associate degree - transfer curriculum map for Forensic, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Forensic, AAS-T curriculum map.",
     "bestFor": [
       "Forensic"
     ],
@@ -1004,7 +1004,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas",
     "code": "AAS",
     "title": "Early Childhood Education",
-    "summary": "Official Green River associate degree curriculum map for Early Childhood Education, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Early Childhood Education, AAS curriculum map.",
     "bestFor": [
       "Early Childhood Education"
     ],
@@ -1088,7 +1088,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-diversity-studies-aas-t",
     "code": "AAS-T",
     "title": "Early Childhood Education and Diversity Studies",
-    "summary": "Official Green River associate - transfer curriculum map for Early Childhood Education and Diversity Studies, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Early Childhood Education and Diversity Studies, AAS-T curriculum map.",
     "bestFor": [
       "Early Childhood Education and Diversity Studies"
     ],
@@ -1164,7 +1164,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t",
     "code": "AAS-T",
     "title": "Early Childhood Education Paraeducator",
-    "summary": "Official Green River associate - transfer curriculum map for Early Childhood Education Paraeducator, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Early Childhood Education Paraeducator, AAS-T curriculum map.",
     "bestFor": [
       "Early Childhood Education Paraeducator"
     ],
@@ -1328,7 +1328,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-history-aa-dta-with-emphasis-history",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Emphasis in History",
-    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA with Emphasis in History. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Emphasis in History curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in History"
     ],
@@ -1435,7 +1435,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-legal-administrative-assistant-aaa",
     "code": "AAA",
     "title": "Legal Administrative Assistant",
-    "summary": "Official Green River associate curriculum map for Legal Administrative Assistant, AAA. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Legal Administrative Assistant, AAA curriculum map.",
     "bestFor": [
       "Legal Administrative Assistant"
     ],
@@ -1522,7 +1522,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-political-science-aa-dta-with-emphasis-political-science",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Emphasis in Political Science",
-    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA with Emphasis in Political Science. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Emphasis in Political Science curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in Political Science"
     ],
@@ -1611,7 +1611,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-psychology-aa-dta-with-concentration-psychology",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Concentration in Psychology",
-    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA with Concentration in Psychology. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Concentration in Psychology curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Psychology"
     ],
@@ -1702,7 +1702,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-education-law-social-science-sociology-aa-dta-with-emphasis-sociology",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Emphasis in Sociology",
-    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA with Emphasis in Sociology. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Emphasis in Sociology curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in Sociology"
     ],
@@ -1782,7 +1782,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-arts-aa-dta-concentration-art-history",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Concentration in Art History",
-    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Concentration in Art History. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Concentration in Art History curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Art History"
     ],
@@ -1873,7 +1873,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-arts-aa-dta-concentration-creative-expression",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Concentration in Creative Expression",
-    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Concentration in Creative Expression. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Concentration in Creative Expression curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Creative Expression"
     ],
@@ -2019,7 +2019,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-arts-afa-concentration-ceramics",
     "code": "Associate",
     "title": "Associate in Fine Arts, with Concentration in Ceramics",
-    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, with Concentration in Ceramics. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Fine Arts, with Concentration in Ceramics curriculum map.",
     "bestFor": [
       "Associate in Fine Arts, with Concentration in Ceramics"
     ],
@@ -2101,7 +2101,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-arts-afa-concentration-design",
     "code": "Associate",
     "title": "Associate in Fine Arts, with Concentration in Design",
-    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, with Concentration in Design. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Fine Arts, with Concentration in Design curriculum map.",
     "bestFor": [
       "Associate in Fine Arts, with Concentration in Design"
     ],
@@ -2177,7 +2177,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-arts-afa-concentration-photography",
     "code": "Associate",
     "title": "Associate in Fine Arts, with Concentration in Photography",
-    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, with Concentration in Photography. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Fine Arts, with Concentration in Photography curriculum map.",
     "bestFor": [
       "Associate in Fine Arts, with Concentration in Photography"
     ],
@@ -2253,7 +2253,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-arts-afa-concentration-studio-art",
     "code": "Associate",
     "title": "Associate in Fine Arts, with Concentration in Studio Art",
-    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, with Concentration in Studio Art. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Fine Arts, with Concentration in Studio Art curriculum map.",
     "bestFor": [
       "Associate in Fine Arts, with Concentration in Studio Art"
     ],
@@ -2339,7 +2339,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-arts-associate-fine-arts",
     "code": "AFA",
     "title": "Associate in Fine Arts",
-    "summary": "Official Green River associate curriculum map for Associate in Fine Arts, AFA. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Fine Arts, AFA curriculum map.",
     "bestFor": [
       "Associate in Fine Arts"
     ],
@@ -2458,7 +2458,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-asian-studies-aa-dta-concentration-asian-studies",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Concentration in Asian Studies",
-    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Concentration in Asian Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Concentration in Asian Studies curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Asian Studies"
     ],
@@ -2552,7 +2552,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-black-studies-aa-dta-concentration-black-studies",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Black Studies",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Black Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Black Studies curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Black Studies"
     ],
@@ -2644,7 +2644,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-communication-studies-aa-dta-concentration-communication-studies",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Communication Studies",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Communication Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Communication Studies curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Communication Studies"
     ],
@@ -2738,7 +2738,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-diversity-studies-aa-dta-concentration-diversity-studies",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Diversity Studies",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Diversity Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Diversity Studies curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Diversity Studies"
     ],
@@ -2911,7 +2911,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-english-aa-dta-emphasis-creative-writing",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Emphasis in Creative Writing",
-    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Emphasis in Creative Writing. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Emphasis in Creative Writing curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in Creative Writing"
     ],
@@ -3013,7 +3013,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-english-aa-dta-emphasis-english-literature",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Emphasis in English Literature",
-    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Emphasis in English Literature. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Emphasis in English Literature curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in English Literature"
     ],
@@ -3181,7 +3181,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-english-aa-dta-emphasis-professional-technical-communication",
     "code": "AA-DTA",
     "title": "AA-DTA with Emphasis in Professional & Technical Communication",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Emphasis in Professional & Technical Communication. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Emphasis in Professional & Technical Communication curriculum map.",
     "bestFor": [
       "AA-DTA with Emphasis in Professional & Technical Communication"
     ],
@@ -3264,7 +3264,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-film-studies-aa-dta-concentration-film-studies",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Film Studies",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Film Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Film Studies curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Film Studies"
     ],
@@ -3344,7 +3344,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-gender-studies-aa-dta-concentration-gender-studies",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA with Concentration in Gender Studies",
-    "summary": "Official Green River associate - transfer curriculum map for Associate in Arts-DTA with Concentration in Gender Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA with Concentration in Gender Studies curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Gender Studies"
     ],
@@ -3452,7 +3452,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-global-hispanic-studies-aa-dta-concentration-global-studies-hispanic-studies",
     "code": "AA-DTA",
     "title": "AA-DTA with concentration in Global Studies and Hispanic Studies",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with concentration in Global Studies and Hispanic Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with concentration in Global Studies and Hispanic Studies curriculum map.",
     "bestFor": [
       "AA-DTA with concentration in Global Studies and Hispanic Studies"
     ],
@@ -3534,7 +3534,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-global-studies-aa-dta-concentration-global-studies",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Global Studies",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Global Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Global Studies curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Global Studies"
     ],
@@ -3676,7 +3676,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-hispanic-studies-aa-dta-concentration-hispanic-studies",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Hispanic Studies",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Hispanic Studies. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Hispanic Studies curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Hispanic Studies"
     ],
@@ -3774,7 +3774,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-journalism-aa-dta-concentration-digital-broadcast-media",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Digital & Broadcast Media",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Digital & Broadcast Media. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Digital & Broadcast Media curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Digital & Broadcast Media"
     ],
@@ -3866,7 +3866,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-music-aa-dta-concentration-music",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Music",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Music. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Music curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Music"
     ],
@@ -3992,7 +3992,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-philosophy-aa-dta-concentration-philosophy",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Philosophy",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Philosophy. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Philosophy curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Philosophy"
     ],
@@ -4092,7 +4092,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-fine-arts-humanities-theatre-arts-aa-dta-concentration-theatre-arts",
     "code": "AA-DTA",
     "title": "AA-DTA with Concentration in Theatre Arts",
-    "summary": "Official Green River associate - transfer curriculum map for AA-DTA with Concentration in Theatre Arts. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "AA-DTA with Concentration in Theatre Arts curriculum map.",
     "bestFor": [
       "AA-DTA with Concentration in Theatre Arts"
     ],
@@ -4201,7 +4201,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-front-office",
     "code": "AAA",
     "title": "Medical Office Administration, AAA with emphasis in Front Office",
-    "summary": "Official Green River associate curriculum map for Medical Office Administration, AAA with emphasis in Front Office. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Medical Office Administration, AAA with emphasis in Front Office curriculum map.",
     "bestFor": [
       "Medical Office Administration, AAA with emphasis in Front Office"
     ],
@@ -4282,7 +4282,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-medical-coding-reimbursement",
     "code": "AAA",
     "title": "Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement",
-    "summary": "Official Green River associate curriculum map for Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement curriculum map.",
     "bestFor": [
       "Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement"
     ],
@@ -4362,7 +4362,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-healthcare-wellness-nursing-associate-in-pre-nursing-apren-dta-mrp",
     "code": "AA-DTA",
     "title": "Associate in Pre-Nursing",
-    "summary": "Official Green River associate - transfer curriculum map for Associate in Pre-Nursing, APreN-DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Pre-Nursing, APreN-DTA/MRP curriculum map.",
     "bestFor": [
       "Associate in Pre-Nursing"
     ],
@@ -4461,7 +4461,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-healthcare-wellness-nursing-practical-nursing-aas",
     "code": "AAS",
     "title": "Practical Nursing",
-    "summary": "Official Green River associate curriculum map for Practical Nursing, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Practical Nursing, AAS curriculum map.",
     "bestFor": [
       "Practical Nursing"
     ],
@@ -4536,7 +4536,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid",
     "code": "AAS",
     "title": "Practical Nursing, AAS Part-time (Hybrid)",
-    "summary": "Official Green River associate curriculum map for Practical Nursing, AAS Part-time (Hybrid). Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Practical Nursing, AAS Part-time (Hybrid) curriculum map.",
     "bestFor": [
       "Practical Nursing, AAS Part-time (Hybrid)"
     ],
@@ -4626,7 +4626,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online",
     "code": "AAS",
     "title": "Practical Nursing, AAS Part-time (Online)",
-    "summary": "Official Green River associate curriculum map for Practical Nursing, AAS Part-time (Online). Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Practical Nursing, AAS Part-time (Online) curriculum map.",
     "bestFor": [
       "Practical Nursing, AAS Part-time (Online)"
     ],
@@ -4716,7 +4716,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-healthcare-wellness-occupational-therapy-assistant-aas",
     "code": "AAS",
     "title": "Occupational Therapy Assistant",
-    "summary": "Official Green River associate curriculum map for Occupational Therapy Assistant, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Occupational Therapy Assistant, AAS curriculum map.",
     "bestFor": [
       "Occupational Therapy Assistant"
     ],
@@ -4825,7 +4825,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-healthcare-wellness-occupational-therapy-assistant-aas-hybrid",
     "code": "AAS",
     "title": "Occupational Therapy Assistant, AAS Hybrid",
-    "summary": "Official Green River associate curriculum map for Occupational Therapy Assistant, AAS Hybrid. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Occupational Therapy Assistant, AAS Hybrid curriculum map.",
     "bestFor": [
       "Occupational Therapy Assistant, AAS Hybrid"
     ],
@@ -4944,7 +4944,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-healthcare-wellness-physical-therapist-assistant-aas",
     "code": "AAS",
     "title": "Physical Therapist Assistant",
-    "summary": "Official Green River associate curriculum map for Physical Therapist Assistant, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Physical Therapist Assistant, AAS curriculum map.",
     "bestFor": [
       "Physical Therapist Assistant"
     ],
@@ -5044,7 +5044,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-biology-associate-in-biology-dta-mrp",
     "code": "AA-DTA",
     "title": "Associate in Biology, DTA/MRP",
-    "summary": "Official Green River curriculum map for Associate in Biology, DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Biology, DTA/MRP curriculum map.",
     "bestFor": [
       "Associate in Biology, DTA/MRP"
     ],
@@ -5123,7 +5123,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-biology-associate-in-science-transfer-track-1-biology",
     "code": "AST-1",
     "title": "Associate in Science Transfer Track 1 Biology",
-    "summary": "Official Green River curriculum map for Associate in Science Transfer Track 1 Biology. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Science Transfer Track 1 Biology curriculum map.",
     "bestFor": [
       "Associate in Science Transfer Track 1 Biology"
     ],
@@ -5196,7 +5196,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
     "code": "AST-1",
     "title": "Associate in Science Transfer Track 1 - Chemistry",
-    "summary": "Official Green River curriculum map for Associate in Science Transfer Track 1 - Chemistry. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Science Transfer Track 1 - Chemistry curriculum map.",
     "bestFor": [
       "Associate in Science Transfer Track 1 - Chemistry"
     ],
@@ -5279,7 +5279,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp",
     "code": "ACS-DTA/MRP",
     "title": "Associate in Computer Science",
-    "summary": "Official Green River associate curriculum map for Associate in Computer Science, ACS-DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Computer Science, ACS-DTA/MRP curriculum map.",
     "bestFor": [
       "Associate in Computer Science"
     ],
@@ -5370,7 +5370,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t",
     "code": "AAS-T",
     "title": "Cybersecurity and Networking",
-    "summary": "Official Green River associate - transfer curriculum map for Cybersecurity and Networking, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Cybersecurity and Networking, AAS-T curriculum map.",
     "bestFor": [
       "Cybersecurity and Networking"
     ],
@@ -5449,7 +5449,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-data-analytics-software-development-aas-t-business-management-track",
     "code": "AAS-T",
     "title": "Data Analytics and Software Development, AAS-T Business Management Track",
-    "summary": "Official Green River associate - transfer curriculum map for Data Analytics and Software Development, AAS-T Business Management Track. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Data Analytics and Software Development, AAS-T Business Management Track curriculum map.",
     "bestFor": [
       "Data Analytics and Software Development, AAS-T Business Management Track"
     ],
@@ -5529,7 +5529,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-data-analytics-software-development-aas-t-software-development-track",
     "code": "AAS-T",
     "title": "Data Analytics and Software Development, AAS-T Software Development Track",
-    "summary": "Official Green River associate - transfer curriculum map for Data Analytics and Software Development, AAS-T Software Development Track. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Data Analytics and Software Development, AAS-T Software Development Track curriculum map.",
     "bestFor": [
       "Data Analytics and Software Development, AAS-T Software Development Track"
     ],
@@ -5608,7 +5608,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering",
     "code": "AST-2",
     "title": "Transfer Track 2-Bioengineering and Chemical Engineering",
-    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2-Bioengineering and Chemical Engineering. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Transfer Track 2-Bioengineering and Chemical Engineering curriculum map.",
     "bestFor": [
       "Transfer Track 2-Bioengineering and Chemical Engineering"
     ],
@@ -5698,7 +5698,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering",
     "code": "AST-2/MRP",
     "title": "Transfer Track 2/MRP-Civil and Mechanical Engineering",
-    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2/MRP-Civil and Mechanical Engineering. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Transfer Track 2/MRP-Civil and Mechanical Engineering curriculum map.",
     "bestFor": [
       "Transfer Track 2/MRP-Civil and Mechanical Engineering"
     ],
@@ -5820,7 +5820,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
     "code": "AST-2/MRP",
     "title": "Transfer Track 2/MRP-Computer and Electrical Engineering",
-    "summary": "Official Green River associate degree - transfer track 2 curriculum map for Transfer Track 2/MRP-Computer and Electrical Engineering. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Transfer Track 2/MRP-Computer and Electrical Engineering curriculum map.",
     "bestFor": [
       "Transfer Track 2/MRP-Computer and Electrical Engineering"
     ],
@@ -5919,7 +5919,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
     "code": "AA-DTA",
     "title": "Math Education",
-    "summary": "Official Green River associate degree - transfer curriculum map for Math Education, AM-DTA (Mathematics). Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Math Education, AM-DTA (Mathematics) curriculum map.",
     "bestFor": [
       "Math Education"
     ],
@@ -6028,7 +6028,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-statistics",
     "code": "AA-DTA",
     "title": "Math Education",
-    "summary": "Official Green River associate degree - transfer curriculum map for Math Education, AM-DTA (Statistics). Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Math Education, AM-DTA (Statistics) curriculum map.",
     "bestFor": [
       "Math Education"
     ],
@@ -6121,7 +6121,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-mathematics-math-curriculum-map-am-dta-mrp",
     "code": "AA-DTA",
     "title": "Math Education",
-    "summary": "Official Green River associate degree - transfer curriculum map for Math Education, AM-DTA/MRP. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Math Education, AM-DTA/MRP curriculum map.",
     "bestFor": [
       "Math Education"
     ],
@@ -6219,7 +6219,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-stem-physics-associate-in-science-transfer-track-2-physics",
     "code": "AST-2",
     "title": "Associate in Science Transfer Track 2-Physics",
-    "summary": "Official Green River associate curriculum map for Associate in Science Transfer Track 2-Physics. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Science Transfer Track 2-Physics curriculum map.",
     "bestFor": [
       "Associate in Science Transfer Track 2-Physics"
     ],
@@ -6307,7 +6307,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas",
     "code": "AAS",
     "title": "Automotive Technology",
-    "summary": "Official Green River associate curriculum map for Automotive Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Automotive Technology, AAS curriculum map.",
     "bestFor": [
       "Automotive Technology"
     ],
@@ -6395,7 +6395,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-air-traffic-control-track",
     "code": "AAS",
     "title": "Aviation Technology, AAS-Air Traffic Control Track",
-    "summary": "Official Green River associate curriculum map for Aviation Technology, AAS-Air Traffic Control Track. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Aviation Technology, AAS-Air Traffic Control Track curriculum map.",
     "bestFor": [
       "Aviation Technology, AAS-Air Traffic Control Track"
     ],
@@ -6468,7 +6468,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-airline-dispatch-track",
     "code": "AAS",
     "title": "Aviation Technology, AAS-Airline Dispatch Track",
-    "summary": "Official Green River associate curriculum map for Aviation Technology, AAS-Airline Dispatch Track. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Aviation Technology, AAS-Airline Dispatch Track curriculum map.",
     "bestFor": [
       "Aviation Technology, AAS-Airline Dispatch Track"
     ],
@@ -6541,7 +6541,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-aviation-management-track",
     "code": "AAS",
     "title": "Aviation Technology, AAS-Aviation Management Track",
-    "summary": "Official Green River associate curriculum map for Aviation Technology, AAS-Aviation Management Track. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Aviation Technology, AAS-Aviation Management Track curriculum map.",
     "bestFor": [
       "Aviation Technology, AAS-Aviation Management Track"
     ],
@@ -6614,7 +6614,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aas-commercial-pilot-track",
     "code": "AAS",
     "title": "Aviation Technology, AAS-Commercial Pilot Track",
-    "summary": "Official Green River associate curriculum map for Aviation Technology, AAS-Commercial Pilot Track. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Aviation Technology, AAS-Commercial Pilot Track curriculum map.",
     "bestFor": [
       "Aviation Technology, AAS-Commercial Pilot Track"
     ],
@@ -6688,7 +6688,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-unmanned-aerial-systems-aas",
     "code": "AAS",
     "title": "Unmanned Aerial Systems, AAS Curriclum Map",
-    "summary": "Official Green River associate curriculum map for Unmanned Aerial Systems, AAS Curriclum Map. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Unmanned Aerial Systems, AAS Curriclum Map curriculum map.",
     "bestFor": [
       "Unmanned Aerial Systems, AAS Curriclum Map"
     ],
@@ -6764,7 +6764,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-carpentry-technology-residential-and-light-commercial-aas-curriculm-map",
     "code": "AAS",
     "title": "Residential and Light Commercial",
-    "summary": "Official Green River associate curriculum map for Residential and Light Commercial, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Residential and Light Commercial, AAS curriculum map.",
     "bestFor": [
       "Residential and Light Commercial"
     ],
@@ -6834,7 +6834,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-machining-manufacturing-technology-aas",
     "code": "AAS",
     "title": "Machining and Manufacturing Technology",
-    "summary": "Official Green River associate curriculum map for Machining and Manufacturing Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Machining and Manufacturing Technology, AAS curriculum map.",
     "bestFor": [
       "Machining and Manufacturing Technology"
     ],
@@ -6905,7 +6905,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas",
     "code": "AAS",
     "title": "Mechatronics Technician",
-    "summary": "Official Green River curriculum map for Mechatronics Technician, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Mechatronics Technician, AAS curriculum map.",
     "bestFor": [
       "Mechatronics Technician"
     ],
@@ -6974,7 +6974,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-aas-t",
     "code": "AAS-T",
     "title": "Natural Resources",
-    "summary": "Official Green River associate - transfer curriculum map for Natural Resources, AAS-T. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Natural Resources, AAS-T curriculum map.",
     "bestFor": [
       "Natural Resources"
     ],
@@ -7052,7 +7052,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-forestry-aas",
     "code": "AAS",
     "title": "Natural Resources-Forestry",
-    "summary": "Official Green River associate curriculum map for Natural Resources-Forestry, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Natural Resources-Forestry, AAS curriculum map.",
     "bestFor": [
       "Natural Resources-Forestry"
     ],
@@ -7140,7 +7140,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-geographic-information-systems-aas",
     "code": "AAS",
     "title": "Geographic Information Systems",
-    "summary": "Official Green River associate curriculum map for Geographic Information Systems, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Geographic Information Systems, AAS curriculum map.",
     "bestFor": [
       "Geographic Information Systems"
     ],
@@ -7230,7 +7230,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-park-management-aas",
     "code": "AAS",
     "title": "Natural Resources-Park Management",
-    "summary": "Official Green River associate curriculum map for Natural Resources-Park Management, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Natural Resources-Park Management, AAS curriculum map.",
     "bestFor": [
       "Natural Resources-Park Management"
     ],
@@ -7333,7 +7333,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-water-quality-aas",
     "code": "AAS",
     "title": "Natural Resources-Water Quality",
-    "summary": "Official Green River associate curriculum map for Natural Resources-Water Quality, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Natural Resources-Water Quality, AAS curriculum map.",
     "bestFor": [
       "Natural Resources-Water Quality"
     ],
@@ -7438,7 +7438,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-natural-resources-wildland-fire-aas",
     "code": "AAS",
     "title": "Natural Resources-Wildland Fire",
-    "summary": "Official Green River associate curriculum map for Natural Resources-Wildland Fire, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Natural Resources-Wildland Fire, AAS curriculum map.",
     "bestFor": [
       "Natural Resources-Wildland Fire"
     ],
@@ -7527,7 +7527,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-aas",
     "code": "AAS",
     "title": "Wastewater Technology",
-    "summary": "Official Green River associate curriculum map for Wastewater Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Wastewater Technology, AAS curriculum map.",
     "bestFor": [
       "Wastewater Technology"
     ],
@@ -7612,7 +7612,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-water-supply-technology-aas",
     "code": "AAS",
     "title": "Water Supply Technology",
-    "summary": "Official Green River associate curriculum map for Water Supply Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Water Supply Technology, AAS curriculum map.",
     "bestFor": [
       "Water Supply Technology"
     ],
@@ -7699,7 +7699,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-aas",
     "code": "AAS",
     "title": "Welding Technology",
-    "summary": "Official Green River associate curriculum map for Welding Technology, AAS. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Welding Technology, AAS curriculum map.",
     "bestFor": [
       "Welding Technology"
     ],
@@ -7771,7 +7771,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "id": "grc-associate-undecided-associate-in-arts-dta",
     "code": "AA-DTA",
     "title": "Associate in Arts-DTA",
-    "summary": "Official Green River associate curriculum map for Associate in Arts-DTA. Generated automatically from the current public program-map page and catalog API.",
+    "summary": "Associate in Arts-DTA curriculum map.",
     "bestFor": [
       "Associate in Arts-DTA"
     ],
@@ -7882,16 +7882,3238 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/undecided/associate-in-arts-dta.html"
       }
     ]
+  },
+  {
+    "id": "grc-bas-business-entrepreneurship-accounting-bas-w-accounting-aaa",
+    "code": "BAS",
+    "title": "Accounting, BAS w/Accounting AAA",
+    "summary": "Accounting, BAS w/Accounting AAA curriculum map.",
+    "bestFor": [
+      "Accounting, BAS w/Accounting AAA"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1- Fall (15 credits)",
+        "courses": [
+          "ACCT 301",
+          "ENGL 128",
+          "MGMT 344"
+        ]
+      },
+      {
+        "label": "Quarter 2 - Winter (15 credits)",
+        "courses": [
+          "ACCT 302",
+          "SDEV 101",
+          "ACCT 394"
+        ]
+      },
+      {
+        "label": "Quarter 3 - Spring (15 credits)",
+        "courses": [
+          "ACCT 303",
+          "MATH& 146",
+          "MGMT 400",
+          "MGMT 403"
+        ]
+      },
+      {
+        "label": "Quarter 4 - Fall (15 credits)",
+        "courses": [
+          "ACCT 411",
+          "ACCT 450",
+          "ACCT 480"
+        ]
+      },
+      {
+        "label": "Quarter 5 - Winter (15 credits)",
+        "courses": [
+          "ACCT 410",
+          "ACCT 430",
+          "ACCT 490"
+        ]
+      },
+      {
+        "label": "Quarter 6 - Spring (15 credits)",
+        "courses": [
+          "ECON& 202",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Bachelor of Applied Science (BAS) Apply Now.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Accounting, BAS w/Accounting AAA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/bas-w-accounting-aaa.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-business-entrepreneurship-accounting-bas-w-associate-in-business-dta-mrp",
+    "code": "BAS",
+    "title": "Accounting, BAS w/Associate in Business DTA/MRP",
+    "summary": "Accounting, BAS w/Associate in Business DTA/MRP curriculum map.",
+    "bestFor": [
+      "Accounting, BAS w/Associate in Business DTA/MRP"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1- Fall (15 credits)",
+        "courses": [
+          "ACCT 301",
+          "BTAC 162",
+          "MGMT 344"
+        ]
+      },
+      {
+        "label": "Quarter 2 - Winter (15 credits)",
+        "courses": [
+          "ACCT 302",
+          "ACCT 394",
+          "SDEV 101"
+        ]
+      },
+      {
+        "label": "Quarter 3 - Spring (15 credits)",
+        "courses": [
+          "ACCT 218",
+          "ACCT 303",
+          "MGMT 400",
+          "MGMT 403"
+        ]
+      },
+      {
+        "label": "Quarter 4 - Fall (15 credits)",
+        "courses": [
+          "ACCT 411",
+          "ACCT 450",
+          "ACCT 480"
+        ]
+      },
+      {
+        "label": "Quarter 5 - Winter (15 credits)",
+        "courses": [
+          "ACCT 410",
+          "ACCT 430",
+          "ACCT 490"
+        ]
+      },
+      {
+        "label": "Quarter 6 - Spring (15 credits)",
+        "courses": [
+          "ACCT 212",
+          "BUS& 101",
+          "CMST& 101"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Bachelor of Applied Science (BAS) Apply Now.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Accounting, BAS w/Associate in Business DTA/MRP curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/bas-w-associate-in-business-dta-mrp.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-business-entrepreneurship-accounting-bas-w-business-management-aaa",
+    "code": "BAS",
+    "title": "Accounting, BAS w/Business Management AAA",
+    "summary": "Accounting, BAS w/Business Management AAA curriculum map.",
+    "bestFor": [
+      "Accounting, BAS w/Business Management AAA"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1- Fall (15 credits)",
+        "courses": [
+          "ACCT 301",
+          "BTAC 162",
+          "MGMT 344"
+        ]
+      },
+      {
+        "label": "Quarter 2 - Winter (15 credits)",
+        "courses": [
+          "ACCT 302",
+          "ACCT 394",
+          "SDEV 101"
+        ]
+      },
+      {
+        "label": "Quarter 3 - Spring (15 credits)",
+        "courses": [
+          "ACCT 303",
+          "ENGL 128",
+          "MGMT 400",
+          "MGMT 403"
+        ]
+      },
+      {
+        "label": "Quarter 4 - Fall (15 credits)",
+        "courses": [
+          "ACCT 411",
+          "ACCT 450",
+          "ACCT 480"
+        ]
+      },
+      {
+        "label": "Quarter 5 - Winter (15 credits)",
+        "courses": [
+          "ACCT 410",
+          "ACCT 430",
+          "ACCT 490"
+        ]
+      },
+      {
+        "label": "Quarter 6 - Spring (20 credits)",
+        "courses": [
+          "ACCT 212",
+          "ECON& 202",
+          "POLS& 200",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Bachelor of Applied Science (BAS) Apply Now.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Accounting, BAS w/Business Management AAA curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/bas-w-business-management-aaa.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-business-entrepreneurship-applied-management-bas",
+    "code": "BAS",
+    "title": "Applied Management",
+    "summary": "Applied Management, BAS curriculum map.",
+    "bestFor": [
+      "Applied Management"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "ACCT 110",
+          "ACCT& 201",
+          "BUS& 101",
+          "BUS 121",
+          "BUS 258",
+          "ENGL& 101",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "N 1 - Natural Science List A (Lab)",
+          "MATH& 146",
+          "MATH 256",
+          "H 1 - Humanities/Fine Arts/English",
+          "S 1 - Social Science",
+          "Completion of an associate degree or higher from a regionally accredited college or university.",
+          "One of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 1 (12 credits)",
+        "courses": [
+          "MGMT 300",
+          "MGMT 344",
+          "MGMT 405"
+        ]
+      },
+      {
+        "label": "Quarter 2 (12 credits)",
+        "courses": [
+          "MGMT 345",
+          "MGMT 395",
+          "MGMT 403"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "MGMT 320",
+          "MGMT 360",
+          "MGMT 361"
+        ]
+      },
+      {
+        "label": "Quarter 4 (13 credits)",
+        "courses": [
+          "MGMT 325",
+          "MGMT 340",
+          "MGMT 420"
+        ]
+      },
+      {
+        "label": "Quarter 5 (13 credits)",
+        "courses": [
+          "MGMT 385",
+          "MGMT 400",
+          "MGMT 425"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelors Degree.",
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 180 credits.",
+      "These are a combination of entry requirements, degree requirements and electives.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Applied Management, BAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/applied-management/bas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-business-entrepreneurship-marketing-entrepreneurship-bas",
+    "code": "BAS",
+    "title": "Marketing & Entrepreneurship",
+    "summary": "Marketing & Entrepreneurship, BAS curriculum map.",
+    "bestFor": [
+      "Marketing & Entrepreneurship"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "ENGL& 101",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "ENGL 335",
+          "MATH& 141",
+          "MATH 147",
+          "MATH& 151",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "PHIL 102",
+          "PHIL 111",
+          "PHIL 112",
+          "PHIL& 115",
+          "PHIL 206",
+          "PHIL 243",
+          "BUS& 101",
+          "BUS 181",
+          "BUS 121",
+          "ACCT 110",
+          "ACCT& 201",
+          "S 1 - Social Science",
+          "N 1 - Natural Science List A (Lab)",
+          "MATH& 146",
+          "MATH 256",
+          "Select one of the following:",
+          "Any college-level math course, the following are recommended:"
+        ]
+      },
+      {
+        "label": "Quarter 1",
+        "courses": [
+          "BUS 300",
+          "BUS 395",
+          "BUS 401"
+        ]
+      },
+      {
+        "label": "Quarter 2",
+        "courses": [
+          "BUS 310",
+          "BUS 344",
+          "BUS 402"
+        ]
+      },
+      {
+        "label": "Quarter 3",
+        "courses": [
+          "BUS 335",
+          "BUS 385",
+          "BUS 403"
+        ]
+      },
+      {
+        "label": "Quarter 4",
+        "courses": [
+          "BUS 350",
+          "BUS 365",
+          "BUS 390"
+        ]
+      },
+      {
+        "label": "Quarter 5",
+        "courses": [
+          "BUS 360",
+          "BUS 404",
+          "BUS 460"
+        ]
+      },
+      {
+        "label": "Quarter 6",
+        "courses": [
+          "BUS 400",
+          "BUS 405",
+          "BUS 490"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelors Degree.",
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 180 credits.",
+      "These are a combination of entry requirements, degree requirements and electives.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Marketing & Entrepreneurship, BAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/marketing-entrepreneurship/bas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-education-law-social-science-court-reporting-captioning-realtime-reporting-court-reporting-captioning-bas",
+    "code": "BAS",
+    "title": "Realtime Reporting: Court Reporting & Captioning",
+    "summary": "Realtime Reporting: Court Reporting & Captioning, BAS curriculum map.",
+    "bestFor": [
+      "Realtime Reporting: Court Reporting & Captioning"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "ENGL& 101",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "H 1 - Humanities/Fine Arts/English",
+          "H 2 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "N 3 - Natural Science List A or List B",
+          "S 1 - Social Science",
+          "S 2 - Social Science",
+          "CRC 314",
+          "CRC 324",
+          "CRC 350",
+          "CRC 414",
+          "CRC 360",
+          "CRC 361",
+          "CRC 450",
+          "CRC 451",
+          "Select one of the following:",
+          "Any college-level math course Select one of the following:",
+          "General Education (40 credits)",
+          "Judicial Court Reporting Focus",
+          "Captioning/CART Focus"
+        ]
+      },
+      {
+        "label": "Quarter 1 (12 credits)",
+        "courses": [
+          "CRC 311",
+          "CRC 312",
+          "CRC 313"
+        ]
+      },
+      {
+        "label": "Quarter 2 (16 credits)",
+        "courses": [
+          "CRC 321",
+          "CRC 322",
+          "CRC 323",
+          "Focus course"
+        ]
+      },
+      {
+        "label": "Quarter 3 (18 credits)",
+        "courses": [
+          "BUS 400",
+          "CRC 412",
+          "MGMT 360",
+          "Focus course"
+        ]
+      },
+      {
+        "label": "Quarter 4 (12 credits)",
+        "courses": [
+          "MGMT 400",
+          "Focus course General Education"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "MGMT 403",
+          "CRC 490",
+          "Focus course General Education"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "General Education courses"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelor Degree.",
+      "Degree: Bachelor of Applied Science Degree.",
+      "Published duration: ---.",
+      "These are a combination of entry requirements, degree requirements and electives.",
+      "General Education courses",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Realtime Reporting: Court Reporting & Captioning, BAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/court-reporting-captioning/realtime-reporting-court-reporting-captioning-bas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-education-law-social-science-early-childhood-education-infant-and-child-mental-health-bas",
+    "code": "BAS",
+    "title": "Early Childhood Education: Infant and Child Mental Health",
+    "summary": "Early Childhood Education: Infant and Child Mental Health, BAS curriculum map.",
+    "bestFor": [
+      "Early Childhood Education: Infant and Child Mental Health"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "EDUC& 115",
+          "EDUC& 130",
+          "EDUC& 204",
+          "D 1 - Diversity",
+          "ENGL& 101",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "H 1 - Humanities/Fine Arts/English",
+          "CMST& 101",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "CMST& 240",
+          "S 1 - Social Science",
+          "S 2 - Social Science",
+          "N 1 - Natural Science List A (Lab)",
+          "N 3 - Natural Science List A or List B",
+          "(no additional CMST other than 1 of the courses below). Choose one of the following:",
+          "Select one of the following:",
+          "MATH& 107",
+          "MATH& 131",
+          "MATH& 132",
+          "Additional General Education (15 credits) 15 credits of Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution courses."
+        ]
+      },
+      {
+        "label": "Quarter 1",
+        "courses": [
+          "ECED 301",
+          "ECED 305",
+          "ECED 310"
+        ]
+      },
+      {
+        "label": "Quarter 2",
+        "courses": [
+          "ECED 302",
+          "ECED 315",
+          "ECED 340"
+        ]
+      },
+      {
+        "label": "Quarter 3",
+        "courses": [
+          "ECED 303",
+          "ECED 350",
+          "ECED 370"
+        ]
+      },
+      {
+        "label": "Quarter 4",
+        "courses": [
+          "ECED 401",
+          "ECED 405",
+          "ECED 410"
+        ]
+      },
+      {
+        "label": "Quarter 5",
+        "courses": [
+          "ECED 402",
+          "ECED 415",
+          "ECED 420"
+        ]
+      },
+      {
+        "label": "Quarter 6",
+        "courses": [
+          "ECED 425",
+          "ECED 445",
+          "ECED 450"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelor's.",
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 180 credits.",
+      "These are a combination of entry requirements, degree requirements and electives. Completion of an associate degree or higher from a regionally accredited college or university with a cumulative GPA of 2.5 or better. Completion of 30 credits in ECE with no single class lower than 2.0 to include:",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Early Childhood Education: Infant and Child Mental Health, BAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/infant-and-child-mental-health-bas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-stem-cybersecurity-networking-cybersecurity-and-networking-bas",
+    "code": "BAS",
+    "title": "Cybersecurity and Networking",
+    "summary": "Cybersecurity and Networking, BAS curriculum map.",
+    "bestFor": [
+      "Cybersecurity and Networking"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "IT 102",
+          "IT 114",
+          "IT 131",
+          "IT 160",
+          "IT 190",
+          "IT 210",
+          "IT 224",
+          "IT 244",
+          "IT 201",
+          "SDEV 201",
+          "IT 178",
+          "ENGL& 101",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "MATH& 107",
+          "MATH 108",
+          "One of the following courses:",
+          "Any 5 credit college level Math 100 or higher, the following are recommended:",
+          "or any IT course not in list above"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "IT 360",
+          "IT 370",
+          "S 1 - Social Science",
+          "BUS& 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (17 credits)",
+        "courses": [
+          "IT 335",
+          "IT 365",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "IT 310",
+          "IT 470",
+          "H 1 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "IT 340",
+          "IT 385"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "IT 450",
+          "IT 460"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "IT 480",
+          "IT 490"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelor.",
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 180 credits.",
+      "These are a combination of entry requirements, degree requirements and electives.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Cybersecurity and Networking, BAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/cybersecurity-and-networking-bas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-stem-information-technology-cybersecurity-and-networking-bas",
+    "code": "BAS",
+    "title": "Cybersecurity and Networking",
+    "summary": "Cybersecurity and Networking, BAS curriculum map.",
+    "bestFor": [
+      "Cybersecurity and Networking"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 0",
+        "courses": [
+          "IT 102",
+          "IT 114",
+          "IT 131",
+          "IT 160",
+          "IT 190",
+          "IT 210",
+          "IT 224",
+          "IT 244",
+          "IT 201",
+          "SDEV 201",
+          "IT 178",
+          "ENGL& 101",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "MATH& 107",
+          "MATH 108",
+          "One of the following courses:",
+          "Any 5 credit college level Math 100 or higher, the following are recommended:",
+          "or any IT course not in list above"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "IT 360",
+          "IT 370",
+          "S 1 - Social Science",
+          "BUS& 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (17 credits)",
+        "courses": [
+          "IT 335",
+          "IT 365",
+          "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "IT 310",
+          "IT 470",
+          "H 1 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "IT 340",
+          "IT 385"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "IT 450",
+          "IT 460"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "IT 480",
+          "IT 490"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelor.",
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 180 credits.",
+      "These are a combination of entry requirements, degree requirements and electives.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Cybersecurity and Networking, BAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/information-technology/cybersecurity-and-networking-bas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-stem-information-technology-software-development-bas",
+    "code": "BAS",
+    "title": "Software Development",
+    "summary": "Software Development, BAS curriculum map.",
+    "bestFor": [
+      "Software Development"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "ENGL 335",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "MATH& 141",
+          "MATH 147",
+          "H 1 - Humanities/Fine Arts/English",
+          "H 2 - Humanities/Fine Arts/English",
+          "H 3 - Humanities/Fine Arts/English",
+          "N 1 - Natural Science List A (Lab)",
+          "N 2 - Natural Science List A",
+          "N 3 - Natural Science List A or List B",
+          "S 1 - Social Science",
+          "S 2 - Social Science",
+          "One of the following courses:",
+          "QSR course - Five credits of Quantitative Skills/Symbolic Reasoning courses from AA-DTA degree , the following are recommeded.",
+          "40 credits of General Education courses from the following:"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "SDEV 301",
+          "SDEV 305",
+          "General Education course (see list above)"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "SDEV 328",
+          "SDEV 333",
+          "General Education course (see list above)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "SDEV 334",
+          "SDEV 355",
+          "General Education course (see list above)"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "SDEV 372",
+          "General Education course (see list above) General Education course (see list above)"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "SDEV 485",
+          "SDEV 494",
+          "General Education course (see list above)"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "SDEV 494",
+          "SDEV 486",
+          "General Education course (see list above)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelor.",
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 180 Credits.",
+      "These are a combination of entry requirements, degree requirements and electives. Students must complete and submit an entry application and be accepted into the program before registering for any upper-division (300- and 400-level) courses. New students are admitted twice a year in fall and winter. To inquire about admission to the program, visit www.greenriver.edu/software and complete the form to request information.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Software Development, BAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/information-technology/software-development-bas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-trades-industrial-tech-aviation-natural-resources-aviation-technology-aeronautical-science-bas",
+    "code": "BAS",
+    "title": "Aeronautical Science",
+    "summary": "Aeronautical Science, BAS curriculum map.",
+    "bestFor": [
+      "Aeronautical Science"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL& 101",
+          "Any five (5) credit college leve math course Ten credits of courses from the Humanities , Social Science , and Natural Science distribution lists."
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "AVIA 360",
+          "AVIA 370",
+          "ENGL 126",
+          "ENGL 127",
+          "ENGL 128",
+          "ENGL& 235",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "AVIA 375",
+          "AVIA 385",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "AVIA 400",
+          "AVIA 410",
+          "AVIA 431",
+          "H 1 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Quarter 4 (20 credits)",
+        "courses": [
+          "AVIA 380",
+          "ENGL 335",
+          "H 2 - Humanities/Fine Arts/English",
+          "S 2 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "AVIA 490",
+          "AVIA 307",
+          "AVIA 308",
+          "AVIA 365",
+          "AVIA 367",
+          "AVIA 390",
+          "AVIA 420",
+          "AVIA 440",
+          "General Education from the Humanities , Social Science , and Natural Science distribution lists. Select one of the following:"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "N 3 - Natural Science List A or List B",
+          "AVIA 307",
+          "AVIA 308",
+          "AVIA 365",
+          "AVIA 367",
+          "AVIA 390",
+          "AVIA 420",
+          "AVIA 440",
+          "Select one of the following:",
+          "General Education from the Humanities , Social Science , and Natural Science distribution lists."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelors.",
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 180 credits.",
+      "These are a combination of entry requirements, degree requirements and electives. To enter this program students must already have an associate's degree or higher, in aviation , from a regionally accredited institution with at least a 2.0 cumulative GPA. On a case by case basis, with program director approval, students may start the BAS - Aeronautical Science program when they are within 20 credits of completing their associate's degree.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Aeronautical Science, BAS curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aeronautical-science-bas.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-trades-industrial-tech-aviation-natural-resources-natural-resources-forest-resource-management-bas-forestry-operations-track",
+    "code": "BAS",
+    "title": "Forest Resource Management, BAS Forestry Operations Track",
+    "summary": "Forest Resource Management, BAS Forestry Operations Track curriculum map.",
+    "bestFor": [
+      "Forest Resource Management, BAS Forestry Operations Track"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL 128",
+          "NATRS 161",
+          "NATRS 180",
+          "NATRS 182",
+          "NATRS 192",
+          "NATRS 293"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "MATH& 146",
+          "NATRS 385",
+          "NATRS 390"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 335",
+          "NATRS 399",
+          "NATRS 400",
+          "N 1 - Natural Science List A (Lab)",
+          "H 1 - Humanities/Fine Arts/English",
+          "BIOL 110",
+          "GEOL& 208",
+          "CMST& 220",
+          "CMST& 230",
+          "PHIL& 115",
+          "PHIL 243"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "NATRS 300",
+          "NATRS 401",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "NATRS 418",
+          "NATRS 471",
+          "NATRS 493",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Quarter 5 (14 credits)",
+        "courses": [
+          "NATRS 402",
+          "H 2 - Humanities/Fine Arts/English",
+          "H 3 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "NATRS 301",
+          "S 2 - Social Science",
+          "H 1 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Summer",
+        "courses": [
+          "NATRS 403"
+        ]
+      },
+      {
+        "label": "Capstone",
+        "courses": [
+          "NATRS 494",
+          "NATRS 495",
+          "NATRS 496"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelor.",
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 186 credits.",
+      "Must have completed a minimum of a two-year associate degree in forestry or related field. Apply to the program Prior completion of these courses is required for entry:",
+      "Can be take anytime. All 3 courses are required.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Forest Resource Management, BAS Forestry Operations Track curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/forest-resource-management-bas-forestry-operations-track.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-bas-trades-industrial-tech-aviation-natural-resources-natural-resources-forest-resource-management-bas-sampling-and-assessment-track",
+    "code": "BAS",
+    "title": "Forest Resource Management, BAS Sampling and Assessment Track",
+    "summary": "Forest Resource Management, BAS Sampling and Assessment Track curriculum map.",
+    "bestFor": [
+      "Forest Resource Management, BAS Sampling and Assessment Track"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "ENGL 128",
+          "NATRS 161",
+          "NATRS 180",
+          "NATRS 182",
+          "NATRS 192",
+          "NATRS 293"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "MATH& 146",
+          "NATRS 385",
+          "NATRS 390"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL 335",
+          "NATRS 399",
+          "NATRS 400",
+          "N 1 - Natural Science List A (Lab)",
+          "H 1 - Humanities/Fine Arts/English",
+          "BIOL 110",
+          "GEOL& 208",
+          "CMST& 220",
+          "CMST& 230",
+          "PHIL& 115",
+          "PHIL 243"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "NATRS 300",
+          "NATRS 386",
+          "NATRS 417",
+          "S 1 - Social Science"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "NATRS 418",
+          "NATRS 471",
+          "NATRS 493",
+          "N 3 - Natural Science List A or List B"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "NATRS 419",
+          "NATRS 461",
+          "H 2 - Humanities/Fine Arts/English",
+          "H 3 - Humanities/Fine Arts/English"
+        ]
+      },
+      {
+        "label": "Quarter 6 (15 credits)",
+        "courses": [
+          "NATRS 301",
+          "H 1 - Humanities/Fine Arts/English",
+          "S 2 - Social Science"
+        ]
+      },
+      {
+        "label": "Capstone",
+        "courses": [
+          "NATRS 494",
+          "NATRS 495",
+          "NATRS 496"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelor.",
+      "Degree: Bachelor of Applied Science.",
+      "Published duration: 186 credits.",
+      "Must have completed a minimum of a two-year associate degree in forestry or related field. Apply to the program Prior completion of these courses is required for entry:",
+      "Can be take anytime. All 3 courses are required.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Forest Resource Management, BAS Sampling and Assessment Track curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/natural-resources/forest-resource-management-bas-sampling-and-assessment-track.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-business-entrepreneurship-accounting-accounting-clerk-certificate",
+    "code": "Certificate",
+    "title": "Accounting Clerk",
+    "summary": "Accounting Clerk Certificate curriculum map.",
+    "bestFor": [
+      "Accounting Clerk"
+    ],
+    "terms": [
+      {
+        "label": "Core Requirements",
+        "courses": [
+          "ACCT 110",
+          "BTAC 100",
+          "BTAC 110",
+          "*"
+        ]
+      },
+      {
+        "label": "Core Requirements > Notes",
+        "courses": [
+          "ACCT& 201",
+          "ACCT 110"
+        ]
+      },
+      {
+        "label": "Core Requirements > Notes > Last Revised",
+        "courses": [
+          "7/1/2014"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Certificate.",
+      "* ACCT& 201 , Principles of Accounting I, may be substituted for ACCT 110 .",
+      "7/1/2014",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Accounting Clerk Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/accounting-clerk-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-business-entrepreneurship-accounting-certificate",
+    "code": "Certificate",
+    "title": "Accounting",
+    "summary": "Accounting Certificate curriculum map.",
+    "bestFor": [
+      "Accounting"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ACCT 110",
+          "BTAC 100",
+          "BTAC 110"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ACCT 111",
+          "ACCT 221",
+          "BTAC 162",
+          "(only offered winter and spring quarters)",
+          "(only offered in winter quarter)"
+        ]
+      },
+      {
+        "label": "Quarter 3 (10 credits)",
+        "courses": [
+          "ACCT 212",
+          "BUS& 101",
+          "(only offered spring and fall quarters)"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Certificate.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Accounting Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/accounting/certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-business-entrepreneurship-administrative-assistant-certificate",
+    "code": "Certificate",
+    "title": "Administrative Assistant",
+    "summary": "Administrative Assistant Certificate curriculum map.",
+    "bestFor": [
+      "Administrative Assistant"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 101",
+          "BTAC 110"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BTAC 102",
+          "BTAC 112",
+          "BTAC 132"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BTAC 130",
+          "BTAC 140",
+          "BTAC 162"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "BTAC 150",
+          "BTAC 250",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Electives",
+        "courses": [
+          "ACCT& 201",
+          "BTAC 101",
+          "BTAC 107",
+          "BTAC 111",
+          "BTAC 151",
+          "BTAC 152",
+          "BTAC 163",
+          "BTAC 175",
+          "BTAC 178",
+          "BTAC 179",
+          "BTAC 184",
+          "BTAC 185",
+          "BTAC 191",
+          "BTAC 192",
+          "BTAC 193",
+          "BTAC 216",
+          "BTAC 255",
+          "BUS& 101",
+          "BUS 164",
+          "BUS 166",
+          "ENGL 105",
+          "PSYC& 100",
+          "SOC& 101"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Professional/Technical.",
+      "Degree: Certificate.",
+      "Published duration: 55-60 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Administrative Assistant Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/administrative-assistant/certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-business-entrepreneurship-business-applications-specialist-certificate",
+    "code": "Certificate",
+    "title": "Business Applications Specialist",
+    "summary": "Business Applications Specialist Certificate curriculum map.",
+    "bestFor": [
+      "Business Applications Specialist"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 101",
+          "BTAC 110"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BTAC 112",
+          "BTAC 132",
+          "BTAC 150"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BTAC 130",
+          "BTAC 162",
+          "Program Electives (see below) Credits: 5"
+        ]
+      },
+      {
+        "label": "Quarter 4 (15 credits)",
+        "courses": [
+          "BTAC 184",
+          "BTAC 185",
+          "BTAC 250",
+          "CMST& 210",
+          "CMST& 220",
+          "CMST& 230",
+          "Select one of the following:"
+        ]
+      },
+      {
+        "label": "Electives",
+        "courses": [
+          "ACCT 110",
+          "ACCT& 201",
+          "ACCT 212",
+          "BTAC 101",
+          "BTAC 102",
+          "BTAC 103",
+          "BTAC 107",
+          "BTAC 108",
+          "BTAC 111",
+          "BTAC 151",
+          "BTAC 152",
+          "BTAC 153",
+          "BTAC 163",
+          "BTAC 175",
+          "BTAC 177",
+          "BTAC 178",
+          "BTAC 179",
+          "BTAC 191",
+          "BTAC 192",
+          "BTAC 193",
+          "BTAC 216",
+          "BTAC 217",
+          "BTAC 250",
+          "BTAC 255",
+          "BUS& 101",
+          "BUS 164",
+          "BUS 166",
+          "COOP 171",
+          "PSYC& 100",
+          "SOC& 101"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Published duration: 60 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Business Applications Specialist Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-applications-specialist/certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-business-entrepreneurship-business-applications-specialist-small-business-certificate",
+    "code": "Certificate",
+    "title": "Business Applications Specialist for Small Business",
+    "summary": "Business Applications Specialist for Small Business Certificate curriculum map.",
+    "bestFor": [
+      "Business Applications Specialist for Small Business"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 101",
+          "BUS 164"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ACCT 110",
+          "BTAC 132",
+          "BTAC 162"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BTAC 130",
+          "BTAC 214",
+          "BTAC 266"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Published duration: 40 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Business Applications Specialist for Small Business Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-applications-specialist/small-business-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-business-entrepreneurship-business-management-business-foundations-certificate",
+    "code": "Certificate",
+    "title": "Business Management - Business Foundations",
+    "summary": "Business Management - Business Foundations Certificate curriculum map.",
+    "bestFor": [
+      "Business Management - Business Foundations"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ACCT 110",
+          "BUS& 101",
+          "BTAC 100"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BTAC 162",
+          "BUS 173",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BUS 166",
+          "CMST& 101",
+          "MATH& 107"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Certificate.",
+      "Published duration: 45 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Business Management - Business Foundations Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/business-foundations-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-business-entrepreneurship-business-management-entrepreneurship-certificate",
+    "code": "Certificate",
+    "title": "Business Management: Entrepreneurship",
+    "summary": "Business Management: Entrepreneurship Certificate curriculum map.",
+    "bestFor": [
+      "Business Management: Entrepreneurship"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ACCT 110",
+          "ACCT& 201",
+          "BUS& 101",
+          "BTAC 162",
+          "BTAC 163"
+        ]
+      },
+      {
+        "label": "Quarter 2 (10 credits)",
+        "courses": [
+          "BUS 121",
+          "ACCT 111",
+          "ACCT& 201"
+        ]
+      },
+      {
+        "label": "Quarter 3 (10 credits)",
+        "courses": [
+          "ACCT 212",
+          "BUS 164"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Certificate.",
+      "Published duration: 35 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Business Management: Entrepreneurship Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/entrepreneurship-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-business-entrepreneurship-business-management-retail-management-certificate",
+    "code": "Certificate",
+    "title": "Business Management - Retail Management",
+    "summary": "Business Management - Retail Management Certificate curriculum map.",
+    "bestFor": [
+      "Business Management - Retail Management"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ACCT 110",
+          "BUS 103",
+          "BTAC 100"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "ENGL& 101",
+          "BUS 121",
+          "BTAC 110"
+        ]
+      },
+      {
+        "label": "Quarter 3 (10 credits)",
+        "courses": [
+          "BUS 257",
+          "CMST& 101"
+        ]
+      },
+      {
+        "label": "Quarter 4 (10 credits)",
+        "courses": [
+          "BUS 166",
+          "BUS 258"
+        ]
+      }
+    ],
+    "notes": [
+      "Degree: Certificate.",
+      "Published duration: 50 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Business Management - Retail Management Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/retail-management-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-education-law-social-science-court-reporting-captioning-scopist-text-editor-certificate",
+    "code": "Certificate",
+    "title": "Court Reporting & Captioning-Scopist/Text Editor",
+    "summary": "Court Reporting & Captioning-Scopist/Text Editor Certificate curriculum map.",
+    "bestFor": [
+      "Court Reporting & Captioning-Scopist/Text Editor"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (11 credits)",
+        "courses": [
+          "BTAC 109",
+          "CRC 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (13 credits)",
+        "courses": [
+          "BTAC 125",
+          "CRC 102"
+        ]
+      },
+      {
+        "label": "Quarter 3 (11 credits)",
+        "courses": [
+          "CRC 103",
+          "CRC 151"
+        ]
+      },
+      {
+        "label": "Quarter 4 (10 credits)",
+        "courses": [
+          "ACCT 110",
+          "CRC 250"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: ---.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Court Reporting & Captioning-Scopist/Text Editor Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/court-reporting-captioning/scopist-text-editor-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-education-law-social-science-criminal-justice-corrections-certificate",
+    "code": "Certificate",
+    "title": "Criminal Justice - Corrections",
+    "summary": "Criminal Justice - Corrections Certificate curriculum map.",
+    "bestFor": [
+      "Criminal Justice - Corrections"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "CJ& 101",
+          "CJ& 105",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "CJ& 110",
+          "CJ 200",
+          "CJ 220"
+        ]
+      }
+    ],
+    "notes": [
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Criminal Justice - Corrections Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/corrections-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-education-law-social-science-criminal-justice-forensic-and-fingerprint-technology-certificate",
+    "code": "Certificate",
+    "title": "Forensic and Fingerprinting",
+    "summary": "Forensic and Fingerprinting Certificate curriculum map.",
+    "bestFor": [
+      "Forensic and Fingerprinting"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "CJ& 101",
+          "ENGL& 101",
+          "PHOTO 111"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "CJ& 110",
+          "CJ 115",
+          "CJ& 240"
+        ]
+      }
+    ],
+    "notes": [
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Forensic and Fingerprinting Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/forensic-and-fingerprint-technology-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-education-law-social-science-criminal-justice-law-enforcement-certificate",
+    "code": "Certificate",
+    "title": "Criminal Justice - Law Enforcement",
+    "summary": "Criminal Justice - Law Enforcement Certificate curriculum map.",
+    "bestFor": [
+      "Criminal Justice - Law Enforcement"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "CJ& 101",
+          "CJ& 110",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "CJ 200",
+          "CJ 220",
+          "CJ 236"
+        ]
+      }
+    ],
+    "notes": [
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Criminal Justice - Law Enforcement Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/law-enforcement-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-education-law-social-science-early-childhood-education-certificate-of-specialization",
+    "code": "Certificate",
+    "title": "Early Childhood Education Certificate of Specialization",
+    "summary": "Early Childhood Education Certificate of Specialization curriculum map.",
+    "bestFor": [
+      "Early Childhood Education Certificate of Specialization"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (12 credits)",
+        "courses": [
+          "ECED& 105",
+          "ECED& 107",
+          "ECED& 120"
+        ]
+      },
+      {
+        "label": "Quarter 2 (8 credits)",
+        "courses": [
+          "EDUC& 115",
+          "EDUC& 130",
+          "or/and Choose a speicalization course from the list below."
+        ]
+      },
+      {
+        "label": "Specialization",
+        "courses": [
+          "ECED& 132",
+          "ECED& 134",
+          "ECED& 137",
+          "ECED& 138",
+          "ECED& 139",
+          "EDUC& 136",
+          "Offered Spring quarter",
+          "Offered Summer quarter",
+          "Offered Fall quarter",
+          "Offered Fall and Spring quarters",
+          "Offered Winter quarter"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 20 credits.",
+      "Each one of these specialization course leads to its own certificate. Students should work with their advisor to create an individualized plan.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Early Childhood Education Certificate of Specialization curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/certificate-of-specialization.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-education-law-social-science-early-childhood-education-paraeducator-state-certificate",
+    "code": "Certificate",
+    "title": "Paraeducator State",
+    "summary": "Paraeducator State Certificate curriculum map.",
+    "bestFor": [
+      "Paraeducator State"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (13 credits)",
+        "courses": [
+          "EDUC& 130",
+          "EDUC& 205",
+          "ENGL& 101"
+        ]
+      },
+      {
+        "label": "Quarter 2 (13 credits)",
+        "courses": [
+          "EDUC& 101",
+          "EDUC& 115",
+          "MATH& 107",
+          "MATH 108",
+          "MATH& 141",
+          "MATH& 146",
+          "MATH 147",
+          "MATH& 148",
+          "MATH& 131",
+          "Select one course from the following:"
+        ]
+      },
+      {
+        "label": "Quarter 3 (13 credits)",
+        "courses": [
+          "EDUC& 240",
+          "EDUC 245",
+          "CMST& 220"
+        ]
+      },
+      {
+        "label": "Quarter 4 (8 credits)",
+        "courses": [
+          "EDUC& 204",
+          "EDUC 210"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 47 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Paraeducator State Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/paraeducator-state-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-education-law-social-science-early-childhood-education-statewide-certificate",
+    "code": "Certificate",
+    "title": "Early Childhood Education (Statewide)",
+    "summary": "Early Childhood Education (Statewide) Certificate curriculum map.",
+    "bestFor": [
+      "Early Childhood Education (Statewide)"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (12 credits)",
+        "courses": [
+          "ECED& 105",
+          "ECED& 107",
+          "ECED& 120"
+        ]
+      },
+      {
+        "label": "Quarter 2 (13 credits)",
+        "courses": [
+          "EDUC& 115",
+          "EDUC& 130",
+          "EDUC& 150",
+          "ECED& 170"
+        ]
+      },
+      {
+        "label": "Quarter 3 (13 credits)",
+        "courses": [
+          "ENGL& 101",
+          "ECED& 160",
+          "ECED& 180"
+        ]
+      },
+      {
+        "label": "Quarter 4 (8 credits)",
+        "courses": [
+          "ECED& 190",
+          "BTAC 110",
+          "MATH& 107",
+          "MATH& 131",
+          "MATH& 132"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 47 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Early Childhood Education (Statewide) Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/statewide-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-healthcare-wellness-cardiac-monitor-ekg-cardiac-monitor-ekg-certificate",
+    "code": "Certificate",
+    "title": "Cardiac Monitor/Electrocardiography (EKG) Technician",
+    "summary": "Cardiac Monitor/Electrocardiography (EKG) Technician Certificate curriculum map.",
+    "bestFor": [
+      "Cardiac Monitor/Electrocardiography (EKG) Technician"
+    ],
+    "terms": [
+      {
+        "label": "Program Outcomes",
+        "courses": [
+          "Describe Cardiac Monitoring and EKG services, ethical, legal, and regulatory issues including HIPPA. Describe anatomic structures and function of body systems using correct medical terminology in relation to services performed by Cardiac Monitor/Electrocardiography (EKG) Technicians. Describe standard operating procedures for monitoring and interpreting cardiac rhythms and performing EKGs. Perform infection control techniques and safety, complying with federal, state, and locally mandated regulations regarding safety practices. Perform duties safely and effectively within their scope of practice as a Cardiac Monitor/Electrocardiography Technician. Maintain records, documentation of findings and reporting findings to the appropriate medical staff. Function as a member of the health care team. Communicate appropriately and professionally in the workplace."
+        ]
+      },
+      {
+        "label": "Program Outcomes > Requirements:",
+        "courses": [
+          "CARDIO 102",
+          "CARDIO 103",
+          "HEALTH 102",
+          "HEALTH 104",
+          "CARDIO 105"
+        ]
+      },
+      {
+        "label": "Notes > Last Updated",
+        "courses": [
+          "9/1/2024"
+        ]
+      }
+    ],
+    "notes": [
+      "Describe Cardiac Monitoring and EKG services, ethical, legal, and regulatory issues including HIPPA. Describe anatomic structures and function of body systems using correct medical terminology in relation to services performed by Cardiac Monitor/Electrocardiography (EKG) Technicians. Describe standard operating procedures for monitoring and interpreting cardiac rhythms and performing EKGs. Perform infection control techniques and safety, complying with federal, state, and locally mandated regulations regarding safety practices. Perform duties safely and effectively within their scope of practice as a Cardiac Monitor/Electrocardiography Technician. Maintain records, documentation of findings and reporting findings to the appropriate medical staff. Function as a member of the health care team. Communicate appropriately and professionally in the workplace.",
+      "9/1/2024",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Cardiac Monitor/Electrocardiography (EKG) Technician Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/cardiac-monitor-ekg/cardiac-monitor-ekg-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-healthcare-wellness-emergency-room-technician-emergency-room-and-patient-care-technician-certificate",
+    "code": "Certificate",
+    "title": "Emergency Room and Patient Care Technician",
+    "summary": "Emergency Room and Patient Care Technician Certificate curriculum map.",
+    "bestFor": [
+      "Emergency Room and Patient Care Technician"
+    ],
+    "terms": [
+      {
+        "label": "Admission Requirements",
+        "courses": [
+          "Must be at least 18 years old Valid photo ID (driver's license or any state-issued photo ID) Must pass a National, Washington State Patrol and DSHS Background Check Required immunizations Uniform, text book and class supplies Liability Insurance"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "HEALTH 102",
+          "HEALTH 104",
+          "NRS A 103 - Nurse Assistant Lab",
+          "NRS A 104 - Nurse Assistant Theory",
+          "NRS A 105 - Nursing Assistant Clinical"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "PHLEB 103",
+          "PHLEB 104",
+          "ERTECH 102",
+          "ERTECH 103"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 30 credits.",
+      "Must be at least 18 years old Valid photo ID (driver's license or any state-issued photo ID) Must pass a National, Washington State Patrol and DSHS Background Check Required immunizations Uniform, text book and class supplies Liability Insurance",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Emergency Room and Patient Care Technician Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/emergency-room-technician/emergency-room-and-patient-care-technician-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-healthcare-wellness-medical-office-administration-medical-coding-reimbursement-specialist-certificate",
+    "code": "Certificate",
+    "title": "Medical Coding and Reimbursement Specialist",
+    "summary": "Medical Coding and Reimbursement Specialist Certificate curriculum map.",
+    "bestFor": [
+      "Medical Coding and Reimbursement Specialist"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 125",
+          "CMST& 210",
+          "(offered summer or winter)"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BTAC 142",
+          "BTAC 145",
+          "BTAC 248"
+        ]
+      },
+      {
+        "label": "Quarter 3 (13 credits)",
+        "courses": [
+          "BTAC 127",
+          "BTAC 146",
+          "BTAC 257"
+        ]
+      },
+      {
+        "label": "Quarter 4 (17 credits)",
+        "courses": [
+          "BTAC 126",
+          "BTAC 130",
+          "BTAC 180",
+          "BTAC 258"
+        ]
+      },
+      {
+        "label": "Quarter 5 (15 credits)",
+        "courses": [
+          "AP 100",
+          "BUS 166",
+          "BTAC 110"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 75 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Medical Coding and Reimbursement Specialist Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/medical-coding-reimbursement-specialist-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-healthcare-wellness-medical-office-administration-medical-front-office-certificate",
+    "code": "Certificate",
+    "title": "Medical Front Office",
+    "summary": "Medical Front Office Certificate curriculum map.",
+    "bestFor": [
+      "Medical Front Office"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 101",
+          "BTAC 130"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "BTAC 102",
+          "BTAC 110",
+          "BTAC 125"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "BTAC 112",
+          "BTAC 245",
+          "CMST& 210"
+        ]
+      },
+      {
+        "label": "Quarter 4 (11 credits)",
+        "courses": [
+          "BTAC 132",
+          "BUS 166",
+          "COOP 171"
+        ]
+      },
+      {
+        "label": "Quarter 5 (3 credits)",
+        "courses": [
+          "BTAC 177",
+          "(3 credits only required-internship)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 54 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Medical Front Office Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/medical-front-office-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-healthcare-wellness-medical-office-administration-medical-office-manager-certificate",
+    "code": "Certificate",
+    "title": "Medical Office Manager",
+    "summary": "Medical Office Manager Certificate curriculum map.",
+    "bestFor": [
+      "Medical Office Manager"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "ACCT 110",
+          "BUS 166",
+          "BTAC 130"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "CMST& 210",
+          "BTAC 266",
+          "Program Electives (see below) Credits: 5"
+        ]
+      },
+      {
+        "label": "Quarter 3 (10 credits)",
+        "courses": [
+          "BTAC 245",
+          "(spring only)",
+          "Program Electives (see below) Credits: 5"
+        ]
+      },
+      {
+        "label": "Electives",
+        "courses": [
+          "AP 100",
+          "AP 102",
+          "BTAC 100",
+          "BTAC 110",
+          "BTAC 112",
+          "BTAC 140",
+          "BTAC 142",
+          "BTAC 145",
+          "BTAC 146",
+          "BTAC 150",
+          "BTAC 162",
+          "BTAC 185",
+          "BTAC 214",
+          "BTAC 250",
+          "BTAC 255"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 40 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Medical Office Manager Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/medical-office-manager-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-healthcare-wellness-medical-office-administration-medical-office-support-certificate",
+    "code": "Certificate",
+    "title": "Medical Office Support",
+    "summary": "Medical Office Support Certificate curriculum map.",
+    "bestFor": [
+      "Medical Office Support"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (10 credits)",
+        "courses": [
+          "BTAC 101",
+          "BTAC 111"
+        ]
+      },
+      {
+        "label": "Quarter 2 (10 credits)",
+        "courses": [
+          "BTAC 100",
+          "BTAC 125"
+        ]
+      },
+      {
+        "label": "Quarter 3 (10 credits)",
+        "courses": [
+          "BTAC 245",
+          "CMST& 210"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 30 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Medical Office Support Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/medical-office-support-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-healthcare-wellness-nursing-nurse-assistant-certificate",
+    "code": "Certificate",
+    "title": "Nurse Assistant",
+    "summary": "Nurse Assistant Certificate curriculum map.",
+    "bestFor": [
+      "Nurse Assistant"
+    ],
+    "terms": [
+      {
+        "label": "Requirements",
+        "courses": [
+          "HEALTH 102",
+          "NRS A 104 - Nurse Assistant Theory",
+          "NRS A 103 - Nurse Assistant Lab",
+          "NRS A 105 - Nursing Assistant Clinical",
+          "HEALTH 104"
+        ]
+      },
+      {
+        "label": "Requirements > Last Revised",
+        "courses": [
+          "9/1/2024"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Associate.",
+      "Degree: Associate in Applied Science.",
+      "Published duration: 90 credits.",
+      "9/1/2024",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Nurse Assistant Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/nurse-assistant-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-cybersecurity-networking-advanced-network-administration-and-security-certificate",
+    "code": "Certificate",
+    "title": "Advanced Network Administration and Security",
+    "summary": "Advanced Network Administration and Security Certificate curriculum map.",
+    "bestFor": [
+      "Advanced Network Administration and Security"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "IT 114",
+          "IT 131",
+          "IT 160",
+          "IT 190",
+          "IT 210",
+          "IT 224"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "IT 360",
+          "IT 385",
+          "IT 370",
+          "IT 470"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "IT 310",
+          "IT 335"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "IT 340",
+          "IT 450",
+          "IT 460"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelor Degree.",
+      "Degree: Certificate.",
+      "Published duration: 42 credits.",
+      "To enter this program, students must have a technical associate's degree in an IT-related field from a regionally accredited institution, or two years IT work experience. The following IT courses, or work experience in all of these areas, are strongly recommended before entering this program because they contain foundational knowledge upon which the upper-division IT courses are built: For more information about this degree, please contact the Green River IT faculty at itdegrees@greenriver.edu",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Advanced Network Administration and Security Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/advanced-network-administration-and-security-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-cybersecurity-networking-cloud-fundamentals-certificate",
+    "code": "Certificate",
+    "title": "Cloud Fundamentals",
+    "summary": "Cloud Fundamentals Certificate curriculum map.",
+    "bestFor": [
+      "Cloud Fundamentals"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (10 credits)",
+        "courses": [
+          "IT 131",
+          "IT 160"
+        ]
+      },
+      {
+        "label": "Quarter 2 (12 credits)",
+        "courses": [
+          "IT 210",
+          "IT 244"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 22 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Cloud Fundamentals Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/cloud-fundamentals-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-cybersecurity-networking-fundamentals-certificate",
+    "code": "Certificate",
+    "title": "IT Fundamentals",
+    "summary": "IT Fundamentals Certificate curriculum map.",
+    "bestFor": [
+      "IT Fundamentals"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "IT 114",
+          "IT 131",
+          "IT 160",
+          "or CompTIA A+ certification with PLA",
+          "or CompTIA Network+ certification with PLA"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 15 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "IT Fundamentals Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/fundamentals-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-cybersecurity-networking-scripting-fundamentals-certificate",
+    "code": "Certificate",
+    "title": "Scripting Fundamentals",
+    "summary": "Scripting Fundamentals Certificate curriculum map.",
+    "bestFor": [
+      "Scripting Fundamentals"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (10 credits)",
+        "courses": [
+          "IT 160",
+          "IT 190"
+        ]
+      },
+      {
+        "label": "Quarter 2 (10 credits)",
+        "courses": [
+          "IT 201",
+          "IT 224"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 20 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Scripting Fundamentals Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/scripting-fundamentals-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-cybersecurity-networking-security-fundamentals-certificate",
+    "code": "Certificate",
+    "title": "Security Fundamentals",
+    "summary": "Security Fundamentals Certificate curriculum map.",
+    "bestFor": [
+      "Security Fundamentals"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (10 credits)",
+        "courses": [
+          "IT 131",
+          "IT 160"
+        ]
+      },
+      {
+        "label": "Quarter 2 (10 credits)",
+        "courses": [
+          "IT 102",
+          "IT 245"
+        ]
+      },
+      {
+        "label": "Quarter 3 (5 credits)",
+        "courses": [
+          "IT 135",
+          "or CompTIA Security+ certification with PLA"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 25 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Security Fundamentals Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/security-fundamentals-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-information-technology-advanced-network-administration-and-security-certificate",
+    "code": "Certificate",
+    "title": "Advanced Network Administration and Security",
+    "summary": "Advanced Network Administration and Security Certificate curriculum map.",
+    "bestFor": [
+      "Advanced Network Administration and Security"
+    ],
+    "terms": [
+      {
+        "label": "Entry Requirements",
+        "courses": [
+          "IT 114",
+          "IT 131",
+          "IT 160",
+          "IT 190",
+          "IT 210",
+          "IT 224"
+        ]
+      },
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "IT 360",
+          "IT 385",
+          "IT 370",
+          "IT 470"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "IT 310",
+          "IT 335"
+        ]
+      },
+      {
+        "label": "Quarter 3 (15 credits)",
+        "courses": [
+          "IT 340",
+          "IT 450",
+          "IT 460"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Bachelor Degree.",
+      "Degree: Bachelor in Applied Science Degree.",
+      "Published duration: ---.",
+      "To enter this program, students must have a technical associate's degree in an IT-related field from a regionally accredited institution, or two years IT work experience. The following IT courses, or work experience in all of these areas, are strongly recommended before entering this program because they contain foundational knowledge upon which the upper-division IT courses are built: For more information about this degree, please contact the Green River IT faculty at itdegrees@greenriver.edu",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Advanced Network Administration and Security Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/information-technology/advanced-network-administration-and-security-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-information-technology-cloud-fundamentals-certificate",
+    "code": "Certificate",
+    "title": "Information Technology-Cloud Fundamentals",
+    "summary": "Information Technology-Cloud Fundamentals Certificate curriculum map.",
+    "bestFor": [
+      "Information Technology-Cloud Fundamentals"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (10 credits)",
+        "courses": [
+          "IT 131",
+          "IT 160"
+        ]
+      },
+      {
+        "label": "Quarter 2 (12 credits)",
+        "courses": [
+          "IT 210",
+          "IT 244"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 22 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Information Technology-Cloud Fundamentals Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/information-technology/cloud-fundamentals-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-information-technology-fundamentals-certificate",
+    "code": "Certificate",
+    "title": "Information Technology-Fundamentals",
+    "summary": "Information Technology-Fundamentals Certificate curriculum map.",
+    "bestFor": [
+      "Information Technology-Fundamentals"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "IT 114",
+          "IT 131",
+          "IT 160",
+          "or CompTIA A+ certification with PLA",
+          "or CompTIA Network+ certification with PLA"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 15 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Information Technology-Fundamentals Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/information-technology/fundamentals-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-information-technology-scripting-fundamentals-certificate",
+    "code": "Certificate",
+    "title": "IT-Scripting Fundamentals",
+    "summary": "IT-Scripting Fundamentals Certificate curriculum map.",
+    "bestFor": [
+      "IT-Scripting Fundamentals"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (10 credits)",
+        "courses": [
+          "IT 160",
+          "IT 190"
+        ]
+      },
+      {
+        "label": "Quarter 2 (10 credits)",
+        "courses": [
+          "IT 201",
+          "IT 224"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 20 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "IT-Scripting Fundamentals Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/information-technology/scripting-fundamentals-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-stem-information-technology-security-fundamentals-certificate",
+    "code": "Certificate",
+    "title": "IT-Security Fundamentals",
+    "summary": "IT-Security Fundamentals Certificate curriculum map.",
+    "bestFor": [
+      "IT-Security Fundamentals"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (10 credits)",
+        "courses": [
+          "IT 131",
+          "IT 160"
+        ]
+      },
+      {
+        "label": "Quarter 2 (10 credits)",
+        "courses": [
+          "IT 102",
+          "IT 245"
+        ]
+      },
+      {
+        "label": "Quarter 3 (5 credits)",
+        "courses": [
+          "IT 135",
+          "or CompTIA Security+ certification with PLA"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 25 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "IT-Security Fundamentals Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/information-technology/security-fundamentals-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-aviation-technology-air-traffic-controller-certificate",
+    "code": "Certificate",
+    "title": "Aviation Technology: Air Traffic Controller",
+    "summary": "Aviation Technology: Air Traffic Controller Certificate curriculum map.",
+    "bestFor": [
+      "Aviation Technology: Air Traffic Controller"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (10 credits)",
+        "courses": [
+          "AVIA 111",
+          "AVIA 123"
+        ]
+      },
+      {
+        "label": "Quarter 2 (14 credits)",
+        "courses": [
+          "AVIA 190",
+          "AVIA 281",
+          "AVIA 287"
+        ]
+      },
+      {
+        "label": "Quarter 3 (10 credits)",
+        "courses": [
+          "AVIA 216",
+          "AVIA 288"
+        ]
+      },
+      {
+        "label": "Quarter 4 (10 credits)",
+        "courses": [
+          "AVIA 289"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 44 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Aviation Technology: Air Traffic Controller Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/air-traffic-controller-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-aviation-technology-aviation-operations-management-certificate",
+    "code": "Certificate",
+    "title": "Aviation Technology - Aviation Operations Management",
+    "summary": "Aviation Technology - Aviation Operations Management Certificate curriculum map.",
+    "bestFor": [
+      "Aviation Technology - Aviation Operations Management"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "AVIA 103",
+          "AVIA 111",
+          "AVIA 123"
+        ]
+      },
+      {
+        "label": "Quarter 2 (15 credits)",
+        "courses": [
+          "AVIA 110",
+          "AVIA 160",
+          "AVIA 217"
+        ]
+      },
+      {
+        "label": "Quarter 3 (10 credits)",
+        "courses": [
+          "AVIA 212",
+          "AVIA 270"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 40 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Aviation Technology - Aviation Operations Management Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/aviation-operations-management-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-carpentry-technology-certificate",
+    "code": "Certificate",
+    "title": "Carpentry Technology",
+    "summary": "Carpentry Technology Certificate curriculum map.",
+    "bestFor": [
+      "Carpentry Technology"
+    ],
+    "terms": [
+      {
+        "label": "Fall Quarter",
+        "courses": [
+          "CARP 113",
+          "(13 credits required)"
+        ]
+      },
+      {
+        "label": "Winter Quarter",
+        "courses": [
+          "CARP 114",
+          "(13 credits required)"
+        ]
+      },
+      {
+        "label": "Spring Quarter",
+        "courses": [
+          "CARP 115",
+          "CARP 162",
+          "CARP 163",
+          "(13 credits required)",
+          "Select one of the following:",
+          "(4 credits required)"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 43 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Carpentry Technology Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-carpentry-technology-pre-apprenticeship-certificate",
+    "code": "Certificate",
+    "title": "Carpentry Technology Pre-Apprenticeship",
+    "summary": "Carpentry Technology Pre-Apprenticeship Certificate curriculum map.",
+    "bestFor": [
+      "Carpentry Technology Pre-Apprenticeship"
+    ],
+    "terms": [
+      {
+        "label": "Fall Quarter",
+        "courses": [
+          "CARP 113",
+          "CARP 161",
+          "(13 credits required)"
+        ]
+      },
+      {
+        "label": "Winter Quarter",
+        "courses": [
+          "CARP 114",
+          "CARP 167",
+          "(13 credits required)"
+        ]
+      },
+      {
+        "label": "Spring Quarter",
+        "courses": [
+          "CARP 115",
+          "CARP 162",
+          "CARP 163",
+          "CARP 164",
+          "CARP 171",
+          "Choose 2 of the following courses (8 credits):"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 44 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Carpentry Technology Pre-Apprenticeship Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/carpentry-technology/pre-apprenticeship-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-machining-manufacturing-technology-certificate",
+    "code": "Certificate",
+    "title": "Machining and Manufacturing Technology",
+    "summary": "Machining and Manufacturing Technology Certificate curriculum map.",
+    "bestFor": [
+      "Machining and Manufacturing Technology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (15 credits)",
+        "courses": [
+          "MFG 101",
+          "MFG 115"
+        ]
+      },
+      {
+        "label": "Quarter 2 (13-18 credits)",
+        "courses": [
+          "MFG 102",
+          "MATH 70 - Pre-Algebra",
+          "or eligible for MATH 72 or higher"
+        ]
+      },
+      {
+        "label": "Quarter 3 (13 credits)",
+        "courses": [
+          "MFG 103"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 39-44 Credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Machining and Manufacturing Technology Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/machining-manufacturing-technology/certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-municipal-wastewater-treatment-technology-certificate",
+    "code": "Certificate",
+    "title": "Municipal Wastewater Treatment Technology",
+    "summary": "Municipal Wastewater Treatment Technology Certificate curriculum map.",
+    "bestFor": [
+      "Municipal Wastewater Treatment Technology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (9 credits)",
+        "courses": [
+          "WTECH 181",
+          "WTECH 182",
+          "WTECH 183"
+        ]
+      },
+      {
+        "label": "Quarter 2 (11 credits)",
+        "courses": [
+          "WTECH 184",
+          "WWT 185",
+          "BTAC 100"
+        ]
+      },
+      {
+        "label": "Quarter 3 (9 credits)",
+        "courses": [
+          "WTECH 187",
+          "WTECH 188",
+          "WWT 186"
+        ]
+      },
+      {
+        "label": "Quarter 4 (2 credits)",
+        "courses": [
+          "WWT 188"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 31 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Municipal Wastewater Treatment Technology Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/wastewater-technology-municipal-wastewater-treatment-technology-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-water-distribution-technology-certificate",
+    "code": "Certificate",
+    "title": "Water Distribution Technology",
+    "summary": "Water Distribution Technology Certificate curriculum map.",
+    "bestFor": [
+      "Water Distribution Technology"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (13 credits)",
+        "courses": [
+          "WST 180",
+          "WST 183",
+          "WTECH 181",
+          "WTECH 182",
+          "WTECH 183"
+        ]
+      },
+      {
+        "label": "Quarter 2 (10 credits)",
+        "courses": [
+          "WST 184",
+          "WTECH 184",
+          "BTAC 100"
+        ]
+      },
+      {
+        "label": "Quarter 3 (6 credits)",
+        "courses": [
+          "WTECH 187",
+          "WTECH 188"
+        ]
+      },
+      {
+        "label": "Quarter 4 (2 credits)",
+        "courses": [
+          "WST 188"
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 31 credits.",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Water Distribution Technology Certificate curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/water-distribution-technology-certificate.html"
+      }
+    ]
+  },
+  {
+    "id": "grc-certificate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-certificates",
+    "code": "Certificate",
+    "title": "Welding Technology Certificates",
+    "summary": "Welding Technology Certificates curriculum map.",
+    "bestFor": [
+      "Welding Technology Certificates"
+    ],
+    "terms": [
+      {
+        "label": "Quarter 1 (13 credits)",
+        "courses": [
+          "WELD 141"
+        ]
+      },
+      {
+        "label": "Quarter 2 (13 credits)",
+        "courses": [
+          "WELD 142"
+        ]
+      },
+      {
+        "label": "Quarter 2 (13 credits) > Apply for Basic Arc and Flame",
+        "courses": [
+          "You can apply for the Basic Arc and Flame Certificate and/or continue on to Intermediate Arc and Flame."
+        ]
+      },
+      {
+        "label": "Quarter 3 (13 credits)",
+        "courses": [
+          "WELD 143"
+        ]
+      },
+      {
+        "label": "Quarter 3 (13 credits) > Apply for Intermediate Arc and Flame",
+        "courses": [
+          "You can apply for the Intermediate Arc and Flame Certificate and/or continue to Advanced Arc Welding."
+        ]
+      },
+      {
+        "label": "Quarter 4 (13 credits)",
+        "courses": [
+          "WELD 194"
+        ]
+      },
+      {
+        "label": "Quarter 5 (13 credits)",
+        "courses": [
+          "WELD 195"
+        ]
+      },
+      {
+        "label": "Quarter 5 (13 credits) > Apply for Advanced Arc Welding",
+        "courses": [
+          "You can now apply for Advanced Arc Welding Certificate and/or continue on for the Welding Technology, AAS ."
+        ]
+      }
+    ],
+    "notes": [
+      "Program type: Certificate.",
+      "Degree: Certificate.",
+      "Published duration: 26 credits.",
+      "You can apply for the Basic Arc and Flame Certificate and/or continue on to Intermediate Arc and Flame.",
+      "You can apply for the Intermediate Arc and Flame Certificate and/or continue to Advanced Arc Welding.",
+      "You can now apply for Advanced Arc Welding Certificate and/or continue on for the Welding Technology, AAS .",
+      "Generated automatically from Green River's current program-map curriculum data."
+    ],
+    "officialLinks": [
+      {
+        "label": "Welding Technology Certificates curriculum map",
+        "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/welding-technology/welding-technology-certificates.html"
+      }
+    ]
   }
 ];
 
-export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; connectedAssociateTrackCount: number; generatedTrackCount: number; } = {
-  "generatedAt": "2026-04-13T22:36:51.348Z",
+export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; officialSupportedProgramCount: number; connectedAssociateTrackCount: number; connectedSupportedProgramCount: number; generatedTrackCount: number; } = {
+  "generatedAt": "2026-04-14T06:29:29.481Z",
   "currentCatalogId": 11,
   "currentCatalogName": "2025-2026 Catalog",
   "programMapPageCount": 147,
   "officialAssociateTrackCount": 85,
+  "officialSupportedProgramCount": 139,
   "connectedAssociateTrackCount": 84,
-  "generatedTrackCount": 84
+  "connectedSupportedProgramCount": 137,
+  "generatedTrackCount": 137
 };
 

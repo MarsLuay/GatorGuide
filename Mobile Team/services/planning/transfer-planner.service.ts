@@ -2,7 +2,6 @@ import {
   getTransferPlannerCanonicalCourse,
   getTransferPlannerGrcCourseAvailabilitySummary,
   getTransferPlannerGrcCourseLatestPublishedQuarters,
-  getTransferPlannerChainsForPlan,
   getTransferPlannerEquivalencyRulesForSourceCourse,
   getTransferPlannerMajorPlan,
   getTransferPlannerParsedRequirementSourceBlocks,
@@ -16,21 +15,9 @@ import {
 } from "@/constants/transfer-planner-source";
 
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
-const QUARTER_ORDER_ENFORCED_CHAIN_IDS = new Set([
-  "WRIT-SEQ",
-  "CS-NEW",
-  "CS-LEGACY",
-  "PHYS-CALC",
-  "PHYS-ALG",
-  "CHEM-GEN",
-  "CHEM-ORG",
-  "BIO-MAJORS",
-  "BIO-ANAT",
-  "LANG-CHIN",
-  "LANG-FR",
-  "LANG-GER",
-  "LANG-JP",
-  "LANG-SP",
+const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
+  "uw-green-river-equivalency-guide",
+  "uw-green-river-equivalency-guide-derived",
 ]);
 const CHECKLIST_CHOICE_PREVIEW_LIMIT = 8;
 
@@ -385,7 +372,7 @@ function getTransferGuidanceCandidateRulesForSourceCourse(
   campusId: TransferPlannerMajorPlan["campusId"]
 ) {
   const allCandidateRules = getTransferPlannerEquivalencyRulesForSourceCourse(sourceCourseCode)
-    .filter((rule) => rule.sourceKind === "uw-green-river-equivalency-guide")
+    .filter((rule) => GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS.has(rule.sourceKind ?? ""))
     .filter((rule) => rule.acceptanceCategory !== "no-credit")
     .filter((rule) => (rule.targetCourseCodes ?? []).length > 0);
 
@@ -1334,7 +1321,7 @@ function getRuleSourceKindRank(rule: TransferPlannerEquivalencyRule) {
   switch (rule.sourceKind) {
     case "uw-green-river-equivalency-guide":
       return 0;
-    case "chain-library":
+    case "uw-green-river-equivalency-guide-derived":
       return 1;
     default:
       return 2;
@@ -2616,10 +2603,9 @@ function getGeneralEducationRequirementSignalLines(
       )
     ),
     plan?.summary ?? "",
-    plan?.bestTrackSummary ?? "",
-    plan?.financialAidNote ?? "",
+    plan?.recommendedTrackSummary ?? "",
     ...(plan?.advisorFlags ?? []),
-    ...(plan?.manualReviewNotes ?? []),
+    ...(plan?.validationNotes ?? []),
   ].filter((line) => isGeneralEducationSignalLine({ line }));
 
   const parsedSignalLines = parsedRequirementSourceLines.filter((line) =>
@@ -2629,22 +2615,6 @@ function getGeneralEducationRequirementSignalLines(
   return [...planSignalLines, ...parsedSignalLines];
 }
 
-function getDefaultGeneralEducationRequirementTargets(
-  plan: TransferPlannerMajorPlan | null | undefined
-): GeneralEducationRequirementTargets | null {
-  if (plan?.campusId === "uw-seattle") {
-    return {
-      ahCredits: 20,
-      sscCredits: 20,
-      nscCredits: null,
-      breadthCredits: null,
-      electiveCredits: null,
-    };
-  }
-
-  return null;
-}
-
 function getGeneralEducationRequirementTargetSourcePlan(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
@@ -2652,15 +2622,15 @@ function getGeneralEducationRequirementTargetSourcePlan(
     return null;
   }
 
-  const authoredBasePlan = getTransferPlannerMajorPlan(plan.id);
-  if (!authoredBasePlan) {
+  const sourceBasePlan = getTransferPlannerMajorPlan(plan.id);
+  if (!sourceBasePlan) {
     return plan;
   }
 
   const selectedPathwayId =
     (plan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
 
-  return resolveTransferPlannerMajorPlan(authoredBasePlan, selectedPathwayId) ?? authoredBasePlan;
+  return resolveTransferPlannerMajorPlan(sourceBasePlan, selectedPathwayId) ?? sourceBasePlan;
 }
 
 export function buildGeneralEducationRequirementTargets(
@@ -2691,7 +2661,7 @@ export function buildGeneralEducationRequirementTargets(
   };
 
   if (!normalized) {
-    return getDefaultGeneralEducationRequirementTargets(sourcePlan ?? plan) ?? emptyTargets;
+    return emptyTargets;
   }
 
   const sharedAoiCredits = findGeneralEducationCreditValue(normalized, [
@@ -2783,7 +2753,7 @@ export function buildGeneralEducationRequirementTargets(
     return parsedTargets;
   }
 
-  return getDefaultGeneralEducationRequirementTargets(sourcePlan ?? plan) ?? parsedTargets;
+  return parsedTargets;
 }
 
 function countCompatibleGeneralEducationPlaceholders(
@@ -3116,41 +3086,10 @@ function buildMetadataCourseRequirementMap(
 }
 
 function buildPlannerChainPrerequisiteMap(
-  plan: TransferPlannerMajorPlan | null | undefined,
-  actionableCourseCodes: Set<string>
+  _plan: TransferPlannerMajorPlan | null | undefined,
+  _actionableCourseCodes: Set<string>
 ) {
-  const prerequisiteMap = new Map<string, string[][]>();
-  if (!plan) return prerequisiteMap;
-
-  for (const chain of getTransferPlannerChainsForPlan(plan)) {
-    if (!QUARTER_ORDER_ENFORCED_CHAIN_IDS.has(chain.id)) {
-      continue;
-    }
-
-    const segments = chain.rule
-      .split(/\s*->\s*/i)
-      .map((segment) => unique(extractCourseCodes(segment)))
-      .filter((segment) => segment.length > 0);
-
-    for (let index = 1; index < segments.length; index += 1) {
-      const previousSegment = segments[index - 1].filter((courseCode) =>
-        actionableCourseCodes.has(courseCode)
-      );
-      const currentSegment = segments[index].filter((courseCode) =>
-        actionableCourseCodes.has(courseCode)
-      );
-
-      if (!previousSegment.length || !currentSegment.length) continue;
-
-      for (const courseCode of currentSegment) {
-        for (const previousCourseCode of previousSegment) {
-          addCourseRequirementPath(prerequisiteMap, courseCode, [previousCourseCode]);
-        }
-      }
-    }
-  }
-
-  return prerequisiteMap;
+  return new Map<string, string[][]>();
 }
 
 function mergeCourseRequirementMaps(...maps: Map<string, string[][]>[]) {

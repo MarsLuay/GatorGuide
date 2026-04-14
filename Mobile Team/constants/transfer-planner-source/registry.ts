@@ -3,16 +3,12 @@ import {
   type TransferPlannerGrcCourseAvailabilityEntry,
 } from "../transfer-planner-grc-availability.generated";
 import {
-  TRANSFER_PLANNER_MASTER_BANK_LIBRARY,
-  TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY,
-} from "../transfer-planner-master-generated";
-import {
   TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS,
   TRANSFER_PLANNER_BOOTSTRAP_TRACKS,
 } from "./bootstrap.generated";
 import { TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA } from "./course-metadata";
 import {
-  TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES,
+  TRANSFER_PLANNER_UW_GRC_ALL_EQUIVALENCY_RULES,
 } from "./equivalency-guide.generated";
 import {
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
@@ -46,15 +42,14 @@ import type {
   TransferPlannerSourceManifestOwnerType,
   TransferPlannerSourceManifestParserType,
   TransferPlannerSourceManifestRole,
-  TransferPlannerEquivalencyAcceptanceCategory,
   TransferPlannerCourseRegistryEntry,
   TransferPlannerCourseSourceKind,
   TransferPlannerDegreeMapBlock,
   TransferPlannerEffectiveYearRange,
   TransferPlannerEquivalencyRule,
-  TransferPlannerEquivalencyRuleType,
   TransferPlannerMajorPathwayEntry,
   TransferPlannerMajorRequirementAtom,
+  TransferPlannerParsedRequirementSourceBlock,
   TransferPlannerPolicyEntry,
   TransferPlannerRequirementPhase,
   TransferPlannerSourceLink,
@@ -135,208 +130,6 @@ const GUIDE_TERM_ORDER: Partial<Record<string, number>> = {
   SUM: 3,
   AUT: 4,
 };
-const STRUCTURED_EQUIVALENCY_RULES: Array<{
-  id: string;
-  type: TransferPlannerEquivalencyRuleType;
-  title: string;
-  sourceCourseSets: string[][];
-  targetOutcome: string;
-  acceptanceCategory: TransferPlannerEquivalencyAcceptanceCategory;
-  weakerThanRuleIds?: string[];
-  effectiveYearRanges?: TransferPlannerEffectiveYearRange[];
-  plannerWarnings?: string[];
-  notes: string[];
-}> = [
-  {
-    id: "stem-calculus-current-sequence",
-    type: "sequence",
-    title: "Current Green River STEM calculus sequence",
-    sourceCourseSets: [["MATH& 151", "MATH& 152", "MATH& 163"]],
-    targetOutcome: "UW MATH 124, 125, and 126 transfer path.",
-    acceptanceCategory: "preferred",
-    notes: [
-      "This is the current primary calculus path used throughout the planner for STEM transfer planning.",
-    ],
-  },
-  {
-    id: "stem-calculus-older-sequence",
-    type: "alternate-path",
-    title: "Older Green River STEM calculus alternative",
-    sourceCourseSets: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
-    targetOutcome: "UW MATH 124, 125, 126, plus stronger 224 / 2XX treatment when the full older path is completed.",
-    acceptanceCategory: "legacy-accepted",
-    weakerThanRuleIds: ["stem-calculus-current-sequence"],
-    effectiveYearRanges: [
-      {
-        startLabel: "legacy-planner-support",
-        endLabel: null,
-        note: "Retained because current UW equivalency and planner materials still preserve the older calculus route as a valid alternate path.",
-      },
-    ],
-    plannerWarnings: [
-      "Prefer the current MATH& 151 -> MATH& 152 -> MATH& 163 path for new planning unless the student is already on the older MATH& 153 + MATH& 254 route.",
-    ],
-    notes: [
-      "The planner keeps this older path because UW still describes it in some equivalency and legacy advising materials.",
-    ],
-  },
-  {
-    id: "general-chemistry-full-sequence",
-    type: "full-credit-combo",
-    title: "Full general chemistry sequence",
-    sourceCourseSets: [["CHEM& 161", "CHEM& 162", "CHEM& 163"]],
-    targetOutcome: "Full strongest general-chemistry transfer outcome used across many STEM majors.",
-    acceptanceCategory: "preferred",
-    notes: [
-      "CHEM& 162 plus CHEM& 163 together produce a stronger UW chemistry outcome than isolated single-course treatment.",
-    ],
-  },
-  {
-    id: "organic-chemistry-full-sequence",
-    type: "full-credit-combo",
-    title: "Full organic chemistry sequence",
-    sourceCourseSets: [["CHEM& 261", "CHEM& 262", "CHEM& 263"]],
-    targetOutcome: "Full UW CHEM 237, 238, 239, 241, and 242 package when the full sequence is completed.",
-    acceptanceCategory: "preferred",
-    notes: [
-      "The planner keeps the stronger full-sequence rule because partial completion does not preserve the same outcome.",
-    ],
-  },
-  {
-    id: "biology-majors-full-sequence",
-    type: "full-credit-combo",
-    title: "Biology majors full sequence",
-    sourceCourseSets: [["BIOL& 211", "BIOL& 212", "BIOL& 213"]],
-    targetOutcome: "Full UW BIOL 180, 200, 220, and 2XX package.",
-    acceptanceCategory: "preferred",
-    notes: [
-      "All three courses are required for the strongest biology-major equivalency.",
-    ],
-  },
-  {
-    id: "anatomy-physiology-full-sequence",
-    type: "full-credit-combo",
-    title: "Anatomy and physiology sequence",
-    sourceCourseSets: [["BIOL& 241", "BIOL& 242"]],
-    targetOutcome: "UW BIOL 118, BIOL 119, and NURS 301 equivalency pattern used in health pathways.",
-    acceptanceCategory: "preferred",
-    notes: [
-      "Both courses are needed for the strongest combined outcome.",
-    ],
-  },
-  {
-    id: "computer-science-new-sequence",
-    type: "sequence",
-    title: "Current Green River CS sequence",
-    sourceCourseSets: [["CS 121", "CS 122", "CS 123"]],
-    targetOutcome: "Primary Green River intro programming sequence used for planning current CS pathways.",
-    acceptanceCategory: "preferred",
-    notes: ["The planner treats this as an ordered sequence rather than three unrelated standalone courses."],
-  },
-  {
-    id: "calculus-physics-sequence",
-    type: "sequence",
-    title: "Calculus-based physics sequence",
-    sourceCourseSets: [["PHYS& 221", "PHYS& 222", "PHYS& 223"]],
-    targetOutcome: "Primary calculus-based physics transfer sequence.",
-    acceptanceCategory: "preferred",
-    notes: ["The planner keeps this sequence grouped because many engineering majors depend on full completion."],
-  },
-];
-
-const CHAIN_RULE_METADATA: Partial<
-  Record<
-    string,
-    {
-      acceptanceCategory: TransferPlannerEquivalencyAcceptanceCategory;
-      weakerThanRuleIds?: string[];
-      effectiveYearRanges?: TransferPlannerEffectiveYearRange[];
-      plannerWarnings?: string[];
-    }
-  >
-> = {
-  "MATH-STEM": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "Use the explicit structured calculus rules for current-vs-older path decisions. This chain summary is a broad planner reference, not the most precise route selector.",
-    ],
-  },
-  "CS-LEGACY": {
-    acceptanceCategory: "legacy-accepted",
-    weakerThanRuleIds: ["computer-science-new-sequence"],
-    effectiveYearRanges: [
-      {
-        startLabel: "legacy-planner-support",
-        endLabel: null,
-        note: "Retained because older UW equivalency materials and student histories still reference the CS& 141 -> CS 145 path.",
-      },
-    ],
-    plannerWarnings: [
-      "The planner prefers the current CS 121 -> CS 122 -> CS 123 path for new students. Keep the legacy path only when the student already started on it or the published legacy guidance confirms it is the right fit.",
-    ],
-  },
-  "CHEM-GEN": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "Partial completion yields weaker CHEM 1XX treatment than the stronger full-sequence outcome used by many STEM pathways.",
-    ],
-  },
-  "CHEM-ORG": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "The strongest UW organic chemistry outcome depends on the full CHEM& 261 + 262 + 263 sequence rather than isolated single-course treatment.",
-    ],
-  },
-  "BIO-MAJORS": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "The strongest biology-major transfer outcome depends on completing BIOL& 211 + 212 + 213 as a full sequence.",
-    ],
-  },
-  "BIO-ANAT": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "The combined UW anatomy and physiology outcome depends on completing both BIOL& 241 and BIOL& 242.",
-    ],
-  },
-  "ACCT-COMBO": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "The stronger UW accounting outcome depends on ACCT& 201 + ACCT& 202 together rather than isolated single-course treatment.",
-    ],
-  },
-  "ASTR-COMBO": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "The second astronomy course changes the final UW credit outcome, so treat this as a conditional combo instead of two interchangeable standalone classes.",
-    ],
-  },
-  "HIST-US": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "The full UW US-history outcome depends on HIST& 136 + HIST& 137 together rather than one course alone.",
-    ],
-  },
-  "ENGL-250": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "The stronger ENGL 250 outcome depends on ENGL& 244 + ENGL& 245 together.",
-    ],
-  },
-  "COMM-266": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "CMST 266 only yields CMS 272 when it is taken for 5 credits. Otherwise it remains CMS 2XX credit.",
-    ],
-  },
-  "NATRS-COMBO": {
-    acceptanceCategory: "accepted-with-warning",
-    plannerWarnings: [
-      "NATRS 180 + NATRS 292 has a special combined ESRM-major rule, so do not treat the two courses as interchangeable standalone credits.",
-    ],
-  },
-};
-
 type MutableCourseRegistryEntry = Omit<
   TransferPlannerCourseRegistryEntry,
   | "title"
@@ -737,16 +530,39 @@ function getSourceManifestPrimaryScore(link: TransferPlannerSourceLink) {
   return score;
 }
 
+const BLOCKED_PRIMARY_SOURCE_URL_PATTERN =
+  /\/saml\/login|shibboleth\.sso\/login|\/print\/courses|\/wp-login/i;
+
+function isBlockedPrimarySourceUrl(url: string) {
+  return BLOCKED_PRIMARY_SOURCE_URL_PATTERN.test(String(url ?? ""));
+}
+
+function isSafeFallbackPrimaryRole(role: TransferPlannerSourceManifestRole) {
+  return role !== "equivalency" && role !== "availability" && role !== "admissions";
+}
+
 function pickPrimaryDegreeRequirementsUrl(links: TransferPlannerSourceLink[]) {
-  const candidates = dedupeLinks(links)
+  const scoredLinks = dedupeLinks(links)
     .map((link) => ({
       link,
+      role: getSourceManifestRole(link),
       score: getSourceManifestPrimaryScore(link),
-    }))
+    }));
+
+  const candidates = scoredLinks
     .filter((entry) => entry.score > 0)
     .sort((left, right) => right.score - left.score || left.link.url.localeCompare(right.link.url));
 
-  return candidates[0]?.link.url ?? null;
+  if (candidates.length) {
+    return candidates[0]?.link.url ?? null;
+  }
+
+  const fallbackCandidates = scoredLinks
+    .filter((entry) => !isBlockedPrimarySourceUrl(entry.link.url))
+    .filter((entry) => isSafeFallbackPrimaryRole(entry.role))
+    .sort((left, right) => right.score - left.score || left.link.url.localeCompare(right.link.url));
+
+  return fallbackCandidates[0]?.link.url ?? null;
 }
 
 function createMutableCourseEntry(
@@ -1042,31 +858,6 @@ function addPlanCourseListCourses(
   }
 }
 
-function addPlanMasterBankCourses(
-  registry: Map<string, MutableCourseRegistryEntry>,
-  plan: TransferPlannerMajorPlan
-) {
-  const { sourceLinks, validationNotes, lastValidatedOn } = getChecklistSources(plan);
-  const bankLibrary = new Map(
-    TRANSFER_PLANNER_MASTER_BANK_LIBRARY.map((bank) => [bank.id, bank.courses] as const)
-  );
-
-  for (const bankId of plan.bankIds ?? []) {
-    for (const code of bankLibrary.get(bankId) ?? []) {
-      addCourseReference(registry, {
-        schoolId: "grc",
-        code,
-        sourceKind: "master-bank",
-        sourceContext: `${plan.id}:${bankId}`,
-        planId: plan.id,
-        sourceLinks,
-        notes: [],
-        lastValidatedOn,
-      });
-    }
-  }
-}
-
 function addPlanDegreeMapCourses(
   registry: Map<string, MutableCourseRegistryEntry>,
   plan: TransferPlannerMajorPlan,
@@ -1084,6 +875,78 @@ function addPlanDegreeMapCourses(
       sourceLinks,
       notes: compact([section.note]),
       lastValidatedOn,
+    });
+  }
+}
+
+function getParsedRequirementSourceLinks(
+  block: TransferPlannerParsedRequirementSourceBlock
+) {
+  const primaryLink = block.primarySourceUrl
+    ? {
+        label:
+          block.primarySourceLabel ||
+          `${block.ownerTitle} primary degree requirements source`,
+        url: block.primarySourceUrl,
+        note: "Primary source used for parser-backed UW requirement extraction.",
+      }
+    : null;
+
+  const parsedLink = block.sourceUrl
+    ? {
+        label: block.sourceLabel || `${block.ownerTitle} parsed requirement source`,
+        url: block.sourceUrl,
+        note:
+          block.resolutionStrategy === "alternate-official-source"
+            ? "Alternate official source used for parser-backed UW requirement extraction."
+            : block.resolutionStrategy === "cached-snapshot"
+              ? "Cached snapshot used for parser-backed UW requirement extraction."
+              : "Source used for parser-backed UW requirement extraction.",
+      }
+    : null;
+
+  return dedupeLinks(compact([primaryLink, parsedLink]));
+}
+
+function addParsedRequirementSourceCourses(
+  registry: Map<string, MutableCourseRegistryEntry>,
+  block: TransferPlannerParsedRequirementSourceBlock
+) {
+  if (!block.ok) {
+    return;
+  }
+
+  const parsedCourseCodes = unique(
+    [
+      ...(block.parsedUwCourseCodes ?? []),
+      ...(block.sourceOnlyUwCourseCodes ?? []),
+      ...(block.structuredOnlyUwCourseCodes ?? []),
+    ]
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+
+  if (!parsedCourseCodes.length) {
+    return;
+  }
+
+  const sourceContext = block.pathwayId
+    ? `${block.planId}:pathway:${block.pathwayId}:parsed-source:${block.id}`
+    : `${block.planId}:parsed-source:${block.id}`;
+  const sourceLinks = getParsedRequirementSourceLinks(block);
+  const notes = compact([
+    `Source-backed UW requirement parser (${block.adapterId}) for ${block.ownerTitle}.`,
+  ]);
+
+  for (const code of parsedCourseCodes) {
+    addCourseReference(registry, {
+      schoolId: block.campusId,
+      code,
+      sourceKind: "plan-degree-map",
+      sourceContext,
+      planId: block.planId,
+      sourceLinks,
+      notes,
     });
   }
 }
@@ -1239,7 +1102,6 @@ function buildCourseRegistry() {
       }
     }
     addPlanCourseListCourses(registry, plan);
-    addPlanMasterBankCourses(registry, plan);
     for (const section of plan.degreeMapSections ?? []) {
       addPlanDegreeMapCourses(registry, plan, section);
     }
@@ -1303,6 +1165,10 @@ function buildCourseRegistry() {
     }
   }
 
+  for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
+    addParsedRequirementSourceCourses(registry, parsedSource);
+  }
+
   applyNormalizedCourseMetadata(registry);
 
   return Array.from(registry.values())
@@ -1312,43 +1178,10 @@ function buildCourseRegistry() {
     );
 }
 
-function mapChainRuleType(ruleId: string): TransferPlannerEquivalencyRuleType {
-  if (ruleId.includes("COMBO")) {
-    return "full-credit-combo";
-  }
-  if (ruleId.includes("LEGACY") || ruleId.includes("OLD")) {
-    return "alternate-path";
-  }
-  return "chain-rule";
-}
-
 function buildEquivalencyRuleRegistry() {
-  const chainRules: TransferPlannerEquivalencyRule[] = TRANSFER_PLANNER_MASTER_CHAIN_LIBRARY.map(
-    (chain) => {
-      const metadata = CHAIN_RULE_METADATA[chain.id];
-      return {
-      id: `chain:${chain.id.toLowerCase()}`,
-      type: mapChainRuleType(chain.id),
-      title: chain.id,
-      acceptanceCategory: metadata?.acceptanceCategory ?? "accepted",
-      ruleStatus: metadata?.acceptanceCategory === "legacy-accepted" ? "legacy" : "active",
-      sourceKind: "chain-library",
-      sourceSchoolId: "grc",
-      targetSchoolIds: ALL_UW_CAMPUSES,
-      targetOutcome: chain.rule,
-      weakerThanRuleIds: [...(metadata?.weakerThanRuleIds ?? [])],
-      effectiveYearRanges: [...(metadata?.effectiveYearRanges ?? [])],
-      plannerWarnings: [...(metadata?.plannerWarnings ?? [])],
-      notes: [chain.type],
-      sourceLinks: [UW_GRC_EQUIVALENCY_LINK],
-    };
-    }
+  return [...TRANSFER_PLANNER_UW_GRC_ALL_EQUIVALENCY_RULES].sort((left, right) =>
+    left.id.localeCompare(right.id)
   );
-
-  return [
-    ...TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES,
-    ...chainRules,
-  ].sort((left, right) => left.id.localeCompare(right.id));
 }
 
 function buildRequirementAtomRegistry() {
@@ -1462,14 +1295,11 @@ function buildPolicyRegistry() {
       campusId: plan.campusId,
       majorTitle: plan.title,
       bestTrackId: plan.bestTrackId,
-      bestTrackSummary: plan.bestTrackSummary,
+      recommendedTrackSummary: plan.recommendedTrackSummary,
       whyThisTrack: [],
-      financialAidNote: "",
       advisorFlags: [],
       grcCourseListGuidance: undefined,
       plannerNote: undefined,
-      involvementIdeas: [],
-      projectIdeas: [],
       sourceLinks: toSourceLinks(plan.officialLinks),
       validationNotes: [],
     });
@@ -1484,14 +1314,12 @@ function buildPolicyRegistry() {
         majorTitle: plan.title,
         bestTrackId:
           pathway.bestTrackId === undefined ? plan.bestTrackId : pathway.bestTrackId,
-        bestTrackSummary: pathway.bestTrackSummary ?? plan.bestTrackSummary,
+        recommendedTrackSummary:
+          pathway.recommendedTrackSummary ?? plan.recommendedTrackSummary,
         whyThisTrack: [],
-        financialAidNote: "",
         advisorFlags: [],
         grcCourseListGuidance: undefined,
         plannerNote: undefined,
-        involvementIdeas: [],
-        projectIdeas: [],
         sourceLinks: pathwaySources.sourceLinks,
         validationNotes: [],
       });

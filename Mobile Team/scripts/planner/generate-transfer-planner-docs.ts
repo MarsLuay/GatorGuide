@@ -2,7 +2,6 @@ import { writeFileSync } from "fs";
 import path from "path";
 
 import {
-  getTransferPlannerChainsForPlan,
   getTransferPlannerGrcCourseList,
   getTransferPlannerGrcCourseListGuidance,
   getTransferPlannerMajorsForCampus,
@@ -183,15 +182,11 @@ function formatRequiredSequences(plan: TransferPlannerMajorPlan) {
     sequenceLines.push(formatChecklistItem("Worth finishing at Green River", item));
   });
 
-  getTransferPlannerChainsForPlan(plan).forEach((chain) => {
-    sequenceLines.push(`- ${chain.type}: ${chain.rule}`);
-  });
-
   plan.advisorFlags.forEach((flag) => {
     sequenceLines.push(`- Planner flag: ${flag}`);
   });
 
-  (plan.manualReviewNotes ?? []).forEach((note) => {
+  (plan.validationNotes ?? []).forEach((note) => {
     sequenceLines.push(`- Source-backed note: ${sanitizePlannerDocText(note)}`);
   });
 

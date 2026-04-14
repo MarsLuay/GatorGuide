@@ -1252,11 +1252,10 @@ function hasAnyDirectMajorEquivalencies(plan: TransferPlannerResolvedMajorPlan) 
 
 function buildAdmissionContextText(plan: TransferPlannerResolvedMajorPlan) {
   return [
-    plan.applicationWindow,
     plan.summary,
     ...(plan.degreeMapSections ?? []).flatMap((section) => section.items),
     ...plan.advisorFlags,
-    ...(plan.manualReviewNotes ?? []),
+    ...(plan.validationNotes ?? []),
   ]
     .map((item) => String(item ?? "").replace(/\s+/g, " ").trim())
     .filter(Boolean)
@@ -1807,7 +1806,6 @@ function PlannerTrackOverviewCard({
   trackCode,
   trackTitle,
   trackSummary,
-  financialAidNote,
   hasNoDirectMajorEquivalencies,
   textClass,
   secondaryTextClass,
@@ -1817,14 +1815,12 @@ function PlannerTrackOverviewCard({
   trackCode: string | null;
   trackTitle: string;
   trackSummary: string;
-  financialAidNote: string;
   hasNoDirectMajorEquivalencies: boolean;
   textClass: string;
   secondaryTextClass: string;
   borderClass: string;
 }) {
   const visibleTrackSummary = getAutoTrackSummaryText(trackSummary);
-  const visibleFinancialAidNote = String(financialAidNote ?? "").trim();
   const shouldShowBestTrackCard =
     collegeId === "uw" ? Boolean(trackCode) && !hasNoDirectMajorEquivalencies : Boolean(trackTitle);
 
@@ -1851,9 +1847,6 @@ function PlannerTrackOverviewCard({
         </Text>
         {visibleTrackSummary ? (
           <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
-        ) : null}
-        {visibleFinancialAidNote && collegeId === "uw" ? (
-          <Text className={`${secondaryTextClass} text-sm mt-3`}>{visibleFinancialAidNote}</Text>
         ) : null}
       </View>
     </View>
@@ -2007,7 +2000,6 @@ function TranscriptSummaryCard({
   trackCode,
   trackTitle,
   trackSummary,
-  financialAidNote,
   completedCourses,
   openSelector,
   collegeOptions,
@@ -2053,7 +2045,6 @@ function TranscriptSummaryCard({
   trackCode: string | null;
   trackTitle: string;
   trackSummary: string;
-  financialAidNote: string;
   completedCourses: TranscriptCourseEntry[];
   openSelector: PlannerSelectorKey;
   collegeOptions: { id: string; label: string; description?: string }[];
@@ -2190,7 +2181,6 @@ function TranscriptSummaryCard({
               trackCode={trackCode}
               trackTitle={trackTitle}
               trackSummary={trackSummary}
-              financialAidNote={financialAidNote}
               hasNoDirectMajorEquivalencies={hasNoDirectMajorEquivalencies}
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
@@ -2216,7 +2206,6 @@ function TranscriptSummaryCard({
               trackCode={trackCode}
               trackTitle={trackTitle}
               trackSummary={trackSummary}
-              financialAidNote={financialAidNote}
               hasNoDirectMajorEquivalencies={false}
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
@@ -2315,7 +2304,6 @@ function TranscriptSummaryCard({
             trackCode={trackCode}
             trackTitle={trackTitle}
             trackSummary={trackSummary}
-            financialAidNote={financialAidNote}
             hasNoDirectMajorEquivalencies={hasNoDirectMajorEquivalencies}
             textClass={textClass}
             secondaryTextClass={secondaryTextClass}
@@ -2354,7 +2342,6 @@ function TranscriptSummaryCard({
             trackCode={trackCode}
             trackTitle={trackTitle}
             trackSummary={trackSummary}
-            financialAidNote={financialAidNote}
             hasNoDirectMajorEquivalencies={false}
             textClass={textClass}
             secondaryTextClass={secondaryTextClass}
@@ -3606,7 +3593,7 @@ export default function TransferPlannerPage() {
           handled: true,
           source: "TransferPlannerPage",
           screen: "TransferPlannerPage",
-          route: "/transfer-planner",
+          route: ROUTES.transferPlanner,
           tags: ["transcript", "transfer-planner", failureSnapshot.document.urlKind],
           metadata: failureSnapshot,
         });
@@ -3705,7 +3692,7 @@ export default function TransferPlannerPage() {
         handled: true,
         source: "TransferPlannerPage",
         screen: "TransferPlannerPage",
-        route: "/transfer-planner",
+        route: ROUTES.transferPlanner,
         tags: ["transcript", "transfer-planner", "upload"],
       });
       Alert.alert("Transcript upload failed", "We couldn't use that transcript yet.", [
@@ -3924,12 +3911,8 @@ export default function TransferPlannerPage() {
     [isUwPlanner, selectedGrcTrack, track]
   );
   const activeTrackSummary = useMemo(
-    () => (isUwPlanner ? plan?.bestTrackSummary ?? "" : track?.summary ?? ""),
-    [isUwPlanner, plan?.bestTrackSummary, track]
-  );
-  const activeFinancialAidNote = useMemo(
-    () => (isUwPlanner ? plan?.financialAidNote ?? "" : ""),
-    [isUwPlanner, plan?.financialAidNote]
+    () => (isUwPlanner ? plan?.recommendedTrackSummary ?? "" : track?.summary ?? ""),
+    [isUwPlanner, plan?.recommendedTrackSummary, track]
   );
   const collegeOptions = useMemo(
     () => [
@@ -4108,7 +4091,6 @@ export default function TransferPlannerPage() {
             trackCode={activeTrackCode}
             trackTitle={activeTrackTitle}
             trackSummary={activeTrackSummary}
-            financialAidNote={activeFinancialAidNote}
             completedCourses={completedCourses}
             openSelector={openSelector}
             collegeOptions={collegeOptions}
@@ -4179,7 +4161,7 @@ export default function TransferPlannerPage() {
             </View>
           ) : null}
 
-          {!hasStructuredPlannerData ? (
+          {!hasStructuredPlannerData && !(isUwPlanner && hasNoDirectMajorEquivalencies) ? (
             <View className={`${cardBgClass} border rounded-[28px] p-5`}>
               <Text className={`${textClass} text-lg font-semibold`}>
                 Quarter plan note

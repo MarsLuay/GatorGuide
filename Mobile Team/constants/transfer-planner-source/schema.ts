@@ -292,7 +292,6 @@ export type TransferPlannerCourseSourceKind =
   | "plan-checklist"
   | "plan-course-list"
   | "plan-degree-map"
-  | "master-bank"
   | "availability";
 
 export type TransferPlannerEffectiveYearRange = {
@@ -356,8 +355,8 @@ export type TransferPlannerEquivalencyRuleStatus =
   | "deprecated";
 
 export type TransferPlannerEquivalencyRuleSourceKind =
-  | "chain-library"
-  | "uw-green-river-equivalency-guide";
+  | "uw-green-river-equivalency-guide"
+  | "uw-green-river-equivalency-guide-derived";
 
 export type TransferPlannerEquivalencyRule = {
   id: string;
@@ -463,14 +462,11 @@ export type TransferPlannerPolicyEntry = {
   campusId: Exclude<TransferPlannerSourceSchoolId, "grc">;
   majorTitle: string;
   bestTrackId: string | null;
-  bestTrackSummary: string;
+  recommendedTrackSummary: string;
   whyThisTrack: string[];
-  financialAidNote: string;
   advisorFlags: string[];
   grcCourseListGuidance?: string;
   plannerNote?: string;
-  involvementIdeas: string[];
-  projectIdeas: string[];
   sourceLinks: TransferPlannerSourceLink[];
   validationNotes: string[];
 };

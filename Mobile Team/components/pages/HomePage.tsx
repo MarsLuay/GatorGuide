@@ -16,7 +16,6 @@ import {
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
 import { OpportunityCarouselWheel } from "@/components/ui/OpportunityCarouselWheel";
-import { HomeTaskMarquee, type HomeTaskMarqueeItem } from "@/components/ui/HomeTaskMarquee";
 import { deadlineCalendarService, errorLoggingService, roadmapService } from "@/services";
 import type { DeadlineCalendarEntry, UserRoadmapDocument } from "@/services";
 import type { MatchedOpportunity } from "@/services/opportunities/opportunity-matching.service";
@@ -376,10 +375,6 @@ export default function HomePage() {
     () => desktopRoadmap?.profileSnapshot.currentCourses ?? [],
     [desktopRoadmap?.profileSnapshot.currentCourses]
   );
-  const desktopRequiredCourses = useMemo(
-    () => desktopRoadmap?.profileSnapshot.requiredCourses ?? [],
-    [desktopRoadmap?.profileSnapshot.requiredCourses]
-  );
   const desktopRecommendedCourses = useMemo(
     () => desktopRoadmap?.profileSnapshot.recommendedCourses ?? [],
     [desktopRoadmap?.profileSnapshot.recommendedCourses]
@@ -611,70 +606,6 @@ export default function HomePage() {
     router,
     user?.transcript,
   ]);
-
-  const desktopMarqueeItems = useMemo<HomeTaskMarqueeItem[]>(() => {
-    const items: HomeTaskMarqueeItem[] = [];
-    const seen = new Set<string>();
-
-    const pushItem = (item: HomeTaskMarqueeItem) => {
-      if (seen.has(item.id)) return;
-      seen.add(item.id);
-      items.push(item);
-    };
-
-    for (const task of desktopHomeTasks) {
-      pushItem({
-        id: task.id,
-        title: task.title,
-        body: task.body,
-        actionLabel: task.actionLabel,
-        icon: task.icon,
-        badge: null,
-        onPress: task.onPress,
-      });
-    }
-
-    for (const opportunity of unfinishedRecommendedOpportunities.slice(0, 5)) {
-      pushItem({
-        id: `marquee-${opportunity.opportunityId}`,
-        title:
-          opportunity.type === "college_deadline" ||
-          opportunity.type === "general_deadline"
-            ? t("home.desktopMarqueeReviewTitle", { title: opportunity.title })
-            : t("home.desktopMarqueeApplyTitle", { title: opportunity.title }),
-        body: opportunity.summary,
-        actionLabel: opportunity.externalUrl
-          ? t("home.desktopTaskOpenOpportunity")
-          : t("home.desktopMarqueeViewDetails"),
-        icon:
-          opportunity.type === "scholarship"
-            ? "gift-outline"
-            : opportunity.type === "internship"
-              ? "briefcase-outline"
-              : opportunity.type === "college_deadline"
-                ? "school-outline"
-                : "calendar-outline",
-        badge: opportunity.computedDueAt ? getLocalizedOpportunityDueLabel(opportunity.computedDueAt) : null,
-        onPress: () => {
-          void openOpportunity(opportunity);
-        },
-      });
-    }
-
-    if (!items.length) {
-      pushItem({
-        id: "marquee-resources",
-        title: t("home.desktopMarqueeFindNextTitle"),
-        body: t("home.desktopMarqueeFindNextBody"),
-        actionLabel: t("home.desktopTaskOpenResources"),
-        icon: "compass-outline",
-        badge: null,
-        onPress: () => router.push(ROUTES.tabsResources),
-      });
-    }
-
-    return items.slice(0, 8);
-  }, [desktopHomeTasks, getLocalizedOpportunityDueLabel, openOpportunity, router, t, unfinishedRecommendedOpportunities]);
 
   const importantMessages = useMemo<HomeImportantMessage[]>(() => {
     const messages: HomeImportantMessage[] = [];
@@ -925,6 +856,107 @@ export default function HomePage() {
     </View>
   );
 
+  const renderCurrentCoursesDashboardPanel = () => (
+    <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
+      <View className="flex-row items-start mb-4">
+        <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
+          <Ionicons name="school-outline" size={18} color="#008f4e" />
+        </View>
+        <View className="flex-1">
+          <Text className={`${textClass} text-lg font-semibold`}>{t("roadmap.currentCourses")}</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            {user?.transcript ? t("home.currentCoursesWithTranscript") : t("home.currentCoursesWithoutTranscript")}
+          </Text>
+        </View>
+      </View>
+
+      {user?.uid && !desktopRoadmap && !linkedCurrentCourses.length ? (
+        <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
+          <Text className={`${textClass} font-semibold`}>{t("home.loadingCourseSnapshotTitle")}</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            {t("home.loadingCourseSnapshotBody")}
+          </Text>
+        </View>
+      ) : linkedCurrentCourses.length ? (
+        <View className="gap-3">
+          {linkedCurrentCourses.slice(0, 5).map((course) => (
+            <View
+              key={course}
+              className={`border rounded-3xl p-4 ${dashboardItemClass}`}
+            >
+              <Text className={`${textClass} font-medium`}>{course}</Text>
+            </View>
+          ))}
+        </View>
+      ) : (
+        <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
+          <Text className={`${textClass} font-semibold`}>
+            {user?.transcript ? t("home.noCurrentCoursesDetectedTitle") : t("home.transcriptNeededTitle")}
+          </Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            {user?.transcript ? t("home.noCurrentCoursesDetectedBody") : t("home.transcriptNeededBody")}
+          </Text>
+        </View>
+      )}
+    </View>
+  );
+
+  const renderRecommendedNextDashboardPanel = () => (
+    <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
+      <View className="flex-row items-start mb-4">
+        <View className="w-11 h-11 rounded-2xl bg-sky-500/10 items-center justify-center mr-3">
+          <Ionicons name="navigate-outline" size={18} color="#0284c7" />
+        </View>
+        <View className="flex-1">
+          <Text className={`${textClass} text-lg font-semibold`}>Recommended next</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            Courses the planner suggests lining up after what you are taking now.
+          </Text>
+        </View>
+      </View>
+
+      <View className="gap-4">
+        {desktopCoursePlanningDeadline ? (
+          <View className={`border rounded-3xl p-4 ${isDark ? "border-amber-800 bg-amber-950/40" : "border-amber-200 bg-amber-50"}`}>
+            <Text className={`${textClass} font-semibold`}>Next class planning target</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1`}>
+              Aim to get class sign-up ready by {formatImportantDate(desktopCoursePlanningDeadline)}.
+            </Text>
+          </View>
+        ) : null}
+
+        {user?.uid && !desktopRoadmap && !desktopRecommendedCourses.length ? (
+          <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
+            <Text className={`${textClass} font-semibold`}>{t("home.loadingCourseSnapshotTitle")}</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1`}>
+              {t("home.loadingCourseSnapshotBody")}
+            </Text>
+          </View>
+        ) : desktopRecommendedCourses.length ? (
+          <View className="flex-row flex-wrap gap-2">
+            {desktopRecommendedCourses.slice(0, 6).map((course) => (
+              <View
+                key={course}
+                className={`rounded-full px-3 py-2 border ${isDark ? "border-sky-900 bg-sky-950/30" : "border-sky-200 bg-sky-50"}`}
+              >
+                <Text className={`${isDark ? "text-sky-100" : "text-sky-800"} text-sm`}>
+                  {course}
+                </Text>
+              </View>
+            ))}
+          </View>
+        ) : (
+          <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
+            <Text className={`${textClass} font-semibold`}>No next courses suggested yet</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1`}>
+              Open your transfer planner to see what classes to line up next.
+            </Text>
+          </View>
+        )}
+      </View>
+    </View>
+  );
+
   const desktopDashboard = isDesktopHome ? (
     <>
       <View
@@ -1039,11 +1071,11 @@ export default function HomePage() {
           </AnimatedChipPressable>
         </View>
 
-        {renderDeadlinePanel(desktopCombinedDeadlineEntries)}
-      </View>
+        {renderCurrentCoursesDashboardPanel()}
 
-      <View className="mt-6">
-        <HomeTaskMarquee items={desktopMarqueeItems} />
+        {renderRecommendedNextDashboardPanel()}
+
+        {renderDeadlinePanel(desktopCombinedDeadlineEntries)}
       </View>
     </>
   ) : null;
@@ -1336,6 +1368,7 @@ export default function HomePage() {
                   </View>
                 </View>
               ) : null}
+
                 </>
               ) : null}
             </View>
@@ -1444,155 +1477,6 @@ export default function HomePage() {
                   </View>
                 </View>
 
-                <View className={`${cardClass} border rounded-2xl p-5 mt-4`}>
-                  <View
-                    className="mb-4"
-                    style={
-                      desktopHeaderShouldStack
-                        ? { gap: 12 }
-                        : {
-                            flexDirection: "row",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            gap: 12,
-                          }
-                    }
-                  >
-                    <View className="flex-row items-start" style={{ flex: 1, minWidth: 0 }}>
-                      <View className="mr-3 p-2 rounded-xl bg-emerald-500/15">
-                        <Ionicons name="school-outline" size={18} color="#008f4e" />
-                      </View>
-                      <View style={{ flex: 1, minWidth: 0 }}>
-                        <Text className={`${textClass} font-semibold text-base`}>
-                          Current courses
-                        </Text>
-                        <Text className={`${secondaryTextClass} text-sm`}>
-                          Shared from your planning data and questionnaire answers
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-
-                  {user?.uid && !desktopRoadmap ? (
-                    <View className={`border rounded-2xl p-4 ${isDark ? "border-gray-800 bg-gray-950/50" : isLight ? "border-emerald-200 bg-emerald-50" : "border-gray-200 bg-gray-50"}`}>
-                      <Text className={`${textClass} font-medium mb-1`}>
-                        Loading course plan...
-                      </Text>
-                      <Text className={`${secondaryTextClass} text-sm`}>
-                        Pulling your latest planning snapshot so desktop and mobile stay in sync.
-                      </Text>
-                    </View>
-                  ) : (
-                    <View className="gap-4">
-                      {desktopCoursePlanningDeadline ? (
-                        <View className={`border rounded-2xl p-4 ${isDark ? "border-amber-800 bg-amber-950/40" : "border-amber-200 bg-amber-50"}`}>
-                          <Text className={`${textClass} font-semibold`}>
-                            Next class planning target
-                          </Text>
-                          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                            Aim to get class sign-up ready by {formatImportantDate(desktopCoursePlanningDeadline)}.
-                          </Text>
-                        </View>
-                      ) : null}
-
-                      <View>
-                        <Text className={`${textClass} font-semibold mb-2`}>
-                          Enrolled or planned now
-                        </Text>
-                        {linkedCurrentCourses.length ? (
-                          <View className="gap-2">
-                            {linkedCurrentCourses.slice(0, 5).map((course) => (
-                              <View
-                                key={course}
-                                className={`border rounded-2xl px-3 py-3 ${isDark ? "border-gray-800 bg-gray-950/50" : isLight ? "border-emerald-200 bg-emerald-50" : "border-gray-200 bg-gray-50"}`}
-                              >
-                                <Text className={textClass}>{course}</Text>
-                              </View>
-                            ))}
-                          </View>
-                        ) : (
-                          <View className={`border rounded-2xl p-4 ${isDark ? "border-gray-800 bg-gray-950/50" : isLight ? "border-emerald-200 bg-emerald-50" : "border-gray-200 bg-gray-50"}`}>
-                            <Text className={`${textClass} font-medium mb-1`}>
-                              No current courses listed yet
-                            </Text>
-                            <Text className={`${secondaryTextClass} text-sm`}>
-                              Add course planning details in your questionnaire or transfer planner to keep this section filled in.
-                            </Text>
-                          </View>
-                        )}
-                      </View>
-
-                      {desktopRequiredCourses.length ? (
-                        <View>
-                          <Text className={`${textClass} font-semibold mb-2`}>
-                            Required course ideas
-                          </Text>
-                          <View className="flex-row flex-wrap gap-2">
-                            {desktopRequiredCourses.slice(0, 6).map((course) => (
-                              <View
-                                key={course}
-                                className={`rounded-full px-3 py-2 border ${isDark ? "border-emerald-800 bg-emerald-950/40" : "border-emerald-200 bg-emerald-50"}`}
-                              >
-                                <Text className={`${isDark ? "text-emerald-100" : "text-emerald-800"} text-sm`}>
-                                  {course}
-                                </Text>
-                              </View>
-                            ))}
-                          </View>
-                        </View>
-                      ) : null}
-
-                      {desktopRecommendedCourses.length ? (
-                        <View>
-                          <Text className={`${textClass} font-semibold mb-2`}>
-                            Recommended next
-                          </Text>
-                          <View className="flex-row flex-wrap gap-2">
-                            {desktopRecommendedCourses.slice(0, 6).map((course) => (
-                              <View
-                                key={course}
-                                className={`rounded-full px-3 py-2 border ${isDark ? "border-sky-900 bg-sky-950/30" : "border-sky-200 bg-sky-50"}`}
-                              >
-                                <Text className={`${isDark ? "text-sky-100" : "text-sky-800"} text-sm`}>
-                                  {course}
-                                </Text>
-                              </View>
-                            ))}
-                          </View>
-                        </View>
-                      ) : null}
-
-                      <View
-                        style={
-                          desktopActionCardsShouldStack
-                            ? { gap: 12 }
-                            : { flexDirection: "row", gap: 12 }
-                        }
-                      >
-                        <AnimatedChipPressable
-                          onPress={openTransferPlanner}
-                          className="rounded-xl bg-emerald-500 px-4 py-3 items-center"
-                          containerStyle={
-                            desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1 }
-                          }
-                        >
-                          <Text className="text-white font-semibold">{t("resources.transferPlanner")}</Text>
-                        </AnimatedChipPressable>
-                        <AnimatedChipPressable
-                          onPress={openCalendar}
-                          className={`rounded-xl px-4 py-3 items-center border ${isDark ? "border-gray-700 bg-gray-900" : isLight ? "border-emerald-200 bg-white" : "border-gray-200 bg-white"}`}
-                          containerStyle={
-                            desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1 }
-                          }
-                        >
-                          <Text className={`${isDark ? "text-white" : "text-emerald-900"} font-semibold`}>
-                            Open calendar
-                          </Text>
-                        </AnimatedChipPressable>
-                      </View>
-                    </View>
-                  )}
-                </View>
               </View>
             ) : null}
           </View>
@@ -1672,6 +1556,7 @@ export default function HomePage() {
                   </View>
                 </View>
               ) : null}
+
             </View>
           ) : null}
           {isDesktopHome && wheelOpportunities.length ? (

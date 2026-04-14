@@ -266,14 +266,11 @@ The biggest remaining per-major hardcoding that should still move into structure
 
 - trait-backed best-track policy generation
   - `bestTrackId`
-  - `bestTrackSummary`
+  - `recommendedTrackSummary`
   - `whyThisTrack`
-  - `financialAidNote`
 - a single explicit `primaryDegreeRequirementsLink` per major or pathway, so the UI does not need to heuristically choose one page from a broader official-link set
 - family-based templates for repetitive planner copy such as:
   - `summary`
-  - `applicationWindow`
-  - `startQuarter`
   - some source-coverage notes
 - continued replacement of hand-bucketed checklist placement in the legacy planner data module with structured major-requirement atoms and display-phase metadata
 

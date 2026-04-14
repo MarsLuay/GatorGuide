@@ -1,6 +1,6 @@
 # Green River Public Materials Discovery
 
-Generated: 2026-04-13T22:35:27.586Z
+Generated: 2026-04-14T06:29:21.670Z
 Used cached fallback: no
 
 - Class schedules page: https://www.greenriver.edu/students/academics/class-schedules-catalog/index.html

@@ -1,20 +1,18 @@
 # UW Catalog Ingest
 
-Generated: 2026-04-13T23:16:30.081Z
+Generated: 2026-04-14T06:58:48.310Z
 
-- Planner-relevant UW courses: 1039
-- Parsed UW catalog courses: 915
-- Courses with credit labels: 845
-- Courses with prerequisite notes: 280
-- Courses with corequisite notes: 5
+- Planner-relevant UW courses: 3510
+- Parsed UW catalog courses: 3117
+- Courses with credit labels: 2860
+- Courses with prerequisite notes: 735
+- Courses with corequisite notes: 0
 
 ## Campuses
 
-- UW Seattle: 640/699 courses parsed across 99 subject pages
-  - Used cached snapshot fallback: no index, 1 subject page(s)
-  - Missing subject pages: ASIA, BIOSTAT, BROADER, FIVE, IN, LANGUAGE, LISTS, MUSEC, NUMBERED, SAME, SCI, SS, ST, SWEDISH, THAN, THREE, THROUGH, TOTAL, UW, WF
-- UW Bothell: 147/178 courses parsed across 29 subject pages
-  - Used cached snapshot fallback: no index, 2 subject page(s)
-  - Missing subject pages: ARE, BA&, BGIS, BROADER, COM, CURRENT, DATA, ECON&, EDUC, ENG&, ENOUGH, FROM, GIS, MATH&, OVERALL, WRIT
-- UW Tacoma: 128/162 courses parsed across 25 subject pages
-  - Missing subject pages: AMATH, BIOL&, CHEM&, CRIM, ECON, EXTRA, GIS, MATH&, MORE, PHYS&, PHYS, UDE, URB, WIDE
+- UW Seattle: 2525/2839 courses parsed across 163 subject pages
+  - Missing subject pages: A, ACCT, ALSJ, ALSOMHE, ANLSJ, APN, ATMS, AUTUMN, BBUS, BEYOND, BIOENG, BIOSTAT, BOTHBIOL, BOTHCOM, BOTHCSE, BOTHHCDE, BOTHMATH, BREADTH, BSE, BUS, BUT, BUTCSE, BUTJSIS, BUTNOT, BYHCDE, CHEMCHEM, CONSIDER, COURSE, CREDIT, CS&SS
+- UW Bothell: 354/409 courses parsed across 27 subject pages
+  - Missing subject pages: ACCTG, AMATH, BECN, CALL, ECON, EDUC, ENGL, HAVEA, INDE, INFO, IS, MATH, ME, MGMT, MSE, NES, PSYCH, QMETH, QSCI, STAT, TINFO
+- UW Tacoma: 238/262 courses parsed across 35 subject pages
+  - Missing subject pages: A, AA, AMATH, CEE, CHEM, CSE, EE, ENGL, MATH, ME, PHYS, WCG

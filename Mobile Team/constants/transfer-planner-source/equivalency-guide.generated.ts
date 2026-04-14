@@ -70267,3 +70267,1122 @@ const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES_RAW: unknown[] = ([] as un
 export const TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES =
   TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES_RAW as TransferPlannerEquivalencyRule[];
 
+const TRANSFER_PLANNER_UW_GRC_DERIVED_EQUIVALENCY_RULE_CHUNK_0: unknown[] = [
+  {
+    "id": "anatomy-physiology-full-sequence",
+    "type": "full-credit-combo",
+    "title": "Anatomy and physiology sequence",
+    "acceptanceCategory": "preferred",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [
+      [
+        "BIOL& 241",
+        "BIOL& 242"
+      ]
+    ],
+    "targetCourseCodes": [
+      "BIOL 118",
+      "BIOL 119",
+      "BIOL 2XX",
+      "NURS 301"
+    ],
+    "targetOutcome": "UW BIOL 118, BIOL 119, and NURS 301 equivalency pattern used in health pathways.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "Biology",
+    "sourceCourseLabel": "BIOL& 241 + BIOL& 242",
+    "sourceCourseTitle": "Human Anatomy and Physiology 1 / Human Anatomy and Physiology 2",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Anatomy and physiology sequence.",
+      "Supporting official guide rule: uw-grc-guide:0169:biology:bioland-241-242-5-5-formerly-ap-205-206.",
+      "Derived from official guide rule uw-grc-guide:0169:biology:bioland-241-242-5-5-formerly-ap-205-206: BIOL& 241, 242 (5, 5) formerly AP 205, 206.",
+      "Both courses are needed for the strongest combined outcome."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "biology-majors-full-sequence",
+    "type": "full-credit-combo",
+    "title": "Biology majors full sequence",
+    "acceptanceCategory": "preferred",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [
+      [
+        "BIOL& 211",
+        "BIOL& 212",
+        "BIOL& 213"
+      ]
+    ],
+    "targetCourseCodes": [
+      "BIOL 180",
+      "BIOL 200",
+      "BIOL 220",
+      "BIOL 2XX",
+      "OTHERWISE 2XX"
+    ],
+    "targetOutcome": "Full UW BIOL 180, 200, 220, and 2XX package.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "Biology",
+    "sourceCourseLabel": "BIOL& 211 + BIOL& 212 + BIOL& 213",
+    "sourceCourseTitle": "Majors Cellular / Majors Animal / Majors Plant",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Biology majors full sequence.",
+      "Supporting official guide rule: uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203.",
+      "Derived from official guide rule uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203: BIOL& 211, 212, 213 (6, 6, 6) formerly BIOL 201, 202, 203.",
+      "All three courses are required for the strongest biology-major equivalency."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "calculus-physics-sequence",
+    "type": "sequence",
+    "title": "Calculus-based physics sequence",
+    "acceptanceCategory": "preferred",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [
+      [
+        "PHYS& 221",
+        "PHYS& 222",
+        "PHYS& 223"
+      ]
+    ],
+    "targetCourseCodes": [
+      "PHYS 121",
+      "PHYS 122",
+      "PHYS 123"
+    ],
+    "targetOutcome": "Primary calculus-based physics transfer sequence.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2012",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2012",
+    "guideDepartment": "Physics",
+    "sourceCourseLabel": "PHYS& 221 + PHYS& 222 + PHYS& 223",
+    "sourceCourseTitle": "Engineering Physics I with Lab / Engineering Physics II with Lab / Engineering Physics III with Lab",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Calculus-based physics sequence.",
+      "Supporting official guide rule: uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201.",
+      "Supporting official guide rule: uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202.",
+      "Supporting official guide rule: uw-grc-guide:1198:physics:physand-223-5-formerly-phys-203.",
+      "Derived from official guide rule uw-grc-guide:1196:physics:physand-221-5-formerly-phys-201: PHYS& 221 (5) formerly PHYS 201.",
+      "Derived from official guide rule uw-grc-guide:1197:physics:physand-222-5-formerly-phys-202: PHYS& 222 (5) formerly PHYS 202.",
+      "Derived from official guide rule uw-grc-guide:1198:physics:physand-223-5-formerly-phys-203: PHYS& 223 (5) formerly PHYS 203.",
+      "The planner keeps this sequence grouped because many engineering majors depend on full completion."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:ACCT-COMBO",
+    "type": "chain-rule",
+    "title": "Accounting full-credit combo",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "A 2XX",
+      "ACCTG 215",
+      "B A 2XX"
+    ],
+    "targetOutcome": "Combined accounting sequence rule for the stronger ACCTG 215 transfer outcome.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "AUT Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "AUT Qtr. 2009",
+    "guideDepartment": "Accounting",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "Principles of Accounting I / Principles of Accounting II",
+    "targetRequirementTags": [],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "The stronger UW accounting outcome depends on ACCT& 201 + ACCT& 202 together rather than isolated single-course treatment."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Accounting full-credit combo.",
+      "Supporting official guide rule: uw-grc-guide:0001:accounting:acctand-201-202-5-5-formerly-b-a-210-220.",
+      "Derived from official guide rule uw-grc-guide:0001:accounting:acctand-201-202-5-5-formerly-b-a-210-220: ACCT& 201, 202 (5, 5) formerly B A 210, 220."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:ASTR-COMBO",
+    "type": "chain-rule",
+    "title": "Astronomy full-credit combo",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "ASTR 101",
+      "ASTR 1XX"
+    ],
+    "targetOutcome": "Combined astronomy rule where the second course changes the final UW credit mix.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "Astronomy",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "Introduction to Astronomy",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "The second astronomy course changes the final UW credit outcome, so treat this as a conditional combo instead of two interchangeable standalone classes."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Astronomy full-credit combo.",
+      "Supporting official guide rule: uw-grc-guide:0124:astronomy:astrand-100-101-5-5-formerly-astro-100-101.",
+      "Derived from official guide rule uw-grc-guide:0124:astronomy:astrand-100-101-5-5-formerly-astro-100-101: ASTR& 100, 101 (5, 5) formerly ASTRO 100, 101."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:BIO-ANAT",
+    "type": "chain-rule",
+    "title": "Anatomy and physiology sequence",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "BIOL 118",
+      "BIOL 119",
+      "BIOL 2XX",
+      "NURS 301"
+    ],
+    "targetOutcome": "Anatomy and physiology sequence with the strongest combined UW outcome reserved for both courses together.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "Biology",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "Human Anatomy and Physiology 1 / Human Anatomy and Physiology 2",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "The combined UW anatomy and physiology outcome depends on completing both BIOL& 241 and BIOL& 242."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Anatomy and physiology sequence.",
+      "Supporting official guide rule: anatomy-physiology-full-sequence.",
+      "Derived from official guide rule anatomy-physiology-full-sequence: BIOL& 241 + BIOL& 242."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:BIO-MAJORS",
+    "type": "chain-rule",
+    "title": "Biology majors sequence",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "BIOL 180",
+      "BIOL 200",
+      "BIOL 220",
+      "BIOL 2XX",
+      "OTHERWISE 2XX"
+    ],
+    "targetOutcome": "Biology majors sequence with the strongest outcome reserved for all three majors-biology courses together.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "Biology",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "Majors Cellular / Majors Animal / Majors Plant",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "The strongest biology-major transfer outcome depends on completing BIOL& 211 + 212 + 213 as a full sequence."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Biology majors sequence.",
+      "Supporting official guide rule: biology-majors-full-sequence.",
+      "Derived from official guide rule biology-majors-full-sequence: BIOL& 211 + BIOL& 212 + BIOL& 213."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:CHEM-GEN",
+    "type": "chain-rule",
+    "title": "General chemistry sequence",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "CHEM 142",
+      "CHEM 152",
+      "CHEM 162",
+      "CHEM 1XX"
+    ],
+    "targetOutcome": "General chemistry sequence with a stronger combined outcome when the full path is completed.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "Chemistry",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "General Chemistry with Lab I / General Chemistry with Lab II / General Chemistry with Lab III",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "Partial completion yields weaker CHEM 1XX treatment than the stronger full-sequence outcome used by many STEM pathways."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for General chemistry sequence.",
+      "Supporting official guide rule: general-chemistry-full-sequence.",
+      "Derived from official guide rule general-chemistry-full-sequence: CHEM& 161 + CHEM& 162 + CHEM& 163."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:CHEM-ORG",
+    "type": "chain-rule",
+    "title": "Organic chemistry sequence",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "CHEM 237",
+      "CHEM 238",
+      "CHEM 239",
+      "CHEM 241",
+      "CHEM 242"
+    ],
+    "targetOutcome": "Organic chemistry sequence with the strongest UW outcome reserved for the full three-course path.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "Chemistry",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "Organic Chemistry with Lab I / Organic Chemistry with Lab II / Organic Chemistry with Lab III",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "The strongest UW organic chemistry outcome depends on the full CHEM& 261 + 262 + 263 sequence rather than isolated single-course treatment."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Organic chemistry sequence.",
+      "Supporting official guide rule: organic-chemistry-full-sequence.",
+      "Derived from official guide rule organic-chemistry-full-sequence: CHEM& 261 + CHEM& 262 + CHEM& 263."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:COMM-266",
+    "type": "chain-rule",
+    "title": "CMST 266 credit rule",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "CMS 272",
+      "CMS 2XX"
+    ],
+    "targetOutcome": "Conditional CMST 266 credit rule where the full 5-credit version yields CMS 272.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "AUT Qtr. 2013",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "AUT Qtr. 2013",
+    "guideDepartment": "Communication studies",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "Film and Television as Popular Culture",
+    "targetRequirementTags": [
+      "A&H",
+      "SSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "CMST 266 only yields CMS 272 when it is taken for 5 credits. Otherwise it remains CMS 2XX credit."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for CMST 266 credit rule.",
+      "Supporting official guide rule: uw-grc-guide:0256:communication-studies:cmst-266-1-5.",
+      "Derived from official guide rule uw-grc-guide:0256:communication-studies:cmst-266-1-5: CMST 266 (1-5)."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:CS-LEGACY",
+    "type": "chain-rule",
+    "title": "Legacy CS sequence",
+    "acceptanceCategory": "legacy-accepted",
+    "ruleStatus": "legacy",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "CSE 142",
+      "CSE 143",
+      "CSE 1XX",
+      "E 142",
+      "SCI 142"
+    ],
+    "targetOutcome": "Legacy Green River CS route centered on CS& 141 and CS 145 for students who already started on the older path.",
+    "weakerThanRuleIds": [
+      "computer-science-new-sequence"
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "legacy-planner-support",
+        "endLabel": null,
+        "note": "Retained because older UW equivalency materials and student histories still reference the CS& 141 -> CS 145 path."
+      }
+    ],
+    "effectiveDateLabel": "legacy-planner-support",
+    "guideDepartment": "Computer science",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "Computer Science I Java / Java 2-Data Structures",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "The planner prefers the current CS 121 -> CS 122 -> CS 123 path for new students. Keep the legacy path only when the student already started on it or the published legacy guidance confirms it is the right fit."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Legacy CS sequence.",
+      "Supporting official guide rule: uw-grc-guide:0271:computer-science:csand-141-5-formerly-c-sci-144.",
+      "Supporting official guide rule: uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145.",
+      "Derived from official guide rule uw-grc-guide:0271:computer-science:csand-141-5-formerly-c-sci-144: CS& 141 (5) formerly C SCI 144.",
+      "Derived from official guide rule uw-grc-guide:0277:computer-science:cs-145-5-formerly-c-sci-145: CS 145 (5) formerly C SCI 145."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:ENGL-250",
+    "type": "chain-rule",
+    "title": "English 250 full-credit combo",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "ENGL 250",
+      "ENGL 2XX"
+    ],
+    "targetOutcome": "English combo rule for the stronger ENGL 250 outcome.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "English",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "American Literature I: American Literature to 1860 / American Literature II: Civil War to WWI",
+    "targetRequirementTags": [
+      "A&H"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "The stronger ENGL 250 outcome depends on ENGL& 244 + ENGL& 245 together."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for English 250 full-credit combo.",
+      "Supporting official guide rule: uw-grc-guide:0515:english:england-244-245-5-5-formerly-engl-221-222.",
+      "Derived from official guide rule uw-grc-guide:0515:english:england-244-245-5-5-formerly-engl-221-222: ENGL& 244, 245 (5, 5) formerly ENGL 221, 222."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:HIST-US",
+    "type": "chain-rule",
+    "title": "US history full-credit combo",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "HSTAA 101",
+      "HSTAA 1XX"
+    ],
+    "targetOutcome": "US history combo rule for the stronger combined HSTAA outcome.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "History",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "U.S. History I / U.S. History II",
+    "targetRequirementTags": [
+      "SSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "The full UW US-history outcome depends on HIST& 136 + HIST& 137 together rather than one course alone."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for US history full-credit combo.",
+      "Supporting official guide rule: uw-grc-guide:0649:history:histand-136-137-5-5-formerly-hist-221-222.",
+      "Derived from official guide rule uw-grc-guide:0649:history:histand-136-137-5-5-formerly-hist-221-222: HIST& 136, 137 (5, 5) formerly HIST 221, 222."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:MATH-STEM",
+    "type": "chain-rule",
+    "title": "STEM calculus sequence",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 224",
+      "MATH 2XX",
+      "STRONGER 224",
+      "STRONGER 2XX"
+    ],
+    "targetOutcome": "Broad calculus-sequence reference spanning the current MATH& 151 -> MATH& 152 -> MATH& 163 path and the retained legacy MATH& 153 + MATH& 264 route.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "AUT Qtr. 2024",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "AUT Qtr. 2024",
+    "guideDepartment": "Mathematics",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "Calculus I / Calculus II / Calculus III / Calculus I / Calculus II / Calculus III / Calculus IV",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "Use the explicit structured calculus rules for current-vs-older path decisions. This chain summary is a broad planner reference, not the most precise route selector."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for STEM calculus sequence.",
+      "Supporting official guide rule: stem-calculus-current-sequence.",
+      "Supporting official guide rule: stem-calculus-older-sequence.",
+      "Derived from official guide rule stem-calculus-current-sequence: MATH& 151 + MATH& 152 + MATH& 163.",
+      "Derived from official guide rule stem-calculus-older-sequence: MATH& 151 + MATH& 152 + MATH& 153 + MATH& 264."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "chain:NATRS-COMBO",
+    "type": "chain-rule",
+    "title": "Natural resources ESRM combo",
+    "acceptanceCategory": "accepted-with-warning",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [],
+    "targetCourseCodes": [
+      "ESRM 2XX",
+      "ESRM 368"
+    ],
+    "targetOutcome": "Natural resources combo rule where NATRS 180 + NATRS 292 produces a special ESRM-major outcome.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "AUT Qtr. 2002",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "AUT Qtr. 2002",
+    "guideDepartment": "Natural resources",
+    "sourceCourseLabel": "",
+    "sourceCourseTitle": "Natural Resources Measurement / Resource Sampling and Appraisal of Forest Condit",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "NATRS 180 + NATRS 292 has a special combined ESRM-major rule, so do not treat the two courses as interchangeable standalone credits."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Natural resources ESRM combo.",
+      "Supporting official guide rule: uw-grc-guide:0942:natural-resources:natrs-180-natrs-292-5-5.",
+      "Derived from official guide rule uw-grc-guide:0942:natural-resources:natrs-180-natrs-292-5-5: NATRS 180, NATRS 292 (5, 5)."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "computer-science-new-sequence",
+    "type": "sequence",
+    "title": "Current Green River CS sequence",
+    "acceptanceCategory": "preferred",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [
+      [
+        "CS 121",
+        "CS 122",
+        "CS 123"
+      ]
+    ],
+    "targetCourseCodes": [
+      "CSE 121",
+      "CSE 122",
+      "CSE 123",
+      "CSE 1XX"
+    ],
+    "targetOutcome": "Primary Green River intro programming sequence used for planning current CS pathways.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2023",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2023",
+    "guideDepartment": "Computer science",
+    "sourceCourseLabel": "CS 121 + CS 122 + CS 123",
+    "sourceCourseTitle": "Computer Programming 1 / Computer Programming 2 - Java Objects / Computer Programming 3 - Java Data Structures",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Current Green River CS sequence.",
+      "Supporting official guide rule: uw-grc-guide:0266:computer-science:cs-121-5.",
+      "Supporting official guide rule: uw-grc-guide:0267:computer-science:cs-122-5.",
+      "Supporting official guide rule: uw-grc-guide:0268:computer-science:cs-123-5.",
+      "Derived from official guide rule uw-grc-guide:0266:computer-science:cs-121-5: CS 121 (5).",
+      "Derived from official guide rule uw-grc-guide:0267:computer-science:cs-122-5: CS 122 (5).",
+      "Derived from official guide rule uw-grc-guide:0268:computer-science:cs-123-5: CS 123 (5).",
+      "The planner treats this as an ordered sequence rather than three unrelated standalone courses."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "general-chemistry-full-sequence",
+    "type": "full-credit-combo",
+    "title": "Full general chemistry sequence",
+    "acceptanceCategory": "preferred",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [
+      [
+        "CHEM& 161",
+        "CHEM& 162",
+        "CHEM& 163"
+      ]
+    ],
+    "targetCourseCodes": [
+      "CHEM 142",
+      "CHEM 152",
+      "CHEM 162",
+      "CHEM 1XX"
+    ],
+    "targetOutcome": "Full strongest general-chemistry transfer outcome used across many STEM majors.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "Chemistry",
+    "sourceCourseLabel": "CHEM& 161 + CHEM& 162 + CHEM& 163",
+    "sourceCourseTitle": "General Chemistry with Lab I / General Chemistry with Lab II / General Chemistry with Lab III",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Full general chemistry sequence.",
+      "Supporting official guide rule: uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140.",
+      "Supporting official guide rule: uw-grc-guide:0205:chemistry:chemand-162-163-6-6-formerly-chem-150-160.",
+      "Derived from official guide rule uw-grc-guide:0204:chemistry:chemand-161-6-formerly-chem-140: CHEM& 161 (6) formerly CHEM 140.",
+      "Derived from official guide rule uw-grc-guide:0205:chemistry:chemand-162-163-6-6-formerly-chem-150-160: CHEM& 162, 163 (6, 6) formerly CHEM 150, 160.",
+      "CHEM& 162 plus CHEM& 163 together produce a stronger UW chemistry outcome than isolated single-course treatment."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "organic-chemistry-full-sequence",
+    "type": "full-credit-combo",
+    "title": "Full organic chemistry sequence",
+    "acceptanceCategory": "preferred",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [
+      [
+        "CHEM& 261",
+        "CHEM& 262",
+        "CHEM& 263"
+      ]
+    ],
+    "targetCourseCodes": [
+      "CHEM 237",
+      "CHEM 238",
+      "CHEM 239",
+      "CHEM 241",
+      "CHEM 242"
+    ],
+    "targetOutcome": "Full UW CHEM 237, 238, 239, 241, and 242 package when the full sequence is completed.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "SUM Qtr. 2009",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "SUM Qtr. 2009",
+    "guideDepartment": "Chemistry",
+    "sourceCourseLabel": "CHEM& 261 + CHEM& 262 + CHEM& 263",
+    "sourceCourseTitle": "Organic Chemistry with Lab I / Organic Chemistry with Lab II / Organic Chemistry with Lab III",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Full organic chemistry sequence.",
+      "Supporting official guide rule: uw-grc-guide:0216:chemistry:chemand-261-262-263-6-6-6-formerly-chem-235-236-237.",
+      "Derived from official guide rule uw-grc-guide:0216:chemistry:chemand-261-262-263-6-6-6-formerly-chem-235-236-237: CHEM& 261, 262, 263 (6, 6, 6) formerly CHEM 235, 236, 237.",
+      "The planner keeps the stronger full-sequence rule because partial completion does not preserve the same outcome."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "stem-calculus-current-sequence",
+    "type": "sequence",
+    "title": "Current Green River STEM calculus sequence",
+    "acceptanceCategory": "preferred",
+    "ruleStatus": "active",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [
+      [
+        "MATH& 151",
+        "MATH& 152",
+        "MATH& 163"
+      ]
+    ],
+    "targetCourseCodes": [
+      "MATH 124",
+      "MATH 125",
+      "MATH 126"
+    ],
+    "targetOutcome": "UW MATH 124, 125, and 126 transfer path.",
+    "weakerThanRuleIds": [],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "AUT Qtr. 2024",
+        "endLabel": null,
+        "note": "Derived from the overlapping effective dates of the supporting official UW equivalency-guide rows."
+      }
+    ],
+    "effectiveDateLabel": "AUT Qtr. 2024",
+    "guideDepartment": "Mathematics",
+    "sourceCourseLabel": "MATH& 151 + MATH& 152 + MATH& 163",
+    "sourceCourseTitle": "Calculus I / Calculus II / Calculus III",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Current Green River STEM calculus sequence.",
+      "Supporting official guide rule: uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124.",
+      "Supporting official guide rule: uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125.",
+      "Supporting official guide rule: uw-grc-guide:0798:mathematics:mathand-163-5.",
+      "Derived from official guide rule uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124: MATH& 151 (5) formerly MATH 124.",
+      "Derived from official guide rule uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125: MATH& 152 (5) formerly MATH 125.",
+      "Derived from official guide rule uw-grc-guide:0798:mathematics:mathand-163-5: MATH& 163 (5).",
+      "This is the current primary calculus path used throughout the planner for STEM transfer planning."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  },
+  {
+    "id": "stem-calculus-older-sequence",
+    "type": "alternate-path",
+    "title": "Older Green River STEM calculus alternative",
+    "acceptanceCategory": "legacy-accepted",
+    "ruleStatus": "legacy",
+    "sourceKind": "uw-green-river-equivalency-guide-derived",
+    "sourceSchoolId": "grc",
+    "targetSchoolIds": [
+      "uw-seattle"
+    ],
+    "sourceCourseSets": [
+      [
+        "MATH& 151",
+        "MATH& 152",
+        "MATH& 153",
+        "MATH& 264"
+      ]
+    ],
+    "targetCourseCodes": [
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 224",
+      "MATH 2XX"
+    ],
+    "targetOutcome": "UW MATH 124, 125, 126, plus stronger 224 / 2XX treatment when the full older path is completed.",
+    "weakerThanRuleIds": [
+      "stem-calculus-current-sequence"
+    ],
+    "effectiveYearRanges": [
+      {
+        "startLabel": "legacy-planner-support",
+        "endLabel": null,
+        "note": "Retained because current UW equivalency and planner materials still preserve the older calculus route as a valid alternate path."
+      }
+    ],
+    "effectiveDateLabel": "legacy-planner-support",
+    "guideDepartment": "Mathematics",
+    "sourceCourseLabel": "MATH& 151 + MATH& 152 + MATH& 153 + MATH& 264",
+    "sourceCourseTitle": "Calculus I / Calculus II / Calculus III / Calculus IV",
+    "targetRequirementTags": [
+      "NSc"
+    ],
+    "isObsoleteSourceCourse": false,
+    "parsedFromOfficialGuide": false,
+    "plannerWarnings": [
+      "Prefer the current MATH& 151 -> MATH& 152 -> MATH& 163 path for new planning unless the student is already on the older MATH& 153 + MATH& 264 route."
+    ],
+    "notes": [
+      "Synthesized from parsed official UW Green River equivalency-guide rows for Older Green River STEM calculus alternative.",
+      "Supporting official guide rule: uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124.",
+      "Supporting official guide rule: uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125.",
+      "Supporting official guide rule: uw-grc-guide:0795:mathematics:mathand-153-254-5-5-formerly-math-126-224-combined-entry.",
+      "Derived from official guide rule uw-grc-guide:0792:mathematics:mathand-151-5-formerly-math-124: MATH& 151 (5) formerly MATH 124.",
+      "Derived from official guide rule uw-grc-guide:0793:mathematics:mathand-152-5-formerly-math-125: MATH& 152 (5) formerly MATH 125.",
+      "Derived from official guide rule uw-grc-guide:0795:mathematics:mathand-153-254-5-5-formerly-math-126-224-combined-entry: § MATH& 153, 254 (5, 5) formerly MATH 126, 224 combined entry.",
+      "The planner keeps this older path because UW still describes it in some equivalency and legacy advising materials."
+    ],
+    "sourceLinks": [
+      {
+        "label": "UW Green River transfer equivalency guide",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "note": "Equivalency row parsed from the official UW Office of Admissions Green River transfer equivalency guide."
+      }
+    ]
+  }
+];
+
+const TRANSFER_PLANNER_UW_GRC_DERIVED_EQUIVALENCY_RULES_RAW: unknown[] = ([] as unknown[]).concat(
+  TRANSFER_PLANNER_UW_GRC_DERIVED_EQUIVALENCY_RULE_CHUNK_0
+);
+
+export const TRANSFER_PLANNER_UW_GRC_DERIVED_EQUIVALENCY_RULES =
+  TRANSFER_PLANNER_UW_GRC_DERIVED_EQUIVALENCY_RULES_RAW as TransferPlannerEquivalencyRule[];
+
+export const TRANSFER_PLANNER_UW_GRC_ALL_EQUIVALENCY_RULES =
+  ([] as TransferPlannerEquivalencyRule[]).concat(
+    TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES,
+    TRANSFER_PLANNER_UW_GRC_DERIVED_EQUIVALENCY_RULES
+  );
+
