@@ -140,7 +140,6 @@ export default function HomePage() {
   const [desktopRoadmap, setDesktopRoadmap] = useState<UserRoadmapDocument | null>(null);
 
   const [dismissedGuestPrompt, setDismissedGuestPrompt] = useState(false);
-  const showExtraInfoPrompt = true;
   const [tourStepIndex, setTourStepIndex] = useState(0);
 
   const capitalizedName = user?.name 
@@ -420,6 +419,9 @@ export default function HomePage() {
 
     return merged;
   }, [desktopCurrentCourses, plannerCurrentCourses]);
+  const shouldShowCurrentCoursesDashboardPanel = linkedCurrentCourses.length > 0;
+  const shouldShowRecommendedNextDashboardPanel =
+    desktopRecommendedCourses.length > 0 || !!desktopCoursePlanningDeadline;
   const desktopPrimaryOpportunity = unfinishedRecommendedOpportunities[0] ?? null;
   const desktopProfileName = user?.name?.trim() || t("home.student");
   const desktopProfileMajor = user?.major?.trim() || desktopRoadmap?.profileSnapshot.major?.trim() || t("home.undecided");
@@ -856,28 +858,23 @@ export default function HomePage() {
     </View>
   );
 
-  const renderCurrentCoursesDashboardPanel = () => (
-    <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
-      <View className="flex-row items-start mb-4">
-        <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-          <Ionicons name="school-outline" size={18} color="#008f4e" />
-        </View>
-        <View className="flex-1">
-          <Text className={`${textClass} text-lg font-semibold`}>{t("roadmap.currentCourses")}</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            {user?.transcript ? t("home.currentCoursesWithTranscript") : t("home.currentCoursesWithoutTranscript")}
-          </Text>
-        </View>
-      </View>
+  const renderCurrentCoursesDashboardPanel = () => {
+    if (!shouldShowCurrentCoursesDashboardPanel) return null;
 
-      {user?.uid && !desktopRoadmap && !linkedCurrentCourses.length ? (
-        <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
-          <Text className={`${textClass} font-semibold`}>{t("home.loadingCourseSnapshotTitle")}</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            {t("home.loadingCourseSnapshotBody")}
-          </Text>
+    return (
+      <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
+        <View className="flex-row items-start mb-4">
+          <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
+            <Ionicons name="school-outline" size={18} color="#008f4e" />
+          </View>
+          <View className="flex-1">
+            <Text className={`${textClass} text-lg font-semibold`}>{t("roadmap.currentCourses")}</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1`}>
+              {user?.transcript ? t("home.currentCoursesWithTranscript") : t("home.currentCoursesWithoutTranscript")}
+            </Text>
+          </View>
         </View>
-      ) : linkedCurrentCourses.length ? (
+
         <View className="gap-3">
           {linkedCurrentCourses.slice(0, 5).map((course) => (
             <View
@@ -888,74 +885,55 @@ export default function HomePage() {
             </View>
           ))}
         </View>
-      ) : (
-        <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
-          <Text className={`${textClass} font-semibold`}>
-            {user?.transcript ? t("home.noCurrentCoursesDetectedTitle") : t("home.transcriptNeededTitle")}
-          </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            {user?.transcript ? t("home.noCurrentCoursesDetectedBody") : t("home.transcriptNeededBody")}
-          </Text>
-        </View>
-      )}
-    </View>
-  );
+      </View>
+    );
+  };
 
-  const renderRecommendedNextDashboardPanel = () => (
-    <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
-      <View className="flex-row items-start mb-4">
-        <View className="w-11 h-11 rounded-2xl bg-sky-500/10 items-center justify-center mr-3">
-          <Ionicons name="navigate-outline" size={18} color="#0284c7" />
+  const renderRecommendedNextDashboardPanel = () => {
+    if (!shouldShowRecommendedNextDashboardPanel) return null;
+
+    return (
+      <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
+        <View className="flex-row items-start mb-4">
+          <View className="w-11 h-11 rounded-2xl bg-sky-500/10 items-center justify-center mr-3">
+            <Ionicons name="navigate-outline" size={18} color="#0284c7" />
+          </View>
+          <View className="flex-1">
+            <Text className={`${textClass} text-lg font-semibold`}>Recommended next</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1`}>
+              Courses the planner suggests lining up after what you are taking now.
+            </Text>
+          </View>
         </View>
-        <View className="flex-1">
-          <Text className={`${textClass} text-lg font-semibold`}>Recommended next</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            Courses the planner suggests lining up after what you are taking now.
-          </Text>
+
+        <View className="gap-4">
+          {desktopCoursePlanningDeadline ? (
+            <View className={`border rounded-3xl p-4 ${isDark ? "border-amber-800 bg-amber-950/40" : "border-amber-200 bg-amber-50"}`}>
+              <Text className={`${textClass} font-semibold`}>Next class planning target</Text>
+              <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                Aim to get class sign-up ready by {formatImportantDate(desktopCoursePlanningDeadline)}.
+              </Text>
+            </View>
+          ) : null}
+
+          {desktopRecommendedCourses.length ? (
+            <View className="flex-row flex-wrap gap-2">
+              {desktopRecommendedCourses.slice(0, 6).map((course) => (
+                <View
+                  key={course}
+                  className={`rounded-full px-3 py-2 border ${isDark ? "border-sky-900 bg-sky-950/30" : "border-sky-200 bg-sky-50"}`}
+                >
+                  <Text className={`${isDark ? "text-sky-100" : "text-sky-800"} text-sm`}>
+                    {course}
+                  </Text>
+                </View>
+              ))}
+            </View>
+          ) : null}
         </View>
       </View>
-
-      <View className="gap-4">
-        {desktopCoursePlanningDeadline ? (
-          <View className={`border rounded-3xl p-4 ${isDark ? "border-amber-800 bg-amber-950/40" : "border-amber-200 bg-amber-50"}`}>
-            <Text className={`${textClass} font-semibold`}>Next class planning target</Text>
-            <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              Aim to get class sign-up ready by {formatImportantDate(desktopCoursePlanningDeadline)}.
-            </Text>
-          </View>
-        ) : null}
-
-        {user?.uid && !desktopRoadmap && !desktopRecommendedCourses.length ? (
-          <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
-            <Text className={`${textClass} font-semibold`}>{t("home.loadingCourseSnapshotTitle")}</Text>
-            <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              {t("home.loadingCourseSnapshotBody")}
-            </Text>
-          </View>
-        ) : desktopRecommendedCourses.length ? (
-          <View className="flex-row flex-wrap gap-2">
-            {desktopRecommendedCourses.slice(0, 6).map((course) => (
-              <View
-                key={course}
-                className={`rounded-full px-3 py-2 border ${isDark ? "border-sky-900 bg-sky-950/30" : "border-sky-200 bg-sky-50"}`}
-              >
-                <Text className={`${isDark ? "text-sky-100" : "text-sky-800"} text-sm`}>
-                  {course}
-                </Text>
-              </View>
-            ))}
-          </View>
-        ) : (
-          <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
-            <Text className={`${textClass} font-semibold`}>No next courses suggested yet</Text>
-            <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              Open your transfer planner to see what classes to line up next.
-            </Text>
-          </View>
-        )}
-      </View>
-    </View>
-  );
+    );
+  };
 
   const desktopDashboard = isDesktopHome ? (
     <>
@@ -1352,23 +1330,6 @@ export default function HomePage() {
                 </View>
               ) : null}
 
-              {!isDesktopHome && showExtraInfoPrompt ? (
-                <View className={`${cardClass} border rounded-2xl p-4 mt-4`}>
-                  <View className="flex-row items-start">
-                    <View className="mt-0.5 mr-3">
-                      <Ionicons name="chatbubble-ellipses" size={18} color={placeholderTextColor} />
-                    </View>
-
-                    <View className="flex-1">
-                      <Text className={`${textClass} font-medium mb-1`}>{t("home.anythingElse")}</Text>
-                      <Text className={`${secondaryTextClass} text-sm`}>
-                        {t("home.anythingElseDescription")}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              ) : null}
-
                 </>
               ) : null}
             </View>
@@ -1539,23 +1500,6 @@ export default function HomePage() {
                   <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
                 </AnimatedCardPressable>
               </View>
-
-              {showExtraInfoPrompt ? (
-                <View className={`${cardClass} border rounded-2xl p-4 mt-4`}>
-                  <View className="flex-row items-start">
-                    <View className="mt-0.5 mr-3">
-                      <Ionicons name="chatbubble-ellipses" size={18} color={placeholderTextColor} />
-                    </View>
-
-                    <View className="flex-1">
-                      <Text className={`${textClass} font-medium mb-1`}>{t("home.anythingElse")}</Text>
-                      <Text className={`${secondaryTextClass} text-sm`}>
-                        {t("home.anythingElseDescription")}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              ) : null}
 
             </View>
           ) : null}

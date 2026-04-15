@@ -377,6 +377,9 @@ export default function ProfilePage() {
     [state.questionnaireAnswers]
   );
   const questionnaireCompletionLabel = `${questionnaireAnsweredCount}/${PROFILE_QUESTIONNAIRE_FIELD_IDS.length}`;
+  const questionnaireActionLabel = hasQuestionnaireData
+    ? t("profile.edit")
+    : t("profile.complete");
   const currentMajor = capitalizeWords(editData.major || user?.major || "") || t("profile.undecided");
   const currentGpa = editData.gpa || user?.gpa || t("general.notSpecified");
   const residencyLabels: Record<string, string> = {
@@ -824,6 +827,60 @@ export default function ProfilePage() {
         borderClass={borderClass}
       />
 
+      {!isWideLayout ? (
+        <View className={`border-t ${borderClass} pt-4 mt-4`}>
+          <AnimatedCardPressable
+            onPress={openQuestionnairePage}
+            accessibilityRole="button"
+            accessibilityLabel={t("profile.questionnaire")}
+            className="rounded-2xl border px-4 py-4"
+            style={{
+              backgroundColor: isDark
+                ? "rgba(16,185,129,0.08)"
+                : isGreen
+                  ? "rgba(16,185,129,0.12)"
+                  : "rgba(16,185,129,0.06)",
+              borderColor: "rgba(16,185,129,0.18)",
+            }}
+          >
+            <View className="flex-row items-start min-w-0">
+              <MaterialIcons name="assignment" size={20} color="#008f4e" />
+              <View className="flex-1 ml-3 min-w-0">
+                <View className="flex-row items-start justify-between gap-3">
+                  <View className="flex-1 min-w-0">
+                    <Text className={`text-sm ${secondaryTextClass} mb-1`}>
+                      {t("profile.questionnaire")}
+                    </Text>
+                    <Text className={`${textClass} text-base font-semibold`}>
+                      {questionnaireCompletionLabel}
+                    </Text>
+                  </View>
+
+                  <View className="bg-emerald-500/10 rounded-full px-2.5 py-1 border border-emerald-500/15">
+                    <Text className="text-emerald-500 text-xs font-semibold">
+                      {questionnaireCompletionLabel}
+                    </Text>
+                  </View>
+                </View>
+
+                {!hasQuestionnaireData ? (
+                  <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                    {t("profile.questionnairePrompt")}
+                  </Text>
+                ) : null}
+
+                <View className="mt-3 flex-row items-center justify-between">
+                  <Text className="text-emerald-500 text-sm font-semibold">
+                    {questionnaireActionLabel}
+                  </Text>
+                  <MaterialIcons name="chevron-right" size={20} color="#008f4e" />
+                </View>
+              </View>
+            </View>
+          </AnimatedCardPressable>
+        </View>
+      ) : null}
+
       <View className={`border-t ${borderClass} pt-4 mt-4`}>
         <View className="flex-row items-start">
           <MaterialIcons name="translate" size={20} color="#008f4e" />
@@ -1040,22 +1097,20 @@ export default function ProfilePage() {
     </>
   );
 
-  const renderQuestionnaireAction = () => (
-    <View
-      className="rounded-full px-3 py-2 flex-row items-center border"
-      style={{
-        backgroundColor: "rgba(16,185,129,0.12)",
-        borderColor: "rgba(16,185,129,0.22)",
-      }}
-    >
-      <MaterialIcons
-        name={hasQuestionnaireData ? "edit" : "open-in-new"}
-        size={16}
-        color="#008f4e"
-      />
-      <Text className="text-sm font-semibold ml-1.5" style={{ color: "#008f4e" }}>
-        {hasQuestionnaireData ? t("profile.edit") : t("profile.complete")}
+  const renderQuestionnaireAction = ({ compact = false }: { compact?: boolean } = {}) => (
+    <View className="flex-row items-center">
+      <Text
+        className={`${compact ? "text-xs" : "text-sm"} font-semibold`}
+        style={{ color: "#008f4e" }}
+      >
+        {questionnaireActionLabel}
       </Text>
+      <MaterialIcons
+        name="chevron-right"
+        size={compact ? 16 : 18}
+        color="#008f4e"
+        style={{ marginLeft: 2 }}
+      />
     </View>
   );
 
@@ -1079,21 +1134,31 @@ export default function ProfilePage() {
           minHeight: compact ? 112 : 132,
         };
         const summaryContent = (
-          <View style={fillHeight ? { flex: 1, justifyContent: "space-evenly" } : undefined}>
+          <View style={fillHeight ? { flex: 1 } : undefined}>
             <View className="w-10 h-10 rounded-full bg-emerald-500/10 items-center justify-center">
               <MaterialIcons name={card.icon} size={20} color="#008f4e" />
             </View>
-            <View className={fillHeight ? "" : "mt-3"}>
+            <View className="mt-3">
               <Text className={`${secondaryTextClass} text-xs`} numberOfLines={compact ? 1 : 2}>
                 {card.label}
               </Text>
               <Text className={`${textClass} text-base font-semibold mt-1`} numberOfLines={compact ? 1 : 2}>
                 {card.value}
               </Text>
+
+              {isQuestionnaireCard && !compact && !hasQuestionnaireData ? (
+                <Text className={`${secondaryTextClass} text-sm mt-2`} numberOfLines={2}>
+                  {t("profile.questionnairePrompt")}
+                </Text>
+              ) : null}
             </View>
+
             {isQuestionnaireCard ? (
-              <View className={fillHeight ? "" : "mt-3"}>
-                {renderQuestionnaireAction()}
+              <View
+                className="flex-row items-center justify-end"
+                style={{ marginTop: compact ? 10 : 14 }}
+              >
+                {renderQuestionnaireAction({ compact: true })}
               </View>
             ) : null}
           </View>
@@ -1123,46 +1188,6 @@ export default function ProfilePage() {
         )})}
     </View>
   );
-
-  const renderQuestionnaireCard = ({
-    className = "",
-    fitToContainer = false,
-  }: {
-    className?: string;
-    fitToContainer?: boolean;
-  } = {}) => (
-      <AnimatedCardPressable
-        onPress={openQuestionnairePage}
-        accessibilityRole="button"
-        accessibilityLabel={t("profile.questionnaire")}
-        className={`${cardBgClass} border rounded-2xl p-6 ${className}`.trim()}
-        containerStyle={fitToContainer ? { flex: 1, minHeight: 0 } : undefined}
-      >
-        <View className="flex-row items-center justify-between mb-4 gap-3">
-          <View className="flex-row items-center flex-1 min-w-0">
-            <MaterialIcons name="assignment" size={20} color="#008f4e" />
-            <Text className={`text-lg ${textClass} ml-3`} numberOfLines={1}>
-              {t("profile.questionnaire")}
-            </Text>
-
-            {isWideLayout ? (
-              <View className="ml-3 bg-emerald-500/10 rounded-full px-2.5 py-1">
-                <Text className="text-emerald-500 text-xs font-semibold">{questionnaireCompletionLabel}</Text>
-              </View>
-              ) : null}
-            </View>
-
-          {renderQuestionnaireAction()}
-        </View>
-
-        <Text className={`text-sm ${secondaryTextClass}`}>
-          {hasQuestionnaireData
-            ? t("profile.questionnaireSummary", { count: questionnaireCompletionLabel })
-            : t("profile.questionnairePrompt")}
-        </Text>
-
-      </AnimatedCardPressable>
-    );
 
   if (!isHydrated) {
     return (
@@ -1474,8 +1499,6 @@ export default function ProfilePage() {
                 </View>
               </View>
             )}
-
-            {!isWideLayout ? renderQuestionnaireCard({ className: "mt-4" }) : null}
           </View>
         </View>
           </ScrollView>

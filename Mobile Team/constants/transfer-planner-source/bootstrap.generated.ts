@@ -11886,7 +11886,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "UW American Ethnic Studies degree requirements",
         "url": "https://aes.washington.edu/ba-american-ethnic-studies",
         "visibility": "visible",
-        "status": "verified",
+        "status": "partially-verified",
+        "reason": "HTTP 429 Too Many Requests",
         "sourceConfidence": "high"
       }
     ],

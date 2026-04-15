@@ -29,7 +29,6 @@
     "planner:windows:maintenance": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-transfer-planner-maintenance.ps1 -NoOpenSummary",
     "planner:full:verify": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-transfer-planner-maintenance.ps1 -NoOpenSummary",
     "catalog:add": "node scripts/assets/add-catalog-item.cjs",
-    "size:publish": "node scripts/report-publish-size.cjs",
     "android": "expo run:android",
     "android:sdk": "cmd /c scripts/dev/run-android.cmd",
     "ios": "expo run:ios",

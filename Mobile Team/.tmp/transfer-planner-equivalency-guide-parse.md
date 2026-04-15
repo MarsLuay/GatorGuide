@@ -1,6 +1,6 @@
 # Transfer Planner Equivalency Guide Parse
 
-Generated at: 2026-04-14T10:07:04.071Z
+Generated at: 2026-04-15T04:26:55.229Z
 Source: https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/
 HTTP status: 200
 Final URL: https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/

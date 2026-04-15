@@ -12713,6 +12713,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "ENGL 099": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ENGL 105": {
     status: "published-in-latest-schedule",
     years: [
@@ -15005,6 +15023,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GERM 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
       },
       {
         label: "2025-2026",
@@ -17603,6 +17639,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "summer"
     ]
+  },
+  "MATH 097": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "MATH 108": {
     status: "published-in-latest-schedule",

@@ -79,6 +79,273 @@ const SOURCE_ONLY_FALLBACK_NOISE_PREFIXES = new Set([
   "EARN",
   "THROUGH",
 ]);
+const SOURCE_GENERATED_PARSER_FALLBACK_TITLE = "Source-backed major preparation";
+const SOURCE_GENERATED_PARSER_FALLBACK_NOTE =
+  "Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.";
+
+type ChecklistItemsByPhase = {
+  beforeApplication: TransferPlannerChecklistItem[];
+  beforeEnrollment: TransferPlannerChecklistItem[];
+  stayAtGrc: TransferPlannerChecklistItem[];
+};
+
+type SupplementalChecklistSeed = {
+  id: string;
+  phase: TransferPlannerRequirementPhase;
+  title: string;
+  grcCourses?: string[];
+  alternatives?: string[][];
+  minCompletedCount?: number;
+  note?: string;
+  fallbackCourseCount?: number;
+};
+
+const SUPPLEMENTAL_CHECKLIST_SEEDS_BY_PLAN: Partial<
+  Record<string, SupplementalChecklistSeed[]>
+> = {
+  "uw-seattle-computer-engineering": [
+    {
+      id: "calc123",
+      phase: "before-application",
+      title: "Calculus I-III sequence",
+      grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
+      alternatives: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
+    },
+    {
+      id: "phys122",
+      phase: "before-enrollment",
+      title: "PHYS 122",
+      grcCourses: ["PHYS& 222"],
+    },
+    {
+      id: "math208",
+      phase: "before-enrollment",
+      title: "MATH 208",
+      grcCourses: ["MATH 240"],
+      note: REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+    },
+    {
+      id: "engr204",
+      phase: "before-enrollment",
+      title: "EE 215",
+      grcCourses: ["ENGR& 204"],
+      note: REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+    },
+  ],
+  "uw-seattle-computer-science": [
+    {
+      id: "phys122",
+      phase: "before-enrollment",
+      title: "PHYS 122",
+      grcCourses: ["PHYS& 222"],
+    },
+    {
+      id: "math208",
+      phase: "before-enrollment",
+      title: "MATH 208",
+      grcCourses: ["MATH 240"],
+      note: REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+    },
+  ],
+  "uw-seattle-human-centered-design-engineering": [
+    {
+      id: "ten-calc-credits",
+      phase: "before-application",
+      title: "Ten calculus credits",
+      grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
+      minCompletedCount: 2,
+    },
+    {
+      id: "science-three",
+      phase: "before-application",
+      title: "Biology sequence",
+      grcCourses: ["BIOL& 211", "BIOL& 212", "BIOL& 213"],
+    },
+  ],
+  "uw-seattle-chemical-engineering": [
+    {
+      id: "chem142-162",
+      phase: "before-enrollment",
+      title: "CHEM 142-162 sequence",
+      grcCourses: ["CHEM& 161", "CHEM& 162", "CHEM& 163"],
+    },
+  ],
+  "uw-seattle-bioengineering": [
+    {
+      id: "biol180",
+      phase: "before-application",
+      title: "BIOL 180 pathway",
+      grcCourses: ["BIOL& 211", "BIOL& 212", "BIOL& 213"],
+    },
+    {
+      id: "programming",
+      phase: "before-application",
+      title: "Programming",
+      grcCourses: ["ENGR 250"],
+    },
+  ],
+  "uw-bothell-csse": [
+    {
+      id: "bothell-csse-calc",
+      phase: "before-application",
+      title: "Calculus minimum",
+      grcCourses: ["MATH& 151", "MATH& 152"],
+    },
+    {
+      id: "bothell-csse-programming",
+      phase: "before-application",
+      title: "Programming minimum",
+      grcCourses: ["CS 121", "CS 122"],
+    },
+    {
+      id: "bothell-csse-calc3",
+      phase: "stay-at-grc",
+      title: "Third calculus course",
+      grcCourses: ["MATH& 163"],
+    },
+    {
+      id: "bothell-csse-cs123",
+      phase: "stay-at-grc",
+      title: "Additional programming depth",
+      grcCourses: ["CS 123"],
+    },
+  ],
+  "uw-tacoma-computer-engineering": [
+    {
+      id: "tacoma-compe-math207",
+      phase: "before-application",
+      title: "MATH 207",
+      grcCourses: ["MATH 238"],
+    },
+    {
+      id: "tacoma-compe-circuits",
+      phase: "before-application",
+      title: "Circuit preparation",
+      grcCourses: ["ENGR& 204"],
+    },
+    {
+      id: "tacoma-compe-math208",
+      phase: "before-enrollment",
+      title: "MATH 208",
+      grcCourses: ["MATH 240"],
+      note: REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+    },
+  ],
+  "uw-tacoma-electrical-engineering": [
+    {
+      id: "tacoma-ee-programming1",
+      phase: "before-application",
+      title: "Programming I",
+      grcCourses: ["CS 121"],
+    },
+    {
+      id: "tacoma-ee-programming2",
+      phase: "before-application",
+      title: "Programming II",
+      grcCourses: ["CS 122"],
+    },
+    {
+      id: "tacoma-ee-math208",
+      phase: "before-enrollment",
+      title: "MATH 208",
+      grcCourses: ["MATH 240"],
+      note: REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+    },
+  ],
+  "uw-tacoma-civil-engineering": [
+    {
+      id: "uwt-ce-programming",
+      phase: "before-application",
+      title: "Programming foundation",
+      grcCourses: ["CS 121"],
+    },
+  ],
+  "uw-tacoma-education": [
+    {
+      id: "uwt-education-support",
+      phase: "stay-at-grc",
+      title: "Education support course",
+      fallbackCourseCount: 1,
+    },
+  ],
+  "uw-tacoma-computer-science-and-systems-ba": [
+    {
+      id: "uwt-cssba-programming",
+      phase: "before-application",
+      title: "Programming foundation",
+      grcCourses: ["CS 121"],
+    },
+  ],
+  "uw-tacoma-computer-science-and-systems-bs": [
+    {
+      id: "uwt-cssbs-math208",
+      phase: "before-enrollment",
+      title: "MATH 208",
+      grcCourses: ["MATH 240"],
+      note: REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+    },
+  ],
+  "uw-tacoma-information-technology": [
+    {
+      id: "uwt-it-math208",
+      phase: "before-enrollment",
+      title: "MATH 208",
+      grcCourses: ["MATH 240"],
+      note: REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+    },
+  ],
+  "uw-tacoma-mathematics": [
+    {
+      id: "uwt-math-calc123",
+      phase: "before-application",
+      title: "Calculus I-III sequence",
+      grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
+      alternatives: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
+    },
+  ],
+  "uw-tacoma-psychology": [
+    {
+      id: "uwt-psych-foundations",
+      phase: "before-application",
+      title: "Psychology foundations",
+      fallbackCourseCount: 1,
+    },
+  ],
+  "uw-seattle-american-ethnic-studies": [
+    {
+      id: "uws-ace-programming",
+      phase: "before-enrollment",
+      title: "One programming or data-science course",
+      grcCourses: ["CS 121"],
+    },
+  ],
+  "uw-bothell-computer-engineering": [
+    {
+      id: "bothell-compe-circuits",
+      phase: "stay-at-grc",
+      title: "B EE 215",
+      grcCourses: ["ENGR& 204"],
+      note: REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+    },
+  ],
+  "uw-bothell-electrical-engineering": [
+    {
+      id: "uwb-ee-circuits",
+      phase: "stay-at-grc",
+      title: "B EE 215",
+      grcCourses: ["ENGR& 204"],
+      note: REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE,
+    },
+  ],
+  "uw-bothell-media-and-communications-studies": [
+    {
+      id: "uwb-mcs-intro-media",
+      phase: "stay-at-grc",
+      title: "Intro media course",
+      fallbackCourseCount: 1,
+    },
+  ],
+};
 
 type PathwayPlanKey = `${string}::${string}`;
 
@@ -940,6 +1207,195 @@ function appendUniqueChecklistItems(
   return nextItems;
 }
 
+function buildEmptyChecklistItemsByPhase(): ChecklistItemsByPhase {
+  return {
+    beforeApplication: [],
+    beforeEnrollment: [],
+    stayAtGrc: [],
+  };
+}
+
+function getChecklistFallbackCourseList(scope: {
+  grcCourseList?: string[];
+  pathways?: TransferPlannerMajorPathway[];
+}) {
+  return uniqueReferenceCourseLabels([
+    ...(scope.grcCourseList ?? []),
+    ...((scope.pathways ?? []).flatMap((pathway) => pathway.grcCourseList ?? [])),
+  ]);
+}
+
+function materializeSupplementalChecklistItem(
+  seed: SupplementalChecklistSeed,
+  courseFallbacks: string[]
+) {
+  const grcCourses = uniqueReferenceCourseLabels(
+    seed.grcCourses?.length ? seed.grcCourses : courseFallbacks.slice(0, seed.fallbackCourseCount ?? 0)
+  );
+  const alternatives = (seed.alternatives ?? [])
+    .map((group) => uniqueReferenceCourseLabels(group))
+    .filter((group) => group.length > 0);
+
+  if (!grcCourses.length && !alternatives.length) {
+    return null;
+  }
+
+  return sanitizeChecklistItem({
+    id: seed.id,
+    title: seed.title,
+    grcCourses,
+    alternatives: alternatives.length ? alternatives : undefined,
+    minCompletedCount: seed.minCompletedCount,
+    note: seed.note,
+  });
+}
+
+function buildSupplementalChecklistItems(scope: {
+  id: string;
+  grcCourseList?: string[];
+  pathways?: TransferPlannerMajorPathway[];
+}) {
+  const checklistItems = buildEmptyChecklistItemsByPhase();
+  const seeds = SUPPLEMENTAL_CHECKLIST_SEEDS_BY_PLAN[scope.id] ?? [];
+  const fallbackCourseList = getChecklistFallbackCourseList(scope);
+
+  for (const seed of seeds) {
+    const item = materializeSupplementalChecklistItem(seed, fallbackCourseList);
+    if (!item) {
+      continue;
+    }
+
+    if (seed.phase === "before-application") {
+      checklistItems.beforeApplication.push(item);
+      continue;
+    }
+    if (seed.phase === "before-enrollment") {
+      checklistItems.beforeEnrollment.push(item);
+      continue;
+    }
+    checklistItems.stayAtGrc.push(item);
+  }
+
+  return checklistItems;
+}
+
+function applyChecklistItemsByPhase<T extends {
+  applicationChecklist?: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
+}>(scope: T, checklistItems: ChecklistItemsByPhase): T {
+  return {
+    ...scope,
+    applicationChecklist: appendUniqueChecklistItems(
+      scope.applicationChecklist,
+      checklistItems.beforeApplication
+    ),
+    beforeEnrollmentChecklist: appendUniqueChecklistItems(
+      scope.beforeEnrollmentChecklist,
+      checklistItems.beforeEnrollment
+    ),
+    stayAtGrcChecklist: appendUniqueChecklistItems(
+      scope.stayAtGrcChecklist,
+      checklistItems.stayAtGrc
+    ),
+  };
+}
+
+function buildSourceGeneratedFallbackChecklistItems(scope: {
+  id: string;
+  applicationChecklist?: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
+  degreeMapSections?: TransferPlannerDegreeMapSection[];
+  officialLinks?: TransferPlannerLink[];
+  grcCourseList?: string[];
+  pathways?: TransferPlannerMajorPathway[];
+}) {
+  if (hasAnyChecklistItems(scope)) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  const [fallbackCourse = null] = getChecklistFallbackCourseList(scope);
+  if (fallbackCourse) {
+    return {
+      beforeApplication: [],
+      beforeEnrollment: [
+        sanitizeChecklistItem({
+          id: buildAutoChecklistItemId(`${scope.id}-source-backed-course`, 0),
+          title: fallbackCourse,
+          grcCourses: [fallbackCourse],
+        }),
+      ],
+      stayAtGrc: [],
+    } satisfies ChecklistItemsByPhase;
+  }
+
+  const hasStructuredEvidence = Boolean(
+    (scope.degreeMapSections?.length ?? 0) > 0 || (scope.officialLinks?.length ?? 0) > 0
+  );
+  if (!hasStructuredEvidence) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  return {
+    beforeApplication: [],
+    beforeEnrollment: [
+      sanitizeChecklistItem({
+        id: buildAutoChecklistItemId(`${scope.id}-source-backed-guidance`, 0),
+        title: SOURCE_GENERATED_PARSER_FALLBACK_TITLE,
+        grcCourses: [],
+        note: SOURCE_GENERATED_PARSER_FALLBACK_NOTE,
+      }),
+    ],
+    stayAtGrc: [],
+  } satisfies ChecklistItemsByPhase;
+}
+
+function hasStructuredPlannerMaterial(
+  planId: string,
+  pathwayId: string | null | undefined,
+  scope: {
+    applicationChecklist?: TransferPlannerChecklistItem[];
+    beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
+    stayAtGrcChecklist?: TransferPlannerChecklistItem[];
+    degreeMapSections?: TransferPlannerDegreeMapSection[];
+    grcCourseList?: string[];
+    pathways?: TransferPlannerMajorPathway[];
+  }
+) {
+  const scopeKey = makePathwayPlanKey(planId, pathwayId);
+  const hasChecklistItems = hasAnyChecklistItems(scope);
+  const hasCourseEvidence = getChecklistFallbackCourseList(scope).length > 0;
+  const hasDegreeMapEvidence =
+    (scope.degreeMapSections?.length ?? 0) > 0 || (DEGREE_MAPS_BY_KEY.get(scopeKey)?.length ?? 0) > 0;
+
+  return hasDegreeMapEvidence && (hasChecklistItems || hasCourseEvidence);
+}
+
+function promoteStructuredCoverage<T extends {
+  id: string;
+  coverage: "detailed" | "partial";
+  applicationChecklist?: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
+  degreeMapSections?: TransferPlannerDegreeMapSection[];
+  grcCourseList?: string[];
+  pathways?: TransferPlannerMajorPathway[];
+}>(scope: T, pathwayId?: string | null): T {
+  if (scope.coverage === "detailed") {
+    return scope;
+  }
+
+  if (!hasStructuredPlannerMaterial(scope.id, pathwayId, scope)) {
+    return scope;
+  }
+
+  return {
+    ...scope,
+    coverage: "detailed",
+  };
+}
+
 function buildSourceBackedFallbackGuidanceChecklists(
   phase: TransferPlannerRequirementPhase,
   scope: {
@@ -1440,6 +1896,129 @@ for (const pathway of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY) {
   PATHWAYS_BY_PLAN.set(pathway.planId, current);
 }
 
+type StructuredPlanMetadata = {
+  id: string;
+  campusId: TransferPlannerCampusId;
+  title: string;
+};
+
+const STRUCTURED_PLAN_METADATA_BY_ID = new Map<string, StructuredPlanMetadata>();
+
+function registerStructuredPlanMetadata(
+  planId: string | null | undefined,
+  campusId: TransferPlannerCampusId,
+  title: string | null | undefined
+) {
+  const normalizedPlanId = String(planId ?? "").trim();
+  const normalizedTitle = sanitizePlannerOwnedText(title);
+  if (!normalizedPlanId || !normalizedTitle || STRUCTURED_PLAN_METADATA_BY_ID.has(normalizedPlanId)) {
+    return;
+  }
+
+  STRUCTURED_PLAN_METADATA_BY_ID.set(normalizedPlanId, {
+    id: normalizedPlanId,
+    campusId,
+    title: normalizedTitle,
+  });
+}
+
+for (const requirement of TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY) {
+  if (requirement.pathwayId) continue;
+  registerStructuredPlanMetadata(requirement.planId, requirement.campusId, requirement.majorTitle);
+}
+
+for (const block of TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY) {
+  if (block.pathwayId) continue;
+  registerStructuredPlanMetadata(block.planId, block.campusId, block.majorTitle);
+}
+
+for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY) {
+  if (classification.pathwayId) continue;
+  registerStructuredPlanMetadata(
+    classification.planId,
+    classification.campusId,
+    classification.majorTitle
+  );
+}
+
+for (const pathway of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY) {
+  registerStructuredPlanMetadata(pathway.planId, pathway.campusId, pathway.majorTitle);
+}
+
+function buildFallbackShortTitle(title: string) {
+  const withoutTrailingDegree = sanitizePlannerOwnedText(
+    title.replace(/\s*\([^)]*\)\s*$/, "")
+  );
+  return withoutTrailingDegree || sanitizePlannerOwnedText(title);
+}
+
+function buildRegistryBackedBasePathways(planId: string) {
+  return (PATHWAYS_BY_PLAN.get(planId) ?? []).map((pathway) => ({
+    id: pathway.pathwayId,
+    label: pathway.label,
+    summary: sanitizePlannerOwnedText(pathway.summary),
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: uniquePlannerLinks(pathway.sourceLinks.map(toPlannerLink)),
+    degreeMapSections: [],
+    validationNotes: sanitizePlannerOwnedStrings(pathway.validationNotes),
+    grcCourseList: uniqueReferenceCourseLabels(pathway.grcCourseList ?? []),
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+  } satisfies TransferPlannerMajorPathway));
+}
+
+function buildParserOnlyBasePlan(metadata: StructuredPlanMetadata): TransferPlannerMajorPlan {
+  const basePathways = buildRegistryBackedBasePathways(metadata.id);
+
+  return {
+    id: metadata.id,
+    campusId: metadata.campusId,
+    title: metadata.title,
+    shortTitle: buildFallbackShortTitle(metadata.title),
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: uniquePlannerLinks(
+      basePathways.flatMap((pathway) => pathway.officialLinks ?? [])
+    ),
+    degreeMapSections: [],
+    validationNotes: sanitizePlannerOwnedStrings(
+      basePathways.flatMap((pathway) => pathway.validationNotes ?? [])
+    ),
+    grcCourseList: uniqueReferenceCourseLabels(
+      basePathways.flatMap((pathway) => pathway.grcCourseList ?? [])
+    ),
+    pathways: basePathways,
+  };
+}
+
+const BOOTSTRAP_PLAN_IDS = new Set(
+  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => plan.id)
+);
+const PARSER_ONLY_BASE_MAJOR_PLANS = Array.from(STRUCTURED_PLAN_METADATA_BY_ID.values())
+  .filter((metadata) => !BOOTSTRAP_PLAN_IDS.has(metadata.id))
+  .sort((left, right) => {
+    if (left.campusId !== right.campusId) {
+      return left.campusId.localeCompare(right.campusId);
+    }
+    return left.title.localeCompare(right.title);
+  })
+  .map((metadata) => buildParserOnlyBasePlan(metadata));
+const ALL_BASE_MAJOR_PLANS = uniqueById([
+  ...TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS,
+  ...PARSER_ONLY_BASE_MAJOR_PLANS,
+]);
+
 function getStructuredCourseCodesForPlan(
   planId: string,
   baseCourseOrder: string[],
@@ -1634,7 +2213,21 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
     "before-application",
     basePlan.applicationChecklist
   );
-  return applyAutoTrackRecommendation({
+  const beforeEnrollmentChecklist = buildChecklistForPhase(
+    basePlan.id,
+    "before-enrollment",
+    basePlan.beforeEnrollmentChecklist
+  );
+  const stayAtGrcChecklist = buildChecklistForPhase(
+    basePlan.id,
+    "stay-at-grc",
+    basePlan.stayAtGrcChecklist
+  );
+  const structuredPathways = orderByBaseIds(
+    (basePlan.pathways ?? []).map((pathway) => buildPathway(basePlan, pathway)),
+    (basePlan.pathways ?? []).map((pathway) => pathway.id)
+  );
+  const sourceGeneratedPlan = {
     ...basePlan,
     summary: sanitizePlannerOwnedText(basePlan.summary),
     bestTrackId: policy?.bestTrackId ?? basePlan.bestTrackId,
@@ -1645,16 +2238,8 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
       policy?.whyThisTrack.length ? [...policy.whyThisTrack] : [...basePlan.whyThisTrack]
     ),
     applicationChecklist,
-    beforeEnrollmentChecklist: buildChecklistForPhase(
-      basePlan.id,
-      "before-enrollment",
-      basePlan.beforeEnrollmentChecklist
-    ),
-    stayAtGrcChecklist: buildChecklistForPhase(
-      basePlan.id,
-      "stay-at-grc",
-      basePlan.stayAtGrcChecklist
-    ),
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist,
     advisorFlags: sanitizePlannerOwnedStrings(policy?.advisorFlags ?? basePlan.advisorFlags),
     officialLinks: collectStructuredLinks(basePlan.id, basePlan.officialLinks),
     degreeMapSections: buildDegreeMapSections(basePlan.id, basePlan.degreeMapSections),
@@ -1669,11 +2254,21 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
       policy?.grcCourseListGuidance ?? basePlan.grcCourseListGuidance
     ),
     plannerNote: sanitizePlannerOwnedText(policy?.plannerNote ?? basePlan.plannerNote),
-    pathways: orderByBaseIds(
-      (basePlan.pathways ?? []).map((pathway) => buildPathway(basePlan, pathway)),
-      (basePlan.pathways ?? []).map((pathway) => pathway.id)
-    ),
-  });
+    pathways: structuredPathways,
+  };
+
+  const sourceGeneratedWithCompatibility = applyChecklistItemsByPhase(
+    sourceGeneratedPlan,
+    buildSupplementalChecklistItems(sourceGeneratedPlan)
+  );
+  const sourceGeneratedWithFallback = applyChecklistItemsByPhase(
+    sourceGeneratedWithCompatibility,
+    buildSourceGeneratedFallbackChecklistItems(sourceGeneratedWithCompatibility)
+  );
+
+  return applyAutoTrackRecommendation(
+    promoteStructuredCoverage(sourceGeneratedWithFallback)
+  );
 }
 
 function getAutomaticScopeKeys(planId: string, pathwayId?: string | null) {
@@ -1915,19 +2510,36 @@ function buildStudentRuntimePathway(
 }
 
 function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
-  const applicationChecklist = buildAutomaticChecklistForPhase(
+  let applicationChecklist = buildAutomaticChecklistForPhase(
     basePlan.id,
     "before-application"
   );
-  const beforeEnrollmentChecklist = buildAutomaticChecklistForPhase(
+  let beforeEnrollmentChecklist = buildAutomaticChecklistForPhase(
     basePlan.id,
     "before-enrollment"
+  );
+  let stayAtGrcChecklist = buildAutomaticChecklistForPhase(basePlan.id, "stay-at-grc");
+  const compatibilityChecklistItems = buildSupplementalChecklistItems({
+    id: basePlan.id,
+    grcCourseList: buildAutomaticCourseList(basePlan.id),
+    pathways: basePlan.pathways,
+  });
+  applicationChecklist = appendUniqueChecklistItems(
+    applicationChecklist,
+    compatibilityChecklistItems.beforeApplication
+  );
+  beforeEnrollmentChecklist = appendUniqueChecklistItems(
+    beforeEnrollmentChecklist,
+    compatibilityChecklistItems.beforeEnrollment
+  );
+  stayAtGrcChecklist = appendUniqueChecklistItems(
+    stayAtGrcChecklist,
+    compatibilityChecklistItems.stayAtGrc
   );
   const prunedBeforeEnrollmentChecklist = pruneRedundantRuntimeChecklistItems(
     beforeEnrollmentChecklist,
     getChecklistCoverageCourseCodes(applicationChecklist)
   );
-  const stayAtGrcChecklist = buildAutomaticChecklistForPhase(basePlan.id, "stay-at-grc");
   const prunedStayAtGrcChecklist = pruneRedundantRuntimeChecklistItems(
     stayAtGrcChecklist,
     getChecklistCoverageCourseCodes([
@@ -1955,6 +2567,15 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
   const runtimePlan = applyStrictSourceBackedFallback(
     applyAutoTrackRecommendation({
         ...basePlan,
+        coverage: promoteStructuredCoverage(
+          {
+            ...basePlan,
+            applicationChecklist,
+            beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+            stayAtGrcChecklist: prunedStayAtGrcChecklist,
+            grcCourseList: studentVisibleCourseList,
+          }
+        ).coverage,
         summary: "",
         bestTrackId: null,
         recommendedTrackSummary: "",
@@ -2172,9 +2793,9 @@ function formatAvailabilityStatusSummary(
 }
 
 export const TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS: TransferPlannerMajorPlan[] =
-  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map(buildSourceGeneratedPlan);
+  ALL_BASE_MAJOR_PLANS.map(buildSourceGeneratedPlan);
 export const TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS: TransferPlannerMajorPlan[] =
-  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map(buildStudentRuntimePlan);
+  ALL_BASE_MAJOR_PLANS.map(buildStudentRuntimePlan);
 
 export const TRANSFER_PLANNER_CAMPUSES: TransferPlannerCampus[] = TRANSFER_PLANNER_BOOTSTRAP_CAMPUSES;
 export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = TRANSFER_PLANNER_BOOTSTRAP_TRACKS;

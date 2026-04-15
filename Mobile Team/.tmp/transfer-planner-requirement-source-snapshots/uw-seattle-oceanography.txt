@@ -27,11 +27,11 @@ About
 About Get Involved Facilities Administration Services Code of Conduct Diversity, Equity, and Inclusion Directions & Address School History
 alt="College of the Environment"
 Alumni with a BA in Oceanography can look forward to jobs such as an education specialist, outreach and education director or marine science programs coordinator.
-Apr 14 2026
 Apr 15 2026
 Apr 21 2026
 Apr 22 2026
 Apr 28 2026
+Apr 29 2026
 At the 200 level, students take a sequence of foundational oceanography courses ( Ocean 200/201 and Ocean 210 ), learn introductory python programming and basic statistics in Ocean 215 , and experience field methods in Ocean 220 .
 At the 300 level, majors complete a full year course sequence in ocean science from the interaction of the seafloor and water column ( Ocean 310 ), to coastal oceanography ( Ocean 320 ), to global biogeochemical cycles ( Ocean 330 ). Majors also learn the fundamentals of how ocean sensors work (and build their own!) in Ocean 351 .
 At the 400-level the BS and BA requirements differ.
@@ -40,7 +40,6 @@ BA in Oceanography checklist
 Bachelor Degrees in Oceanography
 Bachelor of Arts in Oceanography
 Bachelor of Arts in Oceanography Checklist
-Bio Seminar 4/14/26
 Bio Seminar 4/21/26
 Bio Seminar 4/28/26
 BS in Oceanography checklist
@@ -71,7 +70,6 @@ Due to our generous donors, Oceanography can offer a broad spectrum of scholarsh
 EarthLab
 Education
 Education Courses Graduate Education Undergraduate Education Student Support Resources
-Emily Hammermeister Interview
 Facility Maps
 For the BA degree there is no requirement to complete the senior thesis, and with fewer and more flexible upper division elective requirements students have the flexibility to tailor their upper division work to complement their work in other fields, or their plans for post-graduate work or study.
 For the BS degree , at the 400 level, majors complete a year-long senior thesis and take a selection of upper division special topics courses that provide both breadth and depth.
@@ -99,6 +97,7 @@ People
 People Faculty Post Docs Graduate Students Staff Alumni In Memoriam
 PhD Defense:&#160;Scott Martin 4/22/26
 PO Seminar 4/15/26
+PO Seminar 4/29/26
 Privacy | Terms
 Program on Climate Change
 Program on the Environment

@@ -21,7 +21,15 @@ The current one-click Windows entrypoints are:
 
 - `npm run planner:windows:maintenance`
 - `npm run planner:full:verify`
+- `scripts\run-planner-maintenance.bat`
 - `scripts\run-planner-maintenance.cmd`
+
+The maintenance launcher is interactive now:
+
+- it can run the full flow
+- it can run one section only
+- it can start from a chosen section and complete the rest
+- it can print a cache summary showing what artifacts already exist and when the latest maintenance/refresh runs happened
 
 The run summary is written to:
 
@@ -74,6 +82,7 @@ The current green-state maintenance baseline is:
   - `scripts/planner/refresh-transfer-planner-sources.cjs`
   - `scripts/run-planner-refresh.cmd`
   - `scripts/run-planner-refresh-no-downloads.cmd`
+  - `scripts/run-planner-maintenance.bat`
   - `scripts/run-transfer-planner-maintenance.ps1`
   - `scripts/run-planner-maintenance.cmd`
   - `npm run planner:check-sources`

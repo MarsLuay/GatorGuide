@@ -1,15 +1,49 @@
 {
-  "generatedAt": "2026-04-14T07:02:37.733Z",
-  "totalOwners": 154,
-  "ownersWithErrorsCount": 0,
-  "ownersWithWarningsCount": 0,
-  "ownersWithSourceOnlyUwCourseCodesCount": 154,
-  "totalSourceOnlyUwCourseCodes": 8767,
+  "generatedAt": "2026-04-15T04:40:34.044Z",
+  "totalOwners": 225,
+  "ownersWithErrorsCount": 71,
+  "ownersWithWarningsCount": 1,
+  "ownersWithSourceOnlyUwCourseCodesCount": 0,
+  "totalSourceOnlyUwCourseCodes": 0,
   "issueCounts": {
-    "error": 0,
-    "warning": 0
+    "error": 213,
+    "warning": 1
   },
   "owners": [
+    {
+      "ownerId": "uw-bothell-american-and-ethnic-studies",
+      "ownerKey": "uw-bothell-american-and-ethnic-studies::",
+      "planId": "uw-bothell-american-and-ethnic-studies",
+      "pathwayId": null,
+      "title": "American & Ethnic Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
     {
       "ownerId": "uw-bothell-applied-computing",
       "ownerKey": "uw-bothell-applied-computing::",
@@ -18,7 +52,7 @@
       "title": "Applied Computing (BA)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
-      "sourceOnlyUwCourseCodeCount": 139,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -33,7 +67,7 @@
       "title": "Biology (BS)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
-      "sourceOnlyUwCourseCodeCount": 164,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -48,12 +82,182 @@
       "title": "Business Administration (BA)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
-      "sourceOnlyUwCourseCodeCount": 65,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-accounting",
+      "ownerKey": "uw-bothell-business-administration-accounting::",
+      "planId": "uw-bothell-business-administration-accounting",
+      "pathwayId": null,
+      "title": "Business Administration: Accounting (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-finance",
+      "ownerKey": "uw-bothell-business-administration-finance::",
+      "planId": "uw-bothell-business-administration-finance",
+      "pathwayId": null,
+      "title": "Business Administration: Finance (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
+      "ownerKey": "uw-bothell-business-administration-leadership-and-strategic-innovation::",
+      "planId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
+      "pathwayId": null,
+      "title": "Business Administration: Leadership & Strategic Innovation (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-marketing",
+      "ownerKey": "uw-bothell-business-administration-marketing::",
+      "planId": "uw-bothell-business-administration-marketing",
+      "pathwayId": null,
+      "title": "Business Administration: Marketing (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-business-administration-supply-chain-management",
+      "ownerKey": "uw-bothell-business-administration-supply-chain-management::",
+      "planId": "uw-bothell-business-administration-supply-chain-management",
+      "pathwayId": null,
+      "title": "Business Administration: Supply Chain Management (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-chemistry-ba",
@@ -63,7 +267,7 @@
       "title": "Chemistry (BA)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 164,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -78,7 +282,7 @@
       "title": "Chemistry: Biochemistry (BS)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 164,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -93,7 +297,7 @@
       "title": "Chemistry (BS)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 164,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -108,12 +312,46 @@
       "title": "Computer Engineering",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
-      "sourceOnlyUwCourseCodeCount": 25,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-conservation-and-restoration-science",
+      "ownerKey": "uw-bothell-conservation-and-restoration-science::",
+      "planId": "uw-bothell-conservation-and-restoration-science",
+      "pathwayId": null,
+      "title": "Conservation & Restoration Science (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-csse",
@@ -123,7 +361,7 @@
       "title": "Computer Science & Software Engineering",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 32,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -138,12 +376,114 @@
       "title": "Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 87,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-culture-literature-and-the-arts",
+      "ownerKey": "uw-bothell-culture-literature-and-the-arts::",
+      "planId": "uw-bothell-culture-literature-and-the-arts",
+      "pathwayId": null,
+      "title": "Culture, Literature & the Arts (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-data-visualization-ba",
+      "ownerKey": "uw-bothell-data-visualization-ba::",
+      "planId": "uw-bothell-data-visualization-ba",
+      "pathwayId": null,
+      "title": "Data Visualization (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-data-visualization-bs",
+      "ownerKey": "uw-bothell-data-visualization-bs::",
+      "planId": "uw-bothell-data-visualization-bs",
+      "pathwayId": null,
+      "title": "Data Visualization (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-developmental-and-youth-studies",
@@ -153,12 +493,46 @@
       "title": "Developmental and Youth Studies (BA)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 71,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-earth-system-science",
+      "ownerKey": "uw-bothell-earth-system-science::",
+      "planId": "uw-bothell-earth-system-science",
+      "pathwayId": null,
+      "title": "Earth System Science (BS)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-economics",
@@ -168,7 +542,7 @@
       "title": "Economics (BS)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-      "sourceOnlyUwCourseCodeCount": 93,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -183,7 +557,7 @@
       "title": "Educational Studies: Elementary Education (BA)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 92,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -198,12 +572,114 @@
       "title": "Electrical Engineering (BS)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
-      "sourceOnlyUwCourseCodeCount": 164,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-environmental-studies",
+      "ownerKey": "uw-bothell-environmental-studies::",
+      "planId": "uw-bothell-environmental-studies",
+      "pathwayId": null,
+      "title": "Environmental Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-gender-women-and-sexuality-studies",
+      "ownerKey": "uw-bothell-gender-women-and-sexuality-studies::",
+      "planId": "uw-bothell-gender-women-and-sexuality-studies",
+      "pathwayId": null,
+      "title": "Gender, Women, & Sexuality Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-global-studies",
+      "ownerKey": "uw-bothell-global-studies::",
+      "planId": "uw-bothell-global-studies",
+      "pathwayId": null,
+      "title": "Global Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-health-studies",
@@ -213,7 +689,7 @@
       "title": "Health Studies (BA)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
-      "sourceOnlyUwCourseCodeCount": 21,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -228,12 +704,46 @@
       "title": "Interactive Media Design (BA)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/premajor/wp-content/uploads/sites/26/2023/07/fillable-imd.pdf",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-interdisciplinary-arts",
+      "ownerKey": "uw-bothell-interdisciplinary-arts::",
+      "planId": "uw-bothell-interdisciplinary-arts",
+      "pathwayId": null,
+      "title": "Interdisciplinary Arts (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-interdisciplinary-studies-individualized-study",
@@ -243,12 +753,80 @@
       "title": "Interdisciplinary Studies: Individualized Study (BA)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-law-economics-and-public-policy",
+      "ownerKey": "uw-bothell-law-economics-and-public-policy::",
+      "planId": "uw-bothell-law-economics-and-public-policy",
+      "pathwayId": null,
+      "title": "Law, Economics & Public Policy (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-mathematical-thinking-and-visualization",
+      "ownerKey": "uw-bothell-mathematical-thinking-and-visualization::",
+      "planId": "uw-bothell-mathematical-thinking-and-visualization",
+      "pathwayId": null,
+      "title": "Mathematical Thinking & Visualization (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-mathematics",
@@ -258,7 +836,7 @@
       "title": "Mathematics (BS)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 164,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -273,12 +851,46 @@
       "title": "Mechanical Engineering",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-ME-Curriculum-AY24_25.pdf",
-      "sourceOnlyUwCourseCodeCount": 37,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-media-and-communications-studies",
+      "ownerKey": "uw-bothell-media-and-communications-studies::",
+      "planId": "uw-bothell-media-and-communications-studies",
+      "pathwayId": null,
+      "title": "Media & Communications Studies (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-nursing-first-year-rn-to-bsn",
@@ -288,7 +900,7 @@
       "title": "Nursing (BS), First Year RN to BSN (Direct Entry)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
-      "sourceOnlyUwCourseCodeCount": 20,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -303,7 +915,7 @@
       "title": "Nursing (BS), RN to BSN",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
-      "sourceOnlyUwCourseCodeCount": 20,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -318,7 +930,7 @@
       "title": "Physics (BA)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 163,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -333,12 +945,114 @@
       "title": "Physics (BS)",
       "campusId": "uw-bothell",
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 163,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-bothell-psychology",
+      "ownerKey": "uw-bothell-psychology::",
+      "planId": "uw-bothell-psychology",
+      "pathwayId": null,
+      "title": "Psychology (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-science-technology-and-society",
+      "ownerKey": "uw-bothell-science-technology-and-society::",
+      "planId": "uw-bothell-science-technology-and-society",
+      "pathwayId": null,
+      "title": "Science, Technology & Society (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-bothell-society-ethics-and-human-behavior",
+      "ownerKey": "uw-bothell-society-ethics-and-human-behavior::",
+      "planId": "uw-bothell-society-ethics-and-human-behavior",
+      "pathwayId": null,
+      "title": "Society, Ethics & Human Behavior (BA)",
+      "campusId": "uw-bothell",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-aeronautics-astronautics",
@@ -348,7 +1062,7 @@
       "title": "Aeronautics & Astronautics",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.aa.washington.edu/students/academics/bsaae",
-      "sourceOnlyUwCourseCodeCount": 37,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -363,12 +1077,53 @@
       "title": "American Ethnic Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://aes.washington.edu/ba-american-ethnic-studies",
-      "sourceOnlyUwCourseCodeCount": 67,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
+        "warning": 1
+      },
+      "issues": [
+        {
+          "severity": "warning",
+          "code": "used-snapshot-fallback",
+          "message": "Requirement source parsing used a cached snapshot fallback.",
+          "details": "HTTP 429 Too Many Requests"
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-seattle-american-indian-studies",
+      "ownerKey": "uw-seattle-american-indian-studies::",
+      "planId": "uw-seattle-american-indian-studies",
+      "pathwayId": null,
+      "title": "American Indian Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
         "warning": 0
       },
-      "issues": []
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-anthropology",
@@ -378,7 +1133,7 @@
       "title": "Anthropology",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -393,7 +1148,7 @@
       "title": "Applied & Computational Mathematical Sciences (ACMS)",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
-      "sourceOnlyUwCourseCodeCount": 24,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -408,7 +1163,7 @@
       "title": "Applied Mathematics",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
-      "sourceOnlyUwCourseCodeCount": 39,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -423,7 +1178,7 @@
       "title": "Aquatic Conservation & Ecology",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
-      "sourceOnlyUwCourseCodeCount": 18,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -438,7 +1193,7 @@
       "title": "Architectural Design",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/03/BA-Arch-Design_2024_.pdf",
-      "sourceOnlyUwCourseCodeCount": 26,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -453,7 +1208,7 @@
       "title": "Architectural Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
-      "sourceOnlyUwCourseCodeCount": 15,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -468,7 +1223,7 @@
       "title": "Art",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
-      "sourceOnlyUwCourseCodeCount": 118,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -483,7 +1238,7 @@
       "title": "Art History",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
-      "sourceOnlyUwCourseCodeCount": 118,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -498,12 +1253,46 @@
       "title": "Asian Languages & Cultures",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://asian.washington.edu/ba-asian-languages-cultures",
-      "sourceOnlyUwCourseCodeCount": 12,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-asian-studies",
+      "ownerKey": "uw-seattle-asian-studies::",
+      "planId": "uw-seattle-asian-studies",
+      "pathwayId": null,
+      "title": "Asian Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-astronomy",
@@ -513,7 +1302,7 @@
       "title": "Astronomy",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://astro.washington.edu/timeline-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 15,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -528,7 +1317,7 @@
       "title": "Atmospheric and Climate Science",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-      "sourceOnlyUwCourseCodeCount": 37,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -543,7 +1332,7 @@
       "title": "Atmospheric and Climate Science - Minimum 85-98 credits, depending on credential/option",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-      "sourceOnlyUwCourseCodeCount": 62,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -558,7 +1347,7 @@
       "title": "Atmospheric and Climate Science - Minimum 85-98 credits, depending on credential/option",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-      "sourceOnlyUwCourseCodeCount": 62,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -573,7 +1362,7 @@
       "title": "Atmospheric and Climate Science - Minimum 85-98 credits, depending on credential/option",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-      "sourceOnlyUwCourseCodeCount": 62,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -588,7 +1377,7 @@
       "title": "Atmospheric and Climate Science - Minimum 85-98 credits, depending on credential/option",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-      "sourceOnlyUwCourseCodeCount": 62,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -603,7 +1392,7 @@
       "title": "Biochemistry",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
-      "sourceOnlyUwCourseCodeCount": 62,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -618,7 +1407,7 @@
       "title": "Biochemistry - Ba Route",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
-      "sourceOnlyUwCourseCodeCount": 131,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -633,7 +1422,7 @@
       "title": "Biochemistry - Bs Route",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
-      "sourceOnlyUwCourseCodeCount": 131,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -648,7 +1437,7 @@
       "title": "Bioengineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 44,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -663,7 +1452,7 @@
       "title": "Biology",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 49,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -678,7 +1467,7 @@
       "title": "Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -693,7 +1482,7 @@
       "title": "Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -708,7 +1497,7 @@
       "title": "Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -723,7 +1512,7 @@
       "title": "Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -738,7 +1527,7 @@
       "title": "Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -753,7 +1542,7 @@
       "title": "Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -768,7 +1557,7 @@
       "title": "Business Administration",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
-      "sourceOnlyUwCourseCodeCount": 60,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -783,7 +1572,7 @@
       "title": "Chemical Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-      "sourceOnlyUwCourseCodeCount": 121,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -798,7 +1587,7 @@
       "title": "Chemistry",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -813,7 +1602,7 @@
       "title": "Chemistry - Acs Certified Bs Route",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -828,7 +1617,7 @@
       "title": "Chemistry - Ba Route",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
-      "sourceOnlyUwCourseCodeCount": 100,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -843,12 +1632,46 @@
       "title": "Chemistry - Bs Route",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
-      "sourceOnlyUwCourseCodeCount": 100,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-chinese",
+      "ownerKey": "uw-seattle-chinese::",
+      "planId": "uw-seattle-chinese",
+      "pathwayId": null,
+      "title": "Chinese",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-cinema-and-media-studies",
@@ -858,7 +1681,7 @@
       "title": "Cinema & Media Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
-      "sourceOnlyUwCourseCodeCount": 39,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -873,12 +1696,46 @@
       "title": "Civil Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.ce.washington.edu/sites/default/files/pdfs/current/undergrad/uw-cee-bsce-degree-sheet.pdf",
-      "sourceOnlyUwCourseCodeCount": 55,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-classics",
+      "ownerKey": "uw-seattle-classics::",
+      "planId": "uw-seattle-classics",
+      "pathwayId": null,
+      "title": "Classics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-communication",
@@ -888,7 +1745,7 @@
       "title": "Communication",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Communication-1035.html",
-      "sourceOnlyUwCourseCodeCount": 27,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -903,7 +1760,7 @@
       "title": "Community, Environment & Planning",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/UrbanDesignandPlanning-50.html",
-      "sourceOnlyUwCourseCodeCount": 34,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -918,12 +1775,46 @@
       "title": "Comparative History of Ideas",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
-      "sourceOnlyUwCourseCodeCount": 5,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-comparative-literature",
+      "ownerKey": "uw-seattle-comparative-literature::",
+      "planId": "uw-seattle-comparative-literature",
+      "pathwayId": null,
+      "title": "Comparative Literature",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-comparative-religion",
@@ -933,7 +1824,7 @@
       "title": "Comparative Religion",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-      "sourceOnlyUwCourseCodeCount": 68,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -948,7 +1839,7 @@
       "title": "Computational Finance & Risk Management",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
-      "sourceOnlyUwCourseCodeCount": 75,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -963,7 +1854,7 @@
       "title": "Computer Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 241,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -978,7 +1869,7 @@
       "title": "Computer Science",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 201,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -993,7 +1884,7 @@
       "title": "Construction Management",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
-      "sourceOnlyUwCourseCodeCount": 74,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1008,12 +1899,46 @@
       "title": "Dance",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
-      "sourceOnlyUwCourseCodeCount": 16,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-danish",
+      "ownerKey": "uw-seattle-danish::",
+      "planId": "uw-seattle-danish",
+      "pathwayId": null,
+      "title": "Danish",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-design",
@@ -1023,7 +1948,7 @@
       "title": "Design",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1038,7 +1963,7 @@
       "title": "Disability Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://disabilitystudies.washington.edu/DS_major",
-      "sourceOnlyUwCourseCodeCount": 11,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1053,12 +1978,46 @@
       "title": "Drama",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 71,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-early-childhood-and-family-studies",
+      "ownerKey": "uw-seattle-early-childhood-and-family-studies::",
+      "planId": "uw-seattle-early-childhood-and-family-studies",
+      "pathwayId": null,
+      "title": "Early Childhood & Family Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-earth-and-space-sciences",
@@ -1068,7 +2027,7 @@
       "title": "Earth & Space Sciences",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 67,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1083,7 +2042,7 @@
       "title": "Earth & Space Sciences - Basic Supporting Science (20 credits): MATH 124, MATH 125 or equivalent; PHYS 114/PHYS 117 or PHYS 121; CHEM 142. (Students pursuing the ESS physics option must take PHYS 121.)",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 64,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1098,7 +2057,7 @@
       "title": "Earth & Space Sciences - Basic Supporting Science (20 credits): MATH 124, MATH 125 or equivalent; PHYS 114/PHYS 117 or PHYS 121; CHEM 142. (Students pursuing the ESS physics option must take PHYS 121.)",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 64,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1113,7 +2072,7 @@
       "title": "Earth & Space Sciences - Basic Supporting Science (20 credits): MATH 124, MATH 125 or equivalent; PHYS 114/PHYS 117 or PHYS 121; CHEM 142. (Students pursuing the ESS physics option must take PHYS 121.)",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 64,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1128,7 +2087,7 @@
       "title": "Earth & Space Sciences - Basic Supporting Science (20 credits): MATH 124, MATH 125 or equivalent; PHYS 114/PHYS 117 or PHYS 121; CHEM 142. (Students pursuing the ESS physics option must take PHYS 121.)",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 64,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1143,7 +2102,7 @@
       "title": "Earth & Space Sciences - Basic Supporting Science (20 credits): MATH 124, MATH 125 or equivalent; PHYS 114/PHYS 117 or PHYS 121; CHEM 142. (Students pursuing the ESS physics option must take PHYS 121.)",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 64,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1158,7 +2117,7 @@
       "title": "Economics",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
-      "sourceOnlyUwCourseCodeCount": 71,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1173,7 +2132,7 @@
       "title": "Economics - Students apply for the Data Science option at the time of application to the major. Non-option students in the general Bachelor of Science Economics major can petition to enroll in the Data Science option during the admissions rounds in autumn, winter, and spring quarters, and the decision is made based on course capacities.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
-      "sourceOnlyUwCourseCodeCount": 36,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1188,7 +2147,7 @@
       "title": "Economics - Students apply for the Data Science option at the time of application to the major. Non-option students in the general Bachelor of Science Economics major can petition to enroll in the Data Science option during the admissions rounds in autumn, winter, and spring quarters, and the decision is made based on course capacities.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
-      "sourceOnlyUwCourseCodeCount": 36,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1203,7 +2162,7 @@
       "title": "Education, Communities & Organizations",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf",
-      "sourceOnlyUwCourseCodeCount": 13,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1218,7 +2177,7 @@
       "title": "Education Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 168,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1233,7 +2192,7 @@
       "title": "Electrical & Computer Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 80,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1248,12 +2207,46 @@
       "title": "English - Creative Writing",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/English-136.html",
-      "sourceOnlyUwCourseCodeCount": 17,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-english-language-literature-and-culture",
+      "ownerKey": "uw-seattle-english-language-literature-and-culture::",
+      "planId": "uw-seattle-english-language-literature-and-culture",
+      "pathwayId": null,
+      "title": "English - Language, Literature & Culture",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-environmental-design-and-sustainability",
@@ -1263,7 +2256,7 @@
       "title": "Environmental Design & Sustainability",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 58,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1278,7 +2271,7 @@
       "title": "Environmental Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.ce.washington.edu/sites/default/files/pdfs/current/undergrad/uw-cee-bsenve-degree-sheet.pdf",
-      "sourceOnlyUwCourseCodeCount": 52,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1293,7 +2286,7 @@
       "title": "Environmental Public Health",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.deohs.washington.edu/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 43,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1308,7 +2301,7 @@
       "title": "Environmental Science & Terrestrial Resource Management",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/academic/sefs.html",
-      "sourceOnlyUwCourseCodeCount": 54,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1323,7 +2316,7 @@
       "title": "Environmental Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/ProgramontheEnvironment-1070.html",
-      "sourceOnlyUwCourseCodeCount": 123,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1338,7 +2331,7 @@
       "title": "Ethnomusicology, B.A.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Music-217.html",
-      "sourceOnlyUwCourseCodeCount": 33,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1353,12 +2346,46 @@
       "title": "European Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-      "sourceOnlyUwCourseCodeCount": 5,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-finnish",
+      "ownerKey": "uw-seattle-finnish::",
+      "planId": "uw-seattle-finnish",
+      "pathwayId": null,
+      "title": "Finnish",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-food-systems-nutrition-and-health",
@@ -1368,7 +2395,7 @@
       "title": "Food Systems, Nutrition, & Health",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/",
-      "sourceOnlyUwCourseCodeCount": 94,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1383,7 +2410,7 @@
       "title": "French",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html",
-      "sourceOnlyUwCourseCodeCount": 29,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1398,7 +2425,7 @@
       "title": "Gender, Women & Sexuality Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Gender%2CWomen%2CandSexualityStudies-298.html",
-      "sourceOnlyUwCourseCodeCount": 15,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1413,7 +2440,7 @@
       "title": "Geography",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1428,7 +2455,7 @@
       "title": "Geography - Cities, Citizenship, and Migration: Why do people move, and where do they go? What are the constraints and opportunities for migrants as they settle and integrate in new cities and new nations? How are cities formed and what are the forces that impact their economic and cultural development? The courses in this track focus on themes of urbanization and human movement, emphasizing the importance of labor and housing, as well as cultural processes and historical forms of discrimination that shape where people live and work. Students in this track develop an understanding of the intersections of power and place as they pertain to migration and immigrant life, citizenship and belonging, and the production of urban space.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
-      "sourceOnlyUwCourseCodeCount": 7,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1443,12 +2470,46 @@
       "title": "Geography - Cities, Citizenship, and Migration: Why do people move, and where do they go? What are the constraints and opportunities for migrants as they settle and integrate in new cities and new nations? How are cities formed and what are the forces that impact their economic and cultural development? The courses in this track focus on themes of urbanization and human movement, emphasizing the importance of labor and housing, as well as cultural processes and historical forms of discrimination that shape where people live and work. Students in this track develop an understanding of the intersections of power and place as they pertain to migration and immigrant life, citizenship and belonging, and the production of urban space.",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
-      "sourceOnlyUwCourseCodeCount": 7,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-german",
+      "ownerKey": "uw-seattle-german::",
+      "planId": "uw-seattle-german",
+      "pathwayId": null,
+      "title": "German",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-greek",
@@ -1458,12 +2519,46 @@
       "title": "Greek",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://classics.washington.edu/ba-greek",
-      "sourceOnlyUwCourseCodeCount": 12,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-guitar-b-m",
+      "ownerKey": "uw-seattle-guitar-b-m::",
+      "planId": "uw-seattle-guitar-b-m",
+      "pathwayId": null,
+      "title": "Guitar, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-history",
@@ -1473,7 +2568,7 @@
       "title": "History",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://history.washington.edu/major",
-      "sourceOnlyUwCourseCodeCount": 223,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1488,7 +2583,7 @@
       "title": "History & Philosophy of Science",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
-      "sourceOnlyUwCourseCodeCount": 40,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1503,12 +2598,46 @@
       "title": "Human Centered Design & Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.hcde.washington.edu/bs/requirements/2024",
-      "sourceOnlyUwCourseCodeCount": 85,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-individualized-studies",
+      "ownerKey": "uw-seattle-individualized-studies::",
+      "planId": "uw-seattle-individualized-studies",
+      "pathwayId": null,
+      "title": "Individualized Studies",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-industrial-systems-engineering",
@@ -1518,7 +2647,7 @@
       "title": "Industrial & Systems Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
-      "sourceOnlyUwCourseCodeCount": 37,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1533,7 +2662,7 @@
       "title": "Informatics",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 30,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1548,7 +2677,7 @@
       "title": "International Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-      "sourceOnlyUwCourseCodeCount": 68,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1563,7 +2692,7 @@
       "title": "Italian",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html#program-UG-ITAL-MAJOR",
-      "sourceOnlyUwCourseCodeCount": 29,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1578,12 +2707,46 @@
       "title": "Japanese",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://asian.washington.edu/ba-japanese",
-      "sourceOnlyUwCourseCodeCount": 59,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-jazz-studies-b-m",
+      "ownerKey": "uw-seattle-jazz-studies-b-m::",
+      "planId": "uw-seattle-jazz-studies-b-m",
+      "pathwayId": null,
+      "title": "Jazz Studies, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-jewish-studies",
@@ -1593,7 +2756,7 @@
       "title": "Jewish Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-      "sourceOnlyUwCourseCodeCount": 21,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1608,7 +2771,7 @@
       "title": "Korean",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://asian.washington.edu/ba-korean",
-      "sourceOnlyUwCourseCodeCount": 30,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1623,7 +2786,7 @@
       "title": "Landscape Architecture",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 58,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1638,7 +2801,7 @@
       "title": "Latin",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://classics.washington.edu/ba-latin",
-      "sourceOnlyUwCourseCodeCount": 12,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1653,7 +2816,7 @@
       "title": "Latin American & Caribbean Studies",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-      "sourceOnlyUwCourseCodeCount": 21,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1668,12 +2831,46 @@
       "title": "Law, Societies & Justice",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
-      "sourceOnlyUwCourseCodeCount": 76,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-linguistics",
+      "ownerKey": "uw-seattle-linguistics::",
+      "planId": "uw-seattle-linguistics",
+      "pathwayId": null,
+      "title": "Linguistics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-marine-biology",
@@ -1683,7 +2880,7 @@
       "title": "Marine Biology",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
-      "sourceOnlyUwCourseCodeCount": 45,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1698,12 +2895,46 @@
       "title": "Materials Science & Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://mse.washington.edu/current/undergrad/courses",
-      "sourceOnlyUwCourseCodeCount": 57,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-mathematics",
+      "ownerKey": "uw-seattle-mathematics::",
+      "planId": "uw-seattle-mathematics",
+      "pathwayId": null,
+      "title": "Mathematics",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-mechanical-engineering",
@@ -1713,12 +2944,46 @@
       "title": "Mechanical Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.me.washington.edu/students/ug/requirements",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-medical-laboratory-science",
+      "ownerKey": "uw-seattle-medical-laboratory-science::",
+      "planId": "uw-seattle-medical-laboratory-science",
+      "pathwayId": null,
+      "title": "Medical Laboratory Science",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-microbiology",
@@ -1728,7 +2993,7 @@
       "title": "Microbiology",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf",
-      "sourceOnlyUwCourseCodeCount": 37,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1743,12 +3008,114 @@
       "title": "Middle Eastern Languages & Cultures",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html",
-      "sourceOnlyUwCourseCodeCount": 35,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-music-b-a",
+      "ownerKey": "uw-seattle-music-b-a::",
+      "planId": "uw-seattle-music-b-a",
+      "pathwayId": null,
+      "title": "Music, B.A.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-seattle-music-composition-b-m",
+      "ownerKey": "uw-seattle-music-composition-b-m::",
+      "planId": "uw-seattle-music-composition-b-m",
+      "pathwayId": null,
+      "title": "Music Composition, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-seattle-music-education-b-m",
+      "ownerKey": "uw-seattle-music-education-b-m::",
+      "planId": "uw-seattle-music-education-b-m",
+      "pathwayId": null,
+      "title": "Music Education, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-neuroscience",
@@ -1758,7 +3125,7 @@
       "title": "Neuroscience",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://sites.uw.edu/neusci/about/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 33,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1773,7 +3140,7 @@
       "title": "Norwegian",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://scandinavian.washington.edu/ba-norwegian",
-      "sourceOnlyUwCourseCodeCount": 15,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1788,7 +3155,7 @@
       "title": "Nursing",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://students.nursing.uw.edu/wp-content/uploads/2025/09/BSN-2025-Curriuculum-Grid.pdf",
-      "sourceOnlyUwCourseCodeCount": 26,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1803,12 +3170,114 @@
       "title": "Oceanography",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.ocean.washington.edu/file/Bachelor_of_Arts_in_Oceanography_Checklist",
-      "sourceOnlyUwCourseCodeCount": 9,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-orchestral-instruments-b-m",
+      "ownerKey": "uw-seattle-orchestral-instruments-b-m::",
+      "planId": "uw-seattle-orchestral-instruments-b-m",
+      "pathwayId": null,
+      "title": "Orchestral Instruments, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-seattle-organ-b-m",
+      "ownerKey": "uw-seattle-organ-b-m::",
+      "planId": "uw-seattle-organ-b-m",
+      "pathwayId": null,
+      "title": "Organ, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-seattle-percussion-performance-b-m",
+      "ownerKey": "uw-seattle-percussion-performance-b-m::",
+      "planId": "uw-seattle-percussion-performance-b-m",
+      "pathwayId": null,
+      "title": "Percussion Performance, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-philosophy",
@@ -1818,7 +3287,7 @@
       "title": "Philosophy",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
-      "sourceOnlyUwCourseCodeCount": 74,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1833,12 +3302,80 @@
       "title": "Physics",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 50,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-piano-b-m",
+      "ownerKey": "uw-seattle-piano-b-m::",
+      "planId": "uw-seattle-piano-b-m",
+      "pathwayId": null,
+      "title": "Piano, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-seattle-political-science",
+      "ownerKey": "uw-seattle-political-science::",
+      "planId": "uw-seattle-political-science",
+      "pathwayId": null,
+      "title": "Political Science",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-psychology",
@@ -1848,7 +3385,7 @@
       "title": "Psychology",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
-      "sourceOnlyUwCourseCodeCount": 41,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1863,7 +3400,7 @@
       "title": "Psychology - Ba Route",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
-      "sourceOnlyUwCourseCodeCount": 41,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1878,7 +3415,7 @@
       "title": "Psychology - Bs Route",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
-      "sourceOnlyUwCourseCodeCount": 41,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1893,7 +3430,7 @@
       "title": "Public Health - Global Health",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1908,7 +3445,7 @@
       "title": "Public Health - Global Health - [Page 1] PUBLIC HEALTH - GLOBAL HEALTH MAJOR Public Health-Global Health (PH-GH) is a school-wide liberal education major , leading to a Bachelor of Arts or Bachelor of Science, which uses public health questions, concepts and tools to help students develop competencies in assessment & measurement, communication, environment, ethics & social justice, natural science, population health, policy & politics, and social science with particular emphasis on collaboration and critical thinking across these domains. Graduates move on to a range of career and education options in public health, health professions, health sciences, and law, as well as business, economics, education, and social and behavioral sciences. Admission to this major is capacity-constrained and offered twice a year for autumn and winter quarters. Applications are evaluated with a holistic approach; considering overall academic record, grades in relevant coursework selection of and preparation for the BA or BS, ability to make satisfactory progress towards degree, and potential contributions to the diversity of the cohort. Upper Divison Admission Complete the following by the deadline to be considered: 1. Min. 60 college credits 2. Min. 2.5 Cumulative GPA 3. Min. grade of 2.0 in 5 credits of English composition 4. Min. grade of 2.5 in one intro public health course from the following: ENV H 111, EPI 201, EPI 220, G H 101, HSERV 100, NUTR 200, PHG 200 or one 5-credit course from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, SOC 5. For BA path students, min. grade of 2.5 in one natural science. Refer to back. 6. For BS path students, min. average grade of 2.5 in at least two courses of the same year-long sequence of biology or chemistry. Refer to PH-GH prerequisites website for alternative sequences. Bachelors of Arts (BA): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing sociocultural aspects. Bachelors of Science (BS): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing the natural sciences. CONTACT Hans Rosling Center for Population Health phgh@uw.edu | 206-221-4561 https://sph.washington.edu/phgh/advising ADMISSION Degree options are available for students in the major who seek more directed discipline competencies. > Global Health (BA Option; BS Option) Focuses on major challenges and opportunities in global health, discussing determinants of global health and justice-based approaches to promoting health of vulnerable peoples worldwide. > Health Education & Promotion (BA Option) Explores the development of strategies to improve health knowledge, attitudes, skills and behaviors. Aligns with competencies required for the Certified Health Education Specialist (CHES) credential examination. > Nutritional Sciences (BS Option) Prepares students for potential graduate studies in nutritional sciences, including programs that lead to a Registered Dietitian credential. In addition to major requirements outlined on the back page, students complete general education requirements for the School of Public Health. Satisfactory grades earned during Extraordinary Circumstances Quarters count toward admissions and degree requirements. Students who enter the major through upper division admission apply when they are graduating within the next 2 years. AUT 2024 Degree Requirements Effective AUT 2024 (Purple Curriculum) DEGREE REQUIREMENTS PH-GH PATHWAYS PATHWAY OPTIONS SCAN TO APPLY",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1923,7 +3460,7 @@
       "title": "Public Health - Global Health - [Page 1] PUBLIC HEALTH - GLOBAL HEALTH MAJOR Public Health-Global Health (PH-GH) is a school-wide liberal education major , leading to a Bachelor of Arts or Bachelor of Science, which uses public health questions, concepts and tools to help students develop competencies in assessment & measurement, communication, environment, ethics & social justice, natural science, population health, policy & politics, and social science with particular emphasis on collaboration and critical thinking across these domains. Graduates move on to a range of career and education options in public health, health professions, health sciences, and law, as well as business, economics, education, and social and behavioral sciences. Admission to this major is capacity-constrained and offered twice a year for autumn and winter quarters. Applications are evaluated with a holistic approach; considering overall academic record, grades in relevant coursework selection of and preparation for the BA or BS, ability to make satisfactory progress towards degree, and potential contributions to the diversity of the cohort. Upper Divison Admission Complete the following by the deadline to be considered: 1. Min. 60 college credits 2. Min. 2.5 Cumulative GPA 3. Min. grade of 2.0 in 5 credits of English composition 4. Min. grade of 2.5 in one intro public health course from the following: ENV H 111, EPI 201, EPI 220, G H 101, HSERV 100, NUTR 200, PHG 200 or one 5-credit course from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, SOC 5. For BA path students, min. grade of 2.5 in one natural science. Refer to back. 6. For BS path students, min. average grade of 2.5 in at least two courses of the same year-long sequence of biology or chemistry. Refer to PH-GH prerequisites website for alternative sequences. Bachelors of Arts (BA): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing sociocultural aspects. Bachelors of Science (BS): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing the natural sciences. CONTACT Hans Rosling Center for Population Health phgh@uw.edu | 206-221-4561 https://sph.washington.edu/phgh/advising ADMISSION Degree options are available for students in the major who seek more directed discipline competencies. > Global Health (BA Option; BS Option) Focuses on major challenges and opportunities in global health, discussing determinants of global health and justice-based approaches to promoting health of vulnerable peoples worldwide. > Health Education & Promotion (BA Option) Explores the development of strategies to improve health knowledge, attitudes, skills and behaviors. Aligns with competencies required for the Certified Health Education Specialist (CHES) credential examination. > Nutritional Sciences (BS Option) Prepares students for potential graduate studies in nutritional sciences, including programs that lead to a Registered Dietitian credential. In addition to major requirements outlined on the back page, students complete general education requirements for the School of Public Health. Satisfactory grades earned during Extraordinary Circumstances Quarters count toward admissions and degree requirements. Students who enter the major through upper division admission apply when they are graduating within the next 2 years. AUT 2024 Degree Requirements Effective AUT 2024 (Purple Curriculum) DEGREE REQUIREMENTS PH-GH PATHWAYS PATHWAY OPTIONS SCAN TO APPLY",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1938,7 +3475,7 @@
       "title": "Public Health - Global Health - [Page 1] PUBLIC HEALTH - GLOBAL HEALTH MAJOR Public Health-Global Health (PH-GH) is a school-wide liberal education major , leading to a Bachelor of Arts or Bachelor of Science, which uses public health questions, concepts and tools to help students develop competencies in assessment & measurement, communication, environment, ethics & social justice, natural science, population health, policy & politics, and social science with particular emphasis on collaboration and critical thinking across these domains. Graduates move on to a range of career and education options in public health, health professions, health sciences, and law, as well as business, economics, education, and social and behavioral sciences. Admission to this major is capacity-constrained and offered twice a year for autumn and winter quarters. Applications are evaluated with a holistic approach; considering overall academic record, grades in relevant coursework selection of and preparation for the BA or BS, ability to make satisfactory progress towards degree, and potential contributions to the diversity of the cohort. Upper Divison Admission Complete the following by the deadline to be considered: 1. Min. 60 college credits 2. Min. 2.5 Cumulative GPA 3. Min. grade of 2.0 in 5 credits of English composition 4. Min. grade of 2.5 in one intro public health course from the following: ENV H 111, EPI 201, EPI 220, G H 101, HSERV 100, NUTR 200, PHG 200 or one 5-credit course from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, SOC 5. For BA path students, min. grade of 2.5 in one natural science. Refer to back. 6. For BS path students, min. average grade of 2.5 in at least two courses of the same year-long sequence of biology or chemistry. Refer to PH-GH prerequisites website for alternative sequences. Bachelors of Arts (BA): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing sociocultural aspects. Bachelors of Science (BS): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing the natural sciences. CONTACT Hans Rosling Center for Population Health phgh@uw.edu | 206-221-4561 https://sph.washington.edu/phgh/advising ADMISSION Degree options are available for students in the major who seek more directed discipline competencies. > Global Health (BA Option; BS Option) Focuses on major challenges and opportunities in global health, discussing determinants of global health and justice-based approaches to promoting health of vulnerable peoples worldwide. > Health Education & Promotion (BA Option) Explores the development of strategies to improve health knowledge, attitudes, skills and behaviors. Aligns with competencies required for the Certified Health Education Specialist (CHES) credential examination. > Nutritional Sciences (BS Option) Prepares students for potential graduate studies in nutritional sciences, including programs that lead to a Registered Dietitian credential. In addition to major requirements outlined on the back page, students complete general education requirements for the School of Public Health. Satisfactory grades earned during Extraordinary Circumstances Quarters count toward admissions and degree requirements. Students who enter the major through upper division admission apply when they are graduating within the next 2 years. AUT 2024 Degree Requirements Effective AUT 2024 (Purple Curriculum) DEGREE REQUIREMENTS PH-GH PATHWAYS PATHWAY OPTIONS SCAN TO APPLY",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1953,7 +3490,7 @@
       "title": "Public Health - Global Health - [Page 1] PUBLIC HEALTH - GLOBAL HEALTH MAJOR Public Health-Global Health (PH-GH) is a school-wide liberal education major , leading to a Bachelor of Arts or Bachelor of Science, which uses public health questions, concepts and tools to help students develop competencies in assessment & measurement, communication, environment, ethics & social justice, natural science, population health, policy & politics, and social science with particular emphasis on collaboration and critical thinking across these domains. Graduates move on to a range of career and education options in public health, health professions, health sciences, and law, as well as business, economics, education, and social and behavioral sciences. Admission to this major is capacity-constrained and offered twice a year for autumn and winter quarters. Applications are evaluated with a holistic approach; considering overall academic record, grades in relevant coursework selection of and preparation for the BA or BS, ability to make satisfactory progress towards degree, and potential contributions to the diversity of the cohort. Upper Divison Admission Complete the following by the deadline to be considered: 1. Min. 60 college credits 2. Min. 2.5 Cumulative GPA 3. Min. grade of 2.0 in 5 credits of English composition 4. Min. grade of 2.5 in one intro public health course from the following: ENV H 111, EPI 201, EPI 220, G H 101, HSERV 100, NUTR 200, PHG 200 or one 5-credit course from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, SOC 5. For BA path students, min. grade of 2.5 in one natural science. Refer to back. 6. For BS path students, min. average grade of 2.5 in at least two courses of the same year-long sequence of biology or chemistry. Refer to PH-GH prerequisites website for alternative sequences. Bachelors of Arts (BA): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing sociocultural aspects. Bachelors of Science (BS): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing the natural sciences. CONTACT Hans Rosling Center for Population Health phgh@uw.edu | 206-221-4561 https://sph.washington.edu/phgh/advising ADMISSION Degree options are available for students in the major who seek more directed discipline competencies. > Global Health (BA Option; BS Option) Focuses on major challenges and opportunities in global health, discussing determinants of global health and justice-based approaches to promoting health of vulnerable peoples worldwide. > Health Education & Promotion (BA Option) Explores the development of strategies to improve health knowledge, attitudes, skills and behaviors. Aligns with competencies required for the Certified Health Education Specialist (CHES) credential examination. > Nutritional Sciences (BS Option) Prepares students for potential graduate studies in nutritional sciences, including programs that lead to a Registered Dietitian credential. In addition to major requirements outlined on the back page, students complete general education requirements for the School of Public Health. Satisfactory grades earned during Extraordinary Circumstances Quarters count toward admissions and degree requirements. Students who enter the major through upper division admission apply when they are graduating within the next 2 years. AUT 2024 Degree Requirements Effective AUT 2024 (Purple Curriculum) DEGREE REQUIREMENTS PH-GH PATHWAYS PATHWAY OPTIONS SCAN TO APPLY",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1968,7 +3505,7 @@
       "title": "Public Service & Policy",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#program-UG-PSP-MAJOR",
-      "sourceOnlyUwCourseCodeCount": 37,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1983,12 +3520,46 @@
       "title": "Real Estate",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/RealEstate-54.html",
-      "sourceOnlyUwCourseCodeCount": 19,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-slavic-languages-and-literatures",
+      "ownerKey": "uw-seattle-slavic-languages-and-literatures::",
+      "planId": "uw-seattle-slavic-languages-and-literatures",
+      "pathwayId": null,
+      "title": "Slavic Languages & Literatures",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-social-welfare",
@@ -1998,7 +3569,7 @@
       "title": "Social Welfare",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/SocialWork-779.html",
-      "sourceOnlyUwCourseCodeCount": 36,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2013,12 +3584,46 @@
       "title": "Sociology",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Sociology-293.html",
-      "sourceOnlyUwCourseCodeCount": 14,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-south-asian-languages-and-cultures",
+      "ownerKey": "uw-seattle-south-asian-languages-and-cultures::",
+      "planId": "uw-seattle-south-asian-languages-and-cultures",
+      "pathwayId": null,
+      "title": "South Asian Languages & Cultures",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-spanish",
@@ -2028,7 +3633,7 @@
       "title": "Spanish",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://spanport.washington.edu/spanish-major-requirements",
-      "sourceOnlyUwCourseCodeCount": 12,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2043,7 +3648,7 @@
       "title": "Speech & Hearing Sciences",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
-      "sourceOnlyUwCourseCodeCount": 55,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2058,7 +3663,7 @@
       "title": "Statistics",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-      "sourceOnlyUwCourseCodeCount": 80,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2073,7 +3678,7 @@
       "title": "Statistics - a detailed plan indicating which of the options they would like to pursue to obtain Departmental honors. In particular, according to the option chosen, the following will be needed:",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-      "sourceOnlyUwCourseCodeCount": 55,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2088,7 +3693,7 @@
       "title": "Statistics - a detailed plan indicating which of the options they would like to pursue to obtain Departmental honors. In particular, according to the option chosen, the following will be needed:",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-      "sourceOnlyUwCourseCodeCount": 55,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2103,7 +3708,7 @@
       "title": "Statistics - a detailed plan indicating which of the options they would like to pursue to obtain Departmental honors. In particular, according to the option chosen, the following will be needed:",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-      "sourceOnlyUwCourseCodeCount": 55,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2118,12 +3723,114 @@
       "title": "Sustainable Bioresource Systems Engineering",
       "campusId": "uw-seattle",
       "primarySourceUrl": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
-      "sourceOnlyUwCourseCodeCount": 68,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-seattle-swedish",
+      "ownerKey": "uw-seattle-swedish::",
+      "planId": "uw-seattle-swedish",
+      "pathwayId": null,
+      "title": "Swedish",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-seattle-voice-b-m",
+      "ownerKey": "uw-seattle-voice-b-m::",
+      "planId": "uw-seattle-voice-b-m",
+      "pathwayId": null,
+      "title": "Voice, B.M.",
+      "campusId": "uw-seattle",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-arts-media-culture",
+      "ownerKey": "uw-tacoma-arts-media-culture::",
+      "planId": "uw-tacoma-arts-media-culture",
+      "pathwayId": null,
+      "title": "Arts, Media and Culture (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-bachelor-of-arts-in-business-administration",
@@ -2133,7 +3840,7 @@
       "title": "Bachelor of Arts in Business Administration (BABA)",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 20,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2148,7 +3855,7 @@
       "title": "Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option.",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2163,7 +3870,7 @@
       "title": "Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option.",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2178,7 +3885,7 @@
       "title": "Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option.",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2193,7 +3900,7 @@
       "title": "Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option.",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2208,12 +3915,114 @@
       "title": "Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option.",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-biomedical-sciences",
+      "ownerKey": "uw-tacoma-biomedical-sciences::",
+      "planId": "uw-tacoma-biomedical-sciences",
+      "pathwayId": null,
+      "title": "Biomedical Sciences (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-civil-engineering",
+      "ownerKey": "uw-tacoma-civil-engineering::",
+      "planId": "uw-tacoma-civil-engineering",
+      "pathwayId": null,
+      "title": "Civil Engineering (BSCE)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-communications",
+      "ownerKey": "uw-tacoma-communications::",
+      "planId": "uw-tacoma-communications",
+      "pathwayId": null,
+      "title": "Communications (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-computer-engineering",
@@ -2223,12 +4032,80 @@
       "title": "Computer Engineering",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
-      "sourceOnlyUwCourseCodeCount": 139,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-computer-science-and-systems-ba",
+      "ownerKey": "uw-tacoma-computer-science-and-systems-ba::",
+      "planId": "uw-tacoma-computer-science-and-systems-ba",
+      "pathwayId": null,
+      "title": "Computer Science and Systems (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-computer-science-and-systems-bs",
+      "ownerKey": "uw-tacoma-computer-science-and-systems-bs::",
+      "planId": "uw-tacoma-computer-science-and-systems-bs",
+      "pathwayId": null,
+      "title": "Computer Science and Systems (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-criminal-justice",
@@ -2238,12 +4115,80 @@
       "title": "Criminal Justice (BA)",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
-      "sourceOnlyUwCourseCodeCount": 61,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-economics-and-policy-analysis",
+      "ownerKey": "uw-tacoma-economics-and-policy-analysis::",
+      "planId": "uw-tacoma-economics-and-policy-analysis",
+      "pathwayId": null,
+      "title": "Economics and Policy Analysis (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-education",
+      "ownerKey": "uw-tacoma-education::",
+      "planId": "uw-tacoma-education",
+      "pathwayId": null,
+      "title": "Education (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-electrical-engineering",
@@ -2253,12 +4198,216 @@
       "title": "Electrical Engineering",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
-      "sourceOnlyUwCourseCodeCount": 139,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-science",
+      "ownerKey": "uw-tacoma-environmental-science::",
+      "planId": "uw-tacoma-environmental-science",
+      "pathwayId": null,
+      "title": "Environmental Science (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-sustainability",
+      "ownerKey": "uw-tacoma-environmental-sustainability::",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": null,
+      "title": "Environmental Sustainability (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-ethnic-gender-and-labor-studies",
+      "ownerKey": "uw-tacoma-ethnic-gender-and-labor-studies::",
+      "planId": "uw-tacoma-ethnic-gender-and-labor-studies",
+      "pathwayId": null,
+      "title": "Ethnic, Gender and Labor Studies (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-history",
+      "ownerKey": "uw-tacoma-history::",
+      "planId": "uw-tacoma-history",
+      "pathwayId": null,
+      "title": "History (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-information-technology",
+      "ownerKey": "uw-tacoma-information-technology::",
+      "planId": "uw-tacoma-information-technology",
+      "pathwayId": null,
+      "title": "Information Technology (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences",
+      "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences::",
+      "planId": "uw-tacoma-interdisciplinary-arts-and-sciences",
+      "pathwayId": null,
+      "title": "Interdisciplinary Arts and Sciences (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
@@ -2268,7 +4417,7 @@
       "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA)",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-      "sourceOnlyUwCourseCodeCount": 9,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2283,12 +4432,46 @@
       "title": "Law and Policy (BA)",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
-      "sourceOnlyUwCourseCodeCount": 36,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-mathematics",
+      "ownerKey": "uw-tacoma-mathematics::",
+      "planId": "uw-tacoma-mathematics",
+      "pathwayId": null,
+      "title": "Mathematics (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-mechanical-engineering",
@@ -2298,12 +4481,80 @@
       "title": "Mechanical Engineering",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/me",
-      "sourceOnlyUwCourseCodeCount": 28,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-politics-philosophy-and-economics",
+      "ownerKey": "uw-tacoma-politics-philosophy-and-economics::",
+      "planId": "uw-tacoma-politics-philosophy-and-economics",
+      "pathwayId": null,
+      "title": "Politics, Philosophy and Economics (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-psychology",
+      "ownerKey": "uw-tacoma-psychology::",
+      "planId": "uw-tacoma-psychology",
+      "pathwayId": null,
+      "title": "Psychology (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-social-welfare",
@@ -2313,12 +4564,182 @@
       "title": "Social Welfare (BA)",
       "campusId": "uw-tacoma",
       "primarySourceUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
-      "sourceOnlyUwCourseCodeCount": 4,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
       },
       "issues": []
+    },
+    {
+      "ownerId": "uw-tacoma-spanish-language-and-cultures",
+      "ownerKey": "uw-tacoma-spanish-language-and-cultures::",
+      "planId": "uw-tacoma-spanish-language-and-cultures",
+      "pathwayId": null,
+      "title": "Spanish Language and Cultures (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-sustainable-urban-development",
+      "ownerKey": "uw-tacoma-sustainable-urban-development::",
+      "planId": "uw-tacoma-sustainable-urban-development",
+      "pathwayId": null,
+      "title": "Sustainable Urban Development (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-urban-design",
+      "ownerKey": "uw-tacoma-urban-design::",
+      "planId": "uw-tacoma-urban-design",
+      "pathwayId": null,
+      "title": "Urban Design (BS)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-urban-studies",
+      "ownerKey": "uw-tacoma-urban-studies::",
+      "planId": "uw-tacoma-urban-studies",
+      "pathwayId": null,
+      "title": "Urban Studies (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "ownerId": "uw-tacoma-writing-studies",
+      "ownerKey": "uw-tacoma-writing-studies::",
+      "planId": "uw-tacoma-writing-studies",
+      "pathwayId": null,
+      "title": "Writing Studies (BA)",
+      "campusId": "uw-tacoma",
+      "primarySourceUrl": null,
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 3,
+        "warning": 0
+      },
+      "issues": [
+        {
+          "severity": "error",
+          "code": "missing-parsed-source-block",
+          "message": "No parsed requirement source block was generated for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-primary-source",
+          "message": "No primary degree-requirements source URL is registered for this owner.",
+          "details": null
+        },
+        {
+          "severity": "error",
+          "code": "missing-source-manifest-entries",
+          "message": "No source manifest entries were found for this owner.",
+          "details": null
+        }
+      ]
     }
   ]
 }

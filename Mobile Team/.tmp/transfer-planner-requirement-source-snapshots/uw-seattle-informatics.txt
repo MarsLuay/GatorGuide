@@ -37,7 +37,6 @@ Admissions
 Advising & Support
 AI Certificate Information Session & Q&A
 AI for Organizations
-AI for Organizations certificate to launch in autumn
 All
 All students enrolled in the Informatics major are eligible to complete Departmental Honors in the program. Learn about the requirements.
 Alumni
@@ -150,6 +149,7 @@ Graduation
 Graduation | Information School | University of Washington
 Graduation Applications
 Grants & Awards
+Growing up in a small town in Eastern Washington, Diego Licea aspired to attend college and set his sights on the University of Washington.“I'd heard it was a challenging school to get into,” he said. “If it wasn't UW, I felt like...
 height="0" width="0" style="display:none;visibility:hidden">
 Highlights
 How our research drives progress and helps people
@@ -206,6 +206,7 @@ Informatics Experiential Learning
 Informatics Experiential Learning | Information School | University of Washington
 Informatics major requirements
 Informatics Minor
+Informatics student blends history, technology and service
 Informatics students are strongly encouraged to do one or more internships or independent studies.
 Informatics students help Google improve bug reporting
 Informatics students wrangle data for legal-aid organization
@@ -346,7 +347,6 @@ The latest news from our faculty and research staff
 The latest stories from our community
 The official UW Time Schedule shows course numbers, titles, descriptions, instructors, meeting days and times for each iSchool class.
 The School
-The University of Washington Information School is introducing a new graduate certificate geared toward professionals in organizations that are responding to the opportunities and challenges represented by artificial intelligence. The...
 Three or four months after you graduate your diploma will be sent to the permanent address on record in the MyUW website at the time of graduation. The name on the diploma will appear as it does on the MyUW website. Visit the UW Graduation, Commencement, and Diplomas website for more information.
 Thursday, May 22, 2025
 To earn a Bachelor of Science in Informatics, students must complete the following major requirements (effective Autumn 2023; see previous requirements ):
@@ -356,6 +356,7 @@ Toolkit
 Tools
 Transfer students: junior year course schedule example
 Transfer students: senior year course schedule example
+Tuesday, April 14, 2026
 Undergraduate major and minor
 United States of America
 University of Washington
@@ -371,7 +372,6 @@ Videos: Alumni at Work
 Watch : A breakdown of the courses you need to take to complete the Informatics major and a bachelor's degree at the University of Washington.
 Watermark
 We are committed to building an inclusive community
-Wednesday, April 1, 2026
 Wednesday, April 8, 2026
 Wednesday, May 28, 2025
 What's happening on campus and beyond

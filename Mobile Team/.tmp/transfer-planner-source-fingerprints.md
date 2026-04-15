@@ -1,16 +1,16 @@
 # Transfer Planner Source Fingerprints
 
-Generated: 2026-04-14T06:40:24.430Z
+Generated: 2026-04-15T04:26:52.169Z
 
-- Source snapshot generated: 2026-04-14T06:33:19.140Z
-- Requirement parse report generated: 2026-04-14T06:40:23.932Z
-- Source fingerprints: 249
+- Source snapshot generated: 2026-04-15T04:19:27.641Z
+- Requirement parse report generated: 2026-04-15T04:26:51.639Z
+- Source fingerprints: 320
 - Requirement-source fingerprints: 154
-- Changed source resource fingerprints: 13
-- Changed parsed requirement fingerprints: 31
-- Added source fingerprints: 0
+- Changed source resource fingerprints: 27
+- Changed parsed requirement fingerprints: 154
+- Added source fingerprints: 71
 - Added requirement fingerprints: 0
-- Removed source fingerprints: 1
+- Removed source fingerprints: 0
 - Removed requirement fingerprints: 0
 
 Source resource fingerprints track official URL metadata/body hashes.
@@ -20,199 +20,286 @@ Requirement-source fingerprints track parsed requirement facts separately, so co
 
 - https://aes.washington.edu/ba-american-ethnic-studies
   - owners: uw-seattle-american-ethnic-studies
-  - fingerprint: 36cd386c7fa9046a1b9bd3845b111d0767379e77a267a1ba1ed0a9e3870611e4
+  - fingerprint: f4ba14721910af0c50b02dc083fb20ef112e1df4107bea83027c74d77123e4b1
+- https://amath.washington.edu/undergraduate-major-applied-mathematics
+  - owners: uw-seattle-applied-mathematics
+  - fingerprint: 71f9c7bc6cb6114e907a3c91013bcea2f2a8737954026dd97d234d6874c695cc
+- https://asian.washington.edu/ba-asian-languages-cultures
+  - owners: uw-seattle-asian-languages-and-cultures
+  - fingerprint: 6a0a8a3aeabe6eb2f28d0814e98060576122427a0295b538fb5b2849a12776df
+- https://asian.washington.edu/ba-japanese
+  - owners: uw-seattle-japanese
+  - fingerprint: 6390b480ad6aa81dede138722715c0783fc67e7cf1256d1eabaf5393ab5fced0
+- https://asian.washington.edu/ba-korean
+  - owners: uw-seattle-korean
+  - fingerprint: 611a35eec3fcd2b8e44ef21508c5af18d9712e5aa0ae4adf0601983f2eda4627
+- https://astro.washington.edu/timeline-and-requirements
+  - owners: uw-seattle-astronomy
+  - fingerprint: 2d7865c2a0538b951c799a2aa01ee0e0deb7a0042c4882258adf019c0180bb49
+- https://catalog.greenriver.edu/
+  - owners: grc-catalog-2025-2026
+  - fingerprint: 00a85b92147b51a59d2e12b4dc6b5f06e0656b5054c1bcfb5ef8c43a9460226e
+- https://catalog.greenriver.edu/content.php?catoid=10&navoid=624
+  - owners: grc-course-descriptions-2025-2026
+  - fingerprint: d4f6f2f61c6cae42c1edaa1f54a012aebb6db8afd6fe2be97ccad9638c188e02
+- https://chem.washington.edu/ba-biochemistry
+  - owners: uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route, uw-seattle-biochemistry:pathway:ba-route, uw-seattle-biochemistry:pathway:bs-route
+  - fingerprint: 7db5acfde2fe37e3ce5413f412ae18024b8d0175a53ba72a7be1cd1f1d8f303e
 - https://chem.washington.edu/ba-chemistry
-  - owners: uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route, uw-seattle-chemistry:pathway:ba-route, uw-seattle-chemistry:pathway:bs-route
-  - fingerprint: 8a12b35cf8ab918c89384d42acf0dfac396f7a1bf07338131f6911165df6b26a
+  - owners: uw-seattle-chemistry, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route, uw-seattle-chemistry:pathway:ba-route, uw-seattle-chemistry:pathway:bs-route
+  - fingerprint: 2f05ade37d5ca3f380dab450e5adf7ab0a331d4106156469fa5b33a170e73ef8
+- https://classics.washington.edu/ba-greek
+  - owners: uw-seattle-greek
+  - fingerprint: 5d32d91ef2667d976f1c915eda87cadd34d68370e807c7c138b8a7c7c376522e
 - https://classics.washington.edu/ba-latin
   - owners: uw-seattle-latin
-  - fingerprint: 87f3dc3081b0a54efac62e7802880aa2598724e16cc467366873c91aeb0c8c55
+  - fingerprint: dcb3b258f1d4b4f0449e62894822c0cce29b749d6ce511e3d5188e55d6f069c2
+- https://disabilitystudies.washington.edu/DS_major
+  - owners: uw-seattle-disability-studies
+  - fingerprint: f11cdd1e466818a93802d12d9cdea71a9f8eb94a420862b9a34df5dc7828a81e
+- https://history.washington.edu/major
+  - owners: uw-seattle-history
+  - fingerprint: d5053c6fb66e2fac6bd04b59ec700ca8c36b038f4207f5d41b4404f484406e68
 - https://ischool.uw.edu/academics/informatics/curriculum
   - owners: uw-seattle-informatics
-  - fingerprint: 1dd1a96ee26aa45ba58ae6181b539c34f6c2cb226d005f6f0b2fd8cac91fd137
-- https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
-  - owners: uw-bothell-business-administration
-  - fingerprint: 013678dd707602e2175627428f53abaf390ea2e7c81eaf1a83163ccb589a593a
-- https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-  - owners: uw-bothell-economics
-  - fingerprint: 99de5479131f814f323dff649097b7c7324c706b7dd4c405a35733c15a2b5ed8
-- https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
-  - owners: uw-bothell-developmental-and-youth-studies
-  - fingerprint: fe67b0a8c859422586c21cf8ba90517b10eef5650d240ca1f2c482fa0058f709
-- https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements
-  - owners: uw-bothell-educational-studies-elementary-education
-  - fingerprint: 40dc00d30f4fba6a64b86b90b97720556988da114283b20a689b271b773afe24
+  - fingerprint: 3ac1afb58d8eafb3fff1fe3e733a33b63b0002b9cf68f11e169fb99b13e53e2e
+- https://lsj.washington.edu/lsj-gold-curriculum-requirements
+  - owners: uw-seattle-law-societies-and-justice
+  - fingerprint: ba2d0292953c2d7c4836cf0e28f5a38e67c52ade02f880ac3995b86069960b5a
+- https://phys.washington.edu/physics-bs-degree-requirements
+  - owners: uw-seattle-physics
+  - fingerprint: a489110436aa5947352accc34b61c70d8caae1523d7b934c871525cee464ab8c
+- https://scandinavian.washington.edu/ba-norwegian
+  - owners: uw-seattle-norwegian
+  - fingerprint: 835ba60f41a5108fc26015d51fb894ab771b0eb79311bd58109033bebcea7018
+- https://spanport.washington.edu/spanish-major-requirements
+  - owners: uw-seattle-spanish
+  - fingerprint: 942ed4c6884de958726e8fd2d0038804347e2e32c036e789d5b7d8760c002578
+- https://www.deohs.washington.edu/degree-requirements
+  - owners: uw-seattle-environmental-public-health
+  - fingerprint: 95c36906fa5087aa5f1e759ba097edfb9434902bfcaf3043b092f2ea47112122
+- https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio
+  - owners: uw-bothell-interdisciplinary-studies-individualized-study
+  - fingerprint: a7655a1fba7cc191f006753799faba7a6329d2c79260c09c9614ff858a86c183
 - https://www.uwb.edu/nhs/undergraduate/health-studies/overview
   - owners: uw-bothell-health-studies
-  - fingerprint: 4d9672d3c65c5aeb0eb82cff6d59a27d57b37373e63e014bbd3b64efef12e82f
-- https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview
-  - owners: uw-bothell-nursing-first-year-rn-to-bsn, uw-bothell-nursing-rn-to-bsn
-  - fingerprint: ca347282d05199be06940031c7d04f2eda9bc41e76b05bdd310c76175ef5a4a4
-- https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
-  - owners: uw-bothell-chemistry-ba, uw-bothell-chemistry-biochemistry, uw-bothell-chemistry-bs
-  - fingerprint: 1c5905376442bfe852bd309294a061729597e8280e2c33044d5af68be2adfcc9
-- https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum
-  - owners: uw-bothell-electrical-engineering
-  - fingerprint: 6a5a08c8b6f7e5c37976566621fce7c70acad2179fcc2cdf2977a0168d804e3a
+  - fingerprint: f803291d435273e95c4f6090437f57088a0e4b990ea1cd838b8bca6ad4f47ecb
+- https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
+  - owners: uw-bothell-applied-computing
+  - fingerprint: c1d96a9ae15e2150f33f5647b3607b68d6f70226bbb8dad1cc117a053d0f72ba
+- https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum
+  - owners: uw-bothell-computer-engineering
+  - fingerprint: 0156385453b2f2cf2130e3ac821c302c613201f2627471f00428930d54717bb2
+- https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
+  - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
+  - fingerprint: 5b6232650fd4f02320a9efa0585641035a016e356b38351a37bc53cac5190399
 - https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum
   - owners: uw-bothell-mathematics
   - fingerprint: 665fa0f4ca96fad24f4d9a709b971870d74b8bcdea7f0376bd6222b6e7834393
+- https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
+  - owners: uw-bothell-physics-ba, uw-bothell-physics-bs
+  - fingerprint: 3e4cd14772a61fa3eb1897fbcbd47e8d54103cae1910f49d4a675b8e38600c2c
 
 ## Changed Parsed Requirement Facts
 
 - Aeronautics & Astronautics (uw-seattle-aeronautics-astronautics)
   - source: https://www.aa.washington.edu/students/academics/bsaae
-  - fingerprint: 99f5bb7fce0ba945069d77c328bd8b0c340fcf32f817d14b56da54e9f2bf8c85
-  - source-only UW course codes: 37
+  - fingerprint: 97121c8b18c92d7965ad978c96a74f6d280dbaabcee8d72748706bebe942f363
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- American Ethnic Studies (uw-seattle-american-ethnic-studies)
+  - source: https://aes.washington.edu/ba-american-ethnic-studies
+  - fingerprint: b64be7895ab4985e883daba753eb32eb1be180ce64ddc1445623efe8127a256d
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 42
+- Anthropology (uw-seattle-anthropology)
+  - source: https://www.washington.edu/students/gencat/program/S/Anthropology-102.html
+  - fingerprint: 20ccca5d0ad0f251c64a502fef2d740ded4f2090261c7af6e71cfe78e3f52265
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 4
+- Applied & Computational Mathematical Sciences (ACMS) (uw-seattle-applied-and-computational-mathematical-sciences)
+  - source: https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html
+  - fingerprint: aeba87af8324e19baf4b2cbab525b386b5f477a1292424039732517596147622
+  - source-only UW course codes: 0
   - structured-only UW course codes: 0
 - Applied Computing (BA) (uw-bothell-applied-computing)
   - source: https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
-  - fingerprint: 884b455144920a4a59684cb356c19790208a011d1b0bacccc6bcf67c43a921f9
-  - source-only UW course codes: 139
+  - fingerprint: 03dea1fd69a19a2c54f9bcb967ca1b59c549a04a04f9fd8290a61430a7cf5122
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 7
+- Applied Mathematics (uw-seattle-applied-mathematics)
+  - source: https://amath.washington.edu/undergraduate-major-applied-mathematics
+  - fingerprint: 1783c0831940286bcf008cefd65c48984c8ed24152e2b6b7029ef3dd9e2084a2
+  - source-only UW course codes: 0
   - structured-only UW course codes: 0
+- Aquatic Conservation & Ecology (uw-seattle-aquatic-conservation-and-ecology)
+  - source: https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/
+  - fingerprint: 942ed688036a64afb24ffc54b87256352c46f9f9d3f066991f8204f9a4130c5f
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Architectural Design (uw-seattle-architectural-design)
+  - source: https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/03/BA-Arch-Design_2024_.pdf
+  - fingerprint: 98655306b84a635354b14e594260ed24ab4e5522f65407e2f68d9f81ae83372a
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Architectural Studies (uw-seattle-architectural-studies)
+  - source: https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf
+  - fingerprint: ea2421ef5d3cb5689f4ef3abc12b7a511930b46c6b19cd151a65b1ee091c40a0
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Art (uw-seattle-art)
+  - source: https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html
+  - fingerprint: c6d15d193cb9694b9be6908ad829db057652c0fb03349457aeef67713c3172fc
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 15
+- Art History (uw-seattle-art-history)
+  - source: https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html
+  - fingerprint: c6d15d193cb9694b9be6908ad829db057652c0fb03349457aeef67713c3172fc
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 15
+- Asian Languages & Cultures (uw-seattle-asian-languages-and-cultures)
+  - source: https://asian.washington.edu/ba-asian-languages-cultures
+  - fingerprint: 6331f178f2d0caa3c7421b06574babf60302acffc187e9c9eb8c9743d1b84ee5
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Astronomy (uw-seattle-astronomy)
+  - source: https://astro.washington.edu/timeline-and-requirements
+  - fingerprint: 12d4bbcb2e895a0cb2ec3249e5b5d88137a8bb6488b25e953e0bbc755c983696
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Atmospheric and Climate Science (uw-seattle-atmospheric-and-climate-science)
+  - source: https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html
+  - fingerprint: 74a92a1da177ac58ce5de400bb1b4b8073615207f226e72e0faf85295a2d967a
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Atmospheric and Climate Science - Minimum 85-98 credits, depending on credential/option (uw-seattle-atmospheric-and-climate-science:pathway:chemistry-option)
+  - source: https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html
+  - fingerprint: 9e050bf4fcaf9f068d416dd2744f802a16b452fcf2cc0403b97c9edfdf39b45e
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Atmospheric and Climate Science - Minimum 85-98 credits, depending on credential/option (uw-seattle-atmospheric-and-climate-science:pathway:climate-option)
+  - source: https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html
+  - fingerprint: 9e050bf4fcaf9f068d416dd2744f802a16b452fcf2cc0403b97c9edfdf39b45e
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Atmospheric and Climate Science - Minimum 85-98 credits, depending on credential/option (uw-seattle-atmospheric-and-climate-science:pathway:data-science-option)
+  - source: https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html
+  - fingerprint: 9e050bf4fcaf9f068d416dd2744f802a16b452fcf2cc0403b97c9edfdf39b45e
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Atmospheric and Climate Science - Minimum 85-98 credits, depending on credential/option (uw-seattle-atmospheric-and-climate-science:pathway:meteorology-option)
+  - source: https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html
+  - fingerprint: 9e050bf4fcaf9f068d416dd2744f802a16b452fcf2cc0403b97c9edfdf39b45e
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Bachelor of Arts in Business Administration (BABA) (uw-tacoma-bachelor-of-arts-in-business-administration)
+  - source: https://www.tacoma.uw.edu/business/design-courses-baba
+  - fingerprint: ad3b7ad0e90ae895abbb127b1ca25b2fd2ae70b16a7a5b04f694405bff6471d1
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option. (uw-tacoma-bachelor-of-arts-in-business-administration:pathway:accounting-option)
+  - source: https://www.tacoma.uw.edu/business/design-courses-baba
+  - fingerprint: a031b762a5dfaa79ce76d457562ebd1a750aabc9d70d07876f66297b07bfb7e1
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option. (uw-tacoma-bachelor-of-arts-in-business-administration:pathway:finance-option)
+  - source: https://www.tacoma.uw.edu/business/design-courses-baba
+  - fingerprint: a031b762a5dfaa79ce76d457562ebd1a750aabc9d70d07876f66297b07bfb7e1
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option. (uw-tacoma-bachelor-of-arts-in-business-administration:pathway:general-business-option)
+  - source: https://www.tacoma.uw.edu/business/design-courses-baba
+  - fingerprint: a031b762a5dfaa79ce76d457562ebd1a750aabc9d70d07876f66297b07bfb7e1
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option. (uw-tacoma-bachelor-of-arts-in-business-administration:pathway:management-option)
+  - source: https://www.tacoma.uw.edu/business/design-courses-baba
+  - fingerprint: a031b762a5dfaa79ce76d457562ebd1a750aabc9d70d07876f66297b07bfb7e1
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Bachelor of Arts in Business Administration (BABA) - 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option. (uw-tacoma-bachelor-of-arts-in-business-administration:pathway:marketing-option)
+  - source: https://www.tacoma.uw.edu/business/design-courses-baba
+  - fingerprint: a031b762a5dfaa79ce76d457562ebd1a750aabc9d70d07876f66297b07bfb7e1
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Biochemistry (uw-seattle-biochemistry)
+  - source: https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf
+  - fingerprint: c08cb5fcd8aec98fa0914eca3d85ba62731b37fd12af773b5b9e563633a1eed4
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
 - Biochemistry - Ba Route (uw-seattle-biochemistry:pathway:ba-route)
   - source: https://chem.washington.edu/ba-biochemistry
-  - fingerprint: 052f8fe52007c0ebf04487d6deb6943d76b392bf0b31dc5927e67c7f5c761fa7
-  - source-only UW course codes: 131
-  - structured-only UW course codes: 0
+  - fingerprint: 4b7e0935b53cde59627fc922fdf33db13154fc46ad5554120251b38393506d32
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
 - Biochemistry - Bs Route (uw-seattle-biochemistry:pathway:bs-route)
   - source: https://chem.washington.edu/ba-biochemistry
-  - fingerprint: 052f8fe52007c0ebf04487d6deb6943d76b392bf0b31dc5927e67c7f5c761fa7
-  - source-only UW course codes: 131
-  - structured-only UW course codes: 0
+  - fingerprint: 4b7e0935b53cde59627fc922fdf33db13154fc46ad5554120251b38393506d32
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
 - Bioengineering (uw-seattle-bioengineering)
   - source: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-  - fingerprint: 224b729fd137cbdc56268b40447f78b34091018567eb2712543a160a0c61ec32
-  - source-only UW course codes: 44
-  - structured-only UW course codes: 0
-- Biology - Option Requirement (29 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information. (uw-seattle-biology:pathway:bs-option-family:ecology-evolution-and-conservation)
+  - fingerprint: b75134db08c4fa92a14cdcf89ce719599df31b2cf3cc849165e28bea2e90c64f
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Biology (uw-seattle-biology)
   - source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
-  - fingerprint: 496ab4a8361c56e4bdba0c799455ac100f18689b591d9cf98bdfc48bdbc280cc
-  - source-only UW course codes: 42
-  - structured-only UW course codes: 0
+  - fingerprint: 5ce4ef057c5b35fac3f8016d4c314bfe81716de52a3fed12a96da430179dc933
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information. (uw-seattle-biology:pathway:ba-general-biology)
+  - source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+  - fingerprint: d50f8a275dd4e16e7e31b99e371c1d5021f78882dfb4010189309d06d4c10416
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information. (uw-seattle-biology:pathway:bs-option-family:ecology-evolution-and-conservation)
+  - source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+  - fingerprint: d50f8a275dd4e16e7e31b99e371c1d5021f78882dfb4010189309d06d4c10416
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information. (uw-seattle-biology:pathway:bs-option-family:general-biology)
+  - source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+  - fingerprint: d50f8a275dd4e16e7e31b99e371c1d5021f78882dfb4010189309d06d4c10416
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information. (uw-seattle-biology:pathway:bs-option-family:molecular-cellular-and-developmental-biology)
+  - source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+  - fingerprint: d50f8a275dd4e16e7e31b99e371c1d5021f78882dfb4010189309d06d4c10416
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information. (uw-seattle-biology:pathway:bs-option-family:physiology)
+  - source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+  - fingerprint: d50f8a275dd4e16e7e31b99e371c1d5021f78882dfb4010189309d06d4c10416
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Biology - Option Requirement (31 credits): 300- and 400-level courses selected from list specific to this option. See department website for additional information. (uw-seattle-biology:pathway:bs-option-family:plant-biology)
+  - source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+  - fingerprint: d50f8a275dd4e16e7e31b99e371c1d5021f78882dfb4010189309d06d4c10416
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
 - Biology (BS) (uw-bothell-biology)
   - source: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
-  - fingerprint: d3a5d97065484e1a66f8c9de95de0a29110fb007189566573ae15652cd39dad5
-  - source-only UW course codes: 164
-  - structured-only UW course codes: 0
+  - fingerprint: 3e86d3d9d30fd1b40aa3c1a0eb12a65eaaae925a76bbb593d211b3689f08e344
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 7
 - Business Administration (uw-seattle-business-administration)
   - source: https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/
-  - fingerprint: 31f034dc5adc7f469361ef90d4b2c7cab4428eb1c8628075605b9a7d2a7162ce
-  - source-only UW course codes: 60
+  - fingerprint: 05fadc08434f64e2056edb1252244dc472a12fd544196cfeae75b13de4c256b7
+  - source-only UW course codes: 0
   - structured-only UW course codes: 0
 - Business Administration (BA) (uw-bothell-business-administration)
   - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
-  - fingerprint: 6ec24356154c94b672f3b34855f2414adb1d578ef41f8e5c7b7ed8a74a152e5e
-  - source-only UW course codes: 65
-  - structured-only UW course codes: 0
+  - fingerprint: 148dcf0df5c18fd880e016006b06028965fd28d7e721f8275d78bbf22a0c9134
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
 - Chemical Engineering (uw-seattle-chemical-engineering)
   - source: https://www.cheme.washington.edu/undergraduate_students/curriculum
-  - fingerprint: f141cf2ca0eb450adfd4d598d71937d9141cd929ce1832a21ccc13b59e3efc71
-  - source-only UW course codes: 121
-  - structured-only UW course codes: 0
-- Chemistry - Ba Route (uw-seattle-chemistry:pathway:ba-route)
-  - source: https://chem.washington.edu/ba-chemistry
-  - fingerprint: d4158b231cb367ac4f99ab26bcc1bfee91192fd080ba91587d47f7d84b1ebe58
-  - source-only UW course codes: 100
-  - structured-only UW course codes: 0
-- Chemistry - Bs Route (uw-seattle-chemistry:pathway:bs-route)
-  - source: https://chem.washington.edu/ba-chemistry
-  - fingerprint: d4158b231cb367ac4f99ab26bcc1bfee91192fd080ba91587d47f7d84b1ebe58
-  - source-only UW course codes: 100
-  - structured-only UW course codes: 0
-- Chemistry (BA) (uw-bothell-chemistry-ba)
-  - source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
-  - fingerprint: d3a5d97065484e1a66f8c9de95de0a29110fb007189566573ae15652cd39dad5
-  - source-only UW course codes: 164
-  - structured-only UW course codes: 0
-- Chemistry (BS) (uw-bothell-chemistry-bs)
-  - source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
-  - fingerprint: d3a5d97065484e1a66f8c9de95de0a29110fb007189566573ae15652cd39dad5
-  - source-only UW course codes: 164
-  - structured-only UW course codes: 0
-- Chemistry: Biochemistry (BS) (uw-bothell-chemistry-biochemistry)
-  - source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
-  - fingerprint: d3a5d97065484e1a66f8c9de95de0a29110fb007189566573ae15652cd39dad5
-  - source-only UW course codes: 164
-  - structured-only UW course codes: 0
-- Computer Engineering (uw-tacoma-computer-engineering)
-  - source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
-  - fingerprint: 81cd9272883f61dba2d89d6cf68861f88485294db75307435f1e5ed4ebfeaa60
-  - source-only UW course codes: 139
-  - structured-only UW course codes: 0
-- Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS) (uw-bothell-csse-information-assurance-and-cybersecurity)
-  - source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-  - fingerprint: 25619a0710f07f90200b44ed77692edbf2e73ad226f54417b8efa13a6b028ded
-  - source-only UW course codes: 87
-  - structured-only UW course codes: 0
-- Criminal Justice (BA) (uw-tacoma-criminal-justice)
-  - source: https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum
-  - fingerprint: 03616282459de3e2105e6b49b9c558d76fb8aaac6c027f0fbee0ed458cee8b0a
-  - source-only UW course codes: 61
-  - structured-only UW course codes: 0
-- Developmental and Youth Studies (BA) (uw-bothell-developmental-and-youth-studies)
-  - source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
-  - fingerprint: cd40117674e2c10cf4487ce9d51ace637c3b5ec559c1f36dd21b3d65d045002d
-  - source-only UW course codes: 71
-  - structured-only UW course codes: 0
-- Economics (BS) (uw-bothell-economics)
-  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-  - fingerprint: 7276b17616edf39326f5a51d987981bbb11212d336d14010ae08e07a5e5a00e5
-  - source-only UW course codes: 93
-  - structured-only UW course codes: 0
-- Educational Studies: Elementary Education (BA) (uw-bothell-educational-studies-elementary-education)
-  - source: https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements
-  - fingerprint: ae5d0ada8e5308836640f820023a4e7b33ec0f70adad5d4a170d76c1c6aa7c26
-  - source-only UW course codes: 92
-  - structured-only UW course codes: 0
-- Electrical Engineering (uw-tacoma-electrical-engineering)
-  - source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
-  - fingerprint: 81cd9272883f61dba2d89d6cf68861f88485294db75307435f1e5ed4ebfeaa60
-  - source-only UW course codes: 139
-  - structured-only UW course codes: 0
-- Electrical Engineering (BS) (uw-bothell-electrical-engineering)
-  - source: https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum
-  - fingerprint: d3a5d97065484e1a66f8c9de95de0a29110fb007189566573ae15652cd39dad5
-  - source-only UW course codes: 164
-  - structured-only UW course codes: 0
-- Human Centered Design & Engineering (uw-seattle-human-centered-design-engineering)
-  - source: https://www.hcde.washington.edu/bs/requirements/2024
-  - fingerprint: 6ad225e8435f3e06f3853f4a6e7c7eaed0f8420779f79168873e8537231dd66c
-  - source-only UW course codes: 85
-  - structured-only UW course codes: 0
-- Interactive Media Design (BA) (uw-bothell-interactive-media-design)
-  - source: https://www.uwb.edu/premajor/wp-content/uploads/sites/26/2023/07/fillable-imd.pdf
-  - fingerprint: 7c8dc2c04ad70cf67a143ac4bcb67c6cf462a54dce655cda172ade628d8c809c
-  - source-only UW course codes: 1
-  - structured-only UW course codes: 0
-- Materials Science & Engineering (uw-seattle-materials-science-engineering)
-  - source: https://mse.washington.edu/current/undergrad/courses
-  - fingerprint: 096dd2e944c66295039fc0734867ef1cbd20933d3cb1eac044689665b45274f5
-  - source-only UW course codes: 57
-  - structured-only UW course codes: 0
-- Mathematics (BS) (uw-bothell-mathematics)
-  - source: https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum
-  - fingerprint: 6af71409114b337f496b19bd74efdfb08a38f24ddfd4e5945ddf6bbb14c45adf
-  - source-only UW course codes: 164
-  - structured-only UW course codes: 0
-- Mechanical Engineering (uw-bothell-mechanical-engineering)
-  - source: https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-ME-Curriculum-AY24_25.pdf
-  - fingerprint: 5344a6541aba9f3705868b1145cd00acb03aa1bd2388e02d4296afa0bd2ab5ce
-  - source-only UW course codes: 37
-  - structured-only UW course codes: 0
-- Physics (BA) (uw-bothell-physics-ba)
-  - source: https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
-  - fingerprint: fb0bc3992c1e2f95471de9b85239b846a42c1ea1b38191f151ae35452d9a1bb2
-  - source-only UW course codes: 163
-  - structured-only UW course codes: 0
-- Physics (BS) (uw-bothell-physics-bs)
-  - source: https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
-  - fingerprint: fb0bc3992c1e2f95471de9b85239b846a42c1ea1b38191f151ae35452d9a1bb2
-  - source-only UW course codes: 163
-  - structured-only UW course codes: 0
-- Sustainable Bioresource Systems Engineering (uw-seattle-sustainable-bioresource-systems-engineering)
-  - source: https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/
-  - fingerprint: 95b15ea18a7e1100c8b7e8bb6262c8806093ffdfda711ad64668ccd28fcdb55d
-  - source-only UW course codes: 68
-  - structured-only UW course codes: 0
+  - fingerprint: 0449e5dac69c27a35d6317664eb6b22c90bf4e366f23370df433242ef9cc59d1
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 4
+- Chemistry (uw-seattle-chemistry)
+  - source: https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf
+  - fingerprint: a7d6fff2acbd80b9879d1b976386e3d5b990e16fc28c60e3a7598dd2eac88639
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 8
 

@@ -1,6 +1,8 @@
 param(
   [switch]$SkipDownloads,
-  [switch]$NoOpenReports
+  [switch]$NoOpenReports,
+  [string]$OnlySection,
+  [string]$StartSection
 )
 
 Set-StrictMode -Version Latest
@@ -104,6 +106,10 @@ try {
   Write-Host "Project: $projectRoot"
   Write-Host "Log: $logPath"
 
+  if ($OnlySection -and $StartSection) {
+    throw "Use either -OnlySection or -StartSection, not both."
+  }
+
   Assert-Command -CommandName "node" -FriendlyName "Node.js"
   Assert-Command -CommandName "npm.cmd" -FriendlyName "npm"
 
@@ -118,6 +124,12 @@ try {
   $refreshArgs = @("scripts/planner/refresh-transfer-planner-sources.cjs")
   if ($SkipDownloads) {
     $refreshArgs += "--skip-downloads"
+  }
+  if ($OnlySection) {
+    $refreshArgs += @("--only-section", $OnlySection)
+  }
+  if ($StartSection) {
+    $refreshArgs += @("--start-section", $StartSection)
   }
 
   Invoke-LoggedCommand -FilePath "node" -Arguments $refreshArgs -Description "Run planner refresh pipeline"

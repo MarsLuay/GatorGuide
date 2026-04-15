@@ -345,7 +345,7 @@ ME 124
 Mechanical Behavior of Materials I
 Mechanical Engineering
 Mechanisms of corrosion, thermodynamics, kinetics of corrosion. Passivity; Pourbaix diagrams; corrosion rate testing and measurements; forms of corrosion; effects of alloy and environmental variables; corrosion testing. Wear mechanisms: adhesive, abrasive, erosive. Fretting; surface roughness, wear testing. Coatings for corrosion and wear protection.
-Meeting Rooms Calendar
+Meeting Room Calendars
 Methods of depicting three-dimensional objects and communicating design information. Development of three-dimensional skills through freehand sketching and computer-aided design using parametric solid modeling.
 Methods of depicting three-dimensional objects and communicating design information. Development of three-dimensional visualization skills through computer-aided design using parametric solid modeling.
 MFR Restricted Elective Courses

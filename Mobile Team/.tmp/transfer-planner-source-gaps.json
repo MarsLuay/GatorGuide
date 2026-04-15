@@ -1,7 +1,28 @@
 {
-  "generatedAt": "2026-04-14T06:33:22.807Z",
-  "totalSourceGapOwners": 0,
-  "countsByStatus": {},
-  "countsByCampus": {},
-  "entries": []
+  "generatedAt": "2026-04-15T04:19:50.142Z",
+  "totalSourceGapOwners": 1,
+  "countsByStatus": {
+    "source-unfindable": 1
+  },
+  "countsByCampus": {
+    "uw-seattle": 1
+  },
+  "entries": [
+    {
+      "ownerType": "major",
+      "ownerKey": "uw-seattle-finnish",
+      "planId": "uw-seattle-finnish",
+      "pathwayId": null,
+      "title": "Finnish",
+      "campusId": "uw-seattle",
+      "sourceCoverageStatus": "source-unfindable",
+      "studentVisibility": "hidden",
+      "sourceGapReason": "No official primary degree-requirements source candidate met the minimum discovery threshold.",
+      "generatedAt": "2026-04-15T04:19:50.142Z",
+      "officialLinkCount": 0,
+      "candidateCount": 0,
+      "suggestedPrimary": null,
+      "sourceDiscoveryAttempts": []
+    }
+  ]
 }

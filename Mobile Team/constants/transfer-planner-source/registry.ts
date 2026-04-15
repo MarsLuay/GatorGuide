@@ -51,6 +51,7 @@ import type {
   TransferPlannerMajorRequirementAtom,
   TransferPlannerParsedRequirementSourceBlock,
   TransferPlannerPolicyEntry,
+  TransferPlannerRequirementDiffClassificationEntry,
   TransferPlannerRequirementPhase,
   TransferPlannerSourceLink,
   TransferPlannerSourceSchoolId,
@@ -1184,100 +1185,366 @@ function buildEquivalencyRuleRegistry() {
   );
 }
 
+function getPlannerScopeIdPrefix(planId: string, pathwayId?: string | null) {
+  return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
+}
+
+function slugifyPlannerIdSegment(value: string) {
+  const slug = String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return slug || "item";
+}
+
+function normalizeAlternativeCourseCodeSets(groups: string[][]) {
+  return groups
+    .map((group) =>
+      unique(group.map((code) => normalizeCourseCode(code)).filter(Boolean))
+    )
+    .filter((group) => group.length > 0);
+}
+
+function hasClassificationCourseCoverage(
+  classification: Pick<
+    TransferPlannerRequirementDiffClassificationEntry,
+    "grcCourseCodes" | "alternativeCourseCodeSets"
+  >
+) {
+  return Boolean(
+    (classification.grcCourseCodes ?? []).some(Boolean) ||
+      (classification.alternativeCourseCodeSets ?? []).some(
+        (group: string[] | null | undefined) =>
+        (group ?? []).some(Boolean)
+      )
+  );
+}
+
+function buildParsedRequirementSourceValidationNotes(
+  block: TransferPlannerParsedRequirementSourceBlock,
+  extraNotes: string[] = []
+) {
+  return unique(
+    compact([
+      `Parser confidence: ${block.parseConfidence}.`,
+      block.usedSnapshotFallback
+        ? `Used cached official snapshot fallback${block.snapshotFallbackReason ? `: ${block.snapshotFallbackReason}` : "."}`
+        : null,
+      block.error ? `Parser note: ${block.error}` : null,
+      ...extraNotes,
+    ]).map((note) => String(note).trim())
+  );
+}
+
+function takePlannerStrings(values: string[], limit = 12) {
+  return unique(
+    values
+      .map((value) => String(value ?? "").replace(/\s+/g, " ").trim())
+      .filter(Boolean)
+  ).slice(0, limit);
+}
+
+function getPhaseBlockSortLabel(phase: TransferPlannerRequirementPhase) {
+  switch (phase) {
+    case "before-application":
+      return "01-before-application";
+    case "before-enrollment":
+      return "02-before-enrollment";
+    case "stay-at-grc":
+      return "03-stay-at-grc";
+    default:
+      return `99-${phase}`;
+  }
+}
+
+function getPhaseDegreeMapTitle(
+  majorTitle: string,
+  phase: TransferPlannerRequirementPhase
+) {
+  switch (phase) {
+    case "before-application":
+      return `${majorTitle} degree preparation and admissions`;
+    case "before-enrollment":
+      return `${majorTitle} before-enrollment degree head starts`;
+    case "stay-at-grc":
+      return `${majorTitle} stay-at-Green-River degree support`;
+    default:
+      return `${majorTitle} source-backed degree planning`;
+  }
+}
+
+function getParsedDegreeMapItemLabels(
+  candidate: Pick<
+    TransferPlannerParsedRequirementSourceBlock["parsedDegreeMapBlockCandidates"][number],
+    "sourceLineHints" | "uwCourseCodes"
+  >
+) {
+  const preferredLabels = takePlannerStrings(candidate.sourceLineHints ?? [], 12);
+  if (preferredLabels.length) {
+    return preferredLabels;
+  }
+  return takePlannerStrings(candidate.uwCourseCodes ?? [], 18);
+}
+
 function buildRequirementAtomRegistry() {
-  const entries: TransferPlannerMajorRequirementAtom[] = [];
+  const groupedEntries = new Map<
+    string,
+    {
+      preferredId: string | null;
+      planId: string;
+      pathwayId: string | null;
+      campusId: Exclude<TransferPlannerSourceSchoolId, "grc">;
+      majorTitle: string;
+      phase: TransferPlannerRequirementPhase;
+      titles: Set<string>;
+      grcCourseCodes: Set<string>;
+      alternativeCourseCodeSets: Map<string, string[]>;
+      note: string | null;
+      sourceLinks: Map<string, TransferPlannerSourceLink>;
+      validationNotes: Set<string>;
+      memberCount: number;
+    }
+  >();
 
-  for (const plan of TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS) {
-    const { sourceLinks, validationNotes } = getChecklistSources(plan);
-    for (const { phase, itemsKey } of PHASE_CONFIG) {
-      for (const item of plan[itemsKey]) {
-        entries.push({
-          id: `${plan.id}:${phase}:${item.id}`,
-          planId: plan.id,
-          campusId: plan.campusId,
-          majorTitle: plan.title,
-          phase,
-          displayPhase: phase,
-          title: item.title,
-          grcCourseCodes: item.grcCourses.map((code) => normalizeCourseCode(code)),
-          alternativeCourseCodeSets: (item.alternatives ?? []).map((group) =>
-            group.map((code) => normalizeCourseCode(code))
-          ),
-          minCompletedCount: item.minCompletedCount ?? null,
-          note: item.note,
-          sourceLinks,
-          validationNotes,
-        });
-      }
+  for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS) {
+    if (!classification.displayPhase || !hasClassificationCourseCoverage(classification)) {
+      continue;
     }
 
-    for (const pathway of plan.pathways ?? []) {
-      const pathwaySources = getPathwaySources(plan, pathway);
-      for (const { phase, itemsKey } of PHASE_CONFIG) {
-        for (const item of pathway[itemsKey] ?? []) {
-          entries.push({
-            id: `${plan.id}:pathway:${pathway.id}:${phase}:${item.id}`,
-            planId: plan.id,
-            pathwayId: pathway.id,
-            campusId: plan.campusId,
-            majorTitle: plan.title,
-            phase,
-            displayPhase: phase,
-            title: item.title,
-            grcCourseCodes: item.grcCourses.map((code) => normalizeCourseCode(code)),
-            alternativeCourseCodeSets: (item.alternatives ?? []).map((group) =>
-              group.map((code) => normalizeCourseCode(code))
-            ),
-            minCompletedCount: item.minCompletedCount ?? null,
-            note: item.note,
-            sourceLinks: pathwaySources.sourceLinks,
-            validationNotes: pathwaySources.validationNotes,
-          });
-        }
-      }
+    const scopePrefix = getPlannerScopeIdPrefix(classification.planId, classification.pathwayId);
+    const groupingKey = classification.guideRuleId
+      ? `${scopePrefix}|${classification.displayPhase}|guide:${classification.guideRuleId}`
+      : `${scopePrefix}|${classification.displayPhase}|classification:${classification.id}`;
+    const normalizedCourseCodes = unique(
+      (classification.grcCourseCodes ?? []).map((code) => normalizeCourseCode(code)).filter(Boolean)
+    );
+    const normalizedAlternativeCourseCodeSets = normalizeAlternativeCourseCodeSets(
+      classification.alternativeCourseCodeSets ?? []
+    );
+    const current =
+      groupedEntries.get(groupingKey) ??
+      {
+        preferredId: null,
+        planId: classification.planId,
+        pathwayId: classification.pathwayId ?? null,
+        campusId: classification.campusId,
+        majorTitle: classification.majorTitle,
+        phase: classification.displayPhase,
+        titles: new Set<string>(),
+        grcCourseCodes: new Set<string>(),
+        alternativeCourseCodeSets: new Map<string, string[]>(),
+        note: null,
+        sourceLinks: new Map<string, TransferPlannerSourceLink>(),
+        validationNotes: new Set<string>(),
+        memberCount: 0,
+      };
+
+    current.memberCount += 1;
+    current.titles.add(normalizeCourseCode(classification.sourceUwCourseCode));
+    for (const courseCode of normalizedCourseCodes) {
+      current.grcCourseCodes.add(courseCode);
     }
+    for (const courseCodeSet of normalizedAlternativeCourseCodeSets) {
+      current.alternativeCourseCodeSets.set(getAlternativeSetKey(courseCodeSet), courseCodeSet);
+    }
+    if (!current.note && classification.note) {
+      current.note = classification.note;
+    }
+    for (const link of classification.sourceLinks ?? []) {
+      current.sourceLinks.set(link.url, link);
+    }
+    for (const note of classification.validationNotes ?? []) {
+      current.validationNotes.add(note);
+    }
+    if (classification.rationale) {
+      current.validationNotes.add(`Classification rationale: ${classification.rationale}`);
+    }
+    if (current.memberCount === 1) {
+      current.preferredId =
+        classification.promotedRequirementAtomOverrideId ?? classification.id;
+    } else {
+      current.preferredId = null;
+    }
+
+    groupedEntries.set(groupingKey, current);
   }
 
-  return entries.sort((left, right) => left.id.localeCompare(right.id));
+  return Array.from(groupedEntries.values())
+    .map((entry) => {
+      const title = Array.from(entry.titles).sort().join(" / ");
+      const scopePrefix = getPlannerScopeIdPrefix(entry.planId, entry.pathwayId);
+      return {
+        id:
+          entry.preferredId ??
+          `${scopePrefix}:${entry.phase}:${slugifyPlannerIdSegment(title)}`,
+        planId: entry.planId,
+        pathwayId: entry.pathwayId,
+        campusId: entry.campusId,
+        majorTitle: entry.majorTitle,
+        phase: entry.phase,
+        displayPhase: entry.phase,
+        title,
+        grcCourseCodes: Array.from(entry.grcCourseCodes),
+        alternativeCourseCodeSets: Array.from(entry.alternativeCourseCodeSets.values()),
+        minCompletedCount: null,
+        note: entry.note ?? undefined,
+        sourceLinks: Array.from(entry.sourceLinks.values()).sort((left, right) =>
+          left.label.localeCompare(right.label) || left.url.localeCompare(right.url)
+        ),
+        validationNotes: Array.from(entry.validationNotes).sort(),
+      } satisfies TransferPlannerMajorRequirementAtom;
+    })
+    .sort((left, right) => left.id.localeCompare(right.id));
 }
 
 function buildDegreeMapBlockRegistry() {
   const entries: TransferPlannerDegreeMapBlock[] = [];
 
-  for (const plan of TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS) {
-    const { sourceLinks, validationNotes } = getChecklistSources(plan);
-    for (const section of plan.degreeMapSections ?? []) {
+  const phaseDegreeBlocks = new Map<
+    string,
+    {
+      id: string;
+      planId: string;
+      pathwayId: string | null;
+      campusId: Exclude<TransferPlannerSourceSchoolId, "grc">;
+      majorTitle: string;
+      title: string;
+      itemLabels: Set<string>;
+      uwCourseCodes: Set<string>;
+      sourceLinks: Map<string, TransferPlannerSourceLink>;
+      validationNotes: Set<string>;
+    }
+  >();
+
+  for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS) {
+    if (!classification.displayPhase) {
+      continue;
+    }
+
+    const scopePrefix = getPlannerScopeIdPrefix(classification.planId, classification.pathwayId);
+    const sortLabel = getPhaseBlockSortLabel(classification.displayPhase);
+    const groupingKey = `${scopePrefix}|${classification.displayPhase}`;
+    const current =
+      phaseDegreeBlocks.get(groupingKey) ??
+      {
+        id: `${scopePrefix}:degree-map:00-phase-${sortLabel}`,
+        planId: classification.planId,
+        pathwayId: classification.pathwayId ?? null,
+        campusId: classification.campusId,
+        majorTitle: classification.majorTitle,
+        title: getPhaseDegreeMapTitle(classification.majorTitle, classification.displayPhase),
+        itemLabels: new Set<string>(),
+        uwCourseCodes: new Set<string>(),
+        sourceLinks: new Map<string, TransferPlannerSourceLink>(),
+        validationNotes: new Set<string>(),
+      };
+
+    current.itemLabels.add(normalizeCourseCode(classification.sourceUwCourseCode));
+    current.uwCourseCodes.add(normalizeCourseCode(classification.sourceUwCourseCode));
+    for (const link of classification.sourceLinks ?? []) {
+      current.sourceLinks.set(link.url, link);
+    }
+    for (const note of classification.validationNotes ?? []) {
+      current.validationNotes.add(note);
+    }
+    phaseDegreeBlocks.set(groupingKey, current);
+  }
+
+  for (const block of phaseDegreeBlocks.values()) {
+    entries.push({
+      id: block.id,
+      planId: block.planId,
+      pathwayId: block.pathwayId,
+      campusId: block.campusId,
+      majorTitle: block.majorTitle,
+      title: block.title,
+      itemLabels: Array.from(block.itemLabels).sort(),
+      uwCourseCodes: Array.from(block.uwCourseCodes).sort(),
+      sourceLinks: Array.from(block.sourceLinks.values()).sort((left, right) =>
+        left.label.localeCompare(right.label) || left.url.localeCompare(right.url)
+      ),
+      validationNotes: Array.from(block.validationNotes).sort(),
+    });
+  }
+
+  for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
+    if (!block.ok) {
+      continue;
+    }
+
+    const scopePrefix = getPlannerScopeIdPrefix(block.planId, block.pathwayId);
+    const sourceLinks = getParsedRequirementSourceLinks(block);
+    const note = block.usedSnapshotFallback
+      ? `Built from a cached official snapshot${block.snapshotFallbackReason ? ` because ${block.snapshotFallbackReason}` : ""}.`
+      : undefined;
+
+    for (const [index, candidate] of (block.parsedDegreeMapBlockCandidates ?? []).entries()) {
+      const itemLabels = getParsedDegreeMapItemLabels(candidate);
+      const uwCourseCodes = unique([
+        ...(candidate.uwCourseCodes ?? []).map((code) => normalizeCourseCode(code)).filter(Boolean),
+        ...extractCourseCodesFromList(itemLabels),
+      ]);
+      if (!itemLabels.length && !uwCourseCodes.length) {
+        continue;
+      }
+
       entries.push({
-        id: `${plan.id}:degree-map:${section.id}`,
-        planId: plan.id,
-        campusId: plan.campusId,
-        majorTitle: plan.title,
-        title: section.title,
-        itemLabels: [...section.items],
-        uwCourseCodes: extractCourseCodesFromList(section.items),
-        note: section.note,
+        id: `${scopePrefix}:degree-map:10-parsed-${String(index + 1).padStart(2, "0")}-${slugifyPlannerIdSegment(candidate.title || candidate.id)}`,
+        planId: block.planId,
+        pathwayId: block.pathwayId ?? null,
+        campusId: block.campusId,
+        majorTitle: block.ownerTitle,
+        title: candidate.title,
+        itemLabels,
+        uwCourseCodes,
+        note,
         sourceLinks,
-        validationNotes,
+        validationNotes: buildParsedRequirementSourceValidationNotes(block, [
+          `Parsed degree-map block candidate: ${candidate.id}.`,
+        ]),
       });
     }
 
-    for (const pathway of plan.pathways ?? []) {
-      const pathwaySources = getPathwaySources(plan, pathway);
-      for (const section of pathway.degreeMapSections ?? []) {
-        entries.push({
-          id: `${plan.id}:pathway:${pathway.id}:degree-map:${section.id}`,
-          planId: plan.id,
-          pathwayId: pathway.id,
-          campusId: plan.campusId,
-          majorTitle: plan.title,
-          title: section.title,
-          itemLabels: [...section.items],
-          uwCourseCodes: extractCourseCodesFromList(section.items),
-          note: section.note,
-          sourceLinks: pathwaySources.sourceLinks,
-          validationNotes: pathwaySources.validationNotes,
-        });
-      }
+    const requirementCueItems = takePlannerStrings(block.requirementCueLines ?? [], 10);
+    if (requirementCueItems.length) {
+      entries.push({
+        id: `${scopePrefix}:degree-map:90-requirement-cues`,
+        planId: block.planId,
+        pathwayId: block.pathwayId ?? null,
+        campusId: block.campusId,
+        majorTitle: block.ownerTitle,
+        title: `${block.ownerTitle} parsed official requirement cues`,
+        itemLabels: requirementCueItems,
+        uwCourseCodes: extractCourseCodesFromList(requirementCueItems),
+        note,
+        sourceLinks,
+        validationNotes: buildParsedRequirementSourceValidationNotes(block, [
+          "Parsed requirement cues extracted from the current official source.",
+        ]),
+      });
+    }
+
+    const planningNoteItems = takePlannerStrings(
+      [...(block.chooseStatements ?? []), ...(block.pathwayLabels ?? [])],
+      10
+    );
+    if (planningNoteItems.length) {
+      entries.push({
+        id: `${scopePrefix}:degree-map:91-planning-notes`,
+        planId: block.planId,
+        pathwayId: block.pathwayId ?? null,
+        campusId: block.campusId,
+        majorTitle: block.ownerTitle,
+        title: `${block.ownerTitle} parsed choices and pathway notes`,
+        itemLabels: planningNoteItems,
+        uwCourseCodes: extractCourseCodesFromList(planningNoteItems),
+        note,
+        sourceLinks,
+        validationNotes: buildParsedRequirementSourceValidationNotes(block, [
+          "Parsed choice statements and pathway notes extracted from the current official source.",
+        ]),
+      });
     }
   }
 

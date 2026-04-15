@@ -389,28 +389,6 @@ export default function TermsOfServicePage() {
             </View>
           </InfoSection>
 
-          <View
-            className={`${accentCardClass} border rounded-3xl`}
-            style={{
-              padding: isTablet ? 22 : 18,
-              marginBottom: sectionGap,
-            }}
-          >
-            <Text className={`${textClass} mb-2`}>Need help?</Text>
-            <Text
-              className={`${secondaryTextClass} text-sm`}
-              style={{ lineHeight: 22 }}
-            >
-              Questions about these Terms can be sent to {contactEmail}.
-            </Text>
-            <Text
-              className={`${secondaryTextClass} text-sm mt-3`}
-              style={{ lineHeight: 22 }}
-            >
-              If the Terms change in a material way, this page should be
-              updated too.
-            </Text>
-          </View>
         </View>
       </ScrollView>
     </ScreenBackground>

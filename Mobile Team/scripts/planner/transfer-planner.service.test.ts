@@ -2832,6 +2832,45 @@ test("Seattle majors without parsed general-education targets no longer get inve
   });
 });
 
+test("Bothell majors without parsed general-education targets inherit the campus-wide minimums", () => {
+  const plan = getRequiredPlan("uw-bothell-business-administration");
+  const targets = buildGeneralEducationRequirementTargets(plan);
+
+  assert.deepEqual(targets, {
+    ahCredits: 15,
+    sscCredits: 15,
+    nscCredits: 15,
+    breadthCredits: null,
+    electiveCredits: null,
+  });
+});
+
+test("Tacoma majors without parsed general-education targets inherit the campus-wide minimums", () => {
+  const plan = getRequiredPlan("uw-tacoma-bachelor-of-arts-in-business-administration");
+  const targets = buildGeneralEducationRequirementTargets(plan);
+
+  assert.deepEqual(targets, {
+    ahCredits: 10,
+    sscCredits: 10,
+    nscCredits: 10,
+    breadthCredits: 10,
+    electiveCredits: null,
+  });
+});
+
+test("Tacoma majors keep stronger source-backed general-education targets when the major publishes them", () => {
+  const plan = getRequiredPlan("uw-tacoma-social-welfare");
+  const targets = buildGeneralEducationRequirementTargets(plan);
+
+  assert.deepEqual(targets, {
+    ahCredits: 20,
+    sscCredits: 20,
+    nscCredits: 20,
+    breadthCredits: null,
+    electiveCredits: null,
+  });
+});
+
 test("Seattle Aeronautics does not misread the science-core NSc option as a 5-credit general-education target", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
   assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
@@ -4218,25 +4257,34 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
     "utf8"
   );
   const maintenanceCmd = readFileSync("scripts/run-planner-maintenance.cmd", "utf8");
+  const refreshScript = readFileSync("scripts/run-transfer-planner-refresh.ps1", "utf8");
   const windowsQaScript = readFileSync("scripts/qa/run-windows-qa.cjs", "utf8");
   const windowsInteractionsScript = readFileSync(".tools/windows-interactions.mjs", "utf8");
   const packageJson = readFileSync("package.json", "utf8");
   const readme = readFileSync("README.md", "utf8");
 
   assert.match(maintenanceScript, /run-transfer-planner-refresh\.ps1/);
+  assert.match(maintenanceScript, /Get-InteractiveMaintenanceSelection/);
+  assert.match(maintenanceScript, /Show-CacheSummary/);
+  assert.match(maintenanceScript, /Get-RefreshTrackedPlan/);
+  assert.match(maintenanceScript, /Update-RefreshMaintenanceProgressFromOutputLine/);
+  assert.match(maintenanceScript, /Tracked maintenance steps:/);
   assert.match(maintenanceScript, /playwright",\s*"install",\s*"chromium"/);
-  assert.match(maintenanceScript, /npm\.cmd"\s*-Arguments\s*@\("run",\s*"qa:windows:ci"\)/);
+  assert.match(
+    maintenanceScript,
+    /-FilePath\s+"npm\.cmd"[\s\S]*-Arguments\s+@\("run",\s*"qa:windows:ci"\)/
+  );
   assert.match(maintenanceScript, /verify-transfer-planner-hardening\.cjs/);
   assert.match(maintenanceScript, /transfer-planner-maintenance-summary\.md/);
   assert.match(maintenanceScript, /transfer-planner-hardening-report\.md/);
   assert.match(maintenanceScript, /Start-Process/);
-  assert.match(maintenanceScript, /RedirectStandardOutput/);
-  assert.match(maintenanceScript, /RedirectStandardError/);
-  assert.match(maintenanceScript, /\$stepResults\["Planner refresh"\]\s*=\s*"passed"/);
-  assert.match(maintenanceScript, /\$stepResults\["Windows QA"\]\s*=\s*"passed"/);
-  assert.match(maintenanceScript, /\$stepResults\["Planner hardening checks"\]\s*=\s*"passed"/);
+  assert.match(maintenanceScript, /Tee-Object\s+-FilePath\s+\$logPath\s+-Append/);
+  assert.match(maintenanceScript, /-OnlySection/);
+  assert.match(maintenanceScript, /-StartSection/);
 
   assert.match(maintenanceCmd, /run-transfer-planner-maintenance\.ps1/);
+  assert.match(refreshScript, /--only-section/);
+  assert.match(refreshScript, /--start-section/);
 
   assert.match(windowsQaScript, /const npxCommand = process\.platform === "win32" \? "npx\.cmd" : "npx"/);
   assert.doesNotMatch(windowsQaScript, /shell:\s*true/);

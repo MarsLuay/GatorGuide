@@ -446,29 +446,6 @@ export default function PrivacyPolicyPage() {
             </View>
           </PolicySection>
 
-          <View
-            className={`${accentCardClass} border rounded-3xl`}
-            style={{
-              padding: isTablet ? 22 : 18,
-              marginBottom: sectionGap,
-            }}
-          >
-            <Text className={`${textClass} mb-2`}>Need help?</Text>
-            <Text
-              className={`${secondaryTextClass} text-sm`}
-              style={{ lineHeight: 22 }}
-            >
-              Questions about this Privacy Policy, your data, or deletion
-              requests can be sent to {contactEmail}.
-            </Text>
-            <Text
-              className={`${secondaryTextClass} text-sm mt-3`}
-              style={{ lineHeight: 22 }}
-            >
-              If GatorGuide materially changes how it stores or shares data,
-              this page should be updated too.
-            </Text>
-          </View>
         </View>
       </ScrollView>
     </ScreenBackground>

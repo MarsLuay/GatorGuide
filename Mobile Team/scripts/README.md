@@ -12,6 +12,7 @@ npm run planner:full:verify
 
 Or double-click:
 
+- `scripts/run-planner-maintenance.bat`
 - `scripts/run-planner-maintenance.cmd`
 
 This executes refresh + verification + hardening + Windows QA and writes a summary to:
@@ -41,6 +42,11 @@ Then rerun the full maintenance command once network access is stable.
 - `run-planner-maintenance.cmd`
   - Larger maintenance flow.
   - Runs the planner refresh plus the extra maintenance/QA steps used for the full planner verification workflow.
+  - The launcher is interactive now: it can run the full flow, run one maintenance section, start from a selected section through the end, or show a cache/last-run summary before doing any work.
+
+- `run-planner-maintenance.bat`
+  - Batch-file wrapper around `run-planner-maintenance.cmd`.
+  - Use this if you specifically want a double-clickable `.bat` entrypoint for the full planner update flow.
 
 ## Required update inputs
 
@@ -80,6 +86,10 @@ These `.cmd` files call the PowerShell scripts in the same folder:
 - `run-transfer-planner-refresh.ps1`
 - `run-transfer-planner-maintenance.ps1`
 
+The `.bat` wrapper simply forwards to the main maintenance `.cmd` launcher:
+
+- `run-planner-maintenance.bat`
+
 ## Terminal equivalents
 
 From `Mobile Team`:
@@ -92,3 +102,20 @@ npm run planner:refresh
 npm run planner:verify
 npm run planner:audit:owners
 ```
+
+For the interactive maintenance launcher in a terminal:
+
+```bash
+powershell -ExecutionPolicy Bypass -File scripts/run-transfer-planner-maintenance.ps1
+```
+
+Helpful direct options:
+
+- `-ShowCacheSummary`
+  - Print the current cached-artifact snapshot plus the latest maintenance/refresh timestamps, then exit.
+- `-OnlySection <section-id>`
+  - Run just one section such as `verification` or `hardening`.
+- `-StartSection <section-id>`
+  - Start from one section and continue through the remaining sections.
+- `-NoPrompt`
+  - Skip the interactive menu and use the flag-driven selection directly.

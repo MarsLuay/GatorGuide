@@ -1216,22 +1216,6 @@ function getEvaluationRequirementCreditMessageParts(input: {
   };
 }
 
-function getPlanRequirementCourseCodes(plan: TransferPlannerResolvedMajorPlan) {
-  const checklistItems = [
-    ...plan.applicationChecklist,
-    ...plan.beforeEnrollmentChecklist,
-    ...plan.stayAtGrcChecklist,
-  ];
-
-  return Array.from(
-    new Set(
-      checklistItems.flatMap((item) =>
-        extractCourseCodes([item.grcCourses, ...(item.alternatives ?? [])].flat().join(" "))
-      )
-    )
-  );
-}
-
 function hasDirectEquivalentRuleForCourse(courseCode: string, campusId: TransferPlannerCampusId) {
   return getTransferPlannerEquivalencyRulesForSourceCourse(courseCode).some((rule) => {
     if (!rule.targetSchoolIds.includes(campusId)) return false;
@@ -1242,7 +1226,7 @@ function hasDirectEquivalentRuleForCourse(courseCode: string, campusId: Transfer
 }
 
 function hasAnyDirectMajorEquivalencies(plan: TransferPlannerResolvedMajorPlan) {
-  const requirementCourseCodes = getPlanRequirementCourseCodes(plan);
+  const requirementCourseCodes = buildRequiredPlannerCourseCodes(plan);
   if (!requirementCourseCodes.length) return false;
 
   return requirementCourseCodes.some((courseCode: string) =>

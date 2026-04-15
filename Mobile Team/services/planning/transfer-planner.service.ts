@@ -2659,9 +2659,31 @@ export function buildGeneralEducationRequirementTargets(
     breadthCredits: null,
     electiveCredits: null,
   };
+  const campusWideFallbackTargets: GeneralEducationRequirementTargets | null = (() => {
+    switch (sourcePlan?.campusId ?? plan?.campusId) {
+      case "uw-bothell":
+        return {
+          ahCredits: 15,
+          sscCredits: 15,
+          nscCredits: 15,
+          breadthCredits: null,
+          electiveCredits: null,
+        };
+      case "uw-tacoma":
+        return {
+          ahCredits: 10,
+          sscCredits: 10,
+          nscCredits: 10,
+          breadthCredits: 10,
+          electiveCredits: null,
+        };
+      default:
+        return null;
+    }
+  })();
 
   if (!normalized) {
-    return emptyTargets;
+    return campusWideFallbackTargets ?? emptyTargets;
   }
 
   const sharedAoiCredits = findGeneralEducationCreditValue(normalized, [
@@ -2753,7 +2775,7 @@ export function buildGeneralEducationRequirementTargets(
     return parsedTargets;
   }
 
-  return parsedTargets;
+  return campusWideFallbackTargets ?? parsedTargets;
 }
 
 function countCompatibleGeneralEducationPlaceholders(
