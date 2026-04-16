@@ -2,13 +2,12 @@ Owner: uw-seattle-percussion-performance-b-m
 Source: https://music.washington.edu/bachelor-music-percussion-performance
 Title: Bachelor of Music - Percussion Performance | School of Music | University of Washington
 
-[Supplemental official source] Bachelor of Arts
 [Supplemental official source] Composition
-[Supplemental official source] general education requirements
 [Supplemental official source] Guitar
 [Supplemental official source] Jazz Studies
+[Supplemental official source] Music Education, Instrumental Emphasis
+[Supplemental official source] Music Education, Post Bac, Instrumental Emphasis
 [Supplemental official source] Music Education, Post Bac, Vocal Emphasis
-* The postbaccalaureate degree program is designed to serve students who already have an undergraduate degree in music, but wish to become trained and certified in music teaching. Prospective students must apply to the University (see http://admit.washington.edu/Apply/Postbacs for deadlines) and audition for the music education faculty (see audition dates for information and dates). The degree programs above can serve as a guide for the post-baccaluareate student but decisions about what previous credits will transfer are made on an individual basis at the time of admission.
 &copy; 2026 University of Washington . All rights reserved.
 A typical course of study:
 About
@@ -18,11 +17,11 @@ Additional Music Requirements
 Additional Music Requirements Starting 1st and 2nd Year of Study
 Admission
 Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in composition within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
+Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in music education within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in music education. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 Admissions & Auditions
 Advising
-All BM students must complete a minimum of 60 credits of non-music coursework.
 Alumni
 Alumni News
 Alumni Profiles
@@ -33,16 +32,12 @@ Approved upper-level Music Theory or History electives (see list of course optio
 Approved upper-level Music Theory or History electives (see list of course options) (18 credits)
 Approved upper-level Music Theory or History electives (see list of course options) (9 credits)
 Archives & Collections
-Areas of Inquiry - 10 credits each: A&H (Arts and Humanities), SSc (Social Sciences), and NSc (Natural Sciences)
-Areas of Inquiry - 75 credits total (of which 15 cr. of major dept. prefix can count but not toward 60 non-Music), including 20 credits in 2 of: A&H - Arts and Humanities = 20 cr.; SSc- Social Sciences = 20 cr.; NSc - Natural Sciences= 20 cr.
 Areas of Study
 At least 3 credits from among: MUSIC 250, MUSIC 251, MUSIC 252, or any 400-level Ethnomusicology course
 At least 3 credits from among: MUSIC 250, MUSIC 251, MUSIC 252, or any 400-level Ethnomusicology course (3 credits)
 At least three credits from among: MUSIC 250, MUSIC 251, MUSIC 252, or any 400-level Ethnomusicology course (3 credits)
 Auditions
 Bachelor of Arts
-Bachelor of Arts | School of Music | University of Washington
-Bachelor of Arts with a major in ethnomusicology
 Bachelor of Music
 Bachelor of Music - Composition
 Bachelor of Music - Composition | School of Music | University of Washington
@@ -50,11 +45,11 @@ Bachelor of Music - Composition Course Sequence (PDF)
 Bachelor of Music - Composition Degree Program Sheet (PDF)
 Bachelor of Music - Guitar
 Bachelor of Music - Jazz Studies
+Bachelor of Music - Music Education, Instrumental Emphasis
+Bachelor of Music - Music Education, Post Baccalaureate Certification, Instrumental Emphasis
 Bachelor of Music - Music Education, Post Baccalaureate Certification, Vocal Emphasis
 Bachelor of Music - Percussion Performance
 Bachelor of Music - Percussion Performance | School of Music | University of Washington
-Bachelor of Music | School of Music | University of Washington
-Bachelor of Music General Education Requirements
 Bands
 BM Percussion Performance Degree Program Sheet (PDF)
 Box 353450
@@ -74,8 +69,6 @@ Courses
 Current Projects
 Current Season
 Directories
-Diversity – 3 cr., may overlap with courses taken in the major or to fulfill general education requirements.
-Diversity – 5 cr., may overlap with courses taken in the major or to fulfill general education requirements.
 Diversity, Equity, & Inclusion
 Doctor of Musical Arts
 Doctor of Philosophy (Ph.D.)
@@ -102,14 +95,12 @@ Hire a Musician
 History
 Home
 Instagram
-Instrumental Option
 Instrumental Performance
 Internships & Careers
 Jazz
 Jazz and Improvised Music
 Jazz Studies
 John Blacking: Venda Music
-Language Skills - 5 cr. English Composition; 5 cr. Foreign Language (third quarter)
 LinkedIn
 M USICP 320/420 (18 credits)
 Mailing Lists
@@ -126,6 +117,7 @@ MUSED 301: Techniques for Teaching Music to Children (2 credits)
 MUSED 304, 305: Introductory Music Methods (2, 2) (4 credits)
 MUSED 340: Music in Education (3 credits)
 MUSED 440: Music for Children (3 credits)
+MUSED 442: Instrumental Curriculum: Methods and Materials (3 credits)
 MUSED 443: Choral Curriculum: Methods and Materials (3 credits)
 MUSED 452: Ethnomusicology in the Schools (3 credits)
 MUSED 465: Classroom Management and Evaluation in Music Education (3 credits)
@@ -148,6 +140,7 @@ MUSIC 336, 426: Jazz Arranging (2, 2) (4 credits)
 MUSIC 350, 351, 352: Choral Conducting (1, 1, 1) (3 credits)
 MUSIC 379: Junior Recital (1 credit)
 MUSIC 380, 381, 382: Conducting (1, 1, 1) (3 credits)
+MUSIC 380, 381, 382: Instrumental Conducting (1, 1, 1) (3 credits)
 MUSIC 391/491: Private Instruction: Composition (18 credits)
 MUSIC 400/DXARTS 460: Digital Sound (5 credits)
 MUSIC 434, 435, 436: Pedagogy (2, 2, 2) (6 credits)
@@ -159,10 +152,8 @@ MUSIC 487 or 438: Tonal Counterpoint or Problems in Contemporary Performance (3 
 MUSIC 496: Instrumentation
 Music Building
 Music Education
-Music Education - Instrumental Emphasis
-Music Education - Post Baccalaureate Certfication, Instrumental Emphasis*
-Music Education - Post Baccalaureate Certficiation, Vocal Emphasis*
-Music Education - Vocal Emphasis
+Music Education with Teaching Certification (Instrumental/General Emphasis)
+Music Education with Teaching Certification (Post Bac, Instrumental/General Emphasis)
 Music Education with Teaching Certification (Post Bac,Vocal/General Emphasis)
 Music Education, Instrumental Emphasis
 Music Education, Post Bac, Instrumental Emphasis
@@ -170,18 +161,13 @@ Music Education, Post Bac, Vocal Emphasis
 Music Education, Vocal Emphasis
 Music Ensemble: MUSEN 384 (Modern Music Ensemble); 410 (Steel Drum Ensemble); 411 (Gamelan Ensemble); 389 (World Music) (1 credit)
 Music History
-Music History Option
 Music Library
 Music Minor
 Music Theory & History Core
-Music Theory Option
 Music Theory-History Core (36 credits)
-Music, Instrumental Option
-Music, Music History Option
-Music, Music Theory Option
-Music, Voice Option
 Musical Instrument Collection
 MUSICP 320-339/420-439 or MUSAP 136-139/233-239, 389 or MUSEN 389: Two years of Private Instruction: Vocal or Instrumental (Note: Admission to MUSICP lessons is done through audition - except MUSAP 389) (12-18 credits)
+MUSICP 321-339/421-439 (18 credits)
 MUSICP 337: Percussion Private Lessons (18 credits)
 MUSICP 338: Private Instruction (3) (18 credits)
 MUSICP 437: Percussion Private Lessons (18 credits)
@@ -220,7 +206,6 @@ Programs & Courses
 Publications & Recordings
 Quick links
 Quick Links
-Reasoning and Writing in Context - 5 cr. Reasoning; 10 cr. Writing courses
 Recent News
 Registration Policies
 Research
@@ -244,10 +229,6 @@ Stay Connected
 Strings
 Student Advisory Council
 Student Work
-Students admitted to the UW for Autumn 2023 and after:
-Students admitted to the UW in prior quarters:
-Students earning a Bachelor of Arts with a major in music may choose one of the following options:
-Students earning a Bachelor of Music degree may major in the following areas:
 Students must satisfy a piano proficiency requirement equivalent to passing MUSAP 235.
 Study Abroad
 Submit an Update
@@ -259,7 +240,6 @@ Terms
 The Composition faculty committee will make its decision based on the complete application. Additionally, the student may be asked to come for an audition. Once the review process is completed the student will be informed through the Advising Office.
 The Composition Major Program at the School of Music starts at the second year level exclusively. Students interested in the Program should follow these procedures:
 The major in Music Education at the School of Music is a program leading to a Bachelor of Music Education degree. Upon completion of full‐time student teaching, students will also receive certification to teach music (grades K ‐ 12) in the State of Washington. Students interested in pursuing the Music Education major should follow the procedures outlined below:
-The School of Music also offers:
 The University of Washington acknowledges the Coast Salish peoples of this land, the land which touches the shared waters of all tribes and bands within the Suquamish, Tulalip and Muckleshoot nations.
 Theory Certificate
 Ticketing
@@ -276,7 +256,6 @@ User account menu
 Venues & Parking
 Vi Hilbert Archive
 Vocal
-Vocal Option
 Vocal Performance
 Voice
 Washington

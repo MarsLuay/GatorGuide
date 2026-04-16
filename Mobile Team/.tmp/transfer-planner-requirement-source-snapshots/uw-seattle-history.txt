@@ -8,7 +8,6 @@ Title: Major | Department of History | University of Washington
 -Enrolled, registered, and attending classes at the University of Washington during the current quarter.
 [Supplemental official source] elective History coursework
 [Supplemental official source] History Endorsement
-[Supplemental official source] History Thematic Majors
 [Supplemental official source] Social Studies Endorsement
 &copy; 2026 University of Washington . All rights reserved.
 10 credits of approved courses in the Modern period.
@@ -86,10 +85,6 @@ History Endorsement Requirements | Department of History | University of Washing
 History Graduate Office
 History is a minimum requirements major. Students may declare the major as soon as they have met the prerequisites listed above. There is no application process. To declare the major, please make an appointment with History Undergraduate Advising .
 History Lecture Series
-History of Empire and Colonialism
-History of Race, Gender, and Power
-History of Religion and Society
-History of War and Society
 History Writing Center
 History: 35 credits/7 courses
 History: 50 credits/10 courses
@@ -134,7 +129,6 @@ MyUW
 Neither Modern nor Pre-Modern
 News & Events
 Newsletter
-On this page:
 One 5-credit HSTRY 388: Introduction to History (Junior Seminar) completed at the University of Washington.
 One 5-credit HSTRY 494: Historiography OR HSTRY 498: Colloquium in History (Senior Seminar) completed at the University of Washington in which a major research paper or its equivalent will be written.
 One course (approx. 5 credits) in Historical Methodologies
@@ -200,13 +194,7 @@ The history department faculty has determined which of our courses fulfill the a
 The junior seminar must be completed before the senior seminar may be taken; concurrent enrollment is not permitted.
 Thematic Degree Options
 Thematic major elective courses (25 out of the 30 total elective credits required for completion of the major).
-Thematic Major Options
-Thematic Major Options | Department of History | University of Washington
 This course must be completed before a student may take the senior seminar; concurrent enrollment is not permitted. Students should take at least two upper division history courses before they take their HSTRY 388.
-This major explores experiences of civil and international wars as a means to question how violence, conflict, and other traumatic acts have shaped political, social, and cultural formations in the past and present. In addition to military history, courses in this minor examine the following aspects of war's linkage to society: how the experiences and exigencies of war create conditions for broader changes, including changes in notions of territorial integrity, sovereignty, national belonging, citizenship, gender, and race, as people are called to serve in battle zones and on the home front. See the approved course list for this major .
-This major explores the centrality of race and gender in shaping and reproducing hierarchical relations of power around the world. From social classifications and legal codes in ancient and medieval societies to scientific and cultural conceptions of racial and sexual differences over the last four centuries, how have race and gender defined and denied access to power to justify and naturalize social inequalities? And how have different peoples organized politically around racial and gender identities (e.g., as women, as Chicanas, as First Nations, etc.) to contest and transform social norms? See the approved course list for this major .
-This major explores the development of religious traditions worldwide, asking how religious beliefs, practices, and institutions have helped shape culture, politics, and ideology from pre-modern times to the present. Courses in the minor push students to consider the multifarious ways in which religion structures society and is structured by it. See the approved course list for this major .
-This major explores the historical development of imperial and colonial formations around the world, from ancient times to the current era of neoliberalism and globalization. How have imperial and colonial formations shaped larger processes and events in world history? And how have historical actors in both colonies and metropoles experienced, negotiated, advanced, and resisted imperial and colonial domination? See the approved course list for this major .
 To complete the major you will need 60 credits of history with an average history GPA of 2.25, broken down as follows:
 Transcript Evaluation for Endorsement
 Transfer Students

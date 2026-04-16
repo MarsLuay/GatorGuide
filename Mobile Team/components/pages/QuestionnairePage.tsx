@@ -232,6 +232,17 @@ export default function QuestionnairePage() {
     fontSize: isTablet ? 16 : 15,
     lineHeight: 22,
   };
+  const footerButtonContentStyle = {
+    minHeight: isCompactPhone ? 52 : 58,
+    borderRadius: 18,
+    paddingHorizontal: isCompactPhone ? 16 : 18,
+  } as const;
+  const footerSecondaryButtonContentStyle = {
+    ...footerButtonContentStyle,
+    minHeight: isCompactPhone ? 50 : 56,
+  } as const;
+  const secondaryButtonIconColor = isDark || isGreen ? "#FFFFFF" : "#0f5132";
+  const primaryButtonIconColor = "#FFFFFF";
 
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
@@ -809,6 +820,8 @@ export default function QuestionnairePage() {
                       }}
                       label={t("general.back")}
                       variant="secondary"
+                      icon={<MaterialIcons name="arrow-back-rounded" size={18} color={secondaryButtonIconColor} />}
+                      contentStyle={footerSecondaryButtonContentStyle}
                       style={{
                         flex: isTablet ? 1 : undefined,
                         width: isTablet ? undefined : "100%",
@@ -829,21 +842,31 @@ export default function QuestionnairePage() {
                             ? t("questionnaire.complete")
                             : t("questionnaire.next")
                       }
-                      style={{ flex: isTablet ? 1 : undefined, width: isTablet ? undefined : "100%", opacity: !isHydrated || isActionLocked ? 0.6 : 1 }}
-                      disabled={!isHydrated || isActionLocked}
-                    />
-
-                    <GlassButton
-                      onPress={() => {
-                        void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                        void handleSaveAndExit();
-                      }}
-                      label={isActionLocked ? t("general.loading") : t("questionnaire.saveAndExit")}
-                      variant="secondary"
+                      icon={
+                        <MaterialIcons
+                          name={currentStep === questions.length - 1 ? "check-circle-outline" : "arrow-forward-rounded"}
+                          size={18}
+                          color={primaryButtonIconColor}
+                        />
+                      }
+                      contentStyle={footerButtonContentStyle}
                       style={{ flex: isTablet ? 1 : undefined, width: isTablet ? undefined : "100%", opacity: !isHydrated || isActionLocked ? 0.6 : 1 }}
                       disabled={!isHydrated || isActionLocked}
                     />
                   </View>
+
+                  <GlassButton
+                    onPress={() => {
+                      void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                      void handleSaveAndExit();
+                    }}
+                    label={isActionLocked ? t("general.loading") : t("questionnaire.saveAndExit")}
+                    variant="secondary"
+                    icon={<MaterialIcons name="save-alt" size={18} color={secondaryButtonIconColor} />}
+                    contentStyle={footerSecondaryButtonContentStyle}
+                    style={{ width: "100%", opacity: !isHydrated || isActionLocked ? 0.6 : 1 }}
+                    disabled={!isHydrated || isActionLocked}
+                  />
                 </View>
               </View>
             </View>

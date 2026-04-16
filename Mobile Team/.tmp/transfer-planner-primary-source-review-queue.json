@@ -1,30 +1,16 @@
 {
-  "generatedAt": "2026-04-15T04:19:50.142Z",
-  "totalReviewOwners": 1,
+  "generatedAt": "2026-04-16T20:29:31.255Z",
+  "totalReviewOwners": 0,
   "mediumConfidenceCount": 0,
-  "unresolvedCount": 1,
+  "unresolvedCount": 0,
   "campuses": [
     {
       "campusId": "uw-seattle",
       "campusLabel": "UW Seattle",
-      "totalReviewOwners": 1,
+      "totalReviewOwners": 0,
       "mediumConfidenceCount": 0,
-      "unresolvedCount": 1,
-      "entries": [
-        {
-          "ownerType": "major",
-          "ownerKey": "uw-seattle-finnish",
-          "planId": "uw-seattle-finnish",
-          "pathwayId": null,
-          "title": "Finnish",
-          "campusId": "uw-seattle",
-          "status": "needs-source-automation",
-          "suggestedPrimary": null,
-          "candidateCount": 0,
-          "officialLinkCount": 0,
-          "topReviewCandidates": []
-        }
-      ]
+      "unresolvedCount": 0,
+      "entries": []
     },
     {
       "campusId": "uw-bothell",

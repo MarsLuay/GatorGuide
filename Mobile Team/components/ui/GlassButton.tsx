@@ -7,6 +7,7 @@ import {
   StyleSheet,
   type PressableProps,
   type StyleProp,
+  type TextStyle,
   type ViewStyle,
 } from "react-native";
 
@@ -20,6 +21,10 @@ type GlassButtonProps = Omit<PressableProps, "style"> & {
   variant?: "primary" | "secondary";
   icon?: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  contentStyle?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
+  borderRadius?: number;
+  specular?: boolean;
 };
 
 export function GlassButton({
@@ -27,6 +32,10 @@ export function GlassButton({
   variant = "primary",
   icon,
   style,
+  contentStyle,
+  labelStyle,
+  borderRadius = 14,
+  specular = true,
   onPressIn,
   onPressOut,
   ...rest
@@ -59,19 +68,23 @@ export function GlassButton({
         }}
         {...rest}
       >
-        <LiquidGlassView borderRadius={14} style={styles.surface}>
+        <LiquidGlassView borderRadius={borderRadius} style={styles.surface} specular={specular}>
           <View
             style={[
               styles.row,
+              {
+                borderRadius,
+              },
               isPrimary
                 ? {
                     backgroundColor: theme.glassPrimaryFill,
                   }
                 : null,
+              contentStyle,
             ]}
           >
             {icon}
-            <Text style={[styles.label, { color: textColor }]}>{label}</Text>
+            <Text style={[styles.label, { color: textColor }, labelStyle]}>{label}</Text>
           </View>
         </LiquidGlassView>
       </Pressable>

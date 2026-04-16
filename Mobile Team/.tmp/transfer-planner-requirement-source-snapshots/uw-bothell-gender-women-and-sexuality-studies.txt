@@ -32,8 +32,9 @@ Alumni
 American & Ethnic Studies
 American Muslim Research Institute Fund
 Apply As Undergraduate
+B EDUC 201 Special Topics in Diversity and Education
 B EDUC 461 Educational Implications of Gender Inequality
-B HLTH 223 Feminist Approaches to Women&#8217;s Health
+B HLTH 414 Masculinities and Men&#8217;s Health: Social Science and Public Health Perspectives
 B HTLH 420 Women&#8217;s Global Health and Human Rights
 B WRIT 133 or B WRIT 134 or ENGL 131 or equivalent (5 credits)
 B WRIT 135 or ENGL 141 or equivalent (5 credits)
@@ -58,6 +59,7 @@ BIS 249 Introduction to Labor Studies
 BIS 290 Interdisciplinary Writing Seminar (5 credits)
 BIS 307 Environmental Justice
 BIS 310 Women, Culture & Development
+BIS 321 Race, Sport, and Culture
 BIS 322 Topics in Performance Studies
 BIS 324 Gender, Human Rights, and Global Cinema
 BIS 341 Topics in the Study of Culture
@@ -69,10 +71,8 @@ BIS 387 Women and American Literature
 BIS 431 Issues in Sexual Politics and Cultures
 BIS 433 Gender, Work and Family
 BIS 438 Prevention and Promotion
-BIS 455 Literature and Sexuality
 BIS 464 Topics in Advanced Cinema Studies
 BIS 470 Art, Politics, and Social Change
-BIS 471 Women in Art
 BIS 480 International Study Abroad
 BIS 486 Studies in Women and Literature
 BIS 490 Advanced Seminar
@@ -140,6 +140,7 @@ Find out about GWSS events and more on our Facebook page , Instagram , and Snapc
 Front & Center: Images of Women in Theatre and Film
 Funding
 Gender and the Politics of Numbers
+Gender Equitable Education
 Gender Under Construction
 Gender, Culture, and Human Rights in India
 Gender, Law, & Policy
@@ -187,6 +188,7 @@ Interested in exploring this major but not ready to commit? Consider taking one 
 Interested in graduate school?
 Internships
 Jobs
+Justice and Liberation for All Queer Students
 Law, Economics & Public Policy
 Learn more about how to apply
 Learning objectives

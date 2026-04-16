@@ -12,12 +12,6 @@ Title: Physics Curriculum - School of Science, Technology, Engineering & Mathema
 &#124;
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
-◆ BPHYS 431: Experimental Physics
-◆ BPHYS 432: Experimental Physics Lab II
-◆ BPHYS 450: Computational Physics & Theoretical Modeling
-★ BPHYS 321: Electricity and Magnetism I
-★ BPHYS 322: Electricity and Magnetism II
-★ BPHYS 324: Quantum Mechanics I
 10 credits at 100-level or higher
 10 credits at 200-level or higher
 10 credits at 300-level or higher in any subject area
@@ -34,10 +28,13 @@ A second undergraduate major or a minor offered by UW Bothell
 About
 Accessibility
 Actuarial Science
+Additional Courses as needed to fulfill University General Education Requirements and to equal a total of 180 credits
+Additional Courses- as needed to fulfill University General Education Requirements and to equal a total of 180 credits
 Additional courses: As needed to fulfill the University General Education Requirements
 Additional Writing (W) &#8211; 10 credits
 Additional Writing (W) &#8211; 5 credits
 Admissions
+Admissions requirements are annotated with an asterisk*
 Advising
 After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
 All Applied Computing students must take a minimum of 25 credits (usually 5 courses) to complete this requirement. Credits earned beyond the minimum of 25 can count towards Upper Level General Electives (below) as long as they are 300-level or higher.
@@ -68,6 +65,8 @@ Applied Computing Curriculum - School of Science, Technology, Engineering & Math
 Applied Computing is a multidisciplinary major that integrates expertise in computer technology (your CSS courses) with another area of expertise called your &#8220;Second Discipline.&#8221; Together, these areas of expertise will become the focal point for your CSS 496 capstone course at the end of the program.
 Apply As Undergraduate
 Apply effective oral/written communication skills and team member skills in designing software systems
+Approved B PHYS 498 Independent Study (1-5 credits, max. 10)
+Approved B PHYS 499 Research (1-5 credits, max. 10)
 Approved Independent Study in Chemistry (B CHEM 498) (1 – 5 credits, maximum 10)
 Approved Independent Study in Chemistry (B CHEM 498) (1–5 credits, maximum 10)
 Approved Undergraduate Research in Chemistry (B CHEM 499) (1 – 5 credits, maximum 10)
@@ -78,6 +77,7 @@ Assess software engineering concepts and processes
 Associate Professor with Tenure
 At least 15 credits must be 400-level
 At least 5 elective credits must be 400-level
+At least one course from this list:
 Awards & Endowments
 B BIO 180 Introductory Biology I
 B BIO 200 Introductory Biology II
@@ -86,6 +86,8 @@ B BIO 365 / B CHEM 365 Biochemistry II (5 credits)
 B BIO 366 / B CHEM 366 Biochemistry Lab (3 credits)
 B BIO 375 / B CHEM 375 Molecular Biology (5 credits)
 B BUS 300: Organizational Behavior, Ethics, and Inclusivity (if taking the Business Administration minor as second discipline of study)
+B CHEM 143 General Chemistry I [4 cr]
+B CHEM 144 General Chemistry I Lab [2 cr]
 B CHEM 237 Organic Chemistry I (4 credits)
 B CHEM 238/241 Organic Chemistry II w/ Lab (4+3 credits)
 B CHEM 239/242 Organic Chemistry III w/ Lab (4+3 credits)
@@ -110,9 +112,45 @@ B CHEM 497 Apprenticeship in Chemistry Education (1–3 credits, maximum 6)
 B PHYS 114/117 General Physics w/ Lab (4+1 credits)
 B PHYS 115/118 General Physics w/ Lab (4+1 credits)
 B PHYS 116/119 General Physics w/ Lab (4+1 credits)
+B PHYS 121 Mechanics
+B PHYS 121 Mechanics (5 cr)*
 B PHYS 121 Mechanics (5 credits)
+B PHYS 122 Electromagnetism and Oscillatory Motion
+B PHYS 122 Electromagnetism and Oscillatory Motion (5 cr)*
 B PHYS 122 Electromagnetism and Oscillatory Motion (5 credits)
+B PHYS 123 Waves
+B PHYS 123 Waves (5 cr)*
 B PHYS 123 Waves (5 credits)
+B PHYS 221 Classical Mechanics
+B PHYS 221 Classical Mechanics (5 cr)
+B PHYS 222 Modern Physics
+B PHYS 222 Modern Physics (5 cr)
+B PHYS 224 Thermal Physics
+B PHYS 224 Thermal Physics (5 cr)
+B PHYS 231 Introduction to Experimental Physics (3 credits)
+B PHYS 293 Special Topics in Physics (1-5 credits, max. 15)
+B PHYS 311 Introduction to Astrophysics I
+B PHYS 312 Introduction to Astrophysics II
+B PHYS 314 Introduction to Cosmology
+B PHYS 317 Mathematical Physics
+B PHYS 321 Electricity and Magnetism I
+B PHYS 322 Electricity and Magnetism II
+B PHYS 323 Electricity and Magnetism III
+B PHYS 324 Quantum Mechanics I
+B PHYS 325 Quantum Mechanics II
+B PHYS 328 Statistical Physics
+B PHYS 431 Experimental Physics Lab I
+B PHYS 432 Experimental Physics Lab II
+B PHYS 433 Senior Project
+B PHYS 433 Senior Project (5 cr)
+B PHYS 441 Condensed Matter Physics I
+B PHYS 442 Condensed Matter Physics II
+B PHYS 450 Computational and Theoretical Modeling in Physics
+B PHYS 484 Physics, Society and Industry
+B PHYS 484 Physics, Society and Industry (5 cr)
+B PHYS 493 Advanced Topics in Physics (1-5 credits, max. 15)
+B PHYS 494 Physics Seminar (1 credit)
+B PHYS 494 Physics Seminar [1 cr]
 B.A. in Chemistry
 B.A. in Chemistry requirements
 B.A. in Physics
@@ -215,32 +253,24 @@ Both BPHYS 114+117 and BPHYS 115+118: General Physics I and II + Labs
 Both BPHYS 121 and BPHYS 122: Calculus-based Physics I and II + Labs
 Both courses (one would count as a CSS Elective instead)
 Bothell, Washington View our location on Google maps.
-BPHYS 221: Classical Mechanics
-BPHYS 222: Modern Physics
-BPHYS 224: Thermal Physics
-BPHYS 231: Experimental Physics (3 credits)
-BPHYS 293: Special Topics in Physics (5 credits)
-BPHYS 311: Astrophysics I
-BPHYS 312: Astrophysics II
-BPHYS 314: Introduction to Cosmology
-BPHYS 317: Mathematical Physics
-BPHYS 321: Electricity and Magnetism I
-BPHYS 322: Electricity and Magnetism II
-BPHYS 323: Electricity and Magnetism III
-BPHYS 324: Quantum Mechanics I
-BPHYS 325: Quantum Mechanics II
-BPHYS 328: Statistical Physics
-BPHYS 431: Experimental Physics
-BPHYS 432: Experimental Physics lab II
-BPHYS 433: Senior Project
-BPHYS 441: Condensed Matter Physics I
-BPHYS 442: Condensed Matter Physics II
-BPHYS 450: Computational Physics & Theoretical Modeling
-BPHYS 484: Physics, Society, and Industry
-BPHYS 493: Advanced Topics in Physics
-BPHYS 494: Physics Seminar (1 credit)
-BPHYS 498: Independent Study (1-5 credits, maximum of 10)
-BPHYS 499: Research (1-5 credits, maximum of 10)
+BPHYS 231 Introduction to Experimental Physics [3 cr]
+BPHYS 293 Special Topics in Physics (1-5 credits, max. 15)
+BPHYS 311 Introduction to Astrophysics I (5 cr]
+BPHYS 312 Introduction to Astrophysics II [5 cr]
+BPHYS 314 Introduction to Cosmology [5 cr]
+BPHYS 317 Mathematical Physics [5 cr]
+BPHYS 321 Electricity and Magnetism | [5 cr]
+BPHYS 322 Electricity and Magnetism II [5 cr]
+BPHYS 323 Electricity and Magnetism III [5 cr]
+BPHYS 324 Quantum Mechanics [5 cr]
+BPHYS 325 Quantum Mechanics II [5 cr]
+BPHYS 328 Statistical Physics [5 cr]
+BPHYS 431 Experimental Physics: Analog Circuits [5 cr]
+BPHYS 432 Experimental Physics: Digital Circuits and Instrumentation [5 cr]
+BPHYS 441 Condensed Matter Physics 1 [5 cr]
+BPHYS 442 Condensed Matter Physics II [5 cr]
+BPHYS 450 Computational and Theoretical Modeling in Physics [5 cr]
+BPHYS 493 Advanced Topics in Physics (1-5 credits, max. 15)
 Business Case Justification: Justifies project expenditures, equipment and other resources in terms of business costs, benefits and risks.
 Business management course
 BWRIT 135 (Research Writing) or similar recommended
@@ -256,6 +286,7 @@ Careers
 Cell Biology (choose one course)
 Center for Biotechnology Innovation & Training
 Chemistry
+Chemistry (6 credits)
 Chemistry (BCHEM)
 Chemistry Curriculum
 Chemistry Curriculum - School of Science, Technology, Engineering & Mathematics
@@ -287,7 +318,7 @@ Computing &#038; Software Systems
 Computing and Software Systems (CSS)
 Computing and Software Systems Skills (CSSSKL)
 Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-Computing-related courses that are not listed above are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
+Computing-related courses that are not listed above or transfer courses are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
 Conduct a risk assessment for an information asset or system, and develop and characterize appropriate strategies for addressing residual risk
 Consider CSS 495: Applied Computing Internship to get credit for a technical job related to your area of focus
 Contact
@@ -300,10 +331,8 @@ Core requirements
 Course
 Course descriptions
 Courses cannot apply to more than one requirement for the Biology major, meaning the same course cannot count towards both the core and elective requirements.
-Courses marked with a diamond (◆) can only be used as an elective for the Bachelor of Science if not already used to fulfill the core requirement.
-Courses marked with a star (★) can be electives for the Bachelor of Arts, but not for the Bachelor of Science.
 Creativity: Challenges existing assumptions, proposes novel alternative ways to framing or solving a problem, pushes the boundaries of knowledge.
-CSS 112: Programming for Scientific Applications (4 credits)
+CSS 112 Introduction to Programming for Scientific Applications (4 credits)
 CSS 301: Technical Writing
 CSS 301: Technical Writing (5 credits)
 CSS 301: Technical Writing for Computing Professionals
@@ -351,7 +380,7 @@ CSS 599: Faculty Research Seminar (1)
 CSS 599: Faculty Research Seminar (1cr)
 CSS courses
 CSS Electives (25 credits / usually 5 courses)
-CSS Electives (25 credits): Cannot overlap with other degree requirements
+CSS Electives (25 credits): Cannot overlap with other degree requirements or 2nd discipline courses
 CSS Labs
 CSS Registration
 CSSE Curriculum
@@ -391,6 +420,7 @@ Efficiency: Identifies ways to solve problems or complete tasks smoothly and eff
 Elective courses
 Elective Courses
 Elective courses must have either the CSS or BEE prefix
+Elective Physics courses (10 credits)
 Elective requirements
 Electrical Engineering
 Electrical Engineering (30 credits)
@@ -404,7 +434,6 @@ Events
 Evolution
 Excellence in Cybersecurity Education
 Expand Navigation
-Experimental Physics &#8211; Choose one course from the following:
 Facilities
 Faculty
 Faculty Research Projects
@@ -487,6 +516,8 @@ Math and Chemistry (26 credits)
 MATH& 146: Introduction to Statistics from Washington Community Colleges
 Mathematical Principles and Techniques: Understands theory and application of numerical, statistical, set theory, and other mathematical techniques in the context of applications and systems programming.
 Mathematics
+Mathematics (20 credits)
+Mathematics courses (a total of 34 credits)
 Maximum of 10 credits of BBIO 499 may apply to the Biology Electives requirement
 Maximum of 10 total credits of CSS 290/390/490 (Special Topics Courses)
 Maximum of 15 total credits of CSS 397/495/498/499 (Variable Credit Courses)
@@ -528,17 +559,16 @@ Petition
 Petitions
 Physical Sciences
 Physics
+Physics (41 credits)
 Physics (BPHYS)
+Physics core courses (a total of 64 credits)
 Physics Curriculum
 Physics Curriculum - School of Science, Technology, Engineering & Mathematics
-Physics electives
-Physics Electives: Additional BPHYS coursework from approved list (10 credits; usually 2 courses)
-Physics Electives: Additional BPHYS coursework from approved list (20 credits; usually 4 courses)
 Physics I and II (choose one series)
 Physics series
 Physics-related courses that are not listed above are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count. For information on submitting a petition, contact your adv isor .
 Physiology (choose one course)
-Plan EARLY: Start planning for this requirement at least 6 months in advance.
+Plan EARLY: Start planning for this requirement at least 1 year in advance.
 Please reach out to the Biology advisor if you have completed and transferred in this course but it is not yet applying to the statistics requirement on your degree audit.
 Power &#038; Energy
 Prerequisites guide
@@ -561,6 +591,7 @@ Read more about the Culminating internship process
 Read more about the project process
 Read more about the thesis process
 Relate theoretical concepts to practical knowledge
+Required STEM courses (67 credits total)
 Requirements
 Requirements Definition and Analysis: Elicits and clearly defines user\&#8217;s needs, assessing potential solutions against benefits and risks; uses appropriate tools for analyzing requirements and creating appropriate data and work flow models.
 Research
@@ -583,6 +614,7 @@ Seattle Campus
 Second discipline contract
 Second discipline of study
 Second discipline of study courses
+Select from the approved list of BPHYS courses:
 Signal Processing
 Skip To Content
 Social Implications of Science & Technology: Understands the interaction between science and technology and the broader social, political, and organizational environment; critically assesses ethical implications of computing technology.
@@ -600,16 +632,22 @@ STEM Advisory Board
 STEM Symposium Event
 stemgrad@uw.edu
 stemsuccess@uw.edu
+STMATH 124 Calculus I
+STMATH 124 Calculus I [5 cr]*
 STMATH 124: Calculus I
-STMATH 126: Calculus III
+STMATH 125 Calculus II
+STMATH 125 Calculus II [5 cr]*
+STMATH 126 Calculus III
+STMATH 126 Calculus III [5 cr]
+STMATH 207 Differential Equations
+STMATH 207 Differential Equations [5 cr]
 STMATH 207 Introduction to Differential Equations (5 credits)
-STMATH 207: Differential Equations
 STMATH 207: Introduction to Differential Equations (5 credits)
+STMATH 208 Matrix Algebra
 STMATH 208 Matrix Algebra with Applications (5 credits)
-STMATH 208: Matrix Algebra
 STMATH 208: Matrix Algebra with Applications (5 credits)
+STMATH 224 Multivariable Calculus
 STMATH 224 Multivariable Calculus (5 credits)
-STMATH 224: Multivariable Calculus
 STMATH 224: Multivariable Calculus (5 credits)
 STMATH 341 Introduction to Statistical Inference (5 credits)
 STMATH 341: Statistical Inference
@@ -652,7 +690,8 @@ Terms
 Testing: Plans, executes, and validates results of unit, systems, and acceptance testing to ensure conformity to user\&#8217;s requirements.
 The Bachelor of Art in Physics is intentionally flexible, and leaves space for you to take other courses you need for a minor, second major, or in preparation for graduate school or a career—or other courses you enjoy!
 The Bachelor of Arts in Chemistry is intentionally flexible, allowing you to tailor your academic journey — whether that means pursuing a minor, adding a second major, preparing for graduate school or a future career, or simply diving into courses that you enjoy.
-The Bachelor of Science in Chemistry (biochemistry option) focuses on Biology and Biochemistry courses. It has a higher amount of core required courses and fewer electives.
+The Bachelor of Science in Chemistry (biochemistry option) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical), with the additional concentration on Biochemistry. It has a higher amount of core required courses and fewer electives.
+The Bachelor of Science in Chemistry (BS) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical) and several modern interdisciplinary areas, including biochemistry, computational chemistry, atmospheric chemistry, and electro-analytical chemistry.
 The Bachelor of Science in Physics allows students to pursue a rigorous curriculum focused on the study of the universe from the largest galaxies to the smallest subatomic particles.The degree includes the traditional areas of physics and has four possible (non-transcripted) concentrations: general physics, astrophysics, biophysics and condensed matter.
 The Computer Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
 The core curriculum creates a baseline of knowledge for students to operate within the world of cybersecurity. Core classes balance the needs of security engineers to apply secure development concepts coupled with theoretical computer science; all within a framework of ethical best practices.
@@ -665,7 +704,7 @@ The Foundation Level includes very broad competencies that are found in every CS
 The learning objectives for the Bachelor of Arts in Applied Computing and the Bachelor of Science in Computer Science & Software Engineering are described in terms of competencies achieved by students within the CSS programs.
 The purpose of the Foundations core is to emphasize the methods of scientific inquiry and emphasize theoretical and conceptual knowledge as it relates to practical/how-to-knowledge. The Foundations core also covers ethical issues that arise in computing and software systems. Courses in the Foundations core provide students with the opportunities to solve problems that emphasize the ability to synthesize and apply theories and techniques in a professional setting. Specifically, students will be solving problems that address the relationship between mathematical and/or scientific foundations and actual practice.
 The remaining 5 elective credits must be 300-level or higher
-These courses are very challenging . We strongly recommend that you do not take them courses at the same time, and instead spread them out over the course of two years.
+These courses are very challenging . We strongly recommend that you do not take them courses at the same time and instead spread them out over two years. We recommend that you contact your academic adviser early in your program to plan out your courses.
 These courses can be taken before or after entry into the major.
 These courses can count as a Biology Elective, but usually do not count towards the &#8220;two out of three categories&#8221; requirement from above:
 These courses may overlap with your General Education requirements (A&H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
@@ -694,6 +733,7 @@ Up to 10 credits may be 200-level
 Upper division biology electives
 Upper division Chemistry electives
 Upper division Chemistry electives with a lab that satisfies the lab requirement:
+Upper Division Physics Electives — Choose 20 credits from the following courses. Each elective course is 5 credits unless otherwise noted:
 Upper division STEM electives
 Upper Level General Electives (10 credits): Cannot overlap with other degree requirements
 User Orientation: Gains understanding of users needs by immersing self in users environment; carefully studies user&#8217;s requirements; puts self in users shoes.

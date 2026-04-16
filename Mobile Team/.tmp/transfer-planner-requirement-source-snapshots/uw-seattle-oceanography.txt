@@ -27,11 +27,11 @@ About
 About Get Involved Facilities Administration Services Code of Conduct Diversity, Equity, and Inclusion Directions & Address School History
 alt="College of the Environment"
 Alumni with a BA in Oceanography can look forward to jobs such as an education specialist, outreach and education director or marine science programs coordinator.
-Apr 15 2026
+Apr 20 2026
 Apr 21 2026
 Apr 22 2026
+Apr 27 2026
 Apr 28 2026
-Apr 29 2026
 At the 200 level, students take a sequence of foundational oceanography courses ( Ocean 200/201 and Ocean 210 ), learn introductory python programming and basic statistics in Ocean 215 , and experience field methods in Ocean 220 .
 At the 300 level, majors complete a full year course sequence in ocean science from the interaction of the seafloor and water column ( Ocean 310 ), to coastal oceanography ( Ocean 320 ), to global biogeochemical cycles ( Ocean 330 ). Majors also learn the fundamentals of how ocean sensors work (and build their own!) in Ocean 351 .
 At the 400-level the BS and BA requirements differ.
@@ -81,6 +81,8 @@ Make a Gift
 Marine Biology
 Menu
 MENU
+MG&G Seminar 4/20/26
+MG&G Seminar 4/27/26
 Most popular
 MyOcean
 MyOcean Intranet
@@ -96,8 +98,6 @@ Opportunities within Oceanography and beyond UW
 People
 People Faculty Post Docs Graduate Students Staff Alumni In Memoriam
 PhD Defense:&#160;Scott Martin 4/22/26
-PO Seminar 4/15/26
-PO Seminar 4/29/26
 Privacy | Terms
 Program on Climate Change
 Program on the Environment
@@ -118,6 +118,7 @@ Size: 110 kb
 sizes="(max-width: 479px) 94vw, (max-width: 767px) 366px, (max-width: 991px) 354px, 366px"
 src="/images/uw-coe-logo.png"
 srcset="/images/uw-coe-logo.png 500w, /images/uw-coe-logo.png 800w, /images/uw-coe-logo.png 962w"
+Student Seaglider Center awarded
 Student Seaglider Center was awarded funding from the Student Technology Fee!
 Students apply the knowledge they get from their Oceanography courses in a wide variety of research and experiential learning settings. Explore related stories below to sample this range of experiences.
 Suquamish, Tulalip and Muckleshoot nations.

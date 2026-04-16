@@ -1,23 +1,11 @@
 # Transfer Planner Primary Source Source-Gap Report
 
-Generated: 2026-04-15T04:19:50.142Z
+Generated: 2026-04-16T20:29:31.255Z
 
-- Total source-gap owners: 1
+- Total source-gap owners: 0
 - Medium-confidence suggestions: 0
-- Needs source automation: 1
+- Needs source automation: 0
 
 This queue is the source-automation follow-up list after the safe high-confidence auto-promotion step.
 Do not use it to make student-facing claims; add better official-source discovery or parser adapters instead.
-
-## UW Seattle
-
-- Source-gap owners: 1
-- Medium-confidence suggestions: 0
-- Needs source automation: 1
-
-### Needs source automation
-
-- Finnish
-  - Official links scanned: 0
-  - Candidate URLs inspected: 0
 

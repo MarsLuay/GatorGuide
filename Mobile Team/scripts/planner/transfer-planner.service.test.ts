@@ -6656,7 +6656,7 @@ test("Source-gap registry tracks hidden owners that need source automation", () 
   );
 });
 
-test.skip("Source-gap registry exactly covers planner owners missing primary degree sources", () => {
+test("Source-gap registry exactly covers planner owners missing primary degree sources", () => {
   const owners = getPlannerOwnerPrimarySourceEntries();
   const missingPrimaryOwnerKeys = owners
     .filter((entry) => !entry.primaryUrl)

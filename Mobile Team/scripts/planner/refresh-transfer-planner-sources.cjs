@@ -64,13 +64,14 @@ const REFRESH_SECTION_DEFINITIONS = [
     id: "requirement-parsing",
     title: "Refresh: requirement parsing and fingerprints",
     description:
-      "Parse UW major requirement sources and rebuild the source and parsed-fact fingerprint reports.",
+      "Parse UW major requirement sources, rebuild source and parsed-fact fingerprints, and validate canonical source-pipeline invariants.",
     steps: [
       {
         label: "Parse UW major requirement sources",
         include: (options) => !options.skipRequirementParse,
       },
       { label: "Build source and parsed-fact fingerprints" },
+      { label: "Validate source pipeline invariants" },
     ],
   },
   {
@@ -106,6 +107,10 @@ const REFRESH_SECTION_DEFINITIONS = [
     description:
       "Run the owner audit, TypeScript typecheck, and planner tests after the refresh finishes.",
     steps: [
+      {
+        label: "Validate source pipeline invariants",
+        include: (options) => options.verifyOnly,
+      },
       {
         label: "Audit transfer planner owners",
         include: (options) => !options.skipVerify || options.verifyOnly,
@@ -306,7 +311,12 @@ function sleep(delayMs) {
   return new Promise((resolve) => setTimeout(resolve, delayMs));
 }
 
-function runVerification(runStepFn = runStep) {
+function runVerification(runStepFn = runStep, options = {}) {
+  if (options.includePipelineValidation) {
+    runStepFn("Validate source pipeline invariants", () =>
+      runCommand("node", ["scripts/planner/verify-transfer-planner-source-pipeline.cjs"])
+    );
+  }
   runStepFn("Audit transfer planner owners", () =>
     runCommand("node", ["scripts/planner/verify-transfer-planner-owner-audit.cjs"])
   );
@@ -520,6 +530,9 @@ async function main() {
         runTrackedStep("Build primary-source automation queue", () =>
           runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"])
         );
+        runTrackedStep("Promote high-confidence primary sources", () =>
+          runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-promotions.cjs"])
+        );
         runTrackedStep("Classify hidden source gaps", () =>
           runCommand("node", ["scripts/planner/build-transfer-planner-source-gap-report.cjs"])
         );
@@ -536,6 +549,9 @@ async function main() {
 
         runTrackedStep("Build source and parsed-fact fingerprints", () =>
           runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"])
+        );
+        runTrackedStep("Validate source pipeline invariants", () =>
+          runCommand("node", ["scripts/planner/verify-transfer-planner-source-pipeline.cjs"])
         );
         return;
       }
@@ -581,7 +597,7 @@ async function main() {
       }
       case "verification": {
         if (!skipVerify || verifyOnly) {
-          runVerification(runTrackedStep);
+          runVerification(runTrackedStep, { includePipelineValidation: verifyOnly });
         } else {
           markSkipped("Refresh verification suite", "--skip-verify");
         }

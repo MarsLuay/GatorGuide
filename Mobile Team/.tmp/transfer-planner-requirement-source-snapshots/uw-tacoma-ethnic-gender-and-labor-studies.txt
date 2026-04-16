@@ -1,8 +1,7 @@
 Owner: uw-tacoma-ethnic-gender-and-labor-studies
-Source: https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies
+Source: https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies
 Title: Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
 
-[Supplemental official source] Admission Requirements
 [Supplemental official source] Ethnic Studies Option
 [Supplemental official source] Gender Studies Option
 [Supplemental official source] Global Studies Concentration

@@ -63,59 +63,103 @@ const ENGLISH_COMPOSITION_EXCLUSION_PATTERN =
   /\b(additional english composition|except the 5-?credit english composition requirement|writing-intensive|w course|w courses)\b/i;
 const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "ABOVE",
+  "APPLY",
   "AND",
   "ANY",
   "APPROVED",
   "ARE",
   "AREA",
   "AT",
+  "AUTUMN",
   "BASIC",
   "BE",
+  "BEFORE",
   "BETWEEN",
   "BELOW",
+  "BEYOND",
   "BEGIN",
+  "BOTH",
   "BOX",
   "BLDG",
   "BUILDING",
+  "BUT",
+  "BY",
+  "CALL",
   "COURSES",
+  "COURSE",
+  "CORE",
   "CREDITS",
+  "CREDIT",
   "COMPLETE",
+  "CONSIDER",
+  "DATA",
   "DIVISION",
   "EARN",
+  "EARNED",
+  "EITHER",
+  "ENGLISH",
   "FAX",
   "FORTUNE",
   "FOR",
   "HALL",
   "FROM",
+  "GRADED",
+  "HAVE",
   "IF",
   "IN",
+  "INCLUDE",
+  "INCLUDES",
   "INTO",
+  "IS",
+  "JUST",
+  "LEVEL",
   "LEAST",
+  "LIKE",
   "MINIMUM",
+  "MAX",
   "MORE",
   "MUST",
   "NUMBERED",
+  "NOT",
   "OF",
   "ONE",
   "ON",
   "OFFERINGS",
   "OCCUPIES",
+  "OFFICE",
   "OR",
   "OTHER",
   "PLUS",
   "REACH",
+  "REQUIRE",
+  "RECOMMENDED",
   "REQUIRES",
+  "REQUIRED",
+  "ROOM",
+  "SECTION",
+  "SEPARATE",
+  "SPRING",
   "RM",
   "ROOM",
+  "BREADTH",
+  "GROCERY",
   "SUITE",
+  "SUMMER",
   "TAKE",
+  "TAKING",
   "THAT",
   "THAN",
   "THE",
   "THEN",
+  "THROUGH",
   "TO",
   "TOTALS",
   "TWO",
+  "USE",
+  "WANT",
+  "WHILE",
+  "WILL",
+  "WINTER",
   "WITH",
   "YOUR",
 ]);
@@ -123,10 +167,21 @@ const LEGACY_GRC_CODE_ALIASES = new Map([
   ["MATH& 254", "MATH& 264"],
 ]);
 const LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set(["AND", "AS", "OR"]);
+const RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set([
+  "AND",
+  "AS",
+  "BOTH",
+  "EITHER",
+  "OR",
+]);
 const LEADING_LIST_MARKER_TOKENS = new Set(["I", "II", "III", "IV"]);
 const EXTRACTED_COURSE_SUBJECT_ALIASES = {
+  ACCOUNTING: "ACCTG",
+  BIOENGINEERING: "BIOEN",
+  BIOSTATISTICS: "BIOST",
   BIOLOGY: "BIOL",
   PHYSICS: "PHYS",
+  SPANISH: "SPAN",
 };
 const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
   TRANSFER_PLANNER_GENERATED_COURSE_METADATA.filter((entry) => entry.schoolId !== "grc")
@@ -444,16 +499,26 @@ function normalizeExtractedCourseSubject(rawValue) {
   const rawSubject = normalizeWhitespace(String(rawValue ?? "")).toUpperCase();
   const normalizedSubject = EXTRACTED_COURSE_SUBJECT_ALIASES[rawSubject] ?? rawSubject;
   const rawSubjectTokens = extractCourseSubjectTokens(normalizedSubject);
-  const leadingTokensStripped =
-    rawSubjectTokens.length > 1 &&
-    LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS.has(rawSubjectTokens[0])
-      ? rawSubjectTokens.slice(1)
-      : rawSubjectTokens;
-  const subjectTokens =
-    leadingTokensStripped.length > 1 &&
-    LEADING_LIST_MARKER_TOKENS.has(leadingTokensStripped[0])
-      ? leadingTokensStripped.slice(1)
-      : leadingTokensStripped;
+  let subjectTokens = [...rawSubjectTokens];
+
+  while (
+    subjectTokens.length > 1 &&
+    RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS.has(subjectTokens[0])
+  ) {
+    subjectTokens = subjectTokens.slice(1);
+  }
+
+  if (
+    subjectTokens.length > 1 &&
+    LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS.has(subjectTokens[0])
+  ) {
+    subjectTokens = subjectTokens.slice(1);
+  }
+
+  if (subjectTokens.length > 1 && LEADING_LIST_MARKER_TOKENS.has(subjectTokens[0])) {
+    subjectTokens = subjectTokens.slice(1);
+  }
+
   const subject = subjectTokens.join(" ");
   const collapsedSubject = subjectTokens.join("");
   const hasDanglingAmpersandToken = subjectTokens.some((token) => token === "&" || token.endsWith("&"));
@@ -469,6 +534,7 @@ function normalizeExtractedCourseSubject(rawValue) {
   if (
     !subjectTokens.length ||
     subjectTokens.length > 2 ||
+    (subjectTokens.length === 1 && subjectTokens[0].length < 2) ||
     hasDanglingAmpersandToken ||
     subjectTokens.some((token) => token.length > 8 || !/^[A-Z&]+$/.test(token)) ||
     INVALID_EXTRACTED_COURSE_SUBJECTS.has(subject) ||
@@ -2129,6 +2195,95 @@ function countBy(values, getKey) {
   }, {});
 }
 
+function addQualitySignal(signals, severity, code, message, details = null) {
+  signals.push({
+    severity,
+    code,
+    message,
+    details,
+  });
+}
+
+function getStructuredCoverageCount(owner) {
+  const parsedCount = owner.parsedUwCourseCodes.length;
+  const sourceOnlyCount = owner.sourceOnlyUwCourseCodes.length;
+  const structuredOnlyCount = owner.structuredOnlyUwCourseCodes.length;
+  const overlapCount = Math.max(0, parsedCount - sourceOnlyCount);
+  return overlapCount + structuredOnlyCount;
+}
+
+function buildParseQualitySignals(owner) {
+  const signals = [];
+  const parsedCount = owner.parsedUwCourseCodes.length;
+  const sourceOnlyCount = owner.sourceOnlyUwCourseCodes.length;
+  const structuredOnlyCount = owner.structuredOnlyUwCourseCodes.length;
+  const structuredCoverageCount = getStructuredCoverageCount(owner);
+
+  if (sourceOnlyCount >= 5 || structuredOnlyCount >= 5 || (sourceOnlyCount >= 3 && structuredOnlyCount >= 3)) {
+    addQualitySignal(
+      signals,
+      "warning",
+      "material-source-structured-drift",
+      "Parsed source course coverage diverges materially from the structured degree-map coverage.",
+      `parsed=${parsedCount}; source-only=${sourceOnlyCount}; structured-only=${structuredOnlyCount}`
+    );
+  }
+
+  if (structuredOnlyCount >= 8) {
+    addQualitySignal(
+      signals,
+      "warning",
+      "large-structured-only-course-gap",
+      "Structured degree-map coverage includes many UW course codes that were not recovered from the parsed source.",
+      `structured-only=${structuredOnlyCount}; parsed=${parsedCount}; structured-coverage=${structuredCoverageCount}`
+    );
+  }
+
+  if (
+    owner.parseConfidence === "high" &&
+    structuredCoverageCount >= 8 &&
+    (parsedCount <= Math.max(2, Math.floor(structuredCoverageCount / 3)) ||
+      structuredOnlyCount >= Math.max(6, Math.ceil(structuredCoverageCount * 0.6)))
+  ) {
+    addQualitySignal(
+      signals,
+      "warning",
+      "high-confidence-low-course-coverage",
+      "The parser reported high confidence, but the recovered UW course coverage looks suspiciously low for this owner.",
+      `parsed=${parsedCount}; structured-coverage=${structuredCoverageCount}; structured-only=${structuredOnlyCount}`
+    );
+  }
+
+  if (owner.usedSnapshotFallback) {
+    addQualitySignal(
+      signals,
+      "note",
+      "snapshot-fallback-used",
+      "Parsing relied on a cached snapshot after a live-source failure.",
+      owner.snapshotFallbackReason ?? null
+    );
+  }
+
+  if (owner.resolutionStrategy === "alternate-official-source") {
+    addQualitySignal(
+      signals,
+      "note",
+      "alternate-official-source-used",
+      "Parsing succeeded by switching from the primary source URL to an alternate official source URL.",
+      owner.sourceUrl !== owner.primarySourceUrl ? owner.sourceUrl : null
+    );
+  }
+
+  return signals;
+}
+
+function enrichParsedOwnerWithQualitySignals(owner) {
+  return {
+    ...owner,
+    qualitySignals: buildParseQualitySignals(owner),
+  };
+}
+
 function writeGeneratedRequirementSourceAdapters(report) {
   const blocks = report.owners.map((owner) => ({
     id: `${owner.ownerId}:source-block:${slugify(owner.adapterId)}`,
@@ -2154,6 +2309,7 @@ function writeGeneratedRequirementSourceAdapters(report) {
     requirementCueLines: owner.requirementCueLines,
     chooseStatements: owner.chooseStatements,
     pathwayLabels: owner.pathwayLabels,
+    qualitySignals: owner.qualitySignals,
     parsedRequirementAtomCandidates: owner.parsedRequirementAtomCandidates,
     parsedDegreeMapBlockCandidates: owner.parsedDegreeMapBlockCandidates,
     snapshotPath: owner.snapshotPath
@@ -2188,6 +2344,9 @@ function writeGeneratedRequirementSourceAdapters(report) {
     countsByAdapterFamily: report.countsByAdapterFamily,
     countsByCampus: report.countsByCampus,
     countsByResolutionStrategy: report.countsByResolutionStrategy,
+    qualityWarningCount: report.qualityWarningCount,
+    qualityNoteCount: report.qualityNoteCount,
+    countsByQualitySignalCode: report.countsByQualitySignalCode,
   };
 
   const lines = [
@@ -2251,6 +2410,8 @@ function buildMarkdownReport(report) {
     `- Owners with parsed UW course codes: ${report.withParsedCourseCodesCount}`,
     `- Owners with source-only UW course codes not currently in structured degree-map blocks: ${report.withSourceOnlyCourseCodesCount}`,
     `- Owners with no parsed UW course codes: ${report.withNoParsedCourseCodesCount}`,
+    `- Owners with parser-quality warnings: ${report.ownersWithQualityWarningsCount}`,
+    `- Owners with parser-quality notes: ${report.ownersWithQualityNotesCount}`,
     "",
     "## Parser Adapters",
     "",
@@ -2264,6 +2425,12 @@ function buildMarkdownReport(report) {
       .sort(([left], [right]) => left.localeCompare(right))
       .map(([resolutionStrategy, count]) => `- ${resolutionStrategy}: ${count}`),
     "",
+    "## Parser Quality Signals",
+    "",
+    ...Object.entries(report.countsByQualitySignalCode)
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([code, count]) => `- ${code}: ${count}`),
+    "",
   ];
 
   for (const campusId of CAMPUS_ORDER) {
@@ -2273,6 +2440,29 @@ function buildMarkdownReport(report) {
     }
 
     lines.push(`## ${campusId}`, "");
+
+    const qualityOwners = campusOwners.filter((owner) =>
+      (owner.qualitySignals ?? []).some((signal) => signal.severity === "warning")
+    );
+    if (qualityOwners.length) {
+      lines.push("### Parser-quality warnings", "");
+      qualityOwners.slice(0, 50).forEach((owner) => {
+        lines.push(`#### ${owner.ownerTitle}`);
+        lines.push("");
+        lines.push(`- Source: ${owner.sourceUrl}`);
+        lines.push(`- Parse confidence: ${owner.parseConfidence}`);
+        lines.push(
+          `- Quality warnings: ${owner.qualitySignals
+            .filter((signal) => signal.severity === "warning")
+            .map((signal) => `${signal.code}${signal.details ? ` (${signal.details})` : ""}`)
+            .join(" | ")}`
+        );
+        if (owner.primarySourceUrl !== owner.sourceUrl) {
+          lines.push(`- Primary source: ${owner.primarySourceUrl}`);
+        }
+        lines.push("");
+      });
+    }
 
     const driftOwners = campusOwners.filter((owner) => owner.sourceOnlyUwCourseCodes.length > 0);
     if (driftOwners.length) {
@@ -2345,7 +2535,7 @@ async function main() {
     console.log("Snapshot-only mode enabled. Reusing cached requirement-source snapshots.");
   }
 
-  const owners = await mapWithConcurrency(
+  const parsedOwners = await mapWithConcurrency(
     manifestEntries,
     (entry) => parseManifestEntry(entry, DEFAULT_TIMEOUT_MS, { snapshotOnly }),
     DEFAULT_CONCURRENCY,
@@ -2354,6 +2544,7 @@ async function main() {
       describeItem: (entry) => `${entry.planId}${entry.pathwayId ? `:${entry.pathwayId}` : ""}`,
     }
   );
+  const owners = parsedOwners.map(enrichParsedOwnerWithQualitySignals);
 
   const report = {
     generatedAt: new Date().toISOString(),
@@ -2381,6 +2572,26 @@ async function main() {
     withNoParsedCourseCodesCount: owners.filter(
       (owner) => owner.ok && owner.parsedUwCourseCodes.length === 0
     ).length,
+    ownersWithQualityWarningsCount: owners.filter((owner) =>
+      owner.qualitySignals.some((signal) => signal.severity === "warning")
+    ).length,
+    ownersWithQualityNotesCount: owners.filter((owner) =>
+      owner.qualitySignals.some((signal) => signal.severity === "note")
+    ).length,
+    qualityWarningCount: owners.reduce(
+      (count, owner) =>
+        count + owner.qualitySignals.filter((signal) => signal.severity === "warning").length,
+      0
+    ),
+    qualityNoteCount: owners.reduce(
+      (count, owner) =>
+        count + owner.qualitySignals.filter((signal) => signal.severity === "note").length,
+      0
+    ),
+    countsByQualitySignalCode: countBy(
+      owners.flatMap((owner) => owner.qualitySignals),
+      (signal) => signal.code
+    ),
     owners,
   };
 
@@ -2396,6 +2607,7 @@ async function main() {
     `Owners with source-only UW course codes not in structured degree-map blocks: ${report.withSourceOnlyCourseCodesCount}`
   );
   console.log(`Owners with no parsed UW course codes: ${report.withNoParsedCourseCodesCount}`);
+  console.log(`Owners with parser-quality warnings: ${report.ownersWithQualityWarningsCount}`);
   console.log(`JSON report: ${OUTPUT_JSON_PATH}`);
   console.log(`Markdown report: ${OUTPUT_MD_PATH}`);
   console.log(`Generated adapters: ${OUTPUT_TS_PATH}`);

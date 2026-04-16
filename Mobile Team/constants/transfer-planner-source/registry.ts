@@ -15,6 +15,9 @@ import {
   TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY,
 } from "./requirement-source-adapters.generated";
 import {
+  TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
+} from "./primary-source-promotions.generated";
+import {
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY,
 } from "./requirement-diff-classifications.generated";
@@ -57,36 +60,101 @@ import type {
   TransferPlannerSourceSchoolId,
 } from "./schema";
 
-const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
+const EXPLICIT_COURSE_CODE_PATTERN =
+  /\b([A-Za-z&]{2,8}|[A-Za-z&]{1,4}(?:\s+[A-Za-z&]{1,4}))\s+(\d{3}(?:\.\d+)?[A-Za-z]?)\b/g;
+const COURSE_NUMBER_CONTINUATION_PATTERN =
+  /(?:^|[,(;/]\s*|\b(?:or|and)\s+)(\d{3}(?:\.\d+)?[A-Za-z]?)(?=$|[\s,);/]|(?:\s*(?:or|and)\b))/gi;
 const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
+  "APPLY",
   "AND",
   "ANY",
   "APPROVED",
   "AT",
+  "AUTUMN",
+  "BEFORE",
   "BETWEEN",
+  "BEYOND",
+  "BOTH",
+  "BUT",
+  "BY",
+  "CALL",
+  "COMPLETE",
+  "CONSIDER",
+  "CORE",
+  "COURSE",
+  "COURSES",
+  "CREDIT",
+  "DATA",
   "DIVISION",
+  "EARNED",
+  "EITHER",
+  "ENGLISH",
   "FOR",
+  "FROM",
+  "GRADED",
+  "HAVE",
+  "INCLUDE",
+  "INCLUDES",
   "INTO",
+  "IS",
+  "JUST",
   "LEAST",
+  "LIKE",
   "MINIMUM",
+  "MAX",
+  "NOT",
   "OF",
+  "OFFICE",
   "OCCUPIES",
   "ONE",
   "OR",
   "PLUS",
   "REACH",
+  "REQUIRE",
+  "REQUIRED",
   "REQUIRES",
+  "ROOM",
+  "SECTION",
+  "SEPARATE",
+  "SPRING",
+  "BREADTH",
+  "GROCERY",
   "THAT",
   "THE",
   "THEN",
+  "THROUGH",
   "TO",
   "TOTALS",
   "TWO",
+  "USE",
+  "WANT",
+  "WHILE",
+  "WILL",
+  "WINTER",
 ]);
 const EXTRACTED_COURSE_SUBJECT_ALIASES: Partial<Record<string, string>> = {
+  ACCOUNTING: "ACCTG",
+  BIOENGINEERING: "BIOEN",
+  BIOSTATISTICS: "BIOST",
   BIOLOGY: "BIOL",
   PHYSICS: "PHYS",
+  SPANISH: "SPAN",
 };
+const LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set(["AND", "AS", "OR"]);
+const RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set([
+  "AND",
+  "AS",
+  "BOTH",
+  "EITHER",
+  "OR",
+]);
+const LEADING_LIST_MARKER_TOKENS = new Set(["I", "II", "III", "IV"]);
+const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
+  TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA.filter((entry) => entry.schoolId !== "grc")
+    .map((entry) => String(entry.code ?? "").match(/^([A-Z&]+(?: [A-Z&]+)*) \d/))
+    .map((match) => match?.[1] ?? null)
+    .filter(Boolean)
+);
 const DATE_PATTERN =
   /\b(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}\b/;
 const GRC_AVAILABILITY_SOURCE_LINKS: TransferPlannerSourceLink[] = [
@@ -230,34 +298,107 @@ function isEffectiveRangeActiveForGuideTerm(
   return true;
 }
 
-function normalizeExtractedCourseCode(value: string) {
-  const match = String(value ?? "")
+function extractCourseSubjectTokens(value: string) {
+  return String(value ?? "")
     .toUpperCase()
-    .match(/\b([A-Z]{2,8}&?)\s*(\d{3}(?:\.\d+)?[A-Z]?)\b/);
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+}
 
-  if (!match) {
+function normalizeExtractedCourseSubject(rawValue: string) {
+  const rawSubject = String(rawValue ?? "").toUpperCase().trim().replace(/\s+/g, " ");
+  const normalizedSubject = EXTRACTED_COURSE_SUBJECT_ALIASES[rawSubject] ?? rawSubject;
+  let subjectTokens = extractCourseSubjectTokens(normalizedSubject);
+
+  while (
+    subjectTokens.length > 1 &&
+    RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS.has(subjectTokens[0])
+  ) {
+    subjectTokens = subjectTokens.slice(1);
+  }
+
+  if (
+    subjectTokens.length > 1 &&
+    LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS.has(subjectTokens[0])
+  ) {
+    subjectTokens = subjectTokens.slice(1);
+  }
+
+  if (subjectTokens.length > 1 && LEADING_LIST_MARKER_TOKENS.has(subjectTokens[0])) {
+    subjectTokens = subjectTokens.slice(1);
+  }
+
+  const subject = subjectTokens.join(" ");
+  const collapsedSubject = subjectTokens.join("");
+  const hasDanglingAmpersandToken = subjectTokens.some((token) => token === "&" || token.endsWith("&"));
+
+  if (
+    subjectTokens.length > 1 &&
+    KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(collapsedSubject) &&
+    !KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(subject)
+  ) {
+    return collapsedSubject;
+  }
+
+  if (
+    !subjectTokens.length ||
+    subjectTokens.length > 2 ||
+    (subjectTokens.length === 1 && subjectTokens[0].length < 2) ||
+    hasDanglingAmpersandToken ||
+    subjectTokens.some((token) => token.length > 8 || !/^[A-Z&]+$/.test(token)) ||
+    INVALID_EXTRACTED_COURSE_SUBJECTS.has(subject) ||
+    subjectTokens.some((token) => INVALID_EXTRACTED_COURSE_SUBJECTS.has(token))
+  ) {
     return null;
   }
-  if (/^000(?:\.0+)?[A-Z]?$/.test(match[2])) {
+
+  return subject;
+}
+
+function normalizeExtractedCourseCode(rawSubject: string, rawNumber: string) {
+  const subject = normalizeExtractedCourseSubject(rawSubject);
+  const number = String(rawNumber ?? "").toUpperCase().trim().replace(/\s+/g, "");
+
+  if (!subject || !/^\d{3}(?:\.\d+)?[A-Z]?$/.test(number) || /^000(?:\.0+)?[A-Z]?$/.test(number)) {
     return null;
   }
 
-  const rawSubject = normalizeCourseCode(match[1]).replace(/\s+/g, "");
-  const subject = EXTRACTED_COURSE_SUBJECT_ALIASES[rawSubject] ?? rawSubject;
-
-  if (INVALID_EXTRACTED_COURSE_SUBJECTS.has(subject)) {
-    return null;
-  }
-
-  return `${subject} ${match[2]}`;
+  return `${subject} ${number}`;
 }
 
 function extractCourseCodes(value: string) {
-  return unique(
-    (String(value ?? "").toUpperCase().match(COURSE_CODE_PATTERN) ?? [])
-      .map((match) => normalizeExtractedCourseCode(match))
-      .filter((match): match is string => Boolean(match))
-  );
+  const normalizedValue = String(value ?? "").toUpperCase().replace(/\s+/g, " ");
+  const extractedCourseCodes: string[] = [];
+  const explicitMatches = [...normalizedValue.matchAll(EXPLICIT_COURSE_CODE_PATTERN)];
+
+  for (let index = 0; index < explicitMatches.length; index += 1) {
+    const match = explicitMatches[index];
+    const subject = normalizeExtractedCourseSubject(match[1]);
+    const explicitCode = normalizeExtractedCourseCode(match[1], match[2]);
+
+    if (!subject || !explicitCode) {
+      continue;
+    }
+
+    extractedCourseCodes.push(explicitCode);
+
+    const currentMatchEnd = (match.index ?? 0) + match[0].length;
+    const nextMatchStart =
+      index + 1 < explicitMatches.length
+        ? (explicitMatches[index + 1].index ?? normalizedValue.length)
+        : normalizedValue.length;
+    const trailingSegment = normalizedValue.slice(currentMatchEnd, nextMatchStart);
+
+    for (const numberMatch of trailingSegment.matchAll(COURSE_NUMBER_CONTINUATION_PATTERN)) {
+      const continuationCode = normalizeExtractedCourseCode(subject, numberMatch[1]);
+      if (continuationCode) {
+        extractedCourseCodes.push(continuationCode);
+      }
+    }
+  }
+
+  return unique(extractedCourseCodes);
 }
 
 function extractCourseCodesFromList(values: string[]) {
@@ -355,6 +496,39 @@ function toSourceLinks(links?: TransferPlannerLink[]) {
       note: link.note,
     }))
   );
+}
+
+function getSourceManifestOwnerId(planId: string, pathwayId?: string | null) {
+  return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
+}
+
+const AUTO_PROMOTED_PRIMARY_SOURCE_LINKS_BY_OWNER_ID = new Map(
+  TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS.map((entry) => [
+    entry.ownerId,
+    {
+      label: entry.label,
+      url: entry.url,
+    } satisfies TransferPlannerSourceLink,
+  ])
+);
+
+function mergeAutoPromotedPrimarySourceLink(
+  links: TransferPlannerSourceLink[],
+  planId: string,
+  pathwayId?: string | null
+) {
+  const promotedLink = AUTO_PROMOTED_PRIMARY_SOURCE_LINKS_BY_OWNER_ID.get(
+    getSourceManifestOwnerId(planId, pathwayId)
+  );
+  return promotedLink ? dedupeLinks([promotedLink, ...links]) : dedupeLinks(links);
+}
+
+function getOwnerSourceLinks(
+  planId: string,
+  pathwayId?: string | null,
+  links?: TransferPlannerLink[]
+) {
+  return mergeAutoPromotedPrimarySourceLink(toSourceLinks(links), planId, pathwayId);
 }
 
 function getCourseId(schoolId: TransferPlannerSourceSchoolId, code: string) {
@@ -791,7 +965,7 @@ function addCoursesFromCatalogYear(
 }
 
 function getChecklistSources(plan: TransferPlannerMajorPlan) {
-  const sourceLinks = toSourceLinks(plan.officialLinks);
+  const sourceLinks = getOwnerSourceLinks(plan.id, null, plan.officialLinks);
   const validationNotes: string[] = [];
   const lastValidatedOn = getLastValidatedOn(validationNotes);
   return {
@@ -807,8 +981,8 @@ function getPathwaySources(
 ) {
   return {
     sourceLinks: dedupeLinks([
-      ...toSourceLinks(plan.officialLinks),
-      ...toSourceLinks(pathway.officialLinks),
+      ...getOwnerSourceLinks(plan.id, null, plan.officialLinks),
+      ...getOwnerSourceLinks(plan.id, pathway.id, pathway.officialLinks),
     ]),
     validationNotes: [] as string[],
   };
@@ -1567,7 +1741,7 @@ function buildPolicyRegistry() {
       advisorFlags: [],
       grcCourseListGuidance: undefined,
       plannerNote: undefined,
-      sourceLinks: toSourceLinks(plan.officialLinks),
+      sourceLinks: getOwnerSourceLinks(plan.id, null, plan.officialLinks),
       validationNotes: [],
     });
 
@@ -1666,6 +1840,57 @@ function pushSourceManifestEntries(
   });
 }
 
+function upsertAutoPromotedPrimarySourceManifestEntry(
+  entries: TransferPlannerSourceManifestEntry[],
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
+) {
+  const link: TransferPlannerSourceLink = {
+    label: promotion.label,
+    url: promotion.url,
+  };
+  const existingEntry = entries.find(
+    (entry) => entry.ownerId === promotion.ownerId && entry.url === promotion.url
+  );
+
+  if (existingEntry) {
+    existingEntry.isPrimaryDegreeRequirementsLink = true;
+    existingEntry.validationNotes = unique(
+      compact([
+        ...existingEntry.validationNotes,
+        `Auto-promoted from high-confidence discovery on ${promotion.generatedAt}.`,
+      ])
+    );
+    existingEntry.lastValidatedOn = getLastValidatedOn(existingEntry.validationNotes);
+    return;
+  }
+
+  const role = getSourceManifestRole(link);
+  const parserType = getSourceManifestParserType(link, role);
+  const validationNotes = [
+    `Auto-promoted from high-confidence discovery on ${promotion.generatedAt}.`,
+  ];
+
+  entries.push({
+    id: `${promotion.ownerId}:source:auto-promoted-primary`,
+    ownerType: promotion.ownerType,
+    ownerId: promotion.ownerId,
+    ownerTitle: promotion.ownerTitle,
+    planId: promotion.planId,
+    pathwayId: promotion.pathwayId,
+    trackId: null,
+    campusId: promotion.campusId,
+    label: promotion.label,
+    url: promotion.url,
+    role,
+    parserType,
+    confidence: getSourceManifestConfidence(role, parserType),
+    isPrimaryDegreeRequirementsLink: true,
+    note: undefined,
+    lastValidatedOn: getLastValidatedOn(validationNotes),
+    validationNotes,
+  });
+}
+
 function buildSourceManifestRegistry() {
   const entries: TransferPlannerSourceManifestEntry[] = [];
 
@@ -1676,7 +1901,7 @@ function buildSourceManifestRegistry() {
       ownerTitle: plan.title,
       planId: plan.id,
       campusId: plan.campusId,
-      links: toSourceLinks(plan.officialLinks),
+      links: getOwnerSourceLinks(plan.id, null, plan.officialLinks),
       validationNotes: [],
     });
 
@@ -1717,6 +1942,10 @@ function buildSourceManifestRegistry() {
       "Used by the generated Green River availability and schedule-metadata scripts.",
     ],
   });
+
+  for (const promotion of TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS) {
+    upsertAutoPromotedPrimarySourceManifestEntry(entries, promotion);
+  }
 
   return entries.sort((left, right) => left.id.localeCompare(right.id));
 }

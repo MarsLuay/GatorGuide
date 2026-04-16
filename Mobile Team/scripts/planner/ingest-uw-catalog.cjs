@@ -50,6 +50,59 @@ const ENTITY_MAP = {
   "#8212": "-",
   "#8217": "'",
 };
+const INVALID_PLANNER_SUBJECT_TOKENS = new Set([
+  "ADD",
+  "ALSO",
+  "APPLY",
+  "ARE",
+  "AUTUMN",
+  "BOTH",
+  "BUT",
+  "BY",
+  "CALL",
+  "COMPLETE",
+  "CONSIDER",
+  "CORE",
+  "COURSE",
+  "COURSES",
+  "CREDIT",
+  "DOES",
+  "EITHER",
+  "FOUR",
+  "EXCLUDES",
+  "FROM",
+  "GRADED",
+  "HAVE",
+  "HAS",
+  "IF",
+  "INCLUDE",
+  "INCLUDES",
+  "IS",
+  "JUST",
+  "LANGUAGE",
+  "LIKE",
+  "MAX",
+  "MORE",
+  "MUST",
+  "NOT",
+  "OFFICE",
+  "ONLY",
+  "REQUIRE",
+  "REQUIRED",
+  "ROOM",
+  "SECTION",
+  "SEPARATE",
+  "TAKING",
+  "THAN",
+  "THROUGH",
+  "TOOK",
+  "USE",
+  "WANT",
+  "WHILE",
+  "WILL",
+  "WINTER",
+  "SPR",
+]);
 
 function decodeHtmlEntities(value) {
   return String(value ?? "").replace(/&(?:amp|apos|nbsp|quot|#39|#160|#8211|#8212|#8217);/gi, (match) => {
@@ -80,6 +133,45 @@ function normalizeCourseCode(value) {
 
 function normalizeSubjectCode(value) {
   return normalizeWhitespace(value).toUpperCase().replace(/\s+/g, "");
+}
+
+function getRawSubjectLabel(courseCode) {
+  return normalizeWhitespace(String(courseCode ?? "").replace(/\s+\d.*$/, ""));
+}
+
+function extractSubjectTokens(value) {
+  return normalizeWhitespace(value)
+    .toUpperCase()
+    .split(" ")
+    .filter(Boolean);
+}
+
+function isLikelyInvalidPlannerSubject(rawSubjectLabel, knownSubjectCodes) {
+  const subjectTokens = extractSubjectTokens(rawSubjectLabel);
+  const collapsedSubject = subjectTokens.join("");
+
+  if (!subjectTokens.length) {
+    return true;
+  }
+
+  if ((knownSubjectCodes ?? new Set()).has(collapsedSubject)) {
+    return false;
+  }
+
+  if (subjectTokens.length > 2) {
+    return true;
+  }
+
+  if (subjectTokens.some((token) => INVALID_PLANNER_SUBJECT_TOKENS.has(token))) {
+    return true;
+  }
+
+  return (
+    subjectTokens.length === 1 &&
+    Array.from(INVALID_PLANNER_SUBJECT_TOKENS).some(
+      (token) => collapsedSubject.startsWith(token) && collapsedSubject.length > token.length
+    )
+  );
 }
 
 function sha256Text(value) {
@@ -286,23 +378,42 @@ async function ingestCampus(config, relevantCodes) {
   const indexHtml = indexSnapshot.html;
 
   const subjectMap = buildSubjectUrlMap(indexHtml, config.indexUrl);
+  const knownSubjectCodes = new Set(subjectMap.keys());
   const wantedBySubject = new Map();
   for (const code of relevantCodes) {
-    const subject = normalizeSubjectCode(code.replace(/\s+\d.*$/, ""));
+    const rawSubjectLabel = getRawSubjectLabel(code);
+    const subject = normalizeSubjectCode(rawSubjectLabel);
     if (!wantedBySubject.has(subject)) {
-      wantedBySubject.set(subject, new Set());
+      wantedBySubject.set(subject, {
+        wantedCourseCodes: new Set(),
+        rawSubjectLabels: new Set(),
+      });
     }
-    wantedBySubject.get(subject).add(code);
+    wantedBySubject.get(subject).wantedCourseCodes.add(code);
+    wantedBySubject.get(subject).rawSubjectLabels.add(rawSubjectLabel);
   }
 
   const entries = [];
   const missingSubjectCodes = [];
+  const invalidPlannerSubjectCodes = [];
   const parsedSubjectPages = [];
 
-  for (const [subjectCode, wantedCourseCodes] of [...wantedBySubject.entries()].sort()) {
+  for (const [subjectCode, subjectRequest] of [...wantedBySubject.entries()].sort(([left], [right]) =>
+    left.localeCompare(right)
+  )) {
+    const wantedCourseCodes = subjectRequest.wantedCourseCodes;
     const subjectInfo = subjectMap.get(subjectCode);
     if (!subjectInfo) {
-      missingSubjectCodes.push(subjectCode);
+      const rawSubjectLabels = [...subjectRequest.rawSubjectLabels].sort();
+      if (rawSubjectLabels.some((label) => isLikelyInvalidPlannerSubject(label, knownSubjectCodes))) {
+        invalidPlannerSubjectCodes.push({
+          subjectCode,
+          rawSubjectLabels,
+          wantedCourseCount: wantedCourseCodes.size,
+        });
+      } else {
+        missingSubjectCodes.push(subjectCode);
+      }
       continue;
     }
 
@@ -341,6 +452,7 @@ async function ingestCampus(config, relevantCodes) {
     subjectCount: wantedBySubject.size,
     parsedSubjectPages,
     missingSubjectCodes,
+    invalidPlannerSubjectCodes,
     entries,
   };
 }
@@ -356,6 +468,7 @@ function writeMarkdown(report) {
     `- Courses with credit labels: ${report.coursesWithCreditLabels}`,
     `- Courses with prerequisite notes: ${report.coursesWithPrerequisiteNotes}`,
     `- Courses with corequisite notes: ${report.coursesWithCorequisiteNotes}`,
+    `- Ignored invalid planner subject tokens: ${report.invalidPlannerSubjectCodeCount}`,
     "",
     "## Campuses",
     "",
@@ -374,6 +487,14 @@ function writeMarkdown(report) {
     }
     if (campus.missingSubjectCodes.length) {
       lines.push(`  - Missing subject pages: ${campus.missingSubjectCodes.slice(0, 30).join(", ")}`);
+    }
+    if (campus.invalidPlannerSubjectCodes.length) {
+      lines.push(
+        `  - Ignored invalid planner subject tokens: ${campus.invalidPlannerSubjectCodes
+          .slice(0, 20)
+          .map((entry) => entry.subjectCode)
+          .join(", ")}`
+      );
     }
   }
 
@@ -405,6 +526,10 @@ async function main() {
       .length,
     coursesWithCorequisiteNotes: entries.filter((entry) => (entry.corequisiteNotes ?? []).length > 0)
       .length,
+    invalidPlannerSubjectCodeCount: campuses.reduce(
+      (total, campus) => total + campus.invalidPlannerSubjectCodes.length,
+      0
+    ),
     campuses,
     entries,
   };

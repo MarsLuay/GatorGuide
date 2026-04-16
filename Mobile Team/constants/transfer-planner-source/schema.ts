@@ -81,6 +81,22 @@ export type TransferPlannerSourceManifestEntry = {
   validationNotes: string[];
 };
 
+export type TransferPlannerPrimarySourcePromotionEntry = {
+  ownerType: Extract<TransferPlannerSourceManifestOwnerType, "major" | "pathway">;
+  ownerId: string;
+  ownerKey: string;
+  planId: string;
+  pathwayId: string | null;
+  ownerTitle: string;
+  campusId: Exclude<TransferPlannerSourceSchoolId, "grc">;
+  url: string;
+  label: string;
+  score: number;
+  confidence: "high";
+  reasons: string[];
+  generatedAt: string;
+};
+
 export type TransferPlannerSourceGapEntry = {
   ownerType: TransferPlannerSourceManifestOwnerType;
   ownerKey: string;
@@ -147,6 +163,9 @@ export type TransferPlannerRequirementSourceFingerprintEntry = {
   extractedHeadingCount: number;
   requirementCueLineCount: number;
   chooseStatementCount: number;
+  qualitySignalCodes: TransferPlannerRequirementParseQualitySignalCode[];
+  qualityWarningCount: number;
+  qualityNoteCount: number;
   requirementFingerprint: string;
   parsedUwCourseCodes: string[];
   sourceOnlyUwCourseCodes: string[];
@@ -168,6 +187,22 @@ export type TransferPlannerRequirementSourceResolutionStrategy =
   | "primary-source"
   | "alternate-official-source"
   | "cached-snapshot";
+
+export type TransferPlannerRequirementParseQualitySignalSeverity = "note" | "warning";
+
+export type TransferPlannerRequirementParseQualitySignalCode =
+  | "material-source-structured-drift"
+  | "large-structured-only-course-gap"
+  | "high-confidence-low-course-coverage"
+  | "snapshot-fallback-used"
+  | "alternate-official-source-used";
+
+export type TransferPlannerRequirementParseQualitySignal = {
+  severity: TransferPlannerRequirementParseQualitySignalSeverity;
+  code: TransferPlannerRequirementParseQualitySignalCode;
+  message: string;
+  details: string | null;
+};
 
 export type TransferPlannerParsedRequirementAtomCandidate = {
   id: string;
@@ -210,6 +245,7 @@ export type TransferPlannerParsedRequirementSourceBlock = {
   requirementCueLines: string[];
   chooseStatements: string[];
   pathwayLabels: string[];
+  qualitySignals: TransferPlannerRequirementParseQualitySignal[];
   parsedRequirementAtomCandidates: TransferPlannerParsedRequirementAtomCandidate[];
   parsedDegreeMapBlockCandidates: TransferPlannerParsedDegreeMapBlockCandidate[];
   snapshotPath: string | null;
@@ -231,6 +267,9 @@ export type TransferPlannerRequirementSourceAdapterSummary = {
   countsByAdapterFamily: Record<string, number>;
   countsByCampus: Record<string, number>;
   countsByResolutionStrategy: Record<string, number>;
+  qualityWarningCount: number;
+  qualityNoteCount: number;
+  countsByQualitySignalCode: Record<string, number>;
 };
 
 export type TransferPlannerRequirementDiffClassificationKind =

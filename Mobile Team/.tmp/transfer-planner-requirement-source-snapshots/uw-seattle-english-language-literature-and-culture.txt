@@ -361,7 +361,6 @@ Faculty
 Faculty Computing
 Faculty Dialogue Series
 Faculty Guidelines
-FAQ
 Fields of Interest
 Five credits from each of the three distribution categories below.
 For assistance with planning and for questions, please visit the Humanities Academic Services Center .
@@ -429,7 +428,8 @@ Menu
 Method:
 MFA
 Minimum grade of 2.0 required. We suggest that you take this requirement during the final two quarters in the major, and after successful completion of ENGL 302.
-Minors
+Minor in English
+Minor in Technical & Professional Communication
 Mission
 Multilingual Language Learner Support
 Must be taken within one quarter of declaring the English Major. A minimum grade of 2.0 required. 202 does not count as a pre-1900 after Fall, 2018 .
@@ -479,6 +479,7 @@ Research
 Research Groups
 Residency:
 Resources
+Resources & FAQ
 Roethke Reading
 Safety & Health
 Satisfactory Progress
@@ -554,5 +555,4 @@ UW in the High School
 Washington
 While ENGL 111, 121, 131, and 182 have a strict no-overloads policy (no exceptions), you may be able to obtain instructor permission to overload into one of the other eligible classes (C LIT 240, ENGL 197, 198, 199, 297, 298, 299, 281, 381). It is unusual for instructors to overload writing classes, as overloads tend to compromise the learning experience for everyone, but it is not unheard of. You are welcome to attend class on the first day and ask the instructor about the possibility. Meanwhile, keep watching enrollment through MyUW - someone else may drop, opening up a spot for you.
 Writing
-Writing Minor
 You are here

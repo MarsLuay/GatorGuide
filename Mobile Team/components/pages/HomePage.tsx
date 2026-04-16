@@ -13,21 +13,9 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import {
   AnimatedCardPressable,
   AnimatedChipPressable,
-  AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
-import { OpportunityCarouselWheel } from "@/components/ui/OpportunityCarouselWheel";
 import { deadlineCalendarService, errorLoggingService, roadmapService } from "@/services";
 import type { DeadlineCalendarEntry, UserRoadmapDocument } from "@/services";
-import type { MatchedOpportunity } from "@/services/opportunities/opportunity-matching.service";
-type HomeImportantMessage = {
-  id: string;
-  icon: keyof typeof Ionicons.glyphMap;
-  title: string;
-  body: string;
-  actionLabel: string;
-  onPress: () => void;
-  tone: "success" | "warning" | "info";
-};
 
 type HomeTourStep = {
   id: string;
@@ -37,34 +25,10 @@ type HomeTourStep = {
   y: number;
 };
 
-type DesktopHomeTask = {
-  id: string;
-  icon: keyof typeof Ionicons.glyphMap;
-  title: string;
-  body: string;
-  actionLabel: string;
-  onPress: () => void;
-  tone: "success" | "warning" | "info";
-};
-
 const TRANSFER_PLANNER_CURRENT_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
 
 const DESKTOP_HOME_MIN_WIDTH = 960;
 const PHONE_FALLBACK_ASPECT_RATIO = 1.5;
-
-function formatOpportunityDueLabel(value: string | null) {
-  if (!value) return "Rolling";
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.getTime())) return "Rolling";
-  try {
-    return new Intl.DateTimeFormat(undefined, {
-      month: "short",
-      day: "numeric",
-    }).format(parsed);
-  } catch {
-    return parsed.toDateString();
-  }
-}
 
 function formatImportantDate(value: string | null, fallback = "Coming soon") {
   if (!value) return fallback;
@@ -113,60 +77,17 @@ export default function HomePage() {
     () => matchedOpportunities.filter((opportunity) => !opportunity.isDone),
     [matchedOpportunities]
   );
-  const featuredOpportunities = useMemo(
-    () => unfinishedRecommendedOpportunities.slice(0, 3),
-    [unfinishedRecommendedOpportunities]
-  );
-  const wheelOpportunities = useMemo(() => {
-    const curated = unfinishedRecommendedOpportunities.filter(
-      (opportunity) =>
-        opportunity.type !== "college_deadline" &&
-        opportunity.type !== "general_deadline"
-    );
-    const source = curated.length >= 3 ? curated : unfinishedRecommendedOpportunities;
-    return source.slice(0, 7);
-  }, [unfinishedRecommendedOpportunities]);
-  const nextUpcomingOpportunity = useMemo(
-    () =>
-      [...unfinishedRecommendedOpportunities]
-        .filter((opportunity) => !!opportunity.computedDueAt)
-        .sort((left, right) =>
-          (left.computedDueAt ?? "9999-12-31T00:00:00.000Z").localeCompare(
-            right.computedDueAt ?? "9999-12-31T00:00:00.000Z"
-          )
-        )[0] ?? null,
-    [unfinishedRecommendedOpportunities]
-  );
   const [desktopRoadmap, setDesktopRoadmap] = useState<UserRoadmapDocument | null>(null);
-
-  const [dismissedGuestPrompt, setDismissedGuestPrompt] = useState(false);
   const [tourStepIndex, setTourStepIndex] = useState(0);
 
   const capitalizedName = user?.name 
     ? user.name.split(' ')[0].charAt(0).toUpperCase() + user.name.split(' ')[0].slice(1).toLowerCase()
     : t("home.student");
 
-  const hasCompletedQuestionnaire = !!(state.questionnaireAnswers && Object.keys(state.questionnaireAnswers).length > 0);
   const openCalendar = useCallback(() => {
     router.push(
       {
         pathname: ROUTES.calendar,
-        params: { returnTo: ROUTES.root },
-      } as never
-    );
-  }, [router]);
-  const openCollegeSearchTool = useCallback(() => {
-    router.push(
-      {
-        pathname: ROUTES.collegeSearch,
-        params: { returnTo: ROUTES.root },
-      } as never
-    );
-  }, [router]);
-  const openTransferPlanner = useCallback(() => {
-    router.push(
-      {
-        pathname: ROUTES.transferPlanner,
         params: { returnTo: ROUTES.root },
       } as never
     );
@@ -187,14 +108,6 @@ export default function HomePage() {
 
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
-  const cardClass = isDark
-    ? "bg-gray-900/80 border-gray-800"
-    : isGreen
-      ? "bg-emerald-900/90 border-emerald-800"
-      : isLight
-        ? "bg-white border-emerald-200"
-        : "bg-white/90 border-gray-200";
-  const placeholderTextColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
   const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : isDark ? "bg-emerald-500 border" : "bg-emerald-500";
   const guestCtaCardStyle = isDark ? { backgroundColor: "#00572b", borderColor: "#00753e" } : undefined;
   const guestCtaIconBgClass = isLight ? "bg-emerald-500/10 border border-emerald-200" : isDark ? "bg-white/10 border border-white/10" : "bg-emerald-900/10";
@@ -203,8 +116,6 @@ export default function HomePage() {
   const guestCtaBodyClass = isLight ? "text-emerald-800" : "text-emerald-100";
   const guestCtaPrimaryButtonClass = isLight ? "bg-emerald-500" : "bg-emerald-900";
   const guestCtaPrimaryTextClass = "text-white";
-  const guestCtaSecondaryButtonClass = isLight ? "bg-white/90 border border-emerald-200" : "bg-emerald-900/20";
-  const guestCtaSecondaryTextClass = isLight ? "text-emerald-700" : "text-white";
   const dashboardPanelClass = isDark
     ? "bg-gray-950/60 border-gray-800"
     : isGreen
@@ -239,14 +150,10 @@ export default function HomePage() {
     extraBottom: isDesktopHome ? 24 : 0,
   });
   const desktopColumnsShouldStack = isDesktopHome && (screenWidth < 1120 || effectiveFontScale > 1.15);
-  const desktopSideColumnWidth = Math.min(380, Math.max(320, screenWidth * 0.31));
-  const desktopHeaderShouldStack = isDesktopHome && (screenWidth < 1240 || effectiveFontScale > 1.15);
-  const desktopActionCardsShouldStack = isDesktopHome && (screenWidth < 1280 || effectiveFontScale > 1.15);
-  const mobileOpportunityHeaderShouldStack =
-    !isDesktopHome && (screenWidth < 420 || effectiveFontScale > 1.05);
   const dashboardSectionWidth = desktopColumnsShouldStack
     ? { width: "100%" as DimensionValue }
     : { width: "48.8%" as DimensionValue };
+  const mobileSnapshotStatsShouldStack = screenWidth < 390 || effectiveFontScale > 1.05;
   const renderGuestAccountCta = ({ desktop }: { desktop: boolean }) => (
     <View
       style={
@@ -286,53 +193,13 @@ export default function HomePage() {
         >
           <Text className={`${guestCtaPrimaryTextClass} font-semibold text-sm`}>{t("home.signUp")}</Text>
         </AnimatedChipPressable>
-
-        {!desktop ? (
-          <AnimatedChipPressable
-            onPress={() => setDismissedGuestPrompt(true)}
-            className={`${guestCtaSecondaryButtonClass} rounded-lg py-2 items-center justify-center`}
-            containerStyle={{ flex: 1 }}
-          >
-            <Text className={`${guestCtaSecondaryTextClass} font-semibold text-sm`}>{t("home.later")}</Text>
-          </AnimatedChipPressable>
-        ) : null}
       </View>
     </View>
   );
-  const openOpportunity = useCallback(async (opportunity: MatchedOpportunity) => {
-    try {
-      if (opportunity.type === "college_deadline" && opportunity.college.collegeId) {
-        router.push(ROUTES.collegeDetail(String(opportunity.college.collegeId)));
-        return;
-      }
-
-      if (opportunity.externalUrl) {
-        await Linking.openURL(opportunity.externalUrl);
-        return;
-      }
-    } catch (error) {
-      void errorLoggingService.captureException(error, {
-        category: "app",
-        operation: "open-home-opportunity",
-        severity: "warn",
-        handled: true,
-        source: "HomePage",
-        screen: "HomePage",
-        route: "/",
-        metadata: {
-          opportunityId: opportunity.opportunityId,
-          opportunityType: opportunity.type,
-        },
-      });
-    }
-
-    router.push(ROUTES.tabsResources);
-  }, [router]);
-
   useEffect(() => {
     let cancelled = false;
 
-    if (!isDesktopHome || !isHydrated || !user?.uid) {
+    if (!isHydrated || !user?.uid) {
       setDesktopRoadmap(null);
       return () => {
         cancelled = true;
@@ -422,7 +289,6 @@ export default function HomePage() {
   const shouldShowCurrentCoursesDashboardPanel = linkedCurrentCourses.length > 0;
   const shouldShowRecommendedNextDashboardPanel =
     desktopRecommendedCourses.length > 0 || !!desktopCoursePlanningDeadline;
-  const desktopPrimaryOpportunity = unfinishedRecommendedOpportunities[0] ?? null;
   const desktopProfileName = user?.name?.trim() || t("home.student");
   const desktopProfileMajor = user?.major?.trim() || desktopRoadmap?.profileSnapshot.major?.trim() || t("home.undecided");
   const desktopProfileGpa = user?.gpa?.trim() || desktopRoadmap?.profileSnapshot.gpa?.trim() || t("general.notSpecified");
@@ -440,26 +306,6 @@ export default function HomePage() {
   const desktopNextDeadlineEntry = useMemo(
     () => desktopCombinedDeadlineEntries[0] ?? null,
     [desktopCombinedDeadlineEntries]
-  );
-  const getLocalizedOpportunityDueLabel = useCallback(
-    (value: string | null) => {
-      const label = formatOpportunityDueLabel(value);
-      return label === "Rolling" ? t("home.rolling") : label;
-    },
-    [t]
-  );
-  const getOpportunityTypeLabel = useCallback(
-    (opportunity: MatchedOpportunity) => {
-      if (
-        opportunity.type === "college_deadline" ||
-        opportunity.type === "general_deadline"
-      ) {
-        return t("home.opportunityTypeDeadline");
-      }
-      if (opportunity.type === "scholarship") return t("home.opportunityTypeScholarship");
-      return t("home.opportunityTypeInternship");
-    },
-    [t]
   );
 
   const handleOpenDeadlineEntry = useCallback(async (item: DeadlineCalendarEntry) => {
@@ -501,220 +347,6 @@ export default function HomePage() {
       router.push(ROUTES.tabsResources);
     }
   }, [openCalendar, router]);
-
-  const desktopHomeTasks = useMemo<DesktopHomeTask[]>(() => {
-    const tasks: DesktopHomeTask[] = [];
-    const hasBlockingSetupTasks = !user?.transcript || !hasCompletedQuestionnaire;
-
-    if (!user?.transcript) {
-      tasks.push({
-        id: "transcript",
-        icon: "document-text-outline",
-        title: t("home.desktopTaskTranscriptTitle"),
-        body: t("home.desktopTaskTranscriptBody"),
-        actionLabel: t("home.desktopTaskTranscriptAction"),
-        onPress: () => router.push(ROUTES.profile),
-        tone: "warning",
-      });
-    }
-
-    if (!hasCompletedQuestionnaire) {
-      tasks.push({
-        id: "questionnaire",
-        icon: "clipboard-outline",
-        title: t("home.desktopTaskQuestionnaireTitle"),
-        body: t("home.desktopTaskQuestionnaireBody"),
-        actionLabel: t("home.desktopTaskQuestionnaireAction"),
-        onPress: () => router.push(ROUTES.questionnaire),
-        tone: "info",
-      });
-    }
-
-    if (!hasBlockingSetupTasks && desktopPrimaryOpportunity) {
-      tasks.push({
-        id: `opportunity-${desktopPrimaryOpportunity.opportunityId}`,
-        icon:
-          desktopPrimaryOpportunity.type === "scholarship"
-            ? "gift-outline"
-            : desktopPrimaryOpportunity.type === "internship"
-              ? "briefcase-outline"
-              : "calendar-outline",
-        title: t("home.desktopTaskApplyNextTitle", { title: desktopPrimaryOpportunity.title }),
-        body: t("home.desktopTaskApplyNextBody", {
-          due: getLocalizedOpportunityDueLabel(desktopPrimaryOpportunity.computedDueAt),
-        }),
-        actionLabel: t("home.desktopTaskOpenOpportunity"),
-        onPress: () => {
-          void openOpportunity(desktopPrimaryOpportunity);
-        },
-        tone: "success",
-      });
-    }
-
-    if (hasBlockingSetupTasks && desktopPrimaryOpportunity) {
-      tasks.push({
-        id: `opportunity-preview-${desktopPrimaryOpportunity.opportunityId}`,
-        icon:
-          desktopPrimaryOpportunity.type === "scholarship"
-            ? "gift-outline"
-            : desktopPrimaryOpportunity.type === "internship"
-              ? "briefcase-outline"
-              : "calendar-outline",
-        title: t("home.desktopTaskOpportunityWaitingTitle", {
-          title: desktopPrimaryOpportunity.title,
-        }),
-        body: t("home.desktopTaskOpportunityWaitingBody", {
-          type: getOpportunityTypeLabel(desktopPrimaryOpportunity),
-        }),
-        actionLabel: t("home.desktopTaskViewOpportunity"),
-        onPress: () => {
-          void openOpportunity(desktopPrimaryOpportunity);
-        },
-        tone: "success",
-      });
-    }
-
-    if (tasks.length === 0) {
-      tasks.push(
-        {
-          id: "resources-scholarships",
-          icon: "school-outline",
-          title: t("home.desktopTaskMoreScholarshipsTitle"),
-          body: t("home.desktopTaskMoreScholarshipsBody"),
-          actionLabel: t("home.desktopTaskBrowseScholarships"),
-          onPress: () => router.push(ROUTES.tabsResources),
-          tone: "success",
-        },
-        {
-          id: "resources-internships",
-          icon: "briefcase-outline",
-          title: t("home.desktopTaskInternshipsTitle"),
-          body: t("home.desktopTaskInternshipsBody"),
-          actionLabel: t("home.desktopTaskOpenResources"),
-          onPress: () => router.push(ROUTES.tabsResources),
-          tone: "info",
-        }
-      );
-    }
-
-    return tasks.slice(0, 4);
-  }, [
-    desktopPrimaryOpportunity,
-    hasCompletedQuestionnaire,
-    t,
-    getLocalizedOpportunityDueLabel,
-    getOpportunityTypeLabel,
-    openOpportunity,
-    router,
-    user?.transcript,
-  ]);
-
-  const importantMessages = useMemo<HomeImportantMessage[]>(() => {
-    const messages: HomeImportantMessage[] = [];
-
-    messages.push(
-      state.notificationsEnabled
-        ? {
-            id: "notifications-on",
-            icon: "notifications",
-            title: "Notifications are on",
-            body: "Opportunity and deadline reminders can keep nudging you on this device.",
-            actionLabel: "Manage",
-            onPress: () => router.push(ROUTES.tabsSettings),
-            tone: "success",
-          }
-        : {
-            id: "notifications-off",
-            icon: "notifications-off",
-            title: "Turn on notifications",
-            body: "Enable reminders so scholarships and college deadlines do not slip by quietly.",
-            actionLabel: "Open settings",
-            onPress: () => router.push(ROUTES.tabsSettings),
-            tone: "warning",
-          }
-    );
-
-    if (desktopCoursePlanningDeadline) {
-      messages.push({
-        id: "class-planning-deadline",
-        icon: "school-outline",
-        title: "Class planning deadline",
-        body: `Keep registration moving before ${formatImportantDate(desktopCoursePlanningDeadline, "your next planning window")}.`,
-        actionLabel: "Open calendar",
-        onPress: openCalendar,
-        tone: "warning",
-      });
-    }
-
-    if (nextUpcomingOpportunity) {
-      messages.push({
-        id: "next-opportunity",
-        icon: "time-outline",
-        title: "Next recommended due date",
-        body: `${nextUpcomingOpportunity.title} is due ${formatOpportunityDueLabel(nextUpcomingOpportunity.computedDueAt)}.`,
-        actionLabel: "Open",
-        onPress: () => {
-          void openOpportunity(nextUpcomingOpportunity);
-        },
-        tone: "info",
-      });
-    }
-
-    messages.push({
-      id: "calendar",
-      icon: "calendar-outline",
-      title: "Deadline calendar is live",
-      body: "Track planning milestones, scholarships, and college deadlines from one view.",
-      actionLabel: "Open calendar",
-      onPress: openCalendar,
-      tone: "info",
-    });
-
-    if (!hasCompletedQuestionnaire) {
-      messages.push({
-        id: "questionnaire",
-        icon: "document-text-outline",
-        title: "Complete your questionnaire",
-        body: "More profile detail improves matching for colleges and opportunities.",
-        actionLabel: "Start now",
-        onPress: () => router.push(ROUTES.questionnaire),
-        tone: "warning",
-      });
-    } else if (user?.isGuest) {
-      messages.push({
-        id: "guest-account",
-        icon: "person-add-outline",
-        title: "Save your progress",
-        body: "Create an account to sync your planning data, opportunities, and notifications across sessions.",
-        actionLabel: "Create account",
-        onPress: () => router.push(ROUTES.login),
-        tone: "info",
-      });
-    } else if ((state.savedColleges?.length ?? 0) === 0) {
-      messages.push({
-        id: "saved-colleges",
-        icon: "bookmark-outline",
-        title: "Save colleges for more deadlines",
-        body: "Saved colleges help generate college-deadline opportunities and reminders.",
-        actionLabel: "Search colleges",
-        onPress: openCollegeSearchTool,
-        tone: "info",
-      });
-    }
-
-    return messages.slice(0, 4);
-  }, [
-    desktopCoursePlanningDeadline,
-    hasCompletedQuestionnaire,
-    openCollegeSearchTool,
-    nextUpcomingOpportunity,
-    router,
-    state.notificationsEnabled,
-    state.savedColleges,
-    user?.isGuest,
-    openCalendar,
-    openOpportunity,
-  ]);
 
   const shouldShowTour = Boolean(user && !user.isGuest && user.hasSeenOnboarding !== true);
   const tourCardWidth = Math.min(448, Math.max(280, screenWidth - 32));
@@ -858,11 +490,14 @@ export default function HomePage() {
     </View>
   );
 
-  const renderCurrentCoursesDashboardPanel = () => {
+  const renderCurrentCoursesDashboardPanel = ({ fullWidth = false }: { fullWidth?: boolean } = {}) => {
     if (!shouldShowCurrentCoursesDashboardPanel) return null;
 
     return (
-      <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
+      <View
+        className={`${dashboardPanelClass} border rounded-[28px] p-5`}
+        style={fullWidth ? { width: "100%" } : dashboardSectionWidth}
+      >
         <View className="flex-row items-start mb-4">
           <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
             <Ionicons name="school-outline" size={18} color="#008f4e" />
@@ -889,11 +524,14 @@ export default function HomePage() {
     );
   };
 
-  const renderRecommendedNextDashboardPanel = () => {
+  const renderRecommendedNextDashboardPanel = ({ fullWidth = false }: { fullWidth?: boolean } = {}) => {
     if (!shouldShowRecommendedNextDashboardPanel) return null;
 
     return (
-      <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
+      <View
+        className={`${dashboardPanelClass} border rounded-[28px] p-5`}
+        style={fullWidth ? { width: "100%" } : dashboardSectionWidth}
+      >
         <View className="flex-row items-start mb-4">
           <View className="w-11 h-11 rounded-2xl bg-sky-500/10 items-center justify-center mr-3">
             <Ionicons name="navigate-outline" size={18} color="#0284c7" />
@@ -931,6 +569,75 @@ export default function HomePage() {
             </View>
           ) : null}
         </View>
+      </View>
+    );
+  };
+
+  const renderMobileSnapshotPanel = () => {
+    if (!user) return null;
+
+    return (
+      <View
+        className={`${user.isGuest ? guestCtaCardClass : dashboardPanelClass} border rounded-[28px] p-5`}
+        style={user.isGuest ? guestCtaCardStyle : undefined}
+      >
+        {user.isGuest ? (
+          renderGuestAccountCta({ desktop: false })
+        ) : (
+          <>
+            <View className="flex-row items-center flex-1 min-w-0">
+              <View
+                className={`rounded-[22px] overflow-hidden items-center justify-center ${user.avatar ? "" : "bg-emerald-500/10"}`}
+                style={{ width: 64, height: 64 }}
+              >
+                {user.avatar ? (
+                  <Image source={{ uri: user.avatar }} style={{ width: "100%", height: "100%" }} resizeMode="cover" />
+                ) : (
+                  <Text className="text-emerald-500 text-xl font-semibold">
+                    {desktopProfileName.charAt(0).toUpperCase() || "S"}
+                  </Text>
+                )}
+              </View>
+              <View className="ml-4 flex-1 min-w-0">
+                <Text className={`${secondaryTextClass} text-xs uppercase tracking-[1px] mb-2`}>{t("home.yourProfile")}</Text>
+                <Text className={`${textClass} text-xl font-semibold`} numberOfLines={1}>
+                  {desktopProfileName}
+                </Text>
+                <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={2}>
+                  {t("home.desktopSnapshot")}
+                </Text>
+              </View>
+            </View>
+
+            <View
+              className="mt-5"
+              style={
+                mobileSnapshotStatsShouldStack
+                  ? { gap: 12 }
+                  : { flexDirection: "row", gap: 12 }
+              }
+            >
+              <View
+                className={`border rounded-3xl p-4 ${dashboardItemClass}`}
+                style={mobileSnapshotStatsShouldStack ? undefined : { flex: 1, minWidth: 0 }}
+              >
+                <Text className={`${secondaryTextClass} text-xs uppercase tracking-[0.8px]`}>{t("home.major")}</Text>
+                <Text className={`${textClass} text-base font-semibold mt-2`} numberOfLines={2}>
+                  {desktopProfileMajor}
+                </Text>
+              </View>
+              <View
+                className={`border rounded-3xl p-4 ${dashboardItemClass}`}
+                style={mobileSnapshotStatsShouldStack ? undefined : { flex: 1, minWidth: 0 }}
+              >
+                <Text className={`${secondaryTextClass} text-xs uppercase tracking-[0.8px]`}>{t("home.gpa")}</Text>
+                <Text className={`${textClass} text-base font-semibold mt-2`}>
+                  {desktopProfileGpa}
+                </Text>
+              </View>
+            </View>
+          </>
+        )}
       </View>
     );
   };
@@ -1058,6 +765,15 @@ export default function HomePage() {
     </>
   ) : null;
 
+  const mobileDashboard = !isDesktopHome ? (
+    <View className="gap-4">
+      {renderMobileSnapshotPanel()}
+      {renderCurrentCoursesDashboardPanel({ fullWidth: true })}
+      {renderRecommendedNextDashboardPanel({ fullWidth: true })}
+      {renderDeadlinePanel(desktopCombinedDeadlineEntries.slice(0, 3))}
+    </View>
+  ) : null;
+
   return (
     <ScreenBackground>
       <ScrollView className="flex-1" contentContainerStyle={scrollContentPadding}>
@@ -1080,441 +796,7 @@ export default function HomePage() {
               {desktopDashboard}
             </>
           ) : (
-            <>
-              <View
-                style={
-                  isDesktopHome
-                    ? {
-                        flexDirection: "row",
-                        alignItems: "flex-start",
-                        gap: 24,
-                        flexWrap: desktopColumnsShouldStack ? "wrap" : "nowrap",
-                      }
-                    : undefined
-                }
-              >
-            <View
-              style={
-                isDesktopHome
-                  ? desktopColumnsShouldStack
-                    ? { width: "100%", minWidth: 0 }
-                    : { flex: 1, minWidth: 0 }
-                  : undefined
-              }
-            >
-              {user ? (
-                <View className={`${cardClass} border rounded-2xl p-4 mb-4`}>
-                  <View className="flex-row items-center">
-                    <View className="w-12 h-12 rounded-full bg-emerald-500/20 items-center justify-center mr-3">
-                      <Ionicons name="person" size={22} color="#008f4e" />
-                    </View>
-                    <View className="flex-1">
-                      <Text className={`${textClass} font-semibold`} numberOfLines={1}>
-                        {user.name || t("home.student")}
-                      </Text>
-                      <Text className={`${secondaryTextClass} text-sm`} numberOfLines={1}>
-                        {user.major?.trim() || desktopRoadmap?.profileSnapshot.major?.trim() || t("home.undecided")}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-              ) : null}
-
-              {user?.isGuest && !dismissedGuestPrompt && !isDesktopHome && (
-                <View className={`mb-6 rounded-2xl p-4 ${guestCtaCardClass}`} style={guestCtaCardStyle}>
-                  {renderGuestAccountCta({ desktop: false })}
-                </View>
-              )}
-
-              {isDesktopHome ? (
-                <View className={`${cardClass} border rounded-2xl p-5 mb-4`}>
-                  <View className="flex-row items-center justify-between mb-4">
-                    <View className="flex-row items-center">
-                      <View className="mr-3 p-2 rounded-xl bg-emerald-500/15">
-                        <Ionicons name="list-outline" size={18} color="#008f4e" />
-                      </View>
-                      <View>
-                        <Text className={`${textClass} font-semibold text-base`}>
-                          {t("home.yourNextSteps")}
-                        </Text>
-                        <Text className={`${secondaryTextClass} text-sm`}>
-                          Pulled from your profile, saved planning data, and recommended opportunities
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-
-                  <View className="gap-3">
-                    {desktopHomeTasks.map((task) => {
-                      const toneClass =
-                        task.tone === "success"
-                          ? isDark
-                            ? "bg-emerald-950/60 border-emerald-800"
-                            : "bg-emerald-50 border-emerald-200"
-                          : task.tone === "warning"
-                            ? isDark
-                              ? "bg-amber-950/60 border-amber-800"
-                              : "bg-amber-50 border-amber-200"
-                            : isDark
-                              ? "bg-sky-950/40 border-sky-900"
-                              : "bg-sky-50 border-sky-200";
-                      const toneTextClass =
-                        task.tone === "warning"
-                          ? isDark
-                            ? "text-amber-200"
-                            : "text-amber-800"
-                          : task.tone === "success"
-                            ? isDark
-                              ? "text-emerald-100"
-                              : "text-emerald-800"
-                            : isDark
-                              ? "text-sky-100"
-                              : "text-sky-800";
-
-                      return (
-                        <AnimatedCardPressable
-                          key={task.id}
-                          onPress={task.onPress}
-                          className={`border rounded-2xl p-4 ${toneClass}`}
-                        >
-                          <View className="flex-row items-start">
-                            <View className="w-10 h-10 rounded-xl bg-white/10 items-center justify-center mr-3">
-                              <Ionicons name={task.icon} size={18} color="#008f4e" />
-                            </View>
-                            <View className="flex-1">
-                              <Text className={`${textClass} font-semibold`}>
-                                {task.title}
-                              </Text>
-                              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                                {task.body}
-                              </Text>
-                              <Text className={`${toneTextClass} text-xs font-semibold mt-3`}>
-                                {task.actionLabel}
-                              </Text>
-                            </View>
-                            <Ionicons
-                              name="chevron-forward"
-                              size={18}
-                              color={placeholderTextColor}
-                            />
-                          </View>
-                        </AnimatedCardPressable>
-                      );
-                    })}
-                  </View>
-                </View>
-              ) : null}
-
-              {!isDesktopHome ? (
-                <>
-              {!hasCompletedQuestionnaire && (
-                <AnimatedCardPressable
-                  onPress={() => router.push(ROUTES.questionnaire)}
-                  className="w-full rounded-2xl p-4 flex-row items-center bg-emerald-500 mb-4"
-                >
-                  <View className="mr-3 p-2 rounded-xl bg-emerald-900/10">
-                    <Ionicons name="document-text" size={18} color="#000" />
-                  </View>
-                  <View className="flex-1">
-                    <Text className={`font-semibold ${isDark ? 'text-white' : 'text-emerald-900'}`}>{t("home.completeQuestionnaire")}</Text>
-                    <Text className="text-emerald-900/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
-                  </View>
-                  <Ionicons name="sparkles" size={18} color="#000" />
-                </AnimatedCardPressable>
-              )}
-
-              <AnimatedCardPressable
-                onPress={openTransferPlanner}
-                className={`w-full rounded-2xl p-4 flex-row items-center ${cardClass} border`}
-              >
-                <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
-                  <Ionicons name="school-outline" size={18} color="#008f4e" />
-                </View>
-                <View className="flex-1">
-                  <Text className={`font-semibold ${textClass}`}>{t("resources.transferPlanner")}</Text>
-                  <Text className={`${secondaryTextClass} text-sm`}>{t("resources.transferPlannerDesc")}</Text>
-                </View>
-                <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
-              </AnimatedCardPressable>
-
-              <AnimatedCardPressable
-                onPress={openCalendar}
-                className={`w-full rounded-2xl p-4 flex-row items-center ${cardClass} border mt-4`}
-              >
-                <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
-                  <Ionicons name="calendar-outline" size={18} color="#008f4e" />
-                </View>
-                <View className="flex-1">
-                  <Text className={`font-semibold ${textClass}`}>{t("home.deadlineCalendarTitle")}</Text>
-                  <Text className={`${secondaryTextClass} text-sm`}>
-                    {t("home.deadlineCalendarBody")}
-                  </Text>
-                </View>
-                <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
-              </AnimatedCardPressable>
-
-              {!isDesktopHome && featuredOpportunities.length ? (
-                <View className={`${cardClass} border rounded-2xl p-4 mt-4`}>
-                  <View
-                    className="mb-3"
-                    style={
-                      mobileOpportunityHeaderShouldStack
-                        ? { gap: 12 }
-                        : {
-                            flexDirection: "row",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            gap: 12,
-                          }
-                    }
-                  >
-                    <View className="flex-row items-center" style={{ flex: 1, minWidth: 0 }}>
-                      <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
-                        <Ionicons name="gift-outline" size={18} color="#008f4e" />
-                      </View>
-                      <View style={{ flex: 1, minWidth: 0 }}>
-                        <Text className={`font-semibold ${textClass}`}>GRC Opportunities</Text>
-                        <Text className={`${secondaryTextClass} text-sm`} numberOfLines={2}>
-                          Starter scholarships and opportunities now feeding reminders
-                        </Text>
-                      </View>
-                    </View>
-
-                    <AnimatedIconPressable
-                      onPress={() => router.push(ROUTES.tabsResources)}
-                      style={
-                        mobileOpportunityHeaderShouldStack
-                          ? { alignSelf: "flex-start" }
-                          : { flexShrink: 0, alignSelf: "flex-start" }
-                      }
-                    >
-                      <Text className="text-emerald-500 text-sm font-medium">View all</Text>
-                    </AnimatedIconPressable>
-                  </View>
-
-                  <View className="gap-3">
-                    {featuredOpportunities.map((opportunity) => (
-                      <AnimatedCardPressable
-                        key={opportunity.opportunityId}
-                        onPress={() => {
-                          void openOpportunity(opportunity);
-                        }}
-                        className={`rounded-xl border ${isDark ? "border-gray-800 bg-gray-950/50" : isGreen ? "border-emerald-700 bg-emerald-950/20" : isLight ? "border-emerald-200 bg-emerald-50" : "border-gray-200 bg-gray-50"} p-3`}
-                      >
-                        <View className="flex-row items-start justify-between">
-                          <View className="flex-1 pr-3">
-                            <Text className={`${textClass} font-medium`} numberOfLines={1}>
-                              {opportunity.title}
-                            </Text>
-                            <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={2}>
-                              {opportunity.summary}
-                            </Text>
-                          </View>
-
-                          <View className="items-end">
-                            <Text className="text-emerald-500 text-xs font-semibold">
-                              {getLocalizedOpportunityDueLabel(opportunity.computedDueAt)}
-                            </Text>
-                            {opportunity.type === "scholarship" ? (
-                              <Text className={`${secondaryTextClass} text-xs mt-1`}>{t("home.opportunityTypeScholarship")}</Text>
-                            ) : opportunity.type === "internship" ? (
-                              <Text className={`${secondaryTextClass} text-xs mt-1`}>{t("home.opportunityTypeInternship")}</Text>
-                            ) : (
-                              <Text className={`${secondaryTextClass} text-xs mt-1`}>{t("home.opportunityTypeDeadline")}</Text>
-                            )}
-                          </View>
-                        </View>
-                      </AnimatedCardPressable>
-                    ))}
-                  </View>
-                </View>
-              ) : null}
-
-                </>
-              ) : null}
-            </View>
-
-            {isDesktopHome ? (
-              <View
-                style={
-                  desktopColumnsShouldStack
-                    ? { width: "100%" }
-                    : { width: desktopSideColumnWidth, flexShrink: 0 }
-                }
-              >
-                <View className={`${cardClass} border rounded-2xl p-5`}>
-                  <View
-                    className="mb-4"
-                    style={
-                      desktopHeaderShouldStack
-                        ? { gap: 12 }
-                        : {
-                            flexDirection: "row",
-                            alignItems: "flex-start",
-                            justifyContent: "space-between",
-                            gap: 12,
-                          }
-                    }
-                  >
-                    <View className="flex-row items-start" style={{ flex: 1, minWidth: 0 }}>
-                      <View className="mr-3 p-2 rounded-xl bg-emerald-500/15">
-                        <Ionicons name="notifications-outline" size={18} color="#008f4e" />
-                      </View>
-                      <View style={{ flex: 1, minWidth: 0 }}>
-                        <Text className={`${textClass} font-semibold text-base`}>
-                          Notifications & Important Messages
-                        </Text>
-                        <Text className={`${secondaryTextClass} text-sm`}>
-                          Registration, deadlines, and reminders that need your attention
-                        </Text>
-                      </View>
-                    </View>
-
-                    <AnimatedIconPressable
-                      onPress={() => router.push(ROUTES.tabsSettings)}
-                      style={desktopHeaderShouldStack ? { alignSelf: "flex-start" } : undefined}
-                    >
-                      <Text className="text-emerald-500 text-sm font-medium">Manage</Text>
-                    </AnimatedIconPressable>
-                  </View>
-
-                  <View className="gap-3">
-                    {importantMessages.map((message) => {
-                      const toneClass =
-                        message.tone === "success"
-                          ? isDark
-                            ? "bg-emerald-950/60 border-emerald-800"
-                            : "bg-emerald-50 border-emerald-200"
-                          : message.tone === "warning"
-                            ? isDark
-                              ? "bg-amber-950/60 border-amber-800"
-                              : "bg-amber-50 border-amber-200"
-                            : isDark
-                              ? "bg-sky-950/40 border-sky-900"
-                              : "bg-sky-50 border-sky-200";
-                      const toneTextClass =
-                        message.tone === "warning"
-                          ? isDark
-                            ? "text-amber-200"
-                            : "text-amber-800"
-                          : message.tone === "success"
-                            ? isDark
-                              ? "text-emerald-100"
-                              : "text-emerald-800"
-                            : isDark
-                              ? "text-sky-100"
-                              : "text-sky-800";
-
-                      return (
-                        <AnimatedCardPressable
-                          key={message.id}
-                          onPress={message.onPress}
-                          className={`border rounded-2xl p-4 ${toneClass}`}
-                        >
-                          <View className="flex-row items-start">
-                            <View className="w-10 h-10 rounded-xl bg-white/10 items-center justify-center mr-3">
-                              <Ionicons name={message.icon} size={18} color="#008f4e" />
-                            </View>
-                            <View className="flex-1">
-                              <Text className={`${textClass} font-semibold`}>
-                                {message.title}
-                              </Text>
-                              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                                {message.body}
-                              </Text>
-                              <Text className={`${toneTextClass} text-xs font-semibold mt-3`}>
-                                {message.actionLabel}
-                              </Text>
-                            </View>
-                            <Ionicons
-                              name="chevron-forward"
-                              size={18}
-                              color={placeholderTextColor}
-                            />
-                          </View>
-                        </AnimatedCardPressable>
-                      );
-                    })}
-                  </View>
-                </View>
-
-              </View>
-            ) : null}
-          </View>
-
-          {isDesktopHome ? (
-            <View className="mt-6">
-              <View
-                style={
-                  desktopActionCardsShouldStack
-                    ? { gap: 16 }
-                    : { flexDirection: "row", gap: 16, flexWrap: "wrap" }
-                }
-              >
-                {!hasCompletedQuestionnaire ? (
-                  <AnimatedCardPressable
-                    onPress={() => router.push(ROUTES.questionnaire)}
-                    className="rounded-2xl p-4 flex-row items-center bg-emerald-500"
-                    containerStyle={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
-                  >
-                    <View className="mr-3 p-2 rounded-xl bg-emerald-900/10">
-                      <Ionicons name="document-text" size={18} color="#000" />
-                    </View>
-                    <View className="flex-1">
-                      <Text className={`font-semibold ${isDark ? 'text-white' : 'text-emerald-900'}`}>{t("home.completeQuestionnaire")}</Text>
-                      <Text className="text-emerald-900/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
-                    </View>
-                    <Ionicons name="sparkles" size={18} color="#000" />
-                  </AnimatedCardPressable>
-                ) : null}
-
-                <AnimatedCardPressable
-                  onPress={openTransferPlanner}
-                  className={`rounded-2xl p-4 flex-row items-center ${cardClass} border`}
-                  containerStyle={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
-                >
-                  <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
-                    <Ionicons name="school-outline" size={18} color="#008f4e" />
-                  </View>
-                  <View className="flex-1">
-                    <Text className={`font-semibold ${textClass}`}>{t("resources.transferPlanner")}</Text>
-                    <Text className={`${secondaryTextClass} text-sm`}>{t("resources.transferPlannerDesc")}</Text>
-                  </View>
-                  <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
-                </AnimatedCardPressable>
-
-                <AnimatedCardPressable
-                  onPress={openCalendar}
-                  className={`rounded-2xl p-4 flex-row items-center ${cardClass} border`}
-                  containerStyle={desktopActionCardsShouldStack ? { width: "100%" } : { flex: 1, minWidth: 220 }}
-                >
-                  <View className="mr-3 p-2 rounded-xl bg-emerald-500/20">
-                    <Ionicons name="calendar-outline" size={18} color="#008f4e" />
-                  </View>
-                  <View className="flex-1">
-                    <Text className={`font-semibold ${textClass}`}>Deadline calendar</Text>
-                    <Text className={`${secondaryTextClass} text-sm`}>
-                      See scholarships, college deadlines, and planning dates by month
-                    </Text>
-                  </View>
-                  <Ionicons name="chevron-forward" size={18} color={placeholderTextColor} />
-                </AnimatedCardPressable>
-              </View>
-
-            </View>
-          ) : null}
-          {isDesktopHome && wheelOpportunities.length ? (
-            <View className="mt-8">
-              <OpportunityCarouselWheel
-                opportunities={wheelOpportunities}
-                onOpenOpportunity={(opportunity) => {
-                  void openOpportunity(opportunity);
-                }}
-                onViewAll={() => router.push(ROUTES.tabsResources)}
-              />
-            </View>
-          ) : null}
-            </>
+            mobileDashboard
           )}
         </View>
       </ScrollView>

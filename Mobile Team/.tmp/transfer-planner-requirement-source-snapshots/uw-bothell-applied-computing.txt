@@ -257,7 +257,7 @@ Computing &#038; Software Systems
 Computing and Software Systems (CSS)
 Computing and Software Systems Skills (CSSSKL)
 Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-Computing-related courses that are not listed above are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
+Computing-related courses that are not listed above or transfer courses are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
 Conduct a risk assessment for an information asset or system, and develop and characterize appropriate strategies for addressing residual risk
 Consider CSS 495: Applied Computing Internship to get credit for a technical job related to your area of focus
 Contact
@@ -320,7 +320,7 @@ CSS 599: Faculty Research Seminar (1)
 CSS 599: Faculty Research Seminar (1cr)
 CSS courses
 CSS Electives (25 credits / usually 5 courses)
-CSS Electives (25 credits): Cannot overlap with other degree requirements
+CSS Electives (25 credits): Cannot overlap with other degree requirements or 2nd discipline courses
 CSS Labs
 CSS Registration
 CSSKL 594: Scientific Writing for Thesis/Project (2 cr) : Students are advised to take CSSKL 594 in their final quarter of study, when the writing of the final thesis or capstone report is taking place, or when advised by your capstone chair otherwise. Course goals include helping students draft and edit thesis or capstone reports.
@@ -504,7 +504,7 @@ Physics (BPHYS)
 Physics I and II (choose one series)
 Physics series
 Physiology (choose one course)
-Plan EARLY: Start planning for this requirement at least 6 months in advance.
+Plan EARLY: Start planning for this requirement at least 1 year in advance.
 Please reach out to the Biology advisor if you have completed and transferred in this course but it is not yet applying to the statistics requirement on your degree audit.
 Power &#038; Energy
 Prerequisites guide
@@ -614,7 +614,7 @@ Technology Evaluation and Selection: Evaluates and selects software and hardware
 Technology Integration: Integrates various technologies, systems, applications, database and components across multiple platforms.
 Terms
 Testing: Plans, executes, and validates results of unit, systems, and acceptance testing to ensure conformity to user\&#8217;s requirements.
-The Bachelor of Science in Chemistry (biochemistry option) focuses on Biology and Biochemistry courses. It has a higher amount of core required courses and fewer electives.
+The Bachelor of Science in Chemistry (biochemistry option) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical), with the additional concentration on Biochemistry. It has a higher amount of core required courses and fewer electives.
 The Computer Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
 The core curriculum creates a baseline of knowledge for students to operate within the world of cybersecurity. Core classes balance the needs of security engineers to apply secure development concepts coupled with theoretical computer science; all within a framework of ethical best practices.
 The core requirements cover three course areas in: Development, Design, and Foundations. In the core curriculum there are different courses under each core area so students can tailor their path through the program to meet their educational objectives. Students in the program are required to take one five-credit course from each core area.

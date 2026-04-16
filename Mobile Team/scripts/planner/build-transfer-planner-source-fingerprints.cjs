@@ -244,6 +244,10 @@ function buildRequirementFingerprintEntry(owner) {
   const extractedHeadings = owner.extractedHeadings ?? [];
   const requirementCueLines = owner.requirementCueLines ?? [];
   const chooseStatements = owner.chooseStatements ?? [];
+  const qualitySignals = owner.qualitySignals ?? [];
+  const qualitySignalCodes = qualitySignals.map((signal) => signal.code).sort();
+  const qualityWarningCount = qualitySignals.filter((signal) => signal.severity === "warning").length;
+  const qualityNoteCount = qualitySignals.filter((signal) => signal.severity === "note").length;
   const fingerprintInput = {
     ok: owner.ok,
     parseConfidence: owner.parseConfidence,
@@ -253,6 +257,7 @@ function buildRequirementFingerprintEntry(owner) {
     extractedHeadings,
     requirementCueLines,
     chooseStatements,
+    qualitySignalCodes,
     error: owner.error,
   };
 
@@ -273,6 +278,9 @@ function buildRequirementFingerprintEntry(owner) {
     extractedHeadingCount: extractedHeadings.length,
     requirementCueLineCount: requirementCueLines.length,
     chooseStatementCount: chooseStatements.length,
+    qualitySignalCodes,
+    qualityWarningCount,
+    qualityNoteCount,
     requirementFingerprint: sha256Json(fingerprintInput),
     parsedUwCourseCodes,
     sourceOnlyUwCourseCodes,
@@ -403,6 +411,9 @@ function writeMarkdown(report) {
       lines.push(`  - fingerprint: ${entry.requirementFingerprint}`);
       lines.push(`  - source-only UW course codes: ${entry.sourceOnlyUwCourseCodeCount}`);
       lines.push(`  - structured-only UW course codes: ${entry.structuredOnlyUwCourseCodeCount}`);
+      if (entry.qualitySignalCodes.length) {
+        lines.push(`  - quality signals: ${entry.qualitySignalCodes.join(", ")}`);
+      }
     }
     lines.push("");
   }

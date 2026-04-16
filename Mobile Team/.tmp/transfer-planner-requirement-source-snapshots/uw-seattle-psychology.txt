@@ -148,10 +148,11 @@ Psych 318 Statistical Inference in Psychological Research (5 credits)
 *Students must earn a 2.0 or better in Psych 317 to proceed to Psych 318. Students can only take this class once .
 Laboratory Course
 One course from (5 credits):
-Psych 330 Animal Behavior
+Psych 330 Animal Behavior Lab
 Psych 331 Human Performance Lab
 Psych 332 Neurobehavior Lab
 Psych 334 Social Psychology Lab
+Psych 335 Personalized Behavioral Science Lab
 Psych 419 Behavior Studies of Zoo Animals
 Core Courses
 One course from List A (5 credits):

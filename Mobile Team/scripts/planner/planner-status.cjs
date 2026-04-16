@@ -7,6 +7,10 @@ const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const REPORT_PATHS = {
   sourceGap: path.resolve(TMP_DIR, "transfer-planner-source-gaps.json"),
   requirementParse: path.resolve(TMP_DIR, "transfer-planner-requirement-source-parse-report.json"),
+  sourcePipelineValidation: path.resolve(
+    TMP_DIR,
+    "transfer-planner-source-pipeline-validation.json"
+  ),
   requirementDiff: path.resolve(TMP_DIR, "transfer-planner-requirement-diff-promotion-report.json"),
   ownerAudit: path.resolve(TMP_DIR, "transfer-planner-owner-audit.json"),
   hardening: path.resolve(TMP_DIR, "transfer-planner-hardening-report.json"),
@@ -46,6 +50,16 @@ function buildRequiredUpdateQueue(reports) {
     addRequiredAction(
       queue,
       "Fix requirement parsing failures: update source manifest links or parser adapters for owners that did not parse cleanly."
+    );
+  }
+
+  if (
+    reports.sourcePipelineValidation &&
+    String(reports.sourcePipelineValidation.outcome).toLowerCase() !== "passed"
+  ) {
+    addRequiredAction(
+      queue,
+      "Clear source-pipeline invariant failures: align discovery, promotions, canonical registry, parser input, and fingerprints before rerunning owner audit."
     );
   }
 
@@ -99,6 +113,7 @@ function main() {
   const reports = {
     sourceGap: readJsonOrNull(REPORT_PATHS.sourceGap),
     requirementParse: readJsonOrNull(REPORT_PATHS.requirementParse),
+    sourcePipelineValidation: readJsonOrNull(REPORT_PATHS.sourcePipelineValidation),
     requirementDiff: readJsonOrNull(REPORT_PATHS.requirementDiff),
     ownerAudit: readJsonOrNull(REPORT_PATHS.ownerAudit),
     hardening: readJsonOrNull(REPORT_PATHS.hardening),

@@ -42,14 +42,12 @@ Advising
 After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
 All Applied Computing students must take a minimum of 25 credits (usually 5 courses) to complete this requirement. Credits earned beyond the minimum of 25 can count towards Upper Level General Electives (below) as long as they are 300-level or higher.
 All Biology students must complete at least one biology-related research project.
-All courses required for this degree (not including general education courses) must be passed with a minimum grade of 2.0 or higher .
 All CSS electives must be 200-level or higher, and they may not be courses that are already required for your degree. Of the 25 credits:
 All prerequisite courses and major requirements require a minimum grade of 2.0 or higher .
 All students must take a one-credit CSS 599: Faculty Research Seminar. The seminar gives students the opportunity to interact and learn about current research conducted by the CSS faculty. It is recommended students take this course in their first quarter, so that they are made familiar with current research early in their academic career. The course is 1 credit, and the class typically meets one hour per week.
 All students who enter the BSEE program in autumn 2012 or after must complete these requirements to earn their degree. Learn more about the EE admissions process. Students need to complete each course with a minimum grade of 2.0.
 All UW Bothell
 All UW students must complete a common set of general education requirements . As a Biology major, you will have already completed the Natural Science (NSc) and Reasoning (R) requirements by taking chemistry and biology classes, but make sure to plan for completion of the following:
-All UW students must complete a common set of general education requirements . As a Chemistry major, you will have already completed the Natural Science (NSc) and Reasoning (R) requirements by taking chemistry, physics, and math classes, but make sure to plan for completion of the following:
 All UW students must complete a common set of general education requirements . As a Computer Engineering major, you will be on track for completing the English Composition (C), some Additional Writing (W), Natural Science (NSc) , and Reasoning (R) , but make sure to plan for completion of the following:
 All UW students must complete a common set of general education requirements . As a CSSE major, you will have already completed the English Composition (C), Additional Writing (W), Natural Science (NSc) , and Reasoning (R) requirements by taking your entry prerequisite and CSSE core classes, but make sure to plan for completion of the following:
 All UW students must complete a common set of general education requirements . As an Applied Computing major, you will already have completed the English Composition (C) , Additional Writing (W) , Natural Science (NSc) , and Reasoning (R) requirements by taking your prerequisite and core courses, but make sure to plan for completion of the following:
@@ -67,10 +65,6 @@ Applied Computing Curriculum - School of Science, Technology, Engineering & Math
 Applied Computing is a multidisciplinary major that integrates expertise in computer technology (your CSS courses) with another area of expertise called your &#8220;Second Discipline.&#8221; Together, these areas of expertise will become the focal point for your CSS 496 capstone course at the end of the program.
 Apply As Undergraduate
 Apply effective oral/written communication skills and team member skills in designing software systems
-Approved Independent Study in Chemistry (B CHEM 498) (1 – 5 credits, maximum 10)
-Approved Independent Study in Chemistry (B CHEM 498) (1–5 credits, maximum 10)
-Approved Undergraduate Research in Chemistry (B CHEM 499) (1 – 5 credits, maximum 10)
-Approved Undergraduate Research in Chemistry (B CHEM 499) (1–5 credits, maximum 10)
 Arts & Humanities (A&H) &#8211; 15 credits
 Arts & Humanities (A&H) &#8211; 15 credits (cannot overlap with SSc)
 Assess software engineering concepts and processes
@@ -78,35 +72,14 @@ Associate Professor with Tenure
 At least 15 credits must be 400-level
 At least 5 elective credits must be 400-level
 Awards & Endowments
-B BIO 180 Introductory Biology I
-B BIO 200 Introductory Biology II
-B BIO 364 / B CHEM 364 Biochemistry I (5 credits)
-B BIO 365 / B CHEM 365 Biochemistry II (5 credits)
 B BIO 366 / B CHEM 366 Biochemistry Lab (3 credits)
-B BIO 375 / B CHEM 375 Molecular Biology (5 credits)
 B BUS 300: Organizational Behavior, Ethics, and Inclusivity (if taking the Business Administration minor as second discipline of study)
 B CHEM 143+144 General Chemistry I/Lab (6) (or CHEM 142 (5))
 B CHEM 237 Organic Chemistry I (4 credits)
 B CHEM 238/241 Organic Chemistry II w/ Lab (4+3 credits)
 B CHEM 239/242 Organic Chemistry III w/ Lab (4+3 credits)
-B CHEM 294 Chemistry Seminar (1-2 credits)
-B CHEM 294 Chemistry Seminar (1–2 credits)
-B CHEM 310 Molecular Modeling (5 credits)
-B CHEM 312 Inorganic Chemistry I (3 credits)
-B CHEM 313 Inorganic Chemistry II (3 credits)
-B CHEM 316 Quantitative Chemical Analysis and Equilibrium Chemistry (4 credits)
-B CHEM 317 Quantitative Environmental Analysis Lab (3 credits)
-B CHEM 350 Atmospheric Chemistry and Air Pollution (5 credits)
-B CHEM 401 Physical Chemistry I (4 credits)
-B CHEM 402 Physical Chemistry II (4 credits)
 B CHEM 404 Physical Chemistry Lab (4 credits)
 B CHEM 426 Instrumental Analysis (5 credits)
-B CHEM 493 Advanced Topics in Chemistry (1 – 5 credits, maximum 15)
-B CHEM 493 Advanced Topics in Chemistry (1–5 credits, maximum 15)
-B CHEM 494 Special Topics in Biochemistry (3 credits, maximum 12)
-B CHEM 495 Investigative Chemistry I (3 credits)
-B CHEM 497 Apprenticeship in Chemistry Education (1 – 3 credits, maximum 6)
-B CHEM 497 Apprenticeship in Chemistry Education (1–3 credits, maximum 6)
 B EE 200 Electric Circuits Lab (2)
 B EE 215 Fundamentals of Electrical Engineering (4)
 B EE 233 Circuit Theory (4)
@@ -152,12 +125,7 @@ B PHYS 122 Electromagnetism and Oscillatory Motion (5)
 B PHYS 123 Waves (5 credits)
 B PHYS 123 Waves (5)
 B WRIT 135 Research Writing (5) or ENGL 141 The Research Paper (5)
-B.A. in Chemistry
-B.A. in Chemistry requirements
-B.S. in Chemistry (biochemistry option)
-B.S. in Chemistry (biochemistry option) requirements
 B.S. in Chemistry (general option)
-B.S. in Chemistry (general option) requirements
 BBIO 231 (Genes, Genomes, and Heredity) ; also fulfills SSc
 BBIO 233 (Cancer: Biology, Risk, and Treatment)
 BBIO 285 (Seminar in Biology) ; also fulfills SSc
@@ -225,7 +193,6 @@ Biology (BBIO)
 Biology & Society
 Biology Curriculum
 Biology Curriculum - School of Science, Technology, Engineering & Mathematics
-Biology series
 Biology-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
 Biomedical
 Biomedical Systems and Devices
@@ -266,11 +233,7 @@ Cell Biology (choose one course)
 Center for Biotechnology Innovation & Training
 Chemistry
 Chemistry (BCHEM)
-Chemistry Curriculum
-Chemistry Curriculum - School of Science, Technology, Engineering & Mathematics
-Chemistry Electives can be fulfilled by any 300-level or higher &#8220;BCHEM&#8221; course that is not already required for your degree option.
 Chemistry series
-Chemistry-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
 Choose one of the following three-course series options:
 Choose three additional courses (15 credits) from the following list; a combined maximum of 10 credits of B EE 490, B EE 498, and B EE 499 may be counted toward the 15 credit requirement.
 Choose your pathway
@@ -279,10 +242,6 @@ Collaboration & Team Building: Collaborates effectively with others to achieve a
 Collaborative Programming Techniques: Uses methods and tools that support cooperative software development among users in different locations.
 College Level English Composition and Writing (15-20 credits)
 Commuter Services
-Complete five additional credits of approved 300- or 400-level courses offered by the School of STEM.
-Complete five credits from any of the following courses:
-Complete fourteen credits from any of the following courses:
-Complete seven credits from any of the following courses, including at least one lab.
 Computer Engineering
 Computer Engineering Capstone (10 credits)
 Computer Engineering Capstone (BCE)
@@ -296,7 +255,7 @@ Computing &#038; Software Systems
 Computing and Software Systems (CSS)
 Computing and Software Systems Skills (CSSSKL)
 Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-Computing-related courses that are not listed above are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
+Computing-related courses that are not listed above or transfer courses are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
 Conduct a risk assessment for an information asset or system, and develop and characterize appropriate strategies for addressing residual risk
 Consider CSS 495: Applied Computing Internship to get credit for a technical job related to your area of focus
 Contact
@@ -362,7 +321,7 @@ CSS 599: Faculty Research Seminar (1)
 CSS 599: Faculty Research Seminar (1cr)
 CSS courses
 CSS Electives (25 credits / usually 5 courses)
-CSS Electives (25 credits): Cannot overlap with other degree requirements
+CSS Electives (25 credits): Cannot overlap with other degree requirements or 2nd discipline courses
 CSS Labs
 CSS Registration
 CSSE Curriculum
@@ -425,7 +384,6 @@ Faculty Research Projects
 Faculty Research Seminar
 Follow the links below for descriptions of each course. Courses taught by the Computing & Software Systems department include the following course prefixes:
 Follow the links below for descriptions of each course. The biology major can use courses from several different disciplines:
-Follow the links below for descriptions of each course. The chemistry majors use courses from several different disciplines:
 Follow the links below to read about the content covered in each course:
 For a more visual version of the information on this page, download the Computer Engineering degree checklist .
 Foundation Level
@@ -457,7 +415,6 @@ IAC-option students take the same core courses as those of the general CSSE majo
 Identify, model, prioritize, and defend against threats to systems
 Implement applications using design languages or representations
 Implementation: Plans and executes smooth integration of an application into the computing environment.
-Important planning notes
 In addition to the cybersecurity core courses, all students must take a one credit faculty seminar, and a forthcoming process to evaluate students’ knowledge of the skills covered in CSSKL 511: Technical Writing (1 cr) will allow students to waive this course if proficiency is determined. Students who do not demonstrate this proficiency via past coursework will be required to take the course. All students will be required to take CSSSKL 594: Scientific Writing for Thesis/Project (2 cr), and there is no waiver available for this course.
 In addition to these core areas of study, all students must take a one credit faculty seminar, and a forthcoming process to evaluate students’ knowledge of the skills covered in CSSKL 511: Technical Writing (1 cr) will allow students to waive this course if proficiency is determined. Students who do not demonstrate this proficiency via past coursework will be required to take the course. All students will be required to take CSSSKL 594: Scientific Writing for Thesis/Project (2 cr), and there is no waiver available for this course.
 In general, these general education courses can overlap with the Second Discipline and Elective courses for your major.
@@ -551,7 +508,7 @@ Physics (BPHYS)
 Physics I and II (choose one series)
 Physics series
 Physiology (choose one course)
-Plan EARLY: Start planning for this requirement at least 6 months in advance.
+Plan EARLY: Start planning for this requirement at least 1 year in advance.
 Please reach out to the Biology advisor if you have completed and transferred in this course but it is not yet applying to the statistics requirement on your degree audit.
 Power &#038; Energy
 Prerequisites guide
@@ -630,7 +587,6 @@ STMATH 390: Probability & Statistics in Engineering (5 credits)
 STMATH 390: Probability and Statistics in Engineering
 Student Forms &#038; Resources
 Student Organizations
-Students can choose any 300- or 400-level course listed in the School of STEM time schedule as an elective. If the course is from UW Seattle or is outside of a STEM major, students must submit a to the department using the Chemistry Major or Minor Requirement Petition form.
 Students choose one of four Culminating Experience pathways depending on which will best allow them to reach their academic and professional goals: project, thesis, coursework, or internship. Students must complete all 15 credits of core coursework and 15 credits of electives by the time they begin their 10 credit Culminating Experience.
 Students choose one of three 5-credit culminating cybersecurity courses (CSS 538 in autumn, CSS 518 in winter, or CSS 539 in spring) to apply and advance learnings from their core and elective coursework. A deliverable (such as a comprehensive report) will be produced by the student at the end of the quarter. To complete the coursework option, students take one additional 5-credit elective, bringing their elective total for the degree to 25.
 Students complete a 10-credit project (CSS 595) which involves working under the guidance of a faculty committee to apply knowledge obtained from the program’s curriculum to build connections between academic concepts and the application of those concepts into real-world context. Students present and defend their work at the end of the program and produce a comprehensive report of their findings.
@@ -641,7 +597,6 @@ Students may choose one of the following to meet the Foundations core requiremen
 Students pursuing the project or thesis Culminating Experience will present their research to their faculty committee. Check out recent titles and abstracts in the final defense schedule to learn more about the latest master&#8217;s student research.
 Students who secure and finish a cybersecurity-related internship will complete 5 credits of CSS 601 Internship where they work with a faculty sponsor to set learning goals and demonstrate their ability to apply their learnings from the curriculum in a professional and practical setting. To complete the internship Culminating Experience option, students take one additional 5-credit elective, bringing their elective total for the degree to 25.
 Submit a biology major / minor petition
-Submit a chemistry major / minor petition
 Submit a computer engineering petition
 Submit a CSSE major / minor petition
 Submit an applied computing petition
@@ -663,8 +618,7 @@ Technology Evaluation and Selection: Evaluates and selects software and hardware
 Technology Integration: Integrates various technologies, systems, applications, database and components across multiple platforms.
 Terms
 Testing: Plans, executes, and validates results of unit, systems, and acceptance testing to ensure conformity to user\&#8217;s requirements.
-The Bachelor of Arts in Chemistry is intentionally flexible, allowing you to tailor your academic journey — whether that means pursuing a minor, adding a second major, preparing for graduate school or a future career, or simply diving into courses that you enjoy.
-The Bachelor of Science in Chemistry (biochemistry option) focuses on Biology and Biochemistry courses. It has a higher amount of core required courses and fewer electives.
+The Bachelor of Science in Chemistry (BS) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical) and several modern interdisciplinary areas, including biochemistry, computational chemistry, atmospheric chemistry, and electro-analytical chemistry.
 The Computer Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
 The core curriculum creates a baseline of knowledge for students to operate within the world of cybersecurity. Core classes balance the needs of security engineers to apply secure development concepts coupled with theoretical computer science; all within a framework of ethical best practices.
 The core requirements cover three course areas in: Development, Design, and Foundations. In the core curriculum there are different courses under each core area so students can tailor their path through the program to meet their educational objectives. Students in the program are required to take one five-credit course from each core area.
@@ -677,16 +631,13 @@ The Foundation Level includes very broad competencies that are found in every CS
 The learning objectives for the Bachelor of Arts in Applied Computing and the Bachelor of Science in Computer Science & Software Engineering are described in terms of competencies achieved by students within the CSS programs.
 The purpose of the Foundations core is to emphasize the methods of scientific inquiry and emphasize theoretical and conceptual knowledge as it relates to practical/how-to-knowledge. The Foundations core also covers ethical issues that arise in computing and software systems. Courses in the Foundations core provide students with the opportunities to solve problems that emphasize the ability to synthesize and apply theories and techniques in a professional setting. Specifically, students will be solving problems that address the relationship between mathematical and/or scientific foundations and actual practice.
 The remaining 5 elective credits must be 300-level or higher
-These courses are very challenging . We strongly recommend that you do not take them courses at the same time, and instead spread them out over the course of two years.
 These courses can be taken before or after entry into the major.
 These courses can count as a Biology Elective, but usually do not count towards the &#8220;two out of three categories&#8221; requirement from above:
 These courses may overlap with your General Education requirements (A&H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
 These general education courses can overlap with the Elective courses for your major.
 Thesis
 Thesis/Project Final Defense Schedule
-This option also requires a lot of time-consuming lab work , so we recommend working proactively with your academic adviser when planning your academic schedule.
 This page contains information on the curriculum of the Bachelor of Arts in Applied Computing .
-This page contains information on the curriculum of the Bachelor of Arts in Chemistry and Bachelor of Science in Chemistry (general and biochemistry options) .
 This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering (CSSE) .
 This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
 Thoroughness: Ensures that work is done correctly, completely, on time and to the highest standards.
@@ -704,9 +655,7 @@ Up to 10 credits combined of CSS 290, 390, or 490 (Special Topics)
 Up to 10 credits combined of CSS 397 (Internship), 498 (Independent Study), or 499 (Undergraduate Research)
 Up to 10 credits may be 200-level
 Upper division biology electives
-Upper division Chemistry electives
 Upper division Chemistry electives with a lab that satisfies the lab requirement:
-Upper division STEM electives
 Upper Level General Electives (10 credits): Cannot overlap with other degree requirements
 User Orientation: Gains understanding of users needs by immersing self in users environment; carefully studies user&#8217;s requirements; puts self in users shoes.
 UW Bothell Facebook
@@ -725,8 +674,6 @@ Visit our Admissions page for information on prerequisite coursework.
 Visit the admissions page for information on prerequisite coursework.
 Visit the Investigative Biology page for information on the requirement, how to find research, and step-by-step instructions for making sure that your project fulfills the requirement.
 Visitors
-We have found that students find more success when starting with Analytical Chemistry before moving on to Physical Chemistry.
-We strongly recommend taking Analytical Chemistry (BCHEM 316+317 and 426) in your Junior year, followed by Physical Chemistry (BCHEM 401, 402, 404) in your senior year, because:
 When considering options for their elective and secondary discipline courses, Applied Computing students should reflect on the type of work that they are interested in pursuing after graduation.
 Wireless, RF/Microwave, and Telecommunications
 Workday Login
@@ -734,4 +681,3 @@ Writing & Speaking: Expresses ideas correctly and convincingly in reports, memos
 You must complete 20 credits (usually four courses) of upper division (300-level or higher) biology elective coursework. You must choose your electives from at least two out of three of the following categories. Click the category titles to see lists of approved courses.
 You must complete one (1) course for this requirement. This is flexible – if you find a course that seems related to both Biology and Society then you can submit a petition to request for it to count.
 You must complete ten (10) credits (usually two courses) of &#8220;CSS&#8221; or &#8220;BEE&#8221; elective coursework. Of these 10 credits:
-You must earn a minimum of 180 credits to complete a degree from UW Bothell.

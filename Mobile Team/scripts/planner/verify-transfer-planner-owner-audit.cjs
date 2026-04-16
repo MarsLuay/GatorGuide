@@ -11,6 +11,7 @@ require("ts-node").register({
 });
 
 const {
+  TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
   TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
   getTransferPlannerMajorPlan,
@@ -75,6 +76,127 @@ function compareIssues(left, right) {
   return left.code.localeCompare(right.code);
 }
 
+function buildIssueIndex(issues) {
+  return new Map(issues.map((issue) => [issue.code, issue]));
+}
+
+function buildCountsByCode(entries) {
+  return entries.reduce((counts, entry) => {
+    counts[entry.code] = (counts[entry.code] ?? 0) + 1;
+    return counts;
+  }, {});
+}
+
+function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner) {
+  const rootIssues = [];
+  const symptomIssueByCode = buildIssueIndex(symptomIssues);
+  const groupedSymptomCodes = new Set();
+  const missingPrimarySource = symptomIssueByCode.has("missing-primary-source");
+  const missingManifestEntries = symptomIssueByCode.has("missing-source-manifest-entries");
+  const missingParsedSourceBlock = symptomIssueByCode.has("missing-parsed-source-block");
+
+  if (missingPrimarySource && missingManifestEntries) {
+    groupedSymptomCodes.add("missing-primary-source");
+    groupedSymptomCodes.add("missing-source-manifest-entries");
+    if (missingParsedSourceBlock) {
+      groupedSymptomCodes.add("missing-parsed-source-block");
+    }
+    addIssue(
+      rootIssues,
+      "error",
+      "canonical-source-registry-missing-owner",
+      "Canonical source registry is missing the owner's primary source registration.",
+      {
+        ownerId,
+        autoPromotedPrimarySource: isAutoPromotedOwner,
+        symptoms: [
+          "missing-primary-source",
+          "missing-source-manifest-entries",
+          ...(missingParsedSourceBlock ? ["missing-parsed-source-block"] : []),
+        ],
+      }
+    );
+  } else if (missingPrimarySource || missingManifestEntries) {
+    if (missingPrimarySource) {
+      groupedSymptomCodes.add("missing-primary-source");
+    }
+    if (missingManifestEntries) {
+      groupedSymptomCodes.add("missing-source-manifest-entries");
+    }
+    addIssue(
+      rootIssues,
+      "error",
+      "canonical-source-registry-drift",
+      "Canonical source registry is internally inconsistent for this owner.",
+      {
+        ownerId,
+        autoPromotedPrimarySource: isAutoPromotedOwner,
+        symptoms: [
+          ...(missingPrimarySource ? ["missing-primary-source"] : []),
+          ...(missingManifestEntries ? ["missing-source-manifest-entries"] : []),
+        ],
+      }
+    );
+  }
+
+  if (missingParsedSourceBlock && !missingPrimarySource && !missingManifestEntries) {
+    groupedSymptomCodes.add("missing-parsed-source-block");
+    addIssue(
+      rootIssues,
+      "error",
+      isAutoPromotedOwner ? "promoted-source-not-parsed" : "registry-parser-drift",
+      isAutoPromotedOwner
+        ? "An auto-promoted primary source exists in the canonical registry but did not produce a parsed requirement block."
+        : "Canonical registry and parsed requirement blocks drifted for this owner.",
+      {
+        ownerId,
+        autoPromotedPrimarySource: isAutoPromotedOwner,
+        symptoms: ["missing-parsed-source-block"],
+      }
+    );
+  }
+
+  if (symptomIssueByCode.has("invalid-primary-source-url")) {
+    rootIssues.push(symptomIssueByCode.get("invalid-primary-source-url"));
+  }
+  if (symptomIssueByCode.has("blocked-primary-source-url")) {
+    rootIssues.push(symptomIssueByCode.get("blocked-primary-source-url"));
+  }
+  if (symptomIssueByCode.has("parsed-source-block-failed")) {
+    rootIssues.push(symptomIssueByCode.get("parsed-source-block-failed"));
+  }
+  if (symptomIssueByCode.has("missing-primary-manifest-flag")) {
+    groupedSymptomCodes.add("missing-primary-manifest-flag");
+    addIssue(
+      rootIssues,
+      "warning",
+      "manifest-primary-metadata-drift",
+      "Source manifest entries exist, but the primary degree-requirements flag is missing.",
+      {
+        ownerId,
+        symptoms: ["missing-primary-manifest-flag"],
+      }
+    );
+  }
+  if (symptomIssueByCode.has("used-snapshot-fallback")) {
+    groupedSymptomCodes.add("used-snapshot-fallback");
+    rootIssues.push(symptomIssueByCode.get("used-snapshot-fallback"));
+  }
+  if (symptomIssueByCode.has("no-parsed-uw-course-codes")) {
+    groupedSymptomCodes.add("no-parsed-uw-course-codes");
+    rootIssues.push(symptomIssueByCode.get("no-parsed-uw-course-codes"));
+  }
+
+  for (const issue of symptomIssues) {
+    if (!groupedSymptomCodes.has(issue.code) && !rootIssues.some((rootIssue) => rootIssue.code === issue.code)) {
+      rootIssues.push(issue);
+    }
+  }
+
+  rootIssues.sort(compareIssues);
+  return rootIssues;
+}
+
 function buildOwners() {
   const owners = [];
 
@@ -102,6 +224,15 @@ function buildOwners() {
 
   return owners.sort((left, right) => left.ownerId.localeCompare(right.ownerId));
 }
+
+const AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS = new Set(
+  (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).map((entry) => entry.ownerId)
+);
+const PROMOTED_OWNER_INVARIANT_VIOLATION_CODES = new Set([
+  "canonical-source-registry-missing-owner",
+  "canonical-source-registry-drift",
+  "promoted-source-not-parsed",
+]);
 
 function buildCountsBySeverity(entries) {
   return entries.reduce(
@@ -133,43 +264,65 @@ function writeMarkdown(report) {
     `- Owners with errors: ${report.ownersWithErrorsCount}`,
     `- Owners with warnings: ${report.ownersWithWarningsCount}`,
     `- Owners with source-only UW course codes: ${report.ownersWithSourceOnlyUwCourseCodesCount}`,
-    `- Total errors: ${report.issueCounts.error}`,
-    `- Total warnings: ${report.issueCounts.warning}`,
+    `- Root-cause errors: ${report.issueCounts.error}`,
+    `- Root-cause warnings: ${report.issueCounts.warning}`,
+    `- Raw symptom errors: ${report.symptomIssueCounts.error}`,
+    `- Raw symptom warnings: ${report.symptomIssueCounts.warning}`,
+    `- Auto-promoted owner invariant violations: ${report.promotedOwnerInvariantViolationCount}`,
     `- Total source-only UW course codes: ${report.totalSourceOnlyUwCourseCodes}`,
     "",
   ];
 
+  if (Object.keys(report.countsByIssueCode).length) {
+    lines.push("## Root Cause Counts", "");
+    for (const [code, count] of Object.entries(report.countsByIssueCode).sort(([left], [right]) =>
+      left.localeCompare(right)
+    )) {
+      lines.push(`- ${code}: ${count}`);
+    }
+    lines.push("");
+  }
+
   if (report.ownersWithErrorsCount > 0) {
     lines.push("## Owners With Errors", "");
     for (const owner of report.owners.filter((entry) =>
-      entry.issues.some((issue) => issue.severity === "error")
+      entry.rootIssues.some((issue) => issue.severity === "error")
     )) {
-      lines.push(
+      const ownerLines = [
         `### ${owner.title}`,
         "",
         `- Owner: ${owner.ownerId}`,
         `- Campus: ${owner.campusId}`,
         `- Source: ${owner.primarySourceUrl ?? "none"}`,
-        ...owner.issues.filter((issue) => issue.severity === "error").map(formatIssueLine),
-        ""
-      );
+        `- Auto-promoted primary source: ${owner.isAutoPromotedPrimarySource ? "yes" : "no"}`,
+        ...owner.rootIssues.filter((issue) => issue.severity === "error").map(formatIssueLine),
+        owner.symptomIssues.length
+          ? `- Diagnostic signals: ${owner.symptomIssues.map((issue) => issue.code).join(", ")}`
+          : null,
+        "",
+      ].filter(Boolean);
+      lines.push(...ownerLines);
     }
   }
 
   if (report.ownersWithWarningsCount > 0) {
     lines.push("## Owners With Warnings", "");
     for (const owner of report.owners.filter((entry) =>
-      entry.issues.some((issue) => issue.severity === "warning")
+      entry.rootIssues.some((issue) => issue.severity === "warning")
     )) {
-      lines.push(
+      const ownerLines = [
         `### ${owner.title}`,
         "",
         `- Owner: ${owner.ownerId}`,
         `- Campus: ${owner.campusId}`,
         `- Source: ${owner.primarySourceUrl ?? "none"}`,
-        ...owner.issues.filter((issue) => issue.severity === "warning").map(formatIssueLine),
-        ""
-      );
+        ...owner.rootIssues.filter((issue) => issue.severity === "warning").map(formatIssueLine),
+        owner.symptomIssues.length
+          ? `- Diagnostic signals: ${owner.symptomIssues.map((issue) => issue.code).join(", ")}`
+          : null,
+        "",
+      ].filter(Boolean);
+      lines.push(...ownerLines);
     }
   }
 
@@ -193,11 +346,17 @@ function main() {
   );
 
   const owners = buildOwners().map((owner) => {
-    const issues = [];
+    const symptomIssues = [];
     let sourceOnlyUwCourseCodeCount = 0;
+    const isAutoPromotedPrimarySource = AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS.has(owner.ownerId);
     const basePlan = getTransferPlannerMajorPlan(owner.planId);
     if (!basePlan) {
-      addIssue(issues, "error", "missing-base-plan", "Planner base plan could not be resolved.");
+      addIssue(
+        symptomIssues,
+        "error",
+        "missing-base-plan",
+        "Planner base plan could not be resolved."
+      );
     }
 
     const resolvedPlan = basePlan
@@ -207,7 +366,7 @@ function main() {
       : null;
     if (!resolvedPlan) {
       addIssue(
-        issues,
+        symptomIssues,
         "error",
         "missing-resolved-plan",
         "Planner resolved plan could not be built for this owner."
@@ -217,7 +376,7 @@ function main() {
     const runtimeBasePlan = getTransferPlannerStudentRuntimeMajorPlan(owner.planId);
     if (!runtimeBasePlan) {
       addIssue(
-        issues,
+        symptomIssues,
         "error",
         "missing-runtime-base-plan",
         "Student runtime base plan could not be resolved."
@@ -231,7 +390,7 @@ function main() {
       : null;
     if (!runtimeResolvedPlan) {
       addIssue(
-        issues,
+        symptomIssues,
         "error",
         "missing-runtime-resolved-plan",
         "Student runtime resolved plan could not be built for this owner."
@@ -244,7 +403,7 @@ function main() {
     );
     if (!primarySource?.url) {
       addIssue(
-        issues,
+        symptomIssues,
         "error",
         "missing-primary-source",
         "No primary degree-requirements source URL is registered for this owner."
@@ -253,7 +412,7 @@ function main() {
       const parsedPrimaryUrl = parseUrlOrNull(primarySource.url);
       if (!parsedPrimaryUrl) {
         addIssue(
-          issues,
+          symptomIssues,
           "error",
           "invalid-primary-source-url",
           "Primary degree-requirements source URL is not a valid absolute URL.",
@@ -261,7 +420,7 @@ function main() {
         );
       } else if (urlLooksLikeBlockedPrimarySource(primarySource.url)) {
         addIssue(
-          issues,
+          symptomIssues,
           "error",
           "blocked-primary-source-url",
           "Primary degree-requirements source URL looks like a login or blocked page.",
@@ -276,14 +435,14 @@ function main() {
     );
     if ((manifestEntries ?? []).length === 0) {
       addIssue(
-        issues,
+        symptomIssues,
         "error",
         "missing-source-manifest-entries",
         "No source manifest entries were found for this owner."
       );
     } else if (!manifestEntries.some((entry) => entry.isPrimaryDegreeRequirementsLink)) {
       addIssue(
-        issues,
+        symptomIssues,
         "warning",
         "missing-primary-manifest-flag",
         "Source manifest entries exist, but none are marked as the primary degree-requirements link."
@@ -293,7 +452,7 @@ function main() {
     const parsedBlock = parsedBlocksByOwnerId.get(owner.ownerId);
     if (!parsedBlock) {
       addIssue(
-        issues,
+        symptomIssues,
         "error",
         "missing-parsed-source-block",
         "No parsed requirement source block was generated for this owner."
@@ -301,7 +460,7 @@ function main() {
     } else {
       if (!parsedBlock.ok) {
         addIssue(
-          issues,
+          symptomIssues,
           "error",
           "parsed-source-block-failed",
           "Requirement source parsing did not succeed for this owner.",
@@ -311,7 +470,7 @@ function main() {
 
       if (parsedBlock.usedSnapshotFallback) {
         addIssue(
-          issues,
+          symptomIssues,
           "warning",
           "used-snapshot-fallback",
           "Requirement source parsing used a cached snapshot fallback.",
@@ -324,7 +483,7 @@ function main() {
         : 0;
       if (parsedUwCourseCodeCount === 0) {
         addIssue(
-          issues,
+          symptomIssues,
           "warning",
           "no-parsed-uw-course-codes",
           "Parsed requirement source block produced zero UW course codes."
@@ -337,14 +496,22 @@ function main() {
       sourceOnlyUwCourseCodeCount = parsedSourceOnlyUwCourseCodeCount;
     }
 
-    issues.sort(compareIssues);
+    symptomIssues.sort(compareIssues);
+    const rootIssues = collapseOwnerIssues(
+      owner.ownerId,
+      symptomIssues,
+      isAutoPromotedPrimarySource
+    );
 
     return {
       ...owner,
+      isAutoPromotedPrimarySource,
       primarySourceUrl: primarySource?.url ?? null,
       sourceOnlyUwCourseCodeCount,
-      issueCounts: buildCountsBySeverity(issues),
-      issues,
+      issueCounts: buildCountsBySeverity(rootIssues),
+      symptomIssueCounts: buildCountsBySeverity(symptomIssues),
+      rootIssues,
+      symptomIssues,
     };
   });
 
@@ -368,6 +535,19 @@ function main() {
       },
       { error: 0, warning: 0 }
     ),
+    symptomIssueCounts: owners.reduce(
+      (counts, owner) => {
+        counts.error += owner.symptomIssueCounts.error;
+        counts.warning += owner.symptomIssueCounts.warning;
+        return counts;
+      },
+      { error: 0, warning: 0 }
+    ),
+    countsByIssueCode: buildCountsByCode(owners.flatMap((owner) => owner.rootIssues)),
+    countsBySymptomCode: buildCountsByCode(owners.flatMap((owner) => owner.symptomIssues)),
+    promotedOwnerInvariantViolationCount: owners.filter((owner) =>
+      owner.rootIssues.some((issue) => PROMOTED_OWNER_INVARIANT_VIOLATION_CODES.has(issue.code))
+    ).length,
     owners,
   };
 
@@ -377,6 +557,7 @@ function main() {
   console.log(`Owners audited: ${report.totalOwners}`);
   console.log(`Owners with errors: ${report.ownersWithErrorsCount}`);
   console.log(`Owners with warnings: ${report.ownersWithWarningsCount}`);
+  console.log(`Auto-promoted owner invariant violations: ${report.promotedOwnerInvariantViolationCount}`);
   console.log(`JSON report: ${OUTPUT_JSON_PATH}`);
   console.log(`Markdown report: ${OUTPUT_MD_PATH}`);
 

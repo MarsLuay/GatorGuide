@@ -30,7 +30,22 @@ const DEFAULT_CONCURRENCY = 4;
 const MAX_DISCOVERED_CANDIDATES_PER_OWNER = 6;
 const USER_AGENT = "GatorGuideTransferPlannerPrimarySourceDiscovery/1.0";
 const CAMPUS_IDS = new Set(["uw-seattle", "uw-bothell", "uw-tacoma"]);
-const OFFICIAL_UW_BASE_DOMAINS = ["washington.edu", "uwb.edu", "uw.edu"];
+const FALLBACK_DISCOVERY_BASE_DOMAINS_BY_CAMPUS = {
+  "uw-seattle": ["washington.edu", "uw.edu"],
+  "uw-bothell": ["uwb.edu"],
+  "uw-tacoma": ["uw.edu"],
+};
+const FALLBACK_DISCOVERY_SOURCE_PAGES_BY_CAMPUS = {
+  "uw-seattle": [
+    "https://hasc.washington.edu/explore-programs/our-majors-minors",
+    "https://advising.uw.edu/academic-planning/majors-and-minors/list-of-undergraduate-majors/",
+  ],
+  "uw-bothell": [],
+  "uw-tacoma": [],
+};
+const OFFICIAL_UW_BASE_DOMAINS = uniqueSorted(
+  Object.values(FALLBACK_DISCOVERY_BASE_DOMAINS_BY_CAMPUS).flat()
+);
 const STOP_TOKENS = new Set([
   "route",
   "option",
@@ -220,6 +235,10 @@ function getBaseDomains(urls) {
     } catch {}
   }
   return [...bases];
+}
+
+function getFallbackBaseDomains(campusId) {
+  return FALLBACK_DISCOVERY_BASE_DOMAINS_BY_CAMPUS[campusId] ?? [];
 }
 
 function isAllowedDiscoveryUrl(url, baseDomains) {
@@ -674,6 +693,11 @@ function scoreCandidate(target, candidate) {
     addReason(reasons, "discovered from an official source page");
   }
 
+  if (candidate.sourceKind === "campus-major-index") {
+    score += 3;
+    addReason(reasons, "discovered from an official campus major index");
+  }
+
   if (candidate.sourceKind === "targeted-official-candidate") {
     score += 4;
     addReason(reasons, "hardcoded official source candidate for source-gap resolution");
@@ -825,7 +849,10 @@ function parseArgs() {
 }
 
 async function analyzeOwner(target, timeoutMs) {
-  const baseDomains = getBaseDomains(target.officialLinks.map((link) => link.url));
+  const baseDomains = (() => {
+    const discoveredBaseDomains = getBaseDomains(target.officialLinks.map((link) => link.url));
+    return discoveredBaseDomains.length ? discoveredBaseDomains : getFallbackBaseDomains(target.campusId);
+  })();
   const candidateMap = new Map();
   const sourcePages = [];
 
@@ -843,6 +870,14 @@ async function analyzeOwner(target, timeoutMs) {
       sourceKind: "targeted-official-candidate",
     });
   }
+
+  const fallbackSourcePages =
+    target.officialLinks.length === 0
+      ? (FALLBACK_DISCOVERY_SOURCE_PAGES_BY_CAMPUS[target.campusId] ?? []).map((url) => ({
+          url,
+          sourceKind: "campus-major-index",
+        }))
+      : [];
 
   for (const link of target.officialLinks) {
     const page = await inspectPage(link.url, timeoutMs);
@@ -873,6 +908,33 @@ async function analyzeOwner(target, timeoutMs) {
         anchorText: anchor.text,
         sourcePageUrl: page.finalUrl || link.url,
         sourceKind: "discovered-anchor",
+      });
+    }
+  }
+
+  for (const sourcePage of fallbackSourcePages) {
+    const page = await inspectPage(sourcePage.url, timeoutMs);
+    sourcePages.push({
+      url: sourcePage.url,
+      finalUrl: page.finalUrl,
+      ok: page.ok,
+      status: page.status,
+      contentType: page.contentType,
+      title: page.title,
+      error: page.error,
+      anchorCount: page.anchors.length,
+      sourceKind: sourcePage.sourceKind,
+    });
+
+    for (const anchor of page.anchors) {
+      if (!isAllowedDiscoveryUrl(anchor.url, baseDomains)) {
+        continue;
+      }
+      addScoredCandidate(candidateMap, target, {
+        url: anchor.url,
+        anchorText: anchor.text,
+        sourcePageUrl: page.finalUrl || sourcePage.url,
+        sourceKind: sourcePage.sourceKind,
       });
     }
   }

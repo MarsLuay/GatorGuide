@@ -3,14 +3,10 @@ Source: https://www.tacoma.uw.edu/sias/sam/biomedical-sciences
 Title: Biomedical Sciences | Department of Sciences and Mathematics | University of Washington Tacoma
 
 [Supplemental official source] graduation requirements
-[Supplemental official source] major academic advisor
-[Supplemental official source] UW Tacoma Biomedical Sciences transfer credits
 [Supplemental official source] UWT general education
-* Please note that most preparatory courses require a minimum grade of 2.0 in order to serve as pre-requisites for subsequent major courses. A new grade minimum of 2.0 for all preparatory courses has been approved by faculty and will become official for all students joining the major in Autumn 2024 or later. Please check with a major academic advisor if you have any questions.
 *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
 *restricted to Global Honors students
 &copy; 2026 University of Washington Tacoma
-†Preparatory biology and chemistry sequences should be completed at the institution in which they are started. These transfer in as full sequences, but not necessarily as individual equivalencies.
 <a
 <a href="/registrar"
 <a href="/sias"
@@ -33,9 +29,7 @@ Title: Biomedical Sciences | Department of Sciences and Mathematics | University
 >Office of the Registrar
 >School of Interdisciplinary Arts & Sciences
 15
-18
 1900 Commerce Street, Tacoma, WA 98402-3100
-2.0
 253-692-4414
 253-692-4450
 253-692-4913
@@ -43,7 +37,6 @@ Title: Biomedical Sciences | Department of Sciences and Mathematics | University
 25Live
 40 additional credits
 5
-6
 A deeper understanding of some aspects of biomedical science provides the opportunity to apply the fundamentals of biomedical science and prepares you for employment in a biomedical field or the pursuit of graduate studies.
 A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
 A minimum of 45 lower-division credits is required before declaring the major. To declare the Biomedical Sciences major, students should reach out to the major academic advisor.
@@ -51,12 +44,7 @@ A student must satisfy the requirements for the degree at the time the degree is
 A student would not need to submit a petition if some of the transferable credits earned at another school are considered elective credits and would not be used towards fulfilling any degree requirements. For example, if a student has completed 185 credits, of which the last 20 credits were taken at another college or university, and at least 5 of those 20 credits include elective credits, the 5 credits would not be used towards meeting any degree requirements and the student would not need to fill out a petition.
 ABOUT UW TACOMA
 Academic advising
-Academic Advising
-Academic Advisor
-Academic advisors in the Department of Science and Mathematics (SAM) provide academic planning support to students majoring in Environmental Science, Environmental Sustainability, Biomedical Sciences and Mathematics. Due to course sequencing and prerequisites, intentional and proactive academic planning is crucial for students in Science and Mathematics. Students should regularly refer to academic planning tools and work closely with their advisors to ensure they are making progress toward graduation.
 Academic calendar
-Academic Calendars
-Academic difficulties
 Academic Planning Resources
 ACADEMICS
 ACCESS in STEM
@@ -69,17 +57,11 @@ ADMISSION REQUIREMENTS
 Admissions
 Advising
 Advising Resources
-Advising Resources | Department of Sciences and Mathematics | University of Washington Tacoma
-Advising Topics
 ADVISORS
-All SAM students are assigned both an academic advisor and a faculty advisor. The table below outlines the roles of these two advisors.
 alt="Block W - Link to UW Tacoma homepage"/>
 alt="Hendrix the Husky at the W">
 alt="University of Washington Tacoma"/>
-Anticipated Offerings, 2025–2026
-Anticipated Offerings, 2026-2027
 Apply
-Applying for graduation
 Areas of Inquiry (AoI)
 aria-label="University of Washington Tacoma Homepage">
 Arts and Humanities (A&H) Formerly known as Visual, Literary, and Performing Arts (VLPA)
@@ -88,56 +70,32 @@ Arts, Media and Culture
 As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 Bachelor of Science
 Basic Skill
-Below you will find academic planning resources developed specifically for SAM majors as well as general planning resources. If you have any questions please reach out to an advisor. Please note that you will need to sign into your UW accounts to access many of the resources below. For help accessing the YouTube videos using your UW Google account please refer to the UW Google help website .
-BIOL 201/202/203 or BIOL& 211/212/213†
-BIOL& 211/212/213†
-BIOL& 221/222/223†
-Biomed Career and Academic Pathways
 Biomedical Electives (15 credits)
 Biomedical Sciences
 Biomedical Sciences | Department of Sciences and Mathematics | University of Washington Tacoma
-Biomedical Sciences Transfer Credits
-Biomedical Sciences Transfer Credits | Department of Sciences and Mathematics | University of Washington Tacoma
 Bookend courses (8 credits)
 Bothell
 Breadcrumb
-Calculus I
-Calculus II
 Calendar
 CAMPUS
 Campus Safety
 Canvas
 Capstone (3-10 credits)
 Capstone Archive
-Capstone Guidelines
-Capstone Information Session Recording , Handout and Summer Programs List , Winter 2024
-Capstone Information Session Recording, Winter 2022
-Capstone planning
 CAREER OPPORTUNITIES
-CHEM& 141/142/143 and 151/152/153 (labs)†
-CHEM& 161/162/163†
-CHEM& 241/242/243 and 251/252/253 (labs)†
-CHEM& 261/262/263†
 class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
 class="path2">
 class="uwt-icon uwt-icon-per-site-facebook">
 class="uwt-icon uwt-icon-per-site-instagram">
 Clinical and Research Laboratories
 Close Search
-College Biology
-College Chemistry
-College Physics
-Commencement
 Communication
 Complete a minimum of 15 credits of advanced Biomedical Sciences. Select a minimum of two classes from List A, and an additional class from List A or List B.
 Connect with advising
-Connect with Advising
 Contact
 Contact us |
 Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 Core courses (39 credits)
-Course Descriptions
-Course registration (MyPlan, Enrollment Requests, etc.)
 Course Repeats
 Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
 Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
@@ -145,17 +103,12 @@ Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other su
 Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
 Courses that focus on sociocultural, political, and economic diversity of human experience
 Credit from external sources (AP/IB credit, transfer coursework, by exam, Armed Forces Training School, etc.)
-CREDITS
 Cross-campus courses taken at UW (Seattle) & UW Bothell
 Current Students
-Currently enrolled students are invited to email advisors and schedule advising appointments as often as needed. Newly admitted students are invited to meet with advisors starting on specific dates each quarter. Prospective students, those not yet admitted to UWT, should reach out to SAM advisors via email, rather than scheduling appointments.
-Declaring/applying to a SAM major
-Degree Audit (DARS) Help
 DEGREE REQUIREMENTS
 DEPARTMENT
 Department of Sciences and Mathematics
 Department of Sciences and Mathematics (SAM)
-Department Repeat Policy and Petition Form
 Designated courses study diversity in the United States with focus on the sociocultural, political and economic diversity of human experience and help students develop an understanding of the complexities of living in increasingly diverse and interconnected societies.
 Details
 Directory
@@ -163,22 +116,15 @@ Diversity (DIV)
 Diversity (DIV): 5 credits
 Economics and Policy Analysis (EPA)
 English Composition (C): 5 credits
-Enrollment Request Form
 Environmental Science
-Environmental Science Career and Academic Pathways
 Environmental Studies Minor
 Environmental Sustainability
 Equity & Inclusion
 Ethics (5 credits)
 Ethnic, Gender and Labor Studies
-Example Academic Plan
-Example Academic Plans
 Exceptions to the rule regarding majors may be granted at the discretion of the department. If major requirements other than the current ones are being used, a note to that effect must be made on the degree application.
 expand_more
 Faculty & Staff
-Faculty Advising
-Faculty Advisor
-Faculty and Staff Directory
 Fax Number
 Final Year Residency Requirement
 Financial Aid
@@ -186,36 +132,25 @@ For a BS in Biomedical Sciences, students must complete 144 major credits, as we
 Formerly known as Areas of Knowledge (AoK)
 Formerly known as Quantitative/Symbolic Reasoning (QSR)
 Forms
-Future Tentative Schedules
-General education planning
 General Education Requirements
-General major and minor planning
 Global Studies Concentration
-GPA Calculator
 Graduating Under Earlier Catalogs
 Graduating with Honors
-Graduation procedures and information
 Graduation Requirements
 Graduation Requirements | Office of the Registrar | University of Washington Tacoma
 Graduation Requirements for a Master&#039;s Degree
 Graduation Requirements for a Masters Degree
-Green River CC
-GREEN RIVER CC TRANSFER EQUIVALENCIES
 Health and Society (5 credits)
 Healthcare
 height="0"
-Highline CC
-HIGHLINE CC TRANSFER EQUIVALENCIES
 History
 Housing
-How can an advisor help you?
 href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2020-10/hendrixw.jpg 600w"
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2020-10/hendrixw.jpg 980w,
 Human health and environmental health are intimately related. List B electives allow exploration of the relationship between the two, or provide a chance to apply the scientific concepts central to biomedical studies in a broader way related to other organisms or the planet.
 iashelp@uw.edu
 If the student is requesting to waive a university requirement, the petition will be submitted to their academic advisor for review by the Faculty Assembly's Academic Policy and Curriculum Committee. Once a determination has been made the student is contacted.
-In addition to their academic advisor(s), all SAM students are assigned a faculty advisor. Faculty advisors provide mentorship and support related to capstone planning, career exploration, graduate school preparation, networking and more. For more information regarding the role of your faculty advisor compared to the role of your academic advisor please see the How can an advisor help you? section. If you are not sure who your faculty advisor is, email Toni Woodman to ask. If desired, students can request to change faculty advisors.
 In order to graduate with a bachelor's degree, a student must meet minimum general educational and basic skills requirements, in addition to completing the requirements of their academic program. General Education requirements are outlined in this website. Additional requirements for specific degree requirements are found online on the degree program's webpages, or within the Degree Programs webpage of the General Catalog.
 Information Technology
 Institutional Research
@@ -232,94 +167,58 @@ List B: Environmental Context Electives
 M-F 9a.m.-5p.m.
 Main Content
 MAJOR COORDINATOR
-Major Orientation Recording, 2026-2027 (will be uploaded by May 15th)
-Major Orientation Recording, 2026-2027 (will be uploaded by May 22nd)
-Major Requirements
 Majors
 Make a Gift
 Map
 Master’s Degree Requirements
-Math Directed Self Placement
-MATH& 151
-MATH& 152
 Mathematics
 Mathematics Minor
 Mattress Factory, room 251
 Minimum GPA
-MINIMUM GRADE
 minimum of 5 credits
 Minors
 more_vert
 Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
 Must include 5 credits of English Composition (C) with a minimum grade of 2.0 and 10 credits of Writing (W) courses
-MyPlan and MyPlan Support
 MyUW
 Natural Sciences (NSc) Formerly known as Natural World (NW)
 Natural Sciences (NSc): 20 credits
-Navigating university policies and procedures
-Networking in the field community
 News & Communications
-NOTE : Online lab courses will not be accepted in the Biomedical Sciences major and cannot serve as pre-requisites for subsequent SAM courses. Exceptions will be made for online lab courses that were completed between Spring 2020 and Spring 2022.
-Notify.UW (Seat Notifications)
 Number of Credits
 Office Hours:
 Office Location
 Office of the Registrar
 Office365
-Olympic CC
-OLYMPIC CC TRANSFER EQUIVALENCIES
 On this page:
 One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
 Open Public Meetings
-Organic Chemistry
-Orientation Handout
 Panopto
 Parking & transportation
 Partners in Science
 Petitioning to seek an exception to the residency requirement
-PHYS 114 or 254
-PHYS 201
-PHYS& 114 or 221
-PHYS& 114 or PHYS& 221
-Picking major electives
-PIERCE C TRANSFER EQUIVALENCIES
-Pierce CC
 Politics, Philosophy and Economics (PP&E)
 Post-graduate Studies
 Pre-Health Additional Requirements
-PREPARATORY COURSE
-Preparing for career, graduate school
-Prerequisite Maps
 Privacy |
 Professor Leighann Chaffee
 Professor Marc Nahmani
 Psychology
 Puyallup Tribe of Indians
-Quarterly Preparation for Registration
-Quarterly Time Schedules
-Reading academic records (Transcript, DARs, etc.)
 Reasoning (RSN)
 Reasoning (RSN): 5 credits
 Registration Resources
-Registration Tutorials
 reguwt@uw.edu
 Research
 Resources
 Restoration Ecology Minor
-Reviewing transfer credits
 Rules Docket
 Ryan Branchini
 SAM DEI Initiatives
 SAM Directory
-SAM Majors Info Session, Winter 2022
-SAM Research
 SAM Resources
-SAM Resources and Forms
 SAMURS
 School of Interdisciplinary Arts & Sciences
 Schools and programs
-Science and Mathematics Listservs
-Science and Mathematics Research Symposium (SAMURS)
 Sciences and Mathematics
 Scout
 Search
@@ -332,8 +231,6 @@ Social Sciences
 Social Sciences (SSc) Formerly known as Individuals and Society (I&S)
 Social Sciences (SSc): 20 credits
 Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
-South PS CC
-SOUTH PS CC TRANSFER EQUIVALENCIES
 Spanish Language and Cultures
 src="/sites/default/files/sites/uwtd8main/W.svg"
 src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
@@ -351,10 +248,7 @@ Students with last names starting with M–Z
 Study Abroad
 style="display:none;
 Sustainability Minor
-Tacoma CC
-TACOMA CC TRANSFER EQUIVALENCIES
 TBIOL 120 Introductory Biology 1 (6)
-TBIOL 120/130/140
 TBIOL 130 Introductory Biology 2 (6)
 TBIOL 140 Introductory Biology 3 (6)
 TBIOL 203 History and Ecology of Biological Invasions
@@ -391,12 +285,10 @@ TBIOMD 495 Biomedical Research Experience
 TBIOMD 496 Biomedical Sciences Internship
 TBIOMD 499 Undergraduate Research in the Biomedical Sciences
 TCHEM 142 General Chemistry 1 (6)
-TCHEM 142/152/162
 TCHEM 152 General Chemistry 2 (6)
 TCHEM 162 General Chemistry 3 (6)
 TCHEM 245 Chemistry through History
 TCHEM 251 Organic Chemistry 1 (6)
-TCHEM 251/261/271
 TCHEM 261 Organic Chemistry 2 (6)
 TCHEM 271 Organic Chemistry 3
 TCHEM 333 Environmental Chemistry
@@ -435,9 +327,7 @@ title="Follow UW Tacoma on Linkedin">
 title="Follow UW Tacoma on TikTok">
 title="Follow UW Tacoma on Youtube">
 TMATH 110 Introductory Statistics
-TMATH 124
 TMATH 124 Calculus 1 (5)
-TMATH 125
 TMATH 125 Calculus 2 (5)
 TMATH 126 Calculus 3
 TMATH 207 Introduction to Differential Equations
@@ -451,7 +341,6 @@ Tools
 Total Credits Required to Graduate
 TPHIL 361 Ethics in Contemporary Society
 TPHIL 455 Medicine and Morality: Issues in Biomedical Ethics
-TPHYS 121
 TPHYS 121 Physics - Mechanics OR PHYS 114 AND PHYS 117 (5)
 TPHYS 122 Physics 2
 TPHYS 123 Physics 3
@@ -467,20 +356,9 @@ TSOCWF/THLTH 355 HIV/AIDS: Global and National Issues
 University Graduation Requirements for the Baccalaureate Degree
 University Requirements for a Baccalaureate Degree
 University YMCA Student Center
-Upcoming major orientation for current or admitted UWT students: May 11th, 3:30-5pm, Zoom , RSVP required.
-Upcoming major orientation for current or admitted UWT students: May 13th, 3:30-5pm, Zoom , RSVP required.
-Upcoming major orientation for current or admitted UWT students: May 20th, 3:30-5pm, Zoom , RSVP required.
 UW Gmail
-UW Google Account Help
 UW Seattle | UW
-UW Tacoma
-UW TACOMA COURSES
-UW Tacoma General Planning Resources
-UW Tacoma Student Resources
-UW Tacoma Teaching and Learning Center
 UWNetID login
-UWT Campus Resources
-UWT Minor and Certificate Programs
 Various / Click Here
 visibility:hidden">
 Waiver of Degree Requirements
@@ -490,5 +368,4 @@ Workday
 Writing (W)
 Writing (W): 10 credits
 Writing Studies
-X
 Zoom

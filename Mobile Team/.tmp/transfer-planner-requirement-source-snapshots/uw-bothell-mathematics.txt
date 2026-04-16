@@ -271,7 +271,7 @@ Computing &#038; Software Systems
 Computing and Software Systems (CSS)
 Computing and Software Systems Skills (CSSSKL)
 Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-Computing-related courses that are not listed above are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
+Computing-related courses that are not listed above or transfer courses are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
 Conduct a risk assessment for an information asset or system, and develop and characterize appropriate strategies for addressing residual risk
 Consider CSS 495: Applied Computing Internship to get credit for a technical job related to your area of focus
 Contact
@@ -336,7 +336,7 @@ CSS 599: Faculty Research Seminar (1)
 CSS 599: Faculty Research Seminar (1cr)
 CSS courses
 CSS Electives (25 credits / usually 5 courses)
-CSS Electives (25 credits): Cannot overlap with other degree requirements
+CSS Electives (25 credits): Cannot overlap with other degree requirements or 2nd discipline courses
 CSS Labs
 CSS Registration
 CSSE Curriculum
@@ -524,7 +524,7 @@ Physics (BPHYS)
 Physics I and II (choose one series)
 Physics series
 Physiology (choose one course)
-Plan EARLY: Start planning for this requirement at least 6 months in advance.
+Plan EARLY: Start planning for this requirement at least 1 year in advance.
 Please reach out to the Biology advisor if you have completed and transferred in this course but it is not yet applying to the statistics requirement on your degree audit.
 Power &#038; Energy
 Prerequisites guide
@@ -655,7 +655,8 @@ Technology Integration: Integrates various technologies, systems, applications, 
 Terms
 Testing: Plans, executes, and validates results of unit, systems, and acceptance testing to ensure conformity to user\&#8217;s requirements.
 The Bachelor of Arts in Chemistry is intentionally flexible, allowing you to tailor your academic journey — whether that means pursuing a minor, adding a second major, preparing for graduate school or a future career, or simply diving into courses that you enjoy.
-The Bachelor of Science in Chemistry (biochemistry option) focuses on Biology and Biochemistry courses. It has a higher amount of core required courses and fewer electives.
+The Bachelor of Science in Chemistry (biochemistry option) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical), with the additional concentration on Biochemistry. It has a higher amount of core required courses and fewer electives.
+The Bachelor of Science in Chemistry (BS) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical) and several modern interdisciplinary areas, including biochemistry, computational chemistry, atmospheric chemistry, and electro-analytical chemistry.
 The Computer Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
 The core curriculum creates a baseline of knowledge for students to operate within the world of cybersecurity. Core classes balance the needs of security engineers to apply secure development concepts coupled with theoretical computer science; all within a framework of ethical best practices.
 The core requirements cover three course areas in: Development, Design, and Foundations. In the core curriculum there are different courses under each core area so students can tailor their path through the program to meet their educational objectives. Students in the program are required to take one five-credit course from each core area.
@@ -668,7 +669,7 @@ The learning objectives for the Bachelor of Arts in Applied Computing and the Ba
 The purpose of the Foundations core is to emphasize the methods of scientific inquiry and emphasize theoretical and conceptual knowledge as it relates to practical/how-to-knowledge. The Foundations core also covers ethical issues that arise in computing and software systems. Courses in the Foundations core provide students with the opportunities to solve problems that emphasize the ability to synthesize and apply theories and techniques in a professional setting. Specifically, students will be solving problems that address the relationship between mathematical and/or scientific foundations and actual practice.
 The remaining 5 elective credits must be 300-level or higher
 The remaining two courses (10 credits) may be from either the list of Advanced Electives or the list of Other Approved Electives (second list below).
-These courses are very challenging . We strongly recommend that you do not take them courses at the same time, and instead spread them out over the course of two years.
+These courses are very challenging . We strongly recommend that you do not take them courses at the same time and instead spread them out over two years. We recommend that you contact your academic adviser early in your program to plan out your courses.
 These courses can be taken before or after entry into the major.
 These courses can count as a Biology Elective, but usually do not count towards the &#8220;two out of three categories&#8221; requirement from above:
 These courses may overlap with your General Education requirements (A&H, SSc, DIV, etc.), above, as long as they are 300-level or higher.

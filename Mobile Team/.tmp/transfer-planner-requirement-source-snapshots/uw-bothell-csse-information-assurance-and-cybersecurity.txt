@@ -141,7 +141,7 @@ Computer Science &#038; Software Engineering (CSSE)
 Computing &#038; Software Systems
 Computing and Software Systems (CSS)
 Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-Computing-related courses that are not listed above are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
+Computing-related courses that are not listed above or transfer courses are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
 Conduct a risk assessment for an information asset or system, and develop and characterize appropriate strategies for addressing residual risk
 Contact
 Contact Us
@@ -367,7 +367,8 @@ Technical Level
 Technology Evaluation and Selection: Evaluates and selects software and hardware appropriate to the application, architecture and resource constraints; maintains awareness and understanding of emerging technology.
 Terms
 The Bachelor of Arts in Chemistry is intentionally flexible, allowing you to tailor your academic journey — whether that means pursuing a minor, adding a second major, preparing for graduate school or a future career, or simply diving into courses that you enjoy.
-The Bachelor of Science in Chemistry (biochemistry option) focuses on Biology and Biochemistry courses. It has a higher amount of core required courses and fewer electives.
+The Bachelor of Science in Chemistry (biochemistry option) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical), with the additional concentration on Biochemistry. It has a higher amount of core required courses and fewer electives.
+The Bachelor of Science in Chemistry (BS) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical) and several modern interdisciplinary areas, including biochemistry, computational chemistry, atmospheric chemistry, and electro-analytical chemistry.
 The Computer Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
 The core curriculum creates a baseline of knowledge for students to operate within the world of cybersecurity. Core classes balance the needs of security engineers to apply secure development concepts coupled with theoretical computer science; all within a framework of ethical best practices.
 The Culminating Experience requirement of the Master of Science in Cybersecurity Engineering degree allows students to use what they have learned in their core and elective coursework to demonstrate critical understanding and the ability to both expand upon and apply what they have learned in various ways.
@@ -375,7 +376,7 @@ The following courses are required to successfully complete the Bachelor of Scie
 The Foundation Level includes very broad competencies that are found in every CSS core course. The Technical Level is a set of broadly important competencies specific to the software engineering and computer science professions, to be developed in every undergraduate CSS education, across the set of required core courses. Competencies specific to the interests and needs of the individual student are achieved in the CSS advanced elective courses.
 The learning objectives for the Bachelor of Arts in Applied Computing and the Bachelor of Science in Computer Science & Software Engineering are described in terms of competencies achieved by students within the CSS programs.
 The remaining 5 elective credits must be 300-level or higher
-These courses are very challenging . We strongly recommend that you do not take them courses at the same time, and instead spread them out over the course of two years.
+These courses are very challenging . We strongly recommend that you do not take them courses at the same time and instead spread them out over two years. We recommend that you contact your academic adviser early in your program to plan out your courses.
 These courses can be taken before or after entry into the major.
 These courses may overlap with your General Education requirements (A&H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
 Thesis

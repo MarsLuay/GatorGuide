@@ -1,13 +1,12 @@
 Owner: uw-tacoma-writing-studies
-Source: https://www.tacoma.uw.edu/sias/cac/creative-writing-track
-Title: Creative Writing Track | Culture, Arts & Communication | University of Washington Tacoma
+Source: https://www.tacoma.uw.edu/sias/cac/writing-studies
+Title: Writing Studies | Culture, Arts & Communication | University of Washington Tacoma
 
 [Supplemental official source] CREATIVE WRITING TRACK
 [Supplemental official source] graduation requirements
 [Supplemental official source] RHETORIC, WRITING AND SOCIAL CHANGE TRACK
 [Supplemental official source] Supplemental official track and option pages
 [Supplemental official source] TECHNICAL COMMUNICATION TRACK
-[Supplemental official source] UW Tacoma Writing Studies overview
 [Supplemental official source] UWT general education
 *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
 &copy; 2026 University of Washington Tacoma

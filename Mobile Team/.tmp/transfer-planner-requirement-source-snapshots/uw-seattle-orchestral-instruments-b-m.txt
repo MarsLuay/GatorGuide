@@ -8,8 +8,6 @@ Title: Bachelor of Music - Orchestral Instruments | School of Music | University
 [Supplemental official source] Guitar
 [Supplemental official source] Jazz Studies
 [Supplemental official source] Music Education, Instrumental Emphasis
-[Supplemental official source] Music Education, Post Bac, Instrumental Emphasis
-[Supplemental official source] Music Education, Post Bac, Vocal Emphasis
 * The postbaccalaureate degree program is designed to serve students who already have an undergraduate degree in music, but wish to become trained and certified in music teaching. Prospective students must apply to the University (see http://admit.washington.edu/Apply/Postbacs for deadlines) and audition for the music education faculty (see audition dates for information and dates). The degree programs above can serve as a guide for the post-baccaluareate student but decisions about what previous credits will transfer are made on an individual basis at the time of admission.
 &copy; 2026 University of Washington . All rights reserved.
 A typical course of study:
@@ -21,7 +19,6 @@ Additional Music Requirements Starting 1st and 2nd Year of Study
 Admission
 Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in composition within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in music education within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
-Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in music education. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 Admission to the Bachelor of Music is intended for especially qualified students who wish to emphasize professional training in performance within a four ‐ year program. Music majors are required to earn a minimum grade of 2.0 in each music course (core and elective) that is to count toward Music degree requirements. A GPA of 2.5 in Music is required for graduation. A minimum of 180 credits is required, of which at least 60 must be taken in departments other than the School of Music. These 60 credits may include courses required to satisfy general education requirements .
 Admissions & Auditions
 Advising
@@ -41,7 +38,6 @@ Areas of Inquiry - 75 credits total (of which 15 cr. of major dept. prefix can c
 Areas of Study
 At least 3 credits from among: MUSIC 250, MUSIC 251, MUSIC 252, or any 400-level Ethnomusicology course
 At least 3 credits from among: MUSIC 250, MUSIC 251, MUSIC 252, or any 400-level Ethnomusicology course (3 credits)
-At least three credits from among: MUSIC 250, MUSIC 251, MUSIC 252, or any 400-level Ethnomusicology course (3 credits)
 Auditions
 Bachelor of Arts
 Bachelor of Arts | School of Music | University of Washington
@@ -60,18 +56,12 @@ Bachelor of Music - Jazz Studies Degree Program Sheet (PDF)
 Bachelor of Music - Music Education, Instrumental Emphasis
 Bachelor of Music - Music Education, Instrumental Emphasis | School of Music | University of Washington
 Bachelor of Music - Music Education, Instrumental Emphasis Sample Course Sequence
-Bachelor of Music - Music Education, Post Baccalaureate Certification, Instrumental Emphasis
-Bachelor of Music - Music Education, Post Baccalaureate Certification, Instrumental Emphasis | School of Music | University of Washington
-Bachelor of Music - Music Education, Post Baccalaureate Certification, Vocal Emphasis
-Bachelor of Music - Music Education, Post Baccalaureate Certification, Vocal Emphasis | School of Music | University of Washington
 Bachelor of Music - Orchestral Instruments
 Bachelor of Music - Orchestral Instruments | School of Music | University of Washington
 Bachelor of Music - Orchestral Instruments Degree Program Sheet (PDF)
 Bachelor of Music - Orchestral Instruments Sample Course Sequence
 Bachelor of Music | School of Music | University of Washington
 Bachelor of Music General Education Requirements
-Bachelor of Music-Music Education, Post-Bac, Instrumental Emphasis Degree Program Sheet (PDF)
-Bachelor of Music-Music Education, Post-Bac, Vocal Emphasis Degree Program Sheet (PDF)
 Bands
 BM Music Education - Instrumental Emphasis PDF
 Box 353450
@@ -80,7 +70,6 @@ By Last Name
 Centers & Labs
 Chamber Music
 Choose from the following : Vocal Jazz Ensemble (MUSEN 340); Jazz Workshop (MUSEN 345); Studio Jazz Ensemble (MUSEN 346); Advanced Studio Jazz Ensemble (MUSEN 446).
-Choral : MUSEN 307, 350, or 351 (6 credits)
 Choral Music Library
 College of Arts & Sciences
 Complete: a) MUSIC 202/205, b) MUSIC 216-217-218, and c) MUSIC 120. Completion of these requirements does not guarantee admission. Transfer students must consult with the Undergraduate Advisor for an evaluation of applicable music transfer courses. During their first and second year students interested in becoming Composition majors are strongly encouraged to attend Composers Lab, the weekly meeting of all Composition majors and composition faculty. This class is a 0‐credit class that meets every Friday in the academic year, 12:30‐2:20 pm. Email Prof. Hodge ( hhodge@uw.edu ) for the current meeting location.
@@ -125,20 +114,17 @@ Hire a Musician
 History
 Home
 Instagram
-Instrumental : MUSEN 300 (Symphony); MUSEN 301 (Wind Ensemble); MUSEN 302 (Symphonic Band); MUSEN 303 (1 credit)
 Instrumental : MUSEN 300 (Symphony); MUSEN 301 (Wind Ensemble); or MUSEN 302 (Symphonic Band) (6 credits)
 Instrumental Option
 Instrumental Performance
 Internships & Careers
 Jazz
-Jazz : MUSEN 340, MUSIC 367, 368, 369, 467, 468, 469, or 388 (3 credits)
 Jazz : MUSEN 346, 446, MUSIC 367, 368, 369, 467, 468, 469, or 388 (3 credits)
 Jazz and Improvised Music
 Jazz Studies
 John Blacking: Venda Music
 Language Skills - 5 cr. English Composition; 5 cr. Foreign Language (third quarter)
 LinkedIn
-M USICP 320/420 (18 credits)
 Mailing Lists
 Main menu
 Make a Gift
@@ -158,7 +144,6 @@ MUSED 403: Part-time Student Teaching (6 credits)
 MUSED 405 or MUSEN 303: Marching Band Techniques or Marching Band (2 credits)
 MUSED 440: Music for Children (3 credits)
 MUSED 442: Instrumental Curriculum: Methods and Materials (3 credits)
-MUSED 443: Choral Curriculum: Methods and Materials (3 credits)
 MUSED 452: Ethnomusicology in the Schools (3 credits)
 MUSED 465: Classroom Management and Evaluation in Music Education (3 credits)
 MUSIC 113: Beginning Ear Training ( Autumn ) (1 credit)
@@ -175,7 +160,6 @@ MUSIC 303: Second-Year Theory III ( Autumn ) (3 credits)
 MUSIC 306: Second-Year Ear Training III ( Autumn ) (1 credit)
 MUSIC 326, 327, 328: Repertoire (2, 2, 2) (6 credits)
 MUSIC 336, 426: Jazz Arranging (2, 2) (4 credits)
-MUSIC 350, 351, 352: Choral Conducting (1, 1, 1) (3 credits)
 MUSIC 379: Junior Recital (1 credit)
 MUSIC 380, 381, 382: Conducting (1, 1, 1) (3 credits)
 MUSIC 380, 381, 382: Instrumental Conducting (1, 1, 1) (3 credits)
@@ -195,8 +179,6 @@ Music Education - Post Baccalaureate Certfication, Instrumental Emphasis*
 Music Education - Post Baccalaureate Certficiation, Vocal Emphasis*
 Music Education - Vocal Emphasis
 Music Education with Teaching Certification (Instrumental/General Emphasis)
-Music Education with Teaching Certification (Post Bac, Instrumental/General Emphasis)
-Music Education with Teaching Certification (Post Bac,Vocal/General Emphasis)
 Music Education, Instrumental Emphasis
 Music Education, Post Bac, Instrumental Emphasis
 Music Education, Post Bac, Vocal Emphasis
@@ -210,7 +192,6 @@ Music Library
 Music Minor
 Music Theory & History Core
 Music Theory Option
-Music Theory-History Core (36 credits)
 Music, Instrumental Option
 Music, Music History Option
 Music, Music Theory Option
@@ -219,7 +200,6 @@ Musical Instrument Collection
 MUSICP 320-338: Private Instruction (3) (12 credits)
 MUSICP 320-339: Private Instruction (3) (18 credits)
 MUSICP 320-339/420-439 or MUSAP 136-139/233-239, 389 or MUSEN 389: Two years of Private Instruction: Vocal or Instrumental (Note: Admission to MUSICP lessons is done through audition - except MUSAP 389) (12-18 credits)
-MUSICP 321-339/421-439 (18 credits)
 MUSICP 321-339/421/439: Private Instruction (18 credits)
 MUSICP 338: Private Instruction (3) (18 credits)
 MUSICP 367, 368, 369: Essential Skills in Jazz Improvisation I, II, III (2, 2, 2) (6 credits)
@@ -246,13 +226,11 @@ People
 Percussion
 Percussion Performance
 Performance (5 minutes, maximum) on your principal instrument or voice of a prepared accompanied piece (an accompanist can be provided); also performance of a familiar melody by ear
-Performance of a simple song and a simple harmonic accompaniment on piano
 Performances & Events
 Phone: (206) 543-1201
 PHYS 207: The Physics of Music (3 credits)
 Piano
 Piano Proficiency
-Piano students satisfy the equivalent of vocal training at the 237 level.
 Pre-Core
 Print Mailings
 Privacy
@@ -297,10 +275,8 @@ Submit the following materials to the Advising Office two weeks prior to the Aud
 Summer Study
 Support Music
 Support Us
-Technique: Junior or Senior year: 1 quarter of study in one area: MUSAP 205 (strings), 210 (woodwinds or brass), 217 (percussion) or 218 (guitar) (2 credits)
 Technique: Junior or Senior year: 1 quarter of study in one area: MUSAP 205 (strings), 210 (woodwinds or brass), 217 (percussion), or 218 (guitar) (2 credits)
 Technique: Junior year: 2 quarters of study in one area: MUSAP 205 (strings), 210 (woodwinds or brass), 217 (percussion), or 218 (guitar) (4 credits)
-Technique: Senior year: 2 quarters of study in one area: MUSAP 205 (strings), 210 (woodwinds or brass), 217 (percussion) or 218 (guitar) (4 credits)
 Technique: Senior year: 2 quarters of study in one area: MUSAP 205 (strings), 210 (woodwinds or brass), 217 (percussion), or 218 (guitar) (4 credits)
 Terms
 The Composition faculty committee will make its decision based on the complete application. Additionally, the student may be asked to come for an audition. Once the review process is completed the student will be informed through the Advising Office.
@@ -313,12 +289,9 @@ Ticketing
 TOTAL CORE CREDITS: 36
 TOTAL MAJOR CREDITS: 116
 TOTAL MAJOR CREDITS: 116-122 (Does not include Piano and Pre-Core)
-TOTAL MAJOR CREDITS: 119
 TOTAL MAJOR CREDITS: 120
 TOTAL MAJOR CREDITS: 126
 TOTAL NON-MUSIC CREDITS: 60
-TOTAL NON-MUSIC CREDITS: 60 (Generally Satisfied by prior Bachelor's degree)
-Transfer from Previous Degree
 Undergraduate Admissions
 Undergraduate Degrees
 University of Washington
@@ -330,7 +303,6 @@ Vocal
 Vocal : MUSEN 100, 307, 350, or 351 (1 credit)
 Vocal Option
 Vocal Performance
-Vocal students must satisfy a piano proficiency requirement equivalent to passing MUSAP 235.
 Voice
 Washington
 World Music Core Courses

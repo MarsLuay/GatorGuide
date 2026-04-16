@@ -17,8 +17,10 @@ Title: Informatics Curriculum | Information School | University of Washington
 &copy; 2026 UW Information School
 <!--
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM46LWX"
+12:00-11:59 PM
 12:30-1:20 PM
 12:30-1:30 PM
+2:00-3:30 PM
 2017-02-13
 2024-04-19
 2024-05-29
@@ -46,6 +48,7 @@ Approved electives
 Apr 15
 Apr 17
 Apr 22
+Apr 23
 As cybersecurity and artificial intelligence intersect, they introduce both new capabilities and potential risks. To better understand these dynamics, Informatics students in INFO 492 devised cybersecurity attack and defense simulations... Read more
 Attend iWelcome Week and Informatics New Student Orientation in September
 Autumn
@@ -58,6 +61,7 @@ Begin taking major electives/degree option classes spring of junior year
 Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478.
 Bluesky
 Box 352840 - Mary Gates Hall, Ste. 370
+CALMA Round Table: Practical Perspectives on the Impact of Artificial Intelligence on Library, Archives, and Museum Careers
 Campfire Sessions: Climate Topics
 Canvas LMS
 Capstone
@@ -155,6 +159,7 @@ Highlights
 How our research drives progress and helps people
 How to collaborate with faculty and students
 Hubs for innovative scholarship & research
+Husky Giving Day
 I am the iSchool
 I Am the iSchool
 iEngage partners and iSchool community partners are invited to sponsor Capstone projects by submitting project ideas each autumn and working with students during the winter and spring quarters. Learn about sponsoring a student team.
@@ -267,6 +272,7 @@ one course from CSE 373: Data Structures and Algorithms (4 credits), INFO 442: C
 One course in computer programming; see the list of accepted courses
 One course in statistics; see the list of accepted courses
 One course in the social sciences (SSc) area of inquiry ; must be another course that is not INFO 200
+Open Scholarship Commons, Suzzallo Library
 Organizations (INFO 38x, 48x course). These courses teach key perspectives on how information is used in organizations such as businesses, communities and governments, ensuring that students’ perspectives go beyond the individual.
 Outlook on the web
 Past Time Schedules

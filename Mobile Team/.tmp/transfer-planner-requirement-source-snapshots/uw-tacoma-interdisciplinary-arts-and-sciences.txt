@@ -1,9 +1,8 @@
 Owner: uw-tacoma-interdisciplinary-arts-and-sciences
-Source: https://www.tacoma.uw.edu/sias-new/socs-new/interdisciplinary-arts-and-sciences
+Source: https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences
 Title: Interdisciplinary Arts and Sciences | Department of Social Sciences | University of Washington Tacoma
 
 (At least 5 credits from each list.)
-[Supplemental official source] Admission Requirements
 [Supplemental official source] graduation requirements
 [Supplemental official source] UWT general education
 *For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.

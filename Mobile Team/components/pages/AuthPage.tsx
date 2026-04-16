@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
-import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView, Linking } from "react-native";
+import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView, Linking, useWindowDimensions } from "react-native";
 import { router, useLocalSearchParams } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
@@ -19,6 +19,7 @@ import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/An
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
+import { LiquidGlassView } from "@/components/ui/LiquidGlassView";
 import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth/auth.service";
 import { errorLoggingService } from "@/services";
 import { PENDING_LINK_STORAGE_KEY } from "@/components/AuthEmailLinkHandler";
@@ -37,6 +38,7 @@ export default function AuthPage() {
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
   const { isDark } = useAppTheme();
+  const { width } = useWindowDimensions();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -607,22 +609,81 @@ export default function AuthPage() {
   };
 
   const isWeb = Platform.OS === 'web';
+  const isCompactWidth = width < 390;
+  const useHorizontalHero = width >= 460;
+  const stackProviderButtons = width < 460;
+  const cardPadding = isCompactWidth ? 18 : 24;
+  const heroPadding = isCompactWidth ? 18 : 22;
+  const heroBadgeSize = isCompactWidth ? 80 : 96;
+  const heroMarkSize = isCompactWidth ? 56 : 68;
+  const authCardMaxWidth = isWeb ? 560 : 500;
+  const actionButtonContentStyle = {
+    minHeight: isCompactWidth ? 52 : 56,
+    borderRadius: 18,
+    paddingHorizontal: isCompactWidth ? 16 : 18,
+  } as const;
+  const secondaryActionButtonContentStyle = {
+    ...actionButtonContentStyle,
+    minHeight: isCompactWidth ? 50 : 54,
+  } as const;
   const containerClass = isWeb 
     ? "flex-1 items-center justify-center px-4 py-12 min-h-screen"
     : "flex-1 items-center justify-center px-6";
-  const cardMaxWidthClass = isWeb ? "w-full max-w-lg" : "w-full max-w-md";
 
   const authContent = (
-    <View className={cardMaxWidthClass}>
-      <View className="items-center mb-8">
-        <GatorGuideMark size={112} darkMode={isDark} />
-      </View>
+    <View style={{ width: "100%", maxWidth: authCardMaxWidth }}>
+      <GlassCard borderRadius={28} noPadding className={isWeb ? "shadow-lg" : ""}>
+        <View style={{ padding: cardPadding }}>
+        <LiquidGlassView borderRadius={24} specular={false} style={{ marginBottom: 24 }}>
+          <View
+            style={{
+              padding: heroPadding,
+              gap: 16,
+              flexDirection: useHorizontalHero ? "row" : "column",
+              alignItems: useHorizontalHero ? "center" : "center",
+            }}
+          >
+            <LiquidGlassView
+              borderRadius={heroBadgeSize / 2}
+              style={{ width: heroBadgeSize, height: heroBadgeSize, flexShrink: 0 }}
+            >
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  borderRadius: heroBadgeSize / 2,
+                  backgroundColor: isDark ? "rgba(0,143,78,0.18)" : "rgba(0,143,78,0.12)",
+                }}
+              >
+                <GatorGuideMark size={heroMarkSize} darkMode={isDark} />
+              </View>
+            </LiquidGlassView>
 
-      <Text className={`text-3xl text-center ${styles.textClass} mb-2`}>{t("auth.gatorguide")}</Text>
-      <Text className={`${styles.secondaryTextClass} text-center mb-8`}>{t("auth.findCollege")}</Text>
-
-      <GlassCard borderRadius={24} noPadding className={isWeb ? "shadow-lg" : ""}>
-        <View className="p-6">
+            <View style={{ flex: 1, minWidth: 0, alignItems: useHorizontalHero ? "flex-start" : "center" }}>
+              <Text
+                className={`${styles.textClass} font-semibold`}
+                style={{
+                  fontSize: isCompactWidth ? 28 : 32,
+                  lineHeight: isCompactWidth ? 34 : 38,
+                  textAlign: useHorizontalHero ? "left" : "center",
+                }}
+              >
+                {t("auth.gatorguide")}
+              </Text>
+              <Text
+                className={`${styles.secondaryTextClass} mt-2`}
+                style={{
+                  fontSize: isCompactWidth ? 14 : 15,
+                  lineHeight: isCompactWidth ? 21 : 22,
+                  textAlign: useHorizontalHero ? "left" : "center",
+                }}
+              >
+                {t("auth.findCollege")}
+              </Text>
+            </View>
+          </View>
+        </LiquidGlassView>
         {__DEV__ && onboardingDebugEnabled ? (
           <View className="mb-4 border border-emerald-500/40 rounded-lg p-3">
             <View className="flex-row items-center justify-between">
@@ -722,34 +783,66 @@ export default function AuthPage() {
           </View>
         )}
 
-        <View className="flex-row gap-4 mb-6">
-          <AnimatedChipPressable
-            onPress={() => {
-              if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-              setVerificationPendingEmail(null);
-              setEmailLinkSentTo(null);
-              setIsSignUp(true);
-            }}
-            className={`py-3 rounded-lg items-center ${isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
-            containerStyle={{ flex: 1 }}
-            disabled={!isHydrated}
-          >
-            <Text className={isSignUp ? (isDark ? "text-white" : "text-emerald-900") : styles.secondaryTextClass}>{t("auth.signUp")}</Text>
-          </AnimatedChipPressable>
+        <LiquidGlassView borderRadius={20} specular={false} style={{ marginBottom: 24 }}>
+          <View style={{ flexDirection: "row", gap: 8, padding: 6 }}>
+            <AnimatedChipPressable
+              onPress={() => {
+                if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                setVerificationPendingEmail(null);
+                setEmailLinkSentTo(null);
+                setIsSignUp(true);
+              }}
+              className="rounded-2xl"
+              containerStyle={{ flex: 1 }}
+              style={{
+                minHeight: isCompactWidth ? 48 : 52,
+                paddingHorizontal: 16,
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: isSignUp ? styles.glassPrimaryFill : "transparent",
+              }}
+              disabled={!isHydrated}
+            >
+              <Text
+                style={{
+                  color: isSignUp ? styles.glassPrimaryTextColor : styles.secondaryTextColor,
+                  fontSize: isCompactWidth ? 14 : 15,
+                  fontWeight: "600",
+                }}
+              >
+                {t("auth.signUp")}
+              </Text>
+            </AnimatedChipPressable>
 
-          <AnimatedChipPressable
-            onPress={() => {
-              if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-              setEmailLinkSentTo(null);
-              setIsSignUp(false);
-            }}
-            className={`py-3 rounded-lg items-center ${!isSignUp ? "bg-emerald-500" : styles.inactiveButtonClass}`}
-            containerStyle={{ flex: 1 }}
-            disabled={!isHydrated}
-          >
-            <Text className={!isSignUp ? (isDark ? "text-white" : "text-emerald-900") : styles.secondaryTextClass}>{t("auth.logIn")}</Text>
-          </AnimatedChipPressable>
-        </View>
+            <AnimatedChipPressable
+              onPress={() => {
+                if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                setEmailLinkSentTo(null);
+                setIsSignUp(false);
+              }}
+              className="rounded-2xl"
+              containerStyle={{ flex: 1 }}
+              style={{
+                minHeight: isCompactWidth ? 48 : 52,
+                paddingHorizontal: 16,
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: !isSignUp ? styles.glassPrimaryFill : "transparent",
+              }}
+              disabled={!isHydrated}
+            >
+              <Text
+                style={{
+                  color: !isSignUp ? styles.glassPrimaryTextColor : styles.secondaryTextColor,
+                  fontSize: isCompactWidth ? 14 : 15,
+                  fontWeight: "600",
+                }}
+              >
+                {t("auth.logIn")}
+              </Text>
+            </AnimatedChipPressable>
+          </View>
+        </LiquidGlassView>
 
         <View className="gap-4">
           {isSignUp && (
@@ -829,6 +922,7 @@ export default function AuthPage() {
               label={sendingEmailLink ? t("general.pleaseWait") : t("auth.signInWithEmailLink")}
               variant="secondary"
               icon={<FontAwesome5 name="envelope" size={16} color="#008f4e" />}
+              contentStyle={secondaryActionButtonContentStyle}
               style={{
                 width: "100%",
                 opacity: !isHydrated || !isEmailValid(email.trim()) || sendingEmailLink ? 0.6 : 1,
@@ -842,6 +936,7 @@ export default function AuthPage() {
             label={
               isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccountByEmailVerification") : t("auth.logIn")
             }
+            contentStyle={actionButtonContentStyle}
             style={{
               width: "100%",
               marginTop: 8,
@@ -850,14 +945,25 @@ export default function AuthPage() {
           />
 
 
-          <View className="flex-row gap-3 mt-4">
+          <View
+            style={{
+              flexDirection: stackProviderButtons ? "column" : "row",
+              gap: 12,
+              marginTop: 16,
+            }}
+          >
             <GlassButton
               onPress={() => handleProviderSignIn("google")}
               disabled={!isHydrated}
               label={t("auth.continueWithGoogle")}
               variant="secondary"
               icon={<FontAwesome5 name="google" size={18} color="#3a9e75" />}
-              style={{ flex: 1, opacity: !isHydrated ? 0.6 : 1 }}
+              contentStyle={secondaryActionButtonContentStyle}
+              style={{
+                flex: stackProviderButtons ? undefined : 1,
+                width: stackProviderButtons ? "100%" : undefined,
+                opacity: !isHydrated ? 0.6 : 1,
+              }}
             />
             <GlassButton
               onPress={() => handleProviderSignIn("microsoft")}
@@ -865,7 +971,12 @@ export default function AuthPage() {
               label={t("auth.continueWithMicrosoft")}
               variant="secondary"
               icon={<FontAwesome5 name="microsoft" size={18} color="#3a9e75" />}
-              style={{ flex: 1, opacity: !isHydrated ? 0.6 : 1 }}
+              contentStyle={secondaryActionButtonContentStyle}
+              style={{
+                flex: stackProviderButtons ? undefined : 1,
+                width: stackProviderButtons ? "100%" : undefined,
+                opacity: !isHydrated ? 0.6 : 1,
+              }}
             />
           </View>
 
@@ -875,6 +986,7 @@ export default function AuthPage() {
               disabled={!isHydrated}
               label={t("auth.continueAsGuest")}
               variant="secondary"
+              contentStyle={secondaryActionButtonContentStyle}
               style={{ width: "100%", opacity: !isHydrated ? 0.6 : 1 }}
             />
           </View>

@@ -1,0 +1,172 @@
+{
+  "generatedAt": "2026-04-16T21:11:17.137Z",
+  "outcome": "passed",
+  "passedCount": 9,
+  "failedCount": 0,
+  "metrics": {
+    "eligibleAutoPromotionOwnerCount": 0,
+    "eligibleAutoPromotionOwnerIds": [],
+    "eligibleAutoPromotionOwnerKeys": [],
+    "reviewQueueOwnerCount": 0,
+    "sourceGapOwnerCount": 0,
+    "promotedOwnerCount": 71,
+    "promotedOwnerKeys": [
+      "uw-bothell-american-and-ethnic-studies",
+      "uw-bothell-business-administration-accounting",
+      "uw-bothell-business-administration-finance",
+      "uw-bothell-business-administration-leadership-and-strategic-innovation",
+      "uw-bothell-business-administration-marketing",
+      "uw-bothell-business-administration-supply-chain-management",
+      "uw-bothell-conservation-and-restoration-science",
+      "uw-bothell-culture-literature-and-the-arts",
+      "uw-bothell-data-visualization-ba",
+      "uw-bothell-data-visualization-bs",
+      "uw-bothell-earth-system-science",
+      "uw-bothell-environmental-studies",
+      "uw-bothell-gender-women-and-sexuality-studies",
+      "uw-bothell-global-studies",
+      "uw-bothell-interdisciplinary-arts",
+      "uw-bothell-law-economics-and-public-policy",
+      "uw-bothell-mathematical-thinking-and-visualization",
+      "uw-bothell-media-and-communications-studies",
+      "uw-bothell-psychology",
+      "uw-bothell-science-technology-and-society",
+      "uw-bothell-society-ethics-and-human-behavior",
+      "uw-seattle-american-indian-studies",
+      "uw-seattle-asian-studies",
+      "uw-seattle-chinese",
+      "uw-seattle-classics",
+      "uw-seattle-comparative-literature",
+      "uw-seattle-danish",
+      "uw-seattle-early-childhood-and-family-studies",
+      "uw-seattle-english-language-literature-and-culture",
+      "uw-seattle-finnish",
+      "uw-seattle-german",
+      "uw-seattle-guitar-b-m",
+      "uw-seattle-individualized-studies",
+      "uw-seattle-jazz-studies-b-m",
+      "uw-seattle-linguistics",
+      "uw-seattle-mathematics",
+      "uw-seattle-medical-laboratory-science",
+      "uw-seattle-music-b-a",
+      "uw-seattle-music-composition-b-m",
+      "uw-seattle-music-education-b-m",
+      "uw-seattle-orchestral-instruments-b-m",
+      "uw-seattle-organ-b-m",
+      "uw-seattle-percussion-performance-b-m",
+      "uw-seattle-piano-b-m",
+      "uw-seattle-political-science",
+      "uw-seattle-slavic-languages-and-literatures",
+      "uw-seattle-south-asian-languages-and-cultures",
+      "uw-seattle-swedish",
+      "uw-seattle-voice-b-m",
+      "uw-tacoma-arts-media-culture",
+      "uw-tacoma-biomedical-sciences",
+      "uw-tacoma-civil-engineering",
+      "uw-tacoma-communications",
+      "uw-tacoma-computer-science-and-systems-ba",
+      "uw-tacoma-computer-science-and-systems-bs",
+      "uw-tacoma-economics-and-policy-analysis",
+      "uw-tacoma-education",
+      "uw-tacoma-environmental-science",
+      "uw-tacoma-environmental-sustainability",
+      "uw-tacoma-ethnic-gender-and-labor-studies",
+      "uw-tacoma-history",
+      "uw-tacoma-information-technology",
+      "uw-tacoma-interdisciplinary-arts-and-sciences",
+      "uw-tacoma-mathematics",
+      "uw-tacoma-politics-philosophy-and-economics",
+      "uw-tacoma-psychology",
+      "uw-tacoma-spanish-language-and-cultures",
+      "uw-tacoma-sustainable-urban-development",
+      "uw-tacoma-urban-design",
+      "uw-tacoma-urban-studies",
+      "uw-tacoma-writing-studies"
+    ],
+    "canonicalPrimaryOwnerCount": 225,
+    "parseablePrimaryOwnerCount": 225,
+    "parsedOwnerCount": 225,
+    "requirementFingerprintOwnerCount": 225
+  },
+  "checks": [
+    {
+      "id": "discovery-partition",
+      "label": "Discovery owners partition cleanly into eligible auto-promotions and review-queue owners",
+      "status": "passed",
+      "details": [
+        "Discovery owners: 0",
+        "Eligible auto-promotions: 0",
+        "Review-queue owners: 0"
+      ]
+    },
+    {
+      "id": "promotion-report-matches-generated-registry",
+      "label": "Generated promotion registry matches the promotion report",
+      "status": "passed",
+      "details": [
+        "Promoted owners: 71"
+      ]
+    },
+    {
+      "id": "eligible-discoveries-promoted",
+      "label": "Eligible high-confidence discoveries are promoted unless they remain in the review queue",
+      "status": "passed",
+      "details": [
+        "Eligible promoted owners verified: 0"
+      ]
+    },
+    {
+      "id": "review-queue-aligned-with-source-gaps",
+      "label": "Review queue and source-gap report point at the same unresolved owners",
+      "status": "passed",
+      "details": [
+        "Shared unresolved owners: 0"
+      ]
+    },
+    {
+      "id": "promotions-materialized-in-canonical-registry",
+      "label": "Auto-promoted owners are materialized in the canonical primary-source registry",
+      "status": "passed",
+      "details": [
+        "Promoted owners: 71",
+        "Canonical primary owners: 225"
+      ]
+    },
+    {
+      "id": "registry-parser-alignment",
+      "label": "Canonical parseable primary owners align with parser input and parser output",
+      "status": "passed",
+      "details": [
+        "Canonical parseable primary owners: 225",
+        "Parsed owners: 225"
+      ]
+    },
+    {
+      "id": "promoted-owners-parsed-and-fingerprinted",
+      "label": "Promoted owners appear in parser output and requirement fingerprints",
+      "status": "passed",
+      "details": [
+        "Promoted owners verified end-to-end: 71"
+      ]
+    },
+    {
+      "id": "fingerprint-alignment",
+      "label": "Requirement fingerprint coverage stays aligned with parsed requirement owners",
+      "status": "passed",
+      "details": [
+        "Requirement fingerprints: 225",
+        "Parsed owners: 225",
+        "Added source fingerprints: 0",
+        "Added requirement fingerprints: 0"
+      ]
+    },
+    {
+      "id": "eligible-promotions-cleared-from-review-and-gap-reports",
+      "label": "Eligible auto-promotions are fully cleared from the review queue and source-gap report",
+      "status": "passed",
+      "details": [
+        "Eligible owners fully cleared: 0"
+      ]
+    }
+  ]
+}

@@ -4,8 +4,6 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 
 -->
 [Supplemental official source] Bachelor of Arts (B.A.)
-[Supplemental official source] Education Studies
-[Supplemental official source] UW Early Childhood and Family Studies program
 * 106
 * 117
 * 149
@@ -14,45 +12,29 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * 21649
 * 21652
 * 21657
-* 21667
 * 21668
-* 21682
 * 21683
-* 21685
-* 21686
 * 21692
 * 21697
-* 21710
-* 21712
-* 21722
 * 21729
 * 21877
-* 21994
 * 24962
 * 24964
 * 475
-* 476
 * 501
-* 99
 * block
 * block_content_view
 * block_content:12
 * block_content:32
-* block_program_group_events
-* block_program_group_scholarships
 * block_program_upcoming_info
 * block_view
 * card
-* config:block.block.block_program_group_events
-* config:block.block.block_program_group_scholarships
 * config:block.block.block_program_upcoming_info
 * config:block.block.uw_boundless_barrio_mainnavigation
 * config:block.block.uw_boundless_barrio_shibbolethloginblock
 * config:block.block.uw_boundless_barrio_thinstripmenu
 * config:block.block.uw_boundless_barrio_uwsidebarmenu
-* config:block.block.views_block__program_list_for_area_and_level_pages_block_1
 * config:block.block.views_block__program_list_for_degree_pages_block_1
-* config:field.storage.node.body
 * config:field.storage.node.field_event_url
 * config:field.storage.node.field_program_featured_text
 * config:filter.format.basic_html
@@ -62,9 +44,6 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * config:system.menu.main
 * config:system.menu.thinstrip-menu
 * config:system.site
-* config:views.view.program_group_scholarships
-* config:views.view.program_group_upcoming_events
-* config:views.view.program_list_for_area_and_level_pages
 * config:views.view.program_list_for_degree_pages
 * config:views.view.program_upcoming_info_sessions
 * config:webform.settings
@@ -73,31 +52,17 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * file:15063
 * file:15065
 * file:15068
-* file:15072
-* file:15084
-* file:15089
 * file:15108
 * file:15117
-* file:15127
-* file:15145
 * file:15147
-* file:15151
-* file:15153
-* file:15158
 * file:15238
-* file:15272
-* file:15314
 * file:15502
 * file:15541
 * file:15554
-* file:15556
 * file:15625
-* file:15632
 * file:15635
 * file:15727
-* file:15873
-* file:16345
-* file:16452
+* file:16600
 * full
 * languages:language_content
 * languages:language_interface
@@ -120,32 +85,19 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * node:154
 * node:160
 * node:19147
-* node:21634
 * node:21644
 * node:21649
 * node:21652
 * node:21657
-* node:21659
-* node:21661
-* node:21667
 * node:21668
-* node:21672
-* node:21682
 * node:21683
-* node:21685
-* node:21686
 * node:21692
 * node:21697
-* node:21710
-* node:21712
-* node:21722
-* node:21727
 * node:21729
 * node:21730
 * node:21732
 * node:21848
 * node:21877
-* node:21994
 * node:22056
 * node:22154
 * node:22170
@@ -158,10 +110,8 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * node:24885
 * node:24918
 * node:24931
-* node:24959
 * node:24962
 * node:24964
-* node:24966
 * node:24968
 * node:24969
 * node:24972
@@ -176,16 +126,7 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * node:25647
 * node:25876
 * node:26391
-* node:26392
-* node:26393
-* node:26395
-* node:26396
-* node:26397
-* node:26398
-* node:26399
 * node:475
-* node:476
-* node:477
 * node:491
 * node:501
 * node:816
@@ -212,7 +153,6 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * taxonomy_term:1125
 * taxonomy_term:1127
 * taxonomy_term:1151
-* taxonomy_term:1156
 * taxonomy_term:1160
 * taxonomy_term:1161
 * teaser
@@ -222,15 +162,10 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 * url.path
 * url.query_args
 * url.site
-* user
 * user.node_grants:view
 * user.permissions
 * user.roles:anonymous
 * user.roles:authenticated
-* uw_boundless_barrio_mainnavigation
-* uw_boundless_barrio_shibbolethloginblock
-* uw_boundless_barrio_uwsidebarmenu
-* views_block__program_list_for_area_and_level_pages_block_1
 * views_block__program_list_for_degree_pages_block_1
 * webform:marketing_request
 © 2026 University of Washington, College of Education, Seattle, WA
@@ -242,13 +177,8 @@ Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 <!-- PRE-BUBBLING CACHE TAGS:
 <nav id="desktop-relative" role="navigation" aria-label="mobile menu that is not visible in the desktop version"
 2-3 years
-2.0 grade or higher in English Composition general education course
-2.0 grade or higher in one Education Introduction course:
 2.50 cumulative GPA
-45 earned credits with a minimum 2.0 cumulative GPA
-45 of last 60 credits taken at UW
 5-credit English composition course graded 2.0 or higher
-50-52
 79-81
 A minimum of 79-81 credits are needed to meet the requirements for the ECFS major. You will work with your advisor to ensure that your graduation plan includes courses required to earn your degree at UW.
 A premise of the ECFS major is that teachers can be advocates for social change. What are some of the positive changes you would like to work toward within early education?
@@ -256,10 +186,8 @@ About
 About the Dean
 Academics
 Accepting ECFS applications from March 1 through April 15.
-Administrative and coaching careers in
 Admission requirements and process
 Admissions
-Admissions process
 Admitted Graduate Students
 Advancement and Outreach
 Advising
@@ -268,7 +196,6 @@ After submitting your enrollment deposit to the university, admitted transfer st
 Alejandra Baires-Ramirez
 Alejandra Baires-Ramirez , Lead Admission & Outreach Adviser
 All current and prospective ECFS students who are ready to declare or learn more about the major are welcome schedule an academic advising appointment with:
-All EDST students take 30 credits of foundational courses and an additional 20-22 credits in their chosen option.
 All of the following
 All Programs
 All the UW
@@ -279,25 +206,21 @@ Applicants must also have completed ECFS 200 Introduction to Early Childhood & F
 Applicants need to write and submit three essays. Each essay should be 250 words or fewer. Use the following three prompts for your essays:
 Application Deadlines
 Applied assignments: Examples of applied assignments include videos of your practice, environment or child observations, case studies, and an interview with a professional or parent. These may be completed at your Community-Based Learning Experience site.
-Applied Behavior Analysis (M.Ed.)
 Apply for Autumn 2026!
 Apply Mar. 1 - Apr. 15 for autumn start
 Apply Sept. 1 - Oct. 15 for winter start
-Apr, 16 2026 | 3:00 PM
-Apr, 23 2026 | 3:00 PM
-Apr, 30 2026 | 3:00 PM
 April 15, 2026
 Area of Inquiry (15 credits)
 aria-labelledby="block-uw-boundless-barrio-uwsidebarmenu-menu" id="block-uw-boundless-barrio-uwsidebarmenu">
 Arts & Humanities (15 credits)
 As an ECFS student, you'll explore careers in early childhood education, and engage in courses that focus on research, curriculum, policy, language and literacy, mathematics, science, and technology. Additionally, you'll participate in extended community-based learning experiences, working directly with children in preschool classrooms or childcare centers. This unique combination of academic coursework and practical application will help you develop a comprehensive and culturally relevant understanding of child development and effective teaching strategies. As we engage in (un)learning, you will be challenged to envision systems that are more equitable and just and engage in teaching and advocacy work toward that vision.
 Assistant Dean for Undergraduate Programs
+Assistant Director for Undergraduate Academic and Student Services
 Assistant Professor
 Associate Professor
 Associate Teaching Professor
 Autumn 2026 Admissions
 BA in Early Childhood & Family Studies
-BA in Education Studies
 Bachelor of Arts (B.A.)
 Bachelor of Arts (B.A.) | UW College of Education
 Begin the online application form
@@ -306,60 +229,38 @@ By Area
 By Degree
 Calendar
 Camille Lemire
-Careers in early childhood leadership, research and policy
-Careers in education research and education policy development
-Careers in educational research and policy with an emphasis on language and multilingual issues
-Careers in secondary or higher education
-Careers teaching in multilingual classrooms and other educational spaces
-Careers working with young children and families in settings beyond the classroom
 Certificate Programs
 Chair, Learning Sciences & Human Development
-COE electives, 300 level or above (12 cr.)
-College athletics
 College Leadership
 College of Education - Prospective Students
 College of Education Events
 Community-Based Learning Experience : Weekly time spent engaging with young children through your work or volunteering in an early learning setting is required for many courses.
-Community-based organizations
 Complete all steps in application process and upload your materials
 Completion
 Computing/IT
 Connect with our Lead Admissions & Outreach Adviser to help you through the process
 Costs and funding
 Courses
-Coursework in Early Childhood Studies focuses on understanding the sociocultural context in which young children grow and thrive. This option is ideal for students who are interested in careers focused on supporting young children and families, including:
-Coursework in Education Research and Policy provides students with an understanding of research and practice of education policy, organizations and leadership. This option is a good choice for students who are interested in understanding the complex sociocultural context of education and how it impacts the lives of individuals across their lifespans. Post graduation options include:
-Coursework in the Wellness and Social Emotional Learning centers the latest research and evidence-based practices developed to support students' interests in school-based mental health services and supports, such as school psychology, school counseling, school social work, and student services.
 Create anti-bias anti-racist curricula
 Creating equitable learning environments
 Credits earned
 Critical perspectives of early childhood development and learning theories
-Current EDST majors and UW prospective students who are ready to declare EDST as their major are welcome to schedule an in-person or virtual advising appointment with Alec Koehler, Lead Academic Adviser.
 Current policies and initiatives in early childhood education
 Current site
 Current Students
 Curriculum
-Declare the major by scheduling a prospective student appointment with the EDST Adviser
 Directories
 Directory
-Discover the influence education and learning has on our society through this interdisciplinary minor, available to every non-College of Education undergraduate student at the University of Washington.
 Diversity (3-5 credits)
 Do not mail your transcript when you apply
 Doctor of Education (Ed.D.)
 Doctor of Philosophy (Ph.D.)
 Download degree requirements PDF
-Download the Early childhood Studies graduation plan
-Download the Education Research and Policy graduation plan
-Download the Foundations of Teaching graduation plan
-Download the Multilingual/Language graduation plan
 Duration
 Early Care & Education (ECE) and Early Childhood & Family Studies (ECFS) students can be awarded up to the cost of attendance.
 Early Care and Education
 Early Childhood & Family Studies (ECFS) | UW College of Education
 Early Childhood and Family Studies
-Early Childhood Special Education (M.Ed.)
-Early Childhood Studies Option
-Early Childhood Studies option (20 credits)
 Early childhood teaching
 Early Learning
 Early Learning Equity Scholarship
@@ -368,23 +269,17 @@ Earn your Bachelor’s degree and study foundational education concepts while co
 Earn your bachelor&#039;s degree and become a catalyst for change, equipped to transform communities and organizations through education and human development.
 Earn your bachelor&#039;s degree to pursue careers as educators and advocates for equitable and just early learning.
 Earning your bachelor’s degree in Early Childhood & Family Studies opens doors to various exciting paths:
-ECFS 200 - Introduction to Early Childhood and Family Studies
 ECFS 200 Introduction to Early Childhood & Family Studies (3 credits with a grade of 2.0 or higher required)
-ECFS 200 Introduction to Early Childhood and Family Studies
 ECFS 301 Early Childhood Curriculum (5)
-ECFS 303 Exploring the Landscape of the Early Learning Profession
 ECFS 303 Exploring the Landscape of the Early Learning Profession(3)
 ECFS 311 Teaching from the Inside Out: Being a Resilient Educator (3)
 ECFS 312 Positive Behavioral Support in Early Childhood (3)
 ECFS 315 Parenting and Child Development
-ECFS 320 Childhood in Cultural Context
 ECFS 320 Childhood in Cultural Context: Theory and Practice
 ECFS 321 Engaging Interactions and Environments (3)
 ECFS 400 Child Observation & Assessment (5)
-ECFS 401 Understanding ECFS Research (prereq. EDPSY 302)
 ECFS 401 Understanding Research in ECFS (5)
 ECFS 402 Social Policy & Young Children and Families (5)
-ECFS 402 Social Policy and Young Children and Families
 ECFS 410 Language and Literacy in Preschool (5)
 ECFS 411 Young Children’s Mathematics & Science (5)
 ECFS 419 Family & Community Influences on the Young Child
@@ -395,60 +290,21 @@ ECFS prepares you for a rewarding career in early childhood education. We invite
 ECFS Prospective and Current Students
 ECFS prospective students interested in learning more about the scholarship are welcome to meet with:
 ECFS supports the application of theory and research into practice by:
-EDC&I 345 Bilingualism and Biliteracy in Multilingual Classrooms
-EDC&I 351 Teaching as a Profession
-EDC&I 359 Second-Language Learning in Schools and Communities
-EDC&I 453 Immigration and Schooling
-EDLPS 302 Introduction to Education Policy
-EDPSY 302 Child Development and Learning
 EDPSY 302 Child Development and Learning (5)
-EDPSY 380 Adult Learning and Development
-EDPSY 404 Adolescent Development
 EDPSY 406 Learning and teaching in Our Changing World (5)
-EDPSY 406 Learning and Teaching to Change the World
-EDPSY 490 Basic Education Statistics (prior course recomm. Math 098, Math 100, or Math 102)
 EDSPE 304 Disability & Ableism in Education
-EDSPE 304 Disability and Ableism in Education
 EDSPE 414 Issues and Trends in Inclusive Early Childhood Education
 EDSPE 427 Introduction to Applied Behavioral Analysis
 EDSPE 435 Introduction to Autism Spectrum Disorders
-EDST Admissions
-EDST students will complete the following UW graduation requirements:
-EDUC 215 Resilience and Wellness in College and Beyond
-EDUC 216 Thriving on the Path to Happiness
-EDUC 221 Education and the Playing Field
-EDUC 225 Introduction to Language, Education, and Society (prior course recomm. LING 200)
-EDUC 231 Developing Youth Through Sport and Physical Activity
-EDUC 240 - Introduction to Education
-EDUC 240 Introduction to Education
 EDUC 251 Seeking Educational Equity & Diversity (5)
-EDUC 251 Seeking Educational Equity and Diversity
-EDUC 280 - Introduction to Education, Communities & Organizations
-EDUC 280 Introduction to Education, Communities, and Organizations
-EDUC 310 Current Issues in Education
-EDUC 317 Emotional Regulation: Dialectics and Application
-EDUC 331 Sport Leadership and Coaching
-EDUC 381 Interpersonal Effectiveness and Coaching in Social Emotional Learning
-EDUC 400 Capstone
-EDUC 400 Education Studies Capstone
-EDUC 451 The Role of Sport in Social Justice and Change
-EDUC 472 Individuals, Groups, Organizations, and Institutions
-EDUC 473 Community Based Research and Practice
-Education Research and Policy Option
-Education Research and Policy option (20 credits)
 Education Specialist (Ed.S)
 Education Studies
-Education Studies | UW College of Education
 Education, Communities and Organizations
-Education, Learning and Society Minor
-Education, Policy, Organizations, and Leadership (M.Ed.)
 EduTalks
 Eligible ECFS students can now apply for the new Early Learning Equity Scholarship and get up to the full cost of attendance covered for two years!
-Elizabeth Sanders
 Employee Self Service
 Engaging with colleagues in communities of practice
 English composition (5 credits)
-Ensure you have met all requirements and prerequisites
 Enter search text
 Estimated cost for out-of-state students: $41,997 per year
 Estimated cost for Washington state residents: $12,643 per year
@@ -458,21 +314,15 @@ Events
 Facebook
 Faculty & Staff
 Faculty and Staff Directory
-Feel confident in the process by attending Transfer Thursday , an informational event run by the UW Office of Admissions. We also invite you to attend one of our weekly undergraduate majors and minor information sessions.
 Feel confident in the process by attending Transfer Thursday, an informational event run by the UW Office of Admissions. We also invite you to attend one of our weekly undergraduate majors and minor information sessions.
 Fieldwork
-Final year residency requirement
 Find a Program
 For Faculty & Staff
 For Students
 For You
 Format
-Foundational courses for all students (30 credits)
-Foundations of Teaching Option
-Foundations of Teaching option (20 credits)
 Full-time
 Funding & Scholarships
-Funding opportunities
 Funding, Aid and Scholarships
 Gail E. Joseph
 Gather all required materials
@@ -484,54 +334,31 @@ Give to CoE
 Giving
 Graduate
 Graduate Admissions
-Graduate programs for teacher certification
-Graduate programs for teacher certification for elementary or secondary education
-Graduate programs in ed policy, school psychology and social & cultural foundations
-Graduate programs in education policy, research, and leadership
-Graduate programs in language and culture
-Graduate programs in school psychology, social & cultural foundations or other school support fields
-Graduate programs in sports education and leadership
 Graduate studies in K-12 education, speech and hearing sciences, occupational therapy, special education, psychology and more!
-Graduate teacher certification programs in PreK - 3rd grade or K - 3 (this option does not provide the P-3 endorsement)
 Have you experienced, witnessed, or learned about injustices in your educational journey? Please describe. How will the ECFS Major help you understand these injustices?
 Helpful Links
-High-Incidence Disabilities Teacher Education (M.Ed.)
 Holly Schindler
 Home
 How to foster positive and engaging learning environments for young children
 How to Give
 Husky Card
-I ntercollegiate Athletic Leadership (M.Ed.)
 IECMH 432 Infants & Children: Risk & Resilience (5)
-If there are no appointments available that work with your schedule, please email Alec Koehler, Lead Academic Adviser, at alecjk@uw.edu to schedule an alternate time.
 If you are interested in the ECFS major, be sure to select the major on your UW Admissions application. We require ECFS 200 to be completed for a student to be fully-admitted to the major. Transfer students who select the ECFS major on their UW Admissions application will have a seat in ECFS 200 held for them.
-If you are interested in the EDST major, be sure to select the major on your UW Admissions application. We require ECFS 200, EDUC 240, or EDUC 280 to be completed at UW (no transfer equivalencies for these courses) for a student to be able to declare EDST in the following quarter.
 If you're a current UW student, it's best to begin the program during your sophomore year and no later than the autumn quarter of your junior year.
 Implement culturally responsive and sustaining pedagogies
 In addition to your ECFS credits, you'll also need the following general education credits to graduate from the UW. You will be able to meet many of these credits within the ECFS program.
 In ECFS, you'll acquire a range of valuable knowledge and skills that will set you apart.
-In order to declare Education Studies, students must meet the following requirements:
 In the News
 Include transcripts from all institutions you have previously attended
 Instagram
-Intercollegiate Athletic Leadership (M.Ed.)
-Interested in graduate studies? After earning your B.A. through the EDST program, consider one of our many graduate-level programs . From teaching certificates, special education, sports management and more, every EDST program aligns with our graduate programs.
 Involvement in shaping early childhood policies and initiatives
-Islandwood Graduate Certificate Program (M.Ed.)
 It is highly recommended that students in the program complete the Federal Student Aid (FAFSA) or Washington Application for State Financial Aid (WASFA) application. These applications are necessary for various forms of financial aid, including scholarships and loans.
-It is highly recommended that students in the program complete the Federal Student Aid (FAFSA) or Washington Application for State Financial Aid (WASFA) application. These applications are necessary for various forms of financial aid, including scholarships and loans. The College of Education also offers scholarship and funding opportunities.
 It will take a minimum of 7 quarters to complete the program. To graduate from the University of Washington, you must have a minimum of 180 quarterly credits. How long it takes to graduate depends on a number of factors, including how many credits you are transferring in with and how many credits you take per quarter as an ECFS student.
-Jamie Michelle ...
-Jessica G. Rigby
 Jodi Burrus Newman
 Join mailing list
 Join our next info session: Apr, 16 2026 | 3:00 PM
-Jondou Chen
-Jun, 11 2026 | 3:00 PM
-Jun, 4 2026 | 3:00 PM
 Katherine Lewis
 Knowledge
-Language, Literacy, and Culture (M.Ed.)
 Lead Admissions & Outreach Adviser
 Leadership
 Leadership roles in childcare centers and other early learning spaces
@@ -541,7 +368,6 @@ Let&#039;s connect
 Libraries
 LinkedIn
 Login
-Low-Incidence Teacher Education (M.Ed.)
 Lynn Dietrich
 Magazine
 Main navigation
@@ -552,22 +378,8 @@ Making Learning Come Alive
 Maps
 Master in Teaching (M.I.T.)
 Master of Education (M.Ed.)
-Master’s in Teaching: Elementary (MiT)
-Master’s in Teaching: Elementary Teaching (MiT)
-Master’s in Teaching: Seattle Teacher Residency (MiT)
-Master's in Teaching: Secondary (Middle/High School) (MiT)
 Materials
-May, 14 2026 | 3:00 PM
-May, 21 2026 | 3:00 PM
-May, 28 2026 | 3:00 PM
-Measurement & Statistics (M.Ed.)
 Menu
-Min Sun
-Minimum 2.0 GPA (both cumulative UW GPA and major GPA)
-Minimum of 180 total credits
-Molly Shea
-Multilingual/Language Education option (22 credits)
-Multilingual/Language in Education Option
 MyUW
 Nancy Hertzog
 Natural Sciences (15 credits)
@@ -576,38 +388,29 @@ News & Media Contact
 News Features
 Newsroom
 Non-Matriculated & Graduate Non-Matriculated Students
-Note: If appointments are completely booked, please schedule a prospective student advising appointment with Ramon Concepcion or Waleed Khan .
 Offices & Departments
 On-campus
 One of the following (3-5)
 One of the following (5)
-One of the following education introduction courses
-One of the following human development courses
 Online
-Oscar L. Olvera Astivia
 Our curriculum is rooted in the belief that all young children and their families have the right to equitable opportunities to learn and develop in a just and culturally-thriving society. You'll have the opportunity to reflect on your identities and how they are influenced by larger power systems, encouraging critical thinking about early learning, equity, and community.
 Our program frameworks emphasize creating engaging interactions and environments that support individualized instruction and culturally responsive anti-bias anti-racist education. This program prepares you to be an early childhood professional who understands and actively works to dismantle systems of oppression.
-Our Programs
 Our students participate in two types of experiential learning:
 Our Vision
-Outdoor education
 Overview
 Partner with children, families and communities
-Please note: you can only declare the Education Studies Major after your admission to UW and the successful completion of the major prerequisites.
 Prefer a one-on-one experience? Prospective students can schedule an admissions advising appointment .
 Professional Learning
-Professional sports
 Professor
-Program Affiliated Faculty
 Program Faculty
 Program is open to all eligible persons regardless of race, sex or other identity.
 Program Staff
 Promote skills in language, literacy and STEM using age and developmentally appropriate practices
-Prospective students are welcome to schedule an admissions advising appointment with our Lead Admissions & Outreach Adviser, Alejandra Baires-Ramirez, who can provide one-on-one support with:
 Prospective students interested in learning more about admission requirements, scholarships, or transferring to UW, are encouraged to schedule an admission advising appointment with:
 Provide individualized instruction and behavioral support
 Question current values, practices, and policies rooted in unjust systems
 Quick Links
+Ramon Concepcion
 Ramon Concepcion , Assistant Director for Undergraduate Academic and Student Services
 Read our equity statement
 Reasoning (4-5 credits)
@@ -619,23 +422,16 @@ Research Areas
 Research Centers & Initiatives
 Research Support
 Savanna Carreño , Early Learning Scholarship Community Liaison
-Schedule a prospective student appointment to learn more about Education Studies, or declare the major!
 Schedule a prospective student appointment to learn more about the major!
-Scholarships and financial aid
-School Psychology (Ed.S.)
 Search scope
 Self-reflect on biases and socialization experiences to grow personally and professionally
 Senior capstone
 Skills
 Skip to main content
-Social and Cultural Foundations (M.Ed.)
 Social Studies (15 credits)
 Social/mental health services and parent and family support programs
 Soojin Oh Park
 Special Education Endorsement
-Sports and Education graduation plan
-Sports and Education Option
-Sports and Education option (20 credits)
 Starting in your sophomore year is recommended
 Strategizing approaches for individualized and culturally responsive instruction
 Submit a Story
@@ -648,49 +444,31 @@ Teaching Professor
 Technology Center
 The course can be in progress when you apply, but must be completed before the ECFS begins
 The Early Childhood and Family Studies Teaching and Learning (ECFS) program is designed to offer multidisciplinary and critical perspectives of early childhood development, early learning and family-centered education of young children. Through a combination of coursework and hands-on experiences in early learning settings, you will develop the necessary knowledge and skills to create inclusive and equitable learning environments and curriculum for young children.
-The Early Childhood Studies option prepares you to apply to the following COE graduate programs:
 The ECFS major focuses on the educational experiences of children from birth to age 8 and their families. Why are you interested in teaching?
-The Education Research and Policy option prepares you to apply to the following COE graduate programs:
-The Education Studies (EDST) degree program is a minimum requirement major that gives you the opportunity to study foundational education concepts and also concentrate on an area of your choice. All pathways emphasize educational equity and enacting social justice.
-The Foundations in Teaching option prepares you to apply to the following COE graduate programs:
-The Foundations of Teaching option is ideal for students who are considering a graduate program that will prepare them to teach in elementary, secondary or higher education settings. Post graduation options include:
-The Multilingual/Language in Education option prepares you to apply to the following COE graduate programs:
-The Multilingual/Language option is designed for students who will be pursuing teacher certification in multilingual classrooms or working in support of multilingual education locally and globally. Career options include:
-The Sports and Education option prepares you to apply to the following COE graduate programs:
 Thinstrip menu
-This option is designed for students interested in pursuing the diverse field of sports and athletics. The major helps prepare you for careers and/or graduate studies in sports. Post graduation options include:
 This process is only for current UW students. If you are a transfer student, follow the steps outlined in the Transferring section.
 Through this one application, undergraduate students can apply for multiple scholarships worth between $900 - $5,000.
 Time commitment
 Transfer students need to submit an unofficial transcript with their ECFS application:
 Transfer students will complete ECFS 200 after joining UW
 Transferring
-Transferring to UW
 Transforming inequitable systems
 Tuition & Costs
 Twitter
 Undergraduate
 Undergraduate Admissions
 Undergraduate General Scholarships
-Undergraduate Minor
-Undergraduate Programs
-Undergraduate Programs | UW College of Education
 Undergraduate Programs Manager
-Undergraduate students committed to a career as an educator can receive awards that range from $3000 - $8,000.
 University of Washington
 University of Washington College of Education • 2012 Skagit Lane, Miller Hall • Box 353600 • Seattle, WA 98195-3600
 Upcoming deadline
-Upcoming Events
 UW Bothell
 UW College of Education
-UW College of Education, one of the nation's top 15 education schools, offers undergraduate programs that prepare students for a variety of professions related to teaching and learning in classrooms & beyond. Community based learning experiences are integrated into classes taught by our nationally-recognized faculty.
 UW College of Education, one of the nation's top 15 education schools, offers undergraduate programs that prepare students for a variety of professions that incorporate teaching and learning. Numerous service learning and research opportunities are integrated into classes taught by our nationally-recognized faculty.
 UW Facebook
 UW Medicine
-UW students are able to declare the Education Studies major once they meet minimum admissions requirements. Interested students are encouraged to schedule a prospective student appointment with our EDST adviser to review credit requirements and complete the major declaration process.
 UW Tacoma
 UW Today
-UW Transfer Thursday: College of Education Undergraduate Programs Information Session
 UW Twitter
 Videos
 View the ECE Community-Based Learning Guide
@@ -701,12 +479,8 @@ Want to become a PK -12 teacher? ECFS graduates do not earn a teaching certifica
 We are a tuition-based program. Estimated tuition rates are based on your residency:
 We believe early childhood professionals learn by applying knowledge through action, observation and reflection. ECFS students take part in Community Based Learning (CBL), a place-based education, centering learning in the physical environment, local culture, history, language, and with the people of a community.
 We believe that every child in every school deserves an outstanding education.
-We welcome transfer students to our program!
 We welcome transfer students to our program! As a transfer student, you will have some additional steps and required materials to your application process.
 We're so excited that you're thinking about joining our undergrad program! Join our mailing list to learn about upcoming information sessions, deadlines, scholarships and more!
-Wellness and Social Emotional Learning graduation plan
-Wellness and Social Emotional Learning Option
-Wellness and Social Emotional Learning option (22 credits)
 What you can earn
 What you&#039;ll learn
 Writing (10 credits)
@@ -718,7 +492,4 @@ You must be graded 2.0 or higher
 You must upload your transcript during the application process
 You will be submitting TWO applications: one to join the University of Washington and one to join the ECFS program.
 You will have many opportunities to integrate your classroom experience into your CBL Experience. You will build on your cultural and contextual knowledge of children’s learning through real-world opportunities to apply your knowledge and skills in early learning settings.
-Your foundation in education begins here
-Youth sports
 YouTube
-Zesbaugh and Anderson-Olsen Scholarships
