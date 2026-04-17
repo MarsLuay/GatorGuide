@@ -29,6 +29,7 @@ import {
   TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
 } from "./source-fingerprints.generated";
 import { countMaterializedTransferPlannerPathways } from "./pathway-materialization";
+import { TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES } from "./derived-shared-source-plans";
 import type {
   TransferPlannerChecklistItem,
   TransferPlannerDegreeMapSection,
@@ -338,7 +339,19 @@ function normalizeExtractedCourseSubject(rawValue: string) {
 
   const subject = subjectTokens.join(" ");
   const collapsedSubject = subjectTokens.join("");
-  const hasDanglingAmpersandToken = subjectTokens.some((token) => token === "&" || token.endsWith("&"));
+  const hasDanglingAmpersandToken = subjectTokens.some((token) => {
+    if (token === "&") {
+      return true;
+    }
+
+    if (!token.endsWith("&")) {
+      return false;
+    }
+
+    // Green River subjects like MATH&, PHYS&, and ENGR& are valid course
+    // prefixes. Reject only malformed trailing-ampersand fragments.
+    return !/^[A-Z]{2,7}&$/.test(token);
+  });
 
   if (
     subjectTokens.length > 1 &&
@@ -2042,6 +2055,10 @@ const HIDDEN_SOURCE_GAP_PATHWAY_KEYS = new Set(
     (entry) => entry.studentVisibility === "hidden" && entry.pathwayId
   ).map((entry) => `${entry.planId}::${entry.pathwayId}`)
 );
+const ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES =
+  TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES.filter((alias) =>
+    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.some((plan) => plan.id === alias.sourcePlanId)
+  );
 function getPlanPrimaryParsedRequirementSourceBlocks(planId: string) {
   const primaryDegreeSourceUrl = getTransferPlannerPrimaryDegreeRequirementsSource(planId)?.url ?? null;
 
@@ -2082,10 +2099,14 @@ const STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRA
 
 export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
   generatedOn: "2026-04-02",
-  sourceGeneratedMajorPlanCount: TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.length,
-  studentVisibleMajorPlanCount: TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.filter(
-    (plan) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id)
-  ).length,
+  sourceGeneratedMajorPlanCount:
+    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.length + ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.length,
+  studentVisibleMajorPlanCount:
+    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.filter((plan) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id))
+      .length +
+    ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.filter(
+      (alias) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(alias.derivedPlanId)
+    ).length,
   hiddenSourceGapMajorPlanCount: HIDDEN_SOURCE_GAP_PLAN_IDS.size,
   sourceGeneratedPathwayCount: SOURCE_GENERATED_PATHWAY_COUNT,
   studentVisiblePathwayCount: STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT,

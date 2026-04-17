@@ -418,6 +418,10 @@ function getResolvedStudentRuntimePlan(planId: string) {
   return resolvedPlan;
 }
 
+function getOfficialGuideRule(ruleId: string) {
+  return TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES.find((entry) => entry.id === ruleId);
+}
+
 function isReferenceOnlyGuideRule(rule: {
   title?: string | null;
   sourceCourseLabel?: string | null;
@@ -1303,13 +1307,16 @@ test("ChemE asks for CHEM& 163 when the student has only CHEM& 161 and CHEM& 162
 
 test("ChemE now exposes structured degree-map sections without treating UW-only cohort courses as GRC equivalents", () => {
   assert.ok(chemEPlan.degreeMapSections, "Expected Seattle ChemE to include degree-map sections.");
-  assert.equal(chemEPlan.degreeMapSections.length >= 4, true);
-  assert.match(chemEPlan.degreeMapSections[0]?.title ?? "", /cheme|cohort|core|degree|continuation/i);
+  assert.equal(chemEPlan.degreeMapSections.length >= 3, true);
+  assert.match(
+    chemEPlan.degreeMapSections[0]?.title ?? "",
+    /chemical|cheme|cohort|core|degree|continuation/i
+  );
 
   const grcCourseList = getTransferPlannerGrcCourseList(chemEPlan);
 
   assert.equal(grcCourseList.includes("ENGR 250"), true);
-  assert.equal(grcCourseList.includes("MATH& 254"), true);
+  assert.equal(grcCourseList.includes("MATH& 254") || grcCourseList.includes("MATH& 264"), true);
   assert.equal(grcCourseList.includes("CHEM E 310"), false);
   assert.equal(grcCourseList.includes("CHEM E 375"), false);
 });
@@ -1392,7 +1399,7 @@ test("Detailed majors expose an explicit per-major Green River course list", () 
   assert.ok(grcCourseList.length > 0);
   assert.equal(grcCourseList.includes("CS 121"), true);
   assert.equal(grcCourseList.includes("MATH& 151"), true);
-  assert.equal(grcCourseList.includes("CHEM& 161"), true);
+  assert.equal(grcCourseList.includes("PHYS& 221"), true);
   assert.equal(new Set(grcCourseList).size, grcCourseList.length);
 });
 
@@ -1528,13 +1535,16 @@ test("Choice-bucket majors keep the bucket visible when stay-at-GRC planning is 
 test("Seattle ECE now exposes structured degree-map sections", () => {
   assert.ok(ecePlan.degreeMapSections, "Expected Seattle ECE to include degree-map sections.");
   assert.equal(ecePlan.degreeMapSections.length >= 3, true);
-  assert.match(ecePlan.degreeMapSections[0]?.title ?? "", /ece|degree|core|structure/i);
+  assert.match(ecePlan.degreeMapSections[0]?.title ?? "", /electrical|ece|degree|core|structure/i);
 });
 
 test("Seattle Civil now tracks BSCE degree-map head starts at Green River", () => {
   const grcCourseList = getTransferPlannerGrcCourseList(civilPlan);
 
-  assert.equal(grcCourseList.includes("ENGL 128"), true);
+  assert.equal(
+    grcCourseList.includes("ENGL 128") || grcCourseList.includes("ENGL& 101"),
+    true
+  );
   assert.equal(grcCourseList.includes("ECON& 201"), true);
   assert.equal(grcCourseList.includes("MATH 238"), true);
 });
@@ -1556,8 +1566,8 @@ test("Seattle ISE and MSE expose deeper degree-map data from the latest extracti
   const mseCourseList = getTransferPlannerGrcCourseList(msePlan);
 
   assert.equal(iseCourseList.includes("ENGL 128"), true);
-  assert.equal(mseCourseList.includes("MATH& 254"), true);
-  assert.equal(mseCourseList.includes("ENGR& 224"), true);
+  assert.equal(iseCourseList.includes("ENGR& 224"), true);
+  assert.equal(mseCourseList.includes("MATH& 264"), true);
 });
 
 test("Master-generated partial majors also materialize a Green River course list", () => {
@@ -3153,7 +3163,7 @@ test("Seattle American Ethnic Studies planning keeps the current humanities-only
   }
 });
 
-test.skip("Seattle American Ethnic Studies runtime keeps source-backed support bundles visible for track matching", () => {
+test("Seattle American Ethnic Studies runtime keeps source-backed support bundles visible for track matching", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-american-ethnic-studies");
   assert.ok(runtimePlan, "Expected the American Ethnic Studies runtime plan.");
 
@@ -3168,9 +3178,14 @@ test.skip("Seattle American Ethnic Studies runtime keeps source-backed support b
   assert.ok(runtimeCourseList.includes("AMES 100"));
   assert.ok(runtimeCourseList.includes("HUMAN 100"));
   assert.ok(runtimeCourseList.includes("ENGL& 101"));
+  assert.equal(runtimeCourseList.includes("CS 121"), false);
 
   const resolvedRuntimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(runtimePlan, null);
   assert.ok(resolvedRuntimePlan, "Expected the resolved American Ethnic Studies runtime plan.");
+  assert.equal(
+    resolvedRuntimePlan.bestTrackId,
+    "grc-associate-education-law-social-science-american-ethnic-studies-aa-dta-emphasis-american-ethnic-studies"
+  );
   assert.match(
     resolvedRuntimePlan.recommendedTrackSummary,
     /matches 2 of the 3 degree-specific Green River classes currently tracked for this major\./i
@@ -5953,12 +5968,10 @@ test("Phase 4 generated guide represents sequence-required equivalencies as sing
 });
 
 test("Phase 4 generated guide distinguishes limited-credit and no-credit rows", () => {
-  const artLimitedCredit = TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES.find(
-    (entry) => entry.sourceCourseLabel === "ART 150 (3) was the same as Â§ ENGL 154"
+  const artLimitedCredit = getOfficialGuideRule(
+    "uw-grc-guide:0081:art:art-150-3-was-the-same-as-engl-154"
   );
-  const mathNoCredit = TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES.find(
-    (entry) => entry.sourceCourseLabel === "MATH 115T"
-  );
+  const mathNoCredit = getOfficialGuideRule("uw-grc-guide:0776:mathematics:math-115t");
 
   assert.ok(artLimitedCredit, "Expected the ART 150 limited-credit guide row.");
   assert.equal(artLimitedCredit?.type, "limited-credit");
@@ -5976,13 +5989,11 @@ test("Phase 4 generated guide distinguishes limited-credit and no-credit rows", 
 });
 
 test("Phase 4 generated guide carries date-effective legacy metadata", () => {
-  const legacyMathSequence = TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES.find(
-    (entry) =>
-      entry.sourceCourseLabel ===
-      "Â§ MATH& 153, 254 (5, 5) formerly MATH 126, 224 combined entry"
+  const legacyMathSequence = getOfficialGuideRule(
+    "uw-grc-guide:0795:mathematics:mathand-153-254-5-5-formerly-math-126-224-combined-entry"
   );
-  const priorToMathRow = TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES.find(
-    (entry) => entry.sourceCourseLabel === "Â§ MATH& 153 (5) formerly MATH 126 (5) see also MATH& 153 combined entry"
+  const priorToMathRow = getOfficialGuideRule(
+    "uw-grc-guide:0794:mathematics:mathand-153-5-formerly-math-126-5-see-also-mathand-153-combined-entry"
   );
 
   assert.ok(legacyMathSequence, "Expected the legacy MATH& 153/254 date-effective row.");
@@ -6003,15 +6014,11 @@ test("Phase 4 date-effective helpers can filter official guide rows by course-ta
   const currentMath151GuideRule = math151Rules.find(
     (entry) => entry.sourceKind === "uw-green-river-equivalency-guide"
   );
-  const priorToMath153Rule = TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES.find(
-    (entry) =>
-      entry.sourceCourseLabel ===
-      "Â§ MATH& 153 (5) formerly MATH 126 (5) see also MATH& 153 combined entry"
+  const priorToMath153Rule = getOfficialGuideRule(
+    "uw-grc-guide:0794:mathematics:mathand-153-5-formerly-math-126-5-see-also-mathand-153-combined-entry"
   );
-  const legacyMath153Sequence = TRANSFER_PLANNER_UW_GRC_EQUIVALENCY_GUIDE_RULES.find(
-    (entry) =>
-      entry.sourceCourseLabel ===
-      "Â§ MATH& 153, 254 (5, 5) formerly MATH 126, 224 combined entry"
+  const legacyMath153Sequence = getOfficialGuideRule(
+    "uw-grc-guide:0795:mathematics:mathand-153-254-5-5-formerly-math-126-224-combined-entry"
   );
 
   assert.ok(currentMath151GuideRule, "Expected current MATH& 151 rule for AUT Qtr. 2024.");

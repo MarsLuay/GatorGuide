@@ -34,6 +34,10 @@ import {
   TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
 } from "./source-gaps.generated";
 import { materializeTransferPlannerPathways } from "./pathway-materialization";
+import {
+  TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES,
+  type TransferPlannerDerivedSharedSourcePlanAlias,
+} from "./derived-shared-source-plans";
 import type {
   TransferPlannerDegreeMapBlock,
   TransferPlannerMajorPathwayEntry,
@@ -46,6 +50,10 @@ import type {
 } from "./schema";
 
 const STRUCTURED_GRC_SOURCE_KINDS = new Set(["plan-checklist", "plan-course-list"]);
+const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
+  "uw-green-river-equivalency-guide",
+  "uw-green-river-equivalency-guide-derived",
+]);
 const REFERENCE_COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const COMBINED_ENTRY_REFERENCE_PATTERN = /combined[- ]entry|combined entries|see .*combined/i;
 const QUARTER_LABELS: Record<string, string> = {
@@ -84,8 +92,11 @@ const SOURCE_GENERATED_PARSER_FALLBACK_NOTE =
   "Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.";
 const SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN =
   /Auto-promotion was intentionally skipped/i;
+const SOURCE_BACKED_TRACK_MATCH_SAFE_SKIP_REASON_PATTERN =
+  /\balternate path that the planner already represents\b|\bexisting requirement row\b/i;
 const SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN =
   /\b(suggested general education|not required for transferring|approved list|highly recommended|elective|replacement|course list|course lists|course evaluation|course evaluations|capstone course|capstone courses|suggested course pathways?)\b/i;
+const DEGREE_MAP_GUIDE_BLOCK_TITLE_EXCLUSION_PATTERN = /\bchoices and pathway notes\b/i;
 const SOURCE_BACKED_MAJOR_SCOPE_CUE_PATTERN =
   /\b(?:if|for)\s+([^:.;]+?)\s+(?:major|majors|option|options|program|programs)\b/i;
 const SOURCE_BACKED_MAJOR_SCOPE_STOPWORDS = new Set([
@@ -339,10 +350,22 @@ const SUPPLEMENTAL_CHECKLIST_SEEDS_BY_PLAN: Partial<
   ],
   "uw-seattle-american-ethnic-studies": [
     {
-      id: "uws-ace-programming",
-      phase: "before-enrollment",
-      title: "One programming or data-science course",
-      grcCourses: ["CS 121"],
+      id: "uws-aes-ethnic-studies-foundation",
+      phase: "stay-at-grc",
+      title: "Ethnic studies and related social-science foundation",
+      grcCourses: ["AMES 100"],
+    },
+    {
+      id: "uws-aes-history-humanities-support",
+      phase: "stay-at-grc",
+      title: "History and humanities support for concentration work",
+      grcCourses: ["HUMAN 100"],
+    },
+    {
+      id: "uws-aes-writing-support",
+      phase: "stay-at-grc",
+      title: "Writing-heavy humanities support",
+      grcCourses: ["ENGL& 101"],
     },
   ],
   "uw-bothell-computer-engineering": [
@@ -375,6 +398,96 @@ const SUPPLEMENTAL_CHECKLIST_SEEDS_BY_PLAN: Partial<
 
 type PathwayPlanKey = `${string}::${string}`;
 
+const LEGACY_PLAN_ID_ALIASES = new Map<string, string>([
+  [
+    "uw-seattle-electrical-and-computer-engineering",
+    "uw-seattle-electrical-computer-engineering",
+  ],
+  [
+    "uw-seattle-industrial-and-systems-engineering",
+    "uw-seattle-industrial-systems-engineering",
+  ],
+  [
+    "uw-seattle-materials-science-and-engineering",
+    "uw-seattle-materials-science-engineering",
+  ],
+]);
+
+function resolveTransferPlannerPlanIdAlias(planId: string | null | undefined) {
+  const normalizedPlanId = String(planId ?? "").trim();
+  if (!normalizedPlanId) {
+    return normalizedPlanId;
+  }
+  return LEGACY_PLAN_ID_ALIASES.get(normalizedPlanId) ?? normalizedPlanId;
+}
+
+function escapeRegExp(value: string) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function replaceSourcePlanTitle(
+  value: string | null | undefined,
+  sourceTitle: string,
+  derivedTitle: string
+) {
+  const sanitized = sanitizePlannerOwnedText(value);
+  if (!sanitized) {
+    return sanitized;
+  }
+
+  return sanitized.replace(new RegExp(`\\b${escapeRegExp(sourceTitle)}\\b`, "g"), derivedTitle);
+}
+
+function materializeDerivedSharedSourcePlan(
+  sourcePlan: TransferPlannerMajorPlan,
+  alias: TransferPlannerDerivedSharedSourcePlanAlias
+) {
+  const sourceTitle = sanitizePlannerOwnedText(sourcePlan.title);
+  const derivedTitle = sanitizePlannerOwnedText(alias.derivedTitle);
+
+  return {
+    ...sourcePlan,
+    id: alias.derivedPlanId,
+    title: derivedTitle,
+    shortTitle: sanitizePlannerOwnedText(alias.derivedShortTitle ?? derivedTitle) || derivedTitle,
+    summary: replaceSourcePlanTitle(sourcePlan.summary, sourceTitle, derivedTitle),
+    degreeMapSections: (sourcePlan.degreeMapSections ?? []).map((section) => ({
+      ...section,
+      title: replaceSourcePlanTitle(section.title, sourceTitle, derivedTitle),
+      note: replaceSourcePlanTitle(section.note, sourceTitle, derivedTitle) || undefined,
+    })),
+    pathways: (sourcePlan.pathways ?? []).map((pathway) => ({
+      ...pathway,
+      summary: replaceSourcePlanTitle(pathway.summary, sourceTitle, derivedTitle),
+      degreeMapSections: (pathway.degreeMapSections ?? []).map((section) => ({
+        ...section,
+        title: replaceSourcePlanTitle(section.title, sourceTitle, derivedTitle),
+        note: replaceSourcePlanTitle(section.note, sourceTitle, derivedTitle) || undefined,
+      })),
+    })),
+  } satisfies TransferPlannerMajorPlan;
+}
+
+function appendDerivedSharedSourcePlans(plans: TransferPlannerMajorPlan[]) {
+  const plansById = new Map(plans.map((plan) => [plan.id, plan] as const));
+  const derivedPlans: TransferPlannerMajorPlan[] = [];
+
+  for (const alias of TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES) {
+    if (plansById.has(alias.derivedPlanId)) {
+      continue;
+    }
+
+    const sourcePlan = plansById.get(alias.sourcePlanId);
+    if (!sourcePlan) {
+      continue;
+    }
+
+    derivedPlans.push(materializeDerivedSharedSourcePlan(sourcePlan, alias));
+  }
+
+  return uniqueById([...plans, ...derivedPlans]);
+}
+
 function makePathwayPlanKey(planId: string, pathwayId: string | null | undefined) {
   return `${planId}::${String(pathwayId ?? "")}` as PathwayPlanKey;
 }
@@ -394,11 +507,12 @@ export function isTransferPlannerStudentHiddenSourceGap(
   planId: string | null | undefined,
   pathwayId?: string | null
 ) {
-  if (!planId) return false;
+  const resolvedPlanId = resolveTransferPlannerPlanIdAlias(planId);
+  if (!resolvedPlanId) return false;
   if (pathwayId) {
-    return STUDENT_HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(makePathwayPlanKey(planId, pathwayId));
+    return STUDENT_HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(makePathwayPlanKey(resolvedPlanId, pathwayId));
   }
-  return STUDENT_HIDDEN_SOURCE_GAP_PLAN_IDS.has(planId);
+  return STUDENT_HIDDEN_SOURCE_GAP_PLAN_IDS.has(resolvedPlanId);
 }
 
 function uniqueById<T extends { id: string }>(values: T[]) {
@@ -599,7 +713,7 @@ const GUIDE_RULES_BY_TARGET_COURSE_CODE = new Map<
 >();
 
 for (const rule of TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY) {
-  if (rule.sourceKind !== "uw-green-river-equivalency-guide") continue;
+  if (!GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS.has(rule.sourceKind ?? "")) continue;
   if (rule.acceptanceCategory === "no-credit") continue;
   if (!(rule.targetCourseCodes ?? []).length || !(rule.sourceCourseSets ?? []).length) continue;
 
@@ -724,6 +838,101 @@ for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_RE
   SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY.set(
     scopeKey,
     uniquePlannerStrings([...sourceBackedClassificationCourseCodes])
+  );
+}
+
+function shouldIncludeTrackMatchSourceBackedClassification(
+  classification: TransferPlannerRequirementDiffClassificationEntry
+) {
+  if (shouldIncludeStudentFacingSourceBackedClassification(classification)) {
+    return true;
+  }
+
+  const hasCourseCoverage = Boolean(
+    (classification.grcCourseCodes ?? []).length ||
+      (classification.alternativeCourseCodeSets ?? []).some((group) => (group ?? []).length)
+  );
+  if (!hasCourseCoverage) {
+    return false;
+  }
+
+  if (
+    hasUnsafeSourceBackedValidationNote(classification.validationNotes) &&
+    !hasTrackMatchSafeSourceBackedSkipReason(classification.validationNotes)
+  ) {
+    return false;
+  }
+
+  return Boolean(classification.guideRuleId) && classification.mappingConfidence === "high";
+}
+
+const SOURCE_BACKED_TRACK_MATCH_COURSES_BY_KEY = new Map<PathwayPlanKey, string[]>();
+for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY) {
+  if (!shouldIncludeTrackMatchSourceBackedClassification(classification)) {
+    continue;
+  }
+
+  const scopeKey = makePathwayPlanKey(classification.planId, classification.pathwayId);
+  const sourceBackedTrackMatchCourseCodes = new Set(
+    SOURCE_BACKED_TRACK_MATCH_COURSES_BY_KEY.get(scopeKey) ?? []
+  );
+
+  for (const courseCode of classification.grcCourseCodes ?? []) {
+    sourceBackedTrackMatchCourseCodes.add(normalizeCourseCode(courseCode));
+  }
+
+  for (const alternativeCourseCodeSet of classification.alternativeCourseCodeSets ?? []) {
+    for (const courseCode of alternativeCourseCodeSet ?? []) {
+      sourceBackedTrackMatchCourseCodes.add(normalizeCourseCode(courseCode));
+    }
+  }
+
+  SOURCE_BACKED_TRACK_MATCH_COURSES_BY_KEY.set(
+    scopeKey,
+    uniquePlannerStrings([...sourceBackedTrackMatchCourseCodes])
+  );
+}
+
+const DEGREE_MAP_GUIDE_COURSES_BY_KEY = new Map<PathwayPlanKey, string[]>();
+for (const block of TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY) {
+  if (DEGREE_MAP_GUIDE_BLOCK_TITLE_EXCLUSION_PATTERN.test(String(block.title ?? ""))) {
+    continue;
+  }
+
+  const scopeKey = makePathwayPlanKey(block.planId, block.pathwayId);
+  const degreeMapGuideCourseCodes = new Set(DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []);
+
+  for (const uwCourseCode of block.uwCourseCodes ?? []) {
+    const normalizedUwCourseCode = normalizeCourseCode(uwCourseCode);
+    const topRule = [
+      ...(GUIDE_RULES_BY_TARGET_COURSE_CODE.get(normalizedUwCourseCode) ?? []),
+    ].sort(compareGuideRules)[0];
+    if (!topRule) {
+      continue;
+    }
+
+    const topRuleSourceCourseCodes = uniquePlannerStrings(
+      (topRule.sourceCourseSets ?? []).flat().map((courseCode) => normalizeCourseCode(courseCode))
+    );
+    if (
+      !topRuleSourceCourseCodes.length ||
+      !topRuleSourceCourseCodes.every((courseCode) =>
+        isLowerDivisionSourceBackedFallbackCode(courseCode)
+      )
+    ) {
+      continue;
+    }
+
+    for (const sourceCourseSet of topRule.sourceCourseSets ?? []) {
+      for (const courseCode of sourceCourseSet ?? []) {
+        degreeMapGuideCourseCodes.add(normalizeCourseCode(courseCode));
+      }
+    }
+  }
+
+  DEGREE_MAP_GUIDE_COURSES_BY_KEY.set(
+    scopeKey,
+    uniquePlannerStrings([...degreeMapGuideCourseCodes])
   );
 }
 
@@ -1155,6 +1364,12 @@ function lineReferencesCurrentMajorScope(line: string, ownerTitle: string) {
 function hasUnsafeSourceBackedValidationNote(notes: string[] | null | undefined) {
   return (notes ?? []).some((note) =>
     SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN.test(String(note ?? ""))
+  );
+}
+
+function hasTrackMatchSafeSourceBackedSkipReason(notes: string[] | null | undefined) {
+  return (notes ?? []).some((note) =>
+    SOURCE_BACKED_TRACK_MATCH_SAFE_SKIP_REASON_PATTERN.test(String(note ?? ""))
   );
 }
 
@@ -2234,6 +2449,9 @@ function getStructuredCourseCodesForPlan(
   const sourceBackedClassificationCodes = scopeKeys.flatMap(
     (scopeKey) => SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY.get(scopeKey) ?? []
   );
+  const degreeMapGuideCodes = scopeKeys.flatMap(
+    (scopeKey) => DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
+  );
 
   return orderStringsByBase(
     uniquePlannerStrings([
@@ -2241,6 +2459,7 @@ function getStructuredCourseCodesForPlan(
       ...filteredCodes,
       ...sourceBackedClassificationCodes,
       ...sourceBackedGuideCodes,
+      ...degreeMapGuideCodes,
     ]),
     baseCourseOrder
   );
@@ -2324,6 +2543,29 @@ function buildDegreeMapSections(
   );
 }
 
+function buildTrackMatchCourseList(scope: {
+  grcCourseList: string[];
+  applicationChecklist: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist: TransferPlannerChecklistItem[];
+}, planId: string, pathwayId?: string | null) {
+  const automaticTrackMatchCourseList = buildAutomaticTrackMatchCourseList(planId, pathwayId);
+
+  return orderStringsByBase(
+    uniqueReferenceCourseLabels([
+      ...automaticTrackMatchCourseList,
+      ...buildStudentVisibleTrackMatchCourseList({
+        ...scope,
+        grcCourseList: uniqueReferenceCourseLabels([
+          ...(scope.grcCourseList ?? []),
+          ...automaticTrackMatchCourseList,
+        ]),
+      }),
+    ]),
+    automaticTrackMatchCourseList.length ? automaticTrackMatchCourseList : scope.grcCourseList ?? []
+  );
+}
+
 function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferPlannerMajorPathway) {
   const key = makePathwayPlanKey(basePlan.id, basePathway.id);
   const policy = POLICIES_BY_KEY.get(key);
@@ -2336,7 +2578,7 @@ function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferP
     basePathway.applicationChecklist ?? [],
     basePathway.id
   );
-  return applyAutoTrackRecommendation({
+  const pathway = {
     id: registryPathway?.pathwayId ?? basePathway.id,
     label: registryPathway?.label ?? basePathway.label,
     summary: sanitizePlannerOwnedText(registryPathway?.summary ?? basePathway.summary),
@@ -2391,7 +2633,11 @@ function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferP
     whyThisTrack: sanitizePlannerOwnedStrings(
       policy?.whyThisTrack.length ? [...policy.whyThisTrack] : [...(basePathway.whyThisTrack ?? [])]
     ),
-  } satisfies TransferPlannerMajorPathway);
+  } satisfies TransferPlannerMajorPathway;
+
+  return applyAutoTrackRecommendation(pathway, {
+    trackMatchCourseList: buildTrackMatchCourseList(pathway, basePlan.id, basePathway.id),
+  });
 }
 
 function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
@@ -2454,9 +2700,11 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
     buildSourceGeneratedFallbackChecklistItems(sourceGeneratedWithCompatibility)
   );
 
-  return applyAutoTrackRecommendation(
-    promoteStructuredCoverage(sourceGeneratedWithFallback)
-  );
+  const promotedSourceGeneratedPlan = promoteStructuredCoverage(sourceGeneratedWithFallback);
+
+  return applyAutoTrackRecommendation(promotedSourceGeneratedPlan, {
+    trackMatchCourseList: buildTrackMatchCourseList(promotedSourceGeneratedPlan, basePlan.id),
+  });
 }
 
 function getAutomaticScopeKeys(planId: string, pathwayId?: string | null) {
@@ -2518,6 +2766,9 @@ function buildAutomaticCourseList(
     uniquePlannerStrings([
       ...runtimeRequirementCourseCodes,
       ...scopeKeys.flatMap(
+        (scopeKey) => DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
+      ),
+      ...scopeKeys.flatMap(
         (scopeKey) => SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY.get(scopeKey) ?? []
       ),
       ...scopeKeys.flatMap(
@@ -2538,6 +2789,25 @@ function buildStudentVisibleAutomaticCourseList(scope: {
   return orderStringsByBase(
     uniqueReferenceCourseLabels([...(scope.grcCourseList ?? []), ...checklistCourseList]),
     scope.grcCourseList ?? []
+  );
+}
+
+function buildAutomaticTrackMatchCourseList(planId: string, pathwayId?: string | null) {
+  const scopeKeys = getAutomaticScopeKeys(planId, pathwayId);
+
+  return orderStringsByBase(
+    uniquePlannerStrings([
+      ...scopeKeys.flatMap(
+        (scopeKey) => DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
+      ),
+      ...scopeKeys.flatMap(
+        (scopeKey) => SOURCE_BACKED_TRACK_MATCH_COURSES_BY_KEY.get(scopeKey) ?? []
+      ),
+      ...scopeKeys.flatMap(
+        (scopeKey) => SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
+      ),
+    ]),
+    []
   );
 }
 
@@ -2652,9 +2922,10 @@ function buildStudentRuntimePathway(
     ])
   );
   const automaticCourseList = buildAutomaticCourseList(basePlan.id, basePathway.id);
-  const automaticTrackMatchCourseList = buildAutomaticCourseList(basePlan.id, basePathway.id, {
-    includeRuntimeRequirementCourses: false,
-  });
+  const automaticTrackMatchCourseList = buildAutomaticTrackMatchCourseList(
+    basePlan.id,
+    basePathway.id
+  );
   const studentVisibleCourseList = buildStudentVisibleAutomaticCourseList({
     grcCourseList: automaticCourseList,
     applicationChecklist,
@@ -2739,9 +3010,7 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
     ])
   );
   const automaticCourseList = buildAutomaticCourseList(basePlan.id);
-  const automaticTrackMatchCourseList = buildAutomaticCourseList(basePlan.id, null, {
-    includeRuntimeRequirementCourses: false,
-  });
+  const automaticTrackMatchCourseList = buildAutomaticTrackMatchCourseList(basePlan.id, null);
   const studentVisibleCourseList = buildStudentVisibleAutomaticCourseList({
     grcCourseList: automaticCourseList,
     applicationChecklist,
@@ -2994,8 +3263,8 @@ export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = TRANSFER_PLANNER_
 export function getTransferPlannerSourceGeneratedMajorsForCampus(
   campusId: TransferPlannerCampusId
 ) {
-  return TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.filter(
-    (plan) => plan.campusId === campusId
+  return appendDerivedSharedSourcePlans(
+    TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.filter((plan) => plan.campusId === campusId)
   );
 }
 
@@ -3014,14 +3283,25 @@ export function getTransferPlannerStudentVisibleMajorsForCampus(campusId: Transf
 export function getTransferPlannerStudentRuntimeMajorsForCampus(
   campusId: TransferPlannerCampusId
 ) {
-  return TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS.filter(
-    (plan) => plan.campusId === campusId && !isTransferPlannerStudentHiddenSourceGap(plan.id)
+  return appendDerivedSharedSourcePlans(
+    TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS.filter(
+      (plan) => plan.campusId === campusId && !isTransferPlannerStudentHiddenSourceGap(plan.id)
+    )
   );
 }
 
 export function getTransferPlannerSourceGeneratedMajorPlan(planId: string) {
+  const resolvedPlanId = resolveTransferPlannerPlanIdAlias(planId);
+  const directPlan =
+    TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.find((plan) => plan.id === resolvedPlanId) ?? null;
+  if (directPlan) {
+    return directPlan;
+  }
+
   return (
-    TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.find((plan) => plan.id === planId) ?? null
+    appendDerivedSharedSourcePlans(TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS).find(
+      (plan) => plan.id === resolvedPlanId
+    ) ?? null
   );
 }
 
@@ -3034,8 +3314,17 @@ export function getTransferPlannerMajorPlan(planId: string) {
 }
 
 export function getTransferPlannerStudentRuntimeMajorPlan(planId: string) {
+  const resolvedPlanId = resolveTransferPlannerPlanIdAlias(planId);
+  const directPlan =
+    TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS.find((plan) => plan.id === resolvedPlanId) ?? null;
+  if (directPlan) {
+    return directPlan;
+  }
+
   return (
-    TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS.find((plan) => plan.id === planId) ?? null
+    appendDerivedSharedSourcePlans(TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS).find(
+      (plan) => plan.id === resolvedPlanId
+    ) ?? null
   );
 }
 

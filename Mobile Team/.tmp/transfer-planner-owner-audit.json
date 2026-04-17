@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-17T20:31:32.902Z",
+  "generatedAt": "2026-04-17T22:56:48.004Z",
   "totalOwners": 225,
   "ownersWithErrorsCount": 0,
   "ownersWithWarningsCount": 4,
@@ -295,7 +295,7 @@
       "title": "Computer Engineering",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
+      "primarySourceUrl": "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-Comp-E-Curriculum-AY24_25.pdf",
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
@@ -1926,7 +1926,7 @@
       "title": "Computer Engineering",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/",
+      "primarySourceUrl": "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf",
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
@@ -3123,7 +3123,7 @@
       "title": "Marine Biology",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+      "primarySourceUrl": "https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf",
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,

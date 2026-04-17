@@ -2,6 +2,7 @@ import {
   extractTransferPlannerCourseCodes,
   getTransferPlannerCanonicalCourse,
   getTransferPlannerGrcCourseAvailabilitySummary,
+  getTransferPlannerGrcCourseList,
   getTransferPlannerGrcCourseLatestPublishedQuarters,
   getTransferPlannerEquivalencyRulesForSourceCourse,
   getTransferPlannerMajorPlan,
@@ -139,6 +140,7 @@ const REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE =
   "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
 const TRACK_SUPPLEMENTAL_TERM_LABEL_PATTERN =
   /\b(transferability of credits|generally transferable courses|section [a-z])\b/i;
+const DEFAULT_SEATTLE_GENERAL_ED_AREA_CREDITS = 20;
 
 function joinPlannerLabelList(labels: string[]) {
   if (labels.length <= 1) return labels[0] ?? "";
@@ -331,7 +333,8 @@ function ruleMatchesExactSourceCourseSet(
 
 function getSubsetMatchCompanionCourseCodes(
   rule: TransferPlannerEquivalencyRule,
-  explicitCourseCodes: string[]
+  explicitCourseCodes: string[],
+  satisfiedCourseCodes: string[] = []
 ) {
   const normalizedExplicitCourseCodes = sortCourseCodes(
     explicitCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
@@ -339,7 +342,10 @@ function getSubsetMatchCompanionCourseCodes(
   if (!normalizedExplicitCourseCodes.length) return null;
 
   const normalizedExplicitCourseCodeSet = new Set(normalizedExplicitCourseCodes);
-  const matchingSourceCourseSets = (rule.sourceCourseSets ?? [])
+  const normalizedSatisfiedCourseCodeSet = new Set(
+    satisfiedCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  const companionOptions = (rule.sourceCourseSets ?? [])
     .map((courseSet) =>
       sortCourseCodes(
         (courseSet ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
@@ -352,19 +358,41 @@ function getSubsetMatchCompanionCourseCodes(
           normalizedRuleCourseSet.includes(courseCode)
         )
     )
+    .map((normalizedRuleCourseSet) => {
+      const allCompanionCourseCodes = normalizedRuleCourseSet.filter(
+        (courseCode) => !normalizedExplicitCourseCodeSet.has(courseCode)
+      );
+      const unsatisfiedCompanionCourseCodes = allCompanionCourseCodes.filter(
+        (courseCode) => !normalizedSatisfiedCourseCodeSet.has(courseCode)
+      );
+      const displayCompanionCourseCodes = unsatisfiedCompanionCourseCodes.length
+        ? unsatisfiedCompanionCourseCodes
+        : allCompanionCourseCodes;
+      return {
+        normalizedRuleCourseSet,
+        allCompanionCourseCodes,
+        displayCompanionCourseCodes,
+      };
+    })
+    .filter((option) => option.displayCompanionCourseCodes.length > 0)
     .sort((left, right) => {
-      const lengthDelta = left.length - right.length;
-      if (lengthDelta !== 0) return lengthDelta;
-      return left.join("|").localeCompare(right.join("|"));
+      const displayLengthDelta =
+        left.displayCompanionCourseCodes.length - right.displayCompanionCourseCodes.length;
+      if (displayLengthDelta !== 0) return displayLengthDelta;
+
+      const allLengthDelta =
+        left.allCompanionCourseCodes.length - right.allCompanionCourseCodes.length;
+      if (allLengthDelta !== 0) return allLengthDelta;
+
+      const displayLabelDelta = left.displayCompanionCourseCodes
+        .join("|")
+        .localeCompare(right.displayCompanionCourseCodes.join("|"));
+      if (displayLabelDelta !== 0) return displayLabelDelta;
+
+      return left.normalizedRuleCourseSet.join("|").localeCompare(right.normalizedRuleCourseSet.join("|"));
     });
 
-  const selectedSourceCourseSet = matchingSourceCourseSets[0];
-  if (!selectedSourceCourseSet) return null;
-
-  const companionCourseCodes = selectedSourceCourseSet.filter(
-    (courseCode) => !normalizedExplicitCourseCodeSet.has(courseCode)
-  );
-  return companionCourseCodes.length ? companionCourseCodes : null;
+  return companionOptions[0]?.displayCompanionCourseCodes ?? null;
 }
 
 function getTransferGuidanceCandidateRulesForSourceCourse(
@@ -388,7 +416,10 @@ function getTransferGuidanceCandidateRulesForSourceCourse(
 
 function buildTransferEquivalencyGuidanceSummary(
   explicitCourseCodes: string[],
-  campusId: TransferPlannerMajorPlan["campusId"] | null | undefined
+  campusId: TransferPlannerMajorPlan["campusId"] | null | undefined,
+  options: {
+    satisfiedCourseCodes?: string[];
+  } = {}
 ) {
   const normalizedExplicitCourseCodes = sortCourseCodes(
     explicitCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
@@ -429,7 +460,8 @@ function buildTransferEquivalencyGuidanceSummary(
 
       const companionCourseCodes = getSubsetMatchCompanionCourseCodes(
         rule,
-        normalizedExplicitCourseCodes
+        normalizedExplicitCourseCodes,
+        options.satisfiedCourseCodes ?? []
       );
       if (!companionCourseCodes?.length) continue;
 
@@ -466,11 +498,11 @@ function buildTransferEquivalencyGuidanceSummary(
   }
 
   const selectedSubsetMatch = [...subsetMatchByRuleId.values()].sort((left, right) => {
-    const ruleDelta = compareTransferGuidanceRules(left.rule, right.rule);
-    if (ruleDelta !== 0) return ruleDelta;
-
     const companionDelta = left.companionCourseCodes.length - right.companionCourseCodes.length;
     if (companionDelta !== 0) return companionDelta;
+
+    const ruleDelta = compareTransferGuidanceRules(left.rule, right.rule);
+    if (ruleDelta !== 0) return ruleDelta;
 
     return left.companionCourseCodes
       .join("|")
@@ -2299,6 +2331,73 @@ function rebalanceSharedBreadthPlaceholders(
   }
 }
 
+function getSourceBackedGeneralEducationFocusKind(
+  plan: TransferPlannerMajorPlan | null | undefined
+): Extract<GeneralEducationPlaceholderKind, "ah" | "ssc"> | null {
+  const sourcePlan = getGeneralEducationRequirementTargetSourcePlan(plan);
+  if (!sourcePlan) {
+    return null;
+  }
+
+  const selectedPathwayId =
+    (sourcePlan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
+  const focusSignalLines = unique([
+    ...(sourcePlan.degreeMapSections ?? []).flatMap((section) => [section.title, ...section.items]),
+    ...getTransferPlannerParsedRequirementSourceBlocks(sourcePlan.id, selectedPathwayId).flatMap(
+      (block) => block.requirementCueLines ?? []
+    ),
+  ])
+    .map((line) => normalizeGeneralEducationSignalText(line))
+    .filter(Boolean);
+
+  const hasHumanitiesFocus = focusSignalLines.some((line) =>
+    /\b(?:arts?\s+and\s+humanities|a&h|humanities)\s+focus\b/.test(line)
+  );
+  const hasSocialScienceFocus = focusSignalLines.some((line) =>
+    /\b(?:social sciences?|ssc)\s+focus\b/.test(line)
+  );
+
+  if (hasHumanitiesFocus === hasSocialScienceFocus) {
+    return null;
+  }
+
+  return hasHumanitiesFocus ? "ah" : "ssc";
+}
+
+function concretizeUnscopedBreadthPlaceholders(args: {
+  placeholders: GeneralEducationPlaceholder[];
+  requirementTargets: GeneralEducationRequirementTargets;
+  plan: TransferPlannerMajorPlan | null | undefined;
+}) {
+  const { placeholders, requirementTargets, plan } = args;
+  if (
+    requirementTargets.ahCredits !== null ||
+    requirementTargets.sscCredits !== null ||
+    requirementTargets.breadthCredits !== null
+  ) {
+    return placeholders;
+  }
+
+  const preferredKind = getSourceBackedGeneralEducationFocusKind(plan);
+  let ahCount = placeholders.filter((entry) => entry.kind === "ah").length;
+  let sscCount = placeholders.filter((entry) => entry.kind === "ssc").length;
+
+  return placeholders.map((placeholder) => {
+    if (placeholder.kind !== "ahOrSsc") {
+      return placeholder;
+    }
+
+    const nextKind = preferredKind ?? (ahCount <= sscCount ? "ah" : "ssc");
+    if (nextKind === "ah") {
+      ahCount += 1;
+    } else {
+      sscCount += 1;
+    }
+
+    return createGeneralEducationPlaceholderByKind(nextKind);
+  });
+}
+
 function filterGeneralEducationPlaceholdersByRemainingNeed(args: {
   placeholders: GeneralEducationPlaceholder[];
   requirementTargets: GeneralEducationRequirementTargets;
@@ -2420,8 +2519,13 @@ function buildGeneralEducationPlaceholders(
     requirementTargets,
     completedCreditProgress,
   });
+  const normalizedPlaceholders = concretizeUnscopedBreadthPlaceholders({
+    placeholders,
+    requirementTargets,
+    plan,
+  });
   if (requirementTargets.ahCredits !== null || requirementTargets.sscCredits !== null) {
-    rebalanceSharedBreadthPlaceholders(placeholders, requirementTargets);
+    rebalanceSharedBreadthPlaceholders(normalizedPlaceholders, requirementTargets);
   }
   const sourceBackedAhCredits = getSourceBackedGeneralEducationCredits({
     courseLabels: [],
@@ -2445,56 +2549,59 @@ function buildGeneralEducationPlaceholders(
 
   const getAhCredits = () =>
     sourceBackedAhCredits +
-    placeholders.filter((entry) => entry.kind === "ah").length * GENERAL_ED_PLACEHOLDER_CREDITS;
+    normalizedPlaceholders.filter((entry) => entry.kind === "ah").length *
+      GENERAL_ED_PLACEHOLDER_CREDITS;
   const getSscCredits = () =>
     sourceBackedSscCredits +
-    placeholders.filter((entry) => entry.kind === "ssc").length * GENERAL_ED_PLACEHOLDER_CREDITS;
+    normalizedPlaceholders.filter((entry) => entry.kind === "ssc").length *
+      GENERAL_ED_PLACEHOLDER_CREDITS;
   const getNscCredits = () =>
     sourceBackedNscCredits +
-    placeholders.filter((entry) => entry.kind === "nsc").length * GENERAL_ED_PLACEHOLDER_CREDITS;
+    normalizedPlaceholders.filter((entry) => entry.kind === "nsc").length *
+      GENERAL_ED_PLACEHOLDER_CREDITS;
   const getBreadthCredits = () =>
     sourceBackedBreadthCredits +
-    getSharedBreadthCreditsForPlaceholders(placeholders, requirementTargets);
+    getSharedBreadthCreditsForPlaceholders(normalizedPlaceholders, requirementTargets);
   const getElectiveCredits = () =>
-    placeholders.filter((entry) => entry.kind === "elective").length *
+    normalizedPlaceholders.filter((entry) => entry.kind === "elective").length *
     GENERAL_ED_PLACEHOLDER_CREDITS;
 
   while (
     requirementTargets.ahCredits !== null &&
     getAhCredits() < requirementTargets.ahCredits
   ) {
-    placeholders.push(createGeneralEducationPlaceholderByKind("ah"));
+    normalizedPlaceholders.push(createGeneralEducationPlaceholderByKind("ah"));
   }
 
   while (
     requirementTargets.sscCredits !== null &&
     getSscCredits() < requirementTargets.sscCredits
   ) {
-    placeholders.push(createGeneralEducationPlaceholderByKind("ssc"));
+    normalizedPlaceholders.push(createGeneralEducationPlaceholderByKind("ssc"));
   }
 
   while (
     requirementTargets.nscCredits !== null &&
     getNscCredits() < requirementTargets.nscCredits
   ) {
-    placeholders.push(createGeneralEducationPlaceholderByKind("nsc"));
+    normalizedPlaceholders.push(createGeneralEducationPlaceholderByKind("nsc"));
   }
 
   while (
     requirementTargets.electiveCredits !== null &&
     getElectiveCredits() < requirementTargets.electiveCredits
   ) {
-    placeholders.push(createGeneralEducationPlaceholderByKind("elective"));
+    normalizedPlaceholders.push(createGeneralEducationPlaceholderByKind("elective"));
   }
 
   while (
     requirementTargets.breadthCredits !== null &&
     getBreadthCredits() < requirementTargets.breadthCredits
   ) {
-    placeholders.push(createGeneralEducationPlaceholderByKind("ahOrSsc"));
+    normalizedPlaceholders.push(createGeneralEducationPlaceholderByKind("ahOrSsc"));
   }
 
-  return placeholders;
+  return normalizedPlaceholders;
 }
 
 function findGeneralEducationCreditValue(text: string, patterns: RegExp[]) {
@@ -2859,11 +2966,22 @@ function buildGeneralEducationPlaceholderGuidanceSummary(args: {
   let totalCredits = slotTotals.electiveCredits;
   let relation = "planned for";
   let baselineCredits = 0;
+  const shouldUseSeattleAreaFallbackGuidance =
+    plan?.campusId === "uw-seattle" &&
+    requirementTargets.ahCredits === null &&
+    requirementTargets.sscCredits === null &&
+    requirementTargets.nscCredits === null &&
+    requirementTargets.breadthCredits === null;
 
   if (placeholder.kind === "ah") {
     if (requirementTargets.ahCredits !== null) {
       areaLabel = "A&H";
       totalCredits = requirementTargets.ahCredits;
+      relation = "needed for";
+      baselineCredits = completedCreditProgress.ahCredits;
+    } else if (shouldUseSeattleAreaFallbackGuidance) {
+      areaLabel = "A&H";
+      totalCredits = DEFAULT_SEATTLE_GENERAL_ED_AREA_CREDITS;
       relation = "needed for";
       baselineCredits = completedCreditProgress.ahCredits;
     } else if (requirementTargets.breadthCredits !== null) {
@@ -2881,6 +2999,11 @@ function buildGeneralEducationPlaceholderGuidanceSummary(args: {
       totalCredits = requirementTargets.sscCredits;
       relation = "needed for";
       baselineCredits = completedCreditProgress.sscCredits;
+    } else if (shouldUseSeattleAreaFallbackGuidance) {
+      areaLabel = "SSc";
+      totalCredits = DEFAULT_SEATTLE_GENERAL_ED_AREA_CREDITS;
+      relation = "needed for";
+      baselineCredits = completedCreditProgress.sscCredits;
     } else if (requirementTargets.breadthCredits !== null) {
       areaLabel = "A&H/SSc";
       totalCredits = requirementTargets.breadthCredits;
@@ -2894,6 +3017,10 @@ function buildGeneralEducationPlaceholderGuidanceSummary(args: {
     areaLabel = "NSc";
     if (requirementTargets.nscCredits !== null) {
       totalCredits = requirementTargets.nscCredits;
+      relation = "needed for";
+      baselineCredits = completedCreditProgress.nscCredits;
+    } else if (shouldUseSeattleAreaFallbackGuidance) {
+      totalCredits = DEFAULT_SEATTLE_GENERAL_ED_AREA_CREDITS;
       relation = "needed for";
       baselineCredits = completedCreditProgress.nscCredits;
     } else {
@@ -3072,9 +3199,9 @@ function buildCourseMetadataRequirementPaths(
       ? [requiredCodes]
       : [];
 
-  return candidatePaths.filter((courseSet) =>
-    courseSet.every((courseCode) => actionableCourseCodes.has(courseCode))
-  );
+  return candidatePaths
+    .map((courseSet) => courseSet.filter((courseCode) => actionableCourseCodes.has(courseCode)))
+    .filter((courseSet) => courseSet.length > 0);
 }
 
 function buildMetadataCourseRequirementMap(
@@ -4043,10 +4170,10 @@ function attachAutomaticPrerequisiteGuidance(courses: PendingSuggestedCourse[]) 
       prerequisiteLabels: dependentPrerequisiteLabels,
       corequisiteLabels: dependentCorequisiteLabels,
     });
-    const guidanceSummary = joinGuidanceSummaries(
-      prerequisiteGuidanceSummary,
-      course.guidanceSummary
-    );
+    const guidanceSummary =
+      String(course.guidanceSummary ?? "").trim() === REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE
+        ? course.guidanceSummary
+        : joinGuidanceSummaries(prerequisiteGuidanceSummary, course.guidanceSummary);
 
     if (guidanceSummary === course.guidanceSummary) {
       return course;
@@ -4061,16 +4188,22 @@ function attachAutomaticPrerequisiteGuidance(courses: PendingSuggestedCourse[]) 
 
 function attachAutomaticTransferEquivalencyGuidance(
   courses: PendingSuggestedCourse[],
-  campusId: TransferPlannerMajorPlan["campusId"] | null | undefined
+  campusId: TransferPlannerMajorPlan["campusId"] | null | undefined,
+  satisfiedCourseCodes: Set<string> | string[] = []
 ) {
   if (!campusId) {
     return courses;
   }
 
+  const normalizedSatisfiedCourseCodes = [...satisfiedCourseCodes]
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean);
+
   return courses.map<PendingSuggestedCourse>((course) => {
     const transferGuidanceSummary = buildTransferEquivalencyGuidanceSummary(
       course.explicitCourseCodes,
-      campusId
+      campusId,
+      { satisfiedCourseCodes: normalizedSatisfiedCourseCodes }
     );
     const guidanceSummary = joinGuidanceSummaries(
       transferGuidanceSummary,
@@ -4203,7 +4336,11 @@ export function buildSuggestedQuarterPlan(input: {
           ...trackSupplementalCourses,
         ];
   const guidedRemainingCourses = attachAutomaticPrerequisiteGuidance(
-    attachAutomaticTransferEquivalencyGuidance(remainingCourses, input.plan?.campusId)
+    attachAutomaticTransferEquivalencyGuidance(
+      remainingCourses,
+      input.plan?.campusId,
+      completedCourseCodes
+    )
   );
   const completedQuarterPlans = buildCompletedQuarterPlans(input.completedCourses, {
     campusId: input.plan?.campusId,
@@ -4269,8 +4406,16 @@ export function buildSuggestedQuarterPlan(input: {
     input.referenceDate,
     input.plan
   );
+  const hasExplicitRemainingPlannerCourses = guidedCoursesStillToPlan.some(
+    (course) => course.explicitCourseCodes.length > 0
+  );
+  const shouldSuppressGeneralEducationOnlyFiller =
+    !!input.plan &&
+    !hasExplicitRemainingPlannerCourses &&
+    getTransferPlannerGrcCourseList(input.plan).length === 0;
   const fillerPool =
-    input.includeStayAtGrcCourses === false && !input.plan
+    (input.includeStayAtGrcCourses === false && !input.plan) ||
+    shouldSuppressGeneralEducationOnlyFiller
       ? []
       : fillerLabels.map<PendingSuggestedCourse>((placeholder, placeholderIndex, placeholders) => ({
           label: placeholder.label,

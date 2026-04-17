@@ -11531,8 +11531,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bothell Computer Engineering curriculum",
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
+        "label": "download the Computer Engineering degree checklist",
+        "url": "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-Comp-E-Curriculum-AY24_25.pdf",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -13909,8 +13909,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Allen School degree requirements",
-        "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/",
+        "label": "Computer Engineering",
+        "url": "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -15682,8 +15682,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Marine Biology major requirements",
-        "url": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+        "label": "Marine Biology Major Requirements Worksheet",
+        "url": "https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -16261,8 +16261,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "Physics B.S. Degree Requirements",
         "url": "https://phys.washington.edu/physics-bs-degree-requirements",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "HTTP 429 Too Many Requests",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
@@ -16326,8 +16325,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "UW Political Science major declaration and requirements",
         "url": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
         "visibility": "visible",
-        "status": "partially-verified",
-        "reason": "HTTP 429 Too Many Requests",
+        "status": "verified",
         "sourceConfidence": "high"
       }
     ],
