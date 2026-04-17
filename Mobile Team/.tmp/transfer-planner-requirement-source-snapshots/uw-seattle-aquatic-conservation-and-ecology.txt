@@ -5,6 +5,7 @@ Title: Major Requirements | School of Aquatic and Fishery Sciences
 -->
 [Supplemental official source] Aquatic and Fishery Sciences (AFS) Bachelor of Science
 [Supplemental official source] Aquatic Conservation and Ecology (ACE) Bachelor of Science
+&#115;&#97;&#102;&#115;&#100;esk&#64;u&#46;&#119;&#97;&#115;&#104;ing&#116;on.&#101;&#100;&#117;
 &copy; 2026 University of Washington |
 <!--
 <svg id="college_black_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -140,7 +141,6 @@ Reasoning (RSN)
 Recommended Preparation
 Research
 Research Staff
-saf&#115;&#100;&#101;s&#107;&#64;u.&#119;as&#104;&#105;n&#103;t&#111;n.e&#100;&#117;
 SAFS majors are required to complete both the College of Environment&#8217;s General Education requirements and the School&#8217;s degree requirements listed below. These requirements lead to a Bachelor of Science degree, with a major in Aquatic Conservation and Ecology (ACE), or a major in Aquatic and Fishery Sciences (AFS).
 Scholarships
 School of

@@ -18,55 +18,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "45179",
-    "etag": "\"b07b-64f845be00420\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"b07b-64f987cacf740\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "4160eea69581305d9a39f41027a16a57c562800035bb9fd18e746a48f21a2783"
-  },
-  {
-    "url": "https://admissions.uwb.edu/register/mpw-DataVis-BA",
-    "finalUrl": "https://admissions.uwb.edu/register/mpw-DataVis-BA",
-    "labels": [
-      "UW Bothell major planning worksheet - Data Visualization (BA)"
-    ],
-    "ownerIds": [
-      "uw-bothell-data-visualization-ba"
-    ],
-    "kinds": [
-      "major"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=utf-8",
-    "contentLength": "15870",
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "2302a197ad9ec7c51cc97ca1e270e92ca66e4decb298fcb2e8b95f8ee37acc95"
-  },
-  {
-    "url": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
-    "finalUrl": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
-    "labels": [
-      "UW Bothell major planning worksheet - Data Visualization (BS)"
-    ],
-    "ownerIds": [
-      "uw-bothell-data-visualization-bs"
-    ],
-    "kinds": [
-      "major"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=utf-8",
-    "contentLength": "15918",
-    "etag": null,
-    "lastModified": null,
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "811c74f3659e5d10febb2441ae296e0e8f92a6603befc0e4ce3c696b7d81fca3"
+    "resourceFingerprint": "a33f5a3344434f2f444042f5d7fd3fc8ef70541bc241377ecc84501c363e4254"
   },
   {
     "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
@@ -75,35 +31,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "UW Green River transfer equivalency guide"
     ],
     "ownerIds": [
-      "uw-bothell-biology",
-      "uw-bothell-business-administration",
-      "uw-bothell-business-administration-accounting",
-      "uw-bothell-business-administration-finance",
-      "uw-bothell-business-administration-leadership-and-strategic-innovation",
-      "uw-bothell-business-administration-marketing",
-      "uw-bothell-business-administration-supply-chain-management",
-      "uw-bothell-chemistry-ba",
-      "uw-bothell-chemistry-biochemistry",
-      "uw-bothell-chemistry-bs",
       "uw-bothell-conservation-and-restoration-science",
-      "uw-bothell-economics",
       "uw-bothell-law-economics-and-public-policy",
-      "uw-bothell-mathematics",
-      "uw-bothell-mechanical-engineering",
-      "uw-bothell-physics-ba",
-      "uw-bothell-physics-bs",
-      "uw-seattle-aquatic-conservation-and-ecology",
-      "uw-seattle-architectural-design",
-      "uw-seattle-architectural-studies",
-      "uw-seattle-art",
-      "uw-seattle-art-history",
-      "uw-seattle-atmospheric-and-climate-science::chemistry-option",
-      "uw-seattle-atmospheric-and-climate-science::climate-option",
-      "uw-seattle-atmospheric-and-climate-science::data-science-option",
-      "uw-seattle-atmospheric-and-climate-science::meteorology-option",
       "uw-seattle-biochemistry::ba-route",
       "uw-seattle-biochemistry::bs-route",
-      "uw-seattle-bioengineering",
       "uw-seattle-biology",
       "uw-seattle-biology::ba-general-biology",
       "uw-seattle-biology::bs-option-family:ecology-evolution-and-conservation",
@@ -111,58 +42,21 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "uw-seattle-biology::bs-option-family:molecular-cellular-and-developmental-biology",
       "uw-seattle-biology::bs-option-family:physiology",
       "uw-seattle-biology::bs-option-family:plant-biology",
-      "uw-seattle-business-administration",
-      "uw-seattle-chemical-engineering",
       "uw-seattle-chemistry",
       "uw-seattle-chemistry::ba-route",
       "uw-seattle-chemistry::bs-route",
-      "uw-seattle-civil-engineering",
-      "uw-seattle-comparative-religion",
-      "uw-seattle-computational-finance-and-risk-management",
-      "uw-seattle-computer-engineering",
-      "uw-seattle-computer-science",
-      "uw-seattle-construction-management",
-      "uw-seattle-early-childhood-and-family-studies",
-      "uw-seattle-earth-and-space-sciences",
-      "uw-seattle-earth-and-space-sciences::ba-route",
-      "uw-seattle-earth-and-space-sciences::bs-option-family:biology",
-      "uw-seattle-earth-and-space-sciences::bs-option-family:geology",
-      "uw-seattle-earth-and-space-sciences::bs-option-family:geoscience",
-      "uw-seattle-earth-and-space-sciences::bs-option-family:physics",
       "uw-seattle-economics",
       "uw-seattle-economics::ba-route",
       "uw-seattle-economics::bs-route",
-      "uw-seattle-electrical-computer-engineering",
-      "uw-seattle-environmental-design-and-sustainability",
-      "uw-seattle-environmental-engineering",
       "uw-seattle-environmental-public-health",
       "uw-seattle-environmental-science-and-terrestrial-resource-management",
-      "uw-seattle-environmental-studies",
       "uw-seattle-food-systems-nutrition-and-health",
-      "uw-seattle-geography",
-      "uw-seattle-geography::data-science-option",
-      "uw-seattle-geography::standard-ba-route",
-      "uw-seattle-guitar-b-m",
-      "uw-seattle-history",
-      "uw-seattle-history-and-philosophy-of-science",
       "uw-seattle-human-centered-design-engineering",
-      "uw-seattle-industrial-systems-engineering",
-      "uw-seattle-international-studies",
-      "uw-seattle-italian",
       "uw-seattle-landscape-architecture",
       "uw-seattle-latin-american-and-caribbean-studies",
-      "uw-seattle-law-societies-and-justice",
       "uw-seattle-marine-biology",
-      "uw-seattle-materials-science-engineering",
-      "uw-seattle-mechanical-engineering",
-      "uw-seattle-medical-laboratory-science",
       "uw-seattle-microbiology",
-      "uw-seattle-music-composition-b-m",
-      "uw-seattle-music-education-b-m",
       "uw-seattle-neuroscience",
-      "uw-seattle-orchestral-instruments-b-m",
-      "uw-seattle-organ-b-m",
-      "uw-seattle-physics",
       "uw-seattle-political-science",
       "uw-seattle-psychology",
       "uw-seattle-psychology::ba-route",
@@ -172,24 +66,9 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "uw-seattle-public-health-global-health::ba-health-education-promotion-option",
       "uw-seattle-public-health-global-health::bs-global-health-option",
       "uw-seattle-public-health-global-health::bs-nutritional-sciences-option",
-      "uw-seattle-public-service-and-policy",
-      "uw-seattle-statistics",
-      "uw-seattle-statistics::applied-statistics-track",
-      "uw-seattle-statistics::data-science-track",
-      "uw-seattle-statistics::mathematical-statistics-track",
       "uw-seattle-sustainable-bioresource-systems-engineering",
-      "uw-seattle-voice-b-m",
-      "uw-tacoma-biomedical-sciences",
-      "uw-tacoma-communications",
       "uw-tacoma-computer-engineering",
-      "uw-tacoma-economics-and-policy-analysis",
-      "uw-tacoma-education",
-      "uw-tacoma-electrical-engineering",
-      "uw-tacoma-environmental-science",
-      "uw-tacoma-mathematics",
-      "uw-tacoma-mechanical-engineering",
-      "uw-tacoma-politics-philosophy-and-economics",
-      "uw-tacoma-psychology"
+      "uw-tacoma-electrical-engineering"
     ],
     "kinds": [
       "major",
@@ -221,11 +100,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "51310",
-    "etag": "\"1776371992\"",
-    "lastModified": "Thu, 16 Apr 2026 20:39:52 GMT",
+    "etag": "\"1776467189\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:29 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e8240090add5954baef44eb6df4eefcec80a8469a9980024b7972a9582772cc1"
+    "resourceFingerprint": "9ed3090efade68775a3ae878c288df4bd03bd765c81336c6c1574a6f05883193"
   },
   {
     "url": "https://ais.washington.edu/ba-american-indian-studies",
@@ -243,11 +122,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "48465",
-    "etag": "\"1776371995\"",
-    "lastModified": "Thu, 16 Apr 2026 20:39:55 GMT",
+    "etag": "\"1776466361\"",
+    "lastModified": "Fri, 17 Apr 2026 22:52:41 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "7b5d8bfbffbe17954f0125baa8b5658242cbc888d13b5e40e999b44ec88b0bbc"
+    "resourceFingerprint": "9f2d0e9226733bfd5bebeecb4bc2fe3d04f6ed11d80378f3cfd675ca1c311ead"
   },
   {
     "url": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
@@ -265,11 +144,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "47894",
-    "etag": "\"1776371385\"",
-    "lastModified": "Thu, 16 Apr 2026 20:29:45 GMT",
+    "etag": "\"1776467189\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:29 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "87b5721cd2b530354761b2ddc5ec763a6d246d8960b792e9efe8df91346762ae"
+    "resourceFingerprint": "60658c8b6880067beeb2fd8171cb20ecbeb7d03796c0a50f2459fdc90b8d9329"
   },
   {
     "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
@@ -331,11 +210,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "55164",
-    "etag": "\"1776372012\"",
-    "lastModified": "Thu, 16 Apr 2026 20:40:12 GMT",
+    "etag": "\"1776464105\"",
+    "lastModified": "Fri, 17 Apr 2026 22:15:05 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "5fa89d2867eabbedc05fc2706af53a63a1e3877814af19c3726603068f066836"
+    "resourceFingerprint": "db121d31d29f9313081b0fbcdc0dd1c432dcb2c9f9e7c64b8f9d0cf4bee52f63"
   },
   {
     "url": "https://asian.washington.edu/ba-chinese",
@@ -353,11 +232,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "52263",
-    "etag": "\"1776371528\"",
-    "lastModified": "Thu, 16 Apr 2026 20:32:08 GMT",
+    "etag": "\"1776467190\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:30 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "5bf488f8b93a52f81998cce2beacd2fe72572acc5fc3614f1fa81bafe7041778"
+    "resourceFingerprint": "b505936e5bce6784b0bcad0eb9be15e552bb330fba9c7ce6516d402eb1951d62"
   },
   {
     "url": "https://asian.washington.edu/ba-japanese",
@@ -375,11 +254,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "54266",
-    "etag": "\"1776371680\"",
-    "lastModified": "Thu, 16 Apr 2026 20:34:40 GMT",
+    "etag": "\"1776464526\"",
+    "lastModified": "Fri, 17 Apr 2026 22:22:06 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9d6df625c51bbae85654284f14dbab9fefe1ec379ad54ddea4a801e1a09b0d50"
+    "resourceFingerprint": "6a234e21ca7cbefba30b891cb62d63454dc5b75236d947a25f2ecb5b795c9f0b"
   },
   {
     "url": "https://asian.washington.edu/ba-korean",
@@ -397,11 +276,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "50980",
-    "etag": "\"1776371688\"",
-    "lastModified": "Thu, 16 Apr 2026 20:34:48 GMT",
+    "etag": "\"1776464577\"",
+    "lastModified": "Fri, 17 Apr 2026 22:22:57 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "182fcd5a89d72deffe15d5dd5b63ea70c266865c27a73de310c31d8302bcbdad"
+    "resourceFingerprint": "41172d6372a69d77c1109595b2d1d5a963d214aabd2c5f94df1f657bd14819c7"
   },
   {
     "url": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
@@ -419,11 +298,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "55538",
-    "etag": "\"1776373544\"",
-    "lastModified": "Thu, 16 Apr 2026 21:05:44 GMT",
+    "etag": "\"1776467193\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:33 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "95bd51fa860a2588aac45fca7ebf9d61ca971cd8fb917266eb40a899efd04c89"
+    "resourceFingerprint": "e478aa79dd1a055641533e4f1e299efbc7c313aa97fb1f420fb7f715bf264a12"
   },
   {
     "url": "https://astro.washington.edu/timeline-and-requirements",
@@ -441,11 +320,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "53122",
-    "etag": "\"1776372017\"",
-    "lastModified": "Thu, 16 Apr 2026 20:40:17 GMT",
+    "etag": "\"1776467189\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:29 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "427fe3ed254a31cfdb7c0ed4fd2b09146839e5e8482ea7b6d28250a8a3b8433b"
+    "resourceFingerprint": "0da46b8e4b4aa543bab83619a8600d504477decfc9737a6ad400e39650c35876"
   },
   {
     "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
@@ -486,10 +365,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
     "etag": null,
-    "lastModified": "Thu, 16 Apr 2026 20:16:55 GMT",
+    "lastModified": "Fri, 17 Apr 2026 21:19:03 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2778a9e41ed0649bc7790d319b0cc169f5b201124e4963937be613e1f8b11899"
+    "resourceFingerprint": "e6a3b82936fcd7f0518c6a942ac98224f938635df2217e1c7563dae6f571bf3b"
   },
   {
     "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624",
@@ -508,10 +387,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
     "etag": null,
-    "lastModified": "Thu, 16 Apr 2026 20:16:55 GMT",
+    "lastModified": "Fri, 17 Apr 2026 21:19:03 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d41e141b43d9fc8148829ca86bd0cfe46de5e195255962e72edbcb3903f8ebf9"
+    "resourceFingerprint": "e90428b4bd4104e343e8753bb96dd470c9e8e301a7a995a2a44b6954cbec3774"
   },
   {
     "url": "https://chem.washington.edu/ba-biochemistry",
@@ -530,11 +409,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "83650",
-    "etag": "\"1776371508\"",
-    "lastModified": "Thu, 16 Apr 2026 20:31:48 GMT",
+    "etag": "\"1776467190\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:30 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0ca42a51ff217d76c0fa74c8f12f403b86c36df4c8a1ebe9a7b517ec0a679e51"
+    "resourceFingerprint": "cf08e86dd603c825496e9107d3b3a42561770dd1d09d1b86d60a39c8721c1d71"
   },
   {
     "url": "https://chem.washington.edu/ba-chemistry",
@@ -557,11 +436,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "68999",
-    "etag": "\"1776371423\"",
-    "lastModified": "Thu, 16 Apr 2026 20:30:23 GMT",
+    "etag": "\"1776464249\"",
+    "lastModified": "Fri, 17 Apr 2026 22:17:29 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e8a2bae4a8976ad7f95446a4e2a3c04da592a915296a537544c72b86d35d7ae7"
+    "resourceFingerprint": "9c1f043b1c936242b6b13c717f085455539bd0bba5eb567ae9c6988fa397973d"
   },
   {
     "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
@@ -633,11 +512,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "45842",
-    "etag": "\"1776370754\"",
-    "lastModified": "Thu, 16 Apr 2026 20:19:14 GMT",
+    "etag": "\"1776467192\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:32 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "802ca2166ebeea9ff7a87740a01c188e98b80328bd3a5ceee526130f996f1008"
+    "resourceFingerprint": "e87bbb8f4a68df779298e0e0c2259189188cf2d5f671b5a24986f037301c0f3d"
   },
   {
     "url": "https://classics.washington.edu/ba-classics",
@@ -655,11 +534,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "46041",
-    "etag": "\"1776371532\"",
-    "lastModified": "Thu, 16 Apr 2026 20:32:12 GMT",
+    "etag": "\"1776463823\"",
+    "lastModified": "Fri, 17 Apr 2026 22:10:23 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ef1de1166be215f06335bfb570d46bb41929d3da294ad3ebeefbd1e651594e10"
+    "resourceFingerprint": "54a4a9cd1b489e1ec1c18d28cc6389a8f341845645b55591bbee2af6e3149e1a"
   },
   {
     "url": "https://classics.washington.edu/ba-greek",
@@ -677,11 +556,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "45812",
-    "etag": "\"1776371647\"",
-    "lastModified": "Thu, 16 Apr 2026 20:34:07 GMT",
+    "etag": "\"1776467193\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:33 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c1f47af09fb19670f35ecdbddebfefe1d9ac62fc190f824ca278010238d03a53"
+    "resourceFingerprint": "80583b00658c2a75b4b74ed979374ca6a8ef776af5b83f5c68366571d9e79447"
   },
   {
     "url": "https://classics.washington.edu/ba-latin",
@@ -699,11 +578,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "45827",
-    "etag": "\"1776371655\"",
-    "lastModified": "Thu, 16 Apr 2026 20:34:15 GMT",
+    "etag": "\"1776463919\"",
+    "lastModified": "Fri, 17 Apr 2026 22:11:59 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "042f0639315ecb2da88f1ffa302382bc7d6dbc673a1fc3428af97398a482af1e"
+    "resourceFingerprint": "5603e472189903b4337174e1255574d3bdb2900176cc84acc197ae2c609dd2ce"
   },
   {
     "url": "https://disabilitystudies.washington.edu/DS_major",
@@ -720,12 +599,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "35851",
-    "etag": "\"1776374088\"",
-    "lastModified": "Thu, 16 Apr 2026 21:14:48 GMT",
+    "contentLength": "35848",
+    "etag": "\"1776467193\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:33 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9ee3bee16768cdb3ab6695dbbaa189c8e8042dda3b5d82f900eac54a1adba184"
+    "resourceFingerprint": "eaf31d28909d920025f502e39946d2ce0dba473a44e8ebf4676e4c4d587c422e"
   },
   {
     "url": "https://dlmp.uw.edu/education/mls-undergrad",
@@ -744,10 +623,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
     "etag": null,
-    "lastModified": "Thu, 16 Apr 2026 21:14:48 GMT",
+    "lastModified": "Fri, 17 Apr 2026 23:06:33 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "1ac79a7caaf8f99c83822256fe66e068483e792dd6bfc5eade6407434bb6e264"
+    "resourceFingerprint": "ea96938291a4e7f84866a04f86e2d6d3a1c343a04973d7391c83c12b53f704fe"
   },
   {
     "url": "https://education.washington.edu/academics/program/early-childhood-family-studies",
@@ -763,13 +642,13 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     ],
     "ok": true,
     "status": 200,
-    "contentType": "text/html",
+    "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
     "etag": null,
     "lastModified": null,
-    "title": "UW Early Childhood & Family Studies program page",
-    "fetchMode": "parsed-source",
-    "resourceFingerprint": "576c368c98291c03831998eca812aab1d136aad705fcd33ef26f28a13962594e"
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "7f81f6aeca9d4e62601e59b75c9e25a2324672824a52c5b607f06106750ae891"
   },
   {
     "url": "https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf",
@@ -790,8 +669,8 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "etag": "\"1cf69-63b907e26263e\"",
     "lastModified": "Mon, 04 Aug 2025 21:07:18 GMT",
     "title": null,
-    "fetchMode": "get",
-    "resourceFingerprint": "0011ef01b994a8009f7b4c0c1e23a8866bb88a440b141f7d3a33d4a9805b382f"
+    "fetchMode": "head",
+    "resourceFingerprint": "a116309c60ffc22b8fe86947884c690ed1080182a8082ef5c216fcd1d5a1c552"
   },
   {
     "url": "https://english.washington.edu/english-language-literature-and-culture-option",
@@ -809,11 +688,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "73407",
-    "etag": "\"1776374088\"",
-    "lastModified": "Thu, 16 Apr 2026 21:14:48 GMT",
+    "etag": "\"1776466513\"",
+    "lastModified": "Fri, 17 Apr 2026 22:55:13 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "003f55d690289d0841f982760878313314f235a261865072f0712e3275aef2ba"
+    "resourceFingerprint": "70a154d8b5991a5fbd60c03c998aea679e2c441b881c3aa537959d0afc787a83"
   },
   {
     "url": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
@@ -897,11 +776,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "51343",
-    "etag": "\"1776373220\"",
-    "lastModified": "Thu, 16 Apr 2026 21:00:20 GMT",
+    "etag": "\"1776467188\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:28 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6b04e9f00ea05f9d37767bf71db023d175d977c6a5052eb3d02256c7817533fb"
+    "resourceFingerprint": "b6640273456bfb73cbe6ad16885a170a742456ba96a3be534264068a8b5d9d6c"
   },
   {
     "url": "https://history.washington.edu/major",
@@ -919,11 +798,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "53535",
-    "etag": "\"1776371656\"",
-    "lastModified": "Thu, 16 Apr 2026 20:34:16 GMT",
+    "etag": "\"1776466021\"",
+    "lastModified": "Fri, 17 Apr 2026 22:47:01 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "76f01b6e94c440847b3465f3c7897974011e6534db4546883b2e3803916263a6"
+    "resourceFingerprint": "5302fa53f568244a6b64d3771e054e6f45a56120a382646e13c2d331e15bd7e0"
   },
   {
     "url": "https://ischool.uw.edu/academics/informatics/curriculum",
@@ -940,12 +819,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "69377",
-    "etag": "\"1776374092\"",
-    "lastModified": "Thu, 16 Apr 2026 21:14:52 GMT",
+    "contentLength": "69416",
+    "etag": "\"1776467197\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:37 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c0a13fab754c85d3685a1b82c5c7da64ed99998faa9ca56a8aec073132cc001a"
+    "resourceFingerprint": "632262185b910967a6e6332e0a24b5180129daab9674904eac451925e350494c"
   },
   {
     "url": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
@@ -989,7 +868,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "lastModified": null,
     "title": "Asian Studies - Major - The Henry M. Jackson School of International Studies",
     "fetchMode": "curl",
-    "resourceFingerprint": "a6d393ae456febeb56a6ffce2c35912b89ac06758c2966d4d0d45de94c4d5c1d"
+    "resourceFingerprint": "663ddbd7dc9a65879377fa39edd3cc73e8f5fbfdc21db0e67a23b106ad8a3f75"
   },
   {
     "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
@@ -1011,7 +890,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "lastModified": null,
     "title": "Jewish Studies - Major - The Henry M. Jackson School of International Studies",
     "fetchMode": "curl",
-    "resourceFingerprint": "15a34d2228facd82995b8a15ad25d8e2d72a9a5c4b37ff1b6ed30251e25fbedb"
+    "resourceFingerprint": "1f68c08430770774998f5d9f5e98fd1af69f8a1b8c282e283fd49ae8f294fcf7"
   },
   {
     "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
@@ -1033,7 +912,7 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "lastModified": null,
     "title": "Latin American and Caribbean Studies - Major - The Henry M. Jackson School of International Studies",
     "fetchMode": "curl",
-    "resourceFingerprint": "c8c9f9171cfa91cea72068675872982d4ab29b0b2709a1e8ed12bab87baab66e"
+    "resourceFingerprint": "1fa60f6fbae58c56e8319b64d708a03fce122a416f50c555eb3cab0aafbbe920"
   },
   {
     "url": "https://linguistics.washington.edu/ba-linguistics",
@@ -1051,11 +930,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "54028",
-    "etag": "\"1776371755\"",
-    "lastModified": "Thu, 16 Apr 2026 20:35:55 GMT",
+    "etag": "\"1776467195\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:35 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "79af13d4441345ef9ba6851a57b1134321164f3a5087ded737b212c16e9d6422"
+    "resourceFingerprint": "9e0b162e020b3a3c143db32bfceb5e2e57083bc1e31ae5f4bae17bcf997125a0"
   },
   {
     "url": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
@@ -1073,11 +952,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "121763",
-    "etag": "\"1776374090\"",
-    "lastModified": "Thu, 16 Apr 2026 21:14:50 GMT",
+    "etag": "\"1776467195\"",
+    "lastModified": "Fri, 17 Apr 2026 23:06:35 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "3291ca6bab07a323a2ec37736a7c9347bc43dfd2b8788f5c837a3480a264d6e3"
+    "resourceFingerprint": "a0a247eb5ac2c8f939803ac1803a7507ae0fd13af693185dc86f4d037ae1e79c"
   },
   {
     "url": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
@@ -1114,14 +993,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "major"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "MARINE BIOLOGY MAJOR ELECTIVES (25 credits)",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "cdcf15dff96399d316c57920ba3b0352b11adb997cb7cb2c023c5d84bc5ea0ef"
+    "status": 200,
+    "contentType": "application/pdf",
+    "contentLength": "484782",
+    "etag": "\"765ae-6437f5f867818\"",
+    "lastModified": "Thu, 13 Nov 2025 20:03:22 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "53712f507fba564b853058b100ef61eaa5edb82e3d15afef7baa81ef35fc9a3a"
   },
   {
     "url": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
@@ -1138,12 +1017,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "56216",
-    "etag": "\"1776371764\"",
-    "lastModified": "Thu, 16 Apr 2026 20:36:04 GMT",
+    "contentLength": "56027",
+    "etag": "\"1776467231\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:11 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "656d6dbc0fcd899989b227ef202dfc5c556de29861c52441cd53426b3c489a70"
+    "resourceFingerprint": "a1a6ba660303804d3dd79bc2683b46510c4277291e1b2984487a0d56f11e67e3"
   },
   {
     "url": "https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf",
@@ -1205,11 +1084,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "55927",
-    "etag": "\"1776373370\"",
-    "lastModified": "Thu, 16 Apr 2026 21:02:50 GMT",
+    "etag": "\"1776467231\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:11 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "251eb14d04d71bbae5857907e3e35ba9e65086920c53c430a82f4bb5b978cf44"
+    "resourceFingerprint": "80de2863a6e568a653b1859bf80610a01b015e02c884fdf9a22c2cb9928fffde"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-composition",
@@ -1227,11 +1106,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "59626",
-    "etag": "\"1776372372\"",
-    "lastModified": "Thu, 16 Apr 2026 20:46:12 GMT",
+    "etag": "\"1776467234\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:14 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9d8613c628846acd7f6b9c47f47405d9259544c2b9ab16e8cef72419172ff138"
+    "resourceFingerprint": "f4cebdb4179c261b9e5891be4cb04e110212d4e469b82e3bf98baa171fcc24ae"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-guitar",
@@ -1249,11 +1128,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56783",
-    "etag": "\"1776372379\"",
-    "lastModified": "Thu, 16 Apr 2026 20:46:19 GMT",
+    "etag": "\"1776467236\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:16 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "24367e68eb37007d8bccdd8327d0cda717efeb36821f40713754b18007a94c6b"
+    "resourceFingerprint": "b88c856ed48b24970a94e7ee8e8fd2c4a978f4ce56b16dd919e22f8697fffaf5"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-jazz-studies",
@@ -1271,11 +1150,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "57441",
-    "etag": "\"1776372381\"",
-    "lastModified": "Thu, 16 Apr 2026 20:46:21 GMT",
+    "etag": "\"1776467237\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:17 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "7a53c1f7c728df624a86e25de68db16544571f73a352837064d5f4592095b0fd"
+    "resourceFingerprint": "ddc66fe9831cea9db70f3cbee793d9ae82fed628d3edf6db1b0c45149e2adb5a"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis",
@@ -1293,11 +1172,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "60674",
-    "etag": "\"1776372373\"",
-    "lastModified": "Thu, 16 Apr 2026 20:46:13 GMT",
+    "etag": "\"1776467239\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:19 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f419c6ffaa96f5e64997717168d9bddf46f62e1d4616d8c2962a50ae44c5eb2c"
+    "resourceFingerprint": "2d1a957996f640e1f0df2577dbaae40e7cd3b6e1d2ee149f4eab2d44d2520981"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-orchestral-instruments",
@@ -1315,11 +1194,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56983",
-    "etag": "\"1776373413\"",
-    "lastModified": "Thu, 16 Apr 2026 21:03:33 GMT",
+    "etag": "\"1776467241\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:21 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "8da1b693c63d1709e06b22c4984adf9c093e823d76c47e9fa8f7495a95e771e9"
+    "resourceFingerprint": "519936ea7e99be790db7a6a1d692f79e4e86e47f918682f047532fcda192b7d4"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-organ",
@@ -1337,11 +1216,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "57144",
-    "etag": "\"1776373416\"",
-    "lastModified": "Thu, 16 Apr 2026 21:03:36 GMT",
+    "etag": "\"1776467243\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:23 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9c2c9aa9bb89a36d6f0df9f275cebca82c5dd65bb866f396b95646e6c562e0bc"
+    "resourceFingerprint": "524535c7100276c787f737c00b3beee0734488667c81e693ad120f6acb132725"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-percussion-performance",
@@ -1359,11 +1238,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56899",
-    "etag": "\"1776372431\"",
-    "lastModified": "Thu, 16 Apr 2026 20:47:11 GMT",
+    "etag": "\"1776467245\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "74dd3aeacff89e6cbe6ce035a74dfb506d0067ff3204318f79599c8fbee98012"
+    "resourceFingerprint": "e9b51e81c564c25952117d4c79997e23b0b1332c6168c6ced09f401ebe97938f"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-piano",
@@ -1381,11 +1260,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "57035",
-    "etag": "\"1776373499\"",
-    "lastModified": "Thu, 16 Apr 2026 21:04:59 GMT",
+    "etag": "\"1776467246\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:26 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "05c9e0085295b3d39d4220faa685ce5a1abdc1f0f8574fa124a6692898ee09c3"
+    "resourceFingerprint": "f47e22bc06c3462f8ea63315ac4699e77d471a40ceef8862290850448e397c14"
   },
   {
     "url": "https://music.washington.edu/bachelor-music-voice",
@@ -1403,11 +1282,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "57784",
-    "etag": "\"1776373681\"",
-    "lastModified": "Thu, 16 Apr 2026 21:08:01 GMT",
+    "etag": "\"1776467248\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:28 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a97c3e4432869d8283d0200ac8c5c49ff23da35887b1d70eaaf8233c284350cf"
+    "resourceFingerprint": "e5b11f9a47f3a0dbea9813a3ec40644cce8d2aae38781c329380e01b21a9bf54"
   },
   {
     "url": "https://phys.washington.edu/physics-bs-degree-requirements",
@@ -1425,11 +1304,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "84544",
-    "etag": "\"1776372477\"",
-    "lastModified": "Thu, 16 Apr 2026 20:47:57 GMT",
+    "etag": "\"1776466345\"",
+    "lastModified": "Fri, 17 Apr 2026 22:52:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a6a999e0e32808990ba5512e89c37fb862965055d29570b9262c3e1fa5e9f874"
+    "resourceFingerprint": "4ce8088845e3ad0371e329bd3518985058ee606d6297cc5d29add109b67620db"
   },
   {
     "url": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
@@ -1474,11 +1353,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "49352",
-    "etag": "\"1776371577\"",
-    "lastModified": "Thu, 16 Apr 2026 20:32:57 GMT",
+    "etag": "\"1776467240\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:20 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ca2505e78eef766e8d5a0d92f5d957f24c135b9f034e385ee400f3da90a2be0b"
+    "resourceFingerprint": "c43bdac02949536d8de5d92a093a21e799aaf35d624d80af0f9f37a46a07ad7d"
   },
   {
     "url": "https://scandinavian.washington.edu/ba-finnish",
@@ -1496,11 +1375,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "50159",
-    "etag": "\"1776372177\"",
-    "lastModified": "Thu, 16 Apr 2026 20:42:57 GMT",
+    "etag": "\"1776467242\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:22 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "284c0a8394577ed4378a90870fcd3a5eceb10d58fe38cc09935bf77dbae709c1"
+    "resourceFingerprint": "3bd15d11369cf4c25683dc8b924212b7f9307c6b49523ca2b96d41cbd6f7310b"
   },
   {
     "url": "https://scandinavian.washington.edu/ba-norwegian",
@@ -1518,11 +1397,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "49002",
-    "etag": "\"1776372179\"",
-    "lastModified": "Thu, 16 Apr 2026 20:42:59 GMT",
+    "etag": "\"1776467244\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:24 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d1864ea879f26806bf8fa78e43e74cca9cd9f3d0a2202bcc1d12f5b4b261c31d"
+    "resourceFingerprint": "eb6b69fae6ad8c5d20093d225ef90b35ea9b93b83973664042a0dde646d99c61"
   },
   {
     "url": "https://scandinavian.washington.edu/ba-swedish",
@@ -1540,11 +1419,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "48849",
-    "etag": "\"1776372181\"",
-    "lastModified": "Thu, 16 Apr 2026 20:43:01 GMT",
+    "etag": "\"1776467245\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "be48d80fdbdeaceb8275ae4cef8bbc5902cdd4eb7a66eb6b645da93f0f7e72f0"
+    "resourceFingerprint": "cda697ecac8c7f26bf91d12c6ea9602a24989d64b13dd21c244a50c9f6b98a4c"
   },
   {
     "url": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
@@ -1606,11 +1485,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "51033",
-    "etag": "\"1776371886\"",
-    "lastModified": "Thu, 16 Apr 2026 20:38:06 GMT",
+    "etag": "\"1776467244\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:24 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9267d716ca8b2ef6ea68aaa2b542e6b8283d61e9266cf8f9270ab835cca71875"
+    "resourceFingerprint": "483aa3b3dc30c1830a8707b3bec8d4d46007a0ac3f0c63756d61ef0be64a3948"
   },
   {
     "url": "https://spanport.washington.edu/spanish-major-requirements",
@@ -1628,11 +1507,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "45088",
-    "etag": "\"1776371895\"",
-    "lastModified": "Thu, 16 Apr 2026 20:38:15 GMT",
+    "etag": "\"1776467244\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:24 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bdb499938fdbb16de639dc99d68d8a590c9c07424e51f6235a2ed164e05c34e5"
+    "resourceFingerprint": "ad0904f99bf379da92278b1212910fc0d67843322c81138fbc3a9dd4836f4f4c"
   },
   {
     "url": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
@@ -1688,11 +1567,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "48256",
-    "etag": "\"1776354687\"",
-    "lastModified": "Thu, 16 Apr 2026 15:51:27 GMT",
+    "etag": "\"1776454822\"",
+    "lastModified": "Fri, 17 Apr 2026 19:40:22 GMT",
     "title": "Major Requirements | University of Washington Department of Statistics",
     "fetchMode": "curl",
-    "resourceFingerprint": "0a92298c6e52b2d080cfd7f9b27300f52c54c097fccecb4032da1ba49593a2e4"
+    "resourceFingerprint": "76681601f3b32755b2ba52b64d86f70e188235545b13abf658681194d1d83948"
   },
   {
     "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks",
@@ -1712,11 +1591,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "38256",
-    "etag": "\"1776358846\"",
-    "lastModified": "Thu, 16 Apr 2026 17:00:46 GMT",
+    "etag": "\"1776453972\"",
+    "lastModified": "Fri, 17 Apr 2026 19:26:12 GMT",
     "title": "Statistics B.S. tracks | University of Washington Department of Statistics",
     "fetchMode": "curl",
-    "resourceFingerprint": "95f8abfe5e0760bbc09412998e2f5f1747169d86ce485486677957bcbf6e9723"
+    "resourceFingerprint": "6dad5973de8f37f78a99d19e00dc93b64fe70384fdad38e5b4960fc0ab1c2ce7"
   },
   {
     "url": "https://students.nursing.uw.edu/wp-content/uploads/2025/09/BSN-2025-Curriuculum-Grid.pdf",
@@ -1864,14 +1743,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "major"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
+    "status": 200,
+    "contentType": "application/pdf",
+    "contentLength": "170864",
     "etag": null,
-    "lastModified": null,
-    "title": "Computer Engineering",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "0cda1c6fecbbc60438d1dbe38219abd0bd314cac87cd051775e0aa72b45bb41d"
+    "lastModified": "Tue, 04 Feb 2025 19:55:20 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "3b8850fa13183fd5e81000abe6a0add859d7e8f1fee9d52116f739495d6fc7df"
   },
   {
     "url": "https://www.deohs.washington.edu/degree-requirements",
@@ -1889,11 +1768,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
-    "etag": "\"1776374136\"",
-    "lastModified": "Thu, 16 Apr 2026 21:15:36 GMT",
+    "etag": "\"1776467246\"",
+    "lastModified": "Fri, 17 Apr 2026 23:07:26 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "25c8fdb317b71e60c001870f5445d78eb0e55f437dc82898e12f2b1e3f41255a"
+    "resourceFingerprint": "396dd0246716e42e3d1bed90b04b84c75445f39773a9bdc721260f9d9a098c5f"
   },
   {
     "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
@@ -5123,11 +5002,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "65156",
-    "etag": "\"1776371873\"",
-    "lastModified": "Thu, 16 Apr 2026 20:37:53 GMT",
+    "etag": "\"1776467012\"",
+    "lastModified": "Fri, 17 Apr 2026 23:03:32 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "b57f1289a3d5957fd07dc4eee8e381b30a4c25a740381d4b1a483c02a9f14e77"
+    "resourceFingerprint": "c77b1a772c8320aaa9cece9fdb950b2c5405499a37aab9c5115cd8871ec0a084"
   },
   {
     "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
@@ -5156,11 +5035,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "88501",
-    "etag": "\"1776353033\"",
-    "lastModified": "Thu, 16 Apr 2026 15:23:53 GMT",
+    "etag": "\"1776463838\"",
+    "lastModified": "Fri, 17 Apr 2026 22:10:38 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2e5cf2c8066ded32bcebdc2ef3c10d20f692a557726047782e202497ebf5fa36"
+    "resourceFingerprint": "e5b4d8b81b47ff56e527036eb02c4655e95dd67400e3a419b3e0c89d05f2cac5"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/civil",
@@ -5178,11 +5057,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "104707",
-    "etag": "\"1776354540\"",
-    "lastModified": "Thu, 16 Apr 2026 15:49:00 GMT",
+    "etag": "\"1776464078\"",
+    "lastModified": "Fri, 17 Apr 2026 22:14:38 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "3a5e03857134fb038519cbb2fc88f76a333433a72dab1ed073cb0d7ea2c48a87"
+    "resourceFingerprint": "0b81b5fe1dd0ce0261adbc03da190f946780b6e7916576ab486bb88fd6c9cc16"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
@@ -5200,11 +5079,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "84775",
-    "etag": "\"1776353842\"",
-    "lastModified": "Thu, 16 Apr 2026 15:37:22 GMT",
+    "etag": "\"1776464363\"",
+    "lastModified": "Fri, 17 Apr 2026 22:19:23 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "3beec01e564d46db986b57ae6dc74a3522ce95f689dc18effa630a0a65b14e25"
+    "resourceFingerprint": "a6879f904216a24586a430ad189402a8840e8ef814e0b0ae7942bee2a128a1be"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
@@ -5223,11 +5102,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "107367",
-    "etag": "\"1776353128\"",
-    "lastModified": "Thu, 16 Apr 2026 15:25:28 GMT",
+    "etag": "\"1776466231\"",
+    "lastModified": "Fri, 17 Apr 2026 22:50:31 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "25102cf3a50ea0159284d31204d2fac3104b98b8a4577d6e9423d6e9c368a2d4"
+    "resourceFingerprint": "58c4f06d4ee40fbb286874bd06dd58d892abb8b96f0758ed696ce16bfed6412a"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
@@ -5245,11 +5124,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "104685",
-    "etag": "\"1776352065\"",
-    "lastModified": "Thu, 16 Apr 2026 15:07:45 GMT",
+    "etag": "\"1776466785\"",
+    "lastModified": "Fri, 17 Apr 2026 22:59:45 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a4856a3dc3992100def07ead07e480c3fc816b9bf09dd32123987ed95f6a36d1"
+    "resourceFingerprint": "a624abb1dd5b9759b4d0c38330b062ef19d82f02894653a67a708b0f09740556"
   },
   {
     "url": "https://www.tacoma.uw.edu/set/programs/undergrad/me",
@@ -5267,55 +5146,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "104264",
-    "etag": "\"1776351498\"",
-    "lastModified": "Thu, 16 Apr 2026 14:58:18 GMT",
+    "etag": "\"1776464225\"",
+    "lastModified": "Fri, 17 Apr 2026 22:17:05 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "3e8f14a6070a1e79ff400d562689d209e88befe804588ac30036bbb6d22c2f8b"
-  },
-  {
-    "url": "https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-gender-and-labor-studies",
-    "finalUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
-    "labels": [
-      "UW Tacoma Ethnic, Gender and Labor Studies overview"
-    ],
-    "ownerIds": [
-      "uw-tacoma-ethnic-gender-and-labor-studies"
-    ],
-    "kinds": [
-      "major"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "50794",
-    "etag": "\"1776358720\"",
-    "lastModified": "Thu, 16 Apr 2026 16:58:40 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "c5f76a274b916d371b5d944b3190debbea6b0321fed1a2b2e44a242afcefb08f"
-  },
-  {
-    "url": "https://www.tacoma.uw.edu/sias-new/socs-new/interdisciplinary-arts-and-sciences",
-    "finalUrl": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
-    "labels": [
-      "UW Tacoma Interdisciplinary Arts and Sciences overview"
-    ],
-    "ownerIds": [
-      "uw-tacoma-interdisciplinary-arts-and-sciences"
-    ],
-    "kinds": [
-      "major"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "72201",
-    "etag": "\"1776352165\"",
-    "lastModified": "Thu, 16 Apr 2026 15:09:25 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "e94a50ce934498059c0a45bb34a5615022888ccb7ea30a0d467e0eabb09224c7"
+    "resourceFingerprint": "b9dd37f9edb2671beebd18021e5cfb1763280af3fc320410eb5703fba140e94f"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
@@ -5333,17 +5168,16 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "56469",
-    "etag": "\"1776353217\"",
-    "lastModified": "Thu, 16 Apr 2026 15:26:57 GMT",
+    "etag": "\"1776464170\"",
+    "lastModified": "Fri, 17 Apr 2026 22:16:10 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f6a4c76115ca458007548ab97e3c0f72217c22e0442523002c331e943649b13c"
+    "resourceFingerprint": "713618fb2529898b6a6bff978744541da8d21cfd755b3f082b331b942f6b5d3a"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/communication",
     "finalUrl": "https://www.tacoma.uw.edu/sias/cac/communication",
     "labels": [
-      "UW Tacoma Communication overview",
       "UW Tacoma Communications major requirements"
     ],
     "ownerIds": [
@@ -5356,33 +5190,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "52683",
-    "etag": "\"1776355875\"",
-    "lastModified": "Thu, 16 Apr 2026 16:11:15 GMT",
+    "etag": "\"1776465840\"",
+    "lastModified": "Fri, 17 Apr 2026 22:44:00 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d9eec4b6a823793511293241de4f5432529710f8203c51f163b5f069b8cbe1b0"
-  },
-  {
-    "url": "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
-    "finalUrl": "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
-    "labels": [
-      "UW Tacoma Creative Writing track"
-    ],
-    "ownerIds": [
-      "uw-tacoma-writing-studies"
-    ],
-    "kinds": [
-      "major"
-    ],
-    "ok": true,
-    "status": 200,
-    "contentType": "text/html; charset=UTF-8",
-    "contentLength": "58388",
-    "etag": "\"1776364217\"",
-    "lastModified": "Thu, 16 Apr 2026 18:30:17 GMT",
-    "title": null,
-    "fetchMode": "head",
-    "resourceFingerprint": "29d52460bc677822d59d83eef9fcf3fedc0a56035e63cc10c756b4548ba0213b"
+    "resourceFingerprint": "b8e3f892413f7b3729caeebdcef87821f36c606f3823cad68d1a70b122a139c1"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures",
@@ -5400,11 +5212,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "55089",
-    "etag": "\"1776359851\"",
-    "lastModified": "Thu, 16 Apr 2026 17:17:31 GMT",
+    "etag": "\"1776467414\"",
+    "lastModified": "Fri, 17 Apr 2026 23:10:14 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6fddba700405739322443c00ee2c8f86c5ae8d833658ccf4febf39edd8484edf"
+    "resourceFingerprint": "dae3e6cc64980a493364d0fe50722973e63ef83a9b5025fbaafe8d2815f63699"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
@@ -5422,11 +5234,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "53018",
-    "etag": "\"1776354016\"",
-    "lastModified": "Thu, 16 Apr 2026 15:40:16 GMT",
+    "etag": "\"1776467416\"",
+    "lastModified": "Fri, 17 Apr 2026 23:10:16 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "cd859a15b5a2bedaddf65744d045cf402c87eeaa2f2ebbbb29d0f3c924f2b21d"
+    "resourceFingerprint": "ca3575475bf4e18a4a63ca5c50ec01c678d6405ca53c2d216cdaee1684be54df"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
@@ -5444,11 +5256,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "69292",
-    "etag": "\"1776351807\"",
-    "lastModified": "Thu, 16 Apr 2026 15:03:27 GMT",
+    "etag": "\"1776463619\"",
+    "lastModified": "Fri, 17 Apr 2026 22:06:59 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a9d97045a613e2031989951347f3bcbf343fb7a01f208d97f5e93ffe19d2be14"
+    "resourceFingerprint": "d6b69431646d16c38479e10d2459025a75d66d387b5a6a2d23d5ec24e80b3570"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
@@ -5466,11 +5278,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "101379",
-    "etag": "\"1776354846\"",
-    "lastModified": "Thu, 16 Apr 2026 15:54:06 GMT",
+    "etag": "\"1776466972\"",
+    "lastModified": "Fri, 17 Apr 2026 23:02:52 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "68c3197925d4bed0c3960f6f3e653fc0f68651d73e4a2f0937aa68d03281a1da"
+    "resourceFingerprint": "0ff039d2e0bc973614bc0f5c387d85c3dde302f18c787b94ed696934edfa1e8e"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
@@ -5488,11 +5300,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "68270",
-    "etag": "\"1776354845\"",
-    "lastModified": "Thu, 16 Apr 2026 15:54:05 GMT",
+    "etag": "\"1776465403\"",
+    "lastModified": "Fri, 17 Apr 2026 22:36:43 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f8c7832ce6c371e4a35bb668de5b74f47ba8641879ddbaa953002f48e8b2d2da"
+    "resourceFingerprint": "e7faa7ab91fb75ee7ba45a9a745baaed3e4ab03c19ba6726edc090df491145dd"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/sam/mathematics",
@@ -5510,11 +5322,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "68179",
-    "etag": "\"1776352452\"",
-    "lastModified": "Thu, 16 Apr 2026 15:14:12 GMT",
+    "etag": "\"1776466431\"",
+    "lastModified": "Fri, 17 Apr 2026 22:53:51 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "1dd7ae27067b1165ca115ca7a02cfbfd12997d32651aab84a5f62c86254fd10c"
+    "resourceFingerprint": "019bd3853a434fca9a8b146d32e11bdd678e9b4af547e1375b781dccc13dbbfa"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
@@ -5532,11 +5344,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "54676",
-    "etag": "\"1776354846\"",
-    "lastModified": "Thu, 16 Apr 2026 15:54:06 GMT",
+    "etag": "\"1776467421\"",
+    "lastModified": "Fri, 17 Apr 2026 23:10:21 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c85804f98b79ed9a47ef29ca8a9fe5418819eb4057828faac87fcd2d289e587f"
+    "resourceFingerprint": "2f404927800ed3bac377da49f23efb09f6e5ad91eae517691612a49ff941123b"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
@@ -5554,11 +5366,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "50794",
-    "etag": "\"1776358720\"",
-    "lastModified": "Thu, 16 Apr 2026 16:58:40 GMT",
+    "etag": "\"1776467308\"",
+    "lastModified": "Fri, 17 Apr 2026 23:08:28 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c5f76a274b916d371b5d944b3190debbea6b0321fed1a2b2e44a242afcefb08f"
+    "resourceFingerprint": "6012dd7ef9716c82734bda342a81d2e24393bd56bc84fd130ecf3cd52d1b79f4"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/history",
@@ -5576,11 +5388,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "58590",
-    "etag": "\"1776356673\"",
-    "lastModified": "Thu, 16 Apr 2026 16:24:33 GMT",
+    "etag": "\"1776464686\"",
+    "lastModified": "Fri, 17 Apr 2026 22:24:46 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bee55b57e9ea6c6f881164a7f3b44f4fc65eebbb2adf7a1af3e59edd8e3a9868"
+    "resourceFingerprint": "945b1836f50989ee4a6ad7f04c61324adb6666ab827aea3dc900ff9f02d675b3"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
@@ -5598,11 +5410,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "72201",
-    "etag": "\"1776352165\"",
-    "lastModified": "Thu, 16 Apr 2026 15:09:25 GMT",
+    "etag": "\"1776466972\"",
+    "lastModified": "Fri, 17 Apr 2026 23:02:52 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e94a50ce934498059c0a45bb34a5615022888ccb7ea30a0d467e0eabb09224c7"
+    "resourceFingerprint": "a8bd025c17d76913a11f72c4f9151d8d0a81a6624170312901bdb18091cfe34d"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
@@ -5620,11 +5432,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "65044",
-    "etag": "\"1776355741\"",
-    "lastModified": "Thu, 16 Apr 2026 16:09:01 GMT",
+    "etag": "\"1776465697\"",
+    "lastModified": "Fri, 17 Apr 2026 22:41:37 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "87a5c037e0c0a3e4572dc77a1c16b608a6bf87e5d5d1adea165cef4eaeb8eb6e"
+    "resourceFingerprint": "8ba52278bfe529b12c251423ab14068bf0dda1a11016be02c778633dabd32830"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
@@ -5642,11 +5454,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "50475",
-    "etag": "\"1776354573\"",
-    "lastModified": "Thu, 16 Apr 2026 15:49:33 GMT",
+    "etag": "\"1776464081\"",
+    "lastModified": "Fri, 17 Apr 2026 22:14:41 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "04eb9f2e4c971711d70b7ef44a8f1addda1288585179ba52f0db8e999d53ac86"
+    "resourceFingerprint": "cb1f4a2c5536c369f94dd5d42ca732ba97c4cf02caa4d1f6d0fa3df0f9a1957c"
   },
   {
     "url": "https://www.tacoma.uw.edu/sias/socs/psychology",
@@ -5664,11 +5476,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "63279",
-    "etag": "\"1776358695\"",
-    "lastModified": "Thu, 16 Apr 2026 16:58:15 GMT",
+    "etag": "\"1776467428\"",
+    "lastModified": "Fri, 17 Apr 2026 23:10:28 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "8edb0fd5b5535c70e31ebfd21a78037693a1ea74ea441a9e83dfa6ae031e11ac"
+    "resourceFingerprint": "16cb08d40af103f762634b8e33c9c16297bd91ddd39748a88cd928699dddeda3"
   },
   {
     "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
@@ -5686,11 +5498,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "76350",
-    "etag": "\"1776356823\"",
-    "lastModified": "Thu, 16 Apr 2026 16:27:03 GMT",
+    "etag": "\"1776465912\"",
+    "lastModified": "Fri, 17 Apr 2026 22:45:12 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "90661285080d36673b03f9a1691a862849bf4df0f4090313270a796a1366ad96"
+    "resourceFingerprint": "5d9b559e635f6c944f56c847041f20c140a34b53b3ad3948887c5b86dadf349b"
   },
   {
     "url": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
@@ -5708,11 +5520,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "92250",
-    "etag": "\"1776360713\"",
-    "lastModified": "Thu, 16 Apr 2026 17:31:53 GMT",
+    "etag": "\"1776465783\"",
+    "lastModified": "Fri, 17 Apr 2026 22:43:03 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ab53e36ca23d82bfa753da07bfb540cf4987d06db97e7b9df9e7583329ac049e"
+    "resourceFingerprint": "459008513972710000cd25f885fa498e69284878e56e70aff716f8fc8d9ff43a"
   },
   {
     "url": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
@@ -5730,11 +5542,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "99754",
-    "etag": "\"1776355935\"",
-    "lastModified": "Thu, 16 Apr 2026 16:12:15 GMT",
+    "etag": "\"1776467431\"",
+    "lastModified": "Fri, 17 Apr 2026 23:10:31 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "324294b4f59ad5c6fbbddf56180352af3bb4609bedabd3c0e27a05d4a5a9f5b7"
+    "resourceFingerprint": "ef7042a53b946b0c7662f084f97325eaf55b2c8c7774ea82be7447ce80a8a638"
   },
   {
     "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
@@ -5752,11 +5564,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "84945",
-    "etag": "\"1776357861\"",
-    "lastModified": "Thu, 16 Apr 2026 16:44:21 GMT",
+    "etag": "\"1776467434\"",
+    "lastModified": "Fri, 17 Apr 2026 23:10:34 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ea71911bbd003406f15da64b420bec4fb3a9c2663f515fdf781b21c0cc14f1d2"
+    "resourceFingerprint": "85d24cf759324a2eb99160a518f1396bd553cf367e2539fe36a433a4801baf21"
   },
   {
     "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
@@ -5774,11 +5586,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "87686",
-    "etag": "\"1776353261\"",
-    "lastModified": "Thu, 16 Apr 2026 15:27:41 GMT",
+    "etag": "\"1776467436\"",
+    "lastModified": "Fri, 17 Apr 2026 23:10:36 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "b2c7d1bebaf1ddd9412ce95a9fff077d4dbd835e65c20f12d56bea05c04452d2"
+    "resourceFingerprint": "05a81ba1cc6f8ae329ca5daa792b82fd7d3ce992f52184b512c9e00e6166d2c7"
   },
   {
     "url": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
@@ -5796,11 +5608,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "88412",
-    "etag": "\"1776353711\"",
-    "lastModified": "Thu, 16 Apr 2026 15:35:11 GMT",
+    "etag": "\"1776467438\"",
+    "lastModified": "Fri, 17 Apr 2026 23:10:38 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "1f9c6ccba8b110cfcb6316df95a974ac07f6b0077b5f953cc4a2de2c66e3cad7"
+    "resourceFingerprint": "261bd7c491b98f83e34634f150acc70d6b5366d55cffaa7c29bdcb807d4e0eb1"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
@@ -5817,12 +5629,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "58224",
+    "contentLength": "58614",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a1eeac94f9908deb3398aeb59b964581a24171661b26516e076d8b60ff37ba70"
+    "resourceFingerprint": "ba1a813610c3d909c6924e41fae636e2607d367465a1bb0ee863e3039bf03a27"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
@@ -5839,12 +5651,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57951",
+    "contentLength": "58343",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9104b2005ebc176f73f0a1b31c23b70c11e3be3989b36bb7ae5d7a8c5dec966d"
+    "resourceFingerprint": "b8aff7437d31d28a6cc7749dcf2a686e45935c737774d84bda13791268214fec"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
@@ -5861,12 +5673,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "58647",
+    "contentLength": "59037",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e2ecac29baddc7bcdfb72f19fa6f05dd9104942ba1c7cbc9cf9d36e0cae7f216"
+    "resourceFingerprint": "6a8d84ef2e6b5f164cd65271fd9f6c63ccd4e6d84ae1af5ea33c7369087f776e"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
@@ -5883,12 +5695,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "56138",
+    "contentLength": "56495",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "17ec3a64c29dd882e09ede429c1f7b0a7e8c2035b5e6537ba5879a7f7ff8a035"
+    "resourceFingerprint": "5c5aac7cddf0da49d0034e29049daf8415185d88e65800b762b5e72e8398a001"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
@@ -5905,12 +5717,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "56487",
+    "contentLength": "56849",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "069530115883db1dbea1d281d22621d3961293e21522b8f7f55a4fcdc9d9ca3d"
+    "resourceFingerprint": "beab848dd2039c84944f7255b26a0deaca6e744845ee66827966bca93e362219"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
@@ -5927,12 +5739,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57077",
+    "contentLength": "57443",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "660fe41ea4a1503c6c94aa7a2012ada151ed65b8e11fbf2401df2b80ee1619a1"
+    "resourceFingerprint": "1955b9afcd212a6bb2b7ea243b9cd69a8367ecf2a3a536262d29b5657711a597"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
@@ -5949,12 +5761,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57056",
+    "contentLength": "57429",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "99de5479131f814f323dff649097b7c7324c706b7dd4c405a35733c15a2b5ed8"
+    "resourceFingerprint": "074a3fa08b26ef213a8d45b94e5aa7d41190b9e2a6470bb40e177b3a48963b39"
   },
   {
     "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
@@ -5971,12 +5783,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "61363",
+    "contentLength": "61757",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "89039afda9702248cd24d3ed62063eac78083cfe81217993690d9e5db3f8e689"
+    "resourceFingerprint": "3013b699ee93652e13bed4e5b270b21d3a17687b9a7cebef13aad617be92b8bd"
   },
   {
     "url": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
@@ -5993,12 +5805,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "75770",
+    "contentLength": "76156",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "40dc00d30f4fba6a64b86b90b97720556988da114283b20a689b271b773afe24"
+    "resourceFingerprint": "0802de38dbefb399006ec12b6bf7c889bd208f22236bf4cb324206a94e0df4ff"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio",
@@ -6015,12 +5827,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "58905",
+    "contentLength": "59280",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a7655a1fba7cc191f006753799faba7a6329d2c79260c09c9614ff858a86c183"
+    "resourceFingerprint": "8542ba2c9d7263cd84ed16f94c6a128f864dd3e49a09fc4cab4ca80473daf442"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
@@ -6037,12 +5849,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "66060",
+    "contentLength": "66449",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bd0fc39e142687c4e7483ae42ed4be066c64baf5c730f228198108d549e69486"
+    "resourceFingerprint": "5816db005b4ff0e6323ff6774a77de0d5c1ea8c8e868931dd31b1b971647b410"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
@@ -6059,12 +5871,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "66447",
+    "contentLength": "66820",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f595e1069a69f08eed97e4e632ea0a6321f5c21e8964f86827f2e8a50643e573"
+    "resourceFingerprint": "3a573a6c83643729d5d8906deb99ba20bb921f296da73ee3c7d6e7f2cacfc0bb"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts",
@@ -6081,12 +5893,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "38436",
+    "contentLength": "65884",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "180c1628ff7ccb4ed5b08839c42eb7372cf89a8985ec3b919936901c167290c3"
+    "resourceFingerprint": "6cb077dac6c71672646c678be719360321395ebea3eb9c597194605a841c4111"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
@@ -6105,12 +5917,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64167",
+    "contentLength": "64557",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "4525847538803a220b673088e6902bb38e2482a9c5a67dddd87451be8c0d6ddd"
+    "resourceFingerprint": "4778a4df3193d024a431fc22dc43738a76b5083d853dd4578d094885f812d216"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
@@ -6127,12 +5939,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "69472",
+    "contentLength": "69860",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "316eb3f55b23a0fbcaa35e1cff85b992806030dacff5c32f0511b8c58b1e9b9b"
+    "resourceFingerprint": "7f2945e12860f666628662398311f526e798120a69283ca7fc3426b63873f7f6"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
@@ -6149,12 +5961,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64133",
+    "contentLength": "64528",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "747fb175056b52923364030849d44a87845f6de881e3411cbd530ab7e27edfd4"
+    "resourceFingerprint": "686eac82b86de8991f8bc98624b4c8bd413ca90d5911a2701c9bf7055b07c631"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
@@ -6171,12 +5983,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "66637",
+    "contentLength": "67032",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f9591493416317c9776d02c9119583c3a3d92539c3ed64cd2daefc8856b99c56"
+    "resourceFingerprint": "b1d5429ac55253eca23097065bb041e8c2d72ecd19945814126f3054f12ad883"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
@@ -6193,12 +6005,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64301",
+    "contentLength": "64695",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2bf8c214d63d11fc305130bfae8ba279b1b699aa2683215463cd8f2b71478b6b"
+    "resourceFingerprint": "e9c40c02e52040260f7a86bad97cae0d1ea9714b04447651a1d7010d2b4740e7"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
@@ -6215,12 +6027,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "63977",
+    "contentLength": "64371",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6aa69cae3ef1d8eb9758e5e6babfd9d89765ba0261c799840927a50d69f726bf"
+    "resourceFingerprint": "b5134707398abbff814213191cc2cffaa8d6d5bf98a9536fc3bf7e321aba924b"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
@@ -6237,12 +6049,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64480",
+    "contentLength": "64874",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0ecb4276c230ececc53108640b4f973986f48c05c7cec4b55bbad4c578c4ddc4"
+    "resourceFingerprint": "4407c3460b87f63620742b163953368543aba536e233aeaeb5938f649cc2c5b6"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
@@ -6259,12 +6071,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "63119",
+    "contentLength": "63487",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "abf79bef9021c7cf82080be23c4ebfedecaa08d02c7e714c949244dabe37592a"
+    "resourceFingerprint": "7fa40d1a4a6fe2500b74637fe775e5681d849ebb62a9a9cae86a4d49eca440c6"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
@@ -6281,12 +6093,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "63792",
+    "contentLength": "64184",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "db956d8e044f2cdd3602551917831e1f4952331a5853228bcfff46a84674d42d"
+    "resourceFingerprint": "ccbc341c5caccc270acd8fd2b77e71b067b92186610417bc79b6b5faa03fb88b"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
@@ -6303,12 +6115,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "68245",
+    "contentLength": "68623",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bdbbc050988cf728fc2d573fad2efb9af97f8911e4272cb6d8bbbc8d946149d1"
+    "resourceFingerprint": "327b438a1cbf07a8eda684e93cc96196807c8345acd890bed7330af9233e1f85"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
@@ -6325,12 +6137,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "67448",
+    "contentLength": "67825",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "925255f6807588fc94abd7ac857ca702e310dcfcb7e00b5587c920852b76006a"
+    "resourceFingerprint": "5adc9639b0fb5cde5556b4f19eb575ac768ed71ba30b7f52f0ac2f7e4e2d5bca"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
@@ -6347,12 +6159,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "61863",
+    "contentLength": "62235",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e19fc6518fb411786504a1e55575160421837ca108d5972182831cd151ab7545"
+    "resourceFingerprint": "821bd98479eabb2a002617f75686adc5c3cdc51c8057dd943f7fea574844b0e3"
   },
   {
     "url": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
@@ -6369,12 +6181,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57178",
+    "contentLength": "57558",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f803291d435273e95c4f6090437f57088a0e4b990ea1cd838b8bca6ad4f47ecb"
+    "resourceFingerprint": "43d64f631364b569fae13af0ddeef8501dd6846a4f5affc427fef2f118484cdd"
   },
   {
     "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
@@ -6392,12 +6204,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "67359",
+    "contentLength": "67731",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ca347282d05199be06940031c7d04f2eda9bc41e76b05bdd310c76175ef5a4a4"
+    "resourceFingerprint": "5ea6499ab94cce136ad2a54064976098b4f51e7e5fbedde6f60bc955dbc3f55a"
   },
   {
     "url": "https://www.uwb.edu/premajor/wp-content/uploads/sites/26/2023/07/fillable-imd.pdf",
@@ -6436,12 +6248,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "68356",
+    "contentLength": "68742",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "7bc927e2cc335ba2a38715c3603d08462b22ffbbc859c8da7043184fa2315256"
+    "resourceFingerprint": "9b76c24a6cd13bc86845acc62845e39a885e0576114d5f4f46419dde6601b53a"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
@@ -6458,12 +6270,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "67544",
+    "contentLength": "67932",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "46f67d0e3b1a152a9286d03b38be325d253f90e9c4c1ea4c341692c548c9a508"
+    "resourceFingerprint": "c73d1fcca8754802047d90ec926aa07532b1b733db6e43c07272bd07686e77a6"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
@@ -6480,12 +6292,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "65269",
+    "contentLength": "65665",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "658bfa41d61e96030a680ed999d45b97d31e71b2e48595a3d179face6a4c4561"
+    "resourceFingerprint": "8a375afd92db69845549b3c56ef942f5552b129c7387b0bba97b4bda0eb7b377"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
@@ -6503,12 +6315,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "68803",
+    "contentLength": "69186",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "25f0a96be766fe4b3a53c90e5b47007858c33bdc8de81b82107b032dc175d2a1"
+    "resourceFingerprint": "5ad23f3033dafc9c97cd0e6c37538b561792db16e4637f22ddf35dd2b3998494"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
@@ -6527,12 +6339,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "67089",
+    "contentLength": "67467",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "edb463d69a1aebdc0dbf1087c2113d61000a5c50467cedb84066c9109c6fad27"
+    "resourceFingerprint": "dd303b1154ebc994eaf4e4fb4a8aca5ff843a6d34dd5ab9e824f7fcf33fa7a67"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
@@ -6549,12 +6361,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64357",
+    "contentLength": "64764",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d3a5f219d00657a07cc7dc0b5a6b0f5e6816604eaa2bf1578782005c39719c54"
+    "resourceFingerprint": "8e358ad0c139db25b919a524382996f3944061a4d494203628eed3fc3a09656a"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
@@ -6571,12 +6383,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64807",
+    "contentLength": "65218",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "665fa0f4ca96fad24f4d9a709b971870d74b8bcdea7f0376bd6222b6e7834393"
+    "resourceFingerprint": "b8f1cba3063047abba7e4288e78747f3135b62e48050df84e1b36326b77f1472"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
@@ -6594,12 +6406,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64699",
+    "contentLength": "65107",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f9c0ad91530db62071681fc0ca9fc5b71a279f65c1a2074ed3ce665b36b4c86f"
+    "resourceFingerprint": "e9a3ec74c523675fa52973649d0a4aadcff9c6836c87e94774ab075c8a2bbe52"
   },
   {
     "url": "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-Comp-E-Curriculum-AY24_25.pdf",
@@ -6614,14 +6426,14 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
       "major"
     ],
     "ok": true,
-    "status": null,
-    "contentType": "requirement-source-snapshot",
-    "contentLength": null,
-    "etag": null,
-    "lastModified": null,
-    "title": "University of Washington Bothell",
-    "fetchMode": "requirement-snapshot",
-    "resourceFingerprint": "96357d29f668b0dcd5c03d1f76bcd519133a698b90f05d5293105391ca857fee"
+    "status": 200,
+    "contentType": "application/pdf",
+    "contentLength": "142892",
+    "etag": "\"677c59e8-22e2c\"",
+    "lastModified": "Mon, 06 Jan 2025 22:32:08 GMT",
+    "title": null,
+    "fetchMode": "head",
+    "resourceFingerprint": "87c5ab30e81ce7a47e7885302fb83458230ac22b1223d8958cc5f0cb04edcb25"
   },
   {
     "url": "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-ME-Curriculum-AY24_25.pdf",
@@ -6661,11 +6473,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "64091",
-    "etag": "\"fa5b-64f845bdfb600\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"fa5b-64f987cac33f1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "297be7d8cddc09e117e7bd1928702eb7795c4a5e4cdf751caf9bef2ade25deaf"
+    "resourceFingerprint": "b36b2a17d0e38cf55ccee5263c9158cd3b23d1db80c9b4850c80a71005ec6ec4"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
@@ -6683,11 +6495,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "70810",
-    "etag": "\"1149a-64f845be18abe\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"1149a-64f987caea4ef\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6d06affe78264dccf35c153536b86e385f1944ff52b6186d61a77a36813b9100"
+    "resourceFingerprint": "6715e2a0c7bb126d726e6bee8e967867c584a266a7ab39320c51f2880485efcc"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
@@ -6705,11 +6517,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "39929",
-    "etag": "\"9bf9-64f845bdf8ef1\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"9bf9-64f987cabe5d1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "5262d48b7981e16adb1a96703bf18deab48b6158dadb66622b7fa961dcc9ddb0"
+    "resourceFingerprint": "895e502e45052c2b96fe3c542d21ce4048d630ab9a4fbe21c678b2b84a8be5fa"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
@@ -6727,11 +6539,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "74977",
-    "etag": "\"124e1-64f845be13c9f\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"124e1-64f987cad937f\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "7ad2b0ab2dbc567cbcc8d05902b971b79268c80e270aa7d69fa0b6a9b13c9046"
+    "resourceFingerprint": "d39a70911c8ceb80c38b33cbc7d2a7aa0da18396d9aef8e680d8d2dfd5256e6d"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
@@ -6753,11 +6565,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "48158",
-    "etag": "\"bc1e-64f845be18abe\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"bc1e-64f987caea4ef\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "27f237d96a1ec53e3bb99e56d6cf10a021a0a12a477ddd855fab004cd298045e"
+    "resourceFingerprint": "792784cc934c17e644f1fb35ba33284e73a4987cf4ed4aa249be508ac76d4ffa"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
@@ -6784,11 +6596,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "43627",
-    "etag": "\"aa6b-64f845bdfdd10\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"aa6b-64f987cac33f1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "5fdd6a930b6d4be4edeacec544675dd48fca3b7bedd18e8cf1f1a9d215a47b59"
+    "resourceFingerprint": "cc1dc650f2fc039b14e3c2900cc11fe73b985b7dc7796f874629cbe2a8c57fd0"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
@@ -6819,11 +6631,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "53651",
-    "etag": "\"d193-64f845bdf8ef1\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"d193-64f987cabe5d1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "d059e47365b61b233b2f8ea57a4214c10be7e1f06442bfeda18e81a657d1b6c2"
+    "resourceFingerprint": "15ba9dd0545fec1ab0d9cbed98ed074444b77c2f35ca1f1640a785ef121782d5"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
@@ -6841,11 +6653,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "175163",
-    "etag": "\"2ac3b-64f845bdf8ef1\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"2ac3b-64f987cabe5d1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "dcc6085f83b6d374c3011c86845d8ff66a0fd96891e3c3095e7dec6f0bb34e58"
+    "resourceFingerprint": "73d55b0242d7378837b36daacf832a9625def7f16224082c892af3890643bd8a"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Communication-1035.html",
@@ -6863,11 +6675,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "41708",
-    "etag": "\"a2ec-64f845be163ae\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"a2ec-64f987cae7ddf\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "26baf460291df70fd22267ff59155d7ca8e322f05a5e36c50351033597e190fb"
+    "resourceFingerprint": "a993e86e73023340374bfb94453f683bc3dffcd1e879f59f14b0b52f9ed0bc3d"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
@@ -6885,11 +6697,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "24993",
-    "etag": "\"61a1-64f845be13c9f\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"61a1-64f987cad937f\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "177d69f6d2a47cc3080e069ff3b2c0ea71566440496223f988410acdb3c04aee"
+    "resourceFingerprint": "57ad01cafb58400609b39f516c12ff9fbae767d637fa96cfe19864489460ab40"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
@@ -6907,11 +6719,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "37424",
-    "etag": "\"9230-64f845be13c9f\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"9230-64f987cad937f\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f60e18fc9c1c12a475747f2735db3ba21d01251493bae53c91d561cdd694a143"
+    "resourceFingerprint": "c0c8460ec68216e0053d091f85010435ca9759eda739421b8efe332c1813aab3"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
@@ -6929,11 +6741,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "26452",
-    "etag": "\"6754-64f845be00420\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"6754-64f987cacf740\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e5abbbdc800abd98cc2d03858fea2ce94a417c9297c42c075ca8ca2124932b86"
+    "resourceFingerprint": "4c49bd93469240b28077fd3ebbbe439a3d096ff3b7590099d114cfedc92daf86"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
@@ -6951,11 +6763,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "45618",
-    "etag": "\"b232-64f845be00420\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"b232-64f987cad1e50\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "1bc91e135dbaf16666508aa387b04940e3f50b2816fb3b85c3e71cef4a502dc2"
+    "resourceFingerprint": "e07df7524bead925bf428f2373609acad3fc1c48aaa18d37449c507b899dbc33"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
@@ -6984,11 +6796,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "44019",
-    "etag": "\"abf3-64f845bdfb600\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"abf3-64f987cac33f1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a9207c3ee8ae466a97870819b0b04f298b1b219aa4d233c01fcc15c05847dedd"
+    "resourceFingerprint": "8e01e8291f82973e9049e51956a9528cea099b61a797ac9ea0694cfa69ec2b78"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
@@ -7011,11 +6823,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "51933",
-    "etag": "\"cadd-64f845be00420\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"cadd-64f987cad1e50\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "40de1e77c1f9e5f89f50e1ac9a1e360b192fadb92d88bd5fe890a67535b3811d"
+    "resourceFingerprint": "d6446204e009ac41e5dd9c149efa065021ab1414691dc1494542f396a7b732d7"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/English-136.html",
@@ -7033,11 +6845,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "45690",
-    "etag": "\"b27a-64f845be00420\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"b27a-64f987cad1e50\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "866ebfffe43fe147f9878a045e301f3935149f94e114e1a532a3c48dafe1225e"
+    "resourceFingerprint": "a3fc55f3978dee7d02595421bf5ea58282c80f4fcad323c1ace4d53a8039d57f"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html",
@@ -7055,11 +6867,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "38341",
-    "etag": "\"95c5-64f845bdfb600\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"95c5-64f987cac33f1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2e8ebaaee464e85c750023beb799d82471a23e8fa452a13d80d97bb75f20982d"
+    "resourceFingerprint": "42808d1e670e912f274ed3aac4afacb908455923cfd4bce1a3ffb0238572a24e"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html#program-UG-ITAL-MAJOR",
@@ -7077,11 +6889,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "38341",
-    "etag": "\"95c5-64f845bdfb600\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"95c5-64f987cac33f1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "2e8ebaaee464e85c750023beb799d82471a23e8fa452a13d80d97bb75f20982d"
+    "resourceFingerprint": "42808d1e670e912f274ed3aac4afacb908455923cfd4bce1a3ffb0238572a24e"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Gender%2CWomen%2CandSexualityStudies-298.html",
@@ -7099,11 +6911,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "33631",
-    "etag": "\"835f-64f845be163ae\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"835f-64f987cae7ddf\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "deea6ff91839106db1bb3465194261386ba10c1cccbac178c8d48481039462ba"
+    "resourceFingerprint": "7c12b934adbf07cd1b6c60068a21df5675665dea6f3b2d8fc5f93c8d3dc43d63"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/GeneralStudies-185.html",
@@ -7121,11 +6933,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "35815",
-    "etag": "\"8be7-64f845be163ae\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"8be7-64f987cae7ddf\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f113ed3ebbcf395d85e329b3e5badddcf8fee0d6e9cacc246a8e4e661d508bd4"
+    "resourceFingerprint": "23355d6b8679b3309b3286d602e9c6894060453f96748e2d1fed79b09c1876be"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
@@ -7148,11 +6960,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "43395",
-    "etag": "\"a983-64f845be163ae\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"a983-64f987cae7ddf\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9c5d8df25f007c9cf1e89afb1c8fb06858519ab2b7f64fc1c98f3c14348115ab"
+    "resourceFingerprint": "1f384a2d093528a33274faeeaaee7cba4e8581f3792a4ef5af841b0d6567a65b"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
@@ -7174,11 +6986,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "122925",
-    "etag": "\"1e02d-64f845bdf67e1\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"1e02d-64f987cabbec1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9f5fb067a4a9214eb6de7c38434fce69fa3aa31129991913a0a2a14ca51a99be"
+    "resourceFingerprint": "36f412f1d461a31cbce556ddd07862a424fddc776c09ed8bf66a8214db7e0c7b"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
@@ -7198,11 +7010,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "40805",
-    "etag": "\"9f65-64f845be13c9f\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"9f65-64f987cad937f\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f5f196d752077b9152432982f4e7bbf11bd437f15525d267f917a7e80a074e3a"
+    "resourceFingerprint": "6d36e01532394b1eac993fbf58918f6be9fd09f860c9665baea26188358ee771"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html",
@@ -7220,11 +7032,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "47550",
-    "etag": "\"b9be-64f845bdfb600\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"b9be-64f987cac0ce1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "8018fa9bd3b2db0ad5040ad8eeefcbd65bee6ac4b7281ccdc3eda199bf371616"
+    "resourceFingerprint": "1e3d441c843c68751fae6bfcf562ea88a62f4c227b31ad46f5912c8b089f6710"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Music-217.html",
@@ -7242,11 +7054,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "172664",
-    "etag": "\"2a278-64f845be163ae\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"2a278-64f987cae7ddf\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "8daaa9e807e6411d815539eec0bfda470c39c7b167d4b40327adfa2475e15757"
+    "resourceFingerprint": "e555b8066bfe5ffc418b0152aae6dbdc61c6feda520e142eb231e5f4732061e2"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
@@ -7266,11 +7078,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "47868",
-    "etag": "\"bafc-64f845be163ae\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"bafc-64f987cae7ddf\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "fce40369f53ca2a31796b1169a7a77dabafa088c07eb0e43261589b3a1f1ba21"
+    "resourceFingerprint": "266905a739e5cf590321e0a257be535531a944e44ccdb7ebed021611422f4a9f"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/ProgramontheEnvironment-1070.html",
@@ -7288,11 +7100,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "30634",
-    "etag": "\"77aa-64f845bdfb600\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"77aa-64f987cac0ce1\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ab4166f8e270f9ece3ed7def3d32654f21acf229c8dc86e15f4543db9aafb956"
+    "resourceFingerprint": "214b1cf8ed43d7278e0a3a28762d277030bba3922d80edbe738f3df853519615"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#program-UG-PSP-MAJOR",
@@ -7310,11 +7122,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "44265",
-    "etag": "\"ace9-64f845be00420\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"ace9-64f987cacf740\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "4d02bcba83882273420eead932ae7347627e6cb207c7b0300d7e8da9efcd5720"
+    "resourceFingerprint": "02b3e661e865c1bfc29996b62b8f91b1e3a722b0d01c420cd7cecc677ab661af"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/RealEstate-54.html",
@@ -7332,11 +7144,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "32548",
-    "etag": "\"7f24-64f845be13c9f\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"7f24-64f987cad937f\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "7078bccb355e0717efc6a37ded6915119c13c6194b0ecd4f9603fe0506c26c24"
+    "resourceFingerprint": "5583157bf2e21f0911c1ef68a1612d8ceea396935c3ea0de6508f539339e4e0a"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/SocialWork-779.html",
@@ -7354,11 +7166,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "47516",
-    "etag": "\"b99c-64f845be02b30\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:35 GMT",
+    "etag": "\"b99c-64f987cad1e50\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ac1bea4580dd1c6da7dca3ecd88e001907c01f72b5691389bb0d68137a72ad66"
+    "resourceFingerprint": "5d06ac213fe47ffbea9eb4c926be5e338d495a9bab505bab60d3b11c22a79e44"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/Sociology-293.html",
@@ -7376,11 +7188,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "25916",
-    "etag": "\"653c-64f845be163ae\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"653c-64f987cadba8f\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "8341d8965b3fb7fc646a89f0e66b0d99a7fc7debebab3601e41388919ad6f81e"
+    "resourceFingerprint": "6e914ac81c504674cf9fd0ead382a278234a902f1d4a4f7199987f9e29d7c082"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
@@ -7398,11 +7210,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "49109",
-    "etag": "\"bfd5-64f845be163ae\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"bfd5-64f987cae7ddf\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "881235217813149988c6ad3e243e9629d6282bf0c0285e49a6f51d9fabf3a3e2"
+    "resourceFingerprint": "bfb8909a3fb0a881ac3d945a222377a5d5840008096d9ba2dec9ff53dc92d762"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/S/UrbanDesignandPlanning-50.html",
@@ -7420,11 +7232,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "40016",
-    "etag": "\"9c50-64f845be13c9f\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"9c50-64f987cad6c70\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "a9cbd93c5673075326778d2cb7320db6fc7640deea249434efe494f6663dbd6a"
+    "resourceFingerprint": "f0ba2727eff1577233ae7dc12f5b49acc33a0b838c71a98e1ae214f26c395053"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
@@ -7443,11 +7255,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "158280",
-    "etag": "\"26a48-64f845be13c9f\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"26a48-64f987cad937f\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ce461ae8669357f7c89242b6bf3ac5b3d88e2cfdc66ac2f830f6e8494bba5d74"
+    "resourceFingerprint": "dae9069fb7d0acad66455ee0d5984cc20a44e01ff7a4f53bbdc52716dba6f017"
   },
   {
     "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
@@ -7465,11 +7277,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html",
     "contentLength": "143194",
-    "etag": "\"22f5a-64f845be0ee7f\"",
-    "lastModified": "Wed, 15 Apr 2026 19:02:36 GMT",
+    "etag": "\"22f5a-64f987cad4560\"",
+    "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "60e8f8d2a707330b18d1ca5fbbf18a3fc49b8be0230371011012c48fda197204"
+    "resourceFingerprint": "6b497e52a241b59111cbb929b6651ccf24eb19872d261ce0c77a1380ef35b655"
   }
 ];
 
@@ -11241,7 +11053,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "planId": "uw-seattle-computer-engineering",
     "pathwayId": null,
     "campusId": "uw-seattle",
-    "parserType": "pdf-degree-sheet",
+    "parserType": "generic-pdf",
     "sourceUrl": "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf",
     "sourceLabel": "Computer Engineering",
     "ok": true,
@@ -12523,7 +12335,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "qualitySignalCodes": [],
     "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "8b52b641e325f0ed08ea157293fae0f306a39148d7a6d641219272ccbd2001e8",
+    "requirementFingerprint": "559e11a4de5b05b24f2162cd7f70ed62061cee2ea352a95f5b0268ffa3b08337",
     "parsedUwCourseCodes": [
       "ECFS 200",
       "ECFS 301",
@@ -16405,21 +16217,18 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "sourceLabel": "UW Latin degree requirements",
     "ok": true,
     "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 11,
-    "sourceOnlyUwCourseCodeCount": 3,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "extractedHeadingCount": 14,
-    "requirementCueLineCount": 27,
+    "parsedUwCourseCodeCount": 8,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 3,
+    "extractedHeadingCount": 13,
+    "requirementCueLineCount": 23,
     "chooseStatementCount": 0,
     "qualitySignalCodes": [],
     "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "9d8ee4182afeeaf0758e56c540c89387107fad5a7db9febd249b5fe9e2266f96",
+    "requirementFingerprint": "6a9ce7143f6c906bc70bc2bc3ddae425f77cd0c31a2829fab3d0cae6757a8d98",
     "parsedUwCourseCodes": [
       "CLAS 495",
-      "GREEK 101",
-      "GREEK 102",
-      "GREEK 103",
       "GREEK 300",
       "GREEK 301",
       "LATIN 101",
@@ -16428,12 +16237,12 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "LATIN 300",
       "LATIN 301"
     ],
-    "sourceOnlyUwCourseCodes": [
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": [
       "GREEK 101",
       "GREEK 102",
       "GREEK 103"
-    ],
-    "structuredOnlyUwCourseCodes": []
+    ]
   },
   {
     "ownerId": "uw-seattle-latin-american-and-caribbean-studies",
@@ -17701,17 +17510,15 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "ok": true,
     "parseConfidence": "high",
     "parsedUwCourseCodeCount": 14,
-    "sourceOnlyUwCourseCodeCount": 11,
-    "structuredOnlyUwCourseCodeCount": 1,
+    "sourceOnlyUwCourseCodeCount": 0,
+    "structuredOnlyUwCourseCodeCount": 0,
     "extractedHeadingCount": 10,
     "requirementCueLineCount": 9,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "material-source-structured-drift"
-    ],
-    "qualityWarningCount": 1,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "e23fe77fb08d633a0ff9472cb7b479d92902820d3c88203ad5d5c20e2c068a14",
+    "requirementFingerprint": "bce6a6edfada38aae0812da23bc78b4bb9d0b84425427efc8cfa7322241b59db",
     "parsedUwCourseCodes": [
       "NORW 101",
       "NORW 310",
@@ -17728,22 +17535,8 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "SCAND 498",
       "SCAND 499"
     ],
-    "sourceOnlyUwCourseCodes": [
-      "NORW 310",
-      "NORW 311",
-      "NORW 312",
-      "NORW 321",
-      "NORW 395",
-      "NORW 490",
-      "SCAND 312",
-      "SCAND 315",
-      "SCAND 316",
-      "SCAND 327",
-      "SCAND 330"
-    ],
-    "structuredOnlyUwCourseCodes": [
-      "SCAND 495"
-    ]
+    "sourceOnlyUwCourseCodes": [],
+    "structuredOnlyUwCourseCodes": []
   },
   {
     "ownerId": "uw-seattle-nursing",
@@ -17993,13 +17786,15 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "parsedUwCourseCodeCount": 29,
     "sourceOnlyUwCourseCodeCount": 0,
     "structuredOnlyUwCourseCodeCount": 1,
-    "extractedHeadingCount": 9,
+    "extractedHeadingCount": 0,
     "requirementCueLineCount": 28,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [],
+    "qualitySignalCodes": [
+      "snapshot-fallback-used"
+    ],
     "qualityWarningCount": 0,
-    "qualityNoteCount": 0,
-    "requirementFingerprint": "be53cd88f26e2b855b20ca8050306536b0ba581375cf64527be96b0df5b1aa9e",
+    "qualityNoteCount": 1,
+    "requirementFingerprint": "0d66a8fd02052b9669ad2cf8327bf238a9b1bea8e3064e381ff090d449824836",
     "parsedUwCourseCodes": [
       "MUHST 210",
       "MUHST 211",
@@ -18151,21 +17946,49 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "sourceLabel": "Physics B.S. Degree Requirements",
     "ok": true,
     "parseConfidence": "high",
-    "parsedUwCourseCodeCount": 33,
-    "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 0,
-    "extractedHeadingCount": 24,
+    "parsedUwCourseCodeCount": 15,
+    "sourceOnlyUwCourseCodeCount": 6,
+    "structuredOnlyUwCourseCodeCount": 24,
+    "extractedHeadingCount": 0,
     "requirementCueLineCount": 40,
     "chooseStatementCount": 1,
-    "qualitySignalCodes": [],
-    "qualityWarningCount": 0,
-    "qualityNoteCount": 0,
-    "requirementFingerprint": "2eceecbc133d7fe31186676132c5192cc4697b7676c101e4061886326cb5b8ec",
+    "qualitySignalCodes": [
+      "high-confidence-low-course-coverage",
+      "large-structured-only-course-gap",
+      "material-source-structured-drift",
+      "snapshot-fallback-used"
+    ],
+    "qualityWarningCount": 3,
+    "qualityNoteCount": 1,
+    "requirementFingerprint": "cc06069d48068336fa1989f75ee06d8c0414fe2843fe6bf6038a7a53978f490e",
     "parsedUwCourseCodes": [
       "AMATH 301",
+      "ASTR 300",
+      "ASTR 321",
+      "ASTR 322",
+      "ASTR 323",
+      "BIOC 405",
+      "CHEM 457",
+      "CS 142",
+      "CS 143",
+      "MATH 134",
+      "MATH 135",
+      "PHYS 141",
+      "PHYS 142",
+      "PHYS 328",
+      "PHYS 417"
+    ],
+    "sourceOnlyUwCourseCodes": [
+      "ASTR 321",
+      "ASTR 322",
+      "ASTR 323",
+      "BIOC 405",
+      "CHEM 457",
+      "PHYS 328"
+    ],
+    "structuredOnlyUwCourseCodes": [
       "AMATH 351",
       "AMATH 352",
-      "ASTR 300",
       "BIOC 499",
       "BIOL 499",
       "CHEM 143",
@@ -18173,31 +17996,22 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
       "CHEM 223",
       "CHEM 224",
       "CHEM 499",
-      "CS 142",
-      "CS 143",
       "GRDSCH 200",
       "MATH 126",
-      "MATH 134",
-      "MATH 135",
       "MATH 136",
       "MATH 207",
       "MATH 208",
       "PHYS 121",
-      "PHYS 141",
-      "PHYS 142",
       "PHYS 143",
       "PHYS 401",
       "PHYS 402",
       "PHYS 403",
-      "PHYS 417",
       "PHYS 485",
       "PHYS 486",
       "PHYS 494",
       "PHYS 495",
       "PHYS 499"
-    ],
-    "sourceOnlyUwCourseCodes": [],
-    "structuredOnlyUwCourseCodes": []
+    ]
   },
   {
     "ownerId": "uw-bothell-physics-ba",
@@ -18390,16 +18204,14 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "parseConfidence": "high",
     "parsedUwCourseCodeCount": 11,
     "sourceOnlyUwCourseCodeCount": 0,
-    "structuredOnlyUwCourseCodeCount": 6,
+    "structuredOnlyUwCourseCodeCount": 3,
     "extractedHeadingCount": 20,
     "requirementCueLineCount": 40,
     "chooseStatementCount": 0,
-    "qualitySignalCodes": [
-      "material-source-structured-drift"
-    ],
-    "qualityWarningCount": 1,
+    "qualitySignalCodes": [],
+    "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "bb37d2aeefe6d9cc7c92c2357d77576dd85cdb48b23f627f300d9f9676c93274",
+    "requirementFingerprint": "eeeb63260217e71c01ee4364d8da1803c375cb26e03befbea23cdee5d1888daf",
     "parsedUwCourseCodes": [
       "POLS 101",
       "POLS 201",
@@ -18417,10 +18229,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "structuredOnlyUwCourseCodes": [
       "POL S 202",
       "POL S 203",
-      "POL S 204",
-      "POLS 500",
-      "POLS 501",
-      "POLS 503"
+      "POL S 204"
     ]
   },
   {

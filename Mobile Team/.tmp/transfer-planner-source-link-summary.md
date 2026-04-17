@@ -1,22 +1,18 @@
 # Transfer Planner Source Link Summary
 
-Generated: 2026-04-16T21:20:08.343Z
+Generated: 2026-04-17T23:11:58.491Z
 
-- Total tracked source URLs: 326
-- Reachable: 326
+- Total tracked source URLs: 324
+- Reachable: 324
 - Failed: 0
-- Added since previous snapshot: 6
-- Changed since previous snapshot: 134
-- Removed since previous snapshot: 0
+- Added since previous snapshot: 3
+- Changed since previous snapshot: 150
+- Removed since previous snapshot: 5
 
 ## Changed URLs
 
 - http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html
   - owners: uw-seattle-cinema-and-media-studies
-- https://admissions.uwb.edu/register/mpw-DataVis-BA
-  - owners: uw-bothell-data-visualization-ba
-- https://admissions.uwb.edu/register/mpw-DataVis-BS
-  - owners: uw-bothell-data-visualization-bs
 - https://aes.washington.edu/ba-american-ethnic-studies
   - owners: uw-seattle-american-ethnic-studies
 - https://ais.washington.edu/ba-american-indian-studies
@@ -91,4 +87,8 @@ Generated: 2026-04-16T21:20:08.343Z
   - owners: uw-seattle-music-education-b-m
 - https://music.washington.edu/bachelor-music-orchestral-instruments
   - owners: uw-seattle-orchestral-instruments-b-m
+- https://music.washington.edu/bachelor-music-organ
+  - owners: uw-seattle-organ-b-m
+- https://music.washington.edu/bachelor-music-percussion-performance
+  - owners: uw-seattle-percussion-performance-b-m
 

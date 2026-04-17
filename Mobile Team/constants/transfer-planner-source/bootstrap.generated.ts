@@ -16197,7 +16197,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "UW Bachelor of Music - Percussion Performance",
         "url": "https://music.washington.edu/bachelor-music-percussion-performance",
         "visibility": "visible",
-        "status": "verified",
+        "status": "partially-verified",
+        "reason": "HTTP 429 Too Many Requests",
         "sourceConfidence": "high"
       }
     ],
@@ -16261,7 +16262,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "label": "Physics B.S. Degree Requirements",
         "url": "https://phys.washington.edu/physics-bs-degree-requirements",
         "visibility": "visible",
-        "status": "verified",
+        "status": "partially-verified",
+        "reason": "HTTP 429 Too Many Requests",
         "sourceConfidence": "high"
       }
     ],

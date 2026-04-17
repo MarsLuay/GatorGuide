@@ -1,20 +1,20 @@
 # Transfer Planner Requirement Source Parse Report
 
-Generated: 2026-04-17T20:29:30.954Z
+Generated: 2026-04-17T23:23:31.243Z
 
 - Primary degree sources parsed: 225
 - Parsed successfully: 225
 - Parse failures: 0
 - Parsed requirement source adapter blocks: 225
-- Parsed requirement atom candidates: 6391
-- Parsed degree-map block candidates: 273
-- Parsed from cached snapshots after live-source failures: 0
+- Parsed requirement atom candidates: 6370
+- Parsed degree-map block candidates: 281
+- Parsed from cached snapshots after live-source failures: 2
 - Parsed from alternate official source URLs: 2
 - Owners with parsed UW course codes: 221
-- Owners with source-only UW course codes not currently in structured degree-map blocks: 2
+- Owners with source-only UW course codes not currently in structured degree-map blocks: 1
 - Owners with no parsed UW course codes: 4
-- Owners with parser-quality warnings: 24
-- Owners with parser-quality notes: 2
+- Owners with parser-quality warnings: 23
+- Owners with parser-quality notes: 4
 
 ## Parser Adapters
 
@@ -30,14 +30,16 @@ Generated: 2026-04-17T20:29:30.954Z
 ## Resolution Strategies
 
 - alternate-official-source: 2
-- primary-source: 223
+- cached-snapshot: 2
+- primary-source: 221
 
 ## Parser Quality Signals
 
 - alternate-official-source-used: 2
-- high-confidence-low-course-coverage: 7
-- large-structured-only-course-gap: 20
-- material-source-structured-drift: 24
+- high-confidence-low-course-coverage: 8
+- large-structured-only-course-gap: 21
+- material-source-structured-drift: 23
+- snapshot-fallback-used: 2
 
 ## uw-seattle
 
@@ -138,7 +140,6 @@ Generated: 2026-04-17T20:29:30.954Z
 - Source: https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=31; source-only=0; structured-only=5)
-- Primary source: https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/
 
 #### Mathematics
 
@@ -152,23 +153,17 @@ Generated: 2026-04-17T20:29:30.954Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=26; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=26; structured-coverage=35)
 
-#### Norwegian
-
-- Source: https://scandinavian.washington.edu/ba-norwegian
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=14; source-only=11; structured-only=1)
-
 #### Philosophy
 
 - Source: https://www.washington.edu/students/gencat/program/S/Philosophy-221.html
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=57; source-only=0; structured-only=17) | large-structured-only-course-gap (structured-only=17; parsed=57; structured-coverage=74)
 
-#### Political Science
+#### Physics
 
-- Source: https://www.polisci.washington.edu/political-science-major-declaration-and-requirements
+- Source: https://phys.washington.edu/physics-bs-degree-requirements
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=11; source-only=0; structured-only=6)
+- Quality warnings: material-source-structured-drift (parsed=15; source-only=6; structured-only=24) | large-structured-only-course-gap (structured-only=24; parsed=15; structured-coverage=33) | high-confidence-low-course-coverage (parsed=15; structured-coverage=33; structured-only=24)
 
 #### Speech & Hearing Sciences
 
@@ -178,28 +173,18 @@ Generated: 2026-04-17T20:29:30.954Z
 
 ### Possible source-vs-structured drift
 
-#### Latin
+#### Physics
 
-- Source: https://classics.washington.edu/ba-latin
+- Source: https://phys.washington.edu/physics-bs-degree-requirements
 - Parser type: html-degree-page
 - Parser adapter: uw-seattle-html-degree-page
-- Resolution strategy: primary-source
+- Resolution strategy: cached-snapshot
 - Parse confidence: high
-- Source-only UW course codes: GREEK 101, GREEK 102, GREEK 103
-- Requirement cues: 10 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses . | 15 credits of 300-level classical Greek, excluding GREEK 300, GREEK 301 | 15 credits of 300-level GREEK courses, excluding GREEK 300 and GREEK 301
-- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-latin.txt
-
-#### Norwegian
-
-- Source: https://scandinavian.washington.edu/ba-norwegian
-- Parser type: html-degree-page
-- Parser adapter: uw-seattle-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: NORW 310, NORW 311, NORW 312, NORW 321, NORW 395, NORW 490, SCAND 312, SCAND 315, SCAND 316, SCAND 327, SCAND 330
-- Structured-only UW course codes not seen in the parsed source: SCAND 495
-- Requirement cues: Diversity and Equity | Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements. | Major Requirements
-- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-norwegian.txt
+- Snapshot fallback: HTTP 429 Too Many Requests
+- Source-only UW course codes: ASTR 321, ASTR 322, ASTR 323, BIOC 405, CHEM 457, PHYS 328
+- Structured-only UW course codes not seen in the parsed source: AMATH 351, AMATH 352, BIOC 499, BIOL 499, CHEM 143, CHEM 153, CHEM 223, CHEM 224, CHEM 499, GRDSCH 200, MATH 126, MATH 136, MATH 207, MATH 208, PHYS 121, PHYS 143, PHYS 401, PHYS 402, PHYS 403, PHYS 485, PHYS 486, PHYS 494, PHYS 495, PHYS 499
+- Requirement cues: (10 credits) | (6-10 credits), | ‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-physics.txt
 
 ## uw-bothell
 

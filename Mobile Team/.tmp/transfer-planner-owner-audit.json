@@ -1,23 +1,25 @@
 {
-  "generatedAt": "2026-04-17T22:56:48.004Z",
+  "generatedAt": "2026-04-17T23:37:15.272Z",
   "totalOwners": 225,
   "ownersWithErrorsCount": 0,
-  "ownersWithWarningsCount": 4,
-  "ownersWithSourceOnlyUwCourseCodesCount": 2,
-  "totalSourceOnlyUwCourseCodes": 14,
+  "ownersWithWarningsCount": 5,
+  "ownersWithSourceOnlyUwCourseCodesCount": 1,
+  "totalSourceOnlyUwCourseCodes": 6,
   "issueCounts": {
     "error": 0,
-    "warning": 4
+    "warning": 5
   },
   "symptomIssueCounts": {
     "error": 0,
-    "warning": 4
+    "warning": 5
   },
   "countsByIssueCode": {
-    "no-parsed-uw-course-codes": 4
+    "no-parsed-uw-course-codes": 4,
+    "used-snapshot-fallback": 1
   },
   "countsBySymptomCode": {
-    "no-parsed-uw-course-codes": 4
+    "no-parsed-uw-course-codes": 4,
+    "used-snapshot-fallback": 1
   },
   "promotedOwnerInvariantViolationCount": 0,
   "owners": [
@@ -3040,7 +3042,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://classics.washington.edu/ba-latin",
-      "sourceOnlyUwCourseCodeCount": 3,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3355,7 +3357,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://scandinavian.washington.edu/ba-norwegian",
-      "sourceOnlyUwCourseCodeCount": 11,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3502,17 +3504,31 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 6,
       "issueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
-      "rootIssues": [],
-      "symptomIssues": []
+      "rootIssues": [
+        {
+          "severity": "warning",
+          "code": "used-snapshot-fallback",
+          "message": "Requirement source parsing fell back to a cached snapshot after live-source throttling and still needs attention.",
+          "details": "HTTP 429 Too Many Requests"
+        }
+      ],
+      "symptomIssues": [
+        {
+          "severity": "warning",
+          "code": "used-snapshot-fallback",
+          "message": "Requirement source parsing fell back to a cached snapshot after live-source throttling and still needs attention.",
+          "details": "HTTP 429 Too Many Requests"
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-piano-b-m",

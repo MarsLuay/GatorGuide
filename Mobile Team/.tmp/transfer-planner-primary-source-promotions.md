@@ -1,6 +1,6 @@
 # Transfer Planner Primary Source Promotions
 
-Generated: 2026-04-16T21:20:12.957Z
+Generated: 2026-04-17T23:12:01.790Z
 
 - Auto-promoted high-confidence primary sources: 71
 - Skipped because they still appear in the review queue: 0

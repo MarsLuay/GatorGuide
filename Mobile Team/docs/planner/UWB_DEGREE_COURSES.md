@@ -76,7 +76,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -115,11 +115,11 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: ENGL& 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-applied-computing:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -179,6 +179,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
+- `ENGL& 101`
 - `MATH& 146`
 - `PHYS& 221`
 - `PHYS& 223`
@@ -246,6 +247,56 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Business Administration (BA) parsed official requirement cues
 
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
 - Prerequisite Courses
 - Accounting Option
 - Leadership & Strategic Innovation Option
@@ -281,6 +332,16 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-01-business-administration-ba-parsed-official-source-requirements.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-02-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-03-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-04-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-05-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-06-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-07-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-08-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-09-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-10-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-11-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-12-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-13-business-administration-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-90-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -670,6 +731,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
+- `ENGL& 101`
 - `MATH 238`
 - `MATH 240`
 - `MATH& 264`
@@ -770,6 +832,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
+- `ENGL& 101`
 - `PHYS& 221`
 - `PHYS& 223`
 
@@ -887,8 +950,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
+- [download the Computer Engineering degree checklist](https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-Comp-E-Curriculum-AY24_25.pdf)
+- [download the Computer Engineering degree checklist](https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-Comp-E-Curriculum-AY24_25.pdf) - Source used for parser-backed UW requirement extraction.
 - [UW Bothell Computer Engineering curriculum](https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum)
-- [UW Bothell Computer Engineering curriculum](https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum) - Source used for parser-backed UW requirement extraction.
 
 ##### Computer Engineering degree preparation and admissions
 
@@ -897,11 +961,29 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Computer Engineering parsed official source requirements
 
-- [Page 1] University of Washington Bothell Computer Engineering Curriculum AY24/25 B CHEM 143/144: General Chemistry I w/ Lab 6 B EE 200: Electric Circuits 2 *B PHYS 121: Mechanics 5 B EE 215: Fundamentals of Electrical Engineering 4 B EE 233: Circuit Theory 4 B EE 235: Continuous Time Linear Systems 5 B EE 271: Digital Circuits & Systems 5 B EE 331: Devices & Circuits I 5 *CSS 142: Computer Programming I 5 *CSS 143: Computer Programming II 5 *B WRIT134: Composition 5 Technical/Research Writing 5 CSS360: Software Engineering 5 CSS427: Intro to Embedded Systems 5 CSS430: Operating Systems 5 BEE425 (Microprocessor System Design) or CSS422 (Hardware & Computer Organization) 5 5 5 B ENGR494: Engineering Desing & Innovation 3 5 B ENGR 495: Capstone Project in Engineering I 3 B ENGR 496: Capstone Project in Engineering II 4 5 5 300- or higher level CSS or B EE course 5 5 400- or higher level CSS or B EE course 5 Note 5 *STMATH 124: Calculus I 5 *STMATH 125: Calculus II 5 *STMATH 126: Calculus III 5 STMATH 207: Intro to Differential Equations 5 STMATH 208: Matrix Algebra w/ Applications 5 STMATH 224: Multivariable Calculus 5 *Program Prerequisites STMATH 390: Probability & Statistics in Engineering 5 Free Electives to reach 180 credits required for degree Residency - 45 out of the final 60 credits must be earned at your home campus. Cross Campus Enrollment - after earning 15 credits at your home campus, students are able to take up to 15 credits a year at another UW campus. This is a guide only, please schedule quarterly appointments with your academic advisor. Complete Graduation Application 3 quarters prior to graduation. B Comp E Policies Computer Programming: 10 credits BENGR494, BENGR495, and BENGR496 must be taken in consecutive quarters. A minimum grade of 2.0 is required in each departmental requirement and prerequisite. UW Policies Students can take up to 15 EE credits elsewhere such as at UW Seattle with the department's approval. Name: Student# B Computer Engineering Core: 65 credits B Comp E Electives: 10 credits Social Science (SSc): 15 credits CSS 301: Technical Writing for Computing Professionals 5 CSS342: Data Structures, Algorithms, & Descrete Math I 5 CSS343: Data Structures, Algorithms, & Descrete Math II 5 BEE or CSS: 5 credits Mathematics: 35 credits Writing/Composition: 15 credits Arts & Humanities (A&H): 15 credits Natural Science: 16 credits Diversity Course: 5 credits B EE: 25 credits CSS: 25 credits Capstone Sequence: 10 credits *B PHYS 122: Electromagnetism & Oscillatory Motion 5 7/10/2024
+- [Page 1] B Computer Engineering Core: 65 credits Natural Science: 16 credits A minimum grade of 2.0 is required in
+- [Page 1] B EE: 25 credits B CHEM 143/144: General Chemistry I w/ Lab 6 each departmental requirement and
+- [Page 1] B EE 200: Electric Circuits 2 *B PHYS 121: Mechanics 5 prerequisite.
+- [Page 1] Students can take up to 15 EE credits
+- [Page 1] B EE 271: Digital Circuits & Systems 5 Computer Programming: 10 credits
+- [Page 1] CSS: 25 credits *CSS 143: Computer Programming II 5
+- [Page 1] Math I Writing/Composition: 15 credits BENGR496 must be taken in
+- [Page 1] BEE or CSS: 5 credits Arts & Humanities (A&H): 15 credits Residency - 45 out of the final 60
+- [Page 1] BEE425 (Microprocessor System Design) or credits must be earned at your home
+- [Page 1] Capstone Sequence: 10 credits 5
 
 ##### Computer Engineering parsed official requirement cues
 
-- [Page 1] University of Washington Bothell Computer Engineering Curriculum AY24/25 B CHEM 143/144: General Chemistry I w/ Lab 6 B EE 200: Electric Circuits 2 *B PHYS 121: Mechanics 5 B EE 215: Fundamentals of Electrical Engineering 4 B EE 233: Circuit Theory 4 B EE 235: Continuous Time Linear Systems 5 B EE 271: Digital Circuits & Systems 5 B EE 331: Devices & Circuits I 5 *CSS 142: Computer Programming I 5 *CSS 143: Computer Programming II 5 *B WRIT134: Composition 5 Technical/Research Writing 5 CSS360: Software Engineering 5 CSS427: Intro to Embedded Systems 5 CSS430: Operating Systems 5 BEE425 (Microprocessor System Design) or CSS422 (Hardware & Computer Organization) 5 5 5 B ENGR494: Engineering Desing & Innovation 3 5 B ENGR 495: Capstone Project in Engineering I 3 B ENGR 496: Capstone Project in Engineering II 4 5 5 300- or higher level CSS or B EE course 5 5 400- or higher level CSS or B EE course 5 Note 5 *STMATH 124: Calculus I 5 *STMATH 125: Calculus II 5 *STMATH 126: Calculus III 5 STMATH 207: Intro to Differential Equations 5 STMATH 208: Matrix Algebra w/ Applications 5 STMATH 224: Multivariable Calculus 5 *Program Prerequisites STMATH 390: Probability & Statistics in Engineering 5 Free Electives to reach 180 credits required for degree Residency - 45 out of the final 60 credits must be earned at your home campus. Cross Campus Enrollment - after earning 15 credits at your home campus, students are able to take up to 15 credits a year at another UW campus. This is a guide only, please schedule quarterly appointments with your academic advisor. Complete Graduation Application 3 quarters prior to graduation. B Comp E Policies Computer Programming: 10 credits BENGR494, BENGR495, and BENGR496 must be taken in consecutive quarters. A minimum grade of 2.0 is required in each departmental requirement and prerequisite. UW Policies Students can take up to 15 EE credits elsewhere such as at UW Seattle with the department's approval. Name: Student# B Computer Engineering Core: 65 credits B Comp E Electives: 10 credits Social Science (SSc): 15 credits CSS 301: Technical Writing for Computing Professionals 5 CSS342: Data Structures, Algorithms, & Descrete Math I 5 CSS343: Data Structures, Algorithms, & Descrete Math II 5 BEE or CSS: 5 credits Mathematics: 35 credits Writing/Composition: 15 credits Arts & Humanities (A&H): 15 credits Natural Science: 16 credits Diversity Course: 5 credits B EE: 25 credits CSS: 25 credits Capstone Sequence: 10 credits *B PHYS 122: Electromagnetism & Oscillatory Motion 5 7/10/2024
+- [Page 1] B Computer Engineering Core: 65 credits Natural Science: 16 credits A minimum grade of 2.0 is required in
+- [Page 1] B EE: 25 credits B CHEM 143/144: General Chemistry I w/ Lab 6 each departmental requirement and
+- [Page 1] B EE 200: Electric Circuits 2 *B PHYS 121: Mechanics 5 prerequisite.
+- [Page 1] Students can take up to 15 EE credits
+- [Page 1] B EE 271: Digital Circuits & Systems 5 Computer Programming: 10 credits
+- [Page 1] CSS: 25 credits *CSS 143: Computer Programming II 5
+- [Page 1] Math I Writing/Composition: 15 credits BENGR496 must be taken in
+- [Page 1] BEE or CSS: 5 credits Arts & Humanities (A&H): 15 credits Residency - 45 out of the final 60
+- [Page 1] BEE425 (Microprocessor System Design) or credits must be earned at your home
+- [Page 1] Capstone Sequence: 10 credits 5
 
 #### GRC Equivalent Courses
 
@@ -976,6 +1058,7 @@ Source-generated from parsed UW requirement-source registries.
 #### GRC Equivalent Courses
 
 - `MATH& 142`
+- `MATH& 146`
 
 #### Required sequences for specific credits
 
@@ -1439,6 +1522,46 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Economics (BS) parsed official requirement cues
 
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
 - Prerequisite Courses
 - Accounting Option
 - Leadership & Strategic Innovation Option
@@ -1474,6 +1597,16 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-01-economics-bs-parsed-official-source-requirements.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-02-economics-bs-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-03-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-04-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-05-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-06-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-07-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-08-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-09-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-10-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-11-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-12-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-13-economics-bs-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-90-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1829,17 +1962,34 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Interactive Media Design (BA) parsed official source requirements
 
-- [Page 1] Pre-Major Contact: UWBAdvis@uw.edu | (425) 352-3427 Approved: 4/30/21 AG INTERACTIVE MEDIA DESIGN (IMD) Planning Worksheet 2021-2022 Interactive Media Design website Prerequisite Courses: Grade  Composition Course ______________________________________________________ (B WRIT 134, B WRIT 132/133 or other composition course) ____________ X  Introductory Course in Interactive Media/Design Thinking/Visual Art*_________ (Choose 1 from: B IMD 250, BIS 236, BIS 233, or BIS 209) ____________  Introductory Course in Web Development and Programming* _______________ (B IMD 233**) ____________  Statistics/Quantitative Methods/Data Visualization __________________________ (Choose 1 from: BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341) ____________ • A minimum 2.0 grade is required for each prerequisite • It is recommended to take CSS 142 (limited programming section), if you have no programming experience. • *Recommended to take as early as possible • **Can instead take CSS 142/CSSSKL142 and a Web Design course at community college. See IMD website for details. • Please review additional courses Pre-Major students can take towards graduation requirements on page 2. General Education and Areas of Knowledge (+ courses count towards major prerequisites) Writing Requirement – 15 credits Natural World (NW) – 15 credits  + B WRIT 134 or B WRIT 132/133 Composition or __________  Course: ___________________________________  B WRIT 135 Research Writing ____________________________  Course: ___________________________________  B IMD 481 Integrative Studio I (taken when in major)  Course: ___________________________________ Visual, Literary, Performing Arts (VLPA) – 15 credits Individuals & Societies (I&S) – 15 credits  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________ Quantitative & Symbolic Reasoning (QSR) – 5 cr Diversity (DIV) – 3 credits  + B IMD 233, BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341  Course: _____________________________________ General Electives or Other Courses  __________________________________________________________________________________________________  __________________________________________________________________________________________________  __________________________________________________________________________________________________
-- [Page 2] Pre-Major Contact: UWBAdvis@uw.edu | (425) 352-3427 Approved: 4/30/21 AG Applying to IMD (Subject to change. Please check with your advisor) Application Deadlines: QUARTER APPLICATION OPENS APPLICATION CLOSES Autumn quarter only February 1 April 1 • You will hear if you have been admitted to IMD in late May or early June via UW email. Number of prerequisites that can be in progress at the time of application • Complete all prerequisites by end of winter quarter to be more competitive. • Applications are taken under consideration with one or two prerequisites courses in progress during Spring, Additional Coursework: Pre-Major students can take the following coursework that can count towards graduation requirements for the IMD program. • B WRIT 135 • Diversity (DIV) requirement • Courses needed to complete VLPA/I&S/NW requirements. CSS/Interdisciplinary Arts (BIS, BISIA, BISMCS) courses can be great options. Important Program Information: • IMD is a cohort model where admitted students take core classes as a group. Admitted students are required to purchase an Apple MacBook Pro. Details are posted on the IMD website . Am I competitive? (Subject to change pending applicant pool): • Admission is competitive because major is capacity constrained. • Recommended grade of 3.0 or higher in each prerequisite in order to be competitive. • Repeats ok? Yes, with an explanation. The higher grade is used for admission. • S/NS Grades during COVID-19 - For any quarter designated as having extenuating circumstances, IMD will consider a S (satisfactory) grade as fulfilling admission requirements, meaning a S grade will not negatively impact your application to the IMD program. How to Apply: • Please review the IMD ’s How to Apply section on IMD’s website • Attach your unofficial transcripts (including UW and other institutions you may have attended) • Resume(optional): If you have IMD related work (including volunteering or internships) a resume is recommended. • Personal statement (required): Visit the IMD web-site for personal statement prompts and personal statement tips. o The IMD admissions committee will be looking for candidates who clearly articulate their interest in and capacity to learn to work with digital tools, to engage with art and design thinking, to think critically about interactive media, and to work collaboratively with others in a diverse cohort. If you have any poor grades or gaps in your educational progress, you are encouraged to include a short explanation. • Design Portfolio (required): IMD does not accept original artwork, thumb drives or DVDs. Please include a web-site address on the application. To learn more, visit the IMD design portfolio web page . o The IMD admissions committee will review individual samples of creative and/or interactive media work and experience. A portfolio of work samples is useful since it gives the committee a sense of the range of an applicant’s interests, skills, and capacities. Work samples may include graphic art/design, digital/media art, website development, video/film, games, apps, etc. They may come from previous coursework relevant to the IMD degree, including prerequisite courses, and/or from other non-academic (work or volunteer or artistic) contexts. If you submit work produced collaboratively, please describe your specific contribution.
+- [Page 1] Prerequisite Courses: Grade
+- [Page 1] (Choose 1 from: B IMD 250, BIS 236, BIS 233, or BIS 209)
+- [Page 1] (Choose 1 from: BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341)
+- [Page 1] • A minimum 2.0 grade is required for each prerequisite
+- [Page 1] graduation requirements on page 2.
+- [Page 1] Writing Requirement – 15 credits Natural World (NW) – 15 credits
+- [Page 1] Visual, Literary, Performing Arts (VLPA) – 15 credits Individuals & Societies (I&S) – 15 credits
+- [Page 1] Quantitative & Symbolic Reasoning (QSR) – 5 cr Diversity (DIV) – 3 credits
+- [Page 2] • Complete all prerequisites by end of winter quarter to be more competitive.
+- [Page 2] Additional Coursework: Pre-Major students can take the following coursework that can count
 
 ##### Interactive Media Design (BA) parsed official requirement cues
 
-- [Page 1] Pre-Major Contact: UWBAdvis@uw.edu | (425) 352-3427 Approved: 4/30/21 AG INTERACTIVE MEDIA DESIGN (IMD) Planning Worksheet 2021-2022 Interactive Media Design website Prerequisite Courses: Grade  Composition Course ______________________________________________________ (B WRIT 134, B WRIT 132/133 or other composition course) ____________ X  Introductory Course in Interactive Media/Design Thinking/Visual Art*_________ (Choose 1 from: B IMD 250, BIS 236, BIS 233, or BIS 209) ____________  Introductory Course in Web Development and Programming* _______________ (B IMD 233**) ____________  Statistics/Quantitative Methods/Data Visualization __________________________ (Choose 1 from: BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341) ____________ • A minimum 2.0 grade is required for each prerequisite • It is recommended to take CSS 142 (limited programming section), if you have no programming experience. • *Recommended to take as early as possible • **Can instead take CSS 142/CSSSKL142 and a Web Design course at community college. See IMD website for details. • Please review additional courses Pre-Major students can take towards graduation requirements on page 2. General Education and Areas of Knowledge (+ courses count towards major prerequisites) Writing Requirement – 15 credits Natural World (NW) – 15 credits  + B WRIT 134 or B WRIT 132/133 Composition or __________  Course: ___________________________________  B WRIT 135 Research Writing ____________________________  Course: ___________________________________  B IMD 481 Integrative Studio I (taken when in major)  Course: ___________________________________ Visual, Literary, Performing Arts (VLPA) – 15 credits Individuals & Societies (I&S) – 15 credits  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________ Quantitative & Symbolic Reasoning (QSR) – 5 cr Diversity (DIV) – 3 credits  + B IMD 233, BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341  Course: _____________________________________ General Electives or Other Courses  __________________________________________________________________________________________________  __________________________________________________________________________________________________  __________________________________________________________________________________________________
-- [Page 2] Pre-Major Contact: UWBAdvis@uw.edu | (425) 352-3427 Approved: 4/30/21 AG Applying to IMD (Subject to change. Please check with your advisor) Application Deadlines: QUARTER APPLICATION OPENS APPLICATION CLOSES Autumn quarter only February 1 April 1 • You will hear if you have been admitted to IMD in late May or early June via UW email. Number of prerequisites that can be in progress at the time of application • Complete all prerequisites by end of winter quarter to be more competitive. • Applications are taken under consideration with one or two prerequisites courses in progress during Spring, Additional Coursework: Pre-Major students can take the following coursework that can count towards graduation requirements for the IMD program. • B WRIT 135 • Diversity (DIV) requirement • Courses needed to complete VLPA/I&S/NW requirements. CSS/Interdisciplinary Arts (BIS, BISIA, BISMCS) courses can be great options. Important Program Information: • IMD is a cohort model where admitted students take core classes as a group. Admitted students are required to purchase an Apple MacBook Pro. Details are posted on the IMD website . Am I competitive? (Subject to change pending applicant pool): • Admission is competitive because major is capacity constrained. • Recommended grade of 3.0 or higher in each prerequisite in order to be competitive. • Repeats ok? Yes, with an explanation. The higher grade is used for admission. • S/NS Grades during COVID-19 - For any quarter designated as having extenuating circumstances, IMD will consider a S (satisfactory) grade as fulfilling admission requirements, meaning a S grade will not negatively impact your application to the IMD program. How to Apply: • Please review the IMD ’s How to Apply section on IMD’s website • Attach your unofficial transcripts (including UW and other institutions you may have attended) • Resume(optional): If you have IMD related work (including volunteering or internships) a resume is recommended. • Personal statement (required): Visit the IMD web-site for personal statement prompts and personal statement tips. o The IMD admissions committee will be looking for candidates who clearly articulate their interest in and capacity to learn to work with digital tools, to engage with art and design thinking, to think critically about interactive media, and to work collaboratively with others in a diverse cohort. If you have any poor grades or gaps in your educational progress, you are encouraged to include a short explanation. • Design Portfolio (required): IMD does not accept original artwork, thumb drives or DVDs. Please include a web-site address on the application. To learn more, visit the IMD design portfolio web page . o The IMD admissions committee will review individual samples of creative and/or interactive media work and experience. A portfolio of work samples is useful since it gives the committee a sense of the range of an applicant’s interests, skills, and capacities. Work samples may include graphic art/design, digital/media art, website development, video/film, games, apps, etc. They may come from previous coursework relevant to the IMD degree, including prerequisite courses, and/or from other non-academic (work or volunteer or artistic) contexts. If you submit work produced collaboratively, please describe your specific contribution.
+- [Page 1] Prerequisite Courses: Grade
+- [Page 1] (Choose 1 from: B IMD 250, BIS 236, BIS 233, or BIS 209)
+- [Page 1] (Choose 1 from: BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341)
+- [Page 1] • A minimum 2.0 grade is required for each prerequisite
+- [Page 1] graduation requirements on page 2.
+- [Page 1] Writing Requirement – 15 credits Natural World (NW) – 15 credits
+- [Page 1] Visual, Literary, Performing Arts (VLPA) – 15 credits Individuals & Societies (I&S) – 15 credits
+- [Page 1] Quantitative & Symbolic Reasoning (QSR) – 5 cr Diversity (DIV) – 3 credits
+- [Page 2] • Complete all prerequisites by end of winter quarter to be more competitive.
+- [Page 2] Additional Coursework: Pre-Major students can take the following coursework that can count
 
 ##### Interactive Media Design (BA) parsed choices and pathway notes
 
-- [Page 1] Pre-Major Contact: UWBAdvis@uw.edu | (425) 352-3427 Approved: 4/30/21 AG INTERACTIVE MEDIA DESIGN (IMD) Planning Worksheet 2021-2022 Interactive Media Design website Prerequisite Courses: Grade  Composition Course ______________________________________________________ (B WRIT 134, B WRIT 132/133 or other composition course) ____________ X  Introductory Course in Interactive Media/Design Thinking/Visual Art*_________ (Choose 1 from: B IMD 250, BIS 236, BIS 233, or BIS 209) ____________  Introductory Course in Web Development and Programming* _______________ (B IMD 233**) ____________  Statistics/Quantitative Methods/Data Visualization __________________________ (Choose 1 from: BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341) ____________ • A minimum 2.0 grade is required for each prerequisite • It is recommended to take CSS 142 (limited programming section), if you have no programming experience. • *Recommended to take as early as possible • **Can instead take CSS 142/CSSSKL142 and a Web Design course at community college. See IMD website for details. • Please review additional courses Pre-Major students can take towards graduation requirements on page 2. General Education and Areas of Knowledge (+ courses count towards major prerequisites) Writing Requirement – 15 credits Natural World (NW) – 15 credits  + B WRIT 134 or B WRIT 132/133 Composition or __________  Course: ___________________________________  B WRIT 135 Research Writing ____________________________  Course: ___________________________________  B IMD 481 Integrative Studio I (taken when in major)  Course: ___________________________________ Visual, Literary, Performing Arts (VLPA) – 15 credits Individuals & Societies (I&S) – 15 credits  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________  Course: _____________________________________ Quantitative & Symbolic Reasoning (QSR) – 5 cr Diversity (DIV) – 3 credits  + B IMD 233, BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341  Course: _____________________________________ General Electives or Other Courses  __________________________________________________________________________________________________  __________________________________________________________________________________________________  __________________________________________________________________________________________________
+- [Page 1] (Choose 1 from: B IMD 250, BIS 236, BIS 233, or BIS 209)
+- [Page 1] (Choose 1 from: BIS 232, BIS 215, B BUS 215, B MATH 215, or STMATH 341)
 
 #### GRC Equivalent Courses
 
@@ -1848,7 +1998,7 @@ On To Do list.
 #### Required sequences for specific credits
 
 - Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: low.
+- Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-interactive-media-design:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -2074,6 +2224,8 @@ Source-generated from parsed UW requirement-source registries.
 
 - `MATH& 146`
 - `MATH& 151`
+- `MATH& 152`
+- `MATH& 163`
 
 #### Required sequences for specific credits
 
@@ -2088,7 +2240,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2127,11 +2279,11 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: ENGL& 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-mathematics:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2142,7 +2294,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AST-2/MRP`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2154,21 +2306,39 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Mechanical Engineering parsed official source requirements
 
-- [Page 1] University of Washington Bothell Mechanical Engineering Curriculum AY24/25 Natural Science: 21 credits *B CHEM 143/144: General Chemistry I w/ Lab 6 *B PHYS 121: Mechanics 5 *B PHYS 122: Electromagnetism and Oscillatory 5 B PHYS 123: Waves 5 B ENGR 321: Materials Engineering Lab 2 *B ME 221: Statics 4 Mathematics: 30 credits *B ME 222: Mechanics of Materials 4 *STMATH 124: Calculus I 5 *B ME 223: Dynamics 4 *STMATH 125: Calculus II 5 B ME 301: Intro Seminar for Mechanical Engineering 1 *STMATH 126: Calculus III 5 *STMATH 207: Intro to Differential Equations 5 *STMATH 224: Multivariable Calculus 5 B ME 410: Electric Power and Machinery 5 STMATH 390: Probability & Statistics in Engineering 5 B ME 481: Citizen Engineer 5 General education and additional courses: 39 credits B ME 331: Thermodynamics 4 *B WRIT134: Composition 5 B ME 332: Fluid Mechanics 4 B ME 333: Heat Transfer 4 B ME 334: Thermal Fulds Lab 2 Any A&H (BIS 121 or equivalent suggested) 5 Any A&H 5 B ME 341: Mechanical Systems Design I 4 Any A&H 1 B ME 342: Mechanical Systems Design II 4 Any SSc 5 B ME 343: Mechanical Systems Design III 5 Any SSc 5 B ENGR 494: Enineering Design & Innovation 3 B ENGR 495: Capstone Project in Engineering I 3 B ENGR 496: Capstone Project in Engineering II 4 Mechanical Engineering Electives (16 credits) 4 4 4 4 Student # B ME policies and notes A minimum grade of 2.0 is required in each departmental requirement and prerequisite. Electives - Maximum of 4 credits of BME498/499 can be counted as BME elective credits. Courses in other disciplines require the department's approval. UW Policies Additional Writing (W): BWRIT135 (or ENGL141, ENGL182, HCDE231, ENGR231) 5 *Program Prerequisites Diversity, Natural World, and QSR requirements are fufilled by program requirements. Residency - 45 out of the final 60 credits must be earned at your home campus. Cross Campus Enrollment - after earning 15 crdits at your home campus, students are able to take up to 15 credits a year at another UW campus. Thermal Fluid Systems Analysis Mechanical Systems Design Capstone Sequence B ME 315: Intro to 3D Modeling, Design & Analysis (ME 123 allowed) 4 Additional credit as neede to reach 180 minimum for graduation CSS 112: Intro to Programming for Scientific Applications 4 Name: Mechanical Engineering: 90 credits B ENGR 320: Fundamentals of Material Science (MSE 170 allowed) 4 4 B ENGR 310: Computational Physical Modeling (or AMATH 301 & STMATH 208) 7/10/2024
-- [Page 2] The University of Washington Bothell Bachelor of Science in Mechanical Engineering curriculum is designed to meet requirements set forth by the Accreditation Board for Engineering and Technology (ABET). Each student completing the BSME degree will demonstrate mastery of the following competencies as established by ABET: a) Ability to apply knowledge of mathematics, science, and engineering. b) Ability to design and conduct experiments, as well as to analyze and interpret data. c) Ability to design a system, component, or process to meet desired needs within realistic constraints such as economic, environmental, social, political, ethical, health and safety, manufacturability, and sustainability. d) Ability to function on multidisciplinary teams. e) Ability to identify, formulate, and solve engineering problems. f) Understanding of professional and ethical responsibility. g) Ability to communicate effectively. h) The broad education necessary to understand the impact of engineering solutions in a global, economic, environmental, and societal context. i) Recognition of the need for, and an ability to engage in life-long learning. j) Knowledge of contemporary issues. k) Ability to use the techniques, skills, and modern engineering tools necessary for engineering practice. 1/16/2024
+- [Page 1] Mechanical Engineering: 90 credits Natural Science: 21 credits A minimum grade of 2.0 is required
+- [Page 1] (or AMATH 301 & STMATH 208) *B PHYS 121: Mechanics 5 and prerequisite.
+- [Page 1] (MSE 170 allowed) B PHYS 123: Waves 5 Electives - Maximum of 4 credits of
+- [Page 1] *B ME 221: Statics 4 Mathematics: 30 credits BME elective credits. Courses in
+- [Page 1] B ME 315: Intro to 3D Modeling, Design & Analysis *STMATH 207: Intro to Differential Equations 5 Diversity, Natural World, and QSR
+- [Page 1] (ME 123 allowed) *STMATH 224: Multivariable Calculus 5 requirements are fufilled by
+- [Page 1] B ME 410: Electric Power and Machinery 5 STMATH 390: Probability & Statistics in Engineering 5 program requirements.
+- [Page 1] Thermal Fluid Systems Analysis General education and additional courses: 39 credits
+- [Page 1] B ME 334: Thermal Fulds Lab 2 Any A&H (BIS 121 or equivalent suggested) 5 Residency - 45 out of the final 60
+- [Page 1] Mechanical Systems Design Any A&H 5 credits must be earned at your
 
 ##### Mechanical Engineering parsed official requirement cues
 
-- [Page 1] University of Washington Bothell Mechanical Engineering Curriculum AY24/25 Natural Science: 21 credits *B CHEM 143/144: General Chemistry I w/ Lab 6 *B PHYS 121: Mechanics 5 *B PHYS 122: Electromagnetism and Oscillatory 5 B PHYS 123: Waves 5 B ENGR 321: Materials Engineering Lab 2 *B ME 221: Statics 4 Mathematics: 30 credits *B ME 222: Mechanics of Materials 4 *STMATH 124: Calculus I 5 *B ME 223: Dynamics 4 *STMATH 125: Calculus II 5 B ME 301: Intro Seminar for Mechanical Engineering 1 *STMATH 126: Calculus III 5 *STMATH 207: Intro to Differential Equations 5 *STMATH 224: Multivariable Calculus 5 B ME 410: Electric Power and Machinery 5 STMATH 390: Probability & Statistics in Engineering 5 B ME 481: Citizen Engineer 5 General education and additional courses: 39 credits B ME 331: Thermodynamics 4 *B WRIT134: Composition 5 B ME 332: Fluid Mechanics 4 B ME 333: Heat Transfer 4 B ME 334: Thermal Fulds Lab 2 Any A&H (BIS 121 or equivalent suggested) 5 Any A&H 5 B ME 341: Mechanical Systems Design I 4 Any A&H 1 B ME 342: Mechanical Systems Design II 4 Any SSc 5 B ME 343: Mechanical Systems Design III 5 Any SSc 5 B ENGR 494: Enineering Design & Innovation 3 B ENGR 495: Capstone Project in Engineering I 3 B ENGR 496: Capstone Project in Engineering II 4 Mechanical Engineering Electives (16 credits) 4 4 4 4 Student # B ME policies and notes A minimum grade of 2.0 is required in each departmental requirement and prerequisite. Electives - Maximum of 4 credits of BME498/499 can be counted as BME elective credits. Courses in other disciplines require the department's approval. UW Policies Additional Writing (W): BWRIT135 (or ENGL141, ENGL182, HCDE231, ENGR231) 5 *Program Prerequisites Diversity, Natural World, and QSR requirements are fufilled by program requirements. Residency - 45 out of the final 60 credits must be earned at your home campus. Cross Campus Enrollment - after earning 15 crdits at your home campus, students are able to take up to 15 credits a year at another UW campus. Thermal Fluid Systems Analysis Mechanical Systems Design Capstone Sequence B ME 315: Intro to 3D Modeling, Design & Analysis (ME 123 allowed) 4 Additional credit as neede to reach 180 minimum for graduation CSS 112: Intro to Programming for Scientific Applications 4 Name: Mechanical Engineering: 90 credits B ENGR 320: Fundamentals of Material Science (MSE 170 allowed) 4 4 B ENGR 310: Computational Physical Modeling (or AMATH 301 & STMATH 208) 7/10/2024
-- [Page 2] The University of Washington Bothell Bachelor of Science in Mechanical Engineering curriculum is designed to meet requirements set forth by the Accreditation Board for Engineering and Technology (ABET). Each student completing the BSME degree will demonstrate mastery of the following competencies as established by ABET: a) Ability to apply knowledge of mathematics, science, and engineering. b) Ability to design and conduct experiments, as well as to analyze and interpret data. c) Ability to design a system, component, or process to meet desired needs within realistic constraints such as economic, environmental, social, political, ethical, health and safety, manufacturability, and sustainability. d) Ability to function on multidisciplinary teams. e) Ability to identify, formulate, and solve engineering problems. f) Understanding of professional and ethical responsibility. g) Ability to communicate effectively. h) The broad education necessary to understand the impact of engineering solutions in a global, economic, environmental, and societal context. i) Recognition of the need for, and an ability to engage in life-long learning. j) Knowledge of contemporary issues. k) Ability to use the techniques, skills, and modern engineering tools necessary for engineering practice. 1/16/2024
+- [Page 1] Mechanical Engineering: 90 credits Natural Science: 21 credits A minimum grade of 2.0 is required
+- [Page 1] (or AMATH 301 & STMATH 208) *B PHYS 121: Mechanics 5 and prerequisite.
+- [Page 1] (MSE 170 allowed) B PHYS 123: Waves 5 Electives - Maximum of 4 credits of
+- [Page 1] *B ME 221: Statics 4 Mathematics: 30 credits BME elective credits. Courses in
+- [Page 1] B ME 315: Intro to 3D Modeling, Design & Analysis *STMATH 207: Intro to Differential Equations 5 Diversity, Natural World, and QSR
+- [Page 1] (ME 123 allowed) *STMATH 224: Multivariable Calculus 5 requirements are fufilled by
+- [Page 1] B ME 410: Electric Power and Machinery 5 STMATH 390: Probability & Statistics in Engineering 5 program requirements.
+- [Page 1] Thermal Fluid Systems Analysis General education and additional courses: 39 credits
+- [Page 1] B ME 334: Thermal Fulds Lab 2 Any A&H (BIS 121 or equivalent suggested) 5 Residency - 45 out of the final 60
+- [Page 1] Mechanical Systems Design Any A&H 5 credits must be earned at your
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGR 140`
+- `ENGR 250`
+- `ENGR& 114`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: ENGR 140 -> `ENGR 140`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-mechanical-engineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2382,6 +2552,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
+- `ENGL& 101`
 - `MATH 240`
 - `MATH& 264`
 
@@ -2410,7 +2581,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2450,11 +2621,11 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: ENGL& 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-physics-bs:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2465,7 +2636,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `AAS-T`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
