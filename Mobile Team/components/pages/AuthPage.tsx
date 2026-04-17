@@ -16,8 +16,6 @@ import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
 import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
-import { GlassButton } from "@/components/ui/GlassButton";
-import { GlassCard } from "@/components/ui/GlassCard";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
 import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth/auth.service";
 import { errorLoggingService } from "@/services";
@@ -637,13 +635,25 @@ export default function AuthPage() {
       ? "rgba(16, 185, 129, 0.18)"
       : "rgba(16, 185, 129, 0.10)";
   const dividerColor = isDark || isGreen ? "rgba(148, 163, 184, 0.34)" : "rgba(16, 185, 129, 0.24)";
+  const authCardClass = `${styles.cardBgClass} border rounded-[28px] ${isWeb ? "shadow-lg" : ""}`;
+  const primaryButtonBackgroundColor = isDark || isGreen ? "#10b981" : "#059669";
+  const primaryButtonBorderColor = isDark || isGreen ? "rgba(167, 243, 208, 0.20)" : "rgba(5, 150, 105, 0.24)";
+  const primaryButtonTextColor = "#ffffff";
+  const secondaryButtonBackgroundColor = isDark
+    ? "rgba(15, 23, 42, 0.82)"
+    : isGreen
+      ? "rgba(6, 78, 59, 0.82)"
+      : "#f0fdf4";
+  const secondaryButtonBorderColor = isDark || isGreen ? "rgba(52, 211, 153, 0.22)" : "rgba(16, 185, 129, 0.20)";
+  const secondaryButtonTextColor = styles.textColor;
+  const buttonIconColor = isDark || isGreen ? "#a7f3d0" : "#047857";
   const containerClass = isWeb 
     ? "flex-1 items-center justify-center px-4 py-12 min-h-screen"
     : "flex-1 items-center justify-center px-6";
 
   const authContent = (
     <View style={{ width: "100%", maxWidth: authCardMaxWidth }}>
-      <GlassCard borderRadius={28} noPadding className={isWeb ? "shadow-lg" : ""}>
+      <View className={authCardClass}>
         <View style={{ padding: cardPadding }}>
           <View
             style={{
@@ -882,7 +892,6 @@ export default function AuthPage() {
               inputBgClass={styles.inputBgClass}
               placeholderColor={styles.placeholderColor}
               editable={isHydrated}
-              variant="glass"
               returnKeyType="next"
             />
           )}
@@ -898,7 +907,6 @@ export default function AuthPage() {
             inputBgClass={styles.inputBgClass}
             placeholderColor={styles.placeholderColor}
             editable={isHydrated}
-            variant="glass"
             keyboardType="email-address"
             autoCapitalize="none"
             autoCorrect={false}
@@ -916,7 +924,6 @@ export default function AuthPage() {
             inputBgClass={styles.inputBgClass}
             placeholderColor={styles.placeholderColor}
             editable={isHydrated}
-            variant="glass"
             secureTextEntry
             returnKeyType="done"
           />
@@ -942,33 +949,68 @@ export default function AuthPage() {
           )}
 
           {!isSignUp && (
-            <GlassButton
+            <AnimatedChipPressable
               onPress={handleSendEmailLink}
               disabled={!isHydrated || !isEmailValid(email.trim()) || sendingEmailLink}
-              label={sendingEmailLink ? t("general.pleaseWait") : t("auth.signInWithEmailLink")}
-              variant="secondary"
-              icon={<FontAwesome5 name="envelope" size={16} color="#008f4e" />}
-              contentStyle={secondaryActionButtonContentStyle}
-              style={{
+              className="rounded-2xl"
+              containerStyle={{
                 width: "100%",
-                opacity: !isHydrated || !isEmailValid(email.trim()) || sendingEmailLink ? 0.6 : 1,
               }}
-            />
+              style={{
+                ...secondaryActionButtonContentStyle,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                borderWidth: 1,
+                borderColor: secondaryButtonBorderColor,
+                backgroundColor: secondaryButtonBackgroundColor,
+              }}
+            >
+              <View style={{ marginRight: 8 }}>
+                <FontAwesome5 name="envelope" size={16} color={buttonIconColor} />
+              </View>
+              <Text
+                style={{
+                  color: secondaryButtonTextColor,
+                  fontSize: 15,
+                  fontWeight: "600",
+                  textAlign: "center",
+                  flexShrink: 1,
+                }}
+              >
+                {sendingEmailLink ? t("general.pleaseWait") : t("auth.signInWithEmailLink")}
+              </Text>
+            </AnimatedChipPressable>
           )}
 
-          <GlassButton
+          <AnimatedChipPressable
             onPress={handleSubmit}
             disabled={!isHydrated || !canSubmit || isSubmitting}
-            label={
-              isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccountByEmailVerification") : t("auth.logIn")
-            }
-            contentStyle={actionButtonContentStyle}
-            style={{
+            className="rounded-2xl"
+            containerStyle={{
               width: "100%",
               marginTop: 8,
-              opacity: !isHydrated || !canSubmit || isSubmitting ? 0.6 : 1,
             }}
-          />
+            style={{
+              ...actionButtonContentStyle,
+              alignItems: "center",
+              justifyContent: "center",
+              borderWidth: 1,
+              borderColor: primaryButtonBorderColor,
+              backgroundColor: primaryButtonBackgroundColor,
+            }}
+          >
+            <Text
+              style={{
+                color: primaryButtonTextColor,
+                fontSize: 15,
+                fontWeight: "700",
+                textAlign: "center",
+              }}
+            >
+              {isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccountByEmailVerification") : t("auth.logIn")}
+            </Text>
+          </AnimatedChipPressable>
 
 
           <View
@@ -978,43 +1020,100 @@ export default function AuthPage() {
               marginTop: 16,
             }}
           >
-            <GlassButton
+            <AnimatedChipPressable
               onPress={() => handleProviderSignIn("google")}
               disabled={!isHydrated}
-              label={t("auth.continueWithGoogle")}
-              variant="secondary"
-              icon={<FontAwesome5 name="google" size={18} color="#3a9e75" />}
-              contentStyle={secondaryActionButtonContentStyle}
-              style={{
+              className="rounded-2xl"
+              containerStyle={{
                 flex: stackProviderButtons ? undefined : 1,
                 width: stackProviderButtons ? "100%" : undefined,
-                opacity: !isHydrated ? 0.6 : 1,
               }}
-            />
-            <GlassButton
+              style={{
+                ...secondaryActionButtonContentStyle,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                borderWidth: 1,
+                borderColor: secondaryButtonBorderColor,
+                backgroundColor: secondaryButtonBackgroundColor,
+              }}
+            >
+              <View style={{ marginRight: 8 }}>
+                <FontAwesome5 name="google" size={18} color={buttonIconColor} />
+              </View>
+              <Text
+                style={{
+                  color: secondaryButtonTextColor,
+                  fontSize: 15,
+                  fontWeight: "600",
+                  textAlign: "center",
+                  flexShrink: 1,
+                }}
+              >
+                {t("auth.continueWithGoogle")}
+              </Text>
+            </AnimatedChipPressable>
+            <AnimatedChipPressable
               onPress={() => handleProviderSignIn("microsoft")}
               disabled={!isHydrated}
-              label={t("auth.continueWithMicrosoft")}
-              variant="secondary"
-              icon={<FontAwesome5 name="microsoft" size={18} color="#3a9e75" />}
-              contentStyle={secondaryActionButtonContentStyle}
-              style={{
+              className="rounded-2xl"
+              containerStyle={{
                 flex: stackProviderButtons ? undefined : 1,
                 width: stackProviderButtons ? "100%" : undefined,
-                opacity: !isHydrated ? 0.6 : 1,
               }}
-            />
+              style={{
+                ...secondaryActionButtonContentStyle,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                borderWidth: 1,
+                borderColor: secondaryButtonBorderColor,
+                backgroundColor: secondaryButtonBackgroundColor,
+              }}
+            >
+              <View style={{ marginRight: 8 }}>
+                <FontAwesome5 name="microsoft" size={18} color={buttonIconColor} />
+              </View>
+              <Text
+                style={{
+                  color: secondaryButtonTextColor,
+                  fontSize: 15,
+                  fontWeight: "600",
+                  textAlign: "center",
+                  flexShrink: 1,
+                }}
+              >
+                {t("auth.continueWithMicrosoft")}
+              </Text>
+            </AnimatedChipPressable>
           </View>
 
           <View className="items-center mt-4">
-            <GlassButton
+            <AnimatedChipPressable
               onPress={handleGuestSignIn}
               disabled={!isHydrated}
-              label={t("auth.continueAsGuest")}
-              variant="secondary"
-              contentStyle={secondaryActionButtonContentStyle}
-              style={{ width: "100%", opacity: !isHydrated ? 0.6 : 1 }}
-            />
+              className="rounded-2xl"
+              containerStyle={{ width: "100%" }}
+              style={{
+                ...secondaryActionButtonContentStyle,
+                alignItems: "center",
+                justifyContent: "center",
+                borderWidth: 1,
+                borderColor: secondaryButtonBorderColor,
+                backgroundColor: secondaryButtonBackgroundColor,
+              }}
+            >
+              <Text
+                style={{
+                  color: secondaryButtonTextColor,
+                  fontSize: 15,
+                  fontWeight: "600",
+                  textAlign: "center",
+                }}
+              >
+                {t("auth.continueAsGuest")}
+              </Text>
+            </AnimatedChipPressable>
           </View>
 
           <View className="flex-row justify-center items-center mt-6">
@@ -1025,7 +1124,7 @@ export default function AuthPage() {
           </View>
         </View>
         </View>
-      </GlassCard>
+      </View>
     </View>
   );
 
