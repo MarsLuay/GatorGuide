@@ -174,17 +174,17 @@ class DeadlineCalendarService {
         title: opportunity.title,
         subtitle:
           opportunity.type === "college_deadline"
-            ? opportunity.college.collegeName || opportunity.organizationName || "College deadline"
+            ? opportunity.college.collegeName || opportunity.organizationName || "Deadline"
             : opportunity.type === "general_deadline"
-              ? opportunity.organizationName || "Deadline"
+              ? opportunity.organizationName || "General deadline"
             : opportunity.organizationName || "Opportunity",
         description: opportunity.summary,
         kind: opportunity.type,
         sourceLabel:
           opportunity.type === "college_deadline"
-            ? "College deadline"
+            ? "Deadline"
             : opportunity.type === "general_deadline"
-              ? "Deadline"
+              ? "General deadline"
               : "Opportunity",
         isDone: opportunity.isDone,
         target,

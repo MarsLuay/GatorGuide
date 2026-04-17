@@ -322,13 +322,13 @@ export default function ResourcesPage() {
         icon: "work" as const,
       },
       {
-        key: "general_deadline",
+        key: "college_deadline",
         title: "Deadlines",
         icon: "event" as const,
       },
       {
-        key: "college_deadline",
-        title: t("resources.collegeDeadlines"),
+        key: "general_deadline",
+        title: "General deadlines",
         icon: "event" as const,
       },
     ];

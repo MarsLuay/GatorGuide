@@ -1935,8 +1935,8 @@ async function removeOpportunity(rl) {
           [
             { value: "scholarship", label: "Scholarship" },
             { value: "internship", label: "Internship / work opportunity" },
-            { value: "general_deadline", label: "Deadline" },
-            { value: "college_deadline", label: "College deadline" },
+            { value: "college_deadline", label: "Deadline" },
+            { value: "general_deadline", label: "General deadline" },
             { value: "__all__", label: "Show all opportunities" },
           ],
           { defaultValue: "__all__" }
@@ -2204,8 +2204,8 @@ async function main() {
             [
               { value: "scholarship", label: "Scholarship" },
               { value: "internship", label: "Internship / work opportunity" },
-              { value: "general_deadline", label: "Deadline" },
-              { value: "college_deadline", label: "College deadline" },
+              { value: "college_deadline", label: "Deadline" },
+              { value: "general_deadline", label: "General deadline" },
               {
                 value: "resource",
                 label:
