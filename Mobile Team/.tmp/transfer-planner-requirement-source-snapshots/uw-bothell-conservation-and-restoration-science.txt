@@ -2,65 +2,395 @@ Owner: uw-bothell-conservation-and-restoration-science
 Source: https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science
 Title: Conservation & Restoration Science - School of Interdisciplinary Arts & Sciences
 
-[Supplemental official source] Curriculum
-&#124;
-&copy; 2026 University of Washington Bothell
-<a class="bothell-link-block link-block-1 bothell-link-block--margin-top "
+Conservation & Restoration Science - School of Interdisciplinary Arts & Sciences
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
->
-18115 Campus Way NE
-425.352.5000
-425.352.5350
-About IAS
-Academic Excellence & Emerging Initiatives Fund
-Accessibility
-Acquire first-hand knowledge of regional ecosystems and the human communities dependent on them to enable meaningful engagement in local conservation and restoration activities.
-Additional Elective Options
-Addresses how writers utilize research in their writing and inquires into different kind of research that can be pursued: textual, ethnographic, and performance-based.
-Admissions
-Admitted Students
-All IAS Funds
+height="0" width="0" style="display:none;visibility:hidden">
+Skip To Content
+Current site
 All UW Bothell
-Alumni
+Search keywords
+Search
+Open mobile menu
+Quick Links
+School of Interdisciplinary Arts & Sciences
+Close mobile menu
+School of Interdisciplinary Arts & Sciences
+Search keywords
+Current site
+All UW Bothell
+About IAS
+Expand Navigation
+Mission, Values, and Goals
+Diversity and Equity
+Expand Navigation
+Diversity Plan
+Scholarship
+Contact Us
+Undergraduate
+Expand Navigation
+How to apply
+Majors
+Expand Navigation
 American & Ethnic Studies
+Community Psychology
+Conservation & Restoration Science
+Culture, Literature & the Arts
+Data Visualization
+Earth System Science
+Environmental Science
+Environmental Studies
+Gender, Women & Sexuality Studies
+Global Studies
+Interdisciplinary Arts
+Interdisciplinary Social Sciences
+Interdisciplinary Studies
+Law, Economics & Public Policy
+Mathematical Thinking & Visualization
+Media & Communication Studies
+Psychology
+Science, Technology & Society
+Society, Ethics & Human Behavior
+Minors
+Expand Navigation
+Minor in Climate Change & Society
+Minor in Creative Writing
+Minor in Diversity Studies
+Minor in Ecological Restoration
+Minor in Gender, Women & Sexuality Studies
+Minor in Geographic Information Systems
+Minor in Human Rights
+Minor in Performance
+Minor in Policy Studies
+Minor in Science, Technology & Society
+Minor in Visual & Media Arts
+Learning Objectives
+Hands-on Learning (IPR)
+Expand Navigation
+Research Opportunities
+Peer Facilitation
+Internships
+Community Engagement
+D.C. Human Rights Seminar
+Study Abroad
+Global Scholars
+Student Resources
+Expand Navigation
+Student Feedback
+Petitions and Forms
+Grade Appeal
+Grievances and Complaints
+Career Planning
+Graduate Programs
+Expand Navigation
+Creative Writing & Poetics (MFA)
+Expand Navigation
+People
+Admissions
+Learning Objectives
+Curriculum
+Thesis Work
+Events
+Fall Convergence
+Spring Festival
+MFA Publications
+Careers
+Policy Studies (MA)
+Expand Navigation
+Why Policy Studies?
+People
+Prospective Students
+Admissions
+Learning Objectives
+Curriculum
+Careers
+Student Resources
+Expand Navigation
+Funding
+Admitted Students
+Housing
+Faculty & staff
+Expand Navigation
+Faculty
+Staff
+News
+Events
+Give
+Expand Navigation
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
 American Muslim Research Institute Fund
-Apply an understanding of ethics, power, and intergenerational equity in conservation and restoration decision-making.
+All IAS Funds
+UW Bothell Home
+Quick Links
+MyUW
+Canvas
+Directory
+Library
+Workday Login
+Give
 Apply As Undergraduate
-Apply scientific understanding to the concepts of biological diversity, sustainability, ecological integrity and the socio-political systems with which they interact.
-Are you passionate about protecting ecosystems, plants, and wildlife?
-Autumn Quarter
-B BIO 180 or BIO 180 Introductory Biology I (5 credits)
-B BIO 330 Marine Biology
-B BIO 335 Salmon and Society
-B BIO 471 Plant Ecology (if not taken with core)
-B CHEM 143 & B CHEM 144 General Chemistry and Lab (CHEM 120, CHEM 142 CHEM 143, or CHEM 145 or equivalent) (5 or 6 credits)
-B CHEM 143 General Chemistry I & B CHEM 144 Gen Chem Lab
-B CHEM 315 Quantitative Environmental Analysis
-B CHEM 350 Atmospheric Chemistry and Air Pollution
-B HLTH 407 Climate Change and Health
-B MATH 123 Precalculus II or MATH 120 Precalculus (5 credits)
+More Links
+Time Schedule
+Information Technology
+Commuter Services
+Facilities
+Human Resources
+Campus Safety
+Alumni
+About IAS
+Mission, Values, and Goals
+Diversity and Equity
+Contact Us
+Undergraduate
+How to apply
+Majors
+Minors
+Learning Objectives
+Hands-on Learning (IPR)
+Student Resources
+Graduate Programs
+Creative Writing & Poetics (MFA)
+Policy Studies (MA)
+Student Resources
+Faculty & staff
+Faculty
+Staff
+News
+Events
+Give
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+Close mobile menu
+In this section
+About IAS
+Expand Navigation
+Mission, Values, and Goals
+Diversity and Equity
+Expand Navigation
+Diversity Plan
+Scholarship
+Contact Us
+Undergraduate
+Expand Navigation
+How to apply
+Majors
+Expand Navigation
+American & Ethnic Studies
+Community Psychology
+Conservation & Restoration Science
+Culture, Literature & the Arts
+Data Visualization
+Earth System Science
+Environmental Science
+Environmental Studies
+Gender, Women & Sexuality Studies
+Global Studies
+Interdisciplinary Arts
+Interdisciplinary Social Sciences
+Interdisciplinary Studies
+Law, Economics & Public Policy
+Mathematical Thinking & Visualization
+Media & Communication Studies
+Psychology
+Science, Technology & Society
+Society, Ethics & Human Behavior
+Minors
+Expand Navigation
+Minor in Climate Change & Society
+Minor in Creative Writing
+Minor in Diversity Studies
+Minor in Ecological Restoration
+Minor in Gender, Women & Sexuality Studies
+Minor in Geographic Information Systems
+Minor in Human Rights
+Minor in Performance
+Minor in Policy Studies
+Minor in Science, Technology & Society
+Minor in Visual & Media Arts
+Learning Objectives
+Hands-on Learning (IPR)
+Expand Navigation
+Research Opportunities
+Peer Facilitation
+Internships
+Community Engagement
+D.C. Human Rights Seminar
+Study Abroad
+Global Scholars
+Student Resources
+Expand Navigation
+Student Feedback
+Petitions and Forms
+Grade Appeal
+Grievances and Complaints
+Career Planning
+Graduate Programs
+Expand Navigation
+Creative Writing & Poetics (MFA)
+Expand Navigation
+People
+Admissions
+Learning Objectives
+Curriculum
+Thesis Work
+Events
+Fall Convergence
+Spring Festival
+MFA Publications
+Careers
+Policy Studies (MA)
+Expand Navigation
+Why Policy Studies?
+People
+Prospective Students
+Admissions
+Learning Objectives
+Curriculum
+Careers
+Student Resources
+Expand Navigation
+Funding
+Admitted Students
+Housing
+Faculty & staff
+Expand Navigation
+Faculty
+Staff
+News
+Events
+Give
+Expand Navigation
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+School of Interdisciplinary Arts & Sciences
+&#124;
+Majors
+School of Interdisciplinary Arts & Sciences
+&#124;
+Undergraduate
+&#124;
+Majors
+&#124;
+Conservation & Restoration Science
+Conservation & Restoration Science
 BACHELOR OF SCIENCE
-BACK TO TOP
-BCWRIT 500 Between Prose and Poetry (5 credits)
-BCWRIT 501 Between Fact and Imagination (5 credits)
-BCWRIT 502 Processes of Thinking and Memory (5 credits)
-BCWRIT 510 Cultural Change and Writing (5 credits)
-BCWRIT 511 Writers&#8217; Research (5 credits)
-BCWRIT 512 Art, Technology, Practice (5 credits)
-BCWRIT 599 Thesis Practicum (1 CR)
-BCWRIT 599 Thesis Practicum (2 CR)
-BCWRIT 599 Thesis Practicum (3 CR)
-BCWRIT 599 Thesis Practicum (6 credits total, C/NC)
-BCWRIT 700 Creative Writing Thesis (15 credits total, C/NC)
-BCWRIT 700 Thesis (5 CR)
-BCWRIT 700 Thesis (7 CR)
-BCWRIT 700 Thesis (8 CR)
-BEARTH 153 Intro to Geology
+On this page: Major Description | Learning Objectives | Degree Planning
+Are you passionate about protecting ecosystems, plants, and wildlife?
+The Conservation & Restoration Science (CRS) major at the University of Washington Bothell offers students the opportunity to recover habitats and protect wildlands from degradation due to disaster, contamination, overuse, or climate change. Academic and other learning experiences enhance students&#8217; ability for lab research, data analysis, communication, and problem-solving. Conservation & Restoration Science is a major in the Health & Natural Sciences meta-major pathway. Sometimes it is described as a major in Natural Resource Management or Climate Science.
+PURPOSE
+Students in the Conservation & Restoration Science major are passionate about maintaining and repairing natural landscapes impacted by climate change, invasive species, neglect, and the growth of urban spaces. Students spend time outdoors to examine the interaction between ecosystems and their various inhabitants.
+PRACTICE
+Courses in the Conservation & Restoration Science major focus on lab and field experiences to provide students with a working knowledge of science research and analysis. Ongoing practice with graphing software and monitoring equipment helps students design effective sustainability plans to protect and restore wildlands.
+PROFESSION
+Using their background in science and research, graduates in the Conservation & Restoration Science major go on to consult on policies, design reclamation plans, and manage the environmental affairs for businesses, education, nonprofit organizations, and wildlife centers. They also work in federal or local governments.
+Learning objectives
+The Conservation & Restoration Science major prepares students by deepening their ability to understand the mechanics of ecological systems and integrate biological and chemical processes to modify or reverse degradation or other environmental threats. The following learning objectives prepare students to make informed decisions about the management of natural resources:
+Engage in Conservation & Restoration Science
+Apply scientific understanding to the concepts of biological diversity, sustainability, ecological integrity and the socio-political systems with which they interact.
+Recognize the important roles of indigenous knowledge and values in understanding and managing natural systems.
+Acquire first-hand knowledge of regional ecosystems and the human communities dependent on them to enable meaningful engagement in local conservation and restoration activities.
+Contacts
+Martha Groom
+Faculty Coordinator
+Jennifer Cabarrus
+Lab Manager
+Penelope Wood
+Research Librarian
+Please contact the Conservation & Restoration Science Faculty Coordinator if you have any questions, concerns or ideas about the Conservation & Restoration Science major.
+Collect and analyze environmental data to address questions and assess impacts, identify management options, and identify new research directions.
+Evaluate alternative responses to environmental problems, such as habitat change, biodiversity loss, and climate change, and advance solutions that enhance resilience, equity and sustainability.
+Prepare for careers in conservation and restoration in academic, governmental, non-profit, and private sectors.
+Learn data collection methods and technologies, such as field ecology methods, geo-technologies such as GIS and remote sensing, and ecosystem modeling for research projects, investigations, and surveys.
+Understand the philosophical and scientific underpinnings of conservation and restoration science, including its strengths, limitations, and assumptions.
+Promote equity & inclusion
+Critically reflect on the social drivers of environmental problems and environmental inequity.
+Build environmental consciousness and promote ethical human intervention for environmental and human sustainability.
+Apply an understanding of ethics, power, and intergenerational equity in conservation and restoration decision-making.
+Communicate & collaborate with others
+Use both written and oral communication to effectively communicate the issues, questions, findings, and body of knowledge of conservation and restoration science to peers and the public, and to produce effective visual representations of data that articulate knowledge of conservation and restoration science.
+Constructively work with others in partnership and shared leadership to achieve project goals.
+Interact and communicate with others in disciplines outside of conservation and restoration science and beyond academia to produce new knowledge and understanding needed to address the interdisciplinary and multi-dimensional environmental issues of the future.
+Plan your degree
+Recommended preparation
+Interested in exploring this major, but not ready to commit? First-year students at UW Bothell should consider taking one or more of the courses listed below to prepare for the Conservation & Restoration Science major.
+Useful preparation for this major includes formal and informal training in environmental courses and field work.
+B CHEM 143 General Chemistry I & B CHEM 144 Gen Chem Lab
 BEARTH 153 Introduction to Geology
-BEARTH 154 Intro to Oceanography
 BEARTH 154 Introduction to Oceanography
-BEARTH 155 Intro to Climate Science
 BEARTH 155 Introduction to Climate Science
+BIS 243 Introduction to Environmental Issues
+BIS 246 Introduction to Sustainability
+Prerequisites
+There are no formal prerequisites for the Conservation & Restoration Science major.
+Current UW Bothell students in good standing can declare this major at any time using the online Major Declaration Form .
+Incoming students can apply for this major when applying for admission to UW Bothell.
+<a class="bothell-link-block link-block-1 bothell-link-block--margin-top "
+style="color:var(--wp--custom--color--purple-100)"
+href="https://www.uwb.edu/ias/undergraduate/admissions"
+>
+Learn more about how to apply
+Learn more about how to apply
+Major Requirements
+Degree Requirements
+Students who entered the Conservation & Restoration Science (CRS) major prior to Autumn 2024 have different degree requirements. Please see your Academic Advisor for questions and academic planning.
+Conservation & Restoration Science Introductory Science Coursework (31 credits):
+B MATH 123 Precalculus II or MATH 120 Precalculus (5 credits)
+Students who complete Calculus coursework do not need to complete a Precalculus Course. See your Academic Advisor for assistance.
+BIS 215 Understanding Statistics or other Introductory Statistics Course (B MATH 215, B BUS 215, or STAT 220/290) (5 credits)
+B BIO 180 or BIO 180 Introductory Biology I (5 credits)
+B CHEM 143 & B CHEM 144 General Chemistry and Lab (CHEM 120, CHEM 142 CHEM 143, or CHEM 145 or equivalent) (5 or 6 credits)
+BIS 242 Environmental Geography or BIS 243 Introduction to Environmental Issues (5 credits)
+BIS 245 Environment & Humanities (5 credits) (WIN quarter)
+Conservation & Restoration Science Core Coursework (45 credits):
+BES 301 Science Methods & Practice OR BST 301 Scientific Writing (5 Credits)
+BES 312 Ecology or B BIO 471 Plant Ecology (5 credits)
+BES 362 Introduction to Restoration Ecology (5 credits) (AUT or SPR quarter)
+BES 385 Biodiversity Conservation (5 credits) (WIN quarter)
+BES 316 Ecological Methods OR BEARTH 317 Soils in the Environment OR BEARTH 318 Hydrogeology OR BEARTH 321 Geomorphology (5 credits)
+BIS 307 Environmental Justice (AUT/WIN quarter) OR BIS 304 Political Economy and the Environment (SPR quarter) (5 credits)
+BIS 342 Geographic Information Systems (5 credits)
+BIS 356 Ethics and the Environment (AUT or SPR quarter) OR BIS 456 Climate Anxiety, Grief, and Resilience (SPR quarter) (5 credits)
+BIS 386 Climate Change Adaptation (WIN or SPR quarter) OR BEARTH 320 Impacts of Climate Change (SPR quarter) (5 credits)
+Conservation & Restoration Science Elective Coursework (20 credits)
+See full approved course list below for course options
+Total= 96 credits
+School of IAS Requirements & Policies
+Residency Requirement: 30 credits must be completed in residency at UW Bothell.
+Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
+Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with the 96 credits of major coursework, or it can be completed through elective credits. Please see the IPR page for course options.
+Upper Division Credit Policy: Of the credits applying to major requirements, a minimum of 55 credits must be completed at the Upper Division (300-400) level.
+Note: See all IAS polices and procedures on the Student Resources webpage .
+BACK TO TOP
+Courses
+Conservation & Restoration Science Approved Elective List
+BEARTH 153 Intro to Geology
+BEARTH 154 Intro to Oceanography
+BEARTH 155 Intro to Climate Science
 BEARTH 201 Mapping the Earth System
 BEARTH 202 Modeling Global Systems
 BEARTH 310 Fundamentals of Weather and Climate
@@ -69,16 +399,11 @@ BEARTH 318 Hydrogeology (if not taken with core)
 BEARTH 320 Impacts of Climate Change (if not taken with core)
 BEARTH 321 Geomorphology (if not taken with core)
 BEARTH 341 Natural Hazards and Human Disasters
-BES 301 Science Methods & Practice OR BST 301 Scientific Writing (5 Credits)
 BES 303 Environmental Monitoring Practicum
 BES 311 Environmental Chemistry
 BES 312 Ecology (if not taken with core)
-BES 312 Ecology or B BIO 471 Plant Ecology (5 credits)
 BES 316 Ecological Methods (if not taken with core)
-BES 316 Ecological Methods OR BEARTH 317 Soils in the Environment OR BEARTH 318 Hydrogeology OR BEARTH 321 Geomorphology (5 credits)
 BES 330 Limnology
-BES 362 Introduction to Restoration Ecology (5 credits) (AUT or SPR quarter)
-BES 385 Biodiversity Conservation (5 credits) (WIN quarter)
 BES 397 Special Topics in Environmental Science
 BES 415 Advanced Environmental Measurement Laboratory
 BES 440 Remote Sensing of the Environment
@@ -92,29 +417,20 @@ BES 493 Capstone Research in ES II
 BES 497 Special Topics in ES
 BIS 141 Natural History and Environmental Science
 BIS 185 Art and Climate Change
-BIS 215 Understanding Statistics or other Introductory Statistics Course (B MATH 215, B BUS 215, or STAT 220/290) (5 credits)
 BIS 242 Environmental Geography (if not taken with core)
-BIS 242 Environmental Geography or BIS 243 Introduction to Environmental Issues (5 credits)
 BIS 243 Intro to Environmental Issues (if not taken with core)
-BIS 243 Introduction to Environmental Issues
-BIS 245 Environment & Humanities (5 credits) (WIN quarter)
 BIS 246 Intro to Sustainability
-BIS 246 Introduction to Sustainability
 BIS 252 Politics of Science
 BIS 304 Political Economy and the Environment (if not taken with core)
-BIS 307 Environmental Justice (AUT/WIN quarter) OR BIS 304 Political Economy and the Environment (SPR quarter) (5 credits)
 BIS 307 Environmental Justice (if not taken with core)
 BIS 319 Public Arts and Ecological Restoration
-BIS 342 Geographic Information Systems (5 credits)
 BIS 343 Geographic Visualization
 BIS 344 Intermediate GIS
 BIS 346 Topics in Environmental Policy
-BIS 356 Ethics and the Environment (AUT or SPR quarter) OR BIS 456 Climate Anxiety, Grief, and Resilience (SPR quarter) (5 credits)
 BIS 356 Ethics and the Environment (if not taken with core)
 BIS 359 Principles & Controversies of Sustainability
 BIS 360 Pollinator Diversity and Conservation
 BIS 372 Representation, Colonialism, and the Tropical World
-BIS 386 Climate Change Adaptation (WIN or SPR quarter) OR BEARTH 320 Impacts of Climate Change (SPR quarter) (5 credits)
 BIS 386 Climate Change Adaptation Policy (if not taken with core)
 BIS 392 Water & Sustainability
 BIS 405 Environmental Education
@@ -125,125 +441,62 @@ BIS 456 Climate Anxiety, Grief and Reliance (if not taken with core)
 BIS 458 Energy, Environment and Society
 BIS 459 Conservation & Sustainable Development
 BISSTS 355 History of Science and Technology
-Bothell, WA 98011-8246
-Bothell, Washington View our location on Google maps.
-Box 358530
+B BIO 330 Marine Biology
+B BIO 335 Salmon and Society
+B BIO 471 Plant Ecology (if not taken with core)
+B CHEM 315 Quantitative Environmental Analysis
+B CHEM 350 Atmospheric Chemistry and Air Pollution
 BST 445 Political Economy of Energy
 BST 446 Sustainable Energy
-Build environmental consciousness and promote ethical human intervention for environmental and human sustainability.
-Campus Safety
-Canvas
-Career Planning
+B HLTH 407 Climate Change and Health
+BACK TO TOP
+Plan your career
 Career Resources
-Careers
-Close mobile menu
+Take advantage of the free resources offered by UW Bothell’s Career Services team. From mock interviews to internships and events, Career Services has everything you need to plan for your future!
 Coaching appointments are offered in-person or over Zoom.
-Collect and analyze environmental data to address questions and assess impacts, identify management options, and identify new research directions.
-Communicate & collaborate with others
-Community Engagement
-Community Psychology
-Commuter Services
-Conservation & Restoration Science
-Conservation & Restoration Science - School of Interdisciplinary Arts & Sciences
-Conservation & Restoration Science Approved Elective List
-Conservation & Restoration Science Core Coursework (45 credits):
-Conservation & Restoration Science Elective Coursework (20 credits)
-Conservation & Restoration Science Introductory Science Coursework (31 credits):
-Constructively work with others in partnership and shared leadership to achieve project goals.
-Contact
-Contact Us
-Contact us by phone at:
-Contacts
-Courses
-Courses in the Conservation & Restoration Science major focus on lab and field experiences to provide students with a working knowledge of science research and analysis. Ongoing practice with graphing software and monitoring equipment helps students design effective sustainability plans to protect and restore wildlands.
-Creative Writing & Poetics (MFA)
-Critically reflect on the social drivers of environmental problems and environmental inequity.
-Culture, Literature & the Arts
-Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
-Current site
-Current UW Bothell students in good standing can declare this major at any time using the online Major Declaration Form .
-Curriculum
-Curriculum - School of Interdisciplinary Arts & Sciences
-D.C. Human Rights Seminar
-Data Visualization
-Degree Completion
-Degree Requirements
 Did you know? UW Alumni can access Career Services for three years after graduation (and Veterans have lifetime access)!
-Directory
+The University of Washington offers numerous free resources to help IAS students prepare for a career after college. Featured career planning tools are listed on the IAS Student Resources page.
+BACK TO TOP
+Interested in graduate school?
+Undergraduate degrees offered in the School of IAS prepare students for a wide variety of graduate programs. If you think you might be interested in earning a master’s or doctoral degree, start planning now!
+Tips for exploring graduate school
+Make an appointment for graduate school coaching
+BACK TO TOP
+In this section
+About IAS
+Expand Navigation
+Mission, Values, and Goals
 Diversity and Equity
+Expand Navigation
 Diversity Plan
+Scholarship
+Contact Us
+Undergraduate
+Expand Navigation
+How to apply
+Majors
+Expand Navigation
+American & Ethnic Studies
+Community Psychology
+Conservation & Restoration Science
+Culture, Literature & the Arts
+Data Visualization
 Earth System Science
-Educational Access & Opportunity Fund
-Engage in Conservation & Restoration Science
-Engages the primary processes of thinking and memory as they are affected by diverse writing practices and media applications.
-Engages the subject of poetics as writing theory and practice. Focuses on cultural, social, and technological change as these create new challenges and possibilities for creative writing.
 Environmental Science
 Environmental Studies
-Evaluate alternative responses to environmental problems, such as habitat change, biodiversity loss, and climate change, and advance solutions that enhance resilience, equity and sustainability.
-Events
-Examines the relationships between fact and imagination in fiction, non-fiction, and poetry writing.
-Expand Navigation
-Experiential & Community Based Learning Fund
-Explores relationships among art, technology, and creative practice. Examines connections among diverse art forms, inquiring into their social, philosophical, and aesthetic dimensions.
-Facilities
-Faculty
-Faculty & staff
-Faculty Coordinator
-Fall Convergence
-Focuses on the cross over between prose and poetry in multiple genres. Considers the prevalence of narrative and alternatives to narrative.
-For the degree, first-year students complete 6 core courses (writing workshops and poetics seminars) for a total of 30 credits. In their second year students complete 15 credits of supervised thesis work and submit an original creative work and poetics statement. Thesis work is supplemented by 6 credits of required thesis practicum, for a total of 51 degree credits.
-Full-time/Part-time
-Funding
 Gender, Women & Sexuality Studies
-Give
-Global Scholars
-Global Scholars Fund
 Global Studies
-Grade Appeal
-Graduate Programs
-Graduate Studies Excellence Fund
-Grievances and Complaints
-Hands-on Learning (IPR)
-height="0" width="0" style="display:none;visibility:hidden">
-Housing
-How to apply
-href="https://www.uwb.edu/ias/undergraduate/admissions"
-Human Resources
-iasgrad@uw.edu
-iasinfo@uw.edu
-In accordance with UW Graduate School master&#8217;s degree policies, MFA graduate students have six years to complete the degree from the time that they first enroll. This includes any time on-leave as well as actively enrolled.
-In advance of their second year, students create an individualized course of study in consultation with their advisors.
-In this section
-Includes completion of creative thesis in one of the following areas: poetry, fiction, non-fiction, or cross genre as well as a poetics essay or artist’s statement. For details, see Thesis Work .
-Incoming students can apply for this major when applying for admission to UW Bothell.
-Information Technology
-Interact and communicate with others in disciplines outside of conservation and restoration science and beyond academia to produce new knowledge and understanding needed to address the interdisciplinary and multi-dimensional environmental issues of the future.
 Interdisciplinary Arts
-Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with the 96 credits of major coursework, or it can be completed through elective credits. Please see the IPR page for course options.
 Interdisciplinary Social Sciences
 Interdisciplinary Studies
-Interested in exploring this major, but not ready to commit? First-year students at UW Bothell should consider taking one or more of the courses listed below to prepare for the Conservation & Restoration Science major.
-Interested in graduate school?
-Internships
-Internships. Please consult the internship resources : then complete and submit a learning contract for review and approval by your site supervisor and thesis advisor.
-Jennifer Cabarrus
-Jobs
-Lab Manager
 Law, Economics & Public Policy
-Learn data collection methods and technologies, such as field ecology methods, geo-technologies such as GIS and remote sensing, and ecosystem modeling for research projects, investigations, and surveys.
-Learn more about how to apply
-Learning objectives
-Learning Objectives
-Library
-Major Requirements
-Majors
-Make an appointment for graduate school coaching
-Maps & directions
-Martha Groom
-Master of Fine Arts (MFA) Program Fund
 Mathematical Thinking & Visualization
 Media & Communication Studies
-MFA Publications
+Psychology
+Science, Technology & Society
+Society, Ethics & Human Behavior
+Minors
+Expand Navigation
 Minor in Climate Change & Society
 Minor in Creative Writing
 Minor in Diversity Studies
@@ -255,115 +508,99 @@ Minor in Performance
 Minor in Policy Studies
 Minor in Science, Technology & Society
 Minor in Visual & Media Arts
-Minors
-Mission, Values, and Goals
-More Links
-MyUW
-News
-Nony Clark Milmoe Scholarship
-Note: See all IAS polices and procedures on the Student Resources webpage .
-On this Page: Curriculum Overview | Year One | Year Two | Thesis Work | Elective Option | Degree Completion
-On this page: Major Description | Learning Objectives | Degree Planning
-Open mobile menu
-Overview
-Part-time
-Peer Facilitation
-Penelope Wood
-People
-Petitions and Forms
-Plan your career
-Plan your degree
-Please contact the Conservation & Restoration Science Faculty Coordinator if you have any questions, concerns or ideas about the Conservation & Restoration Science major.
-Poetics Seminar (5 CR)
-Poetics Seminars
-Policy Studies (MA)
-PRACTICE
-Prepare for careers in conservation and restoration in academic, governmental, non-profit, and private sectors.
-Prerequisites
-Privacy
-PROFESSION
-Promote equity & inclusion
-Prospective Students
-Provides creative development opportunities and practice in accordance with individualized plans, including but not limited to presenting work-in-progress at salons and readings; submitting work to conferences, residencies, and publications; and interning at arts, education, or media organizations. For details, see Thesis Practicum .
-Psychology
-PURPOSE
-Quick Links
-Recognize the important roles of indigenous knowledge and values in understanding and managing natural systems.
-Recommended preparation
-Request the Master&#8217;s Degree
-Research Librarian
+Learning Objectives
+Hands-on Learning (IPR)
+Expand Navigation
 Research Opportunities
-Residency Requirement: 30 credits must be completed in residency at UW Bothell.
-Rules Docket
-Sandra Martin Roberts Memorial Scholarship
-Scholarship
-School of IAS Requirements & Policies
-School of Interdisciplinary Arts & Sciences
-Science, Technology & Society
-Search
-Search keywords
-Seattle Campus
-Second-year students also complete a thesis practicum for a total of 6 credits. The thesis practicum prepares students to present and publish their work, sustain their artistic practice after graduation, and engage as a professional in artistic communities, organizations, and undertakings.
-See full approved course list below for course options
-See Registration for instructions and contact the IAS Graduate Office for the appropriate registration codes.
-See Registration for instructions.
-See Thesis Timeline for thesis filing requirements and deadline
-Skip To Content
-Society, Ethics & Human Behavior
-Spring Festival
-Spring Quarter
-Staff
-Student Feedback
-Student Resources
-Students have the option of taking additional elective coursework at the 400-level or above, in a variety of UW programs and departments , beyond their thesis and thesis practicum requirements. Students are encouraged to consult first and foremost with their thesis advisors about ways of incorporating these activities into the thesis practicum.
-Students in the Conservation & Restoration Science major are passionate about maintaining and repairing natural landscapes impacted by climate change, invasive species, neglect, and the growth of urban spaces. Students spend time outdoors to examine the interaction between ecosystems and their various inhabitants.
-Students must be registered and enrolled in the quarter that they graduate. To graduate students must fulfill all degree requirements and submit their master&#8217;s degree request by the relevant deadline. In their master&#8217;s degree request, select the &#8220;thesis&#8221; option.
-Students who complete Calculus coursework do not need to complete a Precalculus Course. See your Academic Advisor for assistance.
-Students who do not complete all degree requirements by the last day of the quarter in which they plan to graduate must register for the following quarter and resubmit their master&#8217;s degree request.
-Students who entered the Conservation & Restoration Science (CRS) major prior to Autumn 2024 have different degree requirements. Please see your Academic Advisor for questions and academic planning.
+Peer Facilitation
+Internships
+Community Engagement
+D.C. Human Rights Seminar
 Study Abroad
-style="color:var(--wp--custom--color--purple-100)"
-Tacoma Campus
-Take advantage of the free resources offered by UW Bothell’s Career Services team. From mock interviews to internships and events, Career Services has everything you need to plan for your future!
-Terms
-The Conservation & Restoration Science (CRS) major at the University of Washington Bothell offers students the opportunity to recover habitats and protect wildlands from degradation due to disaster, contamination, overuse, or climate change. Academic and other learning experiences enhance students&#8217; ability for lab research, data analysis, communication, and problem-solving. Conservation & Restoration Science is a major in the Health & Natural Sciences meta-major pathway. Sometimes it is described as a major in Natural Resource Management or Climate Science.
-The Conservation & Restoration Science major prepares students by deepening their ability to understand the mechanics of ecological systems and integrate biological and chemical processes to modify or reverse degradation or other environmental threats. The following learning objectives prepare students to make informed decisions about the management of natural resources:
-The first year provides students with an immersive, structured, full-time curricular experience that pairs creative writing workshops with poetics seminars quarterly. First-year students complete 15 credits of writing workshops and 15 credits of poetics seminars, before advancing to thesis work the following year. **The sequence of workshops and seminars may vary.
-The focus of the second year is thesis-intensive, focused on the development and completion of independent creative work, in or across the genre(s), form(s), or media of your choosing, and a poetics statement that situates you and your artistic practice. Students complete 15 credits of thesis work for the degree, under the mentorship of a thesis advisor and a second reader.
-The MFA in Creative Writing & Poetics at UW Bothell consists of a residency program in its first year, with residency and non-residency options in its second year. Students participate in the program as a member of a cohort of 12-16 MFA students.
-The second year can be completed in residency or non-residency, part-time or full-time. (See sample pathways, above).
-The University of Washington offers numerous free resources to help IAS students prepare for a career after college. Featured career planning tools are listed on the IAS Student Resources page.
-There are no formal prerequisites for the Conservation & Restoration Science major.
-Thesis (1-10 CR)
-Thesis Practicum (1-5 CR)
+Global Scholars
+Student Resources
+Expand Navigation
+Student Feedback
+Petitions and Forms
+Grade Appeal
+Grievances and Complaints
+Career Planning
+Graduate Programs
+Expand Navigation
+Creative Writing & Poetics (MFA)
+Expand Navigation
+People
+Admissions
+Learning Objectives
+Curriculum
 Thesis Work
-Time Schedule
-Tips for exploring graduate school
-Total= 96 credits
-Undergraduate
-Undergraduate degrees offered in the School of IAS prepare students for a wide variety of graduate programs. If you think you might be interested in earning a master’s or doctoral degree, start planning now!
-Understand the philosophical and scientific underpinnings of conservation and restoration science, including its strengths, limitations, and assumptions.
+Events
+Fall Convergence
+Spring Festival
+MFA Publications
+Careers
+Policy Studies (MA)
+Expand Navigation
+Why Policy Studies?
+People
+Prospective Students
+Admissions
+Learning Objectives
+Curriculum
+Careers
+Student Resources
+Expand Navigation
+Funding
+Admitted Students
+Housing
+Faculty & staff
+Expand Navigation
+Faculty
+Staff
+News
+Events
+Give
+Expand Navigation
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+Contact Us
+School of Interdisciplinary Arts & Sciences
+iasinfo@uw.edu
+425.352.5350
+Box 358530
+18115 Campus Way NE
+Bothell, WA 98011-8246
 University of Washington Bothell Homepage
-Upper Division Credit Policy: Of the credits applying to major requirements, a minimum of 55 credits must be completed at the Upper Division (300-400) level.
-Use both written and oral communication to effectively communicate the issues, questions, findings, and body of knowledge of conservation and restoration science to peers and the public, and to produce effective visual representations of data that articulate knowledge of conservation and restoration science.
-Useful preparation for this major includes formal and informal training in environmental courses and field work.
-Using their background in science and research, graduates in the Conservation & Restoration Science major go on to consult on policies, design reclamation plans, and manage the environmental affairs for businesses, education, nonprofit organizations, and wildlife centers. They also work in federal or local governments.
-UW Bothell Facebook
-UW Bothell Home
+Bothell, Washington View our location on Google maps.
+Contact us by phone at:
+425.352.5000
+Contact
+Visitors
+Maps & directions
+Jobs
+Accessibility
+Privacy
+Rules Docket
+Terms
+Seattle Campus
+Tacoma Campus
 UW Bothell Instagram
 UW Bothell Linkedin
+UW Bothell Facebook
 UW Bothell Twitter
 UW Bothell Youtube
-Visitors
-Washington D.C. Travel Assistance Fund
-Why Policy Studies?
-Winter Quarter
-Workday Login
-Writing Workshop (5 CR)
-Writing Workshops
-Year
-Year 2: Sample Pathway
-Year One
-Year One – Requirements
-Year Two
-Year Two – Requirements
+&copy; 2026 University of Washington Bothell
+UW Bothell Instagram
+UW Bothell Linkedin
+UW Bothell Facebook
+UW Bothell Twitter
+UW Bothell Youtube

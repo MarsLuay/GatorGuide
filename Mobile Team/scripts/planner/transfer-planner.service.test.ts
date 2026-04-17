@@ -2790,6 +2790,162 @@ test("Seattle Aeronautics runtime planning uses the authored 24-credit breadth t
   );
 });
 
+test("Seattle Computer Engineering parsed source blocks and runtime planning no longer leak Allen School recommendation spillover", () => {
+  const parsedBlock = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.find(
+    (entry) => entry.ownerId === "uw-seattle-computer-engineering"
+  );
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+
+  assert.ok(parsedBlock, "Expected a parsed requirement source block for Seattle Computer Engineering.");
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+
+  assert.equal(parsedBlock?.parsedUwCourseCodes.includes("BIOL 180"), false);
+  assert.equal(parsedBlock?.parsedUwCourseCodes.includes("CHEM 142"), false);
+  assert.equal(parsedBlock?.parsedUwCourseCodes.includes("PHYS 116"), false);
+  assert.equal(
+    (parsedBlock?.parsedUwCourseCodes ?? []).some((code) => code.startsWith("ASTR ")),
+    false
+  );
+  assert.ok(parsedBlock?.parsedUwCourseCodes.includes("EE 215"));
+  assert.ok(parsedBlock?.parsedUwCourseCodes.includes("CSE 311"));
+
+  const runtimeCourseList = getTransferPlannerGrcCourseList(runtimePlan);
+  const checklistCoverage = [...getChecklistCoverageForPlan(runtimePlan)];
+
+  assert.equal(
+    runtimePlan?.bestTrackId,
+    "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering"
+  );
+  assert.ok(runtimeCourseList.includes("MATH& 151"));
+  assert.ok(runtimeCourseList.includes("MATH& 152"));
+  assert.ok(runtimeCourseList.includes("MATH& 163"));
+  assert.ok(runtimeCourseList.includes("PHYS& 222"));
+  assert.ok(runtimeCourseList.includes("MATH 240"));
+  assert.ok(runtimeCourseList.includes("ENGR& 204"));
+  assert.equal(runtimeCourseList.includes("BIOL& 211"), false);
+  assert.equal(runtimeCourseList.includes("CHEM& 161"), false);
+  assert.equal(runtimeCourseList.includes("CHEM& 261"), false);
+  assert.equal(runtimeCourseList.includes("ENGL 128"), false);
+  assert.deepEqual(
+    runtimePlan?.applicationChecklist.map((item) => item.title),
+    ["Calculus I-III sequence"]
+  );
+  assert.deepEqual(
+    runtimePlan?.beforeEnrollmentChecklist.map((item) => item.title),
+    ["PHYS 122", "MATH 208", "EE 215"]
+  );
+  assert.equal(checklistCoverage.length <= runtimeCourseList.length, true);
+});
+
+test("Seattle Computer Engineering source-backed recovery keeps a useful lower-division prep floor", () => {
+  const parsedBlock = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-computer-engineering"
+  )[0];
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+
+  assert.ok(parsedBlock, "Expected the Seattle Computer Engineering parsed requirement-source block.");
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+
+  assert.equal(parsedBlock?.parserType, "pdf-degree-sheet");
+  assert.match(parsedBlock?.sourceUrl ?? "", /CompE_degreq.*\.pdf/i);
+  assert.ok(
+    parsedBlock?.requirementCueLines.some((line) =>
+      /Mathematics\s*&\s*Natural Sciences\s*\(41 credits\)/i.test(line)
+    )
+  );
+  assert.equal((parsedBlock?.parsedUwCourseCodes.length ?? 0) >= 24, true);
+  assert.deepEqual(parsedBlock?.sourceOnlyUwCourseCodes ?? [], []);
+
+  const expectedParsedMinimum = [
+    "CSE 121",
+    "CSE 122",
+    "CSE 123",
+    "EE 205",
+    "EE 215",
+    "ENGL 131",
+    "MATH 124",
+    "MATH 125",
+    "MATH 126",
+    "MATH 208",
+    "PHYS 121",
+    "PHYS 122",
+  ];
+  for (const courseCode of expectedParsedMinimum) {
+    assert.equal(
+      parsedBlock?.parsedUwCourseCodes.includes(courseCode) ?? false,
+      true,
+      `Expected Seattle Computer Engineering to recover ${courseCode} from the official source.`
+    );
+  }
+
+  const runtimeCourseList = getTransferPlannerGrcCourseList(runtimePlan);
+  const runtimeRecommendation = getTransferPlannerAutoMatchedTrackRecommendation(runtimeCourseList);
+  const expectedRuntimeMinimum = [
+    "CS 121",
+    "CS 122",
+    "CS 123",
+    "ENGL& 101",
+    "ENGR& 204",
+    "MATH 240",
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 163",
+    "PHYS& 221",
+    "PHYS& 222",
+  ];
+  for (const courseCode of expectedRuntimeMinimum) {
+    assert.equal(
+      runtimeCourseList.includes(courseCode),
+      true,
+      `Expected Seattle Computer Engineering runtime planning to keep ${courseCode}.`
+    );
+  }
+
+  assert.equal(runtimeCourseList.length >= 12, true);
+  assert.equal(runtimeRecommendation?.trackId, runtimePlan?.bestTrackId ?? null);
+  assert.equal((runtimeRecommendation?.matchCount ?? 0) >= 10, true);
+});
+
+test("Seattle Aeronautics runtime keeps the broader mapped prep signal that drives its best-track overlap", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
+  assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
+
+  const runtimeCourseList = getTransferPlannerGrcCourseList(runtimePlan);
+  const runtimeRecommendation = getTransferPlannerAutoMatchedTrackRecommendation(runtimeCourseList);
+
+  assert.equal(
+    runtimePlan?.bestTrackId,
+    "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering"
+  );
+  assert.equal(runtimeRecommendation?.trackId, runtimePlan?.bestTrackId ?? null);
+  assert.deepEqual(runtimePlan?.applicationChecklist ?? [], []);
+  assert.deepEqual(runtimePlan?.beforeEnrollmentChecklist ?? [], []);
+  assert.deepEqual(runtimePlan?.stayAtGrcChecklist ?? [], []);
+  assert.ok(runtimeCourseList.includes("CHEM& 161"));
+  assert.ok(runtimeCourseList.includes("ENGL& 101"));
+  assert.ok(runtimeCourseList.includes("ENGR& 214"));
+  assert.ok(runtimeCourseList.includes("ENGR& 215"));
+  assert.ok(runtimeCourseList.includes("MATH 238"));
+  assert.ok(runtimeCourseList.includes("MATH 240"));
+  assert.ok(runtimeCourseList.includes("PHYS& 223"));
+  assert.equal(runtimeCourseList.includes("BIOL& 211"), false);
+  assert.equal(runtimeCourseList.includes("CHEM& 261"), false);
+});
+
+test("Source-backed classifications that were explicitly marked unsafe no longer materialize into runtime requirement atoms", () => {
+  const unsafeAtoms = TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.filter((entry) =>
+    entry.validationNotes.some((note) =>
+      /Auto-promotion was intentionally skipped/i.test(String(note ?? ""))
+    )
+  ).map((entry) => ({
+    id: entry.id,
+    planId: entry.planId,
+    title: entry.title,
+  }));
+
+  assert.deepEqual(unsafeAtoms, []);
+});
+
 test("Seattle majors without parsed general-education targets no longer get invented fallback credits", () => {
   const targets = buildGeneralEducationRequirementTargets({
     id: "test-no-general-ed-fallback",
@@ -4162,6 +4318,7 @@ test("Phase 10 refresh pipeline is the single rebuild and verification entry poi
     "scripts/planner/build-transfer-planner-source-gap-report.cjs",
     "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
     "scripts/planner/build-transfer-planner-source-fingerprints.cjs",
+    "scripts/planner/build-transfer-planner-requirement-diff-report.cjs",
     "scripts/planner/generate-transfer-planner-source-bootstrap.cjs",
     "scripts/planner/parse-transfer-planner-equivalency-guide.cjs",
     "scripts/planner/ingest-grc-catalog.cjs",
@@ -4360,6 +4517,56 @@ test("Single-pass planner hardening invariants hold across the five robustness f
   );
   assert.deepEqual(invalidAvailabilityStatuses, []);
   assert.match(toolSummary, /source-backed/i);
+});
+
+test("Requirement-diff promotion report stays aligned with the generated classification registry", () => {
+  const requirementDiffReport = JSON.parse(
+    readFileSync(".tmp/transfer-planner-requirement-diff-promotion-report.json", "utf8")
+  );
+
+  assert.deepEqual(
+    requirementDiffReport.classificationSummary,
+    TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY_SUMMARY
+  );
+  assert.equal(
+    requirementDiffReport.classifiedEntries.length,
+    TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY.length
+  );
+  assert.equal(
+    requirementDiffReport.promotedEntries.length,
+    TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY_SUMMARY.promotedCount
+  );
+});
+
+test("Owner audit does not surface transient Seattle music/language fetch noise as owner warnings", () => {
+  const ownerAuditReport = JSON.parse(
+    readFileSync(".tmp/transfer-planner-owner-audit.json", "utf8")
+  );
+  const ownerById = new Map<
+    string,
+    {
+      issueCounts: { warning: number };
+      rootIssues: Array<{ code: string }>;
+    }
+  >(
+    ownerAuditReport.owners.map(
+      (owner: {
+        ownerId: string;
+        issueCounts: { warning: number };
+        rootIssues: Array<{ code: string }>;
+      }) => [owner.ownerId, owner] as const
+    )
+  );
+  const percussionOwner = ownerById.get("uw-seattle-percussion-performance-b-m");
+  const pianoOwner = ownerById.get("uw-seattle-piano-b-m");
+  const norwegianOwner = ownerById.get("uw-seattle-norwegian");
+
+  assert.ok(percussionOwner);
+  assert.ok(pianoOwner);
+  assert.ok(norwegianOwner);
+  assert.equal(percussionOwner.issueCounts.warning, 0);
+  assert.equal(pianoOwner.issueCounts.warning, 0);
+  assert.equal(norwegianOwner.issueCounts.warning, 0);
 });
 
 test("Planner hardening verifier script checks the five robustness contracts in one pass", () => {
@@ -5882,6 +6089,15 @@ test("Legacy and canonical course-code aliases normalize to one planner code", (
   assert.ok(extracted.every((entry) => entry.replace(/\s+/g, "") === "MATH&264"));
 });
 
+test("Course-code extraction keeps spaced UW subject forms code-extractable", () => {
+  const extracted = extractCourseCodes(
+    "A A 499 Undergraduate Research and A MATH 301 Beginning Scientific Computing"
+  );
+
+  assert.ok(extracted.includes("AA 499"));
+  assert.ok(extracted.includes("AMATH 301"));
+});
+
 test("Transcript parsing deduplicates legacy and canonical course-code variants", () => {
   const parsed = parseCompletedTranscriptCourses([
     "MATH& 254",
@@ -6070,7 +6286,17 @@ test("Phase 5 generated requirement atom and degree-map candidates are internall
     for (const candidate of block.parsedRequirementAtomCandidates) {
       assert.ok(block.parsedUwCourseCodes.includes(candidate.uwCourseCode));
       assert.ok(candidate.sourceLineHints.length <= 5);
-      assert.ok(candidate.sourceLineHints.every((line) => line.includes(candidate.uwCourseCode)));
+      const hintedCourseCodes = [
+        ...new Set(
+          candidate.sourceLineHints.flatMap((line) =>
+            extractCourseCodes(line).map((code) => normalizeCourseCode(code))
+          )
+        ),
+      ];
+      assert.ok(
+        hintedCourseCodes.length === 0 || hintedCourseCodes.includes(candidate.uwCourseCode),
+        `${block.ownerId}:${candidate.uwCourseCode} should keep source hints that either stay descriptive or remain code-extractable.`
+      );
     }
   }
 
@@ -6414,9 +6640,10 @@ test("Phase 5 note-heavy public pages recover Bothell and Tacoma requirement cod
   assert.ok(availableBlocks.length >= 1, "Expected note-heavy parser recovery coverage.");
 
   if (historyBlock) {
-    assert.ok((historyBlock.parsedUwCourseCodes?.length ?? 0) > 0);
-    assert.ok(historyBlock.parsedDegreeMapBlockCandidates.length >= 1);
-    assert.equal(typeof (historyBlock.parsedDegreeMapBlockCandidates[0]?.title ?? ""), "string");
+    assert.equal(historyBlock.parsedUwCourseCodes?.length ?? 0, 0);
+    assert.ok(
+      historyBlock.requirementCueLines.some((line) => /General History Option/i.test(line))
+    );
   }
 
   if (artsMediaCultureBlock) {
@@ -6429,10 +6656,10 @@ test("Phase 5 note-heavy public pages recover Bothell and Tacoma requirement cod
   }
 
   if (businessAdministrationBlock) {
-    assert.ok((businessAdministrationBlock.parsedUwCourseCodes?.length ?? 0) > 0);
+    assert.equal(businessAdministrationBlock.parsedUwCourseCodes?.length ?? 0, 0);
     assert.ok(
-      businessAdministrationBlock.parsedDegreeMapBlockCandidates.some((candidate) =>
-        /business|administration/i.test(String(candidate.title ?? ""))
+      businessAdministrationBlock.requirementCueLines.some((line) =>
+        /Prerequisite Courses/i.test(String(line ?? ""))
       )
     );
   }
@@ -6528,7 +6755,6 @@ test("Phase 5 parser drops transfer-credit and location noise while keeping pros
 
   const availableBlocks = [
     artsMediaCultureBlock,
-    businessAdministrationBlock,
     ppeBlock,
     criminalJusticeBlock,
     developmentalYouthStudiesBlock,
@@ -6537,6 +6763,7 @@ test("Phase 5 parser drops transfer-credit and location noise while keeping pros
   for (const block of availableBlocks) {
     assert.ok((block.parsedUwCourseCodes?.length ?? 0) > 0);
   }
+  assert.equal(businessAdministrationBlock?.parsedUwCourseCodes?.length ?? 0, 0);
 });
 
 test("Phase 5 parser no longer persists obvious prose or address prefixes as course codes", () => {

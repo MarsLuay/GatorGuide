@@ -5,26 +5,18 @@ Title: Latin American and Caribbean Studies - Major - The Henry M. Jackson Schoo
 – Israel Studies Program
 – Sephardic Studies Program
 (206) 543-6001
-[Supplemental official source] Asian Studies &#8211; China Concentration
-[Supplemental official source] Asian Studies &#8211; Japan Concentration
-[Supplemental official source] Asian Studies &#8211; Korea Concentration
 [Supplemental official source] Asian Studies &#8211; Major
-[Supplemental official source] Asian Studies &#8211; South Asia Concentration
-[Supplemental official source] Asian Studies &#8211; Southeast Asia Concentration
 [Supplemental official source] Comparative Religion &#8211; Major
 [Supplemental official source] European Studies &#8211; Major
-[Supplemental official source] Supplemental official track and option pages
 * JSIS 396 Latin America Study Abroad (when contemporary LA content)
 *Courses with asterisk are Special Variable Topic Courses, open to History majors ONLY until registration period 3. These may count only if the course has predominantly Latin America content.
 *Courses with asterisk are Special Variable Topic Courses, open to students from that major ONLY until registration period 3. These may count only if the course has predominantly Latin America content.
 &copy; 2026 Henry M. Jackson School of International Studies, University of Washington | Seattle, WA
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMF8KQZ"
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-10
 2 to 3
 2-5, max. 15
 2023 Skagit Lane, Thomson Hall , Box 353650 Seattle, WA 98195-3650
-25
 3
 3 to 5
 3, max 9
@@ -35,7 +27,6 @@ Title: Latin American and Caribbean Studies - Major - The Henry M. Jackson Schoo
 5,max 10
 50 credits plus language proficiency*
 A life abroad, with coffee
-A minimum of ten credits from the following list of core South Asia courses
 A. Warren
 About
 About the Jackson School
@@ -56,7 +47,6 @@ Alum Tasha Kimball speaks to Jackson School students on life after graduation
 American Politics Seminar (when LA content)
 Analyses "War on Drugs" in Latin America as political, economic, and socio-cultural construct. Investigates local, regional and global dynamics rendering some mood-altering substances as legal while subjecting others to prohibitionist policies at different historical times. Explores racial, class and gender logics shaping these processes. Examines how informal economies are well entrenched within longstanding, transnational institutions.
 Analysis of the political dynamics of change in Latin America comparing various national approaches to the political problems of modernization, economic development, and social change.
-ANTH 314 Ethnography, Transnationalism, & Community in Island Southeast Asia/Asian Americans (5)
 ANTH 404
 ANTH 418
 ANTH/CHSTU 416
@@ -72,12 +62,6 @@ ART H 309*
 ART H 400*
 Art History and Criticism (When LA Content)
 Arts and Culture of Oaxaca
-Asian Civilization Course
-Asian Studies - Major
-Asian Studies - South Asia Concentration
-Asian Studies - South Asia Concentration - The Henry M. Jackson School of International Studies
-Asian Studies - Southeast Asia Concentration
-Asian Studies - Southeast Asia Concentration - The Henry M. Jackson School of International Studies
 Asian Studies &#8211; China Concentration
 Asian Studies &#8211; Japan Concentration
 Asian Studies &#8211; Korea Concentration
@@ -86,7 +70,6 @@ Asian Studies &#8211; South Asia Concentration
 Asian Studies &#8211; Southeast Asia Concentration
 Asian Traditions
 Autumn
-Autumn / Winter
 Autumn 2026 Courses by Category &#8211; SUBJECT TO CHANGE
 Back to top
 Barrett
@@ -133,7 +116,6 @@ CHSTU 356
 CHSTU 405
 CHSTU 498*
 Cinema & Nation (when LA content)
-Click here for an online checklist of course requirements
 Close Menu
 CMS 320*
 Colloquium in Historiography (when LA content) (History majors only
@@ -157,7 +139,6 @@ Contemporary Latin American Poetry
 Course #
 Course Lists
 Courses
-Coursework Requirements
 CR/NC
 Credit: Fulgencio Lazo "Arcoiris del Yoyo" (2013)
 Credits
@@ -176,7 +157,6 @@ East Asia Resource Center
 ECON 491*
 ECON 492
 Economic Issues in Contemporary Latin America
-Electives &#8211; 25 credits from the list of approved South Asia electives, found below.
 Ellison Center for Russian, East European and Central Asian Studies
 European Studies &#8211; Major
 European Studies &#8211; Minor
@@ -240,12 +220,6 @@ History of Peru and the Andean Region
 Home
 HSTAA 290*
 HSTAA 313*
-HSTAS 201 South Asian History pre-history to 1500
-HSTAS 401 &#8211; History of Ancient India
-HSTAS 402 &#8211; History of Medieval and Mughal India
-HSTAS 403 &#8211; History of Modern India
-HSTAS 404 &#8211; History of Twentieth-Century India
-HSTAS: 201, 211, JSIS A 202, 205, 206, 212, 241, 242
 HSTCMP 247
 HSTCMP 247 Global Health Histories: Colonial Medicine, Public Health, And International Health In The Global South DIV, SSc 5
 HSTEU 361
@@ -309,26 +283,17 @@ Jewish Studies &#8211; Minor
 Journal of Japanese Studies
 JSIS 200
 JSIS 201
-JSIS 201 &#8211; The Making of the Twenty-first Century (5 credits)
 JSIS 201 The Making of the 21st Century SSc 5
 JSIS 202
-JSIS 203 &#8211; Rise of Asia
 JSIS 203 or
-JSIS 203 or JSIS A 207
 JSIS 396
 JSIS 396 Study Abroad: Latin American Studies SSc 1-5
 JSIS 396*
 JSIS 480
 JSIS 493 Senior Research 2
 JSIS 497
-JSIS A 205 Filipino Histories (5)
-JSIS A 206 Contemporary India & Pakistan
 JSIS A 207
-JSIS A 207 &#8211; Asian Traditions
-JSIS A 221 History of Southeast Asia (5)
-JSIS A 265 The Viet Nam Wars (5)
 JSIS A 301
-JSIS A 315 Southeast Asia Civilization: Buddhist and Vietnamese (5)
 JSIS A 323 Inter-American Relations SSc, DIV 5
 JSIS A 324 Human Rights in Latin America SSc, DIV 5
 JSIS A 324/ LSJ 322
@@ -337,21 +302,10 @@ JSIS A 325 Modern Mexico: Culture, Politics And Society SSc 5
 JSIS A 342 Government and Politics of Latin America SSc 5
 JSIS A 354 Narcoculture: Propaganda and Publicity in the War on Drugs SSc 5
 JSIS A 365 Mapping Luso-Brazilian Cultures SSc, A&H 5
-JSIS A 461 &#8211; Ramayana in Comparative Perspective
-JSIS A 485 &#8211; Special Topics on South Asia
 JSIS A 489/SPAN 489*
 JSIS A 492 Latin American Studies Seminar SSc 5
-JSIS A/ GEOG 438 &#8211; Social and Political Geographies of South Asia
 JSIS A/ POL S 342
-JSIS A/ANTH 316 &#8211; Modern South Asia
-JSIS A/ANTH 339 &#8211; Social Movements in Contemporary India
-JSIS A/ANTH 341 &#8211; Political Violence and the Post-Colonial State in South Asia
-JSIS A/HSTAS 202 South Asian History 1500-present
-JSIS A/HSTAS 303 &#8211; Divided Lands/Divided Lives: An Environmental History of South Asia
 JSIS A/POL S 322
-JSIS A/POL S 340 &#8211; Politics of India, Pakistan, and South Asia
-JSIS A/POL S 417 &#8211; Political Economy of India
-JSIS B 264 Violence, Race, and Memory (5)
 JSIS B 310/POL S 450
 JSIS B 331
 JSIS B 385
@@ -371,7 +325,6 @@ Korea Studies &#8211; Minor
 LACS Electives 3 Courses 15 Credits
 LACS History 2 Courses 10 Credits
 LACS provides a breadth of knowledge that serves alums in a diverse array of career paths. Below is a snapshot of the career paths of some of our recent graduates:
-Language requirement &#8211; Students must achieve proficiency in a South Asian language through 2nd year college level. Accepted languages include Bengali, Hindi, Nepali, Sanskrit, Tibetan, and Urdu. Students must earn an average GPA of 2.0 in first and second year language courses.
 Laschober
 Latest News
 Latin America and Caribbean Studies
@@ -413,7 +366,6 @@ Major requirements
 Major Requirements 52 Credits
 Make a Gift
 max 15
-Max Lower Division Credit &#8211; No more than 5 of the 35 credits for the South Asia concentration core and electives may be at the 200-level
 May 30, 2024
 Meet an Adviser
 Menu
@@ -426,8 +378,6 @@ Middle East Center
 Middle East Studies &#8211; Minor
 Migration in the Global Economy (joint w/SIS)
 Minichillo
-Minimum Grade
-Minimum Grade &#8211; A minimum grade of 2.0 is required for all courses applied to major
 Minimum grade 2.0 in all courses applied to major.
 Minor
 Mitchell
@@ -448,9 +398,6 @@ Northwest Latinos, History, Community, Culture
 Not ready to commit to the major? A Latin American and Caribbean Studies Minor might be a great fit for your academic goals.
 O&#8217;Hara
 On this page:
-One Asian Civilization course chosen from:
-One of the following two courses, taken autumn or winter quarter (5 credits)
-One South Asia history course from the following list
 Overview of human rights issues and their recent evolution in Latin American history; military dictatorships; contemporary challenges in the region's democracies. Human rights concerns in relation to broader sociopolitical context.
 Overview of Mexican history from late Aztec times until the twenty-first century. Emphasizes how women, campesinos, indigenous populations, free and enslaved Afro-Mexicans, and the urban poor experienced the past, challenged colonial and post-colonial rule, and shaped modern Mexican society and culture.
 Pathways
@@ -486,17 +433,9 @@ Rafael
 Ramamurthy
 Read More
 Rebolloso
-Related Regions
 RELIG 201
-RELIG 352 &#8211; Hinduism
-RELIG 354 &#8211; Buddhism
-RELIG 356 &#8211; Buddhism & Society: The Theravada Buddhist Tradition in South & SE Asia
-RELIG 356 Buddhism and Society: The Theravada Buddhist Tradition in South and Southeast Asia (5)
-RELIG 456 &#8211; Perceptions of the Feminine Divine in Hinduism
 Religion and Church in Latin America
 Representation of so-called narcos in inter-American media and culture since the 1970s. Students critically analyze U.S. films, Colombian soap operas, Mexican ballads, and state propaganda dedicated to portraying traffickers' exploits. Centering on the ethical question of how to portray drug-related violence, introduces students to debates about censorship, propaganda, the public sphere, and spectacle.
-Research Paper &#8211; Students must work with a South Asia Studies professor to write a final research paper of at least 15 pages in length. This must be written in an upper division South Asia Studies course and may need to be expanded to meet the research paper requirements. Students should coordinate with the professor prior to writing to ensure the paper will meet the requirements.
-Resident Credit &#8211; 30 credits must be taken in residence through UW (not including 1st or 2nd year language).
 Rise of Asia or
 Rodriguez
 Root Causes of Environmental Degradation in the Tropics
@@ -513,19 +452,9 @@ Social History of Mexico
 Sociological examination of the concepts of undocumented, citizen, and the structuring of (il)legality as they are situated in axes of power, specifically in racialized and gendered contexts. Topics include identity formation and experiences across communities, i.e., UndocuLatino, UndocuBlack, UndocuAsian and Pacific Islander, and UndocuQueer. Institutional outcomes in migration, law, labor, education, carceral spaces, and health.
 SoundCloud
 South America
-South Asia
 South Asia Center
-South Asia includes India, Pakistan, Bangladesh, Sri Lanka, Nepal, Bhutan, Maldives, Afghanistan and Tibet. Students are expected to gain proficiency in a South Asian language (Hindi, Urdu, Bengali and Sanskrit are offered regularly at all levels) and to pursue a course of study that includes both disciplinary concentration and interdisciplinary breadth. Students have opportunities to pursue language study in India through the program&#8217;s membership in the American Institute of Indian Studies. Other organizations provide similar opportunities for study in many of the other countries of the region.
 South Asia Studies &#8211; Minor
-South Asia Studies Courses
-Southeast Asia
-Southeast Asia – primary electives
-Southeast Asia Core
-Southeast Asia electives
 Southeast Asia Studies &#8211; Minor
-Southeast Asia Studies Courses
-Southeast Asian Language
-Southeast Asian Language proficiency through 2nd year college level or 3rd quarter of 2nd year college level. Burmese, Indonesian, Khmer, Tagalog, Thai, Vietnamese. (For first- and second-year language courses, grades must average 2.00)
 Spain and Its Golden Age: 1469-1700
 SPAN 206
 SPAN 307
@@ -610,7 +539,6 @@ The Mexico US Border in Literature and Film (joint w/SPAN)
 The Mexico-U.S. Border in Literature and Film
 The program in Comparative Religion is known for its unusually large range of course offerings in the religious traditions of both the East and West. The faculty has particular strength in history, anthropology, and sociology. Participants in the program have an opportunity to enroll in small classes and interact with a faculty that puts emphasis on maintaining close contact with students.
 The Social History of Mexico
-The Southeast Asian Studies concentration promotes the study of Viet Nam, Laos, Cambodia, Thailand, Indonesia, Malaysia, Burma, Singapore, Brunei, Timor Loro’sae and the Philippines. Core courses introducing students to the cultures and societies of the region are offered in the Jackson School and in the Departments of Anthropology and History. Additional courses are offered by the Departments of Geography, Asian Languages and Literature, Political Science, Sociology, and in the School of Public Health. Language instruction in Burmese, Khmer, and Thai is offered within the Jackson School of International Studies. Indonesian and Vietnamese are taught by teaching professors in the department of Asian Languages & Literature, and Tagalog is offered by the department of American Ethnic Studies.
 This year, three students were selected for a Donald C. and Margery S. Hellmann Scholarship. Unique to the Jackson School, this annual award provides a $5,000 stipend to support the...
 Three students receive Jackson School Hellmann Scholar Award 2023-24
 Title
@@ -621,7 +549,6 @@ Topics in Hispanic Literature (when LA content)
 Topics in History (when LA content)
 Topics in Latin American & Caribbean History
 Topics in Latin American Cultural Studies
-Total Credits (not including language: 50
 TPOL S 224
 TPOL S 434
 Traces the history of Peru specifically and the Andean highlands generally, from Inca times to the present, examining the shifting relationship between peasants, indigenous peoples, and the state. Analyzes historically why modern forms of peasant and indigenous political power differs radically between Peru, Bolivia, and Ecuador.
@@ -629,7 +556,6 @@ Traces the roots of the modern global health movement by examining the history o
 Transnational Latinx Migrations
 TRELIG 461
 Twentieth Century Brazilian Literature in English
-Two of the following:
 Undergraduate Minors
 Undergraduate Programs
 Unions, Labor, and Civil Rights in California and Pacific Northwest Agriculture
@@ -638,7 +564,6 @@ University of Washington
 Urbanization and Development: Geographies of Global Inequality
 UW MyPlan
 UW Tacoma Courses &#8211; For guidelines on cross-campus enrollment, see: http://www.washington.edu/uaa/advising/registration/ccregi.php
-Varies
 various
 Visit the Latin American and Caribbean Studies Program for LACS events, initiatives, and opportunities.
 Visiting Scholars
@@ -652,7 +577,6 @@ WhitingHamilton
 Why major in Latin American and Caribbean Studies
 Why major in Latin American and Caribbean Studies?
 width="18.776px" height="51.062px" viewBox="0 0 18.776 51.062" enable-background="new 0 0 18.776 51.062" xml:space="preserve">
-Winter & Spring
 Winter 2026 Courses by Category
 Winter or Spring
 Women and International Economic Development

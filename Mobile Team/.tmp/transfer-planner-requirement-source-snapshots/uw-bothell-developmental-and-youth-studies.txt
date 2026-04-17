@@ -2,526 +2,515 @@ Owner: uw-bothell-developmental-and-youth-studies
 Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
 Title: Degree Requirements - School of Educational Studies
 
-[Supplemental official source] Admissions
-[Supplemental official source] Degree Completion Requirements
-[Supplemental official source] Degree Requirements
-[Supplemental official source] Program Requirements
-&#124;
-&copy; 2026 University of Washington Bothell
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
-10
-10 credits &#8211; Capstone Sequence
-10 credits &#8211; Writing Across the Curriculum (W)
-10 credits of core courses for those seeking an M.Ed. along with their certification
-100
-15 credits &#8211; Arts & Humanities (A&H)
-15 credits &#8211; Natural Sciences (NSc)
-15 credits &#8211; Social Sciences (SSc)
-15 credits from list &#8211; Electives
-18115 Campus Way NE
-2
-20 credits &#8211; Educational Studies Core Courses
-25 credits &#8211; Educational Studies (B EDUC-prefix) concentration area electives
-25 credits &#8211; Other Department concentration area electives
-25 credits &#8211; School of Educational Studies Core Courses
-27 credits of Residency Principal and Administrator certification coursework:
-3
-35 credits &#8211; Developmental & Youth Studies Foundation Courses
-4
-40
-425.352.5000
-425.352.5411
-5
-5 credits &#8211; Composition (C)
-5 credits &#8211; Diversity (DIV)
-5 credits &#8211; Reasoning (RSN)
-50 credits of electives in a concentration area
-540 hours for principals and 360 hours for program administrators
-6
-60
-8
-80
-A single agency or organizational setting may be used to complete Applied Experience hours required for multiple courses (including B EDUC 495) that the student is enrolled in during the same academic quarter.
-A student may not request compensation from their employer for any hours they spent conducting an applied experience for BEDUC 495.
-About
-Academic Advising
-Accessibility
-Additional Requirements
-Admissions
-Adolescent development
-Advisory Boards
-After-school programs (YMCA, Boys & Girls Club)
-All students in the Developmental & Youth Studies major enroll in a two-course capstone sequence:
-All students in the Educational Studies major enroll in a three-course capstone sequence:
-All UW Bothell
-Alternative educational settings such as home-school networks, juvenile detention, or social service agencies
-Alumni
-Analyze contextual factors and impacts on individuals, including family, school, community, and digital, as well as how diverse individuals frame their own identities in these spaces
-Analyze human growth and development processes:
-Any hours completed prior to the start of the quarter enrolled in Applied Experience do not count toward the total hours needed
-Applied Art
-Applied Experience Guidelines & Policies
-Applied Experience Guidelines and Policies
-Applied Experience hours cannot be completed as part of any time spent working in a paid job.
-Applied Experience hours completed to earn academic credit for B EDUC 495 cannot be used for applied experience (or service learning) hours for another academic course. Nor can Applied Experience (or service learning) hours completed to earn academic credit for another academic course be used or counted for B EDUC 495 Applied Experience hours
-Applied Experience hours need to be completed within the quarter dates of enrollment.
-Apply
-Apply As Undergraduate
-As outlined by the State of Washington Professional Educator Standards Board , Washington state elementary school teachers must be certified to teach and must hold an elementary education endorsement. To be eligible for the elementary endorsement, students must complete college-level coursework which demonstrates their knowledge and understanding of the subject areas elementary school teachers cover in their classrooms: Social Studies, English Language Arts, Mathematics, Science and Art.
-Autumn
-Autumn &#8211; Year 1
-Autumn &#8211; Year 2
-B BIO 310 Brain and Behavior
-B BUS 300 Organizational Behavior, Ethics, & Inclusivity
-B BUS 401 Work, Motivation & Performance
-B BUS 402 Managing Work Teams
-B EDUC 170 Math for Elementary Educators
-B EDUC 201 Special Topics in Diversity & Education
-B EDUC 205 Education & Equity in the United States
-B EDUC 205 Education & Equity in the United States (DIV, SSc)
-B EDUC 210 Teaching & Learning in a Multicultural Society
-B EDUC 210 Teaching & Learning in a Multicultural Society (DIV, SSc)
-B EDUC 220 Education and Society
-B EDUC 220 Education and Society (SSc)
-B EDUC 230 Culture Knowledge and Education (DIV, SSc)
-B EDUC 230 Culture, Knowledge, and Education
-B EDUC 250 Topics in Education & Popular Culture: Adolescent Literacy, Graphic Novels, and Young Adult Fiction (A&H)
-B EDUC 250 Topics in Education & Popular Culture: Banned Books & Controversial Topics in Children’s Literature & Young Adult Fiction (A&H)
-B EDUC 250 Topics in Education and Popular Culture (A&H)
-B EDUC 250 Topics in Education and Popular Culture (may be taken twice if different topics)
-B EDUC 255 Critical Diversity Studies
-B EDUC 255 Critical Diversity Studies (DIV, SSc)
-B EDUC 295 Gathering, Analyzing, and Using Data in Education
-B EDUC 295 Gathering, Analyzing, and Using Data in Education (DIV, RSN)
-B EDUC 300 Research & Educational Knowledge
-B EDUC 300 Research & Educational Knowledge (W)
-B EDUC 310 Theories of Learning, Culture & Identity
-B EDUC 310 Theories of Learning, Culture & Identity (SSc)
-B EDUC 315 History of Education in the United States
-B EDUC 328 Diversity Leadership Engagement
-B EDUC 328 Diversity, Leadership, and Engagement (DIV)
-B EDUC 330 Race, Culture, and Identity in the Classroom
-B EDUC 340 STEAM
-B EDUC 340 STEAM Education (3 credits)
-B EDUC 391 Special Topics in Education
-B EDUC 392 Independent Study (requires faculty supervisor )
-B EDUC 399 Capstone Seminar
-B EDUC 399 Capstone Seminar (3 credits)
-B EDUC 402 Human Growth and Learning
-B EDUC 402 Human Growth and Learning (SSc)
-B EDUC 403 Introduction to Special Education
-B​ EDUC 423 Knowing, Teaching & Assessing in Health, Fitness, and Issues of Abuse
-B EDUC 438 Teaching & Learning Tribal Sovereignty
-B EDUC 438 Teaching & Learning Tribal Sovereignty (DIV, SSc)
-B ​EDUC 441 Second Language Acquisition, Bilingual Education and the Structure of English
-B EDUC 441 Second Language Acquisition, Bilingual Education, and the Structure of English (DIV, SSc)
-B EDUC 451 Early Childhood Development
-B EDUC 451 Early Childhood Development (SSc)
-B EDUC 453 Children in Schools & Society
-B EDUC 453 Children in Schools and Society (DIV, SSc)
-B ​EDUC 456 Adolescents in School and Society
-B EDUC 456 Adolescents in Schools and Society (SSc)
-B EDUC 458 Emerging Adulthood
-B EDUC 458 Emerging Adulthood (SSc)
-B EDUC 460 Moral Dimensions of Education
-B EDUC 461 Educational Implications of Gender Inequality
-B EDUC 461 Educational Implications of Gender Inequality (DIV)
-B ​EDUC 470 Disability Culture
-B EDUC 470 Disability Culture
-B EDUC 470 Disability Culture in Schools and Society (DIV, SSc)
-B ​EDUC 480 Life and Learning in the Middle School
-B EDUC 481 Adolescent Development
-B EDUC 481 Adolescent Development (SSc)
-B EDUC 491 Special Topics in Education
-B ​EDUC 491 Special Topics in Education
-B EDUC 495 Applied Experience
-B EDUC 495 Applied Experience (5 credits)
-B EDUC 495 Applied Experience is designed to:
-B EDUC 498 Educational Studies Research
-B EDUC 499 Capstone Project
-B EDUC 499 Capstone Project (2 credits)
-B EDUC 499 Capstone Project (5 credits)
-B EDUC 500 Foundations of Critical Race Theory in Higher Education
-B EDUC 500 Foundations of Critical Race Theory in Higher Education: Provides an overview of E-CRiT as applied within education-related fields, including a focus on historical origins, aligned movements, key tenets, and applications across K-20.
-B EDUC 501 Inquiry in Education
-B EDUC 501 Inquiry in Education: Introduces tools for looking closely at classrooms and professional practice. Explores a professional question through gathering information, collegial discussion with their peers, and readings that offer multiple perspectives.
-B EDUC 502 Identity and Reflective Practice
-B EDUC 502 Identity and Reflective Practice: Examines key concepts related to identity, reflection, and reflective practice. Supports autoethnographic and reflective writing to foster understanding of personal identity and examination of social, cultural, political and economic forces that influence educational philosophy, practice, and ethics.
-B EDUC 504 Enacting Agency for Social Justice
-B EDUC 504 Enacting Agency for Social Justice: Focuses on building a social justice ethos through practice, examining a variety of models and methods embodying social justice principles within educational settings. Develops a knowledge base of practices for social justice education, including: multicultural group processing, anti-oppressive organizing, and effective dialogue strategies across difference.
-B EDUC 512 Social Justice Education: Oppression, Resistance, and Liberation
-B EDUC 512 Social Justice Education: Oppression, Resistance, and Liberation: Surveys the roots and manifestations of social injustices in communities and society, with a particular lens on how education has perpetuated these injustices. Builds an understanding of the complex matrices of injustice, examining the creative and subversive acts of communities to leverage education as a tool of resistance and liberation.
-B EDUC 515 Racism in Higher Education
-B EDUC 515 Racism in Higher Education: Examines the roots of white supremacy and racism in higher education, while exploring the role of higher education in normalizing local and global oppressive structures across social, political, and economic systems.
-B EDUC 520 Current Issues in Higher Education
-B EDUC 520 Current Issues in Higher Education: This course applies an E-CRiT lens to examine contemporary issues in higher education, with a particular focus on intersectionality and interest convergence within local higher education systems.
-B EDUC 525 Applied CRT as Systems Change
-B EDUC 525 Applied CRT as Systems Change: Course focuses on the application of E-CRiT as a lever for implementing systems change efforts across higher education. Students elevate applied systems change projects within chosen higher education institutions
-B EDUC 529 Community-Based Fieldwork
-B EDUC 529 Community-Based Fieldwork (2 credits): This course is designed for educators committed to building and enhancing equitable collaborations with minoritized youth and communities in advancing educational justice. Offering a critique of the deficit perspectives underlying traditional approaches to community partnerships, this course situates youth and community voices, experiential knowledge, and agency as central to advancing enduring, justice-centered collaborations.
-B EDUC 529 Community-Based Fieldwork: Designed for educators committed to building and enhancing equitable collaborations with minoritized youth and communities in advancing educational justice. Offering a critique of the deficit perspectives underlying traditional approaches to community partnerships, this course situates youth and community voices, experiential knowledge, and agency as central to advancing enduring, justice-centered collaborations.
-B EDUC 541 Second Language Acquisition, Bilingual Education, and Structure of English: An ESOL foundations course on theories, models, and concepts in the areas of first and second language acquisition, bilingualism and bilingual education, and features of English as the academic language. A minimum of 20 hours of community-engaged learning is required for students who are not currently teaching.
-B EDUC 541 Second Language Acquisition, Bilingual Education, and the Structure of English
-B EDUC 542 Curriculum, Instruction, and Assessment in ESOL
-B EDUC 542 Curriculum, Instruction, and Assessment in ESOL: An ESOL teaching methods course on planning, instruction, and assessment informed by the WIDA English Language Development standards and Sheltered Instruction Observation Protocol (SIOP) model. Students will also learn teaching strategies such as backward design and GLAD and implement them during their general education student teaching. A minimum of 20 hours of community-engaged learning is required for students who are not currently teaching.
-B EDUC 543 Practicum for Teaching English Speakers of Other Languages
-B EDUC 543 Practicum for Teaching English Speakers of Other Languages: A teaching practicum course during which students will learn to plan, teach, and assess multilingual learners at a local public elementary or middle school under the supervision of a site-based cooperating teacher and a SES field supervisor. Students will also attend seminars at UWB, and complete course assignments related to their practicum experience. Please see more information about the practicum course in the Practicum Experience Requirement section .
-B EDUC 544 Leadership, Advocacy, and Program Assessment in ESOL
-B EDUC 544 Leadership, Advocacy, and Program Assessment: An ESOL foundations course that prepares students with the knowledge and skills to serve as effective resources, advocates, and change agents for bilingual students, families, and communities. Course topics include, for example, relevant historical and current legal and social issues concerning the education of multilingual learners; features, benefits, and challenges of various models of educating multilingual learners; processes of identifying for and exiting from ESOL programs; ways of engaging multilingual families, assessing the effectiveness of programs for multilingual learners, etc.
-B EDUC 550 Critical Pedagogy
-B EDUC 550 Critical Pedagogy: Focuses on critical inquiry into contemporary beliefs about knowledge, learning, and teaching by exploring how educational systems are manifestations of culture and politics. Introduces progressive pedagogies that challenge dominant cultural paradigms and are models for transformational educational change.
-B EDUC 580 Critical Policy
-B EDUC 580 Critical Policy in Education: Explores policies shaping K12 education as influenced by major institutional complexes, including various levels of government organizations.
-B EDUC 594 Dossier
-B EDUC XXX Elective
-B HLTH 196 Preparing to Work in Partnerships with Communities
-B HLTH 200 Lifespan Development
-B HLTH 428 Adolescent Health
-B HLTH 435 Foundations & Principles of Health Education & Communication
-B HLTH 435 Foundations and Principles of Health Education Communication (SSc)
-B HLTH 437 Program Planning & Strategies for Health Promotion
-B HLTH 438 Program Evaluation for Health Education & Promotion
-B HLTH 439 Health Policy & Advocacy
-B WRIT 133 Composition Stretch II (C)
-B WRIT 134 Composition (C)
-be a hands-on, community-based learning and professional-development experience
-Become a Teacher
-BIS 115 Digital Cultures
-BIS 164 Introduction to World Literature (A&H, DIV)
-BIS 206 Engaging Literary Arts (A&H)
-BIS 215 Understanding Statistics
-BIS 219 Politics of Sex Education
-BIS 219 Politics of Sex Education (SSc)
-BIS 220 Developmental Psychology
-BIS 222 Introduction to Human Sexuality
-BIS 222 Introduction to Human Sexuality (DIV, SSc)
-BIS 224 Feminist Studies
-BIS 225 Social Psychology
-BIS 225 Social Psychology (SSc)
-BIS 226 Foundations of Social Services
-BIS 227 Rad Women in the Global South (DIV, SSc)
-BIS 227 Radical Women in the Global South
-BIS 235 Critical Media Literacy
-BIS 235 Critical Media Literacy (SSc)
-BIS 237 Public Speaking and Communication
-BIS 238 Language, Identity, Culture, and Power
-BIS 244 Wetlands Discovery
-BIS 256 Introduction to African American Studies
-BIS 257 Introduction to Asian American Studies
-BIS 258 Introduction to United States Latina/Latino Studies
-BIS 301 Narrative Forms (A&H)
-BIS 302 Issues in Mathematics across Cultures
-BIS 310 Women, Culture, & Development
-BIS 312 Approaches to Social Research
-BIS 317 Language, Society, and Cultural Knowledge
-BIS 326 Race, Space, and Segregation
-BIS 329 Topics in Mathematics across the Curriculum
-BIS 335 Human Rights in America
-BIS 353 Human Rights in Theory & Practice
-BIS 361 Studies in American Literature (A&H)
-BIS 364 Public Memory & Dissent in American Culture
-BIS 364 Realities & Representations of Adolescent Development
-BIS 365 Institutions & Social Change
-BIS 365 Institutions and Social Change (SSc)
-BIS 366 The Family in US Society
-BIS 366 The Family in US Society (SSc)
-BIS 367 Ethics & Society
-BIS 369 Indigenous Psychology & Health (DIV)
-BIS 370 Nineteenth-Century American Literature (A&H)
-BIS 371 Twentieth-Century American Literature (A&H)
-BIS 377 British Literature and the Gothic Novel (A&H)
-BIS 379 American Ethnic Literatures (A&H, SSc, DIV)
-BIS 387 Women and American Literature (A&H)
-BIS 388 Literature in Translation (A&H)
-BIS 389 American Indian Literature (A&H, SSc)
-BIS 403 Washington D.C. Seminar on Human Rights
-BIS 405 Environmental Education
-BIS 405 Environmental Education (NSc)
-BIS 407 Children’s Literature and Reader Response Criticism
-BIS 407 Children’s Literature and Reader Response Criticism (A&H)
-BIS 410 Topics in Quantitative Inquiry
-BIS 414 Topics in Human Rights
-BIS 415 Public Policy & Law
-BIS 418 Global Scholars: Global Citizenship in Context (must be in Global Scholars program)
-BIS 433 Gender, Work, & Family
-BIS 443 Educational Policy & the American Economy
-BIS 445 Meanings & Reality of Inequality
-BIS 448 Social Policy
-BIS 450 Decolonizing Psychology
-BIS 450 Decolonizing Psychology (SSc)
-BIS 455 Literature & Sexuality (A&H, SSc)
-BIS 466 Human Rights & Resistance
-BIS 481 Modernism, Postmodernism, and American Literature (A&H)
-BIS 483 Community Organizing
-BIS 483 Community Organizing (SSc)
-BIS 486 Studies in Women and Literature (A&H)
-BIS 487 Topics in American Literature (A&H)
-BISAES 305 Power, Dissent, & American Culture
-BISAES 367 Exploring American Culture: Race, Ethnicity, Immigration
-BISGWS 302 Histories & Movements of Gender & Sexuality
-BISIA 484 Arts Learning in the Community
-BISLEP 302 Policy Analysis
-BISPSY 337 Risk & Resilience
-BISPSY 337 Risk & Resilience (SSc)
-BISPSY 343 Community Psychology
-BISPSY 343 Community Psychology (SSc)
-BISPSY 348 Cultural Psychology
-BISPSY 348 Cultural Psychology (SSc)
-BISPSY 350 Intergroup Relations (SSc)
-Bothell, WA 98011-8246
-Bothell, Washington View our location on Google maps.
-Box 358531
-BST 205 Women in STEM Seminar: College Life
-Campus Safety
-Canvas
-Capstone Sequence
-Career Pathways & Academic Connections
-Career Services
-CECL Concentration Information
-Certification & M.Ed. Core Course
-Certification Course
-Certification Courses
-Certification Only (27 credits)
-Certification with M.Ed. (37 credits)
-Child & Youth Development Minor
-Close mobile menu
-Community-Based Fieldwork
-Community-Engaged Learning & Research
-Commuter Services
-Completion Dossier
-Concentration Area Electives
-Concentration Course
-Concentration Courses
-Contact
-Contact Us
-Contact us by phone at:
-Content Course Requirement
-Content Test Requirement
-Core Area Courses
-Core Courses
-Course Sequence & Schedule
-Credits
-Critical reflection and applied learning
-CSS 211 Computers and Society
-CSS 295 K-12 Computing Education
-CSS 305 Survey of Computer Systems for Teachers
-Current site
-Curriculum, Instruction & Equity Concentration
-Degree Completion Requirements
-Degree Completion Requirements - School of Educational Studies
-Degree Requirements
 Degree Requirements - School of Educational Studies
-Develop connections between developmental theories, concepts, and perspectives on developmental processes
-Developmental & Youth Studies
-Developmental & Youth Studies majors are expected to participate in learning experiences in community-based settings to gain valuable insight into possible roles and career opportunities in education-related fields. To accomplish this, the Developmental & Youth Studies major requires the completion of an applied learning experience, B EDUC 495 Applied Experience.
-Developmental & Youth Studies majors build a portfolio which encourages them to reflect on School of Educational Studies Core Themes and make connections between what they have learned in their coursework and accomplished in Applied Experience. Students begin their capstone by applying what they have learned in their coursework in an Applied Experience placement, and complete their portfolio in B EDUC 499.
-Developmental & Youth Studies majors must complete all university and major requirements listed below.
-Directory
-Diversity Studies Minor
-Dual Endorsement Options
-E-CRiT Concentration Information
-Each course is 2 credits.
-Each course is 5 credits, unless indicated otherwise. These courses are all required to earn the Residency Principal or Program Administrator certificate.
-Each course is 5 credits.
-Each course is 5 credits. Students seeking an M.Ed. in addition to the Residency Principal or Program Administrator certificate will complete these courses.
-Each course is 5 credits. These courses focus on the examination of research methodologies and the generation of research questions.
-Early childhood
-Earn 180 university credits
-edleader@uw.edu
-Education & Society Minor
-Education Studies: Elementary Education Option
-Educational Advocacy & Community Engagement Minor
-Educational Leadership, Policy & Social Justice Concentration
-Educational research projects
-Educational Studies
-Educational Studies (B EDUC) Electives (25 credits)
-Educational Studies majors are expected to participate in learning experiences in community-based settings to gain valuable insight into possible roles and career opportunities in education-related fields. To accomplish this, the Educational Studies major requires the completion of an applied learning experience, B EDUC 495 Applied Experience.
-Educational Studies majors build a portfolio which encourages them to reflect on Educational Studies Core Themes and make connections between what they have learned in their coursework and accomplished in Applied Experience. Students begin their reflection in B EDUC 399 Capstone Seminar, then apply what they have learned in their coursework in an Applied Experience placement, and complete their portfolio in B EDUC 499.
-Educational Studies majors must complete all university and major requirements listed below.
-Educational Studies majors must select a concentration and complete 25 credits of Educational Studies (B EDUC) concentration area electives and 25 credits of Other Department concentration area electives.
-Elective Course
-Elementary Education Academic Breadth Subject Areas & Courses
-Elementary Education Endorsement Academic Breadth Requirements
-Elementary Education Teacher Certification Post-Baccalaureate
-Employment Opportunities
-encourage self-reflection on the challenges and opportunities of education in diverse settings
-English Language Arts: Composition or Writing
-English Language Arts: Literature
-Enhancing Capacity for Special Education Leadership (ECSEL)
-ESOL candidates are required to complete a minimum of 100 hours practicum in an ESOL classroom, mentored by a practicing teacher.
-ESOL Concentration Information
-Examine critical perspectives on theories and concepts of child and adolescent development
-Exception: Applied Experience hours may be completed in the same organizational setting where the student is employed, but the student must delineate, in writing:
-Expand Navigation
-Experimental teaching in STEM or other professional fields
-Explore diverse cultural perspectives on human development
-Facebook
-Facilities
-Faculty
-Faculty & Staff
-For students admitted to the UW prior to Autumn 2023 the DIV requirement is 3 credits
-Frequently Asked Questions
-Full-Time Course Plan (4 Quarters)
-Funding Resources for Graduate Students
-Funding Resources for Post-Baccalaureate Students
-Give
-Goodlad Institute for Educational Renewal
-Graduate
-Graduate Policies & Petitions
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 height="0" width="0" style="display:none;visibility:hidden">
-Hours Requirement
-How applied experience activities and responsibilities are separate for each course
-How Applied Experience hours go beyond their duties and responsibilities for their paid job.
-How applied experience hours respectively contribute to the student’s learning goals for each course.
-How their Applied Experience hours are separate from those hours for which the student is paid.
-How their applied experience hours at the agency or organization are separately allocated for each course
-Human Resources
-Identify and describe identity formation
-If students are engaged in religiously affiliated services or schools, students need to be contributing to the provision of social services through the institution, rather than participation in religious instruction.
-In the final course in the Developmental & Youth Studies major capstone sequence, students build a portfolio that showcases their critical reflection and learning related to School of Educational Studies core themes. Students are encouraged to collect artifacts (previous course papers or projects) relating to these themes and to think and write reflectively on them throughout their course of study.
-In the final course in the Educational Studies major capstone sequence, students reflect on their Applied Experience placement and complete their capstone portfolio.
-In the first course of the Educational Studies major capstone sequence, students begin to build a portfolio that showcases their critical reflection and learning related to Educational Studies core themes . Students are encouraged to collect artifacts (previous course papers or projects) relating to these themes and to think and write reflectively on them throughout their course of study.
-In this case, the student must delineate, in writing:
-In this section
-Info Sessions & Events
-Information for International Students
-Information Technology
-Instagram
-integrate the knowledge and skills students have cultivated in Developmental & Youth Studies courses and apply elements of the School of Educational Studies Major core themes
-integrate the knowledge and skills students have cultivated in Educational Studies courses and Other Department Electives and apply elements of the Educational Studies Major core themes
-International students with a visa, other than F-1 visa holders, should consult an immigration attorney to determine their eligibility for completing this required practicum. F-1 visa holders will need to plan and apply for Curricular Practical Training (CPT) prior to beginning this required practicum. If you have any questions, please contact the International Student Services (ISS) office.
-Internships
-Internships are formal, organized programs used to provide a professionally-oriented learning experiences in an organization or occupation; and may be paid or unpaid. Internships are temporary, have a defined end date, and are not considered employment.
-Jobs
-LEDE 510 Personal Leadership for Schools
-LEDE 510 Personal Leadership for Schools: Helps principal candidate develop the personal qualities and commitments associated with successful school leadership. Focuses on leadership theories, professional knowledge and ethics, and strategies for continued learning in professional practice.
-LEDE 520 Leadership for Curriculum and Teaching
-LEDE 520 Leadership for Curriculum and Teaching: Helps principal preparation candidates expand knowledge for assisting other teachers with curriculum, instruction, and student engagement with learning. Focuses on knowledge of exemplary practice and documentation of impact of teaching and learning in schools.
-LEDE 530 Leading Schools as Responsive Public Institutions
-LEDE 530 Leading Schools as Responsive Public Institutions: Helps principal candidates build knowledge for developing and stewarding a schools&#8217; vision and goals so that they are just, sustainable, and responsive to legal, political, professional, and local interests. Focuses on legal, political, and professional contexts of school leadership and builds skills for communication about school goals and needs.
-LEDE 540 Leading Schools as Continuously Renewing Organizations
-LEDE 540 Leading Schools as Continuously Renewing Organizations: Helps principal candidates lead an effective and continually improving organization. Builds understanding of school managerial responsibilities as well as more complex tasks of assessing school needs and developing theories of action that focus daily work on desired school outcomes.
-LEDE 550 Leading Schools as Inclusive Communities
-LEDE 550 Leading Schools as Inclusive Communities: Helps principal candidates strengthen relationships, steward norms, establish programs, and lead conservations that foster collaborative decisions and collective action among the school&#8217;s many constituencies. Builds understanding of the ways that social capital, student and family diversity, and family involvement influence student learning and can be influenced by principal leadership.
-LEDE Concentration Information
+Skip To Content
+Current site
+All UW Bothell
+Search keywords
+Search
+Open mobile menu
+Quick Links
+School of Educational Studies
+Close mobile menu
+School of Educational Studies
+Search keywords
+Current site
+All UW Bothell
+About
+Expand Navigation
+Advisory Boards
+Expand Navigation
+TCert PEAB
 LEDE PEAB
+Employment Opportunities
+Contact Us
+Goodlad Institute for Educational Renewal
+Undergraduate
+Expand Navigation
+Developmental & Youth Studies
+Expand Navigation
+Admissions
+Degree Requirements
+Career Pathways & Academic Connections
+Educational Studies
+Expand Navigation
+Admissions
+Degree Requirements
+Major Concentrations
+Career Pathways & Academic Connections
+Education Studies: Elementary Education Option
+Expand Navigation
+Admissions
+Degree Requirements
+Dual Endorsement Options
+Career Pathways & Academic Connections
+Child & Youth Development Minor
+Diversity Studies Minor
+Education & Society Minor
+Educational Advocacy & Community Engagement Minor
+Teaching & Learning Minor
+Academic Advising
+Undergraduate Policies & Petitions
+Graduate
+Expand Navigation
+M.Ed. with Critical Educational Change and Leadership (CECL) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+M.Ed. with Educating for Critical Race Theory (E-CRiT) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+M.Ed. with English to Speakers of Other Languages (ESOL) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+M.Ed. with Leadership Development for Educators (LEDE) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+Meet our LEDE Faculty
+Academic Advising
+Graduate Policies & Petitions
+Meet our M.Ed. Students
+Funding Resources for Graduate Students
+Become a Teacher
+Expand Navigation
+Elementary Education Teacher Certification Post-Baccalaureate
+Expand Navigation
+Admissions
+Program Requirements
+Optional Dual Endorsement
+Funding Resources for Post-Baccalaureate Students
+Apply
+Expand Navigation
+Info Sessions & Events
+Professional Development
+Expand Navigation
+Enhancing Capacity for Special Education Leadership (ECSEL)
+Expand Navigation
+Faculty
+Admissions
+Faculty & Staff
+Give
+UW Bothell Home
+Quick Links
+MyUW
+Canvas
+Directory
 Library
-M.Ed. Core Courses
-M.Ed. Courses
+Workday Login
+Give
+Apply As Undergraduate
+More Links
+Time Schedule
+Information Technology
+Commuter Services
+Facilities
+Human Resources
+Campus Safety
+Alumni
+About
+Advisory Boards
+Employment Opportunities
+Contact Us
+Goodlad Institute for Educational Renewal
+Undergraduate
+Developmental & Youth Studies
+Educational Studies
+Education Studies: Elementary Education Option
+Child & Youth Development Minor
+Diversity Studies Minor
+Education & Society Minor
+Educational Advocacy & Community Engagement Minor
+Teaching & Learning Minor
+Academic Advising
+Undergraduate Policies & Petitions
+Graduate
 M.Ed. with Critical Educational Change and Leadership (CECL) Concentration
 M.Ed. with Educating for Critical Race Theory (E-CRiT) Concentration
 M.Ed. with English to Speakers of Other Languages (ESOL) Concentration
 M.Ed. with Leadership Development for Educators (LEDE) Concentration
-Major Concentrations
-Major Learning Objectives
-Major Requirements
-Maps & directions
-Meet our LEDE Faculty
+Academic Advising
+Graduate Policies & Petitions
 Meet our M.Ed. Students
-More Links
-Museums
-MyUW
-Neighborhood community centers
-Nonprofit organization with a teaching/learning/professional development component
-Number and days of the week may be determined by the schedule of a candidate’s assigned cooperating teacher. Cooperating teachers will work closely with the placement coordinator and the candidate to arrange a schedule to meet this requirement.
-On this page
-One 5-credit elective or two 3-credit electives (400 or 500 level) from other core areas in the M.Ed. program, classes offered by the School of Educational Studies or other UWB schools, or from the UW Seattle or UW Tacoma campuses.
-Open mobile menu
-Optional Dual Endorsement
-Other Department Electives (25 credits)
-Overview
-Part-Time Course Plan (7 Quarters)
-Part-Time Course Plan (8 Quarters)
-Placement Selection Process
-Placement Sites
-Placements must allow students to examine School of Educational Studies core themes
-Placements must allow students to examine the Educational Studies Major core themes
-Placements must comply with all policies outlined below.
-Policies
-Possible placements include:
-Practicum Details
-Practicum Experience Requirement
-Practicum Experience Requirement (100 hours)
-Practicum will consist of a minimum of 100 hours working directly with multilingual learners who are receiving English language development services. Placement will be in a public school classroom identified by the School of Educational Studies placement coordinator.
-Privacy
+Funding Resources for Graduate Students
+Become a Teacher
+Elementary Education Teacher Certification Post-Baccalaureate
+Apply
+Info Sessions & Events
 Professional Development
-Professional Seminars
-Program Requirements
-Public school programs
-Quarter
-Quarter Total
-Quick Links
-Read about the applied experience requirements, guidelines, and policies .
-Register for B EDUC 495 according to the academic plan developed with academic advisor
-Religious content may not be delivered or taught as part of Applied Experience.
-Resources for choosing an Applied Experience placement
-Rules Docket
-School of Educational Studies
-Search
-Search keywords
-Seattle Campus
-See Elementary Education Option requirements effective Autumn 2025 for the full list Elementary Education Option course requirements. Courses with a minimum grade of 2.0 (C letter grade) satisfy Academic Breadth requirements .
-Skip To Content
-Social Media
-Some academic requirements related to BEDUC 495 must be completed for each quarter enrolled&#8211;see the BEDUC 495 Applied Experience syllabus for details.
-Spring
-Spring &#8211; Year 1
-Spring &#8211; Year 2
-State internship and certification requirements
-Student Clubs & Organizations
-Student Recruitment Manager
-Students also begin assembling an annotated bibliography that is meant to span the degree and plan for B EDUC 495 Applied Experience.
-Students are held to the Student Conduct Code for the University of Washington .
-Students can learn more about Educational Studies policies and petitions here and seek academic advising here .
-Students may submit an SES Petition to register for more than 10 credits of electives from the other concentration.
-Students must select a concentration area, but can enroll in up to 10 credits of Educational Studies (B EDUC) and/or Other Department electives from the other concentration.
-Students seeking academic advising can schedule an appointment through our Academic Advising page. To learn more about Developmental & Youth Studies&#8217; policies and petitions, please visit our Undergraduate Policies & Petitions page.
-Students should meet with their academic advisor at least one quarter before beginning Applied Experience to discuss which Community-Engaged Learning & Research (CELR) placement option, or self-placement, best meets their academic and career interests. Students can use the EXPO database to explore available CBLR opportunities.
-Students will be mentored by a certified ELL cooperating teacher and an SES field supervisor.
-Students will receive support and guidance on all certification requirements from academic advisors, field placement coordinators, and field instructors.
-Summer
-Summer &#8211; Year 1
-Summer &#8211; Year 2
-Tacoma Campus
+Enhancing Capacity for Special Education Leadership (ECSEL)
+Faculty & Staff
+Give
+Close mobile menu
+In this section
+About
+Expand Navigation
+Advisory Boards
+Expand Navigation
 TCert PEAB
-Teacher candidates will be in their ESOL classroom placement a minimum of 3 days a week for approximately 8 weeks (not including district spring break week) during the UW quarter.
-Teaching & Learning Minor
-Terms
-The CECL concentration of the Master of Education program requires students to earn a minimum of 37 credits. These credits are earned through the completion of professional seminar courses, core courses, an elective course, and a completion dossier. See below for specific course requirements and descriptions.
-The content of this major spans early childhood into adolescence and emerging adulthood in a range of social contexts including family, peer, school, and community, with a focus on diversity and equity. In the Developmental and Youth Studies degree, students will:
-The course may be taken for 2-5 credits each quarter until the number of required hours is fulfilled (see table below).
-The E-CRiT concentration within the Master of Education program requires students to earn a minimum of 37 credits. These credits are earned through completion of core courses and community-based fieldwork. See below for specific course requirements and descriptions.
-The Elementary Education Option requires that students complete a student teaching practicum, along with a practicum in an English to Speakers of Other Languages (ESOL) classroom OR a practicum in a Special Education classroom. International students with a visa, other than F-1 visa holders, should consult an immigration attorney to determine their eligibility for completing these required practica. F-1 visa holders will need to plan and apply for Curricular Practical Training (CPT) prior to beginning these required practica. If you have any questions, please contact the International Student Services (ISS) office.
-The ESOL concentration of the Master of Education program requires students to earn a minimum of 37 credits. These credits are earned through completion of professional seminar courses, core courses, an elective course, and a completion dossier. See below for specific course requirements and descriptions.
-The M.Ed. with LEDE Concentration includes:
-The total number of hours required for 5 credits of BEDUC 495 Applied Experience is 100.
-The total number of hours required for 5 credits of BEDUC 495 Applied Experience is 100. *See COVID-19 announcement below*
-This final 2-credit course provides an opportunity for candidates to demonstrate comprehensive knowledge, skills and dispositions associated with the program’s overall goals for academic learning and improvement of professional practice in education. The Completion Dossier ensures breadth of academic work and application of knowledge in each candidate’s work toward the M.Ed. degree.
-This written statement must be submitted prior to beginning any applied experience hours and must be approved by the BEDUC 495 course instructor.
-This written statement must be submitted prior to beginning any Applied Experience hours and must be approved by the BEDUC 495 course instructor.
-Time Schedule
-Time spent completing Applied Experience hours is counted towards earning academic course credit for BEDUC 495, and, to avoid any potential conflict of interest regarding time and activities spent working as an employee versus time and activities spent learning as a student.
-Time spent in a time-limited internship, paid or unpaid, may be counted toward the completion of B EDUC 495 Applied Experience.
-To be recommended for the ESOL endorsement, students are required to pass the Washington Educator Skills Test (WEST-E) English Language Learner test (051). Students are requested to take the WEST-E 051 before the end of their practicum. This test is required by the State of Washington and is designed to assess teacher candidates’ competencies outlined by the Professional Educator Standard Board in teaching multilingual learners.
+LEDE PEAB
+Employment Opportunities
+Contact Us
+Goodlad Institute for Educational Renewal
 Undergraduate
+Expand Navigation
+Developmental & Youth Studies
+Expand Navigation
+Admissions
+Degree Requirements
+Career Pathways & Academic Connections
+Educational Studies
+Expand Navigation
+Admissions
+Degree Requirements
+Major Concentrations
+Career Pathways & Academic Connections
+Education Studies: Elementary Education Option
+Expand Navigation
+Admissions
+Degree Requirements
+Dual Endorsement Options
+Career Pathways & Academic Connections
+Child & Youth Development Minor
+Diversity Studies Minor
+Education & Society Minor
+Educational Advocacy & Community Engagement Minor
+Teaching & Learning Minor
+Academic Advising
 Undergraduate Policies & Petitions
+Graduate
+Expand Navigation
+M.Ed. with Critical Educational Change and Leadership (CECL) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+M.Ed. with Educating for Critical Race Theory (E-CRiT) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+M.Ed. with English to Speakers of Other Languages (ESOL) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+M.Ed. with Leadership Development for Educators (LEDE) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+Meet our LEDE Faculty
+Academic Advising
+Graduate Policies & Petitions
+Meet our M.Ed. Students
+Funding Resources for Graduate Students
+Become a Teacher
+Expand Navigation
+Elementary Education Teacher Certification Post-Baccalaureate
+Expand Navigation
+Admissions
+Program Requirements
+Optional Dual Endorsement
+Funding Resources for Post-Baccalaureate Students
+Apply
+Expand Navigation
+Info Sessions & Events
+Professional Development
+Expand Navigation
+Enhancing Capacity for Special Education Leadership (ECSEL)
+Expand Navigation
+Faculty
+Admissions
+Faculty & Staff
+Give
+School of Educational Studies
+&#124;
+Developmental & Youth Studies
+School of Educational Studies
+&#124;
+Undergraduate
+&#124;
+Developmental & Youth Studies
+&#124;
+Degree Requirements
+Degree Requirements
+Developmental & Youth Studies majors must complete all university and major requirements listed below.
+Students seeking academic advising can schedule an appointment through our Academic Advising page. To learn more about Developmental & Youth Studies&#8217; policies and petitions, please visit our Undergraduate Policies & Petitions page.
+On this page
+UW Bothell Requirements
+Major Requirements
+Capstone Sequence
+Applied Experience Guidelines and Policies
+Major Learning Objectives
+UW Bothell Requirements
+Earn 180 university credits
+5 credits &#8211; Composition (C)
+10 credits &#8211; Writing Across the Curriculum (W)
+5 credits &#8211; Reasoning (RSN)
+5 credits &#8211; Diversity (DIV)
+For students admitted to the UW prior to Autumn 2023 the DIV requirement is 3 credits
+15 credits &#8211; Arts & Humanities (A&H)
+15 credits &#8211; Natural Sciences (NSc)
+15 credits &#8211; Social Sciences (SSc)
+Major Requirements
+25 credits &#8211; School of Educational Studies Core Courses
+B EDUC 205 Education & Equity in the United States (DIV, SSc)
+B EDUC 210 Teaching & Learning in a Multicultural Society (DIV, SSc)
+B EDUC 295 Gathering, Analyzing, and Using Data in Education (DIV, RSN)
+B EDUC 300 Research & Educational Knowledge (W)
+B EDUC 310 Theories of Learning, Culture & Identity (SSc)
+35 credits &#8211; Developmental & Youth Studies Foundation Courses
+B EDUC 402 Human Growth and Learning (SSc)
+B EDUC 451 Early Childhood Development (SSc)
+B EDUC 453 Children in Schools and Society (DIV, SSc)
+B EDUC 456 Adolescents in Schools and Society (SSc)
+B EDUC 458 Emerging Adulthood (SSc)
+B EDUC 461 Educational Implications of Gender Inequality (DIV)
+B EDUC 481 Adolescent Development (SSc)
+15 credits from list &#8211; Electives
+B EDUC 220 Education and Society (SSc)
+B EDUC 230 Culture Knowledge and Education (DIV, SSc)
+B EDUC 250 Topics in Education and Popular Culture (A&H)
+B EDUC 255 Critical Diversity Studies (DIV, SSc)
+B EDUC 328 Diversity, Leadership, and Engagement (DIV)
+B EDUC 391 Special Topics in Education
+B EDUC 392 Independent Study (requires faculty supervisor )
+B EDUC 403 Introduction to Special Education
+B EDUC 438 Teaching & Learning Tribal Sovereignty (DIV, SSc)
+B EDUC 441 Second Language Acquisition, Bilingual Education, and the Structure of English (DIV, SSc)
+B EDUC 470 Disability Culture in Schools and Society (DIV, SSc)
+B EDUC 491 Special Topics in Education
+B EDUC 498 Educational Studies Research
+BIS 219 Politics of Sex Education (SSc)
+BIS 222 Introduction to Human Sexuality (DIV, SSc)
+BIS 225 Social Psychology (SSc)
+BIS 227 Rad Women in the Global South (DIV, SSc)
+BIS 235 Critical Media Literacy (SSc)
+BIS 365 Institutions and Social Change (SSc)
+BIS 366 The Family in US Society (SSc)
+BIS 369 Indigenous Psychology & Health (DIV)
+BIS 405 Environmental Education (NSc)
+BIS 450 Decolonizing Psychology (SSc)
+BIS 483 Community Organizing (SSc)
+BISPSY 337 Risk & Resilience (SSc)
+BISPSY 343 Community Psychology (SSc)
+BISPSY 348 Cultural Psychology (SSc)
+BISPSY 350 Intergroup Relations (SSc)
+B HLTH 435 Foundations and Principles of Health Education Communication (SSc)
+10 credits &#8211; Capstone Sequence
+B EDUC 495 Applied Experience (5 credits)
+B EDUC 499 Capstone Project (5 credits)
+Capstone Sequence
+Critical reflection and applied learning
+All students in the Developmental & Youth Studies major enroll in a two-course capstone sequence:
+B EDUC 495 Applied Experience (5 credits)
+B EDUC 499 Capstone Project (5 credits)
+Developmental & Youth Studies majors build a portfolio which encourages them to reflect on School of Educational Studies Core Themes and make connections between what they have learned in their coursework and accomplished in Applied Experience. Students begin their capstone by applying what they have learned in their coursework in an Applied Experience placement, and complete their portfolio in B EDUC 499.
+B EDUC 495 Applied Experience
+Read about the applied experience requirements, guidelines, and policies .
+B EDUC 495 Applied Experience is designed to:
+be a hands-on, community-based learning and professional-development experience
+integrate the knowledge and skills students have cultivated in Developmental & Youth Studies courses and apply elements of the School of Educational Studies Major core themes
+encourage self-reflection on the challenges and opportunities of education in diverse settings
+B EDUC 499 Capstone Project
+In the final course in the Developmental & Youth Studies major capstone sequence, students build a portfolio that showcases their critical reflection and learning related to School of Educational Studies core themes. Students are encouraged to collect artifacts (previous course papers or projects) relating to these themes and to think and write reflectively on them throughout their course of study.
+Applied Experience Guidelines & Policies
+Overview
+Developmental & Youth Studies majors are expected to participate in learning experiences in community-based settings to gain valuable insight into possible roles and career opportunities in education-related fields. To accomplish this, the Developmental & Youth Studies major requires the completion of an applied learning experience, B EDUC 495 Applied Experience.
+Resources for choosing an Applied Experience placement
+Community-Engaged Learning & Research
+Internships
+Career Services
+Student Clubs & Organizations
+Hours Requirement
+The total number of hours required for 5 credits of BEDUC 495 Applied Experience is 100. *See COVID-19 announcement below*
+The course may be taken for 2-5 credits each quarter until the number of required hours is fulfilled (see table below).
+Some academic requirements related to BEDUC 495 must be completed for each quarter enrolled&#8211;see the BEDUC 495 Applied Experience syllabus for details.
+Credits
+Weekly Hours
+Quarter Total
+5
+10
+100
+4
+8
+80
+3
+6
+60
+2
+4
+40
+Placement Selection Process
+Students should meet with their academic advisor at least one quarter before beginning Applied Experience to discuss which Community-Engaged Learning & Research (CELR) placement option, or self-placement, best meets their academic and career interests. Students can use the EXPO database to explore available CBLR opportunities.
+Register for B EDUC 495 according to the academic plan developed with academic advisor
+Work with CBLR staff to secure placement or request approval from B EDUC 495 instructor for self-placement.
+Placement Sites
+Placements must comply with all policies outlined below.
+Placements must allow students to examine School of Educational Studies core themes
+Possible placements include:
+Nonprofit organization with a teaching/learning/professional development component
+Educational research projects
+Museums
+Alternative educational settings such as home-school networks, juvenile detention, or social service agencies
+Neighborhood community centers
+After-school programs (YMCA, Boys & Girls Club)
+Public school programs
+Experimental teaching in STEM or other professional fields
 Union or advocacy organization
+Policies
+Applied Experience hours cannot be completed as part of any time spent working in a paid job.
+Time spent completing Applied Experience hours is counted towards earning academic course credit for BEDUC 495, and, to avoid any potential conflict of interest regarding time and activities spent working as an employee versus time and activities spent learning as a student.
+Exception: Applied Experience hours may be completed in the same organizational setting where the student is employed, but the student must delineate, in writing:
+How their Applied Experience hours are separate from those hours for which the student is paid.
+How Applied Experience hours go beyond their duties and responsibilities for their paid job.
+This written statement must be submitted prior to beginning any Applied Experience hours and must be approved by the BEDUC 495 course instructor.
+A student may not request compensation from their employer for any hours they spent conducting an applied experience for BEDUC 495.
+Time spent in a time-limited internship, paid or unpaid, may be counted toward the completion of B EDUC 495 Applied Experience.
+Internships are formal, organized programs used to provide a professionally-oriented learning experiences in an organization or occupation; and may be paid or unpaid. Internships are temporary, have a defined end date, and are not considered employment.
+Applied Experience hours completed to earn academic credit for B EDUC 495 cannot be used for applied experience (or service learning) hours for another academic course. Nor can Applied Experience (or service learning) hours completed to earn academic credit for another academic course be used or counted for B EDUC 495 Applied Experience hours
+A single agency or organizational setting may be used to complete Applied Experience hours required for multiple courses (including B EDUC 495) that the student is enrolled in during the same academic quarter.
+In this case, the student must delineate, in writing:
+How their applied experience hours at the agency or organization are separately allocated for each course
+How applied experience activities and responsibilities are separate for each course
+How applied experience hours respectively contribute to the student’s learning goals for each course.
+This written statement must be submitted prior to beginning any applied experience hours and must be approved by the BEDUC 495 course instructor.
+Religious content may not be delivered or taught as part of Applied Experience.
+If students are engaged in religiously affiliated services or schools, students need to be contributing to the provision of social services through the institution, rather than participation in religious instruction.
+Volunteer work must address a recognized need beyond congregation membership towards the greater community.
+Applied Experience hours need to be completed within the quarter dates of enrollment.
+Any hours completed prior to the start of the quarter enrolled in Applied Experience do not count toward the total hours needed
+Students are held to the Student Conduct Code for the University of Washington .
+Major Learning Objectives
+The content of this major spans early childhood into adolescence and emerging adulthood in a range of social contexts including family, peer, school, and community, with a focus on diversity and equity. In the Developmental and Youth Studies degree, students will:
+Analyze human growth and development processes:
+Early childhood
+Adolescent development
+Develop connections between developmental theories, concepts, and perspectives on developmental processes
+Examine critical perspectives on theories and concepts of child and adolescent development
+Analyze contextual factors and impacts on individuals, including family, school, community, and digital, as well as how diverse individuals frame their own identities in these spaces
+Identify and describe identity formation
+Explore diverse cultural perspectives on human development
+In this section
+About
+Expand Navigation
+Advisory Boards
+Expand Navigation
+TCert PEAB
+LEDE PEAB
+Employment Opportunities
+Contact Us
+Goodlad Institute for Educational Renewal
+Undergraduate
+Expand Navigation
+Developmental & Youth Studies
+Expand Navigation
+Admissions
+Degree Requirements
+Career Pathways & Academic Connections
+Educational Studies
+Expand Navigation
+Admissions
+Degree Requirements
+Major Concentrations
+Career Pathways & Academic Connections
+Education Studies: Elementary Education Option
+Expand Navigation
+Admissions
+Degree Requirements
+Dual Endorsement Options
+Career Pathways & Academic Connections
+Child & Youth Development Minor
+Diversity Studies Minor
+Education & Society Minor
+Educational Advocacy & Community Engagement Minor
+Teaching & Learning Minor
+Academic Advising
+Undergraduate Policies & Petitions
+Graduate
+Expand Navigation
+M.Ed. with Critical Educational Change and Leadership (CECL) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+M.Ed. with Educating for Critical Race Theory (E-CRiT) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+M.Ed. with English to Speakers of Other Languages (ESOL) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+M.Ed. with Leadership Development for Educators (LEDE) Concentration
+Expand Navigation
+Admissions
+Degree Completion Requirements
+Frequently Asked Questions
+Meet our LEDE Faculty
+Academic Advising
+Graduate Policies & Petitions
+Meet our M.Ed. Students
+Funding Resources for Graduate Students
+Become a Teacher
+Expand Navigation
+Elementary Education Teacher Certification Post-Baccalaureate
+Expand Navigation
+Admissions
+Program Requirements
+Optional Dual Endorsement
+Funding Resources for Post-Baccalaureate Students
+Apply
+Expand Navigation
+Info Sessions & Events
+Professional Development
+Expand Navigation
+Enhancing Capacity for Special Education Leadership (ECSEL)
+Expand Navigation
+Faculty
+Admissions
+Faculty & Staff
+Give
+Contact Us
+School of Educational Studies
+uwbses@uw.edu
+425.352.5411
+Box 358531
+18115 Campus Way NE
+Bothell, WA 98011-8246
 University of Washington Bothell Homepage
-UW Bothell Facebook
-UW Bothell Home
+Bothell, Washington View our location on Google maps.
+Contact us by phone at:
+425.352.5000
+Contact
+Visitors
+Maps & directions
+Jobs
+Accessibility
+Privacy
+Rules Docket
+Terms
+Seattle Campus
+Tacoma Campus
 UW Bothell Instagram
 UW Bothell Linkedin
-UW Bothell Requirements
+UW Bothell Facebook
 UW Bothell Twitter
 UW Bothell Youtube
-uwbses@uw.edu
-Visitors
-Volunteer work must address a recognized need beyond congregation membership towards the greater community.
-Weekly Hours
-Winter
-Winter &#8211; Year 1
-Winter &#8211; Year 2
-Work with CBLR staff to secure placement or request approval from B EDUC 495 instructor for self-placement.
-Workday Login
-X
-YouTube
+&copy; 2026 University of Washington Bothell
+UW Bothell Instagram
+UW Bothell Linkedin
+UW Bothell Facebook
+UW Bothell Twitter
+UW Bothell Youtube

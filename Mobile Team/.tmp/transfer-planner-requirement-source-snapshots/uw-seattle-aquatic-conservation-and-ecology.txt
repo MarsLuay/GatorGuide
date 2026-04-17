@@ -5,10 +5,6 @@ Title: Major Requirements | School of Aquatic and Fishery Sciences
 -->
 [Supplemental official source] Aquatic and Fishery Sciences (AFS) Bachelor of Science
 [Supplemental official source] Aquatic Conservation and Ecology (ACE) Bachelor of Science
-[Supplemental official source] Honors Requirements
-[Supplemental official source] Undergraduate Capstone Project
-*FISH 460 is a replacement for FISH 324, which is no longer offered. Students wishing to use FISH 460 for Ad Hoc Honors will need to work with the SAFS adviser to submit an exception request to UW Honors.
-&#103;je&#110;sen&#64;&#117;&#119;&#46;&#101;d&#117;
 &copy; 2026 University of Washington |
 <!--
 <svg id="college_black_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -23,10 +19,8 @@ Title: Major Requirements | School of Aquatic and Fishery Sciences
 1122 NE Boat St, Box 355020 Seattle, WA 98195-5020
 20 credits. 10 credits of NSc must be outside the major (i.e., not a major prefix and no overlap with major). This is a good opportunity to take courses in Oceanography, Forestry, Biology, Atmospheric Sciences, Earth and Space Sciences, etc.
 20 credits. 10 credits of SSc must be outside the major (i.e., not a major prefix and no overlap with major). AIS courses are recommended.
-206-543-6132
 5 credits
 5 credits. Minimum 2.0 grade required
-A faculty mentor for your project (browse faculty here )
 About
 Academic Policies
 ACE Departmental Degree Requirements
@@ -38,12 +32,9 @@ Advising and Student Resources
 Affiliate Faculty
 AFS is an open major, which means that students currently registered at UW can declare this major at any time as long as they have a 2.0 cumulative grade point average. It is also transfer-friendly, allows for over 50 free electives, and can easily be combined with minors and double degrees. Learn more about the AFS Major requirements and scholarship opportunities available.
 AFS Learning Objectives
-All SAFS majors are required to complete a capstone project as part of their degree program. We recommend that students begin thinking about and preparing for their capstone experience during their junior year—the formal process typically takes place during a student’s senior year, but in some cases, students may petition to begin their capstone earlier.
 Alumni
 Alumni & Community
 American Fisheries Society
-An idea for a research project
-Apply for Departmental Honors
 Apply mathematical and data science methods to the study of aquatic ecology and conservation science
 Aquatic and Fishery Sciences
 Aquatic and Fishery Sciences (AFS) Bachelor of Science
@@ -61,10 +52,6 @@ Be Boundless
 Be proficient in scientific methodology and analytical approaches. You will have many opportunities to apply your knowledge in small, instructor-guided learning environments.
 Bevan Series
 Bluesky
-Capstone (4 credits)
-Capstone Adviser
-Capstone Procedures
-Capstone projects can address any topic in the aquatic and fishery sciences. Opportunities include:
 Career Resources
 Center for Quantitative Science
 Central to the degree is an integrative approach to developing communication, quantitative reasoning, and data science skills that careers in this field increasingly demand.
@@ -72,11 +59,9 @@ Classroom Lessons
 Climate Impacts Group
 Code of Conduct
 College Home
-College Honors – First-years only; apply as part of UW First-year Admissions application or prior to Spring quarter of freshman year. Students in College Honors complete Honors core requirements and Departmental Honors requirements.
 College of the Environment
 College of the Environment General Education requirements
 College of the Environment Research Derby
-Contact Greg Jensen, Capstone Coordinator, for an add code. Students will also need to have the following:
 Contact SEAS
 Contact Us
 Cooperative Institute for Climate,
@@ -84,15 +69,12 @@ Courses
 Critically evaluate science and the scientific method. We use lab classes, proposal writing, field experience, and research projects to encourage evidence-based learning.
 Cultivate broad academic and social skills that allow you to practice across different disciplines, cultures, and communities. Students are exposed to a wide range of learning environments that promote these skills, including internships, interactions with external agencies, and field-based courses.
 Degree Overview
-Departmental Honors – open to all SAFS majors who meet GPA eligibility; students are encouraged to apply at the start of their junior year (or earlier) in order to ensure enough time to complete additional course requirements.
-Departmental Honors Requirements
 Departmental Seminars
 Develop an understanding of the social and ethical issues in the field. Key issues are taught within their social context, and healthy debate is encouraged in all our classes.
 Diagnose conservation and natural resource outcomes based on the inter-relations of natural, social and governance systems
 Directories
 Diversity (DIV)
 Diversity, Equity, and Inclusion
-Dr. Greg Jensen serves as the Faculty Capstone Coordinator/Adviser and helps students throughout the process.
 Earth and Space Sciences
 EarthLab
 emergency fix of mobile menu-->
@@ -102,52 +84,29 @@ English Composition (C)
 Environmental and Forest Sciences
 Events
 Expand/contract subsection
-Expansion of an internship (FISH 498) or independent research (FISH 499) project into capstone research
-Explore a wide range of student opportunities to help build your career
 Facebook
 Facilities & Resources
 Faculty
 Faculty & Research
 FINS (Fisheries Interdisciplinary Network of Students)
 First Year Students: composition, calculus, chemistry, biology, FISH 200 or FISH 250.
-FISH 312 (Spring quarter)
-FISH 323 (Winter quarter)
-FISH 460* (Spring quarter)
-FISH 477 (Winter quarter; marine biology minors only)
-FISH 493 Capstone 1: Proposal (1cr) This class is a pre-requisite for FISH 494 and is offered Fall, Winter, and Spring quarters. Includes defining a capstone research question, conducting a literature review, preparing a project proposal and budget, reviewing peer proposals, and attending/critiquing the quarterly capstone symposium. Required for graduation for majors. Prerequisite: FISH 290
-FISH 494 Capstone 2: Research (3cr) Self-directed research or project under the direction of a faculty member. Includes defining a research question, determining methodology, data collection, and analysis. Required for graduation for majors. Prerequisite: FISH 493; Q SCI 381
-FISH 495 Capstone 3: Research Synthesis (3cr) Self-directed research project under the direction of a faculty member. Data analysis, writing a paper, and presenting findings. Required for graduation for majors. Students also give an oral presentation on the project at the SAFS Undergraduate Research Symposium or a similar, approved venue. Pre-requisite: FISH 494.
-FISH 495 Capstone Project II; enroll in dedicated Honors section
-FISH 522 (Autumn quarter; add code required)
-For more information and to apply for College or Interdisciplinary Honors, visit the UW Honors Program website .
 Forms, Guidelines & Handbooks
 Freshwater Science and Management (FSM) Minor
 Friday Harbor Laboratories
 Funding
 Giving
-GPA – both of the following must be met:
 Graduate Program
 Graduate Student Symposium
 Graduates of the ACE major are uniquely qualified for careers in universities and other educational settings, management agencies at the local to international levels, environmental consulting, and non-profit organizations.
-Greg Jensen
-Group research projects, typically conducted by up to three students
-Honors Capstone
 Honors Requirements
-Honors Requirements | School of Aquatic and Fishery Sciences
 Implement the tools and methods used in ecology, conservation, and resource management
-IMPORTANT: It is up to the individual student to register for capstone courses in a timely manner and in the correct order—failure to do so may result in registration fees and delay in graduation. Students are responsible for resolving any errors and resulting fees.
-In addition to completing a research paper and oral presentation, honors students will complete an additional draft of the paper AND a poster presentation
-In addition to the usual oral presentation, Honors students must also present a poster of their project at the SAFS Quarterly Undergraduate Symposium or comparable venue.
-Independent design of a research project
 instagram
-Interdisciplinary Honors – for students who complete the Honors core requirements but do not complete Departmental Honors requirements; an application may be made during the First-year Admissions process or prior to Spring quarter of your first year.
 Internship Programs
 Intranet
 Jobs
 LEAPS Program: Professional Development
 Learn by doing
 Learn effective and persuasive communication skills. Our favorable student-to-faculty ratio gives you the chance to practice your oral and writing skills in all our classes.
-Learn more
 Learning outcomes
 Legacy
 Major Requirements
@@ -157,9 +116,6 @@ Marine and Environmental Affairs
 Marine Biology
 Meet Our Graduate Students
 Meet Our Undergraduate Students
-Minimum 3.3 cumulative UW GPA
-Minimum 3.5 cumulative GPA in all courses with a FISH prefix
-More information is available on the SAFS Capstone Experience website (includes a list of past capstone topics and FAQs).
 MS and PhD in Aquatic and Fisheries Science
 My UW
 Natural Sciences (NSc)
@@ -169,8 +125,6 @@ Newsletter
 NOTE: The AFS major is closed to new students. Information about the AFS major will remain on this site for reference for currently declared students.
 Ocean, and Ecosystem Studies
 Oceanography
-One FISH honors option course – one of the following must be taken for honors credit through the Ad Hoc Honors process :
-Other Honors programs at UW
 Our undergraduate program supports you in developing key skills to:
 Planning Your Degree
 Please note that the College of the Environment does not have a foreign language requirement
@@ -185,23 +139,15 @@ Quaternary Research Center
 Reasoning (RSN)
 Recommended Preparation
 Research
-Research opportunities provided by a field site program (e.g., Alaska Salmon Program, Friday Harbor Labs)
-Research questions provided by a faculty member
 Research Staff
-s&#97;&#102;&#115;d&#101;s&#107;&#64;u.&#119;&#97;sh&#105;ngt&#111;&#110;&#46;&#101;&#100;u
-s&#97;&#102;s&#100;esk&#64;&#117;.w&#97;&#115;&#104;i&#110;&#103;&#116;&#111;&#110;.e&#100;u
-sa&#102;s&#100;&#101;&#115;k&#64;u&#46;&#119;&#97;&#115;hi&#110;&#103;ton&#46;&#101;du
+saf&#115;&#100;&#101;s&#107;&#64;u.&#119;as&#104;&#105;n&#103;t&#111;n.e&#100;&#117;
 SAFS majors are required to complete both the College of Environment&#8217;s General Education requirements and the School&#8217;s degree requirements listed below. These requirements lead to a Bachelor of Science degree, with a major in Aquatic Conservation and Ecology (ACE), or a major in Aquatic and Fishery Sciences (AFS).
-SAFS majors completing departmental honors must complete the following requirements in addition to the standard degree requirements in the major:
-SAFS offers outstanding students the opportunity to complete Departmental Honors for a greater intellectual challenge and to explore the major in new and creative ways.
-SAFS students enrolled in the Departmental Honors Program should enroll in the Honors section of FISH 495 (3cr) and meet the following additional criteria:
 Scholarships
 School of
 School of Aquatic and Fishery Sciences
 Search
 Search this site
 Second Year Students: statistics, ACE intro coursework, Communicating Science coursework, College of Environment’s General Education requirements.
-Seminar (2–3 credits) – take one of the following:
 Seminar Series
 Skip to main content Skip to footer unit links
 Social Sciences (SSc)
@@ -210,32 +156,19 @@ Staff
 Staff Login
 Student and Career Opportunities
 Student Awards
-Student Career Opportunities
 Student Organizations
 Students
-Students complete their capstone under the mentorship of a UW faculty member. Information on SAFS faculty research interests and expertise may be found here .
 Students Explore Aquatic Sciences (SEAS)
 Students studying Aquatic and Fishery Sciences (AFS) learn the dynamics of freshwater and marine environments and the sustainable management of aquatic resources. Our bachelor&#8217;s degree program emphasizes experiential learning through unique lab and field research opportunities. Undergraduate students receive individualized attention and mentorship from a small supportive community, while also benefiting from the diversity of a large research institution.
 Study Abroad
-Submit a draft of the research paper to the Capstone Coordinator and two additional professionals in the field; incorporate any feedback into the final version.
-Submit FISH 494 Capstone 2 Contract to Greg Jensen, the Capstone Coordinator, who will provide an add code
-Submit FISH 495 Capstone 3 Contract to Greg Jensen, the Capstone Coordinator, who will provide an add code
 Support Resources
 Terms
 The ACE degree equips students with knowledge and skills for lifelong learning about the ecology and evolution of aquatic species and ecosystems, and how we sustain them for generations to come.
 The Aquatic Conservation and Ecology (ACE) degree is about the ecology of aquatic organisms, the rivers, lakes, and oceans in which they live, and how we conserve them for the benefit of people and the planet. This degree integrates the disciplines of ecology, evolution, and quantitative sciences and applies these principles to contemporary conservation and natural resource management issues.
-The capstone project requires completion of three courses taken in order over a minimum of three quarters.
-The Capstone senior research project is the culmination of the undergraduate experience at the School of Aquatic and Fishery Sciences. Capstones provide an exciting opportunity to put classroom learning into practice and allow students to make a lasting contribution to their field of study.
 The following documents will be helpful in planning your degree. It is also recommended that students meet with the SAFS Undergraduate Adviser early and often for help in degree planning and staying on track to graduation.
-There are three kinds of honors programs at the UW:
 Timeline
-To check eligibility and apply for Departmental Honors, contact the SAFS Undergraduate Adviser. Departmental Honors may be declared at any time, but honors coursework is typically begun in the junior (or 3 rd ) year.
-To enroll in FISH 493:
-To enroll in FISH 494:
-To enroll in FISH 495:
 Total for General Education
 Undergraduate Capstone Project
-Undergraduate Capstone Project | School of Aquatic and Fishery Sciences
 Undergraduate Program
 Undergraduate Research
 Understand and appreciate the liberal arts and social sciences. Our degree requirements incorporate a range of complementary subjects offered across campus that encourages breadth as well as depth.
@@ -254,7 +187,4 @@ width="215px" height="14px" class="uw-name" viewBox="-70 381.4 469.1 31.6" style
 width="252.993px" height="17.033px" viewBox="0 0 252.993 17.033" enable-background="new 0 0 252.993 17.033"
 xml:space="preserve" alt="University of Washington">
 xml:space="preserve">
-You must have successfully completed FISH 290
-You must have successfully completed FISH 493
-You must have successfully completed FISH 494
 YouTube

@@ -82,6 +82,32 @@ const SOURCE_ONLY_FALLBACK_NOISE_PREFIXES = new Set([
 const SOURCE_GENERATED_PARSER_FALLBACK_TITLE = "Source-backed major preparation";
 const SOURCE_GENERATED_PARSER_FALLBACK_NOTE =
   "Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.";
+const SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN =
+  /Auto-promotion was intentionally skipped/i;
+const SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN =
+  /\b(suggested general education|not required for transferring|approved list|highly recommended|elective|replacement|course list|course lists|course evaluation|course evaluations|capstone course|capstone courses|suggested course pathways?)\b/i;
+const SOURCE_BACKED_MAJOR_SCOPE_CUE_PATTERN =
+  /\b(?:if|for)\s+([^:.;]+?)\s+(?:major|majors|option|options|program|programs)\b/i;
+const SOURCE_BACKED_MAJOR_SCOPE_STOPWORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "degree",
+  "for",
+  "in",
+  "major",
+  "majors",
+  "of",
+  "option",
+  "options",
+  "or",
+  "program",
+  "programs",
+  "the",
+  "to",
+  "track",
+  "with",
+]);
 
 type ChecklistItemsByPhase = {
   beforeApplication: TransferPlannerChecklistItem[];
@@ -585,6 +611,22 @@ for (const rule of TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY) {
   }
 }
 
+const SOURCE_BACKED_CLASSIFICATIONS_BY_SCOPE_AND_SOURCE_COURSE = new Map<
+  string,
+  TransferPlannerRequirementDiffClassificationEntry[]
+>();
+for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY) {
+  const scopeKey = makePathwayPlanKey(classification.planId, classification.pathwayId);
+  const normalizedSourceCourseCode = normalizeCourseCode(classification.sourceUwCourseCode);
+  if (!normalizedSourceCourseCode) continue;
+
+  const entryKey = buildSourceBackedScopeCourseKey(scopeKey, normalizedSourceCourseCode);
+  const existingEntries =
+    SOURCE_BACKED_CLASSIFICATIONS_BY_SCOPE_AND_SOURCE_COURSE.get(entryKey) ?? [];
+  existingEntries.push(classification);
+  SOURCE_BACKED_CLASSIFICATIONS_BY_SCOPE_AND_SOURCE_COURSE.set(entryKey, existingEntries);
+}
+
 const SOURCE_BACKED_GUIDE_COURSES_BY_KEY = new Map<PathwayPlanKey, string[]>();
 for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY) {
   const scopeKey = makePathwayPlanKey(parsedSource.planId, parsedSource.pathwayId);
@@ -592,12 +634,53 @@ for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGI
     SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
   );
   const parsedCourseCodes = uniquePlannerStrings(
-    [...(parsedSource.parsedUwCourseCodes ?? []), ...(parsedSource.sourceOnlyUwCourseCodes ?? [])].map(
-      (courseCode) => normalizeCourseCode(courseCode)
-    )
+    (parsedSource.parsedUwCourseCodes ?? []).map((courseCode) => normalizeCourseCode(courseCode))
   );
+  const parsedCourseCodeSet = new Set(parsedCourseCodes);
+  const parsedCandidatesByCode = new Map<string, TransferPlannerParsedRequirementAtomCandidate[]>();
+  for (const candidate of parsedSource.parsedRequirementAtomCandidates ?? []) {
+    const normalizedCandidateCode = normalizeCourseCode(candidate.uwCourseCode);
+    if (!normalizedCandidateCode) continue;
+
+    const existingCandidates = parsedCandidatesByCode.get(normalizedCandidateCode) ?? [];
+    existingCandidates.push(candidate);
+    parsedCandidatesByCode.set(normalizedCandidateCode, existingCandidates);
+  }
 
   for (const parsedCourseCode of parsedCourseCodes) {
+    if (!isLowerDivisionSourceBackedFallbackCode(parsedCourseCode)) {
+      continue;
+    }
+
+    const matchingClassifications =
+      SOURCE_BACKED_CLASSIFICATIONS_BY_SCOPE_AND_SOURCE_COURSE.get(
+        buildSourceBackedScopeCourseKey(scopeKey, parsedCourseCode)
+      ) ?? [];
+    if (
+      matchingClassifications.some((entry) =>
+        hasUnsafeSourceBackedValidationNote(entry.validationNotes)
+      )
+    ) {
+      continue;
+    }
+
+    const requirementCueLines = uniquePlannerStrings([
+      ...(parsedCandidatesByCode.get(parsedCourseCode) ?? []).flatMap(
+        (candidate) => candidate.sourceLineHints ?? []
+      ),
+      ...matchingClassifications.flatMap((entry) => getRequirementCueLinesFromClassification(entry)),
+    ]);
+    if (
+      !hasStudentFacingSourceBackedRequirementCue({
+        ownerTitle: parsedSource.ownerTitle,
+        sourceCourseCode: parsedCourseCode,
+        requirementCueLines,
+        allCandidateCodes: parsedCourseCodeSet,
+      })
+    ) {
+      continue;
+    }
+
     const candidateRules = [
       ...(GUIDE_RULES_BY_TARGET_COURSE_CODE.get(parsedCourseCode) ?? []),
     ].sort(compareGuideRules);
@@ -619,6 +702,10 @@ for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGI
 
 const SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY = new Map<PathwayPlanKey, string[]>();
 for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY) {
+  if (!shouldIncludeStudentFacingSourceBackedClassification(classification)) {
+    continue;
+  }
+
   const scopeKey = makePathwayPlanKey(classification.planId, classification.pathwayId);
   const sourceBackedClassificationCourseCodes = new Set(
     SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY.get(scopeKey) ?? []
@@ -1027,6 +1114,107 @@ function getRequirementCueLinesFromClassification(
     .filter((note) => note.startsWith("Requirement cue lines:"))
     .map((note) => note.replace(/^Requirement cue lines:\s*/i, "").trim())
     .filter(Boolean);
+}
+
+function buildSourceBackedScopeCourseKey(scopeKey: string, courseCode: string) {
+  return `${scopeKey}|${normalizeCourseCode(courseCode)}`;
+}
+
+function tokenizeSourceBackedMajorScope(value: string) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .split(/\s+/)
+    .map((token) => token.trim())
+    .filter(
+      (token) =>
+        token.length >= 3 && !SOURCE_BACKED_MAJOR_SCOPE_STOPWORDS.has(token)
+    );
+}
+
+function lineReferencesCurrentMajorScope(line: string, ownerTitle: string) {
+  const scopeMatch = String(line ?? "").match(SOURCE_BACKED_MAJOR_SCOPE_CUE_PATTERN);
+  if (!scopeMatch) {
+    return true;
+  }
+
+  const cueTokens = tokenizeSourceBackedMajorScope(scopeMatch[1]);
+  const ownerTokens = tokenizeSourceBackedMajorScope(ownerTitle);
+  if (!cueTokens.length || !ownerTokens.length) {
+    return true;
+  }
+
+  const ownerTokenSet = new Set(ownerTokens);
+  const overlapCount = cueTokens.filter((token) => ownerTokenSet.has(token)).length;
+  const requiredOverlap =
+    cueTokens.length === 1 || ownerTokens.length === 1 ? 1 : 2;
+  return overlapCount >= Math.min(requiredOverlap, cueTokens.length, ownerTokens.length);
+}
+
+function hasUnsafeSourceBackedValidationNote(notes: string[] | null | undefined) {
+  return (notes ?? []).some((note) =>
+    SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN.test(String(note ?? ""))
+  );
+}
+
+function hasStudentFacingSourceBackedRequirementCue(scope: {
+  ownerTitle: string;
+  sourceCourseCode: string;
+  requirementCueLines: string[];
+  allCandidateCodes: Set<string>;
+}) {
+  const normalizedCode = normalizeCourseCode(scope.sourceCourseCode);
+  const cueLines = uniquePlannerStrings(scope.requirementCueLines ?? []);
+  if (!normalizedCode || !cueLines.length) {
+    return false;
+  }
+
+  return cueLines.some((line) => {
+    if (!lineReferencesCurrentMajorScope(line, scope.ownerTitle)) {
+      return false;
+    }
+    if (SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN.test(String(line ?? ""))) {
+      return false;
+    }
+    return !shouldExcludeSourceBackedFallbackCode({
+      code: normalizedCode,
+      requirementCueLines: [line],
+      allCandidateCodes: scope.allCandidateCodes,
+    });
+  });
+}
+
+function shouldIncludeStudentFacingSourceBackedClassification(
+  classification: TransferPlannerRequirementDiffClassificationEntry
+) {
+  const hasCourseCoverage = Boolean(
+    (classification.grcCourseCodes ?? []).length ||
+      (classification.alternativeCourseCodeSets ?? []).some((group) => (group ?? []).length)
+  );
+  if (!hasCourseCoverage) {
+    return false;
+  }
+
+  if (!isLowerDivisionSourceBackedFallbackCode(classification.sourceUwCourseCode)) {
+    return false;
+  }
+
+  if (hasUnsafeSourceBackedValidationNote(classification.validationNotes)) {
+    return false;
+  }
+
+  const requirementCueLines = getRequirementCueLinesFromClassification(classification);
+  if (!requirementCueLines.length) {
+    return classification.classificationKind.startsWith("auto-promoted-");
+  }
+
+  return hasStudentFacingSourceBackedRequirementCue({
+    ownerTitle: classification.majorTitle,
+    sourceCourseCode: classification.sourceUwCourseCode,
+    requirementCueLines,
+    allCandidateCodes: new Set([normalizeCourseCode(classification.sourceUwCourseCode)]),
+  });
 }
 
 function getSourceBackedFallbackCourseLevel(code: string) {
@@ -2346,7 +2534,11 @@ function buildStudentVisibleAutomaticCourseList(scope: {
   beforeEnrollmentChecklist: TransferPlannerChecklistItem[];
   stayAtGrcChecklist: TransferPlannerChecklistItem[];
 }) {
-  return collectPlannerCourseLabels(scope);
+  const checklistCourseList = collectPlannerCourseLabels(scope);
+  return orderStringsByBase(
+    uniqueReferenceCourseLabels([...(scope.grcCourseList ?? []), ...checklistCourseList]),
+    scope.grcCourseList ?? []
+  );
 }
 
 function buildTrackMatchSeedCourseList(items: TransferPlannerChecklistItem[]) {
@@ -2375,11 +2567,10 @@ function buildStudentVisibleTrackMatchCourseList(scope: {
     ...(scope.stayAtGrcChecklist ?? []),
   ]);
 
-  if (checklistSeedCourseList.length) {
-    return checklistSeedCourseList;
-  }
-
-  return uniqueReferenceCourseLabels([...(scope.grcCourseList ?? [])]);
+  return orderStringsByBase(
+    uniqueReferenceCourseLabels([...(scope.grcCourseList ?? []), ...checklistSeedCourseList]),
+    scope.grcCourseList ?? []
+  );
 }
 
 function isStudentVisibleTrackCourseLabel(label: string) {

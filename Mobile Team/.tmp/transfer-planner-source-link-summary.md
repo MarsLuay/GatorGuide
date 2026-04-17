@@ -1,26 +1,38 @@
 # Transfer Planner Source Link Summary
 
-Generated: 2026-04-15T04:19:27.641Z
+Generated: 2026-04-16T21:20:08.343Z
 
-- Total tracked source URLs: 320
-- Reachable: 320
+- Total tracked source URLs: 326
+- Reachable: 326
 - Failed: 0
-- Added since previous snapshot: 71
-- Changed since previous snapshot: 27
+- Added since previous snapshot: 6
+- Changed since previous snapshot: 134
 - Removed since previous snapshot: 0
 
 ## Changed URLs
 
+- http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html
+  - owners: uw-seattle-cinema-and-media-studies
+- https://admissions.uwb.edu/register/mpw-DataVis-BA
+  - owners: uw-bothell-data-visualization-ba
+- https://admissions.uwb.edu/register/mpw-DataVis-BS
+  - owners: uw-bothell-data-visualization-bs
 - https://aes.washington.edu/ba-american-ethnic-studies
   - owners: uw-seattle-american-ethnic-studies
+- https://ais.washington.edu/ba-american-indian-studies
+  - owners: uw-seattle-american-indian-studies
 - https://amath.washington.edu/undergraduate-major-applied-mathematics
   - owners: uw-seattle-applied-mathematics
 - https://asian.washington.edu/ba-asian-languages-cultures
   - owners: uw-seattle-asian-languages-and-cultures
+- https://asian.washington.edu/ba-chinese
+  - owners: uw-seattle-chinese
 - https://asian.washington.edu/ba-japanese
   - owners: uw-seattle-japanese
 - https://asian.washington.edu/ba-korean
   - owners: uw-seattle-korean
+- https://asian.washington.edu/ba-south-asian-languages-and-cultures
+  - owners: uw-seattle-south-asian-languages-and-cultures
 - https://astro.washington.edu/timeline-and-requirements
   - owners: uw-seattle-astronomy
 - https://catalog.greenriver.edu/
@@ -31,38 +43,52 @@ Generated: 2026-04-15T04:19:27.641Z
   - owners: uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
 - https://chem.washington.edu/ba-chemistry
   - owners: uw-seattle-chemistry, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route
+- https://cinema.washington.edu/ba-comparative-literature
+  - owners: uw-seattle-comparative-literature
+- https://classics.washington.edu/ba-classics
+  - owners: uw-seattle-classics
 - https://classics.washington.edu/ba-greek
   - owners: uw-seattle-greek
 - https://classics.washington.edu/ba-latin
   - owners: uw-seattle-latin
 - https://disabilitystudies.washington.edu/DS_major
   - owners: uw-seattle-disability-studies
+- https://dlmp.uw.edu/education/mls-undergrad
+  - owners: uw-seattle-medical-laboratory-science
+- https://education.washington.edu/academics/program/early-childhood-family-studies
+  - owners: uw-seattle-early-childhood-and-family-studies
+- https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf
+  - owners: uw-seattle-education-communities-and-organizations
+- https://english.washington.edu/english-language-literature-and-culture-option
+  - owners: uw-seattle-english-language-literature-and-culture
+- https://german.washington.edu/german-studies
+  - owners: uw-seattle-german
 - https://history.washington.edu/major
   - owners: uw-seattle-history
 - https://ischool.uw.edu/academics/informatics/curriculum
   - owners: uw-seattle-informatics
+- https://jsis.washington.edu/programs/undergraduate/asia-studies/
+  - owners: uw-seattle-asian-studies
+- https://jsis.washington.edu/programs/undergraduate/jewish-studies/
+  - owners: uw-seattle-jewish-studies
+- https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/
+  - owners: uw-seattle-latin-american-and-caribbean-studies
+- https://linguistics.washington.edu/ba-linguistics
+  - owners: uw-seattle-linguistics
 - https://lsj.washington.edu/lsj-gold-curriculum-requirements
   - owners: uw-seattle-law-societies-and-justice
-- https://phys.washington.edu/physics-bs-degree-requirements
-  - owners: uw-seattle-physics
-- https://scandinavian.washington.edu/ba-norwegian
-  - owners: uw-seattle-norwegian
-- https://spanport.washington.edu/spanish-major-requirements
-  - owners: uw-seattle-spanish
-- https://www.deohs.washington.edu/degree-requirements
-  - owners: uw-seattle-environmental-public-health
-- https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio
-  - owners: uw-bothell-interdisciplinary-studies-individualized-study
-- https://www.uwb.edu/nhs/undergraduate/health-studies/overview
-  - owners: uw-bothell-health-studies
-- https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum
-  - owners: uw-bothell-applied-computing
-- https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum
-  - owners: uw-bothell-computer-engineering
-- https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
-  - owners: uw-bothell-csse, uw-bothell-csse-information-assurance-and-cybersecurity
-- https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum
-  - owners: uw-bothell-mathematics
-- https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum
-  - owners: uw-bothell-physics-ba, uw-bothell-physics-bs
+- https://math.washington.edu/ba-mathematics-standard-major-requirements-0
+  - owners: uw-seattle-mathematics
+- https://music.washington.edu/bachelor-arts-music-instrumental-option
+  - owners: uw-seattle-music-b-a
+- https://music.washington.edu/bachelor-music-composition
+  - owners: uw-seattle-music-composition-b-m
+- https://music.washington.edu/bachelor-music-guitar
+  - owners: uw-seattle-guitar-b-m
+- https://music.washington.edu/bachelor-music-jazz-studies
+  - owners: uw-seattle-jazz-studies-b-m
+- https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis
+  - owners: uw-seattle-music-education-b-m
+- https://music.washington.edu/bachelor-music-orchestral-instruments
+  - owners: uw-seattle-orchestral-instruments-b-m
 

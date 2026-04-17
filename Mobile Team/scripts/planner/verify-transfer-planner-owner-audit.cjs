@@ -62,6 +62,29 @@ function addIssue(issues, severity, code, message, details = null) {
   });
 }
 
+function isTransientHttpThrottleFallback(details) {
+  return /\bHTTP 429\b.*\bToo Many Requests\b/i.test(String(details ?? ""));
+}
+
+function shouldWarnOnSnapshotFallback(parsedBlock) {
+  if (!parsedBlock?.usedSnapshotFallback) {
+    return false;
+  }
+
+  const parsedUwCourseCodeCount = Array.isArray(parsedBlock.parsedUwCourseCodes)
+    ? parsedBlock.parsedUwCourseCodes.length
+    : 0;
+  const qualityWarningCount = Array.isArray(parsedBlock.qualitySignals)
+    ? parsedBlock.qualitySignals.filter((signal) => signal?.severity === "warning").length
+    : 0;
+
+  if (parsedUwCourseCodeCount === 0 || qualityWarningCount > 0) {
+    return true;
+  }
+
+  return !isTransientHttpThrottleFallback(parsedBlock.snapshotFallbackReason);
+}
+
 function compareIssues(left, right) {
   const severityScore = {
     error: 0,
@@ -468,12 +491,14 @@ function main() {
         );
       }
 
-      if (parsedBlock.usedSnapshotFallback) {
+      if (shouldWarnOnSnapshotFallback(parsedBlock)) {
         addIssue(
           symptomIssues,
           "warning",
           "used-snapshot-fallback",
-          "Requirement source parsing used a cached snapshot fallback.",
+          isTransientHttpThrottleFallback(parsedBlock.snapshotFallbackReason)
+            ? "Requirement source parsing fell back to a cached snapshot after live-source throttling and still needs attention."
+            : "Requirement source parsing used a cached snapshot fallback.",
           parsedBlock.snapshotFallbackReason ?? null
         );
       }

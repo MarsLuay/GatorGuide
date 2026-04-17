@@ -10265,24 +10265,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "CRJ 215": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "CS 108": {
     status: "published-in-latest-schedule",
     years: [
@@ -12713,24 +12695,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "ENGL 099": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "ENGL 105": {
     status: "published-in-latest-schedule",
     years: [
@@ -12836,6 +12800,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "ENGL 120": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "ENGL 126": {
     status: "published-in-latest-schedule",
@@ -13839,6 +13821,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
         quarters: [
           "fall"
         ]
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENGL& 254": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
       },
       {
         label: "2025-2026",
@@ -14927,42 +14927,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "GEOL 200": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "GEOL 206": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "GEOL& 101": {
     status: "published-in-latest-schedule",
     years: [
@@ -15035,7 +14999,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "GERM 201": {
+  "GERM 203": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -15197,60 +15161,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "GIS 100": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "GIS 150": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "GIS 160": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "GIS 202": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -15342,24 +15252,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
-  },
-  "HIST 103": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
   },
   "HIST 120": {
     status: "published-in-recent-history-not-latest",
@@ -15467,60 +15359,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "spring"
     ]
-  },
-  "HIST 234": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "HIST 235": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "HIST 250": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
   },
   "HIST& 126": {
     status: "published-in-latest-schedule",
@@ -17639,24 +17477,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "summer"
     ]
-  },
-  "MATH 097": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
   },
   "MATH 108": {
     status: "published-in-latest-schedule",
@@ -21356,24 +21176,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
-  "NATRS 294": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "NATRS 300": {
     status: "published-in-latest-schedule",
     years: [
@@ -23884,32 +23686,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
-  "PHYS& 116": {
-    status: "published-in-latest-schedule",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: [
-          "spring"
-        ]
-      },
-      {
-        label: "2025-2026",
-        quarters: [
-          "spring"
-        ]
-      },
-      {
-        label: "2026-2027",
-        quarters: [
-          "spring"
-        ]
-      }
-    ],
-    latestPublishedQuarters: [
-      "spring"
-    ]
-  },
   "PHYS& 154": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -23929,24 +23705,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "PHYS& 155": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "PHYS& 156": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -24988,42 +24746,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "spring"
     ]
-  },
-  "PSYCH 210": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "PSYCH 250": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
   },
   "PTA 101": {
     status: "published-in-recent-history-not-latest",

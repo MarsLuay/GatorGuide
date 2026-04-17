@@ -2,303 +2,56 @@ Owner: uw-bothell-earth-system-science
 Source: https://www.uwb.edu/ias/undergraduate/majors/earth-system-science
 Title: Earth System Science - School of Interdisciplinary Arts & Sciences
 
-[Supplemental official source] Curriculum
-&#124;
-&copy; 2026 University of Washington Bothell
-<a class="bothell-link-block link-block-1 bothell-link-block--margin-top "
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
->
-18115 Campus Way NE
-21 Acres &#8211; Plot D Soil Analysis
-425.352.5000
-425.352.5350
-A. Earth Systems Science Base
-About IAS
-Academic Excellence & Emerging Initiatives Fund
-Accessibility
-Additional Elective Options
-Additional Foundation Science Course (15-17 credits)
-Additional Foundation Science Courses (14-17 credits)
-Addresses how writers utilize research in their writing and inquires into different kind of research that can be pursued: textual, ethnographic, and performance-based.
-Admissions
-Admitted prior to Autumn Quarter 2024?
-Admitted Students
-All IAS Funds
-All UW Bothell
-Alumni
-American & Ethnic Studies
-American Muslim Research Institute Fund
-Analyze complex phenomena or problems in the Earth sciences and place them in the context of holistic systems, identifying their components, interconnections, critical thresholds, and leverage points for enhancing system function and environmental justice.
-Apply As Undergraduate
-Apply their multi-disciplinary understanding to characterizing aspects of the Earth system and critically evaluating Earth system science information, models, and methods.
-Apply their understanding of Earth system science, the scientific method, and interdisciplinary inquiry in generating research questions and selecting methods for assessing hypotheses, evaluating data, and creating knowledge.
-Are you curious about planetary processes that create, change, or destroy livable habitats?
-Autumn Quarter
-B BIO 180 Introductory Biology
-B BIO 330 Marine Biology (F)
-B BIO 335 Salmon and Society (F)
-B BIO 471 Plant Ecology
-B BIO 495 Advanced Seminar/Investigative Biology (Faculty Permission Required, see Time Schedule for details) (F)
-B BIO 495 Investigative Biology
-B BIO, B CHEM, B PHYS, or BST 499 Undergraduate Research
-B CHEM 143 General Chemistry I + B CHEM 144 General Chemistry I Lab
-B CHEM 153 General Chemistry II + B CHEM 154 General Chemistry Lab II
-B CHEM 163 General Chemistry III + B CHEM 164 General Chemistry Lab III
-B CHEM 315 Quantitative Environmental Analysis
-B CHEM 350 Atmospheric Chemistry and Air Pollution
-B CHEM 495 & B CHEM 496 Investigative Chemistry I & II
-B ENGR 310 Computational Physical Modeling
-B GIS 342 Geographic Information Systems (5 Credits)
-B GIS 343 Geographic Visualization
-B GIS 344 Intermediate Geographic Analysis and Application
-B GIS 442 Advanced Geographic Analysis and Applications
-B HLTH 407 Climate Change and Health
-B MATH 144 Calculus for Life & Social Science
-B MATH 215
-B PHYS 101 Introduction to Astronomy
-B PHYS 114 General Physics + B PHYS 117 General Physics Lab
-B PHYS 115 General Physics + B PHYS 118 General Physics Laboratory
-B PHYS 116 General Physics + B PHYS 119 General Physics Laboratory
-B PHYS 121 Mechanics*
-B PHYS 122 Electromagnetism & Oscillatory Motion
-B PHYS 123 Waves
-B WRIT 134 Composition or equivalent
-B. Introductory Math and Science Requirements (30-33 Credits)
-BACHELOR OF SCIENCE
-BACK TO TOP
-BCWRIT 500 Between Prose and Poetry (5 credits)
-BCWRIT 501 Between Fact and Imagination (5 credits)
-BCWRIT 502 Processes of Thinking and Memory (5 credits)
-BCWRIT 510 Cultural Change and Writing (5 credits)
-BCWRIT 511 Writers&#8217; Research (5 credits)
-BCWRIT 512 Art, Technology, Practice (5 credits)
-BCWRIT 599 Thesis Practicum (1 CR)
-BCWRIT 599 Thesis Practicum (2 CR)
-BCWRIT 599 Thesis Practicum (3 CR)
-BCWRIT 599 Thesis Practicum (6 credits total, C/NC)
-BCWRIT 700 Creative Writing Thesis (15 credits total, C/NC)
-BCWRIT 700 Thesis (5 CR)
-BCWRIT 700 Thesis (7 CR)
-BCWRIT 700 Thesis (8 CR)
-BEARTH 153 Introduction to Geology
-BEARTH 154 Introduction to Oceanography
-BEARTH 155 Introduction to Climate Science
-BEARTH 201 Mapping the Earth System
-BEARTH 202 Modeling Global Systems
-BEARTH 310 Fundamentals of Weather and Climate
-BEARTH 317 Soils in the Environment (F)
-BEARTH 318 Hydrogeology
-BEARTH 320 Impacts of Climate Change
-BEARTH 321 Geomorphology (F)
-BEARTH 341 Natural Hazards and Human Disasters
-BES 301 Science Methods & Practices or BST 301 Scientific Writing
-BES 301 Science Methods & Practices OR BST 301 Scientific Writing (5 credits)
-BES 303 Environmental Monitoring Practicum (F)
-BES 312 Ecology
-BES 316 Ecological Methods (F)
-BES 330 Limnology (F)
-BES 362 Introduction to Restoration Ecology
-BES 440 Remote Sensing of the Environment
-BES 460 Water Quality (F)
-BES 486 Watershed Ecology and Management
-BES 488 Wetland Ecology (F)*
-BES 491 Research in Environmental Science
-BES 492 & BES 493 Capstone Research in Environmental Science I & II
-BES 498 Independent Research in Environmental Science
-BIS 141 Natural History and Environmental Science
-BIS 215
-BIS 218 Power of Maps
-BIS 231 Linear Algebra
-BIS 242 Environmental Geography
-BIS 243 Introduction to Environmental Issues
-BIS 245 Environment and Humanities
-BIS 246 Introduction to Sustainability
-BIS 252 Politics of Science
-BIS 282 Globalization
-BIS 304 Political Economy and the Environment
-BIS 306 Marine Diversity and Conservation
-BIS 307 Environmental Justice
-BIS 314 Topics in Geography
-BIS 319 Public Arts and Environmental Restoration
-BIS 320 Comparative Political Economies
-BIS 338 Political Institutions and Processes
-BIS 342 Geographic Information Systems (5 Credits)
-BIS 345 American Environmental Thought
-BIS 346 Topics in Environmental Policy
-BIS 353 Human Rights Theory and Practice
-BIS 356 Ethics and the Environment
-BIS 359 Principles & Controversies of Sustainability
-BIS 359 Principles and Controversies of Sustainability
-BIS 372 Representation, Colonialism, and the Tropical World
-BIS 385 Biodiversity Conservation
-BIS 386 Climate Change Adaptation Policy
-BIS 391 Environmental History of the Pacific Northwest
-BIS 392 Water & Sustainability
-BIS 392 Water and Sustainability
-BIS 394 Comparative Economic Development
-BIS 405 Environmental Education
-BIS 406 Urban Planning and Geography
-BIS 408 Critical Physical Geography
-BIS 411 Network Analysis and Visualization
-BIS 412 Advanced Data Visualization
-BIS 415 Public Policy and Law
-BIS 447 Topics in Quantitative Inquiry
-BIS 458 Energy, Environment and Society
-BIS 459 Conservation & Sustainable Development
-BIS 468 Human Rights and Sustainable Development
-BIS 483 Community Organizing
-BIS 495 Internship
-BISGST 303 History and Globalization
-BISGST 324 International Political Economy
-BISSTS 355 History of Science and Technology
-Bothell, WA 98011-8246
-Bothell, Washington View our location on Google maps.
-Box 358530
-BST 445 Political Economy of Energy
-C. Earth Systems Ascent (40 Credits)
-Campus Safety
-Canvas
-Capstone 5 credits from the below options (Subject to approval based on project topics)
-Career Planning
-Career resources
-Careers
-Close mobile menu
-Coaching appointments are offered in-person or over Zoom.
-Collaborate and share leadership
-Communicate effectively and inclusively
-Community Engagement
-Community Psychology
-Commuter Services
-Computer Methods and Quantitative Analysis (2 courses; 9-10 credits)
-Computer Methods and Quantitative Analysis (9-10 credits)
-Conservation & Restoration Science
-Contact
-Contact Us
-Contact us by phone at:
-Courses
-Courses in the Earth System Science major provide an opportunity to examine changes in various environments and landscapes due to human interaction. Through a foundational knowledge of calculus, physics, chemistry, and other natural sciences, students gather data, monitor environmental conditions, and conduct scientific investigations.
-Creative Writing & Poetics (MFA)
-Critically reflect on what they are learning in their courses and research and make claims of their learning gains and research findings that are supported by evidence.
-CSS 112 Introduction to Programming for Scientific Applications
-CSS 142 Computer Programming I
-CSS 455 Introduction to Computational Science and Scientific Programming
-Culture, Literature & the Arts
-Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
-Current site
-Curriculum
-Curriculum - School of Interdisciplinary Arts & Sciences
-D.C. Human Rights Seminar
-Data Visualization
-Degree Completion
-Degree Requirements
-Demonstrate a foundational understanding of mathematics, chemistry, biology, and/or physics, along with an advanced understanding of geoscience.
-Demonstrate an advanced ability to work with partners and in groups, including the capacities for taking and sharing leadership, following through on collective decisions, promoting the potential of all group members, and mediating conflict.
-Demonstrate understanding of how human civilization interacts with Earth systems at multiple scales and how Earth system science relates to and informs management and policy objectives.
-Did you know? UW Alumni can access Career Services for three years after graduation (and Veterans have lifetime access)!
-Directory
-Diversity and Equity
-Diversity Plan
-Earth System Science
 Earth System Science - School of Interdisciplinary Arts & Sciences
-Earth System Science Focus Courses (20 Credits)
-Earth System Science Focus Courses (4 courses; 20 credits) — at least 1 course taken must be a field (F) course
-Earth Systems Ascent Coursework (39-40 Credits)
-Earth Systems Science Base Coursework (25 Credits)
-Educational Access & Opportunity Fund
-Engage in projects with external partners in a fashion that adheres to the highest standards of professionalism and results in mutually beneficial outcomes.
-Engage with diverse agencies, communities, and other groups with an understanding of the many cultural, geographic, socio-economic, and political contexts in which people interact with Earth systems.
-Engages the primary processes of thinking and memory as they are affected by diverse writing practices and media applications.
-Engages the subject of poetics as writing theory and practice. Focuses on cultural, social, and technological change as these create new challenges and possibilities for creative writing.
-Environmental Chemistry: Measurement and Interpretation of Global Air Pollutants at the Mt. Bachelor Observatory (MBO)
-Environmental Chemistry: Measurement of Air Pollution at Regional Hot Spots
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
+height="0" width="0" style="display:none;visibility:hidden">
+Skip To Content
+Current site
+All UW Bothell
+Search keywords
+Search
+Open mobile menu
+Quick Links
+School of Interdisciplinary Arts & Sciences
+Close mobile menu
+School of Interdisciplinary Arts & Sciences
+Search keywords
+Current site
+All UW Bothell
+About IAS
+Expand Navigation
+Mission, Values, and Goals
+Diversity and Equity
+Expand Navigation
+Diversity Plan
+Scholarship
+Contact Us
+Undergraduate
+Expand Navigation
+How to apply
+Majors
+Expand Navigation
+American & Ethnic Studies
+Community Psychology
+Conservation & Restoration Science
+Culture, Literature & the Arts
+Data Visualization
+Earth System Science
 Environmental Science
 Environmental Studies
-ESS Capstone 5 credits from the below options (Subject to approval based on project topics)
-ESS graduates will be expected to demonstrate advanced achievement of UW Bothell&#8217;s Learning Goals , and the Learning Objectives of both IAS and STEM. In addition, the ESS Program is designed to provide a curriculum and co-curricular opportunities that will specifically enable graduates to:
-ESS majors must take 1 fieldwork (F) course from the following 3 categories. Fieldwork courses are designed to give students hands-on experience outside of the classroom and in the natural environment. Experiences will vary from short on-campus lessons to longer fieldtrips to regional locations. Fieldwork courses are marked as (F), please see your Academic Advisor for additional courses that may apply toward the Fieldwork requirement.
-Events
-Examines the relationships between fact and imagination in fiction, non-fiction, and poetry writing.
-Examples of undergraduate research :
-Expand Navigation
-Experiential & Community Based Learning Fund
-Explores relationships among art, technology, and creative practice. Examines connections among diverse art forms, inquiring into their social, philosophical, and aesthetic dimensions.
-Facilities
-Faculty
-Faculty & staff
-Fall Convergence
-Finding undergraduate research opportunities :
-Focuses on the cross over between prose and poetry in multiple genres. Considers the prevalence of narrative and alternatives to narrative.
-For the degree, first-year students complete 6 core courses (writing workshops and poetics seminars) for a total of 30 credits. In their second year students complete 15 credits of supervised thesis work and submit an original creative work and poetics statement. Thesis work is supplemented by 6 credits of required thesis practicum, for a total of 51 degree credits.
-Full-time/Part-time
-Function as earth system scientists
-Function as independent interdisciplinary scholars
-Funding
 Gender, Women & Sexuality Studies
-Generally, the ESS Capstone will complete the IPR requirement.
-Generate a data collection plan and synthesize information derived from observations, experiments, models, and scholarly readings.
-Generate graphics, reports, and presentations in ways that are appropriate and educational for their intended audience (e.g., other scientists, policy makers, and the general public).
-Get research experience
-Give
-Global Scholars
-Global Scholars Fund
 Global Studies
-Grade Appeal
-Graduate Programs
-Graduate Studies Excellence Fund
-Grievances and Complaints
-Hands-on Learning (IPR)
-height="0" width="0" style="display:none;visibility:hidden">
-Housing
-How to apply
-href="https://www.uwb.edu/ias/undergraduate/admissions"
-Human Dimensions of the Earth System (10 credits)
-Human Dimensions of the Earth System (2 courses; 10 credits)
-Human Resources
-iasgrad@uw.edu
-iasinfo@uw.edu
-If you are NOT a current UW Bothell student, please contact the UW Bothell Admissions team at uwbinfo@uw.edu .
-If you’re a current UW Bothell student interested in applying to the Earth System Science major, you can find more information on our How to apply page.
-In accordance with UW Graduate School master&#8217;s degree policies, MFA graduate students have six years to complete the degree from the time that they first enroll. This includes any time on-leave as well as actively enrolled.
-In advance of their second year, students create an individualized course of study in consultation with their advisors.
-In this section
-Includes completion of creative thesis in one of the following areas: poetry, fiction, non-fiction, or cross genre as well as a poetics essay or artist’s statement. For details, see Thesis Work .
-Information Technology
-Integrate social science and natural science epistemologies
-Interact and communicate with others in ways that are inclusive and manifest a respect for diversity in all its forms.
 Interdisciplinary Arts
-Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with the 98-103 credits of major coursework, or it can be completed through elective credits. Please see the IPR webpage for course options.
 Interdisciplinary Social Sciences
 Interdisciplinary Studies
-Interested in exploring this major but not ready to commit? Consider taking one of the below courses! Any of these selections will help familiarize you with the academic program and prepare you for advanced coursework in the major. These courses may also be applied to the required prerequisite courses for admission into the major.
-Interested in graduate school?
-Internships
-Internships. Please consult the internship resources : then complete and submit a learning contract for review and approval by your site supervisor and thesis advisor.
-Introductory Calculus (5 credits)
-Introductory Chemistry (5-6 credits)
-Introductory Environmental Courses (15 Credits, in addition to prerequisite)
-Introductory Environmental Courses (15 credits) NOTE: Selected courses should not overlap with a prerequisite. Transfer courses must be approved by an Academic Advisor.
-Introductory Math and Science Requirements (30-33 Credits, in addition to prerequisite))
-Introductory Physics (5 credits)
-​Introductory Statistics (5 credits)
-Introductory Statistics (5 credits)
-Investigating the Ability of Mushroom Mycelium to Reduce Fecal Coliform Bacteria Contamination in Surface Water
-Jobs
 Law, Economics & Public Policy
-Learn more about how to apply
-Learning objectives
-Learning Objectives
-Library
-Low Dissolved Oxygen levels And the Impact on Crop Growth Potential
-Major Requirements
-Majors
-Make an appointment for graduate school coaching
-Mapping the North Creek Forest Surface Water: A GPS Project
-Maps & directions
-Master of Fine Arts (MFA) Program Fund
-Master systems thinking
 Mathematical Thinking & Visualization
 Media & Communication Studies
-MFA Publications
+Psychology
+Science, Technology & Society
+Society, Ethics & Human Behavior
+Minors
+Expand Navigation
 Minor in Climate Change & Society
 Minor in Creative Writing
 Minor in Diversity Studies
@@ -310,121 +63,627 @@ Minor in Performance
 Minor in Policy Studies
 Minor in Science, Technology & Society
 Minor in Visual & Media Arts
-Minors
-Mission, Values, and Goals
-More Links
-Mycoremediation of Coliform Bacteria in University of Washington Bothell Wetlands
-MyUW
-News
-Nony Clark Milmoe Scholarship
-Note: See all IAS polices and procedures on the Student Resources webpage .
-NOTE: Selected courses should not overlap with a prerequisite. Transfer courses must be approved by an Academic Advisor.
-On this Page: Curriculum Overview | Year One | Year Two | Thesis Work | Elective Option | Degree Completion
-On this page: Major Description | Learning Objectives | Degree Planning
-One Introductory Earth System Science Courses (5 credits):
-One Introductory Math and Science course from list below
-Open mobile menu
-Or equivalent transfer course (ENVIR 100, ESRM 100, ESS 101, ESS 201, or OCEAN 101)
-Overview
-Part-time
-Peer Facilitation
-People
-Petitions and Forms
-Plan your career
-Plan your degree
-Poetics Seminar (5 CR)
-Poetics Seminars
-Policy Studies (MA)
-PRACTICE
-Prerequisites
-Privacy
-PROFESSION
-Prospective Students
-Provides creative development opportunities and practice in accordance with individualized plans, including but not limited to presenting work-in-progress at salons and readings; submitting work to conferences, residencies, and publications; and interning at arts, education, or media organizations. For details, see Thesis Practicum .
-Psychology
-PURPOSE
-Quick Links
-Ready to Apply?
-Recommended preparation
-Relate how differing conceptions of ethics, human-nature relationships, structural inequities, and the objectives of sustainability and resilience inform evaluations of Earth system challenges and alternative solutions.
-Request the Master&#8217;s Degree
+Learning Objectives
+Hands-on Learning (IPR)
+Expand Navigation
 Research Opportunities
-Residency Requirement: 30 credits must be completed in residency at UW Bothell.
-Review the &#8220; introductory math and science requirements &#8221; list for available courses to choose from.
-Rules Docket
-Sandra Martin Roberts Memorial Scholarship
-Scholarship
-School of IAS Requirements & Policies
-School of Interdisciplinary Arts & Sciences
-Science, Technology & Society
-Search
-Search keywords
-Seattle Campus
-Second-year students also complete a thesis practicum for a total of 6 credits. The thesis practicum prepares students to present and publish their work, sustain their artistic practice after graduation, and engage as a professional in artistic communities, organizations, and undertakings.
-See Registration for instructions and contact the IAS Graduate Office for the appropriate registration codes.
-See Registration for instructions.
-See Thesis Timeline for thesis filing requirements and deadline
-Skip To Content
-Society, Ethics & Human Behavior
+Peer Facilitation
+Internships
+Community Engagement
+D.C. Human Rights Seminar
+Study Abroad
+Global Scholars
+Student Resources
+Expand Navigation
+Student Feedback
+Petitions and Forms
+Grade Appeal
+Grievances and Complaints
+Career Planning
+Graduate Programs
+Expand Navigation
+Creative Writing & Poetics (MFA)
+Expand Navigation
+People
+Admissions
+Learning Objectives
+Curriculum
+Thesis Work
+Events
+Fall Convergence
 Spring Festival
-Spring Quarter
+MFA Publications
+Careers
+Policy Studies (MA)
+Expand Navigation
+Why Policy Studies?
+People
+Prospective Students
+Admissions
+Learning Objectives
+Curriculum
+Careers
+Student Resources
+Expand Navigation
+Funding
+Admitted Students
+Housing
+Faculty & staff
+Expand Navigation
+Faculty
 Staff
+News
+Events
+Give
+Expand Navigation
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+UW Bothell Home
+Quick Links
+MyUW
+Canvas
+Directory
+Library
+Workday Login
+Give
+Apply As Undergraduate
+More Links
+Time Schedule
+Information Technology
+Commuter Services
+Facilities
+Human Resources
+Campus Safety
+Alumni
+About IAS
+Mission, Values, and Goals
+Diversity and Equity
+Contact Us
+Undergraduate
+How to apply
+Majors
+Minors
+Learning Objectives
+Hands-on Learning (IPR)
+Student Resources
+Graduate Programs
+Creative Writing & Poetics (MFA)
+Policy Studies (MA)
+Student Resources
+Faculty & staff
+Faculty
+Staff
+News
+Events
+Give
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+Close mobile menu
+In this section
+About IAS
+Expand Navigation
+Mission, Values, and Goals
+Diversity and Equity
+Expand Navigation
+Diversity Plan
+Scholarship
+Contact Us
+Undergraduate
+Expand Navigation
+How to apply
+Majors
+Expand Navigation
+American & Ethnic Studies
+Community Psychology
+Conservation & Restoration Science
+Culture, Literature & the Arts
+Data Visualization
+Earth System Science
+Environmental Science
+Environmental Studies
+Gender, Women & Sexuality Studies
+Global Studies
+Interdisciplinary Arts
+Interdisciplinary Social Sciences
+Interdisciplinary Studies
+Law, Economics & Public Policy
+Mathematical Thinking & Visualization
+Media & Communication Studies
+Psychology
+Science, Technology & Society
+Society, Ethics & Human Behavior
+Minors
+Expand Navigation
+Minor in Climate Change & Society
+Minor in Creative Writing
+Minor in Diversity Studies
+Minor in Ecological Restoration
+Minor in Gender, Women & Sexuality Studies
+Minor in Geographic Information Systems
+Minor in Human Rights
+Minor in Performance
+Minor in Policy Studies
+Minor in Science, Technology & Society
+Minor in Visual & Media Arts
+Learning Objectives
+Hands-on Learning (IPR)
+Expand Navigation
+Research Opportunities
+Peer Facilitation
+Internships
+Community Engagement
+D.C. Human Rights Seminar
+Study Abroad
+Global Scholars
+Student Resources
+Expand Navigation
+Student Feedback
+Petitions and Forms
+Grade Appeal
+Grievances and Complaints
+Career Planning
+Graduate Programs
+Expand Navigation
+Creative Writing & Poetics (MFA)
+Expand Navigation
+People
+Admissions
+Learning Objectives
+Curriculum
+Thesis Work
+Events
+Fall Convergence
+Spring Festival
+MFA Publications
+Careers
+Policy Studies (MA)
+Expand Navigation
+Why Policy Studies?
+People
+Prospective Students
+Admissions
+Learning Objectives
+Curriculum
+Careers
+Student Resources
+Expand Navigation
+Funding
+Admitted Students
+Housing
+Faculty & staff
+Expand Navigation
+Faculty
+Staff
+News
+Events
+Give
+Expand Navigation
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+School of Interdisciplinary Arts & Sciences
+&#124;
+Majors
+School of Interdisciplinary Arts & Sciences
+&#124;
+Undergraduate
+&#124;
+Majors
+&#124;
+Earth System Science
+Earth System Science
+BACHELOR OF SCIENCE
+On this page: Major Description | Learning Objectives | Degree Planning
+Are you curious about planetary processes that create, change, or destroy livable habitats?
+The Earth System Science (ESS) major at the University of Washington Bothell offers students the opportunity to deepen their understanding of the planetary processes that create, change, or destroy livable habitats. Classroom activities and hands-on field research allows students to observe and interpret how the Earth’s atmosphere, ocean and land surfaces interact and impact human and environmental health.
+The ESS degree program is jointly administered by the School of Interdisciplinary Arts & Sciences (IAS) and the School of Science, Technology, Engineering & Mathematics (STEM) with teaching and research contributions from faculty members in both schools.
+PURPOSE
+Students in the Earth System Science major are passionate about understanding the interrelationships among the physical, chemical, and biological components of the Earth. Students identify patterns that can help predict and protect against the future impact of global warming by broadening their interests in water, ice, soil, rocks, air, weather, plants, and animals.
+PRACTICE
+Courses in the Earth System Science major provide an opportunity to examine changes in various environments and landscapes due to human interaction. Through a foundational knowledge of calculus, physics, chemistry, and other natural sciences, students gather data, monitor environmental conditions, and conduct scientific investigations.
+PROFESSION
+Using their background in Earth System Science, graduates from this major get hands-on experience using GPS and other remote sensing technologies to sustain and improve natural environmental resources. The major leads to jobs in government, research labs, science education, management, consulting, and environmental protection agencies.
+Learning objectives
+ESS graduates will be expected to demonstrate advanced achievement of UW Bothell&#8217;s Learning Goals , and the Learning Objectives of both IAS and STEM. In addition, the ESS Program is designed to provide a curriculum and co-curricular opportunities that will specifically enable graduates to:
+Function as earth system scientists
+Demonstrate a foundational understanding of mathematics, chemistry, biology, and/or physics, along with an advanced understanding of geoscience.
+Apply their multi-disciplinary understanding to characterizing aspects of the Earth system and critically evaluating Earth system science information, models, and methods.
+Master systems thinking
+Analyze complex phenomena or problems in the Earth sciences and place them in the context of holistic systems, identifying their components, interconnections, critical thresholds, and leverage points for enhancing system function and environmental justice.
+Function as independent interdisciplinary scholars
+Apply their understanding of Earth system science, the scientific method, and interdisciplinary inquiry in generating research questions and selecting methods for assessing hypotheses, evaluating data, and creating knowledge.
+Generate a data collection plan and synthesize information derived from observations, experiments, models, and scholarly readings.
+Critically reflect on what they are learning in their courses and research and make claims of their learning gains and research findings that are supported by evidence.
+Integrate social science and natural science epistemologies
+Demonstrate understanding of how human civilization interacts with Earth systems at multiple scales and how Earth system science relates to and informs management and policy objectives.
+Relate how differing conceptions of ethics, human-nature relationships, structural inequities, and the objectives of sustainability and resilience inform evaluations of Earth system challenges and alternative solutions.
+Communicate effectively and inclusively
+Generate graphics, reports, and presentations in ways that are appropriate and educational for their intended audience (e.g., other scientists, policy makers, and the general public).
+Interact and communicate with others in ways that are inclusive and manifest a respect for diversity in all its forms.
+Collaborate and share leadership
+Demonstrate an advanced ability to work with partners and in groups, including the capacities for taking and sharing leadership, following through on collective decisions, promoting the potential of all group members, and mediating conflict.
+Engage in projects with external partners in a fashion that adheres to the highest standards of professionalism and results in mutually beneficial outcomes.
+Engage with diverse agencies, communities, and other groups with an understanding of the many cultural, geographic, socio-economic, and political contexts in which people interact with Earth systems.
+Ready to Apply?
+If you’re a current UW Bothell student interested in applying to the Earth System Science major, you can find more information on our How to apply page.
+If you are NOT a current UW Bothell student, please contact the UW Bothell Admissions team at uwbinfo@uw.edu .
+Plan your degree
+Recommended preparation
+Interested in exploring this major but not ready to commit? Consider taking one of the below courses! Any of these selections will help familiarize you with the academic program and prepare you for advanced coursework in the major. These courses may also be applied to the required prerequisite courses for admission into the major.
+BEARTH 153 Introduction to Geology
+BEARTH 154 Introduction to Oceanography
+BEARTH 155 Introduction to Climate Science
+BEARTH 201 Mapping the Earth System
+BIS 141 Natural History and Environmental Science
+BIS 242 Environmental Geography
+BIS 243 Introduction to Environmental Issues
+Prerequisites
+Students must complete the following prerequisites, with a minimum 2.0 grade, to declare the Bachelor of Science in Earth System Science major. Once all have been completed you can declare the major using the online Major Declaration Form .
+B WRIT 134 Composition or equivalent
+One Introductory Earth System Science Courses (5 credits):
+BEARTH 153 Introduction to Geology
+BEARTH 154 Introduction to Oceanography
+BEARTH 155 Introduction to Climate Science
+BEARTH 201 Mapping the Earth System
+BEARTH 202 Modeling Global Systems
+BIS 242 Environmental Geography
+BIS 243 Introduction to Environmental Issues
+B PHYS 101 Introduction to Astronomy
+Or equivalent transfer course (ENVIR 100, ESRM 100, ESS 101, ESS 201, or OCEAN 101)
+One Introductory Math and Science course from list below
+Review the &#8220; introductory math and science requirements &#8221; list for available courses to choose from.
+<a class="bothell-link-block link-block-1 bothell-link-block--margin-top "
+style="color:var(--wp--custom--color--purple-100)"
+href="https://www.uwb.edu/ias/undergraduate/admissions"
+>
+Learn more about how to apply
+Learn more about how to apply
+Major Requirements
+Degree Requirements
+Earth Systems Science Base Coursework (25 Credits)
+BIS 342 Geographic Information Systems (5 Credits)
+BES 301 Science Methods & Practices or BST 301 Scientific Writing
+Introductory Environmental Courses (15 Credits, in addition to prerequisite)
+Introductory Math and Science Requirements (30-33 Credits, in addition to prerequisite))
+Introductory Chemistry (5-6 credits)
+Introductory Physics (5 credits)
+​Introductory Statistics (5 credits)
+Introductory Calculus (5 credits)
+Additional Foundation Science Courses (14-17 credits)
+Earth Systems Ascent Coursework (39-40 Credits)
+Earth System Science Focus Courses (20 Credits)
+Computer Methods and Quantitative Analysis (9-10 credits)
+Human Dimensions of the Earth System (10 credits)
+Capstone 5 credits from the below options (Subject to approval based on project topics)
+Total= 98-103 credits
+School of IAS Requirements & Policies
+Residency Requirement: 30 credits must be completed in residency at UW Bothell.
+Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
+Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with the 98-103 credits of major coursework, or it can be completed through elective credits. Please see the IPR webpage for course options.
+Generally, the ESS Capstone will complete the IPR requirement.
+Note: See all IAS polices and procedures on the Student Resources webpage .
+BACK TO TOP
+Courses
+A. Earth Systems Science Base
+B GIS 342 Geographic Information Systems (5 Credits)
+BES 301 Science Methods & Practices OR BST 301 Scientific Writing (5 credits)
+Introductory Environmental Courses (15 credits) NOTE: Selected courses should not overlap with a prerequisite. Transfer courses must be approved by an Academic Advisor.
+BEARTH 153 Introduction to Geology
+BEARTH 154 Introduction to Oceanography
+BEARTH 155 Introduction to Climate Science
+BEARTH 201 Mapping the Earth System
+BEARTH 202 Modeling Global Systems
+BIS 141 Natural History and Environmental Science
+BIS 242 Environmental Geography
+BIS 243 Introduction to Environmental Issues
+BIS 245 Environment and Humanities
+BIS 246 Introduction to Sustainability
+BIS 307 Environmental Justice
+BIS 345 American Environmental Thought
+BIS 356 Ethics and the Environment
+BIS 359 Principles and Controversies of Sustainability
+B PHYS 101 Introduction to Astronomy
+B. Introductory Math and Science Requirements (30-33 Credits)
+NOTE: Selected courses should not overlap with a prerequisite. Transfer courses must be approved by an Academic Advisor.
+Introductory Chemistry (5-6 credits)
+B CHEM 143 General Chemistry I + B CHEM 144 General Chemistry I Lab
+Introductory Physics (5 credits)
+B PHYS 114 General Physics + B PHYS 117 General Physics Lab
+B PHYS 121 Mechanics*
+Introductory Statistics (5 credits)
+BIS 215
+B MATH 215
+STMATH 341
+Introductory Calculus (5 credits)
+B MATH 144 Calculus for Life & Social Science
 STMATH 124 Calculus I
+Additional Foundation Science Course (15-17 credits)
+B BIO 180 Introductory Biology
+B CHEM 153 General Chemistry II + B CHEM 154 General Chemistry Lab II
+B CHEM 163 General Chemistry III + B CHEM 164 General Chemistry Lab III
+B PHYS 115 General Physics + B PHYS 118 General Physics Laboratory
+B PHYS 116 General Physics + B PHYS 119 General Physics Laboratory
+B PHYS 122 Electromagnetism & Oscillatory Motion
+B PHYS 123 Waves
+CSS 112 Introduction to Programming for Scientific Applications
+CSS 142 Computer Programming I
 STMATH 125 Calculus II
 STMATH 126 Calculus III
+C. Earth Systems Ascent (40 Credits)
+ESS majors must take 1 fieldwork (F) course from the following 3 categories. Fieldwork courses are designed to give students hands-on experience outside of the classroom and in the natural environment. Experiences will vary from short on-campus lessons to longer fieldtrips to regional locations. Fieldwork courses are marked as (F), please see your Academic Advisor for additional courses that may apply toward the Fieldwork requirement.
+Earth System Science Focus Courses (4 courses; 20 credits) — at least 1 course taken must be a field (F) course
+B BIO 330 Marine Biology (F)
+B BIO 335 Salmon and Society (F)
+B BIO 471 Plant Ecology
+B CHEM 350 Atmospheric Chemistry and Air Pollution
+BEARTH 310 Fundamentals of Weather and Climate
+BEARTH 317 Soils in the Environment (F)
+BEARTH 318 Hydrogeology
+BEARTH 320 Impacts of Climate Change
+BEARTH 321 Geomorphology (F)
+BEARTH 341 Natural Hazards and Human Disasters
+BES 303 Environmental Monitoring Practicum (F)
+BES 312 Ecology
+BES 316 Ecological Methods (F)
+BES 330 Limnology (F)
+BES 362 Introduction to Restoration Ecology
+BIS 385 Biodiversity Conservation
+BES 460 Water Quality (F)
+BES 486 Watershed Ecology and Management
+BES 488 Wetland Ecology (F)*
+BIS 392 Water and Sustainability
+B BIO 495 Advanced Seminar/Investigative Biology (Faculty Permission Required, see Time Schedule for details) (F)
+Computer Methods and Quantitative Analysis (2 courses; 9-10 credits)
+B CHEM 315 Quantitative Environmental Analysis
+B ENGR 310 Computational Physical Modeling
+BES 440 Remote Sensing of the Environment
+BIS 231 Linear Algebra
+B GIS 343 Geographic Visualization
+B GIS 344 Intermediate Geographic Analysis and Application
+BIS 408 Critical Physical Geography
+BIS 411 Network Analysis and Visualization
+BIS 412 Advanced Data Visualization
+B GIS 442 Advanced Geographic Analysis and Applications
+BIS 447 Topics in Quantitative Inquiry
+CSS 455 Introduction to Computational Science and Scientific Programming
 STMATH 207 Introduction to Differential Equations
 STMATH 208 Matrix Algebra with Applications
 STMATH 224 Multivariable Calculus
-STMATH 341
-Student Feedback
-Student Resources
-Students admitted to the Earth System Science major prior to Autumn 2024 may be eligible to complete a retired set of major requirements. For more information, please check with your academic advisor.
-Students have the option of taking additional elective coursework at the 400-level or above, in a variety of UW programs and departments , beyond their thesis and thesis practicum requirements. Students are encouraged to consult first and foremost with their thesis advisors about ways of incorporating these activities into the thesis practicum.
-Students in the Earth System Science major are passionate about understanding the interrelationships among the physical, chemical, and biological components of the Earth. Students identify patterns that can help predict and protect against the future impact of global warming by broadening their interests in water, ice, soil, rocks, air, weather, plants, and animals.
+Human Dimensions of the Earth System (2 courses; 10 credits)
+BIS 218 Power of Maps
+BIS 245 Environment and Humanities
+BIS 252 Politics of Science
+BIS 282 Globalization
+BIS 304 Political Economy and the Environment
+BIS 306 Marine Diversity and Conservation
+BIS 307 Environmental Justice
+BIS 314 Topics in Geography
+BIS 319 Public Arts and Environmental Restoration
+BIS 320 Comparative Political Economies
+BIS 338 Political Institutions and Processes
+BIS 345 American Environmental Thought
+BIS 346 Topics in Environmental Policy
+BIS 353 Human Rights Theory and Practice
+BIS 356 Ethics and the Environment
+BIS 359 Principles & Controversies of Sustainability
+BIS 372 Representation, Colonialism, and the Tropical World
+BIS 386 Climate Change Adaptation Policy
+BIS 391 Environmental History of the Pacific Northwest
+BIS 392 Water & Sustainability
+BIS 394 Comparative Economic Development
+BIS 405 Environmental Education
+BIS 406 Urban Planning and Geography
+BIS 408 Critical Physical Geography
+BIS 415 Public Policy and Law
+BIS 458 Energy, Environment and Society
+BIS 459 Conservation & Sustainable Development
+BIS 468 Human Rights and Sustainable Development
+BIS 483 Community Organizing
+BISGST 303 History and Globalization
+BISGST 324 International Political Economy
+BISSTS 355 History of Science and Technology
+BST 445 Political Economy of Energy
+B HLTH 407 Climate Change and Health
+ESS Capstone 5 credits from the below options (Subject to approval based on project topics)
+BES 492 & BES 493 Capstone Research in Environmental Science I & II
+BES 498 Independent Research in Environmental Science
+BES 491 Research in Environmental Science
 Students may substitute Capstone with the below options with ESS Faculty Approval- See Advisor for assistance.
-Students must be registered and enrolled in the quarter that they graduate. To graduate students must fulfill all degree requirements and submit their master&#8217;s degree request by the relevant deadline. In their master&#8217;s degree request, select the &#8220;thesis&#8221; option.
-Students must complete the following prerequisites, with a minimum 2.0 grade, to declare the Bachelor of Science in Earth System Science major. Once all have been completed you can declare the major using the online Major Declaration Form .
-Students researching new way to clean waters
-Students who do not complete all degree requirements by the last day of the quarter in which they plan to graduate must register for the following quarter and resubmit their master&#8217;s degree request.
-Study Abroad
-style="color:var(--wp--custom--color--purple-100)"
-Tacoma Campus
+B CHEM 495 & B CHEM 496 Investigative Chemistry I & II
+B BIO, B CHEM, B PHYS, or BST 499 Undergraduate Research
+B BIO 495 Investigative Biology
+BIS 495 Internship
+Admitted prior to Autumn Quarter 2024?
+Students admitted to the Earth System Science major prior to Autumn 2024 may be eligible to complete a retired set of major requirements. For more information, please check with your academic advisor.
+BACK TO TOP
+Plan your career
+Career resources
 Take advantage of the free resources offered by UW Bothell’s Career Services team. From mock interviews to internships and events, Career Services has everything you need to plan for your future!
-Terms
-The Earth System Science (ESS) major at the University of Washington Bothell offers students the opportunity to deepen their understanding of the planetary processes that create, change, or destroy livable habitats. Classroom activities and hands-on field research allows students to observe and interpret how the Earth’s atmosphere, ocean and land surfaces interact and impact human and environmental health.
-The ESS degree program is jointly administered by the School of Interdisciplinary Arts & Sciences (IAS) and the School of Science, Technology, Engineering & Mathematics (STEM) with teaching and research contributions from faculty members in both schools.
-The first year provides students with an immersive, structured, full-time curricular experience that pairs creative writing workshops with poetics seminars quarterly. First-year students complete 15 credits of writing workshops and 15 credits of poetics seminars, before advancing to thesis work the following year. **The sequence of workshops and seminars may vary.
-The focus of the second year is thesis-intensive, focused on the development and completion of independent creative work, in or across the genre(s), form(s), or media of your choosing, and a poetics statement that situates you and your artistic practice. Students complete 15 credits of thesis work for the degree, under the mentorship of a thesis advisor and a second reader.
-The MFA in Creative Writing & Poetics at UW Bothell consists of a residency program in its first year, with residency and non-residency options in its second year. Students participate in the program as a member of a cohort of 12-16 MFA students.
-The second year can be completed in residency or non-residency, part-time or full-time. (See sample pathways, above).
+Coaching appointments are offered in-person or over Zoom.
+Did you know? UW Alumni can access Career Services for three years after graduation (and Veterans have lifetime access)!
 The University of Washington offers numerous free resources to help IAS students prepare for a career after college. Featured career planning tools are listed on the IAS Student Resources page.
-Thesis (1-10 CR)
-Thesis Practicum (1-5 CR)
-Thesis Work
-Time Schedule
-Tips for exploring graduate school
-Total= 98-103 credits
-Undergraduate
+Get research experience
+Examples of undergraduate research :
+Students researching new way to clean waters
+Mycoremediation of Coliform Bacteria in University of Washington Bothell Wetlands
+Investigating the Ability of Mushroom Mycelium to Reduce Fecal Coliform Bacteria Contamination in Surface Water
+Mapping the North Creek Forest Surface Water: A GPS Project
+21 Acres &#8211; Plot D Soil Analysis
+Low Dissolved Oxygen levels And the Impact on Crop Growth Potential
+Finding undergraduate research opportunities :
+UW Bothell Student Research Opportunities page
+Environmental Chemistry: Measurement and Interpretation of Global Air Pollutants at the Mt. Bachelor Observatory (MBO)
+Environmental Chemistry: Measurement of Air Pollution at Regional Hot Spots
+Interested in graduate school?
 Undergraduate degrees offered in the School of IAS prepare students for a wide variety of graduate programs. If you think you might be interested in earning a master’s or doctoral degree, start planning now!
+Tips for exploring graduate school
+Make an appointment for graduate school coaching
+BACK TO TOP
+In this section
+About IAS
+Expand Navigation
+Mission, Values, and Goals
+Diversity and Equity
+Expand Navigation
+Diversity Plan
+Scholarship
+Contact Us
+Undergraduate
+Expand Navigation
+How to apply
+Majors
+Expand Navigation
+American & Ethnic Studies
+Community Psychology
+Conservation & Restoration Science
+Culture, Literature & the Arts
+Data Visualization
+Earth System Science
+Environmental Science
+Environmental Studies
+Gender, Women & Sexuality Studies
+Global Studies
+Interdisciplinary Arts
+Interdisciplinary Social Sciences
+Interdisciplinary Studies
+Law, Economics & Public Policy
+Mathematical Thinking & Visualization
+Media & Communication Studies
+Psychology
+Science, Technology & Society
+Society, Ethics & Human Behavior
+Minors
+Expand Navigation
+Minor in Climate Change & Society
+Minor in Creative Writing
+Minor in Diversity Studies
+Minor in Ecological Restoration
+Minor in Gender, Women & Sexuality Studies
+Minor in Geographic Information Systems
+Minor in Human Rights
+Minor in Performance
+Minor in Policy Studies
+Minor in Science, Technology & Society
+Minor in Visual & Media Arts
+Learning Objectives
+Hands-on Learning (IPR)
+Expand Navigation
+Research Opportunities
+Peer Facilitation
+Internships
+Community Engagement
+D.C. Human Rights Seminar
+Study Abroad
+Global Scholars
+Student Resources
+Expand Navigation
+Student Feedback
+Petitions and Forms
+Grade Appeal
+Grievances and Complaints
+Career Planning
+Graduate Programs
+Expand Navigation
+Creative Writing & Poetics (MFA)
+Expand Navigation
+People
+Admissions
+Learning Objectives
+Curriculum
+Thesis Work
+Events
+Fall Convergence
+Spring Festival
+MFA Publications
+Careers
+Policy Studies (MA)
+Expand Navigation
+Why Policy Studies?
+People
+Prospective Students
+Admissions
+Learning Objectives
+Curriculum
+Careers
+Student Resources
+Expand Navigation
+Funding
+Admitted Students
+Housing
+Faculty & staff
+Expand Navigation
+Faculty
+Staff
+News
+Events
+Give
+Expand Navigation
+Educational Access & Opportunity Fund
+Global Scholars Fund
+Experiential & Community Based Learning Fund
+Academic Excellence & Emerging Initiatives Fund
+Nony Clark Milmoe Scholarship
+Sandra Martin Roberts Memorial Scholarship
+Washington D.C. Travel Assistance Fund
+Graduate Studies Excellence Fund
+Master of Fine Arts (MFA) Program Fund
+American Muslim Research Institute Fund
+All IAS Funds
+Contact Us
+School of Interdisciplinary Arts & Sciences
+iasinfo@uw.edu
+425.352.5350
+Box 358530
+18115 Campus Way NE
+Bothell, WA 98011-8246
 University of Washington Bothell Homepage
-Using their background in Earth System Science, graduates from this major get hands-on experience using GPS and other remote sensing technologies to sustain and improve natural environmental resources. The major leads to jobs in government, research labs, science education, management, consulting, and environmental protection agencies.
-UW Bothell Facebook
-UW Bothell Home
+Bothell, Washington View our location on Google maps.
+Contact us by phone at:
+425.352.5000
+Contact
+Visitors
+Maps & directions
+Jobs
+Accessibility
+Privacy
+Rules Docket
+Terms
+Seattle Campus
+Tacoma Campus
 UW Bothell Instagram
 UW Bothell Linkedin
-UW Bothell Student Research Opportunities page
+UW Bothell Facebook
 UW Bothell Twitter
 UW Bothell Youtube
-Visitors
-Washington D.C. Travel Assistance Fund
-Why Policy Studies?
-Winter Quarter
-Workday Login
-Writing Workshop (5 CR)
-Writing Workshops
-Year
-Year 2: Sample Pathway
-Year One
-Year One – Requirements
-Year Two
-Year Two – Requirements
+&copy; 2026 University of Washington Bothell
+UW Bothell Instagram
+UW Bothell Linkedin
+UW Bothell Facebook
+UW Bothell Twitter
+UW Bothell Youtube

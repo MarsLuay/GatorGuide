@@ -1,4 +1,5 @@
 import {
+  extractTransferPlannerCourseCodes,
   getTransferPlannerCanonicalCourse,
   getTransferPlannerGrcCourseAvailabilitySummary,
   getTransferPlannerGrcCourseLatestPublishedQuarters,
@@ -13,7 +14,6 @@ import {
   TransferPlannerStudentCourseEvaluation,
   TransferPlannerTrack,
 } from "@/constants/transfer-planner-source";
-
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
   "uw-green-river-equivalency-guide",
@@ -539,9 +539,10 @@ export function normalizeCourseCode(value: string) {
 
 export function extractCourseCodes(value: string) {
   return unique(
-    (String(value ?? "").toUpperCase().match(COURSE_CODE_PATTERN) ?? []).map((match) =>
-      normalizeCourseCode(match)
-    )
+    [
+      ...(String(value ?? "").toUpperCase().match(COURSE_CODE_PATTERN) ?? []),
+      ...extractTransferPlannerCourseCodes(String(value ?? "")),
+    ].map((match) => normalizeCourseCode(match))
   );
 }
 
