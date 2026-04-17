@@ -50,6 +50,20 @@ type ResourceSubsection = {
   items: ResourceItem[];
 };
 
+type OpportunitySubsection = {
+  key: string;
+  title: string;
+  items: MatchedOpportunity[];
+};
+
+type OpportunitySection = {
+  key: string;
+  title: string;
+  icon: keyof typeof MaterialIcons.glyphMap;
+  items: MatchedOpportunity[];
+  subsections: OpportunitySubsection[];
+};
+
 function resolveCatalogText(
   entry: Pick<
     ResourceCatalogItem | ResourceCatalogSection | ResourceCatalogSubsection,
@@ -79,6 +93,13 @@ function mapCatalogItem(
 }
 
 function countResourceSectionItems(section: ResourceSection) {
+  return (
+    section.items.length +
+    section.subsections.reduce((sum, subsection) => sum + subsection.items.length, 0)
+  );
+}
+
+function countOpportunitySectionItems(section: OpportunitySection) {
   return (
     section.items.length +
     section.subsections.reduce((sum, subsection) => sum + subsection.items.length, 0)
@@ -310,37 +331,52 @@ export default function ResourcesPage() {
   }, [matchedOpportunities, query]);
 
   const groupedOpportunities = useMemo(() => {
-    const sections = [
-      {
-        key: "scholarship",
-        title: t("resources.scholarships"),
-        icon: "attach-money" as const,
-      },
-      {
-        key: "internship",
-        title: t("resources.internships"),
-        icon: "work" as const,
-      },
+    const deadlineSubsections: OpportunitySubsection[] = [
       {
         key: "college_deadline",
-        title: "Deadlines",
-        icon: "event" as const,
+        title: t("resources.collegeDeadlines"),
+        items: filteredOpportunities.filter(
+          (opportunity) => opportunity.type === "college_deadline"
+        ),
       },
       {
         key: "general_deadline",
         title: "General deadlines",
-        icon: "event" as const,
+        items: filteredOpportunities.filter(
+          (opportunity) => opportunity.type === "general_deadline"
+        ),
+      },
+    ].filter((subsection) => subsection.items.length > 0);
+
+    const sections: OpportunitySection[] = [
+      {
+        key: "scholarship",
+        title: t("resources.scholarships"),
+        icon: "attach-money",
+        items: filteredOpportunities.filter(
+          (opportunity) => opportunity.type === "scholarship"
+        ),
+        subsections: [],
+      },
+      {
+        key: "internship",
+        title: t("resources.internships"),
+        icon: "work",
+        items: filteredOpportunities.filter(
+          (opportunity) => opportunity.type === "internship"
+        ),
+        subsections: [],
+      },
+      {
+        key: "deadlines",
+        title: "Deadlines",
+        icon: "event",
+        items: [],
+        subsections: deadlineSubsections,
       },
     ];
 
-    return sections
-      .map((section) => ({
-        ...section,
-        items: filteredOpportunities.filter(
-          (opportunity) => opportunity.type === section.key
-        ),
-      }))
-      .filter((section) => section.items.length > 0);
+    return sections.filter((section) => countOpportunitySectionItems(section) > 0);
   }, [filteredOpportunities, t]);
 
   const filteredReferenceSections = useMemo(() => {
@@ -686,14 +722,133 @@ export default function ResourcesPage() {
     );
   };
 
-  const renderListStyleOpportunitySection = (section: {
-    key: string;
-    title: string;
-    icon: keyof typeof MaterialIcons.glyphMap;
-    items: MatchedOpportunity[];
-  }) => {
+  const renderOpportunityItems = (
+    items: MatchedOpportunity[],
+    keyPrefix: string,
+    options?: { inset?: boolean }
+  ) =>
+    items.map((item, index) => (
+      <View
+        key={`${keyPrefix}-${item.opportunityId}`}
+        className={`px-4 py-5 ${
+          index !== items.length - 1 ? `border-b ${borderClass}` : ""
+        }`}
+        style={options?.inset ? { paddingLeft: 52 } : undefined}
+      >
+        <View
+          className={
+            stackOpportunityActions
+              ? "gap-4"
+              : "flex-row items-start justify-between"
+          }
+        >
+          <View
+            style={
+              stackOpportunityActions
+                ? undefined
+                : { flex: 1, minWidth: 0, paddingRight: 16 }
+            }
+          >
+            <Text className={`${textClass} font-medium mb-1`}>{item.title}</Text>
+            <Text className={`${secondaryTextClass} text-sm mb-3`}>{item.summary}</Text>
+
+            {getOpportunitySummaryParts(item).length ? (
+              <Text className={`${secondaryTextClass} text-xs mb-3`}>
+                {getOpportunitySummaryParts(item).join(" | ")}
+              </Text>
+            ) : null}
+          </View>
+
+          <View
+            className="flex-row items-center gap-2"
+            style={stackOpportunityActions ? { width: "100%" } : undefined}
+          >
+            {item.externalUrl ? (
+              <AnimatedChipPressable
+                onPress={() => {
+                  void openLink(item.externalUrl ?? "");
+                }}
+                className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
+                style={stackOpportunityActions ? { flex: 1, minWidth: 0 } : undefined}
+              >
+                <Text className="text-emerald-500 text-sm">
+                  {t("resources.actionOpen")}
+                </Text>
+              </AnimatedChipPressable>
+            ) : (
+              <View className="flex-1" />
+            )}
+
+            <Pressable
+              onPress={() => {
+                void setOpportunityDone(item.opportunityId, !item.isDone);
+              }}
+              accessibilityRole="checkbox"
+              accessibilityState={{ checked: item.isDone }}
+              className={`w-11 h-11 rounded-xl border items-center justify-center ${
+                item.isDone
+                  ? "bg-emerald-500 border-emerald-500"
+                  : "bg-emerald-500/10 border-emerald-500/30"
+              }`}
+            >
+              <MaterialIcons
+                name={item.isDone ? "check-box" : "check-box-outline-blank"}
+                size={22}
+                color={item.isDone ? "#FFFFFF" : "#008f4e"}
+              />
+            </Pressable>
+          </View>
+        </View>
+      </View>
+    ));
+
+  const renderOpportunitySubsection = (
+    section: OpportunitySection,
+    subsection: OpportunitySubsection,
+    index: number
+  ) => {
+    const subsectionKey = `opportunity:${section.key}:sub:${subsection.key}`;
+    const expanded = isSectionExpanded(subsectionKey);
+
+    return (
+      <View
+        key={subsection.key}
+        className={index !== 0 || section.items.length ? `border-t ${borderClass}` : ""}
+      >
+        <AnimatedCardPressable
+          onPress={() => toggleSection(subsectionKey)}
+          className="px-4 py-4 flex-row items-center"
+          accessibilityRole="button"
+        >
+          <View className="w-2 h-2 rounded-full bg-emerald-500/70 mr-3" />
+          <Text className={`${textClass} flex-1`} numberOfLines={1}>
+            {subsection.title}
+          </Text>
+          <View className={`${emeraldBadgeClass} mr-3`}>
+            <Text className="text-emerald-500 text-xs font-semibold">{subsection.items.length}</Text>
+          </View>
+          <Ionicons
+            name={expanded ? "chevron-down" : "chevron-forward"}
+            size={18}
+            color={placeholderColor}
+          />
+        </AnimatedCardPressable>
+
+        {expanded ? (
+          <View className={`border-t ${borderClass}`}>
+            {renderOpportunityItems(subsection.items, `${section.key}-${subsection.key}`, {
+              inset: true,
+            })}
+          </View>
+        ) : null}
+      </View>
+    );
+  };
+
+  const renderListStyleOpportunitySection = (section: OpportunitySection) => {
     const sectionKey = `opportunity:${section.key}`;
     const expanded = isSectionExpanded(sectionKey);
+    const sectionItemCount = countOpportunitySectionItems(section);
 
     return (
       <View key={section.key} className={`${cardClass} border rounded-2xl overflow-hidden`}>
@@ -707,7 +862,7 @@ export default function ResourcesPage() {
             {section.title}
           </Text>
           <View className={`${emeraldBadgeClass} mr-3`}>
-            <Text className="text-emerald-500 text-xs font-semibold">{section.items.length}</Text>
+            <Text className="text-emerald-500 text-xs font-semibold">{sectionItemCount}</Text>
           </View>
           <Ionicons
             name={expanded ? "chevron-down" : "chevron-forward"}
@@ -718,116 +873,10 @@ export default function ResourcesPage() {
 
         {expanded ? (
           <View className={`border-t ${borderClass}`}>
-            {section.items.map((item, index) => (
-              <View
-                key={item.opportunityId}
-                className={`px-4 py-5 ${
-                  index !== section.items.length - 1 ? `border-b ${borderClass}` : ""
-                }`}
-              >
-                <View
-                  className={
-                    stackOpportunityActions
-                      ? "gap-4"
-                      : "flex-row items-start justify-between"
-                  }
-                >
-                  <View
-                    style={
-                      stackOpportunityActions
-                        ? undefined
-                        : { flex: 1, minWidth: 0, paddingRight: 16 }
-                    }
-                  >
-                    <Text className={`${textClass} font-medium mb-1`}>{item.title}</Text>
-                    <Text className={`${secondaryTextClass} text-sm mb-3`}>{item.summary}</Text>
-
-                    {getOpportunitySummaryParts(item).length ? (
-                      <Text className={`${secondaryTextClass} text-xs mb-3`}>
-                        {getOpportunitySummaryParts(item).join(" | ")}
-                      </Text>
-                    ) : null}
-                  </View>
-
-                  {item.type === "scholarship" || item.type === "internship" ? (
-                    <View
-                      className="flex-row items-center gap-2"
-                      style={stackOpportunityActions ? { width: "100%" } : undefined}
-                    >
-                      {item.externalUrl ? (
-                        <AnimatedChipPressable
-                          onPress={() => {
-                            void openLink(item.externalUrl ?? "");
-                          }}
-                          className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-                          style={stackOpportunityActions ? { flex: 1, minWidth: 0 } : undefined}
-                        >
-                          <Text className="text-emerald-500 text-sm">
-                            {t("resources.actionOpen")}
-                          </Text>
-                        </AnimatedChipPressable>
-                      ) : (
-                        <View className="flex-1" />
-                      )}
-
-                      <Pressable
-                        onPress={() => {
-                          void setOpportunityDone(item.opportunityId, !item.isDone);
-                        }}
-                        accessibilityRole="checkbox"
-                        accessibilityState={{ checked: item.isDone }}
-                        className={`w-11 h-11 rounded-xl border items-center justify-center ${
-                          item.isDone
-                            ? "bg-emerald-500 border-emerald-500"
-                            : "bg-emerald-500/10 border-emerald-500/30"
-                        }`}
-                      >
-                        <MaterialIcons
-                          name={item.isDone ? "check-box" : "check-box-outline-blank"}
-                          size={22}
-                          color={item.isDone ? "#FFFFFF" : "#008f4e"}
-                        />
-                      </Pressable>
-                    </View>
-                  ) : (
-                    <View
-                      className={stackOpportunityActions ? "gap-2" : "items-end gap-2"}
-                      style={stackOpportunityActions ? { width: "100%" } : undefined}
-                    >
-                      {item.externalUrl ? (
-                        <AnimatedChipPressable
-                          onPress={() => {
-                            void openLink(item.externalUrl ?? "");
-                          }}
-                          className="px-4 py-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 items-center"
-                          style={stackOpportunityActions ? { width: "100%" } : undefined}
-                        >
-                          <Text className="text-emerald-500 text-sm">
-                            {t("resources.actionOpen")}
-                          </Text>
-                        </AnimatedChipPressable>
-                      ) : null}
-
-                      <Pressable
-                        onPress={() => {
-                          void setOpportunityDone(item.opportunityId, !item.isDone);
-                        }}
-                        className={`px-4 py-2.5 rounded-xl border items-center ${
-                          item.isDone
-                            ? "bg-white/10 border-white/20"
-                            : "bg-emerald-500 border-emerald-500"
-                        }`}
-                        style={stackOpportunityActions ? { width: "100%" } : undefined}
-                      >
-                        <Text className={`text-sm ${item.isDone ? textClass : "text-white"}`}>
-                          {item.isDone ? t("resources.actionUndo") : t("resources.actionMarkDone")}
-                        </Text>
-                      </Pressable>
-                    </View>
-                  )}
-                </View>
-              </View>
-            ))}
+            {renderOpportunityItems(section.items, section.key)}
+            {section.subsections.map((subsection, index) =>
+              renderOpportunitySubsection(section, subsection, index)
+            )}
           </View>
         ) : null}
       </View>
