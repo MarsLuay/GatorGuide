@@ -9,9 +9,14 @@ import Animated, {
   Easing,
   runOnJS,
 } from 'react-native-reanimated';
+import { ScreenBackground } from '@/components/layouts/ScreenBackground';
+import { useAppTheme } from '@/hooks/use-app-theme';
+import { useThemeStyles } from '@/hooks/use-theme-styles';
 import { GatorGuideMark } from '@/components/ui/GatorGuideMark';
 
 export default function StartupAnimation({ onFinish }: { onFinish: () => void }) {
+  const { isDark, isGreen } = useAppTheme();
+  const theme = useThemeStyles();
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.3);
 
@@ -45,23 +50,25 @@ export default function StartupAnimation({ onFinish }: { onFinish: () => void })
   }));
 
   return (
-    <View style={styles.container}>
-      <Animated.View style={[styles.content, animatedStyle]}>
-        <View style={styles.logo}>
-          <GatorGuideMark size={160} />
-        </View>
-        <Text style={styles.title}>Gator Guide</Text>
-      </Animated.View>
-    </View>
+    <ScreenBackground>
+      <View style={styles.container}>
+        <Animated.View style={[styles.content, animatedStyle]}>
+          <View style={styles.logo}>
+            <GatorGuideMark size={160} darkMode={isDark || isGreen} />
+          </View>
+          <Text style={[styles.title, { color: theme.textColor }]}>Gator Guide</Text>
+        </Animated.View>
+      </View>
+    </ScreenBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 24,
   },
   content: {
     alignItems: 'center',
@@ -74,7 +81,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     fontWeight: '800',
-    color: '#008f4e',
     marginTop: 16,
   },
 });

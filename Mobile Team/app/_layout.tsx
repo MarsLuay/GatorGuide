@@ -7,7 +7,7 @@ import { Stack } from "expo-router";
 import type { ErrorBoundaryProps } from "expo-router";
 import { View, Text, Alert, Platform, Share } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { AppThemeProvider } from "@/hooks/use-app-theme";
+import { AppThemeProvider, useAppTheme } from "@/hooks/use-app-theme";
 import { AppLanguageProvider } from "@/hooks/use-app-language";
 import { AppDataProvider } from "@/hooks/use-app-data";
 import { OpportunitiesProvider } from "@/hooks/use-opportunities";
@@ -17,6 +17,8 @@ import { STORAGE_KEYS } from "@/constants/schema";
 import { cacheManagerService, errorLoggingService } from "@/services";
 import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
+import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { useThemeStyles } from "@/hooks/use-theme-styles";
 
 const HAS_SEEN_STARTUP_KEY = STORAGE_KEYS.hasSeenStartup;
 
@@ -131,7 +133,9 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
   );
 }
 
-export default function RootLayout() {
+function RootLayoutContent() {
+  const { hydrated: themeHydrated, isDark, isGreen } = useAppTheme();
+  const theme = useThemeStyles();
   const [appIsReady, setAppIsReady] = useState(false);
   const [showAnimation, setShowAnimation] = useState<boolean | null>(null);
 
@@ -160,23 +164,34 @@ export default function RootLayout() {
   }, []);
 
   useEffect(() => {
-    if (!appIsReady || showAnimation === null) return;
+    if (!appIsReady || showAnimation === null || !themeHydrated) return;
     SplashScreen.hideAsync().catch(() => {});
-  }, [appIsReady, showAnimation]);
+  }, [appIsReady, showAnimation, themeHydrated]);
 
   const handleAnimationFinish = () => {
     AsyncStorage.setItem(HAS_SEEN_STARTUP_KEY, 'true').catch(() => {});
     setShowAnimation(false);
   };
 
-  if (!appIsReady || showAnimation === null) {
+  if (!appIsReady || showAnimation === null || !themeHydrated) {
     return (
-      <View style={{ flex: 1, backgroundColor: "#FFFFFF", alignItems: "center", justifyContent: "center" }}>
-        <View style={{ marginBottom: 16 }}>
-          <GatorGuideMark size={96} />
+      <ScreenBackground>
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            paddingHorizontal: 24,
+          }}
+        >
+          <View style={{ marginBottom: 16 }}>
+            <GatorGuideMark size={96} darkMode={isDark || isGreen} />
+          </View>
+          <Text style={{ color: theme.textColor, fontSize: 16, fontWeight: "600" }}>
+            Loading Gator Guide...
+          </Text>
         </View>
-        <Text style={{ color: "#001f0f", fontSize: 16, fontWeight: "600" }}>Loading Gator Guide...</Text>
-      </View>
+      </ScreenBackground>
     );
   }
 
@@ -187,25 +202,31 @@ export default function RootLayout() {
   }
 
   return (
+    <AppLanguageProvider>
+      <AppDataProvider>
+        <OpportunitiesProvider>
+          <AuthEmailLinkHandler />
+          <Stack
+            screenOptions={{
+              headerShown: false,
+              animation: 'slide_from_right',
+              animationDuration: 300,
+            }}
+          >
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+          <UniversalDevMode />
+        </OpportunitiesProvider>
+      </AppDataProvider>
+    </AppLanguageProvider>
+  );
+}
+
+export default function RootLayout() {
+  return (
     <SafeAreaProvider>
       <AppThemeProvider>
-        <AppLanguageProvider>
-          <AppDataProvider>
-            <OpportunitiesProvider>
-              <AuthEmailLinkHandler />
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                  animation: 'slide_from_right',
-                  animationDuration: 300,
-                }}
-              >
-                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              </Stack>
-              <UniversalDevMode />
-            </OpportunitiesProvider>
-          </AppDataProvider>
-        </AppLanguageProvider>
+        <RootLayoutContent />
       </AppThemeProvider>
     </SafeAreaProvider>
   );

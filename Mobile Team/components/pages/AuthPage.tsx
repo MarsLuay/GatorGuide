@@ -19,7 +19,6 @@ import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/An
 import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
-import { LiquidGlassView } from "@/components/ui/LiquidGlassView";
 import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth/auth.service";
 import { errorLoggingService } from "@/services";
 import { PENDING_LINK_STORAGE_KEY } from "@/components/AuthEmailLinkHandler";
@@ -37,7 +36,7 @@ export default function AuthPage() {
   const { isHydrated, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers, deleteAccount } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
-  const { isDark } = useAppTheme();
+  const { isDark, isGreen } = useAppTheme();
   const { width } = useWindowDimensions();
 
   const [name, setName] = useState("");
@@ -626,6 +625,18 @@ export default function AuthPage() {
     ...actionButtonContentStyle,
     minHeight: isCompactWidth ? 50 : 54,
   } as const;
+  const flatPanelBorderColor = isDark || isGreen ? "rgba(52, 211, 153, 0.20)" : "rgba(16, 185, 129, 0.16)";
+  const flatPanelBackgroundColor = isDark
+    ? "rgba(15, 23, 42, 0.58)"
+    : isGreen
+      ? "rgba(6, 78, 59, 0.52)"
+      : "rgba(255, 255, 255, 0.72)";
+  const flatBadgeBackgroundColor = isDark
+    ? "rgba(16, 185, 129, 0.16)"
+    : isGreen
+      ? "rgba(16, 185, 129, 0.18)"
+      : "rgba(16, 185, 129, 0.10)";
+  const dividerColor = isDark || isGreen ? "rgba(148, 163, 184, 0.34)" : "rgba(16, 185, 129, 0.24)";
   const containerClass = isWeb 
     ? "flex-1 items-center justify-center px-4 py-12 min-h-screen"
     : "flex-1 items-center justify-center px-6";
@@ -634,31 +645,34 @@ export default function AuthPage() {
     <View style={{ width: "100%", maxWidth: authCardMaxWidth }}>
       <GlassCard borderRadius={28} noPadding className={isWeb ? "shadow-lg" : ""}>
         <View style={{ padding: cardPadding }}>
-        <LiquidGlassView borderRadius={24} specular={false} style={{ marginBottom: 24 }}>
           <View
             style={{
+              marginBottom: 24,
               padding: heroPadding,
               gap: 16,
               flexDirection: useHorizontalHero ? "row" : "column",
               alignItems: useHorizontalHero ? "center" : "center",
+              borderRadius: 24,
+              borderWidth: 1,
+              borderColor: flatPanelBorderColor,
+              backgroundColor: flatPanelBackgroundColor,
             }}
           >
-            <LiquidGlassView
-              borderRadius={heroBadgeSize / 2}
-              style={{ width: heroBadgeSize, height: heroBadgeSize, flexShrink: 0 }}
+            <View
+              style={{
+                width: heroBadgeSize,
+                height: heroBadgeSize,
+                flexShrink: 0,
+                alignItems: "center",
+                justifyContent: "center",
+                borderRadius: heroBadgeSize / 2,
+                borderWidth: 1,
+                borderColor: flatPanelBorderColor,
+                backgroundColor: flatBadgeBackgroundColor,
+              }}
             >
-              <View
-                style={{
-                  flex: 1,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: heroBadgeSize / 2,
-                  backgroundColor: isDark ? "rgba(0,143,78,0.18)" : "rgba(0,143,78,0.12)",
-                }}
-              >
-                <GatorGuideMark size={heroMarkSize} darkMode={isDark} />
-              </View>
-            </LiquidGlassView>
+              <GatorGuideMark size={heroMarkSize} darkMode={isDark} />
+            </View>
 
             <View style={{ flex: 1, minWidth: 0, alignItems: useHorizontalHero ? "flex-start" : "center" }}>
               <Text
@@ -683,7 +697,6 @@ export default function AuthPage() {
               </Text>
             </View>
           </View>
-        </LiquidGlassView>
         {__DEV__ && onboardingDebugEnabled ? (
           <View className="mb-4 border border-emerald-500/40 rounded-lg p-3">
             <View className="flex-row items-center justify-between">
@@ -783,8 +796,18 @@ export default function AuthPage() {
           </View>
         )}
 
-        <LiquidGlassView borderRadius={20} specular={false} style={{ marginBottom: 24 }}>
-          <View style={{ flexDirection: "row", gap: 8, padding: 6 }}>
+        <View
+          style={{
+            flexDirection: "row",
+            gap: 8,
+            padding: 6,
+            marginBottom: 24,
+            borderRadius: 20,
+            borderWidth: 1,
+            borderColor: flatPanelBorderColor,
+            backgroundColor: flatPanelBackgroundColor,
+          }}
+        >
             <AnimatedChipPressable
               onPress={() => {
                 if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -799,6 +822,8 @@ export default function AuthPage() {
                 paddingHorizontal: 16,
                 alignItems: "center",
                 justifyContent: "center",
+                borderWidth: isSignUp ? 1 : 0,
+                borderColor: isSignUp ? flatPanelBorderColor : "transparent",
                 backgroundColor: isSignUp ? styles.glassPrimaryFill : "transparent",
               }}
               disabled={!isHydrated}
@@ -827,6 +852,8 @@ export default function AuthPage() {
                 paddingHorizontal: 16,
                 alignItems: "center",
                 justifyContent: "center",
+                borderWidth: !isSignUp ? 1 : 0,
+                borderColor: !isSignUp ? flatPanelBorderColor : "transparent",
                 backgroundColor: !isSignUp ? styles.glassPrimaryFill : "transparent",
               }}
               disabled={!isHydrated}
@@ -841,8 +868,7 @@ export default function AuthPage() {
                 {t("auth.logIn")}
               </Text>
             </AnimatedChipPressable>
-          </View>
-        </LiquidGlassView>
+        </View>
 
         <View className="gap-4">
           {isSignUp && (
@@ -904,9 +930,9 @@ export default function AuthPage() {
           )}
 
           <View className={`flex-row items-center gap-2 my-3 ${styles.secondaryTextClass}`}>
-            <View className="flex-1 h-px bg-emerald-300 dark:bg-gray-700" />
+            <View className="flex-1 h-px" style={{ backgroundColor: dividerColor }} />
             <Text className="text-xs">{t("auth.or")}</Text>
-            <View className="flex-1 h-px bg-emerald-300 dark:bg-gray-700" />
+            <View className="flex-1 h-px" style={{ backgroundColor: dividerColor }} />
           </View>
 
           {isWeb && (
