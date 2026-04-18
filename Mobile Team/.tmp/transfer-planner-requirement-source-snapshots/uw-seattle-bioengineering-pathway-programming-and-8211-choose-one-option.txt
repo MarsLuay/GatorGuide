@@ -1,0 +1,239 @@
+Owner: uw-seattle-bioengineering:pathway:programming-and-8211-choose-one-option
+Source: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
+Title: Undergraduate Degree Requirements &#8211; UW Bioengineering
+
+[Supplemental official source] Bachelor’s/Master’s Program (BS/MS)
+[Supplemental official source] BS Bioengineering with Option in Data Science
+[Supplemental official source] BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)
+[Supplemental official source] PHD Data Science Option
+[Supplemental official source] Supplemental official track and option pages
+15
+18 credits must be at the 500-level
+18 graded credits must be at the 400/500-level
+2 quarters of eScience seminar, currently offered as ENGR 591 (formerly CHEM E 599), Data Science Seminar (1 credit, CR/NC).
+3
+36 total credits
+4
+4-5
+44
+5
+5 credits must have a BIOEN prefix
+6 credits must be 500 level
+ABET Accreditation
+About the Program
+About UW BioE
+Academic Programs
+Academic student employee (ASE) pay rates
+Additional BS/MS requirements
+Adjunct Faculty
+Advising and Academic Services Staff
+Affiliate Faculty
+All 13 credits must be graded
+Alumni
+AMATH 301
+AMATH 516: Numerical Optimization (3 cr)
+AMATH 563: Inferring Structure of Complex Systems (5 cr)
+AMATH 583: High Performance Scientific Computing (5 cr)
+An academic plan outlining which Data Science requirements have been completed and how the remaining requirements will be fulfilled.
+Annual Teaching Schedule
+Approved courses in other UW departments
+At least 1 course each in 2 of the following data science areas:
+Awards and Recognition
+Bachelor’s/Master’s Program (BS/MS)
+Bachelor&#8217;s/Master&#8217;s Program (BS/MS)
+Beginning Scientific Computing
+Biochemical and Molecular Bioengineering
+BioE e-News
+BioE Life
+BIOEN 215
+BIOEN 315
+BIOEN 316
+BIOEN 537: Computational Systems Biology (4 cr)
+BIOEN 584 Computational Modeling and Simulation of Bioelectricity (4 cr)
+BIOEN 585: Computational Bioengineering (4 cr)
+BIOEN 588: Computational Protein Design (4 cr)
+BIOEN 599: Advanced Modeling & Controls for Systems Biology (3 cr)
+BioEngage
+BioEngage &#8211; UW BioE Industry Engagement
+Bioengineering Core (37 credits)
+Bioengineering Departmental Seminar
+Bioengineering Dept offerings
+Bioengineering Problem Solving (or ENGR 115 Engineering Transformation of Health)
+Bioengineering Professional Series (BPS) track: BIOEN 530: Literature Analysis (2 credits, CR/NC), BIOEN 531: Grant Writing (2 credits) or BIOEN 532: Professional Development (1 credit, CR/NC)
+Bioengineering Undergraduate Info Sessions
+BIOL 180, 200, 220
+Biomedical Signals and Sensors
+BIOSTAT 511, 517, 524; STAT 502, 504, 509, 512, or UCONJ 510 (2 cr, approved by petition when submitting the student plan)
+BS Bioengineering with Option in Data Science
+BS Bioengineering with Option in Data Science &#8211; UW Bioengineering
+BS Bioengineering with Option in Data Science 2023-06-23T06:39:23-07:00
+BS Bioengineering with Option in Nano & Molecular Engineering (NME)
+BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)
+BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME) &#8211; UW Bioengineering
+BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME) 2024-02-23T09:53:26-08:00
+BS/MS requirements (minimum 36 credits required)
+Campus Environment
+Capstone Help Page
+Certificate in Basic Bioscience
+Chair’s Office Administrative Staff
+CHEM E 546: Software Engineering for Molecular Data Scientists (3 cr)
+Complete the Independent Research;
+Complete the molecular concentration but select from a slightly more restricted set of bioengineering senior electives;
+Completion of the option results in a notation on the diploma: Bachelor of Science in Bioengineering (Data Science Option)
+Completion of the option results in a notation on the diploma: Bachelor of Science in Bioengineering (Nan & Mol Eng Option)
+Connect with Academic Services
+Connect with us
+Contact /
+Contact an Academic Counselor
+Copyright 2025 University of Washington &#8211; Seattle &#8211; Department of Bioengineering | All Rights Reserved | Privacy | Terms
+Core courses (4 credits minimum required from either track):
+Core Faculty
+Course
+Credits
+CSE 121 or 160 plus BIOEN 217
+CSE 416/STAT 416 – Introduction to Machine Learning (4 cr)
+CSE 527: Computational Biology (4 cr)
+CSE 546: Machine Learning (4 cr)
+CSE 583: Software Development for Data Scientists (4 cr)
+Current Bioengineering Ph.D. students who choose to enroll in the Data Science Option must have approval of their research advisor. Email this approval to the Graduate Program Advisor, Kalei Combs, kaleic@uw.edu . There is no additional admission procedure.
+Curriculum
+Data Management
+Data Science Option
+Data Science Option Declaration Process
+Data Science students must still complete the Bioengineering Senior Electives (15 credits) and Approved Engineering Electives (9-12 credits). Data Science Courses may be used to satisfy these requirements if on departmentally approved list of approved engineering electives.
+Data Visualization and Communication
+Declared BIOE majors will self-identify as NME option students during Winter Quarter of junior year in BIOE.
+Diploma
+DIPLOMA
+Donate
+During the final quarter, submit a M.S. request with the Graduate School and defend the thesis.
+Electives (13 credits minimum of bioengineering-related, PI-approved electives):
+Emeritus Faculty
+Endowed Lectures
+Events
+Events /
+Featured Publications
+Feedback and Reporting
+For the General Requirements for a master’s degree, refer to the Graduate School website . Note that the Master of Science degree in Bioengineering requires a thesis. There is no teaching requirement for BS/MS students.
+General requirements for the Master of Science Degree for the BS/MS Program
+GENOME 540: Introduction to Computational Molecular Biology: Genome and Protein Sequence Analysis (4 cr)
+Go to Top
+Grades
+Graduate Student Exams
+Graduate students must maintain a 3.0 cumulative grade point average to maintain good standing with the Graduate School and the department. Students must earn a 2.7 or better in every course.
+Home
+How to declare NME
+HOW TO DECLARE the Data Science option
+Humans of BioE
+iii. Data Science in Bioengineering: BIOEN 420, BIOEN 423, BIOEN 424, BIOEN 436, BIOEN 448, BIOEN 449, BIOEN 451, BIOEN 466, BIOEN 484, BIOEN 485, BIOEN 488, or BIOEN 492
+In Memoriam
+In other words, Data Science Option students must complete all of the same degree requirements as a non-option student, in addition to fulfilling courses from the above categories.
+In other words, NME Option students complete all of the same degree requirements as a non-option student with additional restrictions.
+Include NME content in their required senior capstone project. The proposal written in 401 will outline the NME content of the project.
+Inclusivity
+Innovation
+Intro to Java or Intro to Python and Matlab Fundamentals Seminar
+Introduction to Data Science: STAT 180/CSE 180/INFO 180, INFO 201, or INFO 370
+Introductory Biology
+Is Bioengineering Right for Me?
+It requires a change of degree code; the Academic Counselors will change codes by the beginning of spring quarter.
+JEDI Committee
+Jobs /
+MAB Admissions
+MAB Admissions FAQ
+MAB Alumni Stories
+Machine Learning: CSE/STAT 416, STAT 435, or INFO 371
+Main Menu
+Make a Gift to UW Bioengineering
+Master of Applied Bioengineering (MAB)
+Master of Science (MS)
+Master’s Programs
+Master&#8217;s Program (MS)
+Master&#8217;s Programs
+Media Information
+My UW
+MyBioE
+Name and student ID#
+Name of the faculty member whose lab you will be working in for BIOEN 402.
+News
+News /
+NME Option status affects the choice of capstone laboratory; capstone project (402 only) must have NME content.
+Note: Up to six credits taken during the student’s senior year may count towards the MS degree requirements for BS/MS students. These six credits cannot have satisfied any BS degree requirements.
+Once enrolled, Bioengineering PhD students have the opportunity to pursue their PhD with a Data Science option. The Data Science option prepares the next generation of thought leaders to both apply new data science methods and build new data science tools. It recognizes Bioengineering Ph.D. students whose thesis work focuses specifically on advanced data science tools and provides an advanced education to students who will push the state-of-the-art in data science methods, such as developing new machine learning methods.
+Online Master of Pharmaceutical Bioengineering (PharBE)
+Other Academic Opportunities
+Page load link
+Patents, Inventions and Startups
+People
+PharBE Admissions
+PharBE Admissions FAQ
+PharBE Alumni Stories
+PhD Admissions
+PhD Admissions FAQ
+PHD Data Science Option
+PHD Data Science Option 2024-11-13T06:49:29-08:00
+PhD Program
+Prerequisites to BIOEN core courses
+Prior to the beginning of the spring quarter, determine project status and prepare to write the thesis.
+Program on Technology Commercialization (PTC) track: BIOEN 504: PTC I (4 credits) or BIOEN 505: PTC II (4 credits)
+Programming &#8211; Choose one option (4 credits)
+Programming: CSE 143 or 163
+Quick Links
+Quicklinks
+Register
+Required Curriculum:
+Requirements
+REQUIREMENTS
+Research
+Research Centers
+Resources
+Restrictions
+Scientific Computing
+Search for:
+Seattle Life
+Sign up for eNews
+Sign up for UW BioE eNews
+Skip to content
+Societal Implications of Data Science: SOC 225, BH 201, BH 311, or BH 444
+Specific Course Requirements for the Master of Science degree for the BS/MS Program (effective Autumn 2012 or later)
+Statement that you and the faculty member have discussed your project having nano or molecular content. (This can be a general agreement at this point; you will work out the details during BIOEN 401.)
+Statement that you plan to complete the option in NME
+Statistics (3 credits):
+Statistics and Machine Learning
+Student Resources
+Student Stories
+Students enrolled in this option can expect to interact with students in similar programs in genome sciences, statistics, oceanography, computer science & engineering and astronomy. The Data Science option is an official UW degree option which will be part of your degree title and appear on your transcript.
+Students file for graduation at the beginning of Autumn Quarter, senior year. This is the last moment to withdraw from the Data Science option.
+Students file for graduation at the beginning of Autumn Quarter, senior year. This is the last moment to withdraw from the NME option.
+Students must complete 9 thesis research credits of BIOEN 700 prior to MS graduation
+Subscribe to BioE PharBE email updates
+Take NME 220 for 4 of their 9 required approved engineering elective credits;
+Take NME 321 and 421 (seminars) for 2 of their 8 general University elective credits;
+The Bachelor of Science in Bioengineering program offered by UW Bioengineering is accredited by the Engineering Accreditation Commission of ABET. Learn more
+The capstone proposal written in BIOEN 401, Spring Quarter of junior year, will outline the NME content of the project. Therefore students will not be able to declare NME after the beginning of Spring Quarter of junior year.
+The Data Science Option in BIOE is designed to fit within the existing BS BIOE degree requirements . Data Science students may complete either Capstone option: Independent Research or Team Design. Data Science students must complete specific Data Science courses from the follow categories:
+The Data Science Option overlays our standard course requirements. In other words, students must satisfy the universal PhD Curriculum requirements, in addition to the Data Science Option requirements. This may impose some extra constraints on course selection. However, note that some of the required data science courses may substitute for required electives.
+The Four-iers of BIOEN Podcast
+The NME Option in BIOE is designed to fit within the existing BS BIOE degree requirements . Specifically, NME students:
+Three courses totaling 9-14 credits from three of the five categories listed below: Scientific Computing, Statistics and Machine Learning, Big Data and Image Processing, Data Visualization, and Data Science. Each category listed includes approved courses offered within Bioengineering and other departments on the UW Seattle campus. The large number of approved courses reflects both the breadth of the data science field, and the fact that space in non-Bioengineering courses is sometimes limited.
+Thursday December 4, 6-7pm PST
+To declare the Data Science Option, email the Academic Counselor with the following information, by the end of Winter Quarter, junior year:
+To declare the NME Option, email the Academic Counselors with the following information, by the end of Winter Quarter, junior year:
+To keep track of your coursework, please see the Undergraduate Academic Counselor for a planning sheet and quarterly check-ins. The degree provides two track options (the Bioengineering Professional Series (BPS) and the Program on Technology Commercialization (PTC)). The degree requires 20 course credits, plus research credits. Petitions to substitute or waive courses, are not encouraged.
+Toggle Navigation
+Topic
+TOTAL
+Tuition and Financial Information
+Undergraduate Admissions
+Undergraduate Degree Requirements
+Undergraduate Program
+Undergraduate Sample 4-Year Schedule
+UW BioE Culture
+UW BioE History
+UW BioE Research Themes
+UW College of Engineering
+UW Culture
+UW Home
+UW School of Medicine
+Wednesday December 17, 5:30-6:30pm PST
+Zoom Sessions

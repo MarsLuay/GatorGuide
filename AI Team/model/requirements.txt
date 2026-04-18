@@ -1,6 +1,0 @@
-chromadb>=0.5.5
-sentence-transformers>=3.0.1
-pypdf>=4.2.0
-python-dotenv>=1.0.1
-openai>=1.40.0
-psycopg[binary]>=3.2.1

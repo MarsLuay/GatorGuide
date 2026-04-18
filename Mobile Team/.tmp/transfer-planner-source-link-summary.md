@@ -1,13 +1,13 @@
 # Transfer Planner Source Link Summary
 
-Generated: 2026-04-17T23:11:58.491Z
+Generated: 2026-04-18T10:16:01.486Z
 
-- Total tracked source URLs: 324
-- Reachable: 324
+- Total tracked source URLs: 331
+- Reachable: 331
 - Failed: 0
-- Added since previous snapshot: 3
-- Changed since previous snapshot: 150
-- Removed since previous snapshot: 5
+- Added since previous snapshot: 7
+- Changed since previous snapshot: 137
+- Removed since previous snapshot: 0
 
 ## Changed URLs
 
@@ -18,13 +18,13 @@ Generated: 2026-04-17T23:11:58.491Z
 - https://ais.washington.edu/ba-american-indian-studies
   - owners: uw-seattle-american-indian-studies
 - https://amath.washington.edu/undergraduate-major-applied-mathematics
-  - owners: uw-seattle-applied-mathematics
+  - owners: uw-seattle-applied-mathematics, uw-seattle-applied-mathematics::applied-mathematics-data-science-option, uw-seattle-applied-mathematics::b-s-to-m-s-pathway, uw-seattle-applied-mathematics::computational-finance-and-risk-management-data-science-option, uw-seattle-applied-mathematics::data-science-option, uw-seattle-applied-mathematics::requirements-for-data-science-option, uw-seattle-applied-mathematics::what-is-applied-mathematics-with-a-data-science-option
 - https://asian.washington.edu/ba-asian-languages-cultures
   - owners: uw-seattle-asian-languages-and-cultures
 - https://asian.washington.edu/ba-chinese
   - owners: uw-seattle-chinese
 - https://asian.washington.edu/ba-japanese
-  - owners: uw-seattle-japanese
+  - owners: uw-seattle-japanese, uw-seattle-japanese::linguistics-option, uw-seattle-japanese::literature-option
 - https://asian.washington.edu/ba-korean
   - owners: uw-seattle-korean
 - https://asian.washington.edu/ba-south-asian-languages-and-cultures
@@ -51,18 +51,14 @@ Generated: 2026-04-17T23:11:58.491Z
   - owners: uw-seattle-disability-studies
 - https://dlmp.uw.edu/education/mls-undergrad
   - owners: uw-seattle-medical-laboratory-science
-- https://education.washington.edu/academics/program/early-childhood-family-studies
-  - owners: uw-seattle-early-childhood-and-family-studies
-- https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf
-  - owners: uw-seattle-education-communities-and-organizations
 - https://english.washington.edu/english-language-literature-and-culture-option
-  - owners: uw-seattle-english-language-literature-and-culture
+  - owners: uw-seattle-english-language-literature-and-culture, uw-seattle-english-language-literature-and-culture::ba-in-english-creative-writing-option, uw-seattle-english-language-literature-and-culture::ba-in-english-language-and-literature-option, uw-seattle-english-language-literature-and-culture::english-language-literature-and-culture-option, uw-seattle-english-language-literature-and-culture::language-and-literature-option, uw-seattle-english-language-literature-and-culture::language-and-literature-option-requirements-summer-2019-spring-2022
 - https://german.washington.edu/german-studies
   - owners: uw-seattle-german
 - https://history.washington.edu/major
   - owners: uw-seattle-history
 - https://ischool.uw.edu/academics/informatics/curriculum
-  - owners: uw-seattle-informatics
+  - owners: uw-seattle-informatics, uw-seattle-informatics::begin-taking-major-electives-degree-option-classes-spring-of-junior-year, uw-seattle-informatics::biomedical-and-health-informatics-option, uw-seattle-informatics::data-science-option, uw-seattle-informatics::declare-your-major-option-by-spring-of-junior-year-recommended, uw-seattle-informatics::declaring-an-option
 - https://jsis.washington.edu/programs/undergraduate/asia-studies/
   - owners: uw-seattle-asian-studies
 - https://jsis.washington.edu/programs/undergraduate/jewish-studies/
@@ -72,11 +68,11 @@ Generated: 2026-04-17T23:11:58.491Z
 - https://linguistics.washington.edu/ba-linguistics
   - owners: uw-seattle-linguistics
 - https://lsj.washington.edu/lsj-gold-curriculum-requirements
-  - owners: uw-seattle-law-societies-and-justice
+  - owners: uw-seattle-law-societies-and-justice, uw-seattle-law-societies-and-justice::graduate-certificate-program-requirements-and-admissions, uw-seattle-law-societies-and-justice::honors-option
 - https://math.washington.edu/ba-mathematics-standard-major-requirements-0
-  - owners: uw-seattle-mathematics
+  - owners: uw-seattle-mathematics, uw-seattle-mathematics::math-option-change, uw-seattle-mathematics::math-option-change-for-current-math-majors
 - https://music.washington.edu/bachelor-arts-music-instrumental-option
-  - owners: uw-seattle-music-b-a
+  - owners: uw-seattle-music-b-a, uw-seattle-music-b-a::bachelor-of-arts-instrumental-option-degree-program-sheet-pdf, uw-seattle-music-b-a::bachelor-of-arts-music-instrumental-option, uw-seattle-music-b-a::music-instrumental-option, uw-seattle-music-b-a::music-music-history-option, uw-seattle-music-b-a::music-music-theory-option, uw-seattle-music-b-a::music-voice-option
 - https://music.washington.edu/bachelor-music-composition
   - owners: uw-seattle-music-composition-b-m
 - https://music.washington.edu/bachelor-music-guitar
@@ -91,4 +87,8 @@ Generated: 2026-04-17T23:11:58.491Z
   - owners: uw-seattle-organ-b-m
 - https://music.washington.edu/bachelor-music-percussion-performance
   - owners: uw-seattle-percussion-performance-b-m
+- https://music.washington.edu/bachelor-music-piano
+  - owners: uw-seattle-piano-b-m
+- https://music.washington.edu/bachelor-music-voice
+  - owners: uw-seattle-voice-b-m
 

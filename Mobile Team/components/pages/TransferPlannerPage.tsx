@@ -1989,9 +1989,11 @@ function TranscriptSummaryCard({
   collegeOptions,
   campusOptions,
   majorOptions,
+  isPathwaySelectorOpen,
   onToggleCollege,
   onToggleCampus,
   onToggleMajor,
+  onTogglePathway,
   onSelectorTouchStartInside,
   onDismissCollege,
   onDismissCampus,
@@ -2034,9 +2036,11 @@ function TranscriptSummaryCard({
   collegeOptions: { id: string; label: string; description?: string }[];
   campusOptions: { id: string; label: string; description?: string }[];
   majorOptions: { id: string; label: string; description?: string }[];
+  isPathwaySelectorOpen: boolean;
   onToggleCollege: () => void;
   onToggleCampus: () => void;
   onToggleMajor: () => void;
+  onTogglePathway: () => void;
   onSelectorTouchStartInside: () => void;
   onDismissCollege: () => void;
   onDismissCampus: () => void;
@@ -2054,7 +2058,6 @@ function TranscriptSummaryCard({
   borderClass: string;
   dropdownBackgroundColor: string;
 }) {
-  const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
   const isUwPlanner = collegeId === "uw";
   const hasOpenSelectorOverlay = openSelector !== null || isPathwaySelectorOpen;
   const cardOverlayStyle = hasOpenSelectorOverlay
@@ -2149,9 +2152,9 @@ function TranscriptSummaryCard({
               selectedPathwayId={plan.selectedPathwayId}
               selectedPathwayLabel={selectedPathwayLabel}
               isPathwaySelectorOpen={isPathwaySelectorOpen}
-              onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
+              onTogglePathway={onTogglePathway}
+              onSelectorTouchStartInside={onSelectorTouchStartInside}
               onSelectPathway={(pathwayId) => {
-                setIsPathwaySelectorOpen(false);
                 onSelectPathway(pathwayId);
               }}
               textClass={textClass}
@@ -2272,9 +2275,9 @@ function TranscriptSummaryCard({
             selectedPathwayId={plan.selectedPathwayId}
             selectedPathwayLabel={selectedPathwayLabel}
             isPathwaySelectorOpen={isPathwaySelectorOpen}
-            onTogglePathway={() => setIsPathwaySelectorOpen((currentValue) => !currentValue)}
+            onTogglePathway={onTogglePathway}
+            onSelectorTouchStartInside={onSelectorTouchStartInside}
             onSelectPathway={(pathwayId) => {
-              setIsPathwaySelectorOpen(false);
               onSelectPathway(pathwayId);
             }}
             textClass={textClass}
@@ -2352,6 +2355,7 @@ function MajorPathwaySection({
   selectedPathwayLabel,
   isPathwaySelectorOpen,
   onTogglePathway,
+  onSelectorTouchStartInside,
   onSelectPathway,
   textClass,
   secondaryTextClass,
@@ -2363,6 +2367,7 @@ function MajorPathwaySection({
   selectedPathwayLabel: string | null;
   isPathwaySelectorOpen: boolean;
   onTogglePathway: () => void;
+  onSelectorTouchStartInside: () => void;
   onSelectPathway: (pathwayId: string) => void;
   textClass: string;
   secondaryTextClass: string;
@@ -2374,33 +2379,39 @@ function MajorPathwaySection({
   }
 
   return (
-    <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-      <Text className={`${textClass} text-base font-semibold`}>Major pathway</Text>
-      <Text className={`${secondaryTextClass} text-sm mt-1`}>
-        This major has multiple supported routes. Pick the route you want this planner to follow.
-      </Text>
-
-      <View className="mt-4">
-        <SelectorField
-          label="Pathway"
-          value={selectedPathwayLabel ?? pathwayOptions[0]?.label ?? "Select pathway"}
-          helper=""
-          open={isPathwaySelectorOpen}
-          onToggle={onTogglePathway}
-          options={pathwayOptions.map((pathway) => ({
-            id: pathway.id,
-            label: pathway.label,
-            description: pathway.summary,
-          }))}
-          onSelect={onSelectPathway}
-          selectedOptionId={selectedPathwayId ?? pathwayOptions[0]?.id ?? null}
-          hideSelectedOptionWhenOpen
-          textClass={textClass}
-          secondaryTextClass={secondaryTextClass}
-          borderClass={borderClass}
-          dropdownBackgroundColor={dropdownBackgroundColor}
-        />
-      </View>
+    <View
+      className="mt-4"
+      style={
+        isPathwaySelectorOpen
+          ? {
+              position: "relative",
+              zIndex: 40,
+            }
+          : {
+              position: "relative",
+            }
+      }
+    >
+      <SelectorField
+        label="Pathway"
+        value={selectedPathwayLabel ?? pathwayOptions[0]?.label ?? "Select pathway"}
+        helper="This major has multiple supported routes. Pick the route you want this planner to follow."
+        open={isPathwaySelectorOpen}
+        onToggle={onTogglePathway}
+        onTouchStartInside={onSelectorTouchStartInside}
+        options={pathwayOptions.map((pathway) => ({
+          id: pathway.id,
+          label: pathway.label,
+          description: pathway.summary,
+        }))}
+        onSelect={onSelectPathway}
+        selectedOptionId={selectedPathwayId ?? pathwayOptions[0]?.id ?? null}
+        hideSelectedOptionWhenOpen
+        textClass={textClass}
+        secondaryTextClass={secondaryTextClass}
+        borderClass={borderClass}
+        dropdownBackgroundColor={dropdownBackgroundColor}
+      />
     </View>
   );
 }
@@ -3146,6 +3157,7 @@ export default function TransferPlannerPage() {
     getTransferPlannerStudentRuntimeMajorsForCampus("uw-seattle")[0]?.id ?? ""
   );
   const [openSelector, setOpenSelector] = useState<PlannerSelectorKey>(null);
+  const [isPathwaySelectorOpen, setIsPathwaySelectorOpen] = useState(false);
   const [transcriptDocument, setTranscriptDocument] = useState<TranscriptDocument | null>(null);
   const [isAnalyzingTranscript, setIsAnalyzingTranscript] = useState(false);
   const [transcriptError, setTranscriptError] = useState<string | null>(null);
@@ -3996,7 +4008,8 @@ export default function TransferPlannerPage() {
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="always"
           onTouchStart={() => {
-            selectorWasOpenOnTouchStartRef.current = openSelector !== null;
+            selectorWasOpenOnTouchStartRef.current =
+              openSelector !== null || isPathwaySelectorOpen;
             selectorTouchStartedInsideRef.current = false;
           }}
           onTouchEnd={() => {
@@ -4005,11 +4018,15 @@ export default function TransferPlannerPage() {
               !selectorTouchStartedInsideRef.current
             ) {
               setOpenSelector(null);
+              setIsPathwaySelectorOpen(false);
             }
             selectorWasOpenOnTouchStartRef.current = false;
             selectorTouchStartedInsideRef.current = false;
           }}
-          onScrollBeginDrag={() => setOpenSelector(null)}
+          onScrollBeginDrag={() => {
+            setOpenSelector(null);
+            setIsPathwaySelectorOpen(false);
+          }}
           scrollEnabled
         >
         <View
@@ -4080,15 +4097,29 @@ export default function TransferPlannerPage() {
             collegeOptions={collegeOptions}
             campusOptions={campusOptions}
             majorOptions={majorOptions}
+            isPathwaySelectorOpen={isPathwaySelectorOpen}
             onToggleCollege={() =>
-              setOpenSelector((current) => (current === "college" ? null : "college"))
+              {
+                setIsPathwaySelectorOpen(false);
+                setOpenSelector((current) => (current === "college" ? null : "college"));
+              }
             }
             onToggleCampus={() =>
-              setOpenSelector((current) => (current === "campus" ? null : "campus"))
+              {
+                setIsPathwaySelectorOpen(false);
+                setOpenSelector((current) => (current === "campus" ? null : "campus"));
+              }
             }
             onToggleMajor={() =>
-              setOpenSelector((current) => (current === "major" ? null : "major"))
+              {
+                setIsPathwaySelectorOpen(false);
+                setOpenSelector((current) => (current === "major" ? null : "major"));
+              }
             }
+            onTogglePathway={() => {
+              setOpenSelector(null);
+              setIsPathwaySelectorOpen((current) => !current);
+            }}
             onSelectorTouchStartInside={() => {
               selectorTouchStartedInsideRef.current = true;
             }}
@@ -4103,19 +4134,25 @@ export default function TransferPlannerPage() {
             }
             onSelectCollege={(id) => {
               setSelectedCollegeId(id === "grc" ? "grc" : "uw");
+              setIsPathwaySelectorOpen(false);
               setOpenSelector(null);
             }}
             onSelectCampus={(id) => {
               setSelectedCampusId(
                 id === GRC_PLANNER_CAMPUS_ID ? GRC_PLANNER_CAMPUS_ID : (id as TransferPlannerCampusId)
               );
+              setIsPathwaySelectorOpen(false);
               setOpenSelector(null);
             }}
             onSelectMajor={(id) => {
               setSelectedMajorId(id);
+              setIsPathwaySelectorOpen(false);
               setOpenSelector(null);
             }}
-            onSelectPathway={handleSelectPathway}
+            onSelectPathway={(pathwayId) => {
+              setIsPathwaySelectorOpen(false);
+              handleSelectPathway(pathwayId);
+            }}
             onUpload={handlePickTranscript}
             onOpenTranscriptLink={() => {
               void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL);

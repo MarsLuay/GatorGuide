@@ -28,7 +28,7 @@ The Mobile Team helps by:
 - [`docs/planner/UWT_DEGREE_COURSES.md`](docs/planner/UWT_DEGREE_COURSES.md): current Green River -> UW Tacoma degree rows, Green River equivalent courses, and tracked requirement sequences.
 - [`docs/planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md`](docs/planner/GRC_EQUIVALENCY_GUIDE_REFERENCE.md): consolidated planner-facing Green River -> UW equivalency and transfer-track rules.
 - [`docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md`](docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md): summary of what the transfer planner does and what it uses.
-- [`../Data Team/docs/COLLEGE_RANKING.md`](../Data Team/docs/COLLEGE_RANKING.md): shared college ranking philosophy and score model used by recommendations.
+- [`docs/product/COLLEGE_RANKING.md`](docs/product/COLLEGE_RANKING.md): shared college ranking philosophy and score model used by recommendations.
 
 ## Setup: Download and Run
 
@@ -147,8 +147,16 @@ npm run planner:discover-grc-materials
 Or double-click:
 
 ```text
-scripts\run-planner-maintenance.cmd
+scripts\Course-Planner-Updater.bat
 ```
+
+The unified updater now includes the old refresh variants as built-in options:
+
+- full maintenance
+- full maintenance with downloads skipped
+- refresh only
+- refresh only with downloads skipped
+- cache summary only
 
 This launcher writes one human-readable summary to:
 

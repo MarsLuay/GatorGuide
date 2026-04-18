@@ -28,6 +28,7 @@ import {
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
   TRANSFER_PLANNER_POLICY_REGISTRY,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY,
+  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
   getTransferPlannerPrimaryDegreeRequirementsSource,
 } from "./registry";
 import {
@@ -90,6 +91,8 @@ const SOURCE_ONLY_FALLBACK_NOISE_PREFIXES = new Set([
 const SOURCE_GENERATED_PARSER_FALLBACK_TITLE = "Source-backed major preparation";
 const SOURCE_GENERATED_PARSER_FALLBACK_NOTE =
   "Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.";
+const PARSER_ONLY_FALLBACK_DEGREE_MAP_NOTE =
+  "Built from the current parser-backed official requirement source while lower-division Green River course extraction is still filling in.";
 const SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN =
   /Auto-promotion was intentionally skipped/i;
 const SOURCE_BACKED_TRACK_MATCH_SAFE_SKIP_REASON_PATTERN =
@@ -219,6 +222,21 @@ const SUPPLEMENTAL_CHECKLIST_SEEDS_BY_PLAN: Partial<
       phase: "before-application",
       title: "Programming",
       grcCourses: ["ENGR 250"],
+    },
+  ],
+  "uw-seattle-business-administration": [
+    {
+      id: "uws-baba-approved-calculus-prerequisite",
+      phase: "before-application",
+      title: "Approved calculus prerequisite",
+      alternatives: [["MATH& 151"], ["MATH& 152"], ["MATH& 163"]],
+      minCompletedCount: 1,
+    },
+    {
+      id: "uws-baba-microeconomics",
+      phase: "before-application",
+      title: "Microeconomics",
+      grcCourses: ["ECON& 201"],
     },
   ],
   "uw-bothell-csse": [
@@ -1099,6 +1117,12 @@ const CANONICAL_GRC_COURSE_BY_CODE = new Map(
     (entry) => [normalizeCourseCode(entry.code), entry] as const
   )
 );
+const CANONICAL_COURSE_BY_SCOPE_AND_CODE = new Map<string, (typeof TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY)[number]>(
+  TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.map((entry) => [
+    `${entry.schoolId}|${normalizeCourseCode(entry.code)}`,
+    entry,
+  ] as const)
+);
 const GRC_PREREQUISITE_CLOSURE_CACHE = new Map<string, Set<string>>();
 
 function getTransitiveGrcDependencyCourseCodes(courseCode: string) {
@@ -1618,6 +1642,261 @@ function buildEmptyChecklistItemsByPhase(): ChecklistItemsByPhase {
   };
 }
 
+function getCanonicalCourseEntry(
+  schoolId: string,
+  courseCode: string | null | undefined
+) {
+  return CANONICAL_COURSE_BY_SCOPE_AND_CODE.get(
+    `${schoolId}|${normalizeCourseCode(courseCode ?? "")}`
+  );
+}
+
+function isComputingPreparationCourse(schoolId: string, courseCode: string | null | undefined) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode ?? "");
+  if (!normalizedCourseCode) {
+    return false;
+  }
+
+  const courseEntry = getCanonicalCourseEntry(schoolId, normalizedCourseCode);
+  const subjectCode = String(
+    courseEntry?.subjectCode ??
+      normalizedCourseCode.replace(/\s+\d{3}(?:\.\d+)?[A-Z]?$/, "")
+  )
+    .trim()
+    .toUpperCase();
+  const level = courseEntry?.level ?? getSourceBackedFallbackCourseLevel(normalizedCourseCode);
+  if (level !== null && level >= 300) {
+    return false;
+  }
+
+  if (["CS", "CS&", "CSE"].includes(subjectCode)) {
+    return true;
+  }
+
+  const searchableText = [
+    courseEntry?.title,
+    courseEntry?.catalogDescription,
+    normalizedCourseCode,
+  ]
+    .join(" ")
+    .trim();
+
+  return Boolean(searchableText) && COMPUTING_PREP_KEYWORD_PATTERN.test(searchableText);
+}
+
+function getPreferredGuideRuleWithSourceSets(targetCourseCode: string) {
+  return [
+    ...(GUIDE_RULES_BY_TARGET_COURSE_CODE.get(normalizeCourseCode(targetCourseCode)) ?? []),
+  ]
+    .sort(compareGuideRules)
+    .find((rule) =>
+      (rule.sourceCourseSets ?? []).some((sourceCourseSet) => (sourceCourseSet ?? []).length > 0)
+    ) ?? null;
+}
+
+function buildComputingSequenceChecklistTitle(targetCourseCodes: string[]) {
+  const normalizedCodes = uniquePlannerStrings(
+    targetCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  if (
+    normalizedCodes.length === 3 &&
+    normalizedCodes.every(
+      (courseCode, index) => courseCode === COMPUTING_PREP_SEQUENCE_TARGET_CODES[index]
+    )
+  ) {
+    return "CSE 121-123 programming sequence";
+  }
+
+  return "Programming sequence";
+}
+
+function buildDerivedRuntimeComputingPrepChecklistItems(scope: {
+  planId: string;
+  pathwayId?: string | null;
+  automaticCourseList: string[];
+  applicationChecklist: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist: TransferPlannerChecklistItem[];
+}) {
+  const automaticCourseList = uniqueReferenceCourseLabels(scope.automaticCourseList ?? []);
+  const automaticCourseCodeSet = new Set(
+    automaticCourseList.map((courseCode) => normalizeCourseCode(courseCode))
+  );
+
+  if (!["CS 121", "CS 122", "CS 123"].every((courseCode) => automaticCourseCodeSet.has(courseCode))) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  const existingChecklistCoverage = new Set(
+    getChecklistReferenceCoursesFromItems([
+      ...(scope.applicationChecklist ?? []),
+      ...(scope.beforeEnrollmentChecklist ?? []),
+      ...(scope.stayAtGrcChecklist ?? []),
+    ]).map((courseCode) => normalizeCourseCode(courseCode))
+  );
+  if (
+    [...existingChecklistCoverage].some((courseCode) =>
+      isComputingPreparationCourse("grc", courseCode)
+    )
+  ) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  const relevantCandidates = getParsedRequirementAtomCandidatesForScope(
+    scope.planId,
+    scope.pathwayId
+  ).filter((candidate) =>
+    COMPUTING_PREP_SEQUENCE_TARGET_CODES.includes(
+      normalizeCourseCode(candidate.uwCourseCode) as (typeof COMPUTING_PREP_SEQUENCE_TARGET_CODES)[number]
+    )
+  );
+  if (relevantCandidates.length < 2) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  const relevantClassifications = getRequirementDiffClassificationsForScope(
+    scope.planId,
+    scope.pathwayId
+  ).filter((classification) =>
+    COMPUTING_PREP_SEQUENCE_TARGET_CODES.includes(
+      normalizeCourseCode(classification.sourceUwCourseCode) as (typeof COMPUTING_PREP_SEQUENCE_TARGET_CODES)[number]
+    )
+  );
+  const primaryParsedBlock =
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.find(
+      (entry) =>
+        entry.planId === scope.planId &&
+        (scope.pathwayId ? entry.pathwayId === scope.pathwayId : !entry.pathwayId)
+    ) ?? null;
+  const ownerTitle =
+    relevantClassifications[0]?.majorTitle ??
+    primaryParsedBlock?.ownerTitle ??
+    scope.planId;
+
+  const acceptedTargetCodes = new Set<string>();
+  const acceptedCueLines = new Set<string>();
+  const guideRulesById = new Map<
+    string,
+    {
+      rule: (typeof TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY)[number];
+      targetCourseCodes: Set<string>;
+    }
+  >();
+
+  for (const targetCourseCode of COMPUTING_PREP_SEQUENCE_TARGET_CODES) {
+    const guideRule = getPreferredGuideRuleWithSourceSets(targetCourseCode);
+    if (guideRule) {
+      const groupedEntry = guideRulesById.get(guideRule.id) ?? {
+        rule: guideRule,
+        targetCourseCodes: new Set<string>(),
+      };
+      groupedEntry.targetCourseCodes.add(targetCourseCode);
+      guideRulesById.set(guideRule.id, groupedEntry);
+    }
+
+    const cueLines = uniquePlannerStrings([
+      ...relevantCandidates
+        .filter((candidate) => normalizeCourseCode(candidate.uwCourseCode) === targetCourseCode)
+        .flatMap((candidate) => candidate.sourceLineHints ?? []),
+      ...relevantClassifications
+        .filter(
+          (classification) => normalizeCourseCode(classification.sourceUwCourseCode) === targetCourseCode
+        )
+        .flatMap((classification) => getRequirementCueLinesFromClassification(classification)),
+    ]);
+
+    if (
+      !cueLines.length ||
+      !cueLines.some((line) => COMPUTING_PREP_KEYWORD_PATTERN.test(line))
+    ) {
+      continue;
+    }
+
+    acceptedTargetCodes.add(targetCourseCode);
+    cueLines.forEach((line) => acceptedCueLines.add(line));
+  }
+
+  if (acceptedTargetCodes.size < 1) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  if (COMPUTING_PREP_SCOPE_EXCLUSION_PATTERN.test([...acceptedCueLines].join(" "))) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  const bestGuideRuleGroup =
+    [...guideRulesById.values()]
+      .map((entry) => {
+        const bestSourceCourseSet =
+          (entry.rule.sourceCourseSets ?? [])
+            .map((sourceCourseSet) =>
+              uniquePlannerStrings(
+                (sourceCourseSet ?? [])
+                  .map((courseCode) => normalizeCourseCode(courseCode))
+                  .filter(
+                    (courseCode) =>
+                      automaticCourseCodeSet.has(courseCode) &&
+                      isComputingPreparationCourse("grc", courseCode)
+                  )
+              )
+            )
+            .sort((left, right) => right.length - left.length)[0] ?? [];
+
+        return {
+          ...entry,
+          bestSourceCourseSet,
+        };
+      })
+      .filter(
+        (entry) =>
+          entry.targetCourseCodes.size >= 2 &&
+          entry.bestSourceCourseSet.length >= 2 &&
+          [...entry.targetCourseCodes].some((targetCourseCode) =>
+            acceptedTargetCodes.has(targetCourseCode)
+          )
+      )
+      .sort((left, right) => {
+        const targetDelta = right.targetCourseCodes.size - left.targetCourseCodes.size;
+        if (targetDelta !== 0) {
+          return targetDelta;
+        }
+        const sourceDelta = right.bestSourceCourseSet.length - left.bestSourceCourseSet.length;
+        if (sourceDelta !== 0) {
+          return sourceDelta;
+        }
+        return left.rule.id.localeCompare(right.rule.id);
+      })[0] ?? null;
+
+  if (!bestGuideRuleGroup) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  const targetCourseCodeSet = new Set(bestGuideRuleGroup.targetCourseCodes);
+  const checklistItem = sanitizeChecklistItem({
+    id: buildAutoChecklistItemId(
+      `${scope.planId}-${scope.pathwayId ?? "base"}-programming-sequence`,
+      0
+    ),
+    title: buildComputingSequenceChecklistTitle([...targetCourseCodeSet]),
+    grcCourses: bestGuideRuleGroup.bestSourceCourseSet,
+  });
+  const phase = getDominantSourceBackedFallbackPhase(
+    relevantClassifications.filter((classification) =>
+      targetCourseCodeSet.has(normalizeCourseCode(classification.sourceUwCourseCode))
+    ),
+    relevantCandidates.filter((candidate) =>
+      targetCourseCodeSet.has(normalizeCourseCode(candidate.uwCourseCode))
+    ),
+    "before-enrollment"
+  );
+
+  return {
+    beforeApplication: phase === "before-application" ? [checklistItem] : [],
+    beforeEnrollment: phase === "before-enrollment" ? [checklistItem] : [],
+    stayAtGrc: phase === "stay-at-grc" ? [checklistItem] : [],
+  } satisfies ChecklistItemsByPhase;
+}
+
 function getChecklistFallbackCourseList(scope: {
   grcCourseList?: string[];
   pathways?: TransferPlannerMajorPathway[];
@@ -1640,7 +1919,17 @@ function materializeSupplementalChecklistItem(
     .filter((group) => group.length > 0);
 
   if (!grcCourses.length && !alternatives.length) {
-    return null;
+    if (!seed.fallbackCourseCount) {
+      return null;
+    }
+
+    return sanitizeChecklistItem({
+      id: seed.id,
+      title: seed.title,
+      grcCourses: [],
+      minCompletedCount: seed.minCompletedCount,
+      note: seed.note,
+    });
   }
 
   return sanitizeChecklistItem({
@@ -1651,6 +1940,38 @@ function materializeSupplementalChecklistItem(
     minCompletedCount: seed.minCompletedCount,
     note: seed.note,
   });
+}
+
+function getPathwayScopedTrackMetadata(
+  plan: Pick<
+    TransferPlannerMajorPlan,
+    "bestTrackId" | "recommendedTrackSummary" | "whyThisTrack"
+  >,
+  pathway: Pick<
+    TransferPlannerMajorPathway,
+    "bestTrackId" | "recommendedTrackSummary" | "whyThisTrack"
+  >
+) {
+  const bestTrackId = pathway.bestTrackId ?? plan.bestTrackId;
+  if (!bestTrackId) {
+    return {
+      bestTrackId: null,
+      recommendedTrackSummary: "",
+      whyThisTrack: [] as string[],
+    };
+  }
+
+  return {
+    bestTrackId,
+    recommendedTrackSummary:
+      pathway.bestTrackId == null
+        ? plan.recommendedTrackSummary
+        : (pathway.recommendedTrackSummary ?? plan.recommendedTrackSummary),
+    whyThisTrack:
+      pathway.bestTrackId == null || !(pathway.whyThisTrack?.length ?? 0)
+        ? [...(plan.whyThisTrack ?? [])]
+        : [...(pathway.whyThisTrack ?? [])],
+  };
 }
 
 function buildSupplementalChecklistItems(scope: {
@@ -2299,6 +2620,211 @@ for (const pathway of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY) {
   PATHWAYS_BY_PLAN.set(pathway.planId, current);
 }
 
+const PATHWAY_TITLE_SUFFIX_PATTERNS = [
+  /\s+degree preparation and admissions$/i,
+  /\s+before-enrollment degree head starts$/i,
+  /\s+stay-at-green-river degree support$/i,
+  /\s+source-backed degree planning$/i,
+  /\s+parsed official source requirements$/i,
+  /\s+parsed official requirement cues$/i,
+  /\s+parsed choices and pathway notes$/i,
+];
+const PATHWAY_LABEL_SPECIAL_TOKEN_MAP: Record<string, string> = {
+  aas: "AAS",
+  acs: "ACS",
+  ba: "B.A.",
+  bs: "B.S.",
+  ce: "CE",
+  cs: "CS",
+  ece: "ECE",
+  egls: "EGLS",
+  esrm: "ESRM",
+  gis: "GIS",
+  gls: "GLS",
+  iac: "IAC",
+  nme: "NME",
+  phd: "Ph.D.",
+  phgh: "PH-GH",
+  sud: "SUD",
+  uw: "UW",
+};
+const PATHWAY_LABEL_LOWERCASE_TOKENS = new Set([
+  "and",
+  "for",
+  "in",
+  "of",
+  "on",
+  "option",
+  "pathway",
+  "route",
+  "to",
+  "track",
+  "with",
+]);
+const COMPUTING_PREP_KEYWORD_PATTERN =
+  /\b(programming|computer programming|computer science|computing|data programming|software)\b/i;
+const COMPUTING_PREP_SCOPE_EXCLUSION_PATTERN =
+  /\b(recommended from list|one course from the following list|technical electives?)\b/i;
+const COMPUTING_PREP_SEQUENCE_TARGET_CODES = ["CSE 121", "CSE 122", "CSE 123"] as const;
+
+function stripPathwayTitleSuffix(value: string) {
+  let stripped = sanitizePlannerOwnedText(value);
+  for (const pattern of PATHWAY_TITLE_SUFFIX_PATTERNS) {
+    stripped = stripped.replace(pattern, "").trim();
+  }
+  return stripped;
+}
+
+function stripPlanTitlePrefix(planTitle: string, value: string) {
+  const sanitizedPlanTitle = sanitizePlannerOwnedText(planTitle);
+  const sanitizedValue = sanitizePlannerOwnedText(value);
+  if (!sanitizedPlanTitle) {
+    return sanitizedValue;
+  }
+  if (sanitizedValue === sanitizedPlanTitle) {
+    return "";
+  }
+
+  for (const separator of [" - ", ": ", " – "]) {
+    const prefix = `${sanitizedPlanTitle}${separator}`;
+    if (sanitizedValue.startsWith(prefix)) {
+      return sanitizedValue.slice(prefix.length).trim();
+    }
+  }
+
+  return sanitizedValue;
+}
+
+function isLikelyStructuredPathwayLabel(label: string) {
+  const sanitized = sanitizePlannerOwnedText(label);
+  if (!sanitized) {
+    return false;
+  }
+  if (/^\[page \d+\]/i.test(sanitized)) {
+    return false;
+  }
+  if (/parsed official|parsed choices|parsed requirement/i.test(sanitized)) {
+    return false;
+  }
+  if (sanitized.length > 96) {
+    return false;
+  }
+  if (sanitized.includes("?")) {
+    return false;
+  }
+  if (sanitized.split(/\s+/).length > 12) {
+    return false;
+  }
+  return true;
+}
+
+function formatPathwayLabelToken(token: string) {
+  const normalizedToken = String(token ?? "").trim().toLowerCase();
+  if (!normalizedToken) {
+    return "";
+  }
+  if (PATHWAY_LABEL_SPECIAL_TOKEN_MAP[normalizedToken]) {
+    return PATHWAY_LABEL_SPECIAL_TOKEN_MAP[normalizedToken];
+  }
+  if (PATHWAY_LABEL_LOWERCASE_TOKENS.has(normalizedToken)) {
+    return normalizedToken;
+  }
+  return normalizedToken.charAt(0).toUpperCase() + normalizedToken.slice(1);
+}
+
+function formatPathwayLabelFromId(pathwayId: string) {
+  const optionFamilyMatch = String(pathwayId ?? "").match(/^(ba|bs)-option-family:(.+)$/i);
+  if (optionFamilyMatch) {
+    const degreeLabel = formatPathwayLabelToken(optionFamilyMatch[1]);
+    const optionLabel = optionFamilyMatch[2]
+      .split(/[-:]+/)
+      .map((token) => formatPathwayLabelToken(token))
+      .filter(Boolean)
+      .join(" ");
+    return sanitizePlannerOwnedText(`${degreeLabel} ${optionLabel} option`);
+  }
+
+  return String(pathwayId ?? "")
+    .split(/[:]+/)
+    .flatMap((segment) => segment.split(/-+/))
+    .map((token) => formatPathwayLabelToken(token))
+    .filter(Boolean)
+    .join(" ");
+}
+
+function maybeExtractStructuredPathwayLabel(planTitle: string, candidate: string) {
+  const strippedLabel = stripPathwayTitleSuffix(stripPlanTitlePrefix(planTitle, candidate));
+  if (!isLikelyStructuredPathwayLabel(strippedLabel)) {
+    return null;
+  }
+  return strippedLabel;
+}
+
+function resolveStructuredPathwayLabel(
+  planId: string,
+  planTitle: string,
+  pathwayId: string,
+  fallbackLabel: string
+) {
+  const candidates = new Map<string, number>();
+
+  function pushCandidate(label: string | null | undefined, priority: number) {
+    const sanitized = sanitizePlannerOwnedText(label);
+    if (!sanitized) {
+      return;
+    }
+    const currentPriority = candidates.get(sanitized) ?? Number.NEGATIVE_INFINITY;
+    if (priority > currentPriority) {
+      candidates.set(sanitized, priority);
+    }
+  }
+
+  const scopeKey = makePathwayPlanKey(planId, pathwayId);
+  const structuredRequirements = REQUIREMENTS_BY_KEY.get(scopeKey) ?? [];
+  const structuredDegreeMaps = DEGREE_MAPS_BY_KEY.get(scopeKey) ?? [];
+  const registryPathway =
+    PATHWAYS_BY_PLAN.get(planId)?.find((entry) => entry.pathwayId === pathwayId) ?? null;
+
+  for (const requirement of structuredRequirements) {
+    pushCandidate(maybeExtractStructuredPathwayLabel(planTitle, requirement.majorTitle), 120);
+  }
+
+  for (const block of structuredDegreeMaps) {
+    const isPhaseBlock = block.id.includes(":degree-map:00-phase-");
+    pushCandidate(
+      maybeExtractStructuredPathwayLabel(planTitle, block.majorTitle),
+      isPhaseBlock ? 115 : 100
+    );
+    pushCandidate(
+      maybeExtractStructuredPathwayLabel(planTitle, block.title),
+      isPhaseBlock ? 110 : 95
+    );
+  }
+
+  if (isLikelyStructuredPathwayLabel(registryPathway?.label ?? "")) {
+    pushCandidate(registryPathway?.label, 80);
+  }
+  if (isLikelyStructuredPathwayLabel(fallbackLabel)) {
+    pushCandidate(fallbackLabel, 70);
+  }
+
+  pushCandidate(formatPathwayLabelFromId(pathwayId), 10);
+
+  const [resolvedLabel = sanitizePlannerOwnedText(fallbackLabel)] = [...candidates.entries()]
+    .sort((left, right) => {
+      if (right[1] !== left[1]) {
+        return right[1] - left[1];
+      }
+      if (left[0].length !== right[0].length) {
+        return left[0].length - right[0].length;
+      }
+      return left[0].localeCompare(right[0]);
+    })
+    .map(([label]) => label);
+
+  return resolvedLabel;
+}
+
 type StructuredPlanMetadata = {
   id: string;
   campusId: TransferPlannerCampusId;
@@ -2348,6 +2874,30 @@ for (const pathway of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY) {
   registerStructuredPlanMetadata(pathway.planId, pathway.campusId, pathway.majorTitle);
 }
 
+for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY) {
+  if (parsedSource.pathwayId) continue;
+  registerStructuredPlanMetadata(
+    parsedSource.planId,
+    parsedSource.campusId,
+    parsedSource.ownerTitle
+  );
+}
+
+for (const manifestEntry of TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY) {
+  if (manifestEntry.ownerType !== "major") continue;
+  if (manifestEntry.pathwayId) continue;
+  if (!manifestEntry.planId) continue;
+  if (!manifestEntry.ownerTitle) continue;
+  if (!manifestEntry.isPrimaryDegreeRequirementsLink) continue;
+  if (!manifestEntry.campusId || manifestEntry.campusId === "grc") continue;
+
+  registerStructuredPlanMetadata(
+    manifestEntry.planId,
+    manifestEntry.campusId as TransferPlannerCampusId,
+    manifestEntry.ownerTitle
+  );
+}
+
 function buildFallbackShortTitle(title: string) {
   const withoutTrailingDegree = sanitizePlannerOwnedText(
     title.replace(/\s*\([^)]*\)\s*$/, "")
@@ -2356,9 +2906,14 @@ function buildFallbackShortTitle(title: string) {
 }
 
 function buildRegistryBackedBasePathways(planId: string) {
+  const planTitle =
+    STRUCTURED_PLAN_METADATA_BY_ID.get(planId)?.title ??
+    PATHWAYS_BY_PLAN.get(planId)?.[0]?.majorTitle ??
+    planId;
+
   return (PATHWAYS_BY_PLAN.get(planId) ?? []).map((pathway) => ({
     id: pathway.pathwayId,
-    label: pathway.label,
+    label: resolveStructuredPathwayLabel(planId, planTitle, pathway.pathwayId, pathway.label),
     summary: sanitizePlannerOwnedText(pathway.summary),
     applicationChecklist: [],
     beforeEnrollmentChecklist: [],
@@ -2374,8 +2929,91 @@ function buildRegistryBackedBasePathways(planId: string) {
   } satisfies TransferPlannerMajorPathway));
 }
 
+function buildFallbackPathwayDegreeMapSections(
+  planDegreeMapSections: TransferPlannerDegreeMapSection[] | undefined,
+  pathway: TransferPlannerMajorPathway
+): TransferPlannerDegreeMapSection[] {
+  const pathwayLabel = sanitizePlannerOwnedText(pathway.label);
+  const fallbackItem =
+    sanitizePlannerOwnedText(pathway.summary) ||
+    `Follow the official UW ${pathwayLabel.toLowerCase()} requirements in the linked source.`;
+  const syntheticSection = sanitizeDegreeMapSection({
+    id: `${pathway.id}-structure`,
+    title: `${pathwayLabel} structure`,
+    items: [fallbackItem],
+    note: PARSER_ONLY_FALLBACK_DEGREE_MAP_NOTE,
+  });
+  const baseSections = (planDegreeMapSections ?? []).map((section) => sanitizeDegreeMapSection(section));
+
+  if (!baseSections.length) {
+    return [syntheticSection];
+  }
+
+  const [firstSection, ...remainingSections] = baseSections;
+  return [firstSection, syntheticSection, ...remainingSections];
+}
+
+function buildBootstrapBasePathways(plan: TransferPlannerMajorPlan) {
+  if ((plan.pathways ?? []).length > 0) {
+    return (plan.pathways ?? []).map((pathway) => ({
+      ...pathway,
+      label: resolveStructuredPathwayLabel(plan.id, plan.title, pathway.id, pathway.label),
+    }));
+  }
+
+  return buildRegistryBackedBasePathways(plan.id);
+}
+
+function buildParserOnlyPrimarySourceLink(planId: string): TransferPlannerLink | null {
+  const primarySource = getTransferPlannerPrimaryDegreeRequirementsSource(planId);
+  if (!primarySource?.url) {
+    return null;
+  }
+
+  return {
+    label: primarySource.label,
+    url: primarySource.url,
+    note: primarySource.note,
+  };
+}
+
+function buildParserOnlyFallbackDegreeMapSections(
+  planId: string,
+  title: string
+): TransferPlannerDegreeMapSection[] {
+  const parsedBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+    (entry) => entry.planId === planId && !entry.pathwayId && entry.ok
+  );
+
+  const items = uniquePlannerStrings(
+    parsedBlocks.flatMap((entry) => [
+      ...(entry.requirementCueLines ?? []),
+      ...(entry.chooseStatements ?? []),
+      ...(entry.pathwayLabels ?? []),
+    ])
+  ).slice(0, 12);
+
+  if (!items.length) {
+    return [];
+  }
+
+  return [
+    sanitizeDegreeMapSection({
+      id: "parsed-requirement-cues",
+      title: `${title} source-backed requirement cues`,
+      items,
+      note: PARSER_ONLY_FALLBACK_DEGREE_MAP_NOTE,
+    }),
+  ];
+}
+
 function buildParserOnlyBasePlan(metadata: StructuredPlanMetadata): TransferPlannerMajorPlan {
   const basePathways = buildRegistryBackedBasePathways(metadata.id);
+  const primarySourceLink = buildParserOnlyPrimarySourceLink(metadata.id);
+  const fallbackDegreeMapSections = buildParserOnlyFallbackDegreeMapSections(
+    metadata.id,
+    metadata.title
+  );
 
   return {
     id: metadata.id,
@@ -2392,9 +3030,12 @@ function buildParserOnlyBasePlan(metadata: StructuredPlanMetadata): TransferPlan
     stayAtGrcChecklist: [],
     advisorFlags: [],
     officialLinks: uniquePlannerLinks(
-      basePathways.flatMap((pathway) => pathway.officialLinks ?? [])
+      compact([
+        primarySourceLink,
+        ...basePathways.flatMap((pathway) => pathway.officialLinks ?? []),
+      ])
     ),
-    degreeMapSections: [],
+    degreeMapSections: fallbackDegreeMapSections,
     validationNotes: sanitizePlannerOwnedStrings(
       basePathways.flatMap((pathway) => pathway.validationNotes ?? [])
     ),
@@ -2417,8 +3058,12 @@ const PARSER_ONLY_BASE_MAJOR_PLANS = Array.from(STRUCTURED_PLAN_METADATA_BY_ID.v
     return left.title.localeCompare(right.title);
   })
   .map((metadata) => buildParserOnlyBasePlan(metadata));
+const HYDRATED_BOOTSTRAP_BASE_MAJOR_PLANS = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => ({
+  ...plan,
+  pathways: buildBootstrapBasePathways(plan),
+}));
 const ALL_BASE_MAJOR_PLANS = uniqueById([
-  ...TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS,
+  ...HYDRATED_BOOTSTRAP_BASE_MAJOR_PLANS,
   ...PARSER_ONLY_BASE_MAJOR_PLANS,
 ]);
 
@@ -2566,11 +3211,30 @@ function buildTrackMatchCourseList(scope: {
   );
 }
 
-function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferPlannerMajorPathway) {
+function buildPathway(
+  basePlan: TransferPlannerMajorPlan,
+  basePathway: TransferPlannerMajorPathway,
+  planDegreeMapSections: TransferPlannerDegreeMapSection[] | undefined
+) {
   const key = makePathwayPlanKey(basePlan.id, basePathway.id);
   const policy = POLICIES_BY_KEY.get(key);
   const registryPathway =
     PATHWAYS_BY_PLAN.get(basePlan.id)?.find((entry) => entry.pathwayId === basePathway.id) ?? null;
+  const structuredDegreeMapSections = buildDegreeMapSections(
+    basePlan.id,
+    basePathway.degreeMapSections,
+    basePathway.id
+  );
+  const combinedMinimalPathwayDegreeMapSections =
+    (structuredDegreeMapSections?.length ?? 0) === 1 && (planDegreeMapSections?.length ?? 0) > 0
+      ? [
+          sanitizeDegreeMapSection(planDegreeMapSections![0]),
+          ...structuredDegreeMapSections!.map((section) => sanitizeDegreeMapSection(section)),
+          ...planDegreeMapSections!
+            .slice(1)
+            .map((section) => sanitizeDegreeMapSection(section)),
+        ]
+      : null;
 
   const applicationChecklist = buildChecklistForPhase(
     basePlan.id,
@@ -2580,7 +3244,12 @@ function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferP
   );
   const pathway = {
     id: registryPathway?.pathwayId ?? basePathway.id,
-    label: registryPathway?.label ?? basePathway.label,
+    label: resolveStructuredPathwayLabel(
+      basePlan.id,
+      basePlan.title,
+      basePathway.id,
+      registryPathway?.label ?? basePathway.label
+    ),
     summary: sanitizePlannerOwnedText(registryPathway?.summary ?? basePathway.summary),
     applicationChecklist,
     beforeEnrollmentChecklist: buildChecklistForPhase(
@@ -2601,11 +3270,11 @@ function buildPathway(basePlan: TransferPlannerMajorPlan, basePathway: TransferP
       basePathway.officialLinks ?? basePlan.officialLinks,
       basePathway.id
     ),
-    degreeMapSections: buildDegreeMapSections(
-      basePlan.id,
-      basePathway.degreeMapSections,
-      basePathway.id
-    ),
+    degreeMapSections:
+      combinedMinimalPathwayDegreeMapSections ??
+      ((structuredDegreeMapSections?.length ?? 0) > 0
+        ? structuredDegreeMapSections
+        : buildFallbackPathwayDegreeMapSections(planDegreeMapSections, basePathway)),
     validationNotes: sanitizePlannerOwnedStrings(
       collectStructuredValidationNotes(
         basePlan.id,
@@ -2657,8 +3326,9 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
     "stay-at-grc",
     basePlan.stayAtGrcChecklist
   );
+  const degreeMapSections = buildDegreeMapSections(basePlan.id, basePlan.degreeMapSections);
   const structuredPathways = orderByBaseIds(
-    (basePlan.pathways ?? []).map((pathway) => buildPathway(basePlan, pathway)),
+    (basePlan.pathways ?? []).map((pathway) => buildPathway(basePlan, pathway, degreeMapSections)),
     (basePlan.pathways ?? []).map((pathway) => pathway.id)
   );
   const sourceGeneratedPlan = {
@@ -2676,7 +3346,7 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
     stayAtGrcChecklist,
     advisorFlags: sanitizePlannerOwnedStrings(policy?.advisorFlags ?? basePlan.advisorFlags),
     officialLinks: collectStructuredLinks(basePlan.id, basePlan.officialLinks),
-    degreeMapSections: buildDegreeMapSections(basePlan.id, basePlan.degreeMapSections),
+    degreeMapSections,
     validationNotes: sanitizePlannerOwnedStrings(
       collectStructuredValidationNotes(basePlan.id, basePlan.validationNotes ?? [])
     ),
@@ -2895,68 +3565,117 @@ function buildStudentRuntimePathway(
   basePlan: TransferPlannerMajorPlan,
   basePathway: TransferPlannerMajorPathway
 ) {
+  const trackMetadata = getPathwayScopedTrackMetadata(basePlan, basePathway);
+  const structuredCourseSeed = getStructuredCourseCodesForPlan(
+    basePlan.id,
+    uniqueReferenceCourseLabels([
+      ...(basePlan.grcCourseList ?? []),
+      ...(basePathway.grcCourseList ?? []),
+    ]),
+    basePathway.id
+  );
   const applicationChecklist = buildAutomaticChecklistForPhase(
     basePlan.id,
     "before-application",
     basePathway.id
   );
-  const beforeEnrollmentChecklist = buildAutomaticChecklistForPhase(
+  let beforeEnrollmentChecklist = buildAutomaticChecklistForPhase(
     basePlan.id,
     "before-enrollment",
     basePathway.id
   );
-  const prunedBeforeEnrollmentChecklist = pruneRedundantRuntimeChecklistItems(
-    beforeEnrollmentChecklist,
-    getChecklistCoverageCourseCodes(applicationChecklist)
-  );
-  const stayAtGrcChecklist = buildAutomaticChecklistForPhase(
+  let stayAtGrcChecklist = buildAutomaticChecklistForPhase(
     basePlan.id,
     "stay-at-grc",
     basePathway.id
   );
+  const derivedComputingChecklistItems = buildDerivedRuntimeComputingPrepChecklistItems({
+    planId: basePlan.id,
+    pathwayId: basePathway.id,
+    automaticCourseList: buildAutomaticCourseList(basePlan.id, basePathway.id),
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist,
+  });
+  beforeEnrollmentChecklist = appendUniqueChecklistItems(
+    beforeEnrollmentChecklist,
+    derivedComputingChecklistItems.beforeEnrollment
+  );
+  stayAtGrcChecklist = appendUniqueChecklistItems(
+    stayAtGrcChecklist,
+    derivedComputingChecklistItems.stayAtGrc
+  );
+  const applicationChecklistWithDerived = appendUniqueChecklistItems(
+    applicationChecklist,
+    derivedComputingChecklistItems.beforeApplication
+  );
+  const prunedBeforeEnrollmentChecklist = pruneRedundantRuntimeChecklistItems(
+    beforeEnrollmentChecklist,
+    getChecklistCoverageCourseCodes(applicationChecklistWithDerived)
+  );
   const prunedStayAtGrcChecklist = pruneRedundantRuntimeChecklistItems(
     stayAtGrcChecklist,
     getChecklistCoverageCourseCodes([
-      ...applicationChecklist,
+      ...applicationChecklistWithDerived,
       ...prunedBeforeEnrollmentChecklist,
     ])
   );
-  const automaticCourseList = buildAutomaticCourseList(basePlan.id, basePathway.id);
-  const automaticTrackMatchCourseList = buildAutomaticTrackMatchCourseList(
-    basePlan.id,
-    basePathway.id
+  const automaticCourseList = orderStringsByBase(
+    uniqueReferenceCourseLabels([
+      ...structuredCourseSeed,
+      ...buildAutomaticCourseList(basePlan.id, basePathway.id),
+    ]),
+    structuredCourseSeed
+  );
+  const automaticTrackMatchCourseList = orderStringsByBase(
+    uniqueReferenceCourseLabels([
+      ...structuredCourseSeed,
+      ...buildAutomaticTrackMatchCourseList(basePlan.id, basePathway.id),
+    ]),
+    structuredCourseSeed
   );
   const studentVisibleCourseList = buildStudentVisibleAutomaticCourseList({
     grcCourseList: automaticCourseList,
-    applicationChecklist,
+    applicationChecklist: applicationChecklistWithDerived,
     beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
   const studentVisibleTrackMatchCourseList = buildStudentVisibleTrackMatchCourseList({
     grcCourseList: automaticTrackMatchCourseList,
-    applicationChecklist,
+    applicationChecklist: applicationChecklistWithDerived,
     beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
 
   const runtimePathway = applyStrictSourceBackedFallback(
     applyAutoTrackRecommendation({
+        ...basePathway,
         id: basePathway.id,
-        label: basePathway.label,
-        summary: "",
-        applicationChecklist,
+        label: resolveStructuredPathwayLabel(
+          basePlan.id,
+          basePlan.title,
+          basePathway.id,
+          basePathway.label
+        ),
+        summary: sanitizePlannerOwnedText(basePathway.summary),
+        applicationChecklist: applicationChecklistWithDerived,
         beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
         stayAtGrcChecklist: prunedStayAtGrcChecklist,
-        advisorFlags: [],
-        officialLinks: [],
-        degreeMapSections: [],
-        validationNotes: [],
+        advisorFlags: sanitizePlannerOwnedStrings(basePathway.advisorFlags ?? []),
+        officialLinks: uniquePlannerLinks(basePathway.officialLinks ?? []),
+        degreeMapSections: (basePathway.degreeMapSections ?? []).map((section) =>
+          sanitizeDegreeMapSection(section)
+        ),
+        validationNotes: sanitizePlannerOwnedStrings(basePathway.validationNotes ?? []),
         grcCourseList: studentVisibleTrackMatchCourseList,
-        grcCourseListGuidance: undefined,
-        plannerNote: undefined,
-        bestTrackId: null,
-        recommendedTrackSummary: "",
-        whyThisTrack: [],
+        grcCourseListGuidance:
+          sanitizePlannerOwnedText(basePathway.grcCourseListGuidance) || undefined,
+        plannerNote: sanitizePlannerOwnedText(basePathway.plannerNote) || undefined,
+        bestTrackId: trackMetadata.bestTrackId,
+        recommendedTrackSummary: sanitizePlannerOwnedText(
+          trackMetadata.recommendedTrackSummary
+        ),
+        whyThisTrack: sanitizePlannerOwnedStrings(trackMetadata.whyThisTrack),
     } satisfies TransferPlannerMajorPathway, {
       trackMatchCourseList: studentVisibleTrackMatchCourseList,
     }),
@@ -2997,6 +3716,25 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
   stayAtGrcChecklist = appendUniqueChecklistItems(
     stayAtGrcChecklist,
     compatibilityChecklistItems.stayAtGrc
+  );
+  const derivedComputingChecklistItems = buildDerivedRuntimeComputingPrepChecklistItems({
+    planId: basePlan.id,
+    automaticCourseList: buildAutomaticCourseList(basePlan.id),
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist,
+  });
+  applicationChecklist = appendUniqueChecklistItems(
+    applicationChecklist,
+    derivedComputingChecklistItems.beforeApplication
+  );
+  beforeEnrollmentChecklist = appendUniqueChecklistItems(
+    beforeEnrollmentChecklist,
+    derivedComputingChecklistItems.beforeEnrollment
+  );
+  stayAtGrcChecklist = appendUniqueChecklistItems(
+    stayAtGrcChecklist,
+    derivedComputingChecklistItems.stayAtGrc
   );
   const prunedBeforeEnrollmentChecklist = pruneRedundantRuntimeChecklistItems(
     beforeEnrollmentChecklist,
@@ -3100,7 +3838,10 @@ function getPlanPrimaryParsedRequirementSourceBlocks(planId: string) {
 }
 
 function materializePlanPathways(plan: TransferPlannerMajorPlan, includeHiddenSourceGaps = true) {
-  const pathways = (plan.pathways ?? []).map(materializePlannerPathway);
+  const pathways = ((plan.pathways ?? []).length
+    ? plan.pathways ?? []
+    : buildRegistryBackedBasePathways(plan.id)
+  ).map(materializePlannerPathway);
   const visibleBasePathways = includeHiddenSourceGaps
     ? pathways
     : pathways.filter((pathway) => !isTransferPlannerStudentHiddenSourceGap(plan.id, pathway.id));
@@ -3131,6 +3872,7 @@ function mergePlannerPathwayWithPlan(
   pathway: TransferPlannerMajorPathway,
   visiblePathways = materializePlanPathways(plan)
 ): TransferPlannerResolvedMajorPlan {
+  const trackMetadata = getPathwayScopedTrackMetadata(plan, pathway);
   const mergedPlan = materializePlanReferenceCourses({
     ...plan,
     applicationChecklist: pathway.applicationChecklist ?? plan.applicationChecklist ?? [],
@@ -3157,13 +3899,11 @@ function mergePlannerPathwayWithPlan(
         ? pathway.grcCourseList
         : plan.grcCourseList,
     plannerNote: sanitizePlannerOwnedText(pathway.plannerNote ?? plan.plannerNote),
-    bestTrackId: pathway.bestTrackId === undefined ? plan.bestTrackId : pathway.bestTrackId,
+    bestTrackId: trackMetadata.bestTrackId,
     recommendedTrackSummary: sanitizePlannerOwnedText(
-      pathway.recommendedTrackSummary ?? plan.recommendedTrackSummary
+      trackMetadata.recommendedTrackSummary
     ),
-    whyThisTrack: sanitizePlannerOwnedStrings(
-      pathway.whyThisTrack?.length ? pathway.whyThisTrack : plan.whyThisTrack
-    ),
+    whyThisTrack: sanitizePlannerOwnedStrings(trackMetadata.whyThisTrack),
   });
 
   return {

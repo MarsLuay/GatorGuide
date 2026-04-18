@@ -8,7 +8,6 @@ Title: Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engine
 [Supplemental official source] HCDE engineering fundamentals list
 [Supplemental official source] HCDE planned undergraduate course schedule
 [Supplemental official source] special topics course descriptions
-[Supplemental official source] Students
 [Supplemental official source] Undergraduate Curriculum Changes FAQs
 * Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
 * Effective Autumn 2024, HCDE 318 and HCDE 300 have been replaced with the new 2-course foundations sequence, HCDE 302 and HCDE 303.
@@ -286,7 +285,6 @@ Give
 GIVE
 Graduate Certificate in Human Centered Artificial Intelligence
 Graduate Certificate in User Centered Design
-Graduate Profiles
 Graduating
 Graduation ceremony
 HCDE 300
@@ -346,7 +344,6 @@ HCDE 498 : Advanced Special Topics (variable credits) See special topics course 
 HCDE 498 (up to 10 credits)
 HCDE 498A - Advanced Special Topics
 HCDE 499 : Individual Research (variable credits)
-HCDE Communications Manager
 HCDE continuously reviews the undergraduate curriculum to identify areas of success and opportunities that will enhance student learning. These program changes are the result of a 3-year comprehensive review that included faculty, staff, and students. An additional motivation for the changes is to bring the program into compliance with the General Engineering Degree requirements specified by ABET.
 HCDE Core Courses
 HCDE Core Courses (41 credits)
@@ -394,9 +391,7 @@ ISC/Workday
 It is also worth noting that the retirement of the HCI and Data Science Options does not represent a substantive change in our HCDE course offerings or the topics covered within the HCDE curriculum.
 Join our mailing list
 K-12 outreach
-Leah Pistorius
 Learn about entrepreneurship as it is currently understood and practiced.
-lepisto@uw.edu
 Libraries
 Login
 M E 123
@@ -489,8 +484,6 @@ STAT 220 or 221 or 290*
 Strategic plan
 Student associations
 Student organizations & associations
-Student Profiles
-Student Profiles | Human Centered Design & Engineering
 Students
 Students applying to HCDE for Autumn 2025 may still use these courses to meet admission prerequisites; however, if they have not yet taken these courses, we would encourage them to select other courses from the HCDE admission prerequisite list.
 Students are encouraged to use MyPlan and DARS * for degree planning and for tracking their progress through the HCDE major requirements. Students can also refer to the HCDE planned undergraduate course schedule for information regarding HCDE course scheduling in the upcoming year.
@@ -543,7 +536,6 @@ Topic: Service Design
 Tuition & financial aid
 Undergraduate curriculum changes FAQs
 Undergraduate curriculum changes FAQs | Human Centered Design & Engineering
-Undergraduate Profiles
 Undergraduate students
 University of Washington
 Updates to the HCDE math statistics, science, and engineering fundamentals course lists

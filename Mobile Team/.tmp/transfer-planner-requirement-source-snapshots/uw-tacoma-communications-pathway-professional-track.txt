@@ -1,228 +1,48 @@
 Owner: uw-tacoma-communications:pathway:professional-track
-Source: https://www.tacoma.uw.edu/sias/cac/professional-track
-Title: Professional Track | Culture, Arts & Communication | University of Washington Tacoma
+Source: https://www.tacoma.uw.edu/sias/cac/communication
+Title: Communication | Culture, Arts & Communication | University of Washington Tacoma
 
-Professional Track | Culture, Arts & Communication | University of Washington Tacoma
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
-height="0"
-width="0"
-style="display:none;
-visibility:hidden">
-Skip to main content
-Apply
-Canvas
-Map
-Calendar
-Library
-Directory
-MyUW
-more_vert
-more_vert
-Close Search
-<img
-src="/sites/default/files/sites/uwtd8main/W.svg"
-alt="Block W - Link to UW Tacoma homepage"/>
-<img class="mobile-hide desktop-show"
-src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
-alt="University of Washington Tacoma"/>
-<img class="mobile-show desktop-hide"
-src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-alt="University of Washington Tacoma"/>
-Tools
-25Live
-Canvas
-Directory
-IT Help
-Library
-Map
-MyUW
-Office365
-Panopto
-Scout
-UW Gmail
-Workday
-Zoom
-Search
-<a
-href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
-Culture, Arts & Communication
-Culture, Arts & Communication
-Majors
-expand_more
-Arts, Media & Culture
-Communication
-add
-Faculty
-FAQs
-Get Involved
-Post Graduation
-Internships
-Spanish Language and Cultures
-Writing Studies
-Minors
-expand_more
-American Popular Cultures Minor
-Asian Studies Minor
-Latino Studies Minor
-Spanish Language and Cultures Minor
-Technical Communication Minor
-CAC Resources
-expand_more
-CAC Directory
-Open Public Meetings
-Contact
-Advising
-MyUW
-Map
-Tools
-Breadcrumb
-<a href="https://www.tacoma.uw.edu/"
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
->Home
-<a href="/sias"
->School of Interdisciplinary Arts & Sciences
 <a href="/sias/cac"
 >Culture, Arts & Communication
-Professional Track
-Professional Track
+Communication
+Communication
 Bachelor of Arts
 Main Content
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2026-01/picture1.jpg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2026-01/picture1.jpg 1940w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2026-01/picture1.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2026-01/picture1.jpg 600w"
+The Communication major at the University of Washington-Tacoma is an exciting and dynamic field of study that examines the ways people interact and communicate with each other in various contexts. In the Communication major, you will actively and systematically study the power that media wield in the world today. You will study the role media and communication play in shaping public opinion, how it crosses boundaries between private and public life, as well as the role media plays in different intersecting arenas, including culture, society, national and global development, and our own identities. To allow you to focus on your areas of interest, the Communication major offers both a professional track and a research track. Both tracks are complemented by electives from other undergraduate programs at UW Tacoma. This degree provides the education and experience necessary for a wide variety of careers in print and broadcast writing, news reporting and editing, web design, video and digital media production, and media research. Transfer students should plan on two years to complete all degree requirements.
+The diverse range of courses in the major encourage the development of important skills related to critical thinking, creativity, collaboration, and communication in the following areas:
+Media Criticism and Theory
+Media Production Skills including print, video, or digital media
+Media for Social Justice
+Global Media
+The Internet and Social Media
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-05/editing.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-05/editing.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-05/editing.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-05/editing.jpg 600w"
 sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="a photo of somebody being interviewed in a house by students">
-Degree Requirements
-You need to complete 60 credits, which must include a minimum of 20 credits of upper-division (300–400 level) courses.
-Foundation (5 credits)
-TCOM 444 Gender, Ethnicity, Class and Media
-TCOM 453 Critical Approaches to Mass Communication
-Core courses (including a minimum of 10 credits of 300–400 TCOM credits required) (25 credits)
-TCOM 101 Critical Media Literacy
-TCOM 201 Media and Society
-TCOM 220 Social Media
-TCOM 230 Media Globalization and Citizenship
-TCOM 247 Television Studies
-TCOM 250 Media Activism
-TCOM 254 Communication History
-TCOM 257 Ethical Issues in Mass Communication
-TCOM 258 Children and Television
-TCOM 310 Contemporary Environmental Issues and the Media
-TCOM 312 Ecology, Inequality and Popular Culture
-TCOM 340 Global TV: Format, Genre and Reception
-TCOM 343 Global Music Video
-TCOM 380 Political Economy of the Media
-TCOM 430 Global Networks, Local Identities
-TCOM 440 Advertising and Consumer Culture
-TCOM 444 Gender, Ethnicity, Class and the Media (only if not used toward the foundation requirement)
-TCOM 453 Critical Approaches to Mass Communication (only if not used toward the foundation requirement)
-TCOM 454 Communications Law
-TCOM 460 Communication for Development and Social Change
-TCOM 461 Media and Identity in Asia
-TCOM 465 Contemporary Free Speech Issues
-TCOM 470 Documentary Production and Critique
-TCOM 480 Critical Media Industry Studies
-TCOM 481 Communication Regulations and Policy
-TCOM 495 Communication Capstone Thesis
-TCOM 499 Special Topics in Communication
-TFILM 201 Introduction to Film Studies
-TFILM 220 Film and the Arts
-TFILM 377 Spanish Film
-TFILM 386 Silent Cinema
-TFILM 387 World Film 1927–1959
-TFILM 388 World Film 1960–2000
-TFILM 434 Disability in Film
-TFILM 436 Feminist Perspectives in Film and Literature
-TFILM 438 Gender and Sexuality in Film
-TFILM 444 Crime Narratives and Society
-TFILM 481 Film Theory and Aesthetics
-TFILM 483 Film Directors
-TFILM 485 Media Genres
-TFILM 489 Screendance
-TFILM 499 Special Topics in Film Studies
-TGH 302 Global Imaginations (restricted to Global Honors students)
-TLAX 250 Latinos/x in the Media
-TLAX 355 Migration and the Transnational Family in Latino Literature and Film
-TLAX 376 Latin American Film TLAX 441 Mexican Cinema and Society
-Professional Track (a maximum of two non TCOM classes may be used for this requirement) (30 credits)
-TCOM 275 Writing, Reporting and Editing for the Mass Media
-TCOM 320 Principles of Web Design
-TCOM 330 Mobile Communication and Social Practice
-TCOM 347 Television Criticism and Application
-TCOM 348 Nonfiction Writing for Television
-TCOM 349 News Writing
-TCOM 350 Editing and Design for Print Media
-TCOM 351 Video Production
-TCOM 387 Writing for Public Relations
-TCOM 420 Advanced Web Design
-TCOM 470 Documentary Production and Critique
-TCOM 471 Advanced Video Production
-TCOM 482 Investigative Reporting
-TCOM 484 Opinion Writing for the Mass Media
-TCOM 486 Feature Writing for Print Media
-TCOM 490 Communication Capstone Internship
-TFILM 350 Screenwriting
-TFILM 450 Advanced Screenwriting: Writing the Feature
-TWRT 287 Writing Creative Non-Fiction
-TWRT 350 Principles of User Centered Design
-TWRT 353 User Experience Writing
-TWRT 365 Literary Editing and Publishing
-TWRT 440 Cross-Cultural Communication Design
-TWRT 487 Advanced Creative Nonfiction
-Optional Capstone (5 credits)
-Professional Track students may choose to complete a Senior Project (as part of the Professional Track courses). The Senior Project has two main components: students perform a 5-credit internship in the communication industry and write a 10–15 page academic paper. The project is designed to allow senior Professional Track students to gain needed professional experience while placing this professional experience in a broader theoretical framework. Senior project internships and academic paper topics will vary and must have faculty advisor approval.
-Internships
-Contact
-Culture, Arts & Communication
-ACADEMICS
-Academic advising
-Academic calendar
-Canvas
-Library
-Schools and programs
-Study Abroad
-Teaching and Learning Center
-CAMPUS
-Campus Safety
-Equity & Inclusion
-Financial Aid
-Housing
-Information Technology
-Student Life
-University YMCA Student Center
-ABOUT UW TACOMA
-Administration
-Admissions
-Institutional Research
-Jobs
-Parking & transportation
-Research
-UWNetID login
-<a href="https://www.tacoma.uw.edu/"
-aria-label="University of Washington Tacoma Homepage">
-<a href="https://www.facebook.com/uwtacoma"
-title="Follow UW Tacoma on Facebook">
-<a href="https://instagram.com/uwtacoma"
-title="Follow UW Tacoma on Instagram">
-<a href="https://www.tiktok.com/@uwtacoma"
-title="Follow UW Tacoma on TikTok">
-<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
-title="Follow UW Tacoma on Youtube">
-<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
-title="Follow UW Tacoma on Linkedin">
-Puyallup Tribe of Indians
-Tribal Sponsor of UW Tacoma
-Learn More >
-Land
-Acknowledgement
->
-UW Seattle | UW
-Bothell
-&copy; 2026 University of Washington Tacoma
-1900 Commerce Street, Tacoma, WA 98402-3100
-Contact us |
-Terms of Use |
-Privacy |
-Accessibility |
-Rules Docket
+alt="A photo of two students using video editing software on a computer">
+PROFESSIONAL TRACK
+The Professional track offers you a comprehensive approach to the study of media criticism and media writing and production through:
+Combined study of media criticism, writing, and video/documentary production
+Evaluation of cultural products and consideration of theoretical frameworks
+Practical skills focused on print or broadcast media
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-05/unnamed_0.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-05/unnamed_0.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-05/unnamed_0.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-05/unnamed_0.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="a classroom of students with a professor teaching">
+RESEARCH TRACK
+The Research Track provides you with an overview of foundational theoretical frameworks from various political, economic, historical, social, and cultural contexts when studying mass media. You can gain:
+Understanding of the relationships between media, culture, and power
+Insight into U.S. & International media theory
+Critical thinking skills about the connections between media production and consumption
+Preparation for graduate studies or career in media research
+ADVISORS
+Brian Burhenn
+Connect with Advising
+MAJOR COORDINATORS
+Professor David Coon
+DEPARTMENT
+Culture, Arts & Communication (CAC)
+CAREER OPTIONS

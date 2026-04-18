@@ -1,74 +1,295 @@
 Owner: uw-tacoma-ethnic-gender-and-labor-studies:pathway:ethnic-studies-option
-Source: https://www.tacoma.uw.edu/sias-new/socs-new/ethnic-studies-option
-Title: Ethnic Studies Option | Department of Social Sciences | University of Washington Tacoma
+Source: https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies
+Title: Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
 
-href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
-Department of Social Sciences
-Department of Social Sciences
-Majors
-expand_more
-Economics and Policy Analysis (EPA)
-Ethnic, Gender and Labor Studies
-Global Studies Concentration
-History
-Interdisciplinary Arts and Sciences
-Law and Policy
-Politics, Philosophy and Economics (PP&E)
-Psychology
-Minors
-expand_more
+[Supplemental official source] Ethnic Studies Option
+[Supplemental official source] Gender Studies Option
+[Supplemental official source] Global Studies Concentration
+[Supplemental official source] Labor Studies Option
+[Supplemental official source] Supplemental official track and option pages
+[Supplemental official source] UWT general education
+&copy; 2026 University of Washington Tacoma
+<a
+<a href="/sias"
+<a href="https://instagram.com/uwtacoma"
+<a href="https://www.facebook.com/uwtacoma"
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+<a href="https://www.tacoma.uw.edu/"
+<a href="https://www.tiktok.com/@uwtacoma"
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+<img
+<img class="mobile-hide desktop-show"
+<img class="mobile-show desktop-hide"
+<img src=""
+>
+>Home
+>School of Interdisciplinary Arts & Sciences
+1900 Commerce Street, Tacoma, WA 98402-3100
+253-692-4450
+253-692-5718
+25Live
+600w"
+980w,
+A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+ABOUT UW TACOMA
+Academic advising
+Academic calendar
+ACADEMICS
+Accessibility |
+Acknowledgement
+add
+Administration
+Admission Requirements
+ADMISSION REQUIREMENTS
+Admissions
+Advising
+ADVISOR
+alt="">
+alt="Block W - Link to UW Tacoma homepage"/>
+alt="University of Washington Tacoma"/>
 American Indian Studies Minor
+Apply
+aria-label="University of Washington Tacoma Homepage">
+Arts and Humanities (A&H): 20 credits
+As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
+Bachelor of Arts
+Bothell
+Breadcrumb
+Business
+Calendar
+CAMPUS
+Campus Safety
+Canvas
+CAREER OPPORTUNITIES
+Choose one:
+Chose one of the following:
+class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
+Close Search
+Community Organizations
+Connect with Advising
+Contact
+Contact us |
+Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
+Core courses (25 credits)
+Core courses (5 credits; *restricted to Global Honors students) (25 credits)
+Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
+Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
+Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
+Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
+Courses that focus on sociocultural, political, and economic diversity of human experience
+Current Students
+Degree Requirements
+DEGREE REQUIREMENTS
+DEPARTMENT
+Department of Social Sciences
+Department of Social Sciences (SOCS)
+Directory
+Diversity (DIV): 5 credits
+Economics and Policy Analysis (EPA)
 Economics Minor
 Education and Community Engagement Minor
-Gender and Sexuality Studies Minor
-History Minor
-Human Rights Minor
-Law and Policy Minor
-Politics Minor
-Religious Studies Minor
-Social Science Research Methods Minor
-Sociology Minor
-Teaching, Learning and Justice Minor
-SOCS Resources
-expand_more
-SOCS Directory
-Open Public Meetings
-Advising
-MyUW
-Map
-Tools
+English Composition (C): 5 credits
+Environmental Science
+Environmental Sustainability
+Equity & Inclusion
+Ethnic Studies Electives (10 credits)
 Ethnic Studies Option
+Ethnic, Gender and Labor Studies
+Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+expand_more
+Faculty & Staff
+Fax Number
+Financial Aid
+For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+Gender and Sexuality Studies Minor
+Gender Studies Electives (15 credits)
+Gender Studies Option
+General Education Requirements
+Global Studies Concentration
+height="0"
+History
+History Minor
+Housing
+href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
+Human Resources
+Human Rights Minor
+iashelp@uw.edu
+Information Technology
+Institutional Research
+Interdisciplinary Arts and Sciences
+International Focus (40 credits; at least 30 credits must be at the 300–400 level)
+IT Help
+Jobs
+Labor Studies Electives (15 credits)
+Labor Studies Option
+Labor Unions
+Land
+Law and Policy
+Law and Policy Minor
+Learn More >
+Library
+M-F 9a.m.-5p.m.
 Main Content
-<img src=""
-srcset=" 1940w,
-980w,
-600w"
+MAJOR COORDINATORS
+Majors
+Map
+Mathematics
+Minors
+more_vert
+Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
+MyUW
+Natural Sciences (NSc): 20 credits
+Nonprofit Management
+Office Hours:
+Office365
+One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
+Open Public Meetings
+Panopto
+Parking & transportation
+Politics Minor
+Politics, Philosophy and Economics (PP&E)
+Post-graduate Studies
+Privacy |
+Professor Emily Ignacio
+Professor Margaret Griesse
+Psychology
+Puyallup Tribe of Indians
+Reasoning (RSN): 5 credits
+Religious Studies Minor
+Research
+Resources
+Rules Docket
+School of Interdisciplinary Arts & Sciences
+Schools and programs
+Scout
+Search
+Shelli Veal
+SIAS Scholarships
+SIAS Student Advisory Council
 sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="">
-Degree Requirements
-Core courses (25 credits)
+Skip to main content
+Social Science Research Methods Minor
+Social Sciences
+Social Sciences (SSc): 20 credits
+Sociology Minor
+SOCS Directory
+SOCS Resources
+Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
+src="/sites/default/files/sites/uwtd8main/W.svg"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+srcset=" 1940w,
+Student Life
+Students in the Global Studies concentration study a variety of subjects and themes in an international context, including artistic, cultural, political and economic patterns among and within other nations and may choose to focus their studies on one or more world regions or on specific themes. Advanced language study is an integral component of Global Studies.
+Study Abroad
+style="display:none;
+TAMST 260 Introduction to Queer Studies
+TAMST 430 Queer Performances
+TANTH 354 History of the Concept of Culture
+TARTS 281 Art and Culture in India
+TARTS 282 Art and Culture in China
+TARTS 283 Art and Culture in Japan
+TARTS 284 Art and Culture in the Pacific
+TARTS 360 Women Artists from the Renaissance to the Present
+TARTS 406 Labor, Globalization and Art
+TARTS 480 Contemporary Art and Society 1945–Present
+TCHIN 101 First-Year Chinese
+TCHIN 102 First-Year Chinese
+TCHIN 103 First-Year Chinese
+TCHIN 201 Second-Year Chinese
+TCHIN 202 Second-Year Chinese
+TCHIN 203 Second-Year Chinese
+TCOM 230 Media Globalization and Citizenship
+TCOM 430 Global Networks, Local Identities
+TCOM 444 Gender, Ethnicity, Class and the Media
+TCOM 461 Media and Identity in Asia
+Teaching and Learning Center
+Teaching, Learning and Justice Minor
+TECON 210 Ethics and Economics
+TECON 320 Gender and Development
+TECON 325 Contemporary Issues in International Political Economy
+TECON 370 Economics and Social Mobility
+TECON 450 Labor Economics and Policy
 TEGL 101 Introduction to Ethnic, Gender and Labor Studies
-TWOMN 101 Introduction to Women's Studies
-Choose one:
-TEGL 266 Introduction to Labor Studies
-THIST 322 American Labor Since the Civil War
-TPOLS 270 Introduction to Political Economy
-Choose one:
 TEGL 112 Introduction to Indigenous Studies
 TEGL 202 Introduction to Contemporary American Indian Issues
+TEGL 210 Introduction to Qualitative Research and Ethics
+TEGL 266 Introduction to Labor Studies
+TEGL 301 Introduction to Indigenous Women and Feminism
+TEGL 310 Intersectional Feminisms
+TEGL 340 Race, Gender and Sexuality in a Global Perspective
+TEGL 380 Gender and Sexuality across Cultural and Historical Contexts
+TEGL 401 Critical and Indigenous Methodologies
+TEGL 435 Migration and the Modern World
+Terms of Use |
+TFILM 436 Feminist Perspectives in Film and Literature
+TFILM 438 Gender and Sexuality in Film
+TGEOG 349 Geography and International Trade
+TGEOG 352 Cultural Geography
+TGEOG 420 Gender, Space and Culture
+TGH 301 Global Interactions *
+The Ethnic Studies option allows students to study race and ethnicity through an interdisciplinary lens. Students interested in this option take courses which examine the contributions of people from diverse racial and ethnic groups (i.e., African American, Chicano/Latino, Asian American, Native American) to various areas of study including economics, gender studies, history, literature, politics and sociology within global and local contexts.
+The Ethnic, Gender and Labor Studies major examines how communities form and are transformed, with a focus on the relationship between social class, race and ethnicity and gender. Through a wide variety of courses in the social sciences and humanities, students explore historical roots of various communities and analyze movements to facilitate labor and community organizing, coalition building, conflict resolution, group empowerment and movements for social change. Students may choose from three options:
+The Gender Studies option offers courses that focus on gender roles and gender identity from a variety of theoretical approaches. These courses not only investigate the concepts of gender and sexuality, but emphasize the intersections with such diverse phenomena as society, politics, literature, globalization, music, economics, art, poverty, communication, race, film, work and popular culture.
+The Labor Studies option offers courses on the experience of work and workers in modern market economies. Courses take an interdisciplinary approach to the political, economic and social developments that shape working life, along with workers' impact on society, including unions and the labor movement, social class and inequality, the changing nature of work, international political economy and workplace culture and emphasizes the connections between race, class and gender in an economic context.
+THIST 150 World History I
+THIST 151 World History II
 THIST 220 African American History 1619–1865
 THIST 221 African American History 1865–1945
 THIST 222 African American History 1945–present
 THIST 320 Asian American History
+THIST 322 American Labor Since the Civil War
+THIST 413 Civil Rights, Civil Liberties
+THIST 437 Doing Community History
+THIST 440 Black Labor in America
+title="Follow UW Tacoma on Facebook">
+title="Follow UW Tacoma on Instagram">
+title="Follow UW Tacoma on Linkedin">
+title="Follow UW Tacoma on TikTok">
+title="Follow UW Tacoma on Youtube">
+TLAW 348 Gender and Law
 TLAX 238 Latinos in the United States
+TLAX 290 Latinx Social Movements
+TLAX 380 Latinx Sexualities
+TLAX 462 Women in Latin America
 TLIT 320 African American Literature from Slavery to Present
+TLIT 324 African American Women's Literature
+TLIT 388 Cross Cultural Studies in Women's Literature
+TLIT 431 Contemporary Native American Women's Literature
+TLIT 476 American Women's Lit: Nineteenth and Twentieth Century
+Tools
+TPOLS 270 Introduction to Political Economy
+TPOLS 329 Making of Modern Africa
+TPOLS 343 Community and Labor Organizing: A Multicultural Perspective
+TPOLS 410 Labor Rights and Human Rights
+TPSYCH 202 Human Sexuality
+TPSYCH 320 Race, Class and Gender Contexts of Child Development
+TPSYCH 349 Sexual Identities
+TPSYCH 400 Psychology of Women
+TPSYCH 403 Psychology of Black Women
+TPSYCH 431 Sexual Deviance
+TPSYCH 432 Sex Crimes and Sexual Violence
+Tribal Sponsor of UW Tacoma
 TSOC 265 Race and Ethnicity in the United States
 TSOC 270 Introduction to Asian America
-Choose one:
-TEGL 210 Introduction to Qualitative Research and Ethics
-TEGL 401 Critical and Indigenous Methodologies
-THIST 437 Doing Community History
+TSOC 335 Social Class and Inequality
+TSOC 434 Women, Race and Class
+TSOC 437 Immigration Today
 TSOC 439 Fieldwork and Interviewing in Communities
 TSOC 460 Demographic Methods: Analyzing Race, Class and Gender
+TSOC 465 Asian and Asian American Laborers in the United States: Citizenship, Immigrant Rights and the Welfare State
 TSOC 470 Qualitative Research: Inquiry and Methods
+TWOMN 101 Introduction to Women's Studies
 TWOMN 302 Research Methods in Women Studies
+TWOMN 345 Women and Work in the United States
+TWOMN 420 Women and the Global Economy
+University YMCA Student Center
+UW Gmail
+UW Seattle | UW
+UWNetID login
+visibility:hidden">
+width="0"
+Workday
+Writing (W): 10 credits
+Zoom

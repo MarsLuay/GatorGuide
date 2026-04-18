@@ -1247,10 +1247,14 @@ Source-generated from parsed UW requirement-source registries.
 - `ECON& 201`
 - `ECON& 202`
 - `MATH 256`
+- `MATH& 151`
+- `MATH& 152`
+- `MATH& 163`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ACCT& 201 -> `ACCT& 201`
+- Required before application: Approved calculus prerequisite. complete at least 1 course from this set. alternate path `MATH& 151` or `MATH& 152` or `MATH& 163`
+- Required before application: Microeconomics -> `ECON& 201`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-business-administration:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2586,7 +2590,6 @@ Source-generated from parsed UW requirement-source registries.
 - Admission requirements and process
 - You can start the ECFS program in autumn quarter or winter quarter. For autumn quarter admission, apply March 1 - April 15. For winter quarter admission, apply September 1 - October 15. We recommend starting your application process as early as possible due to the different steps and requirements.
 - Requirements
-- 5-credit English composition course graded 2.0 or higher
 
 ##### Early Childhood & Family Studies parsed official requirement cues
 
@@ -4040,6 +4043,63 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
+### Global Literary Studies (BA)
+
+#### Summary
+
+Planner coverage: `detailed`. Best Green River base: `custom`.
+Source-generated from parsed UW requirement-source registries.
+
+#### Exact UW Courses Needed for Full Degree at UW
+
+##### Links Used
+
+- [UW Global Literary Studies degree requirements](https://slavic.washington.edu/ba-global-literary-studies-glits)
+- [UW Global Literary Studies degree requirements](https://slavic.washington.edu/ba-global-literary-studies-glits) - Source used for parser-backed UW requirement extraction.
+
+##### Global Literary Studies (BA) parsed official source requirements
+
+- Diversity & Equity
+- Admission Requirements: Students in good academic standing may declare this major at any time.
+- Completion Requirements
+- 53-55 credits
+- Literature Core Courses (25 credits):
+- Introduction to Literature (5 credits): one course from GLITS 250, GLITS 251, GLITS 252, or GLITS 253
+- Literature Across Boundaries (20 credits): courses from at least two of the following five categories. See adviser or department website for list of approved courses (a course not on the approved list must be approved by the program adviser):
+- Integrative Experience Course (5 credits): GLITS 450
+- Electives (23-25 credits): any combination of the courses listed in requirement #1 above, second-year or above language courses (maximum 15 credits), or courses from a list of approved elective courses. See adviser or department website for list of approved elective courses* (a course not on the approved list must be approved by the program adviser). Maximum one 200-level course graded as credit/no credit may count toward this requirement.
+- Minimum 30 credits taken in 300/400 level courses
+
+##### Global Literary Studies (BA) parsed official requirement cues
+
+- Diversity & Equity
+- Admission Requirements: Students in good academic standing may declare this major at any time.
+- Completion Requirements
+- 53-55 credits
+- Literature Core Courses (25 credits):
+- Introduction to Literature (5 credits): one course from GLITS 250, GLITS 251, GLITS 252, or GLITS 253
+- Literature Across Boundaries (20 credits): courses from at least two of the following five categories. See adviser or department website for list of approved courses (a course not on the approved list must be approved by the program adviser):
+- Integrative Experience Course (5 credits): GLITS 450
+- Electives (23-25 credits): any combination of the courses listed in requirement #1 above, second-year or above language courses (maximum 15 credits), or courses from a list of approved elective courses. See adviser or department website for list of approved elective courses* (a course not on the approved list must be approved by the program adviser). Maximum one 200-level course graded as credit/no credit may count toward this requirement.
+- Minimum 30 credits taken in 300/400 level courses
+
+##### Global Literary Studies (BA) parsed choices and pathway notes
+
+- Literature Across Boundaries (20 credits): courses from at least two of the following five categories. See adviser or department website for list of approved courses (a course not on the approved list must be approved by the program adviser):
+
+#### GRC Equivalent Courses
+
+On To Do list.
+
+#### Required sequences for specific credits
+
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Source-backed note: Parser confidence: high.
+- Source-backed note: Parsed degree-map block candidate: uw-seattle-global-literary-studies:source-degree-map:.
+- Source-backed note: Parsed requirement cues extracted from the current official source.
+- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
+
+
 ### Greek
 
 #### Summary
@@ -5037,27 +5097,27 @@ Source-generated from parsed UW requirement-source registries.
 
 - 10 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 - 15 credits of 300-level classical Greek, excluding GREEK 300, GREEK 301
+- 15 credits of 300-level GREEK courses, excluding GREEK 300 and GREEK 301
 - 15 credits of 300-level LATIN courses, excluding LATIN 300 and LATIN 301
 - 15 credits of 300-level Latin, excluding LATIN 300, LATIN 301
+- 15 credits of 400-level GREEK courses
 - 15 credits of 400-level LATIN courses
 - 34 additional credits chosen with department approval from the following courses: Greek and Latin at the 400 level; classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 - 5 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 - An oral general examination on Greek and Roman history, literature, and related subjects. This examination may be taken only after completion of requirements 2-5; upon passing it, the student is admitted to candidacy for the Ph.D.
-- CLAS 495, the Senior Essay (2-3 credits)
-- Degree Requirements
 
 ##### Latin parsed official requirement cues
 
 - 10 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 - 15 credits of 300-level classical Greek, excluding GREEK 300, GREEK 301
+- 15 credits of 300-level GREEK courses, excluding GREEK 300 and GREEK 301
 - 15 credits of 300-level LATIN courses, excluding LATIN 300 and LATIN 301
 - 15 credits of 300-level Latin, excluding LATIN 300, LATIN 301
+- 15 credits of 400-level GREEK courses
 - 15 credits of 400-level LATIN courses
 - 34 additional credits chosen with department approval from the following courses: Greek and Latin at the 400 level; classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 - 5 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 - An oral general examination on Greek and Roman history, literature, and related subjects. This examination may be taken only after completion of requirements 2-5; upon passing it, the student is admitted to candidacy for the Ph.D.
-- CLAS 495, the Senior Essay (2-3 credits)
-- Degree Requirements
 
 #### GRC Equivalent Courses
 
@@ -6046,27 +6106,29 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Norwegian parsed official source requirements
 
+- 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
+- 60 credits of which 25 are on the 300 level or above + 5 cr Capstone (As of Autumn, 2022).
+- Credits earned during studies in Norway can be transferred in consultation with the Foreign Study Office and the Scandinavian Department.
 - Diversity and Equity
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
-- Major Requirements
-- 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
 - First- and second-year courses in Norwegian (30 credits)
-- Upper-division courses in Norwegian from list of approved courses. (10 credits)
-- Upper-division SCAND courses from list of approved courses. (15 credits)
+- First- and second-year courses in target language (Danish, Estonian, Finnish, Latvian, Lithuanian, Norwegian, Swedish) (30 credits)
+- Major Requirements
 - SCAND 498 Senior Capstone Project(5 credits)
-- Credits earned during studies in Norway can be transferred in consultation with the Foreign Study Office and the Scandinavian Department.
+- Upper-division courses in Norwegian from list of approved courses. (10 credits)
 
 ##### Norwegian parsed official requirement cues
 
+- 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
+- 60 credits of which 25 are on the 300 level or above + 5 cr Capstone (As of Autumn, 2022).
+- Credits earned during studies in Norway can be transferred in consultation with the Foreign Study Office and the Scandinavian Department.
 - Diversity and Equity
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
-- Major Requirements
-- 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
 - First- and second-year courses in Norwegian (30 credits)
-- Upper-division courses in Norwegian from list of approved courses. (10 credits)
-- Upper-division SCAND courses from list of approved courses. (15 credits)
+- First- and second-year courses in target language (Danish, Estonian, Finnish, Latvian, Lithuanian, Norwegian, Swedish) (30 credits)
+- Major Requirements
 - SCAND 498 Senior Capstone Project(5 credits)
-- Credits earned during studies in Norway can be transferred in consultation with the Foreign Study Office and the Scandinavian Department.
+- Upper-division courses in Norwegian from list of approved courses. (10 credits)
 
 ##### Norwegian parsed choices and pathway notes
 
@@ -6298,7 +6360,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Bachelor of Music - Percussion Performance](https://music.washington.edu/bachelor-music-percussion-performance)
-- [UW Bachelor of Music - Percussion Performance](https://music.washington.edu/bachelor-music-percussion-performance) - Cached snapshot used for parser-backed UW requirement extraction.
+- [UW Bachelor of Music - Percussion Performance](https://music.washington.edu/bachelor-music-percussion-performance) - Source used for parser-backed UW requirement extraction.
 
 ##### Percussion Performance, B.M. degree preparation and admissions
 
@@ -6316,7 +6378,6 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III & Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III & Sedcond-Year Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUHST 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
-- Note: Built from a cached official snapshot because HTTP 429 Too Many Requests.
 
 ##### Percussion Performance, B.M. parsed official requirement cues
 
@@ -6330,7 +6391,6 @@ Source-generated from parsed UW requirement-source registries.
 - MUSIC 203, 301, 302: First-Year Theory III & Second-Year Theory I, II ( Aut,Win,Spr ) (3,3,3) (9 credits)
 - MUSIC 206, 304, 305: First-Year Ear Training III & Sedcond-Year Ear Training I, II ( Aut,Win,Spr ) (1,1,1) (3 credits)
 - MUHST 210, 211, 212: Music History I, II, III ( Aut,Win,Spr ) (3,3,3) (9 credits)
-- Note: Built from a cached official snapshot because HTTP 429 Too Many Requests.
 
 #### GRC Equivalent Courses
 
@@ -6347,7 +6407,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Requirement cue lines: MUSIC 131: History of Jazz (5)
 - Source-backed note: Source parse confidence: high.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: HTTP 429 Too Many Requests
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-percussion-performance-b-m:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -6426,7 +6485,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Physics B.S. Degree Requirements](https://phys.washington.edu/physics-bs-degree-requirements)
-- [Physics B.S. Degree Requirements](https://phys.washington.edu/physics-bs-degree-requirements) - Cached snapshot used for parser-backed UW requirement extraction.
+- [Physics B.S. Degree Requirements](https://phys.washington.edu/physics-bs-degree-requirements) - Source used for parser-backed UW requirement extraction.
 
 ##### Physics before-enrollment degree head starts
 
@@ -6444,7 +6503,6 @@ Source-generated from parsed UW requirement-source registries.
 - 3 to 5 credits from any
 - 6 credits from:
 - 9 credits from:
-- Note: Built from a cached official snapshot because HTTP 429 Too Many Requests.
 
 ##### Physics parsed official requirement cues
 
@@ -6458,26 +6516,31 @@ Source-generated from parsed UW requirement-source registries.
 - 3 to 5 credits from any
 - 6 credits from:
 - 9 credits from:
-- Note: Built from a cached official snapshot because HTTP 429 Too Many Requests.
 
 ##### Physics parsed choices and pathway notes
 
 - Once you apply for graduation, you are eligible for Graduating Senior Priority (GSP) registration which grants you priority Period 1 registration for your last 2 quarters. For example, a Physics student planning to graduate in spring quarter would have GSP registration for both winter and spring quarters if they complete their graduation process with Physics Student Services within the first 2-3 weeks of autumn quarter. For your specific timeline, please view Academic Calendar , select the appropriate academic year, and view when the Graduating Senior Priority application is due under ‘Application Deadlines’.
+- Our Physics B.S. degree program is one of the largest in the nation, with 175 degrees awarded annually. Graduates pursue diverse paths including further studies in physics, teaching careers, and positions in the private sector. The program offers three B.S. degree tracks: Comprehensive Physics, Applied Physics, and Teaching Physics, allowing students to tailor their degree to their interests and goals. Students choose a track when declaring a major, but can change it anytime before applying to graduate.
 - Applied physics track
+- Applied Physics Track
 - Applied Physics Track (addl. 34-43 credits)
 - Biological Physics Track (addl. 48-56 credits)
 - Biological physics track (No longer accepting new students as of Spring 2024)
 - Comprehensive & Applied Physics Track Electives
+- Comprehensive Physics Track
 - Comprehensive track
-- Comprehensive Track (addl. 38-46 credits)
-- Every Physics B.S. degree option requires completion of a selection of courses plus fulfilment of a capstone requirement involving activities outside a typical classroom. Continuation in the major requires maintaining satisfactory progress. For further information on the range of activies which may be used to satisfy the capstone requirement for each degree track, and on satisfactory progress criteria, refer to:
-- ONLY for recently admitted UW transfer students or current UW students who have completed ≥ 105 credits and ≥ 5 post high-school college quarters. Either Standard or Early Pathway, as appropriate.
-- Note: Built from a cached official snapshot because HTTP 429 Too Many Requests.
 
 #### GRC Equivalent Courses
 
 - `ENGR 250`
+- `MATH 238`
+- `MATH 240`
+- `MATH& 151`
+- `MATH& 152`
+- `MATH& 163`
+- `PHYS& 221`
 - `PHYS& 222`
+- `PHYS& 223`
 
 #### Required sequences for specific credits
 
@@ -6489,7 +6552,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Requirement cue lines: Phys 122 or Phys 142
 - Source-backed note: Source parse confidence: high.
 - Source-backed note: Parser confidence: high.
-- Source-backed note: Used cached official snapshot fallback: HTTP 429 Too Many Requests
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-physics:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -6575,42 +6637,42 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Political Science parsed official source requirements
 
-- Political Science Major Declaration and Requirements | Department of Political Science | University of Washington
-- Requirements
-- International Security and Political Economy Option Courses
-- Natural Sciences Courses
-- Political Science Major Declaration and Requirements
-- Political Science is a minimum requirement major. Students who meet the minimum requirements may declare the major.
-- Minimum Requirements
-- Major Requirements
-- International Security Option
-- Political Economy Option
+- (3) POLS 503 - Advanced Quantitative Research Methods (Spring of first year) OR one course from a list of Qualitative and Mixed-Methods Courses . Students using the qualitative or mixed-method course option must take this course before completing the MA. See the Political Methodology field requirements for a list of accepted qualitative and mixed method courses, as well as procedures for petitioning for alternative courses to fulfill this option.
+- A Political Science adviser will contact you with instructions on how to complete submission of your application. In some cases, the adviser may need to meet with you before submitting the application.
+- A student must also prepare in a second general field or in one of the specialized fields: area study (i.e., China Studies or Environmental Politics ), Public Law, Political Economy, Political Methodology, or Race, Ethnicity & Politics. Specialized fields are periodically redefined given faculty/student interests. The third field may be a general or specialized field or the doctoral student may choose to substitute one non-designated field that is constructed from another academic discipline such as anthropology or sociology, or individually defined by the student. International law, public administration, urban politics, political psychology, ethnicity and nationality, philosophy of social science, and language policy are examples of recent non-designated fields.
+- After completing course requirements for each of a students’ three fields they sit a comprehensive exam in order to prove their expertise in each area. The student takes each exam in the same quarter, followed by an oral exam . For more information on each exam structure and schedule, visit the field page. The methodology field does not require a comprehensive field exam.
+- Apply for the option when you have completed at least 6 courses or when you apply to graduate. Students who complete the international security option will receive the notation Political Science: International Security on their UW transcript.
+- Apply for the option when you have completed at least 6 courses or when you apply to graduate. Students who complete the political economy option will receive the notation Political Science: Political Economy on their UW transcript.
+- Click on each field to see MA and doctoral requirements.
+- Complete four additional courses numbered Pol S 210 and above to bring total credits to 50. No field restrictions. Independent studies and internships (e.g., Pol S 489, 496, 498, 499) do not count toward the major. 5 credits of Pol S 497 will count toward the major.
+- Complete one course numbered Pol S 210 and above chosen from three of the following five fields
+- Complete three introductory courses, chosen from the following options:
 
 ##### Political Science parsed official requirement cues
 
-- Political Science Major Declaration and Requirements | Department of Political Science | University of Washington
-- Requirements
-- International Security and Political Economy Option Courses
-- Natural Sciences Courses
-- Political Science Major Declaration and Requirements
-- Political Science is a minimum requirement major. Students who meet the minimum requirements may declare the major.
-- Minimum Requirements
-- Major Requirements
-- International Security Option
-- Political Economy Option
+- (3) POLS 503 - Advanced Quantitative Research Methods (Spring of first year) OR one course from a list of Qualitative and Mixed-Methods Courses . Students using the qualitative or mixed-method course option must take this course before completing the MA. See the Political Methodology field requirements for a list of accepted qualitative and mixed method courses, as well as procedures for petitioning for alternative courses to fulfill this option.
+- A Political Science adviser will contact you with instructions on how to complete submission of your application. In some cases, the adviser may need to meet with you before submitting the application.
+- A student must also prepare in a second general field or in one of the specialized fields: area study (i.e., China Studies or Environmental Politics ), Public Law, Political Economy, Political Methodology, or Race, Ethnicity & Politics. Specialized fields are periodically redefined given faculty/student interests. The third field may be a general or specialized field or the doctoral student may choose to substitute one non-designated field that is constructed from another academic discipline such as anthropology or sociology, or individually defined by the student. International law, public administration, urban politics, political psychology, ethnicity and nationality, philosophy of social science, and language policy are examples of recent non-designated fields.
+- After completing course requirements for each of a students’ three fields they sit a comprehensive exam in order to prove their expertise in each area. The student takes each exam in the same quarter, followed by an oral exam . For more information on each exam structure and schedule, visit the field page. The methodology field does not require a comprehensive field exam.
+- Apply for the option when you have completed at least 6 courses or when you apply to graduate. Students who complete the international security option will receive the notation Political Science: International Security on their UW transcript.
+- Apply for the option when you have completed at least 6 courses or when you apply to graduate. Students who complete the political economy option will receive the notation Political Science: Political Economy on their UW transcript.
+- Click on each field to see MA and doctoral requirements.
+- Complete four additional courses numbered Pol S 210 and above to bring total credits to 50. No field restrictions. Independent studies and internships (e.g., Pol S 489, 496, 498, 499) do not count toward the major. 5 credits of Pol S 497 will count toward the major.
+- Complete one course numbered Pol S 210 and above chosen from three of the following five fields
+- Complete three introductory courses, chosen from the following options:
 
 ##### Political Science parsed choices and pathway notes
 
+- A student must also prepare in a second general field or in one of the specialized fields: area study (i.e., China Studies or Environmental Politics ), Public Law, Political Economy, Political Methodology, or Race, Ethnicity & Politics. Specialized fields are periodically redefined given faculty/student interests. The third field may be a general or specialized field or the doctoral student may choose to substitute one non-designated field that is constructed from another academic discipline such as anthropology or sociology, or individually defined by the student. International law, public administration, urban politics, political psychology, ethnicity and nationality, philosophy of social science, and language policy are examples of recent non-designated fields.
+- Demonstration of competence in a foreign language is not required for the Ph.D. Should the student select a field(s) where the supervisory committee believes that competence in a language would be beneficial, they will be so advised.
+- The department recognizes four "general fields" in political science: American Politics, Comparative Politics, International Relations, and Political Theory. The department requires each student to select at least one general field, in which the student must become familiar with the main body of literature, major intellectual issues and develop competence in that field's mode of analysis. To meet this requirement, students must take the core course in the designated field. All students are required to take at least one additional core course in another general field.
+- (3) POLS 503 - Advanced Quantitative Research Methods (Spring of first year) OR one course from a list of Qualitative and Mixed-Methods Courses . Students using the qualitative or mixed-method course option must take this course before completing the MA. See the Political Methodology field requirements for a list of accepted qualitative and mixed method courses, as well as procedures for petitioning for alternative courses to fulfill this option.
 - Apply for the option when you have completed at least 6 courses or when you apply to graduate. Students who complete the international security option will receive the notation Political Science: International Security on their UW transcript.
 - Apply for the option when you have completed at least 6 courses or when you apply to graduate. Students who complete the political economy option will receive the notation Political Science: Political Economy on their UW transcript.
 - Download the requirements and courses lists for the International Security Option:
 - Download the requirements and courses lists from the Political Economy Option:
 - International Security and Political Economy Option Courses
 - International Security Option
-- International Security Option (PDF)
-- No more than 20 credits can be used to satisfy both the option and the requirements for any other major. Courses that are not in Pol S (courses offered by departments other than Pol S) fulfill only elective coursework towards the option, not major requirements.
-- Political Economy Option
-- Political Economy Option (PDF)
 
 #### GRC Equivalent Courses
 

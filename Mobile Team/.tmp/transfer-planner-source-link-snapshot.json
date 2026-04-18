@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-17T23:11:58.491Z",
-  "totalSources": 324,
-  "reachableSourceCount": 324,
+  "generatedAt": "2026-04-18T10:16:01.486Z",
+  "totalSources": 331,
+  "reachableSourceCount": 331,
   "failedSourceCount": 0,
   "sources": [
     {
@@ -20,8 +20,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
       "contentType": "text/html",
       "contentLength": "45179",
-      "etag": "\"b07b-64f987cacf740\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"b07b-64fac978462fd\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -106,8 +106,8 @@
       "finalUrl": "https://aes.washington.edu/ba-american-ethnic-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "51310",
-      "etag": "\"1776467189\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:29 GMT",
+      "etag": "\"1776507023\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -130,8 +130,8 @@
       "finalUrl": "https://ais.washington.edu/ba-american-indian-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "48465",
-      "etag": "\"1776466361\"",
-      "lastModified": "Fri, 17 Apr 2026 22:52:41 GMT",
+      "etag": "\"1776507023\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -144,18 +144,25 @@
         "UW Applied Mathematics major requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-applied-mathematics"
+        "uw-seattle-applied-mathematics",
+        "uw-seattle-applied-mathematics::applied-mathematics-data-science-option",
+        "uw-seattle-applied-mathematics::b-s-to-m-s-pathway",
+        "uw-seattle-applied-mathematics::computational-finance-and-risk-management-data-science-option",
+        "uw-seattle-applied-mathematics::data-science-option",
+        "uw-seattle-applied-mathematics::requirements-for-data-science-option",
+        "uw-seattle-applied-mathematics::what-is-applied-mathematics-with-a-data-science-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://amath.washington.edu/undergraduate-major-applied-mathematics",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "47894",
-      "etag": "\"1776467189\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:29 GMT",
+      "etag": "\"1776507023\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -226,8 +233,8 @@
       "finalUrl": "https://asian.washington.edu/ba-asian-languages-cultures",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55164",
-      "etag": "\"1776464105\"",
-      "lastModified": "Fri, 17 Apr 2026 22:15:05 GMT",
+      "etag": "\"1776507024\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:24 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -250,8 +257,8 @@
       "finalUrl": "https://asian.washington.edu/ba-chinese",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "52263",
-      "etag": "\"1776467190\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:30 GMT",
+      "etag": "\"1776507025\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:25 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -264,18 +271,21 @@
         "UW Japanese degree requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-japanese"
+        "uw-seattle-japanese",
+        "uw-seattle-japanese::linguistics-option",
+        "uw-seattle-japanese::literature-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://asian.washington.edu/ba-japanese",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "54266",
-      "etag": "\"1776464526\"",
-      "lastModified": "Fri, 17 Apr 2026 22:22:06 GMT",
+      "etag": "\"1776505142\"",
+      "lastModified": "Sat, 18 Apr 2026 09:39:02 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -298,8 +308,8 @@
       "finalUrl": "https://asian.washington.edu/ba-korean",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50980",
-      "etag": "\"1776464577\"",
-      "lastModified": "Fri, 17 Apr 2026 22:22:57 GMT",
+      "etag": "\"1776507028\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:28 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -322,8 +332,8 @@
       "finalUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55538",
-      "etag": "\"1776467193\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:33 GMT",
+      "etag": "\"1776505693\"",
+      "lastModified": "Sat, 18 Apr 2026 09:48:13 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -346,8 +356,8 @@
       "finalUrl": "https://astro.washington.edu/timeline-and-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "53122",
-      "etag": "\"1776467189\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:29 GMT",
+      "etag": "\"1776507025\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:25 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -360,10 +370,24 @@
         "UW Bioengineering degree requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-bioengineering"
+        "uw-seattle-bioengineering",
+        "uw-seattle-bioengineering::bioengineering-professional-series-bps-track",
+        "uw-seattle-bioengineering::bioengineering-senior-capstone-choose-one-track",
+        "uw-seattle-bioengineering::bs-bioengineering-with-option-in-data-science",
+        "uw-seattle-bioengineering::bs-bioengineering-with-option-in-data-science-and-8211-uw-bioengineering",
+        "uw-seattle-bioengineering::bs-bioengineering-with-option-in-nano-and-038-molecular-engineering-nme",
+        "uw-seattle-bioengineering::bs-bioengineering-with-option-in-nano-and-molecular-engineering-nme",
+        "uw-seattle-bioengineering::core-courses-4-credits-minimum-required-from-either-track",
+        "uw-seattle-bioengineering::data-science-option",
+        "uw-seattle-bioengineering::data-science-option-declaration-process",
+        "uw-seattle-bioengineering::how-to-declare-the-data-science-option",
+        "uw-seattle-bioengineering::phd-data-science-option",
+        "uw-seattle-bioengineering::phd-data-science-option-and-8211-uw-bioengineering",
+        "uw-seattle-bioengineering::programming-and-8211-choose-one-option"
       ],
       "ok": true,
       "status": 200,
@@ -395,7 +419,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Fri, 17 Apr 2026 21:19:03 GMT",
+      "lastModified": "Sat, 18 Apr 2026 08:46:11 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -419,7 +443,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Fri, 17 Apr 2026 21:19:03 GMT",
+      "lastModified": "Sat, 18 Apr 2026 08:46:11 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -443,8 +467,8 @@
       "finalUrl": "https://chem.washington.edu/ba-biochemistry",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "83650",
-      "etag": "\"1776467190\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:30 GMT",
+      "etag": "\"1776505995\"",
+      "lastModified": "Sat, 18 Apr 2026 09:53:15 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -470,8 +494,8 @@
       "finalUrl": "https://chem.washington.edu/ba-chemistry",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "68999",
-      "etag": "\"1776464249\"",
-      "lastModified": "Fri, 17 Apr 2026 22:17:29 GMT",
+      "etag": "\"1776507027\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:27 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -549,8 +573,8 @@
       "finalUrl": "https://cinema.washington.edu/ba-comparative-literature",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45842",
-      "etag": "\"1776467192\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:32 GMT",
+      "etag": "\"1776507028\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:28 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -573,8 +597,8 @@
       "finalUrl": "https://classics.washington.edu/ba-classics",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "46041",
-      "etag": "\"1776463823\"",
-      "lastModified": "Fri, 17 Apr 2026 22:10:23 GMT",
+      "etag": "\"1776507028\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:28 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -597,8 +621,8 @@
       "finalUrl": "https://classics.washington.edu/ba-greek",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45812",
-      "etag": "\"1776467193\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:33 GMT",
+      "etag": "\"1776507030\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:30 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -621,8 +645,8 @@
       "finalUrl": "https://classics.washington.edu/ba-latin",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45827",
-      "etag": "\"1776463919\"",
-      "lastModified": "Fri, 17 Apr 2026 22:11:59 GMT",
+      "etag": "\"1776507032\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:32 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -644,9 +668,9 @@
       "status": 200,
       "finalUrl": "https://disabilitystudies.washington.edu/DS_major",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "35848",
-      "etag": "\"1776467193\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:33 GMT",
+      "contentLength": "35851",
+      "etag": "\"1776507029\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:29 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -670,7 +694,7 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Fri, 17 Apr 2026 23:06:33 GMT",
+      "lastModified": "Sat, 18 Apr 2026 10:10:29 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -683,10 +707,14 @@
         "UW Early Childhood & Family Studies program page"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-early-childhood-and-family-studies"
+        "uw-seattle-early-childhood-and-family-studies",
+        "uw-seattle-early-childhood-and-family-studies::route-menu-active-trails-main",
+        "uw-seattle-early-childhood-and-family-studies::route-menu-active-trails-thinstrip-menu",
+        "uw-seattle-early-childhood-and-family-studies::route-name-is-layout-builder-ui"
       ],
       "ok": true,
       "status": 200,
@@ -731,18 +759,24 @@
         "UW English LLC option requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-english-language-literature-and-culture"
+        "uw-seattle-english-language-literature-and-culture",
+        "uw-seattle-english-language-literature-and-culture::ba-in-english-creative-writing-option",
+        "uw-seattle-english-language-literature-and-culture::ba-in-english-language-and-literature-option",
+        "uw-seattle-english-language-literature-and-culture::english-language-literature-and-culture-option",
+        "uw-seattle-english-language-literature-and-culture::language-and-literature-option",
+        "uw-seattle-english-language-literature-and-culture::language-and-literature-option-requirements-summer-2019-spring-2022"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "73407",
-      "etag": "\"1776466513\"",
-      "lastModified": "Fri, 17 Apr 2026 22:55:13 GMT",
+      "etag": "\"1776505973\"",
+      "lastModified": "Sat, 18 Apr 2026 09:52:53 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -837,8 +871,8 @@
       "finalUrl": "https://german.washington.edu/german-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "51343",
-      "etag": "\"1776467188\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:28 GMT",
+      "etag": "\"1776507030\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:30 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -861,8 +895,8 @@
       "finalUrl": "https://history.washington.edu/major",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "53535",
-      "etag": "\"1776466021\"",
-      "lastModified": "Fri, 17 Apr 2026 22:47:01 GMT",
+      "etag": "\"1776507030\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:30 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -875,18 +909,24 @@
         "UW Informatics curriculum"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-informatics"
+        "uw-seattle-informatics",
+        "uw-seattle-informatics::begin-taking-major-electives-degree-option-classes-spring-of-junior-year",
+        "uw-seattle-informatics::biomedical-and-health-informatics-option",
+        "uw-seattle-informatics::data-science-option",
+        "uw-seattle-informatics::declare-your-major-option-by-spring-of-junior-year-recommended",
+        "uw-seattle-informatics::declaring-an-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://ischool.uw.edu/programs/informatics/curriculum",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "69416",
-      "etag": "\"1776467197\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:37 GMT",
+      "etag": "\"1776507031\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:31 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -936,7 +976,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Asian Studies - Major - The Henry M. Jackson School of International Studies",
-      "bodyHash": "772480901e953392ee91d1ddb19cec48b576122d2cfedfd4994a2eebeccfa85f",
+      "bodyHash": "47fe358561e3dda4199859ee310f0986097a69a53887b2cf18795ec62eb366b6",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -960,7 +1000,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Jewish Studies - Major - The Henry M. Jackson School of International Studies",
-      "bodyHash": "d829d19e4be4d744bc147da5af2fb7494df1850ca8894e2f281f7261a6d8dd61",
+      "bodyHash": "7e33b73c75c6f8fe3af94ca5832449834b6fe58d1d26109379f58427fe9edb19",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -984,7 +1024,7 @@
       "etag": null,
       "lastModified": null,
       "title": "Latin American and Caribbean Studies - Major - The Henry M. Jackson School of International Studies",
-      "bodyHash": "04e3d5bcb2d5066173739bfeaea00d5a383e733011f7bc0dd495b6f7376b17b6",
+      "bodyHash": "abcfb5bef54ddd859a57834ea37be3cd1b1fa7aaf3d6209066cf81d51b572d24",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -1005,8 +1045,8 @@
       "finalUrl": "https://linguistics.washington.edu/ba-linguistics",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "54028",
-      "etag": "\"1776467195\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:35 GMT",
+      "etag": "\"1776505655\"",
+      "lastModified": "Sat, 18 Apr 2026 09:47:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1019,18 +1059,21 @@
         "UW Law, Societies and Justice curriculum requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-law-societies-and-justice"
+        "uw-seattle-law-societies-and-justice",
+        "uw-seattle-law-societies-and-justice::graduate-certificate-program-requirements-and-admissions",
+        "uw-seattle-law-societies-and-justice::honors-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "121763",
-      "etag": "\"1776467195\"",
-      "lastModified": "Fri, 17 Apr 2026 23:06:35 GMT",
+      "etag": "\"1776503599\"",
+      "lastModified": "Sat, 18 Apr 2026 09:13:19 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1091,18 +1134,21 @@
         "UW B.A. Mathematics standard requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-mathematics"
+        "uw-seattle-mathematics",
+        "uw-seattle-mathematics::math-option-change",
+        "uw-seattle-mathematics::math-option-change-for-current-math-majors"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56027",
-      "etag": "\"1776467231\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:11 GMT",
+      "etag": "\"1776507031\"",
+      "lastModified": "Sat, 18 Apr 2026 10:10:31 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1115,10 +1161,14 @@
         "MICROBIOLOGY DEGREE REQUIREMENTS AND ELECTIVES PACKET"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-microbiology"
+        "uw-seattle-microbiology",
+        "uw-seattle-microbiology::page-2-biochemistry-choose-one-option",
+        "uw-seattle-microbiology::page-2-physics-choose-one-option",
+        "uw-seattle-microbiology::page-2-statistics-choose-one-option"
       ],
       "ok": true,
       "status": 200,
@@ -1163,18 +1213,25 @@
         "UW Bachelor of Arts - Music, Instrumental Option"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-music-b-a"
+        "uw-seattle-music-b-a",
+        "uw-seattle-music-b-a::bachelor-of-arts-instrumental-option-degree-program-sheet-pdf",
+        "uw-seattle-music-b-a::bachelor-of-arts-music-instrumental-option",
+        "uw-seattle-music-b-a::music-instrumental-option",
+        "uw-seattle-music-b-a::music-music-history-option",
+        "uw-seattle-music-b-a::music-music-theory-option",
+        "uw-seattle-music-b-a::music-voice-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55927",
-      "etag": "\"1776467231\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:11 GMT",
+      "etag": "\"1776507067\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:07 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1197,8 +1254,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-composition",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "59626",
-      "etag": "\"1776467234\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:14 GMT",
+      "etag": "\"1776503536\"",
+      "lastModified": "Sat, 18 Apr 2026 09:12:16 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1221,8 +1278,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-guitar",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56783",
-      "etag": "\"1776467236\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:16 GMT",
+      "etag": "\"1776507070\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:10 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1245,8 +1302,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-jazz-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "57441",
-      "etag": "\"1776467237\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:17 GMT",
+      "etag": "\"1776507072\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:12 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1269,8 +1326,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "60674",
-      "etag": "\"1776467239\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:19 GMT",
+      "etag": "\"1776507074\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:14 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1293,8 +1350,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-orchestral-instruments",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56983",
-      "etag": "\"1776467241\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:21 GMT",
+      "etag": "\"1776507075\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:15 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1317,8 +1374,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-organ",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "57144",
-      "etag": "\"1776467243\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:23 GMT",
+      "etag": "\"1776507077\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:17 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1341,8 +1398,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-percussion-performance",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56899",
-      "etag": "\"1776467245\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:25 GMT",
+      "etag": "\"1776507079\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:19 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1365,8 +1422,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-piano",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "57035",
-      "etag": "\"1776467246\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:26 GMT",
+      "etag": "\"1776507081\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:21 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1389,8 +1446,8 @@
       "finalUrl": "https://music.washington.edu/bachelor-music-voice",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "57784",
-      "etag": "\"1776467248\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:28 GMT",
+      "etag": "\"1776507083\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1403,18 +1460,28 @@
         "Physics B.S. Degree Requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-physics"
+        "uw-seattle-physics",
+        "uw-seattle-physics::applied-physics-track",
+        "uw-seattle-physics::applied-physics-track-addl-34-43-credits",
+        "uw-seattle-physics::biological-physics-track-addl-48-56-credits",
+        "uw-seattle-physics::comprehensive-and-applied-physics-track-electives",
+        "uw-seattle-physics::comprehensive-physics-track",
+        "uw-seattle-physics::comprehensive-track",
+        "uw-seattle-physics::comprehensive-track-addl-38-46-credits",
+        "uw-seattle-physics::teaching-physics-track",
+        "uw-seattle-physics::teaching-physics-track-addl-41-43-credits"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "84544",
-      "etag": "\"1776466345\"",
-      "lastModified": "Fri, 17 Apr 2026 22:52:25 GMT",
+      "etag": "\"1776507074\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:14 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1464,8 +1531,8 @@
       "finalUrl": "https://scandinavian.washington.edu/ba-danish",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "49352",
-      "etag": "\"1776467240\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:20 GMT",
+      "etag": "\"1776507075\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:15 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1488,8 +1555,8 @@
       "finalUrl": "https://scandinavian.washington.edu/ba-finnish",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50159",
-      "etag": "\"1776467242\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:22 GMT",
+      "etag": "\"1776507077\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:17 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1512,8 +1579,8 @@
       "finalUrl": "https://scandinavian.washington.edu/ba-norwegian",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "49002",
-      "etag": "\"1776467244\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:24 GMT",
+      "etag": "\"1776507079\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:19 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1536,8 +1603,8 @@
       "finalUrl": "https://scandinavian.washington.edu/ba-swedish",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "48849",
-      "etag": "\"1776467245\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:25 GMT",
+      "etag": "\"1776507081\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:21 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1550,10 +1617,16 @@
         "UW SBSE schedule and major requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-sustainable-bioresource-systems-engineering"
+        "uw-seattle-sustainable-bioresource-systems-engineering",
+        "uw-seattle-sustainable-bioresource-systems-engineering::esrm-general-pathway-specific-requirements",
+        "uw-seattle-sustainable-bioresource-systems-engineering::joining-the-wildlife-conservation-option",
+        "uw-seattle-sustainable-bioresource-systems-engineering::required-sustainable-forest-management-option-courses",
+        "uw-seattle-sustainable-bioresource-systems-engineering::required-wildlife-conservation-option-courses",
+        "uw-seattle-sustainable-bioresource-systems-engineering::requirements-for-the-esrm-general-pathway"
       ],
       "ok": true,
       "status": 200,
@@ -1574,10 +1647,14 @@
         "UW Undergraduate Neuroscience degree requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-neuroscience"
+        "uw-seattle-neuroscience",
+        "uw-seattle-neuroscience::1-chemistry-15-credits-minimum-choose-one-option",
+        "uw-seattle-neuroscience::2-physics-8-credits-minimum-choose-one-option",
+        "uw-seattle-neuroscience::3-mathematics-10-credits-minimum-choose-one-option"
       ],
       "ok": true,
       "status": 200,
@@ -1586,6 +1663,30 @@
       "contentLength": null,
       "etag": null,
       "lastModified": null,
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://slavic.washington.edu/ba-global-literary-studies-glits",
+      "labels": [
+        "UW Global Literary Studies degree requirements"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-seattle-global-literary-studies"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://slavic.washington.edu/ba-global-literary-studies-glits",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "51695",
+      "etag": "\"1776507079\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:19 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1608,8 +1709,8 @@
       "finalUrl": "https://slavic.washington.edu/undergraduate-policies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "51033",
-      "etag": "\"1776467244\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:24 GMT",
+      "etag": "\"1776507081\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:21 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1632,8 +1733,8 @@
       "finalUrl": "https://spanport.washington.edu/spanish-major-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "45088",
-      "etag": "\"1776467244\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:24 GMT",
+      "etag": "\"1776507080\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:20 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1689,10 +1790,10 @@
       "finalUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "48256",
-      "etag": "\"1776454822\"",
-      "lastModified": "Fri, 17 Apr 2026 19:40:22 GMT",
+      "etag": "\"1776480227\"",
+      "lastModified": "Sat, 18 Apr 2026 02:43:47 GMT",
       "title": "Major Requirements | University of Washington Department of Statistics",
-      "bodyHash": "b167cc7699aa8c7cc44677db88bc88bca7d7b759d716dd0548c03863bf82271d",
+      "bodyHash": "4ec0fc7ac7e81026603561a24572d66801765ff4116f2c58ffbc48ed283ac234",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -1715,10 +1816,10 @@
       "finalUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/statistics-bs-tracks",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "38256",
-      "etag": "\"1776453972\"",
-      "lastModified": "Fri, 17 Apr 2026 19:26:12 GMT",
+      "etag": "\"1776486228\"",
+      "lastModified": "Sat, 18 Apr 2026 04:23:48 GMT",
       "title": "Statistics B.S. tracks | University of Washington Department of Statistics",
-      "bodyHash": "10d70680ff41ad06ea6cc844c89f35a396b9071ac240c6da95aaade21449e0c4",
+      "bodyHash": "b5cf31d7c16f0defd051a8123b78d50c6b31b01d56016c8365640dacf317d87c",
       "error": null,
       "fetchMode": "curl",
       "retryAfterMs": null
@@ -1825,10 +1926,18 @@
         "UW Chemical Engineering curriculum"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-chemical-engineering"
+        "uw-seattle-chemical-engineering",
+        "uw-seattle-chemical-engineering::declaring-the-program-option",
+        "uw-seattle-chemical-engineering::nanoscience-and-molecular-engineering-nme-option",
+        "uw-seattle-chemical-engineering::nanoscience-and-molecular-engineering-nme-option-program",
+        "uw-seattle-chemical-engineering::nme-option",
+        "uw-seattle-chemical-engineering::nme-option-for-chem-e-majors",
+        "uw-seattle-chemical-engineering::program-requirements-nme-option",
+        "uw-seattle-chemical-engineering::standard-option"
       ],
       "ok": true,
       "status": 200,
@@ -1849,11 +1958,14 @@
         "Allen School degree requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-computer-engineering",
-        "uw-seattle-computer-science"
+        "uw-seattle-computer-science",
+        "uw-seattle-computer-science::computer-science-and-8211-data-science-option-pdf",
+        "uw-seattle-computer-science::data-science-option",
+        "uw-seattle-computer-science::data-science-option-requirements"
       ],
       "ok": true,
       "status": 200,
@@ -1908,8 +2020,8 @@
       "finalUrl": "https://www.deohs.washington.edu/degree-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
-      "etag": "\"1776467246\"",
-      "lastModified": "Fri, 17 Apr 2026 23:07:26 GMT",
+      "etag": "\"1776507082\"",
+      "lastModified": "Sat, 18 Apr 2026 10:11:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -1922,10 +2034,22 @@
         "UW ECE degree requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-electrical-computer-engineering"
+        "uw-seattle-electrical-computer-engineering",
+        "uw-seattle-electrical-computer-engineering::computer-architecture-pathway",
+        "uw-seattle-electrical-computer-engineering::computing-pathway",
+        "uw-seattle-electrical-computer-engineering::control-systems-pathway",
+        "uw-seattle-electrical-computer-engineering::digital-systems-design-pathway",
+        "uw-seattle-electrical-computer-engineering::embedded-systems-pathway",
+        "uw-seattle-electrical-computer-engineering::machine-learning-pathway",
+        "uw-seattle-electrical-computer-engineering::microelectronics-and-nanotechnology-pathway",
+        "uw-seattle-electrical-computer-engineering::neurotechnology-pathway",
+        "uw-seattle-electrical-computer-engineering::photonics-pathway",
+        "uw-seattle-electrical-computer-engineering::sensing-and-communication-pathway",
+        "uw-seattle-electrical-computer-engineering::sustainable-energy-systems-pathway"
       ],
       "ok": true,
       "status": 200,
@@ -5354,10 +5478,14 @@
         "UW HCDE degree requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-human-centered-design-engineering"
+        "uw-seattle-human-centered-design-engineering",
+        "uw-seattle-human-centered-design-engineering::data-science-option",
+        "uw-seattle-human-centered-design-engineering::human-computer-interaction-option",
+        "uw-seattle-human-centered-design-engineering::standard-option"
       ],
       "ok": true,
       "status": 200,
@@ -5378,10 +5506,14 @@
         "UW Mechanical Engineering degree requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-mechanical-engineering"
+        "uw-seattle-mechanical-engineering",
+        "uw-seattle-mechanical-engineering::me-option-courses",
+        "uw-seattle-mechanical-engineering::non-me-courses-as-me-option",
+        "uw-seattle-mechanical-engineering::special-projects-graded-option-only-6-maximum"
       ],
       "ok": true,
       "status": 200,
@@ -5426,18 +5558,51 @@
         "UW Political Science major declaration and requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-political-science"
+        "uw-seattle-political-science",
+        "uw-seattle-political-science::international-security-and-political-economy-option-courses",
+        "uw-seattle-political-science::international-security-option",
+        "uw-seattle-political-science::international-security-option-pdf",
+        "uw-seattle-political-science::political-economy-option",
+        "uw-seattle-political-science::political-economy-option-pdf"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "65156",
-      "etag": "\"1776467012\"",
-      "lastModified": "Fri, 17 Apr 2026 23:03:32 GMT",
+      "etag": "\"1776503634\"",
+      "lastModified": "Sat, 18 Apr 2026 09:13:54 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf",
+      "labels": [
+        "UW Political Science major declaration and requirements"
+      ],
+      "kinds": [
+        "pathway"
+      ],
+      "ownerIds": [
+        "uw-seattle-political-science::international-security-option",
+        "uw-seattle-political-science::international-security-option-pdf",
+        "uw-seattle-political-science::political-economy-option",
+        "uw-seattle-political-science::political-economy-option-pdf"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf",
+      "contentType": "application/pdf",
+      "contentLength": null,
+      "etag": "W/\"67eb352d-39e80\"",
+      "lastModified": "Tue, 01 Apr 2025 00:37:01 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5466,8 +5631,56 @@
       "finalUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "88501",
-      "etag": "\"1776463838\"",
-      "lastModified": "Fri, 17 Apr 2026 22:10:38 GMT",
+      "etag": "\"1776492326\"",
+      "lastModified": "Sat, 18 Apr 2026 06:05:26 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan",
+      "labels": [
+        "UW Tacoma Healthcare Leadership degree requirements and sample program plan"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-tacoma-healthcare-leadership"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "46972",
+      "etag": "\"1776496648\"",
+      "lastModified": "Sat, 18 Apr 2026 07:17:28 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans",
+      "labels": [
+        "UW Tacoma Nursing RN-BSN degree requirements and sample program plan"
+      ],
+      "kinds": [
+        "major"
+      ],
+      "ownerIds": [
+        "uw-tacoma-nursing"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "49869",
+      "etag": "\"1776499006\"",
+      "lastModified": "Sat, 18 Apr 2026 07:56:46 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5490,8 +5703,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/civil",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "104707",
-      "etag": "\"1776464078\"",
-      "lastModified": "Fri, 17 Apr 2026 22:14:38 GMT",
+      "etag": "\"1776497483\"",
+      "lastModified": "Sat, 18 Apr 2026 07:31:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5514,8 +5727,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/ba",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "84775",
-      "etag": "\"1776464363\"",
-      "lastModified": "Fri, 17 Apr 2026 22:19:23 GMT",
+      "etag": "\"1776492379\"",
+      "lastModified": "Sat, 18 Apr 2026 06:06:19 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5539,8 +5752,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "107367",
-      "etag": "\"1776466231\"",
-      "lastModified": "Fri, 17 Apr 2026 22:50:31 GMT",
+      "etag": "\"1776495242\"",
+      "lastModified": "Sat, 18 Apr 2026 06:54:02 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5563,8 +5776,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/it",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "104685",
-      "etag": "\"1776466785\"",
-      "lastModified": "Fri, 17 Apr 2026 22:59:45 GMT",
+      "etag": "\"1776494234\"",
+      "lastModified": "Sat, 18 Apr 2026 06:37:14 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5587,8 +5800,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/me",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "104264",
-      "etag": "\"1776464225\"",
-      "lastModified": "Fri, 17 Apr 2026 22:17:05 GMT",
+      "etag": "\"1776496164\"",
+      "lastModified": "Sat, 18 Apr 2026 07:09:24 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5601,18 +5814,24 @@
         "UW Tacoma Arts, Media and Culture overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-arts-media-culture"
+        "uw-tacoma-arts-media-culture",
+        "uw-tacoma-arts-media-culture::american-cultures-track",
+        "uw-tacoma-arts-media-culture::comparative-arts-track",
+        "uw-tacoma-arts-media-culture::film-and-media-track",
+        "uw-tacoma-arts-media-culture::literature-track",
+        "uw-tacoma-arts-media-culture::visual-and-performing-arts-track"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "56469",
-      "etag": "\"1776464170\"",
-      "lastModified": "Fri, 17 Apr 2026 22:16:10 GMT",
+      "etag": "\"1776492104\"",
+      "lastModified": "Sat, 18 Apr 2026 06:01:44 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5625,18 +5844,21 @@
         "UW Tacoma Communications major requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-communications"
+        "uw-tacoma-communications",
+        "uw-tacoma-communications::professional-track",
+        "uw-tacoma-communications::research-track"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/communication",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "52683",
-      "etag": "\"1776465840\"",
-      "lastModified": "Fri, 17 Apr 2026 22:44:00 GMT",
+      "etag": "\"1776496373\"",
+      "lastModified": "Sat, 18 Apr 2026 07:12:53 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5659,8 +5881,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "55089",
-      "etag": "\"1776467414\"",
-      "lastModified": "Fri, 17 Apr 2026 23:10:14 GMT",
+      "etag": "\"1776497281\"",
+      "lastModified": "Sat, 18 Apr 2026 07:28:01 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5673,18 +5895,22 @@
         "Writing Studies"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-writing-studies"
+        "uw-tacoma-writing-studies",
+        "uw-tacoma-writing-studies::creative-writing-track",
+        "uw-tacoma-writing-studies::rhetoric-writing-and-social-change-track",
+        "uw-tacoma-writing-studies::technical-communication-track"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "53018",
-      "etag": "\"1776467416\"",
-      "lastModified": "Fri, 17 Apr 2026 23:10:16 GMT",
+      "etag": "\"1776495748\"",
+      "lastModified": "Sat, 18 Apr 2026 07:02:28 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5707,8 +5933,56 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "69292",
-      "etag": "\"1776463619\"",
-      "lastModified": "Fri, 17 Apr 2026 22:06:59 GMT",
+      "etag": "\"1776493099\"",
+      "lastModified": "Sat, 18 Apr 2026 06:18:19 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
+      "labels": [
+        "UW Tacoma Environmental Communication option"
+      ],
+      "kinds": [
+        "pathway"
+      ],
+      "ownerIds": [
+        "uw-tacoma-environmental-sustainability::environmental-communication-option"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "51684",
+      "etag": "\"1776490256\"",
+      "lastModified": "Sat, 18 Apr 2026 05:30:56 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
+      "labels": [
+        "UW Tacoma Environmental Policy and Law option"
+      ],
+      "kinds": [
+        "pathway"
+      ],
+      "ownerIds": [
+        "uw-tacoma-environmental-sustainability::policy-law-option"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "51354",
+      "etag": "\"1776490259\"",
+      "lastModified": "Sat, 18 Apr 2026 05:30:59 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5731,8 +6005,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "101379",
-      "etag": "\"1776466972\"",
-      "lastModified": "Fri, 17 Apr 2026 23:02:52 GMT",
+      "etag": "\"1776493324\"",
+      "lastModified": "Sat, 18 Apr 2026 06:22:04 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5742,21 +6016,24 @@
     {
       "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
       "labels": [
+        "UW Tacoma Environmental Sustainability Business and Nonprofit Leadership option",
         "UW Tacoma Environmental Sustainability overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-environmental-sustainability"
+        "uw-tacoma-environmental-sustainability",
+        "uw-tacoma-environmental-sustainability::business-nonprofit-leadership-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "68270",
-      "etag": "\"1776465403\"",
-      "lastModified": "Fri, 17 Apr 2026 22:36:43 GMT",
+      "etag": "\"1776497206\"",
+      "lastModified": "Sat, 18 Apr 2026 07:26:46 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5779,8 +6056,32 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/sam/mathematics",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "68179",
-      "etag": "\"1776466431\"",
-      "lastModified": "Fri, 17 Apr 2026 22:53:51 GMT",
+      "etag": "\"1776494744\"",
+      "lastModified": "Sat, 18 Apr 2026 06:45:44 GMT",
+      "title": null,
+      "bodyHash": null,
+      "error": null,
+      "fetchMode": "head",
+      "retryAfterMs": null
+    },
+    {
+      "url": "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+      "labels": [
+        "UW Tacoma Environmental Sustainability Education option"
+      ],
+      "kinds": [
+        "pathway"
+      ],
+      "ownerIds": [
+        "uw-tacoma-environmental-sustainability::education-option"
+      ],
+      "ok": true,
+      "status": 200,
+      "finalUrl": "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+      "contentType": "text/html; charset=UTF-8",
+      "contentLength": "50951",
+      "etag": "\"1776490252\"",
+      "lastModified": "Sat, 18 Apr 2026 05:30:52 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5803,8 +6104,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "54676",
-      "etag": "\"1776467421\"",
-      "lastModified": "Fri, 17 Apr 2026 23:10:21 GMT",
+      "etag": "\"1776495994\"",
+      "lastModified": "Sat, 18 Apr 2026 07:06:34 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5817,18 +6118,22 @@
         "UW Tacoma Ethnic, Gender and Labor Studies overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-ethnic-gender-and-labor-studies"
+        "uw-tacoma-ethnic-gender-and-labor-studies",
+        "uw-tacoma-ethnic-gender-and-labor-studies::ethnic-studies-option",
+        "uw-tacoma-ethnic-gender-and-labor-studies::gender-studies-option",
+        "uw-tacoma-ethnic-gender-and-labor-studies::labor-studies-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50794",
-      "etag": "\"1776467308\"",
-      "lastModified": "Fri, 17 Apr 2026 23:08:28 GMT",
+      "etag": "\"1776498087\"",
+      "lastModified": "Sat, 18 Apr 2026 07:41:27 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5841,18 +6146,24 @@
         "UW Tacoma History overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-history"
+        "uw-tacoma-history",
+        "uw-tacoma-history::arts-culture-and-society-option",
+        "uw-tacoma-history::general-history-option",
+        "uw-tacoma-history::global-history-option",
+        "uw-tacoma-history::labor-and-social-movements-option",
+        "uw-tacoma-history::power-gender-and-identity-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/history",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "58590",
-      "etag": "\"1776464686\"",
-      "lastModified": "Fri, 17 Apr 2026 22:24:46 GMT",
+      "etag": "\"1776498084\"",
+      "lastModified": "Sat, 18 Apr 2026 07:41:24 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5875,8 +6186,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "72201",
-      "etag": "\"1776466972\"",
-      "lastModified": "Fri, 17 Apr 2026 23:02:52 GMT",
+      "etag": "\"1776498083\"",
+      "lastModified": "Sat, 18 Apr 2026 07:41:23 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5899,8 +6210,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "65044",
-      "etag": "\"1776465697\"",
-      "lastModified": "Fri, 17 Apr 2026 22:41:37 GMT",
+      "etag": "\"1776498082\"",
+      "lastModified": "Sat, 18 Apr 2026 07:41:22 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5923,8 +6234,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "50475",
-      "etag": "\"1776464081\"",
-      "lastModified": "Fri, 17 Apr 2026 22:14:41 GMT",
+      "etag": "\"1776494140\"",
+      "lastModified": "Sat, 18 Apr 2026 06:35:40 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5947,8 +6258,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/sias/socs/psychology",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "63279",
-      "etag": "\"1776467428\"",
-      "lastModified": "Fri, 17 Apr 2026 23:10:28 GMT",
+      "etag": "\"1776495062\"",
+      "lastModified": "Sat, 18 Apr 2026 06:51:02 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5961,18 +6272,21 @@
         "UW Tacoma B.A. in Education overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-education"
+        "uw-tacoma-education",
+        "uw-tacoma-education::option-1-special-education-dual-endorsement",
+        "uw-tacoma-education::option-2-english-language-learners-ell-dual-endorsement"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "76350",
-      "etag": "\"1776465912\"",
-      "lastModified": "Fri, 17 Apr 2026 22:45:12 GMT",
+      "etag": "\"1776494629\"",
+      "lastModified": "Sat, 18 Apr 2026 06:43:49 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -5995,8 +6309,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/swcj/basw-curriculum",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "92250",
-      "etag": "\"1776465783\"",
-      "lastModified": "Fri, 17 Apr 2026 22:43:03 GMT",
+      "etag": "\"1776497876\"",
+      "lastModified": "Sat, 18 Apr 2026 07:37:56 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6019,8 +6333,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "99754",
-      "etag": "\"1776467431\"",
-      "lastModified": "Fri, 17 Apr 2026 23:10:31 GMT",
+      "etag": "\"1776494645\"",
+      "lastModified": "Sat, 18 Apr 2026 06:44:05 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6033,18 +6347,21 @@
         "UW Tacoma Sustainable Urban Development overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-sustainable-urban-development"
+        "uw-tacoma-sustainable-urban-development",
+        "uw-tacoma-sustainable-urban-development::community-engagement-option",
+        "uw-tacoma-sustainable-urban-development::gis-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "84945",
-      "etag": "\"1776467434\"",
-      "lastModified": "Fri, 17 Apr 2026 23:10:34 GMT",
+      "etag": "\"1776494219\"",
+      "lastModified": "Sat, 18 Apr 2026 06:36:59 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6057,18 +6374,21 @@
         "UW Tacoma Urban Studies overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-urban-studies"
+        "uw-tacoma-urban-studies",
+        "uw-tacoma-urban-studies::community-engagement-option",
+        "uw-tacoma-urban-studies::gis-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "87686",
-      "etag": "\"1776467436\"",
-      "lastModified": "Fri, 17 Apr 2026 23:10:36 GMT",
+      "etag": "\"1776497312\"",
+      "lastModified": "Sat, 18 Apr 2026 07:28:32 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6091,8 +6411,8 @@
       "finalUrl": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "88412",
-      "etag": "\"1776467438\"",
-      "lastModified": "Fri, 17 Apr 2026 23:10:38 GMT",
+      "etag": "\"1776493616\"",
+      "lastModified": "Sat, 18 Apr 2026 06:26:56 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -6105,16 +6425,22 @@
         "UW Bothell Bachelor of Business Administration overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-business-administration"
+        "uw-bothell-business-administration",
+        "uw-bothell-business-administration::accounting-option",
+        "uw-bothell-business-administration::finance-option-and-concentration",
+        "uw-bothell-business-administration::leadership-and-strategic-innovation-option",
+        "uw-bothell-business-administration::marketing-option-and-concentration",
+        "uw-bothell-business-administration::supply-chain-management-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58614",
+      "contentLength": "58615",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6129,16 +6455,25 @@
         "UW Bothell Accounting option"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-business-administration-accounting"
+        "uw-bothell-business-administration-accounting",
+        "uw-bothell-business-administration-accounting::accounting-option",
+        "uw-bothell-business-administration-accounting::accounting-option-school-of-business",
+        "uw-bothell-business-administration-accounting::accounting-option-students-must-complete-the-following-courses-for-graduation",
+        "uw-bothell-business-administration-accounting::finance-option-and-concentration",
+        "uw-bothell-business-administration-accounting::leadership-and-strategic-innovation-option",
+        "uw-bothell-business-administration-accounting::marketing-option-and-concentration",
+        "uw-bothell-business-administration-accounting::requirements-to-declare-the-option",
+        "uw-bothell-business-administration-accounting::supply-chain-management-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58343",
+      "contentLength": "58345",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6153,16 +6488,20 @@
         "UW Bothell Finance option and concentration"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-business-administration-finance"
+        "uw-bothell-business-administration-finance",
+        "uw-bothell-business-administration-finance::finance-option-and-concentration",
+        "uw-bothell-business-administration-finance::option-courses",
+        "uw-bothell-business-administration-finance::requirements-to-declare-the-option-or-the-concentration"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "59037",
+      "contentLength": "59038",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6177,16 +6516,24 @@
         "UW Bothell Leadership and Strategic Innovation option"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-business-administration-leadership-and-strategic-innovation"
+        "uw-bothell-business-administration-leadership-and-strategic-innovation",
+        "uw-bothell-business-administration-leadership-and-strategic-innovation::accounting-option",
+        "uw-bothell-business-administration-leadership-and-strategic-innovation::finance-option-and-concentration",
+        "uw-bothell-business-administration-leadership-and-strategic-innovation::leadership-and-strategic-innovation-option",
+        "uw-bothell-business-administration-leadership-and-strategic-innovation::leadership-and-strategic-innovation-option-school-of-business",
+        "uw-bothell-business-administration-leadership-and-strategic-innovation::marketing-option-and-concentration",
+        "uw-bothell-business-administration-leadership-and-strategic-innovation::requirements-to-declare-the-option",
+        "uw-bothell-business-administration-leadership-and-strategic-innovation::supply-chain-management-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56495",
+      "contentLength": "29093",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6201,16 +6548,25 @@
         "UW Bothell Marketing option and concentration"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-business-administration-marketing"
+        "uw-bothell-business-administration-marketing",
+        "uw-bothell-business-administration-marketing::accounting-option",
+        "uw-bothell-business-administration-marketing::finance-option-and-concentration",
+        "uw-bothell-business-administration-marketing::leadership-and-strategic-innovation-option",
+        "uw-bothell-business-administration-marketing::marketing-option-and-concentration",
+        "uw-bothell-business-administration-marketing::marketing-option-and-concentration-school-of-business",
+        "uw-bothell-business-administration-marketing::option-and-concentration-curriculum",
+        "uw-bothell-business-administration-marketing::option-course-numbers-and-names",
+        "uw-bothell-business-administration-marketing::supply-chain-management-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56849",
+      "contentLength": "29474",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6225,16 +6581,24 @@
         "UW Bothell Supply Chain Management option"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-business-administration-supply-chain-management"
+        "uw-bothell-business-administration-supply-chain-management",
+        "uw-bothell-business-administration-supply-chain-management::accounting-option",
+        "uw-bothell-business-administration-supply-chain-management::finance-option-and-concentration",
+        "uw-bothell-business-administration-supply-chain-management::leadership-and-strategic-innovation-option",
+        "uw-bothell-business-administration-supply-chain-management::marketing-option-and-concentration",
+        "uw-bothell-business-administration-supply-chain-management::requirements-to-declare-the-option",
+        "uw-bothell-business-administration-supply-chain-management::supply-chain-management-option",
+        "uw-bothell-business-administration-supply-chain-management::supply-chain-management-option-school-of-business"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57443",
+      "contentLength": "57445",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6249,16 +6613,22 @@
         "UW Bothell Bachelor of Economics overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-economics"
+        "uw-bothell-economics",
+        "uw-bothell-economics::accounting-option",
+        "uw-bothell-economics::finance-option-and-concentration",
+        "uw-bothell-economics::leadership-and-strategic-innovation-option",
+        "uw-bothell-economics::marketing-option-and-concentration",
+        "uw-bothell-economics::supply-chain-management-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57429",
+      "contentLength": "57428",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6297,10 +6667,13 @@
         "UW Bothell Elementary Education degree requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-educational-studies-elementary-education"
+        "uw-bothell-educational-studies-elementary-education",
+        "uw-bothell-educational-studies-elementary-education::elementary-education-option-requirements",
+        "uw-bothell-educational-studies-elementary-education::elementary-education-option-requirements-and-8211-2025-cohort"
       ],
       "ok": true,
       "status": 200,
@@ -6354,7 +6727,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "66449",
+      "contentLength": "66448",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6378,7 +6751,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "66820",
+      "contentLength": "66821",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6402,7 +6775,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65884",
+      "contentLength": "65883",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6428,7 +6801,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64557",
+      "contentLength": "64555",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6452,7 +6825,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "69860",
+      "contentLength": "69859",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6476,7 +6849,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64528",
+      "contentLength": "64529",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6524,7 +6897,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64695",
+      "contentLength": "64696",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6548,7 +6921,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64371",
+      "contentLength": "64372",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6572,7 +6945,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64874",
+      "contentLength": "64873",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6596,7 +6969,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "63487",
+      "contentLength": "63489",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6620,7 +6993,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64184",
+      "contentLength": "64185",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6635,10 +7008,14 @@
         "UW Bothell Psychology requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-psychology"
+        "uw-bothell-psychology",
+        "uw-bothell-psychology::200-level-psychology-courses-option",
+        "uw-bothell-psychology::psychology-electives-option",
+        "uw-bothell-psychology::upper-division-psychology-courses-option"
       ],
       "ok": true,
       "status": 200,
@@ -6707,10 +7084,13 @@
         "UW Bothell Health Studies overview and curriculum"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-bothell-health-studies"
+        "uw-bothell-health-studies",
+        "uw-bothell-health-studies::teaching-track",
+        "uw-bothell-health-studies::tenure-track"
       ],
       "ok": true,
       "status": 200,
@@ -6731,17 +7111,22 @@
         "UW Bothell RN to BSN overview"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
         "uw-bothell-nursing-first-year-rn-to-bsn",
-        "uw-bothell-nursing-rn-to-bsn"
+        "uw-bothell-nursing-first-year-rn-to-bsn::teaching-track",
+        "uw-bothell-nursing-first-year-rn-to-bsn::tenure-track",
+        "uw-bothell-nursing-rn-to-bsn",
+        "uw-bothell-nursing-rn-to-bsn::teaching-track",
+        "uw-bothell-nursing-rn-to-bsn::tenure-track"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67731",
+      "contentLength": "67730",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6789,7 +7174,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "68742",
+      "contentLength": "68743",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6813,7 +7198,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67932",
+      "contentLength": "67933",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6837,7 +7222,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65665",
+      "contentLength": "65666",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6852,11 +7237,21 @@
         "UW Bothell CSSE curriculum"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
         "uw-bothell-csse",
-        "uw-bothell-csse-information-assurance-and-cybersecurity"
+        "uw-bothell-csse-information-assurance-and-cybersecurity",
+        "uw-bothell-csse-information-assurance-and-cybersecurity::declaring-the-iac-option",
+        "uw-bothell-csse-information-assurance-and-cybersecurity::information-assurance-and-cybersecurity-iac-option",
+        "uw-bothell-csse::b-s-in-chemistry-biochemistry-option",
+        "uw-bothell-csse::b-s-in-chemistry-general-option",
+        "uw-bothell-csse::choose-your-pathway",
+        "uw-bothell-csse::declaring-the-iac-option",
+        "uw-bothell-csse::information-assurance-and-cybersecurity-iac-option",
+        "uw-bothell-csse::option-1",
+        "uw-bothell-csse::option-2"
       ],
       "ok": true,
       "status": 200,
@@ -6877,12 +7272,31 @@
         "UW Bothell Chemistry curriculum"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
         "uw-bothell-chemistry-ba",
+        "uw-bothell-chemistry-ba::b-s-in-chemistry-biochemistry-option",
+        "uw-bothell-chemistry-ba::b-s-in-chemistry-biochemistry-option-requirements",
+        "uw-bothell-chemistry-ba::b-s-in-chemistry-general-option",
+        "uw-bothell-chemistry-ba::b-s-in-chemistry-general-option-requirements",
+        "uw-bothell-chemistry-ba::option-1",
+        "uw-bothell-chemistry-ba::option-2",
+        "uw-bothell-chemistry-ba::teaching-track-faculty",
         "uw-bothell-chemistry-biochemistry",
-        "uw-bothell-chemistry-bs"
+        "uw-bothell-chemistry-biochemistry::b-s-in-chemistry-biochemistry-option",
+        "uw-bothell-chemistry-biochemistry::b-s-in-chemistry-biochemistry-option-requirements",
+        "uw-bothell-chemistry-biochemistry::b-s-in-chemistry-general-option",
+        "uw-bothell-chemistry-biochemistry::b-s-in-chemistry-general-option-requirements",
+        "uw-bothell-chemistry-biochemistry::option-1",
+        "uw-bothell-chemistry-biochemistry::option-2",
+        "uw-bothell-chemistry-biochemistry::teaching-track-faculty",
+        "uw-bothell-chemistry-bs",
+        "uw-bothell-chemistry-bs::b-s-in-chemistry-biochemistry-option",
+        "uw-bothell-chemistry-bs::b-s-in-chemistry-general-option",
+        "uw-bothell-chemistry-bs::option-1",
+        "uw-bothell-chemistry-bs::option-2"
       ],
       "ok": true,
       "status": 200,
@@ -6912,7 +7326,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64764",
+      "contentLength": "64765",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -6936,7 +7350,7 @@
       "status": 200,
       "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65218",
+      "contentLength": "65219",
       "etag": null,
       "lastModified": null,
       "title": null,
@@ -7034,8 +7448,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html",
       "contentType": "text/html",
       "contentLength": "64091",
-      "etag": "\"fa5b-64f987cac33f1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"fa5b-64fac9783789c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7058,8 +7472,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
       "contentType": "text/html",
       "contentLength": "70810",
-      "etag": "\"1149a-64f987caea4ef\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"1149a-64fac9785264d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7072,18 +7486,21 @@
         "Degree requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-applied-and-computational-mathematical-sciences"
+        "uw-seattle-applied-and-computational-mathematical-sciences",
+        "uw-seattle-applied-and-computational-mathematical-sciences::option-specific-credits",
+        "uw-seattle-applied-and-computational-mathematical-sciences::option-specific-requirements"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
       "contentType": "text/html",
       "contentLength": "39929",
-      "etag": "\"9bf9-64f987cabe5d1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"9bf9-64fac9783518c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7096,18 +7513,23 @@
         "UW General Catalog Computational Finance and Risk Management requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-computational-finance-and-risk-management"
+        "uw-seattle-computational-finance-and-risk-management",
+        "uw-seattle-computational-finance-and-risk-management::minimum-54-58-credits-depending-on-credential-option",
+        "uw-seattle-computational-finance-and-risk-management::minimum-63-69-credits-depending-on-credential-option",
+        "uw-seattle-computational-finance-and-risk-management::option-specific-credits",
+        "uw-seattle-computational-finance-and-risk-management::total-42-54-credits-varies-by-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
       "contentType": "text/html",
       "contentLength": "74977",
-      "etag": "\"124e1-64f987cad937f\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"124e1-64fac9784ff3d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7134,8 +7556,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
       "contentType": "text/html",
       "contentLength": "48158",
-      "etag": "\"bc1e-64f987caea4ef\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"bc1e-64fac9785e99d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7163,8 +7585,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
       "contentType": "text/html",
       "contentLength": "43627",
-      "etag": "\"aa6b-64f987cac33f1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"aa6b-64fac9783789c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7194,8 +7616,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
       "contentType": "text/html",
       "contentLength": "53651",
-      "etag": "\"d193-64f987cabe5d1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"d193-64fac9783518c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7218,8 +7640,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
       "contentType": "text/html",
       "contentLength": "175163",
-      "etag": "\"2ac3b-64f987cabe5d1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"2ac3b-64fac9783518c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7242,8 +7664,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Communication-1035.html",
       "contentType": "text/html",
       "contentLength": "41708",
-      "etag": "\"a2ec-64f987cae7ddf\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"a2ec-64fac9785264d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7266,8 +7688,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
       "contentType": "text/html",
       "contentLength": "24993",
-      "etag": "\"61a1-64f987cad937f\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"61a1-64fac9784ff3d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7280,18 +7702,24 @@
         "UW General Catalog Construction Management requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-construction-management"
+        "uw-seattle-construction-management",
+        "uw-seattle-construction-management::choose-thesis-project-or-course-only-option-0-9-credits",
+        "uw-seattle-construction-management::course-only-option",
+        "uw-seattle-construction-management::project-option",
+        "uw-seattle-construction-management::thesis-option",
+        "uw-seattle-construction-management::transfer-students-apply-for-admission-under-this-pathway"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
       "contentType": "text/html",
       "contentLength": "37424",
-      "etag": "\"9230-64f987cad937f\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"9230-64fac9784ff3d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7314,8 +7742,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
       "contentType": "text/html",
       "contentLength": "26452",
-      "etag": "\"6754-64f987cacf740\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"6754-64fac97848a0d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7328,18 +7756,22 @@
         "UW General Catalog Drama requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-drama"
+        "uw-seattle-drama",
+        "uw-seattle-drama::60-68-credits-depending-on-credential-option",
+        "uw-seattle-drama::option-specific-credits",
+        "uw-seattle-drama::see-additional-completion-requirements-for-option-specific-requirements"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
       "contentType": "text/html",
       "contentLength": "45618",
-      "etag": "\"b232-64f987cad1e50\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"b232-64fac97848a0d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7368,8 +7800,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
       "contentType": "text/html",
       "contentLength": "44019",
-      "etag": "\"abf3-64f987cac33f1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"abf3-64fac9783789c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7395,8 +7827,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
       "contentType": "text/html",
       "contentLength": "51933",
-      "etag": "\"cadd-64f987cad1e50\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"cadd-64fac97848a0d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7419,8 +7851,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/English-136.html",
       "contentType": "text/html",
       "contentLength": "45690",
-      "etag": "\"b27a-64f987cad1e50\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"b27a-64fac97848a0d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7443,8 +7875,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html",
       "contentType": "text/html",
       "contentLength": "38341",
-      "etag": "\"95c5-64f987cac33f1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"95c5-64fac9783789c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7467,8 +7899,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html",
       "contentType": "text/html",
       "contentLength": "38341",
-      "etag": "\"95c5-64f987cac33f1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"95c5-64fac9783789c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7491,8 +7923,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Gender%2CWomen%2CandSexualityStudies-298.html",
       "contentType": "text/html",
       "contentLength": "33631",
-      "etag": "\"835f-64f987cae7ddf\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"835f-64fac9784ff3d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7515,8 +7947,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/GeneralStudies-185.html",
       "contentType": "text/html",
       "contentLength": "35815",
-      "etag": "\"8be7-64f987cae7ddf\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"8be7-64fac9785264d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7542,8 +7974,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Geography-188.html",
       "contentType": "text/html",
       "contentLength": "43395",
-      "etag": "\"a983-64f987cae7ddf\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"a983-64fac9785264d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7570,8 +8002,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
       "contentType": "text/html",
       "contentLength": "122925",
-      "etag": "\"1e02d-64f987cabbec1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"1e02d-64fac9783518c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7596,8 +8028,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
       "contentType": "text/html",
       "contentLength": "40805",
-      "etag": "\"9f65-64f987cad937f\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"9f65-64fac9784ff3d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7620,8 +8052,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html",
       "contentType": "text/html",
       "contentLength": "47550",
-      "etag": "\"b9be-64f987cac0ce1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"b9be-64fac9783789c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7634,18 +8066,21 @@
         "UW General Catalog Ethnomusicology requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-ethnomusicology-b-a"
+        "uw-seattle-ethnomusicology-b-a",
+        "uw-seattle-ethnomusicology-b-a::non-thesis-option",
+        "uw-seattle-ethnomusicology-b-a::thesis-option"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Music-217.html",
       "contentType": "text/html",
       "contentLength": "172664",
-      "etag": "\"2a278-64f987cae7ddf\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"2a278-64fac9785264d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7670,8 +8105,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
       "contentType": "text/html",
       "contentLength": "47868",
-      "etag": "\"bafc-64f987cae7ddf\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"bafc-64fac9785264d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7694,8 +8129,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/ProgramontheEnvironment-1070.html",
       "contentType": "text/html",
       "contentLength": "30634",
-      "etag": "\"77aa-64f987cac0ce1\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"77aa-64fac9783789c\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7718,8 +8153,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html",
       "contentType": "text/html",
       "contentLength": "44265",
-      "etag": "\"ace9-64f987cacf740\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"ace9-64fac97848a0d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7742,8 +8177,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/RealEstate-54.html",
       "contentType": "text/html",
       "contentLength": "32548",
-      "etag": "\"7f24-64f987cad937f\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"7f24-64fac9784ff3d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7766,8 +8201,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/SocialWork-779.html",
       "contentType": "text/html",
       "contentLength": "47516",
-      "etag": "\"b99c-64f987cad1e50\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"b99c-64fac97848a0d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7790,8 +8225,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/Sociology-293.html",
       "contentType": "text/html",
       "contentLength": "25916",
-      "etag": "\"653c-64f987cadba8f\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"653c-64fac9784ff3d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7804,18 +8239,22 @@
         "UW General Catalog Speech and Hearing Sciences requirements"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-seattle-speech-and-hearing-sciences"
+        "uw-seattle-speech-and-hearing-sciences",
+        "uw-seattle-speech-and-hearing-sciences::108-114-credits-depending-on-option",
+        "uw-seattle-speech-and-hearing-sciences::electives-choose-pediatric-track-or-adult-track",
+        "uw-seattle-speech-and-hearing-sciences::option-specific-requirements"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
       "contentType": "text/html",
       "contentLength": "49109",
-      "etag": "\"bfd5-64f987cae7ddf\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"bfd5-64fac9784ff3d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7838,8 +8277,8 @@
       "finalUrl": "https://www.washington.edu/students/gencat/program/S/UrbanDesignandPlanning-50.html",
       "contentType": "text/html",
       "contentLength": "40016",
-      "etag": "\"9c50-64f987cad6c70\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"9c50-64fac9784d82d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7852,19 +8291,26 @@
         "UW Tacoma SET catalog page"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
         "uw-tacoma-computer-engineering",
-        "uw-tacoma-electrical-engineering"
+        "uw-tacoma-computer-engineering::40-45-credits-depending-on-option",
+        "uw-tacoma-computer-engineering::create-your-own-pathway-as-a-separate-option",
+        "uw-tacoma-computer-engineering::option-specific-requirements",
+        "uw-tacoma-electrical-engineering",
+        "uw-tacoma-electrical-engineering::40-45-credits-depending-on-option",
+        "uw-tacoma-electrical-engineering::create-your-own-pathway-as-a-separate-option",
+        "uw-tacoma-electrical-engineering::option-specific-requirements"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
       "contentType": "text/html",
       "contentLength": "158280",
-      "etag": "\"26a48-64f987cad937f\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"26a48-64fac9784ff3d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,
@@ -7877,18 +8323,21 @@
         "UW General Catalog Interdisciplinary Arts and Sciences individually designed major"
       ],
       "kinds": [
-        "major"
+        "major",
+        "pathway"
       ],
       "ownerIds": [
-        "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed"
+        "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
+        "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::list-b-global-history-option-please-see-website",
+        "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::option-specific-requirements"
       ],
       "ok": true,
       "status": 200,
       "finalUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
       "contentType": "text/html",
       "contentLength": "143194",
-      "etag": "\"22f5a-64f987cad4560\"",
-      "lastModified": "Thu, 16 Apr 2026 19:03:25 GMT",
+      "etag": "\"22f5a-64fac9784b11d\"",
+      "lastModified": "Fri, 17 Apr 2026 19:02:35 GMT",
       "title": null,
       "bodyHash": null,
       "error": null,

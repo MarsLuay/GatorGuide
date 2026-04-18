@@ -2,10 +2,7 @@ Owner: uw-tacoma-nursing
 Source: https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans
 Title: RN-BSN Sample Program Plans | School of Nursing & Healthcare Leadership | University of Washington Tacoma
 
-"HCL provided a great understanding of how healthcare systems work, business of healthcare, disparities in societies and population. In addition, it challenged us in analytical and critical thinking which is a very sought after skill in the workforce." -SNHCL Alum
-[Supplemental official source] Bachelor of Arts in Healthcare Leadership
 [Supplemental official source] Bachelor of Science in Nursing
-[Supplemental official source] Declare Healthcare Leadership major
 &copy; 2026 University of Washington Tacoma
 <a href="https://instagram.com/uwtacoma"
 <a href="https://www.facebook.com/uwtacoma"
@@ -17,7 +14,6 @@ Title: RN-BSN Sample Program Plans | School of Nursing & Healthcare Leadership |
 <img
 <img class="mobile-hide desktop-show"
 <img class="mobile-show desktop-hide"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-09/untitled-4-copy-2.png"
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-09/untitled-4.png"
 <span
 >
@@ -28,89 +24,59 @@ Title: RN-BSN Sample Program Plans | School of Nursing & Healthcare Leadership |
 3:45-6:15P
 45
 5
-5 credits of English composition (10 additional writing-intensive credits completed via required Healthcare Leadership course work)
 9:00A-2:55P
-A cumulative GPA of at least 2.0 on a 4.0 scale in all college course work
-A minimum 60 quarter credits completed
 About
 ABOUT UW TACOMA
 Academic advising
-Academic Advising
-Academic Advisor
 Academic calendar
-Academic planning and course selection
 Academics
 ACADEMICS
 Accessibility |
 Acknowledgement
 Administration
-Administrative Assistant
 Admissions
-Adrianna Plavetsky
 Advisory Council and Clinical/Affiliate Faculty
-Agreement to adhere to the Essential Behaviors for Admission, Continuation and Graduation and Social Networking Policy.
 alt="Apply Now RN-BSN">
 alt="Block W - Link to UW Tacoma homepage"/>
-alt="Declare HCL ">
 alt="University of Washington Tacoma"/>
 Alumni
 Application Link
-Application Steps
 Apply
-Apply for Scholarships
 Apply new knowledge in practice
 APPLY NOW
 Apply to the Master of Nursing Program
 Apply to the RN-BSN Program
-Apply to UW-Tacoma as a Transfer Student .
 aria-label="University of Washington Tacoma Homepage">
-Assistant or Program Manager
 Autumn
 Bachelor of Arts in Healthcare Leadership
 Bachelor of Science in Nursing
 Bachelor of Science in Nursing (RN-BSN)
 Bachelor of Science in Nursing (RN-BSN) | School of Nursing & Healthcare Leadership | University of Washington Tacoma
-Be admitted to UW Tacoma
-Begin BAHCL program autumn quarter.
 Below are sample program plans for the Bachelor of Science of Nursing students based on the quarter of entry into the program.
 Bloodborne Pathogens Policy
 Bothell
 Build self-confidence and bolster professional identity
-Business or Operations Manager
 Calendar
 CAMPUS
 Campus Safety
 Canvas
 CastleBranch Information
-Clarifying major requirements
 class="path2">
 class="uwt-icon uwt-icon-per-site-facebook">
 class="uwt-icon uwt-icon-per-site-instagram">
 class="uwt-icon uwt-icon-per-site-linkedin">
-Clinic or Office Manager
 Close Search
-Communication or Outreach Specialist
 Community
-Completing the paperwork necessary for graduation
 Connect with an Advisor
 Contact
 Contact Us
 Contact us |
-Course Descriptions
 Course meeting dates are only on Wednesdays
 Course Title
 Credits
 Critical Analysis & Nursing Scholarship
-CURRENT UW TACOMA STUDENT
-Currently licensed Washington State healthcare providers must provide proof of unrestricted license status (does not apply to non-licensed applicants)
-Data Analyst
-Deadline
 Deadlines
 Declare Healthcare Leadership major
-Declare Healthcare Leadership Major
-Declare Healthcare Leadership Major | School of Nursing & Healthcare Leadership | University of Washington Tacoma
-Declare Major
-Description
 Directory
 Diversity, Equity and Inclusion
 Diversity, Health and Inequalities
@@ -118,80 +84,51 @@ Elective offerings through SNHCL are available at: https://www.washington.edu/st
 ELECTIVE: Addiction and Mental Illness in Film
 ELECTIVE: Adolescents in Film
 ELECTIVE: Health Policy and Ethics in Film
-Email Adrianna
 Equity & Inclusion
 Essential Behaviors
 Ethical Issues in Healthcare
-Examples of Employment Post-Graduation:
 expand_more
 Facilitate change and improve communication
 Faculty and Staff
 Faculty Meetings
 Faculty Profiles
 FAFSA Information
-Family or Patient Services Coordinator
-Fieldwork
-Fieldwork Info
 Financial Aid
 Flexible for working professionals – works for both part-time and full-time students
-Full-time Option
 Full-time Options
 Graduation Requirements
-Handbook
-HCL Handbook
-Healthcare Leadership Academic Information
-Healthcare Leadership majors have the option to pursue an Integrated Global Honors Pathway , allowing them to earn Global Honors Distinction while completing their major. Through honors-approved HCL courses, Global Honors core classes, and a capstone experience, students build global perspectives and leadership skills that prepare them for healthcare careers in diverse and interconnected contexts.
-Healthcare Leadership overview
-Healthcare Leadership Overview
-Healthcare Leadership overview | School of Nursing & Healthcare Leadership | University of Washington Tacoma
-Healthcare Leadership Scholarships
 height="0"
 Housing
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-09/untitled-4-copy-2.png 600w"
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-09/untitled-4.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-09/untitled-4-copy-2.png 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-09/untitled-4.png 980w,
 In-person Meetings
-Information about completing admission deficiencies
 Information Sessions
 Information Technology
 Institutional Research
-Integrated Global Honors
 Interprofessional Collaboration & Communication
 IT Help
 Jobs
 Land
 Leading Health Care System Quality & Safety
 Learn More >
-Learn more about the HCL Global Honors Integrated Pathway on the Integrated Global Honors webpage.
 Library
 Main Content
-Major prerequisites
 Make a Gift
 Make informed choices and advocate for others
 Map
 Master of Nursing
-Medical Assistant
 Meet with an Advisor
-Meet with our academic advisor to declare/change your major at anytime.
-Meet with our academic advisor to declare/change your major. Students admitted to UW Tacoma can declare anytime.
-Meet with our academic advisor, Adrianna Plavetsky, to declare your HCL major!
 Meets every Wednesday of the qtr
-More about Healthcare Leadership
 more_vert
-Must be admitted to UW Tacoma
 MyUW
-New student orientation
 Newsletter
 Nursing Scholarships
 Office365
 Panopto
 Parking & transportation
-Part-time Option
 Part-time Options
 PATH
 Person-Centered Care, Coordination & Management
-Planning and tracking progress in your major
 Please note that the RN-BSN program requires students to complete 45 credits in residence at UW Tacoma, including 10 credits of upper-division electives. Individual program plans are issued by the academic advisor after orientation.
 Podcast
 Practicum (T NURS 414) focused on health, communities, and populations
@@ -200,17 +137,10 @@ Preceptor Information
 Preparing for Practicum
 Privacy |
 Program can be completed in just three quarters
-Program Description
 Program Highlights
-Program Plans
 Prospective Students
 Puyallup Tribe of Indians
-Referrals to other resources (counseling, faculty, etc.)
-Registering for classes
-Registration Manager
-Requirements
 Research
-Returning students and international students should contact the academic advisor: Adrianna Plavetsky, amp93@uw.edu , for more information.
 RN-BSN Handbook
 RN-BSN Practicum
 RN-BSN Program Overview
@@ -218,11 +148,8 @@ RN-BSN Program Plans
 RN-BSN Sample Program Plans
 RN-BSN Sample Program Plans | School of Nursing & Healthcare Leadership | University of Washington Tacoma
 Rules Docket
-Sample Program Plan
 Sample Program Plans for Autumn Cohort
 Sample Program Plans for Summer Cohort
-Scholarship Information
-Scholarships
 School of Nursing & Healthcare Leadership
 Schools and programs
 Scout
@@ -235,13 +162,9 @@ Spring
 src="/sites/default/files/sites/uwtd8main/W.svg"
 src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
 src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-09/untitled-4-copy-2.png 1940w,
 srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-09/untitled-4.png 1940w,
-Staffing Consultant
 Student Life
 Students in the RN to BSN program are RNs who have completed the initial phase of their education through an associate degree or diploma nursing program. The curriculum supports students in developing professionally.
-Students interested in declaring Healthcare Leadership as their major must meet the following requirements prior to enrolling:
-Students should meet with the academic advisor quarterly.
 Study Abroad
 style="display:none;
 Summer
@@ -258,10 +181,7 @@ T NURS 460
 T NURS course descriptions are available at: https://www.washington.edu/students/crscatt/tnurs.html
 Teaching and Learning Center
 Terms of Use |
-The academic advisor provides assistance with:
-The Healthcare Leadership program equips students with the skills to take on professional, non-clinical roles that support the operations and service delivery of healthcare systems. Graduates often step into positions that involve coordinating patient services, supporting data-driven decision making, and leading outreach or communication efforts. Whether working in hospitals, long-term care facilities, nonprofit agencies, or insurance organizations, HCL alumni contribute to improving healthcare access, quality, and equity through effective organizational support.
 The program builds upon prior professional skills and provides the opportunity for nurses to:
-The University of Washington is committed to providing equal access to its programs and activities and protecting individuals from discrimination and harassment based on their race, color, or national origin, including shared ancestry. No person shall be excluded from participation in, or denied the benefits of, or be subjected to discrimination under programs and activities that the university sponsors or promotes, including in admission and employment.
 Think critically and assume leadership roles
 Time
 title="Follow UW Tacoma on Facebook">
@@ -272,7 +192,6 @@ title="Follow UW Tacoma on Youtube">
 tnursing@uw.edu
 Tools
 Total Credits
-TRANSFER STUDENT
 Tribal Sponsor of UW Tacoma
 University YMCA Student Center
 UW Gmail

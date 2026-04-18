@@ -1,45 +1,43 @@
 # Transfer Planner Requirement Source Parse Report
 
-Generated: 2026-04-17T23:23:31.243Z
+Generated: 2026-04-18T10:21:54.627Z
 
-- Primary degree sources parsed: 225
-- Parsed successfully: 225
+- Primary degree sources parsed: 460
+- Parsed successfully: 460
 - Parse failures: 0
-- Parsed requirement source adapter blocks: 225
-- Parsed requirement atom candidates: 6370
-- Parsed degree-map block candidates: 281
-- Parsed from cached snapshots after live-source failures: 2
+- Parsed requirement source adapter blocks: 460
+- Parsed requirement atom candidates: 14475
+- Parsed degree-map block candidates: 1070
+- Parsed from cached snapshots after live-source failures: 0
 - Parsed from alternate official source URLs: 2
-- Owners with parsed UW course codes: 221
-- Owners with source-only UW course codes not currently in structured degree-map blocks: 1
-- Owners with no parsed UW course codes: 4
-- Owners with parser-quality warnings: 23
-- Owners with parser-quality notes: 4
+- Owners with parsed UW course codes: 450
+- Owners with source-only UW course codes not currently in structured degree-map blocks: 0
+- Owners with no parsed UW course codes: 10
+- Owners with parser-quality warnings: 42
+- Owners with parser-quality notes: 2
 
 ## Parser Adapters
 
-- generic-official-html-page: 29
-- generic-official-pdf-degree-sheet: 20
-- uw-bothell-html-degree-page: 40
+- generic-official-html-page: 47
+- generic-official-pdf-degree-sheet: 27
+- uw-bothell-html-degree-page: 121
 - uw-bothell-pdf-worksheet: 3
-- uw-seattle-catalog-page: 39
-- uw-seattle-html-degree-page: 66
-- uw-tacoma-catalog-page: 3
-- uw-tacoma-html-degree-page: 25
+- uw-seattle-catalog-page: 56
+- uw-seattle-html-degree-page: 147
+- uw-tacoma-catalog-page: 11
+- uw-tacoma-html-degree-page: 48
 
 ## Resolution Strategies
 
 - alternate-official-source: 2
-- cached-snapshot: 2
-- primary-source: 221
+- primary-source: 458
 
 ## Parser Quality Signals
 
 - alternate-official-source-used: 2
-- high-confidence-low-course-coverage: 8
-- large-structured-only-course-gap: 21
-- material-source-structured-drift: 23
-- snapshot-fallback-used: 2
+- high-confidence-low-course-coverage: 7
+- large-structured-only-course-gap: 31
+- material-source-structured-drift: 42
 
 ## uw-seattle
 
@@ -56,6 +54,12 @@ Generated: 2026-04-17T23:23:31.243Z
 - Source: https://www.washington.edu/students/gencat/program/S/Anthropology-102.html
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=29; source-only=0; structured-only=12) | large-structured-only-course-gap (structured-only=12; parsed=29; structured-coverage=41)
+
+#### Applied & Computational Mathematical Sciences (ACMS) - Option Specific Credits
+
+- Source: https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=26; source-only=0; structured-only=10) | large-structured-only-course-gap (structured-only=10; parsed=26; structured-coverage=36)
 
 #### Art
 
@@ -80,6 +84,18 @@ Generated: 2026-04-17T23:23:31.243Z
 - Source: https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=19; source-only=0; structured-only=15) | large-structured-only-course-gap (structured-only=15; parsed=19; structured-coverage=34)
+
+#### Drama - 60-68 Credits, Depending on Credential/Option
+
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=21; source-only=0; structured-only=5)
+
+#### Drama - Option Specific Credits
+
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=21; source-only=0; structured-only=5)
 
 #### Earth & Space Sciences
 
@@ -135,6 +151,18 @@ Generated: 2026-04-17T23:23:31.243Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=12; source-only=0; structured-only=13) | large-structured-only-course-gap (structured-only=13; parsed=12; structured-coverage=25)
 
+#### Ethnomusicology, B.A. - Non-Thesis Option
+
+- Source: https://www.washington.edu/students/gencat/program/S/Music-217.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=12; source-only=0; structured-only=13) | large-structured-only-course-gap (structured-only=13; parsed=12; structured-coverage=25)
+
+#### Ethnomusicology, B.A. - Thesis Option
+
+- Source: https://www.washington.edu/students/gencat/program/S/Music-217.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=12; source-only=0; structured-only=13) | large-structured-only-course-gap (structured-only=13; parsed=12; structured-coverage=25)
+
 #### Marine Biology
 
 - Source: https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf
@@ -142,6 +170,18 @@ Generated: 2026-04-17T23:23:31.243Z
 - Quality warnings: material-source-structured-drift (parsed=31; source-only=0; structured-only=5)
 
 #### Mathematics
+
+- Source: https://math.washington.edu/ba-mathematics-standard-major-requirements-0
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=23; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=23; structured-coverage=32)
+
+#### Mathematics - Math Option Change
+
+- Source: https://math.washington.edu/ba-mathematics-standard-major-requirements-0
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=23; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=23; structured-coverage=32)
+
+#### Mathematics - Math Option Change for Current Math Majors
 
 - Source: https://math.washington.edu/ba-mathematics-standard-major-requirements-0
 - Parse confidence: high
@@ -159,32 +199,23 @@ Generated: 2026-04-17T23:23:31.243Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=57; source-only=0; structured-only=17) | large-structured-only-course-gap (structured-only=17; parsed=57; structured-coverage=74)
 
-#### Physics
-
-- Source: https://phys.washington.edu/physics-bs-degree-requirements
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=15; source-only=6; structured-only=24) | large-structured-only-course-gap (structured-only=24; parsed=15; structured-coverage=33) | high-confidence-low-course-coverage (parsed=15; structured-coverage=33; structured-only=24)
-
 #### Speech & Hearing Sciences
 
 - Source: https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=69; source-only=0; structured-only=5)
 
-### Possible source-vs-structured drift
+#### Speech & Hearing Sciences - Electives -Choose Pediatric Track or Adult Track
 
-#### Physics
-
-- Source: https://phys.washington.edu/physics-bs-degree-requirements
-- Parser type: html-degree-page
-- Parser adapter: uw-seattle-html-degree-page
-- Resolution strategy: cached-snapshot
+- Source: https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html
 - Parse confidence: high
-- Snapshot fallback: HTTP 429 Too Many Requests
-- Source-only UW course codes: ASTR 321, ASTR 322, ASTR 323, BIOC 405, CHEM 457, PHYS 328
-- Structured-only UW course codes not seen in the parsed source: AMATH 351, AMATH 352, BIOC 499, BIOL 499, CHEM 143, CHEM 153, CHEM 223, CHEM 224, CHEM 499, GRDSCH 200, MATH 126, MATH 136, MATH 207, MATH 208, PHYS 121, PHYS 143, PHYS 401, PHYS 402, PHYS 403, PHYS 485, PHYS 486, PHYS 494, PHYS 495, PHYS 499
-- Requirement cues: (10 credits) | (6-10 credits), | ‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
-- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-physics.txt
+- Quality warnings: material-source-structured-drift (parsed=69; source-only=0; structured-only=5)
+
+#### Speech & Hearing Sciences - Option-Specific Requirements:
+
+- Source: https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=69; source-only=0; structured-only=5)
 
 ## uw-bothell
 
@@ -194,16 +225,84 @@ Generated: 2026-04-17T23:23:31.243Z
   - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
   - Parser type: html-overview-page
   - Requirement cues found: 38
+- Business Administration (BA) - Accounting Option
+  - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
+  - Parser type: html-overview-page
+  - Requirement cues found: 38
+- Business Administration (BA) - Leadership & Strategic Innovation Option
+  - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
+  - Parser type: html-overview-page
+  - Requirement cues found: 16
+- Business Administration (BA) - Supply Chain Management Option
+  - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
+  - Parser type: html-overview-page
+  - Requirement cues found: 16
 - Economics (BS)
   - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
   - Parser type: html-overview-page
   - Requirement cues found: 34
+- Economics (BS) - Leadership & Strategic Innovation Option
+  - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+  - Parser type: html-overview-page
+  - Requirement cues found: 11
+- Economics (BS) - Supply Chain Management Option
+  - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+  - Parser type: html-overview-page
+  - Requirement cues found: 11
 
 ## uw-tacoma
 
 ### Parser-quality warnings
 
+#### Arts, Media and Culture (BA) - American Cultures Track
+
+- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=45; source-only=0; structured-only=6)
+
+#### Arts, Media and Culture (BA) - Comparative Arts Track
+
+- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=44; source-only=0; structured-only=6)
+
+#### Arts, Media and Culture (BA) - Film and Media Track
+
+- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=39; source-only=0; structured-only=6)
+
+#### Arts, Media and Culture (BA) - Literature Track
+
+- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=44; source-only=0; structured-only=6)
+
+#### Arts, Media and Culture (BA) - Visual and Performing Arts Track
+
+- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=44; source-only=0; structured-only=6)
+
 #### Computer Engineering
+
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=119; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=119; structured-coverage=128)
+
+#### Computer Engineering - 40-45 Credits, Depending on Option
+
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=119; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=119; structured-coverage=128)
+
+#### Computer Engineering - Create Your Own Pathway As a Separate Option
+
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=119; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=119; structured-coverage=128)
+
+#### Computer Engineering - Option Specific Requirements
 
 - Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
 - Parse confidence: high
@@ -215,8 +314,30 @@ Generated: 2026-04-17T23:23:31.243Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=119; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=119; structured-coverage=128)
 
+#### Electrical Engineering - 40-45 Credits, Depending on Option
+
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=119; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=119; structured-coverage=128)
+
+#### Electrical Engineering - Create Your Own Pathway As a Separate Option
+
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=119; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=119; structured-coverage=128)
+
+#### Electrical Engineering - Option Specific Requirements
+
+- Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=119; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=119; structured-coverage=128)
+
 ### Parsed but no UW course codes found
 
+- Communications (BA) - Professional Track
+  - Source: https://www.tacoma.uw.edu/sias/cac/communication
+  - Parser type: html-degree-page
+  - Requirement cues found: 5
 - History (BA)
   - Source: https://www.tacoma.uw.edu/sias/socs/history
   - Parser type: html-overview-page

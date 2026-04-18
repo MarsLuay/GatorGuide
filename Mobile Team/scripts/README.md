@@ -1,6 +1,6 @@
 # Scripts
 
-This folder contains Windows launchers for the transfer planner refresh flow.
+This folder contains the Windows launcher and PowerShell helpers for the transfer planner refresh flow.
 
 ## Quick start for future people
 
@@ -12,41 +12,31 @@ npm run planner:full:verify
 
 Or double-click:
 
-- `scripts/run-planner-maintenance.bat`
-- `scripts/run-planner-maintenance.cmd`
+- `scripts/Course-Planner-Updater.bat`
 
 This executes refresh + verification + hardening + Windows QA and writes a summary to:
 
 - `.tmp/transfer-planner-maintenance-summary.md`
 
-If a run fails because of temporary schedule-download/network issues, use:
+If a run fails because of temporary schedule-download/network issues, use the updater's built-in no-download option:
 
 ```bash
-scripts/run-planner-refresh-no-downloads.cmd
+scripts/Course-Planner-Updater.bat refresh-no-downloads
 ```
 
 Then rerun the full maintenance command once network access is stable.
 
 ## Planner launchers
 
-- `run-planner-refresh.cmd`
+- `Course-Planner-Updater.bat`
   - Main one to use.
-  - Double-click this to regenerate the transfer planner data and rerun the planner verification steps.
-  - This now includes the official source-link audit, a major-by-major owner audit report, typecheck, and the planner regression tests.
-
-- `run-planner-refresh-no-downloads.cmd`
-  - Runs the planner refresh without downloading Green River schedule snapshots.
-  - Use this if the normal refresh fails because of schedule download/network issues but you still want to rebuild the rest of the planner outputs.
-  - It still checks official source links, rebuilds the planner data, runs the owner audit, and runs the final verification steps.
-
-- `run-planner-maintenance.cmd`
-  - Larger maintenance flow.
-  - Runs the planner refresh plus the extra maintenance/QA steps used for the full planner verification workflow.
-  - The launcher is interactive now: it can run the full flow, run one maintenance section, start from a selected section through the end, or show a cache/last-run summary before doing any work.
-
-- `run-planner-maintenance.bat`
-  - Batch-file wrapper around `run-planner-maintenance.cmd`.
-  - Use this if you specifically want a double-clickable `.bat` entrypoint for the full planner update flow.
+  - Double-click it for a menu, or run it from a terminal with one of the built-in modes:
+    - `maintenance`
+    - `maintenance-no-downloads`
+    - `refresh`
+    - `refresh-no-downloads`
+    - `cache-summary`
+  - This is now the single user-facing Windows launcher for the planner update flow.
 
 ## Required update inputs
 
@@ -79,16 +69,12 @@ Use the linked reports in that summary for details:
 - `.tmp/transfer-planner-owner-audit.md`
 - `.tmp/transfer-planner-hardening-report.md`
 
-## PowerShell wrappers
+## PowerShell helpers
 
-These `.cmd` files call the PowerShell scripts in the same folder:
+The batch launcher calls the PowerShell scripts in the same folder:
 
 - `run-transfer-planner-refresh.ps1`
 - `run-transfer-planner-maintenance.ps1`
-
-The `.bat` wrapper simply forwards to the main maintenance `.cmd` launcher:
-
-- `run-planner-maintenance.bat`
 
 ## Terminal equivalents
 

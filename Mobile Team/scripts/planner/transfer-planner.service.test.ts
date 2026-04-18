@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import test from "node:test";
 
 import {
@@ -2842,7 +2842,7 @@ test("Seattle Computer Engineering parsed source blocks and runtime planning no 
   );
   assert.deepEqual(
     runtimePlan?.beforeEnrollmentChecklist.map((item) => item.title),
-    ["PHYS 122", "MATH 208", "EE 215"]
+    ["PHYS 122", "MATH 208", "EE 215", "CSE 121-123 programming sequence"]
   );
   assert.equal(checklistCoverage.length <= runtimeCourseList.length, true);
 });
@@ -2914,6 +2914,49 @@ test("Seattle Computer Engineering source-backed recovery keeps a useful lower-d
   assert.equal(runtimeCourseList.length >= 12, true);
   assert.equal(runtimeRecommendation?.trackId, runtimePlan?.bestTrackId ?? null);
   assert.equal((runtimeRecommendation?.matchCount ?? 0) >= 10, true);
+});
+
+test("Runtime computing-sequence recovery uses shared guide-backed evidence without leaking optional engineering lists", () => {
+  const runtimeCompEPlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-computer-engineering"
+  );
+  const runtimeCsPlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-science");
+  const runtimeCivilPlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-civil-engineering");
+  const runtimeHcdePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-human-centered-design-engineering"
+  );
+
+  assert.ok(runtimeCompEPlan, "Expected runtime Seattle Computer Engineering plan.");
+  assert.ok(runtimeCsPlan, "Expected runtime Seattle Computer Science plan.");
+  assert.ok(runtimeCivilPlan, "Expected runtime Seattle Civil Engineering plan.");
+  assert.ok(runtimeHcdePlan, "Expected runtime Seattle HCDE plan.");
+
+  const runtimeCompEBeforeEnrollment = runtimeCompEPlan?.beforeEnrollmentChecklist ?? [];
+  const runtimeCsBeforeEnrollment = runtimeCsPlan?.beforeEnrollmentChecklist ?? [];
+  const runtimeCivilBeforeEnrollment = runtimeCivilPlan?.beforeEnrollmentChecklist ?? [];
+  const runtimeHcdeBeforeEnrollment = runtimeHcdePlan?.beforeEnrollmentChecklist ?? [];
+
+  const compEProgrammingSequence = runtimeCompEBeforeEnrollment.find(
+    (item) => item.title === "CSE 121-123 programming sequence"
+  );
+  const csProgrammingSequence = runtimeCsBeforeEnrollment.find(
+    (item) => item.title === "CSE 121-123 programming sequence"
+  );
+
+  assert.deepEqual(compEProgrammingSequence?.grcCourses ?? [], ["CS 121", "CS 122", "CS 123"]);
+  assert.deepEqual(csProgrammingSequence?.grcCourses ?? [], ["CS 121", "CS 122", "CS 123"]);
+  assert.equal(
+    runtimeCivilBeforeEnrollment.some(
+      (item) => item.title === "CSE 121-123 programming sequence"
+    ),
+    false
+  );
+  assert.equal(
+    runtimeHcdeBeforeEnrollment.some(
+      (item) => item.title === "CSE 121-123 programming sequence"
+    ),
+    false
+  );
 });
 
 test("Seattle Aeronautics runtime keeps the broader mapped prep signal that drives its best-track overlap", () => {
@@ -4428,7 +4471,7 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
     "scripts/run-transfer-planner-maintenance.ps1",
     "utf8"
   );
-  const maintenanceCmd = readFileSync("scripts/run-planner-maintenance.cmd", "utf8");
+  const updaterBat = readFileSync("scripts/Course-Planner-Updater.bat", "utf8");
   const refreshScript = readFileSync("scripts/run-transfer-planner-refresh.ps1", "utf8");
   const windowsQaScript = readFileSync("scripts/qa/run-windows-qa.cjs", "utf8");
   const windowsInteractionsScript = readFileSync(".tools/windows-interactions.mjs", "utf8");
@@ -4454,9 +4497,17 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(maintenanceScript, /-OnlySection/);
   assert.match(maintenanceScript, /-StartSection/);
 
-  assert.match(maintenanceCmd, /run-transfer-planner-maintenance\.ps1/);
+  assert.match(updaterBat, /run-transfer-planner-maintenance\.ps1/);
+  assert.match(updaterBat, /run-transfer-planner-refresh\.ps1/);
+  assert.match(updaterBat, /maintenance-no-downloads/);
+  assert.match(updaterBat, /refresh-no-downloads/);
+  assert.match(updaterBat, /cache-summary/);
   assert.match(refreshScript, /--only-section/);
   assert.match(refreshScript, /--start-section/);
+  assert.equal(existsSync("scripts/run-planner-maintenance.cmd"), false);
+  assert.equal(existsSync("scripts/run-planner-maintenance.bat"), false);
+  assert.equal(existsSync("scripts/run-planner-refresh.cmd"), false);
+  assert.equal(existsSync("scripts/run-planner-refresh-no-downloads.cmd"), false);
 
   assert.match(windowsQaScript, /const npxCommand = process\.platform === "win32" \? "npx\.cmd" : "npx"/);
   assert.doesNotMatch(windowsQaScript, /shell:\s*true/);
@@ -4472,7 +4523,8 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(packageJson, /"planner:full:verify":/);
   assert.match(readme, /planner:windows:maintenance/);
   assert.match(readme, /transfer-planner-hardening-report\.md/);
-  assert.match(readme, /run-planner-maintenance\.cmd/);
+  assert.match(readme, /Course-Planner-Updater\.bat/);
+  assert.doesNotMatch(readme, /run-planner-maintenance\.cmd/);
   assert.match(readme, /transfer-planner-maintenance-summary\.md/);
 });
 
@@ -4963,10 +5015,13 @@ test("Planner docs now use source-gap and source-backed language instead of revi
   assert.doesNotMatch(toolSummary, /advisor review/i);
   assert.doesNotMatch(toolSummary, /review queue/i);
   assert.match(toolSummary, /planner:windows:maintenance/);
-  assert.match(toolSummary, /run-planner-maintenance\.cmd/);
+  assert.match(toolSummary, /Course-Planner-Updater\.bat/);
+  assert.doesNotMatch(toolSummary, /run-planner-maintenance\.cmd/);
+  assert.doesNotMatch(toolSummary, /run-planner-refresh\.cmd/);
 
   assert.match(docsReadme, /planner:windows:maintenance/);
-  assert.match(docsReadme, /run-planner-maintenance\.cmd/);
+  assert.match(docsReadme, /Course-Planner-Updater\.bat/);
+  assert.doesNotMatch(docsReadme, /run-planner-maintenance\.cmd/);
   assert.match(docsReadme, /generated from the planner source layer/i);
 
   assert.doesNotMatch(bootstrapSource, /advisor review/i);
@@ -7798,6 +7853,70 @@ test.skip("Source-generated pathway rows can resolve the new route-specific Seat
   );
 });
 
+test("Pathway options round-trip current structured labels for multi-pathway and option-family majors", () => {
+  assert.ok(sourceGeneratedStatisticsPlan, "Expected source-generated Seattle Statistics planner row.");
+  assert.ok(biologyPlan, "Expected Seattle Biology planner row.");
+  assert.ok(sourceGeneratedPhghPlan, "Expected source-generated Seattle PH-GH planner row.");
+
+  const statisticsRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-statistics");
+  const phghRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-public-health-global-health"
+  );
+  const biologyRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-biology");
+
+  const statisticsSourceLabels = new Map(
+    getTransferPlannerPathwaysForPlan(sourceGeneratedStatisticsPlan).map((pathway) => [
+      pathway.id,
+      pathway.label,
+    ] as const)
+  );
+  const statisticsRuntimeLabels = new Map(
+    getTransferPlannerStudentRuntimePathwaysForPlan(statisticsRuntimePlan).map((pathway) => [
+      pathway.id,
+      pathway.label,
+    ] as const)
+  );
+  const biologySourceLabels = new Map(
+    getTransferPlannerPathwaysForPlan(biologyPlan).map((pathway) => [
+      pathway.id,
+      pathway.label,
+    ] as const)
+  );
+  const biologyRuntimeLabels = new Map(
+    getTransferPlannerStudentRuntimePathwaysForPlan(biologyRuntimePlan).map((pathway) => [
+      pathway.id,
+      pathway.label,
+    ] as const)
+  );
+  const phghRuntimeLabels = new Map(
+    getTransferPlannerStudentRuntimePathwaysForPlan(phghRuntimePlan).map((pathway) => [
+      pathway.id,
+      pathway.label,
+    ] as const)
+  );
+
+  assert.equal(statisticsSourceLabels.get("applied-statistics-track"), "Applied Statistics track");
+  assert.equal(statisticsSourceLabels.get("data-science-track"), "Data Science track");
+  assert.equal(statisticsRuntimeLabels.get("applied-statistics-track"), "Applied Statistics track");
+  assert.equal(statisticsRuntimeLabels.get("data-science-track"), "Data Science track");
+
+  assert.equal(biologySourceLabels.get("ba-general-biology"), "B.A. general biology");
+  assert.equal(
+    biologySourceLabels.get("bs-option-family:general-biology"),
+    "B.S. General Biology option"
+  );
+  assert.equal(biologyRuntimeLabels.get("ba-general-biology"), "B.A. general biology");
+  assert.equal(
+    biologyRuntimeLabels.get("bs-option-family:general-biology"),
+    "B.S. General Biology option"
+  );
+
+  assert.equal(
+    phghRuntimeLabels.get("bs-nutritional-sciences-option"),
+    "B.S. Nutritional Sciences option"
+  );
+});
+
 test("Auto track matcher preserves custom track copy when the computed winner already matches", () => {
   const autoRecommendation = getTransferPlannerAutoMatchedTrackRecommendation(
     csPlan.grcCourseList ?? [],
@@ -7885,6 +8004,58 @@ test("Non-Seattle runtime majors with mapped GRC courses now get an auto-matched
       assert.ok(track, `Expected ${plan.id} bestTrackId (${plan.bestTrackId}) to resolve to a track.`);
     }
   }
+});
+
+test("Runtime pathway options keep structured pathway-only course pools without collapsing route ids", () => {
+  assert.ok(sourceGeneratedTacomaSudPlan, "Expected Tacoma SUD planner row.");
+  assert.ok(sourceGeneratedTacomaUrbanStudiesPlan, "Expected Tacoma Urban Studies planner row.");
+
+  const sudRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-tacoma-sustainable-urban-development"
+  );
+  const urbanRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-tacoma-urban-studies");
+
+  const sourceSudPathways = new Map(
+    getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaSudPlan).map((pathway) => [
+      pathway.id,
+      pathway,
+    ] as const)
+  );
+  const runtimeSudPathways = new Map(
+    getTransferPlannerStudentRuntimePathwaysForPlan(sudRuntimePlan).map((pathway) => [
+      pathway.id,
+      pathway,
+    ] as const)
+  );
+  const sourceUrbanPathways = new Map(
+    getTransferPlannerPathwaysForPlan(sourceGeneratedTacomaUrbanStudiesPlan).map((pathway) => [
+      pathway.id,
+      pathway,
+    ] as const)
+  );
+  const runtimeUrbanPathways = new Map(
+    getTransferPlannerStudentRuntimePathwaysForPlan(urbanRuntimePlan).map((pathway) => [
+      pathway.id,
+      pathway,
+    ] as const)
+  );
+
+  assert.deepEqual([...runtimeSudPathways.keys()], [...sourceSudPathways.keys()]);
+  assert.deepEqual([...runtimeUrbanPathways.keys()], [...sourceUrbanPathways.keys()]);
+
+  const sourceSudGisPathway = sourceSudPathways.get("gis-option");
+  const runtimeSudGisPathway = runtimeSudPathways.get("gis-option");
+  const sourceUrbanGisPathway = sourceUrbanPathways.get("gis-option");
+  const runtimeUrbanGisPathway = runtimeUrbanPathways.get("gis-option");
+
+  assert.ok(runtimeSudGisPathway, "Expected runtime Tacoma SUD GIS pathway option.");
+  assert.ok(runtimeUrbanGisPathway, "Expected runtime Tacoma Urban Studies GIS pathway option.");
+  assert.equal(runtimeSudGisPathway?.label, "GIS option");
+  assert.equal(runtimeUrbanGisPathway?.label, "GIS option");
+  assert.ok(runtimeSudGisPathway?.grcCourseList?.includes("GIS 260"));
+  assert.ok(runtimeUrbanGisPathway?.grcCourseList?.includes("GIS 202"));
+  assert.equal(runtimeSudGisPathway?.bestTrackId, sourceSudGisPathway?.bestTrackId ?? null);
+  assert.equal(runtimeUrbanGisPathway?.bestTrackId, sourceUrbanGisPathway?.bestTrackId ?? null);
 });
 
 test.skip("Expanded pathway majors resolve to the selected official route and route-specific guidance", () => {

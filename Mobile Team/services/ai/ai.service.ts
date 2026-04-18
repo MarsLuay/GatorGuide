@@ -2250,7 +2250,7 @@ class AIService {
   }
 
   async recommendColleges(options: { query?: string; userProfile?: UserProfile | null; questionnaire?: Questionnaire | null; maxResults?: number; useWeightedSearch?: boolean; disableAiComponent?: boolean; disabledInfluences?: DisabledInfluences } = {}): Promise<RecommendResponse> {
-    const { query = '', userProfile = null, questionnaire = null, maxResults = 12, useWeightedSearch = true, disableAiComponent = false, disabledInfluences = {} } = options;
+    const { query = '', userProfile = null, questionnaire = null, maxResults = 12, useWeightedSearch = false, disableAiComponent = false, disabledInfluences = {} } = options;
     const trimmedQuery = query.trim();
     const isInfluenceDisabled = (k: keyof DisabledInfluences) => disabledInfluences[k] === true;
 

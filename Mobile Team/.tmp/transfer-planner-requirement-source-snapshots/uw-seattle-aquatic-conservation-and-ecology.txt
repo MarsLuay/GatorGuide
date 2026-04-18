@@ -5,7 +5,7 @@ Title: Major Requirements | School of Aquatic and Fishery Sciences
 -->
 [Supplemental official source] Aquatic and Fishery Sciences (AFS) Bachelor of Science
 [Supplemental official source] Aquatic Conservation and Ecology (ACE) Bachelor of Science
-&#115;&#97;&#102;&#115;&#100;esk&#64;u&#46;&#119;&#97;&#115;&#104;ing&#116;on.&#101;&#100;&#117;
+&#115;af&#115;&#100;&#101;&#115;&#107;&#64;&#117;.&#119;a&#115;h&#105;&#110;g&#116;o&#110;.&#101;du
 &copy; 2026 University of Washington |
 <!--
 <svg id="college_black_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

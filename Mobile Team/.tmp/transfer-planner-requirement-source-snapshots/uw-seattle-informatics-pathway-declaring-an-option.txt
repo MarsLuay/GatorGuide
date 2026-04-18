@@ -1,0 +1,281 @@
+Owner: uw-seattle-informatics:pathway:declaring-an-option
+Source: https://ischool.uw.edu/academics/informatics/curriculum
+Title: Informatics Curriculum | Information School | University of Washington
+
+-->
+[Supplemental official source] Degree Planning
+* These courses are only offered during the quarters noted above.
+** Choose one of these three options:
+&copy; 2026 UW Information School
+<!--
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM46LWX"
+12:00-11:59 PM
+12:30-1:30 PM
+2:00-3:30 PM
+2024-04-19
+2026-03-10
+206-685-9937
+5:00-6:00 PM
+9-month online graduate certificate program
+About Us
+Academics
+Admissions
+Advising & Support
+AI Certificate Information Session & Q&A
+AI for Organizations
+All
+Alumni
+any two courses at the INFO 35x-level.
+Apply to graduate in autumn of senior year
+Approved electives
+Apr 17
+Apr 22
+Apr 23
+Attend iWelcome Week and Informatics New Student Orientation in September
+Autumn
+Azure Dev Tools
+Begin applying for internships in autumn quarter (recommended)
+Begin taking major electives/degree option classes spring of junior year
+Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478.
+Bluesky
+Box 352840 - Mary Gates Hall, Ste. 370
+CALMA Round Table: Practical Perspectives on the Impact of Artificial Intelligence on Library, Archives, and Museum Careers
+Canvas LMS
+Capstone
+Capstone (4 cr)
+Capstone (8-credits): Students complete a culminating experience.
+Capstone details
+Capstone Projects
+Career Outcomes
+Careers
+Choose between CSE 123: Introduction to Computer Programming III (4 cr), CSE 143
+Choose between CSE 123: Introduction to Computer Programming III (4 cr), CSE 143:
+Choose between CSE 373, INFO 442 or INFO 443 (4-5 cr) **
+Client-Side Development (5 cr)
+Close
+Close menu
+Committees
+Community
+Complete a summer internship (recommended)
+Completing an option is not required. Students may declare a degree option at any time, but typically file the necessary change of major forms after their spring quarter, so that they are correctly listed in the system prior to applying for graduation the following autumn.
+Computer Programming II (5 cr) and CSE 163: Intermediate Data Programming (4 cr)
+Contact Us
+Core courses (54-58 credits)
+Core topics of iSchool research
+Course Maps
+Course Schedules
+Courses in the UW Informatics program: lower-division requirements, core classes and degree concentrations at the Information School.
+Courses required for admission (15-20 credits)
+CSE 373: Data Structures & Algorithms (4 credits)
+Current Students
+Current UW Students: Junior year course schedule example
+Current UW students: senior year course schedule example
+Customize Your Experience
+Data (INFO 33x, 43x courses). These courses teach foundational concepts and skills in how to represent, organize, store and retrieve data using technologies such as databases.
+Data Science Option: INFO 370, INFO 371, INFO 430, INFO 474, or other approved data science elective
+Data Science Option: INFO 370, INFO 371, INFO 430, INFO 474, or other data science electives.
+Databases & Data Modeling (5 cr)
+Declare your major option by spring of junior year (recommended)
+Declaring an option
+Degree Planning
+Degree Planning | Information School | University of Washington
+Design (INFO 36x, 46x courses). These courses teach creative design skills, helping students imagine how information might be used to address problems, opportunities and injustices in the world.
+Design Methods (4 cr)
+Designing Information Experiences: Students learn how to envision and create new information technologies.
+Details on the requirements to complete your degree within the Informatics major.
+Developing Information Technology: Students learn how to build and maintain computing and information technologies. This includes foundational topics in computer science.
+Development (INFO 34x, 44x courses). These courses teach foundational skills in processing and provisioning data through software, including web and app development.
+Directory
+Diversity
+Doctorate Program
+Documents That Changed the World, with Joe Janes
+Elective
+Electives (12-15 credits)
+Emergency Info
+Employers & Partners
+Enter search text
+Events
+Every gift makes a difference to students
+Everyone
+Experiential Learning
+Exploring Informatics: Students take foundational skills to understand the domain of Informatics.
+Facebook
+Faculty & Staff
+Faculty Affairs
+Financial Aid & Scholarships
+Find help from our team of student advisors
+Find iSchool faculty, staff and students
+Focus Areas
+Foundations (INFO 20x, 30x, 40x courses). These courses teach the foundations of data, information and knowledge, helping students understand what information is, and how we create and use it in our lives, organizations and communities.
+Full Results
+Future Students
+Graduation
+Grants & Awards
+Growing up in a small town in Eastern Washington, Diego Licea aspired to attend college and set his sights on the University of Washington.“I'd heard it was a challenging school to get into,” he said. “If it wasn't UW, I felt like...
+height="0" width="0" style="display:none;visibility:hidden">
+Highlights
+How our research drives progress and helps people
+How to collaborate with faculty and students
+Hubs for innovative scholarship & research
+Husky Giving Day
+I am the iSchool
+I Am the iSchool
+Indigenous data has a history of bad management from non-Natives, says UW Information School Assistant Professor Sandy Littletree (Eastern Shoshone/Navajo). Library collections may include sacred songs, ceremonies and stories that were...
+INFO 200
+INFO 200: Intellectual Foundations of Informatics
+INFO 201
+INFO 201: Foundational Skills for Data Science
+INFO 290: Orientation to Informatics
+INFO 300
+INFO 300: Research Methods
+INFO 330
+INFO 330: Databases and Data Modeling
+INFO 340
+INFO 340: Client-Side Development
+INFO 351
+INFO 360
+INFO 360: Design Methods
+INFO 380
+INFO 380 *
+INFO 380: Product and Information Systems Management
+INFO 442: Cooperative Software Development (5 credits), not offered every quarter
+INFO 443: Software Architecture (5 credits), not offered every quarter
+INFO 490 *
+INFO 490: Project Capstone I and INFO 491: Project Capstone II (8 credits total)
+INFO 491 *
+INFO Elective
+Informatics
+Informatics Academics
+Informatics courses can also be understood as informing a variety of focus areas, which are lenses that frame different considerations of information in the curriculum. For example, Informatics offers courses in data science (INFO 37x/47x), cybersecurity (INFO 31x/41x), and search and retrieval (INFO 32x/42x). Most Informatics courses can be labeled as drawing on one or more focus areas; students can use these focus areas to help plan their core classes and electives. See the full list of focus areas for details.
+Informatics Curriculum
+Informatics Curriculum | Information School | University of Washington
+Informatics major requirements
+Informatics Minor
+Informatics student blends history, technology and service
+Information
+Information and Organizations: Students learn to analyze the impacts and use of information technologies within organizations.
+Information and Society (8-10 credits): Students learn to analyze the impacts of information technologies on individuals and society as a whole.
+Information Ethics & Policy (5 cr)
+Information Systems Analysis & Design (5 cr)
+Instagram
+Intellectual Foundations of Informatics (5 cr)
+iSchool Intranet
+iSchools.org
+IT / Help Desk
+Jasper Maynard Zhang : Jasper Maynard Zhang, Informatics: "I am interested in how technology and data science can be used to address causes I care about." Read more.
+Jobs
+Jump to Footer Navigation
+Jump to Main Content
+Jump to Page Navigation
+Jump to Top Navigation
+Knowledge Base
+Law Librarianship
+LinkedIn
+Loading Results... Loading search results, please wait.
+Logo & Brand Guidelines
+Make a Gift
+Making the iSchool a joyful professional community for faculty
+Master of Arts
+Master of Library and Information Science
+Master of Science in Information Management
+Meet some of our students and alumni
+Menu
+MLIS
+More info
+MSIM
+Museology
+MyUW
+News
+News & Events
+Office 365
+Once students have been admitted to the major, they typically follow the steps below to complete their degree:
+one course from CSE 123: Introduction to Computer Programming III, CSE 143: Computer Programming II, or CSE 163: Intermediate Data Programming
+one course from CSE 373: Data Structures and Algorithms (4 credits), INFO 442: Cooperative Software Development (5 credits), or INFO 443: Software Architecture (5 credits)
+One course in computer programming; see the list of accepted courses
+One course in statistics; see the list of accepted courses
+One course in the social sciences (SSc) area of inquiry ; must be another course that is not INFO 200
+Open Scholarship Commons, Suzzallo Library
+Organizations (INFO 38x, 48x course). These courses teach key perspectives on how information is used in organizations such as businesses, communities and governments, ensuring that students’ perspectives go beyond the individual.
+Outlook on the web
+People
+Ph.D.
+Pick Your Path Through MSIM
+Podcast
+Privacy Policy
+Product and Information Systems Management (5 cr)
+Professional & Cont. Ed.
+Professor&#039;s work helps to advance Indigenous librarianship
+Programs
+Qualtrics
+Read more
+Recent funding for iSchool research projects
+Registration
+Related programs & non-degree options
+Request Information
+Request more information
+Research
+Research Areas
+Research Groups
+Research Impact
+Research Methods in Informatics (5 cr)
+Research Methods in Informatics (5 credits)
+Resources:
+Sample course plans
+Scholarships & Funding
+Search
+Search:
+Seattle , WA 98195-2840
+See Full Directory
+See Full Results
+See the prerequisites page for details.
+Sign up for graduation ceremonies (iSchool Convocation and UW Commencement) and order graduation materials
+Site Login
+Society (INFO 35x, 45x courses). These courses teach core concepts in data and information ethics, policy, and society, giving students perspectives on how information is used in our society.
+Special Topics & New Courses
+Specialized MLIS for those with a JD
+Spring
+Standard Grading Scale
+Stay connected with the iSchool and fellow alumni
+Steps to completing your degree
+Students may also declare a degree option in either Data Science or Biomedical and Health Informatics to have that phrase added to their transcript. Completing an option requires taking four electives from within that option’s focus area:
+Students take a range of Informatics electives (other upper-division INFO courses). Courses outside of INFO can also count as electives; please reach out to informatics@uw.edu for more information. Students may also complete a degree option in either Data Science or Biomedical and Health Informatics by choosing electives in the Data Science or Health & Well-Being focus areas respectively. Completing either option requires 4 electives:
+Students work with organizations to solve information problems
+Study Abroad
+Studying Information: Students learn how to analyze and research information technologies.
+Support the iSchool
+Take junior-level core courses: CSE 123, 143 or CSE 163; choose one of CSE 373, INFO 442 or INFO 443; INFO 300; INFO 330; INFO 340; INFO 360; INFO 380; and two INFO 35x courses
+Take the Capstone course sequence: INFO 490 & INFO 491 and present at spring Capstone event. Alternatively, you can complete a research Capstone. See the Informatics Capstone page for details.
+Technical Foundations of Informatics (5 cr)
+Terms & Conditions
+The curriculum plans below can be used to help you plan the remainder of your time in the major. The course schedule reflected on this page is typical of the path students will follow to complete their degree, but individuals may choose to pursue their own path to degree completion.
+The Informatics curriculum includes six core areas:
+The Informatics major includes a core that spans the breadth of the curriculum, allowing students to learn to study, design, and develop information technology for the good of people, organizations and society. Each course provides a foundation that students use in their Capstone projects. Students further their expertise in a broad range of electives taught by iSchool faculty and invited guest faculty from industry, government and nonprofits around the Puget Sound area.
+The iSchool is home to innovators and leaders who make information work
+The latest news from our faculty and research staff
+The latest stories from our community
+The School
+To earn a Bachelor of Science in Informatics, students must complete the following major requirements (effective Autumn 2023; see previous requirements ):
+toolkit
+Toolkit
+Tools
+Transfer students: junior year course schedule example
+Transfer students: senior year course schedule example
+Tuesday, April 14, 2026
+Undergraduate major and minor
+United States of America
+University of Washington
+University of Washington Information School
+Upcoming Info Sessions
+Updates
+UW Academic Calendar
+UW Time Schedule
+Videos: Alumni at Work
+Watch : A breakdown of the courses you need to take to complete the Informatics major and a bachelor's degree at the University of Washington.
+Watermark
+We are committed to building an inclusive community
+Wednesday, April 8, 2026
+What's happening on campus and beyond
+Winter
+Workday
+Youtube
+Zoom / Online

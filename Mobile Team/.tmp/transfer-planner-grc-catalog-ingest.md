@@ -1,8 +1,8 @@
 # Green River Catalog Ingest
 
-Generated: 2026-04-17T23:36:42.774Z
+Generated: 2026-04-18T10:35:13.127Z
 Catalog years: 2019-2020, 2020-2021, 2021-2022, 2022-2023, 2023-2024, 2024-2025, 2025-2026
-Source fingerprint: 673bf88add423e1e261dee7f9bcbe1d3d2ff4d5279166802f8892b9ad0318188
+Source fingerprint: 80d75da96584941ef67c8157ffd93be09331ca508ed4038e62371559e8364adf
 
 - Catalog roots parsed: 7
 - Catalog pages parsed: 107

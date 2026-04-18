@@ -3,17 +3,12 @@ Source: https://www.tacoma.uw.edu/urban-studies/ba-urban-studies
 Title: BA in Urban Studies | School of Urban Studies | University of Washington Tacoma
 
 [Supplemental official source] BA in Sustainable Urban Development
-[Supplemental official source] BS in Urban Design
-[Supplemental official source] general university requirements
 * Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits.
 ** Note : GIS Certificate courses are sequential and cohort-based. Students must apply to the certificate program by posted deadlines and contact the Academic Advisor to discuss course planning.
 *** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits.
-*For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
 *Note : GIS Certificate courses are sequential and cohort-based. Students must apply to the certificate program by posted deadlines and contact the Academic Advisor to discuss course planning.
 *Note : GIS Certificate courses are sequential, cohort based, and must be passed with a minimum grade of 2.5 each class. Please make sure to apply to the certificate program by posted deadlines and contact the Academic Advisor to discuss course planning.
-*Students transferring to UW Tacoma from other colleges or universities can satisfy course requirements (listed above and marked with an asterisk) by taking an equivalent course in any of the following areas. 300-400 level studio courses cannot be transferred in.
 &copy; 2026 University of Washington Tacoma
-<a href="/registrar"
 <a href="https://instagram.com/uwtacoma"
 <a href="https://www.facebook.com/uwtacoma"
 <a href="https://www.linkedin.com/school/university-of-washington-tacoma"
@@ -24,68 +19,30 @@ Title: BA in Urban Studies | School of Urban Studies | University of Washington 
 <img
 <img class="mobile-hide desktop-show"
 <img class="mobile-show desktop-hide"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2020-10/hendrixw.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-01/21399617894_d17f5ba150_k.jpg"
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-01/22991132520_9317b3dc8f_c.jpg"
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-01/22991133160_45e6bb9809_c.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-01/23791414138_f2b15030ae_k.jpg"
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-01/24095688901_c1518f20a0_c.jpg"
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2021-01/29638466554_9ac0f30770_c.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-06/ude-website_0.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-06/ude-website.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-04/design-sprint-1.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-04/design-sprint-2.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-04/design-sprint-3.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2025-04/design-sprint-4.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/styles/square/public/2025-11/picture1.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/styles/square/public/2026-01/chen-pic-3.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/styles/square/public/2026-01/pic-header.jpg"
-<meta property="og:description" content="The general education portion of the degree will be structured to a significant extent by the Areas of Inquiry (AoI), which consist of three broad areas of study:
 <span
 >
->Home
->Office of the Registrar
-10 credits in Writing (W) courses required.
-15
 1900 Commerce Street, Tacoma, WA 98402-3100
-253-692-4414
 253-692-4800
-253-692-4913
 253-692-5880
 25Live
-40 additional credits
-5
-5 credits English Composition (C) with a minimum 2.0 grade required.
 5 credits of English composition
-5 credits of Reasoning (RSN) required.
-A cumulative grade point average (GPA) of 2.0 in all college course work. Applicants with a completed application and a minimum GPA of 2.7 will be given priority consideration for admission.
-A minimum of 10 credits of Arts & Humanities (A&H) required.
-A minimum of 10 credits of Natural Sciences (NSc) required.
-A minimum of 10 credits of Social Sciences (SSc) required.
-A minimum of 180 college credits must be completed (with more required in some programs) and include a total of 40 academic credits in the following areas:
-A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-A minimum of 40 credits
-A minimum of 5 credits from the approved University list; may overlap with other Areas of Inquiry requirements. For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
-A student must satisfy the requirements for the degree at the time the degree is to be awarded. For questions, please contact the Graduate School or your advisor.
-A student would not need to submit a petition if some of the transferable credits earned at another school are considered elective credits and would not be used towards fulfilling any degree requirements. For example, if a student has completed 185 credits, of which the last 20 credits were taken at another college or university, and at least 5 of those 20 credits include elective credits, the 5 credits would not be used towards meeting any degree requirements and the student would not need to fill out a petition.
 A. Community Development & Planning
 A. Community Engagement
 About
-About UW Tacoma
 ABOUT UW TACOMA
-Academic & University Policies
 Academic advising
-Academic Advising
 Academic Advising & Resources
 Academic calendar
-Academic Calendar
 Academics
 ACADEMICS
 Accessibility |
 Achievements
 Acknowledgement
 add
-Additionally, the BS in Urban Design helps students turn their passions for social change and equity into meaningful urban design solutions producing livable cities and neighborhoods. This degree is designed to incorporate community questions and challenges into studio projects, preparing students for a life-time of commitment to public engagement.
 Administration
 Admission Requirements
 ADMISSION REQUIREMENTS
@@ -94,40 +51,18 @@ Advanced GIS courses (no longer offered) : Select two courses from the list belo
 Advantages of our program
 Advisory Board
 alt="Block W - Link to UW Tacoma homepage"/>
-alt="chen-pic-3.jpg">
-alt="Hendrix the Husky at the W">
-alt="Hieu showing designs">
-alt="Hugo looking over designs">
-alt="pic-header.jpg">
-alt="Student speaking">
-alt="UDE Website">
 alt="University of Washington Tacoma"/>
-alt="Urban Design Studio Group Picture">
-alt="UW Tacoma Campus 3">
-alt="UW Tacoma Campus">
 alt="UW Tacoma Urban Studies 1">
 alt="UW Tacoma Urban Studies 2">
 alt="UW Tacoma Urban Studies 3">
 alt="UW Tacoma Urban Studies 4">
-alt="Various designs">
 Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:
 Apply
 Apply analytic and quantitative skills to assess and develop strategies to resolve urban issues
 Approach urban issues from an interdisciplinary perspective
-Archive
-Areas of Inquiry (AoI)
 aria-label="University of Washington Tacoma Homepage">
 arrow_back_ios
-arrow_drop_down_circle
 arrow_forward_ios
-Arts & Humanities (A&H)
-Arts and Humanities (..." />
-Arts and Humanities (A&H)
-Arts and Humanities (A&H) Formerly known as Visual, Literary, and Performing Arts (VLPA)
-AY 2023 - 2024
-AY 2024 - 2025
-AY 2025 - 2026
-AY 2025 - 2026 Urban Design Projects
 B. GIS & Spatial Planning (9 courses)
 B. GIS Certificate
 BA in Sustainable Urban Development
@@ -136,23 +71,16 @@ BA in Urban Studies | School of Urban Studies | University of Washington Tacoma
 BA in Urban Studies students will choose from two formal options: Community Engagement or Geographic Information Systems (GIS). The degree starts with an introduction to the discipline of urban studies with course topics on the history and evolution of cities, urban research, and urban studies "in practice". The formal options deliver focused theory and skill-based courses that teach how to understand and impact the local and global dynamics of urban society.
 BA Urban Studies: Community Engagement
 BA Urban Studies: Geographic Information Systems (GIS)
-Basic Skill
-Basic Skills
 Bothell
-Breadcrumb
 BS in Urban Design
-BS in Urban Design | School of Urban Studies | University of Washington Tacoma
 Calendar
 CAMPUS
 Campus Safety
-cancel
 Canvas
 Career and graduate school workshops
 Careers
 Choose 2 of the following:
-Choose at least 2 courses in Sustainable Urban Development (T SUD)
 CIVITAS
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
 class="path2">
 class="uwt-icon uwt-icon-per-site-facebook">
 class="uwt-icon uwt-icon-per-site-instagram">
@@ -162,59 +90,34 @@ Close interaction with faculty and staff
 Close Search
 Collaboration with communities and institutions
 Community Planning Studio Projects
-Community-engaged design processes
-Community-Engaged Learning (CEL) is defined as "experiential learning with community partners through the mutually beneficial exchange of creativity, knowledge and resources." CEL is considered a High Impact Educational Practice, and has been shown to improve deep learning and persistence in undergraduate students. CEL allows students to engage in educationally purposeful activities and reflection tied to experiences in community-engaged outreach, scholarship, service, teaching/learning, research, creative endeavors or other activity. Community-Engaged Learning (CEL) courses are designated by an "E" in the Time Schedule. Prior to Summer 2024, the course designation was "S" (Service).
-Community-Engaged Learning (E)
 Compare and contrast approaches used in designing and undertaking research in urban studies
 Complete all of the following:
-Complete the online application to the Urban Design program
 Completion of a minimum of 40 college-level credits
-Computer modeling Design thinking
 Contact
 Contact Information
 Contact the School of Urban Studies Academic Advisor to help track your progress through the program.
 Contact us |
-Course Descriptions
-Courses that meet the Diversity (DIV) requirement study diversity in the United States with focus on the sociocultural, political, and/or economic diversity of the human experience and help students develop an understanding of the complexities of living in increasingly diverse and interconnected societies.
 Create an interdisciplinary curriculum that allows students to understand the complex inter-relationships that make up the urban environment and permits them to approach problems from a variety of perspectives
-Credit from external sources (AP/IB credit, transfer coursework, by exam, Armed Forces Training School, etc.)
-Cross-campus courses taken at UW (Seattle) & UW Bothell
 Cumulative GPA of 2.00 in all college coursework
-Current Urban Design Studio Students
 Curriculum
 CURRICULUM
-Data gathering Visualization
 Dean&#039;s Message
-Dedicated studio classrooms
 Degree Options
 DEGREE OPTIONS
-Degree Programs
-Degree Requirements
-Degree Requirements (beginning Winter Quarter 2026)
-Degree Requirements (for students admitted prior to Winter 2026)
 Demonstrate appreciation for diverse nature of urban populations and social justice issues many of these populations face
 Demonstrate effective written and oral communication skills
-Designated courses study diversity in the United States with focus on the sociocultural, political and economic diversity of human experience and help students develop an understanding of the complexities of living in increasingly diverse and interconnected societies.
-Details
 Directory
 Diverse and growing student body
-Diversity (DIV)
-English Composition (C)
-English Composition courses emphasize how to organize and express ideas effectively. In composition courses, students will refine their skills by rewriting papers after receiving feedback on them.
 Equip students with the analytical skills needed to undertake research in an urban milieu
 Equip students with the knowledge and skills necessary to pursue careers related to the multi-faceted nature of urban studies
 Equity & Inclusion
 Events
 Examines the production and development of cities from different community perspectives and teaches how cities are planned and built, and the power dynamics that influence inclusion and exclusion from urban spaces and political processes. Explores new strategies and builds new skills in community engagement for producing better cities and improving urban conditions.
-Exceptions to the rule regarding majors may be granted at the discretion of the department. If major requirements other than the current ones are being used, a note to that effect must be made on the degree application.
 expand_more
-EXPLORE
 Faculty & Staff
 Faculty & Staff Resources
 Faculty Achievements
 Fax Number
-Final Project
-Final Year Residency Requirement
 Financial Aid
 First-year students will need to be admitted to UW Tacoma and complete the above requirements prior to declaring your major.
 Flexible class offerings
@@ -222,21 +125,12 @@ For students admitted to the major before spring 2026.
 Formal Options
 Formal options ( choose one option ) (25 credits)
 Formal options ( choose one option) (20-29 credits)
-Formerly known as Areas of Knowledge (AoK)
-Formerly known as Quantitative/Symbolic Reasoning (QSR)
-Forms
 Foundation Courses (22 credits, all required)
 Foundation courses (22 credits)
 Foundation Courses (25 credits, choose 5 courses)
 Foundation courses (25-26 credits)
 Foundation courses (27 credits)
-General Catalog
-General Education
-General Education | General Catalog | University of Washington Tacoma
-General Education requirements represent the foundation of a UW education and will support the advanced learning students will do the rest of their lives. The objective is to introduce students to many new ideas, rather than training them in one specific subject, so that they are in a position to create linkages across a wide expanse of different topics and disciplines. Areas of Inquiry (AoI) are meant to allow students to embrace the exploration of new ideas and work diligently to make connections, especially where none seem to exist.
-General electives
 General Electives
-General electives. The additional credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (e.g., a minor or a certificate) or explore the liberal arts, social sciences, business, social work or health-related fields.
 Geographic Information Systems (GIS) Certificate
 GIS Certificate *: Complete all 5 courses listed below:
 GIS Certificate **: Complete all 5 courses listed below:
@@ -244,80 +138,36 @@ GIS Certificate classes: Students pursuing the GIS track must pass each GIS cour
 Graduate
 Graduate Student Resources
 Graduates are prepared for public or private-sector jobs in areas such as housing and community development, planning, transportation, government agencies, and social services. The program is also excellent preparation for those interested in graduate study in such fields as community development, public administration, law or urban planning/design.
-Graduating Under Earlier Catalogs
-Graduating with Honors
-Graduation Application: completed with your academic advisor by 2nd Friday of final quarter
 Graduation Requirements
 GRADUATION REQUIREMENTS
-Graduation Requirements | Office of the Registrar | University of Washington Tacoma
-Graduation Requirements for a Master&#039;s Degree
-Graduation Requirements for a Masters Degree
 Graduation Requirements:
 height="0"
 Housing
-How to Apply
-HOW TO APPLY
 How to Declare Your Major
 HOW TO DECLARE YOUR MAJOR
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2020-10/hendrixw.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-01/21399617894_d17f5ba150_k.jpg 600w"
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-01/22991132520_9317b3dc8f_c.jpg 600w"
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-01/22991133160_45e6bb9809_c.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-01/23791414138_f2b15030ae_k.jpg 600w"
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-01/24095688901_c1518f20a0_c.jpg 600w"
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2021-01/29638466554_9ac0f30770_c.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-06/ude-website_0.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-06/ude-website.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-04/design-sprint-1.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-04/design-sprint-2.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-04/design-sprint-3.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-04/design-sprint-4.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/styles/square/public/2025-11/picture1.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/styles/square/public/2026-01/chen-pic-3.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/styles/square/public/2026-01/pic-header.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2020-10/hendrixw.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-01/21399617894_d17f5ba150_k.jpg 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-01/22991132520_9317b3dc8f_c.jpg 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-01/22991133160_45e6bb9809_c.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-01/23791414138_f2b15030ae_k.jpg 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-01/24095688901_c1518f20a0_c.jpg 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2021-01/29638466554_9ac0f30770_c.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-06/ude-website_0.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-06/ude-website.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-04/design-sprint-1.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-04/design-sprint-2.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-04/design-sprint-3.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-04/design-sprint-4.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/styles/square/public/2025-11/picture1.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/styles/square/public/2026-01/chen-pic-3.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/styles/square/public/2026-01/pic-header.jpg 980w,
-https://www.tacoma.uw.edu/urban-studies/urban-design-online-work-publication-form
-If the student is requesting to waive a university requirement, the petition will be submitted to their academic advisor for review by the Faculty Assembly's Academic Policy and Curriculum Committee. Once a determination has been made the student is contacted.
 If you are a current UW Tacoma student
-If you are a current UW Tacoma Student
 If you are not a current UW Tacoma Student
-If you have a suggested edit for this page, or notice an error/inaccuracy, please notify the Office of the Registrar at reguwt@uw.edu.
-If you have any questions, please reach out to the Urban Studies Staff at uwturban@uw.edu
 If you have completed the prerequisites listed below, you can be considered for admission to the Bachelor of arts in Urban Studies:
 In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. Running regular degree audits and asking your advisor for a degree planning worksheet here will help track your progress through the program.
 In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits to 180. The degree planning worksheet can help track your progress through the program.
 In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits, including the above requirements, to 180.
-In addition, students must also complete coursework in these areas:
-In order to graduate with a bachelor's degree, a student must meet minimum general educational and basic skills requirements, in addition to completing the requirements of their academic program. General Education requirements are outlined in this website. Additional requirements for specific degree requirements are found online on the degree program's webpages, or within the Degree Programs webpage of the General Catalog.
 In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
-In order to graduate, in addition to major requirements, students will also be expected to meet general UW university requirements for graduation, many of which can be fulfilled by courses taken to satisfy major requirements. University Graduation Requirements can be found on the Office of the Registrar's website or by running a degree audit .
 Independent Study & Internship Guidelines
 INFORMATION
 Information Technology
-Innovative course of study
 Instill an awareness of problems and issues confronting metropolitan areas
-Institute for Innovation and Global Engagement
 Institutional Research
 Interdisciplinary and innovative course of study
 Introductory courses (11 credits)
 Introductory Courses (11 credits)
-Introductory courses (16 credits)
-Introductory Courses (16 credits)
 IT Help
 Jobs
 Keeping in mind these goals, graduates of the program are expected to:
@@ -329,8 +179,6 @@ Library
 M-F 9 AM - 5 PM
 MA in Community Planning
 Main Content
-Major electives (10 credits)
-Major Electives (10 credits)
 Major electives (20 credits)
 Major Electives (20 credits)
 Major GPA: minimum 2.0 in each course required for the major
@@ -338,129 +186,68 @@ Major Requirements
 Major Requirements:
 Make a Gift
 Map
-Master’s Degree Requirements
-Mattress Factory, room 251
 Meet with the School of Urban Studies Academic Advisor to discuss degree requirements and submit a declaration of major form.
 Mentorship Program
 Methods courses (10-11 credits)
 Methods courses (16 credits)
 Methods Requirement (10-11 credits)
-Milgard School of Business
-Minimum GPA
-minimum of 5 credits
 Minor in Sustainable Urban Development
 Minor in Urban Studies
 Mission and Vision
 more_vert
-Must include 5 credits of English Composition (C) with a minimum grade of 2.0 and 10 credits of Writing (W) courses
 MyUW
-Natural Sciences (NSc)
-Natural Sciences (NSc) Formerly known as Natural World (NW)
-News & Communications
-Note: Students must have at least 40 college-level credits to declare Urban Design as a major. Pre-majors are encouraged to take T GIS 311, and meet with the School of Urban Studies advisor to discuss other courses that will prepare them for the program.
-Number of Credits
 Office Hours:
-Office Location
-Office of the Registrar
-Office of Undergraduate Education
 Office365
-On this page:
-One Introduction to Computer Graphics or Computer-Aided Design (knowledge of Sketch Up TM is required), and
-One introductory course in design, using computer graphics
-One of the following classes (5 credits):
-One of the following two classes (5 credits):
-One Urban Design, Planning, or Architectural History Course,
-Opportunity to work and be trained by practitioners
-Other Transcript Designations
 Overall goals
 Overall GPA: minimum 2.0 cumulative
 Panopto
 Parking & transportation
-Petitioning to seek an exception to the residency requirement
-Please describe how personal, professional, and/or educational experiences have shaped your academic, career, and/or personal goals. How will a BS in Urban Design from UW Tacoma help you attain these goals?
-Please email Sarah Young, the SUS Academic Advisor at youngsm@uw.edu for any questions on the application process and deadlines.
 Please visit the UW Tacoma Admissions website to submit the appropriate application or to connect with them.
-Please visit the UW Tacoma Admissions website to submit the appropriate application or to connect with them. You will need to be admitted to UW Tacoma prior to declaring your major. Interested applicants are encouraged to meet with the School of Urban Studies advisor to discuss admissions and degree requirements.
 Prepares students to solve complex social, economic, and environmental problems by combining GIS (geographic information systems) based approaches to mapping and spatial analysis with a classical and theoretically critical foundation in urban studies.
-Prior to the end of Each Quarter, please complete the below online form to give permission to display your name, picture and urban design project on this website.
 Privacy |
 Program Overview
 PROGRAM OVERVIEW
-Prospective students meeting the above criteria are invited to complete the application for admission to the Urban Design major. Applicants should prepare a thoughtful, 1-2 page response to the following prompt:
 Provide students with a broad understanding of the problems and prospects of our metropolitan areas
 Provide students with an understanding of the form and function of cities
 Puyallup Tribe of Indians
 Quick Links
-Reasoning (RSN)
-Registration
-Registration Resources
-reguwt@uw.edu
 Research
-Research (R)
 Rules Docket
 Scholarship opportunities
 Scholarships
 School History
-School of Education
-School of Engineering & Technology
-School of Interdisciplinary Arts & Sciences
-School of Nursing & Healthcare Leadership
-School of Social Work & Criminal Justice
 School of Urban Studies
 Schools and programs
 Scout
 Search
 Select 4 courses from the list below:
-Shared Curriculum (20 credits)
 Shared Curriculum courses (20 credits)
 Shared Curriculum Courses (20 credits)
 sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
 Skip to main content
 Small class sizes
-Social Sciences (SSc)
-Social Sciences (SSc) Formerly known as Individuals and Society (I&S)
-Special Topic Courses
-Special Topic courses are curriculum practice courses to test interest in a course before seeking formal approval.
 Specific objectives
 src="/sites/default/files/sites/uwtd8main/W.svg"
 src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
 src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2020-10/hendrixw.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-01/21399617894_d17f5ba150_k.jpg 1940w,
 srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-01/22991132520_9317b3dc8f_c.jpg 1940w,
 srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-01/22991133160_45e6bb9809_c.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-01/23791414138_f2b15030ae_k.jpg 1940w,
 srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-01/24095688901_c1518f20a0_c.jpg 1940w,
 srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2021-01/29638466554_9ac0f30770_c.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-06/ude-website_0.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-06/ude-website.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-04/design-sprint-1.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-04/design-sprint-2.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-04/design-sprint-3.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2025-04/design-sprint-4.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/styles/square/public/2025-11/picture1.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/styles/square/public/2026-01/chen-pic-3.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/styles/square/public/2026-01/pic-header.jpg 1940w,
 Step 1: To declare Urban Studies as your major, please contact the Academic Advisor to discuss your academic plan.
 Step 2: An official request will be submitted on your behalf to the Registrar's Office.
 Student Achievements
-Student Affairs resources are available to all currently enrolled students regardless of race, sex or other identity.
 Student Concerns
 Student Highlights
 Student Life
 Student Projects
 Student Resources
-Students
 Students admitted prior to spring 2026 may complete their current degree requirements, or speak with their academic advisor about changing to the new curriculum.
 Students admitted prior to spring 2026 may continue under their existing degree requirements or speak with an advisor about changing to the new degree plan.
-Students are required to complete 45 of their final 60 credits as matriculated students in residence at UW Tacoma, which means that no more than a maximum of 15 of the final 60 credits may be non-resident credit. If a student takes more than 15 of the final 60 credits out of residence, the extra credits need not be counted against the limit of 15 if credits from the courses are not needed in any way to meet degree requirements. Some degree programs may have stricter residency requirements, please check with your advisor. Fully online degree programs are exempt from this requirement.
 Students declare one of the following formal options:
-Students may be eligible to receive Baccalaureate honors (summa cum laude, magna cum laude, cum laude) or Faculty honors. More information about eligibility and requirements for each designation may be found on the Honors Requirements webpage.
-Students who meet the following requirements will be considered for admission to the Bachelor of Science in Urban Design:
 Study Abroad
 Study abroad opportunities
 style="display:none;
-Submit the Urban Design Application . For admitted students , a formal change of major request will be submitted on their behalf to the Registrar's Office. Students interested in this major are encouraged to meet with an Urban Design Academic Advisor to discuss their academic plan.
 SUS Calendar of Events
 SUS Student Ambassador Program
 T GEOG 101 Introduction to Geography
@@ -484,35 +271,16 @@ T SUD 444 Green Internationalism and the City (5)
 T SUD 445 Urban Ecology (5)
 T SUD 475 Community and Economy (5)
 T SUD courses and descriptions
-T UDE 101 Introduction to Computer-Aided Design* (5)
 T UDE 210 Introduction to Urban Design History & Theory
-T UDE 210 Introduction to Urban Design History and Theory* (5)
 T UDE 260 Introduction to Urban Design (Urban Design Studio I)
-T UDE 260 Urban Design Studio I
-T UDE 260 Urban Design Studio I - Introduction to Urban Design* (5)
 T UDE 310 Social Production of Space (5)
-T UDE 340 Urban Design Studio II
-T UDE 340 Urban Design Studio II (5)
 T UDE 340 Urban Social Change (5)
-T UDE 350 Urban Design Studio III
-T UDE 350 Urban Design Studio III (5)
-T UDE 360 Urban Design Studio IV
-T UDE 360 Urban Design Studio IV – Tactical Urbanism (5)
-T UDE 440 Urban Design Studio V
-T UDE 440 Urban Design Studio V (5)
-T UDE 450 Urban Design Studio VI
-T UDE 450 Urban Design Studio VI (Senior Project – Part I) (5)
-T UDE 460 Urban Design Studio VII
-T UDE 460 Urban Design Studio VII (Senior Project – Part II) (5)
-T UDE GPA for studio courses: Effective Winter 2020, the minimum GPA in each studio course is 2.7.
 T URB 101 Exploring Cities (5)
-T URB 102 Cities in World Development (5)
 T URB 102 City in World Development (5) T URB 110 Urban Data Analysis
 T URB 102 City in World Development T URB 110 Urban Data Analysis (5)
 T URB 103 Urban Studies in Practice (1)
 T URB 103 Urban Studies in Practice (3)
 T URB 110 Urban Data Analysis (5)
-T URB 200 Introduction to Urban Research (3)
 T URB 200 Introduction to Urban Research (5)
 T URB 200 Urban Research (5)
 T URB 210 Urban Society & Culture (5)
@@ -521,13 +289,8 @@ T URB 225 Statistics for Urban Analysis (5)
 T URB 225 Statistics for Urban Analysis (5) or T GIS 311 Maps & GIS (6)
 T URB 235 Community Development (5)
 T URB 250 Immigration, Race, & American Cities (5)
-T URB 250 Immigration, Race, and American Cities
-T URB 250 Immigration, Race, and American Cities (5)
-T URB 312 Race & Poverty in Urban America
-T URB 312 Race & Poverty in Urban America (5)
 T URB 312 Race and Poverty in Urban America (5)
 T URB 316 Cities and Belonging (5)
-T URB 322 Land Use Planning (5)
 T URB 345 Urban Governance (5)
 T URB 379 Urban Field Experience (5)
 T URB 403 Professional Development for Urban Careers (2)
@@ -542,73 +305,33 @@ Teaching and Learning Center
 Terms of Use |
 TESC 201 The Science of Sustainability
 TEST 332 A Natural History of Garbage
-The additional credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (e.g., a minor or a certificate) or explore the liberal arts, social sciences, business, social work or health-related fields.
 The balance of credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (i.e., a minor or certificate) or explore the liberal arts, business, social work or health-related fields; or may take further T URB or T SUD courses. Transfer credits from other institutions may apply toward general electives.
 The curriculum consists of 63-73 credits, depending on formal option and course selection:
 The curriculum consists of 70-71 credits, depending on formal option and course selection:
 The curriculum consists of 74 credits of required courses:
-The decision of the Academic Policy and Curriculum committee is final. An exception from a university graduation requirement becomes void at the end of two calendar years from the date the exemption was granted if all degree requirements have not been completed by that date.
 The degree starts with an introduction into the discipline of urban studies with course topics on exploring cities, world development, and urban studies "in practice." The core courses provide foundational content related to urban sustainability, and major electives allow students to focus on topics that interest them. Graduates will be prepared for careers in planning agencies, corporations adhering to sustainability practices, consulting firms, nonprofit organizations, and environmental/resource related agencies at the local, state, and federal levels of government. The degree is also excellent training for further graduate study in fields such as urban planning, public administration, and law.
-The E and R designations appear on the Time Schedule and transcript. The E designation signals to employers and professional and graduate programs that students have chosen community-engaged learning experiences in their undergraduate education, while the R designation indicates that they have chosen undergraduate research experiences in their undergraduate education.
-The following are considered non-resident credit:
-The general education portion of the degree will be structured to a significant extent by the Areas of Inquiry (AoI), which consist of three broad areas of study:
-The intent of this requirement is for students to become familiar with the methodologies, contributions, and limitations of artistic and humanistic inquiry, broadly defined.
-The intent of this requirement is for students to become familiar with the methodologies, contributions, and limitations of natural science inquiry, broadly defined.
-The intent of this requirement is for students to become familiar with the methodologies, contributions, and limitations of social science inquiry, broadly defined.
-The School of Urban Studies has created the first undergraduate urban design degree on the west coast. While architecture focuses on the design of individual buildings, urban design operates on a larger scale – envisioning new ways of designing public spaces like parks, streets, groups of buildings, whole neighborhoods, and entire cities. Urban designers work to make these spaces functional, attractive, and sustainable. Our Urban Design major will prepare students to become proficient in the latest in design software, including SketchUp and Lumion as they create 2D and 3D plans and designs.
 The School of Urban Studies offers a Bachelor of Arts in Urban Studies. Beginning in spring 2026, we are excited to announce the introduction of revised degree requirements and options designed to better prepare our students to answer the challenges facing our cities today and into the future.
-The student must present a minimum cumulative 2.00 GPA for all coursework taken in residence at the University of Washington Tacoma. The graduation grade point average is computed when the student has completed all work for the degree and includes only credits earned while in residence at the university. Residence credits are UW credits earned through the campus granting the degree.
-The student needs to submit a graduation petition two quarters in advance to their academic advisor. Petitions requesting approval of 16-25 non-resident credits will be reviewed by the department awarding the degree. Petitions requesting more than 25 credits will be reviewed by the Academic Policy & Curriculum Committee. The student will be notified by mail and UW email of the decision by the Office of the Registrar.
 The Urban Studies major admits students every quarter.
-These skills are applied in design studios dedicated to engaging with local and regional urban issues. Courses draw on the teaching resources of UW Tacoma faculty and experienced regional practitioners.
-This requirement is intended to ensure that students have the opportunity to improve their capacities for and abilities to critically evaluate and effectively use information utilizing symbolic and/or numeric methods, or the theoretical study thereof.
-This requirement is intended to ensure that you have the opportunity to practice and use writing, broadly conceived, to deepen your learning, to think critically, and to solve problems. The Writing requirement is divided into two parts: a Composition course and Additional Writing courses.
-Through a sequence of studio courses, students apply skills including:
-Tip: It is strongly recommended to schedule an appointment with the Academic Advisor to discuss your application and personal statement.
 title="Follow UW Tacoma on Facebook">
 title="Follow UW Tacoma on Instagram">
 title="Follow UW Tacoma on Linkedin">
 title="Follow UW Tacoma on TikTok">
 title="Follow UW Tacoma on Youtube">
-To ensure a determination is made in time for graduation, petitions should be submitted at least two quarters before the student's graduation date to allow time for committee review and student registration.
-To include a minimum of 10 credits in each of the three areas of study:
-To qualify for an R designation, significant and sustained effort in the course must be dedicated to "authentic research/scholarship." Undergraduate research is defined as an original or creative contribution to the discipline, which can include encountering/uncovering new data which is incorporated into existing frameworks, discovering new insights or new data that alter the boundaries and/or contours of the field, drawing novel comparisons or making heretofore unrecognized connections within the field, and/or making new assessments of current knowledge/interpretations what is already known or accepted. Undergraduate Research course(s) are indicated by an "R" in the course schedule.
-To request a waiver of program/major requirements a student must submit a petition to their academic program. Students should confer with their advisor before completing the petition. Review is done by the academic program faculty committee or director/dean, as procedures specific to each academic program dictate.
 To serve as a resource, through service and research, to communities in the South Sound region
 Tools
-Total Credits Required to Graduate
 Transfer students meeting the above requirements may apply directly to the major.
 Tribal Sponsor of UW Tacoma
-TUDE 460 Studio Projects
-Tuition & Fees
 Undergraduate
-University Graduation Requirements for the Baccalaureate Degree
-University Requirements for a Baccalaureate Degree
 University YMCA Student Center
-Urban Design application
-Urban Design Capstone Report
-Urban Design Core Courses (57 credits)
-Urban Design core courses (60 credits)
-Urban Design core courses (61 credits)
-Urban Design Core Courses (61 credits)
 Urban Design Studio Projects
-URBAN DESIGN STUDIO PROJECTS
-Urban designers focus on place-making
 Urban setting
 Urban Studies majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
 UW Gmail
 UW Seattle | UW
 UWNetID login
 uwturban@uw.edu
-Various / Click Here
 visibility:hidden">
-Visual communication Public presentation
-Waiver of Degree Requirements
 Want more information? Click here to book an appointment with our Academic Advisor.
-Want more information? Click here to book an appointment with the Academic Advisor.
-What is General Education?
 width="0"
-With School or Program approval, a student may choose to graduate under the current catalog or the catalog in effect at the time they entered the program from which they are to graduate. University policy on use of earlier graduation requirements provides that if fewer than ten years have elapsed since a student's admission into the major program, they may choose to graduate under the requirements in effect at the time of admission, or under any subsequent requirements. If more than ten years have elapsed since admission to the major, the major program has the option of requiring the student to complete the current major requirements.
 Workday
-Writing (W)
 Zoom

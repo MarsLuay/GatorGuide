@@ -68,5 +68,5 @@ For transfer-planner work:
 - The current one-click planner maintenance entrypoints are:
   - `npm run planner:windows:maintenance`
   - `npm run planner:full:verify`
-  - `scripts\run-planner-maintenance.cmd`
+  - `scripts\Course-Planner-Updater.bat`
 - The same maintenance pass now emits `.tmp/transfer-planner-hardening-report.md`, which is the single artifact that checks source gaps, parser failures, diff classification cleanup, machine-readable availability statuses, and source-backed-or-hidden wording.

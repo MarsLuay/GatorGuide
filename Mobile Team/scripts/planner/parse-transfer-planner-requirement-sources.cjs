@@ -233,6 +233,9 @@ const PARSEABLE_PARSER_TYPES = new Set([
 ]);
 const HOST_REQUEST_CHAINS = new Map();
 const HOST_NEXT_ALLOWED_AT = new Map();
+const SOURCE_DOWNLOAD_CACHE = new Map();
+const HTML_SOURCE_CACHE = new Map();
+const PDF_PAGE_BLOCK_CACHE = new Map();
 const execFileAsync = promisify(execFile);
 const REQUIREMENT_SOURCE_ADAPTERS = [
   {
@@ -1412,6 +1415,13 @@ async function downloadWithCurl(url, timeoutMs, binary) {
 }
 
 async function downloadSource(url, timeoutMs, { binary = false } = {}) {
+  const cacheKey = `${binary ? "binary" : "text"}::${String(url ?? "")}`;
+  const cached = SOURCE_DOWNLOAD_CACHE.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  const downloadPromise = (async () => {
   let fetchResponse = null;
   let fetchError = null;
 
@@ -1439,6 +1449,84 @@ async function downloadSource(url, timeoutMs, { binary = false } = {}) {
       throw fetchError;
     }
     throw curlError;
+  }
+  })();
+
+  SOURCE_DOWNLOAD_CACHE.set(cacheKey, downloadPromise);
+
+  try {
+    return await downloadPromise;
+  } catch (error) {
+    SOURCE_DOWNLOAD_CACHE.delete(cacheKey);
+    throw error;
+  }
+}
+
+async function getHtmlSourceArtifacts(url, timeoutMs) {
+  const cacheKey = String(url ?? "");
+  const cached = HTML_SOURCE_CACHE.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  const htmlPromise = (async () => {
+    const { body: html } = await downloadSource(url, timeoutMs);
+    return {
+      html,
+      title: extractTitle(html),
+      headings: extractHeadings(html),
+      lines: buildHtmlLines(html),
+    };
+  })();
+
+  HTML_SOURCE_CACHE.set(cacheKey, htmlPromise);
+
+  try {
+    return await htmlPromise;
+  } catch (error) {
+    HTML_SOURCE_CACHE.delete(cacheKey);
+    throw error;
+  }
+}
+
+async function getPdfPageBlocks(url, timeoutMs) {
+  const cacheKey = String(url ?? "");
+  const cached = PDF_PAGE_BLOCK_CACHE.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  const pageBlocksPromise = (async () => {
+    const { body } = await downloadSource(url, timeoutMs, { binary: true });
+    const pdfData = new Uint8Array(body);
+    const document = await pdfjs.getDocument({ data: pdfData, verbosity: 0 }).promise;
+    const pageCount = document.numPages;
+    const pageBlocks = [];
+
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      const page = await document.getPage(pageNumber);
+      const textContent = await page.getTextContent();
+      const lineTexts = buildPdfPageLineTexts(textContent);
+      const pageText = normalizeWhitespace(lineTexts.join(" "));
+      if (pageText) {
+        pageBlocks.push({
+          pageNumber,
+          pageText,
+          lineTexts,
+        });
+      }
+    }
+
+    return pageBlocks;
+  })();
+
+  PDF_PAGE_BLOCK_CACHE.set(cacheKey, pageBlocksPromise);
+
+  try {
+    return await pageBlocksPromise;
+  } catch (error) {
+    PDF_PAGE_BLOCK_CACHE.delete(cacheKey);
+    throw error;
   }
 }
 
@@ -1594,10 +1682,7 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
     return parsePdfSource(entry, timeoutMs);
   }
 
-  const { body: html } = await downloadSource(entry.url, timeoutMs);
-  const title = extractTitle(html);
-  const headings = extractHeadings(html);
-  const lines = buildHtmlLines(html);
+  const { html, title, headings, lines } = await getHtmlSourceArtifacts(entry.url, timeoutMs);
   const scopedLines = scopeHtmlLines(entry, title, headings, lines);
   const htmlParsed = selectPreferredHtmlParsed(
     entry,
@@ -1703,26 +1788,7 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
 }
 
 async function parsePdfSource(entry, timeoutMs) {
-  const { body } = await downloadSource(entry.url, timeoutMs, { binary: true });
-  const pdfData = new Uint8Array(body);
-  const document = await pdfjs.getDocument({ data: pdfData, verbosity: 0 }).promise;
-  const pageCount = document.numPages;
-  const pageBlocks = [];
-
-  for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
-    const page = await document.getPage(pageNumber);
-    const textContent = await page.getTextContent();
-    const lineTexts = buildPdfPageLineTexts(textContent);
-    const pageText = normalizeWhitespace(lineTexts.join(" "));
-    if (pageText) {
-      pageBlocks.push({
-        pageNumber,
-        pageText,
-        lineTexts,
-      });
-    }
-  }
-
+  const pageBlocks = await getPdfPageBlocks(entry.url, timeoutMs);
   const scopedPageLines = scopePdfPageBlocks(entry, pageBlocks).flatMap((block) =>
     block.lineTexts.map((lineText) => `[Page ${block.pageNumber}] ${lineText}`)
   );
@@ -2374,6 +2440,44 @@ function shouldMergeSupplementalAlternateSource(
   return addsCourseCodes || addsCueLines || addsChooseStatements;
 }
 
+function preservePrimaryPdfDegreeSheetParserType(
+  parserType,
+  sourceUrl,
+  primarySourceUrl
+) {
+  const normalizedParserType = String(parserType ?? "").trim();
+  const normalizedPrimarySourceUrl = String(primarySourceUrl ?? "").trim();
+  const normalizedSourceUrl = String(sourceUrl ?? "").trim();
+  const pdfUrl = normalizedPrimarySourceUrl || normalizedSourceUrl;
+
+  if (
+    normalizedParserType === "generic-pdf" &&
+    /\.pdf(?:$|[?#])/i.test(pdfUrl)
+  ) {
+    return "pdf-degree-sheet";
+  }
+
+  return normalizedParserType || parserType;
+}
+
+function resolveManifestBackedParserType(
+  sourceEntryParserType,
+  parserType,
+  sourceUrl,
+  primarySourceUrl
+) {
+  const normalizedSourceEntryParserType = String(sourceEntryParserType ?? "").trim();
+  if (normalizedSourceEntryParserType && normalizedSourceEntryParserType !== "unknown") {
+    return normalizedSourceEntryParserType;
+  }
+
+  return preservePrimaryPdfDegreeSheetParserType(
+    parserType,
+    sourceUrl,
+    primarySourceUrl
+  );
+}
+
 function buildManifestParseSuccess(
   baseResult,
   structuredCourseCodes,
@@ -2383,7 +2487,20 @@ function buildManifestParseSuccess(
 ) {
   const effectiveSourceUrl = parsed.resolvedSourceUrl ?? resolvedEntry.url;
   const effectiveSourceLabel = parsed.resolvedSourceLabel ?? resolvedEntry.label;
-  const effectiveParserType = parsed.resolvedParserType ?? resolvedEntry.parserType;
+  const resolvedToDifferentSource =
+    effectiveSourceUrl !== resolvedEntry.url || effectiveSourceLabel !== resolvedEntry.label;
+  const effectiveParserType = resolvedToDifferentSource
+    ? preservePrimaryPdfDegreeSheetParserType(
+        parsed.resolvedParserType,
+        effectiveSourceUrl,
+        baseResult.primarySourceUrl
+      )
+    : resolveManifestBackedParserType(
+        resolvedEntry.parserType,
+        parsed.resolvedParserType,
+        effectiveSourceUrl,
+        baseResult.primarySourceUrl
+      );
   const effectiveEntry =
     effectiveSourceUrl === resolvedEntry.url &&
     effectiveSourceLabel === resolvedEntry.label &&

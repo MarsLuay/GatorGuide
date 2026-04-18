@@ -11,17 +11,13 @@ Gator Guide helps students:
 - Get AI-powered guidance for transfer planning, applications, and next steps.
 - Keep important profile details, transcripts, and interests in one place.
 
-We make that possible by combining three connected parts of the project:
+The active repo now lives in one main workspace:
 
-- **Mobile Team** builds the app experience students actually use.
-- **Data Team** collects and organizes the school data behind the experience.
-- **AI Team** shapes the intelligence, prompts, and recommendation logic that make the app feel helpful.
+- **Mobile Team** builds the app experience students use, along with the service integrations, planner tooling, and product documentation that support it.
 
 ## Repo Layout
 
-- [Mobile Team](Mobile%20Team/README.md): Expo/React Native app, UI, app services, and platform setup.
-- [Data Team](Data%20Team/README.md): datasets, research notes, and transfer-data work.
-- [AI Team](AI%20Team/README.md): AI planning, prompts, and integration direction.
+- [Mobile Team](Mobile%20Team/README.md): Expo/React Native app, UI, app services, planner tooling, and platform setup.
 
 ## Setup: Download and Run
 
@@ -63,7 +59,7 @@ Notes:
 - If you use Git Bash, WSL, or a POSIX shell, use forward slashes and drop the `$env:` prefix.
 - `npm run start` now automatically falls back from `tunnel` to `lan` to `offline` if an earlier mode does not come online.
 - After Expo starts, open the Metro/Expo devtools in your browser and scan the QR code with Expo Go.
-- If you are working on Data Team or AI Team tasks, you can open the repo without starting the mobile app.
+- Most day-to-day work in this repo happens inside `Mobile Team`.
 
 #### 3) Open in VS Code (edit files)
 

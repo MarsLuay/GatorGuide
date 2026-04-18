@@ -1,0 +1,1204 @@
+Owner: uw-tacoma-computer-engineering:pathway:create-your-own-pathway-as-a-separate-option
+Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
+Title: 
+
+Home
+Home
+Students
+Parents
+Faculty & Staff
+Alumni
+Tacoma
+School of Engineering and Technology
+School of Engineering and Technology
+133 Cherry Parkes Building
+253-692-5860
+Website
+Faculty Website
+uwtech@uw.edu
+The School of Engineering and Technology at the University of Washington, Tacoma, provides focus for the rapid development of high-technology academic programs which serve the needs of the state of Washington. Launched in 2001, the School of Engineering and Technology has supported the community by building facilities, classrooms and labs. Through innovative partnerships with area companies, internships and funded research projects, Institute students gain real world experience to tackle the challenges of a continually evolving industry.
+Undergraduate Programs
+Program of Study: Major: Civil Engineering
+Bachelor of Science in Civil Engineering degree
+Program of Study: Major: Computer Engineering
+Bachelor of Science degree with a major in Computer Engineering
+Program of Study: Major: Computer Science and Systems
+Bachelor of Arts degree with a major in Computer Science and Systems
+Bachelor of Science degree with a major in Computer Science and Systems
+Program of Study: Major: Electrical Engineering
+Bachelor of Science in Electrical Engineering degree
+Program of Study: Major: Information Technology
+Bachelor of Science degree with a major in Information Technology
+Bachelor of Science degree with a major in Information Technology: Information Assurance and Cybersecurity
+Bachelor of Science degree with a major in Information Technology: Mobile Digital Forensics
+Program of Study: Major: Mechanical Engineering
+Bachelor of Science in Mechanical Engineering degree
+Program of Study: Minor: Applied Computing
+Minor in Applied Computing
+Graduate Programs
+Program of Study: Doctor of Philosophy (Computer Science and Systems)
+Doctor of Philosophy (Computer Science & Systems)
+Program of Study: Graduate Certificate In Software Development Engineering
+Graduate Certificate in Software Development Engineering
+Program of Study: Master Of Cybersecurity And Leadership
+Master Of Cybersecurity And Leadership (fee-based)
+Program of Study: Master Of Science In Computer Science And Systems
+Master Of Science In Computer Science And Systems
+Master Of Science In Computer Science And Systems (Bioinfomatics) (electives)
+Master Of Science In Computer Science And Systems (Bioinfomatics) (project or thesis)
+Master of Science in Computer Science and Systems (BS/MS)
+Master Of Science In Computer Science And Systems (Cyber-Physical Systems) (electives)
+Master Of Science In Computer Science And Systems (Cyber-Physical Systems) (project or thesis)
+Master Of Science In Computer Science And Systems (Cybersecurity) (electives)
+Master Of Science In Computer Science And Systems (Cybersecurity) (project or thesis)
+Master Of Science In Computer Science And Systems (Data Science) (electives)
+Master Of Science In Computer Science And Systems (Data Science) (project or thesis)
+Master Of Science In Computer Science And Systems (Distributed Systems) (Electives)
+Master Of Science In Computer Science And Systems (Distributed Systems) (Project/Thesis)
+Master Of Science In Computer Science And Systems (electives)
+Master Of Science In Computer Science And Systems (Geographical Information Systems) (electives)
+Master Of Science In Computer Science And Systems (Geographical Information Systems) (project or thesis)
+Program of Study: Master of Science in Electrical and Computer Engineering
+Master of Science in Electrical and Computer Engineering
+Program of Study: Master of Science in Information Technology
+Master of Science in Information Technology
+Undergraduate Programs
+School of Engineering and Technology
+133 Cherry Parkes Building
+253-692-5860
+uwtech@uw.edu
+Program of Study: Major: Civil Engineering
+Program Overview
+The Bachelor of Science in Civil Engineering is designed to meet ABET accreditation criteria and will emphasize the conception, development, design, construction, maintenance, and renewal of systems in a complex urban environment that involve issues in transportation, water resources, the environment, structural engineering, geotechnical engineering, construction engineering, and land development. The BSCE program complements the BSME, BSEE, BSCES, and BSCSS programs by providing additional learning opportunities in transportation, geotechnical, environmental, structural, construction, and water resources engineering. Prerequisites for the BSCE program can be met through coursework at UW Tacoma or community colleges. Graduates of the BSCE program will be prepared for careers inside and outside of engineering, and for graduate study. The program will be responsive to regional needs and to engineering education reform. The BSCE program will serve both traditional and nontraditional students by providing degree pathways for both freshman and transfer students.
+This program of study leads to the following credential:
+Bachelor of Science in Civil Engineering degree
+Admission Requirements
+To be considered for admission all applicants must meet the following minimum qualifications:
+Completion of a minimum of 45 college-level credits
+Cumulative GPA of at least 2.00 in all college course work
+Minimum grade of 2.0 in each prerequisite course
+Completion of all prerequisite coursework with a cumulative GPA of at least a 2.50 in all college math, science, computer science, and engineering course work. If a course is taken multiple times, the highest grade achieved will be use to calculate the GPA.
+While only top grades in prerequisite courses will be calculated into the admission GPA, repeated courses are factored into overall admissions decisions. Students transferring from a community college to this program are strongly encouraged to follow the Associate of Science Transfer Track 2.
+Prerequisites - 61 credits
+All applicants must be admitted to the University of Washington Tacoma and are required to complete the following prerequisites before being accepted to the Civil Engineering program. Must meet the minimum cumulative GPA of at least a 2.50 in all required prerequisite coursework.
+TMATH 124, 125, and 126 (check the Equivalency Guide to see if Calculus IV is needed) (15)
+TMATH 207 (5)
+T PHYS 121, 122, and 123: Physics courses must be Calculus-based. If Physics I, II and III are completed and 18 quarter credits are not achieved, the remaining credits may be satisfied by any lab-based science course. (18)
+T CHEM 142 (6)
+TME 221 (4)
+TME 222 (4)
+TME 223 (4)
+Programming: 5 credits of Introduction to Computer Programming C, C++, Python, or JAVA based languages. TCSS 142 is an example of one such course (5)
+Students with previous baccalaureate degrees or extensive work experience should meet with an advisor to discuss options.
+How to Apply to the Major
+All applicants must be admitted to the University of Washington Tacoma before applying to the major. All students applying to the Civil Engineering program must fill out a TCIVE major application form. Admission to the major is competitive.
+Please visit the School of Engineering and Technology website for program application instructions. Note: The Civil Engineering program admits only once a year in the autumn quarter.
+Bachelor of Science in Civil Engineering degree
+Completion Requirements
+To qualify for graduation with a Bachelor of Science in Civil Engineering from the University of Washington Tacoma, a student must:
+Be a matriculated Civil Engineering student in good academic standing (cumulative grade point average of 2.00 or higher) with the University of Washington Tacoma.
+A minimum 2.0 grade for each course applied to the major
+Complete all Civil Engineering prerequisites and required course work with a minimum cumulative grade point average of 2.50 in those courses.
+Complete a minimum of 30 credits of CE required courses in residence at the University of Washington Tacoma.
+Apply for graduation in-person with an advisor two quarters before you expect to graduate.
+Required CORE Courses: 94 credits
+TME 310 (2)
+T GEOS 117 (6) or another approved lab science course (cannot be in physics or chemistry)
+TCE 304 (3)
+TME 351 (3)
+TCE 307 (5)
+TCE 347 (5)
+TCE 305 (3)
+TCE 327 (5)
+TCE 367 (5)
+TCE 377 (5)
+TCE 337 (5)
+TCE 357 (5)
+TCE 401 (3)
+TME 403 (2)
+TEE 225 (5)
+TCE 309 (4)
+TCE 473 (5)
+TCE 488 (2)
+TCE 489 (5)
+Electives: 16 credits
+Electives must be taken from at least two of the specializations below.
+Geotechnical
+TCE 436 (4)
+Structures
+TCE 429 (4)
+TCE 451 (4)
+TCE 452 (4)
+Transportation
+TCE 411 (4)
+TCE 416 (4)
+TCE 417 (4)
+Environmental
+TCE 480 (4)
+TCE 482 (4)
+TCE 484 (4)
+Up to 4 credits of the 16 credits may be satisfied by completing TCE 497 and/or TCE 499.
+Back to Top
+Additional Information
+Program Educational Objectives
+Program educational objectives, as defined by ABET are the abilities, skills, and accomplishments expected of graduates within a few years of graduation. The Program Educational Objectives of the Civil Engineering program are as follows:
+Within three to five years of graduation from the Civil Engineering program, it is expected that graduates will have:
+Applied their knowledge of engineering principles, science, mathematics, design and implementation to solve civil engineering challenges.
+Participated effectively as a member of a multi-disciplinary project team, demonstrating leadership and project management skills when appropriate.
+Made positive contributions to their community and society through involvement in community and professional organizations.
+Made decisions related to their work that demonstrate an understanding of the importance of being an ethical engineering professional.
+Applied communication skills to effectively promote ideas and goals.
+Made progress toward certification as licensed Professional Engineers and/or pursued graduate studies.
+Since the objectives are fairly broad, it is not expected that every graduate will achieve every objective.
+Student Outcomes
+The Accreditation Board for Engineering and Technology (ABET) is a non-governmental organization that accredits post-secondary education programs in applied science, computing, engineering, and engineering technology. Students who complete the B.S. in Civil Engineering program will achieve the following ABET-based student outcomes by the time of graduation:
+An ability to identify, formulate, and solve complex engineering problems by applying principles of engineering, science, and mathematics.
+An ability to apply engineering design to produce solutions that meet specified needs with consideration of public health, safety, and welfare, as well as global, cultural, social, environmental, and economic factors.
+An ability to communicate effectively with a range of audiences.
+An ability to recognize ethical and professional responsibilities in engineering situations and make informed judgments, which must consider the impact of engineering solutions in global, economic, environmental, and societal contexts.
+An ability to function effectively on a team whose members together provide leadership, create a collaborative and inclusive environment, establish goals, plan tasks, and meet objectives.
+An ability to develop and conduct appropriate experimentation, analyze and interpret data, and use engineering judgment to draw conclusions.
+An ability to acquire and apply new knowledge as needed, using appropriate learning strategies.
+Academic Standards/Policies
+The following standards apply to all students in the Civil Engineering program. These standards may apply in addition to other academic standards at the University of Washington Tacoma.
+Each required TCE course must be completed with a minimum grade of 2.0 before advancing to the next course. If a grade below 2.0 is earned, the course must be repeated. Course credit will be awarded only once, but both grades will be used in computing the cumulative grade point average. The higher grade will be used when computing the CE major grade point average.
+If a student does not achieve the required grade of 2.0 after repeating a required TCE course, the student must request permission to take the course a third time. The petition to repeat a course and instructions are located on the School of Engineering and Technology website.
+Courses in the Civil Engineering program may not be taken by correspondence (distance learning) without prior CE faculty approval.
+Courses in the Civil Engineering program may not be taken as S/NS (satisfactory/not satisfactory).
+If a student wishes to substitute a course taken at another institution for a TCE required course, the student must submit a petition to substitute a course form along with course syllabi to their academic advisor. The form can be found on the Undergraduate Resources Page . The CE faculty will review the petition and inform the advisor if the substitution is approved. If a course is more than seven years old, the student will be required to repeat the course at UW Tacoma. Credit will not be awarded twice for the same course. A maximum of 15 credits may be awarded through course substitution.
+Civil Engineering transfer courses are held to the same 2.0 grade standard required for all Civil Engineering coursework.
+Current UW Tacoma students wishing to change to a Civil Engineering major from another major are required to apply for admission to the major and must follow the major requirements in place at the time of admission.
+Low Scholarship
+Any undergraduate Civil Engineering student who is dismissed from the University for Low Scholarship will be removed from the Civil Engineering major.
+Any undergraduate Civil Engineering student who is denied permission to repeat a required course, or who does not earn the required grade of a 2.0 or higher after repeating the course for a third time will be removed from the Civil Engineering major.
+After being removed from the Civil Engineering major, a student must re-apply for admission in order to continue as a CE student in any status, matriculated or otherwise. The Admissions Committee will evaluate the student's application requesting re-admission, and any extenuating circumstances, and will then recommend action.
+Engineering Labs
+The School of Engineering and Technology has dedicated laboratories containing specialized equipment to support its programs.
+Research and Internship Opportunities
+Research, directed reading, and internship opportunities allow senior-level students to explore their unique areas of interest complemented by the expertise of the faculty and industry.
+Back to Top
+Program of Study: Major: Computer Engineering
+Program Overview
+The Computer Engineering program combines elements of both electrical engineering and computer science providing students a thorough education in both the theoretical foundations and practical skills needed to solve computing problems. Graduates of the Computer Engineering program are prepared to work on a variety of applications including circuit design, microprocessor design, software engineering, and embedded systems &mdash; the integration of computer systems into other kinds of systems such as appliances, robots, motor vehicles, or airplanes. The B.S. degree in Computer Engineering is accredited by the Accreditation Board for Engineering and Technology (ABET).
+This program of study leads to the following credential:
+Bachelor of Science degree with a major in Computer Engineering
+Admission Requirements
+Admission Requirements
+To be considered for admission all applicants must meet the following minimum qualifications:
+Completion of a minimum of 45 college-level credits
+Cumulative GPA of at least 2.00 in all college course work
+Completion of all pre-requisite coursework with a cumulative GPA of at least a 2.50 in all college math, science, computer science, and engineering course work. Only top marks will be considered when calculating GPA.
+Students transferring from a community college to this program are strongly encouraged to follow the Associate of Science Transfer Track 2.
+Prerequisites
+TMATH 124, TMATH 125, and TMATH 126
+TMATH 207
+T PHYS 121 and T PHYS 122
+TCSS 142 or CSE 122 or CSE 142 or equivalent
+TCSS 143 or CSE 123 or CSE 143 or equivalent
+TCES 215 (must have AC/DC at community colleges).
+Students with previous baccalaureate degrees or extensive work experience should meet with an advisor to discuss options.
+How to Apply to the Major
+All students applying to the Computer Engineering program must fill out a TCENGR major application form. Please visit the School of Engineering and Technology website for program application instructions. Note: The Computer Engineering program admits only once a year in the autumn quarter.
+Bachelor of Science degree with a major in Computer Engineering
+Completion Requirements
+To qualify for graduation with a Bachelor of Science in Computer Engineering from the University of Washington Tacoma, a student must:
+Be a matriculated Computer Engineering student in good academic standing (cumulative grade point average of 2.00 or higher) with the University of Washington Tacoma.
+A minimum 2.0 grade for each course applied to the major.
+Complete all Computer Engineering prerequisites and required course work with a minimum cumulative grade point average of 2.50 in those courses.
+Physics sequence I, II, III must total 18 quarter credits. If this is not achieved, the remaining credits may be satisfied by any lab-based science course.
+Complete a minimum of 30 credits of Computer Engineering required courses in residence at the University of Washington Tacoma.
+Apply for graduation in-person with an advisor two quarters before you expect to graduate.
+Required Core Courses: 101 credits
+Computer Science Fundamentals (10 credits)
+TCES 203 (5)
+TCSS 342 (5)
+Electrical Engineering Fundamentals (10 credits)
+TCES 310 (5)
+TCES 312 (5)
+Computer Systems (10 credits)
+TCES 372 (5)
+TCES 420 (5)
+Math / Theory (21 credits)
+TCSS 321 (5)
+TCES 380 (5)
+TMATH 208 (5)
+T PHYS 123 (6)
+Ethics and Society (5 credits)
+TCSS 325 (5)
+Computer Engineering (35 credits)
+TCES 230 (5)
+TCES 330 (5)
+TCES 430 (5)
+TEE 451 (5)
+TCES 460 (5)
+TCES 480 (2)
+TCES 481 (4)
+TCES 482 (4)
+Electives: 10 credits; students may take 10 credits of 400-level TEE, TCES, or TCSS courses, and/or 500-level TECE or TCSS courses to count towards the elective requirement.
+See department website or advisor for approved list.
+Back to Top
+Additional Information
+Program Educational Objectives
+Program educational objectives, as defined by ABET are the abilities, skills, and accomplishments expected of graduates within a few years of graduation. The Program Educational Objectives of our Computer Engineering program are as follows:
+Within three to five years of graduation from the Computer Engineering program, it is expected that many graduates will have:
+Developed a product or process by applying their knowledge of mathematics, computing, systems and development tools, and product life-cycle management.
+Applied the principles of mutual respect, safety, quality, integrity and inclusion as a member of a multi-disciplinary development team and undertaken a leadership role when appropriate.
+Improved their skills and abilities by taking graduate courses, professional development training, or voluntary experiential learning opportunities.
+Made positive contributions to their community and society by applying skills and abilities learned during their undergraduate program in computer engineering.
+Made decisions related to their work that demonstrate an understanding of the importance of being an ethical engineering professional.
+Applied their technical communication skills to effectively promote their ideas, goals, or products.
+Since the objectives are fairly broad, it is not expected that every graduate will achieve every objective.
+Student Outcomes
+The Accreditation Board for Engineering and Technology (ABET) is a non-governmental organization that accredits post-secondary education programs in applied science, computing, engineering, and engineering technology.
+Students who complete the B.S. in Computer Engineering program will achieve the following ABET-based student outcomes:
+An ability to identify, formulate, and solve complex engineering problems by applying principles of engineering, science, and mathematics.
+An ability to apply engineering design to produce solutions that meet specified needs with consideration of public health, safety, and welfare, as well as global, cultural, social, environmental, and economic factors.
+An ability to communicate effectively with a range of audiences
+An ability to recognize ethical and professional responsibilities in engineering situations and make informed judgments, which must consider the impact of engineering solutions in global, economic, environmental, and societal contexts.
+An ability to function effectively on a team whose members together provide leadership, create a collaborative and inclusive environment, establish goals, plan tasks, and meet objectives.
+An ability to develop and conduct appropriate experimentation, analyze and interpret data, and use engineering judgment to draw conclusions.
+An ability to acquire and apply new knowledge as needed, using appropriate learning strategies.
+Academic Standards/Policies
+The following standards apply to all students in the Computer Engineering program. These standards may apply in addition to other academic standards at the University of Washington Tacoma.
+If a student does not achieve the required grade of 2.0 after repeating a required TCSS or TCES course, the student must request permission to take the course a third time. The petition to repeat a course and instructions are located on the School of Engineering and Technology website .
+Courses in the Computer Engineering program may not be taken by correspondence (distance learning) without prior TCENGR faculty approval.
+Courses in the Computer Engineering program may not be taken as S/NS (satisfactory/not satisfactory).
+If a student wishes to substitute a course taken at another institution for a Computer Engineering required course, the student must submit a Petition to Substitute a Course form along with course syllabi to their academic advisor. The Electrical and Computer Engineering faculty will review the petition and inform the advisor if the substitution is approved. If a course is more than seven years old, the student will be required to repeat the course at UW Tacoma. Credit will not be awarded twice for the same course. A maximum of 15 credits may be awarded through course substitution.
+Computer engineering transfer courses are held to the same 2.0 grade standard required for all Computer Engineering coursework.
+Current UW Tacoma students wishing to change to a Computer Engineering major from another major are required to apply for admission to the major and must follow the major requirements in place at the time of admission.
+Low Scholarship
+Any undergraduate Computer Engineering student who is dismissed from the University for Low Scholarship will be removed from the Computer Engineering program.
+Any undergraduate Computer Engineering student who is denied permission to repeat a required course, or who does not earn the required grade of a 2.0 or higher after repeating the course for a third time, will be removed from the Computer Engineering program.
+After being removed from the Computer Engineering major, a student must re-apply for admission in order to continue as a TCENGR student in any status, matriculated or otherwise. The Admissions Committee will evaluate the student's application requesting re-admission, and any extenuating circumstances, and will then recommend action.
+Engineering Labs
+The School of Engineering and Technology has dedicated laboratories containing specialized equipment to support its programs. These laboratories are accessible to admitted School of Engineering and Technology students via assigned key card 24 hours a day, seven days a week.
+Back to Top
+Program of Study: Major: Computer Science and Systems
+Program Overview
+The Computer Science and Systems (CSS) program provides a broad approach to computer science and software design. The CSS curriculum focuses on computer science theory, but with an equal emphasis on software application design methods relevant to the needs of local and regional industry. Students will acquire essential knowledge of object-oriented programming, algorithms and principles of abstraction, data structures, discrete structures, architecture, operating systems, software design and complex ethical and societal computing issues.
+This program of study leads to the following credentials:
+Bachelor of Arts degree with a major in Computer Science and Systems
+Bachelor of Science degree with a major in Computer Science and Systems
+Bachelor of Arts degree with a major in Computer Science and Systems
+Credential Overview
+The Bachelor of Arts in Computer Science and Systems (CSS) provides students with a strong foundation in computing technology with an opportunity to apply the fundamental concepts and technologies of computer science to another academic discipline. Students graduate with a rigorous grounding in the principles of the software design process, and are highly informed users rather than primary builders of software.
+Admission Requirements
+Admission requirements for Bachelor of Arts degree with a major in Computer Science and Systems
+Admission to the Computer Science and Systems major is competitive.
+To be considered for admission all applicants must meet the following minimum qualifications:
+Completion of all prerequisite coursework with a cumulative GPA of at least a 2.50 in all college math, science, and computer science courses
+Cumulative GPA of at least a 2.00 in all college course work
+Completion of a minimum of 45 college-level credits
+Prerequisites
+Calculus (TMATH 124, or equivalent)
+Statistics (TMATH 110, or equivalent)
+Introduction to Programming(TCSS 101, or equivalent) or Programming for All (TCSS 141, or equivalent)
+Introduction to Programming and Object-oriented programming (TCSS 142 and 143 or equivalent), highly recommend taking TCSS 101 or TCSS 141 prior to these courses
+Completion of a minimum of 45 college-level credits
+Cumulative GPA of at least a 2.00 in all college course work
+Cumulative GPA of at least a 2.50 in TCSS 142, TCSS 143, TMATH 124, TMATH 110
+15 credits of Social Science course work
+How to Apply to the Major
+All students applying to the Computer Science and Systems program must submit a completed BA in Computer Science and Systems major application form. Please visit the School of Engineering and Technology website for program application instructions. Students for BA are admitted in Autumn quarter only.
+Completion Requirements
+Graduation Requirements for Bachelor of Arts degree with a major in Computer Science and Systems
+To qualify for graduation with a Bachelor's of Arts degree in Computer Science and Systems from the University of Washington Tacoma, a student must:
+Apply for graduation in-person with an advisor two quarters before you expect to graduate
+Complete all Computer Science and Systems prerequisites and required coursework with a minimum cumulative grade point average of 2.50 in those courses.
+Be a matriculated Computer Science and Systems student in good academic standing (cumulative grade point average of 2.00 or higher) with the University of Washington Tacoma
+Students earning the Bachelor of Arts in Computer Science and Systems must also satisfy the requirements of any UW Tacoma minor or have earned a previous bachelor’s degree.
+Foundation - Strengthening Courses:
+TCSS 101 OR TCSS 141
+TCSS 142
+TCSS 143
+Lower Division Coursework:
+5 credits of English Composition
+5 credits additional Composition or advanced writing
+5 credits each of calculus and statistics
+15 credits of Arts and Humanities course work
+15 credits of Social Science course work
+15 credits of Object-Oriented Programming (TCSS 101 or TCSS 141, TCSS 142 and TCSS 143 or equivalent
+Required for BA TCSS students:
+Students with previous baccalaureate degrees or extensive work experience should meet with an advisor to discuss options.
+Overall Major Credits (76 credits)
+TCSS 305
+TCSS 321
+TCSS 325
+TCSS 342
+TCSS 371
+TCSS 360
+TCSS 496 (6 credits total)
+Students must enroll in TCSS 496 every quarter to complete a portfolio.
+Create your own pathway as a separate option
+This option is available if none of the existing minors apply to the student’s field of study
+In consultation with a faculty advisor, choose core & elective courses (CSS or other) based on a coherent theme in regards to the student's interests and the student’s portfolio.
+This should be done before the end of junior year
+Students must get approval from the CSS faculty advisor
+Students pursuing the Bachelor of Arts degree in TCSS are required to choose a minor from one of UW campuses unless the student has earned a previous bachelor’s degree.
+Minors consist of 25-35 credits in a focused area of study or Course Option
+Course Option - Approved Focus Area must consist of 25-35 credits. Students will need to work closely with an academic advisor to map out a feasible schedule.
+Required CORE Courses (30 credits)
+Required Portfolio Course (6 credits)
+Electives (15 credits)
+Students must complete 15 additional credits of 300-level or 400-level courses chosen from the Computer Science and Systems program (excluding TCSS 390); see course descriptions for listing.
+Required Minor (25-35 credits)
+Back to Top
+Bachelor of Science degree with a major in Computer Science and Systems
+Credential Overview
+The Computer Science and Systems (CSS) program provides a broad approach to computer science and software design. The CSS curriculum focuses on computer science theory, but with an equal emphasis on software application design methods relevant to the needs of local and regional industry. Students will acquire essential knowledge of object-oriented programming, algorithms and principles of abstraction, data structures, discrete structures, architecture, operating systems, software design and complex ethical and societal computing issues.
+Admission Requirements
+Admission requirements for Bachelor of Science degree with a major in Computer Science and Systems
+Applicants are evaluated on the following criteria:
+Completion of all prerequisite courses.
+Grades in prerequisite courses -- individually and cumulatively. The most competitive applicants will have at least a 3.0 in each prerequisite course.
+Overall previous academic performance.
+Completion of at least 45 college-level credits.
+The CSS program admits qualified students for autumn and winter quarters only.
+Admission to the major is capacity-constrained. Please review the following prerequisites and application process carefully.
+Prerequisites
+To qualify for admission to the Bachelor of Science in CSS, applicants must first be admitted to the University of Washington Tacoma and have completed the following required prerequisites:
+Calculus I (TMATH 124 or equivalent)
+Calculus 2 (TMATH 125 or equivalent)
+Any lab-based science course (except Astronomy)
+Introduction to Programming (TCSS 142 or equivalent)
+Object-Oriented Programming (TCSS 143 or equivalent)
+Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite. Required minimum cumulative GPA of 2.0 in all college coursework.
+Transfer students at WA State community colleges should use the UW Equivalency Guide to determine course equivalencies at their school.
+Please note: Admission to the CSS program is capacity-constrained. Students who are admitted to the program typically have grades of 3.0 and higher in prerequisite math, science, and computer science courses as well as a strong cumulative grade point average.
+Completion Requirements
+Graduation Requirements for Bachelor of Science degree with a major in Computer Science and Systems
+To qualify for graduation with a Bachelor's of Science degree in Computer Science and Systems from the University of Washington Tacoma, a student must:
+Complete all Computer Science and Systems prerequisites and required coursework with a minimum cumulative grade point average of 2.5 in those courses
+Be a matriculated Computer Science and Systems student in good academic standing (cumulative grade point average of 2.0 or higher) with the University of Washington Tacoma
+Complete 25 credits of 300 and 400 level Computer Science and Systems senior electives (10 credits must be 400-level)
+Complete 45 credits in math beyond pre-calculus and lab-based science courses
+Lower Division Coursework:
+Required for BS TCSCI students
+5 credits of English Composition
+5 credits additional Composition or advanced writing
+10 credits of Arts and Humanities course work
+10 credits of Social Sciences course work
+3 credits Diversity elective
+10 credits of Object-Oriented Programming (TCSS 142 and TCSS 143 or equivalent)
+15 credits of Calculus (TMATH 124, TMATH 125, TMATH 126 or equivalent)
+5 credits of lab-based science
+5 additional credits of lab-based science or math beyond pre-calculus
+Students with previous baccalaureate degrees or extensive work experience should meet with an advisor to discuss options.
+Required CORE courses
+TCSS 305
+TCSS 321
+TCSS 325
+TCSS 342
+TCSS 343
+TCSS 360
+TCSS 371
+TCSS 372
+TCSS 380
+TCSS 422
+CSS Electives
+Students must complete 25 additional credits of 300-level or 400-level courses chosen from the Computer Science and Systems program (excluding TCSS 390); see course descriptions for listing. For these 25 elective credits, students must complete:
+5 credits from the approved electives list (see the CSS web site for the approved list),
+an additional 10 credits of 300- or 400-level TCSS electives, and
+an additional 10 credits of 400-level TCSS electives.
+No more than 10 credits of TCSS 497, TCSS 498, and TCSS 499 may be used to satisfy the elective requirement.
+Students may also take up to 5 credits of a 400-level School of Engineering and Technology course (TEE, TCES, TINFO, TINST) and/or 5 credits of a 500-level TCSS course to count towards the elective requirement (categories 2 and 3 above).
+Other Requirements
+TMATH 126
+TMATH 308
+TMATH 390
+A lab based science course
+An additional lab based science course OR an additional 300- or 400-level math course, except TMATH 210
+Honors Graduation Requirements
+Completion of all degree requirements for the BS in CSS including:
+Maintenance of a 3.6 GPA in the major (CSS courses starting with 305 and 321) by the time of the graduation
+As part of the CSS electives requirement:
+Completion of 10 credits of graded research in TCSS 499
+The faculty adviser must be a full-time CSS faculty member. If a student is working on a research project in another unit or with a part-time faculty, they must have a full-time CSS faculty member approve the project and sign off on the thesis and presentation (in the rare instance where the advisor is not able to work with the student for the entire time, another faculty member within the same areas of research as the original advisor can become the advisor)
+Completion of 5 credit hours of TCSS 440 (Formal Models in Computer Science) or a 400-level elective in the area of Senior Thesis
+Submission and approval of Senior Thesis that meets the following criteria:
+It should be a well-written, clearly presented document, typically 4000-6000 words, that follows SET Honors Thesis Guidelines,
+It should reflect work done independently under the supervision of a faculty member, and
+The thesis should be original and demonstrate creative thinking, as judged by the faculty advisor and CSS Program Chair (or chair's designee)
+Oral presentation, arranged by a student and faculty advisor, on the honors project, with the faculty advisor, CSS Program Chair (or chair's designee), and at least five additional people (e.g., other students, faculty) to attend the presentation
+Applications should be submitted at the beginning of the quarter in which the student will have completed all honors requirements
+Back to Top
+Additional Information
+Program Educational Objectives
+The Computer Science and Systems program has six objectives for its BA and BS graduates. The career path a graduate takes will affect the accomplishments they achieve but within three to five years after graduation they should have accomplished some of the following:
+Developed a product or process by applying knowledge of mathematics, computing, systems and development tools
+Participated effectively as a member of a development team and undertaken leadership roles when appropriate.
+Taken graduate courses or continuing education classes to improve skills and abilities
+Made positive contributions to the community and society by applying skills and abilities learned during the undergraduate program in computing
+Made decisions related to work that demonstrate an understanding of the importance of being an ethical computing professional
+Applied communication skills to effectively promote ideas, goals, or products
+Student Outcomes
+The Computing Accreditation Commission (CAC) has defined a set of educational outcomes that all graduates of computer science programs must meet. TCSCI students must demonstrate the following attributes and abilities by the time of graduation:
+Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions.
+Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline.
+Communicate effectively in a variety of professional contexts.
+Recognize professional responsibilities and make informed judgments in computing practice based on legal and ethical principles.
+Function effectively as a member or leader of a team engaged in activities appropriate to the program’s discipline.
+Apply computer science theory and software development fundamentals to produce computing-based solutions.
+Academic Standards/Policies
+The following standards apply to all students in the Computer Science and Systems program. These standards may apply in addition to other academic standards at the University of Washington Tacoma.
+Each required Computer Science and Systems course must be completed with a minimum grade of 2.0 before advancing to the next course. If a grade below 2.0 is earned, the course must be repeated. Course credit will be awarded only once, but both grades will be used in computing the cumulative grade point average. The higher grade will be used when computing the Computer Science and Systems major grade point average.
+If a student does not achieve the required grade of 2.0 after repeating a required TCSS course, the student must request permission to take the course a third time. The petition to repeat a course and instructions are located on the School of Engineering and Technology website .
+Courses in the Computer Science and Systems program may not be taken by correspondence (distance learning) without prior TCSS faculty approval.
+Courses in the Computer Science and Systems program may not be taken as S/NS (satisfactory/not satisfactory).
+If a student wishes to substitute a course taken at another institution for a CSS required course, the student must submit a Petition to Substitute a Course form along with course syllabi to their academic advisor. The CSS faculty will review the petition and inform the advisor if the substitution is approved. If a course is more than seven years old, the student will be required to repeat the course at UW Tacoma. Credit will not be awarded twice for the same course. A maximum of 15 credits may be awarded through course substitution.
+Computer Science transfer courses are held to the same 2.0 grade standard required for all Computer Science and Systems coursework.
+Current UW Tacoma students wishing to change to a Computer Science and Systems major from another major are required to apply for admission to the major and must follow the major requirements in place at the time of admission.
+Low Scholarship
+Any undergraduate Computer Science and Systems student who is dismissed from the University for Low Scholarship will be removed from the Computer Science and Systems major.
+Any undergraduate Computer Science and Systems student who is denied permission to repeat a required course, or who does not earn the required grade of a 2.0 or higher after repeating the course for a third time, will be removed from the Computer Science and Systems major
+After being removed from the Computer Science and Systems major, a student must re-apply for admission in order to continue as a CSS student in any status, matriculated or otherwise. The Admissions Committee will evaluate the student's application requesting re-admission, and any extenuating circumstances, and will then recommend action.
+Computing Labs
+The School of Engineering and Technology has dedicated laboratories containing specialized equipment to support the Computer Science and Systems program. These laboratories are accessible to admitted Computer Science and Systems students via assigned key card 24 hours a day, seven days a week. Access to facilities is also available through Internet connections.
+Back to Top
+Program of Study: Major: Electrical Engineering
+Program Overview
+The field of Electrical engineering deals with systems that use electric and electromagnetic energy. Sub-fields of electrical engineering include power systems, communication systems, signal processing, control systems, and electronics. The BS in Electrical Engineering (EE) program emphasizes circuit design for applications such as communication, signal processing, electromagnetics, controls, and embedded systems. The curriculum provides students with a rigorous grounding in the theoretical principles of Electrical Engineering as well as teaching practical skills in a collaborative learning environment. The curriculum for the BS degree in EE satisfies all the requirements of the Accreditation Board for Engineering and Technology (ABET).
+This program of study leads to the following credential:
+Bachelor of Science in Electrical Engineering degree
+Admission Requirements
+The Electrical Engineering program admits qualified students once per year in the autumn quarter. Admission to the major is competitive. Please review the prerequisites and application process carefully. To be considered for admission all applicants must meet the following minimum qualifications:
+Completion of a minimum of 45 college-level credits
+Cumulative GPA of at least 2.00 in all college course work
+Completion of all pre-requisite coursework with a cumulative GPA of at least a 2.50 in all college math, science, computer science, and engineering course work. Only top marks will be considered when calculating GPA.
+Students transferring from a community college to this program are strongly encouraged to follow the Associate of Science Transfer Track 2.
+Prerequisites
+All applicants must be admitted to the University of Washington Tacoma and are required to complete the following prerequisites before being accepted to the Electrical Engineering program.
+Calculus I (TMATH 124 or MATH 124), Calculus II (TMATH 125 or MATH 125), Calculus III (TMATH 126 or MATH 126) (check the equivalency guide to see if calculus IV is needed)
+Differential Equations (TMATH 207 or MATH 207)
+Physics I (T PHYS 121 or PHYS 121), Physics II (T PHYS 122 or PHYS 122)
+Programming: 4-5 credits of Introduction to Computer Programming C, C++, Python, or JAVA based languages. TCSS 141 (5) or CSE 121 (4) are examples of an acceptable course
+Electrical Circuits TCES 215 or EE 215 or equivalent.
+How to Apply
+All applicants must be admitted to the University of Washington Tacoma before applying to the major
+All students applying to the Electrical Engineering program must fill out a TEE major application form. Please visit the School of Engineering and Technology website for program application instructions. https://www.tacoma.uw.edu/set/school-engineering-technology-home
+Note: the Electrical Engineering program admits only once a year in the autumn quarter.
+Bachelor of Science in Electrical Engineering degree
+Completion Requirements
+Graduation Requirements
+Be a matriculated Electrical Engineering student in good academic standing (cumulative grade point average of 2.00 or higher) with the University of Washington Tacoma.
+Complete all Electrical Engineering prerequisites and required course work with a minimum cumulative grade point average of 2.50 in those courses.
+A minimum 2.0 grade for each course applied to the major.
+Complete a minimum of 30 credits of Electrical Engineering required courses in residence at the University of Washington Tacoma.
+Apply for graduation in-person with an advisor two quarters before you expect to graduate.
+Required Core Courses: 103-106 credits
+Electrical Engineering Fundamentals (5 credits)
+TCES 230 (5)
+Math/Theory (9-10 credits)
+TCES 380 (5)
+TMATH 208 (5) or MATH 208 (4) or equivalent
+Physics III (T PHYS 123 or PHYS 123) (5-6 credits)
+If Physics I, II, and III are completed and 18 credits is not achieved, the remaining credits may be satisfied by any lab-based science course
+Ethics and Society (5 credits)
+TEE 225 (5)
+Computer Programming (4-5 credits)
+4-5 additional credits of Computer Programming C, C++, Python, or JAVA based languages. TCSS 142 (5) or CSE 122 (4) are examples of an acceptable course
+Electrical Engineering (70 credits)
+TCES 310 (5)
+TCES 312 (5)
+TEE 315 (4)
+TEE 317 (5)
+TEE 316 (5)
+TCES 330 (5)
+TEE 331 (4)
+TEE 341 (4)
+TEE 372 (3)
+TEE 431 (5)
+TEE 451 (5)
+TCES 421 (5)
+TEE 453 (5)
+TEE 480 (2)
+TEE 481 (4)
+TEE 482 (4)
+Electives: 5 credits; students may take 5 credits of 400-level TEE, TCES, or TCSS courses, and/or one 500-level TECE or TCSS courses to count towards the elective requirement.
+See department website or advisor for approved list.
+Back to Top
+Additional Information
+Program Educational Objectives
+Program educational objectives, as defined by ABET are the abilities, skills, and accomplishments expected of graduates within a few years of graduation. The Program Educational Objectives of the Electrical Engineering program are as follows:
+Within three to five years of graduation from the EE program, it is expected that many graduates will have:
+Developed a complex product or process by applying their knowledge of engineering principles, science, mathematics, design and implementation.
+Participated effectively as a member of a multi-disciplinary team.
+Undertaken a leadership role applying communication skills to effectively promote their ideas, goals, or products.
+Made decisions related to their work that demonstrate an understanding of the importance of being an ethical engineering professional.
+Improved their skills and abilities by taking graduate courses, professional development training, or voluntary experiential learning opportunities.
+Made positive contributions to their community and society by applying skills and abilities learned during their undergraduate program in electrical engineering.
+Since the objectives are fairly broad, it is not expected that every graduate will achieve every objective.
+Student Outcomes
+The Accreditation Board for Engineering and Technology (ABET) is a non-governmental organization that accredits post-secondary education programs in applied science, computing, engineering, and engineering technology. Students who complete the BSEE program will achieve the following ABET-based student outcomes:
+An ability to identify, formulate, and solve complex engineering problems by applying principles of engineering, science, and mathematics.
+An ability to apply engineering design to produce solutions that meet specified needs with consideration of public health, safety, and welfare, as well as global, cultural, social, environmental, and economic factors.
+An ability to communicate effectively with a range of audiences.
+An ability to recognize ethical and professional responsibilities in engineering situations and make informed judgments, which must consider the impact of engineering solutions in global, economic, environmental, and societal contexts.
+An ability to function effectively on a team whose members together provide leadership, create a collaborative and inclusive environment, establish goals, plan tasks, and meet objectives.
+An ability to develop and conduct appropriate experimentation, analyze and interpret data, and use engineering judgment to draw conclusions.
+An ability to acquire and apply new knowledge as needed, using appropriate learning strategies.
+Academic Standards/Policies
+The following standards apply to all students in the Electrical Engineering program. These standards may apply in addition to other academic standards at the University of Washington Tacoma.
+If a student does not achieve the required minimum grade of 2.0 after repeating a required TEE course, the student must request permission to take the course a third time. The petition to repeat a course and instructions are located on the School of Engineering and Technology website at: tacoma.uw.edu/School of Engineering and Technology-technology/ undergraduate-resources.
+If a student wishes to substitute a course, a Petition to Substitute a Course form and supporting documents must be submitted to the TEE faculty for approval. If a course is more than seven years old, the student will be required to repeat the course at UW Tacoma. Credit will not be awarded twice for the same course.
+Courses in the Electrical Engineering program may not be taken by correspondence (distance learning) without prior faculty approval.
+Courses in the Electrical Engineering program may not be taken S/NS (satisfactory/not satisfactory).
+Upper-division Electrical Engineering courses used for transfer credit are held to the same minimum 2.0 grade standard required for all courses in the Electrical Engineering major.
+Students changing to the Electrical Engineering major from another major will be required to meet program and academic performance requirements in effect at the time the major is changed.
+Low Scholarship
+An undergraduate Electrical Engineering major who is dismissed from the university for low scholarship will be removed from the Electrical Engineering major.
+An undergraduate Electrical Engineering major who's petition to re-take a course for a third time is denied by TEE faculty, will be removed from the Electrical Engineering major.
+After being removed from the Electrical Engineering major, a student must re-apply for admission to continue as a TEE student in any status.
+Engineering Labs
+The School of Engineering and Technology has dedicated laboratories containing specialized equipment to support its programs. These laboratories are accessible to admitted School of Engineering and Technology students via assigned key card 24 hours a day, seven days a week. Access to facilities is also available through Internet connections.
+Back to Top
+Program of Study: Major: Information Technology
+Program Overview
+The Information Technology (IT) program offers a Bachelor of Science degree with two elective concentration options. The Information Technology degree covers a variety of IT topics. The specialization in Information Assurance and Cybersecurity provides a concentration consisting of a series of three elective courses in the area of cybersecurity policy. The specialization in Mobile Digital Forensics provides a concentration consisting of three courses in Mobile Digital Forensics. All degree options prepare students for a variety of positions in the field of Information Technology. The curriculum emphasizes IT application, deployment, configuration, and development and focuses more on the technical and less on the business aspects of IT. Students will gain hands-on experience by working in industry as part of their program. Graduates of the program are equipped to design, manage, and support highly technical and complex information systems.
+This program of study leads to the following credentials:
+Bachelor of Science degree with a major in Information Technology
+Bachelor of Science degree with a major in Information Technology: Information Assurance and Cybersecurity
+Bachelor of Science degree with a major in Information Technology: Mobile Digital Forensics
+Admission Requirements
+The Information Technology program only admits once per year in the autumn quarter. To be considered for admission all applicants must meet the following minimum qualifications:
+Completion of all prerequisite coursework with a minimum cumulative GPA of at least a 2.5 in those courses
+A cumulative GPA of at least 2.0 in all college course work
+Completion of a minimum of 45 college-level credits
+Prerequisites
+TCSS 142 (5)
+TMATH 120 (5) or Pre-Calculus I & II at a community college
+How to Apply to the Major
+All students applying to the Information Technology program must submit a completed major application form. Please visit the School of Engineering and Technology website for program application instructions.
+Bachelor of Science degree with a major in Information Technology
+Credential Overview
+The Bachelor of Science in Information Technology (IT) prepares students for a variety of positions in the field of Information Technology. The curriculum emphasizes IT application, deployment, configuration, and development and focuses more on the technical and less on the business aspects of IT. Students will gain hands-on experience by working in industry as part of their program. Graduates of the program are equipped to design, manage, and support highly technical and complex information systems.
+Completion Requirements
+To qualify for graduation with a Bachelor of Science degree in Information Technology from the University of Washington Tacoma, a student must:
+Complete all Information Technology prerequisites and required coursework with a minimum cumulative grade point average of 2.5 in those courses.
+Be a matriculated Information Technology student in good academic standing (2.0 cumulative GPA or higher) with the University of Washington Tacoma
+Apply for graduation in-person with an advisor two quarters before you expect to graduate
+Required Core Courses
+T INFO 200
+T INFO 210
+T INFO 220
+T INFO 230
+T INFO 240
+T INFO 250
+T INFO 320
+T INFO 310
+T INFO 360
+T INFO 370
+T INFO 452 or T INFO 457
+TMATH 110
+TWRT 291
+TCSS 325
+Required Internship and Senior Project: 10 credits
+T INFO 482
+T INFO 497 or T INFO 481
+Senior Electives: 15 credits
+See program website for courses.
+Options
+Additional requirements specified below.
+Back to Top
+Bachelor of Science degree with a major in Information Technology: Information Assurance and Cybersecurity
+Credential Overview
+The Bachelor of Science in Information Technology (IT) prepares students for a variety of positions in the field of Information Technology. The curriculum emphasizes IT application, deployment, configuration, and development and focuses more on the technical and less on the business aspects of IT. Students will gain hands-on experience by working in industry as part of their program. Graduates of the program are equipped to design, manage, and support highly technical and complex information systems.
+Completion Requirements
+To qualify for graduation with a Bachelor of Science degree in Information Technology from the University of Washington Tacoma, a student must:
+Complete all Information Technology prerequisites and required coursework with a minimum cumulative grade point average of 2.5 in those courses.
+Be a matriculated Information Technology student in good academic standing (2.0 cumulative GPA or higher) with the University of Washington Tacoma
+Apply for graduation in-person with an advisor two quarters before you expect to graduate
+Required Core Courses
+T INFO 200
+T INFO 210
+T INFO 220
+T INFO 230
+T INFO 240
+T INFO 250
+T INFO 320
+T INFO 310
+T INFO 360
+T INFO 370
+T INFO 452 or T INFO 457
+TMATH 110
+TWRT 291
+TCSS 325
+Required Internship and Senior Project: 10 credits
+T INFO 482
+T INFO 497 or T INFO 481
+Senior Electives: 15 credits
+See program website for courses.
+Options
+Additional requirements specified below.
+Additional Completion Requirements
+Option specific requirements (15 credits)
+T INFO 441
+T INFO 442
+T INFO 443
+Back to Top
+Bachelor of Science degree with a major in Information Technology: Mobile Digital Forensics
+Credential Overview
+The Bachelor of Science in Information Technology (IT) prepares students for a variety of positions in the field of Information Technology. The curriculum emphasizes IT application, deployment, configuration, and development and focuses more on the technical and less on the business aspects of IT. Students will gain hands-on experience by working in industry as part of their program. Graduates of the program are equipped to design, manage, and support highly technical and complex information systems.
+Completion Requirements
+To qualify for graduation with a Bachelor of Science degree in Information Technology from the University of Washington Tacoma, a student must:
+Complete all Information Technology prerequisites and required coursework with a minimum cumulative grade point average of 2.5 in those courses.
+Be a matriculated Information Technology student in good academic standing (2.0 cumulative GPA or higher) with the University of Washington Tacoma
+Apply for graduation in-person with an advisor two quarters before you expect to graduate
+Required Core Courses
+T INFO 200
+T INFO 210
+T INFO 220
+T INFO 230
+T INFO 240
+T INFO 250
+T INFO 320
+T INFO 310
+T INFO 360
+T INFO 370
+T INFO 452 or T INFO 457
+TMATH 110
+TWRT 291
+TCSS 325
+Required Internship and Senior Project: 10 credits
+T INFO 482
+T INFO 497 or T INFO 481
+Senior Electives: 15 credits
+See program website for courses.
+Options
+Additional requirements specified below.
+Additional Completion Requirements
+Option specific requirements (15 credits)
+T INFO 444
+T INFO 445
+T INFO 446
+Back to Top
+Additional Information
+Program Educational Objectives
+The intent of the Information Technology program is to produce graduates who are able to achieve the following objectives:
+Developed a product or process by applying knowledge of programming, web, database, human computer interaction, networking and security tools
+Participated effectively as a member of a development team and undertaken leadership roles when appropriate
+Taken graduate courses or continuing education classes to improve skills and abilities
+Made positive contributions to community and society by applying skills and abilities learned during undergraduate program in information technology
+Made decisions related to work that demonstrate understanding of the importance of being an ethical computing professional
+Applied communication skills to effectively promote ideas, goals or products
+Student Outcomes
+Students graduating from our information focused programs will be able to choose many different roles; becoming IT and IS consultants, project planners, project managers, interface designers, information systems researchers, web developers, and systems analysts. To emphasize, consider some of the general tasks that an information technology and systems specialist is likely to perform depending on where she works:
+Graduates of the program will have an ability to:
+Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions.
+Design, implement, and evaluate a computing-based solution to meet a given set of computing requirements in the context of the program’s discipline.
+Communicate effectively in a variety of professional contexts.
+Recognize professional responsibilities and make informed judgments in computing practice based on legal and ethical principles.
+Function effectively as a member or leader of a team engaged in activities appropriate to the program’s discipline.
+Identify and analyze user needs and to take them into account in the selection, creation, integration, evaluation, and administration of computing-based systems. [IT]
+Academic Standards/Policies
+The following standards apply to all students in the Information Technology program. These standards may apply in addition to other academic standards at the University of Washington Tacoma.
+Each required prerequisite course as well as each required IT course must be completed with a minimum grade of 2.0 before advancing to the next course. If a grade below 2.0 is earned, the course must be repeated. Course credit will be awarded only once, but both grades will be used in computing the grade point average. The higher grade will be used when computing the IT major grade point average.
+If after repeating a required IT course a student does not achieve the required grade of 2.0, the student must request permission to take the course a third time. The Petition to Repeat a Course form and instructions are located on the School of Engineering and Technology
+Courses in the Information Technology program may not be taken by correspondence (distance learning) without prior faculty approval.
+Courses in the Information Technology program may not be taken S/NS (satisfactory/not satisfactory).
+If a student wishes to substitute a course taken at another institution for a required Information Technology course, the student must submit a Petition to Substitute a Course form along with course syllabi to their academic advisor. The IT faculty will review the petition and inform the advisor if the substitution is approved. If a course is more than seven years old, the student will be required to repeat the course at UW Tacoma. Credit will not be awarded twice for the same course. A maximum of 15 credits may be awarded through course substitution.
+Information Technology transfer courses are held to the 2.0 grade standard required for all courses for Information Technology.
+Current UW Tacoma students wishing to change to an Information Technology major from another major are required to apply for admission to the major and must follow the major requirements in place at the time of admission.
+Low Scholarship
+Any undergraduate Information Technology student who is dismissed from the University for Low Scholarship will be removed from the Information Technology major.
+Any undergraduate Information Technology student who is denied permission to repeat a required course, or who does not earn the required grade of a 2.0 or higher after repeating the course for a third time, will be removed from the Information Technology major
+After being removed from the Information Technology major, a student must re-apply for admission in order to continue as an IT student in any status, matriculated or otherwise. The Admissions Committee will evaluate the student’s application requesting re-admission, and any extenuating circumstances, and will then recommend action.
+Back to Top
+Program of Study: Major: Mechanical Engineering
+Program Overview
+The Mechanical Engineering program equips students with the skills and experience to apply principles of engineering, basic science and math to model, analyze, design and realize physical systems. Courses include thermal systems, mechatronics and machine design. Prepares students for careers in biomechanics, energy systems, manufacturing, aerospace, robotics or graduate study.
+This program of study leads to the following credential:
+Bachelor of Science in Mechanical Engineering degree
+Admission Requirements
+To be considered for admission all applicants must meet the following minimum qualifications:
+Completion of a minimum of 45 college-level credits
+Cumulative GPA of at least 2.00 in all college course work
+Completion of all prerequisite coursework with a cumulative GPA of at least a 2.50 in all college math, science, computer science, and engineering course work. The minimum acceptable grade in a prerequisite course is 2.0. Only top marks will be considered when calculating GPA.
+Students transferring from a community college to this program are strongly encouraged to follow the Associate of Science Transfer Track 2.
+Prerequisites
+All applicants must be admitted to the University of Washington Tacoma and are required to complete the following prerequisites before being accepted to the Mechanical Engineering program.
+TMATH 124 or MATH 124, TMATH 125 or MATH 125, and TMATH 126 or MATH 126
+TMATH 207 or MATH 207
+TMATH 224 or MATH 224
+T PHYS 121 or PHYS 121 , T PHYS 122 or PHYS 122, and TPHYS 123 or PHYS 123
+If Physics I, II and III are completed and 18 quarter credits are not achieved, the remaining credits may be satisfied by any lab-based science course.
+T CHEM 142 or CHEM 142
+TME 221 or A A 210
+TME 222 or CEE 220
+TME 223 or M E 230
+Programming: 5 credits of Introduction to Computer Programming C, C++, Python, MATLAB, or JAVA based languages. TCSS 142 is an example of one such course (5)
+Must meet the minimum cumulative GPA of at least a 2.50 in all required prerequisite coursework. Students with previous baccalaureate degrees or extensive work experience should meet with an adviser to discuss options.
+How to Apply to the Major
+All applicants must be admitted to the University of Washington Tacoma before applying to the major.
+All students applying to the Mechanical Engineering program must fill out a TME major application form. Admission to the major is competitive. Please visit the School of Engineering and Technology website for program application instructions.
+Note: The Mechanical Engineering program admits only once a year in the autumn quarter.
+Bachelor of Science in Mechanical Engineering degree
+Credential Overview
+Mechanical engineering plays a critical role in the development of new inter-disciplinary fields such as alternative energies, electric cars, robotics, material science and nano-technology, and manufacturing.
+Completion Requirements
+To qualify for graduation with a Bachelor of Science in Mechanical Engineering from the University of Washington Tacoma, a student must:
+Be a matriculated Mechanical Engineering student in good academic standing (cumulative grade point average of 2.00 or higher) with the University of Washington Tacoma.
+A minimum 2.0 grade for each course applied to the major.
+Complete all Mechanical Engineering prerequisites and required course work with a minimum cumulative grade point average of 2.50 in those courses.
+Complete a minimum of 30 credits of ME required courses in residence at the University of Washington Tacoma.
+Apply for graduation in-person with an advisor two quarters before you expect to graduate.
+Required Core Courses: 79
+TCES 215 (5) (must have AC/DC at community colleges).
+TEE 225 (5)
+TME 351 (3)
+TME 403 (2)
+TME 310 (2)
+TME 311 (2)
+TME 315 (5)
+TME 320 (4)
+TME 331 (5)
+TME 332 (5)
+TME 341 (5)
+TME 342 (5)
+TME 345 (3)
+TME 373 (5)
+TME 433 (5)
+TME 435 (4)
+TME 441 (5)
+TME 480 (2)
+TME 481 (3)
+TME 482 (4)
+Electives: 15 credits
+See department website or advisor for approved list.
+Back to Top
+Additional Information
+Program Educational Objectives
+The faculty of the University of Washington Tacoma Mechanical Engineering program strive to serve our students and other constituents by continuously improving our educational program. We envision that:
+1. Our graduates will thrive in careers that utilize scientific principles, professional skills, and technical innovation.
+2. Our graduates will be prepared to advance their studies through professional development, certifications, or postgraduate degrees.
+3. Our graduates will pursue excellence in collaboration and leadership with an emphasis on the importance of transformational diversity/equity, integrity, and respect as they create work of value for their communities and society.
+Student Outcomes
+The new BSME degree program will seek accreditation through ABET. Students who complete the program would achieve the following ABET-based learning outcomes:
+An ability to identify, formulate, and solve complex engineering problems by applying principles of engineering, science, and mathematics
+An ability to apply engineering design to produce solutions that meet specified needs with consideration of public health, safety, and welfare, as well as global, cultural, social, environmental, and economic factors
+An ability to communicate effectively with a range of audiences
+An ability to recognize ethical and professional responsibilities in engineering situations and make informed judgments, which must consider the impact of engineering solutions in global, economic, environmental, and societal contexts
+An ability to function effectively on a team whose members together provide leadership, create a collaborative and inclusive environment, establish goals, plan tasks, and meet objectives
+An ability to develop and conduct appropriate experimentation, analyze and interpret data, and use engineering judgment to draw conclusions
+An ability to acquire and apply new knowledge as needed, using appropriate learning strategies
+Academic Standards/Policies
+The following standards apply to all students in the Mechanical Engineering program. These standards may apply in addition to other academic standards at the University of Washington Tacoma.
+Each required TME course must be completed with a minimum grade of 2.0. If a grade below 2.0 is earned, the course must be repeated. Course credit will be awarded only once, but both grades will be used in computing the cumulative grade point average. The higher grade will be used when computing the ME major grade point average.
+If a student does not achieve the required grade of 2.0 after repeating a required TME course, the student must request permission to take the course a third time. The petition to repeat a course and instructions are located on the School of Engineering and Technology website.
+Courses in the Mechanical Engineering program may not be taken by correspondence (distance learning) without prior ME faculty approval.
+Courses in the Mechanical Engineering program may not be taken as S/NS (satisfactory/not satisfactory).
+If a student wishes to substitute a course taken at another institution for a TME required course, the student must submit a Petition to Substitute a Course form along with course syllabi to their academic advisor. The ME faculty will review the petition and inform the advisor if the substitution is approved. If a course is more than seven years old, the student will be required to repeat the course at UW Tacoma. Credit will not be awarded twice for the same course. A maximum of 15 credits may be awarded through course substitution.
+Mechanical Engineering transfer courses are held to the same 2.0 grade standard required for all Mechanical Engineering coursework.
+Current UW Tacoma students wishing to change to a Mechanical Engineering major from another major are required to apply for admission to the major and must follow the major requirements in place at the time of admission.
+Low Scholarship
+Any undergraduate Mechanical Engineering student who is dismissed from the University for Low Scholarship will be removed from the Mechanical Engineering major.
+Any undergraduate Mechanical Engineering student who is denied permission to repeat a required course, or who does not earn the required grade of a 2.0 or higher after repeating the course for a third time, will be removed from the Mechanical Engineering major.
+After being removed from the Mechanical Engineering major, a student must re-apply for admission in order to continue as an ME student in any status, matriculated or otherwise. The Admissions Committee will evaluate the student’s application requesting re-admission, and any extenuating circumstances, and will then recommend action.
+Back to Top
+Program of Study: Minor: Applied Computing
+Program Overview
+The minor in Applied Computing is designed for students who want to be sophisticated users of computing technology and integrate these skills into his or her major field.
+This program of study leads to the following credential:
+Minor in Applied Computing
+Minor in Applied Computing
+Credential Overview
+The minor in Applied Computing is designed for students who want to be sophisticated users of computing technology and integrate these skills into his or her major field.
+The minor curriculum provides a thorough grounding in computing applications and principles. It also provides the student the opportunity to work with key technologies such as database management and computer networks.
+The minor in Applied Computing is open to all students and does not require computer proficiency or prerequisites.
+Completion Requirements
+Requirements: 25 credits
+Required Core Courses: 15 credits
+T INST 310
+T INST 311
+T INST 312
+Elective Courses: 10 credits
+See the School of Engineering and Technology website for a list of approved courses.
+Back to Top
+Graduate Programs
+School of Engineering and Technology
+Program of Study: Doctor of Philosophy (Computer Science and Systems)
+Program Overview
+The PhD degree in Computer Science and Systems is designed to develop scholars, educators, and interdisciplinary researchers who focus on computing principles for breadth, to become experts in one of many interdisciplinary areas in science and society characterized by substantial engineering and technology challenges requiring significant domain expertise to solve. The curriculum is built upon the existing Master&rsquo;s in Computer Science and Systems program (MSCSS) at UW Tacoma. Graduates from the PhD in Computer Science and Systems program will be scholars and contributors to local growth and use-inspired innovation. The program builds advanced computing knowledge, augments critical thinking skills, and helps inquiry, questioning and abstraction towards tool development while contributing to theoretical advances in the area of the student&rsquo;s emphasis. The curriculum includes courses in traditional areas of computer science, such as advanced algorithms and distributed computing, as well as courses in high demand fields where SET&rsquo;s faculty have strong expertise, such as machine learning, cryptography, cloud computing, and bioinformatics. Graduates of this program will be leaders and advanced explorers able to bridge the gap between technological and societal demands through collaborative research.
+This program of study leads to the following credential:
+Doctor of Philosophy (Computer Science & Systems)
+Recommended Preparation
+Prerequisite Coursework
+As the PhD program builds upon the existing MSCSS program, the prerequisite coursework requirements are the same as for the MSCSS program. All students admitted to the MSCSS program (and hence the PhD program) are expected to have competency in the following areas:
+Object-Oriented Programming (equivalent to TCSS 142, TCSS 143 and TCSS 305)
+Discrete Mathematics (equivalent to TCSS 321)
+Data Structures (equivalent to TCSS 342)
+Algorithms (equivalent to TCSS 343)
+Program Management/Software Engineering (equivalent to TCSS 360)
+Computer Organization (equivalent to TCSS 371)
+Computer Architecture (equivalent to TCSS 372)
+Calculus
+Science (Physics preferred)
+Admission Requirements
+Please see this program's Graduate Admissions Page for current requirements.
+Doctor of Philosophy (Computer Science & Systems)
+Completion Requirements
+90 credits
+Master of Science in Computer Science and Systems Requirements (40 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+15 credits of 500-level TCSS elective courses (510 or above). Course list maintained internally by the program.
+TCSS 700 (10 credits)
+Additional Coursework (20 credits): 500-level TCSS elective courses, chosen from at least 3 different concentrations. Course list maintained internally by the program.
+Dissertation (30 credits): TCSS 800
+Back to Top
+Additional Information
+Program Learning Outcomes
+Upon successful completion of the PhD in Computer Science and Systems program, graduates will be able to:
+Read, understand, and evaluate professional literature on advanced topics in computer science
+Use current techniques, skills, and tools necessary for computing practice
+Independently conduct original research by identifying important computer science problems (e.g. performing a gap analysis), developing solutions through creative problem-solving and rigorous design, designing and performing experimental evaluation, and conducting rigorous analyses of results
+Communicate computer science concepts in verbal and written forms to effectively
+Disseminate results to a technical audience
+For more information, please visit the School of Engineering and Technology website .
+Back to Top
+Program of Study: Graduate Certificate In Software Development Engineering
+Program Overview
+In this six-course graduate certificate program, students will build on basic computer programming knowledge to learn the best practices of software development and design while learning to implement these practices as software engineers. Over the course of a year, students will learn the core concepts of computer science spanning from fundamental data structures and algorithms, to software engineering, to object-oriented and systems programming through lectures and hands-on labs. The program concludes with a project-based capstone course emphasizing team-oriented full stack development. The ultimate goal is to provide graduates with a practicum in software development to help augment and advance their existing career or continue to a master&rsquo;s program in computer science to facilitate a transition into a career in software development.
+This program of study leads to the following credential:
+Graduate Certificate in Software Development Engineering
+Admission Requirements
+Contact department for requirements.
+Graduate Certificate in Software Development Engineering
+Completion Requirements
+18 credits
+Required Coursework (18 credits): TCSS 501, TCSS 502, TCSS 503, TCSS 504, TCSS 505, TCSS 506
+Back to Top
+Additional Information
+Student Learning Outcomes
+Upon completion of this GC-SDE program, students will be able to:
+Solve computer-programming problems by applying commonly used algorithms and data structures.
+Implement computer programs using a modern high-level programming language.
+Explain fundamental concepts in software engineering and software design.
+Acquire hands-on collaborative, software development project experience using version control and configuration management tools.
+Apply computer systems concepts in support of software development.
+For more information, please visit the School of Engineering and Technology website.
+Back to Top
+Program of Study: Master Of Cybersecurity And Leadership
+Program Overview
+The MCL is designed for mid-career professionals and military personnel with a technical background and
+work experience, and a regionally accredited bachelor&rsquo;s degree. Applicants are seeking a competitive advantage for advancement in the military, in government agencies, and in the private sector for leadership positions in the growth area of cybersecurity operations. The MCL program provides graduates with the technical competencies and managerial skills necessary for leading technology professionals and organizations in the 21st century.
+The MCL program provides a thorough knowledge base for managers and technology leaders concerned with the design, development, implementation, operation, and management of cybersecurity systems, and the protection of an organization&rsquo;s information assets. Graduates will have the necessary skills to effect organizational change and protect companies from cyber threats.
+More information can be found at the departmental website: www.tacoma.uw.edu/set/programs/graduate/mcl
+This program of study leads to the following credential:
+Master Of Cybersecurity And Leadership (fee-based)
+Admission Requirements
+Please see this program's Graduate Admissions Page for current requirements.
+Continuation Policy
+Students are required to maintain satisfactory progress meeting the university and program standards relative to scholarship and performance in pursuit of the master’s degree, including each of the following:
+Maintain a cumulative 3.0 GPA
+Earn a quarterly GPA of 3.00 or higher
+Earn a grade of 2.7 or higher in each required course
+Master Of Cybersecurity And Leadership (fee-based)
+Completion Requirements
+40 credits
+Required courses (40 credits): TCSL 510, 520, 530, 540, 550, 560, 570, 580, 591, 592
+Back to Top
+Program of Study: Master Of Science In Computer Science And Systems
+Program Overview
+The master&rsquo;s degree in Computer Science and Systems at University of Washington Tacoma is designed for advanced careers in the technology industry and to prepare students to enter a Ph.D. program in computer science. Those with a master&rsquo;s degree in computer science typically earn 25 to 30 percent higher starting salaries than those with bachelor&rsquo;s degrees, according to a report by the U.S. Bureau of Labor Statistics. The degree requires 40-45 credits, depending on the various degree options.
+This program of study leads to the following credentials:
+Master Of Science In Computer Science And Systems
+Master Of Science In Computer Science And Systems (Bioinfomatics) (electives)
+Master Of Science In Computer Science And Systems (Bioinfomatics) (project or thesis)
+Master of Science in Computer Science and Systems (BS/MS)
+Master Of Science In Computer Science And Systems (Cyber-Physical Systems) (electives)
+Master Of Science In Computer Science And Systems (Cyber-Physical Systems) (project or thesis)
+Master Of Science In Computer Science And Systems (Cybersecurity) (electives)
+Master Of Science In Computer Science And Systems (Cybersecurity) (project or thesis)
+Master Of Science In Computer Science And Systems (Data Science) (electives)
+Master Of Science In Computer Science And Systems (Data Science) (project or thesis)
+Master Of Science In Computer Science And Systems (Distributed Systems) (Electives)
+Master Of Science In Computer Science And Systems (Distributed Systems) (Project/Thesis)
+Master Of Science In Computer Science And Systems (electives)
+Master Of Science In Computer Science And Systems (Geographical Information Systems) (electives)
+Master Of Science In Computer Science And Systems (Geographical Information Systems) (project or thesis)
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Continuation Policy
+Students are required to maintain satisfactory progress meeting the university and program standards relative to scholarship and performance in pursuit of the master’s degree, including each of the following:
+Maintain a cumulative 3.0 GPA
+Earn a quarterly GPA of 3.00 or higher
+Earn a grade of 2.7 or higher in each required course
+Make adequate progress with the thesis or capstone project, if pursuing this option, as demonstrated by the faculty advisor or committee chair, including interest, responsibility in working toward completion of project or thesis, and number of credits taken before a proposal has been approved.
+Master Of Science In Computer Science And Systems
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (25 credits)
+Electives (15 credits): 500-level TCSS coursework. Course list maintained internally by the program. Max 5 credits Research Seminar/Independent Study substitution course may apply.
+Thesis or Capstone (10 credits): TCSS 700 or TCSS 702
+Back to Top
+Master Of Science In Computer Science And Systems (Bioinfomatics) (electives)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (30 credits)
+Bioinformatics Option Courses (20 credits): Course list maintained internally by the program.
+Electives (10 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (Bioinfomatics) (project or thesis)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (25 credits)
+Bioinformatics Option (20 credits):
+Courses (10 credits): Course list maintained internally by the program.
+Thesis or Capstone (10 credits): TCSS 700 or TCSS 702 - department must approve of thesis or project fit within option.
+Electives (5 credits): Course list maintained internally by the program.
+Back to Top
+Master of Science in Computer Science and Systems (BS/MS)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Back to Top
+Master Of Science In Computer Science And Systems (Cyber-Physical Systems) (electives)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (30 credits)
+Cyber-Physical Systems Option Courses (20 credits): Course list maintained internally by the program.
+Electives (10 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (Cyber-Physical Systems) (project or thesis)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (25 credits)
+Cyber-Physical Systems Option Courses (20 credits):
+Courses (10 credits): Course list maintained internally by the program.
+Thesis or Capstone (10 credits): TCSS 700 or TCSS 702 - department must approve of thesis or project fit within option.
+Electives (5 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (Cybersecurity) (electives)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (30 credits)
+Cybersecurity Option Courses (20 credits): Course list maintained internally by the program.
+Electives (10 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (Cybersecurity) (project or thesis)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (25 credits)
+Cybersecurity Option (20 credits):
+Courses (10 credits): Course list maintained internally by the program.
+Thesis or Capstone (10 credits): TCSS 700 or TCSS 702 - department must approve of thesis or project fit within option.
+Electives (5 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (Data Science) (electives)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (30 credits)
+Data Science Option Courses (20 credits): Course list maintained internally by the program.
+Electives (10 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (Data Science) (project or thesis)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (25 credits)
+Data Science Option (20 credits):
+Courses (10 credits): Course list maintained internally by the program.
+Thesis or Capstone (10 credits): TCSS 700 or TCSS 702 - department must approve of thesis or project fit within option.
+Electives (5 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (Distributed Systems) (Electives)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (30 credits)
+Distributed Systems Option Courses (20 credits): Course list maintained internally by the program.
+Electives (10 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (Distributed Systems) (Project/Thesis)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (25 credits)
+Distributed Systems Option (20 credits):
+Courses (10 credits): Course list maintained internally by the program.
+Thesis or Capstone (10 credits): TCSS 700 or TCSS 702 - department must approve of thesis or project fit within option.
+Electives (5 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (electives)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (30 credits)
+Electives (30 credits): 500-level TCSS coursework. Course list maintained internally by the program. Max 5 credits Research Seminar/Independent Study substitution course may apply.
+Back to Top
+Master Of Science In Computer Science And Systems (Geographical Information Systems) (electives)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (30 credits)
+Geographical Information Systems Option Courses (20 credits): Course list maintained internally by the program.
+Electives (10 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computer Science And Systems (Geographical Information Systems) (project or thesis)
+Completion Requirements
+40-45 credits, depending on option
+Core Courses (15 credits):
+TCSS 543 or TCSS 540
+TCSS 558
+TCSS 598 (5 credits total)
+Option-Specific (25-30 credits, depending on option): See additional requirements for option-specific requirements.
+Additional Completion Requirements
+Option-specific requirements (25 credits)
+Geographical Information Systems Option (20 credits):
+Courses (10 credits): Course list maintained internally by the program.
+Thesis or Capstone (10 credits): TCSS 700 or TCSS 702 - department must approve of thesis or project fit within option.
+Electives (5 credits): 500-level TCSS coursework. Course list maintained internally by the program.
+Back to Top
+Additional Information
+Independent Study (TCSS 600): After taking the core courses, a student may develop a strong interest in a specific area of computer science that is not covered in any elective course being offered. In this case, the student may propose to substitute an independent study course for an elective course. To do this, the student must first find a faculty member who will supervise the independent study and then submit the proposed plan of study to
+the Graduate Committee for approval in the quarter prior to being undertaken.
+Graduate Non-matriculated (GNM) Status: Graduate non-matriculated (GNM) enrollment is beneficial to those who are interested in professional development or beginning work toward a graduate degree. A GNM is a post-baccalaureate student who wants to take graduate courses, but who has not been admitted by the Graduate School to a degree program. GNM status allows qualified students to earn graduate credits in an area of interest. A total of
+12 credits can apply toward a graduate degree. This status is not available to international students on F1 visas. Acceptance as a GNM student does not imply nor does it confer priority for later admission to the Graduate School for pursuit of a degree. GRE scores are not required to apply for GNM status.
+Back to Top
+Program of Study: Master of Science in Electrical and Computer Engineering
+Program Overview
+M.S. in Electrical & Computer Engineering (MSECE) students investigate topics in advanced computer architecture and digital and embedded control systems and signal processing for careers in processor design, wireless communication and power systems and security. The M.S. in ECE degree emphasizes industry-sought cutting edge knowledge and critical skills in electrical and computer engineering. The curriculum includes courses in advanced computer architecture, advanced digital systems, advanced embedded control systems and signal processing, RF microelectronics, wireless communication, power systems, as well as cryptography and implementation of cryptographic systems.
+This program of study leads to the following credential:
+Master of Science in Electrical and Computer Engineering
+Admission Requirements
+See this program's Graduate Admissions page for current requirements.
+Master of Science in Electrical and Computer Engineering
+Completion Requirements
+45 credits
+Complete thesis option or coursework-only option
+Thesis Option:
+Breadth courses (15 credits): 500-level TECE courses from the Core (breadth) course list, course list maintained internally by the program.
+Depth courses (15 credits): 500-level TECE courses from the Electives (depth) course list, course list maintained internally by the program.
+Thesis (9-15 credits): TECE 700
+Additional credit to reach required credit total from the Depth or Breadth lists. 5 credits 400-level or above from non-TECE, TEE, CES may apply.
+Coursework-only Option:
+Breadth courses (15 credits): 500-level TECE courses from the Core (breadth) course list, course list maintained internally by the program.
+Depth courses (20 credits): 500-level TECE courses from the Electives (depth) course list, course list maintained internally by the program.
+Capstone (5 credits): TECE 599
+Additional credit to reach required credit total from the Depth or Breadth lists. 5 credits 400-level or above from non-TECE, TEE, CES may apply.
+Back to Top
+Additional Information
+Educational Objectives
+MSECE graduates will be able to:
+Design complex engineering devices by applying advanced technology, engineering methodologies and tools.
+Develop deeper understanding of a subfield of ECE.
+Communicate professionally and effectively.
+Collaborate effectively on professional or research teams (Thesis/Coursework-only options).
+Learning Outcomes
+MSECE graduates will be able to:
+Master a specific subfield of study within electrical and computer engineering.
+Identify, formulate, and solve complex engineering problems by applying advanced technology, engineering methodologies and tools.
+Design and validate a complex device or process that meets realistic constraints.
+Communicate professionally and effectively with a range of audiences.
+Collaborate on projects.
+Back to Top
+Program of Study: Master of Science in Information Technology
+Program Overview
+The MS in Information Technology (MSIT) program at the University of Washington's Tacoma campus is designed to prepare students for successful professional careers that advance the information technology industries and communities both locally and globally. Through a combination of specialized knowledge, hands-on practical experience, and theoretical applications, MSIT students will further their professional development and diversity their employment opportunities. MSIT graduates will be qualified to serve as advanced IT experts and leaders in business, manufacturing, operations, healthcare, government agencies, and other organizations. Students who select the thesis degree-completion option may be eligible for a PhD program in Information Technology post-graduation.
+This program of study leads to the following credential:
+Master of Science in Information Technology
+Admission Requirements
+BS in Information Technology, Computer Science, or related STEM field, such as Cybersecurity or Data Science, from a regionally accredited higher-education institution in the United States with a minimum, 3.00/B recalculated, admit-GPA or its international equivalent.
+All non-native English speakers must demonstrate English Language Proficiency (ELP). See Policy 3.2 from the UW Graduate School for detailed instructions about the ELP requirement, options for demonstrating ELP, and how to submit official test scores.
+Depending on their previous coursework, relevant professional work experience, and/or industry certifications, applicants without a BS degree in Information Technology, Computer Science, or related STEM field may be eligible to apply for MSIT.
+Master of Science in Information Technology
+Completion Requirements
+Core Courses (15 credits): TINFO 501, TINFO 502, TINFO 503
+Depth Courses (20 credits). Choose 4 course from: TINFO 510, TINFO 520, TINFO 530, TINFO 540, TINFO 550, TINFO 560, TINFO 570, TINFO 580, TINFO 590
+Thesis/Capstone Project (10 credits): TINFO 700 or TINFO 702
+Back to Top
+University of Washington
+Be boundless
+Connect with us:
+Facebook
+Twitter
+Instagram
+YouTube
+LinkedIn
+Pinterest
+Accessibility
+Contact Us
+Jobs
+Campus Safety
+My UW
+Rules Docket
+Privacy

@@ -28,7 +28,7 @@ import {
   TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
   TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
 } from "./source-fingerprints.generated";
-import { countMaterializedTransferPlannerPathways } from "./pathway-materialization";
+import { deriveTransferPlannerPathwaySeeds } from "./pathway-materialization";
 import { TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES } from "./derived-shared-source-plans";
 import type {
   TransferPlannerChecklistItem,
@@ -184,6 +184,141 @@ const ALL_UW_CAMPUSES: Exclude<TransferPlannerSourceSchoolId, "grc">[] = [
   "uw-bothell",
   "uw-tacoma",
 ];
+type SupplementalParserOnlyMajorSource = {
+  planId: string;
+  campusId: Exclude<TransferPlannerSourceSchoolId, "grc">;
+  ownerTitle: string;
+  links: TransferPlannerSourceLink[];
+  validationNotes: string[];
+};
+type SupplementalParserOnlyPathwaySource = {
+  planId: string;
+  pathwayId: string;
+  campusId: Exclude<TransferPlannerSourceSchoolId, "grc">;
+  majorTitle: string;
+  label: string;
+  links: TransferPlannerSourceLink[];
+  validationNotes: string[];
+  grcCourseList?: string[];
+};
+const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[] = [
+  {
+    planId: "uw-seattle-global-literary-studies",
+    campusId: "uw-seattle",
+    ownerTitle: "Global Literary Studies (BA)",
+    links: [
+      {
+        label: "UW Global Literary Studies degree requirements",
+        url: "https://slavic.washington.edu/ba-global-literary-studies-glits",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed major metadata retained until the canonical bootstrap row is materialized.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-healthcare-leadership",
+    campusId: "uw-tacoma",
+    ownerTitle: "Healthcare Leadership (BA)",
+    links: [
+      {
+        label: "UW Tacoma Healthcare Leadership degree requirements and sample program plan",
+        url: "https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed major metadata retained until the canonical bootstrap row is materialized.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-nursing",
+    campusId: "uw-tacoma",
+    ownerTitle: "Nursing (RN-BSN)",
+    links: [
+      {
+        label: "UW Tacoma Nursing RN-BSN degree requirements and sample program plan",
+        url: "https://www.tacoma.uw.edu/nursing/rn-bsn-sample-program-plans",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed major metadata retained until the canonical bootstrap row is materialized.",
+    ],
+  },
+];
+const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySource[] = [
+  {
+    planId: "uw-tacoma-environmental-sustainability",
+    pathwayId: "business-nonprofit-leadership-option",
+    campusId: "uw-tacoma",
+    majorTitle: "Environmental Sustainability (BA)",
+    label: "Business and Nonprofit Leadership option",
+    links: [
+      {
+        label: "UW Tacoma Environmental Sustainability Business and Nonprofit Leadership option",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until pathway source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-environmental-sustainability",
+    pathwayId: "education-option",
+    campusId: "uw-tacoma",
+    majorTitle: "Environmental Sustainability (BA)",
+    label: "Education option",
+    links: [
+      {
+        label: "UW Tacoma Environmental Sustainability Education option",
+        url: "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until pathway source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-environmental-sustainability",
+    pathwayId: "environmental-communication-option",
+    campusId: "uw-tacoma",
+    majorTitle: "Environmental Sustainability (BA)",
+    label: "Environmental Communication option",
+    links: [
+      {
+        label: "UW Tacoma Environmental Communication option",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until pathway source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-tacoma-environmental-sustainability",
+    pathwayId: "policy-law-option",
+    campusId: "uw-tacoma",
+    majorTitle: "Environmental Sustainability (BA)",
+    label: "Policy and Law option",
+    links: [
+      {
+        label: "UW Tacoma Environmental Policy and Law option",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until pathway source blocks are emitted canonically.",
+    ],
+  },
+];
+const SUPPLEMENTAL_DERIVED_PATHWAY_GRC_COURSES_BY_KEY: Partial<Record<string, string[]>> = {
+  "uw-tacoma-sustainable-urban-development::gis-option": ["GIS 260"],
+  "uw-tacoma-urban-studies::gis-option": ["GIS 202"],
+};
+const INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS = new Set([
+  ...TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => plan.id),
+  ...SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES.map((entry) => entry.planId),
+]);
 const PHASE_CONFIG: Array<{
   phase: TransferPlannerRequirementPhase;
   itemsKey:
@@ -591,7 +726,7 @@ function getSourceManifestRole(link: TransferPlannerSourceLink): TransferPlanner
   const searchable = `${link.label} ${link.url}`.toLowerCase();
 
   if (
-    /degree requirements|major requirements|graduation requirements|degree structure|degree sheet|requirement sheet|checklist|requirements packet/.test(
+    /degree requirements|major requirements|graduation requirements|degree structure|degree sheet|requirement sheet|checklist|requirements packet|degreq/.test(
       searchable
     )
   ) {
@@ -1847,11 +1982,22 @@ function buildPolicyRegistry() {
 
 function buildPathwayRegistry() {
   const entries: TransferPlannerMajorPathwayEntry[] = [];
+  const seenPathwayKeys = new Set<string>();
+
+  function pushPathwayEntry(entry: TransferPlannerMajorPathwayEntry) {
+    const key = `${entry.planId}::${entry.pathwayId}`;
+    if (seenPathwayKeys.has(key)) {
+      return;
+    }
+
+    seenPathwayKeys.add(key);
+    entries.push(entry);
+  }
 
   for (const plan of TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS) {
     for (const pathway of plan.pathways ?? []) {
       const pathwaySources = getPathwaySources(plan, pathway);
-      entries.push({
+      pushPathwayEntry({
         id: `${plan.id}:pathway:${pathway.id}`,
         planId: plan.id,
         pathwayId: pathway.id,
@@ -1864,6 +2010,58 @@ function buildPathwayRegistry() {
         validationNotes: [],
       });
     }
+
+    if ((plan.pathways ?? []).length > 0) {
+      continue;
+    }
+
+    const parsedPathwaySeeds = deriveTransferPlannerPathwaySeeds(
+      plan,
+      TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
+        (entry) => entry.planId === plan.id && !entry.pathwayId && entry.ok
+      )
+    );
+
+    if (parsedPathwaySeeds.length < 2) {
+      continue;
+    }
+
+    const sourceLinks = getOwnerSourceLinks(plan.id, null, plan.officialLinks);
+    for (const seed of parsedPathwaySeeds) {
+      pushPathwayEntry({
+        id: `${plan.id}:pathway:${seed.id}`,
+        planId: plan.id,
+        pathwayId: seed.id,
+        campusId: plan.campusId,
+        majorTitle: plan.title,
+        label: seed.label,
+        summary: seed.summary,
+        grcCourseList: [
+          ...(SUPPLEMENTAL_DERIVED_PATHWAY_GRC_COURSES_BY_KEY[
+            `${plan.id}::${seed.id}`
+          ] ?? []),
+        ],
+        sourceLinks,
+        validationNotes: [
+          "Generated from parser-backed pathway cues extracted from the current official source.",
+        ],
+      });
+    }
+  }
+
+  for (const pathway of SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES) {
+    pushPathwayEntry({
+      id: `${pathway.planId}:pathway:${pathway.pathwayId}`,
+      planId: pathway.planId,
+      pathwayId: pathway.pathwayId,
+      campusId: pathway.campusId,
+      majorTitle: pathway.majorTitle,
+      label: pathway.label,
+      summary: "",
+      grcCourseList: [...(pathway.grcCourseList ?? [])],
+      sourceLinks: pathway.links,
+      validationNotes: pathway.validationNotes,
+    });
   }
 
   return entries.sort((left, right) => left.id.localeCompare(right.id));
@@ -1979,20 +2177,31 @@ function buildSourceManifestRegistry() {
       links: getOwnerSourceLinks(plan.id, null, plan.officialLinks),
       validationNotes: [],
     });
+  }
 
-    for (const pathway of plan.pathways ?? []) {
-      const pathwaySources = getPathwaySources(plan, pathway);
-      pushSourceManifestEntries(entries, {
-        ownerType: "pathway",
-        ownerId: `${plan.id}:pathway:${pathway.id}`,
-        ownerTitle: `${plan.title} - ${pathway.label}`,
-        planId: plan.id,
-        pathwayId: pathway.id,
-        campusId: plan.campusId,
-        links: pathwaySources.sourceLinks,
-        validationNotes: pathwaySources.validationNotes,
-      });
-    }
+  for (const supplementalMajor of SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES) {
+    pushSourceManifestEntries(entries, {
+      ownerType: "major",
+      ownerId: supplementalMajor.planId,
+      ownerTitle: supplementalMajor.ownerTitle,
+      planId: supplementalMajor.planId,
+      campusId: supplementalMajor.campusId,
+      links: supplementalMajor.links,
+      validationNotes: supplementalMajor.validationNotes,
+    });
+  }
+
+  for (const pathway of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY) {
+    pushSourceManifestEntries(entries, {
+      ownerType: "pathway",
+      ownerId: pathway.id,
+      ownerTitle: `${pathway.majorTitle} - ${pathway.label}`,
+      planId: pathway.planId,
+      pathwayId: pathway.pathwayId,
+      campusId: pathway.campusId,
+      links: pathway.sourceLinks,
+      validationNotes: pathway.validationNotes,
+    });
   }
 
   for (const track of TRANSFER_PLANNER_BOOTSTRAP_TRACKS) {
@@ -2057,8 +2266,13 @@ const HIDDEN_SOURCE_GAP_PATHWAY_KEYS = new Set(
 );
 const ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES =
   TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES.filter((alias) =>
-    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.some((plan) => plan.id === alias.sourcePlanId)
+    INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS.has(alias.sourcePlanId)
   );
+const VISIBLE_INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS = new Set(
+  [...INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS].filter(
+    (planId) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(planId)
+  )
+);
 function getPlanPrimaryParsedRequirementSourceBlocks(planId: string) {
   const primaryDegreeSourceUrl = getTransferPlannerPrimaryDegreeRequirementsSource(planId)?.url ?? null;
 
@@ -2074,11 +2288,7 @@ function getPlanPrimaryParsedRequirementSourceBlocks(planId: string) {
 const SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
   (count, plan) =>
     count +
-    countMaterializedTransferPlannerPathways(
-      plan,
-      [...(plan.pathways ?? [])],
-      getPlanPrimaryParsedRequirementSourceBlocks(plan.id)
-    ),
+    TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.filter((entry) => entry.planId === plan.id).length,
   0
 );
 
@@ -2086,13 +2296,11 @@ const STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRA
   (count, plan) => {
     if (HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id)) return count;
     return count +
-      countMaterializedTransferPlannerPathways(
-        plan,
-        (plan.pathways ?? []).filter(
-          (pathway) => !HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(`${plan.id}::${pathway.id}`)
-        ),
-        getPlanPrimaryParsedRequirementSourceBlocks(plan.id)
-      );
+      TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.filter(
+        (entry) =>
+          entry.planId === plan.id &&
+          !HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(`${plan.id}::${entry.pathwayId}`)
+      ).length;
   },
   0
 );
@@ -2100,10 +2308,9 @@ const STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRA
 export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
   generatedOn: "2026-04-02",
   sourceGeneratedMajorPlanCount:
-    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.length + ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.length,
+    INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS.size + ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.length,
   studentVisibleMajorPlanCount:
-    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.filter((plan) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id))
-      .length +
+    VISIBLE_INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS.size +
     ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.filter(
       (alias) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(alias.derivedPlanId)
     ).length,

@@ -297,6 +297,86 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Business Administration (BA) parsed official requirement cues
 
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- See full Admissions Requirements
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+
+##### Business Administration (BA) parsed official requirement cues
+
 - Prerequisite Courses
 - Accounting Option
 - Leadership & Strategic Innovation Option
@@ -342,6 +422,22 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-11-business-administration-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-12-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-13-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-14-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-15-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-16-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-17-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-18-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-19-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-20-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-21-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-22-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-23-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-24-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-25-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-26-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-27-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-28-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-29-business-administration-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-90-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1562,6 +1658,70 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Economics (BS) parsed official requirement cues
 
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
 - Prerequisite Courses
 - Accounting Option
 - Leadership & Strategic Innovation Option
@@ -1607,6 +1767,22 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-11-economics-bs-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-12-economics-bs-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-13-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-14-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-15-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-16-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-17-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-18-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-19-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-20-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-21-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-22-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-23-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-24-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-25-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-26-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-27-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-28-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-29-economics-bs-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-90-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.

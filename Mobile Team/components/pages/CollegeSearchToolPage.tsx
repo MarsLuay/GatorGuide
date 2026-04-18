@@ -1,8 +1,7 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   ActivityIndicator,
   ScrollView,
-  Switch,
   Text,
   TextInput,
   View,
@@ -17,7 +16,6 @@ import {
   AnimatedChipPressable,
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
-import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
 import { ROUTES } from "@/constants/routes";
@@ -26,60 +24,74 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import useBack from "@/hooks/use-back";
-import { aiService, collegeService, errorLoggingService, type DisabledInfluences, type EmptyState, type College } from "@/services";
-import { formatLocalizedRate } from "@/utils/locale-format";
+import { collegeService, errorLoggingService, type EmptyState, type College } from "@/services";
 
-type RecommendedCollege = {
-  college: College;
-  reason?: string;
-  breakdown?: Record<string, number>;
-  score?: number;
-  scoreText?: string;
-};
-
-function getMatchText(item: RecommendedCollege, fallback: string) {
-  if (typeof item.scoreText === "string" && item.scoreText.trim().length) return item.scoreText;
-  const score = Number(item.score);
-  if (Number.isFinite(score)) return `${Math.round(score)}/100`;
-  return fallback;
+function normalizeSearchText(value: string) {
+  return value
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
 }
 
-function getMatchScore(item: RecommendedCollege): number | null {
-  const score = Number(item.score);
-  return Number.isFinite(score) ? score : null;
+function tokenizeSearchText(value: string) {
+  return Array.from(new Set(normalizeSearchText(value).split(/\s+/).filter(Boolean)));
 }
 
-function buildSimpleWhy(
-  item: RecommendedCollege,
-  t: (key: string, params?: Record<string, string | number>) => string,
-  language?: Parameters<typeof formatLocalizedRate>[1]
-): string[] {
-  const breakdown = (item.breakdown ?? {}) as Record<string, unknown>;
-  const lines: string[] = [];
+function isDisplayProgramTitle(value: string) {
+  return /[a-z]/i.test(value) && !/^\d{4,6}$/.test(value);
+}
 
-  const majorFit = Number(breakdown.majorFit);
-  if (Number.isFinite(majorFit) && majorFit >= 75) lines.push(t("home.whyMajorAlignment"));
-  const queryMatch = Number(breakdown.queryMatch);
-  if (Number.isFinite(queryMatch) && queryMatch >= 75) lines.push(t("home.whySearchIntent"));
-  const preferenceFit = Number(breakdown.preferenceFit);
-  if (Number.isFinite(preferenceFit) && preferenceFit >= 55) lines.push(t("home.whyPreferences"));
-  if (Number(breakdown.waMrpParticipant ?? 0) > 0) lines.push(t("home.whyTransferPathway"));
+function getProgramMatchScore(query: string, title: string) {
+  const normalizedQuery = normalizeSearchText(query);
+  const normalizedTitle = normalizeSearchText(title);
+  if (!normalizedQuery || !normalizedTitle) return 0;
 
-  if (!lines.length) {
-    const admission = formatLocalizedRate(Number(item.college.admissionRate ?? NaN), language);
-    lines.push(
-      admission
-        ? t("home.whyAdmissionRate", { value: admission })
-        : t("home.whyGeneralMatch")
-    );
+  if (normalizedTitle === normalizedQuery) return 150;
+  if (normalizedTitle.startsWith(`${normalizedQuery} `) || normalizedTitle.startsWith(normalizedQuery)) {
+    return 125;
   }
+  if (normalizedTitle.includes(normalizedQuery)) return 105;
 
-  return lines.slice(0, 2);
+  const queryTokens = tokenizeSearchText(normalizedQuery);
+  const titleTokens = tokenizeSearchText(normalizedTitle);
+  const exactTokenHits = queryTokens.filter((token) => titleTokens.includes(token)).length;
+  if (!queryTokens.length || exactTokenHits === 0) return 0;
+  if (exactTokenHits === queryTokens.length) {
+    return 90 - Math.max(0, titleTokens.length - queryTokens.length) * 3;
+  }
+  return Math.round((exactTokenHits / queryTokens.length) * 70);
+}
+
+function getMatchingProgramsForQuery(college: College, query: string) {
+  return Array.from(
+    new Set(
+      (college.programs ?? [])
+        .map((program) => String(program ?? "").trim())
+        .filter((program) => program.length > 0 && isDisplayProgramTitle(program))
+    )
+  )
+    .map((program) => ({ program, score: getProgramMatchScore(query, program) }))
+    .filter(({ score }) => score >= 70)
+    .sort((a, b) => b.score - a.score || a.program.localeCompare(b.program))
+    .slice(0, 3)
+    .map(({ program }) => program);
+}
+
+function matchesSchoolName(college: College, query: string) {
+  const normalizedQuery = normalizeSearchText(query);
+  const name = normalizeSearchText(college.name);
+  if (!normalizedQuery || !name) return false;
+  if (name.includes(normalizedQuery)) return true;
+  const queryTokens = tokenizeSearchText(normalizedQuery);
+  return queryTokens.length > 0 && queryTokens.every((token) => name.includes(token));
 }
 
 export default function CollegeSearchToolPage() {
   const router = useRouter();
-  const { t, language } = useAppLanguage();
+  const { t } = useAppLanguage();
   const back = useBack(ROUTES.tabsResources);
   const { textClass, secondaryTextClass, cardBgClass, inputBgClass, placeholderColor } =
     useThemeStyles();
@@ -88,25 +100,19 @@ export default function CollegeSearchToolPage() {
     addSavedCollege,
     removeSavedCollege,
     isCollegeSaved,
-    setQuestionnaireAnswers,
   } = useAppData();
   const { width } = useWindowDimensions();
   const { getScrollContentPadding } = useResponsiveLayout();
 
   const [searchQuery, setSearchQuery] = useState("");
-  const [results, setResults] = useState<RecommendedCollege[]>([]);
+  const [submittedQuery, setSubmittedQuery] = useState("");
+  const [results, setResults] = useState<College[]>([]);
   const [emptyState, setEmptyState] = useState<EmptyState | undefined>(undefined);
-  const [useWeighted, setUseWeighted] = useState<boolean>(
-    state.questionnaireAnswers?.useWeightedSearch !== "false" &&
-      state.questionnaireAnswers?.useWeightedSearch !== false
-  );
   const [isSearching, setIsSearching] = useState(false);
   const [searchTooShort, setSearchTooShort] = useState(false);
   const [hasSubmittedSearch, setHasSubmittedSearch] = useState(false);
   const [resultsSource, setResultsSource] = useState<"live" | "cached" | "stub" | null>(null);
-  const [aiLimitNotice, setAiLimitNotice] = useState<string | null>(null);
-  const [showAdvancedSearch, setShowAdvancedSearch] = useState(false);
-  const [disabledInfluences, setDisabledInfluences] = useState<DisabledInfluences>({});
+  const [searchNotice, setSearchNotice] = useState<string | null>(null);
 
   const isTablet = width >= 768;
   const isDesktop = width >= 1180;
@@ -121,78 +127,42 @@ export default function CollegeSearchToolPage() {
   });
   const panelClass = `${cardBgClass} border rounded-[28px] p-5`;
   const nestedPanelClass = `${cardBgClass} border rounded-2xl`;
-  const mutedPanelClass = `${cardBgClass} border rounded-2xl px-4 py-4`;
-  const showRecommendationSection =
+  const showResultsSection =
     hasSubmittedSearch || isSearching || searchTooShort || !!emptyState || results.length > 0;
   const hasCompletedQuestionnaire = !!(
     state.questionnaireAnswers && Object.keys(state.questionnaireAnswers).length > 0
   );
-  const openAdjacentTool = useCallback(
-    (path: Parameters<typeof router.push>[0]) => {
-      const pathname =
-        typeof path === "string"
-          ? path
-          : String((path as { pathname?: unknown })?.pathname ?? "").trim();
-      router.push(
-        {
-          pathname: pathname as never,
-          params: { returnTo: ROUTES.collegeSearch },
-        } as never
-      );
-    },
-    [router]
-  );
-
-  useEffect(() => {
-    const stored = state.questionnaireAnswers?.useWeightedSearch;
-    if (typeof stored === "boolean") {
-      setUseWeighted(stored);
-    }
-  }, [state.questionnaireAnswers?.useWeightedSearch]);
 
   const handleSearch = useCallback(
-    async (runOptions?: {
-      overrideUseWeighted?: boolean;
-      overrideDisabledInfluences?: DisabledInfluences;
-    }) => {
-      const activeUseWeighted = runOptions?.overrideUseWeighted ?? useWeighted;
-      const activeDisabledInfluences =
-        runOptions?.overrideDisabledInfluences ?? disabledInfluences;
+    async () => {
       const query = searchQuery.trim();
 
       setHasSubmittedSearch(true);
       setSearchTooShort(false);
-      setAiLimitNotice(null);
+      setSearchNotice(null);
 
-      if (activeUseWeighted && query.length < 2) {
+      if (query.length < 2) {
         setResults([]);
         setEmptyState(undefined);
         setResultsSource(null);
+        setSubmittedQuery("");
         setSearchTooShort(true);
         return;
       }
 
       setIsSearching(true);
       try {
-        const response = await aiService.recommendColleges({
-          query,
-          userProfile: state.user,
-          questionnaire: state.questionnaireAnswers,
-          maxResults: 20,
-          useWeightedSearch: activeUseWeighted,
-          disableAiComponent: false,
-          disabledInfluences: activeDisabledInfluences,
-        });
-
-        setResults(response.results as RecommendedCollege[]);
-        setEmptyState(response.emptyState);
+        const colleges = await collegeService.searchColleges(query);
+        setResults(colleges);
+        setSubmittedQuery(query);
+        setEmptyState(undefined);
 
         const source = collegeService.getLastSource();
         setResultsSource(source === "cached" ? "cached" : source === "stub" ? "stub" : "live");
       } catch (error) {
         void errorLoggingService.captureException(error, {
-          category: "ai",
-          operation: "recommend-colleges-tool-search",
+          category: "api",
+          operation: "college-search-tool-search",
           severity: "error",
           handled: true,
           source: "CollegeSearchToolPage",
@@ -200,69 +170,23 @@ export default function CollegeSearchToolPage() {
           route: ROUTES.collegeSearch,
           metadata: {
             queryLength: query.length,
-            useWeightedSearch: activeUseWeighted,
-            disabledInfluences: activeDisabledInfluences,
           },
         });
 
         setResults([]);
+        setSubmittedQuery(query);
         setResultsSource(null);
         setEmptyState({
           code: "UPSTREAM_ERROR",
           title: t("home.searchUnavailableTitle"),
           message: t("home.searchUnavailableMessage"),
         });
-        setAiLimitNotice(error instanceof Error ? error.message : t("home.searchFailed"));
+        setSearchNotice(error instanceof Error ? error.message : t("home.searchFailed"));
       } finally {
         setIsSearching(false);
       }
     },
-    [
-      disabledInfluences,
-      searchQuery,
-      setResults,
-      state.questionnaireAnswers,
-      state.user,
-      t,
-      useWeighted,
-    ]
-  );
-
-  const handleToggleWeighted = useCallback(
-    async (value: boolean) => {
-      setUseWeighted(value);
-      await setQuestionnaireAnswers({
-        ...state.questionnaireAnswers,
-        useWeightedSearch: value,
-      } as any);
-
-      if (searchQuery.trim().length > 0 || hasSubmittedSearch || results.length > 0) {
-        await handleSearch({ overrideUseWeighted: value });
-      }
-    },
-    [
-      handleSearch,
-      hasSubmittedSearch,
-      results.length,
-      searchQuery,
-      setQuestionnaireAnswers,
-      state.questionnaireAnswers,
-    ]
-  );
-
-  const toggleDisabledInfluence = useCallback(
-    (key: keyof DisabledInfluences, value: boolean) => {
-      const next = {
-        ...disabledInfluences,
-        [key]: value,
-      };
-      setDisabledInfluences(next);
-
-      if (searchQuery.trim().length > 0 || hasSubmittedSearch || results.length > 0) {
-        void handleSearch({ overrideDisabledInfluences: next });
-      }
-    },
-    [disabledInfluences, handleSearch, hasSubmittedSearch, results.length, searchQuery]
+    [searchQuery, t]
   );
 
   const headerSubtitle = hasCompletedQuestionnaire
@@ -326,11 +250,11 @@ export default function CollegeSearchToolPage() {
           </AnimatedChipPressable>
         </View>
 
-        {aiLimitNotice ? (
+        {searchNotice ? (
           <StatusBanner
             variant={emptyState?.code === "UPSTREAM_ERROR" ? "error" : "warning"}
             title={emptyState?.code === "UPSTREAM_ERROR" ? t("general.error") : undefined}
-            message={aiLimitNotice}
+            message={searchNotice}
             className="mt-4"
           />
         ) : null}
@@ -345,118 +269,15 @@ export default function CollegeSearchToolPage() {
             </View>
             <View className="flex-1">
               <Text className="font-semibold text-emerald-900">{t("home.completeQuestionnaire")}</Text>
-              <Text className="text-emerald-900/70 text-sm">{t("home.getPersonalizedRecommendations")}</Text>
+              <Text className="text-emerald-900/70 text-sm">
+                {t("collegeSearchTool.questionnaireCardBody")}
+              </Text>
             </View>
             <Ionicons name="sparkles" size={18} color="#001f0f" />
           </AnimatedCardPressable>
         ) : null}
       </View>
 
-      <View className={`${panelClass} mt-6`}>
-        <View className="flex-row items-center justify-between">
-          <View className="flex-1 pr-4">
-            <Text className={`${textClass} text-lg font-semibold`}>{t("collegeSearchTool.rankingTitle")}</Text>
-            <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              {t("collegeSearchTool.rankingBody")}
-            </Text>
-          </View>
-          <Switch value={useWeighted} onValueChange={handleToggleWeighted} />
-        </View>
-
-        {useWeighted ? (
-          <View className="mt-4">
-            <AnimatedCardPressable
-              onPress={() => setShowAdvancedSearch((value) => !value)}
-              className={`${nestedPanelClass} px-4 py-3 flex-row items-center justify-between`}
-            >
-              <Text className={`${textClass} font-medium`}>{t("home.advancedSearch")}</Text>
-              <Ionicons
-                name={showAdvancedSearch ? "chevron-up" : "chevron-down"}
-                size={18}
-                color={placeholderColor}
-              />
-            </AnimatedCardPressable>
-
-            {showAdvancedSearch ? (
-              <View className={`${nestedPanelClass} p-4 mt-3`}>
-                <Text className={`${secondaryTextClass} text-xs mb-2`}>
-                  {t("home.advancedSearchHint")}
-                </Text>
-                {([
-                  ["gpa", t("home.rankingFactorGpa")],
-                  ["prestige", t("home.rankingFactorPrestige")],
-                  ["major", t("home.rankingFactorMajor")],
-                  ["preference", t("home.rankingFactorPreference")],
-                  ["query", t("home.rankingFactorQuery")],
-                  ["ai", t("home.rankingFactorAi")],
-                ] as [keyof DisabledInfluences, string][]).map(([key, label]) => (
-                  <View key={key} className="flex-row items-center justify-between py-2">
-                    <Text className={`${textClass} flex-1 pr-4`}>{label}</Text>
-                    <Switch
-                      value={!Boolean(disabledInfluences[key])}
-                      onValueChange={(value) => toggleDisabledInfluence(key, !value)}
-                    />
-                  </View>
-                ))}
-              </View>
-            ) : null}
-          </View>
-        ) : (
-          <View className={`${mutedPanelClass} mt-4`}>
-            <Text className={`${secondaryTextClass} text-sm`}>
-              {t("collegeSearchTool.weightedOffBody")}
-            </Text>
-          </View>
-        )}
-      </View>
-
-      <View className={`${panelClass} mt-6`}>
-        <Text className={`${textClass} text-lg font-semibold`}>{t("collegeSearchTool.otherToolsTitle")}</Text>
-        <Text className={`${secondaryTextClass} text-sm mt-1 mb-4`}>
-          {t("collegeSearchTool.otherToolsBody")}
-        </Text>
-
-        <View className="gap-3">
-          {[
-            {
-              id: "calendar",
-              icon: "calendar-outline" as const,
-              title: t("home.deadlineCalendarTitle"),
-              description: t("deadlineCalendar.subtitle"),
-              onPress: () => openAdjacentTool(ROUTES.calendar),
-            },
-            {
-              id: "saved-colleges",
-              icon: "bookmark-outline" as const,
-              title: t("resources.savedColleges"),
-              description: t("resources.savedCollegesDesc"),
-              onPress: () => openAdjacentTool(ROUTES.savedColleges),
-            },
-            {
-              id: "compare",
-              icon: "git-compare-outline" as const,
-              title: t("resources.compareColleges"),
-              description: t("resources.compareCollegesDesc"),
-              onPress: () => openAdjacentTool(ROUTES.compare),
-            },
-          ].map((tool) => (
-            <AnimatedCardPressable
-              key={tool.id}
-              onPress={tool.onPress}
-              className={`${nestedPanelClass} px-4 py-4 flex-row items-center`}
-            >
-              <View className="w-10 h-10 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-                <Ionicons name={tool.icon} size={18} color="#008f4e" />
-              </View>
-              <View className="flex-1">
-                <Text className={`${textClass} font-semibold`}>{tool.title}</Text>
-                <Text className={`${secondaryTextClass} text-sm mt-1`}>{tool.description}</Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color={placeholderColor} />
-            </AnimatedCardPressable>
-          ))}
-        </View>
-      </View>
     </View>
   );
 
@@ -465,7 +286,9 @@ export default function CollegeSearchToolPage() {
       <View className={panelClass}>
         <View className="flex-row items-start justify-between gap-4 mb-4">
           <View className="flex-1 min-w-0">
-            <Text className={`${textClass} text-lg font-semibold`}>{t("home.recommendedColleges")}</Text>
+            <Text className={`${textClass} text-lg font-semibold`}>
+              {t("collegeSearchTool.resultsTitle")}
+            </Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
               {t("collegeSearchTool.resultsBody")}
             </Text>
@@ -483,7 +306,7 @@ export default function CollegeSearchToolPage() {
           ) : null}
         </View>
 
-        {!showRecommendationSection ? (
+        {!showResultsSection ? (
           <StateCard
             variant="info"
             title={t("collegeSearchTool.searchPromptTitle")}
@@ -521,10 +344,10 @@ export default function CollegeSearchToolPage() {
           />
         ) : (
           <View className="gap-3">
-            {results.map((result) => {
-              const { college } = result;
+            {results.map((college) => {
               const saved = isCollegeSaved(college.id);
-              const matchScore = getMatchScore(result);
+              const matchingPrograms = getMatchingProgramsForQuery(college, submittedQuery);
+              const matchedBySchoolName = matchesSchoolName(college, submittedQuery);
 
               return (
                 <AnimatedCardPressable
@@ -537,23 +360,6 @@ export default function CollegeSearchToolPage() {
                       <Text className={`${textClass} font-semibold`} numberOfLines={2}>
                         {college.name}
                       </Text>
-
-                      {matchScore != null ? (
-                        <MatchScoreBadge
-                          score={matchScore}
-                          text={t("home.matchLabel", {
-                            value: getMatchText(result, t("home.scoreNotAvailable")),
-                          })}
-                          className="mt-2"
-                          textClassName="text-sm"
-                        />
-                      ) : (
-                        <Text className={`${secondaryTextClass} font-semibold mt-2`}>
-                          {t("home.matchLabel", {
-                            value: getMatchText(result, t("home.scoreNotAvailable")),
-                          })}
-                        </Text>
-                      )}
                     </View>
 
                     <AnimatedIconPressable
@@ -563,7 +369,7 @@ export default function CollegeSearchToolPage() {
                           void removeSavedCollege(college.id);
                           return;
                         }
-                        void addSavedCollege(matchScore != null ? { ...college, matchScore } : college);
+                        void addSavedCollege(college);
                       }}
                       className="p-2"
                     >
@@ -580,14 +386,19 @@ export default function CollegeSearchToolPage() {
                     {college.location.state}
                   </Text>
 
-                  {buildSimpleWhy(result, t, language).length ? (
+                  {matchingPrograms.length ? (
                     <View className="mt-3">
-                      {buildSimpleWhy(result, t, language).map((line) => (
-                        <Text key={`${college.id}-${line}`} className={`text-xs ${secondaryTextClass}`}>
-                          {line}
-                        </Text>
-                      ))}
+                      <Text className={`text-xs ${secondaryTextClass} font-semibold`}>
+                        {t("collegeSearchTool.matchingProgramsLabel")}
+                      </Text>
+                      <Text className={`text-xs ${secondaryTextClass} mt-1`}>
+                        {matchingPrograms.join(", ")}
+                      </Text>
                     </View>
+                  ) : matchedBySchoolName ? (
+                    <Text className={`text-xs ${secondaryTextClass} mt-3`}>
+                      {t("collegeSearchTool.matchedBySchoolName")}
+                    </Text>
                   ) : null}
                 </AnimatedCardPressable>
               );

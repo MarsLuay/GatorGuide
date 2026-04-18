@@ -55,7 +55,7 @@ const results = await collegeService.searchColleges('Florida');
 **Default behavior:** Uses Google Gemini through the `geminiGateway` Firebase Function with server-side quota enforcement and usage logging  
 **Fallback behavior:** Some canned/sample responses still exist for limited fallback paths
 
-**Ranking reference:** [`../../Data Team/docs/COLLEGE_RANKING.md`](../../Data Team/docs/COLLEGE_RANKING.md) documents the deterministic `Base Score`, the final `Personalized Score`, and the current ranking and tie-break rules used by recommendations.
+**Ranking reference:** [`../docs/product/COLLEGE_RANKING.md`](../docs/product/COLLEGE_RANKING.md) documents the deterministic `Base Score`, the final `Personalized Score`, and the current ranking and tie-break rules used by recommendations.
 
 **Usage:**
 ```typescript

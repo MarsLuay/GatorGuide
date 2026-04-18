@@ -21,12 +21,14 @@ The current one-click Windows entrypoints are:
 
 - `npm run planner:windows:maintenance`
 - `npm run planner:full:verify`
-- `scripts\run-planner-maintenance.bat`
-- `scripts\run-planner-maintenance.cmd`
+- `scripts\Course-Planner-Updater.bat`
 
 The maintenance launcher is interactive now:
 
 - it can run the full flow
+- it can run the full flow while skipping downloads
+- it can run refresh only
+- it can run refresh only while skipping downloads
 - it can run one section only
 - it can start from a chosen section and complete the rest
 - it can print a cache summary showing what artifacts already exist and when the latest maintenance/refresh runs happened
@@ -80,11 +82,8 @@ The current green-state maintenance baseline is:
   - `scripts/planner/generate-transfer-planner-course-metadata.cjs`
   - `scripts/planner/verify-transfer-planner-hardening.cjs`
   - `scripts/planner/refresh-transfer-planner-sources.cjs`
-  - `scripts/run-planner-refresh.cmd`
-  - `scripts/run-planner-refresh-no-downloads.cmd`
-  - `scripts/run-planner-maintenance.bat`
+  - `scripts/Course-Planner-Updater.bat`
   - `scripts/run-transfer-planner-maintenance.ps1`
-  - `scripts/run-planner-maintenance.cmd`
   - `npm run planner:check-sources`
   - `npm run planner:discover-primary-sources`
   - `npm run planner:build-primary-review-queue`
@@ -311,11 +310,9 @@ This gives the project one script that can check the tracked sources and update 
 
 There are now also one-click Windows launchers in `scripts/`:
 
-- `run-planner-refresh.cmd`
-- `run-planner-refresh-no-downloads.cmd`
-- `run-planner-maintenance.cmd`
+- `Course-Planner-Updater.bat`
 
-They are meant to be double-clicked, automatically run `npm install` if key dependencies are missing, retry one repair install if the repo health check fails because dependencies look corrupted, save a timestamped log into `.tmp/planner-refresh-logs/`, and open the current source summary plus source-gap reports when the run finishes.
+It is meant to be double-clicked and now exposes the old refresh variants as built-in choices: full maintenance, maintenance with downloads skipped, refresh only, refresh only with downloads skipped, and cache summary only. The PowerShell launchers still handle dependency repair, timestamped logs in `.tmp/planner-refresh-logs/`, and the detailed refresh/maintenance flow itself.
 
 The maintenance launcher adds:
 
