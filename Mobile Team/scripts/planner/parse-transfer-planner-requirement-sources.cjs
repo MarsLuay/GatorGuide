@@ -93,6 +93,7 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "COMPLETE",
   "CONSIDER",
   "DATA",
+  "DOES",
   "DIVISION",
   "EARN",
   "EARNED",
@@ -104,7 +105,9 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "HALL",
   "FROM",
   "GRADED",
+  "HAS",
   "HAVE",
+  "HAVEA",
   "IF",
   "IN",
   "INCLUDE",
@@ -210,7 +213,13 @@ const SPECIALIZATION_SUPPLEMENTAL_HTML_LINK_PATTERN =
 const LOW_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN =
   /\b(?:b\.?\s*a\.?|b\.?\s*s\.?|bachelor(?:'s)?|major(?: in)?|undergraduate studies?)\b/i;
 const NOISY_SUPPLEMENTAL_HTML_LINK_LABEL_PATTERN =
-  /\b(apply|canvas|calendar|directory|map|myuw|library|tools|about|news|faculty|staff|contact|privacy|accessibility|terms|alumni|events|parking|transportation|research|housing|student life|jobs|visit|give|get involved|post graduation|minor|certificate|graduate|scholarships?)\b/i;
+  /\b(apply|canvas|calendar|directory|map|myuw|library|tools|about|news|faculty|staff|contact|privacy|accessibility|terms|alumni|events|parking|transportation|research|housing|student life|jobs|visit|give|get involved|post graduation|minor|certificate|graduate|scholarships?|course lists?|course evaluations?|capstone courses?|study abroad|policy(?:\s*&\s*|\s+and\s+)procedures|suggested course pathways?)\b/i;
+const NON_STUDENT_FACING_REQUIREMENT_HINT_PATTERN =
+  /\b(suggested general education|not required for transferring|highly recommended courses?|other recommended courses?|approved list|study abroad|capstone courses?|course evaluations?|course lists?|policy(?:\s*&\s*|\s+and\s+)procedures|graduate school|graduate programs?)\b/i;
+const REQUIREMENT_FRIENDLY_HINT_PATTERN =
+  /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence)\b/i;
+const CROSS_MAJOR_SCOPE_PATTERN =
+  /\b(?:if|for|required for)\s+([a-z][a-z&/,\- ]+?)\s+major\b/i;
 const CAMPUS_ORDER = ["uw-seattle", "uw-bothell", "uw-tacoma"];
 const PARSEABLE_PARSER_TYPES = new Set([
   "html-degree-page",
@@ -601,7 +610,7 @@ function extractRelevantRequirementLines(lines, headings) {
     );
 }
 
-function extractCourseCodesFromLine(line) {
+function extractExplicitCourseCodesFromLine(line) {
   const normalizedLine = normalizeWhitespace(String(line ?? ""));
   if (
     NOISY_SOURCE_LINE_PATTERN.test(normalizedLine) ||
@@ -637,6 +646,13 @@ function extractCourseCodesFromLine(line) {
     }
   }
 
+  return uniqueSorted(extractedCourseCodes);
+}
+
+function extractCourseCodesFromLine(line) {
+  const normalizedLine = normalizeWhitespace(String(line ?? ""));
+  const extractedCourseCodes = extractExplicitCourseCodesFromLine(normalizedLine);
+
   if (
     ENGLISH_COMPOSITION_REQUIREMENT_PATTERN.test(normalizedLine) &&
     !ENGLISH_COMPOSITION_EXCLUSION_PATTERN.test(normalizedLine) &&
@@ -654,13 +670,111 @@ function extractCourseCodesFromLines(lines, headings) {
   );
 }
 
+function buildSourceLineHint(courseCode, line) {
+  const normalizedLine = normalizeWhitespace(String(line ?? ""));
+  if (!normalizedLine) {
+    return null;
+  }
+
+  const explicitCourseCodes = extractExplicitCourseCodesFromLine(normalizedLine);
+  if (
+    courseCode === "ENGL 131" &&
+    explicitCourseCodes.length > 0 &&
+    !explicitCourseCodes.includes(courseCode) &&
+    ENGLISH_COMPOSITION_REQUIREMENT_PATTERN.test(normalizedLine) &&
+    !ENGLISH_COMPOSITION_EXCLUSION_PATTERN.test(normalizedLine)
+  ) {
+    return normalizedLine.replace(
+      /\bEnglish composition\b/i,
+      "English composition (ENGL 131)"
+    );
+  }
+
+  return normalizedLine;
+}
+
 function getSourceLineHints(lines, courseCode) {
   return uniqueSorted(
     lines
-      .filter((line) => line.includes(courseCode))
-      .map((line) => normalizeWhitespace(line))
+      .filter((line) => extractCourseCodesFromLine(line).includes(courseCode))
+      .map((line) => buildSourceLineHint(courseCode, line))
+      .filter(Boolean)
       .filter((line) => line.length <= 280)
       .slice(0, 5)
+  );
+}
+
+function lineReferencesDifferentMajorScope(entry, line) {
+  const normalizedOwnerTitle = normalizeMatcherText(entry.ownerTitle ?? "");
+  if (!normalizedOwnerTitle) {
+    return false;
+  }
+
+  const match = normalizeWhitespace(String(line ?? "")).match(CROSS_MAJOR_SCOPE_PATTERN);
+  if (!match?.[1]) {
+    return false;
+  }
+
+  const normalizedMentionedScope = normalizeMatcherText(match[1]);
+  if (!normalizedMentionedScope) {
+    return false;
+  }
+
+  return (
+    !normalizedOwnerTitle.includes(normalizedMentionedScope) &&
+    !normalizedMentionedScope.includes(normalizedOwnerTitle)
+  );
+}
+
+function isBareCourseCodeSourceHint(hint, courseCode) {
+  const normalizedHint = normalizeWhitespace(String(hint ?? ""))
+    .replace(/[|,;:.()[\]{}]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  return normalizeCourseCode(normalizedHint) === normalizeCourseCode(courseCode);
+}
+
+function isUnsafeRequirementCourseHint(entry, courseCode, hint) {
+  const normalizedHint = normalizeWhitespace(String(hint ?? ""));
+  if (!normalizedHint) {
+    return false;
+  }
+
+  if (isBareCourseCodeSourceHint(normalizedHint, courseCode)) {
+    return true;
+  }
+
+  if (lineReferencesDifferentMajorScope(entry, normalizedHint)) {
+    return true;
+  }
+
+  if (NON_STUDENT_FACING_REQUIREMENT_HINT_PATTERN.test(normalizedHint)) {
+    return true;
+  }
+
+  const extractedCourseCodes = extractCourseCodesFromLine(normalizedHint);
+  if (
+    extractedCourseCodes.length >= 6 &&
+    !REQUIREMENT_FRIENDLY_HINT_PATTERN.test(normalizedHint)
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+function filterParsedCourseCodesByHints(entry, lines, courseCodes) {
+  return uniqueSorted(
+    (courseCodes ?? []).filter((courseCode) => {
+      const sourceLineHints = getSourceLineHints(lines, courseCode);
+      if (!sourceLineHints.length) {
+        return true;
+      }
+
+      return sourceLineHints.some(
+        (hint) => !isUnsafeRequirementCourseHint(entry, courseCode, hint)
+      );
+    })
   );
 }
 
@@ -789,18 +903,74 @@ function getTitleScopeTokens(entry) {
   ).slice(0, 8);
 }
 
-function scopePdfPageLines(entry, pageLines) {
+function buildPdfPageLineTexts(textContent) {
+  const positionedItems = (textContent?.items ?? [])
+    .map((item) => {
+      const text = normalizeWhitespace(item.str);
+      if (!text) {
+        return null;
+      }
+
+      const transform = Array.isArray(item.transform) ? item.transform : [];
+      return {
+        text,
+        x: Number(transform[4] ?? 0),
+        y: Number(transform[5] ?? 0),
+        height: Number(item.height ?? 0),
+      };
+    })
+    .filter(Boolean)
+    .sort((left, right) => {
+      if (Math.abs(right.y - left.y) > 2.5) {
+        return right.y - left.y;
+      }
+      return left.x - right.x;
+    });
+
+  if (!positionedItems.length) {
+    return [];
+  }
+
+  const lineGroups = [];
+
+  for (const item of positionedItems) {
+    const currentLine = lineGroups[lineGroups.length - 1];
+    const lineTolerance = currentLine
+      ? Math.max(2.5, Math.min(6, Math.max(currentLine.maxHeight, item.height) * 0.45))
+      : 0;
+
+    if (!currentLine || Math.abs(currentLine.y - item.y) > lineTolerance) {
+      lineGroups.push({
+        y: item.y,
+        maxHeight: item.height,
+        items: [item],
+      });
+      continue;
+    }
+
+    currentLine.items.push(item);
+    currentLine.maxHeight = Math.max(currentLine.maxHeight, item.height);
+  }
+
+  return lineGroups
+    .map((group) =>
+      normalizeWhitespace(group.items.sort((left, right) => left.x - right.x).map((item) => item.text).join(" "))
+    )
+    .filter(Boolean);
+}
+
+function scopePdfPageBlocks(entry, pageBlocks) {
   const titleTokens = getTitleScopeTokens(entry);
-  if (!titleTokens.length || pageLines.length <= 2) {
-    return pageLines;
+  if (!titleTokens.length || pageBlocks.length <= 2) {
+    return pageBlocks;
   }
 
   const exactTitle = normalizeMatcherText(entry.ownerTitle ?? "");
-  const scoredPageIndexes = pageLines
-    .map((line, index) => ({
+  const scoredPageIndexes = pageBlocks
+    .map((block, index) => ({
       index,
       score: (() => {
-        const normalizedLine = normalizeMatcherText(line);
+        const normalizedLine = normalizeMatcherText(block.pageText);
         const tokenScore = titleTokens.filter((token) => normalizedLine.includes(token)).length;
         const exactTitleScore = exactTitle && normalizedLine.includes(exactTitle) ? 10 : 0;
         const requirementSignalScore =
@@ -831,12 +1001,12 @@ function scopePdfPageLines(entry, pageLines) {
     .map((entryScore) => entryScore.index);
 
   if (!matchingIndexes.length) {
-    return pageLines;
+    return pageBlocks;
   }
 
   const startIndex = Math.max(0, Math.min(...matchingIndexes) - 1);
-  const endIndex = Math.min(pageLines.length - 1, Math.max(...matchingIndexes) + 1);
-  return pageLines.slice(startIndex, endIndex + 1);
+  const endIndex = Math.min(pageBlocks.length - 1, Math.max(...matchingIndexes) + 1);
+  return pageBlocks.slice(startIndex, endIndex + 1);
 }
 
 function scopeHtmlLines(entry, title, headings, lines) {
@@ -1095,7 +1265,11 @@ function parseSnapshotSource(entry, originalError) {
   const requirementCueLines = extractRequirementCueLines(snapshot.snapshotLines);
   const chooseStatements = extractChooseStatements(snapshot.snapshotLines);
   const pathwayLabels = extractPathwayLabels(snapshot.snapshotLines, []);
-  const courseCodes = extractCourseCodesFromLines(snapshot.snapshotLines, []);
+  const courseCodes = filterParsedCourseCodesByHints(
+    entry,
+    snapshot.snapshotLines,
+    extractCourseCodesFromLines(snapshot.snapshotLines, [])
+  );
 
   return {
     title: snapshot.title,
@@ -1106,6 +1280,9 @@ function parseSnapshotSource(entry, originalError) {
     courseCodes,
     snapshotLines: snapshot.snapshotLines,
     parseConfidence: buildParseConfidence(courseCodes, requirementCueLines, entry.parserType),
+    resolvedSourceUrl: entry.url,
+    resolvedSourceLabel: entry.label,
+    resolvedParserType: entry.parserType,
     snapshotPath: snapshot.snapshotPath,
     usedSnapshotFallback: true,
     snapshotFallbackReason: originalError.message,
@@ -1366,7 +1543,11 @@ function buildHtmlParsedResult(entry, title, headings, lines) {
   const requirementCueLines = extractRequirementCueLines(lines);
   const chooseStatements = extractChooseStatements(lines);
   const pathwayLabels = extractPathwayLabels(lines, headings);
-  const courseCodes = extractCourseCodesFromLines(lines, headings);
+  const courseCodes = filterParsedCourseCodesByHints(
+    entry,
+    lines,
+    extractCourseCodesFromLines(lines, headings)
+  );
 
   return {
     title,
@@ -1377,6 +1558,9 @@ function buildHtmlParsedResult(entry, title, headings, lines) {
     courseCodes,
     snapshotLines: lines.slice(0, 1200),
     parseConfidence: buildParseConfidence(courseCodes, requirementCueLines, entry.parserType),
+    resolvedSourceUrl: entry.url,
+    resolvedSourceLabel: entry.label,
+    resolvedParserType: entry.parserType,
   };
 }
 
@@ -1437,6 +1621,22 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
     linkedSupplementalSources,
     entry.parserType
   );
+  const linkedPdfSources =
+    allowLinkedRecovery && normalizedEntryUrl
+      ? await parseSupplementalPdfSources(
+          entry,
+          html,
+          timeoutMs,
+          new Set([...visitedUrls, normalizedEntryUrl])
+        )
+      : [];
+  const preferredPdfSource = linkedPdfSources.find(({ candidate, parsed }) =>
+    shouldPreferSupplementalPdfSource(entry, mergedHtmlParsed, candidate, parsed)
+  );
+
+  if (preferredPdfSource) {
+    return preferredPdfSource.parsed;
+  }
 
   const shouldFollowLinkedPdf =
     mergedHtmlParsed.courseCodes.length === 0 &&
@@ -1463,7 +1663,10 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
 
   for (const pdfUrl of pdfLinks.slice(0, 2)) {
     try {
-      const pdfParsed = await parsePdfSource({ ...entry, url: pdfUrl }, timeoutMs);
+      const pdfParsed = await parsePdfSource(
+        { ...entry, url: pdfUrl, parserType: "pdf-degree-sheet" },
+        timeoutMs
+      );
       const htmlScore =
         mergedHtmlParsed.courseCodes.length * 100 +
         mergedHtmlParsed.requirementCueLines.length * 10 +
@@ -1504,21 +1707,25 @@ async function parsePdfSource(entry, timeoutMs) {
   const pdfData = new Uint8Array(body);
   const document = await pdfjs.getDocument({ data: pdfData, verbosity: 0 }).promise;
   const pageCount = document.numPages;
-  const pageLines = [];
+  const pageBlocks = [];
 
   for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
     const page = await document.getPage(pageNumber);
     const textContent = await page.getTextContent();
-    const pageText = textContent.items
-      .map((item) => normalizeWhitespace(item.str))
-      .filter(Boolean)
-      .join(" ");
+    const lineTexts = buildPdfPageLineTexts(textContent);
+    const pageText = normalizeWhitespace(lineTexts.join(" "));
     if (pageText) {
-      pageLines.push(`[Page ${pageNumber}] ${pageText}`);
+      pageBlocks.push({
+        pageNumber,
+        pageText,
+        lineTexts,
+      });
     }
   }
 
-  const scopedPageLines = scopePdfPageLines(entry, pageLines);
+  const scopedPageLines = scopePdfPageBlocks(entry, pageBlocks).flatMap((block) =>
+    block.lineTexts.map((lineText) => `[Page ${block.pageNumber}] ${lineText}`)
+  );
 
   const title = scopedPageLines[0]
     ? normalizeWhitespace(scopedPageLines[0].replace(/^\[Page \d+\]\s*/, ""))
@@ -1526,7 +1733,11 @@ async function parsePdfSource(entry, timeoutMs) {
   const requirementCueLines = extractRequirementCueLines(scopedPageLines);
   const chooseStatements = extractChooseStatements(scopedPageLines);
   const pathwayLabels = extractPathwayLabels(scopedPageLines, []);
-  const courseCodes = extractCourseCodesFromLines(scopedPageLines, []);
+  const courseCodes = filterParsedCourseCodesByHints(
+    entry,
+    scopedPageLines,
+    extractCourseCodesFromLines(scopedPageLines, [])
+  );
 
   return {
     title,
@@ -1537,6 +1748,9 @@ async function parsePdfSource(entry, timeoutMs) {
     courseCodes,
     snapshotLines: scopedPageLines.slice(0, 1200),
     parseConfidence: buildParseConfidence(courseCodes, requirementCueLines, entry.parserType),
+    resolvedSourceUrl: entry.url,
+    resolvedSourceLabel: entry.label,
+    resolvedParserType: entry.parserType,
   };
 }
 
@@ -1762,6 +1976,98 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
     .slice(0, 8);
 }
 
+function isHistoricalSupplementalPdfLabel(label) {
+  const normalizedLabel = normalizeWhitespace(String(label ?? ""));
+  if (!normalizedLabel) {
+    return false;
+  }
+
+  return (
+    /\bprior years?\b/i.test(normalizedLabel) ||
+    /\b(?:autumn|winter|spring|summer)\b/i.test(normalizedLabel) ||
+    /\b(?:19|20)\d{2}\b/.test(normalizedLabel)
+  );
+}
+
+function extractSupplementalPdfLinkCandidates(entry, html) {
+  const baseUrl = normalizeUrlForComparison(entry.url);
+  if (!baseUrl) {
+    return [];
+  }
+
+  const entryOrigin = new URL(baseUrl).origin;
+  const exactTitle = normalizeMatcherText(entry.ownerTitle ?? "");
+  const titleTokens = getTitleScopeTokens(entry);
+  const candidatesByUrl = new Map();
+  let linkIndex = 0;
+
+  for (const match of String(html ?? "").matchAll(HTML_LINK_PATTERN)) {
+    linkIndex += 1;
+
+    const href = normalizeWhitespace(match[1] ?? match[2] ?? "");
+    const label = stripHtml(match[3]);
+
+    if (!href || !label || !/\.pdf(?:$|[?#])/i.test(href) || /^(?:#|javascript:|mailto:|tel:)/i.test(href)) {
+      continue;
+    }
+
+    let resolvedUrl = null;
+    try {
+      resolvedUrl = normalizeUrlForComparison(new URL(href, entry.url).href);
+    } catch {
+      resolvedUrl = null;
+    }
+
+    if (!resolvedUrl || !resolvedUrl.startsWith(entryOrigin)) {
+      continue;
+    }
+
+    const normalizedLabel = normalizeMatcherText(label);
+    const normalizedLinkText = normalizeMatcherText(`${label} ${resolvedUrl}`);
+    const exactTitleMatch = Boolean(exactTitle && normalizedLabel.includes(exactTitle));
+    const titleTokenOverlapCount = titleTokens.filter((token) =>
+      normalizedLinkText.includes(token)
+    ).length;
+
+    if (!exactTitleMatch && titleTokenOverlapCount < 2) {
+      continue;
+    }
+
+    const historical = isHistoricalSupplementalPdfLabel(label);
+    let score = 0;
+    if (exactTitleMatch) {
+      score += 30;
+    }
+    score += titleTokenOverlapCount * 8;
+    if (/\b(requirements?|degree|curriculum|worksheet|checklist)\b/i.test(`${label} ${href}`)) {
+      score += 12;
+    }
+    if (/\/wp-content\/uploads\//i.test(resolvedUrl)) {
+      score += 6;
+    }
+    if (historical) {
+      score -= 30;
+    }
+
+    const existing = candidatesByUrl.get(resolvedUrl);
+    if (!existing || score > existing.score || (score === existing.score && linkIndex < existing.linkIndex)) {
+      candidatesByUrl.set(resolvedUrl, {
+        url: resolvedUrl,
+        label,
+        score,
+        exactTitleMatch,
+        historical,
+        linkIndex,
+      });
+    }
+  }
+
+  return [...candidatesByUrl.values()]
+    .filter((candidate) => candidate.score >= 24)
+    .sort((left, right) => right.score - left.score || left.linkIndex - right.linkIndex)
+    .slice(0, 2);
+}
+
 async function parseSupplementalHtmlSources(entry, html, timeoutMs, visitedUrls) {
   const candidates = extractSupplementalHtmlLinkCandidates(entry, html);
   if (!candidates.length) {
@@ -1794,6 +2100,21 @@ async function parseSupplementalHtmlSources(entry, html, timeoutMs, visitedUrls)
         continue;
       }
 
+      const parsedAlignmentScore = getParsedOwnerAlignmentScore(
+        {
+          ...entry,
+          url: candidate.url,
+          label: candidate.label,
+        },
+        parsed
+      );
+      if (parsedAlignmentScore < (candidate.type === "general" ? 3 : 2)) {
+        continue;
+      }
+      if (candidate.type === "general" && parsedAlignmentScore < 10 && parsed.courseCodes.length > 50) {
+        continue;
+      }
+
       const supplementalSource = {
         entry: {
           label: candidate.label,
@@ -1823,6 +2144,123 @@ async function parseSupplementalHtmlSources(entry, html, timeoutMs, visitedUrls)
       entry.parserType
     ),
   ];
+}
+
+function getParsedDegreeSheetSignalScore(parsed) {
+  const sampledText = normalizeMatcherText(
+    [
+      ...(parsed.snapshotLines ?? []).slice(0, 8),
+      ...(parsed.requirementCueLines ?? []).slice(0, 12),
+    ].join(" ")
+  );
+
+  let score = 0;
+  if (/\bbefore applying\b/.test(sampledText)) {
+    score += 4;
+  }
+  if (/\bdenotes prerequisites\b/.test(sampledText)) {
+    score += 4;
+  }
+  if (/\bareas of inquiry\b/.test(sampledText)) {
+    score += 2;
+  }
+  if (/\bmathematics natural sciences\b/.test(sampledText)) {
+    score += 2;
+  }
+  if (/\bfundamentals\b/.test(sampledText)) {
+    score += 2;
+  }
+  if (/\bcore and electives\b/.test(sampledText)) {
+    score += 2;
+  }
+  if (/\badditional requirements\b/.test(sampledText)) {
+    score += 2;
+  }
+  return score;
+}
+
+function shouldPreferSupplementalPdfSource(entry, baseParsed, candidate, pdfParsed) {
+  if (!candidate?.exactTitleMatch || candidate?.historical || !hasMeaningfulParsedContent(pdfParsed)) {
+    return false;
+  }
+
+  const pdfEntry = {
+    ...entry,
+    url: candidate.url,
+    label: candidate.label,
+    parserType: "pdf-degree-sheet",
+  };
+  const pdfAlignment = getParsedOwnerAlignmentScore(pdfEntry, pdfParsed);
+  if (pdfAlignment < 2) {
+    return false;
+  }
+
+  const pdfCourseCount = pdfParsed.courseCodes?.length ?? 0;
+  if (pdfCourseCount < 4) {
+    return false;
+  }
+
+  const pdfSignalScore = getParsedDegreeSheetSignalScore(pdfParsed);
+  const baseSignalScore = getParsedDegreeSheetSignalScore(baseParsed);
+  if (pdfSignalScore >= Math.max(4, baseSignalScore + 2)) {
+    return true;
+  }
+
+  const baseCourseCount = baseParsed.courseCodes?.length ?? 0;
+  return pdfCourseCount >= Math.max(6, Math.floor(baseCourseCount * 0.35));
+}
+
+async function parseSupplementalPdfSources(entry, html, timeoutMs, visitedUrls) {
+  const candidates = extractSupplementalPdfLinkCandidates(entry, html);
+  if (!candidates.length) {
+    return [];
+  }
+
+  const parsedPdfSources = [];
+
+  for (const candidate of candidates) {
+    if (visitedUrls.has(candidate.url)) {
+      continue;
+    }
+
+    try {
+      const parsed = await parsePdfSource(
+        {
+          ...entry,
+          url: candidate.url,
+          label: candidate.label,
+          parserType: "pdf-degree-sheet",
+        },
+        timeoutMs
+      );
+
+      if (!hasMeaningfulParsedContent(parsed)) {
+        continue;
+      }
+
+      const parsedAlignmentScore = getParsedOwnerAlignmentScore(
+        {
+          ...entry,
+          url: candidate.url,
+          label: candidate.label,
+          parserType: "pdf-degree-sheet",
+        },
+        parsed
+      );
+      if (parsedAlignmentScore < 2) {
+        continue;
+      }
+
+      parsedPdfSources.push({
+        candidate,
+        parsed,
+      });
+    } catch {
+      // Keep the main page parse if a linked official PDF fails.
+    }
+  }
+
+  return parsedPdfSources;
 }
 
 function getParsedOwnerAlignmentScore(entry, parsed) {
@@ -1943,6 +2381,20 @@ function buildManifestParseSuccess(
   parsed,
   resolutionStrategy
 ) {
+  const effectiveSourceUrl = parsed.resolvedSourceUrl ?? resolvedEntry.url;
+  const effectiveSourceLabel = parsed.resolvedSourceLabel ?? resolvedEntry.label;
+  const effectiveParserType = parsed.resolvedParserType ?? resolvedEntry.parserType;
+  const effectiveEntry =
+    effectiveSourceUrl === resolvedEntry.url &&
+    effectiveSourceLabel === resolvedEntry.label &&
+    effectiveParserType === resolvedEntry.parserType
+      ? resolvedEntry
+      : {
+          ...resolvedEntry,
+          url: effectiveSourceUrl,
+          label: effectiveSourceLabel,
+          parserType: effectiveParserType,
+        };
   const parsedCourseCodes = uniqueSorted(parsed.courseCodes);
   const sourceOnlyCourseCodes = parsedCourseCodes.filter(
     (code) => !structuredCourseCodes.includes(code)
@@ -1952,7 +2404,7 @@ function buildManifestParseSuccess(
   );
   const snapshotPath =
     parsed.snapshotPath ??
-    writeSnapshot(baseResult.ownerId, resolvedEntry.url, parsed.title, parsed.snapshotLines);
+    writeSnapshot(baseResult.ownerId, effectiveSourceUrl, parsed.title, parsed.snapshotLines);
   const parsedRequirementAtomCandidates = buildParsedRequirementAtomCandidates(
     baseResult,
     parsedCourseCodes,
@@ -1969,11 +2421,11 @@ function buildManifestParseSuccess(
 
   return {
     ...baseResult,
-    parserType: resolvedEntry.parserType,
-    adapterId: selectRequirementSourceAdapter(resolvedEntry).id,
-    adapterFamily: selectRequirementSourceAdapter(resolvedEntry).family,
-    sourceUrl: resolvedEntry.url,
-    sourceLabel: resolvedEntry.label,
+    parserType: effectiveParserType,
+    adapterId: selectRequirementSourceAdapter(effectiveEntry).id,
+    adapterFamily: selectRequirementSourceAdapter(effectiveEntry).family,
+    sourceUrl: effectiveSourceUrl,
+    sourceLabel: effectiveSourceLabel,
     resolutionStrategy,
     ok: true,
     extractedTitle: parsed.title,

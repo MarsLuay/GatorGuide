@@ -187,7 +187,7 @@ function formatKindLabel(
   if (item.kind === "scholarship") return t("deadlineCalendar.kindScholarship");
   if (item.kind === "internship") return t("deadlineCalendar.kindOpportunity");
   if (item.kind === "college_deadline") return t("deadlineCalendar.kindCollegeDeadline");
-  if (item.kind === "general_deadline") return "Deadline";
+  if (item.kind === "general_deadline") return "General deadline";
   return t("deadlineCalendar.kindRoadmapTask");
 }
 

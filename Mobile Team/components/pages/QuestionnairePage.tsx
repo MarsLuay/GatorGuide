@@ -820,7 +820,7 @@ export default function QuestionnairePage() {
                       }}
                       label={t("general.back")}
                       variant="secondary"
-                      icon={<MaterialIcons name="arrow-back-rounded" size={18} color={secondaryButtonIconColor} />}
+                      icon={<MaterialIcons name="arrow-back" size={18} color={secondaryButtonIconColor} />}
                       contentStyle={footerSecondaryButtonContentStyle}
                       style={{
                         flex: isTablet ? 1 : undefined,
@@ -844,7 +844,7 @@ export default function QuestionnairePage() {
                       }
                       icon={
                         <MaterialIcons
-                          name={currentStep === questions.length - 1 ? "check-circle-outline" : "arrow-forward-rounded"}
+                          name={currentStep === questions.length - 1 ? "check-circle-outline" : "arrow-forward"}
                           size={18}
                           color={primaryButtonIconColor}
                         />

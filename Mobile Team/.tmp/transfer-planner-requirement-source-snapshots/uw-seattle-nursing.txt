@@ -1,5 +1,49 @@
 Owner: uw-seattle-nursing
 Source: https://students.nursing.uw.edu/wp-content/uploads/2025/09/BSN-2025-Curriuculum-Grid.pdf
-Title: UNIVERSITY OF WASHINGTON SCHOOL OF NURSING 1959 NE Pacific Street, Health Sciences Building Room T-301, Seattle, WA 98195 | 206.543.8736 | nursing.uw.edu BACHELOR OF SCIENCE IN NURSING PROGRAM 2-YEAR CURRICULUM Note: Effective for students beginning their program of study Autumn 202 5 . Not applicable for students entering prior to Autumn 202 5 . revised 5.30.25 am YEAR 1 AUTUMN WINTER SPRING Course (Credits) NCLIN 302 (3): Health Assessment NCLIN 306 (1) : Foundational Skills for Professional Nurses NURS 303 (4): Foundations of Professional Nursing Practice NURS 304 (5): Foundations in Pharmacotherapeutics and Pathophysiology NURS 420 (3): Populations Health Through Community Health Nursing Partnerships Total quarter credits: 16 Course (Credits) NCLIN 306 (3): Foundational Skills for Professional Nursing NCLIN 409 (4): Practicum: Population Health Through Community Health Nursing Partnerships NURS 401 (6): Fundamentals of Nursing Practice for Illness Care I NURS 425 (3): Health Equity Total quarter credits: 16 Course (Credits) NCLIN 306 (1): Foundational Skills for Professional Nursing NCLIN 407 (5): Practicum: Nursing Care of Ill Adults NMETH 403 (3): Introduction to Research NURS 405 (6): Fundamentals of Nursing Practice for Illness Care II NURS 412 (3): Healthcare Systems Total quarter credits: 18 Total credit hours: 50 Total credit hours: 41 *NCLIN 475: Foundations of Interprofessional Practice (IPE). Students will participate in IPE modules throughout their year 2; registration will be AU, WI, and SP, with a final grade awarded in spring quarter. YEAR 2 AUTUMN WINTER SPRING Course (Credits) NCLIN 418 (3): Practicum: Psychosocial Nursing NCLIN 475 (0): Foundations of Interprofessional Practice (IPE)* NURS 417 (4): Psychosocial Nursing in Health and Illness NURS 422 (3): Advanced Clinical Judgment NURS 452 (3): Care Coordination and Case Management Total quarter credits: 13 Course (Credits) NCLIN 403 (4): Practicum: Pediatric Nursing NCLIN 416 (2): Practicum: Care of Childbearing Families NCLIN 475 (0): Foundations of Interprofessional Practice (IPE)* NMETH 450 (3): Informatics, Patient Safety and Quality Improvement NURS 415 (3): Nursing Care of Childbearing Families NURS 431 (2): Child Health Total quarter credits: 14 Course (Credits) NCLIN 411 (7): Practicum: Transition to Clinical Practice NCLIN 475 (1): Foundations of Interprofessional Practice (IPE)* NURS 419 (3): Transition to Professional Practice NURS 457 (3): Case Study/Topical Research Seminars Total quarter credits: 14
+Title: UNIVERSITY OF WASHINGTON SCHOOL OF NURSING
 
-[Page 1] UNIVERSITY OF WASHINGTON SCHOOL OF NURSING 1959 NE Pacific Street, Health Sciences Building Room T-301, Seattle, WA 98195 | 206.543.8736 | nursing.uw.edu BACHELOR OF SCIENCE IN NURSING PROGRAM 2-YEAR CURRICULUM Note: Effective for students beginning their program of study Autumn 202 5 . Not applicable for students entering prior to Autumn 202 5 . revised 5.30.25 am YEAR 1 AUTUMN WINTER SPRING Course (Credits) NCLIN 302 (3): Health Assessment NCLIN 306 (1) : Foundational Skills for Professional Nurses NURS 303 (4): Foundations of Professional Nursing Practice NURS 304 (5): Foundations in Pharmacotherapeutics and Pathophysiology NURS 420 (3): Populations Health Through Community Health Nursing Partnerships Total quarter credits: 16 Course (Credits) NCLIN 306 (3): Foundational Skills for Professional Nursing NCLIN 409 (4): Practicum: Population Health Through Community Health Nursing Partnerships NURS 401 (6): Fundamentals of Nursing Practice for Illness Care I NURS 425 (3): Health Equity Total quarter credits: 16 Course (Credits) NCLIN 306 (1): Foundational Skills for Professional Nursing NCLIN 407 (5): Practicum: Nursing Care of Ill Adults NMETH 403 (3): Introduction to Research NURS 405 (6): Fundamentals of Nursing Practice for Illness Care II NURS 412 (3): Healthcare Systems Total quarter credits: 18 Total credit hours: 50 Total credit hours: 41 *NCLIN 475: Foundations of Interprofessional Practice (IPE). Students will participate in IPE modules throughout their year 2; registration will be AU, WI, and SP, with a final grade awarded in spring quarter. YEAR 2 AUTUMN WINTER SPRING Course (Credits) NCLIN 418 (3): Practicum: Psychosocial Nursing NCLIN 475 (0): Foundations of Interprofessional Practice (IPE)* NURS 417 (4): Psychosocial Nursing in Health and Illness NURS 422 (3): Advanced Clinical Judgment NURS 452 (3): Care Coordination and Case Management Total quarter credits: 13 Course (Credits) NCLIN 403 (4): Practicum: Pediatric Nursing NCLIN 416 (2): Practicum: Care of Childbearing Families NCLIN 475 (0): Foundations of Interprofessional Practice (IPE)* NMETH 450 (3): Informatics, Patient Safety and Quality Improvement NURS 415 (3): Nursing Care of Childbearing Families NURS 431 (2): Child Health Total quarter credits: 14 Course (Credits) NCLIN 411 (7): Practicum: Transition to Clinical Practice NCLIN 475 (1): Foundations of Interprofessional Practice (IPE)* NURS 419 (3): Transition to Professional Practice NURS 457 (3): Case Study/Topical Research Seminars Total quarter credits: 14
+[Page 1] UNIVERSITY OF WASHINGTON SCHOOL OF NURSING
+[Page 1] 1959 NE Pacific Street, Health Sciences Building Room T-301, Seattle, WA 98195 | 206.543.8736 | nursing.uw.edu
+[Page 1] BACHELOR OF SCIENCE IN NURSING PROGRAM
+[Page 1] 2-YEAR CURRICULUM
+[Page 1] Note: Effective for students beginning their program of study Autumn 202 5 . Not applicable for students entering prior to Autumn 202 5 .
+[Page 1] YEAR 1 AUTUMN WINTER SPRING
+[Page 1] Course (Credits) Course (Credits) Course (Credits)
+[Page 1] NCLIN 302 (3): Health Assessment NCLIN 306 (3): Foundational Skills for NCLIN 306 (1): Foundational Skills for
+[Page 1] Professional Nursing Professional Nursing
+[Page 1] NCLIN 306 (1) : Foundational Skills for
+[Page 1] Professional Nurses NCLIN 409 (4): Practicum: Population Health NCLIN 407 (5): Practicum: Nursing Care of Ill
+[Page 1] Through Community Health Nursing Adults
+[Page 1] NURS 303 (4): Foundations of Professional
+[Page 1] Partnerships
+[Page 1] Nursing Practice NMETH 403 (3): Introduction to Research
+[Page 1] NURS 401 (6): Fundamentals of Nursing
+[Page 1] NURS 304 (5): Foundations in NURS 405 (6): Fundamentals of Nursing
+[Page 1] Practice for Illness Care I
+[Page 1] Pharmacotherapeutics and Pathophysiology Practice for Illness Care II
+[Page 1] NURS 425 (3): Health Equity
+[Page 1] NURS 420 (3): Populations Health Through NURS 412 (3): Healthcare Systems
+[Page 1] Community Health Nursing Partnerships
+[Page 1] Total quarter credits: 16 Total quarter credits: 16 Total quarter credits: 18
+[Page 1] Total credit hours: 50
+[Page 1] YEAR 2 AUTUMN WINTER SPRING
+[Page 1] Course (Credits) Course (Credits) Course (Credits)
+[Page 1] NCLIN 418 (3): Practicum: Psychosocial NCLIN 403 (4): Practicum: Pediatric Nursing NCLIN 411 (7): Practicum: Transition to
+[Page 1] Nursing Clinical Practice
+[Page 1] NCLIN 416 (2): Practicum: Care of
+[Page 1] NCLIN 475 (0): Foundations of Childbearing Families NCLIN 475 (1): Foundations of
+[Page 1] Interprofessional Practice (IPE)* Interprofessional Practice (IPE)*
+[Page 1] NCLIN 475 (0): Foundations of
+[Page 1] NURS 417 (4): Psychosocial Nursing in Health Interprofessional Practice (IPE)* NURS 419 (3): Transition to Professional
+[Page 1] and Illness Practice
+[Page 1] NMETH 450 (3): Informatics, Patient Safety
+[Page 1] NURS 422 (3): Advanced Clinical Judgment and Quality Improvement NURS 457 (3): Case Study/Topical Research
+[Page 1] Seminars
+[Page 1] NURS 452 (3): Care Coordination and Case NURS 415 (3): Nursing Care of Childbearing
+[Page 1] Management Families
+[Page 1] NURS 431 (2): Child Health
+[Page 1] Total quarter credits: 13 Total quarter credits: 14 Total quarter credits: 14
+[Page 1] Total credit hours: 41
+[Page 1] *NCLIN 475: Foundations of Interprofessional Practice (IPE). Students will participate in IPE modules throughout their year 2; registration will be AU, WI, and SP, with a final grade
+[Page 1] awarded in spring quarter.
+[Page 1] revised 5.30.25 am

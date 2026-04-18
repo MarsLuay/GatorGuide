@@ -2,12 +2,6 @@ Owner: uw-bothell-law-economics-and-public-policy
 Source: https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy
 Title: Law, Economics & Public Policy - School of Interdisciplinary Arts & Sciences
 
-(1-2 credits x 4 quarters)
-(5 credits, Autumn)
-(5 credits, Early Fall)
-(5 credits, Spring)
-(5 credits, Winter)
-(8 credits, Summer)
 [Supplemental official source] Curriculum
 &#124;
 &copy; 2026 University of Washington Bothell
@@ -132,14 +126,6 @@ BISLEP 497 Advanced Topics in Law, Economics, and Public Policy
 Bothell, WA 98011-8246
 Bothell, Washington View our location on Google maps.
 Box 358530
-BPOLST 502 Statistics for Policy Studies
-BPOLST 509 Pro-seminar
-BPOLST 510 Statistics Fundamentals for Policy Studies
-BPOLST 511 Policy Process and Analysis
-BPOLST 513 Practicum
-BPOLST 514 Management and Program Evaluation
-BPOLST 515 Capstone Project
-BPOLST 594 Research Design is the default means of satisfying the Research Methods requirement. (You may petition for other options, including BPOLST 520 Internship, or BPOLST 598 Directed Research in Advanced Quantitative Methods). The course’s goal is to develop students’ own research questions and explore appropriate research methods for addressing these questions. Readings and discussion provide grounding in research designs, including experimental, longitudinal, cross-sectional, case-study, and participatory action research. Special attention will be devoted to planning and developing student capstone projects.
 C. Skills & Method Courses (LEPP:SKILLS)
 Camille Walsh
 Campus Safety
@@ -148,7 +134,6 @@ Career Planning
 Career Resources
 Careers
 Chelsea Nesvig
-Click on the link for the form you wish to access
 Close mobile menu
 Coaching appointments are offered in-person or over Zoom.
 Community Engagement
@@ -159,8 +144,6 @@ Contact
 Contact Us
 Contact us by phone at:
 Contacts
-Copy the URL for this page into the incognito window
-Core Courses
 Courses
 Courses in the Law, Economics & Public Policy major include class discussion, writing exercises, and group projects to help students interpret and analyze complex legal and political issues, and communicate about real-world issues affecting the public.
 Creative Writing & Poetics (MFA)
@@ -181,7 +164,6 @@ Do you want to explore a career in Government, Management, or Law?
 E. Policy Problem Courses (LEPP:PROBLEM)
 Earth System Science
 Educational Access & Opportunity Fund
-Elective Credits
 English Composition Coursework
 Environmental Science
 Environmental Studies
@@ -227,10 +209,6 @@ Jobs
 Law, Economics & Public Policy
 Law, Economics & Public Policy - School of Interdisciplinary Arts & Sciences
 Learn more about how to apply
-Learn more about how to conduct an Internship
-Learn more about how to enroll in Directed Research
-Learn more about how to participate in Study Abroad program
-Learn more about the capstone research process
 Learning objectives
 Learning Objectives
 Library
@@ -262,9 +240,7 @@ Nony Clark Milmoe Scholarship
 Note: Classes in this major are offered primarily during day-time hours.
 Note: See all IAS policies and procedures on the Student Resources webpage .
 On this page: Major Description | Learning Objectives | Degree Planning
-Open an incognito window ( What is incognito mode or private browsing, and how to do it)
 Open mobile menu
-Other options
 Peer Facilitation
 People
 Petitions and Forms
@@ -275,7 +251,6 @@ Policy Foundation courses (10 credits)
 Policy Foundation or Policy Problem courses (20 credits)
 Policy Studies (MA)
 PRACTICE
-Practicum courses provide students with the opportunity to explore particular social and policy issues by connecting with community stakeholders that influence and are affected by those issues. The goal is to build relationships with communities with whom students are interested in working and/or conducting research. This course will advance around the three themes of exploration, connection, and relationship building. Students explore their community and political settings by conducting informal research into these contexts. Students will connect with community stakeholders through direct service, informational interviews, events, and/or other means. Currently in development and review for 2017-2018.
 Prerequisites
 Privacy
 PROFESSION
@@ -286,7 +261,6 @@ Quick Links
 Recognize and understand the role of ethical dimensions inherent in policy-making.
 Recommended preparation
 Research Librarian
-Research Methods Requirement/ BPOLST 594 Research Design
 Research Opportunities
 Residency Requirement: 30 credits must be completed in residency at UW Bothell.
 Rules Docket
@@ -298,13 +272,11 @@ Science, Technology & Society
 Search
 Search keywords
 Seattle Campus
-See a description of current courses being offered.
 Skip To Content
 Society, Ethics & Human Behavior
 Spring Festival
 Staff
 STAT 220 Statistical Reasoning
-Still having difficulties? Contact UW-IT at help@uw.edu or 206-221-5000.
 Student Feedback
 Student Resources
 Students choose from one of the Skills and Methods courses
@@ -312,24 +284,16 @@ Students choose from one of the Statistics courses
 Students in the Law, Economics & Public Policy major are passionate about participating in policy and legal decisions to create change and promote citizenship. Students may be interested in attending law school or pursuing a career in law.
 Students must complete both Core courses
 Students must complete the following prerequisites, with a minimum 2.0 grade, to declare the Bachelor of Arts in Law, Economics, and Public Policy major. Once all have been completed you can submit a declaration form using the online Major Declaration Form .
-Students wishing to receive elective credit for courses taken in other departments (either at UW Bothell or UW Seattle) must fill out a Petition for Outside Coursework and obtain faculty approval.
 Study Abroad
 style="color:var(--wp--custom--color--purple-100)"
 Tacoma Campus
 Take advantage of the free resources offered by UW Bothell’s Career Services team. From mock interviews to internships and events, Career Services has everything you need to plan for your future!
 Terms
-The Capstone is an independent research project intended to be the culmination of the degree program. Building on the networking and research done in the Practicum as well as the planning and design work from the previous quarter, students will work with a faculty advisor to complete and write up their own research. Depending on the nature of the research question and the kind of partners or collaborators students engage, the capstone manuscript may take different formats. In general, capstone manuscripts will include a description of the policy problem, literature review, description of research methods, review of research findings, and conclusions or implications.
 The following degree requirements are required as of Autumn 2024 quarter. Students who entered the Law, Economics, and Public Policy (LEPP) major prior to Autumn 2024 have different requirements. Please see your Academic Advisor for questions and academic planning.
 The Law, Economics & Public Policy curriculum advances the five core IAS learning objectives . Students taking courses and/or majoring in Law, Economics & Public Policy:
 The Law, Economics, & Public Policy (LEPP) major at the University of Washington Bothell offers students the opportunity to explore how legal institutions shape policy decisions, and how political and economic contexts influence the creation of law. The major also provides opportunities for advocacy and reflection on problems and issues impacting education, business, the environment, and human rights. Academic and other learning experiences enhance student’s analytical, research, and communication skills which prepares them for law school and other graduate or professional opportunities.
-The primary goal of this class is to help students develop the statistical skills needed to be independent policy researchers. It lays the basic foundation for both academic and practical investigation. This course begins your training by surveying important aspects of the conduct of research into social scientific questions. By the end of the quarter, you will be able to apply appropriate univariate, bivariate, and multivariate statistical techniques to answering research questions; understand the principles and logic behind statistical methods deployed in the course; utilize SPSS to execute a data analysis project and draw statistical inferences; and apply statistical knowledge to understand policy case studies.
 The University of Washington offers numerous free resources to help IAS students prepare for a career after college. Featured career planning tools are listed on the IAS Student Resources page.
-There are many options available to students when it comes to choosing electives. The first place to look is at the BPOLST elective offerings, located for the year on the current courses page. Students can also take graduate level coursework in other degrees, or 400-level classes that are relevant to their field of study. To find other UWB courses, please refer to the UWB Time Schedule . To find courses on the Seattle campus, please refer to the UWS Time Schedule .
 Thesis Work
-This course focuses on political and institutional aspects of public policy processes. It examines rationales for public policy and the processes in which they are articulated and negotiated; formulation of policies; selection of policy instruments; policy implementation; and policy analysis. The course pays particular attention to methods and approaches commonly used to analyze policy at the formation and implementation stages of policy-making, including cost-benefit analysis, trend analysis, and deliberative approaches.
-This course provides an overview of the major literatures in organization theory and management. Assignments focus on developing managerial skills such as: supervising subordinates, building a team, mapping stakeholders, problem-spotting, and evaluating existing programs. Special attention will be devoted to methods and approaches to program evaluation, including logic models, participatory approaches, and rational/quantitative approaches.
-This four-course sequence of quarterly one-credit courses develops students’ professional competence in a number of areas essential to the field of policy work. Workshops deepen skills in applied policy ethics, conflict resolution, policy writing and public speaking, and oral presentation of policy information. Students also network with alumni, professionals active in the field, and other faculty in the program in order to structure their MAPS experience and explore policy perspectives from multiple points of view.
-This two-week intensive course at the end of September prepares students for BPOLST 502 and more advanced statistics in the future, by providing a survey of college-level mathematical and foundational statistical methods. Topics to be covered include statistical notation, population, sampling distribution and standard normal distributions, graphs and tables, inferential statistics, descriptive statistics and correlations.
 Time Schedule
 Tips for exploring graduate school
 Topics courses under the below course numbers may apply to the LEPP major depending on the subject and title. Please see the Time Schedule notes to determine how they count toward the major.
@@ -349,4 +313,3 @@ Visitors
 Washington D.C. Travel Assistance Fund
 Why Policy Studies?
 Workday Login
-You should be prompted to sign into Microsoft. Please use your UW NetID to login

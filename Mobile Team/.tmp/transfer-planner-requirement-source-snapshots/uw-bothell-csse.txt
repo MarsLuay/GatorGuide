@@ -7,271 +7,71 @@ Title: CSSE Curriculum - School of Science, Technology, Engineering & Mathematic
 * CSS 432 Computer Networking
 * INFO 314: Computer Networks and Distributed Applications
 * T INFO 250 Foundations of Information Networking
-&#124;
-&copy; 2026 University of Washington Bothell
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 300-400 Level Electives (15 credits / usually 3 courses)
-425.352.5000
-About
-Accessibility
-Actuarial Science
-Additional Writing (W) &#8211; 5 credits
 Admissions
-Advising
 After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
-All prerequisite courses and major requirements require a minimum grade of 2.0 or higher .
-All UW Bothell
-All UW students must complete a common set of general education requirements . As a Computer Engineering major, you will be on track for completing the English Composition (C), some Additional Writing (W), Natural Science (NSc) , and Reasoning (R) , but make sure to plan for completion of the following:
-Almost always also fulfills A&H or SSc
-Alumni
 Analysis & Problem Solving
-Applied Computing
-Apply As Undergraduate
-Arts & Humanities (A&H) &#8211; 15 credits
-Associate Professor with Tenure
-At least 5 elective credits must be 400-level
-Awards & Endowments
-BCHEM 143+144: General Chemistry I + Lab (6 credits)
-BEE 215: Fundamentals of EE (5 credits)
-BEE 233: Circuit Theory (5 credits)
-BEE 235: Continuous Time Linear Systems (5 credits)
-BEE 271: Digital Circuits & Systems (5 credits)
-BEE 331: Devices & Circuits I (5 credits)
-BENGR 494 (3 credits)
-BENGR 495 (3 credits)
-BENGR 496 (3 credits)
-Biological Sciences
-Biology
-Biomedical
-Biomedical Systems and Devices
-Bothell, Washington View our location on Google maps.
 Business Case Justification: Justifies project expenditures, equipment and other resources in terms of business costs, benefits and risks.
-BWRIT 135 (Research Writing) or similar recommended
-Campus Safety
-Cannot overlap with A&H
-Cannot overlap with SSc
-Canvas
 Capstone
-Capstones
-Career Resources
-Careers
-Center for Biotechnology Innovation & Training
-Chemistry
-Chemistry (BCHEM)
-Close mobile menu
 Collaboration & Team Building: Collaborates effectively with others to achieve a common objective, creates an environment that fosters and sustains successful teamwork.
-Commuter Services
 Computer Engineering
-Computer Engineering Capstone (10 credits)
-Computer Engineering Capstone (BCE)
-Computer Engineering Curriculum
-Computer Engineering Curriculum - School of Science, Technology, Engineering & Mathematics
-Computer Engineering-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-Computer Science (30 credits)
 Computer Science & Software Engineering
-Computer Science &#038; Software Engineering (CSSE)
-Computing &#038; Software Systems
-Computing and Software Systems (CSS)
 Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-Contact
-Contact Us
-Contact us by phone at:
-Core Courses
-Core requirements
-Course descriptions
 Creativity: Challenges existing assumptions, proposes novel alternative ways to framing or solving a problem, pushes the boundaries of knowledge.
-CSS 301: Technical Writing (5 credits)
 CSS 310: Information Assurance and Cybersecurity
 CSS 337 Secure Systems
-CSS 342: Advanced Data Structures, Algorithms, and Discrete Mathematics I (5 credits)
-CSS 343: Advanced Data Structures, Algorithms, and Discrete Mathematics II (5 credits)
-CSS 360: Software Engineering (5 credits)
 CSS 411 Computer Technology and Public Policy
 CSS 415 Emerging Topics in Information Assurance and Cybersecurity (topics vary)
-CSS 427: Intro to Embedded Systems (5 credits)
-CSS 430: Operating Systems (5 credits)
-CSS Labs
-CSS Registration
-Culminating Experience
-Current site
 Curriculum
-Cybersecurity
-Data Science
 Declaring the IAC option
-Department of Biological Sciences Faculty
-Department of Computing & Software Systems Faculty
-Department of Engineering & Mathematics Faculty
-Department of Physical Sciences Faculty
-Department of Physical Sciences Research
-Departments
-Directory
-Diversity (DIV) &#8211; 5 credits
 Earth System Science
-EE Open lab schedule
 Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
-Elective Courses
-Elective courses must have either the CSS or BEE prefix
-Elective requirements
 Electrical Engineering
-Electrical Engineering (30 credits)
-Electrical Engineering (BEE)
-Engineering &#038; Mathematics
-Entry prerequisites
-Events
-Excellence in Cybersecurity Education
 Expand Navigation
-Facilities
-Faculty
-Faculty Research Projects
-Follow the links below to read about the content covered in each course:
-For a more visual version of the information on this page, download the Computer Engineering degree checklist .
 Foundation Level
-Frequently Asked Questions
-Friday Harbor Laboratories
-Full Professor
 General Business, Social & Technical
-General education requirements
-Getting Started with Computer Science
-Give
-Graduate
-Graduate Certificate in Electrical & Computer Engineering Foundations
-Graduate Certificate in Software Design & Development
-height="0" width="0" style="display:none;visibility:hidden">
-Heritage University REU
-How to Apply
-Human Resources
 IAC-option students take the same core courses as those of the general CSSE major, but replace the 25 credits of &#8220;CSS Electives&#8221; with the courses below:
-In this section
-Industry partners
 INFO 312: Enterprise Risk Management
 INFO 415: Emerging Topics in Information Assurance and Cybersecurity (topics vary)
 Information Assurance and Cybersecurity (IAC) is a Computer Science & Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
 Information Assurance and Cybersecurity (IAC) option
 Information Gathering: Effectively searches out and organizes pertinent information before making decisions or taking actions.
-Information Technology
-Information Technology (IT)
 Interpersonal Skills
-Investigative Biology
-Jobs
-Laboratories
 Leadership: Champions new ideas, persuades and influences, breaks logjams, and promotes momentum toward solving problems.
 Learning by Doing: Demonstrates the ability to learn continuously, capitalize on mistakes, exploit new knowledge, increase productivity over time.
 Learning goals
-Library
-Majors
 Management Skills
 Managing Change & Uncertainty: Adapts to changing circumstances, deals positively with uncertainties and contingencies, manages crises effectively.
-Maps & directions
-Marine Biology
-Master of Science in Computer Science & Software Engineering
-Master of Science in Cybersecurity Engineering
-Master of Science in Electrical & Computer Engineering
-Materials
-Math and Chemistry (26 credits)
 Mathematics
-Maximum of 5 credits combined can be CSS or BEE &#8220;Special Topics&#8221; courses
-Maximum of 5 credits combined can be CSS or BEE Independent Study (498) or Undergrad Research (499)
 May be additional CSS electives or electives from other subject areas
 Mechanical Engineering
-Mechanical Engineering Research
-Microelectronics and Devices
 Minimum 15 credits (3 courses) of elective coursework from the lists below. Only one networking class (CSS 432, INFO 314, or T INFO 250; marked with an asterisk * ) may be taken.
 Minimum of 5 additional credits (usually 1 course) of 200-level or higher CSS Elective coursework in any topic.
-Minors
-More Links
-MyUW
-National Center of Academic Excellence in Cybersecurity
-Neuroscience
-News
-Note: BCE 495 and BCE 496 no longer offered; BENGR 495 and BENGR 496 will satisfy those requirements.
-Ocean Engineering
-One of either BEE 425: Microprocessor System Design (5 credits) or CSS 422: Hardware and Computer Organization (5 credits)
-Only 3 credits prior if admitted prior to autumn 2023
-Open mobile menu
 Petition
-Petitions
-Physical Sciences
 Physics
-Power &#038; Energy
-Prerequisites guide
-Previous Quarters
-Privacy
 Process Reengineering: Performs business requirement analysis, using appropriate tools and methodologies to maximize organizational performance.
 Project Administration: Administers and maintains projects, using appropriate monitoring tools and complying with relevant standards and reporting requirements.
 Project Management: Plans, monitors, and controls projects; ensures efficient utilization of resources; keeps projects on schedule and within budgeted resource allocation.
-Project or Thesis
-Promotion & Tenure Guidelines
-Promotion and Tenure Public Statement
-Quick Links
 Requirements
-Research
-Research &#038; Internships
-Research &#038; labs
-Research Experiences for Undergraduates
-Resources
 Risk Management: Foresees and takes action pro-actively in anticipation of future problems and opportunities.
-Rules Docket
-Safety and Security Studies and Modeling in Fluids
-School of Science, Technology, Engineering & Mathematics
-School of STEM Student Success
-Science and Technology Mathematics (STMATH)
-Search
-Search keywords
-Seattle Campus
-Signal Processing
-Skip To Content
-Social Sciences (SSc) &#8211; 15 credits
-Staff
-STEM Advisory Board
-STEM Symposium Event
-stemsuccess@uw.edu
-STMATH 207: Introduction to Differential Equations (5 credits)
-STMATH 208: Matrix Algebra with Applications (5 credits)
-STMATH 224: Multivariable Calculus (5 credits)
-STMATH 390: Probability & Statistics in Engineering (5 credits)
 Student Forms &#038; Resources
 Student Organizations
-Submit a computer engineering petition
 Submit a CSSE major / minor petition
 Systemic Thinking: Follows a well-ordered and logical approach to analyzing problems, organizing work, and searching for solutions.
 T INFO 441 Network Security
 T INFO 442 Computer Security
 T INFO 443 Digital Forensics
-Tacoma Campus
-Teaching Effectiveness Public Statement
-Teaching Track Faculty
 Technical Level
 Technology Evaluation and Selection: Evaluates and selects software and hardware appropriate to the application, architecture and resource constraints; maintains awareness and understanding of emerging technology.
-Terms
-The Computer Engineering curriculum is ABET accredited and students need to complete major requirements and meet learning objectives and outcomes .
 The Foundation Level includes very broad competencies that are found in every CSS core course. The Technical Level is a set of broadly important competencies specific to the software engineering and computer science professions, to be developed in every undergraduate CSS education, across the set of required core courses. Competencies specific to the interests and needs of the individual student are achieved in the CSS advanced elective courses.
 The learning objectives for the Bachelor of Arts in Applied Computing and the Bachelor of Science in Computer Science & Software Engineering are described in terms of competencies achieved by students within the CSS programs.
-The remaining 5 elective credits must be 300-level or higher
-These courses can be taken before or after entry into the major.
 These courses may overlap with your General Education requirements (A&H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
-Thesis/Project Final Defense Schedule
 This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
 Thoroughness: Ensures that work is done correctly, completely, on time and to the highest standards.
-Time Schedule
-Tuition
-Undergraduate
-Undergraduate Policies & Procedures
-University of Washington Bothell Homepage
 Up to 10 credits combined of CSS 290, 390, or 490 (Special Topics)
 Up to 10 credits combined of CSS 397 (Internship), 498 (Independent Study), or 499 (Undergraduate Research)
 User Orientation: Gains understanding of users needs by immersing self in users environment; carefully studies user&#8217;s requirements; puts self in users shoes.
-UW Bothell Facebook
-UW Bothell Home
 UW Bothell IAC electives
-UW Bothell Instagram
-UW Bothell Linkedin
-UW Bothell Twitter
-UW Bothell Youtube
 UW Seattle IAC electives
 UW Tacoma IAC electives
-Visit our Admissions page for information on prerequisite coursework.
-Visitors
-Wireless, RF/Microwave, and Telecommunications
-Workday Login
 Writing & Speaking: Expresses ideas correctly and convincingly in reports, memos and other forms of written communication
-You must complete ten (10) credits (usually two courses) of &#8220;CSS&#8221; or &#8220;BEE&#8221; elective coursework. Of these 10 credits:

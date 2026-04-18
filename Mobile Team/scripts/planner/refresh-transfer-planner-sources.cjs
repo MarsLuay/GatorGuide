@@ -112,6 +112,10 @@ const REFRESH_SECTION_DEFINITIONS = [
         include: (options) => options.verifyOnly,
       },
       {
+        label: "Refresh requirement-diff classification report",
+        include: (options) => !options.skipVerify || options.verifyOnly,
+      },
+      {
         label: "Audit transfer planner owners",
         include: (options) => !options.skipVerify || options.verifyOnly,
       },
@@ -317,6 +321,9 @@ function runVerification(runStepFn = runStep, options = {}) {
       runCommand("node", ["scripts/planner/verify-transfer-planner-source-pipeline.cjs"])
     );
   }
+  runStepFn("Refresh requirement-diff classification report", () =>
+    runCommand("node", ["scripts/planner/build-transfer-planner-requirement-diff-report.cjs"])
+  );
   runStepFn("Audit transfer planner owners", () =>
     runCommand("node", ["scripts/planner/verify-transfer-planner-owner-audit.cjs"])
   );

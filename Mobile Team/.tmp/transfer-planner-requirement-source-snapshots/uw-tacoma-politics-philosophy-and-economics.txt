@@ -4,15 +4,12 @@ Title: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences
 
 [Supplemental official source] Economics Specialization
 [Supplemental official source] Global Studies Concentration
-[Supplemental official source] graduation requirements
 [Supplemental official source] International Studies Specialization
 [Supplemental official source] Politics and Philosophy Specialization
 [Supplemental official source] Supplemental official track and option pages
 [Supplemental official source] UWT general education
-*For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
 &copy; 2026 University of Washington Tacoma
 <a
-<a href="/registrar"
 <a href="/sias"
 <a href="https://instagram.com/uwtacoma"
 <a href="https://www.facebook.com/uwtacoma"
@@ -25,27 +22,16 @@ Title: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences
 <img class="mobile-hide desktop-show"
 <img class="mobile-show desktop-hide"
 <img src=""
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2020-10/hendrixw.jpg"
-<span
 >
 >Home
->Office of the Registrar
 >School of Interdisciplinary Arts & Sciences
-15
 1900 Commerce Street, Tacoma, WA 98402-3100
-253-692-4414
 253-692-4450
-253-692-4913
 253-692-5718
 25Live
-40 additional credits
-5
 600w"
 980w,
-A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
 A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor .
-A student must satisfy the requirements for the degree at the time the degree is to be awarded. For questions, please contact the Graduate School or your advisor.
-A student would not need to submit a petition if some of the transferable credits earned at another school are considered elective credits and would not be used towards fulfilling any degree requirements. For example, if a student has completed 185 credits, of which the last 20 credits were taken at another college or university, and at least 5 of those 20 credits include elective credits, the 5 credits would not be used towards meeting any degree requirements and the student would not need to fill out a petition.
 ABOUT UW TACOMA
 Academic advising
 Academic calendar
@@ -59,18 +45,14 @@ Advising
 ADVISOR
 alt="">
 alt="Block W - Link to UW Tacoma homepage"/>
-alt="Hendrix the Husky at the W">
 alt="University of Washington Tacoma"/>
 American Indian Studies Minor
 Apply
-Areas of Inquiry (AoI)
 aria-label="University of Washington Tacoma Homepage">
-Arts and Humanities (A&H) Formerly known as Visual, Literary, and Performing Arts (VLPA)
 Arts and Humanities (A&H): 20 credits
 As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 At least one class from each of the following three lists, for a total of 20 credits:
 Bachelor of Arts
-Basic Skill
 Bothell
 Breadcrumb
 Business
@@ -81,8 +63,6 @@ Canvas
 Career Opportunities
 Chose one of the following:
 class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
-class="uwt-icon uwt-icon-per-site-facebook">
-class="uwt-icon uwt-icon-per-site-instagram">
 Close Search
 Community Work
 Connect with Advising
@@ -96,18 +76,13 @@ Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other sub
 Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
 Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
 Courses that focus on sociocultural, political, and economic diversity of human experience
-Credit from external sources (AP/IB credit, transfer coursework, by exam, Armed Forces Training School, etc.)
-Cross-campus courses taken at UW (Seattle) & UW Bothell
 Current Students
 Degree Requirements
 DEPARTMENT
 Department of Social Sciences
 Department of Social Sciences (SOCS)
-Designated courses study diversity in the United States with focus on the sociocultural, political and economic diversity of human experience and help students develop an understanding of the complexities of living in increasingly diverse and interconnected societies.
-Details
 Diplomacy Government
 Directory
-Diversity (DIV)
 Diversity (DIV): 5 credits
 Economics (20 credits)
 Economics and Policy Analysis (EPA)
@@ -117,37 +92,22 @@ Education and Community Engagement Minor
 English Composition (C): 5 credits
 Equity & Inclusion
 Ethnic, Gender and Labor Studies
-Exceptions to the rule regarding majors may be granted at the discretion of the department. If major requirements other than the current ones are being used, a note to that effect must be made on the degree application.
 expand_more
 Faculty & Staff
 Fax Number
-Final Year Residency Requirement
 Financial Aid
 For a BA in Politics, Philosophy and Economics, students must complete 65 major credits, which must include 45 credits of upper-division (300–400 level courses), including a Capstone, with a minimum 2.0 GPA in courses applied to the major, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-Formerly known as Areas of Knowledge (AoK)
-Formerly known as Quantitative/Symbolic Reasoning (QSR)
-Forms
 Gender and Sexuality Studies Minor
 General Education Requirements
 Global Studies Concentration
-Graduating Under Earlier Catalogs
-Graduating with Honors
-Graduation Requirements
-Graduation Requirements | Office of the Registrar | University of Washington Tacoma
-Graduation Requirements for a Master&#039;s Degree
-Graduation Requirements for a Masters Degree
 height="0"
 History
 History Minor
 Honors
 Housing
 href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2020-10/hendrixw.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2020-10/hendrixw.jpg 980w,
 Human Rights Minor
 iashelp@uw.edu
-If the student is requesting to waive a university requirement, the petition will be submitted to their academic advisor for review by the Faculty Assembly's Academic Policy and Curriculum Committee. Once a determination has been made the student is contacted.
-In order to graduate with a bachelor's degree, a student must meet minimum general educational and basic skills requirements, in addition to completing the requirements of their academic program. General Education requirements are outlined in this website. Additional requirements for specific degree requirements are found online on the degree program's webpages, or within the Degree Programs webpage of the General Catalog.
 Information Technology
 Institutional Research
 Interdisciplinary Arts and Sciences
@@ -170,32 +130,20 @@ Main Content
 MAJOR COORDINATOR
 Majors
 Map
-Master’s Degree Requirements
-Mattress Factory, room 251
 Methods courses (10 credits)
-Minimum GPA
-minimum of 5 credits
 Minors
 more_vert
 Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
-Must include 5 credits of English Composition (C) with a minimum grade of 2.0 and 10 credits of Writing (W) courses
 MyUW
-Natural Sciences (NSc) Formerly known as Natural World (NW)
 Natural Sciences (NSc): 20 credits
-News & Communications
 Nonprofit Management
 Note: Politics, Philosophy and Economics (PP&E) majors cannot minor in Economics, Law and Policy, or Politics.
-Number of Credits
 Office Hours:
-Office Location
-Office of the Registrar
 Office365
-On this page:
 One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
 Open Public Meetings
 Panopto
 Parking & transportation
-Petitioning to seek an exception to the residency requirement
 Politics and Philosophy
 Politics and Philosophy (20 credits; *restricted to Global Honors students)
 Politics and Philosophy or Economics (10 credits; *restricted to Global Honors students)
@@ -210,10 +158,7 @@ Professor Charles Williams
 Psychology
 Public Agencies
 Puyallup Tribe of Indians
-Reasoning (RSN)
 Reasoning (RSN): 5 credits
-Registration Resources
-reguwt@uw.edu
 Religious Studies Minor
 Research
 Resources
@@ -228,7 +173,6 @@ SIAS Student Advisory Council
 sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
 Skip to main content
 Social Science Research Methods Minor
-Social Sciences (SSc) Formerly known as Individuals and Society (I&S)
 Social Sciences (SSc): 20 credits
 Sociology Minor
 SOCS Directory
@@ -238,13 +182,8 @@ src="/sites/default/files/sites/uwtd8main/W.svg"
 src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
 src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
 srcset=" 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2020-10/hendrixw.jpg 1940w,
-Student Affairs resources are available to all currently enrolled students regardless of race, sex or other identity.
 Student Life
-Students
-Students are required to complete 45 of their final 60 credits as matriculated students in residence at UW Tacoma, which means that no more than a maximum of 15 of the final 60 credits may be non-resident credit. If a student takes more than 15 of the final 60 credits out of residence, the extra credits need not be counted against the limit of 15 if credits from the courses are not needed in any way to meet degree requirements. Some degree programs may have stricter residency requirements, please check with your advisor. Fully online degree programs are exempt from this requirement.
 Students in the Global Studies concentration study a variety of subjects and themes in an international context, including artistic, cultural, political and economic patterns among and within other nations and may choose to focus their studies on one or more world regions or on specific themes. Advanced language study is an integral component of Global Studies.
-Students may be eligible to receive Baccalaureate honors (summa cum laude, magna cum laude, cum laude) or Faculty honors. More information about eligibility and requirements for each designation may be found on the Honors Requirements webpage.
 Study Abroad
 style="display:none;
 TANTH 354 History of the Concept of Culture
@@ -278,14 +217,10 @@ Terms of Use |
 TGH 301 Global Interactions *
 TGH 301 Global Interactions*
 TGH 303 Global Challenges*
-The decision of the Academic Policy and Curriculum committee is final. An exception from a university graduation requirement becomes void at the end of two calendar years from the date the exemption was granted if all degree requirements have not been completed by that date.
 The Economics specialization emphasizes economic theory and reasoning. It provides a solid foundation for understanding how the interplay of economics and politics shape our everyday lives, with particular emphasis on analytical and critical thinking skills and problem solving.
-The following are considered non-resident credit:
 The International Studies specialization focuses on the study of relations between states, domestic groups and transnational actors from an interdisciplinary perspective that includes politics, philosophy, history and economics. Students gain the background knowledge and skills necessary to understand the sources of conflict, cooperation and peace in the global arena.
 The Politics and Philosophy specialization provides an in-depth study of political theory, political and social interactions, relations between states and capital and the history of relationships between governments and citizens. The specialization aims to develop skills needed for an informed and effective citizenship.
 The Politics, Philosophy and Economics (PP&E) major offers an innovative curriculum for students drawn to interdisciplinary approaches and diverse frameworks for understanding social phenomenon.
-The student must present a minimum cumulative 2.00 GPA for all coursework taken in residence at the University of Washington Tacoma. The graduation grade point average is computed when the student has completed all work for the degree and includes only credits earned while in residence at the university. Residence credits are UW credits earned through the campus granting the degree.
-The student needs to submit a graduation petition two quarters in advance to their academic advisor. Petitions requesting approval of 16-25 non-resident credits will be reviewed by the department awarding the degree. Petitions requesting more than 25 credits will be reviewed by the Academic Policy & Curriculum Committee. The student will be notified by mail and UW email of the decision by the Office of the Registrar.
 THIST 150 World History I
 THIST 151 World History II
 THIST 322 American Labor Since the Civil War
@@ -299,11 +234,7 @@ TLAW 320 American Constitutional Law: Institutional Powers and Constraints
 TLAW 361 American Constitutional Law: Rights and Liberties
 TLAW 424 The Politics and Law of International Human Rights
 TLAW 465 Law and Public Policy in the United States
-To ensure a determination is made in time for graduation, petitions should be submitted at least two quarters before the student's graduation date to allow time for committee review and student registration.
-To include a minimum of 10 credits in each of the three areas of study:
-To request a waiver of program/major requirements a student must submit a petition to their academic program. Students should confer with their advisor before completing the petition. Review is done by the academic program faculty committee or director/dean, as procedures specific to each academic program dictate.
 Tools
-Total Credits Required to Graduate
 TPHIL 101 Introduction to Philosophy
 TPHIL 200 Introduction to the Philosophy of Human Rights
 TPHIL 240 Introduction to Ethics
@@ -337,18 +268,12 @@ TRELIG 366 Islam
 Tribal Sponsor of UW Tacoma
 TSUD 444 Green Internationalism and the City
 TWOMN 420 Women in the Global Economy
-University Graduation Requirements for the Baccalaureate Degree
-University Requirements for a Baccalaureate Degree
 University YMCA Student Center
 UW Gmail
 UW Seattle | UW
 UWNetID login
-Various / Click Here
 visibility:hidden">
-Waiver of Degree Requirements
 width="0"
-With School or Program approval, a student may choose to graduate under the current catalog or the catalog in effect at the time they entered the program from which they are to graduate. University policy on use of earlier graduation requirements provides that if fewer than ten years have elapsed since a student's admission into the major program, they may choose to graduate under the requirements in effect at the time of admission, or under any subsequent requirements. If more than ten years have elapsed since admission to the major, the major program has the option of requiring the student to complete the current major requirements.
 Workday
-Writing (W)
 Writing (W): 10 credits
 Zoom

@@ -1015,7 +1015,7 @@ function defaultOpportunitySummary(title, type) {
 
 async function addOpportunity(rl, type) {
   log("");
-  log("You're adding a new resource.");
+  log("You're adding a new opportunity.");
   log("For questions you don't have answers to, just skip it by pressing Enter on your keyboard.");
   log('Type "back" at any prompt to return to the previous question.');
 
@@ -1272,11 +1272,12 @@ async function addOpportunity(rl, type) {
     {
       prompt: (_, state) =>
         askYesNoUnknown(rl, "Is this tied to a specific college or school?", {
-          defaultValue: state.tiedToCollege ?? false,
+          defaultValue: state.tiedToCollege ?? (type === "college_deadline"),
         }),
       assign(state, value) {
-        state.tiedToCollege = value ?? false;
-        if (!(value ?? false)) {
+        const tiedToCollege = value == null ? type === "college_deadline" : value;
+        state.tiedToCollege = tiedToCollege;
+        if (!tiedToCollege) {
           state.collegeName = null;
           state.collegeCity = null;
           state.collegeState = null;
@@ -1934,7 +1935,8 @@ async function removeOpportunity(rl) {
           [
             { value: "scholarship", label: "Scholarship" },
             { value: "internship", label: "Internship / work opportunity" },
-            { value: "general_deadline", label: "Deadline" },
+            { value: "college_deadline", label: "College deadline" },
+            { value: "general_deadline", label: "General deadline" },
             { value: "__all__", label: "Show all opportunities" },
           ],
           { defaultValue: "__all__" }
@@ -2202,7 +2204,8 @@ async function main() {
             [
               { value: "scholarship", label: "Scholarship" },
               { value: "internship", label: "Internship / work opportunity" },
-              { value: "general_deadline", label: "Deadline" },
+              { value: "college_deadline", label: "College deadline" },
+              { value: "general_deadline", label: "General deadline" },
               {
                 value: "resource",
                 label:
@@ -2210,7 +2213,7 @@ async function main() {
               },
             ],
             {
-              invalidMessage: "Enter in 1, 2, 3, or 4 for your choice.",
+              invalidMessage: "Enter in 1, 2, 3, 4, or 5 for your choice.",
             }
           ),
         assign(state, value) {

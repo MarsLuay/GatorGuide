@@ -2,64 +2,45 @@ Owner: uw-bothell-data-visualization-ba
 Source: https://www.uwb.edu/ias/undergraduate/majors/data-visualization
 Title: Data Visualization - School of Interdisciplinary Arts & Sciences
 
-[Supplemental official source] Curriculum
-&#124;
-&copy; 2026 University of Washington Bothell
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
-18115 Campus Way NE
-425.352.5000
-425.352.5350
+Spatial Data Analysis (15 credits)
+Data Visualization Electives (25 credits)
+Bachelor of Science- 90 credits total
+School of IAS Requirements & Policies
+Residency Requirement: 30 credits must be completed in residency at UW Bothell.
+Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
+Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with credits earned in major coursework, or it can be completed through elective course credits. Please see the IPR webpage for course options.
+Upper Division Credit Policy: A maximum of 35 credits earned in 100- and/or 200-level courses may apply toward the Bachelor of Arts degree. A maximum of 45 credits earned in 100- and/or 200-level courses may apply toward the Bachelor of Science degree. Remaining credits must be earned in upper division courses (300-level and above).
+Note: See all IAS polices and procedures on the Student Resources webpage .
+Courses
 A. Core Courses
-About IAS
-Academic Excellence & Emerging Initiatives Fund
-Accessibility
-Additional Elective Options
-Addresses how writers utilize research in their writing and inquires into different kind of research that can be pursued: textual, ethnographic, and performance-based.
-Admissions
-Admitted Students
-All IAS Funds
-All UW Bothell
-Alumni
-American & Ethnic Studies
-American Muslim Research Institute Fund
-Apply As Undergraduate
-Autumn Quarter
-B BUS 301 Data Management (5 credits)
 B DATA 200 Introduction to Data Studies (5 credits)
 B DATA 232 Introduction to Data Visualization (5 credits)
+Either BIS 218 Power of Maps OR B GIS 342 Geographic Information Systems (5 credits)
+Either BES 301 Science Methods and Practice OR BST 301 Scientific Writing (5 credits)
+B. Advanced Data Visualization and Analysis Methods Courses (15 credits)
 B DATA 411 Network Analysis & Visualization (5 credits)
 B DATA 412 Advanced Data Visualization (5 credits)
 B DATA 497 Advanced Topics in Data Visualization (5 credits)
+Topics may vary; not offered regularly
+BIS 447 Topics in Quantitative Inquiry (5 credits)
+Topics may vary; not offered regularly
+BISMCS 473 Visual Communication (5 credits)
+B BUS 301 Data Management (5 credits)
+C. Spatial Data Analysis Courses (15 credits)
+BIS 218 Power of Maps (5 credits) (if not taken as core)
 B GIS 342 Geographic Information Systems (5 credits) (if not taken as core)
 B GIS 343 Geovisualization (5 credits)
 B GIS 344 Intermediate Geographic Information Systems (5 credits)
+BIS 352 Mapping Communities (5 credits)
 B GIS 442 Advanced Geographic Information Systems (5 credits)
-B. Advanced Data Visualization and Analysis Methods Courses (15 credits)
-Bachelor of Science Elective Courses
-Bachelor of Science- 90 credits total
-BCWRIT 500 Between Prose and Poetry (5 credits)
-BCWRIT 501 Between Fact and Imagination (5 credits)
-BCWRIT 502 Processes of Thinking and Memory (5 credits)
-BCWRIT 510 Cultural Change and Writing (5 credits)
-BCWRIT 511 Writers&#8217; Research (5 credits)
-BCWRIT 512 Art, Technology, Practice (5 credits)
-BCWRIT 599 Thesis Practicum (1 CR)
-BCWRIT 599 Thesis Practicum (2 CR)
-BCWRIT 599 Thesis Practicum (3 CR)
-BCWRIT 599 Thesis Practicum (6 credits total, C/NC)
-BCWRIT 700 Creative Writing Thesis (15 credits total, C/NC)
-BCWRIT 700 Thesis (5 CR)
-BCWRIT 700 Thesis (7 CR)
-BCWRIT 700 Thesis (8 CR)
-BEARTH 201 Mapping the Earth System (5 credits)
-BEARTH 202 Modeling Global Systems (5 credits)
 BES 303 Environmental Monitoring Practicum (5 credits)
 BES 440 Remote Sensing of the Environment (5 credits)
+D. Data Visualization Elective Courses (25 credits)
+Bachelor of Science Elective Courses
 BIS 111/CSS 101 Digital Thinking (5 credits)
 BIS 115 Digital Cultures (5 credits)
 BIS 140 Numbers in News Media (5 credits)
 BIS 180 Human Geography (5 credits)
-BIS 218 Power of Maps (5 credits) (if not taken as core)
 BIS 235 Critical Media Literacy (5 credits)
 BIS 236 Introduction to Interactive Media (5 credits)
 BIS 242 Environmental Geography (5 credits)
@@ -67,198 +48,15 @@ BIS 312 Approaches to Social Research Methods (5 credits)
 BIS 332 Digital Global Industries (5 credits)
 BIS 340 Approaches to Cultural Research Methods (5 credits)
 BIS 342 Geographic Information Systems (5 credits)
-BIS 352 Mapping Communities (5 credits)
 BIS 372 Representation, Colonialism, and the Tropical World (5 credits)
 BIS 380 Bioethics (5 credits)
 BIS 406 Urban Planning and Geography (5 credits)
 BIS 410 Topics in Qualitative Inquiry (5 credits)
 BIS 421 Technology Policy (5 credits)
-BIS 447 Topics in Quantitative Inquiry (5 credits)
 BIS 490 Advanced Seminar: Smart City Seattle topic (5 credits)
+BEARTH 201 Mapping the Earth System (5 credits)
+BEARTH 202 Modeling Global Systems (5 credits)
 BISIA 244 Time-Based Media Art (5 credits)
 BISIA 250 Photography as Art (5 credits)
 BISIA 344 Video Art (5 credits)
 BISIA 350 Photography and Digital Art (5 credits)
-BISMCS 473 Visual Communication (5 credits)
-Bothell, WA 98011-8246
-Bothell, Washington View our location on Google maps.
-Box 358530
-C. Spatial Data Analysis Courses (15 credits)
-Campus Safety
-Canvas
-Career Planning
-Careers
-Close mobile menu
-Community Engagement
-Community Psychology
-Commuter Services
-Conservation & Restoration Science
-Contact
-Contact Us
-Contact us by phone at:
-Courses
-Creative Writing & Poetics (MFA)
-Culture, Literature & the Arts
-Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
-Current site
-Curriculum
-Curriculum - School of Interdisciplinary Arts & Sciences
-D. Data Visualization Elective Courses (25 credits)
-D.C. Human Rights Seminar
-Data Visualization
-Data Visualization Electives (25 credits)
-Degree Completion
-Directory
-Diversity and Equity
-Diversity Plan
-Earth System Science
-Educational Access & Opportunity Fund
-Either BES 301 Science Methods and Practice OR BST 301 Scientific Writing (5 credits)
-Either BIS 218 Power of Maps OR B GIS 342 Geographic Information Systems (5 credits)
-Engages the primary processes of thinking and memory as they are affected by diverse writing practices and media applications.
-Engages the subject of poetics as writing theory and practice. Focuses on cultural, social, and technological change as these create new challenges and possibilities for creative writing.
-Environmental Science
-Environmental Studies
-Events
-Examines the relationships between fact and imagination in fiction, non-fiction, and poetry writing.
-Expand Navigation
-Experiential & Community Based Learning Fund
-Explores relationships among art, technology, and creative practice. Examines connections among diverse art forms, inquiring into their social, philosophical, and aesthetic dimensions.
-Facilities
-Faculty
-Faculty & staff
-Fall Convergence
-Focuses on the cross over between prose and poetry in multiple genres. Considers the prevalence of narrative and alternatives to narrative.
-For the degree, first-year students complete 6 core courses (writing workshops and poetics seminars) for a total of 30 credits. In their second year students complete 15 credits of supervised thesis work and submit an original creative work and poetics statement. Thesis work is supplemented by 6 credits of required thesis practicum, for a total of 51 degree credits.
-Full-time/Part-time
-Funding
-Gender, Women & Sexuality Studies
-Give
-Global Scholars
-Global Scholars Fund
-Global Studies
-Grade Appeal
-Graduate Programs
-Graduate Studies Excellence Fund
-Grievances and Complaints
-Hands-on Learning (IPR)
-height="0" width="0" style="display:none;visibility:hidden">
-Housing
-How to apply
-Human Resources
-iasgrad@uw.edu
-In accordance with UW Graduate School master&#8217;s degree policies, MFA graduate students have six years to complete the degree from the time that they first enroll. This includes any time on-leave as well as actively enrolled.
-In advance of their second year, students create an individualized course of study in consultation with their advisors.
-In this section
-Includes completion of creative thesis in one of the following areas: poetry, fiction, non-fiction, or cross genre as well as a poetics essay or artist’s statement. For details, see Thesis Work .
-Information Technology
-Interdisciplinary Arts
-Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with credits earned in major coursework, or it can be completed through elective course credits. Please see the IPR webpage for course options.
-Interdisciplinary Social Sciences
-Interdisciplinary Studies
-Internships
-Internships. Please consult the internship resources : then complete and submit a learning contract for review and approval by your site supervisor and thesis advisor.
-Jobs
-Law, Economics & Public Policy
-Learning Objectives
-Library
-Majors
-Maps & directions
-Master of Fine Arts (MFA) Program Fund
-Mathematical Thinking & Visualization
-Media & Communication Studies
-MFA Publications
-Minor in Climate Change & Society
-Minor in Creative Writing
-Minor in Diversity Studies
-Minor in Ecological Restoration
-Minor in Gender, Women & Sexuality Studies
-Minor in Geographic Information Systems
-Minor in Human Rights
-Minor in Performance
-Minor in Policy Studies
-Minor in Science, Technology & Society
-Minor in Visual & Media Arts
-Minors
-Mission, Values, and Goals
-More Links
-MyUW
-News
-Nony Clark Milmoe Scholarship
-Note: See all IAS polices and procedures on the Student Resources webpage .
-On this Page: Curriculum Overview | Year One | Year Two | Thesis Work | Elective Option | Degree Completion
-Open mobile menu
-Overview
-Part-time
-Peer Facilitation
-People
-Petitions and Forms
-Poetics Seminar (5 CR)
-Poetics Seminars
-Policy Studies (MA)
-Privacy
-Prospective Students
-Provides creative development opportunities and practice in accordance with individualized plans, including but not limited to presenting work-in-progress at salons and readings; submitting work to conferences, residencies, and publications; and interning at arts, education, or media organizations. For details, see Thesis Practicum .
-Psychology
-Quick Links
-Request the Master&#8217;s Degree
-Research Opportunities
-Residency Requirement: 30 credits must be completed in residency at UW Bothell.
-Rules Docket
-Sandra Martin Roberts Memorial Scholarship
-Scholarship
-School of IAS Requirements & Policies
-School of Interdisciplinary Arts & Sciences
-Science, Technology & Society
-Search
-Search keywords
-Seattle Campus
-Second-year students also complete a thesis practicum for a total of 6 credits. The thesis practicum prepares students to present and publish their work, sustain their artistic practice after graduation, and engage as a professional in artistic communities, organizations, and undertakings.
-See Registration for instructions and contact the IAS Graduate Office for the appropriate registration codes.
-See Registration for instructions.
-See Thesis Timeline for thesis filing requirements and deadline
-Skip To Content
-Society, Ethics & Human Behavior
-Spatial Data Analysis (15 credits)
-Spring Festival
-Spring Quarter
-Staff
-Student Feedback
-Student Resources
-Students have the option of taking additional elective coursework at the 400-level or above, in a variety of UW programs and departments , beyond their thesis and thesis practicum requirements. Students are encouraged to consult first and foremost with their thesis advisors about ways of incorporating these activities into the thesis practicum.
-Students must be registered and enrolled in the quarter that they graduate. To graduate students must fulfill all degree requirements and submit their master&#8217;s degree request by the relevant deadline. In their master&#8217;s degree request, select the &#8220;thesis&#8221; option.
-Students who do not complete all degree requirements by the last day of the quarter in which they plan to graduate must register for the following quarter and resubmit their master&#8217;s degree request.
-Study Abroad
-Tacoma Campus
-Terms
-The first year provides students with an immersive, structured, full-time curricular experience that pairs creative writing workshops with poetics seminars quarterly. First-year students complete 15 credits of writing workshops and 15 credits of poetics seminars, before advancing to thesis work the following year. **The sequence of workshops and seminars may vary.
-The focus of the second year is thesis-intensive, focused on the development and completion of independent creative work, in or across the genre(s), form(s), or media of your choosing, and a poetics statement that situates you and your artistic practice. Students complete 15 credits of thesis work for the degree, under the mentorship of a thesis advisor and a second reader.
-The MFA in Creative Writing & Poetics at UW Bothell consists of a residency program in its first year, with residency and non-residency options in its second year. Students participate in the program as a member of a cohort of 12-16 MFA students.
-The second year can be completed in residency or non-residency, part-time or full-time. (See sample pathways, above).
-Thesis (1-10 CR)
-Thesis Practicum (1-5 CR)
-Thesis Work
-Time Schedule
-Topics may vary; not offered regularly
-Undergraduate
-University of Washington Bothell Homepage
-Upper Division Credit Policy: A maximum of 35 credits earned in 100- and/or 200-level courses may apply toward the Bachelor of Arts degree. A maximum of 45 credits earned in 100- and/or 200-level courses may apply toward the Bachelor of Science degree. Remaining credits must be earned in upper division courses (300-level and above).
-UW Bothell Facebook
-UW Bothell Home
-UW Bothell Instagram
-UW Bothell Linkedin
-UW Bothell Twitter
-UW Bothell Youtube
-Visitors
-Washington D.C. Travel Assistance Fund
-Why Policy Studies?
-Winter Quarter
-Workday Login
-Writing Workshop (5 CR)
-Writing Workshops
-Year
-Year 2: Sample Pathway
-Year One
-Year One – Requirements
-Year Two
-Year Two – Requirements

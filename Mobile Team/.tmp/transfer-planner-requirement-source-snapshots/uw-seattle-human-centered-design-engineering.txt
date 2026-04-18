@@ -7,14 +7,13 @@ Title: Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engine
 [Supplemental official source] Degree Requirements: Before Autumn 2024
 [Supplemental official source] HCDE engineering fundamentals list
 [Supplemental official source] HCDE planned undergraduate course schedule
-[Supplemental official source] HCDE-specific mathematics, statistics, and sciences course lists
 [Supplemental official source] special topics course descriptions
+[Supplemental official source] Students
 [Supplemental official source] Undergraduate Curriculum Changes FAQs
 * Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
 * Effective Autumn 2024, HCDE 318 and HCDE 300 have been replaced with the new 2-course foundations sequence, HCDE 302 and HCDE 303.
 *Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
 *Additional credit may not be earned for a course that overlaps in content with a previously completed course. See UW Course Catalog descriptions for specific credit allowances for overlapping courses.
-*Additional credit may not be earned for a course that overlaps in content with a previously completed course. See UW Course Catalog descriptions for specific credit allowances for overlapping courses. Credit is also not awarded for mathematics courses taken out of sequence.
 *For students admitted to the university prior to Autumn 2023, the DIV requirement is 3 credits.
 *If not applied towards core course requirements.
 *If not applied towards Experiential Learning requirement.
@@ -73,7 +72,6 @@ Title: Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engine
 A A 210
 A A 210 : Engineering Statics (4)
 A A 260
-A A 260 : Thermodynamics (4)
 A minimum of 3 credits of Diversity (DIV) is required for students admitted prior to Autumn 2023 . For students admitted in Autumn 2023 or later , this requirement has been increased to 5 credits . The DIV credits may overlap with other degree requirements.
 A minimum of 5 credits of Reasoning (RSN, formerly QSR) is required. The RSN credits may overlap with the math/statistics courses above.
 A&H and SSc (30 credits)
@@ -81,7 +79,6 @@ About
 Additional courses from HCDE engineering fundamentals list to reach 12 credits minimum
 Additional credit may not be earned for a course that overlaps in content with a previously completed course. See UW Course Catalog descriptions for specific credit allowances for overlapping courses.
 Additional credit may not be earned for a course that overlaps in content with a previously completed course. See UW Course Catalog descriptions for specific credit allowances for overlapping courses. Credit is also not awarded for mathematics courses taken out of sequence.
-Additional information can be found in the HCDE Undergraduate Curriculum Changes FAQs and on the HCDE BS admission page .
 Additional Links
 Adjunct & affiliate faculty
 Admission requirements
@@ -91,9 +88,6 @@ Although most of the other changes to our requirements for graduation from the H
 Alumni & industry events calendar
 Alumni directory
 AMATH 301 : Beginning Scientific Computing (4)
-AMATH 351 : Introduction to Differential Equations and Applications (3)
-AMATH 352 : Applied Linear Algebra and Numerical Analysis (3)
-AMATH 353 : Partial Differential Equations and Waves (3)
 Any 200+ MATH course
 Any 224+ PHYS course
 Any 300+ B STR course
@@ -129,7 +123,6 @@ As needed to complete the 180-credit degree requirements.
 As we make this transition to a new curriculum, it is important to note that regardless of whether a student graduates with our degree pre- or post-accreditation, we are confident that the HCDE Department consistently offers students access to an outstanding education and excellent employment opportunities.
 ASTR 211
 ASTR 301
-ASTR 301 : Astronomy for Scientists and Engineers (3)
 ASTR 321
 ASTR 322
 ASTR 323
@@ -145,8 +138,6 @@ ATM S 451
 ATM S 452
 ATM S 458
 ATM S 480
-ATMOS 211 : Climate and Climate Change (5)
-ATMOS 301 : Introduction to Atmospheric Sciences (5)
 AUTUMN
 Autumn 2024
 Autumn 2025
@@ -156,22 +147,13 @@ Be Boundless
 BIO A 201
 BIOEN 215 : Introduction to Bioengineering Problem Solving (3)
 BIOL 118
-BIOL 118 : Survey of Physiology (5)
 BIOL 119
-BIOL 119 : Elementary Physiology Laboratory (2)
 BIOL 130
-BIOL 130 : Introduction to Neuroscience (4)
-BIOL 161 : Advanced Placement (AP) in General Biology 1 (5-)
 BIOL 161-162
-BIOL 162 : Advanced Placement (AP) in General Biology 2 (-5)
 BIOL 180
-BIOL 180 : Introductory Biology (5)
 BIOL 200
-BIOL 200 : Introductory Biology (5)
 BIOL 220
-BIOL 220 : Introductory Biology (5)
 BIOL 250
-BIOL 310 : Survey of Human Anatomy (5)
 Bringing ideas to actualization through expertise in design strategy and processes, effective communication and collaboration skills, and ethical perspectives.
 Calendar
 Capstone Showcase
@@ -183,28 +165,13 @@ Certificate students
 Changes to the 300-level core courses for the major
 Changes to the experiential learning credits for the major
 CHEM 120 or 142 or 143 or 145*
-CHEM 142 : General Chemistry* (5)
-CHEM 143 : Accelerated General Chemistry* (6)
-CHEM 145 : Honors General Chemistry* (5)
-CHEM 152 : General Chemistry* (5)
 CHEM 152 or 153 or 155*
-CHEM 153 : Accelerated General Chemistry* (6)
-CHEM 155 : Honors General Chemistry* (5)
-CHEM 162 : General Chemistry* (5)
 CHEM 162 or 165*
-CHEM 165 : Honors General Chemistry* (5)
 CHEM 220 or 223 or 237*
 CHEM 221 or 224 or 239*
-CHEM 223 : Organic Chemistry - Short Program* (4)
-CHEM 224 : Organic Chemistry - Short Program* (4)
-CHEM 237 : Organic Chemistry* (4)
 CHEM 238
-CHEM 238 : Organic Chemistry (4)
-CHEM 239 : Organic Chemistry* (4)
 CHEM 241
-CHEM 241 : Organic Chemistry Laboratory (3)
 CHEM 242
-CHEM 242 : Organic Chemistry Laboratory (3)
 class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
 class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
 College of Engineering University of Washington logo
@@ -277,7 +244,6 @@ During the quarter, we will examine topics such as business models, product stra
 E E 215
 E E 215 : Fundamentals of Electrical Engineering (4)
 EDPSY 490
-EDPSY 490 : Basic Educational Statistics (3)
 Eligibility to pursue the new degree requirements will depend on several factors, including: when a student entered the program, when they will complete their degree, and their course selections.
 Email askhcde@uw.edu
 Email: askhcde@uw.edu
@@ -291,13 +257,9 @@ ENGR 115 : Engineering Transformation of Health (3)
 ENGR 321 - Internship
 ENGR 321 : Engineering Internship Education (variable credits) See details and steps to register on Career Center @ Engineering website .
 ENGR 490 : Engineering Leadership (2) See Emerging Leaders in Engineering .
-ENVIR 310 : Data Analysis in Environmental Studies (5)
-ESS 211 : Physical Processes of the Earth (5)
 ESS 212
-ESS 212 : Plate Tectonics and Materials of the Earth (5)
 ESS 213
 ESS 313
-ESS 315 / ENVIR 313 : Environmental Earth Science (5)
 Events calendar
 Expand All | Collapse All
 Experiential Learning
@@ -305,7 +267,6 @@ Experiential Learning (2 credits)
 Experiential Learning (4 credits)
 External Advisory Board
 Faculty
-FISH 250 / BIOL 250 / OCEAN 250 : Marine Biology (3/5)
 For current offerings, times, and locations, refer to the UW Time Schedule .
 For more information about the Spring 2026 HCDE 418 course, you can watch this short introductory video featuring instructor Tyler Fox.
 For questions about the program, application, and general inquiries, schedule a prospective BS student appointment with an undergraduate peer advisor.
@@ -325,6 +286,7 @@ Give
 GIVE
 Graduate Certificate in Human Centered Artificial Intelligence
 Graduate Certificate in User Centered Design
+Graduate Profiles
 Graduating
 Graduation ceremony
 HCDE 300
@@ -384,6 +346,7 @@ HCDE 498 : Advanced Special Topics (variable credits) See special topics course 
 HCDE 498 (up to 10 credits)
 HCDE 498A - Advanced Special Topics
 HCDE 499 : Individual Research (variable credits)
+HCDE Communications Manager
 HCDE continuously reviews the undergraduate curriculum to identify areas of success and opportunities that will enhance student learning. These program changes are the result of a 3-year comprehensive review that included faculty, staff, and students. An additional motivation for the changes is to bring the program into compliance with the General Engineering Degree requirements specified by ABET.
 HCDE Core Courses
 HCDE Core Courses (41 credits)
@@ -397,14 +360,12 @@ HCDE Engineering Fundamentals List
 HCDE Engineering Fundamentals List | Human Centered Design & Engineering
 HCDE impact
 HCDE Natural Sciences Course Lists
-HCDE Natural Sciences Course Lists | Human Centered Design & Engineering
 HCDE news
 HCDE research impact
 HCDE Research Showcase
 HCDE Research Speaker Series
 HCDE student resources
 HCDE students may apply for several scholarships, including both departmental and College of Engineering scholarships. Learn more about HCDE scholarships and funding opportunities.
-HCDE students who entered the major prior to Autumn 2026 and who have not yet taken these courses are encouraged to select other courses from the HCDE math and sciences course lists. HCDE students who were admitted to or placed into the major for Autumn 2024 or Autumn 2025, who will be graduating in Summer 2026 or later, and who have already taken these courses are encouraged to schedule a current BS student appointment to chat with our undergraduate adviser about how this would impact their degree.
 HCDE undergraduate students complete a minimum of 82 credits of core courses, which includes 41 credits of HCDE core courses, 12 credits of engineering fundamentals, 4 credits of experiential learning, and 25 credits of HCDE electives.
 HCDE undergraduate students complete a minimum of 88 credits of general education requirements, which includes 12 credits of written and oral communication; 5 credits of Reasoning; 3 credits of Diversity; 30 credits in Arts and Humanities and Social Sciences; and 50 credits of math/statistics and natural science courses. See below for overlap allowances and restrictions.
 HCDE498B - Advanced Special Topics
@@ -424,7 +385,6 @@ In alignment with the department's strategic vision, HCDE BS program graduates c
 In this course, we will cover a combination of critical theory and methods toward a liberatory practice of technology. Technology has been an object of power and exclusion for centuries—enabling systemic injustices such as racism, ableism, and classism. This course is designed to provide foundational knowledge on what it means for students, practitioners, scholars, and technology workers alike to start questioning the role of technology in past and ongoing systemic harms. Focusing on the main structures of oppression often perpetuated via technology, we will explore counter-practices of technology research and design through which we can carry out a commitment toward dismantling such exclusionary means of technology production. Throughout, students will make artifacts conveying their interpretations of critical technology practice.
 IND E 250
 IND E 315
-IND E 315 : Probability and Statistics for Engineers (3)
 Industry & alumni
 Information sessions
 Internal Resources
@@ -434,7 +394,9 @@ ISC/Workday
 It is also worth noting that the retirement of the HCI and Data Science Options does not represent a substantive change in our HCDE course offerings or the topics covered within the HCDE curriculum.
 Join our mailing list
 K-12 outreach
+Leah Pistorius
 Learn about entrepreneurship as it is currently understood and practiced.
+lepisto@uw.edu
 Libraries
 Login
 M E 123
@@ -446,33 +408,13 @@ Maps
 Master of Science
 Master's students
 MATH 120
-MATH 120 : Precalculus (5) See note regarding planned course list changes .
-MATH 124 : Calculus with Analytic Geometry I* (5)
 MATH 124 or Q SCI 291*
-MATH 125 : Calculus with Analytic Geometry II* (5)
 MATH 125 or Q SCI 292*
-MATH 126 : Calculus with Analytic Geometry III* (5)
 MATH 126 or 136*
 MATH 134
-MATH 134 : Accelerated [Honors] Calculus (5)
 MATH 135
-MATH 135 : Accelerated [Honors] Calculus (5)
-MATH 136 : Accelerated [Honors] Calculus* (5)
-MATH 207 : Introduction to Differential Equations (4)
-MATH 208 : Matrix Algebra with Applications (4)
-MATH 209 : Linear Analysis (4)
-MATH 224 : Advanced Multivariable Calculus (4)
-MATH 300 : Introduction to Mathematical Reasoning (4)
-MATH 301 : Elementary Number Theory (4)
-MATH 327 : Introductory Real Analysis I (4)
-MATH 334 : Accelerated [Honors] Advanced Calculus (5)
-MATH 335 : Accelerated [Honors] Advanced Calculus (5)
-MATH 336 : Accelerated [Honors] Advanced Calculus (5)
-MATH 340 : Abstract Linear Algebra (4)
-MATH 394 / STAT 394 : Probability I (3)
 Math/Statistics
 Math/Statistics and Natural Science (50 credits)
-Mathematics
 Menu
 Minimum one course from:
 Mission, vision, and guiding principles
@@ -485,12 +427,9 @@ Natural Sciences (NSc) (50 credits)
 News & events
 NME 220 : Introduction to Molecular and Nanoscale Principles (4)
 Non-major course registration
-Note Regarding Planned Course List Changes
 Note Regarding Requirement Overlap
 Note: The requirements on this page apply to HCDE undergraduates admitted to the HCDE bachelor's program for Autumn 2024 onwards. For more information regarding changes to the HCDE BS curriculum for students admitted Autumn 2024 or later, see the HCDE Undergraduate Curriculum Changes FAQs . HCDE undergraduates admitted to the HCDE bachelor's program prior to Autumn 2024 should instead refer to our former degree requirements .
-Note: The requirements on this page apply to HCDE undergraduates admitted to the HCDE bachelor's program for Autumn 2024 onwards. For more information regarding changes to the HCDE BS curriculum for students admitted Autumn 2024 or later, see the HCDE Undergraduate Curriculum Changes FAQs . Students applying to begin the major in Autumn 2026 or later should also review our note regarding planned course list changes below . HCDE undergraduates admitted to the HCDE bachelor's program prior to Autumn 2024 should instead refer to our former degree requirements .
 Note: The requirements on this page apply to HCDE undergraduates admitted to the HCDE bachelor's program prior to Autumn 2024. The HCDE Department has made significant curriculum changes for students admitted Autumn 2024 or later, including updates to the math/statistics, natural science, and engineering fundamentals course lists. For more information, see the HCDE Undergraduate Curriculum Changes FAQs.
-NURS 301 : General Anatomy (4)
 Of the 30 credits, minimum 10 credits in Arts and Humanities (A&H, formerly VLPA)
 Of the 30 credits, minimum 10 credits in Social Sciences (SSc, formerly I&S)
 Once admitted to the program, HCDE undergraduate students complete coursework in engineering fundamentals, experiential learning, HCDE core courses, and major electives. The elective coursework allows students the flexibility to explore topics targeted to their professional and academic goals.
@@ -504,31 +443,9 @@ PhD dissertations & technical reports
 PhD program
 PhD students
 PHIL 120
-PHIL 120 : Introduction to Logic (5)
-PHYS 114 : Mechanics* (4) See note regarding planned course list changes .
 PHYS 114/117 or 121 or 141*
-PHYS 115 : Heat, Fluids and Electricity and Magnetism* (4) See note regarding planned course list changes .
 PHYS 115/118 or 122 or 142*
-PHYS 116 : Waves, Optics, Atoms and Nuclei* (4) See note regarding planned course list changes .
 PHYS 116/119 or 123 or 143*
-PHYS 117 : General Physics Laboratory: Mechanics* (1) See note regarding planned course list changes .
-PHYS 118 : General Physics Laboratory: Heat and Electromagnetism* (1) See note regarding planned course list changes .
-PHYS 119 : General Physics Laboratory: Sound, Light, and Modern Physics* (1) See note regarding planned course list changes .
-PHYS 121 : Mechanics* (5)
-PHYS 122 : Electromagnetism* (5)
-PHYS 123 : Waves, Light, and Heat* (5)
-PHYS 141 : Honors Mechanics* (5)
-PHYS 142 : Honors Electromagnetism* (5)
-PHYS 143 : Honors Waves, Light and Heat* (5)
-PHYS 224 : Thermal Physics (3)
-PHYS 225 : Introduction to Quantum Mechanics (3)
-PHYS 226 : Particles and Symmetries (3)
-PHYS 227 : Mathematical Physics I (4)
-PHYS 228 : Mathematical Physics II (4)
-PHYS 231 : Introductory Experimental Physics (3)
-PHYS 321 : Electromagnetism I (4)
-PHYS 328 : Statistical Physics (3)
-PHYS 329 : Mathematical Methods and Classical Mechanics (3)
 PHYS 334 : Advanced Laboratory: Analog Electronics (3)
 PHYS 335 : Advanced Laboratory: Digital Electronics (3)
 Planned course schedule is available here .
@@ -538,13 +455,8 @@ Privacy
 Program evaluators from ABET may sample student assignment submissions as part of the process. Your class assignments are protected under the Family Educational Rights and Privacy Act (FERPA), which safeguards the privacy of student educational records. Although your assignments might be shown to ABET accreditors to demonstrate student learning outcomes, your personally identifiable information will be kept confidential. No personal details will be disclosed in relation to your assignment submissions.
 Program objectives
 PSYCH 202
-PSYCH 202 : Biopsychology (5) See note regarding planned course list changes .
-Q SCI 291 : Calculus for Natural Systems I: Derivatives* (5)
-Q SCI 292 : Calculus for Natural Systems II: Integrals* (5)
 Q SCI 381
-Q SCI 381 : Introduction to Probability and Statistics (5)
 QMETH 201
-QMETH 201 : Introduction to Statistical Methods (4)
 Questions?
 Reasoning
 Recruiting & hiring students
@@ -558,7 +470,6 @@ Research updates
 Schedule an appointment
 Schedule Appointment
 Scholarships & funding
-Sciences
 Search
 Site Map
 Skip to main content
@@ -574,17 +485,12 @@ Spring 2025
 Spring 2026
 Staff
 Standard option: Minimum 25 credits of the following HCDE courses.
-STAT 220 : Statistical Reasoning* (5)
 STAT 220 or 221 or 290*
-STAT 221 / CS&SS 221 / SOC 221 : Statistical Concepts and Methods for the Social Sciences* (5)
-STAT 290 : Advanced Placement (AP) Statistics* (5)
-STAT 311 : Elements of Statistical Methods (5)
-STAT 390 : Statistical Methods in Engineering and Science (4)
-STAT 395 / MATH 395 : Probability II (3)
-Statistics
 Strategic plan
 Student associations
 Student organizations & associations
+Student Profiles
+Student Profiles | Human Centered Design & Engineering
 Students
 Students applying to HCDE for Autumn 2025 may still use these courses to meet admission prerequisites; however, if they have not yet taken these courses, we would encourage them to select other courses from the HCDE admission prerequisite list.
 Students are encouraged to use MyPlan and DARS * for degree planning and for tracking their progress through the HCDE major requirements. Students can also refer to the HCDE planned undergraduate course schedule for information regarding HCDE course scheduling in the upcoming year.
@@ -607,7 +513,6 @@ tabindex="-1">Computing/IT
 Tentative undergraduate course schedule
 Terms
 The Department plans to submit a self study in July of 2027 in preparation for the on-site visit in Autumn 2027. If the process proceeds according to this timeline, we would be notified of the outcome in the Summer of 2028. If ABET accreditation is granted, it would apply to students who completed the accredited curriculum and who graduated in Autumn 2026 or later.
-The HCDE Department has made changes that impact our admission prerequisites and our mathematics and sciences course lists. Students who will be applying to begin the HCDE major in Autumn 2026 or later should note that MATH 120, PHYS 114-116, and PSYCH 202 will no longer be accepted as HCDE admission prerequisites and these courses plus the PHYS 117-119 labs will no longer apply towards the course lists above for HCDE students admitted to the major for Autumn 2026 or later.
 The HCDE Department is currently in the midst of a multi-year undergraduate curriculum review and revision process. We have created this page to help answer some common questions we’ve received from students and other community members regarding these changes. We will continue to update this page with additional information as we proceed through the process of gaining approval for and implementing these curricular changes.
 The HCDE General Option was created by the HCDE Department as a way to track which students were admitted to the major under our former curriculum. The primary difference between the two options is that the General Option allows students to count MATH 120, PHYS 114-119, and PSYCH 202 towards their HCDE math and science requirements; these courses will not be permitted to apply towards the HCDE admission prerequisites or HCDE math and science requirements for students applying to enter the major in Autumn 2026 or later.
 The most important change for students who have not yet applied to the HCDE major relates to the HCDE admission prerequisites. Beginning with the students applying to enter HCDE in Autumn 2026, MATH 120, PHYS 114-116, and PSYCH 202 will no longer be eligible to meet HCDE admission prerequisites , and these courses, along with the accompanying PHYS labs (PHYS 117-119), will no longer apply towards HCDE degree requirements. Students planning to apply to HCDE for Autumn 2026 or later should therefore plan to select other courses from the HCDE admission prerequisite list to complete the HCDE admission prerequisites.
@@ -638,6 +543,7 @@ Topic: Service Design
 Tuition & financial aid
 Undergraduate curriculum changes FAQs
 Undergraduate curriculum changes FAQs | Human Centered Design & Engineering
+Undergraduate Profiles
 Undergraduate students
 University of Washington
 Updates to the HCDE math statistics, science, and engineering fundamentals course lists

@@ -2,7 +2,7 @@
 setlocal
 
 set "ROOT_DIR=%~dp0"
-set "NODE_SCRIPT=%ROOT_DIR%Mobile Team\scripts\add-catalog-item.cjs"
+set "NODE_SCRIPT=%ROOT_DIR%Mobile Team\scripts\assets\add-catalog-item.cjs"
 
 if not exist "%NODE_SCRIPT%" (
   echo Could not find "%NODE_SCRIPT%".

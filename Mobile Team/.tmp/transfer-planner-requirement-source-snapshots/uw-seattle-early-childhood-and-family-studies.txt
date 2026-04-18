@@ -2,494 +2,1203 @@ Owner: uw-seattle-early-childhood-and-family-studies
 Source: https://education.washington.edu/academics/program/early-childhood-family-studies
 Title: Early Childhood & Family Studies (ECFS) | UW College of Education
 
--->
-[Supplemental official source] Bachelor of Arts (B.A.)
-* 106
-* 117
-* 149
-* 160
-* 21644
-* 21649
-* 21652
-* 21657
-* 21668
-* 21683
-* 21692
-* 21697
-* 21729
-* 21877
-* 24962
-* 24964
-* 475
-* 501
-* block
-* block_content_view
-* block_content:12
-* block_content:32
-* block_program_upcoming_info
+Early Childhood & Family Studies (ECFS) | UW College of Education
+Skip to main content
+Enter search text
+Current site
+All the UW
+Search scope
+Current site
+All the UW
+<!-- CACHE TAGS:
 * block_view
-* card
-* config:block.block.block_program_upcoming_info
-* config:block.block.uw_boundless_barrio_mainnavigation
 * config:block.block.uw_boundless_barrio_shibbolethloginblock
-* config:block.block.uw_boundless_barrio_thinstripmenu
-* config:block.block.uw_boundless_barrio_uwsidebarmenu
-* config:block.block.views_block__program_list_for_degree_pages_block_1
-* config:field.storage.node.field_event_url
-* config:field.storage.node.field_program_featured_text
-* config:filter.format.basic_html
-* config:filter.format.full_html
-* config:image.style.media_library
-* config:system.menu.footer
-* config:system.menu.main
-* config:system.menu.thinstrip-menu
-* config:system.site
-* config:views.view.program_list_for_degree_pages
-* config:views.view.program_upcoming_info_sessions
-* config:webform.settings
-* config:webform.webform.marketing_request
-* entity_view
-* file:15063
-* file:15065
-* file:15068
-* file:15108
-* file:15117
-* file:15147
-* file:15238
-* file:15502
-* file:15541
-* file:15554
-* file:15625
-* file:15635
-* file:15727
-* file:16600
-* full
-* languages:language_content
-* languages:language_interface
-* node
-* node_list
-* node_view
-* node:100
-* node:101
-* node:106
-* node:110
-* node:111
-* node:112
-* node:113
-* node:117
-* node:143
-* node:149
-* node:151
-* node:152
-* node:153
-* node:154
-* node:160
-* node:19147
-* node:21644
-* node:21649
-* node:21652
-* node:21657
-* node:21668
-* node:21683
-* node:21692
-* node:21697
-* node:21729
-* node:21730
-* node:21732
-* node:21848
-* node:21877
-* node:22056
-* node:22154
-* node:22170
-* node:22171
-* node:22172
-* node:23239
-* node:24602
-* node:24643
-* node:24858
-* node:24885
-* node:24918
-* node:24931
-* node:24962
-* node:24964
-* node:24968
-* node:24969
-* node:24972
-* node:25000
-* node:25117
-* node:25130
-* node:25197
-* node:25208
-* node:25210
-* node:25308
-* node:25316
-* node:25647
-* node:25876
-* node:26391
-* node:475
-* node:491
-* node:501
-* node:816
-* node:817
-* node:82
-* node:823
-* node:825
-* node:827
-* node:829
-* node:830
-* node:85
-* node:87
-* node:94
-* node:97
-* node:98
-* node:99
-* route.menu_active_trails:footer
-* route.menu_active_trails:main
-* route.menu_active_trails:thinstrip-menu
-* route.name.is_layout_builder_ui
 * shibboleth_login_block
-* taxonomy_term:1123
-* taxonomy_term:1124
-* taxonomy_term:1125
-* taxonomy_term:1127
-* taxonomy_term:1151
-* taxonomy_term:1160
-* taxonomy_term:1161
-* teaser
+-->
+<!-- CACHE CONTEXTS:
+* languages:language_interface
 * theme
-* timezone
-* url
+* user.permissions
+* user.roles:anonymous
 * url.path
 * url.query_args
 * url.site
+-->
+<!-- CACHE KEYS:
+* entity_view
+* block
+* uw_boundless_barrio_shibbolethloginblock
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* block_view
+* config:block.block.uw_boundless_barrio_shibbolethloginblock
+* shibboleth_login_block
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* block
+* uw_boundless_barrio_shibbolethloginblock
+-->
+Login
+MyUW
+Calendar
+Directories
+Libraries
+UW Medicine
+Maps
+UW Today
+Helpful Links
+Computing/IT
+Employee Self Service
+Husky Card
+UW Bothell
+UW Tacoma
+UW Facebook
+UW Twitter
+University of Washington
+UW College of Education
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.uw_boundless_barrio_thinstripmenu
+* config:system.menu.thinstrip-menu
+* node:22171
+* node:22172
+* node:25308
+* node:825
+-->
+<!-- CACHE CONTEXTS:
+* route.menu_active_trails:thinstrip-menu
+* languages:language_interface
+* theme
+* user.permissions
+-->
+Thinstrip menu
+For Faculty & Staff
+For Students
+Events
+Directory
+Quick Links
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.uw_boundless_barrio_mainnavigation
+* config:system.menu.main
+* node:82
+* node:99
+* node:94
+* node:100
+* node:24931
+* node:24885
+* node:101
+* node:85
+* node:87
+* node:143
+* node:25130
+* node:21732
+* node:21730
+* node:817
+* node:816
+* node:25210
+* node:25316
+* node:151
+* node:829
+* node:830
+* node:25197
+* node:152
+* node:24602
+* node:24643
+* node:827
+* node:24858
+* node:19147
+* config:webform.webform.marketing_request
+* webform:marketing_request
+* config:webform.settings
+* node:153
+* node:23239
+* node:823
+* node:25117
+* node:825
+* node:25000
+* node:25308
+* node:25647
+* node:22154
+* node:24969
+* node:24968
+* node:24972
+* node:25876
+* node:154
+* node:24918
+* node:22172
+* node:22171
+-->
+<!-- CACHE CONTEXTS:
+* route.menu_active_trails:main
+* languages:language_interface
+* theme
+* user.permissions
+-->
+Main navigation
+Menu
+Home
+Academics
+Undergraduate
+Graduate
+Teacher Education
+Professional Learning
+Early Learning
+Leadership
+By Degree
+By Area
+All Programs
+Admissions
+Application Deadlines
+Graduate Admissions
+Undergraduate Admissions
+Tuition & Costs
+Funding, Aid and Scholarships
+Admitted Graduate Students
+Non-Matriculated & Graduate Non-Matriculated Students
+Research
+Research Support
+Research Areas
+Research Centers & Initiatives
+EduTalks
+Newsroom
+News Features
+Videos
+In the News
+Magazine
+Alumni Stories
+Submit a Story
+About
+Our Vision
+About the Dean
+College Leadership
+Faculty and Staff Directory
+Offices & Departments
+College of Education Events
+Giving
+Advancement and Outreach
+How to Give
+Make a Gift
+Making Learning Come Alive
+Teacher Appreciation
+For You
+Alumni
+Current Students
+Faculty & Staff
+Technology Center
+<!-- CACHE TAGS:
+* block_view
+* config:block.block.block_program_upcoming_info
+* config:field.storage.node.field_event_url
+* config:views.view.program_upcoming_info_sessions
+* node_list
+* node:160
+* node:26392
+-->
+<!-- CACHE CONTEXTS:
+* languages:language_content
+* languages:language_interface
+* url
 * user.node_grants:view
 * user.permissions
-* user.roles:anonymous
-* user.roles:authenticated
-* views_block__program_list_for_degree_pages_block_1
-* webform:marketing_request
-© 2026 University of Washington, College of Education, Seattle, WA
-<!-- CACHE CONTEXTS:
+* theme
+-->
 <!-- CACHE KEYS:
-<!-- CACHE TAGS:
-<!-- PRE-BUBBLING CACHE CONTEXTS:
-<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* block
+* block_program_upcoming_info
+-->
 <!-- PRE-BUBBLING CACHE TAGS:
-<nav id="desktop-relative" role="navigation" aria-label="mobile menu that is not visible in the desktop version"
-2-3 years
-2.50 cumulative GPA
-5-credit English composition course graded 2.0 or higher
-79-81
-A minimum of 79-81 credits are needed to meet the requirements for the ECFS major. You will work with your advisor to ensure that your graduation plan includes courses required to earn your degree at UW.
-A premise of the ECFS major is that teachers can be advocates for social change. What are some of the positive changes you would like to work toward within early education?
-About
-About the Dean
-Academics
+* block_view
+* config:block.block.block_program_upcoming_info
+* config:field.storage.node.field_event_url
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* languages:language_content
+* languages:language_interface
+* url
+* user.node_grants:view
+* user.permissions
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* block
+* block_program_upcoming_info
+-->
+Join our next info session: Apr, 23 2026 | 3:00 PM
+Learn more
+Register
+<!-- CACHE TAGS:
+* node_view
+* node:160
+* node:25208
+* config:image.style.media_library
+* file:15625
+* node:21848
+* file:15238
+* node:21877
+* file:15635
+* node:24962
+* file:15727
+* node:24964
+* file:15502
+* node:21668
+* taxonomy_term:1125
+* file:15147
+* node:21697
+* taxonomy_term:1124
+* file:15068
+* node:21683
+* config:filter.format.full_html
+* taxonomy_term:1127
+* file:15065
+* node:21652
+* taxonomy_term:1123
+* file:15541
+* node:21649
+* file:15108
+* node:21657
+* file:15117
+* node:21644
+* file:15063
+* node:21692
+* taxonomy_term:1151
+* file:16600
+* config:filter.format.basic_html
+* node:501
+* node:21729
+* block_content_view
+* block_content:12
+* block_content:32
+* taxonomy_term:1160
+* node:106
+* file:15554
+* config:system.site
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* url.site
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 160
+* undergrad
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:160
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* url.site
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 160
+* undergrad
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:160
+* node:25208
+* config:image.style.media_library
+* file:15625
+* node:21848
+* file:15238
+* node:21877
+* file:15635
+* node:24962
+* file:15727
+* node:24964
+* file:15502
+* node:21668
+* taxonomy_term:1125
+* file:15147
+* node:21697
+* taxonomy_term:1124
+* file:15068
+* node:21683
+* config:filter.format.full_html
+* taxonomy_term:1127
+* file:15065
+* node:21652
+* taxonomy_term:1123
+* file:15541
+* node:21649
+* file:15108
+* node:21657
+* file:15117
+* node:21644
+* file:15063
+* node:21692
+* taxonomy_term:1151
+* file:16600
+* config:filter.format.basic_html
+* node:501
+* node:21729
+* block_content_view
+* block_content:12
+* block_content:32
+* taxonomy_term:1160
+* node:106
+* file:15554
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* url.site
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 160
+* undergrad
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:160
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* url.site
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 160
+* undergrad
+-->
+Bachelor of Arts (B.A.)
+On-campus
+BA in Early Childhood & Family Studies
+Earn your bachelor&#039;s degree to pursue careers as educators and advocates for equitable and just early learning.
+Autumn 2026 Admissions
 Accepting ECFS applications from March 1 through April 15.
-Admission requirements and process
-Admissions
-Admitted Graduate Students
-Advancement and Outreach
-Advising
-After graduation
-After submitting your enrollment deposit to the university, admitted transfer students will attend the required Transfer Advising & Orientation hosted by UW First Year Programs. This is a chance for you to meet with an ECFS adviser and create a plan to successfully complete the course and internship requirements.
-Alejandra Baires-Ramirez
-Alejandra Baires-Ramirez , Lead Admission & Outreach Adviser
-All current and prospective ECFS students who are ready to declare or learn more about the major are welcome schedule an academic advising appointment with:
-All of the following
-All Programs
-All the UW
-Already working or volunteering with children in an early learning setting? You can complete the community-based learning experience at your current job! If you need support finding a setting, our CBL coordinator will help you find a place to do your community-based learning.
-Alumni
-Alumni Stories
-Applicants must also have completed ECFS 200 Introduction to Early Childhood & Family Studies before starting the ECFS program. Please note:
-Applicants need to write and submit three essays. Each essay should be 250 words or fewer. Use the following three prompts for your essays:
-Application Deadlines
-Applied assignments: Examples of applied assignments include videos of your practice, environment or child observations, case studies, and an interview with a professional or parent. These may be completed at your Community-Based Learning Experience site.
+Schedule a prospective student appointment to learn more about the major!
+Eligible ECFS students can now apply for the new Early Learning Equity Scholarship and get up to the full cost of attendance covered for two years!
+Major in early childhood education
+The Early Childhood and Family Studies Teaching and Learning (ECFS) program is designed to offer multidisciplinary and critical perspectives of early childhood development, early learning and family-centered education of young children. Through a combination of coursework and hands-on experiences in early learning settings, you will develop the necessary knowledge and skills to create inclusive and equitable learning environments and curriculum for young children.
+ECFS supports the application of theory and research into practice by:
+Creating equitable learning environments
+Strategizing approaches for individualized and culturally responsive instruction
+Writing curricula that centers children’s lived experiences and funds of knowledge
+Engaging with colleagues in communities of practice
+ECFS prepares you for a rewarding career in early childhood education. We invite you to join us as advocates for children and families!
 Apply for Autumn 2026!
+What you&#039;ll learn
+In ECFS, you'll acquire a range of valuable knowledge and skills that will set you apart.
+Knowledge
+Critical perspectives of early childhood development and learning theories
+How to foster positive and engaging learning environments for young children
+Current policies and initiatives in early childhood education
+Skills
+Promote skills in language, literacy and STEM using age and developmentally appropriate practices
+Provide individualized instruction and behavioral support
+Partner with children, families and communities
+Question current values, practices, and policies rooted in unjust systems
+Create anti-bias anti-racist curricula
+Implement culturally responsive and sustaining pedagogies
+Self-reflect on biases and socialization experiences to grow personally and professionally
+Let&#039;s connect
+We're so excited that you're thinking about joining our undergrad program! Join our mailing list to learn about upcoming information sessions, deadlines, scholarships and more!
+Join mailing list
+Prefer a one-on-one experience? Prospective students can schedule an admissions advising appointment .
+Admission requirements and process
+Overview
+Starting in your sophomore year is recommended
+You can begin in autumn or winter quarter
 Apply Mar. 1 - Apr. 15 for autumn start
 Apply Sept. 1 - Oct. 15 for winter start
-April 15, 2026
-Area of Inquiry (15 credits)
-aria-labelledby="block-uw-boundless-barrio-uwsidebarmenu-menu" id="block-uw-boundless-barrio-uwsidebarmenu">
-Arts & Humanities (15 credits)
-As an ECFS student, you'll explore careers in early childhood education, and engage in courses that focus on research, curriculum, policy, language and literacy, mathematics, science, and technology. Additionally, you'll participate in extended community-based learning experiences, working directly with children in preschool classrooms or childcare centers. This unique combination of academic coursework and practical application will help you develop a comprehensive and culturally relevant understanding of child development and effective teaching strategies. As we engage in (un)learning, you will be challenged to envision systems that are more equitable and just and engage in teaching and advocacy work toward that vision.
-Assistant Dean for Undergraduate Programs
-Assistant Director for Undergraduate Academic and Student Services
-Assistant Professor
-Associate Professor
-Associate Teaching Professor
-Autumn 2026 Admissions
-BA in Early Childhood & Family Studies
-Bachelor of Arts (B.A.)
-Bachelor of Arts (B.A.) | UW College of Education
+You can start the ECFS program in autumn quarter or winter quarter. For autumn quarter admission, apply March 1 - April 15. For winter quarter admission, apply September 1 - October 15. We recommend starting your application process as early as possible due to the different steps and requirements.
+If you're a current UW student, it's best to begin the program during your sophomore year and no later than the autumn quarter of your junior year.
+Program is open to all eligible persons regardless of race, sex or other identity.
+Requirements
+2.50 cumulative GPA
+5-credit English composition course graded 2.0 or higher
+Applicants must also have completed ECFS 200 Introduction to Early Childhood & Family Studies before starting the ECFS program. Please note:
+You must be graded 2.0 or higher
+The course can be in progress when you apply, but must be completed before the ECFS begins
+Transfer students will complete ECFS 200 after joining UW
+Materials
+Applicants need to write and submit three essays. Each essay should be 250 words or fewer. Use the following three prompts for your essays:
+Have you experienced, witnessed, or learned about injustices in your educational journey? Please describe. How will the ECFS Major help you understand these injustices?
+The ECFS major focuses on the educational experiences of children from birth to age 8 and their families. Why are you interested in teaching?
+A premise of the ECFS major is that teachers can be advocates for social change. What are some of the positive changes you would like to work toward within early education?
+Submitting
+Gather all required materials
 Begin the online application form
-Brinda India Jegatheesan
-By Area
-By Degree
-Calendar
-Camille Lemire
-Certificate Programs
-Chair, Learning Sciences & Human Development
-College Leadership
-College of Education - Prospective Students
-College of Education Events
-Community-Based Learning Experience : Weekly time spent engaging with young children through your work or volunteering in an early learning setting is required for many courses.
 Complete all steps in application process and upload your materials
-Completion
-Computing/IT
-Connect with our Lead Admissions & Outreach Adviser to help you through the process
-Costs and funding
-Courses
-Create anti-bias anti-racist curricula
-Creating equitable learning environments
-Credits earned
-Critical perspectives of early childhood development and learning theories
-Current policies and initiatives in early childhood education
-Current site
-Current Students
-Curriculum
-Directories
-Directory
-Diversity (3-5 credits)
+Submit your application
+This process is only for current UW students. If you are a transfer student, follow the steps outlined in the Transferring section.
+Transferring
+We welcome transfer students to our program! As a transfer student, you will have some additional steps and required materials to your application process.
+If you are interested in the ECFS major, be sure to select the major on your UW Admissions application. We require ECFS 200 to be completed for a student to be fully-admitted to the major. Transfer students who select the ECFS major on their UW Admissions application will have a seat in ECFS 200 held for them.
+Transfer students need to submit an unofficial transcript with their ECFS application:
+Include transcripts from all institutions you have previously attended
+You must upload your transcript during the application process
 Do not mail your transcript when you apply
-Doctor of Education (Ed.D.)
-Doctor of Philosophy (Ph.D.)
-Download degree requirements PDF
-Duration
-Early Care & Education (ECE) and Early Childhood & Family Studies (ECFS) students can be awarded up to the cost of attendance.
-Early Care and Education
-Early Childhood & Family Studies (ECFS) | UW College of Education
-Early Childhood and Family Studies
-Early childhood teaching
-Early Learning
-Early Learning Equity Scholarship
+You will be submitting TWO applications: one to join the University of Washington and one to join the ECFS program.
+Gather all required materials for UW admissions
+Gather all required materials for ECFS
+Connect with our Lead Admissions & Outreach Adviser to help you through the process
+Feel confident in the process by attending Transfer Thursday, an informational event run by the UW Office of Admissions. We also invite you to attend one of our weekly undergraduate majors and minor information sessions.
+After submitting your enrollment deposit to the university, admitted transfer students will attend the required Transfer Advising & Orientation hosted by UW First Year Programs. This is a chance for you to meet with an ECFS adviser and create a plan to successfully complete the course and internship requirements.
+Advising
+College of Education - Prospective Students
+Prospective students interested in learning more about admission requirements, scholarships, or transferring to UW, are encouraged to schedule an admission advising appointment with:
+Alejandra Baires-Ramirez , Lead Admission & Outreach Adviser
+Ramon Concepcion , Assistant Director for Undergraduate Academic and Student Services
 Early Learning Equity Scholarship - Prospective Students
-Earn your Bachelor’s degree and study foundational education concepts while concentrating on your specific interests. Prepare yourself for rewarding careers or further graduate studies in education.
-Earn your bachelor&#039;s degree and become a catalyst for change, equipped to transform communities and organizations through education and human development.
-Earn your bachelor&#039;s degree to pursue careers as educators and advocates for equitable and just early learning.
-Earning your bachelor’s degree in Early Childhood & Family Studies opens doors to various exciting paths:
+ECFS prospective students interested in learning more about the scholarship are welcome to meet with:
+Savanna Carreño , Early Learning Scholarship Community Liaison
+ECFS Prospective and Current Students
+All current and prospective ECFS students who are ready to declare or learn more about the major are welcome schedule an academic advising appointment with:
+Waleed Khan , Academic Adviser for Undergraduate Programs
+Curriculum
+Overview
+As an ECFS student, you'll explore careers in early childhood education, and engage in courses that focus on research, curriculum, policy, language and literacy, mathematics, science, and technology. Additionally, you'll participate in extended community-based learning experiences, working directly with children in preschool classrooms or childcare centers. This unique combination of academic coursework and practical application will help you develop a comprehensive and culturally relevant understanding of child development and effective teaching strategies. As we engage in (un)learning, you will be challenged to envision systems that are more equitable and just and engage in teaching and advocacy work toward that vision.
+Our program frameworks emphasize creating engaging interactions and environments that support individualized instruction and culturally responsive anti-bias anti-racist education. This program prepares you to be an early childhood professional who understands and actively works to dismantle systems of oppression.
+Courses
+A minimum of 79-81 credits are needed to meet the requirements for the ECFS major. You will work with your advisor to ensure that your graduation plan includes courses required to earn your degree at UW.
+Download degree requirements PDF
+Required for admissions (3 credits)
 ECFS 200 Introduction to Early Childhood & Family Studies (3 credits with a grade of 2.0 or higher required)
+You must also earn 2.0 in English composition course
+Major requirements
+All of the following
 ECFS 301 Early Childhood Curriculum (5)
 ECFS 303 Exploring the Landscape of the Early Learning Profession(3)
 ECFS 311 Teaching from the Inside Out: Being a Resilient Educator (3)
 ECFS 312 Positive Behavioral Support in Early Childhood (3)
-ECFS 315 Parenting and Child Development
-ECFS 320 Childhood in Cultural Context: Theory and Practice
 ECFS 321 Engaging Interactions and Environments (3)
 ECFS 400 Child Observation & Assessment (5)
 ECFS 401 Understanding Research in ECFS (5)
 ECFS 402 Social Policy & Young Children and Families (5)
 ECFS 410 Language and Literacy in Preschool (5)
 ECFS 411 Young Children’s Mathematics & Science (5)
-ECFS 419 Family & Community Influences on the Young Child
-ECFS 454 Senior Project I (2 CR)
-ECFS 455 Senior Project II (2 CR)
-ECFS 456 Senior Project III (2 CR)
-ECFS prepares you for a rewarding career in early childhood education. We invite you to join us as advocates for children and families!
-ECFS Prospective and Current Students
-ECFS prospective students interested in learning more about the scholarship are welcome to meet with:
-ECFS supports the application of theory and research into practice by:
 EDPSY 302 Child Development and Learning (5)
 EDPSY 406 Learning and teaching in Our Changing World (5)
+EDUC 251 Seeking Educational Equity & Diversity (5)
+IECMH 432 Infants & Children: Risk & Resilience (5)
+One of the following (5)
+ECFS 315 Parenting and Child Development
+ECFS 419 Family & Community Influences on the Young Child
+ECFS 320 Childhood in Cultural Context: Theory and Practice
+One of the following (3-5)
 EDSPE 304 Disability & Ableism in Education
 EDSPE 414 Issues and Trends in Inclusive Early Childhood Education
 EDSPE 427 Introduction to Applied Behavioral Analysis
 EDSPE 435 Introduction to Autism Spectrum Disorders
-EDUC 251 Seeking Educational Equity & Diversity (5)
-Education Specialist (Ed.S)
-Education Studies
-Education, Communities and Organizations
-EduTalks
-Eligible ECFS students can now apply for the new Early Learning Equity Scholarship and get up to the full cost of attendance covered for two years!
-Employee Self Service
-Engaging with colleagues in communities of practice
-English composition (5 credits)
-Enter search text
-Estimated cost for out-of-state students: $41,997 per year
-Estimated cost for Washington state residents: $12,643 per year
-Estimated Costs
-Estimates are subject to change due and may differ due to course load and summer quarter enrollment. Estimates include some fees such as building fee, technology fee, U-Pass, etc. Fees such as textbooks are not included.
-Events
-Facebook
-Faculty & Staff
-Faculty and Staff Directory
-Feel confident in the process by attending Transfer Thursday, an informational event run by the UW Office of Admissions. We also invite you to attend one of our weekly undergraduate majors and minor information sessions.
-Fieldwork
-Find a Program
-For Faculty & Staff
-For Students
-For You
-Format
-Full-time
-Funding & Scholarships
-Funding, Aid and Scholarships
-Gail E. Joseph
-Gather all required materials
-Gather all required materials for ECFS
-Gather all required materials for UW admissions
-General education requirements
-General Questions: edinfo@uw.edu &bull; Website Questions: coe@uw.edu
-Give to CoE
-Giving
-Graduate
-Graduate Admissions
-Graduate studies in K-12 education, speech and hearing sciences, occupational therapy, special education, psychology and more!
-Have you experienced, witnessed, or learned about injustices in your educational journey? Please describe. How will the ECFS Major help you understand these injustices?
-Helpful Links
-Holly Schindler
-Home
-How to foster positive and engaging learning environments for young children
-How to Give
-Husky Card
-IECMH 432 Infants & Children: Risk & Resilience (5)
-If you are interested in the ECFS major, be sure to select the major on your UW Admissions application. We require ECFS 200 to be completed for a student to be fully-admitted to the major. Transfer students who select the ECFS major on their UW Admissions application will have a seat in ECFS 200 held for them.
-If you're a current UW student, it's best to begin the program during your sophomore year and no later than the autumn quarter of your junior year.
-Implement culturally responsive and sustaining pedagogies
-In addition to your ECFS credits, you'll also need the following general education credits to graduate from the UW. You will be able to meet many of these credits within the ECFS program.
-In ECFS, you'll acquire a range of valuable knowledge and skills that will set you apart.
-In the News
-Include transcripts from all institutions you have previously attended
-Instagram
-Involvement in shaping early childhood policies and initiatives
-It is highly recommended that students in the program complete the Federal Student Aid (FAFSA) or Washington Application for State Financial Aid (WASFA) application. These applications are necessary for various forms of financial aid, including scholarships and loans.
-It will take a minimum of 7 quarters to complete the program. To graduate from the University of Washington, you must have a minimum of 180 quarterly credits. How long it takes to graduate depends on a number of factors, including how many credits you are transferring in with and how many credits you take per quarter as an ECFS student.
-Jodi Burrus Newman
-Join mailing list
-Join our next info session: Apr, 16 2026 | 3:00 PM
-Katherine Lewis
-Knowledge
-Lead Admissions & Outreach Adviser
-Leadership
-Leadership roles in childcare centers and other early learning spaces
-Learn how to create inclusive and thriving learning environments for young children and their families. With our flexible online program, you can continue to live and work in your community while earning your bachelor’s degree.
-Learn more
-Let&#039;s connect
-Libraries
-LinkedIn
-Login
-Lynn Dietrich
-Magazine
-Main navigation
-Major in early childhood education
-Major requirements
-Make a Gift
-Making Learning Come Alive
-Maps
-Master in Teaching (M.I.T.)
-Master of Education (M.Ed.)
-Materials
-Menu
-MyUW
-Nancy Hertzog
-Natural Sciences (15 credits)
-News
-News & Media Contact
-News Features
-Newsroom
-Non-Matriculated & Graduate Non-Matriculated Students
-Offices & Departments
-On-campus
-One of the following (3-5)
-One of the following (5)
-Online
-Our curriculum is rooted in the belief that all young children and their families have the right to equitable opportunities to learn and develop in a just and culturally-thriving society. You'll have the opportunity to reflect on your identities and how they are influenced by larger power systems, encouraging critical thinking about early learning, equity, and community.
-Our program frameworks emphasize creating engaging interactions and environments that support individualized instruction and culturally responsive anti-bias anti-racist education. This program prepares you to be an early childhood professional who understands and actively works to dismantle systems of oppression.
-Our students participate in two types of experiential learning:
-Our Vision
-Overview
-Partner with children, families and communities
-Prefer a one-on-one experience? Prospective students can schedule an admissions advising appointment .
-Professional Learning
-Professor
-Program Faculty
-Program is open to all eligible persons regardless of race, sex or other identity.
-Program Staff
-Promote skills in language, literacy and STEM using age and developmentally appropriate practices
-Prospective students interested in learning more about admission requirements, scholarships, or transferring to UW, are encouraged to schedule an admission advising appointment with:
-Provide individualized instruction and behavioral support
-Question current values, practices, and policies rooted in unjust systems
-Quick Links
-Ramon Concepcion
-Ramon Concepcion , Assistant Director for Undergraduate Academic and Student Services
-Read our equity statement
-Reasoning (4-5 credits)
-Register
-Required for admissions (3 credits)
-Requirements
-Research
-Research Areas
-Research Centers & Initiatives
-Research Support
-Savanna Carreño , Early Learning Scholarship Community Liaison
-Schedule a prospective student appointment to learn more about the major!
-Search scope
-Self-reflect on biases and socialization experiences to grow personally and professionally
 Senior capstone
-Skills
-Skip to main content
+ECFS 454 Senior Project I (2 CR)
+ECFS 455 Senior Project II (2 CR)
+ECFS 456 Senior Project III (2 CR)
+General education requirements
+In addition to your ECFS credits, you'll also need the following general education credits to graduate from the UW. You will be able to meet many of these credits within the ECFS program.
+English composition (5 credits)
+Writing (10 credits)
+Diversity (3-5 credits)
+Reasoning (4-5 credits)
+Arts & Humanities (15 credits)
 Social Studies (15 credits)
-Social/mental health services and parent and family support programs
-Soojin Oh Park
-Special Education Endorsement
-Starting in your sophomore year is recommended
-Strategizing approaches for individualized and culturally responsive instruction
-Submit a Story
-Submit your application
-Submitting
-Support
-Teacher Appreciation
-Teacher Education
-Teaching Professor
-Technology Center
-The course can be in progress when you apply, but must be completed before the ECFS begins
-The Early Childhood and Family Studies Teaching and Learning (ECFS) program is designed to offer multidisciplinary and critical perspectives of early childhood development, early learning and family-centered education of young children. Through a combination of coursework and hands-on experiences in early learning settings, you will develop the necessary knowledge and skills to create inclusive and equitable learning environments and curriculum for young children.
-The ECFS major focuses on the educational experiences of children from birth to age 8 and their families. Why are you interested in teaching?
-Thinstrip menu
-This process is only for current UW students. If you are a transfer student, follow the steps outlined in the Transferring section.
-Through this one application, undergraduate students can apply for multiple scholarships worth between $900 - $5,000.
-Time commitment
-Transfer students need to submit an unofficial transcript with their ECFS application:
-Transfer students will complete ECFS 200 after joining UW
-Transferring
-Transforming inequitable systems
-Tuition & Costs
-Twitter
-Undergraduate
-Undergraduate Admissions
-Undergraduate General Scholarships
-Undergraduate Programs Manager
-University of Washington
-University of Washington College of Education • 2012 Skagit Lane, Miller Hall • Box 353600 • Seattle, WA 98195-3600
-Upcoming deadline
-UW Bothell
-UW College of Education
-UW College of Education, one of the nation's top 15 education schools, offers undergraduate programs that prepare students for a variety of professions that incorporate teaching and learning. Numerous service learning and research opportunities are integrated into classes taught by our nationally-recognized faculty.
-UW Facebook
-UW Medicine
-UW Tacoma
-UW Today
-UW Twitter
-Videos
+Natural Sciences (15 credits)
+Area of Inquiry (15 credits)
+Fieldwork
+We believe early childhood professionals learn by applying knowledge through action, observation and reflection. ECFS students take part in Community Based Learning (CBL), a place-based education, centering learning in the physical environment, local culture, history, language, and with the people of a community.
+You will have many opportunities to integrate your classroom experience into your CBL Experience. You will build on your cultural and contextual knowledge of children’s learning through real-world opportunities to apply your knowledge and skills in early learning settings.
+Our students participate in two types of experiential learning:
+Community-Based Learning Experience : Weekly time spent engaging with young children through your work or volunteering in an early learning setting is required for many courses.
+Applied assignments: Examples of applied assignments include videos of your practice, environment or child observations, case studies, and an interview with a professional or parent. These may be completed at your Community-Based Learning Experience site.
+Already working or volunteering with children in an early learning setting? You can complete the community-based learning experience at your current job! If you need support finding a setting, our CBL coordinator will help you find a place to do your community-based learning.
 View the ECE Community-Based Learning Guide
+Completion
+It will take a minimum of 7 quarters to complete the program. To graduate from the University of Washington, you must have a minimum of 180 quarterly credits. How long it takes to graduate depends on a number of factors, including how many credits you are transferring in with and how many credits you take per quarter as an ECFS student.
+Costs and funding
+Estimated Costs
+We are a tuition-based program. Estimated tuition rates are based on your residency:
+Estimated cost for Washington state residents: $12,643 per year
+Estimated cost for out-of-state students: $41,997 per year
+Estimates are subject to change due and may differ due to course load and summer quarter enrollment. Estimates include some fees such as building fee, technology fee, U-Pass, etc. Fees such as textbooks are not included.
 View the UW tuition dashboard →
 Visit the Office of Planning & Budgeting →
-Waleed Khan , Academic Adviser for Undergraduate Programs
+Funding & Scholarships
+It is highly recommended that students in the program complete the Federal Student Aid (FAFSA) or Washington Application for State Financial Aid (WASFA) application. These applications are necessary for various forms of financial aid, including scholarships and loans.
+<!-- CACHE TAGS:
+* node_view
+* node:21729
+* config:filter.format.full_html
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21729
+* config:filter.format.full_html
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21729
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21729
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21729
+* teaser
+-->
+Early Learning Equity Scholarship
+Early Care & Education (ECE) and Early Childhood & Family Studies (ECFS) students can be awarded up to the cost of attendance.
+<!-- CACHE TAGS:
+* node_view
+* node:501
+* config:filter.format.basic_html
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:501
+* config:filter.format.basic_html
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 501
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:501
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 501
+* teaser
+-->
+Undergraduate General Scholarships
+Through this one application, undergraduate students can apply for multiple scholarships worth between $900 - $5,000.
+Transforming inequitable systems
+Our curriculum is rooted in the belief that all young children and their families have the right to equitable opportunities to learn and develop in a just and culturally-thriving society. You'll have the opportunity to reflect on your identities and how they are influenced by larger power systems, encouraging critical thinking about early learning, equity, and community.
+Read our equity statement
+After graduation
+Earning your bachelor’s degree in Early Childhood & Family Studies opens doors to various exciting paths:
+Early childhood teaching
+Leadership roles in childcare centers and other early learning spaces
+Social/mental health services and parent and family support programs
+Involvement in shaping early childhood policies and initiatives
+Graduate studies in K-12 education, speech and hearing sciences, occupational therapy, special education, psychology and more!
 Want to become a PK -12 teacher? ECFS graduates do not earn a teaching certificate, but you will be prepared to apply to many of our graduate-level programs that will support your career goals, including our teacher preparation programs.
-We are a tuition-based program. Estimated tuition rates are based on your residency:
-We believe early childhood professionals learn by applying knowledge through action, observation and reflection. ECFS students take part in Community Based Learning (CBL), a place-based education, centering learning in the physical environment, local culture, history, language, and with the people of a community.
-We believe that every child in every school deserves an outstanding education.
-We welcome transfer students to our program! As a transfer student, you will have some additional steps and required materials to your application process.
-We're so excited that you're thinking about joining our undergrad program! Join our mailing list to learn about upcoming information sessions, deadlines, scholarships and more!
-What you can earn
-What you&#039;ll learn
-Writing (10 credits)
-Writing curricula that centers children’s lived experiences and funds of knowledge
-You can begin in autumn or winter quarter
-You can start the ECFS program in autumn quarter or winter quarter. For autumn quarter admission, apply March 1 - April 15. For winter quarter admission, apply September 1 - October 15. We recommend starting your application process as early as possible due to the different steps and requirements.
-You must also earn 2.0 in English composition course
-You must be graded 2.0 or higher
-You must upload your transcript during the application process
-You will be submitting TWO applications: one to join the University of Washington and one to join the ECFS program.
-You will have many opportunities to integrate your classroom experience into your CBL Experience. You will build on your cultural and contextual knowledge of children’s learning through real-world opportunities to apply your knowledge and skills in early learning settings.
-YouTube
+Program Faculty
+<!-- CACHE TAGS:
+* node_view
+* node:21692
+* config:filter.format.full_html
+* taxonomy_term:1151
+* config:image.style.media_library
+* file:16600
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21692
+* config:filter.format.full_html
+* taxonomy_term:1151
+* config:image.style.media_library
+* file:16600
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21692
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21692
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21692
+* teaser
+-->
+Lynn Dietrich
+Teaching Professor
+Assistant Dean for Undergraduate Programs
+<!-- CACHE TAGS:
+* node_view
+* node:21644
+* taxonomy_term:1123
+* config:image.style.media_library
+* file:15063
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21644
+* taxonomy_term:1123
+* config:image.style.media_library
+* file:15063
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21644
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21644
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21644
+* teaser
+-->
+Nancy Hertzog
+Professor
+<!-- CACHE TAGS:
+* node_view
+* node:21657
+* taxonomy_term:1125
+* config:image.style.media_library
+* file:15117
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21657
+* taxonomy_term:1125
+* config:image.style.media_library
+* file:15117
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21657
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21657
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21657
+* teaser
+-->
+Katherine Lewis
+Associate Professor
+<!-- CACHE TAGS:
+* node_view
+* node:21649
+* taxonomy_term:1125
+* config:image.style.media_library
+* file:15108
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21649
+* taxonomy_term:1125
+* config:image.style.media_library
+* file:15108
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21649
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21649
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21649
+* teaser
+-->
+Brinda India Jegatheesan
+Associate Professor
+<!-- CACHE TAGS:
+* node_view
+* node:21652
+* taxonomy_term:1123
+* config:image.style.media_library
+* file:15541
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21652
+* taxonomy_term:1123
+* config:image.style.media_library
+* file:15541
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21652
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21652
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21652
+* teaser
+-->
+Gail E. Joseph
+Professor
+<!-- CACHE TAGS:
+* node_view
+* node:21683
+* config:filter.format.full_html
+* taxonomy_term:1127
+* config:image.style.media_library
+* file:15065
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21683
+* config:filter.format.full_html
+* taxonomy_term:1127
+* config:image.style.media_library
+* file:15065
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21683
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21683
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21683
+* teaser
+-->
+Jodi Burrus Newman
+Associate Teaching Professor
+Chair, Learning Sciences & Human Development
+<!-- CACHE TAGS:
+* node_view
+* node:21697
+* taxonomy_term:1124
+* config:image.style.media_library
+* file:15068
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21697
+* taxonomy_term:1124
+* config:image.style.media_library
+* file:15068
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21697
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21697
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21697
+* teaser
+-->
+Soojin Oh Park
+Assistant Professor
+<!-- CACHE TAGS:
+* node_view
+* node:21668
+* taxonomy_term:1125
+* config:image.style.media_library
+* file:15147
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21668
+* taxonomy_term:1125
+* config:image.style.media_library
+* file:15147
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21668
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21668
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21668
+* teaser
+-->
+Holly Schindler
+Associate Professor
+Program Staff
+<!-- CACHE TAGS:
+* node_view
+* node:24964
+* config:image.style.media_library
+* file:15502
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:24964
+* config:image.style.media_library
+* file:15502
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 24964
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:24964
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 24964
+* teaser
+-->
+Camille Lemire
+Undergraduate Programs Manager
+<!-- CACHE TAGS:
+* node_view
+* node:24962
+* config:image.style.media_library
+* file:15727
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:24962
+* config:image.style.media_library
+* file:15727
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 24962
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:24962
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* user.permissions
+* languages:language_interface
+* theme
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 24962
+* teaser
+-->
+Alejandra Baires-Ramirez
+Lead Admissions & Outreach Adviser
+<!-- CACHE TAGS:
+* node_view
+* node:21877
+* config:image.style.media_library
+* file:15635
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE TAGS:
+* node_view
+* node:21877
+* config:image.style.media_library
+* file:15635
+-->
+<!-- CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+* 21877
+* teaser
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:21877
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+* 21877
+* teaser
+-->
+Ramon Concepcion
+Assistant Director for Undergraduate Academic and Student Services
+<!-- CACHE TAGS:
+* node_view
+* node:21848
+* config:image.style.media_library

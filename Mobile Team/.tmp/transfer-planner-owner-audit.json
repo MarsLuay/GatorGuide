@@ -1,22 +1,24 @@
 {
-  "generatedAt": "2026-04-16T21:11:21.375Z",
+  "generatedAt": "2026-04-17T23:37:15.272Z",
   "totalOwners": 225,
   "ownersWithErrorsCount": 0,
-  "ownersWithWarningsCount": 1,
-  "ownersWithSourceOnlyUwCourseCodesCount": 118,
-  "totalSourceOnlyUwCourseCodes": 2072,
+  "ownersWithWarningsCount": 5,
+  "ownersWithSourceOnlyUwCourseCodesCount": 1,
+  "totalSourceOnlyUwCourseCodes": 6,
   "issueCounts": {
     "error": 0,
-    "warning": 1
+    "warning": 5
   },
   "symptomIssueCounts": {
     "error": 0,
-    "warning": 1
+    "warning": 5
   },
   "countsByIssueCode": {
+    "no-parsed-uw-course-codes": 4,
     "used-snapshot-fallback": 1
   },
   "countsBySymptomCode": {
+    "no-parsed-uw-course-codes": 4,
     "used-snapshot-fallback": 1
   },
   "promotedOwnerInvariantViolationCount": 0,
@@ -30,7 +32,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -51,7 +53,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
-      "sourceOnlyUwCourseCodeCount": 30,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -72,7 +74,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
-      "sourceOnlyUwCourseCodeCount": 30,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -93,17 +95,31 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
-      "sourceOnlyUwCourseCodeCount": 26,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
-      "rootIssues": [],
-      "symptomIssues": []
+      "rootIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ],
+      "symptomIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-business-administration-accounting",
@@ -114,7 +130,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 41,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -135,7 +151,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
-      "sourceOnlyUwCourseCodeCount": 33,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -156,7 +172,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 35,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -177,7 +193,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-      "sourceOnlyUwCourseCodeCount": 28,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -198,7 +214,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
-      "sourceOnlyUwCourseCodeCount": 31,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -219,7 +235,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 31,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -240,7 +256,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 31,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -261,7 +277,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 31,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -281,7 +297,7 @@
       "title": "Computer Engineering",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
+      "primarySourceUrl": "https://www.uwb.edu/stem/wp-content/uploads/sites/31/2025/01/B-Comp-E-Curriculum-AY24_25.pdf",
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
@@ -303,7 +319,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -324,7 +340,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -345,7 +361,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -366,7 +382,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts",
-      "sourceOnlyUwCourseCodeCount": 7,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -429,7 +445,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 37,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -450,7 +466,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
-      "sourceOnlyUwCourseCodeCount": 22,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -471,17 +487,31 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-      "sourceOnlyUwCourseCodeCount": 50,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
-      "rootIssues": [],
-      "symptomIssues": []
+      "rootIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ],
+      "symptomIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-bothell-educational-studies-elementary-education",
@@ -492,7 +522,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 30,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -513,7 +543,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
-      "sourceOnlyUwCourseCodeCount": 31,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -534,7 +564,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
-      "sourceOnlyUwCourseCodeCount": 10,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -555,7 +585,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -576,7 +606,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
-      "sourceOnlyUwCourseCodeCount": 14,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -597,7 +627,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
-      "sourceOnlyUwCourseCodeCount": 4,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -639,7 +669,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
-      "sourceOnlyUwCourseCodeCount": 10,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -660,7 +690,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio",
-      "sourceOnlyUwCourseCodeCount": 9,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -681,7 +711,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
-      "sourceOnlyUwCourseCodeCount": 25,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -702,7 +732,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
-      "sourceOnlyUwCourseCodeCount": 5,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -723,7 +753,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 33,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -765,7 +795,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
-      "sourceOnlyUwCourseCodeCount": 15,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -786,7 +816,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
-      "sourceOnlyUwCourseCodeCount": 2,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -807,7 +837,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
-      "sourceOnlyUwCourseCodeCount": 2,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -828,7 +858,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 33,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -849,7 +879,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 33,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -870,7 +900,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
-      "sourceOnlyUwCourseCodeCount": 22,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -891,7 +921,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
-      "sourceOnlyUwCourseCodeCount": 4,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -912,7 +942,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
-      "sourceOnlyUwCourseCodeCount": 20,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -933,7 +963,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.aa.washington.edu/students/academics/bsaae",
-      "sourceOnlyUwCourseCodeCount": 21,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -954,7 +984,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://aes.washington.edu/ba-american-ethnic-studies",
-      "sourceOnlyUwCourseCodeCount": 13,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -975,7 +1005,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://ais.washington.edu/ba-american-indian-studies",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1059,7 +1089,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1185,7 +1215,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 20,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1206,7 +1236,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://astro.washington.edu/timeline-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 2,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1353,7 +1383,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
-      "sourceOnlyUwCourseCodeCount": 19,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1374,7 +1404,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
-      "sourceOnlyUwCourseCodeCount": 19,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1395,7 +1425,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 19,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1563,7 +1593,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1584,7 +1614,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-      "sourceOnlyUwCourseCodeCount": 61,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1647,7 +1677,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
-      "sourceOnlyUwCourseCodeCount": 22,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1668,7 +1698,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
-      "sourceOnlyUwCourseCodeCount": 22,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1689,7 +1719,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://asian.washington.edu/ba-chinese",
-      "sourceOnlyUwCourseCodeCount": 11,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1836,7 +1866,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://cinema.washington.edu/ba-comparative-literature",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1898,8 +1928,8 @@
       "title": "Computer Engineering",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 75,
+      "primarySourceUrl": "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf",
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1920,7 +1950,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 76,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1983,7 +2013,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://scandinavian.washington.edu/ba-danish",
-      "sourceOnlyUwCourseCodeCount": 5,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2025,7 +2055,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://disabilitystudies.washington.edu/DS_major",
-      "sourceOnlyUwCourseCodeCount": 7,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2067,7 +2097,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2319,7 +2349,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 30,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2361,7 +2391,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
-      "sourceOnlyUwCourseCodeCount": 33,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2424,7 +2454,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.deohs.washington.edu/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2529,7 +2559,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://scandinavian.washington.edu/ba-finnish",
-      "sourceOnlyUwCourseCodeCount": 10,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2550,7 +2580,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/",
-      "sourceOnlyUwCourseCodeCount": 45,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2676,7 +2706,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://german.washington.edu/german-studies",
-      "sourceOnlyUwCourseCodeCount": 3,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2739,7 +2769,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://history.washington.edu/major",
-      "sourceOnlyUwCourseCodeCount": 140,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2781,7 +2811,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.hcde.washington.edu/bs/requirements/2024",
-      "sourceOnlyUwCourseCodeCount": 26,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2844,7 +2874,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 4,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2907,7 +2937,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://asian.washington.edu/ba-japanese",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2949,7 +2979,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-      "sourceOnlyUwCourseCodeCount": 9,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2970,7 +3000,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://asian.washington.edu/ba-korean",
-      "sourceOnlyUwCourseCodeCount": 15,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3033,7 +3063,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-      "sourceOnlyUwCourseCodeCount": 11,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3054,7 +3084,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
-      "sourceOnlyUwCourseCodeCount": 34,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3075,7 +3105,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://linguistics.washington.edu/ba-linguistics",
-      "sourceOnlyUwCourseCodeCount": 10,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3095,8 +3125,8 @@
       "title": "Marine Biology",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
-      "sourceOnlyUwCourseCodeCount": 13,
+      "primarySourceUrl": "https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf",
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3117,7 +3147,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://mse.washington.edu/current/undergrad/courses",
-      "sourceOnlyUwCourseCodeCount": 28,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3138,7 +3168,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
-      "sourceOnlyUwCourseCodeCount": 2,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3159,7 +3189,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.me.washington.edu/students/ug/requirements",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3243,7 +3273,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
-      "sourceOnlyUwCourseCodeCount": 17,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3327,7 +3357,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://scandinavian.washington.edu/ba-norwegian",
-      "sourceOnlyUwCourseCodeCount": 11,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3411,7 +3441,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://music.washington.edu/bachelor-music-organ",
-      "sourceOnlyUwCourseCodeCount": 3,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3432,7 +3462,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://music.washington.edu/bachelor-music-percussion-performance",
-      "sourceOnlyUwCourseCodeCount": 13,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3474,17 +3504,31 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 22,
+      "sourceOnlyUwCourseCodeCount": 6,
       "issueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
-      "rootIssues": [],
-      "symptomIssues": []
+      "rootIssues": [
+        {
+          "severity": "warning",
+          "code": "used-snapshot-fallback",
+          "message": "Requirement source parsing fell back to a cached snapshot after live-source throttling and still needs attention.",
+          "details": "HTTP 429 Too Many Requests"
+        }
+      ],
+      "symptomIssues": [
+        {
+          "severity": "warning",
+          "code": "used-snapshot-fallback",
+          "message": "Requirement source parsing fell back to a cached snapshot after live-source throttling and still needs attention.",
+          "details": "HTTP 429 Too Many Requests"
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-piano-b-m",
@@ -3495,7 +3539,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://music.washington.edu/bachelor-music-piano",
-      "sourceOnlyUwCourseCodeCount": 10,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3519,28 +3563,14 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "used-snapshot-fallback",
-          "message": "Requirement source parsing used a cached snapshot fallback.",
-          "details": "HTTP 429 Too Many Requests"
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "used-snapshot-fallback",
-          "message": "Requirement source parsing used a cached snapshot fallback.",
-          "details": "HTTP 429 Too Many Requests"
-        }
-      ]
+      "rootIssues": [],
+      "symptomIssues": []
     },
     {
       "ownerId": "uw-seattle-psychology",
@@ -3631,7 +3661,7 @@
       "ownerKey": "uw-seattle-public-health-global-health::ba-global-health-option",
       "planId": "uw-seattle-public-health-global-health",
       "pathwayId": "ba-global-health-option",
-      "title": "Public Health - Global Health - [Page 1] PUBLIC HEALTH - GLOBAL HEALTH MAJOR Public Health-Global Health (PH-GH) is a school-wide liberal education major , leading to a Bachelor of Arts or Bachelor of Science, which uses public health questions, concepts and tools to help students develop competencies in assessment & measurement, communication, environment, ethics & social justice, natural science, population health, policy & politics, and social science with particular emphasis on collaboration and critical thinking across these domains. Graduates move on to a range of career and education options in public health, health professions, health sciences, and law, as well as business, economics, education, and social and behavioral sciences. Admission to this major is capacity-constrained and offered twice a year for autumn and winter quarters. Applications are evaluated with a holistic approach; considering overall academic record, grades in relevant coursework selection of and preparation for the BA or BS, ability to make satisfactory progress towards degree, and potential contributions to the diversity of the cohort. Upper Divison Admission Complete the following by the deadline to be considered: 1. Min. 60 college credits 2. Min. 2.5 Cumulative GPA 3. Min. grade of 2.0 in 5 credits of English composition 4. Min. grade of 2.5 in one intro public health course from the following: ENV H 111, EPI 201, EPI 220, G H 101, HSERV 100, NUTR 200, PHG 200 or one 5-credit course from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, SOC 5. For BA path students, min. grade of 2.5 in one natural science. Refer to back. 6. For BS path students, min. average grade of 2.5 in at least two courses of the same year-long sequence of biology or chemistry. Refer to PH-GH prerequisites website for alternative sequences. Bachelors of Arts (BA): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing sociocultural aspects. Bachelors of Science (BS): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing the natural sciences. CONTACT Hans Rosling Center for Population Health phgh@uw.edu | 206-221-4561 https://sph.washington.edu/phgh/advising ADMISSION Degree options are available for students in the major who seek more directed discipline competencies. > Global Health (BA Option; BS Option) Focuses on major challenges and opportunities in global health, discussing determinants of global health and justice-based approaches to promoting health of vulnerable peoples worldwide. > Health Education & Promotion (BA Option) Explores the development of strategies to improve health knowledge, attitudes, skills and behaviors. Aligns with competencies required for the Certified Health Education Specialist (CHES) credential examination. > Nutritional Sciences (BS Option) Prepares students for potential graduate studies in nutritional sciences, including programs that lead to a Registered Dietitian credential. In addition to major requirements outlined on the back page, students complete general education requirements for the School of Public Health. Satisfactory grades earned during Extraordinary Circumstances Quarters count toward admissions and degree requirements. Students who enter the major through upper division admission apply when they are graduating within the next 2 years. AUT 2024 Degree Requirements Effective AUT 2024 (Purple Curriculum) DEGREE REQUIREMENTS PH-GH PATHWAYS PATHWAY OPTIONS SCAN TO APPLY",
+      "title": "Public Health - Global Health - [Page 1] > Nutritional Sciences (BS Option)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
@@ -3652,7 +3682,7 @@
       "ownerKey": "uw-seattle-public-health-global-health::ba-health-education-promotion-option",
       "planId": "uw-seattle-public-health-global-health",
       "pathwayId": "ba-health-education-promotion-option",
-      "title": "Public Health - Global Health - [Page 1] PUBLIC HEALTH - GLOBAL HEALTH MAJOR Public Health-Global Health (PH-GH) is a school-wide liberal education major , leading to a Bachelor of Arts or Bachelor of Science, which uses public health questions, concepts and tools to help students develop competencies in assessment & measurement, communication, environment, ethics & social justice, natural science, population health, policy & politics, and social science with particular emphasis on collaboration and critical thinking across these domains. Graduates move on to a range of career and education options in public health, health professions, health sciences, and law, as well as business, economics, education, and social and behavioral sciences. Admission to this major is capacity-constrained and offered twice a year for autumn and winter quarters. Applications are evaluated with a holistic approach; considering overall academic record, grades in relevant coursework selection of and preparation for the BA or BS, ability to make satisfactory progress towards degree, and potential contributions to the diversity of the cohort. Upper Divison Admission Complete the following by the deadline to be considered: 1. Min. 60 college credits 2. Min. 2.5 Cumulative GPA 3. Min. grade of 2.0 in 5 credits of English composition 4. Min. grade of 2.5 in one intro public health course from the following: ENV H 111, EPI 201, EPI 220, G H 101, HSERV 100, NUTR 200, PHG 200 or one 5-credit course from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, SOC 5. For BA path students, min. grade of 2.5 in one natural science. Refer to back. 6. For BS path students, min. average grade of 2.5 in at least two courses of the same year-long sequence of biology or chemistry. Refer to PH-GH prerequisites website for alternative sequences. Bachelors of Arts (BA): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing sociocultural aspects. Bachelors of Science (BS): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing the natural sciences. CONTACT Hans Rosling Center for Population Health phgh@uw.edu | 206-221-4561 https://sph.washington.edu/phgh/advising ADMISSION Degree options are available for students in the major who seek more directed discipline competencies. > Global Health (BA Option; BS Option) Focuses on major challenges and opportunities in global health, discussing determinants of global health and justice-based approaches to promoting health of vulnerable peoples worldwide. > Health Education & Promotion (BA Option) Explores the development of strategies to improve health knowledge, attitudes, skills and behaviors. Aligns with competencies required for the Certified Health Education Specialist (CHES) credential examination. > Nutritional Sciences (BS Option) Prepares students for potential graduate studies in nutritional sciences, including programs that lead to a Registered Dietitian credential. In addition to major requirements outlined on the back page, students complete general education requirements for the School of Public Health. Satisfactory grades earned during Extraordinary Circumstances Quarters count toward admissions and degree requirements. Students who enter the major through upper division admission apply when they are graduating within the next 2 years. AUT 2024 Degree Requirements Effective AUT 2024 (Purple Curriculum) DEGREE REQUIREMENTS PH-GH PATHWAYS PATHWAY OPTIONS SCAN TO APPLY",
+      "title": "Public Health - Global Health - [Page 1] > Nutritional Sciences (BS Option)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
@@ -3673,7 +3703,7 @@
       "ownerKey": "uw-seattle-public-health-global-health::bs-global-health-option",
       "planId": "uw-seattle-public-health-global-health",
       "pathwayId": "bs-global-health-option",
-      "title": "Public Health - Global Health - [Page 1] PUBLIC HEALTH - GLOBAL HEALTH MAJOR Public Health-Global Health (PH-GH) is a school-wide liberal education major , leading to a Bachelor of Arts or Bachelor of Science, which uses public health questions, concepts and tools to help students develop competencies in assessment & measurement, communication, environment, ethics & social justice, natural science, population health, policy & politics, and social science with particular emphasis on collaboration and critical thinking across these domains. Graduates move on to a range of career and education options in public health, health professions, health sciences, and law, as well as business, economics, education, and social and behavioral sciences. Admission to this major is capacity-constrained and offered twice a year for autumn and winter quarters. Applications are evaluated with a holistic approach; considering overall academic record, grades in relevant coursework selection of and preparation for the BA or BS, ability to make satisfactory progress towards degree, and potential contributions to the diversity of the cohort. Upper Divison Admission Complete the following by the deadline to be considered: 1. Min. 60 college credits 2. Min. 2.5 Cumulative GPA 3. Min. grade of 2.0 in 5 credits of English composition 4. Min. grade of 2.5 in one intro public health course from the following: ENV H 111, EPI 201, EPI 220, G H 101, HSERV 100, NUTR 200, PHG 200 or one 5-credit course from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, SOC 5. For BA path students, min. grade of 2.5 in one natural science. Refer to back. 6. For BS path students, min. average grade of 2.5 in at least two courses of the same year-long sequence of biology or chemistry. Refer to PH-GH prerequisites website for alternative sequences. Bachelors of Arts (BA): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing sociocultural aspects. Bachelors of Science (BS): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing the natural sciences. CONTACT Hans Rosling Center for Population Health phgh@uw.edu | 206-221-4561 https://sph.washington.edu/phgh/advising ADMISSION Degree options are available for students in the major who seek more directed discipline competencies. > Global Health (BA Option; BS Option) Focuses on major challenges and opportunities in global health, discussing determinants of global health and justice-based approaches to promoting health of vulnerable peoples worldwide. > Health Education & Promotion (BA Option) Explores the development of strategies to improve health knowledge, attitudes, skills and behaviors. Aligns with competencies required for the Certified Health Education Specialist (CHES) credential examination. > Nutritional Sciences (BS Option) Prepares students for potential graduate studies in nutritional sciences, including programs that lead to a Registered Dietitian credential. In addition to major requirements outlined on the back page, students complete general education requirements for the School of Public Health. Satisfactory grades earned during Extraordinary Circumstances Quarters count toward admissions and degree requirements. Students who enter the major through upper division admission apply when they are graduating within the next 2 years. AUT 2024 Degree Requirements Effective AUT 2024 (Purple Curriculum) DEGREE REQUIREMENTS PH-GH PATHWAYS PATHWAY OPTIONS SCAN TO APPLY",
+      "title": "Public Health - Global Health - [Page 1] > Nutritional Sciences (BS Option)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
@@ -3694,7 +3724,7 @@
       "ownerKey": "uw-seattle-public-health-global-health::bs-nutritional-sciences-option",
       "planId": "uw-seattle-public-health-global-health",
       "pathwayId": "bs-nutritional-sciences-option",
-      "title": "Public Health - Global Health - [Page 1] PUBLIC HEALTH - GLOBAL HEALTH MAJOR Public Health-Global Health (PH-GH) is a school-wide liberal education major , leading to a Bachelor of Arts or Bachelor of Science, which uses public health questions, concepts and tools to help students develop competencies in assessment & measurement, communication, environment, ethics & social justice, natural science, population health, policy & politics, and social science with particular emphasis on collaboration and critical thinking across these domains. Graduates move on to a range of career and education options in public health, health professions, health sciences, and law, as well as business, economics, education, and social and behavioral sciences. Admission to this major is capacity-constrained and offered twice a year for autumn and winter quarters. Applications are evaluated with a holistic approach; considering overall academic record, grades in relevant coursework selection of and preparation for the BA or BS, ability to make satisfactory progress towards degree, and potential contributions to the diversity of the cohort. Upper Divison Admission Complete the following by the deadline to be considered: 1. Min. 60 college credits 2. Min. 2.5 Cumulative GPA 3. Min. grade of 2.0 in 5 credits of English composition 4. Min. grade of 2.5 in one intro public health course from the following: ENV H 111, EPI 201, EPI 220, G H 101, HSERV 100, NUTR 200, PHG 200 or one 5-credit course from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, SOC 5. For BA path students, min. grade of 2.5 in one natural science. Refer to back. 6. For BS path students, min. average grade of 2.5 in at least two courses of the same year-long sequence of biology or chemistry. Refer to PH-GH prerequisites website for alternative sequences. Bachelors of Arts (BA): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing sociocultural aspects. Bachelors of Science (BS): PH-GH Provides flexibility to serve students with interest in a wide array of exploration in public health, emphasizing the natural sciences. CONTACT Hans Rosling Center for Population Health phgh@uw.edu | 206-221-4561 https://sph.washington.edu/phgh/advising ADMISSION Degree options are available for students in the major who seek more directed discipline competencies. > Global Health (BA Option; BS Option) Focuses on major challenges and opportunities in global health, discussing determinants of global health and justice-based approaches to promoting health of vulnerable peoples worldwide. > Health Education & Promotion (BA Option) Explores the development of strategies to improve health knowledge, attitudes, skills and behaviors. Aligns with competencies required for the Certified Health Education Specialist (CHES) credential examination. > Nutritional Sciences (BS Option) Prepares students for potential graduate studies in nutritional sciences, including programs that lead to a Registered Dietitian credential. In addition to major requirements outlined on the back page, students complete general education requirements for the School of Public Health. Satisfactory grades earned during Extraordinary Circumstances Quarters count toward admissions and degree requirements. Students who enter the major through upper division admission apply when they are graduating within the next 2 years. AUT 2024 Degree Requirements Effective AUT 2024 (Purple Curriculum) DEGREE REQUIREMENTS PH-GH PATHWAYS PATHWAY OPTIONS SCAN TO APPLY",
+      "title": "Public Health - Global Health - [Page 1] > Nutritional Sciences (BS Option)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
@@ -3761,7 +3791,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://slavic.washington.edu/undergraduate-policies",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3887,7 +3917,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-      "sourceOnlyUwCourseCodeCount": 7,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3908,7 +3938,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-      "sourceOnlyUwCourseCodeCount": 2,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3929,7 +3959,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-      "sourceOnlyUwCourseCodeCount": 2,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3950,7 +3980,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-      "sourceOnlyUwCourseCodeCount": 2,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3971,7 +4001,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
-      "sourceOnlyUwCourseCodeCount": 5,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3992,7 +4022,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://scandinavian.washington.edu/ba-swedish",
-      "sourceOnlyUwCourseCodeCount": 12,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4013,7 +4043,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://music.washington.edu/bachelor-music-voice",
-      "sourceOnlyUwCourseCodeCount": 5,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4034,7 +4064,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-      "sourceOnlyUwCourseCodeCount": 10,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4055,7 +4085,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 10,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4076,7 +4106,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4097,7 +4127,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4118,7 +4148,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4139,7 +4169,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4160,7 +4190,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 6,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4181,7 +4211,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
-      "sourceOnlyUwCourseCodeCount": 14,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4286,7 +4316,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
-      "sourceOnlyUwCourseCodeCount": 7,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4307,7 +4337,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/swcj/criminal-justice-campus-curriculum",
-      "sourceOnlyUwCourseCodeCount": 40,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4328,7 +4358,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
-      "sourceOnlyUwCourseCodeCount": 10,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4349,7 +4379,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
-      "sourceOnlyUwCourseCodeCount": 29,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4391,7 +4421,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4412,7 +4442,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-      "sourceOnlyUwCourseCodeCount": 9,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4433,7 +4463,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
-      "sourceOnlyUwCourseCodeCount": 4,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4454,17 +4484,31 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/history",
-      "sourceOnlyUwCourseCodeCount": 3,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
-      "rootIssues": [],
-      "symptomIssues": []
+      "rootIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ],
+      "symptomIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-information-technology",
@@ -4496,7 +4540,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
-      "sourceOnlyUwCourseCodeCount": 8,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4538,7 +4582,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
-      "sourceOnlyUwCourseCodeCount": 27,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4559,7 +4603,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/mathematics",
-      "sourceOnlyUwCourseCodeCount": 12,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4580,7 +4624,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/set/programs/undergrad/me",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4601,7 +4645,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4622,7 +4666,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/psychology",
-      "sourceOnlyUwCourseCodeCount": 27,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4646,14 +4690,28 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
-      "rootIssues": [],
-      "symptomIssues": []
+      "rootIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ],
+      "symptomIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-spanish-language-and-cultures",
@@ -4664,7 +4722,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures",
-      "sourceOnlyUwCourseCodeCount": 12,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4685,7 +4743,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-      "sourceOnlyUwCourseCodeCount": 18,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4706,7 +4764,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
-      "sourceOnlyUwCourseCodeCount": 19,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4727,7 +4785,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
-      "sourceOnlyUwCourseCodeCount": 34,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4748,7 +4806,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
-      "sourceOnlyUwCourseCodeCount": 5,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0

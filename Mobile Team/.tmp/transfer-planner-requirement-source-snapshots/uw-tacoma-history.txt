@@ -2,535 +2,205 @@ Owner: uw-tacoma-history
 Source: https://www.tacoma.uw.edu/sias/socs/history
 Title: History | Department of Social Sciences | University of Washington Tacoma
 
-[Supplemental official source] Arts, Culture and Society Option
-[Supplemental official source] General History Option
-[Supplemental official source] Global History Option
-[Supplemental official source] Global Studies Concentration
-[Supplemental official source] graduation requirements
-[Supplemental official source] Labor and Social Movements Option
-[Supplemental official source] Power, Gender and Identity Option
-[Supplemental official source] Supplemental official track and option pages
-[Supplemental official source] UWT general education
-*For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
-&copy; 2026 University of Washington Tacoma
-<a
-<a href="/registrar"
-<a href="/sias"
-<a href="https://instagram.com/uwtacoma"
-<a href="https://www.facebook.com/uwtacoma"
-<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
-<a href="https://www.tacoma.uw.edu/"
-<a href="https://www.tiktok.com/@uwtacoma"
-<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+History | Department of Social Sciences | University of Washington Tacoma
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+height="0"
+width="0"
+style="display:none;
+visibility:hidden">
+Skip to main content
+Apply
+Canvas
+Map
+Calendar
+Library
+Directory
+MyUW
+more_vert
+more_vert
+Close Search
 <img
+src="/sites/default/files/sites/uwtd8main/W.svg"
+alt="Block W - Link to UW Tacoma homepage"/>
 <img class="mobile-hide desktop-show"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+alt="University of Washington Tacoma"/>
 <img class="mobile-show desktop-hide"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2020-10/hendrixw.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-04/Dr%20Baird%27s%20class_1.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-05/students%20in%20econ%20class.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-06/capstone%202.png"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-06/DSC_8564%20%282%29.jpg"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-06/My%20project.jpg"
-<span
->
->Home
->Office of the Registrar
->School of Interdisciplinary Arts & Sciences
-15
-1900 Commerce Street, Tacoma, WA 98402-3100
-253-692-4414
-253-692-4450
-253-692-4913
-253-692-5718
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+alt="University of Washington Tacoma"/>
+Tools
 25Live
-30 credits from the list below; 25 credits must be upper-division (300–400) level THIST courses
-30 credits from the list below; 25 credits must be upper-division (300–400) level THIST courses.
-40 additional credits
-5
-A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-A minimum of 45 lower-division credits is required before declaring the major. To declare the Global Studies Concentration of the Interdisciplinary Arts and Sciences major, students should reach out to the major advisor .
+Canvas
+Directory
+IT Help
+Library
+Map
+MyUW
+Office365
+Panopto
+Scout
+UW Gmail
+Workday
+Zoom
+Search
+<a
+href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
+Department of Social Sciences
+Department of Social Sciences
+Majors
+expand_more
+Economics and Policy Analysis (EPA)
+Ethnic, Gender and Labor Studies
+Global Studies Concentration
+History
+Interdisciplinary Arts and Sciences
+Law and Policy
+Politics, Philosophy and Economics (PP&E)
+Psychology
+Minors
+expand_more
+American Indian Studies Minor
+Economics Minor
+Education and Community Engagement Minor
+Gender and Sexuality Studies Minor
+History Minor
+Human Rights Minor
+Law and Policy Minor
+Politics Minor
+Religious Studies Minor
+Social Science Research Methods Minor
+Sociology Minor
+Teaching, Learning and Justice Minor
+SOCS Resources
+expand_more
+SOCS Directory
+Open Public Meetings
+Advising
+MyUW
+Map
+Tools
+History
+Bachelor of Arts
+Main Content
+History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+Admission Requirements
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-06/capstone%202.png"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-06/capstone%202.png 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-06/capstone%202.png 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-06/capstone%202.png 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Students Collaborating">
+General History Option
+The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-04/Dr%20Baird%27s%20class_1.png"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-04/Dr%20Baird%27s%20class_1.png 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-04/Dr%20Baird%27s%20class_1.png 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-04/Dr%20Baird%27s%20class_1.png 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Students Collaborating">
+Arts, Culture and Society Option
+The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-05/students%20in%20econ%20class.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-05/students%20in%20econ%20class.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-05/students%20in%20econ%20class.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-05/students%20in%20econ%20class.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Students discussing in a classroom setting">
+Global History Option
+The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-06/DSC_8564%20%282%29.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-06/DSC_8564%20%282%29.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-06/DSC_8564%20%282%29.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-06/DSC_8564%20%282%29.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="conversation at PPE Party">
+Labor and Social Movements Option
+The Labor and Social Movements option is designed to offer students a strong foundation for understanding historical roots and processes that shape political, intellectual, economic and social developments and consequently the conditions of the working class in a global context. This option examines the culture, politics and socioeconomic conditions as they intersect with gender, labor and race in changing contexts of im(migration), famine, disenfranchisement, marginalization, oppression and political disempowerment. Consequently, this option explores and analyzes social movements responding to these conditions such as socialism, protest, community organization, unionism and revolution.
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-06/My%20project.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-06/My%20project.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-06/My%20project.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-06/My%20project.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Picture of professor teaching a class">
+Power, Gender and Identity Option
+The Power, Gender and Identity option offers a strong foundation for understanding the historical roots of intersections between race, gender, ethnicity, class and socioeconomics that have created and continue to transform hierarchical structures of power. This option examines the origins of social stratification with regard to race, gender, ethnicity and class. In consultation with primary sources drawn from divergent cultural, social and natural science documents, this option explores the historical context of marginalization, disenfranchisement, political and economic inequality and disempowerment.
+ADVISOR
+Shelli Veal
+Connect with Advising
+MAJOR COORDINATOR
+Professor Will Burghart
+DEPARTMENT
+Department of Social Sciences (SOCS)
+CAREER OPPORTUNITIES
+Education
+Government Service
+Heritage Tourism
+Journalism
+Museum Curation
+Records Management
+ADMISSION REQUIREMENTS
 A minimum of 45 lower-division credits is required before declaring the major. To declare the History major, students should reach out to the major advisor .
-A student must satisfy the requirements for the degree at the time the degree is to be awarded. For questions, please contact the Graduate School or your advisor.
-A student would not need to submit a petition if some of the transferable credits earned at another school are considered elective credits and would not be used towards fulfilling any degree requirements. For example, if a student has completed 185 credits, of which the last 20 credits were taken at another college or university, and at least 5 of those 20 credits include elective credits, the 5 credits would not be used towards meeting any degree requirements and the student would not need to fill out a petition.
-About
-ABOUT UW TACOMA
+DEGREE REQUIREMENTS
+For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+Honors
+Phi Alpha Theta (PAT)
+UW Tacoma is the home of the Alpha Zeta Gamma chapter of Phi Alpha Theta (PAT), the National History Honor Society. Phi Alpha Theta national requirements state that students must have completed 18 quarter hours (12 semester hours) of college-level history courses (including those taken at other institutions) in which they earned a GPA of 3.1 or better, and carry a cumulative GPA of at least a 3.0.
+The Phi Alpha Theta honor society induction ceremony is held Spring Quarter at UW Tacoma. Members wear crimson stoles with their academic regalia at commencement. All UW Tacoma students are welcome at PAT meetings and service projects. For more information, contact your academic advisor or the Phi Alpha Theta faculty advisor, William Burghart .
+Career Options
+As Pierce County and the South Sound region continue to grow, History graduates are finding more opportunities in the fields of education, records management, museum curation, government service, heritage tourism, journalism, and other professions. History also provides an excellent foundation for graduate study in law, education, and many other areas. Visit the American Association for State and Local History and USAJobs.gov to find more opportunities.
+The American Historical Association also has resources for students curious about career opportunities in the field of History. Their database has useful information on where history majors work .
+History Internships
+History students can benefit from internships at Fort Nisqually , the Washington State Historical Society , or the Job Carr Museum . Visit our Internships page to learn more about how to sign up for internships.
+Contact
+Department of Social Sciences
+ACADEMICS
 Academic advising
 Academic calendar
-Academic Programs
-ACADEMICS
-Accessibility |
-Acknowledgement
-add
-Administration
-Admission Requirements
-ADMISSION REQUIREMENTS
-Admissions
-Advising
-ADVISOR
-alt="Block W - Link to UW Tacoma homepage"/>
-alt="conversation at PPE Party">
-alt="Hendrix the Husky at the W">
-alt="Picture of professor teaching a class">
-alt="Students Collaborating">
-alt="Students discussing in a classroom setting">
-alt="University of Washington Tacoma"/>
-American Indian Studies Minor
-Apply
-Areas of Inquiry (AoI)
-aria-label="University of Washington Tacoma Homepage">
-Arts and Humanities (A&H) Formerly known as Visual, Literary, and Performing Arts (VLPA)
-Arts and Humanities (A&H): 20 credits
-Arts, Culture and Society Option
-Arts, Media and Culture
-As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
-As Pierce County and the South Sound region continue to grow, History graduates are finding more opportunities in the fields of education, records management, museum curation, government service, heritage tourism, journalism, and other professions. History also provides an excellent foundation for graduate study in law, education, and many other areas. Visit the American Association for State and Local History and USAJobs.gov to find more opportunities.
-Bachelor of Arts
-Basic Skill
-Biomedical Sciences
-Bothell
-Breadcrumb
-Business
-Calendar
+Canvas
+Library
+Schools and programs
+Study Abroad
+Teaching and Learning Center
 CAMPUS
 Campus Safety
-Canvas
-CAREER OPPORTUNITIES
-Career Options
-Chose one of the following:
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
-class="uwt-icon uwt-icon-per-site-facebook">
-class="uwt-icon uwt-icon-per-site-instagram">
-Close Search
-Communication
-Connect with Advising
-Contact
-Contact us |
-Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
-Core courses (5 credits; *restricted to Global Honors students) (25 credits)
-Core Requirements (30 credits)
-Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
-Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
-Courses that focus on sociocultural, political, and economic diversity of human experience
-Credit from external sources (AP/IB credit, transfer coursework, by exam, Armed Forces Training School, etc.)
-Cross-campus courses taken at UW (Seattle) & UW Bothell
-Culture Arts & Communication
-Current Students
-Degree Requirements
-DEGREE REQUIREMENTS
-DEPARTMENT
-Department of Social Sciences
-Department of Social Sciences (SOCS)
-Designated courses study diversity in the United States with focus on the sociocultural, political and economic diversity of human experience and help students develop an understanding of the complexities of living in increasingly diverse and interconnected societies.
-Details
-Directory
-Diversity (DIV)
-Diversity (DIV): 5 credits
-Economics and Policy Analysis (EPA)
-Economics Minor
-Education
-Education and Community Engagement Minor
-English Composition (C): 5 credits
-Environmental Science
-Environmental Sustainability
 Equity & Inclusion
-Ethnic, Gender and Labor Studies
-Exceptions to the rule regarding majors may be granted at the discretion of the department. If major requirements other than the current ones are being used, a note to that effect must be made on the degree application.
-expand_more
-Faculty & Staff
-Fax Number
-Final Year Residency Requirement
 Financial Aid
-For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-For a BA in the Global Studies Concentration of Interdisciplinary Arts and Sciences, students must complete at least 50 major credits, depending on foreign language competency, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-Foreign Language (0–10 credits to Demonstrate Competency)
-Formerly known as Areas of Knowledge (AoK)
-Formerly known as Quantitative/Symbolic Reasoning (QSR)
-Forms
-Gender and Sexuality Studies Minor
-General Education Requirements
-General Education Requirements | School of Interdisciplinary Arts & Sciences | University of Washington Tacoma
-General History Option
-General History Option | Department of Social Sciences | University of Washington Tacoma
-Global History Option
-Global History Option | Department of Social Sciences | University of Washington Tacoma
-Global Studies Concentration
-Global Studies Concentration | Department of Social Sciences | University of Washington Tacoma
-Government
-Government Service
-Graduating Under Earlier Catalogs
-Graduating with Honors
-Graduation Requirements
-Graduation Requirements | Office of the Registrar | University of Washington Tacoma
-Graduation Requirements for a Master&#039;s Degree
-Graduation Requirements for a Masters Degree
-height="0"
-Heritage Tourism
-History
-History | Department of Social Sciences | University of Washington Tacoma
-History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
-History Internships
-History Minor
-History students can benefit from internships at Fort Nisqually , the Washington State Historical Society , or the Job Carr Museum . Visit our Internships page to learn more about how to sign up for internships.
-Home
-Honors
 Housing
-href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2020-10/hendrixw.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-04/Dr%20Baird%27s%20class_1.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-05/students%20in%20econ%20class.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-06/capstone%202.png 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-06/DSC_8564%20%282%29.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2022-06/My%20project.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2020-10/hendrixw.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-04/Dr%20Baird%27s%20class_1.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-05/students%20in%20econ%20class.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-06/capstone%202.png 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-06/DSC_8564%20%282%29.jpg 980w,
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-06/My%20project.jpg 980w,
-Human Rights Minor
-iashelp@uw.edu
-If the student is requesting to waive a university requirement, the petition will be submitted to their academic advisor for review by the Faculty Assembly's Academic Policy and Curriculum Committee. Once a determination has been made the student is contacted.
-In order to graduate with a bachelor's degree, a student must meet minimum general educational and basic skills requirements, in addition to completing the requirements of their academic program. General Education requirements are outlined in this website. Additional requirements for specific degree requirements are found online on the degree program's webpages, or within the Degree Programs webpage of the General Catalog.
 Information Technology
-Institutional Research
-Interdisciplinary Arts and Sciences
-International Focus (40 credits; at least 30 credits must be at the 300–400 level)
-International Law
-IT Help
-Jobs
-Journalism
-Labor and Social Movements Option
-Land
-Law and Policy
-Law and Policy Minor
-Learn More >
-Library
-M-F 9a.m.-5p.m.
-Main Content
-MAJOR COORDINATOR
-MAJOR COORDINATORS
-Majors
-Map
-Master’s Degree Requirements
-Mathematics
-Mattress Factory, room 251
-Media
-Minimum GPA
-minimum of 5 credits
-Minors
-more_vert
-Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
-Museum Curation
-Must include 5 credits of English Composition (C) with a minimum grade of 2.0 and 10 credits of Writing (W) courses
-MyUW
-Natural Sciences (NSc) Formerly known as Natural World (NW)
-Natural Sciences (NSc): 20 credits
-Natural World (5 credits)
-News & Communications
-Nonprofit Management
-Number of Credits
-Office Hours:
-Office Location
-Office of the Registrar
-Office365
-On this page:
-One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
-One TESC course or an Environmental Science transfer course. Please see your advisor for applicable courses.
-Open Public Meetings
-Option Four: Non-native English speakers are exempt from this requirement; a student is considered a "native speaker" of a foreign language if that language was the language (or one of the languages) spoken at home during the first 6 years of childhood AND if it was the language in which the student received instruction in elementary school through the seventh grade. Students not meeting this standard have the option to demonstrate competency through testing if desired.
-Option One: 10 credits of upper-division foreign language (300–400 level)
-Option Three: One year of college-level Asian, Slavic or non-Western language
-Option Two: Two years of college-level lower-division foreign language in a Western European language
-Panopto
-Parking & transportation
-Petitioning to seek an exception to the residency requirement
-Phi Alpha Theta (PAT)
-Politics Minor
-Politics, Philosophy and Economics (PP&E)
-Post-graduate Studies
-Power, Gender and Identity Option
-Privacy |
-Professor Cynthia Howson
-Professor Johann Reusch
-Professor Will Burghart
-Psychology
-Puyallup Tribe of Indians
-Reasoning (RSN)
-Reasoning (RSN): 5 credits
-Records Management
-Registration Resources
-reguwt@uw.edu
-Religious Studies Minor
-Research
-Resources
-Rules Docket
-School of Interdisciplinary Arts & Sciences
-Schools and programs
-Sciences and Mathematics
-Scout
-Search
-Shelli Veal
-SIAS Directory
-SIAS News
-SIAS Scholarships
-SIAS Student Advisory Council
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-Skip to main content
-Social Science Research Methods Minor
-Social Sciences
-Social Sciences (SSc) Formerly known as Individuals and Society (I&S)
-Social Sciences (SSc): 20 credits
-Sociology Minor
-SOCS Directory
-SOCS Resources
-Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
-Spanish Language and Cultures
-src="/sites/default/files/sites/uwtd8main/W.svg"
-src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
-src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2020-10/hendrixw.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-04/Dr%20Baird%27s%20class_1.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-05/students%20in%20econ%20class.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-06/capstone%202.png 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-06/DSC_8564%20%282%29.jpg 1940w,
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-06/My%20project.jpg 1940w,
-Student Affairs resources are available to all currently enrolled students regardless of race, sex or other identity.
 Student Life
-Students
-Students are required to complete 45 of their final 60 credits as matriculated students in residence at UW Tacoma, which means that no more than a maximum of 15 of the final 60 credits may be non-resident credit. If a student takes more than 15 of the final 60 credits out of residence, the extra credits need not be counted against the limit of 15 if credits from the courses are not needed in any way to meet degree requirements. Some degree programs may have stricter residency requirements, please check with your advisor. Fully online degree programs are exempt from this requirement.
-Students in the Global Studies concentration study a variety of subjects and themes in an international context, including artistic, cultural, political and economic patterns among and within other nations and may choose to focus their studies on one or more world regions or on specific themes. Advanced language study is an integral component of Global Studies.
-Students may be eligible to receive Baccalaureate honors (summa cum laude, magna cum laude, cum laude) or Faculty honors. More information about eligibility and requirements for each designation may be found on the Honors Requirements webpage.
-Study Abroad
-style="display:none;
-TANTH 354 History of the Concept of Culture
-TARTS 281 Art and Culture in India
-TARTS 282 Art and Culture in China
-TARTS 283 Art and Culture in Japan
-TARTS 284 Art and Culture in the Pacific
-TARTS 335 History of Photography
-TARTS 360 Women Artists from the Renaissance to the Present VLPA
-TARTS 406 Labor, Globalization and Art
-TARTS 480 Contemporary Art and Society 1945–Present
-TARTS 480 Contemporary Art and Society Since 1945
-TCHIN 101 First-Year Chinese
-TCHIN 102 First-Year Chinese
-TCHIN 103 First-Year Chinese
-TCHIN 201 Second-Year Chinese
-TCHIN 202 Second-Year Chinese
-TCHIN 203 Second-Year Chinese
-TCOM 230 Media Globalization and Citizenship
-TCOM 430 Global Networks, Local Identities
-TCOM 461 Media and Identity in Asia
-Teaching and Learning Center
-Teaching, Learning and Justice Minor
-TECON 210 Ethics and Economics
-TECON 320 Gender and Development
-TECON 325 Contemporary Issues in International Political Economy
-TECON 350 Law and Economics
-TECON 360 Poverty in Developing Countries
-TECON 362 China's Rise and Its Global Economic Implications
-TECON 441 International Economics
-TEGL 201 Introduction to Indigenous Philosophy
-TEGL 271 American Indians in Film
-TEGL 303 Introduction to American Indian Education
-TEGL 305 American Indian Movement
-TEGL 340 Intersections: Race, Gender and Sexuality in a Global Perspective
-TEGL 380 Gender and Sexuality across Cultural and Historical Contexts
-TEGL 419 African American Culture and Consciousness
-Terms of Use |
-TFILM 377 Spanish Film
-TFILM 386 Silent Cinema
-TFILM 387 World Film 1927–1959
-TFILM 388 World Film 1960–2000
-TGEOG 349 Geography and International Trade
-TGEOG 352 Cultural Geography
-TGEOG 435 Contemporary Geopolitics
-TGH 301 Global Interactions *
-The American Historical Association also has resources for students curious about career opportunities in the field of History. Their database has useful information on where history majors work .
-The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
-The decision of the Academic Policy and Curriculum committee is final. An exception from a university graduation requirement becomes void at the end of two calendar years from the date the exemption was granted if all degree requirements have not been completed by that date.
-The following are considered non-resident credit:
-The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
-The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
-The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
-The Labor and Social Movements option is designed to offer students a strong foundation for understanding historical roots and processes that shape political, intellectual, economic and social developments and consequently the conditions of the working class in a global context. This option examines the culture, politics and socioeconomic conditions as they intersect with gender, labor and race in changing contexts of im(migration), famine, disenfranchisement, marginalization, oppression and political disempowerment. Consequently, this option explores and analyzes social movements responding to these conditions such as socialism, protest, community organization, unionism and revolution.
-The Phi Alpha Theta honor society induction ceremony is held Spring Quarter at UW Tacoma. Members wear crimson stoles with their academic regalia at commencement. All UW Tacoma students are welcome at PAT meetings and service projects. For more information, contact your academic advisor or the Phi Alpha Theta faculty advisor, William Burghart .
-The Power, Gender and Identity option offers a strong foundation for understanding the historical roots of intersections between race, gender, ethnicity, class and socioeconomics that have created and continue to transform hierarchical structures of power. This option examines the origins of social stratification with regard to race, gender, ethnicity and class. In consultation with primary sources drawn from divergent cultural, social and natural science documents, this option explores the historical context of marginalization, disenfranchisement, political and economic inequality and disempowerment.
-The student must present a minimum cumulative 2.00 GPA for all coursework taken in residence at the University of Washington Tacoma. The graduation grade point average is computed when the student has completed all work for the degree and includes only credits earned while in residence at the university. Residence credits are UW credits earned through the campus granting the degree.
-The student needs to submit a graduation petition two quarters in advance to their academic advisor. Petitions requesting approval of 16-25 non-resident credits will be reviewed by the department awarding the degree. Petitions requesting more than 25 credits will be reviewed by the Academic Policy & Curriculum Committee. The student will be notified by mail and UW email of the decision by the Office of the Registrar.
-THIST 111 Ancient World
-THIST 111 The Ancient World
-THIST 112 Intro to Medieval World
-THIST 112 The Medieval World
-THIST 150 World History I
-THIST 151 World History II
-THIST 200 American History I, 1607–1877
-THIST 201 American History II, 1877–present
-THIST 203 Modern Europe in Global History
-THIST 220 African American History 1619–1865
-THIST 221 African American History 1865–1945
-THIST 222 African American History 1945–Present
-THIST 231 The Ancient Mediterranean World
-THIST 251 The Global Twentieth Century
-THIST 260 Empires and Imperialism
-THIST 260 Empires and Imperialism in World History
-THIST 270 Premodern East Asia
-THIST 270 Premodern East Asian
-THIST 271 Modern East Asia
-THIST 280 German Culture
-THIST 290 A World History of Food
-THIST 320 Asian American History
-THIST 322 American Labor Since the Civil War
-THIST 336 Black, Labor and Protest Music in Historical Perspective
-THIST 341 African American History
-THIST 350 Modern Germany Since 1848
-THIST 356 History of Christianity
-THIST 363 Making of Russia
-THIST 364 Modern Russia
-THIST 365 Europe in the Twentieth Century
-THIST 372 Comparative Perspectives on East Asian and Latin American Development
-THIST 375 British Empire
-THIST 376 Global Diasporas, Borders and Refugees in Visual Culture
-THIST 377 Art of the Americas
-THIST 380 Humanities Research and Writing (taken in junior year—recommended prerequisite: THIST 101)
-THIST 385 Russian Civilization
-THIST 416 Life and Thought: Martin Luther King, Malcolm X and Angela Davis
-THIST 417 United States History 1945–Present
-THIST 420 African American Religious History
-THIST 440 Black Labor in America
-THIST 441 Black Freedom Movement in Perspective
-THIST 442 History of African American Education
-THIST 444 The Pacific Northwest
-THIST 451 Renaissance Europe
-THIST 452 Art, Culture and History of the Eternal City
-THIST 457 Anti-Semitism and the Holocaust
-THIST 462 History of Vietnam
-THIST 463 Premodern Japan
-THIST 464 Modern China
-THIST 465 Modern Japan
-THIST 466 Modern Korea
-THIST 467 Siberia and the Russian Far East
-THIST 474 Imperial China
-THIST 475 Great Britain in the Twentieth Century
-THIST 475 Twentieth-Century Britain
-THIST 477 Reformation and Counter-Reformation Europe
-THIST 478 Europe in the Nineteenth Century
-THIST 478 Revolution, Industrialization and Modernity in European Culture 1750–1870
-THIST 479 Modern European Culture
-THIST 480 Eastern Europe in Transition: 1940–2000
-THIST 484 The Pacific War
-THIST 486 Contemporary Chinese Culture and Society
-THIST 487 Technology in the Modern World
-THIST 488 History of Urbanization and the Environment
-THIST 491 Advanced Topics in the Ancient and Medieval Mediterranean World
-THIST 491 Advanced Topics in the Ancient and Medieval World
-THIST 495 The Metropolis
-THIST 498 History Capstone (2.0 GPA minimum required; taken in your last 1–2 quarters; prerequisite: THIST 380 with a minimum 2.0 GPA)
-THIST 498 History Capstone (2.0 grade minimum required; taken in your last 1–2 quarters; prerequisite: THIST 380 with a minimum 2.0 grade)
-TIAS 109 Elementary Intensive German Study Abroad
-TIAS 209 Intermediate Intensive German Study Abroad
-TIAS 309 Advanced German Study Abroad
-TIAS 330 German Culture, History and Philosophy: Frankfurt and Main
-TIAS 480 Experiencing China
-TIAS 493 Contemporary Spanish Culture
-title="Follow UW Tacoma on Facebook">
-title="Follow UW Tacoma on Instagram">
-title="Follow UW Tacoma on Linkedin">
-title="Follow UW Tacoma on TikTok">
-title="Follow UW Tacoma on Youtube">
-TLAW 215 Introduction to International Organizations
-TLAW 422 International Humanitarian Law
-TLAW 424 The Politics and Law of International Human Rights
-TLAX 238 Latinos in the United States
-TLAX 267 Introduction to Chicano/a Literature
-TLAX 277 Latin American Literature
-TLAX 355 Migration and Transnational Family in Latino Literature and Film
-TLAX 376 Latin American Film
-TLAX 400 Afro-Hispanic Culture
-TLAX 410 Caribbean Basin: Selected Topics
-TLAX 441 Mexican Cinema and Society
-TLAX 461 Contemporary Mexican Culture
-TLAX 462 Women in Latin American
-TLAX 463 Contemporary Cuban Culture
-TLAX 465 Latin American Visual Arts
-TLAX 476 Latin American Women Writers
-TLIT 251 Ancient Literature of Western Civilization
-TLIT 252 Medieval and Renaissance Literature of Western Civilization
-TLIT 253 Modern Literature of Western Civilization
-TLIT 332 Asian American Literature
-TLIT 351 Ancient Greek Tragedy
-TLIT 352 Medieval Quests
-TLIT 371 The World Stage
-TLIT 371 The World Stage through the Present
-TLIT 481 Postcolonial Fiction
-To be taken after consultation with an advisor:
-To ensure a determination is made in time for graduation, petitions should be submitted at least two quarters before the student's graduation date to allow time for committee review and student registration.
-To include a minimum of 10 credits in each of the three areas of study:
-To request a waiver of program/major requirements a student must submit a petition to their academic program. Students should confer with their advisor before completing the petition. Review is done by the academic program faculty committee or director/dean, as procedures specific to each academic program dictate.
-Tools
-Total Credits Required to Graduate
-TPHIL 355 The Modern Mind
-TPHIL 358 The History of Philosophy: Medieval and Modern
-TPHIL 359 Themes in Existentialism
-TPHIL 360 History of Philosophy: Modern and Contemporary
-TPHIL 451 The Enlightenment
-TPHIL 466 Philosophy of the Future
-TPOLS 123 Introduction to Globalization
-TPOLS 203 Introduction to International Relations
-TPOLS 310 Modern European Political Theory
-TPOLS 319 Theories of Political Violence
-TPOLS 329 Making of Modern Africa
-TPOLS 340 Middle East Politics
-TPOLS 341 Conflict and Cooperation in the Middle East
-TPOLS 343 Community and Labor Organizing: A Multicultural Perspective
-TPOLS 350 Politics and Film in the Middle East
-TPOLS 360 Genocide
-TPOLS 410 Labor Rights and Human Rights
-TPOLS 411 Human Rights and Violence in the Third World
-TPOLS 450 Contemporary Theories of Culture
-TPOLS 451 Human Rights and the Use of Force
-TRELIG 210 Modern Theories of Religion
-TRELIG 321 Comparative Religion
-TRELIG 333 Buddhist Thought
-TRELIG 345 Christian Thought and Ethical Practice
-TRELIG 365 Hinduism and Buddhism
-TRELIG 366 Islam
-TRELIG 467 Philosophy of Religion
-Tribal Sponsor of UW Tacoma
-TSOC 456 Rural Societies and Development
-TSPAN 103 Elementary Spanish III
-TSPAN 199 Foreign Study -- Elementary
-TSPAN 201 Intermediate Spanish I
-TSPAN 202 Intermediate Spanish II
-TSPAN 203 Intermediate Spanish III
-TSPAN 210 Accelerated Intermediate Spanish
-TSPAN 299 Foreign Study: Intermediate
-TSPAN 301 Spanish Language and Lexicon
-TSPAN 302 Spanish Conversation
-TSPAN 303 Spanish Stylistics and Composition
-TSPAN 351 Introduction to Hispanic Literary Studies
-TSPAN 393 Foreign Study
-TURB 340 Urban Social Change
-TURB 430 Pacific Rim Cities
-TWOMN 420 Women in the Global Economy
-TWOMN 434 Women's Voices: Transnational Testimonials
-University Graduation Requirements for the Baccalaureate Degree
-University Requirements for a Baccalaureate Degree
 University YMCA Student Center
-UW Gmail
-UW Seattle | UW
-UW Tacoma is the home of the Alpha Zeta Gamma chapter of Phi Alpha Theta (PAT), the National History Honor Society. Phi Alpha Theta national requirements state that students must have completed 18 quarter hours (12 semester hours) of college-level history courses (including those taken at other institutions) in which they earned a GPA of 3.1 or better, and carry a cumulative GPA of at least a 3.0.
+ABOUT UW TACOMA
+Administration
+Admissions
+Institutional Research
+Jobs
+Parking & transportation
+Research
 UWNetID login
-Various / Click Here
-visibility:hidden">
-Waiver of Degree Requirements
-width="0"
-With School or Program approval, a student may choose to graduate under the current catalog or the catalog in effect at the time they entered the program from which they are to graduate. University policy on use of earlier graduation requirements provides that if fewer than ten years have elapsed since a student's admission into the major program, they may choose to graduate under the requirements in effect at the time of admission, or under any subsequent requirements. If more than ten years have elapsed since admission to the major, the major program has the option of requiring the student to complete the current major requirements.
-Workday
-Writing (W)
-Writing (W): 10 credits
-Writing Studies
-Zoom
+<a href="https://www.tacoma.uw.edu/"
+aria-label="University of Washington Tacoma Homepage">
+<a href="https://www.facebook.com/uwtacoma"
+title="Follow UW Tacoma on Facebook">
+<a href="https://instagram.com/uwtacoma"
+title="Follow UW Tacoma on Instagram">
+<a href="https://www.tiktok.com/@uwtacoma"
+title="Follow UW Tacoma on TikTok">
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+title="Follow UW Tacoma on Youtube">
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+title="Follow UW Tacoma on Linkedin">
+Puyallup Tribe of Indians
+Tribal Sponsor of UW Tacoma
+Learn More >
+Land
+Acknowledgement
+>
+UW Seattle | UW
+Bothell
+&copy; 2026 University of Washington Tacoma
+1900 Commerce Street, Tacoma, WA 98402-3100
+Contact us |
+Terms of Use |
+Privacy |
+Accessibility |
+Rules Docket

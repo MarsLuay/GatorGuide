@@ -2,12 +2,9 @@ Owner: uw-tacoma-spanish-language-and-cultures
 Source: https://www.tacoma.uw.edu/sias/cac/spanish-language-and-cultures
 Title: Spanish Language and Cultures | Culture, Arts & Communication | University of Washington Tacoma
 
-[Supplemental official source] graduation requirements
 [Supplemental official source] UWT general education
-*For students admitted to the University prior to autumn quarter 2023, the DIV requirement is a minimum of 3 credits.
 &copy; 2026 University of Washington Tacoma
 <a
-<a href="/registrar"
 <a href="/sias"
 <a href="/sias/cac"
 <a href="https://instagram.com/uwtacoma"
@@ -20,24 +17,13 @@ Title: Spanish Language and Cultures | Culture, Arts & Communication | Universit
 <img
 <img class="mobile-hide desktop-show"
 <img class="mobile-show desktop-hide"
-<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2020-10/hendrixw.jpg"
-<span
 >
 >Culture, Arts & Communication
 >Home
->Office of the Registrar
 >School of Interdisciplinary Arts & Sciences
-15
 1900 Commerce Street, Tacoma, WA 98402-3100
-253-692-4414
 253-692-4450
-253-692-4913
 25Live
-40 additional credits
-5
-A minimum of 180 college credits must be completed (with more required in some programs) and include academic credits in the following areas:
-A student must satisfy the requirements for the degree at the time the degree is to be awarded. For questions, please contact the Graduate School or your advisor.
-A student would not need to submit a petition if some of the transferable credits earned at another school are considered elective credits and would not be used towards fulfilling any degree requirements. For example, if a student has completed 185 credits, of which the last 20 credits were taken at another college or university, and at least 5 of those 20 credits include elective credits, the 5 credits would not be used towards meeting any degree requirements and the student would not need to fill out a petition.
 ABOUT UW TACOMA
 Academic advising
 Academic calendar
@@ -52,13 +38,10 @@ Admissions
 Advising
 ADVISOR
 alt="Block W - Link to UW Tacoma homepage"/>
-alt="Hendrix the Husky at the W">
 alt="University of Washington Tacoma"/>
 American Popular Cultures Minor
 Apply
-Areas of Inquiry (AoI)
 aria-label="University of Washington Tacoma Homepage">
-Arts and Humanities (A&H) Formerly known as Visual, Literary, and Performing Arts (VLPA)
 Arts and Humanities (A&H): 20 credits
 Arts, Media & Culture
 Arts, Media and Culture
@@ -66,7 +49,6 @@ As part of the degree requirements, students must complete approximately 85 cred
 Asian Studies Minor
 Bachelor of Arts
 Banking
-Basic Skill
 Biomedical Sciences
 Bothell
 Breadcrumb
@@ -80,8 +62,6 @@ Campus Safety
 Canvas
 CAREER OPTIONS
 class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
-class="uwt-icon uwt-icon-per-site-facebook">
-class="uwt-icon uwt-icon-per-site-instagram">
 Close Search
 Communication
 Communication and Media
@@ -96,19 +76,14 @@ Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other sub
 Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
 Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
 Courses that focus on sociocultural, political, and economic diversity of human experience
-Credit from external sources (AP/IB credit, transfer coursework, by exam, Armed Forces Training School, etc.)
-Cross-campus courses taken at UW (Seattle) & UW Bothell
 Culture Arts & Communication
 Culture, Arts & Communication
 Current Students
 DEGREE REQUIREMENTS
 DEPARTMENT
 Department of Culture, Arts & Communication (CAC)
-Designated courses study diversity in the United States with focus on the sociocultural, political and economic diversity of human experience and help students develop an understanding of the complexities of living in increasingly diverse and interconnected societies.
-Details
 Developed using the American Council on Teaching of Foreign Languages (ACTFL) guidelines, our program offers practical skills-based language classes and a strong emphasis on contemporary Latin American culture.
 Directory
-Diversity (DIV)
 Diversity (DIV): 5 credits
 Economics and Policy Analysis (EPA)
 Education
@@ -118,37 +93,21 @@ Environmental Science
 Environmental Sustainability
 Equity & Inclusion
 Ethnic, Gender and Labor Studies
-Exceptions to the rule regarding majors may be granted at the discretion of the department. If major requirements other than the current ones are being used, a note to that effect must be made on the degree application.
 expand_more
 Faculty
 Faculty & Staff
 FAQs
-Fax Number
-Final Year Residency Requirement
 Financial Aid
 For a BA in Spanish Language and Cultures, you need to complete 60 upper division (300–400 level) credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-Formerly known as Areas of Knowledge (AoK)
-Formerly known as Quantitative/Symbolic Reasoning (QSR)
-Forms
 General Education Requirements
 Get Involved
 Global Studies Concentration
 Government
-Graduating Under Earlier Catalogs
-Graduating with Honors
-Graduation Requirements
-Graduation Requirements | Office of the Registrar | University of Washington Tacoma
-Graduation Requirements for a Master&#039;s Degree
-Graduation Requirements for a Masters Degree
 height="0"
 History
 Housing
 href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2020-10/hendrixw.jpg 600w"
-https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2020-10/hendrixw.jpg 980w,
 iashelp@uw.edu
-If the student is requesting to waive a university requirement, the petition will be submitted to their academic advisor for review by the Faculty Assembly's Academic Policy and Curriculum Committee. Once a determination has been made the student is contacted.
-In order to graduate with a bachelor's degree, a student must meet minimum general educational and basic skills requirements, in addition to completing the requirements of their academic program. General Education requirements are outlined in this website. Additional requirements for specific degree requirements are found online on the degree program's webpages, or within the Degree Programs webpage of the General Catalog.
 Information Technology
 Institutional Research
 Insurance
@@ -168,31 +127,18 @@ Main Content
 MAJOR COORDINATOR
 Majors
 Map
-Master’s Degree Requirements
 Mathematics
-Mattress Factory, room 251
-Minimum GPA
-minimum of 5 credits
 Minors
 more_vert
 Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
-Must include 5 credits of English Composition (C) with a minimum grade of 2.0 and 10 credits of Writing (W) courses
 MyUW
-Natural Sciences (NSc) Formerly known as Natural World (NW)
 Natural Sciences (NSc): 20 credits
-News & Communications
 NOTES ON CORE COURSES
-Number of Credits
-Office Hours:
-Office Location
-Office of the Registrar
 Office365
-On this page:
 One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
 Open Public Meetings
 Panopto
 Parking & transportation
-Petitioning to seek an exception to the residency requirement
 Politics, Philosophy and Economics (PP&E)
 Post Graduation
 Privacy |
@@ -200,10 +146,7 @@ Professor Augustus “Augie” Machine
 Psychology
 Public Health
 Puyallup Tribe of Indians
-Reasoning (RSN)
 Reasoning (RSN): 5 credits
-Registration Resources
-reguwt@uw.edu
 Research
 Resources
 Rules Docket
@@ -214,10 +157,8 @@ Scout
 Search
 SIAS Scholarships
 SIAS Student Advisory Council
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
 Skip to main content
 Social Sciences
-Social Sciences (SSc) Formerly known as Individuals and Society (I&S)
 Social Sciences (SSc): 20 credits
 Social Work
 Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
@@ -227,34 +168,21 @@ Spanish Language and Cultures Minor
 src="/sites/default/files/sites/uwtd8main/W.svg"
 src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
 src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2020-10/hendrixw.jpg 1940w,
-Student Affairs resources are available to all currently enrolled students regardless of race, sex or other identity.
 Student Life
-Students
-Students are required to complete 45 of their final 60 credits as matriculated students in residence at UW Tacoma, which means that no more than a maximum of 15 of the final 60 credits may be non-resident credit. If a student takes more than 15 of the final 60 credits out of residence, the extra credits need not be counted against the limit of 15 if credits from the courses are not needed in any way to meet degree requirements. Some degree programs may have stricter residency requirements, please check with your advisor. Fully online degree programs are exempt from this requirement.
 Students in the Spanish Language and Cultures major develop language skills and the cultural competence needed to compete in an increasingly diverse world.
-Students may be eligible to receive Baccalaureate honors (summa cum laude, magna cum laude, cum laude) or Faculty honors. More information about eligibility and requirements for each designation may be found on the Honors Requirements webpage.
 Study Abroad
 style="display:none;
 Teaching and Learning Center
 Technical Communication Minor
 Terms of Use |
-The decision of the Academic Policy and Curriculum committee is final. An exception from a university graduation requirement becomes void at the end of two calendar years from the date the exemption was granted if all degree requirements have not been completed by that date.
-The following are considered non-resident credit:
 The foreign study credits must be in a program that offers at least 50 percent of the instruction in Spanish in a Spanish-speaking country. Students may combine credits from two programs, if desired. The experiential learning must be in a Spanish-speaking community, where at least 50 percent of the work the student does is in Spanish.
-The student must present a minimum cumulative 2.00 GPA for all coursework taken in residence at the University of Washington Tacoma. The graduation grade point average is computed when the student has completed all work for the degree and includes only credits earned while in residence at the university. Residence credits are UW credits earned through the campus granting the degree.
-The student needs to submit a graduation petition two quarters in advance to their academic advisor. Petitions requesting approval of 16-25 non-resident credits will be reviewed by the department awarding the degree. Petitions requesting more than 25 credits will be reviewed by the Academic Policy & Curriculum Committee. The student will be notified by mail and UW email of the decision by the Office of the Registrar.
 title="Follow UW Tacoma on Facebook">
 title="Follow UW Tacoma on Instagram">
 title="Follow UW Tacoma on Linkedin">
 title="Follow UW Tacoma on TikTok">
 title="Follow UW Tacoma on Youtube">
 To declare the Spanish Language and Cultures major, you must demonstrate, through a placement exam or coursework, proficiency at the 300-level in the Spanish language. Students interested in pursuing the major are strongly encouraged to take a variety of interdisciplinary courses dealing with Spanish and Latin American culture in preparation for the major.
-To ensure a determination is made in time for graduation, petitions should be submitted at least two quarters before the student's graduation date to allow time for committee review and student registration.
-To include a minimum of 10 credits in each of the three areas of study:
-To request a waiver of program/major requirements a student must submit a petition to their academic program. Students should confer with their advisor before completing the petition. Review is done by the academic program faculty committee or director/dean, as procedures specific to each academic program dictate.
 Tools
-Total Credits Required to Graduate
 Translation / Interpretation
 Travel Industry
 Tribal Sponsor of UW Tacoma
@@ -279,22 +207,16 @@ TSPAN 430 Translation Techniques and Practices
 TSPAN 451 Hispanic Women Writers
 TSPAN 464 Mexican Literature and Culture
 TSPAN 480 Contemporary Spanish Culture
-University Graduation Requirements for the Baccalaureate Degree
-University Requirements for a Baccalaureate Degree
 University YMCA Student Center
 UW Gmail
 UW Seattle | UW
 UWNetID login
-Various / Click Here
 visibility:hidden">
-Waiver of Degree Requirements
 We define a heritage speaker of Spanish as a person who was raised in a home where Spanish was spoken at least 50 percent of the time during that person's childhood and adolescence. Heritage speakers may not have had formal instruction in Spanish, but they are to some degree bilingual in both Spanish and English.
 We define native speaker of Spanish as a person who learned Spanish at home as his or her first language, and who lived in a Spanish-speaking home for the first six years of childhood. In addition, a native speaker has some formal instruction (at least through 7th grade) in schools where Spanish was the primary language. (Example: A person who was born in Mexico to Mexican parents, who lived in Mexico until age 14, and completed 7th grade there, is a native speaker of Spanish.)
 We recommend that students take TSPAN 301, 302 and 303 in sequence, but it's not required. A student can begin 300-level coursework in 302 or 303, as long as they have reached that level of proficiency via placement exam or coursework prerequisites.
 width="0"
-With School or Program approval, a student may choose to graduate under the current catalog or the catalog in effect at the time they entered the program from which they are to graduate. University policy on use of earlier graduation requirements provides that if fewer than ten years have elapsed since a student's admission into the major program, they may choose to graduate under the requirements in effect at the time of admission, or under any subsequent requirements. If more than ten years have elapsed since admission to the major, the major program has the option of requiring the student to complete the current major requirements.
 Workday
-Writing (W)
 Writing (W): 10 credits
 Writing Studies
 Zoom

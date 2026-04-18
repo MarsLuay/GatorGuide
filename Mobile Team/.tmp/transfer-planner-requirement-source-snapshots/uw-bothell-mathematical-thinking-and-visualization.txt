@@ -3,7 +3,6 @@ Source: https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visua
 Title: Mathematical Thinking & Visualization - School of Interdisciplinary Arts & Sciences
 
 [Supplemental official source] Curriculum
-[Supplemental official source] general admission requirements
 *Should be taken in the first quarter of IAS enrollment.
 &#124;
 &copy; 2026 University of Washington Bothell
@@ -18,7 +17,6 @@ Academic Excellence & Emerging Initiatives Fund
 Accessibility
 Acquire critical competence in different ways to address real-world, quantitative concerns and to find solutions that are both efficient and equitable.
 Additional IAS Coursework (20 credits)
-Admission to the School of Interdisciplinary Arts & Sciences depends on your application type:
 Admissions
 Admitted Students
 All IAS Funds
@@ -27,7 +25,6 @@ Alumni
 Alyssa Berger
 American & Ethnic Studies
 American Muslim Research Institute Fund
-Apply as a First-year student if any of the following statements describe you:
 Apply As Undergraduate
 Apply your leadership abilities to better understand how teams and organizations operate and thrive! ​
 B BUS 215 Business Statistics
@@ -100,7 +97,6 @@ CSS 142 Computer Programming I
 CSS 143 Computer Programming II
 Culture, Literature & the Arts
 Current site
-Current UW Bothell Students
 Curriculum
 D.C. Human Rights Seminar
 Data Visualization
@@ -109,7 +105,6 @@ Directory
 Diversity and Equity
 Diversity Plan
 Do courses like Visual Communication and Geographic Information Systems sound exciting to you? Do you want to explore a career in Data Analysis, Data Visualization, or Information System Management?
-Due to the limited number of course offerings, IAS does not admit new students for Summer quarter.
 Earth System Science
 Educational Access & Opportunity Fund
 Environmental Science
@@ -122,8 +117,6 @@ Faculty
 Faculty & staff
 Faculty Coordinator
 Fall Convergence
-First-Year Student applicants
-Frequently asked questions about IAS admissions
 Funding
 Gain experience creating visual representations of problems and data, and communicate these ideas, results, and analyses in multiple formats.
 Gender, Women & Sexuality Studies
@@ -134,30 +127,17 @@ Global Scholars Fund
 Global Studies
 Grade Appeal
 Graduate Programs
-Graduate students should refer to the graduate admissions page .
 Graduate Studies Excellence Fund
 Grievances and Complaints
 Hands-on Learning (IPR)
 height="0" width="0" style="display:none;visibility:hidden">
 Housing
 How to apply
-How to apply - School of Interdisciplinary Arts & Sciences
 Human Resources
-I am a transfer student admitted to the IAS program, what is the next step? And when can I register?
-I am interested in applying for Summer quarter. Is that a possibility?
-I have earned college credits during my time in high school (ex: Running Start), and I plan to enter UW Bothell right after graduating from high school. Note: It does not matter how many college credits you have earned or will earn.
-I have never attended college since leaving high school, regardless of my age or whether I ever graduated from high school.
-I plan to enter UW Bothell in the summer or fall after graduating from high school.
-I was dropped for low scholarship. How do I apply to be reinstated to IAS?
 iasinfo@uw.edu
-If you are an IAS student and have not been enrolled for more than one quarter (excluding summer quarter), then you must re-apply using the returning student application. If you have questions about registration and graduation dates, please email the Academic Advising office to check your degree progress.
-If you are currently enrolled at the University of Washington Bothell as a Pre-major student, or a student in another major, you can submit the IAS Major Declaration Form to enter into any IAS major. Some majors are open admission majors and have no specific prerequisite courses. Some majors are minimum requirement majors and will require prerequisite courses with at least a 2.0 grade. Check the major website for specific requirements.
-If you are currently enrolled or have previously been enrolled at a community college or university, and are not currently taking courses from UW Bothell, please review the transfer student admissions page and admissions planning worksheets .
-If you have questions about IAS majors, major requirements, admission process and application status, please email the Admissions advisors .
 IMPORTANT NOTICE
 In addition to major-specific learning objectives, undergraduate students in all majors within Interdisciplinary Arts & Sciences (IAS) focus on five core learning objectives .
 In addition to the general admission requirements , students must have completed the following prerequisites to be considered for admission to the Bachelor of Arts in Mathematical Thinking & Visualization:
-In order for a newly admitted student to confirm admission via the Enrollment Confirmation System, they will need to create a UW NetID . Questions regarding creation of/set up of UW NetIDs can be forwarded to Admissions at uwbapply@uw.edu or 425.352.5000.
 In this section
 Information Technology
 Interdisciplinary Arts
@@ -207,14 +187,12 @@ Nhi Tran
 Nony Clark Milmoe Scholarship
 Note: Classes in this major will be offered primarily during day-time hours.
 On this page: Major Description | Requirements | Learning Objectives | Faculty & Staff | Courses
-Once ready to submit a declaration form follow this link to the IAS Major Declaration Form . Use this form to declare your first major or to add an additional major. Current UW Bothell students can email iasapply@uw.edu with any questions about declaring an IAS major.
 one quarter of calculus (min 2.0 grade)
 One quarter of statistics (min 2.0 grade)
 Open mobile menu
 Peer Facilitation
 People
 Petitions and Forms
-Please visit the UW Bothell Admission Office webpage to apply to the University of Washington Bothell as a First-year student.
 Policy Studies (MA)
 Practice
 Prerequisites
@@ -228,8 +206,6 @@ Rebecca Price
 Recommended preparation
 Research Librarian
 Research Opportunities
-Returning Student applicants
-Review the UW Tri-Campus Immunity Verification Requirement .
 Rob Turner
 Rules Docket
 Sandra Martin Roberts Memorial Scholarship
@@ -241,7 +217,6 @@ Science, Technology & Society
 Search
 Search keywords
 Seattle Campus
-Sign up for a new student orientation .
 Skip To Content
 Society, Ethics & Human Behavior
 Spring Festival
@@ -255,7 +230,6 @@ STMATH 310 Mathematical Game Theory
 Student Feedback
 Student Resources
 Students in the Mathematical Thinking & Visualization major are passionate about interacting with data and technology to solve problems or understand concerns. MTV students enjoy communicating to others through the creative presentation of information and quantitative research.
-Students who have been dropped for low scholarship can apply to be reinstated to IAS. Review the reinstatement process on the Petitions & Forms webpage to begin this process.
 Students will choose at least two courses that extend their capacities in visualization and communication. Visualization practices and methods may include modeling and tools for exploring and examining data sets. It includes interactive presentation through the simultaneous display of multimedia data such as numbers, words, and images, and informal modes of communication, along with polished presentations to specific audiences. Courses in this category develop means of representing, and critically examining data and arguments.
 Students will choose at least two courses that will help them develop the mathematical tools gained in their prerequisite and core courses. This list will evolve as curricula across UW Bothell change; courses in this category explicitly study mathematical principles. That emphasis is manifest in their readings, assignments, and evaluation. This criterion does not exclude courses with substantial application, but a student finishing a course in this category should be able to reflect critically on the mathematical principles learned, in a way that aids their thoughtful application elsewhere.
 Students will choose one course that allows them to explore visual art forms or design as a means to communicate information to an audience.
@@ -267,10 +241,7 @@ The Mathematical Thinking & Visualization (MTV) major at the University of Washi
 The Mathematical Thinking & Visualization major is no longer accepting new students.
 Thesis Work
 Time Schedule
-To be able to register, you must confirm your enrollment, verify Immunization and attend a new student orientation. Then, you should be able to register the orientation. Newly admitted IAS students may register during Registration Period 2. Please visit the following pages for detailed information:
-To confirm your enrollment, please visit the Online Enrollment Confirmation System (ECS).
 TOTAL = 70 Credits
-Transfer Student applicants
 Undergraduate
 University of Washington Bothell Homepage
 Using their background in Mathematical Thinking & Visualization, graduates in this major help make future decisions through the effective use of data. Students in the major find work as data and business analysts, marketing managers, or communication strategists.
@@ -284,5 +255,3 @@ Visitors
 Washington D.C. Travel Assistance Fund
 Why Policy Studies?
 Workday Login
-You are considered a transfer applicant if you have completed (or will complete) college coursework from a regionally accredited college or university following the summer after high school graduation, but have not yet earned a bachelor’s degree.
-You should apply as a Transfer Student only if you have earned college credits after the summer you graduated from high school.

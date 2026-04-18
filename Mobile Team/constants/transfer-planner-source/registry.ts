@@ -29,6 +29,7 @@ import {
   TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
 } from "./source-fingerprints.generated";
 import { countMaterializedTransferPlannerPathways } from "./pathway-materialization";
+import { TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES } from "./derived-shared-source-plans";
 import type {
   TransferPlannerChecklistItem,
   TransferPlannerDegreeMapSection,
@@ -85,6 +86,7 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "COURSES",
   "CREDIT",
   "DATA",
+  "DOES",
   "DIVISION",
   "EARNED",
   "EITHER",
@@ -92,7 +94,9 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "FOR",
   "FROM",
   "GRADED",
+  "HAS",
   "HAVE",
+  "HAVEA",
   "INCLUDE",
   "INCLUDES",
   "INTO",
@@ -155,6 +159,10 @@ const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
     .map((match) => match?.[1] ?? null)
     .filter(Boolean)
 );
+const SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN =
+  /Auto-promotion was intentionally skipped/i;
+const SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN =
+  /\b(suggested general education|not required for transferring|approved list|highly recommended|elective|replacement|course list|course lists|course evaluation|course evaluations|capstone course|capstone courses|suggested course pathways?)\b/i;
 const DATE_PATTERN =
   /\b(January|February|March|April|May|June|July|August|September|October|November|December) \d{1,2}, \d{4}\b/;
 const GRC_AVAILABILITY_SOURCE_LINKS: TransferPlannerSourceLink[] = [
@@ -331,7 +339,19 @@ function normalizeExtractedCourseSubject(rawValue: string) {
 
   const subject = subjectTokens.join(" ");
   const collapsedSubject = subjectTokens.join("");
-  const hasDanglingAmpersandToken = subjectTokens.some((token) => token === "&" || token.endsWith("&"));
+  const hasDanglingAmpersandToken = subjectTokens.some((token) => {
+    if (token === "&") {
+      return true;
+    }
+
+    if (!token.endsWith("&")) {
+      return false;
+    }
+
+    // Green River subjects like MATH&, PHYS&, and ENGR& are valid course
+    // prefixes. Reject only malformed trailing-ampersand fragments.
+    return !/^[A-Z]{2,7}&$/.test(token);
+  });
 
   if (
     subjectTokens.length > 1 &&
@@ -399,6 +419,10 @@ function extractCourseCodes(value: string) {
   }
 
   return unique(extractedCourseCodes);
+}
+
+export function extractTransferPlannerCourseCodes(value: string) {
+  return extractCourseCodes(value);
 }
 
 function extractCourseCodesFromList(values: string[]) {
@@ -1419,6 +1443,55 @@ function takePlannerStrings(values: string[], limit = 12) {
   ).slice(0, limit);
 }
 
+function getClassificationRequirementCueLines(
+  classification: TransferPlannerRequirementDiffClassificationEntry
+) {
+  return takePlannerStrings(
+    (classification.validationNotes ?? [])
+      .filter((note) => note.startsWith("Requirement cue lines:"))
+      .flatMap((note) =>
+        note
+          .replace(/^Requirement cue lines:\s*/i, "")
+          .split(/\s+\|\s+/)
+          .map((line) => line.trim())
+      ),
+    24
+  );
+}
+
+function hasUnsafeSourceBackedClassificationValidationNote(
+  classification: TransferPlannerRequirementDiffClassificationEntry
+) {
+  return (classification.validationNotes ?? []).some((note) =>
+    SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN.test(String(note ?? ""))
+  );
+}
+
+function shouldIncludeStudentFacingSourceBackedClassification(
+  classification: TransferPlannerRequirementDiffClassificationEntry
+) {
+  if (!classification.displayPhase || !hasClassificationCourseCoverage(classification)) {
+    return false;
+  }
+
+  if ((parseCourseParts(classification.sourceUwCourseCode).level ?? Number.MAX_SAFE_INTEGER) >= 300) {
+    return false;
+  }
+
+  if (hasUnsafeSourceBackedClassificationValidationNote(classification)) {
+    return false;
+  }
+
+  const requirementCueLines = getClassificationRequirementCueLines(classification);
+  if (!requirementCueLines.length) {
+    return classification.classificationKind.startsWith("auto-promoted-");
+  }
+
+  return requirementCueLines.some(
+    (line) => !SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN.test(String(line ?? ""))
+  );
+}
+
 function getPhaseBlockSortLabel(phase: TransferPlannerRequirementPhase) {
   switch (phase) {
     case "before-application":
@@ -1482,14 +1555,15 @@ function buildRequirementAtomRegistry() {
   >();
 
   for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS) {
-    if (!classification.displayPhase || !hasClassificationCourseCoverage(classification)) {
+    const displayPhase = classification.displayPhase;
+    if (!displayPhase || !shouldIncludeStudentFacingSourceBackedClassification(classification)) {
       continue;
     }
 
     const scopePrefix = getPlannerScopeIdPrefix(classification.planId, classification.pathwayId);
     const groupingKey = classification.guideRuleId
-      ? `${scopePrefix}|${classification.displayPhase}|guide:${classification.guideRuleId}`
-      : `${scopePrefix}|${classification.displayPhase}|classification:${classification.id}`;
+      ? `${scopePrefix}|${displayPhase}|guide:${classification.guideRuleId}`
+      : `${scopePrefix}|${displayPhase}|classification:${classification.id}`;
     const normalizedCourseCodes = unique(
       (classification.grcCourseCodes ?? []).map((code) => normalizeCourseCode(code)).filter(Boolean)
     );
@@ -1504,7 +1578,7 @@ function buildRequirementAtomRegistry() {
         pathwayId: classification.pathwayId ?? null,
         campusId: classification.campusId,
         majorTitle: classification.majorTitle,
-        phase: classification.displayPhase,
+        phase: displayPhase,
         titles: new Set<string>(),
         grcCourseCodes: new Set<string>(),
         alternativeCourseCodeSets: new Map<string, string[]>(),
@@ -1592,13 +1666,14 @@ function buildDegreeMapBlockRegistry() {
   >();
 
   for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS) {
-    if (!classification.displayPhase) {
+    const displayPhase = classification.displayPhase;
+    if (!displayPhase || !shouldIncludeStudentFacingSourceBackedClassification(classification)) {
       continue;
     }
 
     const scopePrefix = getPlannerScopeIdPrefix(classification.planId, classification.pathwayId);
-    const sortLabel = getPhaseBlockSortLabel(classification.displayPhase);
-    const groupingKey = `${scopePrefix}|${classification.displayPhase}`;
+    const sortLabel = getPhaseBlockSortLabel(displayPhase);
+    const groupingKey = `${scopePrefix}|${displayPhase}`;
     const current =
       phaseDegreeBlocks.get(groupingKey) ??
       {
@@ -1607,7 +1682,7 @@ function buildDegreeMapBlockRegistry() {
         pathwayId: classification.pathwayId ?? null,
         campusId: classification.campusId,
         majorTitle: classification.majorTitle,
-        title: getPhaseDegreeMapTitle(classification.majorTitle, classification.displayPhase),
+        title: getPhaseDegreeMapTitle(classification.majorTitle, displayPhase),
         itemLabels: new Set<string>(),
         uwCourseCodes: new Set<string>(),
         sourceLinks: new Map<string, TransferPlannerSourceLink>(),
@@ -1980,6 +2055,10 @@ const HIDDEN_SOURCE_GAP_PATHWAY_KEYS = new Set(
     (entry) => entry.studentVisibility === "hidden" && entry.pathwayId
   ).map((entry) => `${entry.planId}::${entry.pathwayId}`)
 );
+const ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES =
+  TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES.filter((alias) =>
+    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.some((plan) => plan.id === alias.sourcePlanId)
+  );
 function getPlanPrimaryParsedRequirementSourceBlocks(planId: string) {
   const primaryDegreeSourceUrl = getTransferPlannerPrimaryDegreeRequirementsSource(planId)?.url ?? null;
 
@@ -2020,10 +2099,14 @@ const STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRA
 
 export const TRANSFER_PLANNER_SOURCE_SUMMARY = {
   generatedOn: "2026-04-02",
-  sourceGeneratedMajorPlanCount: TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.length,
-  studentVisibleMajorPlanCount: TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.filter(
-    (plan) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id)
-  ).length,
+  sourceGeneratedMajorPlanCount:
+    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.length + ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.length,
+  studentVisibleMajorPlanCount:
+    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.filter((plan) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id))
+      .length +
+    ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.filter(
+      (alias) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(alias.derivedPlanId)
+    ).length,
   hiddenSourceGapMajorPlanCount: HIDDEN_SOURCE_GAP_PLAN_IDS.size,
   sourceGeneratedPathwayCount: SOURCE_GENERATED_PATHWAY_COUNT,
   studentVisiblePathwayCount: STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT,
