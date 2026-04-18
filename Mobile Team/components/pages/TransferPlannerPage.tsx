@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Alert,
   Linking,
+  Modal,
   Pressable,
   ScrollView,
   Text,
@@ -84,6 +85,7 @@ const GENERATED_PROGRAM_MAP_SUMMARY_SENTENCE = [
 type PlannerCollegeId = "uw" | "grc";
 type PlannerCampusSelectionId = TransferPlannerCampusId | typeof GRC_PLANNER_CAMPUS_ID;
 type PlannerSelectorKey = "college" | "campus" | "major" | null;
+type SelectorOverlayStrategy = "inline" | "inline-isolated" | "modal";
 
 type TranscriptDocument = UploadedFile;
 
@@ -1453,6 +1455,7 @@ function SelectorField({
   borderClass,
   dropdownBackgroundColor,
   onTouchStartInside,
+  overlayStrategy = "inline",
 }: {
   label: string;
   value: string;
@@ -1471,14 +1474,58 @@ function SelectorField({
   borderClass: string;
   dropdownBackgroundColor: string;
   onTouchStartInside?: () => void;
+  overlayStrategy?: SelectorOverlayStrategy;
 }) {
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<TextInput | null>(null);
+  const selectorFieldRef = useRef<View | null>(null);
+  const [modalAnchor, setModalAnchor] = useState<{
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+  } | null>(null);
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
+  const markTouchInside = useCallback(() => {
+    onTouchStartInside?.();
+  }, [onTouchStartInside]);
+  const dismissDropdown = useCallback(() => {
+    if (onDismiss) {
+      onDismiss();
+      return;
+    }
+    onToggle();
+  }, [onDismiss, onToggle]);
+  const measureModalAnchor = useCallback(() => {
+    if (!selectorFieldRef.current) {
+      return;
+    }
+
+    selectorFieldRef.current.measureInWindow((x, y, width, height) => {
+      if (
+        !Number.isFinite(x) ||
+        !Number.isFinite(y) ||
+        !Number.isFinite(width) ||
+        !Number.isFinite(height)
+      ) {
+        return;
+      }
+
+      setModalAnchor({
+        left: x,
+        top: y,
+        width,
+        height,
+      });
+    });
+  }, []);
+  const shouldUseInlineIsolation = overlayStrategy === "inline-isolated";
 
   useEffect(() => {
     if (!open) {
       searchInputRef.current?.blur();
       setSearchQuery("");
+      setModalAnchor(null);
     }
   }, [open]);
 
@@ -1493,6 +1540,20 @@ function SelectorField({
       clearTimeout(focusTimer);
     };
   }, [open, searchable]);
+
+  useEffect(() => {
+    if (!open || overlayStrategy !== "modal") {
+      return;
+    }
+
+    const frame = requestAnimationFrame(() => {
+      measureModalAnchor();
+    });
+
+    return () => {
+      cancelAnimationFrame(frame);
+    };
+  }, [measureModalAnchor, open, overlayStrategy, options.length, value]);
 
   const normalizedQuery = normalizeSelectorSearchValue(searchQuery);
   const normalizedSelectedValue = normalizeSelectorSearchValue(value);
@@ -1533,12 +1594,144 @@ function SelectorField({
     searchable,
     selectedOptionId,
   ]);
+  const modalDropdownLayout = useMemo(() => {
+    if (!modalAnchor) {
+      return null;
+    }
+
+    const sideMargin = 16;
+    const verticalGap = 12;
+    const viewportPadding = 24;
+    const availableBelow = Math.max(
+      windowHeight - (modalAnchor.top + modalAnchor.height + verticalGap) - viewportPadding,
+      0
+    );
+    const availableAbove = Math.max(modalAnchor.top - verticalGap - viewportPadding, 0);
+    const shouldOpenUpward = availableBelow < 220 && availableAbove > availableBelow;
+    const maxHeight = Math.max(
+      160,
+      Math.min(320, shouldOpenUpward ? availableAbove : availableBelow)
+    );
+    const width = Math.min(modalAnchor.width, Math.max(windowWidth - sideMargin * 2, 0));
+    const left = Math.min(
+      Math.max(modalAnchor.left, sideMargin),
+      Math.max(sideMargin, windowWidth - width - sideMargin)
+    );
+    const top = shouldOpenUpward
+      ? Math.max(viewportPadding, modalAnchor.top - verticalGap - maxHeight)
+      : modalAnchor.top + modalAnchor.height + verticalGap;
+
+    return {
+      left,
+      top,
+      width,
+      maxHeight,
+    };
+  }, [modalAnchor, windowHeight, windowWidth]);
+  const dropdownMaxHeight = modalDropdownLayout?.maxHeight ?? 320;
+  const scrollAreaMaxHeight = Math.max(
+    120,
+    dropdownMaxHeight - (searchable && !effectiveQuery ? 72 : 28)
+  );
+  const dropdownContent = (
+    <View
+      className={`border ${borderClass} rounded-2xl p-3`}
+      onTouchStart={markTouchInside}
+      renderToHardwareTextureAndroid={shouldUseInlineIsolation}
+      needsOffscreenAlphaCompositing={shouldUseInlineIsolation}
+      style={{
+        maxHeight: dropdownMaxHeight,
+        backgroundColor: dropdownBackgroundColor,
+        overflow: "hidden",
+        opacity: 1,
+        ...(shouldUseInlineIsolation
+          ? {
+              shadowColor: "#000000",
+              shadowOpacity: 0.18,
+              shadowRadius: 18,
+              shadowOffset: { width: 0, height: 10 },
+            }
+          : null),
+      }}
+    >
+      {shouldUseInlineIsolation ? (
+        <View
+          pointerEvents="none"
+          style={{
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+            backgroundColor: dropdownBackgroundColor,
+            opacity: 1,
+          }}
+        />
+      ) : null}
+
+      {searchable && !effectiveQuery ? (
+        <Text className={`${secondaryTextClass} text-xs mb-2`}>
+          Scroll to browse all options, or type to filter.
+        </Text>
+      ) : null}
+
+      <ScrollView
+        nestedScrollEnabled
+        showsVerticalScrollIndicator
+        keyboardShouldPersistTaps="always"
+        onTouchStart={markTouchInside}
+        style={{ maxHeight: scrollAreaMaxHeight, backgroundColor: dropdownBackgroundColor }}
+        contentContainerStyle={{ gap: 12, paddingBottom: 4 }}
+      >
+        {filteredOptions.map((option) => (
+          <AnimatedCardPressable
+            key={option.id}
+            onPressIn={markTouchInside}
+            onPress={() => {
+              searchInputRef.current?.blur();
+              setSearchQuery("");
+              onSelect(option.id);
+            }}
+            className={`border ${borderClass} rounded-2xl px-4 py-4`}
+            style={{ backgroundColor: dropdownBackgroundColor, opacity: 1 }}
+          >
+            <Text className={`${textClass} font-semibold`}>{option.label}</Text>
+            {option.description ? (
+              <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                {option.description}
+              </Text>
+            ) : null}
+          </AnimatedCardPressable>
+        ))}
+
+        {searchable && effectiveQuery && !filteredOptions.length ? (
+          <Text className={`${secondaryTextClass} text-sm`}>
+            No options match that search yet.
+          </Text>
+        ) : null}
+      </ScrollView>
+    </View>
+  );
 
   return (
     <View
+      ref={selectorFieldRef}
       className="relative"
-      style={open ? { zIndex: 30 } : undefined}
-      onTouchStart={onTouchStartInside}
+      style={
+        open
+          ? shouldUseInlineIsolation
+            ? { zIndex: 120, elevation: 120 }
+            : { zIndex: 30 }
+          : undefined
+      }
+      onTouchStart={markTouchInside}
+      onLayout={() => {
+        if (open && overlayStrategy === "modal") {
+          measureModalAnchor();
+        }
+      }}
+      renderToHardwareTextureAndroid={open && shouldUseInlineIsolation}
+      needsOffscreenAlphaCompositing={open && shouldUseInlineIsolation}
     >
       <Text className={`${textClass} text-base font-semibold`}>{label}</Text>
       <Text className={`${secondaryTextClass} text-sm mt-1`}>{helper}</Text>
@@ -1546,10 +1739,12 @@ function SelectorField({
       {searchable ? (
         <View
           className={`mt-4 border ${borderClass} rounded-2xl px-4 py-2 flex-row items-center`}
+          onTouchStart={markTouchInside}
         >
           <TextInput
             ref={searchInputRef}
             value={open ? searchQuery : value}
+            onTouchStart={markTouchInside}
             onChangeText={(nextValue) => {
               if (!open) {
                 onToggle();
@@ -1573,6 +1768,7 @@ function SelectorField({
           />
           <AnimatedIconPressable
             onPress={onToggle}
+            onPressIn={markTouchInside}
             className="ml-3"
             hitSlop={8}
           >
@@ -1586,6 +1782,7 @@ function SelectorField({
       ) : (
         <AnimatedCardPressable
           onPress={onToggle}
+          onPressIn={markTouchInside}
           className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4 flex-row items-center justify-between`}
         >
           <View className="flex-1 min-w-0 pr-3">
@@ -1601,59 +1798,48 @@ function SelectorField({
         </AnimatedCardPressable>
       )}
 
-      {open ? (
+      {open && overlayStrategy !== "modal" ? (
         <View
-          className={`absolute left-0 right-0 mt-3 border ${borderClass} rounded-2xl p-3`}
+          className="absolute left-0 right-0 mt-3"
           style={{
             top: "100%",
-            zIndex: 35,
-            elevation: 16,
-            maxHeight: 320,
-            backgroundColor: dropdownBackgroundColor,
-            overflow: "hidden",
-            opacity: 1,
+            zIndex: shouldUseInlineIsolation ? 125 : 35,
+            elevation: shouldUseInlineIsolation ? 125 : 16,
           }}
         >
-          {searchable && !effectiveQuery ? (
-            <Text className={`${secondaryTextClass} text-xs mb-2`}>
-              Scroll to browse all options, or type to filter.
-            </Text>
-          ) : null}
-
-          <ScrollView
-            nestedScrollEnabled
-            showsVerticalScrollIndicator
-            keyboardShouldPersistTaps="always"
-            style={{ maxHeight: 270, backgroundColor: dropdownBackgroundColor }}
-            contentContainerStyle={{ gap: 12, paddingBottom: 4 }}
-          >
-            {filteredOptions.map((option) => (
-              <AnimatedCardPressable
-                key={option.id}
-                onPress={() => {
-                  searchInputRef.current?.blur();
-                  setSearchQuery("");
-                  onSelect(option.id);
-                }}
-                className={`border ${borderClass} rounded-2xl px-4 py-4`}
-                style={{ backgroundColor: dropdownBackgroundColor, opacity: 1 }}
-              >
-                <Text className={`${textClass} font-semibold`}>{option.label}</Text>
-                {option.description ? (
-                  <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                    {option.description}
-                  </Text>
-                ) : null}
-              </AnimatedCardPressable>
-            ))}
-
-            {searchable && effectiveQuery && !filteredOptions.length ? (
-              <Text className={`${secondaryTextClass} text-sm`}>
-                No options match that search yet.
-              </Text>
-            ) : null}
-          </ScrollView>
+          {dropdownContent}
         </View>
+      ) : null}
+
+      {open && overlayStrategy === "modal" && modalDropdownLayout ? (
+        <Modal transparent visible animationType="none" onRequestClose={dismissDropdown}>
+          <View style={{ flex: 1 }}>
+            <Pressable
+              onPress={dismissDropdown}
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+              }}
+            />
+            <View pointerEvents="box-none" style={{ flex: 1 }}>
+              <View
+                style={{
+                  position: "absolute",
+                  left: modalDropdownLayout.left,
+                  top: modalDropdownLayout.top,
+                  width: modalDropdownLayout.width,
+                  zIndex: 200,
+                  elevation: 200,
+                }}
+              >
+                {dropdownContent}
+              </View>
+            </View>
+          </View>
+        </Modal>
       ) : null}
     </View>
   );
@@ -1714,6 +1900,24 @@ function PlannerSelectionFields({
   borderClass: string;
   dropdownBackgroundColor: string;
 }) {
+  const getFieldContainerStyle = (
+    selectorKey: Exclude<PlannerSelectorKey, null>,
+    shouldElevateInlineOverlay = false
+  ) => {
+    const baseStyle = isDesktop ? { flex: 1, minWidth: 0 } : {};
+
+    if (!shouldElevateInlineOverlay || openSelector !== selectorKey) {
+      return Object.keys(baseStyle).length ? baseStyle : undefined;
+    }
+
+    return {
+      ...baseStyle,
+      position: "relative" as const,
+      zIndex: 130,
+      elevation: 130,
+    };
+  };
+
   return (
     <View
       className="mt-4"
@@ -1721,7 +1925,7 @@ function PlannerSelectionFields({
         isDesktop ? { flexDirection: "row", alignItems: "flex-start", gap: 16 } : { gap: 16 }
       }
     >
-      <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
+      <View style={getFieldContainerStyle("college", true)}>
         <SelectorField
           label="College"
           value={selectedCollegeLabel}
@@ -1738,10 +1942,11 @@ function PlannerSelectionFields({
           secondaryTextClass={secondaryTextClass}
           borderClass={borderClass}
           dropdownBackgroundColor={dropdownBackgroundColor}
+          overlayStrategy="inline-isolated"
         />
       </View>
 
-      <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
+      <View style={getFieldContainerStyle("campus")}>
         <SelectorField
           label="Campus"
           value={selectedCampusLabel}
@@ -1758,10 +1963,11 @@ function PlannerSelectionFields({
           secondaryTextClass={secondaryTextClass}
           borderClass={borderClass}
           dropdownBackgroundColor={dropdownBackgroundColor}
+          overlayStrategy="modal"
         />
       </View>
 
-      <View style={isDesktop ? { flex: 1, minWidth: 0 } : undefined}>
+      <View style={getFieldContainerStyle("major")}>
         <SelectorField
           label="Major"
           value={selectedMajorLabel}
