@@ -11,6 +11,11 @@ require("ts-node").register({
   },
 });
 
+const {
+  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
+  getTransferPlannerPathwaysForPlan,
+} = require("../../constants/transfer-planner-source");
+
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const DISCOVERY_REPORT_PATH = path.resolve(
@@ -95,16 +100,33 @@ function loadPreviousPromotions() {
   }
 }
 
+function buildActiveOwnerIdSet() {
+  const ownerIds = new Set();
+
+  for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+    ownerIds.add(buildOwnerId(plan.id, null));
+
+    for (const pathway of getTransferPlannerPathwaysForPlan(plan)) {
+      ownerIds.add(buildOwnerId(plan.id, pathway.id));
+    }
+  }
+
+  return ownerIds;
+}
+
 function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
   const skippedInReviewQueue = [];
+  const activeOwnerIds = buildActiveOwnerIdSet();
   const entriesByOwnerId = new Map(
-    (previousEntries ?? []).map((entry) => [
-      entry.ownerId,
-      {
-        ...entry,
-      },
-    ])
+    (previousEntries ?? [])
+      .filter((entry) => activeOwnerIds.has(entry.ownerId))
+      .map((entry) => [
+        entry.ownerId,
+        {
+          ...entry,
+        },
+      ])
   );
 
   (discoveryReport.owners ?? [])

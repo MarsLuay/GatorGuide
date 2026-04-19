@@ -1,6 +1,6 @@
 # Transfer Planner Primary Source Promotions
 
-Generated: 2026-04-19T01:46:39.113Z
+Generated: 2026-04-19T20:05:41.804Z
 
 - Auto-promoted high-confidence primary sources: 76
 - Skipped because they still appear in the review queue: 0
@@ -177,14 +177,6 @@ Generated: 2026-04-19T01:46:39.113Z
 - Discovery score: 54
 - Why: already stored as an official source; explicitly names the selected major; matches major keyword "laboratory"; matches major keyword "medical"; matches multiple major keywords; official source text matches the selected major; overview wording; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
 
-### Music, B.A.
-
-- Owner: uw-seattle-music-b-a
-- Primary source: https://music.washington.edu/bachelor-arts-music-instrumental-option
-- Label: UW Bachelor of Arts - Music, Instrumental Option
-- Discovery score: 56
-- Why: already stored as an official source; matches major keyword "music"; official source path matches the selected major; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; verified against an official source candidate
-
 ### Music Composition, B.M.
 
 - Owner: uw-seattle-music-composition-b-m
@@ -200,6 +192,14 @@ Generated: 2026-04-19T01:46:39.113Z
 - Label: UW Bachelor of Music - Music Education, Instrumental Emphasis
 - Discovery score: 52
 - Why: already stored as an official source; matches major keyword "education"; matches major keyword "music"; matches multiple major keywords; official source text matches the selected major; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
+
+### Music, B.A.
+
+- Owner: uw-seattle-music-b-a
+- Primary source: https://music.washington.edu/bachelor-arts-music-instrumental-option
+- Label: UW Bachelor of Arts - Music, Instrumental Option
+- Discovery score: 56
+- Why: already stored as an official source; matches major keyword "music"; official source path matches the selected major; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; verified against an official source candidate
 
 ### Orchestral Instruments, B.M.
 

@@ -228,6 +228,14 @@ const REQUIREMENT_FRIENDLY_HINT_PATTERN =
   /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence|prior to the start of|before the start of|continuation requirements?)\b/i;
 const CROSS_MAJOR_SCOPE_PATTERN =
   /\b(?:if|for|required for)\s+([a-z][a-z&/,\- ]+?)\s+major\b/i;
+const PATHWAY_LABEL_CUE_PATTERN =
+  /\b(option|track|route|pathway|concentration)\b/i;
+const PATHWAY_LABEL_DEGREE_TITLE_PATTERN =
+  /^(?:(?:Bachelor|Master|Doctor|Minor|Associate)(?: of [^:]{1,120})?|(?:B\.?\s*A\.?|B\.?\s*S\.?|M\.?\s*A\.?|M\.?\s*S\.?)(?: degree)?(?: with a major in [^:]{1,120})?)\s*:\s+(.{2,120})$/i;
+const PATHWAY_LABEL_INLINE_PATTERN =
+  /^([^:]{1,120}\b(?:track|option|route|pathway|concentration)\b(?:\s*\([^)]{1,40}\))?)\s*:/i;
+const PATHWAY_LABEL_APPLY_PATTERN =
+  /\bstudents apply(?: directly)?(?:\s+for|\s+to)?(?: the)?\s+(.{2,100}?)\s+(option|track|route|pathway|concentration)\b/i;
 const CAMPUS_ORDER = ["uw-seattle", "uw-bothell", "uw-tacoma"];
 const PARSEABLE_PARSER_TYPES = new Set([
   "html-degree-page",
@@ -1771,10 +1779,22 @@ function extractChooseStatements(lines) {
 }
 
 function extractPathwayLabels(lines, headings) {
+  const isPathwayLabelCandidate = (line) => {
+    const normalized = normalizeWhitespace(line);
+    if (!normalized || NOISY_SOURCE_LINE_PATTERN.test(normalized)) {
+      return false;
+    }
+
+    return (
+      PATHWAY_LABEL_CUE_PATTERN.test(normalized) ||
+      PATHWAY_LABEL_DEGREE_TITLE_PATTERN.test(normalized) ||
+      PATHWAY_LABEL_INLINE_PATTERN.test(normalized) ||
+      PATHWAY_LABEL_APPLY_PATTERN.test(normalized)
+    );
+  };
+
   return uniqueSorted(
-    [...headings, ...lines]
-      .filter((line) => /\b(option|track|route|pathway|concentration)\b/i.test(line))
-      .slice(0, 20)
+    [...headings, ...lines].filter(isPathwayLabelCandidate).slice(0, 40)
   );
 }
 
@@ -2957,12 +2977,18 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
     let bestParsed = parsed;
     let bestResolutionStrategy = "primary-source";
     let bestScore = getParsedResultScore(entry, parsed);
+    const alternateEntries = getAlternateParseableManifestEntries(entry);
+    const hasFocusedAlternateSource = alternateEntries.some((candidate) =>
+      isFocusedDegreeSource(candidate)
+    );
     const shouldInspectAlternateSources =
-      shouldEvaluateAlternateSources(entry, parsed) || structuredCourseCodes.length > 0;
+      shouldEvaluateAlternateSources(entry, parsed) ||
+      structuredCourseCodes.length > 0 ||
+      (!isFocusedDegreeSource(entry) && hasFocusedAlternateSource);
     const parsedAlternates = [];
 
     if (shouldInspectAlternateSources) {
-      for (const alternateEntry of getAlternateParseableManifestEntries(entry)) {
+      for (const alternateEntry of alternateEntries) {
         try {
           const alternateAdapter = selectRequirementSourceAdapter(alternateEntry);
           const alternateParsed = await alternateAdapter.parse(alternateEntry, timeoutMs);

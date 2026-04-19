@@ -3553,6 +3553,79 @@ function buildAutomaticChecklistForPhase(
   return runtimeItems;
 }
 
+function buildAutomaticCoursePoolChecklistItems(scope: {
+  planId: string;
+  pathwayId?: string | null;
+  automaticCourseList: string[];
+  applicationChecklist?: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
+}) {
+  if (hasAnyChecklistItems(scope)) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  const automaticCourseList = uniqueReferenceCourseLabels(scope.automaticCourseList).filter(
+    (label) => extractReferenceCourseCodes(label).length > 0
+  );
+  if (!automaticCourseList.length) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  const supportedCourseCodes = new Set(
+    automaticCourseList.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  const seenSignatures = new Set<string>();
+  const synthesizedItems: TransferPlannerChecklistItem[] = [];
+
+  automaticCourseList.forEach((courseLabel, index) => {
+    const checklistItem = buildSourceValidatedRuntimeChecklistItem(
+      {
+        id: buildAutoChecklistItemId(
+          `${scope.planId}-${scope.pathwayId ?? "base"}-course-pool-${courseLabel}`,
+          index
+        ),
+        title: courseLabel,
+        grcCourseCodes: [courseLabel],
+        alternativeCourseCodeSets: [],
+        note: undefined,
+      },
+      supportedCourseCodes
+    );
+    if (!checklistItem) {
+      return;
+    }
+
+    const signature = buildChecklistItemSignature(checklistItem);
+    if (seenSignatures.has(signature)) {
+      return;
+    }
+
+    seenSignatures.add(signature);
+    synthesizedItems.push(checklistItem);
+  });
+
+  if (!synthesizedItems.length) {
+    return buildEmptyChecklistItemsByPhase();
+  }
+
+  const dominantPhase = getDominantSourceBackedFallbackPhase(
+    getRequirementDiffClassificationsForScope(scope.planId, scope.pathwayId).filter(
+      (entry) =>
+        entry.grcCourseCodes.length > 0 ||
+        (entry.alternativeCourseCodeSets ?? []).some((group) => group.length > 0)
+    ),
+    getParsedRequirementAtomCandidatesForScope(scope.planId, scope.pathwayId),
+    "before-enrollment"
+  );
+
+  return {
+    beforeApplication: dominantPhase === "before-application" ? synthesizedItems : [],
+    beforeEnrollment: dominantPhase === "before-enrollment" ? synthesizedItems : [],
+    stayAtGrc: dominantPhase === "stay-at-grc" ? synthesizedItems : [],
+  } satisfies ChecklistItemsByPhase;
+}
+
 function buildAutomaticCourseList(
   planId: string,
   pathwayId?: string | null,
@@ -3770,14 +3843,34 @@ function buildStudentRuntimePathway(
     applicationChecklist,
     derivedComputingChecklistItems.beforeApplication
   );
+  const synthesizedChecklistItems = buildAutomaticCoursePoolChecklistItems({
+    planId: basePlan.id,
+    pathwayId: basePathway.id,
+    automaticCourseList: buildAutomaticCourseList(basePlan.id, basePathway.id),
+    applicationChecklist: applicationChecklistWithDerived,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist,
+  });
+  const applicationChecklistWithSynthesis = appendUniqueChecklistItems(
+    applicationChecklistWithDerived,
+    synthesizedChecklistItems.beforeApplication
+  );
+  beforeEnrollmentChecklist = appendUniqueChecklistItems(
+    beforeEnrollmentChecklist,
+    synthesizedChecklistItems.beforeEnrollment
+  );
+  stayAtGrcChecklist = appendUniqueChecklistItems(
+    stayAtGrcChecklist,
+    synthesizedChecklistItems.stayAtGrc
+  );
   const prunedBeforeEnrollmentChecklist = pruneRedundantRuntimeChecklistItems(
     beforeEnrollmentChecklist,
-    getChecklistCoverageCourseCodes(applicationChecklistWithDerived)
+    getChecklistCoverageCourseCodes(applicationChecklistWithSynthesis)
   );
   const prunedStayAtGrcChecklist = pruneRedundantRuntimeChecklistItems(
     stayAtGrcChecklist,
     getChecklistCoverageCourseCodes([
-      ...applicationChecklistWithDerived,
+      ...applicationChecklistWithSynthesis,
       ...prunedBeforeEnrollmentChecklist,
     ])
   );
@@ -3797,13 +3890,13 @@ function buildStudentRuntimePathway(
   );
   const studentVisibleCourseList = buildStudentVisibleAutomaticCourseList({
     grcCourseList: automaticCourseList,
-    applicationChecklist: applicationChecklistWithDerived,
+    applicationChecklist: applicationChecklistWithSynthesis,
     beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
   const studentVisibleTrackMatchCourseList = buildStudentVisibleTrackMatchCourseList({
     grcCourseList: automaticTrackMatchCourseList,
-    applicationChecklist: applicationChecklistWithDerived,
+    applicationChecklist: applicationChecklistWithSynthesis,
     beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
@@ -3819,7 +3912,7 @@ function buildStudentRuntimePathway(
           basePathway.label
         ),
         summary: sanitizePlannerOwnedText(basePathway.summary),
-        applicationChecklist: applicationChecklistWithDerived,
+        applicationChecklist: applicationChecklistWithSynthesis,
         beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
         stayAtGrcChecklist: prunedStayAtGrcChecklist,
         advisorFlags: sanitizePlannerOwnedStrings(basePathway.advisorFlags ?? []),
@@ -3896,6 +3989,25 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
   stayAtGrcChecklist = appendUniqueChecklistItems(
     stayAtGrcChecklist,
     derivedComputingChecklistItems.stayAtGrc
+  );
+  const synthesizedChecklistItems = buildAutomaticCoursePoolChecklistItems({
+    planId: basePlan.id,
+    automaticCourseList: buildAutomaticCourseList(basePlan.id),
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist,
+  });
+  applicationChecklist = appendUniqueChecklistItems(
+    applicationChecklist,
+    synthesizedChecklistItems.beforeApplication
+  );
+  beforeEnrollmentChecklist = appendUniqueChecklistItems(
+    beforeEnrollmentChecklist,
+    synthesizedChecklistItems.beforeEnrollment
+  );
+  stayAtGrcChecklist = appendUniqueChecklistItems(
+    stayAtGrcChecklist,
+    synthesizedChecklistItems.stayAtGrc
   );
   const prunedBeforeEnrollmentChecklist = pruneRedundantRuntimeChecklistItems(
     beforeEnrollmentChecklist,
@@ -3986,15 +4098,9 @@ function materializePlannerPathway(pathway: TransferPlannerMajorPathway): Transf
   };
 }
 
-function getPlanPrimaryParsedRequirementSourceBlocks(planId: string) {
-  const primaryDegreeSourceUrl = getTransferPlannerPrimaryDegreeRequirementsSource(planId)?.url ?? null;
-
+function getPlanMaterializationParsedRequirementSourceBlocks(planId: string) {
   return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
-    (entry) =>
-      entry.planId === planId &&
-      !entry.pathwayId &&
-      entry.ok &&
-      (!primaryDegreeSourceUrl || entry.primarySourceUrl === primaryDegreeSourceUrl)
+    (entry) => entry.planId === planId && entry.ok
   );
 }
 
@@ -4010,7 +4116,7 @@ function materializePlanPathways(plan: TransferPlannerMajorPlan, includeHiddenSo
   return materializeTransferPlannerPathways(
     plan,
     visibleBasePathways,
-    getPlanPrimaryParsedRequirementSourceBlocks(plan.id)
+    getPlanMaterializationParsedRequirementSourceBlocks(plan.id)
   );
 }
 
@@ -4036,10 +4142,18 @@ function mergePlannerPathwayWithPlan(
   const trackMetadata = getPathwayScopedTrackMetadata(plan, pathway);
   const mergedPlan = materializePlanReferenceCourses({
     ...plan,
-    applicationChecklist: pathway.applicationChecklist ?? plan.applicationChecklist ?? [],
-    beforeEnrollmentChecklist:
-      pathway.beforeEnrollmentChecklist ?? plan.beforeEnrollmentChecklist ?? [],
-    stayAtGrcChecklist: pathway.stayAtGrcChecklist ?? plan.stayAtGrcChecklist ?? [],
+    applicationChecklist: appendUniqueChecklistItems(
+      plan.applicationChecklist ?? [],
+      pathway.applicationChecklist ?? []
+    ),
+    beforeEnrollmentChecklist: appendUniqueChecklistItems(
+      plan.beforeEnrollmentChecklist ?? [],
+      pathway.beforeEnrollmentChecklist ?? []
+    ),
+    stayAtGrcChecklist: appendUniqueChecklistItems(
+      plan.stayAtGrcChecklist ?? [],
+      pathway.stayAtGrcChecklist ?? []
+    ),
     advisorFlags: sanitizePlannerOwnedStrings([
       ...(plan.advisorFlags ?? []),
       ...(pathway.advisorFlags ?? []),
@@ -4375,6 +4489,11 @@ export type {
   TransferPlannerCampusId,
   TransferPlannerChecklistItem,
   TransferPlannerDegreeMapSection,
+  TransferPlannerGeneralRequirementCategoryId,
+  TransferPlannerGeneralRequirementItem,
+  TransferPlannerGeneralRequirementPlannerUsage,
+  TransferPlannerGeneralRequirementSection,
+  TransferPlannerGeneralRequirementSourceKind,
   TransferPlannerMajorPathway,
   TransferPlannerMajorPlan,
   TransferPlannerResolvedMajorPlan,

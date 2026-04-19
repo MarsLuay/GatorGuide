@@ -1,18 +1,18 @@
 Owner: uw-seattle-sustainable-bioresource-systems-engineering:pathway:esrm-general-pathway-specific-requirements
-Source: https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/
-Title: SBSE Schedule and Major Requirements | School of Environmental and Forest Sciences
+Source: https://sefs.uw.edu/students/undergraduate/esrm/major-requirements/
+Title: ESRM Course Schedule and Major Requirements | School of Environmental and Forest Sciences
 
 -->
 [Note: this list last updated July 23, 2025]
 [supersedes CSE 142, 143]
 [Supplemental official source] BSE Academic Requirements
 [Supplemental official source] BSE Majors Considering the Switch to the SBSE Major
-[Supplemental official source] ESRM Course Schedule and Major Requirements
 [Supplemental official source] ESRM: General Academic Requirements
 [Supplemental official source] ESRM: Natural Resource and Environmental Management Academic Requirements
 [Supplemental official source] ESRM: Restoration Ecology and Environmental Horticulture Academic Requirements
 [Supplemental official source] ESRM: Sustainable Forest Management Academic Requirements
 [Supplemental official source] ESRM: Wildlife Conservation Academic Requirements
+[Supplemental official source] SBSE Schedule and Major Requirements
 [This course is being replaced by CSE 121, 122, 123]
 *Many of the credits for this minor are completed through the required wildlife coursework
 &copy; 2026 University of Washington |

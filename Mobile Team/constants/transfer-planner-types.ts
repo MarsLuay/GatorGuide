@@ -28,6 +28,50 @@ export type TransferPlannerChecklistItem = {
   minCompletedCount?: number;
 };
 
+export type TransferPlannerGeneralRequirementCategoryId =
+  | "academic-elective"
+  | "ah"
+  | "english"
+  | "fine-arts"
+  | "mathematics"
+  | "ssc"
+  | "science"
+  | "senior-year-quantitative"
+  | "social-sciences-social-studies"
+  | "nsc"
+  | "breadth"
+  | "elective"
+  | "world-languages";
+
+export type TransferPlannerGeneralRequirementSourceKind =
+  | "source-backed-major"
+  | "official-transfer-policy"
+  | "planner-guidance";
+
+export type TransferPlannerGeneralRequirementPlannerUsage =
+  | "used-for-quarter-planning"
+  | "reference-only"
+  | "summary-only";
+
+export type TransferPlannerGeneralRequirementItem = {
+  id: TransferPlannerGeneralRequirementCategoryId;
+  label: string;
+  valueText: string;
+  note?: string;
+  sourceKind: TransferPlannerGeneralRequirementSourceKind;
+};
+
+export type TransferPlannerGeneralRequirementSection = {
+  id: string;
+  title: string;
+  summary: string;
+  note?: string;
+  campusId: TransferPlannerCampusId;
+  sourceKind: TransferPlannerGeneralRequirementSourceKind;
+  plannerUsage: TransferPlannerGeneralRequirementPlannerUsage;
+  items: TransferPlannerGeneralRequirementItem[];
+};
+
 export type TransferPlannerDegreeMapSection = {
   id: string;
   title: string;

@@ -412,6 +412,14 @@ export default function ResourcesPage() {
     () => filteredReferenceSections.reduce((sum, section) => sum + countResourceSectionItems(section), 0),
     [filteredReferenceSections]
   );
+  const toolsReferenceSection = useMemo(
+    () => filteredReferenceSections.find((s) => s.id === "tools"),
+    [filteredReferenceSections]
+  );
+  const otherReferenceSections = useMemo(
+    () => filteredReferenceSections.filter((s) => s.id !== "tools"),
+    [filteredReferenceSections]
+  );
   const hasActiveSearch = query.trim().length > 0;
   const opportunityCountLabel =
     filteredOpportunities.length === 1
@@ -934,8 +942,9 @@ export default function ResourcesPage() {
 
             {groupedOpportunities.length > 0 || filteredReferenceSections.length > 0 ? (
               <View className="gap-6">
+                {toolsReferenceSection ? renderListStyleReferenceSection(toolsReferenceSection) : null}
                 {groupedOpportunities.map((section) => renderListStyleOpportunitySection(section))}
-                {filteredReferenceSections.map((section) => renderListStyleReferenceSection(section))}
+                {otherReferenceSections.map((section) => renderListStyleReferenceSection(section))}
               </View>
             ) : (
               <View className={`${mutedCardClass} p-4`}>
@@ -1013,8 +1022,9 @@ export default function ResourcesPage() {
 
               {groupedOpportunities.length > 0 || filteredReferenceSections.length > 0 ? (
                 <View className="gap-6 mb-8">
+                  {toolsReferenceSection ? renderListStyleReferenceSection(toolsReferenceSection) : null}
                   {groupedOpportunities.map((section) => renderListStyleOpportunitySection(section))}
-                  {filteredReferenceSections.map((section) => renderListStyleReferenceSection(section))}
+                  {otherReferenceSections.map((section) => renderListStyleReferenceSection(section))}
                 </View>
               ) : (
                 <View className={`${cardClass} border rounded-2xl p-5 mb-6`}>

@@ -478,7 +478,7 @@ const rawTranslations = {
     "resources.evergreenGuide": "The Evergreen State College — Green River Transfer Guide (PDF)",
     "resources.evergreenGuideDesc": "Evergreen transfer guide for Green River courses.",
 
-    "resources.scholarships": "Scholarships (WA Focus)",
+    "resources.scholarships": "Scholarships (WA)",
     "resources.careerOneStop": "CareerOneStop — Scholarship Search (Washington)",
     "resources.careerOneStopDesc": "Scholarship search filtered for Washington opportunities.",
     "resources.bigFuture": "BigFuture — Scholarship Search (WA)",

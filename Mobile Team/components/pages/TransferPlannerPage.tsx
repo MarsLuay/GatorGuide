@@ -49,8 +49,9 @@ import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { errorLoggingService, transcriptPlannerDebugService } from "@/services";
 import { storageService, type UploadedFile } from "@/services/storage/storage.service";
 import {
-  buildGeneralEducationRequirementTargets,
+  buildSourceBackedGeneralEducationRequirementTargets,
   buildSuggestedQuarterPlan,
+  buildUwGeneralTransferRequirementSection,
   buildRequirementStatuses,
   buildTransferPlannerStudentCourseEvaluations,
   buildTransferPlannerStudentEvaluationReport,
@@ -279,7 +280,7 @@ function getPlannerHeroContent(collegeId: PlannerCollegeId) {
   return {
     title: "GRC -> UW Course Planner",
     description:
-      "Classes for Green River College are cheaper/easier than those at the University of Washington. This tool matches you with a transfer track most compatible with your major, letting you take advantage of it by showing you every course that directly transfers in.",
+      "Classes for Green River College are cheaper/easier than those at the University of Washington. This tool matches you with a transfer track most compatible with your major, letting you take advantage of it by showing you every course that directly transfers in. Always check with your advisor before scheduling classes!",
   };
 }
 
@@ -595,7 +596,7 @@ function buildMajorSpecificsGeneralEducationCreditLinesFromTotals(
     id: entry.id,
     label: entry.label,
     credits: totals[entry.id] ?? 0,
-  }));
+  })).filter((entry) => entry.credits > 0);
 }
 
 function inferMajorSpecificsGeneralEducationCreditsFromTrackLabel(courseLabel: string) {
@@ -710,9 +711,11 @@ function getMajorSpecificsGeneralEducationCategoryIdsForTrackLabel(
   return Array.from(categories);
 }
 
-function buildMajorSpecificsUwGeneralEducationCreditLines(plan: TransferPlannerResolvedMajorPlan) {
+function buildMajorSpecificsSourceBackedUwGeneralEducationCreditLines(
+  plan: TransferPlannerResolvedMajorPlan
+) {
   const searchableText = getPlanDegreeMapSearchText(plan);
-  const parsedTargets = buildGeneralEducationRequirementTargets(plan);
+  const parsedTargets = buildSourceBackedGeneralEducationRequirementTargets(plan);
   const totals = createEmptyMajorSpecificsGeneralEducationCreditTotals();
 
   totals.ah = parsedTargets.ahCredits ?? inferRequirementCreditTotalFromText(searchableText, "AH") ?? 0;
@@ -735,7 +738,7 @@ function buildMajorSpecificsGrcGeneralEducationCreditLines(args: {
 }) {
   const { plan, track, completedCourses } = args;
   if (!track) {
-    return plan ? buildMajorSpecificsUwGeneralEducationCreditLines(plan) : [];
+    return plan ? buildMajorSpecificsSourceBackedUwGeneralEducationCreditLines(plan) : [];
   }
 
   const totals = createEmptyMajorSpecificsGeneralEducationCreditTotals();
@@ -2191,6 +2194,8 @@ function TranscriptSummaryCard({
   trackTitle,
   trackSummary,
   completedCourses,
+  transcriptDerivedCompletedCourses,
+  hasTranscriptDerivedCreditSource,
   openSelector,
   collegeOptions,
   campusOptions,
@@ -2238,6 +2243,8 @@ function TranscriptSummaryCard({
   trackTitle: string;
   trackSummary: string;
   completedCourses: TranscriptCourseEntry[];
+  transcriptDerivedCompletedCourses: TranscriptCourseEntry[];
+  hasTranscriptDerivedCreditSource: boolean;
   openSelector: PlannerSelectorKey;
   collegeOptions: { id: string; label: string; description?: string }[];
   campusOptions: { id: string; label: string; description?: string }[];
@@ -2384,6 +2391,8 @@ function TranscriptSummaryCard({
               plan={plan}
               track={track}
               completedCourses={completedCourses}
+              transcriptDerivedCompletedCourses={transcriptDerivedCompletedCourses}
+              hasTranscriptDerivedCreditSource={hasTranscriptDerivedCreditSource}
               selectedPathwayLabel={selectedPathwayLabel}
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
@@ -2507,6 +2516,8 @@ function TranscriptSummaryCard({
             plan={plan}
             track={track}
             completedCourses={completedCourses}
+            transcriptDerivedCompletedCourses={transcriptDerivedCompletedCourses}
+            hasTranscriptDerivedCreditSource={hasTranscriptDerivedCreditSource}
             selectedPathwayLabel={selectedPathwayLabel}
             textClass={textClass}
             secondaryTextClass={secondaryTextClass}
@@ -2680,7 +2691,7 @@ function SuggestedScheduleCard({
   const scheduleDescription =
     collegeId === "grc"
       ? `This is your Green River plan for finishing the ${degreeTitle} ${grcTrackRequirementNoun} at ${getScheduleCampusLabel(collegeId, campusLabel)}. Completed transcript classes stay marked as done, and the planner fills in the remaining GRC ${grcTrackRequirementNoun} courses still ahead.`
-      : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Press the Classes for UW transfer only button to hide optional Green River track classes and focus on UW-required classes plus prerequisite dependencies.`;
+      : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Press the Classes for UW transfer only button to hide optional Green River track classes and focus on UW-required classes, official UW transfer admission guidance when applicable, major-specific breadth requirements, and prerequisite dependencies.`;
 
   return (
     <View className={`${cardClass} border rounded-[28px] p-5`}>
@@ -2700,7 +2711,7 @@ function SuggestedScheduleCard({
                 accessibilityRole="checkbox"
                 accessibilityState={{ checked: onlyUwEssentialClasses }}
                 accessibilityLabel="Only show classes that transfer into UW on this track"
-                accessibilityHint="Hides nonessential Green River track classes while keeping prerequisite classes that still unlock UW-required work."
+                accessibilityHint="Hides nonessential Green River track classes while keeping prerequisite classes, official UW transfer admission guidance when applicable, and major-specific breadth requirements that still unlock UW-required work."
                 className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
                 hitSlop={8}
               >
@@ -3097,6 +3108,8 @@ function MajorSpecificsSection({
   plan,
   track,
   completedCourses,
+  transcriptDerivedCompletedCourses,
+  hasTranscriptDerivedCreditSource,
   selectedPathwayLabel,
   textClass,
   secondaryTextClass,
@@ -3105,6 +3118,8 @@ function MajorSpecificsSection({
   plan: TransferPlannerResolvedMajorPlan;
   track: TransferPlannerTrack | null;
   completedCourses: TranscriptCourseEntry[];
+  transcriptDerivedCompletedCourses: TranscriptCourseEntry[];
+  hasTranscriptDerivedCreditSource: boolean;
   selectedPathwayLabel: string | null;
   textClass: string;
   secondaryTextClass: string;
@@ -3119,9 +3134,17 @@ function MajorSpecificsSection({
     () => buildMajorSpecificsGrcRequiredMajorCourseLines({ plan, track, completedCourses }),
     [completedCourses, plan, track]
   );
-  const uwGeneralEducationCreditLines = useMemo(
-    () => buildMajorSpecificsUwGeneralEducationCreditLines(plan),
+  const sourceBackedUwGeneralEducationCreditLines = useMemo(
+    () => buildMajorSpecificsSourceBackedUwGeneralEducationCreditLines(plan),
     [plan]
+  );
+  const uwGeneralTransferRequirementSection = useMemo(
+    () =>
+      buildUwGeneralTransferRequirementSection(plan, {
+        completedCourses: transcriptDerivedCompletedCourses,
+        hasTranscriptDerivedCreditSource,
+      }),
+    [hasTranscriptDerivedCreditSource, plan, transcriptDerivedCompletedCourses]
   );
   const uwRequiredPathCourseEntries = useMemo(() => buildUwRequiredPathCourseEntries(plan), [plan]);
   const primaryDegreeSource = getTransferPlannerPrimaryDegreeRequirementsSource(
@@ -3254,13 +3277,19 @@ function MajorSpecificsSection({
                 <View className="mt-4 gap-4">
                   <View>
                     <Text className={`${textClass} text-sm font-semibold`}>Gen-Ed Courses</Text>
-                    <View className="mt-2 gap-2">
-                      {grcGeneralEducationCreditLines.map((entry) => (
-                        <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                          {`${entry.label}: ${entry.credits} credits`}
-                        </Text>
-                      ))}
-                    </View>
+                    {grcGeneralEducationCreditLines.length ? (
+                      <View className="mt-2 gap-2">
+                        {grcGeneralEducationCreditLines.map((entry) => (
+                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                            {`${entry.label}: ${entry.credits} credits`}
+                          </Text>
+                        ))}
+                      </View>
+                    ) : (
+                      <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                        No Green River track general-education targets are currently tagged for this route yet.
+                      </Text>
+                    )}
                   </View>
 
                   <View>
@@ -3296,8 +3325,8 @@ function MajorSpecificsSection({
                     </Text>
                     <Text className={`${secondaryTextClass} text-sm mt-1`}>
                       {uwRequiredPathCourseEntries.length
-                        ? "Open this dropdown for the Green River classes that count toward the UW-required path for this major."
-                        : "Open this dropdown for the UW-required path and mapped Green River equivalents as they become available."}
+                        ? "Open this dropdown for source-backed major requirements and Green River classes that count toward the UW-required path for this major."
+                        : "Open this dropdown for source-backed major requirements and mapped Green River equivalents as they become available."}
                     </Text>
                   </View>
                   <Ionicons
@@ -3310,15 +3339,46 @@ function MajorSpecificsSection({
 
               {isUwClassesOpen ? (
                 <View className="mt-4 gap-4">
-                  <View>
-                    <Text className={`${textClass} text-sm font-semibold`}>Gen-Ed Courses</Text>
-                    <View className="mt-2 gap-2">
-                      {uwGeneralEducationCreditLines.map((entry) => (
-                        <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                          {`${entry.label}: ${entry.credits} credits`}
+                  {uwGeneralTransferRequirementSection ? (
+                    <View>
+                      <Text className={`${textClass} text-sm font-semibold`}>
+                        {uwGeneralTransferRequirementSection.title}
+                      </Text>
+                      <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                        {uwGeneralTransferRequirementSection.summary}
+                      </Text>
+                      <View className="mt-2 gap-2">
+                        {uwGeneralTransferRequirementSection.items.map((entry) => (
+                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                            {`${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`}
+                          </Text>
+                        ))}
+                      </View>
+                      {uwGeneralTransferRequirementSection.note ? (
+                        <Text className={`${secondaryTextClass} text-xs mt-3`}>
+                          {uwGeneralTransferRequirementSection.note}
                         </Text>
-                      ))}
+                      ) : null}
                     </View>
+                  ) : null}
+
+                  <View>
+                    <Text className={`${textClass} text-sm font-semibold`}>
+                      Major Required Gen-Eds
+                    </Text>
+                    {sourceBackedUwGeneralEducationCreditLines.length ? (
+                      <View className="mt-2 gap-2">
+                        {sourceBackedUwGeneralEducationCreditLines.map((entry) => (
+                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                            {`${entry.label}: ${entry.credits} credits`}
+                          </Text>
+                        ))}
+                      </View>
+                    ) : (
+                      <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                        No source-backed major-specific general education targets are currently published for this major.
+                      </Text>
+                    )}
                   </View>
 
                   <View>
@@ -3414,6 +3474,13 @@ export default function TransferPlannerPage() {
   const completedCourses = useMemo(
     () => parseCompletedTranscriptCourses(rawCompletedCourses),
     [rawCompletedCourses]
+  );
+  const transcriptDerivedCompletedCourses = useMemo(
+    () =>
+      shouldUseDetailedCompletedCourses
+        ? parseCompletedTranscriptCourses(storedDetailedTranscriptCourses)
+        : [],
+    [shouldUseDetailedCompletedCourses, storedDetailedTranscriptCourses]
   );
   const needsTranscriptReparse =
     hasDetailedCompletedCourses &&
@@ -4299,6 +4366,8 @@ export default function TransferPlannerPage() {
             trackTitle={activeTrackTitle}
             trackSummary={activeTrackSummary}
             completedCourses={completedCourses}
+            transcriptDerivedCompletedCourses={transcriptDerivedCompletedCourses}
+            hasTranscriptDerivedCreditSource={shouldUseDetailedCompletedCourses}
             openSelector={openSelector}
             collegeOptions={collegeOptions}
             campusOptions={campusOptions}
@@ -4377,7 +4446,7 @@ export default function TransferPlannerPage() {
                 No class equivalencies for {plan?.title ?? selectedMajorLabel}
               </Text>
               <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                There are no class equivalencies for this path right now.
+                There are no class equivalencies for this major right now.
               </Text>
               {plan && isOpenAdmissionMajor(plan) ? (
                 <Text className={`${secondaryTextClass} text-sm mt-2`}>

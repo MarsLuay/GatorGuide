@@ -1,6 +1,6 @@
 # Welcome to Gator Guide!
 
-Gator Guide is a student-focused project designed to help transfer applicants find their best-fit college. It brings together mobile product design, college data, and AI-powered guidance so students can explore schools, ask questions, and get support in a way that feels personal and practical.
+Gator Guide is a student-focused project designed to help transfer applicants find their best-fit college. It brings together mobile product design, college data, and guidance so students can explore schools, ask questions, and get support in a way that feels personal and practical.
 
 ## What Gator Guide Does
 
@@ -11,21 +11,17 @@ Gator Guide helps students:
 - Get AI-powered guidance for transfer planning, applications, and next steps.
 - Keep important profile details, transcripts, and interests in one place.
 
-The active repo now lives in one main workspace:
-
-- **Mobile Team** builds the app experience students use, along with the service integrations, planner tooling, and product documentation that support it.
-
 ## Repo Layout
 
-- [Mobile Team](Mobile%20Team/README.md): Expo/React Native app, UI, app services, planner tooling, and platform setup.
+- [Mobile Team](Mobile%20Team/README.md): Contains the bulk of the code: Expo/React Native app, UI, app services, planner tooling, and platform setup.
 
 ## Setup: Download and Run
 
 ### Quick start
 
-- On Windows, double-click `Start-to-run.bat` in the repo root.
-- On macOS or Linux, run `bash ./Start-to-run.sh` from the repo root.
-- After the server comes online, it tries to open `http://127.0.0.1:8081` in your default browser automatically.
+- On Windows, double-click `Start-to-run.bat`
+- On macOS or Linux, run `Start-to-run.sh`
+- After the server comes online, it opens `http://127.0.0.1:8081` in your default browser automatically.
 
 ### Manual Start
 
@@ -54,14 +50,7 @@ npm run start
 
 ```
 
-Notes:
-
-- If you use Git Bash, WSL, or a POSIX shell, use forward slashes and drop the `$env:` prefix.
-- `npm run start` now automatically falls back from `tunnel` to `lan` to `offline` if an earlier mode does not come online.
-- After Expo starts, open the Metro/Expo devtools in your browser and scan the QR code with Expo Go.
-- Most day-to-day work in this repo happens inside `Mobile Team`.
-
-#### 3) Open in VS Code (edit files)
+#### 3) Open in VS Code (to edit files)
 
 Open VS Code -> File -> Open Folder ->
 
@@ -74,7 +63,7 @@ C:\Users\<you>\GatorGuide
 ```powershell
 cd $env:USERPROFILE\GatorGuide
 git checkout main
-git pull --rebase origin main
+git pull --rebase origin main (gets the latest update)
 ```
 
 ## Commit and Push Changes
@@ -99,9 +88,7 @@ git push origin main
 
 ### Bat File
 
-To add new scholarships, internships, or helpful resource links, there is an easy script for this.
-
-This script is called `add-or-remove-resources.bat`.
+To add new scholarships, internships, or helpful resource links, there's a neat little script called `add-or-remove-resources.bat`.
 
 Just double-click it, answer the prompts, and it will walk you through adding the item. It asks for the important information, including things like title, link, deadline style, yearly recurrence, essays, recommendations, and any other details it can collect.
 

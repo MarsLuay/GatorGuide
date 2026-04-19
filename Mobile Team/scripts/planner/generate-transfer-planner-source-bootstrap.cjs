@@ -20,6 +20,9 @@ const {
 const {
   TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
 } = require("../../constants/transfer-planner-source/source-gaps.generated");
+const {
+  isSuspiciousStructuralPathwayLabel,
+} = require("../../constants/transfer-planner-source/pathway-materialization");
 
 const OUTPUT_PATH = path.resolve(
   __dirname,
@@ -35,6 +38,179 @@ const CAMPUS_TITLE_BY_ID = {
   "uw-bothell": "UW Bothell",
   "uw-tacoma": "UW Tacoma",
 };
+const PATHWAY_OWNER_TITLE_SUFFIX_SEPARATORS = [" - ", ": ", " – "];
+const PATHWAY_DEGREE_TITLE_PATTERN =
+  /^(?:(?:Bachelor|Master|Doctor|Minor|Associate)(?: of [^:]{1,120})?|(?:B\.?\s*A\.?|B\.?\s*S\.?|M\.?\s*A\.?|M\.?\s*S\.?)(?: degree)?(?: with a major in [^:]{1,120})?)\s*:\s+(.{2,120})$/i;
+const PATHWAY_STRUCTURAL_PREFIX_PATTERN =
+  /^(.{2,80}?)\s+(option|track|route|pathway|certificate|concentration)[-\s]*specific\b.*$/i;
+const PATHWAY_EXPLICIT_COURSE_CODE_PATTERN =
+  /\b[A-Z]{2,8}(?:\/[A-Z]{2,8})?\s+\d{3}(?:\.\d+)?[A-Z]?\b/i;
+const SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY = new Map([
+  [
+    makePlanPathwayKey("uw-bothell-business-administration", null),
+    [
+      {
+        label: "UW Bothell BBA curriculum hub",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+        note:
+          "Supporting route hub only. Keep the dedicated option and concentration pages as the stronger requirement sources for specific BBA pathways.",
+      },
+      {
+        label: "UW Bothell BBA admissions hub",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
+        note:
+          "Supporting admissions context only. Use this alongside the dedicated route pages rather than as a blanket degree-requirements replacement.",
+      },
+      {
+        label: "UW Bothell BBA how to apply",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
+        note:
+          "Supporting admissions process context only. Do not treat this page as a degree-requirements source.",
+      },
+      {
+        label: "UW Bothell BBA prerequisite courses",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+        note:
+          "Supporting admissions prerequisite context only. Keep lower-division requirement extraction conservative and route-specific.",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-bothell-business-administration", "accounting-option"),
+    [
+      {
+        label: "UW Bothell Accounting option major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey(
+      "uw-bothell-business-administration",
+      "finance-option-and-concentration"
+    ),
+    [
+      {
+        label: "UW Bothell Finance option and concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey(
+      "uw-bothell-business-administration",
+      "leadership-and-strategic-innovation-option"
+    ),
+    [
+      {
+        label: "UW Bothell Leadership and Strategic Innovation option major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey(
+      "uw-bothell-business-administration",
+      "marketing-option-and-concentration"
+    ),
+    [
+      {
+        label: "UW Bothell Marketing option and concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey(
+      "uw-bothell-business-administration",
+      "supply-chain-management-option"
+    ),
+    [
+      {
+        label: "UW Bothell Supply Chain Management option major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-bothell-business-administration", "entrepreneurship-concentration"),
+    [
+      {
+        label: "UW Bothell Entrepreneurship concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-bothell-business-administration", "management-concentration"),
+    [
+      {
+        label: "UW Bothell Management concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-bothell-business-administration", "mis-concentration"),
+    [
+      {
+        label: "UW Bothell MIS concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-bothell-business-administration", "retail-management-concentration"),
+    [
+      {
+        label: "UW Bothell Retail Management concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-bothell-business-administration", "tim-concentration"),
+    [
+      {
+        label: "UW Bothell Technology and Innovation Management concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-seattle-geography", null),
+    [
+      {
+        label: "UW Geography courses by track",
+        url: "https://geography.washington.edu/courses-track",
+        note:
+          "Supplemental official route-separation context only. Keep this course-by-track page secondary to the dedicated degree-requirements pages.",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-seattle-geography", "data-science-option"),
+    [
+      {
+        label: "UW Geography courses by track",
+        url: "https://geography.washington.edu/courses-track",
+        note:
+          "Supplemental official route-separation context only. Keep this course-by-track page secondary to the dedicated degree-requirements pages.",
+      },
+    ],
+  ],
+  [
+    makePlanPathwayKey("uw-seattle-geography", "standard-ba-route"),
+    [
+      {
+        label: "UW Geography courses by track",
+        url: "https://geography.washington.edu/courses-track",
+        note:
+          "Supplemental official route-separation context only. Keep this course-by-track page secondary to the dedicated degree-requirements pages.",
+      },
+    ],
+  ],
+]);
 
 function makePlanPathwayKey(planId, pathwayId = null) {
   return `${String(planId ?? "").trim()}::${String(pathwayId ?? "").trim()}`;
@@ -277,13 +453,98 @@ function titleCasePathwayLabel(value) {
     .join(" ");
 }
 
-function buildPathwayLabelFromBlock(block) {
-  const parsedLabel = uniqueStrings(block.pathwayLabels ?? [])[0] ?? "";
+function normalizePathwayLabelCandidate(planTitle, value) {
+  let normalized = String(value ?? "").replace(/\s+/g, " ").trim();
+  if (!normalized) {
+    return "";
+  }
+
+  const degreeTitleMatch = normalized.match(PATHWAY_DEGREE_TITLE_PATTERN);
+  if (degreeTitleMatch) {
+    normalized = String(degreeTitleMatch[1] ?? "").trim();
+  }
+
+  const normalizedPlanTitle = String(planTitle ?? "").replace(/\s+/g, " ").trim();
+  if (normalizedPlanTitle) {
+    for (const separator of PATHWAY_OWNER_TITLE_SUFFIX_SEPARATORS) {
+      const prefix = `${normalizedPlanTitle}${separator}`;
+      if (normalized.startsWith(prefix)) {
+        normalized = normalized.slice(prefix.length).trim();
+        break;
+      }
+    }
+  }
+
+  const structuralPrefixMatch = normalized.match(PATHWAY_STRUCTURAL_PREFIX_PATTERN);
+  if (structuralPrefixMatch) {
+    normalized = `${String(structuralPrefixMatch[1] ?? "").trim()} ${String(
+      structuralPrefixMatch[2] ?? ""
+    ).trim()}`.trim();
+  }
+
+  normalized = normalized
+    .replace(/^option\s+\d+\s*:\s*/i, "")
+    .replace(/\s+\((?:\d+(?:-\d+)?\s+credits?)\)\s*$/i, "")
+    .replace(/\s+[.;:]\s*$/, "")
+    .trim();
+
+  if (
+    !normalized ||
+    PATHWAY_EXPLICIT_COURSE_CODE_PATTERN.test(normalized) ||
+    isSuspiciousStructuralPathwayLabel(normalized)
+  ) {
+    return "";
+  }
+
+  return normalized;
+}
+
+function buildPathwayLabelFromSupplementalLink(planId, pathwayId) {
+  const supplementalLinks =
+    SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY.get(makePlanPathwayKey(planId, pathwayId)) ?? [];
+
+  for (const link of supplementalLinks) {
+    const label = String(link?.label ?? "").trim();
+    if (!/\b(option|concentration|track|route|pathway)\b/i.test(label)) {
+      continue;
+    }
+
+    const strippedLabel = label
+      .replace(/^UW\s+(?:Bothell|Seattle|Tacoma)\s+/i, "")
+      .replace(/\s+(?:major|degree|graduation)\s+requirements?$/i, "")
+      .replace(/\s+requirements?$/i, "")
+      .trim();
+
+    if (strippedLabel) {
+      return strippedLabel;
+    }
+  }
+
+  return "";
+}
+
+function buildPathwayLabelFromBlock(planTitle, block) {
+  const pathwayId = String(block.pathwayId ?? "").trim();
+  if (pathwayId) {
+    const supplementalLabel = buildPathwayLabelFromSupplementalLink(block.planId, pathwayId);
+    if (supplementalLabel) {
+      return supplementalLabel;
+    }
+  }
+
+  const ownerLabel = normalizePathwayLabelCandidate(planTitle, block.ownerTitle);
+  if (ownerLabel) {
+    return ownerLabel;
+  }
+
+  const parsedLabel = uniqueStrings(block.pathwayLabels ?? [])
+    .map((value) => normalizePathwayLabelCandidate(planTitle, value))
+    .filter(Boolean)
+    .sort((left, right) => left.length - right.length || left.localeCompare(right))[0] ?? "";
   if (parsedLabel) {
     return parsedLabel;
   }
 
-  const pathwayId = String(block.pathwayId ?? "").trim();
   if (pathwayId) {
     return titleCasePathwayLabel(pathwayId);
   }
@@ -325,7 +586,7 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
         continue;
       }
 
-      const label = buildPathwayLabelFromBlock(block);
+      const label = buildPathwayLabelFromBlock(title, block);
       pathwayById.set(pathwayId, {
         id: pathwayId,
         label,
@@ -426,9 +687,21 @@ function buildMajorPlansFromParsedRegistries() {
     const defaults = getOwnerLinkDefaults(planId, pathwayId);
     const parsedBlocks =
       parsedBlocksByOwnerScope.get(makePlanPathwayKey(planId, pathwayId ?? null)) ?? [];
+    const supplementalLinks =
+      SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY.get(makePlanPathwayKey(planId, pathwayId ?? null)) ??
+      [];
 
     return uniqueLinks([
       ...(Array.isArray(links) ? links : []).map((entry) => ({
+        label: String(entry?.label ?? "").trim(),
+        url: String(entry?.url ?? "").trim(),
+        note: String(entry?.note ?? "").trim() || undefined,
+        visibility: defaults.visibility,
+        status: defaults.status,
+        reason: defaults.reason,
+        sourceConfidence: defaults.sourceConfidence,
+      })),
+      ...supplementalLinks.map((entry) => ({
         label: String(entry?.label ?? "").trim(),
         url: String(entry?.url ?? "").trim(),
         note: String(entry?.note ?? "").trim() || undefined,

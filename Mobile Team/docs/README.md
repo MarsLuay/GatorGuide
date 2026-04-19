@@ -61,7 +61,7 @@ For transfer-planner work:
 
 ## Notes
 
-- The planner docs are now intentionally split by target UW campus.
+- The planner docs are intentionally split by target UW campus.
 - The planner-facing transfer and equivalency markdown references have been migrated into `GRC_EQUIVALENCY_GUIDE_REFERENCE.md`.
 - When two planner docs overlap, update the more specific one instead of duplicating the same rule in several places.
 - The campus planner docs are generated from the planner source layer. Refresh them from the maintenance pipeline instead of hand-editing them.

@@ -1,0 +1,35 @@
+Owner: uw-seattle-american-indian-studies:pathway:environment-and-health-concentration-courses
+Source: https://ais.washington.edu/ba-american-indian-studies
+Title: B.A. in American Indian Studies | American Indian Studies | University of Washington
+
+AIS 365 Native Nation Governance
+AIS 444 Criminality and "Deviance" in Native Communities
+AIS 446 American Indian Economic History
+AIS 461 First Nations Government and Politics in Canada
+AIS 480 Indigenous Resistance and Resurgence Movements in the US, Canada, and Mexico
+AIS 492 Indigenous Sovereignties
+Environment and Health Concentration Courses:
+AIS 306 Contemporary Indigenous Environmental Issues
+AIS 307 Indigenous Literature and the Environment
+AIS 308 American Indians and the Environment
+AIS 311 The Indigenous History and Environment of the Salish Sea
+AIS 340 Indian Children and Families
+AIS 380 Indigenous Food Sovereignty
+AIS 385 Indigenous Ecologies and Climate Change
+AIS 451 Critical Conversations in AIS
+Culture and History Concentration Courses:
+AIS 215 Puget Sound Indian Literature in English
+AIS 309 Methods in American Indian Linguistics
+AIS 310 A Linguistic Approach to Culture: Southern Lushootseed in the Seasonal Calendar
+AIS 313/314/315 American Indian Language - Salish (Southern Lushootseed)
+AIS 360 American Indians in Cinema
+AIS 376 First Nations Literature
+AIS 377 Contemporary American Indian Literature
+AIS 378 Contemporary American Indian Literature: A Northwest Focus
+AIS 379 Powwow: Tradition and Innovation
+AIS 425 Indians in Western Washington history
+AIS 431 History of American Indian Education
+AIS 440 Reading Native American Women's Lives
+AIS 441 Gender in Native American Societies
+AIS 443 Indigenous Films, Sovereign Visions
+4. Electives

@@ -1,0 +1,266 @@
+Owner: uw-seattle-chemical-engineering:pathway:chemical-engineering-standard-option
+Source: https://www.cheme.washington.edu/undergraduate_students/curriculum
+Title: Curriculum | UW Chemical Engineering
+
+[Supplemental official source] Engineering Electives
+[Supplemental official source] NME Option
+[Supplemental official source] Optional focus areas
+&copy; 2026 UW Chemical Engineering | UW College of Engineering | Seattle, WA
+<a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
+<a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+<a class="toggler nav-link collapsed" data-toggle="collapse" data-target="#main-menu-links"
+<a href="https://www.washington.edu/itconnect/forstudents.html"
+<button aria-label="Open search" aria-haspopup="true" aria-owns="search-modal" aria-controls="search-modal"
+<button class="menu-toggler d-sm-none collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
+<button class="uw-links-wrapper mr-n2 uwlinks-button-toggle" role="button" aria-label="Show UW quick links" aria-owns="uwlinks"
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDDQSLD"
+<nav aria-label="Audience links, search, and quick links"
+206-543-2252
+AA 210 (4 cr)
+About us
+Academic Program Manager
+Accessibility
+Additional Links
+Admission
+Advanced Materials & Interfacial Engineering
+Advanced Materials Interfacial Engineering
+Aeronautics and Astronautics
+Air & Space Computing & Data Science Energy & Environment Health & Medicine Transportation & Society Manufacturing & Robotics
+Alumni opportunities
+Alumni Profiles
+AMATH 301 (4cr)
+Application process
+Application requirements
+Applied Mathematics
+aria-controls="toggle_main-menu-1" aria-expanded="false"
+aria-controls="toggle_main-menu-2" aria-expanded="false"
+aria-controls="toggle_main-menu-3" aria-expanded="false"
+aria-controls="toggle_main-menu-4" aria-expanded="false"
+aria-controls="toggle_main-menu-5" aria-expanded="false"
+aria-controls="toggle_main-menu-6" aria-expanded="false"
+aria-controls="toggle_main-menu-7" aria-expanded="false"
+aria-controls="toggleMainMenu" aria-expanded="false" aria-label="Toggle Main Menu">
+aria-controls="toggleMainMenuLinks" aria-expanded="false" aria-label="Toggle Main Menu Links"
+aria-controls="toggleMainMenuSearch" aria-expanded="false" aria-label="Toggle Main Menu Search" href="#">
+aria-controls="uwlinks" aria-haspopup="true">
+aria-controls="uwlinks" aria-label="Show UW links">
+aria-label="Toggle main-menu-1" href="#main-menu-1">
+aria-label="Toggle main-menu-2" href="#main-menu-2">
+aria-label="Toggle main-menu-3" href="#main-menu-3">
+aria-label="Toggle main-menu-4" href="#main-menu-4">
+aria-label="Toggle main-menu-5" href="#main-menu-5">
+aria-label="Toggle main-menu-6" href="#main-menu-6">
+aria-label="Toggle main-menu-7" href="#main-menu-7">
+Be Boundless
+Beginning Scientific Computing
+Below are a list of courses that may serve as engineering electives for ChemE undergraduate students.
+Benson Hall 137C
+Biochemical Engineering (w/CHEM E 467)
+BIOEN 215 (3)
+BIOEN 420 (4)
+BIOEN 440 (4)
+BIOEN 467 (3)
+BIOEN 490 (3)
+BIOEN 491 (3)
+BIOENG 488 (4)
+Bioengineering
+Biological Systems
+Calendar
+Careers in Chemical Engineering
+Catalyst Newsletter
+CEE 349: Case Studies in Environmental Engineering (3)
+CEE 352: Introduction to Microbial Principles in Environmental Engineering (4)
+CEE 354: Introduction to Chemical Principles in Environmental Engineering (5)
+CEE 356: Quantitative and Conceptual Tools for Sustainability (4)
+CEE 357: Environmental Engineering (5)
+CEE 480: Air-quality Modeling (3)
+CEE 490: Air Pollution Control (4)
+CEE 495: Sustainability and Design for Environment (3)
+CHEM E 341: Energy & Environment (3)
+CHEM E 355: Biological Frameworks for Engineers (3)
+CHEM E 434: Physiological transport for engineering nanomedicine
+CHEM E 440: Energy Materials, Devices, and Systems (3)
+CHEM E 442: Renewable Energy (4)
+CHEM E 445: Fuel Cell Engineering (3)
+CHEM E 455 (3): Surface and Colloid Lab OR CHEM E 460 (3): Polymers Lab
+CHEM E 458: Surface Analysis (3)
+CHEM E 461: Electrochemical Engineering (3)
+CHEM E 467 Biochemical engineering
+CHEM E 476: Introduction to Synthetic Biology (3)
+CHEM E 477: Advanced Systems and Synthetic Biology (3)
+CHEM E 478: Laboratory Methods in Synthetic Biology (4)
+CHEM E 480 (4): Process Dynamics and Control
+CHEM E 481: Process Optimization (3)
+CHEM E 484: Electronic and Optoelectronic Polymers (3)
+CHEM E 485 (4): Process Design I
+CHEM E 486 (5): Process Design II
+CHEM E 490: Engineering Materials for Biomedical Applications (3)
+CHEM E 491: Controlled Release Systems
+CHEM E 493: Advanced Surface Analysis (3)
+CHEM E 554: Nanoscale Science I (3)
+CHEM E 556: Colloidal Systems (3)
+CHEM E: 467 Biochemical engineering
+CHEME 535: Nanomaterials chemistry & engineering (3)
+ChemE’s are at the forefront of developing technologies for energy systems and sustainable energy sources. ChemE innovates in electrochemical energy conversion, materials for photonic and electronic energy conversion, and large scale energy storage and utilization. Courses in this area provide foundational knowledge in electrochemical systems and drive improvements in photovoltaics, batteries, fuel cells, and electronic polymers
+ChemE’s are integral to the data science transformation taking place in all sectors. ChemE’s use machine learning, computational molecular science, and high performance computing in all areas of technology: improve semiconductors and solar cells, characterize materials, reaction engineering, molecular design, disease diagnosis, and to discover novel renewable chemicals
+ChemE’s design a broad range of advanced materials for applications in medicine, energy, air & space, computing, textiles, and many more. ChemE’s develop methods to guide assembly, engineer defects and manipulate order over broad length scales to optimize material properties. Courses in this area provide foundational knowledge and application examples in biomaterials, colloids, polymers, and surface chemistry.
+chemeadv@uw.edu
+Chemical Engineering skills developed in foundation transport, thermo, and kinetic courses can be readily applied to biological and health applications. ChemE’s are drivers of technology innovation in design smart therapeutics, targeted drug delivery systems, and improved diagnostics. In systems and synthetic biology, ChemEs utilize skills to control metabolic, biomolecular, and protein engineering in living organisms, from yeast, bacteria, and fungi, to mammalian systems.
+class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
+class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
+Clean Energy & Sustainability
+College of Engineering University of Washington logo
+Computational Protein Design*
+Connect with us:
+Contact us
+Contact Us
+Controlled Release Systems (w/CHEM E 491)*
+CSE 160: Data Programming (4)
+CSE 163: Intermediate Data Programming (4)
+CSE 373: Data Structures and Algorithms (4)
+CSE 410: Computer Systems (3)
+CSE 412: Introduction to Data Visualization (4)
+CSE 413: Programming Languages and their Implementation (3)
+CSE 414: Introduction to Database Systems (4)
+CSE 416: Introduction to Machine Learning (4)
+Curriculum
+Data Science & Computing
+Data Science & Molecular Simulation
+data-bs-target="#search-modal">
+data-toggle="collapse" data-target="#main-menu-1"
+data-toggle="collapse" data-target="#main-menu-2"
+data-toggle="collapse" data-target="#main-menu-3"
+data-toggle="collapse" data-target="#main-menu-4"
+data-toggle="collapse" data-target="#main-menu-5"
+data-toggle="collapse" data-target="#main-menu-6"
+data-toggle="collapse" data-target="#main-menu-7"
+Declaring the program option : To declare the NME option, students must complete NME 220 and CHEM E 310, which are generally taken together in spring quarter of their sophomore year.
+Degrees & accreditation
+Directories
+Diversity, Equity, Inclusion & Accessibility
+Diversity, Equity, Inclusion and Accessibility
+Employment
+Energy Conversion
+Engineering electives
+Engineering Electives (16 credits)
+Engineering Statics
+Engr. Materials for Biomedical Appls. (w/CHEM E 490)
+Environmental & Bioresource Engineering
+Event calendar
+Example 3-course series:
+Exploratory Course
+Exploratory Courses
+Explore ChemE
+Faculty
+Financial support and housing
+Focus areas are designed as guidance for students who wish to deepen their knowledge in a specific subject. Students will be asked to identify any completed focus areas during the graduation survey - this survey allows us to plan for graduation and recognize student curricular accomplishments.
+Foundational & Applied Knowledge Courses
+Frequently asked questions
+Give
+GIVE
+Give to ChemE
+Graduate students
+Health & Biotechnology
+height="0" width="0" style="display:none;visibility:hidden">
+Helpful Links
+Honors Program
+href="#main-menu-links">Additional Links
+Husky Card
+In Memoriam
+In-Person Appointments
+Industry & Alumni
+Industry partnerships
+INFO 370: Core Methods in Data Science (5)
+Internship and coop credits: Students can earn up to 4 credits of ENGR 321 to count as an engineering elective from internships, with 2 credits per quarter of full time work. It is imperative that students work with the Career Center @Engineering before the quarter they hope to receive credit in order to register. Credit is not retroactive.
+Intro to Bioengineering Problem Solving
+Introduction to Biomechanics
+ISC/Workday
+Learn about our ABET Accreditation
+Libraries
+Login
+M.S. Degree Program
+Main menu
+Maps
+ME 430: Advanced Energy Conversion Systems (4)
+Medical Imaging
+Menu
+Minimum 2 credits of research or other departmental approved alternative.
+Molecular and Nano-Engineering (3 credits):
+MSE 170: Fundamentals of Materials Science (4)
+MSE 471: Introduction to Polymer Science and Engineering (3)
+MSE 475: Introduction to Composite Materials (3)
+MSE 483: Nanomedicine
+MSE 502: Sol-Gel Processing (3)
+MSE 560: Organic Electronic and Photonic Materials/Polymers (3)
+MyChemE
+MyUW
+Nanomedicine: CHEME 491, CHEME 434, MSE 483
+Nanoscience and Molecular Engineering
+Nanoscience and Molecular Engineering (NME) Option Program
+Nanoscience and Molecular Engineering (NME) option: The Nanoscience and Molecular Engineering (NME) Option in the Bachelor of Science in Chemical Engineering is a transcripted option focusing on nanoscale principles in molecular engineering that provides hands-on experience and stresses the interdisciplinary nature of the field. To declare the NME option, students must complete NME 220 and CHEM E 310, which are generally taken together in spring quarter of their sophomore year. For more information about the NME option for the B.S. ChemE, please see our NME Option page.
+Nanoscience and Molecular Engineering | UW Chemical Engineering
+Nanoscience and Molecular Engineering Elective Courses (12 credits): See adviser for list of approved courses. Only one, 1-credit seminar allowed toward engineering electives; maximum 9 credits undergraduate research (CHEM E 299, CHEM E 499, of which no more than 3 credits may be CHEM E 299) may count toward engineering electives;
+Nanoscience and Molecular Engineering Fundamentals (7 credits): NME 220; CHEM E 455 or CHEM E 460
+News
+News & Events
+NME approved electives
+NME electives are listed on our main electives page and marked with a (*). Students may submit additional courses for consideration by emailing the course number and description to chemeadv@uw.edu. Courses submitted for consideration should have a significant emphasis on molecular or nano-science/engineering and have a level of rigor appropriate for junior or senior level students. (i.e., be at least identified as a 300 level course).
+NME electives: Courses marked with (*) have been pre-approved to count toward the NME option. Students may submit additional courses for consideration by emailing the course number and description to chemeadv@uw.edu. Courses submitted for consideration should have a significant emphasis on molecular or nano-science/engineering and have a level of rigor appropriate for junior or senior level students. (i.e., be at least identified as a 300 level course).
+NME option
+NME Option for CHEM E Majors
+NME option students complete a keystone course in the spring quarter of their sophomore year. This course introduces them to the underlying physical concepts of nanoscale science and its applications to engineering. Following this course, students complete engineering electives, hands-on experiences in laboratory courses, and independent research or a capstone project. Through these experiences, NME students get the opportunity to test, apply and expand their knowledge in nanoscience and molecular engineering.
+Note - many of these courses list BIOEN 315 as prerequisites, but they waive that for ChemE students who have completed CHEM E 310, and often waive other prerequisites as well. There's no need to plan on taking a number of preparatory BIOEN courses for most of these courses.
+Only one, 1-credit seminar is allowed to count toward engineering electives (e.g. CHEM E 301).
+Optional focus areas
+Optional focus areas | UW Chemical Engineering
+Optional focus areas: Students may choose to complete an optional focus area. These focus areas are not listed on the transcript. Many courses that count for the focus areas also count as engineering electives. For a list of focus areas, please see our Optional Focus Areas page.
+People
+Petitioning engineering electives
+Ph.D. Degree Program
+Plan of study
+Policies
+Postdoctoral scholars
+Pre-health planning
+Privacy
+Program requirements : NME option (19 credits)
+Questions?
+Research and fabrication facilities
+Research areas
+Scholarships
+Search
+SEE ALL ELECTIVES
+SeEun Kim
+Semiconductor Manufacturing: NME 220, M E 410, CHEM E 458
+Seminars & annual events
+Skip to main content
+Staff
+Standard option: Any 16 credits listed on the Engineering Electives page. Students may also petition for other engineering courses to count. Most courses from outside the College of Engineering do not count.
+STAT 180/CSE 180/INFO 180: Introduction to Data Science (4)
+Student Profiles
+Students hoping to receive recognition for a focus area can talk with their faculty mentors and academic advisers about educational opportunities in and out of the classroom. If you want to learn more about undergraduate research and how to get involved, or assistance in planning to complete a meaningful focus area, contact chemeadv@uw.edu or visit drop-in undergraduate advising times.
+Students should plan to take one (1) exploratory course and 6+ credits of relevant engineering electives from the list. Students may also want to review the related Areas of Knowledge, capstone, research and other opportunities on the careers page . While these are helpful for deepening your experience in this area, they do not count toward the 9 credits required.
+Study abroad
+Synthetic biology: CHEME 476, CHEME 477, CHEME 478
+tabindex="-1">Computing/IT
+Terms
+The following information is for CHEM E Majors only. Non-CHEM E students, please contact your advising office for more information.
+The NME Option Program offers a discipline-tailored Option in Nanoscience and Molecular Engineering to a variety of majors in departments of the College of Engineering (CoE) and the College of Arts and Sciences (CA&S). It introduces students to nanoscale principles in molecular engineering, provides hands-on experience and stresses the interdisciplinary aspects of this field.
+The total number of credits needed for graduation is 180. If additional credits are needed, students can take additional electives to reach the credit requirement.
+There are many opportunities for chemical engineers to apply their skill sets to Environment & Bioresource applications. ChemEs can develop remediation processes that reduce, remove, or convert waste to value-added products. ChemEs are contributors to technology development in advanced water treatment and filtration methods; catalytic processes for upcycling plastic waste; and technologies to enable materials circularity.
+This list is not all-inclusive. Since course offerings vary dramatically and departments introduce new courses all the time, it's impossible to keep this list fully up to date. If you find other courses that are interesting looking and not on this list, please email chemeadv@uw.edu with the course title and description and request review for engineering electives.
+Undergraduate research: A maximum of 9 credits of undergraduate research (CHEM E 299, CHEM E 499, of which no more than 3 credits may be CHEM E 299) may count toward engineering electives. In order to take CHEM E 499, students must have a GPA in chemical engineering core courses of 3.00 or higher. Students completing research in other engineering departments should register through their PI and then submit the form on the ChemE canvas page for it to be programmed as providing credit.
+Undergraduates
+Unspecified Electives
+UW Bothell
+UW College of Engineering
+UW Facebook
+UW Home
+UW Links
+UW Medicine
+UW Tacoma
+UW Today
+UW Twitter
+What Is Chemical Engineering?
+Why choose UW ChemE?
+Zoom & Phone Appointments

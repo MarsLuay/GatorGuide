@@ -28,7 +28,7 @@ import {
   TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
   TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
 } from "./source-fingerprints.generated";
-import { deriveTransferPlannerPathwaySeeds } from "./pathway-materialization";
+import { materializeTransferPlannerPathways } from "./pathway-materialization";
 import { TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES } from "./derived-shared-source-plans";
 import type {
   TransferPlannerChecklistItem,
@@ -246,6 +246,86 @@ const SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES: SupplementalParserOnlyMajorSource[
   },
 ];
 const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySource[] = [
+  {
+    planId: "uw-bothell-business-administration",
+    pathwayId: "entrepreneurship-concentration",
+    campusId: "uw-bothell",
+    majorTitle: "Business Administration (BA)",
+    label: "Entrepreneurship Concentration",
+    links: [
+      {
+        label: "UW Bothell Entrepreneurship concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until the canonical BBA concentration source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-bothell-business-administration",
+    pathwayId: "management-concentration",
+    campusId: "uw-bothell",
+    majorTitle: "Business Administration (BA)",
+    label: "Management Concentration",
+    links: [
+      {
+        label: "UW Bothell Management concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until the canonical BBA concentration source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-bothell-business-administration",
+    pathwayId: "mis-concentration",
+    campusId: "uw-bothell",
+    majorTitle: "Business Administration (BA)",
+    label: "Management Information Systems (MIS) Concentration",
+    links: [
+      {
+        label: "UW Bothell MIS concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until the canonical BBA concentration source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-bothell-business-administration",
+    pathwayId: "retail-management-concentration",
+    campusId: "uw-bothell",
+    majorTitle: "Business Administration (BA)",
+    label: "Retail Management Concentration",
+    links: [
+      {
+        label: "UW Bothell Retail Management concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until the canonical BBA concentration source blocks are emitted canonically.",
+    ],
+  },
+  {
+    planId: "uw-bothell-business-administration",
+    pathwayId: "tim-concentration",
+    campusId: "uw-bothell",
+    majorTitle: "Business Administration (BA)",
+    label: "Technology & Innovation Management (TIM) Concentration",
+    links: [
+      {
+        label: "UW Bothell Technology and Innovation Management concentration major requirements",
+        url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
+      },
+    ],
+    validationNotes: [
+      "Supplemental parser-backed pathway metadata retained until the canonical BBA concentration source blocks are emitted canonically.",
+    ],
+  },
   {
     planId: "uw-tacoma-environmental-sustainability",
     pathwayId: "business-nonprofit-leadership-option",
@@ -670,6 +750,33 @@ const AUTO_PROMOTED_PRIMARY_SOURCE_LINKS_BY_OWNER_ID = new Map(
     } satisfies TransferPlannerSourceLink,
   ])
 );
+const SUPPLEMENTAL_MANIFEST_SOURCE_LINKS_BY_OWNER_ID = new Map<
+  string,
+  TransferPlannerSourceLink[]
+>([
+  [
+    "uw-bothell-data-visualization-ba",
+    [
+      {
+        label: "UW Bothell major planning worksheet - Data Visualization (BA)",
+        url: "https://admissions.uwb.edu/register/mpw-DataVis-BA",
+        note:
+          "Dedicated official admissions worksheet kept as a supplemental manifest source so lower-division preparation cues can merge safely without replacing the broader program overview.",
+      },
+    ],
+  ],
+  [
+    "uw-bothell-data-visualization-bs",
+    [
+      {
+        label: "UW Bothell major planning worksheet - Data Visualization (BS)",
+        url: "https://admissions.uwb.edu/register/mpw-DataVis-BS",
+        note:
+          "Dedicated official admissions worksheet kept as a supplemental manifest source so lower-division preparation cues can merge safely without replacing the broader program overview.",
+      },
+    ],
+  ],
+]);
 
 function mergeAutoPromotedPrimarySourceLink(
   links: TransferPlannerSourceLink[],
@@ -688,6 +795,12 @@ function getOwnerSourceLinks(
   links?: TransferPlannerLink[]
 ) {
   return mergeAutoPromotedPrimarySourceLink(toSourceLinks(links), planId, pathwayId);
+}
+
+function getSupplementalManifestSourceLinks(planId: string, pathwayId?: string | null) {
+  return SUPPLEMENTAL_MANIFEST_SOURCE_LINKS_BY_OWNER_ID.get(
+    getSourceManifestOwnerId(planId, pathwayId)
+  ) ?? [];
 }
 
 function getCourseId(schoolId: TransferPlannerSourceSchoolId, code: string) {
@@ -1060,6 +1173,9 @@ function resolveRegistryPathwayLabel(
 ) {
   const formattedIdLabel = formatPathwayLabelFromId(pathway.id);
   const candidates = new Map<string, number>();
+  const supplementalPathwaySource = SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES.find(
+    (entry) => entry.planId === plan.id && entry.pathwayId === pathway.id
+  );
 
   function pushCandidate(
     label: string | null | undefined,
@@ -1128,6 +1244,9 @@ function resolveRegistryPathwayLabel(
     }
   }
 
+  pushCandidate(supplementalPathwaySource?.label, 150, {
+    requirePathwayAlignment: true,
+  });
   pushCandidate(
     maybeExtractStructuredPathwayLabel(plan.title, pathway.label),
     80,
@@ -2281,7 +2400,19 @@ function buildPathwayRegistry() {
   }
 
   for (const plan of TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS) {
-    for (const pathway of plan.pathways ?? []) {
+    const primaryParsedBlocks = getPlanMaterializationParsedRequirementSourceBlocks(plan.id);
+    const materializedPathways = materializeTransferPlannerPathways(
+      plan,
+      plan.pathways ?? [],
+      primaryParsedBlocks
+    );
+    const basePathwayIds = new Set((plan.pathways ?? []).map((pathway) => pathway.id));
+    const usesDerivedPathwayPromotion =
+      materializedPathways.length > 0 &&
+      (materializedPathways.length !== (plan.pathways ?? []).length ||
+        materializedPathways.some((pathway) => !basePathwayIds.has(pathway.id)));
+
+    for (const pathway of materializedPathways) {
       const pathwaySources = getPathwaySources(plan, pathway);
       const supplementalDerivedPathwayCourses =
         SUPPLEMENTAL_DERIVED_PATHWAY_GRC_COURSES_BY_KEY[`${plan.id}::${pathway.id}`] ?? [];
@@ -2298,44 +2429,11 @@ function buildPathwayRegistry() {
           ...supplementalDerivedPathwayCourses,
         ],
         sourceLinks: pathwaySources.sourceLinks,
-        validationNotes: [],
-      });
-    }
-
-    if ((plan.pathways ?? []).length > 0) {
-      continue;
-    }
-
-    const parsedPathwaySeeds = deriveTransferPlannerPathwaySeeds(
-      plan,
-      TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
-        (entry) => entry.planId === plan.id && !entry.pathwayId && entry.ok
-      )
-    );
-
-    if (parsedPathwaySeeds.length < 2) {
-      continue;
-    }
-
-    const sourceLinks = getOwnerSourceLinks(plan.id, null, plan.officialLinks);
-    for (const seed of parsedPathwaySeeds) {
-      pushPathwayEntry({
-        id: `${plan.id}:pathway:${seed.id}`,
-        planId: plan.id,
-        pathwayId: seed.id,
-        campusId: plan.campusId,
-        majorTitle: plan.title,
-        label: seed.label,
-        summary: seed.summary,
-        grcCourseList: [
-          ...(SUPPLEMENTAL_DERIVED_PATHWAY_GRC_COURSES_BY_KEY[
-            `${plan.id}::${seed.id}`
-          ] ?? []),
-        ],
-        sourceLinks,
-        validationNotes: [
-          "Generated from parser-backed pathway cues extracted from the current official source.",
-        ],
+        validationNotes: usesDerivedPathwayPromotion
+          ? [
+              "Materialized semantic pathway labels from parser-backed route cues to suppress structural source headings.",
+            ]
+          : [],
       });
     }
   }
@@ -2461,6 +2559,30 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
   });
 }
 
+function hasActiveSourceManifestOwner(
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
+) {
+  switch (promotion.ownerType) {
+    case "major":
+      return (
+        TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.some((plan) => plan.id === promotion.ownerId) ||
+        SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES.some(
+          (entry) => entry.planId === promotion.ownerId
+        )
+      );
+    case "pathway":
+      return (
+        TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.some((entry) => entry.id === promotion.ownerId) ||
+        SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES.some(
+          (entry) =>
+            `${entry.planId}:pathway:${entry.pathwayId}` === promotion.ownerId
+        )
+      );
+    default:
+      return true;
+  }
+}
+
 function buildSourceManifestRegistry() {
   const entries: TransferPlannerSourceManifestEntry[] = [];
   const bootstrapPlanIds = new Set(
@@ -2474,7 +2596,10 @@ function buildSourceManifestRegistry() {
       ownerTitle: plan.title,
       planId: plan.id,
       campusId: plan.campusId,
-      links: getOwnerSourceLinks(plan.id, null, plan.officialLinks),
+      links: dedupeLinks([
+        ...getOwnerSourceLinks(plan.id, null, plan.officialLinks),
+        ...getSupplementalManifestSourceLinks(plan.id, null),
+      ]),
       validationNotes: [],
     });
   }
@@ -2530,8 +2655,21 @@ function buildSourceManifestRegistry() {
       "Used by the generated Green River availability and schedule-metadata scripts.",
     ],
   });
+  pushSourceManifestEntries(entries, {
+    ownerType: "reference",
+    ownerId: "uw-green-river-equivalency-guide",
+    ownerTitle: "UW Green River transfer equivalency guide",
+    campusId: "grc",
+    links: [UW_GRC_EQUIVALENCY_LINK],
+    validationNotes: [
+      "Used by the generated UW Green River equivalency parser and source-backed transfer mapping.",
+    ],
+  });
 
   for (const promotion of TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS) {
+    if (!hasActiveSourceManifestOwner(promotion)) {
+      continue;
+    }
     upsertAutoPromotedPrimarySourceManifestEntry(entries, promotion);
   }
 
@@ -2577,36 +2715,69 @@ const VISIBLE_INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS = new Set(
     (planId) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(planId)
   )
 );
-function getPlanPrimaryParsedRequirementSourceBlocks(planId: string) {
-  const primaryDegreeSourceUrl = getTransferPlannerPrimaryDegreeRequirementsSource(planId)?.url ?? null;
-
-  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
-    (entry) =>
-      entry.planId === planId &&
-      !entry.pathwayId &&
-      entry.ok &&
-      (!primaryDegreeSourceUrl || entry.primarySourceUrl === primaryDegreeSourceUrl)
+function getPlanMaterializationParsedRequirementSourceBlocks(planId: string) {
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
+    (entry) => entry.planId === planId && entry.ok
   );
 }
 
-const SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
-  (count, plan) =>
-    count +
-    TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.filter((entry) => entry.planId === plan.id).length,
-  0
+function countMaterializedPathwaysForPlan(
+  plan: TransferPlannerMajorPlan,
+  options: {
+    includeHiddenSourceGaps?: boolean;
+    hiddenGapPlanId?: string;
+  } = {}
+) {
+  const includeHiddenSourceGaps = options.includeHiddenSourceGaps ?? true;
+  const hiddenGapPlanId = options.hiddenGapPlanId ?? plan.id;
+  const materializedPathways = materializeTransferPlannerPathways(
+    plan,
+    plan.pathways ?? [],
+    getPlanMaterializationParsedRequirementSourceBlocks(plan.id)
+  );
+  if (includeHiddenSourceGaps) {
+    return materializedPathways.length;
+  }
+
+  return materializedPathways.filter(
+    (pathway) => !HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(`${hiddenGapPlanId}::${pathway.id}`)
+  ).length;
+}
+
+const BOOTSTRAP_PLANS_BY_ID = new Map(
+  TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => [plan.id, plan] as const)
 );
+
+function countDerivedSharedSourceAliasPathways(includeHiddenSourceGaps = true) {
+  return ACTIVE_DERIVED_SHARED_SOURCE_PLAN_ALIASES.reduce((count, alias) => {
+    if (!includeHiddenSourceGaps && HIDDEN_SOURCE_GAP_PLAN_IDS.has(alias.derivedPlanId)) {
+      return count;
+    }
+
+    const sourcePlan = BOOTSTRAP_PLANS_BY_ID.get(alias.sourcePlanId);
+    if (!sourcePlan) {
+      return count;
+    }
+
+    return count +
+      countMaterializedPathwaysForPlan(sourcePlan, {
+        includeHiddenSourceGaps,
+        hiddenGapPlanId: alias.derivedPlanId,
+      });
+  }, 0);
+}
+
+const SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
+  (count, plan) => count + countMaterializedPathwaysForPlan(plan),
+  0
+) + countDerivedSharedSourceAliasPathways();
 
 const STUDENT_VISIBLE_SOURCE_GENERATED_PATHWAY_COUNT = TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.reduce(
   (count, plan) => {
     if (HIDDEN_SOURCE_GAP_PLAN_IDS.has(plan.id)) return count;
-    return count +
-      TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.filter(
-        (entry) =>
-          entry.planId === plan.id &&
-          !HIDDEN_SOURCE_GAP_PATHWAY_KEYS.has(`${plan.id}::${entry.pathwayId}`)
-      ).length;
+    return count + countMaterializedPathwaysForPlan(plan, { includeHiddenSourceGaps: false });
   },
-  0
+  countDerivedSharedSourceAliasPathways(false)
 );
 
 export const TRANSFER_PLANNER_SOURCE_SUMMARY = {

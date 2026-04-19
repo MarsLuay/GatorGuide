@@ -1,15 +1,6 @@
 # Welcome to the Mobile Team!
 
-The Mobile Team builds the student-facing Gator Guide app. This is where the product comes together: onboarding, profile setup, college browsing, AI interactions, settings, translations, and the overall mobile experience students actually use.
-
-## What the Mobile Team Does
-
-The Mobile Team helps by:
-
-- Building screens, navigation, and app flows in Expo/React Native.
-- Connecting AI and data features to a smooth, usable mobile experience.
-- Maintaining app services, localization, theming, and mobile configuration.
-- Turning product ideas into interactions that feel clear, helpful, and easy to use.
+The Mobile Team is the group that actually builds the app and implements all cool ideas. This folder specifically holds everything important, the pages, settings, translations, etc.
 
 ## What's in This Folder
 
@@ -30,78 +21,9 @@ The Mobile Team helps by:
 - [`docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md`](docs/planner/TRANSFER_PLANNER_TOOL_SUMMARY.md): summary of what the transfer planner does and what it uses.
 - [`docs/product/COLLEGE_RANKING.md`](docs/product/COLLEGE_RANKING.md): shared college ranking philosophy and score model used by recommendations.
 
-## Setup: Download and Run
+## All Commands
 
-### 1) Install required tools
-
-- Download VS Code: https://code.visualstudio.com/download
-- Download Node.js: https://nodejs.org/en/download
-- Install Git: https://git-scm.com/downloads
-
-Verify installs:
-
-Open a terminal and run:
-
-```bash
-node -v
-npm -v
-npx -v
-git --version
-```
-
-### Quick start
-
-- On Windows, double-click `../Start-to-run.bat` from the repo root.
-- On macOS or Linux, run `bash ../Start-to-run.sh` from the repo root.
-- The shared launcher now tries Expo in `tunnel`, then `lan`, then `offline` mode automatically.
-
-### 2) Clone and install the project
-
-Open PowerShell (or your preferred shell) and run the following commands:
-
-```powershell
-# clone the repo
-cd $env:USERPROFILE
-git clone https://github.com/MarsLuay/GatorGuide.git
-cd GatorGuide
-
-# go to the mobile app
-cd "Mobile Team"
-
-# install dependencies and start Expo
-npm install
-npm run start
-
-# optional: clear Metro cache if you need a fresh start
-# npx expo start -c
-```
-
-Notes:
-
-- If you use Git Bash, WSL, or a POSIX shell, use forward slashes and drop the `$env:` prefix.
-- `npm run start` uses the same fallback order as the root launchers: `tunnel -> lan -> offline`.
-- `npm run health:repo` runs a quick repo preflight for Expo startup issues such as corrupted `node_modules` packages or broken Metro config loading.
-- After Expo starts, open the Metro/Expo devtools in your browser and scan the QR code with the Expo Go app.
-- If you are wiring up services, the guide in [`services/README.md`](services/README.md) explains the current live/cached service setup and the remaining fallback behavior.
-
-### 3) Open in VS Code (edit files)
-
-Open VS Code -> File -> Open Folder ->
-
-```text
-C:\Users\<you>\GatorGuide\Mobile Team
-```
-
-## Before You Start Coding
-
-```powershell
-cd $env:USERPROFILE\GatorGuide
-git checkout main
-git pull --rebase origin main
-cd "Mobile Team"
-```
-
-## Windows QA
+### Windows QA
 
 You can run the Playwright-based Windows/web QA harness locally from `Mobile Team`:
 
@@ -116,7 +38,7 @@ Notes:
 - `qa:windows:screenshots` expects an existing app server unless you set `QA_BASE_URL` / `QA_STATIC_EXPORT` yourself.
 - `qa:windows:ci` is the full CI-style path: it exports the web build, serves it locally, runs screenshots, then runs interaction checks.
 
-## Web Deployment
+### Web Deployment
 
 This app now deploys to Vercel from `Mobile Team`:
 
@@ -129,7 +51,7 @@ Notes:
 - [`vercel.json`](vercel.json) runs the Expo static web export and serves the built `dist` output.
 - The current production URL is `https://gator-guide.vercel.app`.
 
-## Planner Maintenance
+### Planner Maintenance
 
 For the full planner maintenance pass on Windows, including refresh, verification, hardening checks, Playwright Chromium setup, and Windows QA:
 
@@ -174,22 +96,4 @@ The Green River discovery pass also writes the current public-material snapshot 
 
 ```text
 Mobile Team\.tmp\transfer-planner-grc-public-materials.md
-```
-
-## Commit and Push Changes
-
-First time only (set your info):
-
-```bash
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
-```
-
-After editing changes:
-
-```bash
-git add .
-git commit -m "enter descriptive message"
-git pull --rebase origin main
-git push origin main
 ```
