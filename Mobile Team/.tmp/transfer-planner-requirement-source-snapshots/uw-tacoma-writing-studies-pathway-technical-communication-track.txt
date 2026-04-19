@@ -6,7 +6,6 @@ Title: Writing Studies | Culture, Arts & Communication | University of Washingto
 [Supplemental official source] RHETORIC, WRITING AND SOCIAL CHANGE TRACK
 [Supplemental official source] Supplemental official track and option pages
 [Supplemental official source] TECHNICAL COMMUNICATION TRACK
-[Supplemental official source] UWT general education
 &copy; 2026 University of Washington Tacoma
 <a
 <a href="/sias"
@@ -30,8 +29,6 @@ Title: Writing Studies | Culture, Arts & Communication | University of Washingto
 >School of Interdisciplinary Arts & Sciences
 10 credits from the following list:
 1900 Commerce Street, Tacoma, WA 98402-3100
-253-692-4450
-253-692-5718
 25Live
 5 credits from the following list:
 5 credits from the following list: (These courses can only be taken once, as either Track Foundational Courses or Electives.)
@@ -59,9 +56,7 @@ alt="University of Washington Tacoma"/>
 American Popular Cultures Minor
 Apply
 aria-label="University of Washington Tacoma Homepage">
-Arts and Humanities (A&H): 20 credits
 Arts, Media & Culture
-As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 Asian Studies Minor
 Bachelor of Arts
 Bachelor of Arts in Culture, Arts and Communication
@@ -82,13 +77,7 @@ Complete a 5 credit Composition-designated (C) course with a minimum 2.0 GPA.
 Connect with Advising
 Contact
 Contact us |
-Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 Content Editor
-Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
-Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
-Courses that focus on sociocultural, political, and economic diversity of human experience
 Creative Writing Electives (at least 10 credits must be at the 400 level) (20 credits)
 Creative Writing Track
 CREATIVE WRITING TRACK
@@ -99,16 +88,12 @@ DEGREE REQUIREMENTS
 DEPARTMENT
 Department of Culture, Arts & Communication (CAC)
 Directory
-Diversity (DIV): 5 credits
-English Composition (C): 5 credits
 Equity & Inclusion
 expand_more
 Faculty
 FAQs
-Fax Number
 Financial Aid
 Foundation (10 credits)
-General Education Requirements
 Get Involved
 height="0"
 Housing
@@ -121,7 +106,6 @@ https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/202
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-11/270reading-cropped.jpg 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-11/pofest-2025-edited.jpg 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-11/workingclasspoetry-cropped.jpg 980w,
-iashelp@uw.edu
 In the Technical Communication track, students learn to communicate complex information in a way that is concise, usable and compelling. Students learn how to identify the needs of an audience, design through an iterative process and make changes based on applied research. Courses emphasize real world design projects and students develop skills in collaborative problem solving and creativity. Technical Communication track students are well positioned for careers in technical and professional communication, user experience, usability, web design and other fields where communicating scientific and technical topics plays a central role. Students are encouraged to gain professional experience by completing internships and working with community partners.
 Information Technology
 Institutional Research
@@ -134,20 +118,15 @@ Learn More >
 Library
 Literary Editing and Publishing
 Literature Electives (15 credits)
-M-F 9a.m.-5p.m.
 Main Content
 MAJOR COORDINATOR
 Majors
 Map
 Minors
 more_vert
-Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
 MyUW
-Natural Sciences (NSc): 20 credits
 Nonprofit Work
-Office Hours:
 Office365
-One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
 One required course:
 Open Public Meetings
 Panopto
@@ -158,13 +137,11 @@ Privacy |
 Professor Emma Rose
 Published Author
 Puyallup Tribe of Indians
-Reasoning (RSN): 5 credits
 Research
 Rhetoric and Writing Electives (25 credits)
 Rhetoric, Writing and Social Change Track
 RHETORIC, WRITING AND SOCIAL CHANGE TRACK
 Rules Docket
-School of Interdisciplinary Arts & Sciences
 Schools and programs
 Scout
 Search
@@ -172,8 +149,6 @@ sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
 Skip to main content
 Social Change Electives (25 credits)
 Social Media Manager
-Social Sciences (SSc): 20 credits
-Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
 Spanish Language and Cultures
 Spanish Language and Cultures Minor
 src="/sites/default/files/sites/uwtd8main/W.svg"
@@ -295,7 +270,6 @@ visibility:hidden">
 Web Design
 width="0"
 Workday
-Writing (W): 10 credits
 Writing Studies
 Writing@UW centralizes information and resources about writing across UW’s campuses. Whether you are an incoming student looking for a Composition (C) or Additional Writing (W) course, or an instructor who wants to teach (with) writing, there is information here for you. You can find links to the UW Principles of Writing, Writing Pathways, and the revised W course guidelines.
 Zoom

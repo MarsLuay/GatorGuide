@@ -2,10 +2,7 @@ Owner: uw-bothell-developmental-and-youth-studies:pathway:m-ed-with-english-to-s
 Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
 Title: Degree Requirements - School of Educational Studies
 
-[Supplemental official source] Admissions
-[Supplemental official source] Degree Requirements
 [Supplemental official source] Major Concentrations
-[Supplemental official source] Program Requirements
 Academic Advising
 Admissions
 Apply

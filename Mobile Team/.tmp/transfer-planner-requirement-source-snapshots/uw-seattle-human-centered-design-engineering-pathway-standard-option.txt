@@ -2,19 +2,10 @@ Owner: uw-seattle-human-centered-design-engineering:pathway:standard-option
 Source: https://www.hcde.washington.edu/bs/requirements/2024
 Title: Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engineering
 
-[Supplemental official source] Bachelor of Science
-[Supplemental official source] Degree requirements
-[Supplemental official source] Degree Requirements: Before Autumn 2024
 [Supplemental official source] HCDE engineering fundamentals list
-[Supplemental official source] HCDE planned undergraduate course schedule
-[Supplemental official source] special topics course descriptions
-[Supplemental official source] Undergraduate Curriculum Changes FAQs
-[Supplemental official source] Undergraduate students
-* Effective Autumn 2024, HCDE 318 and HCDE 300 have been replaced with the new 2-course foundations sequence, HCDE 302 and HCDE 303.
 *Additional credit may not be earned for a course that overlaps in content with a previously completed course. See UW Course Catalog descriptions for specific credit allowances for overlapping courses.
 *If not applied towards Experiential Learning requirement.
 &copy; 2026 Human Centered Design & Engineering | UW College of Engineering | Seattle, WA
-† HCDE 315, HCDE 316, and HCDE 351 are not required courses for HCDE students who declared the major prior to Autumn 2024. However, HCDE students admitted to the major prior to Autumn 2024 who have not yet taken HCDE 301 may substitute HCDE 315 or HCDE 316 for the HCDE 301 requirement. Students admitted to the major Autumn 2024 or later must take HCDE 351 and at least one course from HCDE 315 or HCDE 316.
 <a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
 <a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
 <a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
@@ -25,48 +16,13 @@ Title: Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engine
 <button class="uw-links-wrapper mr-n2 uwlinks-button-toggle" role="button" aria-label="Show UW quick links" aria-owns="uwlinks"
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDDQSLD"
 <nav aria-label="Audience links, search, and quick links"
-2023–2024 Academic Year​
-2024–2025 Academic Year​
-2025–2026 Academic Year​
-2026-2027 Academic Year
-302 *
-303 *
-308
-310
-313
-315 †
-316 †
-321
-322
-351 †
-410
-411
-412
-417
-418
-419
-438
-439
-450
-492
-493
-498
 A A 210 : Engineering Statics (4)
-A minimum of 3 credits of Diversity (DIV) is required for students admitted prior to Autumn 2023 . For students admitted in Autumn 2023 or later , this requirement has been increased to 5 credits . The DIV credits may overlap with other degree requirements.
-A&H and SSc (30 credits)
 About
 Additional Links
 Adjunct & affiliate faculty
-Admission requirements
-Admissions
-Advising
-Although most of the other changes to our requirements for graduation from the HCDE major will primarily impact courses not taken until after a student has entered the HCDE program, we have also made some changes to the courses that can apply to our math, statistics, science, and engineering fundamentals requirements. Prospective HCDE students who are getting started on these requirements can refer to the course lists linked from the HCDE BS degree requirements for students admitted Autumn 2024 onwards for more information.
 Alumni & industry events calendar
 Alumni directory
 AMATH 301 : Beginning Scientific Computing (4)
-Any 200+ MATH course
-Any STAT 300+ course
-Application
 aria-controls="toggle_main-menu-1" aria-expanded="false"
 aria-controls="toggle_main-menu-2" aria-expanded="false"
 aria-controls="toggle_main-menu-3" aria-expanded="false"
@@ -86,42 +42,22 @@ aria-label="Toggle main-menu-4" href="#main-menu-4">
 aria-label="Toggle main-menu-5" href="#main-menu-5">
 aria-label="Toggle main-menu-6" href="#main-menu-6">
 aria-label="Toggle main-menu-7" href="#main-menu-7">
-As we make this transition to a new curriculum, it is important to note that regardless of whether a student graduates with our degree pre- or post-accreditation, we are confident that the HCDE Department consistently offers students access to an outstanding education and excellent employment opportunities.
-AUTUMN
-Autumn 2024
-Autumn 2025
 Bachelor of Science
-Bachelor of Science | Human Centered Design & Engineering
 Be Boundless
 BIOEN 215 : Introduction to Bioengineering Problem Solving (3)
-Bringing ideas to actualization through expertise in design strategy and processes, effective communication and collaboration skills, and ethical perspectives.
 Calendar
 Capstone Showcase
-Career Center @ Engineering
 Careers
 Careers & internships
 CEE 220 : Introduction to Mechanics of Materials (4)
 Certificate students
-Changes to the 300-level core courses for the major
-Changes to the experiential learning credits for the major
 class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
 class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
 College of Engineering University of Washington logo
 Connect with HCDE
-Contact HCDE Advising
 Contact us
-Core & Elective Courses (82 credits)
 Corporate & foundation relations
-Course descriptions
-Course Descriptions
-Course is open to students who have completed both HCDE 318 and HCDE 300.
-Course is open to students who have completed either HCDE 303 or both HCDE 318 and HCDE 300.
-Course schedule
-Course Schedule
-Course schedule | Human Centered Design & Engineering
 Course Substitution Petition
-Courses that count toward these requirements are identified as A&H, SSc, and DIV in the quarterly Time Schedule and in the UW Catalogue.
-Creating 2 separate categories of HCDE electives
 CSE 121 : Introduction to Computer Programming I (4)
 CSE 121 : Introduction to Computer Programming I* (4)
 CSE 122 : Introduction to Computer Programming II (4)
@@ -139,10 +75,7 @@ CSE 373 : Data Structures and Algorithms (4)
 CSE 374 : Intermediate Programming Concepts and Tools (3)
 CSE 414 : Introduction to Database Systems (4)
 CSE 416 : Introduction to Machine Learning (4)
-Current and prospective HCDE undergraduate students are encouraged to schedule an appointment with an adviser to discuss admission, graduation, and degree planning. Find advising contact information .
-Current and upcoming courses for students enrolled in the Human Centered Design & Engineering undergraduate program are indicated with an "X" below.
 Current students
-Curriculum
 data-bs-target="#search-modal">
 data-toggle="collapse" data-target="#main-menu-1"
 data-toggle="collapse" data-target="#main-menu-2"
@@ -152,67 +85,32 @@ data-toggle="collapse" data-target="#main-menu-5"
 data-toggle="collapse" data-target="#main-menu-6"
 data-toggle="collapse" data-target="#main-menu-7"
 Degree requirements
-Degree Requirements
-Degree requirements | Human Centered Design & Engineering
 Degree Requirements: After Autumn 2024
-Degree Requirements: Autumn 2024 Onwards
 Degree Requirements: Before Autumn 2024
 Department history
 Design for passion
 Design tools & resources
 Designing Up magazine
-Designing, building, and evaluating systems according to a variety of perspectives, with an emphasis on understanding the relationships between social and technical elements of systems.
 Directed research groups
 Directories
 Distinguished Lecture Series
 Diversity, equity, and inclusion
-During the quarter, we will examine topics such as business models, product strategy, user and market research, value creation, and the strategic planning demanded by any new venture, all in the context of HCDE and how to create sustainable, scalable, and successful ventures.
 E E 215 : Fundamentals of Electrical Engineering (4)
-EDPSY 490
-Eligibility to pursue the new degree requirements will depend on several factors, including: when a student entered the program, when they will complete their degree, and their course selections.
-Email askhcde@uw.edu
-Email: askhcde@uw.edu
 Emeriti faculty
 Employment opportunities
-Engineering Fundamentals (12 credits)
-Engineering Internship Program
-English Composition: 5 credits from the University list .
 ENGR 115 : Engineering Transformation of Health (3)
 Events calendar
-Expand All | Collapse All
-Experiential Learning (2 credits)
-Experiential Learning (4 credits)
 External Advisory Board
 Faculty
-For current offerings, times, and locations, refer to the UW Time Schedule .
-For more information about the Spring 2026 HCDE 418 course, you can watch this short introductory video featuring instructor Tyler Fox.
-For questions about the program, application, and general inquiries, schedule a prospective BS student appointment with an undergraduate peer advisor.
-Free (a.k.a “General”) Electives (as needed to complete 180 total credits)
-Free (a.k.a. "General") Electives (as needed to complete 180 total credits)
 Future students
-General Education Courses (85 credits minimum)
-General Education Courses (88 credits minimum)
-General Education Requirements
 Get involved & stay connected
 Give
 GIVE
 Graduate Certificate in Human Centered Artificial Intelligence
 Graduate Certificate in User Centered Design
-Graduating
 Graduation ceremony
-Handshake
-HCDE 418 - Advanced Projects in Human Centered Design and Engineering
 HCDE 497 : Study Abroad: HCDE* (variable credits) See HCDE study abroad .
-HCDE 498 - Advanced Special Topics
 HCDE 498 : Advanced Special Topics (variable credits) See special topics course descriptions .
-HCDE 498A - Advanced Special Topics
-HCDE Career and Internship Resources
-HCDE continuously reviews the undergraduate curriculum to identify areas of success and opportunities that will enhance student learning. These program changes are the result of a 3-year comprehensive review that included faculty, staff, and students. An additional motivation for the changes is to bring the program into compliance with the General Engineering Degree requirements specified by ABET.
-HCDE Core Courses (41 credits)
-HCDE Core Courses (46 credits)
-HCDE COURSE
-HCDE Electives (23 credits)
-HCDE Electives (25 credits)
 HCDE Engineering Fundamentals List
 HCDE Engineering Fundamentals List | Human Centered Design & Engineering
 HCDE impact
@@ -222,35 +120,16 @@ HCDE research impact
 HCDE Research Showcase
 HCDE Research Speaker Series
 HCDE student resources
-HCDE students may apply for several scholarships, including both departmental and College of Engineering scholarships. Learn more about HCDE scholarships and funding opportunities.
-HCDE undergraduate students complete a minimum of 88 credits of general education requirements, which includes 12 credits of written and oral communication; 5 credits of Reasoning; 3 credits of Diversity; 30 credits in Arts and Humanities and Social Sciences; and 50 credits of math/statistics and natural science courses. See below for overlap allowances and restrictions.
-HCDE498B - Advanced Special Topics
 height="0" width="0" style="display:none;visibility:hidden">
 Helpful Links
-How do these changes impact course planning for students who will be applying to the major in the future?
-How will my coursework be reviewed as part of HCDE’s plan to seek ABET accreditation?
 href="#main-menu-links">Additional Links
-Human Centered Design & Engineering (HCDE) students graduate with an engineering degree and a strong foundation in designing user experiences and interfaces, creating information visualizations, conducting user research, designing for the web, and building web technologies.
 Husky Card
-Identifying and learning new skills, perspectives, and tools that help them and others accomplish their goals.
-If you are a prospective student and want to learn more about HCDE, you can schedule a prospective BS student appointment with an HCDE peer advisor . Peer advisors can answer questions about applying to the major, class registration, and more. Unlike a full-time advisor, peer advisors can review and offer feedback on personal statements. Peer advisors are also students in the major, so they can answer questions about what it’s like to take HCDE classes and pursue a career with an HCDE degree.
-Important: While we post this planned course schedule to give students an idea of which courses we currently expect to offer in future quarters, our planned undergraduate course schedule may change . HCDE students should plan to complete the 9 300-level core courses by the end of their junior/second-to-last year to meet the prerequisites to take the HCDE capstone sequence in senior year.
-In alignment with the department's strategic vision, HCDE BS program graduates contribute to society by applying design and engineering processes to solve problems through a deep understanding of people and their contexts. In particular, they are leaders in:
-In this course, we will cover a combination of critical theory and methods toward a liberatory practice of technology. Technology has been an object of power and exclusion for centuries—enabling systemic injustices such as racism, ableism, and classism. This course is designed to provide foundational knowledge on what it means for students, practitioners, scholars, and technology workers alike to start questioning the role of technology in past and ongoing systemic harms. Focusing on the main structures of oppression often perpetuated via technology, we will explore counter-practices of technology research and design through which we can carry out a commitment toward dismantling such exclusionary means of technology production. Throughout, students will make artifacts conveying their interpretations of critical technology practice.
-IND E 250
-IND E 315
 Industry & alumni
 Information sessions
 Internal Resources
-Internships
-Internships allow students to practice and grow their skills in a professional setting. ENGR 321 credits can apply towards the HCDE experiential learning requirement. Students may search for internships by using the following resources:
-Investigate how human centered design approaches might change entrepreneurship practices in specific ways; we will tie these changes to HCDE theories and methods.
-Investigating people and systems , using quantitative and qualitative methods, to identify opportunities for new systems and strengths and weaknesses of existing systems.
 ISC/Workday
-It is also worth noting that the retirement of the HCI and Data Science Options does not represent a substantive change in our HCDE course offerings or the topics covered within the HCDE curriculum.
 Join our mailing list
 K-12 outreach
-Learn about entrepreneurship as it is currently understood and practiced.
 Libraries
 Login
 M E 123 : Introduction to Visualization and Computer-Aided Design (4)
@@ -259,123 +138,42 @@ Main menu
 Maps
 Master of Science
 Master's students
-MATH 120
-MATH 124 or Q SCI 291*
-MATH 125 or Q SCI 292*
-MATH 126 or 136*
-MATH 134
-MATH 135
-Math/Statistics
-Math/Statistics and Natural Science (50 credits)
 Menu
 Mission, vision, and guiding principles
-Moving forward, the HCDE degree program will be the primary pathway to earn a Bachelor of Science in Human Centered Design & Engineering degree. Students who were admitted to the Department for Autumn 2025 or earlier and who will graduate in Summer 2026 or later will be moved to the General Option, but may be eligible to petition to switch to the updated curriculum (see below).
 MSE 170 : Fundamentals of Materials Science (4)
 MyUW
 News & events
 NME 220 : Introduction to Molecular and Nanoscale Principles (4)
-Non-major course registration
 Note Regarding Requirement Overlap
 Note: The requirements on this page apply to HCDE undergraduates admitted to the HCDE bachelor's program for Autumn 2024 onwards. For more information regarding changes to the HCDE BS curriculum for students admitted Autumn 2024 or later, see the HCDE Undergraduate Curriculum Changes FAQs . HCDE undergraduates admitted to the HCDE bachelor's program prior to Autumn 2024 should instead refer to our former degree requirements .
-Of the 30 credits, minimum 10 credits in Arts and Humanities (A&H, formerly VLPA)
-Of the 30 credits, minimum 10 credits in Social Sciences (SSc, formerly I&S)
-Once admitted to the program, HCDE undergraduate students complete coursework in engineering fundamentals, experiential learning, HCDE core courses, and major electives. The elective coursework allows students the flexibility to explore topics targeted to their professional and academic goals.
 Outgoing PhDs & postdocs
 Outstanding alumni award
-Over the quarter, we will do three things:
-Peer advisors
 People
 PhD dissertations & technical reports
 PhD program
 PhD students
 PHYS 334 : Advanced Laboratory: Analog Electronics (3)
 PHYS 335 : Advanced Laboratory: Digital Electronics (3)
-Policies
-Prerequisite: either HCDE 303, INFO 360, CSE 440, or HCDE 300 and HCDE 318.
 Privacy
-Program evaluators from ABET may sample student assignment submissions as part of the process. Your class assignments are protected under the Family Educational Rights and Privacy Act (FERPA), which safeguards the privacy of student educational records. Although your assignments might be shown to ABET accreditors to demonstrate student learning outcomes, your personally identifiable information will be kept confidential. No personal details will be disclosed in relation to your assignment submissions.
-Program objectives
-Q SCI 381
-QMETH 201
-Questions?
 Recruiting & hiring students
-Removing ENGR 231 from the HCDE degree requirements, which will no longer be taught by the College of Engineering
-Requiring all students to complete at least one statistics course
 Research
 Research areas
 Research labs and centers
 Research scientists
 Research updates
-Resources & policies
-Resources for all HCDE students
-Resources for all UW students
-Schedule an appointment
-Schedule Appointment
-Scholarships & funding
 Search
 Site Map
 Skip to main content
-Some of the changes to the HCDE BS degree requirements include:
 Speak to an adviser
-Speak to an Advisor
-Special topics courses
-Special topics courses | Human Centered Design & Engineering
 Sponsor student projects
-SPRING
-Spring 2024
-Spring 2025
-Spring 2026
 Staff
-STAT 220 or 221 or 290*
 Strategic plan
 Student associations
-Student organizations & associations
 Students
-Students applying to HCDE for Autumn 2025 may still use these courses to meet admission prerequisites; however, if they have not yet taken these courses, we would encourage them to select other courses from the HCDE admission prerequisite list.
-Students are encouraged to use UW's MyPlan to plan their schedule. Current and prospective HCDE students may also run a DARS report through MyUW to track their progress. Students interested in substituting a course required by HCDE curriculum with another must fill out the form linked below .
-Students enrolled in the Bachelor of Science in Human Centered Design & Engineering complete 180 credits to graduate, including general education courses, engineering fundamentals, experiential learning, core courses, major electives, and additional free electives.
-Students in the HCDE degree program participate in student activities such as the HCDE Student Association , Women Engineers Rise (WE Rise) , HuskyADAPT , UX @ UW , and many more .
-Students in the Human Centered Design & Engineering Bachelor of Science program learn engineering principles rooted in a broad range of disciplines to investigate the interaction of people with technology and technical development.
-Students must complete a minimum of 15 credits in each of the two following areas, with the remaining 20 credits completed from either list:
-Students on track to graduate in Spring 2026 or earlier will not be eligible to switch to the new curriculum since they will not be included in the graduating class evaluated by ABET. Students graduating Summer 2026 or later who are in the General Option may be eligible to petition to switch to the new curriculum provided that they can complete the new degree requirements while still graduating within UW’s Satisfactory Progress Policy . These students will be contacted by HCDE regarding steps to complete if they wish to opt into the new curriculum and a deadline by which they must submit this request.
-Study abroad
 tabindex="-1">Computing/IT
-Tentative undergraduate course schedule
 Terms
-The Department plans to submit a self study in July of 2027 in preparation for the on-site visit in Autumn 2027. If the process proceeds according to this timeline, we would be notified of the outcome in the Summer of 2028. If ABET accreditation is granted, it would apply to students who completed the accredited curriculum and who graduated in Autumn 2026 or later.
-The HCDE Department is currently in the midst of a multi-year undergraduate curriculum review and revision process. We have created this page to help answer some common questions we’ve received from students and other community members regarding these changes. We will continue to update this page with additional information as we proceed through the process of gaining approval for and implementing these curricular changes.
-The HCDE General Option was created by the HCDE Department as a way to track which students were admitted to the major under our former curriculum. The primary difference between the two options is that the General Option allows students to count MATH 120, PHYS 114-119, and PSYCH 202 towards their HCDE math and science requirements; these courses will not be permitted to apply towards the HCDE admission prerequisites or HCDE math and science requirements for students applying to enter the major in Autumn 2026 or later.
-The most important change for students who have not yet applied to the HCDE major relates to the HCDE admission prerequisites. Beginning with the students applying to enter HCDE in Autumn 2026, MATH 120, PHYS 114-116, and PSYCH 202 will no longer be eligible to meet HCDE admission prerequisites , and these courses, along with the accompanying PHYS labs (PHYS 117-119), will no longer apply towards HCDE degree requirements. Students planning to apply to HCDE for Autumn 2026 or later should therefore plan to select other courses from the HCDE admission prerequisite list to complete the HCDE admission prerequisites.
-The process of applying to the Bachelor of Science in Human Centered Design & Engineering (HCDE) depends on a student's entry point to the University of Washington. Information about the different pathways for entering the major and answers to frequently asked questions can be found on the HCDE BS admission page .
-The University of Washington is accredited by the Northwest Commission on Colleges and Universities (NWCCU), one of six regional accrediting organizations recognized by the U.S. Department of Education and thus, HCDE students already graduate from a regionally accredited university. HCDE is seeking additional ABET accreditation, which is the international gold standard for all undergraduate engineering programs. Students with an ABET-accredited degree may be more attractive to employers who specifically seek graduates with human centered design skills within a general engineering degree program.
-There are 3 main reasons why the HCI Option and Data Science Option are being retired:
-These changes have now been approved, and students planning to apply to begin the HCDE major in Autumn 2024 or later can refer to the HCDE BS degree requirements for students admitted Autumn 2024 onwards for more information.
-This course is for anyone who thinks they may want to start some kind of venture (company, non-profit, cooperative) someday, or who just wants to better understand how these kinds of organizations are created and function. This is a ‘how to start a startup’ class with the twist.
-This course provides an introduction to product, program, and project management tailored specifically for professionals in Human-Centered Design and Engineering (HCDE). It is crafted to enhance understanding of the broader organizational context within which professionals operate, serving either as a foundational overview for better integration or as a preparatory step towards a career in product management. Participants will explore how the HCDE field aligns with the strategic goals of larger organizations and discover methods to effectively influence both organizational processes and product development initiatives. Key topics covered include strategic planning, effective communication, collaborative teamwork, leadership skills, management principles, and the phases of the product development lifecycle.
-This course will explore the usage of Generative AI tools and LLMs into the UCD process, as we consider the various advantages and limitations they bring. Students will work in small groups to conduct user research, craft a design proposal, and build a lofi prototype using GAI tools throughout the process. They will be asked to reflect on the pros and cons, especially around how potential negative stereotypes embedded within LLMs impacted their usage.
-This is a Human Centered Design course mobilizing an agile(like) approach to developing a design idea. Students will work in groups to create a human-centered design product/experience/service. Students will learn how to mobilize design practice (e.g. making things) as a core component of research and synthesis.
-This will be a fast-paced studio course introducing students to the theory and practice of service design. Team-based projects will focus on designing services that build social infrastructure (e.g. libraries, tool libraries, time banks, community centers, etc.). Academic and industry readings prepare students to mobilize and critique core concepts, methods, and practices within service design.
-Throughout the HCDE degree program, there are many opportunities to talk about human centered design in relation to product design. In this class, we’ll talk about how HCD can be used to guide venture design.
-To graduate, students admitted to the HCDE bachelor's program in Autumn 2024 and onwards must complete 180 credits, including the following:
-To graduate, students admitted to the HCDE bachelor's program prior to Autumn 2024 must complete 180 credits, including the following:
-To graduate, students in the HCDE bachelor's program must complete 180 credits of the following:
-To meet accreditation requirements: Retiring the options ensures that HCDE students complete the bulk of their upper division coursework within the HCDE Department via courses taught by HCDE faculty. This allows us to continually assess, improve, and modify our courses to make sure they are meeting ABET standards.
-To reduce student confusion: We have found that there is often a disconnect between the expectations of students and employers/graduate programs regarding the impact of transcriptable degree options, and students’ ability to summarize and reflect on their coursework, experiential learning, and skills gained via our degree is more important to employers than their degree option.
-To remove redundancy: For the HCI Option specifically, the overwhelming majority of students who complete this option do so by taking 400-level HCDE courses exclusively. This means that a student could complete the HCDE Standard (a.k.a. Individualized) Option or the HCDE HCI Option by taking identical courses. In other words, there is no longer a substantive curricular distinction between these 2 degree options, and HCDE students who are interested in pursuing HCI-related topics can do so within our Standard Option.
-Topic: Critical Technology Practice
-Topic: Human Centered Approaches to Generative AI
-Topic: Human Centered Entrepreneurship
-Topic: Human Centered Entrepreneurship - COURSE CANCELLED IN AUT 2024
-Topic: Product Management
-Topic: Rapid Research & Design Iteration
-Topic: Service Design
-Tuition & financial aid
-Undergraduate curriculum changes FAQs
-Undergraduate student policies
 Undergraduate students
-Undergraduate students | Human Centered Design & Engineering
 University of Washington
-Updates to the HCDE math statistics, science, and engineering fundamentals course lists
 Use this form to request to count a course not listed above towards an HCDE degree requirement (login with UWNetID required). Substitutions will not be approved for general education requirements or other degree requirements not included in this form.
 UW Bothell
 UW College of Engineering
@@ -388,16 +186,4 @@ UW Twitter
 UX Speaker Series
 We recommend submitting your petition at least 3 weeks before the quarter in which you plan to take the course . You are required to include a syllabus. Please note that petitions are not guaranteed to be approved. Additional guidance can be found in the petition form.
 Webmaster
-What are the advantages of graduating with an ABET accredited degree?
-What is the difference between majoring in HCDE and majoring in HCDE: General Option?
-What is the planned timeline for the HCDE Department to seek ABET accreditation?
-What kinds of changes have been made to the HCDE graduation requirements for students who enter the major in Autumn 2024 or later?
-Why are the Human-Computer Interaction and Data Science degree options being retired?
-Why is the HCDE Department proposing changes to the Bachelor of Science degree requirements?
-Will students who entered the major under the old degree requirements be eligible to switch to the new degree requirements?
-WINTER
 With the exception of the Writing (W) requirement and Diversity (DIV) requirement, which can overlap with other requirements, all classes can only count toward one requirement. Courses applied towards HCDE major requirements do not also apply towards the Areas of Inquiry requirements. Courses which appear on the course lists for more than one major requirement can only satisfy one requirement.
-Work in teams to incubate an idea and develop it into a venture.
-Writing: HCDE 231 or ENGR 231; 4 remaining credits met by coursework in the major
-Written and Oral Communication (12 credits)
-X

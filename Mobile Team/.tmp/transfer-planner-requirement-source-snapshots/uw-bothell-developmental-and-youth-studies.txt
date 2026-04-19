@@ -233,18 +233,18 @@ Admissions
 Faculty & Staff
 Give
 School of Educational Studies
-&#124;
+|
 Developmental & Youth Studies
 School of Educational Studies
-&#124;
+|
 Undergraduate
-&#124;
+|
 Developmental & Youth Studies
-&#124;
+|
 Degree Requirements
 Degree Requirements
 Developmental & Youth Studies majors must complete all university and major requirements listed below.
-Students seeking academic advising can schedule an appointment through our Academic Advising page. To learn more about Developmental & Youth Studies&#8217; policies and petitions, please visit our Undergraduate Policies & Petitions page.
+Students seeking academic advising can schedule an appointment through our Academic Advising page. To learn more about Developmental & Youth Studies’ policies and petitions, please visit our Undergraduate Policies & Petitions page.
 On this page
 UW Bothell Requirements
 Major Requirements
@@ -253,22 +253,22 @@ Applied Experience Guidelines and Policies
 Major Learning Objectives
 UW Bothell Requirements
 Earn 180 university credits
-5 credits &#8211; Composition (C)
-10 credits &#8211; Writing Across the Curriculum (W)
-5 credits &#8211; Reasoning (RSN)
-5 credits &#8211; Diversity (DIV)
+5 credits – Composition (C)
+10 credits – Writing Across the Curriculum (W)
+5 credits – Reasoning (RSN)
+5 credits – Diversity (DIV)
 For students admitted to the UW prior to Autumn 2023 the DIV requirement is 3 credits
-15 credits &#8211; Arts & Humanities (A&H)
-15 credits &#8211; Natural Sciences (NSc)
-15 credits &#8211; Social Sciences (SSc)
+15 credits – Arts & Humanities (A&H)
+15 credits – Natural Sciences (NSc)
+15 credits – Social Sciences (SSc)
 Major Requirements
-25 credits &#8211; School of Educational Studies Core Courses
+25 credits – School of Educational Studies Core Courses
 B EDUC 205 Education & Equity in the United States (DIV, SSc)
 B EDUC 210 Teaching & Learning in a Multicultural Society (DIV, SSc)
 B EDUC 295 Gathering, Analyzing, and Using Data in Education (DIV, RSN)
 B EDUC 300 Research & Educational Knowledge (W)
 B EDUC 310 Theories of Learning, Culture & Identity (SSc)
-35 credits &#8211; Developmental & Youth Studies Foundation Courses
+35 credits – Developmental & Youth Studies Foundation Courses
 B EDUC 402 Human Growth and Learning (SSc)
 B EDUC 451 Early Childhood Development (SSc)
 B EDUC 453 Children in Schools and Society (DIV, SSc)
@@ -276,7 +276,7 @@ B EDUC 456 Adolescents in Schools and Society (SSc)
 B EDUC 458 Emerging Adulthood (SSc)
 B EDUC 461 Educational Implications of Gender Inequality (DIV)
 B EDUC 481 Adolescent Development (SSc)
-15 credits from list &#8211; Electives
+15 credits from list – Electives
 B EDUC 220 Education and Society (SSc)
 B EDUC 230 Culture Knowledge and Education (DIV, SSc)
 B EDUC 250 Topics in Education and Popular Culture (A&H)
@@ -306,7 +306,7 @@ BISPSY 343 Community Psychology (SSc)
 BISPSY 348 Cultural Psychology (SSc)
 BISPSY 350 Intergroup Relations (SSc)
 B HLTH 435 Foundations and Principles of Health Education Communication (SSc)
-10 credits &#8211; Capstone Sequence
+10 credits – Capstone Sequence
 B EDUC 495 Applied Experience (5 credits)
 B EDUC 499 Capstone Project (5 credits)
 Capstone Sequence
@@ -334,7 +334,7 @@ Student Clubs & Organizations
 Hours Requirement
 The total number of hours required for 5 credits of BEDUC 495 Applied Experience is 100. *See COVID-19 announcement below*
 The course may be taken for 2-5 credits each quarter until the number of required hours is fulfilled (see table below).
-Some academic requirements related to BEDUC 495 must be completed for each quarter enrolled&#8211;see the BEDUC 495 Applied Experience syllabus for details.
+Some academic requirements related to BEDUC 495 must be completed for each quarter enrolled–see the BEDUC 495 Applied Experience syllabus for details.
 Credits
 Weekly Hours
 Quarter Total

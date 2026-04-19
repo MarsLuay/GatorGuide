@@ -2,15 +2,9 @@ Owner: uw-seattle-japanese
 Source: https://asian.washington.edu/ba-japanese
 Title: B.A. in Japanese | Asian Languages & Literature | University of Washington
 
-[Supplemental official source] JAPAN Courses
 [Supplemental official source] previous requirements
 &copy; 2026 University of Washington . All rights reserved.
 10 credits at the 300-level or above, at least 5 credits of which must be from outside the Department of Asian Languages and Literature may be selected from:
-11659
-11660
-11661
-11662
-11663
 225 Gowen Hall
 300- or 400-level Japan-related courses from other departments
 45 credits, with a minimum of 30 credits beyond the second year:
@@ -38,10 +32,6 @@ ASIAN 498 Special Topics (Content varies; appropriate only if related to Japan)
 Asian Languages & Literature
 asianll@uw.edu
 At least 5 credits of the above 30 credits must come from an advanced class , which generally have linguistics, literature, and or/culture class prerequisites . The advanced course list is as follows:
-Autumn 2022
-Autumn 2023
-Autumn 2024
-Autumn 2025
 Awards & Honors
 B.A. in Japanese
 Before You Go
@@ -53,10 +43,7 @@ Careers
 Chinese
 College of Arts & Sciences
 Contact Us
-Course
-Course Title (click for details)
 Courses
-Courses by Term
 Courses may not be used to satisfy more than one requirement.
 Courses used to satisfy the language requirement may NOT simultaneously be used to satisfy the literature or area-related humanities and social sciences requirements.
 Current Grad Students
@@ -74,7 +61,6 @@ Faculty
 Featured Courses
 Fields of Interest
 Financial Support
-First-Year Intensive Japanese
 For Faculty and Staff
 For Graduate Students
 For Teaching Assistants
@@ -99,21 +85,16 @@ III. JAPAN-RELATED HUMANITIES OR SOCIAL SCIENCE COURSES:
 Incoming Freshmen & Current Students
 Indonesian
 Instagram
-Introduction to Japanese Cinema and Media
 Introductory Japanese language courses are available in the fall or summer quarters. Students should sign up for introductory courses as early as possible in order to fulfill the major’s language requirement. If you have previous experience with Japanese, see the department's information on proficiency exams and placement interviews .
-JAPAN 134 A
 JAPAN 211, 212, 213 Second-Year Japanese
 JAPAN 311, 312, 313 Third-Year Japanese
 JAPAN 321 Survey of Japanese Literature I
 JAPAN 321, 322, 323 ** Please note that JAPAN 323 is not currently offered.
 JAPAN 321, 322, 323 Japanese Literature I, II, III ** Please note that JAPAN 323 is not currently offered.
 JAPAN 322 Survey of Japanese Literature II
-JAPAN 325 A
 JAPAN 325 Introduction to Japanese Film
-JAPAN 334 A
 JAPAN 342 The Japanese Language
 JAPAN 342 The Japanese Language (prerequisite: JAPAN 311 which may be taken concurrently)
-JAPAN 343 A
 JAPAN 343 Japanese Language in Society (prerequisite: JAPAN 311)
 JAPAN 343 Language in Society
 JAPAN 343 The Japanese Language in Society
@@ -172,12 +153,9 @@ JAPAN 472 Readings in Classical Japanese Literature (prerequisite: JAPAN 471)
 JAPAN 472 Readings in Classical Japanese Literature I (prerequisite: JAPAN 471)
 JAPAN 473 Readings in Classical Japanese II (prerequisite: Japan 472)
 JAPAN 473 Readings in Classical Japanese Literature II (prerequisite: JAPAN 472)
-JAPAN 499 A
 JAPAN 499 Undergraduate Research
-JAPAN Courses
 Japan-related courses from other departments, with the written approval of the coordinator of the Japanese program.
 Japanese
-Japanese Language in Society
 Japanese Major Requirements (Declared Autumn 2018 or Earlier)
 Japanese Major Requirements (Declared Autumn 2018 or Earlier) | Asian Languages & Literature | University of Washington
 Khmer
@@ -195,12 +173,9 @@ Main menu
 Majors & Minors
 Maps
 Markus Memorial Lecture
-Meeting Time
 Menu
 Mission & Vision
 More ways to connect
-MTWTh 4:10pm - 5:40pm
-MTWThF 9:10am - 12:30pm
 MyUW
 News & Events
 Newsletter
@@ -233,22 +208,11 @@ Second-Year Japanese: JAPAN 211, 212, 213
 Share
 Site Map
 Skip to main content
-SLN
-Spring 2023
-Spring 2024
-Spring 2025
-Spring 2026
 Staff
 Stay Connected
 Students entering with advanced language skills complete a placement test and interview to determine language course placement. Students who need fewer than 20 credits to complete JAPAN 303, or for whom JAPAN 303 is waived because of advanced skills, must still earn a minimum 50 credits for the major. These students may take 400-level Japanese language courses (placement interview may be required), or additional linguistics, literature, and/or culture courses. Students are strongly encouraged to consult an adviser to determine both language and other course options.
 Study Abroad
 Submit an Update
-Summer 2022
-Summer 2023
-Summer 2024
-Summer 2025
-Summer 2026
-Summer 2026 A-term
 Summer Study
 Support Asian Languages & Literature
 Support Us
@@ -259,15 +223,12 @@ Terms
 The following 15 credits are required : JAPAN 321, 322, 323 Japanese Literature I, II, III (no prerequisites. Taking these courses in sequence is recommended, but not required.) ** Please note that JAPAN 323 is not currently offered. Substitute either JAPAN 434 or 435 in lieu of JAPAN 323.
 The Japanese Language & Literature major has a requirement of 50-75 credits . The number of credits necessary will depend upon the students’ initial level of Japanese; for example, students who begin language study with first-quarter Japanese will need 75 credits to complete this major.
 The Japanese Language & Literature major has a requirement of 75 credits , with a choice of disciplinary concentration in linguistics or literature. Newly admitted majors should choose one or the other option early in their program of study.
-Third-Year Intensive Japanese
 Third-Year Japanese: JAPAN 301, 302, 303, 304
 Third-Year Japanese: JAPAN 311, 312, 313
-to be arranged
 Transfer Students
 Transferring Credits
 Twitter
 Undergraduate
-Undergraduate Research
 University of Washington
 Upcoming Courses
 Urdu
@@ -277,9 +238,5 @@ Voicing Concerns
 Washin Kai
 Washington
 Welcome
-Winter 2023
-Winter 2024
-Winter 2025
-Winter 2026
 You are here
 You can view a list of approved courses in other departments.

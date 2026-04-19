@@ -123,7 +123,7 @@ Visiting Appointments
 Events
 expand_more
 Advising Events
-Annual Dean&#039;s Awards
+Annual Dean's Awards
 Engineering Week
 Women in Data Science (WiDS) Tacoma @ UW Tacoma
 End of Quarter Colloquia

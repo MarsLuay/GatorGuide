@@ -8,7 +8,6 @@ import {
   getTransferPlannerTrack,
   type TransferPlannerCampusId,
   type TransferPlannerChecklistItem,
-  type TransferPlannerDegreeMapSection,
   type TransferPlannerMajorPlan,
 } from "../../constants/transfer-planner-source";
 
@@ -57,8 +56,75 @@ function formatCourseList(courses: string[], guidance?: string | null) {
   return courses.map((course) => `- \`${course}\``).join("\n");
 }
 
-function sanitizePlannerDocText(value: string) {
+function decodeHtmlEntities(value: string) {
+  const namedEntities: Record<string, string> = {
+    amp: "&",
+    apos: "'",
+    gt: ">",
+    lt: "<",
+    nbsp: " ",
+    quot: '"',
+  };
+
   return String(value)
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+    .replace(/&([a-z]+);/gi, (match, entity) => namedEntities[entity.toLowerCase()] ?? match);
+}
+
+function repairPlannerDocEncoding(value: string) {
+  const text = String(value ?? "");
+  if (!/[\u00e2\u00c3\u00ef]/.test(text)) {
+    return text;
+  }
+
+  try {
+    const repaired = Buffer.from(text, "latin1").toString("utf8");
+    return repaired.includes("\uFFFD") ? text : repaired;
+  } catch {
+    return text;
+  }
+}
+
+function normalizePlannerDocMojibake(value: string) {
+  let normalized = String(value);
+  const replacements: Array<[string, string]> = [
+    ["\u00e2\u20ac\u2122", "'"],
+    ["\u00e2\u20ac\u0153", '"'],
+    ["\u00e2\u20ac\u009c", '"'],
+    ["\u00e2\u20ac\u009d", '"'],
+    ["\u00e2\u20ac\u0093", "-"],
+    ["\u00e2\u20ac\u201c", "-"],
+    ["\u00e2\u20ac\u0094", "-"],
+    ["\u00e2\u20ac\u201d", "-"],
+    ["\u00ef\u0081\u00b4", ""],
+  ];
+
+  for (const [search, replacement] of replacements) {
+    normalized = normalized.split(search).join(replacement);
+  }
+
+  return normalized;
+}
+
+function wrapLiteralUrls(value: string) {
+  return String(value).replace(/https?:\/\/\S+/g, (rawUrl) => {
+    const trimmedUrl = rawUrl.replace(/[),.;]+$/, "");
+    const suffix = rawUrl.slice(trimmedUrl.length);
+    return `<${trimmedUrl}>${suffix}`;
+  });
+}
+
+function escapePlannerDocMarkdown(value: string) {
+  return String(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/\[/g, "\\[")
+    .replace(/\]/g, "\\]")
+    .replace(/&(?!(?:[a-z]+|#\d+|#x[0-9a-f]+);)/gi, "&amp;");
+}
+
+function sanitizePlannerDocText(value: string) {
+  const normalized = String(value)
     .replace(
       /confirm the exact timing with an advisor if the major has multiple internal routes/gi,
       "the planner keeps this option only when the published source supports it and does not infer internal route timing beyond that source"
@@ -74,6 +140,14 @@ function sanitizePlannerDocText(value: string) {
     .replace(/support-only;/gi, "supplemental source-backed prep only;")
     .replace(/support-only/gi, "supplemental source-backed prep only")
     .replace(/review-needed/gi, "source-unverified-hidden");
+
+  return escapePlannerDocMarkdown(
+    wrapLiteralUrls(
+      normalizePlannerDocMojibake(
+        decodeHtmlEntities(repairPlannerDocEncoding(normalized))
+      )
+    )
+  );
 }
 
 function formatLinksUsed(plan: TransferPlannerMajorPlan) {
@@ -183,7 +257,7 @@ function formatRequiredSequences(plan: TransferPlannerMajorPlan) {
   });
 
   plan.advisorFlags.forEach((flag) => {
-    sequenceLines.push(`- Planner flag: ${flag}`);
+    sequenceLines.push(`- Planner flag: ${sanitizePlannerDocText(flag)}`);
   });
 
   (plan.validationNotes ?? []).forEach((note) => {

@@ -9,9 +9,7 @@ Title: Major Planning Worksheet - Data Visualization (BA)
 *AP Calculus accepted with score of 3, 4, or 5
 *AP English Literature/Language exam not accepted
 *AP Statistics accepted with a score of 3, 4, or 5
-&#xA0;
-&#xA0;Applicants who are generally competitive to IAS majors will have the following:
-&#xA9; University of Washington Bothell
+© University of Washington Bothell
 1
 18115 Campus Way NE
 2
@@ -24,6 +22,7 @@ All prerequisites complete at time of application
 American & Ethnic Studies Applied Computing Biochemistry Biology Business Business ELC: Entrepreneurship Business ELC: General Business Business ELC: Supply Chain Management Business: Accounting Business: Finance Business: Leadership and Strategic Innovation Business: Management Business: Management Information Systems Business: Marketing Business: Retail Management Business: Supply Chain Management Business: Technology and Innovation Management Chemistry Computer Engineering Computer Science & Software Engineering Conservation and Restoration Science Culture, Literature & the Arts Data Visualization (BA) Data Visualization (BS) Developmental and Youth Studies Earth System Science Economics (BS) Educational Studies: Elementary Education Option Electrical Engineering Elementary (K-5) Teacher Certification Environmental Studies Gender, Women and Sexuality Studies Global Studies Health Studies Interdisciplinary Arts Interdisciplinary Social Science Law, Economics and Public Policy Mathematics Mechanical Engineering Media and Communication Studies Nursing Nursing: RN to BSN (Bothell) Nursing: RN to BSN (Everett) Nursing: RN to BSN (Shoreline) Physics Psychology Science, Technology and Society Undeclared/Pre-Major
 Anticipated Entry Term
 Applicants to Data Visualization (BA) must complete these prerequisites:
+Applicants who are generally competitive to IAS majors will have the following:
 APPLICATION DEADLINES
 B BUS 301 Data Management (5 credits)
 B DATA 200 Introduction to Data Studies (5 credits)
@@ -85,7 +84,7 @@ Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
 Current or Last School Attended
 D. Data Visualization Elective Courses (25 credits)
 Data Visualization (BA)
-Data Visualization (BA) Major &#xA0;Planning Worksheet
+Data Visualization (BA) Major Planning Worksheet
 Data Visualization Electives (25 credits)
 Either BES 301 Science Methods and Practice OR BST 301 Scientific Writing (5 credits)
 Either BIS 218 Power of Maps OR B GIS 342 Geographic Information Systems (5 credits)
@@ -117,7 +116,7 @@ No
 Note: See all IAS polices and procedures on the Student Resources webpage .
 Other Academic Interest
 Phone: 425.352.5000
-Please fill out this form and attach your unofficial college transcripts if you want a transfer admissions counselor to check for prerequisite course equivalencies. Please note that if the colleges you attended are not part of the&#xA0; Washington State Community & Technical College system , we might need to request additional documentation like course syllabi to determine equivalency.
+Please fill out this form and attach your unofficial college transcripts if you want a transfer admissions counselor to check for prerequisite course equivalencies. Please note that if the colleges you attended are not part of the Washington State Community & Technical College system , we might need to request additional documentation like course syllabi to determine equivalency.
 Please submit your unofficial transcripts in this form and your counselor will review and get back to you (typically within 3-5 business days).
 Postbaccalaureate
 Pre-Calculus (RSN)
@@ -125,21 +124,21 @@ Prerequisite GPA of 2.70
 Prerequisites
 Primary Academic Interest
 Privacy
-Proof of&#xA0; English language proficiency &#xA0;(if required) .
+Proof of English language proficiency (if required) .
 Residency Requirement: 30 credits must be completed in residency at UW Bothell.
 School of IAS Requirements & Policies
 Spatial Data Analysis (15 credits)
 STAT 220 or equivalent
 Statistics
 Submit
-Supporting documents (transcripts, test scores, personal statement, etc. &#x2013; varies by major program).
+Supporting documents (transcripts, test scores, personal statement, etc. – varies by major program).
 TDD: 425.352.5303
 Terms
-The&#xA0; Data Visualization (BA) draws on mathematics, statistics, and visual studies to develop new practices and tools for discovering, analyzing, and representing data. The major allows students to link mathematical thinking &#x2013; the ability to recognize mathematical forms in relation to real-world phenomena &#x2013; and data and information visualization &#x2013; the ability to communicate and think about data in visualized form across contexts.
-This is a minimum- requirements major , meaning that students who meet the general admission requirements and minimum GPA in each prerequisite course are eligible for review for entry into the program . &#xA0;
+The Data Visualization (BA) draws on mathematics, statistics, and visual studies to develop new practices and tools for discovering, analyzing, and representing data. The major allows students to link mathematical thinking – the ability to recognize mathematical forms in relation to real-world phenomena – and data and information visualization – the ability to communicate and think about data in visualized form across contexts.
+This is a minimum- requirements major , meaning that students who meet the general admission requirements and minimum GPA in each prerequisite course are eligible for review for entry into the program .
 This website uses resources that are being blocked by your network. Contact your network administrator for more information.
 This website uses scripting to enhance your browsing experience. Enable JavaScript in your browser and then reload this website.
-To determine if your coursework is equivalent to the prerequisites listed above, we encourage you to submit this form with your unofficial college transcripts and our transfer admissions counselor assigned to this major will follow up with you. You can also reference the&#xA0; UW Equivalency Guide &#xA0;which lists course equivalencies for Washington State Community & Technical Colleges, but if you have issues understanding it, please either submit this form or connect with your&#xA0; transfer admissions counselor .
+To determine if your coursework is equivalent to the prerequisites listed above, we encourage you to submit this form with your unofficial college transcripts and our transfer admissions counselor assigned to this major will follow up with you. You can also reference the UW Equivalency Guide which lists course equivalencies for Washington State Community & Technical Colleges, but if you have issues understanding it, please either submit this form or connect with your transfer admissions counselor .
 Topics may vary; not offered regularly
 Transfer
 Transfer applicants must meet the following minimum requirements to be considered for admissions:

@@ -24,8 +24,8 @@ STEM Advisory Board
 Departments
 Expand Navigation
 Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
+Computing & Software Systems
+Engineering & Mathematics
 Physical Sciences
 Awards & Endowments
 Undergraduate
@@ -38,58 +38,58 @@ Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Careers
 Biology
 Expand Navigation
 Admissions
 Curriculum
 Investigative Biology
-Student Forms &#038; Resources
-Research &#038; Internships
+Student Forms & Resources
+Research & Internships
 Student Organizations
 Friday Harbor Laboratories
 Chemistry
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Computer Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Computer Science & Software Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Earth System Science
 Electrical Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Mathematics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Mechanical Engineering
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Student Organizations
 Physics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Student Organizations
 Minors
@@ -97,7 +97,7 @@ Expand Navigation
 Actuarial Science
 Biology
 Chemistry
-Computer Science &#038; Software Engineering (CSSE)
+Computer Science & Software Engineering (CSSE)
 Cybersecurity
 Data Science
 Information Technology (IT)
@@ -148,7 +148,7 @@ Curriculum
 Research
 Expand Navigation
 Computer Engineering
-Power &#038; Energy
+Power & Energy
 Signal Processing
 Biomedical Systems and Devices
 Microelectronics and Devices
@@ -194,7 +194,7 @@ Expand Navigation
 Capstones
 Events
 News
-Research &#038; labs
+Research & labs
 Expand Navigation
 Center for Biotechnology Innovation & Training
 National Center of Academic Excellence in Cybersecurity
@@ -266,7 +266,7 @@ Industry partners
 Capstones
 Events
 News
-Research &#038; labs
+Research & labs
 Center for Biotechnology Innovation & Training
 National Center of Academic Excellence in Cybersecurity
 Department of Physical Sciences Research
@@ -284,8 +284,8 @@ STEM Advisory Board
 Departments
 Expand Navigation
 Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
+Computing & Software Systems
+Engineering & Mathematics
 Physical Sciences
 Awards & Endowments
 Undergraduate
@@ -298,58 +298,58 @@ Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Careers
 Biology
 Expand Navigation
 Admissions
 Curriculum
 Investigative Biology
-Student Forms &#038; Resources
-Research &#038; Internships
+Student Forms & Resources
+Research & Internships
 Student Organizations
 Friday Harbor Laboratories
 Chemistry
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Computer Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Computer Science & Software Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Earth System Science
 Electrical Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Mathematics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Mechanical Engineering
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Student Organizations
 Physics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Student Organizations
 Minors
@@ -357,7 +357,7 @@ Expand Navigation
 Actuarial Science
 Biology
 Chemistry
-Computer Science &#038; Software Engineering (CSSE)
+Computer Science & Software Engineering (CSSE)
 Cybersecurity
 Data Science
 Information Technology (IT)
@@ -408,7 +408,7 @@ Curriculum
 Research
 Expand Navigation
 Computer Engineering
-Power &#038; Energy
+Power & Energy
 Signal Processing
 Biomedical Systems and Devices
 Microelectronics and Devices
@@ -454,7 +454,7 @@ Expand Navigation
 Capstones
 Events
 News
-Research &#038; labs
+Research & labs
 Expand Navigation
 Center for Biotechnology Innovation & Training
 National Center of Academic Excellence in Cybersecurity
@@ -479,16 +479,16 @@ Physics
 Heritage University REU
 Give
 School of Science, Technology, Engineering & Mathematics
-&#124;
+|
 Chemistry
 School of Science, Technology, Engineering & Mathematics
-&#124;
+|
 Undergraduate
-&#124;
+|
 Majors
-&#124;
+|
 Chemistry
-&#124;
+|
 Chemistry Curriculum
 Chemistry Curriculum
 This page contains information on the curriculum of the Bachelor of Arts in Chemistry and Bachelor of Science in Chemistry (general and biochemistry options) .
@@ -509,17 +509,17 @@ Science & Technology Mathematics (STMATH)
 Important planning notes
 You must earn a minimum of 180 credits to complete a degree from UW Bothell.
 All courses required for this degree (not including general education courses) must be passed with a minimum grade of 2.0 or higher .
-Chemistry Electives can be fulfilled by any 300-level or higher &#8220;BCHEM&#8221; course that is not already required for your degree option.
+Chemistry Electives can be fulfilled by any 300-level or higher “BCHEM” course that is not already required for your degree option.
 We strongly recommend taking Analytical Chemistry (BCHEM 316+317 and 426) in your Junior year, followed by Physical Chemistry (BCHEM 401, 402, 404) in your senior year, because:
 We have found that students find more success when starting with Analytical Chemistry before moving on to Physical Chemistry.
 These courses are very challenging . We strongly recommend that you do not take them courses at the same time and instead spread them out over two years. We recommend that you contact your academic adviser early in your program to plan out your courses.
 General education requirements
 All UW students must complete a common set of general education requirements . As a Chemistry major, you will have already completed the Natural Science (NSc) and Reasoning (R) requirements by taking chemistry, physics, and math classes, but make sure to plan for completion of the following:
-English Composition (C) &#8211; 5 credits
-Additional Writing (W) &#8211; 10 credits
-Diversity (DIV) &#8211; 5 credits (almost always also fulfills A&H or SSc; was only 3 credits prior to autumn 2023)
-Arts & Humanities (A&H) &#8211; 15 credits (cannot overlap with SSc)
-Social Sciences (SSc) &#8211; 15 credits (cannot overlap with A&H)
+English Composition (C) – 5 credits
+Additional Writing (W) – 10 credits
+Diversity (DIV) – 5 credits (almost always also fulfills A&H or SSc; was only 3 credits prior to autumn 2023)
+Arts & Humanities (A&H) – 15 credits (cannot overlap with SSc)
+Social Sciences (SSc) – 15 credits (cannot overlap with A&H)
 Entry prerequisites
 Visit our Admissions page for information on prerequisite coursework.
 B.A. in Chemistry
@@ -691,8 +691,8 @@ STEM Advisory Board
 Departments
 Expand Navigation
 Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
+Computing & Software Systems
+Engineering & Mathematics
 Physical Sciences
 Awards & Endowments
 Undergraduate
@@ -705,58 +705,58 @@ Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Careers
 Biology
 Expand Navigation
 Admissions
 Curriculum
 Investigative Biology
-Student Forms &#038; Resources
-Research &#038; Internships
+Student Forms & Resources
+Research & Internships
 Student Organizations
 Friday Harbor Laboratories
 Chemistry
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Computer Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Computer Science & Software Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Earth System Science
 Electrical Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Mathematics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Mechanical Engineering
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Student Organizations
 Physics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Student Organizations
 Minors
@@ -764,7 +764,7 @@ Expand Navigation
 Actuarial Science
 Biology
 Chemistry
-Computer Science &#038; Software Engineering (CSSE)
+Computer Science & Software Engineering (CSSE)
 Cybersecurity
 Data Science
 Information Technology (IT)
@@ -815,7 +815,7 @@ Curriculum
 Research
 Expand Navigation
 Computer Engineering
-Power &#038; Energy
+Power & Energy
 Signal Processing
 Biomedical Systems and Devices
 Microelectronics and Devices
@@ -861,7 +861,7 @@ Expand Navigation
 Capstones
 Events
 News
-Research &#038; labs
+Research & labs
 Expand Navigation
 Center for Biotechnology Innovation & Training
 National Center of Academic Excellence in Cybersecurity

@@ -3,7 +3,6 @@ Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
 Title: Bachelor of Economics - School of Business
 
 [Supplemental official source] Curriculum
-[Supplemental official source] Prerequisite Courses
 [Supplemental official source] Prerequisites
 Accounting Option
 Admissions

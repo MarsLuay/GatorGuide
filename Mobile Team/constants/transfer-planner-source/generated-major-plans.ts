@@ -39,6 +39,7 @@ import {
   TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES,
   type TransferPlannerDerivedSharedSourcePlanAlias,
 } from "./derived-shared-source-plans";
+import { stripTransferPlannerPlanTitlePrefix } from "./pathway-title-normalization";
 import type {
   TransferPlannerDegreeMapBlock,
   TransferPlannerMajorPathwayEntry,
@@ -2799,6 +2800,8 @@ function stripPathwayTitleSuffix(value: string) {
 }
 
 function stripPlanTitlePrefix(planTitle: string, value: string) {
+  return stripTransferPlannerPlanTitlePrefix(planTitle, value);
+
   const sanitizedPlanTitle = sanitizePlannerOwnedText(planTitle);
   const sanitizedValue = sanitizePlannerOwnedText(value);
   if (!sanitizedPlanTitle) {

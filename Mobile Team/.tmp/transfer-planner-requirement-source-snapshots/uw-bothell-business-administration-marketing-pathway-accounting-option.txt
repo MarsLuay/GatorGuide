@@ -3,16 +3,22 @@ Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administ
 Title: Marketing Option and Concentration - School of Business
 
 (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
+(*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
 [Supplemental official source] Accounting Option
 [Supplemental official source] Finance Option and Concentration
+[Supplemental official source] Leadership & Strategic Innovation Option
 [Supplemental official source] Supplemental official track and option pages
+[Supplemental official source] Supply Chain Management Option
 **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
-&#124;
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
+|
+10 credits
+10 credits – 2 courses from the list below:
 10 credits – Complete 2 courses from this list:
-10 credits &#8211; Complete two courses from this list:
+10 credits – Complete two courses from this list:
+15 credits
 15 credits – Complete 3 courses from this list:
 18807 Beardslee Blvd, Suite 210
 20 credits
@@ -20,6 +26,7 @@ Title: Marketing Option and Concentration - School of Business
 425.352.5000
 425.352.5394
 5 credits
+90 credits
 90 Credits
 About
 Accessibility
@@ -36,6 +43,21 @@ All UW Bothell
 Alumni
 Apply As Undergraduate
 Awards
+B BUS 402 – Managing Work Teams
+B BUS 441 – Business Project Management (340)
+B BUS 443 – Entrepreneurship Seminar
+B BUS 444 – Product Development Lab
+B BUS 460 – Sustainable Business
+B BUS 461 – Business, Government, and Society ( 300, 310 )
+B BUS 462 – Negotiations and Conflict Management (300, 320)
+B BUS 471 – Entrepreneurial Management
+B BUS 472 – Managing Employees (300)
+B BUS 473 – Leadership and Decision Making ( 300 )
+B BUS 475 – Managing Innovation
+B BUS 476 – New Technology and Future Markets (320, 350)
+B BUS 477 – Human Resource Management (300)
+B BUS 479 – Special Topics in Management (300)
+B BUS 491 – Business Consulting
 Bachelor in Business Administration
 Bachelor in Economics
 Bachelor of Business Administration
@@ -52,6 +74,7 @@ BBUS 362 – Intermediate Accounting 2 (361)
 BBUS 363 – Intermediate Accounting 3 (362)
 BBUS 373 – Cost Accounting
 BBUS 373 – Cost Accounting*
+BBUS 402 – Managing Work Teams
 BBUS 411 – Auditing Theory & Practice (362)
 BBUS 412 – Advanced Business Law
 BBUS 421 – Consumer Marketing (320)
@@ -62,8 +85,10 @@ BBUS 429 – Special Topics in Marketing (320)
 BBUS 431 – Electronic Marketing (320)
 BBUS 435 – Accounting Information Systems (361)
 BBUS 438 – Marketing Management Lab (320, and one of the following: 421, 423, 426, 427, 429, or 431)
+BBUS 441 – Business Project Management (340)
 BBUS 445 – Merchandising Acquisition (300)
 BBUS 446 – Strategic Retail Promotion (300, 320)
+BBUS 447 – Retail Operations & Supply Chain Management (300)
 BBUS 449 – Accounting Practices in Not-for-Profit Organizations (363)
 BBUS 450 – Federal Income Taxation (361)
 BBUS 451 – Financial Policy & Planning
@@ -74,36 +99,50 @@ BBUS 453 – Financial Institutions & Markets
 BBUS 453 – Financial Institutions and Markets (350)
 BBUS 454 – Investments
 BBUS 454 – Investments (350)
-BBUS 458 &#8211; Risk Modeling
-BBUS 463 &#8211; Advanced Financial Accounting (362)
+BBUS 458 – Risk Modeling
+BBUS 460 – Sustainable Business
+BBUS 462 – Negotiations & Conflict Management (300, 320)
+BBUS 463 – Advanced Financial Accounting (362)
 BBUS 464 – New Product Marketing (320)
-BBUS 465 &#8211; Applied Financial Accounting (350)
-BBUs 466 &#8211; Applied Managerial Accounting (350)
+BBUS 465 – Applied Financial Accounting (350)
+BBUs 466 – Applied Managerial Accounting (350)
 BBUS 467 – Advanced Taxation (450)
 BBUS 468 – Advanced Accounting and Analytics (363)
 BBUS 470 – Business Policy & Strategic Management
+BBUS 473 – Leadership & Decision Making (300)
+BBUS 475 – Managing Innovation
+BBUS 476 – New Technology and Future Markets (300, 320, 350)
+BBUS 477 – Human Resource Management (300)
 BBUS 480 – Global Environment of Business
+BBUS 482 – Introduction to Supply Chain Management (340)
+BBUS 483 – Global Strategic Sourcing (441, 482)
+BBUS 486 – Supply Chain Resource Planning (340)
+BBUS 487 – Management and Improving Supply Chain Processes (441, 482)
 BBUS 490 – Special Topics in Business (300, 310)
 BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your adviser before registering.
 BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your advisor before registering.
 BBUS 491 – Business Consulting . Only counts when approved for concentration; see your advisor before registering.
 BBUS 491 – Business Consulting . Only counts when approved for option; see your advisor before registering.
+BBUS 492 – Supply Chain Field Study (441, 482, 483, 486, 487) , or BBUS 497 – Internship, or BBUS 499 – Independent Research, or BBUS 491 – Business Consulting
 BBUS 497 – Internship
 BBUS 499 – Undergraduate Research. Only counts when approved for concentration; see your advisor before registering.
 BBUS 499 – Undergraduate Research. Only counts when approved for option; see your advisor before registering.
 Beardslee Building (UWBB)
 Become a Mentor
 Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
+Bothell Location Course Numbers & Names
 Bothell, WA 98011
 Bothell, Washington View our location on Google maps.
 Box 358533
 Business Consulting Course
+Calculus
 Campus Safety
 Canvas
 Capstone Courses
 Certificate in Accounting
 Close mobile menu
 Commuter Services
+Complete one of the following:
 Concentration Course Numbers & Names
 Concentration Courses
 Contact
@@ -141,11 +180,15 @@ In addition to public accounting, the Accounting Option will thoroughly prepare 
 In this section
 Independent Study Projects
 Information Technology
+International students who engage in post-completion Optional Practical Training (OPT) can seek a 24-month extension of their initial OPT. This extension, known as a STEM OPT Extension , permits international students to prolong their employment with a qualifying employer for a combined total of 36 months of U.S. work experience.
 Internships
 Jobs
 Leadership & Strategic Innovation Option
+Leadership & Strategic Innovation Option - School of Business
 Leadership History
 Library
+LSI curriculum
+LSI Electives (prerequisites in parentheses)
 Management Concentration
 Management Information Systems (MIS) Concentration
 Maps & directions
@@ -186,7 +229,9 @@ Quick Links
 Related Links
 Required Accounting Courses (prerequisites in parentheses)
 Required Courses (prerequisites in parentheses)
+Required LSI Courses (prerequisites in parentheses)
 Required Marketing Courses (prerequisites in parentheses)
+Required SCM Courses (prerequisites in parentheses)
 Requirements to declare the option
 Requirements to declare the Option or the Concentration
 Retail Management Concentration
@@ -194,22 +239,33 @@ Ron Tilden Accounting Scholarship
 Rules Docket
 Scholarships
 School of Business
+SCM Electives (prerequisites in parentheses)
 Search
 Search keywords
 Seattle Campus
 Skip To Content
 Staff
+Statistics
 Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
+Students in the Leadership & Strategic Innovation option must complete the following courses for graduation.
 Students may NOT enroll in any Accounting courses until speaking to their advisor to determine whether they meet the requirements.
+Students must complete the following courses for graduation:
+Students must have completed the following courses with a minimum grade of 3.0 in each course in order to declare the SCM Option.
 Students wanting to declare the Accounting option must meet the following requirements:
 Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
+Students wanting to declare the LSI Option must complete BBUS 300 and BBUS 307 with a minimum grade of 3.0 in each course.
+Supply Chain Management curriculum
 Supply Chain Management Option
+Supply Chain Management Option - School of Business
 Tacoma Campus
 Technology & Innovation Management (TIM) Concentration
 Terms
 The Accounting Option prepares students for careers in private, government, non-profit and public accounting. Demand for accountants is extremely high as businesses work to plan, manage and control their operations. Graduates can serve as internal auditors, managerial accountants, tax examiners, budget analysts or government auditors. After completing this option, students are eligible to take the Certified Management Accounting (CMA) exam. If you want to be a Certified Public Accountant (CPA), a minimum of 225 quarter hours or five years of college is required.
 The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
-The Marketing Option/Concentration prepares students to thrive in customer-centric organizations with a blend of analytical thinking, experiential learning and professional experiences. Identifying, delivering, communicating and sustaining value to the target customer is fundamental to success in a competitive environment. They will learn to develop and implement coordinated marketing programs to successfully manage a company&#8217;s relationship with its target customers in order to meet its strategic goals. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures.
+The Leadership & Strategic Innovation (LSI) option will engage students in a rigorous study of leadership, strategy, and innovation. You will graduate ready to lead teams, manage innovation, and inspire employees. LSI graduates can go on to become project leads, managers, consultants, business development leads, HR analysts, market analysts, sales managers, entrepreneurs, and much more.
+The Marketing Option/Concentration prepares students to thrive in customer-centric organizations with a blend of analytical thinking, experiential learning and professional experiences. Identifying, delivering, communicating and sustaining value to the target customer is fundamental to success in a competitive environment. They will learn to develop and implement coordinated marketing programs to successfully manage a company’s relationship with its target customers in order to meet its strategic goals. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures.
+The Supply Chain Management (SCM) Option provides students the ability to manage suppliers across globally distributed locations, to procure the right materials, at the right time, at the right quality, and at the lowest cost to meet company objectives. Graduates can go on to work as buyers, operations managers, forecasting analysts among many things.
+The Supply Chain Management Option qualifies as a STEM-designated program categorized under “Management Science” (CIP Code 52.1301) on the Department of Homeland Security’s roster of STEM-designated degrees .
 Time Schedule
 Total Credits
 Tuition & Financial Aid
@@ -229,5 +285,7 @@ Visitors
 Why hire a business student?
 Why study accounting?
 Why study finance?
+Why study Leadership & Strategic Innovation?
 Why study marketing?
+Why study Supply Chain Management?
 Workday Login

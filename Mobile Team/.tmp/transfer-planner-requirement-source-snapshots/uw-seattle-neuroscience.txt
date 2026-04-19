@@ -28,7 +28,7 @@ Application
 Faculty
 Core Teaching Faculty
 Research Mentors
-News &#038; Events
+News & Events
 FAQ
 Support
 Undergraduate Neuroscience
@@ -48,7 +48,7 @@ Application
 Faculty
 Core Teaching Faculty
 Research Mentors
-News &#038; Events
+News & Events
 FAQ
 Support
 Home
@@ -99,7 +99,7 @@ Awards
 Why Neuroscience?
 Graduate Program in Neuroscience
 Search for:
-News &#038; Announcements
+News & Announcements
 2025 Neuroscience Application is now available!
 August 21, 2025
 The Neuroscience 2024 application is now available on our admissions page

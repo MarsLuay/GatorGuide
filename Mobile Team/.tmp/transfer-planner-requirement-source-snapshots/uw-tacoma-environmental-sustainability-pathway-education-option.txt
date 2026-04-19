@@ -2,22 +2,13 @@ Owner: uw-tacoma-environmental-sustainability:pathway:education-option
 Source: https://www.tacoma.uw.edu/sias/sam/environmental-sustainability
 Title: Environmental Sustainability | Department of Sciences and Mathematics | University of Washington Tacoma
 
-[Supplemental official source] UW Tacoma Environmental Sustainability Education option
 [Supplemental official source] UWT general education
 <a href="/sias"
-<a href="/sias/sam"
 <a href="https://www.tacoma.uw.edu/"
-<img src=""
->Department of Sciences and Mathematics
 >Home
 >School of Interdisciplinary Arts & Sciences
 253-692-4450
 253-692-5718
-35 credits Core courses
-40 credits Preparatory courses (Preparatory courses must have been completed with the last 5 years.)
-58–60 credits Required courses
-600w"
-980w,
 A minimum of 45 lower-division credits is required before declaring the major. To declare the Environmental Sustainability major, students should reach out to the major academic advisor .
 ABOUT UW TACOMA
 Academic advising
@@ -30,7 +21,6 @@ ADMISSION REQUIREMENTS
 Admissions
 Advising
 ADVISOR
-alt="">
 Arts and Humanities (A&H): 20 credits
 As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 Biomedical Sciences
@@ -55,7 +45,6 @@ Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other su
 Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
 Courses that focus on sociocultural, political, and economic diversity of human experience
 Current Students
-Degree Requirements
 DEGREE REQUIREMENTS
 DEPARTMENT
 Department of Sciences and Mathematics
@@ -101,7 +90,6 @@ One course may be part of the major requirements for students in majors such as 
 Open Public Meetings
 Politics, Philosophy and Economics (PP&E)
 Post-graduate Studies
-Pre-Environmental Education Option
 Professor Tom Koontz
 Psychology
 Reasoning (RSN): 5 credits
@@ -112,44 +100,29 @@ Schools and programs
 Sciences and Mathematics
 SIAS Scholarships
 SIAS Student Advisory Council
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
 Social Sciences
 Social Sciences (SSc): 20 credits
 Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
 Spanish Language and Cultures
-srcset=" 1940w,
 Student Life
 Study Abroad
 TBGEN 212 Introduction to Corporate Responsibility
-TBIOL 110 General Biology (with lab); minimum 1.5 GPA
-TBIOL 232 Issues in Biological Conservation
 TBUS 300 Managing Organizations
-TCHEM 131 Chemistry and Society (with lab); minimum 1.7 GPA
 Teaching and Learning Center
-TECON 200 Introduction to Microeconomics; minimum 2.0 GPA
 TEDUC 290 Introduction to Teaching
 TEDUC 471 Diversity and Equity in Schools and Curriculum
 TEDUC 482 Foundations of Education: Policy, Ethics, and Philosophy
-TESC 201 The Science of Environmental Sustainability
-TESC 345 Pollution and Public Policy
-TEST 200 Fundamentals of Environmental Studies and Sustainability
-TGEOS 243 Geography of the Physical Environment; minimum 2.0 GPA
-TGEOS 341 Climate Change
-TLAW 438 Federal Environmental Law
 TLIT 237 Introduction to Literature and Environment
-TMATH 110 Introductory Statistics with Applications; minimum 2.0 GPA
 TMGMT 420 Managing Corporate Responsibility
 TMGMT 452 The Dynamics of Leadership
 TMGMT 457 Negotiation and Conflict Management
 TMGMT 465 Board Governance I (If not taken as capstone experience.)
 TMGMT 466 Board Governance II (If not taken as capstone experience.)
 Tools
-TPHIL 251 Data and Discourse; minimum 2.0 GPA
 TPSYCH 220 Lifespan Development
 TPSYCH 320 The Race, Class and Gender Context of Child Development
 TPSYCH 321 Adolescent Psychology
 TWRT 211 Argument and Research in Writing OR TWRT 291 Technical Communication in the Workplace (whichever one was not taken as preparatory course)
-TWRT 211 Argumentation and Research; minimum 2.0 GPA OR TWRT 291 Technical Communication in the Workplace; minimum 2.0 GPA
 TWRT 372 Writing Eco-Poetry
 TWRT 388 Writing for Social Change
 TWRT 389 Nature Writing

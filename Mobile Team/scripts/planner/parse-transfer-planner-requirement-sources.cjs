@@ -17,6 +17,11 @@ const {
   TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
   TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY,
 } = require("../../constants/transfer-planner-source");
+const {
+  decodeTransferPlannerHtmlEntities,
+  normalizeTransferPlannerText,
+  stripTransferPlannerPlanTitlePrefix,
+} = require("../../constants/transfer-planner-source/pathway-title-normalization");
 let TRANSFER_PLANNER_GENERATED_COURSE_METADATA = [];
 try {
   ({ TRANSFER_PLANNER_GENERATED_COURSE_METADATA } = require("../../constants/transfer-planner-source/course-metadata.generated"));
@@ -370,19 +375,7 @@ function normalizeWhitespace(value) {
 }
 
 function decodeHtmlEntities(value) {
-  const entityMap = {
-    amp: "&",
-    nbsp: " ",
-    "#39": "'",
-    apos: "'",
-    quot: '"',
-    lt: "<",
-    gt: ">",
-  };
-
-  return String(value ?? "").replace(/&(amp|nbsp|#39|apos|quot|lt|gt);/gi, (match, entity) => {
-    return entityMap[String(entity).toLowerCase()] ?? match;
-  });
+  return decodeTransferPlannerHtmlEntities(value);
 }
 
 function stripHtml(value) {
@@ -935,6 +928,29 @@ function getTitleScopeTokens(entry) {
   ).slice(0, 8);
 }
 
+const PRIMARY_MAJOR_TITLES_BY_PLAN_ID = new Map(
+  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    (entry) => entry.ownerType === "major" && entry.planId && entry.ownerTitle
+  ).map((entry) => [entry.planId, normalizeTransferPlannerText(entry.ownerTitle)])
+);
+
+const MAJOR_SIGNATURE_TOKENS_BY_PLAN_ID = new Map(
+  [...PRIMARY_MAJOR_TITLES_BY_PLAN_ID.entries()].map(([planId, ownerTitle]) => [
+    planId,
+    uniqueSorted(
+      normalizeMatcherText(ownerTitle)
+        .split(" ")
+        .filter((token) => token.length >= 4 && !["major", "program", "science", "studies", "the"].includes(token))
+    ),
+  ])
+);
+
+function getPrimaryMajorTitle(entry) {
+  return normalizeTransferPlannerText(
+    PRIMARY_MAJOR_TITLES_BY_PLAN_ID.get(entry.planId) ?? entry.ownerTitle ?? ""
+  );
+}
+
 function getOwnerSearchableText(entry) {
   return normalizeMatcherText(
     `${entry.ownerTitle ?? ""} ${entry.label ?? ""} ${entry.sourceLabel ?? ""}`
@@ -1445,7 +1461,7 @@ function parseSnapshotSource(entry, originalError) {
 
   const requirementCueLines = extractRequirementCueLines(snapshot.snapshotLines);
   const chooseStatements = extractChooseStatements(snapshot.snapshotLines);
-  const pathwayLabels = extractPathwayLabels(snapshot.snapshotLines, []);
+  const pathwayLabels = extractPathwayLabels(entry, snapshot.snapshotLines, []);
   const courseCodes = filterParsedCourseCodesByHints(
     entry,
     snapshot.snapshotLines,
@@ -1778,10 +1794,56 @@ function extractChooseStatements(lines) {
     .slice(0, 20);
 }
 
-function extractPathwayLabels(lines, headings) {
+function pathwayLabelMentionsDifferentMajor(entry, line) {
+  const currentPlanTokens = MAJOR_SIGNATURE_TOKENS_BY_PLAN_ID.get(entry.planId) ?? [];
+  const normalizedLineTokens = new Set(normalizeMatcherText(line).split(" ").filter(Boolean));
+
+  if (currentPlanTokens.some((token) => normalizedLineTokens.has(token))) {
+    return false;
+  }
+
+  for (const [planId, tokens] of MAJOR_SIGNATURE_TOKENS_BY_PLAN_ID.entries()) {
+    if (planId === entry.planId || !tokens.length) {
+      continue;
+    }
+
+    const minimumMatches = tokens.length >= 3 ? 2 : 1;
+    const overlapCount = tokens.filter((token) => normalizedLineTokens.has(token)).length;
+    if (overlapCount >= minimumMatches) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function normalizeExtractedPathwayLabel(entry, line) {
+  const majorTitle = getPrimaryMajorTitle(entry);
+  const normalized = stripTransferPlannerPlanTitlePrefix(
+    majorTitle,
+    normalizeTransferPlannerText(line)
+      .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-–—]\s+.*$/i, "$1")
+      .replace(/\s+\((?:\d+(?:-\d+)?\s+credits?)\)\s*$/i, "")
+      .replace(/\s+[.;:]\s*$/, "")
+  );
+
+  return normalized || normalizeTransferPlannerText(line);
+}
+
+function extractPathwayLabels(entry, lines, headings) {
   const isPathwayLabelCandidate = (line) => {
-    const normalized = normalizeWhitespace(line);
+    const normalized = normalizeExtractedPathwayLabel(entry, line);
     if (!normalized || NOISY_SOURCE_LINE_PATTERN.test(normalized)) {
+      return false;
+    }
+    if (
+      normalized.length > 120 ||
+      normalized.split(/\s+/).length > 14 ||
+      /^(?:\[supplemental official source\]|learn more|about|apply)\b/i.test(normalized) ||
+      /^(?:[†*§◊]+)?\s*(?:if|for)\b/i.test(normalized) ||
+      /^concentration\s+[ivxlcdm]+\b.*\b(?:credits?|courses?)\b/i.test(normalized) ||
+      pathwayLabelMentionsDifferentMajor(entry, normalized)
+    ) {
       return false;
     }
 
@@ -1794,7 +1856,7 @@ function extractPathwayLabels(lines, headings) {
   };
 
   return uniqueSorted(
-    [...headings, ...lines].filter(isPathwayLabelCandidate).slice(0, 40)
+    [...headings, ...lines].map((line) => normalizeExtractedPathwayLabel(entry, line)).filter(isPathwayLabelCandidate).slice(0, 40)
   );
 }
 
@@ -1820,7 +1882,7 @@ function buildParseConfidence(parsedCourseCodes, requirementCueLines, parserType
 function buildHtmlParsedResult(entry, title, headings, lines) {
   const requirementCueLines = extractRequirementCueLines(lines);
   const chooseStatements = extractChooseStatements(lines);
-  const pathwayLabels = extractPathwayLabels(lines, headings);
+  const pathwayLabels = extractPathwayLabels(entry, lines, headings);
   const courseCodes = filterParsedCourseCodesByHints(
     entry,
     lines,
@@ -2058,7 +2120,7 @@ async function parsePdfSource(entry, timeoutMs) {
     : null;
   const requirementCueLines = extractRequirementCueLines(scopedPageLines);
   const chooseStatements = extractChooseStatements(scopedPageLines);
-  const pathwayLabels = extractPathwayLabels(scopedPageLines, []);
+  const pathwayLabels = extractPathwayLabels(entry, scopedPageLines, []);
   const courseCodes = filterParsedCourseCodesByHints(
     entry,
     scopedPageLines,
@@ -2241,6 +2303,8 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
   }
 
   const entryOrigin = new URL(baseUrl).origin;
+  const exactTitle = normalizeMatcherText(entry.ownerTitle ?? "");
+  const titleTokens = getTitleScopeTokens(entry);
   const candidatesByUrl = new Map();
 
   for (const match of String(html ?? "").matchAll(HTML_LINK_PATTERN)) {
@@ -2271,6 +2335,16 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
     }
 
     const linkText = `${label} ${resolvedUrl}`;
+    const normalizedLinkText = normalizeMatcherText(linkText);
+    const exactTitleMatch = Boolean(exactTitle && normalizedLinkText.includes(exactTitle));
+    const titleTokenOverlapCount = titleTokens.filter((token) =>
+      normalizedLinkText.includes(token)
+    ).length;
+
+    if (titleTokens.length > 0 && !exactTitleMatch && titleTokenOverlapCount < 1) {
+      continue;
+    }
+
     if (GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(linkText)) {
       continue;
     }
@@ -2290,6 +2364,10 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
     }
 
     let score = 0;
+    if (exactTitleMatch) {
+      score += 20;
+    }
+    score += titleTokenOverlapCount * 6;
     if (highSignal) {
       score += 16;
     }

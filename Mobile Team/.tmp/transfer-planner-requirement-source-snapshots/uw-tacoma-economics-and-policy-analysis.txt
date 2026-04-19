@@ -2,177 +2,101 @@ Owner: uw-tacoma-economics-and-policy-analysis
 Source: https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa
 Title: Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma
 
-[Supplemental official source] UWT general education
-&copy; 2026 University of Washington Tacoma
-<a
-<a href="/sias"
-<a href="https://instagram.com/uwtacoma"
-<a href="https://www.facebook.com/uwtacoma"
-<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
-<a href="https://www.tacoma.uw.edu/"
-<a href="https://www.tiktok.com/@uwtacoma"
-<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
-<img
-<img class="mobile-hide desktop-show"
-<img class="mobile-show desktop-hide"
->
->Home
->School of Interdisciplinary Arts & Sciences
-1900 Commerce Street, Tacoma, WA 98402-3100
-253-692-4450
-253-692-5718
-25Live
-A minimum of 45 lower-division credits is required before declaring the major. To declare the Economic and Policy Analysis major, students should reach out to the major advisor .
-ABOUT UW TACOMA
-Academic advising
-Academic calendar
-ACADEMICS
-Accessibility |
-Acknowledgement
-add
-Administration
-Admission Requirements
-ADMISSION REQUIREMENTS
-Admissions
-Advising
-ADVISOR
-alt="Block W - Link to UW Tacoma homepage"/>
-alt="University of Washington Tacoma"/>
-American Indian Studies Minor
-Apply
-aria-label="University of Washington Tacoma Homepage">
-Arts and Humanities (A&H): 20 credits
-As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
-Bachelor of Arts
-Biomedical Sciences
-Bothell
-Breadcrumb
-Calendar
-CAMPUS
-Campus Safety
-Canvas
-Capstone Seminar (5 credits)
-CAREER OPPORTUNITIES
-City Planning
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
-Close Search
-Connect with Advising
-Contact
-Contact us |
-Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
-Core courses (25 credits)
-Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
-Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
-Courses that focus on sociocultural, political, and economic diversity of human experience
-Current Students
-DEGREE REQUIREMENTS
-DEPARTMENT
-Department of Social Sciences
-Department of Social Sciences (SOCS)
-Directory
-Diversity (DIV): 5 credits
-Economics and Policy Analysis (EPA)
 Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+height="0"
+width="0"
+style="display:none;
+visibility:hidden">
+Skip to main content
+Apply
+Canvas
+Map
+Calendar
+Library
+Directory
+MyUW
+more_vert
+more_vert
+Close Search
+<img
+src="/sites/default/files/sites/uwtd8main/W.svg"
+alt="Block W - Link to UW Tacoma homepage"/>
+<img class="mobile-hide desktop-show"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+alt="University of Washington Tacoma"/>
+<img class="mobile-show desktop-hide"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+alt="University of Washington Tacoma"/>
+Tools
+25Live
+Canvas
+Directory
+IT Help
+Library
+Map
+MyUW
+Office365
+Panopto
+Scout
+UW Gmail
+Workday
+Zoom
+Search
+<a
+href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
+Department of Social Sciences
+Department of Social Sciences
+Majors
+expand_more
+Economics and Policy Analysis (EPA)
+Ethnic, Gender and Labor Studies
+Global Studies Concentration
+History
+Interdisciplinary Arts and Sciences
+Law and Policy
+Politics, Philosophy and Economics (PP&E)
+Psychology
+Minors
+expand_more
+American Indian Studies Minor
 Economics Minor
 Education and Community Engagement Minor
-English Composition (C): 5 credits
-Environmental Science
-Environmental Sustainability
-EPA upper division (300–400 level) courses (30 credits; at least 20 credits must be 400-level TECON classes.)
-Equity & Inclusion
-Ethnic, Gender and Labor Studies
-expand_more
-Faculty & Staff
-Fax Number
-Financial Aid
-Financial Analyst
-For a BA in Economic and Policy Analysis, students must complete 65 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 Gender and Sexuality Studies Minor
-General Education Requirements
-Global Studies Concentration
-height="0"
-History
 History Minor
-Honors
-Housing
-href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
 Human Rights Minor
-iashelp@uw.edu
-Industry Analyst
-Information Technology
-Institutional Research
-Interdisciplinary Arts and Sciences
-IT Help
-Jobs
-Junior Seminar (5 credits)
-Land
-Law and Policy
 Law and Policy Minor
-Learn More >
-Library
-M-F 9a.m.-5p.m.
-Main Content
-MAJOR COORDINATOR
-Majors
-Map
-Mathematics
-Minors
-more_vert
-Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
-MyUW
-Natural Sciences (NSc): 20 credits
-Office Hours:
-Office365
-One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
-Open Public Meetings
-Panopto
-Parking & transportation
 Politics Minor
-Politics, Philosophy and Economics (PP&E)
-Post-graduate Studies
-Privacy |
-Professor Katie Baird
-Psychology
-Public Policy Analyst
-Public Utilities
-Puyallup Tribe of Indians
-Reasoning (RSN): 5 credits
 Religious Studies Minor
-Research
-Research Analyst
-Resources
-Rules Docket
-School of Interdisciplinary Arts & Sciences
-Schools and programs
-Scout
-Search
-Shelli Veal
-SIAS Scholarships
-SIAS Student Advisory Council
-Skip to main content
 Social Science Research Methods Minor
-Social Sciences
-Social Sciences (SSc): 20 credits
 Sociology Minor
-SOCS Directory
-SOCS Resources
-Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
-src="/sites/default/files/sites/uwtd8main/W.svg"
-src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
-src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-Student Life
-Study Abroad
-style="display:none;
-TBECON 220 Introduction to Microeconomics Theory
-TBECON 221 Introduction to Macroeconomic Theory
-Teaching and Learning Center
 Teaching, Learning and Justice Minor
+SOCS Resources
+expand_more
+SOCS Directory
+Open Public Meetings
+Advising
+MyUW
+Map
+Tools
+Economics and Policy Analysis (EPA)
+Bachelor of Arts
+Main Content
+The Economics and Policy Analysis (EPA) major is a good choice for students interested in learning about and developing solutions to contemporary problems in our public life.
+Admission Requirements
+Transfer Equivalencies
+Core courses (25 credits)
 TECON 200 Introduction to Microeconomics OR
+TBECON 220 Introduction to Microeconomics Theory
 TECON 201 Introduction to Macroeconomics OR
+TBECON 221 Introduction to Macroeconomic Theory
+TPHIL 251 Data and Discourse
+TMATH 116 Pre-calculus II: Trigonometry (or equivalent) OR
+TMATH 120 Precalculus (or equivalent)
+TWRT 211 Argument and Research in Writing
+Junior Seminar (5 credits)
 TECON 310 Research Seminar in Economics explores future employment and graduate school options, while covering essential skills and tools needed to succeed in 400-level economics courses.
+EPA upper division (300–400 level) courses (30 credits; at least 20 credits must be 400-level TECON classes.)
 TECON 316 Current Issues in U.S. Public Policy
 TECON 320 Gender and Development
 TECON 321 Economics of Education
@@ -189,29 +113,80 @@ TECON 430 Behavioral Economics
 TECON 441 International Economics
 TECON 450 Labor Economics and Policy
 TECON 470 Economics of Health and Health Policy
-TECON 480 Seminar in Economics Analysis
 TECON 496 Internship in Economics and Policy Analysis
+Capstone Seminar (5 credits)
+TECON 480 Seminar in Economics Analysis
 TECON 496 Law and Policy Internship
-Terms of Use |
-The Economics and Policy Analysis (EPA) major is a good choice for students interested in learning about and developing solutions to contemporary problems in our public life.
-title="Follow UW Tacoma on Facebook">
-title="Follow UW Tacoma on Instagram">
-title="Follow UW Tacoma on Linkedin">
-title="Follow UW Tacoma on TikTok">
-title="Follow UW Tacoma on Youtube">
-TMATH 116 Pre-calculus II: Trigonometry (or equivalent) OR
-TMATH 120 Precalculus (or equivalent)
-Tools
-TPHIL 251 Data and Discourse
-Transfer Equivalencies
-Tribal Sponsor of UW Tacoma
-TWRT 211 Argument and Research in Writing
+ADVISOR
+Shelli Veal
+Connect with Advising
+MAJOR COORDINATOR
+Professor Katie Baird
+DEPARTMENT
+Department of Social Sciences (SOCS)
+CAREER OPPORTUNITIES
+City Planning
+Financial Analyst
+Industry Analyst
+Post-graduate Studies
+Public Policy Analyst
+Public Utilities
+Research Analyst
+ADMISSION REQUIREMENTS
+A minimum of 45 lower-division credits is required before declaring the major. To declare the Economic and Policy Analysis major, students should reach out to the major advisor .
+DEGREE REQUIREMENTS
+For a BA in Economic and Policy Analysis, students must complete 65 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+Honors
+Contact
+Department of Social Sciences
+ACADEMICS
+Academic advising
+Academic calendar
+Canvas
+Library
+Schools and programs
+Study Abroad
+Teaching and Learning Center
+CAMPUS
+Campus Safety
+Equity & Inclusion
+Financial Aid
+Housing
+Information Technology
+Student Life
 University YMCA Student Center
-UW Gmail
-UW Seattle | UW
+ABOUT UW TACOMA
+Administration
+Admissions
+Institutional Research
+Jobs
+Parking & transportation
+Research
 UWNetID login
-visibility:hidden">
-width="0"
-Workday
-Writing (W): 10 credits
-Zoom
+<a href="https://www.tacoma.uw.edu/"
+aria-label="University of Washington Tacoma Homepage">
+<a href="https://www.facebook.com/uwtacoma"
+title="Follow UW Tacoma on Facebook">
+<a href="https://instagram.com/uwtacoma"
+title="Follow UW Tacoma on Instagram">
+<a href="https://www.tiktok.com/@uwtacoma"
+title="Follow UW Tacoma on TikTok">
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+title="Follow UW Tacoma on Youtube">
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+title="Follow UW Tacoma on Linkedin">
+Puyallup Tribe of Indians
+Tribal Sponsor of UW Tacoma
+Learn More >
+Land
+Acknowledgement
+>
+UW Seattle | UW
+Bothell
+&copy; 2026 University of Washington Tacoma
+1900 Commerce Street, Tacoma, WA 98402-3100
+Contact us |
+Terms of Use |
+Privacy |
+Accessibility |
+Rules Docket

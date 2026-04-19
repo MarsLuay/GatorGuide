@@ -288,14 +288,14 @@ Master of Fine Arts (MFA) Program Fund
 American Muslim Research Institute Fund
 All IAS Funds
 School of Interdisciplinary Arts & Sciences
-&#124;
+|
 Majors
 School of Interdisciplinary Arts & Sciences
-&#124;
+|
 Undergraduate
-&#124;
+|
 Majors
-&#124;
+|
 Gender, Women & Sexuality Studies
 Gender, Women & Sexuality Studies
 BACHELOR OF ARTS
@@ -361,7 +361,7 @@ B WRIT 133 or B WRIT 134 or ENGL 131 or equivalent (5 credits)
 B WRIT 135 or ENGL 141 or equivalent (5 credits)
 TOTAL = 75 Credits
 *Recommended to take prior to GWSS Core Courses
-** GWSS faculty HIGHLY recommend students take both BISGWS 302 & 303. If a student completes both BISGWS 302 and BISGWS 303, 5 credits from these courses can be applied toward the student&#8217;s GWSS coursework requirement.
+** GWSS faculty HIGHLY recommend students take both BISGWS 302 & 303. If a student completes both BISGWS 302 and BISGWS 303, 5 credits from these courses can be applied toward the student’s GWSS coursework requirement.
 Additional School of IAS Requirements
 Residency Requirement: 30 credits must be completed in residency at UW Bothell.
 Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
@@ -373,7 +373,7 @@ A. GWSS Core Courses (GWSS:CORE)
 BIS 290 Interdisciplinary Writing Seminar (5 credits)
 BISGWS 301 Critical Gender and Sexuality Studies (5 credits)
 BISGWS 302 Histories and Movements of Gender and Sexuality (5 credits) OR BISGWS 303 Approaches to Feminist Inquiry (5 credits)
-GWSS faculty HIGHLY recommend students take both BISGWS 302 & 303. If a student completes both BISGWS 302 and BISGWS 303, 5 credits from these courses can be applied toward the student&#8217;s GWSS coursework requirement.
+GWSS faculty HIGHLY recommend students take both BISGWS 302 & 303. If a student completes both BISGWS 302 and BISGWS 303, 5 credits from these courses can be applied toward the student’s GWSS coursework requirement.
 B. GWSS Coursework
 GWSS coursework must either focus on gender, women and sexuality studies histories, themes, and experience and/or use theoretical frameworks and methods grounded in gender, women, and sexuality studies approaches.
 BIS 162 Race, Gender, and Sexuality through Film and Television
@@ -402,8 +402,8 @@ BIS 486 Studies in Women and Literature
 BISSTS 420 Race, Gender, Science and Medicine
 Elective Courses from other UW Bothell Schools
 B EDUC 461 Educational Implications of Gender Inequality
-B HLTH 414 Masculinities and Men&#8217;s Health: Social Science and Public Health Perspectives
-B HTLH 420 Women&#8217;s Global Health and Human Rights
+B HLTH 414 Masculinities and Men’s Health: Social Science and Public Health Perspectives
+B HTLH 420 Women’s Global Health and Human Rights
 BST 205 Women in STEM
 GWSS Special Topics Courses
 GWSS coursework includes the following approved topics courses.

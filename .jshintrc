@@ -1,0 +1,16 @@
+{
+  "esversion": 11,
+  "node": true,
+  "browser": true,
+  "devel": true,
+  "laxbreak": true,
+  "globals": {
+    "AbortController": false,
+    "fetch": false,
+    "FormData": false,
+    "TextDecoder": false,
+    "TextEncoder": false,
+    "URL": false,
+    "URLSearchParams": false
+  }
+}

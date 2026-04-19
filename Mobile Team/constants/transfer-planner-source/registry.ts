@@ -29,6 +29,10 @@ import {
   TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
 } from "./source-fingerprints.generated";
 import { materializeTransferPlannerPathways } from "./pathway-materialization";
+import {
+  normalizeTransferPlannerText,
+  stripTransferPlannerPlanTitlePrefix,
+} from "./pathway-title-normalization";
 import { TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES } from "./derived-shared-source-plans";
 import type {
   TransferPlannerChecklistItem,
@@ -1048,7 +1052,7 @@ const PATHWAY_LABEL_ALIGNMENT_STOPWORDS = new Set([
 ]);
 
 function normalizePathwayLabel(value: string | null | undefined) {
-  return String(value ?? "").replace(/\s+/g, " ").trim();
+  return normalizeTransferPlannerText(value);
 }
 
 function stripPathwayTitleSuffix(value: string) {
@@ -1060,6 +1064,8 @@ function stripPathwayTitleSuffix(value: string) {
 }
 
 function stripPlanTitlePrefix(planTitle: string, value: string) {
+  return stripTransferPlannerPlanTitlePrefix(planTitle, value);
+
   const normalizedPlanTitle = normalizePathwayLabel(planTitle);
   const normalizedValue = normalizePathwayLabel(value);
   if (!normalizedPlanTitle) {

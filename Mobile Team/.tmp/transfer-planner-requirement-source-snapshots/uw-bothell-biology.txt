@@ -3,11 +3,11 @@ Source: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
 Title: Biology Curriculum - School of Science, Technology, Engineering & Mathematics
 
 Undergraduate
-&#124;
+|
 Majors
-&#124;
+|
 Biology
-&#124;
+|
 Biology Curriculum
 Biology Curriculum
 Course descriptions
@@ -27,11 +27,11 @@ Interdisciplinary Studies (BIS)
 Science, Technology, and Society (BISSTS)
 General education requirements
 All UW students must complete a common set of general education requirements . As a Biology major, you will have already completed the Natural Science (NSc) and Reasoning (R) requirements by taking chemistry and biology classes, but make sure to plan for completion of the following:
-English Composition (C) &#8211; 5 credits
-Additional Writing (W) &#8211; 10 credits
-Diversity (DIV) &#8211; 5 credits (almost always also fulfills A&H or SSc; was only 3 credits prior to autumn 2023)
-Arts & Humanities (A&H) &#8211; 15 credits (cannot overlap with SSc)
-Social Sciences (SSc) &#8211; 15 credits (cannot overlap with A&H)
+English Composition (C) – 5 credits
+Additional Writing (W) – 10 credits
+Diversity (DIV) – 5 credits (almost always also fulfills A&H or SSc; was only 3 credits prior to autumn 2023)
+Arts & Humanities (A&H) – 15 credits (cannot overlap with SSc)
+Social Sciences (SSc) – 15 credits (cannot overlap with A&H)
 Entry prerequisites
 Visit our Admissions page for information on prerequisite coursework.
 Core requirements

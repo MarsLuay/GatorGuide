@@ -105,7 +105,9 @@ function countBy(values) {
 }
 
 function escapeMarkdown(value) {
-  return String(value ?? "").replace(/[|]/g, "\\|");
+  return String(value ?? "")
+    .replace(/\\/g, "\\\\")
+    .replace(/[|]/g, "\\|");
 }
 
 function addRequiredAction(queue, message) {

@@ -2,206 +2,43 @@ Owner: uw-seattle-medical-laboratory-science
 Source: https://dlmp.uw.edu/education/mls-undergrad
 Title: MLS Undergraduate Program | Education | Dept. of Laboratory Medicine & Pathology | UW Medicine
 
-- conduct research in industrial, public health, and medical laboratories
-- teach in hospitals, colleges, and universities
-- work in clinical laboratories in large medical centers, hospitals, and clinics
--->
-[Supplemental official source] MLS Program Requirements
-&copy; 2026 University of Washington, UW Medicine Laboratory Medicine & Pathology | Copyright Information
-1. Prerequisite course requirements
-10 credits of Arts and Humanities (A&H)
-10 credits of Social Sciences (SSc)
-1959 NE Pacific St
-1959 NE Pacific Street, NW120
-2. Completion of University writing, reasoning, and general education requirements by the time you graduate
-5 credit Diversity Course (DIV)
-5 credits of English Composition (C), plus a minimum 7 credits of additional Writing-intensive (W) courses
-5 credits of Reasoning (RSN) &ndash; the Statistics or Chemistry course that you take to meet the program prerequisite requirement will satisfy this general education requirement
-A critical part of health care, MLS is a profession of highly knowledgeable and skilled individuals who perform clinical laboratory tests on blood, other body fluids, or tissue samples. Results obtained by these laboratory tests are a vital tool for physicians in their diagnosis, treatment, and prevention of disease. Successful medical laboratory scientists enjoy studying the biological, chemical, and physical sciences, and find personal satisfaction and intellectual reward in applying scientific methods in the diagnosis and evaluation of disease.
-About
-About Us
-Academic Advising and Contact Information
-Anatomic Pathology Licenses & Accreditation
-Anatomic Pathology Service Request
-Anatomic Pathology Services
-Any Basic Statistics course (we do not accept Calculus)
-Applicants must also have a cumulative and science GPA of 2.5 to be considered for admission.
-Applicants who require accommodation in order to meet these standards should contact the University of Washington Disability Resources for Students after they have been accepted into the program.
-Applications Are Due February 15
-Apply to the MLS Program
-Attendance
-Bacteriology
-Below are the General Education Requirements for the School of Medicine, which is a graduation requirement, not an MLS program requirement. Therefore, these do not have to be complete to start the MLS program but must be complete in order to graduate. However, the MLS program curriculum is rigorous and therefore recommended that you have as many general education courses complete (if not all) prior to starting the program.
-Biochemistry
-Biology 180, 200, 220
-Blood Draw Locations
-Bloodworks Northwest
-Box 357110
-Box 357470
-Calendar of Events
-Certificate Program in Clinical Laboratory Leadership & Mana
-CHI Franciscan
-Client & Patient Services
-Clinical Chemistry
-Clinical Fellowships
-Clinical Hematology
-Clinical Microbiology
-Clinical Microscopy (Urinalysis and other Body Fluids)
-Clinical Pathology Licenses & Accreditation
-Coagulation
-Contact
-Contact Us
-Course Catalogs
-Courses may be taken at the UW, or at another university, college, or community college. All prerequisite courses do not have to be complete at the time of application to the program (the application deadline is February 15 for entry in Autumn Quarter). However, the applicant must show a specific plan for completion of all prerequisite courses prior to entry in the Professional Phase of the program. If courses are not complete at the time of application, admission will be with the condition that all course work will be completed prior to Autumn Quarter.
-Critical Values
-Current UW-Seattle Students
-December 3, 2025
-Department of Laboratory Medicine & Pathology
-Department of Laboratory Medicine & Pathology, UW Medicine, University of Washington
-Dept. of Laboratory Medicine & Pathology
-Diagnostic Services
-Diagnostic Testing
-DLMP Awards
-DLMP Research Faculty & Staff Resources
-DLMP Research Flow Cytometry Core
-During the freshmen and sophomore years, known as the pre-professional phase, students must earn a minimum of 90 quarter credits, including both prerequisite courses for medical laboratory science and general education courses required for graduation from the University of Washington, as outlined below.
-Education
-Educational Resources
-Events
-EvergreenHealth
-Faculty & Staff
-Faculty & Staff Resources
-Faculty Directory
-February 4, 2026
-Find a Laboratory Test
-Find Tests
-Flow Cytometry
-Fred Hutchinson Cancer Center
-General Chemistry 142, 152, 162
-Genetics & Solid Tumors
-Graduate Program (M3D)
-Graduates of the Medical Laboratory Science Program are expected to have in-depth knowledge of the relationships between laboratory data and pathologic processes, and their relevance to clinical medicine.
-Graduation Requirements
-Graduation Requirements for Medical Laboratory Science
-Harborview Medical Center (HMC)
-History, Mission, and Core Values
-Home
-If coursework is taken at another school, it is important to verify that courses equivalent to those offered at the UW are taken. An advisor at the school should be able to obtain and give you this information.
-If you need information about the program, please contact the academic advisor, Heather Eggleston, at medtech@uw.edu to answer your questions or to schedule an advising appointment in-person, via Zoom, or phone.
-Immunohematology
-Immunology
-In the clinical year, the student must be able to be present in the clinical laboratory full-time, 40 hours per week.
-January 7, 2026
-Jobs
-Join us for our upcoming information sessions via Zoom, which will include details about our application process, major, and career options. All sessions are at 4pm Pacific Time. Registration required; sign up for a session today. You can view the MLS information sessions slides ahead of time.
-Justice, Equity, Diversity, and Inclusion (JEDI)
-Kaiser Permanente
-Lab Med Clinical Research Conference
-LabCorp
-Laboratory Medicine Grand Rounds
-Laboratory Medicine Research Testing Services
-Laboratory Medicine Service Request
-Latest News
-Learn More About MLS
-LinkedIn
-Make a Gift
 MD/PhD Program (MSTP)
-Medical Conferences
-Medical Student Training
-medtech@uw.edu
-Menu
-Message From the Chair
-MLS After the Program
-MLS Courses
-MLS Faculty and Advising
-MLS FAQs
-MLS Mission, Goals, and Accreditation
-MLS Program Requirements
-MLS Undergraduate Program
-MLS Undergraduate Program: Requirements
-MLS Undergraduate Program: Requirements | Education | Dept. of Laboratory Medicine & Pathology | UW Medicine
-Molecular Diagnostics
-Molecular Hematopathology
-Molecular Microbiology
-MS in Laboratory Medicine
-MultiCare Tacoma General Hospital
-Mycology
-News
-News in Education
-News in Patient Care
-News in Research
-Notifiable Conditions
-November 5, 2025
-October 1, 2025
-One major advantage of the UW Medical Laboratory Science Program is the opportunity to learn complicated and highly technical laboratory procedures in an internship setting in clinical laboratories.
-Online Test Guide
-Organic Chemistry 223 or 237: 1 quarter or 1 semester of Organic Chemistry (no lab required)
-Overlake Medical Center - Bellevue
-P: 206-543-1140
-Parasitology
-Pathologists' Assistant Program
-Pathology Grand Rounds
-Pay Your Laboratory Medicine Bill
-Payment Info
-PeaceHealth
-People trained as medical laboratory scientists:
-Phlebotomy (blood collection)
-Post-Sophomore Fellowship
-Postbaccalaureate Students
-Pre-Professional Phase
-Privacy Policy | UW's Website Terms | Online Privacy Statement | Copyright and Disclaimer
-Professional Phase
-Providence Health & Services
-Ready to apply? Please click on the category below that applies to your current status, follow the directions on that page.
-Ready to apply? View application instructions .
-Red Cell Disorders
-Research
-Research Centers
-Research Committee
-Research Fellowships
-Research in Lab Med & Pathology
-Research Labs
-Research Testing Service (RTS)
-Residency & Fellowship Alumni
-Residency Program
-Resources for Faculty & Staff
-Search
-Seattle Children's Hospital
-Seattle, WA 98195
-Seattle, WA 98195-7110
-Specific Requirements
-Specimen Collection
-Staff Directory
-Staff Only Test Guide
-Stay Connected
-Still have questions? View our FAQs .
-Students spend the majority of their scheduled time in the core clinical laboratory program in chemistry, hematology, immunohematology, and microbiology.
-Submit
-Swedish Medical Center
-Tel: 206.598.2162
-The following courses must be completed prior to entry into the Medical Laboratory Science Program:
-The following subjects are included in the professional phase of the curriculum and are taught by faculty in the Departments of Laboratory Medicine and Pathology, Immunology, and Microbiology:
-The last two quarters take place in the clinical laboratories of the University of Washington Medical Center and its affiliates. This type of educational experience requires the cooperation of the clinical laboratories in the facilities listed below. The Medical Laboratory Science Program will not admit more students into the program than can be accommodated in these clinical facilities.
-The last two years of study constitute the professional phase. Courses in the first four quarters of this phase are designed to provide students with the appropriate theoretical background and the basic technical skills that will enable them to function effectively in the clinical laboratory.
-The MLS Program is a full-time, four-year course of study and is divided into two major parts: the Pre-professional Phase and the Professional Phase. Learn more about these phases and our graduation requirements. Graduates of the program earn a Bachelor of Science degree in Medical Laboratory Science.
-They will have experience in the performance of both routine and specialized testing procedures, as well as an understanding of the theoretical basis of these procedures. They will also have experience in troubleshooting and resolving typical problems in the clinical laboratory. Graduates will have experience with laboratory computers, laboratory management, developmental research techniques, instructional methodologies, quality assurance, quality control, and laboratory safety.
-This online information session will be facilitated by the MLS academic advisor and provides information about what a medical laboratory scientist does, program admissions, didactic coursework, and clinical internship experiences.
-Toggle navigation
-Toggle Page Navigation
-Toggle Search Input
+Certificate Program in Clinical Laboratory Leadership & Mana
 Training Grant Programs
-Transfer Students
-Twitter
-University of Washington
-UW Medical Center (UWMC)- Montlake
-UW Medicine
-UWMC - Northwest
-Veterans Affairs Puget Sound Health Care System (VAPSHCS)
-View employment rates and program outcomes for MLS graduates.
-View pages within this section
-Virginia Mason Hospital and Seattle Medical Center
-Virology
 Visitor Programs
+Course Catalogs
+MLS Undergraduate Program
 Welcome to the Department of Laboratory Medicine and Pathology's Medical Laboratory Science (MLS) Undergraduate Program at the University of Washington! Our program offers training in MLS, where basic laboratory science meets the practice of medicine.
 Why MLS?
-YouTube
+A critical part of health care, MLS is a profession of highly knowledgeable and skilled individuals who perform clinical laboratory tests on blood, other body fluids, or tissue samples. Results obtained by these laboratory tests are a vital tool for physicians in their diagnosis, treatment, and prevention of disease. Successful medical laboratory scientists enjoy studying the biological, chemical, and physical sciences, and find personal satisfaction and intellectual reward in applying scientific methods in the diagnosis and evaluation of disease.
+People trained as medical laboratory scientists:
+- work in clinical laboratories in large medical centers, hospitals, and clinics
+- conduct research in industrial, public health, and medical laboratories
+- teach in hospitals, colleges, and universities
+View employment rates and program outcomes for MLS graduates.
+Learn More About MLS
+The MLS Program is a full-time, four-year course of study and is divided into two major parts: the Pre-professional Phase and the Professional Phase. Learn more about these phases and our graduation requirements. Graduates of the program earn a Bachelor of Science degree in Medical Laboratory Science.
+Join us for our upcoming information sessions via Zoom, which will include details about our application process, major, and career options. All sessions are at 4pm Pacific Time. Registration required; sign up for a session today. You can view the MLS information sessions slides ahead of time.
+October 1, 2025
+November 5, 2025
+December 3, 2025
+January 7, 2026
+February 4, 2026
+This online information session will be facilitated by the MLS academic advisor and provides information about what a medical laboratory scientist does, program admissions, didactic coursework, and clinical internship experiences.
+Still have questions? View our FAQs .
+Applications Are Due February 15
+Ready to apply? Please click on the category below that applies to your current status, follow the directions on that page.
+Current UW-Seattle Students
+Postbaccalaureate Students
+Transfer Students
+Academic Advising and Contact Information
+If you need information about the program, please contact the academic advisor, Heather Eggleston, at medtech@uw.edu to answer your questions or to schedule an advising appointment in-person, via Zoom, or phone.
+MLS Undergraduate Program
+Department of Laboratory Medicine & Pathology
+Box 357110
+1959 NE Pacific Street, NW120
+Seattle, WA 98195-7110
+Tel: 206.598.2162
+medtech@uw.edu
+Stay Connected
+Dept. of Laboratory Medicine & Pathology

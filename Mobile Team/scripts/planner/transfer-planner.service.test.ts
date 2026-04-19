@@ -9044,6 +9044,248 @@ test("Structural boilerplate pathway headings do not outrank semantic route name
   assert.deepEqual(collectSuspiciousStructuralPathways(materialized), []);
 });
 
+test("Asian Studies visible pathways use one clean concentration label per route", () => {
+  const sourceGeneratedAsianStudiesPlan = getTransferPlannerSourceGeneratedMajorsForCampus(
+    "uw-seattle"
+  ).find((entry) => entry.id === "uw-seattle-asian-studies");
+  assert.ok(sourceGeneratedAsianStudiesPlan, "Expected a source-generated Seattle Asian Studies planner row.");
+
+  const asianStudiesRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-asian-studies");
+  assert.ok(asianStudiesRuntimePlan, "Expected an Asian Studies runtime plan.");
+
+  const sourcePathways = getTransferPlannerPathwaysForPlan(sourceGeneratedAsianStudiesPlan)
+    .map((pathway) => [pathway.id, pathway.label] as const)
+    .sort((left, right) => left[0].localeCompare(right[0]));
+  const runtimePathways = getTransferPlannerStudentRuntimePathwaysForPlan(asianStudiesRuntimePlan)
+    .map((pathway) => [pathway.id, pathway.label] as const)
+    .sort((left, right) => left[0].localeCompare(right[0]));
+  const expectedConcentrations = new Set([
+    "China Concentration",
+    "Japan Concentration",
+    "Korea Concentration",
+    "South Asia Concentration",
+    "Southeast Asia Concentration",
+  ]);
+
+  assert.deepEqual(
+    sourcePathways.filter(([, label]) => expectedConcentrations.has(label)).map(([, label]) => label).sort(),
+    [...expectedConcentrations].sort()
+  );
+  assert.deepEqual(
+    runtimePathways.filter(([, label]) => expectedConcentrations.has(label)).map(([, label]) => label).sort(),
+    [...expectedConcentrations].sort()
+  );
+  assert.equal(sourcePathways.some(([, label]) => /&#\d+;|&[a-z]+;/i.test(label)), false);
+  assert.equal(runtimePathways.some(([, label]) => /&#\d+;|&[a-z]+;/i.test(label)), false);
+  assert.equal(sourcePathways.some(([, label]) => /^Asian Studies\s*[-–—]/i.test(label)), false);
+  assert.equal(runtimePathways.some(([, label]) => /^Asian Studies\s*[-–—]/i.test(label)), false);
+});
+
+test("Visible pathway labels decode HTML entities even when base pathways are retained", () => {
+  const plan: TransferPlannerMajorPlan = {
+    id: "synthetic-entity-decoding",
+    campusId: "uw-seattle",
+    title: "Asian Studies",
+    shortTitle: "Asian",
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [],
+    pathways: [
+      {
+        id: "asian-studies-and-8211-china-concentration",
+        label: "Asian Studies &#8211; China Concentration",
+        summary: "",
+        officialLinks: [],
+      },
+    ],
+  };
+
+  const materialized = materializeTransferPlannerPathways(plan, plan.pathways ?? [], []);
+
+  assert.deepEqual(
+    materialized.map((pathway) => [pathway.id, pathway.label] as const),
+    [["asian-studies-and-8211-china-concentration", "Asian Studies - China Concentration"]]
+  );
+});
+
+test("Semantic duplicate pathway labels collapse to one canonical visible route", () => {
+  const plan: TransferPlannerMajorPlan = {
+    id: "synthetic-semantic-dedupe",
+    campusId: "uw-seattle",
+    title: "Asian Studies",
+    shortTitle: "Asian",
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [],
+    pathways: [
+      {
+        id: "asian-studies-and-8211-china-concentration",
+        label: "Asian Studies &#8211; China Concentration",
+        summary: "",
+        officialLinks: [],
+      },
+      {
+        id: "asian-studies-china-concentration",
+        label: "China Concentration",
+        summary: "",
+        officialLinks: [],
+      },
+      {
+        id: "asian-studies-and-8211-japan-concentration",
+        label: "Asian Studies &#8211; Japan Concentration",
+        summary: "",
+        officialLinks: [],
+      },
+      {
+        id: "asian-studies-japan-concentration",
+        label: "Japan Concentration",
+        summary: "",
+        officialLinks: [],
+      },
+    ],
+  };
+  const parsedBlocks: TransferPlannerParsedRequirementSourceBlock[] = [
+    {
+      id: "synthetic-semantic-dedupe:source-block:test",
+      ownerId: "synthetic-semantic-dedupe",
+      ownerTitle: "Asian Studies",
+      planId: plan.id,
+      pathwayId: null,
+      campusId: "uw-seattle",
+      primaryParserType: "catalog-page",
+      primarySourceUrl: "https://example.edu/asian-studies",
+      primarySourceLabel: "Asian Studies catalog",
+      parserType: "catalog-page",
+      adapterId: "uw-seattle-catalog-page",
+      adapterFamily: "UW Seattle catalog pages",
+      sourceUrl: "https://example.edu/asian-studies",
+      sourceLabel: "Asian Studies catalog",
+      resolutionStrategy: "primary-source",
+      ok: true,
+      parseConfidence: "high",
+      parsedUwCourseCodes: [],
+      sourceOnlyUwCourseCodes: [],
+      structuredOnlyUwCourseCodes: [],
+      requirementCueLines: [],
+      chooseStatements: [],
+      pathwayLabels: [
+        "Asian Studies &#8211; China Concentration",
+        "China Concentration",
+        "Asian Studies - Japan Concentration",
+        "Japan Concentration",
+      ],
+      qualitySignals: [],
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
+      snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
+      error: null,
+    },
+  ];
+
+  const materialized = materializeTransferPlannerPathways(plan, plan.pathways ?? [], parsedBlocks);
+
+  assert.deepEqual(
+    materialized.map((pathway) => [pathway.id, pathway.label] as const),
+    [
+      ["china-concentration", "China Concentration"],
+      ["japan-concentration", "Japan Concentration"],
+    ]
+  );
+});
+
+test("Already-clean pathway families stay stable when canonical cleanup is not needed", () => {
+  const plan: TransferPlannerMajorPlan = {
+    id: "synthetic-stable-clean-pathways",
+    campusId: "uw-seattle",
+    title: "Statistics",
+    shortTitle: "Stats",
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [],
+    pathways: [
+      {
+        id: "applied-statistics-track",
+        label: "Applied Statistics track",
+        summary: "",
+        officialLinks: [],
+      },
+      {
+        id: "data-science-track",
+        label: "Data Science track",
+        summary: "",
+        officialLinks: [],
+      },
+    ],
+  };
+  const parsedBlocks: TransferPlannerParsedRequirementSourceBlock[] = [
+    {
+      id: "synthetic-stable-clean-pathways:source-block:test",
+      ownerId: "synthetic-stable-clean-pathways",
+      ownerTitle: "Statistics",
+      planId: plan.id,
+      pathwayId: null,
+      campusId: "uw-seattle",
+      primaryParserType: "catalog-page",
+      primarySourceUrl: "https://example.edu/statistics",
+      primarySourceLabel: "Statistics catalog",
+      parserType: "catalog-page",
+      adapterId: "uw-seattle-catalog-page",
+      adapterFamily: "UW Seattle catalog pages",
+      sourceUrl: "https://example.edu/statistics",
+      sourceLabel: "Statistics catalog",
+      resolutionStrategy: "primary-source",
+      ok: true,
+      parseConfidence: "high",
+      parsedUwCourseCodes: [],
+      sourceOnlyUwCourseCodes: [],
+      structuredOnlyUwCourseCodes: [],
+      requirementCueLines: [],
+      chooseStatements: [],
+      pathwayLabels: ["Applied Statistics track", "Data Science track"],
+      qualitySignals: [],
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
+      snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
+      error: null,
+    },
+  ];
+
+  const materialized = materializeTransferPlannerPathways(plan, plan.pathways ?? [], parsedBlocks);
+
+  assert.deepEqual(
+    materialized.map((pathway) => [pathway.id, pathway.label] as const),
+    [
+      ["applied-statistics-track", "Applied Statistics track"],
+      ["data-science-track", "Data Science track"],
+    ]
+  );
+});
+
 test("Speech & Hearing Sciences now promotes the semantic Adult and Pediatric track labels", () => {
   const speechPlan = getRequiredPlan("uw-seattle-speech-and-hearing-sciences");
   const speechRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(speechPlan.id);

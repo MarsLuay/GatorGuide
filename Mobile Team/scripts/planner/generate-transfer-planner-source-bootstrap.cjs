@@ -23,6 +23,10 @@ const {
 const {
   isSuspiciousStructuralPathwayLabel,
 } = require("../../constants/transfer-planner-source/pathway-materialization");
+const {
+  normalizeTransferPlannerText,
+  stripTransferPlannerPlanTitlePrefix,
+} = require("../../constants/transfer-planner-source/pathway-title-normalization");
 
 const OUTPUT_PATH = path.resolve(
   __dirname,
@@ -454,7 +458,7 @@ function titleCasePathwayLabel(value) {
 }
 
 function normalizePathwayLabelCandidate(planTitle, value) {
-  let normalized = String(value ?? "").replace(/\s+/g, " ").trim();
+  let normalized = normalizeTransferPlannerText(value);
   if (!normalized) {
     return "";
   }
@@ -464,15 +468,9 @@ function normalizePathwayLabelCandidate(planTitle, value) {
     normalized = String(degreeTitleMatch[1] ?? "").trim();
   }
 
-  const normalizedPlanTitle = String(planTitle ?? "").replace(/\s+/g, " ").trim();
+  const normalizedPlanTitle = normalizeTransferPlannerText(planTitle);
   if (normalizedPlanTitle) {
-    for (const separator of PATHWAY_OWNER_TITLE_SUFFIX_SEPARATORS) {
-      const prefix = `${normalizedPlanTitle}${separator}`;
-      if (normalized.startsWith(prefix)) {
-        normalized = normalized.slice(prefix.length).trim();
-        break;
-      }
-    }
+    normalized = stripTransferPlannerPlanTitlePrefix(normalizedPlanTitle, normalized);
   }
 
   const structuralPrefixMatch = normalized.match(PATHWAY_STRUCTURAL_PREFIX_PATTERN);
@@ -484,6 +482,7 @@ function normalizePathwayLabelCandidate(planTitle, value) {
 
   normalized = normalized
     .replace(/^option\s+\d+\s*:\s*/i, "")
+    .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-–—]\s+.*$/i, "$1")
     .replace(/\s+\((?:\d+(?:-\d+)?\s+credits?)\)\s*$/i, "")
     .replace(/\s+[.;:]\s*$/, "")
     .trim();

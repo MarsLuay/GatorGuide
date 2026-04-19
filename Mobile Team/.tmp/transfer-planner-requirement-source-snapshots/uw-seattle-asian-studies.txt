@@ -7,16 +7,13 @@ Title: Asian Studies - Major - The Henry M. Jackson School of International Stud
 (206) 543-6001
 (a max. of 5 cr.
 (Winter)
-[Supplemental official source] Asian Studies &#8211; China Concentration
-[Supplemental official source] Asian Studies &#8211; Japan Concentration
-[Supplemental official source] Asian Studies &#8211; Korea Concentration
-[Supplemental official source] Asian Studies &#8211; South Asia Concentration
-[Supplemental official source] Asian Studies &#8211; Southeast Asia Concentration
-[Supplemental official source] Comparative Religion &#8211; Major
-[Supplemental official source] European Studies &#8211; Major
-[Supplemental official source] International Studies &#8211; General Major
+[Supplemental official source] Asian Studies – China Concentration
+[Supplemental official source] Asian Studies – Japan Concentration
+[Supplemental official source] Asian Studies – Korea Concentration
+[Supplemental official source] Asian Studies – South Asia Concentration
+[Supplemental official source] Asian Studies – Southeast Asia Concentration
 [Supplemental official source] Supplemental official track and option pages
-§ A maximum of 5 credits of lower-division coursework (200-level) may be counted in the &#8220;LIST B&#8221; section of the Asian Studies-Japan Concentration.
+§ A maximum of 5 credits of lower-division coursework (200-level) may be counted in the “LIST B” section of the Asian Studies-Japan Concentration.
 §ASIAN 202
 §ASIAN 205
 *
@@ -40,7 +37,7 @@ Title: Asian Studies - Major - The Henry M. Jackson School of International Stud
 &copy; 2026 Henry M. Jackson School of International Studies, University of Washington | Seattle, WA
 †§JSIS A 242
 †§JSIS A/HSTAS 241
-†if not taken for the Japan Concentration&#8217;s core requirement
+†if not taken for the Japan Concentration’s core requirement
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMF8KQZ"
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 ◊◊A maximum of 10 credits of lower-division coursework (200-level) may be allowed toward the Concentration Courses in the Asian Studies-South Asia Concentration.
@@ -66,7 +63,6 @@ Title: Asian Studies - Major - The Henry M. Jackson School of International Stud
 5, max 15
 5, max. 15
 50
-50 credits plus language proficiency*
 A maximum of 5 of the 30 elective credits may be at the 200 level, and a maximum of 5 non-UW resident cr. may count for these electives.
 A minimum of ten credits from the following list of core South Asia courses
 AAS 360
@@ -91,7 +87,7 @@ Advanced Urdu
 adviser approval)
 Advising
 Advising Questions
-African Studies &#8211; Minor
+African Studies – Minor
 African Studies Program
 Ancient Indian Civilization**[if not already counted toward civilization req. above]
 ANTH 314 Ethnography, Transnationalism, & Community in Island Southeast Asia/Asian Americans (5)
@@ -105,7 +101,6 @@ ANTH 471
 ANTH/ JSIS A 412
 Anthropology of Modern Japan
 Anthropology of Tibetan Civilization
-Any
 Any South Asian language courses, third-year and above (see list below)
 Apply
 ARCH 251
@@ -115,7 +110,7 @@ ARCHY 270
 ARCHY 309
 ARCHY 325
 Arctic and International Relations
-Arctic Studies &#8211; Minor
+Arctic Studies – Minor
 Art and Empire in India
 ART H 214
 ART H 310
@@ -163,18 +158,18 @@ Asian Studies - South Asia Concentration
 Asian Studies - South Asia Concentration - The Henry M. Jackson School of International Studies
 Asian Studies - Southeast Asia Concentration
 Asian Studies - Southeast Asia Concentration - The Henry M. Jackson School of International Studies
+Asian Studies – China Concentration
+Asian Studies – Japan Concentration
+Asian Studies – Korea Concentration
+Asian Studies – Major
+Asian Studies – South Asia Concentration
+Asian Studies – Southeast Asia Concentration
 Asian Studies (General) Courses
-Asian Studies &#8211; China Concentration
-Asian Studies &#8211; Japan Concentration
-Asian Studies &#8211; Korea Concentration
-Asian Studies &#8211; Major
-Asian Studies &#8211; South Asia Concentration
-Asian Studies &#8211; Southeast Asia Concentration
 Asian Studies Major Courses Autumn 2019
 Asian Traditions
 Autumn
 Autumn / Winter
-Autumn 2026 Courses by Category &#8211; SUBJECT TO CHANGE
+Autumn 2026 Courses by Category – SUBJECT TO CHANGE
 Back to top
 BENG 301-303
 Buddhism
@@ -212,10 +207,10 @@ China and the West in Historical Perspective, 1500-1976
 China Arts and Literature
 China Electives
 China in the Twentieth Century
-China Studies &#8211; Minor
+China Studies – Minor
 China Studies Program
-China&#8217;s Environment
-China&#8217;s Rise and Its Global Implications;
+China’s Environment
+China’s Rise and Its Global Implications;
 Chinese Art & Archaeology Neolithic to Han Dynasty
 Chinese Art and Visual Culture
 Chinese History from 1276-1895
@@ -243,8 +238,8 @@ Comparative Colonialism
 Comparative Islamic Studies – Minor
 Comparative Politics & Korea Studies (if not taken as required Korea course)
 Comparative Religion
-Comparative Religion &#8211; Major
-Comparative Religion &#8211; Minor
+Comparative Religion – Major
+Comparative Religion – Minor
 Connect with Us
 Contact Us
 Contemporary India & Pakistan**
@@ -274,18 +269,14 @@ East Asia Resource Center
 ECON 494
 Economic and Social History of Japan to 1900
 Economy of Japan
-Electives &#8211; 25 credits from the list of approved South Asia electives, found below.
+Electives – 25 credits from the list of approved South Asia electives, found below.
 Ellison Center for Russian, East European and Central Asian Studies
 Emergence of Postwar Japan
 Environmental Degradation in the Tropics
 Ethnic Politics and Nationalism in Multi-Ethnic Societies*
 Ethnography, Transnationalism, and Community in Island Southeast Asia/Asia America
-Europe Today
-European History
-European Studies &#8211; Major
-European Studies &#8211; Minor
-European Studies Major
-European Studies Major Requirements (effective Autumn 2020)
+European Studies – Major
+European Studies – Minor
 European Union Center
 Events
 Executive Master of International Studies
@@ -293,11 +284,11 @@ Experiments in Southeast Asia
 Fabulous Gurus and Fake Fakirs: Religious Reform in Colonial India
 Facebook
 Faculty
-Faculty &#038; Affiliate Faculty
-Field Archaeology &#8211; when topic is Southeast Asia
-Field Study In Animal Behavior (When topic includes Southeast Asia &#8211; see adviser)
+Faculty & Affiliate Faculty
+Field Archaeology – when topic is Southeast Asia
+Field Study In Animal Behavior (When topic includes Southeast Asia – see adviser)
 Filipino Histories (HSTCMP 205)
-For the general concentration students need not focus on a single Asian country or even a single region, but may choose their electives with other goals in mind&#8211;for example, to provide a broad overview of Asia, or to provide an in-depth investigation of a theme or topic (politics, social change, economic development) across a range of Asian societies.
+For the general concentration students need not focus on a single Asian country or even a single region, but may choose their electives with other goals in mind–for example, to provide a broad overview of Asia, or to provide an in-depth investigation of a theme or topic (politics, social change, economic development) across a range of Asian societies.
 Funding Opportunities
 Gender and Sexuality in China
 Gender Histories of Modern China, 18th to 20th cent.
@@ -311,7 +302,6 @@ GEOG 435
 GEOG 438
 Give Now
 Global Asia
-Global Elective
 Global Futures in East Asia
 Global Research Group
 Government and Politics of China
@@ -322,7 +312,7 @@ Great Works of Asian Literature (if China)
 Great Works of Asian Literature**
 Han Chinese Society and Culture
 height="0" width="0" style="display:none;visibility:hidden">
-Hellenic Studies &#8211; Minor
+Hellenic Studies – Minor
 Hellenic Studies Program
 HINDI 301-303
 HINDI 404
@@ -359,13 +349,13 @@ HSTAS 211 or
 HSTAS 212
 HSTAS 303
 HSTAS 401
-HSTAS 401 &#8211; History of Ancient India
+HSTAS 401 – History of Ancient India
 HSTAS 402
-HSTAS 402 &#8211; History of Medieval and Mughal India
+HSTAS 402 – History of Medieval and Mughal India
 HSTAS 403
-HSTAS 403 &#8211; History of Modern India
+HSTAS 403 – History of Modern India
 HSTAS 404
-HSTAS 404 &#8211; History of Twentieth-Century India
+HSTAS 404 – History of Twentieth-Century India
 HSTAS 408
 HSTAS 421
 HSTAS 441
@@ -384,7 +374,7 @@ HSTAS/GWSS 459
 HSTCMP 425
 HSTCMP 468
 HSTCMP 485
-Human Rights &#8211; Minor
+Human Rights – Minor
 Human Rights in Asia (HSTAS 265)
 Immigration
 Imperialism and Anti-Colonialism in Asia (HSTAS 244)
@@ -399,14 +389,14 @@ Instagram
 International Policy Institute
 International Relations in South Asia
 International Relations of Japan
-International Studies &#8211; General Major
-International Studies General &#8211; Minor
+International Studies – General Major
+International Studies General – Minor
 International Technology Studies Minor
 Introduction to Asian Linguistics*
 Introduction to Contemporary Japan
 Introduction to Japanese Cinema and Media
 Introduction to Muslim Beliefs and Practices **
-Introduction to South Asian History, 1500 &#8211; present**
+Introduction to South Asian History, 1500 – present**
 Introduction to World Religions: Eastern Traditions
 Introduction to World Religions: Eastern Traditions**
 Introductory courses on Asian Civilizations
@@ -431,7 +421,7 @@ JAPAN 461
 JAPAN 473
 Japan Electives List
 Japan Electives3-400 level
-Japan Studies &#8211; Minor
+Japan Studies – Minor
 Japan Studies Courses
 Japanese Architecture
 Japanese Business and Technology
@@ -444,12 +434,12 @@ Japanese Language in Society
 Japanese Language proficiency through 2nd year college level or 3rd quarter of 2nd year college level.(For first- and second-year language courses, grades must average 2.00)
 Japanese Society
 Japanese Trade Politics
-Jewish Studies &#8211; Major
-Jewish Studies &#8211; Minor
+Jewish Studies – Major
+Jewish Studies – Minor
 Journal of Japanese Studies
 JSIS 201
-JSIS 201 &#8211; The Making of the Twenty-first Century (5 credits)
-JSIS 203 &#8211; Rise of Asia
+JSIS 201 – The Making of the Twenty-first Century (5 credits)
+JSIS 203 – Rise of Asia
 JSIS 203 or
 JSIS 203 or JSIS A 207
 JSIS 300
@@ -463,7 +453,7 @@ JSIS A 205 Filipino Histories (5)
 JSIS A 206
 JSIS A 206 Contemporary India & Pakistan
 JSIS A 207
-JSIS A 207 &#8211; Asian Traditions
+JSIS A 207 – Asian Traditions
 JSIS A 221
 JSIS A 221 History of Southeast Asia (5)
 JSIS A 241 or JSIS A 242
@@ -472,7 +462,6 @@ JSIS A 245
 JSIS A 254
 JSIS A 265
 JSIS A 265 The Viet Nam Wars (5)
-JSIS A 301
 JSIS A 303
 JSIS A 305
 JSIS A 315
@@ -495,7 +484,7 @@ JSIS A 447
 JSIS A 447/ANTH 445
 JSIS A 449/ANTH 443
 JSIS A 459/POL S 419
-JSIS A 461 &#8211; Ramayana in Comparative Perspective
+JSIS A 461 – Ramayana in Comparative Perspective
 JSIS A 461/ ASIAN 494
 JSIS A 462
 JSIS A 463
@@ -511,20 +500,20 @@ JSIS A 475
 JSIS A 477
 JSIS A 478 / I BUS 462
 JSIS A 484
-JSIS A 485 &#8211; Special Topics on South Asia
+JSIS A 485 – Special Topics on South Asia
 JSIS A 487/POL S 418
 JSIS A 496
 JSIS A/ ANTH 316
 JSIS A/ ANTH 339
 JSIS A/ ANTH 341
 JSIS A/ ANTH 448
-JSIS A/ GEOG 438 &#8211; Social and Political Geographies of South Asia
+JSIS A/ GEOG 438 – Social and Political Geographies of South Asia
 JSIS A/ POL S 340
 JSIS A/ POL S 417
 JSIS A/ POL S 434
-JSIS A/ANTH 316 &#8211; Modern South Asia
-JSIS A/ANTH 339 &#8211; Social Movements in Contemporary India
-JSIS A/ANTH 341 &#8211; Political Violence and the Post-Colonial State in South Asia
+JSIS A/ANTH 316 – Modern South Asia
+JSIS A/ANTH 339 – Social Movements in Contemporary India
+JSIS A/ANTH 341 – Political Violence and the Post-Colonial State in South Asia
 JSIS A/ANTH 370
 JSIS A/ANTH 406
 JSIS A/ANTH 412
@@ -532,7 +521,7 @@ JSIS A/ANTH 448
 JSIS A/ANTH 470
 JSIS A/ANTH/GWSS 328
 JSIS A/HSTAS 202 South Asian History 1500-present
-JSIS A/HSTAS 303 &#8211; Divided Lands/Divided Lives: An Environmental History of South Asia
+JSIS A/HSTAS 303 – Divided Lands/Divided Lives: An Environmental History of South Asia
 JSIS A/HSTAS 327
 JSIS A/HSTAS 423
 JSIS A/HSTAS 424
@@ -540,8 +529,8 @@ JSIS A/HSTAS 454
 JSIS A/HSTAS 456
 JSIS A/HSTAS 460
 JSIS A/HSTAS 484
-JSIS A/POL S 340 &#8211; Politics of India, Pakistan, and South Asia
-JSIS A/POL S 417 &#8211; Political Economy of India
+JSIS A/POL S 340 – Politics of India, Pakistan, and South Asia
+JSIS A/POL S 417 – Political Economy of India
 JSIS A/POL S 435
 JSIS A/POL S 436/POL S 429
 JSIS A/POL S 439
@@ -573,7 +562,7 @@ KOREA
 Korea Electives
 Korea Electives List
 Korea in the Japanese Empire
-Korea Studies &#8211; Minor
+Korea Studies – Minor
 Korea Studies Courses
 KOREAN 411
 KOREAN 412
@@ -583,12 +572,12 @@ KOREAN 416
 KOREAN 417
 KOREAN 435
 Korean Language
-Language requirement &#8211; Students must achieve proficiency in a South Asian language through 2nd year college level. Accepted languages include Bengali, Hindi, Nepali, Sanskrit, Tibetan, and Urdu. Students must earn an average GPA of 2.0 in first and second year language courses.
+Language requirement – Students must achieve proficiency in a South Asian language through 2nd year college level. Accepted languages include Bengali, Hindi, Nepali, Sanskrit, Tibetan, and Urdu. Students must earn an average GPA of 2.0 in first and second year language courses.
 Languages and Cultures of China
 Latest News
 Latin America and Caribbean Studies
-Latin America and Caribbean Studies &#8211; Minor
-Latin American and Caribbean Studies &#8211; Major
+Latin America and Caribbean Studies – Minor
+Latin American and Caribbean Studies – Major
 Learn more:
 LinkedIn
 List A (Social Sciences)
@@ -603,20 +592,19 @@ Literature and Culture of South Asia from Tradition to Modernity**
 Literature and Society in Southeast Asia
 Literature and Society in Southeast Asia: Literature and Culture of Viet Nam, The Philippines, and Indonesia
 Literature in Modern China
-Literature of Emerging Nations &#8211; When topic is Southeast Asia
+Literature of Emerging Nations – When topic is Southeast Asia
 Looking for help?
 Major
 Major in Asian Studies (General)
 Make a Gift
-Max Lower Division Credit &#8211; No more than 5 of the 35 credits for the South Asia concentration core and electives may be at the 200-level
+Max Lower Division Credit – No more than 5 of the 35 credits for the South Asia concentration core and electives may be at the 200-level
 Meet an Adviser
 Middle East Center
-Middle East Studies &#8211; Minor
+Middle East Studies – Minor
 Migration and development in China
 Minimum Grade
-Minimum Grade &#8211; A minimum grade of 2.0 is required for all courses applied to major
+Minimum Grade – A minimum grade of 2.0 is required for all courses applied to major
 Minimum grade 2.0 in all courses applied to major.
-Minor
 Minority Peoples of China
 Modern and Contemporary Art in India
 Modern China
@@ -637,7 +625,7 @@ Music of Indonesia
 Music of North India
 Music of Southern India
 New Orders in East Asia
-News &#038; Events
+News & Events
 No more than 10 credits from:
 North Korean Society
 of 200-level may be applied w/
@@ -667,7 +655,7 @@ Politics of Divided Korea
 Politics of Representation in Modern China
 Popular Culture in Twentieth Century China
 Popular Culture in Twentieth-Century China
-Portuguese Language and Luso-Brazillian Studies &#8211; Minor
+Portuguese Language and Luso-Brazillian Studies – Minor
 Practicum in South Asian Languages
 Prakrit
 Pre-Modern Chinese Narrative
@@ -691,27 +679,26 @@ Related Regions
 RELIG 202
 RELIG 211
 RELIG 352
-RELIG 352 &#8211; Hinduism
+RELIG 352 – Hinduism
 RELIG 354
-RELIG 354 &#8211; Buddhism
+RELIG 354 – Buddhism
 RELIG 356
+RELIG 356 – Buddhism & Society: The Theravada Buddhist Tradition in South & SE Asia
 RELIG 356 /ANTH 352
-RELIG 356 &#8211; Buddhism & Society: The Theravada Buddhist Tradition in South & SE Asia
 RELIG 356 Buddhism and Society: The Theravada Buddhist Tradition in South and Southeast Asia (5)
 RELIG 356/ ANTH 352
 RELIG 456
-RELIG 456 &#8211; Perceptions of the Feminine Divine in Hinduism
+RELIG 456 – Perceptions of the Feminine Divine in Hinduism
 RELIG 459
 Religion in China
 Research Paper
-Research Paper &#8211; Students must work with a South Asia Studies professor to write a final research paper of at least 15 pages in length. This must be written in an upper division South Asia Studies course and may need to be expanded to meet the research paper requirements. Students should coordinate with the professor prior to writing to ensure the paper will meet the requirements.
-Resident Credit &#8211; 30 credits must be taken in residence through UW (not including 1st or 2nd year language).
+Research Paper – Students must work with a South Asia Studies professor to write a final research paper of at least 15 pages in length. This must be written in an upper division South Asia Studies course and may need to be expanded to meet the research paper requirements. Students should coordinate with the professor prior to writing to ensure the paper will meet the requirements.
+Resident Credit – 30 credits must be taken in residence through UW (not including 1st or 2nd year language).
 Rise of Asia or
 Rise of Asia or Asian Traditions
-Russia, East Europe and Central Asia Studies &#8211; Minor
+Russia, East Europe and Central Asia Studies – Minor
 Science, Technology, and Innovation Policies in East Asia
-See a student profile of a Jackson School major&#8217;s in-depth study of contemporary Korean dramas.
-See approved list
+See a student profile of a Jackson School major’s in-depth study of contemporary Korean dramas.
 Selected Topics in Chinese Art
 Selected Topics in Ethnomusicology*
 Seminar in Modern Korean Literture and Culture
@@ -732,8 +719,8 @@ South Asia
 SOUTH ASIA
 South Asia Center
 South Asia Electives
-South Asia includes India, Pakistan, Bangladesh, Sri Lanka, Nepal, Bhutan, Maldives, Afghanistan and Tibet. Students are expected to gain proficiency in a South Asian language (Hindi, Urdu, Bengali and Sanskrit are offered regularly at all levels) and to pursue a course of study that includes both disciplinary concentration and interdisciplinary breadth. Students have opportunities to pursue language study in India through the program&#8217;s membership in the American Institute of Indian Studies. Other organizations provide similar opportunities for study in many of the other countries of the region.
-South Asia Studies &#8211; Minor
+South Asia includes India, Pakistan, Bangladesh, Sri Lanka, Nepal, Bhutan, Maldives, Afghanistan and Tibet. Students are expected to gain proficiency in a South Asian language (Hindi, Urdu, Bengali and Sanskrit are offered regularly at all levels) and to pursue a course of study that includes both disciplinary concentration and interdisciplinary breadth. Students have opportunities to pursue language study in India through the program’s membership in the American Institute of Indian Studies. Other organizations provide similar opportunities for study in many of the other countries of the region.
+South Asia Studies – Minor
 South Asia Studies Courses
 South Asian Social Structure
 Southeast Asia
@@ -742,7 +729,7 @@ Southeast Asia – primary electives
 Southeast Asia Core
 Southeast Asia Elective Courses (for major concentration)
 Southeast Asia electives
-Southeast Asia Studies &#8211; Minor
+Southeast Asia Studies – Minor
 Southeast Asia Studies Courses
 Southeast Asian Activism and Social Engagement (HSTCMP 367)
 Southeast Asian Civilization: Buddhist and Vietnamese (ANTH 315)
@@ -755,7 +742,7 @@ Special Studies in Chinese (depending on theme)
 Special Topics East Asia ( when topic is Japan )
 Special Topics East Asia (depending on theme)
 Special Topics East Asia (when topic is Korea)
-Special Topics in Ethnomusicology &#8211; when topic is Southeast Asia
+Special Topics in Ethnomusicology – when topic is Southeast Asia
 Special Topics in Korean Language and Culture
 Special Topics in Literature and Culture of Asia ( if China )
 Special Topics in Literature and Culture of Asia**
@@ -768,10 +755,10 @@ State-Society Relations in Third World Countries
 Stroum Center for Jewish Studies
 Student Resources
 Students can meet with an adviser to discuss courses, majors, minors, study abroad, or fellowship and scholarship opportunities.
-Students may select any Asian language to fulfill the two-year requirement. Students who are native speakers of an Asian language may satisfy this requirement by demonstrating proof of competency through the 2nd year college-level. Students may declare this open major any time. See a student profile of one student&#8217;s in-depth study of contemporary Korean dramas.
+Students may select any Asian language to fulfill the two-year requirement. Students who are native speakers of an Asian language may satisfy this requirement by demonstrating proof of competency through the 2nd year college-level. Students may declare this open major any time. See a student profile of one student’s in-depth study of contemporary Korean dramas.
 Studies in Indian Thought
 Study Abroad Office
-Summer 2026 Courses by Category &#8211; SUBJECT TO CHANGE
+Summer 2026 Courses by Category – SUBJECT TO CHANGE
 Survey of Modern Hindi Literature: Drama
 Survey of Modern Hindi Literature: Novel
 Survey of Modern Hindi Literature: Poetry
@@ -782,8 +769,6 @@ Taiwan
 Taiwan Studies Program
 Terms
 The China concentration in Asian Studies provides students with a sound foundation in one or more aspects of the study of China. The faculty has particular strength in history, both modern and pre-modern, as well as the social sciences. In addition, an extensive range of outstanding courses is available in the areas of language and literature. Students in the China Program are encouraged to take advantage of intensive overseas language training offered by the Inter-University Program in Taipei or the Beijing Chinese Language Program available through Beijing University.
-The European Studies major prepares Jackson School students to pursue careers worldwide while gaining an understanding of contemporary issues, historical background, and political systems that are shaping Europe today. This major allows students to focus on global discussions, as well as the geographical regions of Western and Eastern Europe, Russia, and the Soviet Union.
-The European Studies Program combines social sciences and humanities to investigate the forces that have shaped Europe historically and continue to do so today. Using multidisciplinary approaches, we guide our students to examine the diversity of social, cultural, political, and economic factors that shape Europe. We also put emphasis on the post-war movement towards European integration that increasingly defines Europe’s role as a global actor. Students pursuing European Studies will gain a solid foundation on which to build careers that ask for understanding the continent’s legacies and the European Union. Students may also pursue, within the European Studies major, a minor in Hellenic Studies or a minor in Russian, East European and Central Asian Studies. Our students pursue European Studies for careers that range from diplomacy and international business to government, education, journalism, and culture-related professions.
 The Henry M. Jackson School of International Studies
 The Henry M. Jackson School of International Studies / College of Arts and Sciences / University of Washington
 The Henry M. Jackson School of International Studies, University of Washington
@@ -832,7 +817,7 @@ Women and International Economic Development
 Women in China to 1800
 World Architecture: Non-Western Cultures
 World Music (*When taught by SEA faculty)
-World Music (When focus is on Southeast Asia &#8211; see adviser)
+World Music (When focus is on Southeast Asia – see adviser)
 Writing Center
 Writing Systems*
 X

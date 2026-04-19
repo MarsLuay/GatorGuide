@@ -7,7 +7,6 @@ Title: Arts, Media & Culture | Culture, Arts & Communication | University of Was
 [Supplemental official source] FILM AND MEDIA TRACK
 [Supplemental official source] LITERATURE TRACK
 [Supplemental official source] Supplemental official track and option pages
-[Supplemental official source] UWT general education
 [Supplemental official source] VISUAL AND PERFORMING ARTS TRACK
 **Creative Writing Courses
 &copy; 2026 University of Washington Tacoma
@@ -35,14 +34,11 @@ Title: Arts, Media & Culture | Culture, Arts & Communication | University of Was
 >Home
 >School of Interdisciplinary Arts & Sciences
 1900 Commerce Street, Tacoma, WA 98402-3100
-253-692-4450
-253-692-5718
 25Live
 5 credits Foundation (5 credits)
 ABOUT UW TACOMA
 Academic advising
 Academic calendar
-Academic Programs
 ACADEMICS
 Accessibility |
 Acknowledgement
@@ -67,16 +63,12 @@ AMERICAN CULTURES TRACK
 American Popular Cultures Minor
 Apply
 aria-label="University of Washington Tacoma Homepage">
-Arts and Humanities (A&H): 20 credits
 Arts, Media & Culture
 Arts, Media & Culture | Culture, Arts & Communication | University of Washington Tacoma
 Arts, Media & Culture majors have five tracks to choose from:
-Arts, Media and Culture
-As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 Asian Studies Minor
 At least 45 lower-division credits
 Bachelor of Arts
-Biomedical Sciences
 Bothell
 Breadcrumb
 Brian Burhenn
@@ -95,33 +87,17 @@ COMPARATIVE ARTS TRACK
 Connect with Advising
 Contact
 Contact us |
-Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
-Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
 Courses in this list set the study of arts and media in broad cultural or social contexts.
-Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
-Courses that focus on sociocultural, political, and economic diversity of human experience
 Culture (List B) (5 credits)
-Culture Arts & Communication
 Culture, Arts & Communication
 Culture, Arts & Communication (CAC)
-Current Students
 DEGREE REQUIREMENTS
 DEPARTMENT
 Directory
-Diversity (DIV): 5 credits
-Economics and Policy Analysis (EPA)
-English Composition (C): 5 credits
-Environmental Science
-Environmental Sustainability
 Equity & Inclusion
-Ethnic, Gender and Labor Studies
 expand_more
 Faculty
-Faculty & Staff
 FAQs
-Fax Number
 Film and Media (List F) (25 credits)
 Film and Media Track
 FILM AND MEDIA TRACK
@@ -129,11 +105,8 @@ Film and Media Track | Culture, Arts & Communication | University of Washington 
 Financial Aid
 For a BA in Arts, Media & Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 Foundation (5 credits)
-General Education Requirements
 Get Involved
-Global Studies Concentration
 height="0"
-History
 History (List A: one survey class and one non-survey history class) (10 credits)
 History (One class from List A and one of the following: THIST 220, 221, 320, 340, 349 or TLAX 333) (10 credits)
 Housing
@@ -150,18 +123,15 @@ https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/202
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-lit-sample.jpg 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/sias-performing-sample.jpg 980w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-03/tlthappiestsong016_0.jpg 980w,
-iashelp@uw.edu
 Information Technology
 Inspired by their immigrant parents, filmmakers and SIAS alumni Nuk and Nut Suwanchote are aiming to change the conversation on Asian culture. READ MORE
 Institutional Research
-Interdisciplinary Arts and Sciences
 Internships
 Interpretation (List C) (5 credits)
 IT Help
 Jobs
 Land
 Latino Studies Minor
-Law and Policy
 Learn More >
 Library
 List A History
@@ -174,27 +144,20 @@ LIST G: VISUAL AND PERFORMING ARTS
 Literature (List E) or Visual and Performing Arts (List G) (5 credits)
 Literature Track
 LITERATURE TRACK
-M-F 9a.m.-5p.m.
 Main Content
 MAJOR COORDINATOR
 Majors
 Map
-Mathematics
 Media Research
 Minors
 more_vert
-Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
 MyUW
-Natural Sciences (NSc): 20 credits
 Nuk Suwanchote (BA '17)
 Nut Suwanchote (BA '18)
-Office Hours:
 Office365
-One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
 Open Public Meetings
 Panopto
 Parking & transportation
-Politics, Philosophy and Economics (PP&E)
 Post Graduation
 Post-graduate Studies
 Practice/Studio (List D) (5 credits)
@@ -202,26 +165,15 @@ Print and Television writing
 Print and Video editing
 Privacy |
 Professor Andrea Modarres
-Psychology
 Puyallup Tribe of Indians
-Reasoning (RSN): 5 credits
 Reporting
 Research
-Resources
 Rules Docket
-School of Interdisciplinary Arts & Sciences
 Schools and programs
-Sciences and Mathematics
 Scout
 Search
-SIAS Directory
-SIAS Scholarships
-SIAS Student Advisory Council
 sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
 Skip to main content
-Social Sciences
-Social Sciences (SSc): 20 credits
-Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
 Spanish Language and Cultures
 Spanish Language and Cultures Minor
 src="/sites/default/files/sites/uwtd8main/W.svg"
@@ -472,6 +424,5 @@ Visual and Performing Arts Track
 VISUAL AND PERFORMING ARTS TRACK
 width="0"
 Workday
-Writing (W): 10 credits
 Writing Studies
 Zoom

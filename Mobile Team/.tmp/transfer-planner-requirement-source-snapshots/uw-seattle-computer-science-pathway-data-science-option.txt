@@ -5,36 +5,32 @@ Title: Degree Planning & Requirements - Paul G. Allen School of Computer Science
 [Supplemental official source] Non-CSE Majors
 [Supplemental official source] Non-Major Options
 * Data Science Options A growing number of departments and majors offer a multi-course specialization in data science (called a degree option), coordinated by the campus-wide eScience Education Working Group.
-* Electrical and Computer Engineering The Bachelor of Science in Electrical Engineering offered by the Department of Electrical &#038; Computer Engineering (ECE) prepares students to design and build hardware and software for a variety of devices that use electricity, electromagnetics, photonics and quantum phenomena, such as robots, smartphones, lasers, electric power, vehicle control, medical devices and more. While all Electrical Engineering students take courses that cover the full breadth of the discipline, it is possible to do an emphasis in computer architecture and hardware design. ECE admits the majority of students from the Direct to College Engineering placement process.
-* Human Centered Design &#038; Engineering Students in Human Centered Design &#038; Engineering (HCDE) practice research, design, and engineering by focusing on the needs of people in their various contexts. HCDE&#8217;s undergraduate and graduate degrees prepare students for leadership roles in user experience research and design, user interface design, human-computer interaction, computer-supported cooperative work, and related specializations. Beyond taking traditional classroom courses, students join directed research groups to work closely with faculty to enhance the knowledge base of this dynamic field.HCDE admits the majority of their students from the Direct to College Engineering placement process.
-* Informatics The Information School, also known as the Information School, offers a Bachelor of Science in Informatics that prepares students to analyze, design, and develop information technologies for the good of people, organizations, and society. The degree is a balance between technical skills in building information systems, and social, ethical, design, and organizational perspectives on the role of technology in people&#8217;s lives.Most Informatics students seek careers as software developers, data scientists, web developers, user experience designers, project manager, cybersecurity analysts or product managers.
+* Electrical and Computer Engineering The Bachelor of Science in Electrical Engineering offered by the Department of Electrical & Computer Engineering (ECE) prepares students to design and build hardware and software for a variety of devices that use electricity, electromagnetics, photonics and quantum phenomena, such as robots, smartphones, lasers, electric power, vehicle control, medical devices and more. While all Electrical Engineering students take courses that cover the full breadth of the discipline, it is possible to do an emphasis in computer architecture and hardware design. ECE admits the majority of students from the Direct to College Engineering placement process.
+* Human Centered Design & Engineering Students in Human Centered Design & Engineering (HCDE) practice research, design, and engineering by focusing on the needs of people in their various contexts. HCDE’s undergraduate and graduate degrees prepare students for leadership roles in user experience research and design, user interface design, human-computer interaction, computer-supported cooperative work, and related specializations. Beyond taking traditional classroom courses, students join directed research groups to work closely with faculty to enhance the knowledge base of this dynamic field.HCDE admits the majority of their students from the Direct to College Engineering placement process.
+* Informatics The Information School, also known as the Information School, offers a Bachelor of Science in Informatics that prepares students to analyze, design, and develop information technologies for the good of people, organizations, and society. The degree is a balance between technical skills in building information systems, and social, ethical, design, and organizational perspectives on the role of technology in people’s lives.Most Informatics students seek careers as software developers, data scientists, web developers, user experience designers, project manager, cybersecurity analysts or product managers.
 * Masters in Clinical Informatics and Patient Centered Technologies Offered through the Evening Degree program, learn to manage and evaluate the use of information technology and informatics applications to improve patient care processes and outcomes. Explore IT tools used in clinical and community settings, and study how to design and test systems that enhance care.
-* Visual Communications Design and Interaction Design The School of Art&#8217;s Division of Design educates and trains designers to create and develop concepts that optimize the function, value, and appearance of communications, products and systems for the benefit of both industry and society. Within the Division of Design, there are three majors: Visual Communication Design, Industrial Design and Interaction Design.
+* Visual Communications Design and Interaction Design The School of Art’s Division of Design educates and trains designers to create and develop concepts that optimize the function, value, and appearance of communications, products and systems for the benefit of both industry and society. Within the Division of Design, there are three majors: Visual Communication Design, Industrial Design and Interaction Design.
 180 is designed for all undergraduates. No previous exposure to programming or statistics is expected. Many important decisions made by individuals and society at large are or should be data driven. Therefore, understanding the fundamentals of data science is essential for functioning as an informed citizen.
-311 Foundations I
-312 Foundations II
-331 Software Design & Implementation
-332 Data Structures & Parallelism
-A minimum grade of 2.0 in CSE 123 or 143
-A minimum grade of 2.0 in CSE 123 or 143; a minimum grade of 2.0 in MATH 126 or 135
-Academic Satisfactory Progress Petition
 Accessible Accordion
 After CSE 143, students can take various upper-division computing courses. A good next step for students who enjoyed CSE 143 would be CSE 373 Data Structures and Algorithms, a more advanced course designed for non-majors. Other 100-level courses, such as CSE 154 and CSE 163, are also options (the exception is CSE 160, which cannot be taken after CSE 143). Completion of CSE 143 satisfies the prerequisites for students to apply for admission to the CS or CE major.
-After speaking with their assigned adviser, students may complete this form to request approval to extend beyond 210 credits AND 12 quarters at the UW. If a student receives approval from the Allen School, they will also need to petition the University. The Allen School Advising Team will assist students with that process if their Allen School petition is approved. Departmental approval alone does not guarantee University approval for a graduation extension.
+Allen School Petitions Process – Guidelines for Students
 Any student who is new to programming, and is interested in learning Java and general programming skills while working on entertaining assignments, would benefit from taking CSE 142.
 Applied and Computational Mathematical Sciences . ACMS is an inter-departmental program that combines higher math, computer science, probability and statistics, modeling, and applied math. Mathematics is used in a fundamental way in most fields of science and engineering, and its use is rapidly expanding in the social sciences and humanities, as well. Recent increases in computing power have made mathematical modeling, computer simulation, and statistical analysis more important than ever. This degree offers several pathways, combining higher math courses with courses in computer science, probability and statistics, modeling, and/or applied math.
+Applied Computational Mathematical Science: Note: starting in spring 2024, no double majors/degrees with Computer Science or Computer Engineering
 Approximately 100 students per quarter.
 Back to top
-Bellevue College &#8211; Bachelor of Science in Computer Science
+Bellevue College – Bachelor of Science in Computer Science
 Below are specific suggestions of related major areas at the UW campuses in Seattle, Bothell, and Tacoma and at other Washington state colleges and universities.
-Business at University of Washington in Seattle and Business at UW Tacoma . The Business programs at the University of Washington in Seattle and UW Tacoma offer concentrations in Information Systems that address the use of information technologies in business and organizational environments. The programs focus on the use and design of information systems to meet an organization&#8217;s tactical and strategic needs. The curriculum includes programming and database management, information system analysis and design.
+Below we articulate a few known exceptions or common responses regarding requests to petition. Please review this list in its entirety before requesting an exception.
+Business at University of Washington in Seattle and Business at UW Tacoma . The Business programs at the University of Washington in Seattle and UW Tacoma offer concentrations in Information Systems that address the use of information technologies in business and organizational environments. The programs focus on the use and design of information systems to meet an organization’s tactical and strategic needs. The curriculum includes programming and database management, information system analysis and design.
 Capacity
-Cascadia College &#8211; Bachelors of Applied Science in Mobile Application Development
+Cascadia College – Bachelors of Applied Science in Mobile Application Development
 Central Washington University
-Co-requisite(s)
+Computer Engineering [PDF]
+Computer Science – Data Science Option [PDF]
+Computer Science [PDF]
 Computer Science Principles (CSE 110)
 Computing-Related Majors
-Course
 CSE 110 (which had number CSE 120 until 2022) introduces students to the fundamental principles of computer science and to basic programming concepts as a means to develop their computational thinking. Students explore the creative aspects of computing, including abstraction, problem-solving and managing complexity, and have the opportunity to consider the social, ethical and legal ramifications of various computing technologies. CSE 110 is related to the Advance Placement course in Computer Science Principles.
 CSE 120 was renumbered CSE 110 just to emphasize that it is not part of the CSE 121, CSE 122, CSE 123 sequence. It did not change otherwise.
 CSE 131 offers students the opportunity to express their creativity while exploring the technical aspects of digital photography, including photographic composition, the science of optics and digital imaging, and the future of internet-enabled photography. Students practice using a variety of software tools and techniques for incorporating design elements such as line, color, texture and light, culminating in a final project organized around a theme. View examples of past student projects curated by course instructors here and here.
@@ -44,13 +40,17 @@ CSE 143 builds on the material in CSE 142 to develop more advanced programming s
 CSE 143 is designed as a follow-on course to CSE 142. While students who already know the material covered in CSE 142 are allowed to take CSE 143 without formal approval, doing so is often not advised because the two courses are designed together. CSE 143 is a great choice for any student wanting to learn more after CSE 142, and CSE 123 or CSE 143 is generally required for entry to the CS or CE major. CSE 123 or CSE 143 also may be required for other majors on campus.
 CSE 160 offers a firm grounding in computer programming to any student, and no previous programming experience is assumed. Although it is aimed at those who are new to programming, students who have taken CSE 121, CSE 122, or CSE 142 (but not CSE 123 or CSE 143) can enroll in this course, but also see CSE 163, which is designed to follow CSE 122 or CSE 160.
 CSE 163 provides students who have taken CSE 122, CSE 142, or CSE 160 with a programming course about how to write programs that (a) manipulate different types of data (images, text, tables, etc.), (b) leverage the growing ecosystem of tools and libraries for data programming, (c) are both efficient and elegant, and (d) are medium-scale in size (100 to 200 lines). The course complements CSE 123, which focuses more deeply on fundamental programming concepts and the internals of data structures. In contrast, CSE163 emphasizes the efficient use of those concepts for data programming. CSE 163 uses the Python programming language.
-CSE 300-Level Courses & their Prerequisites
+CSE 311 Petitions
 CSE 331 Petitions
 CSE 500 Level Course Petitions
+Degree Requirements
+Degree Requirements Petition
+Double Majors
 Due to relatively low demand, we have not been offering this course every year. We hope to relaunch it at some point.
 DXARTS (Minor). The Digital Arts and Experimental Media program creates opportunities for artists to pursue lines of inquiry within the scientific, technical and creative realms while discovering and documenting new areas of knowledge and practice in this emerging field. This inherently interdisciplinary curriculum requires all students to diversify their artistic practice across four major content areas (sound, video, 3D, and sensing and control systems) as well as compliment their study with relevant upper-division coursework selected from related fields (computer science, music, drama, dance, art, engineering, architecture, cinema studies, etc.). Students are positioned to pursue original creative and technical research.
 Eastern Washington University
 ECE Course Petitions:
+Engineering: While double majors are not allowed between Computer Engineering and any other Engineering degree, occasionally, on rare exceptions, a student may pursue a Computer Science degree along with another Engineering degree. Please note however, there are no double degrees with any Allen School major and the Electrical and Computer Engineering degree.
 Enrollment in CSE 142 has increased dramatically, and the course has been particularly successful at engaging more women in computer science and engineering. CSE 190A, a seminar linked to a section of CSE 142, enables students to explore the role of women in the field through group discussions, hands-on activities, and guest speakers. Watch our video exploring the growing popularity of CSE 142 and its follow-on course, CSE 143, and how these courses contribute to greater diversity in computing.
 Evergreen State College
 Every student, no matter what his/her chosen field, should be familiar with the concepts and technologies that underpin computing and its role in our society. Anyone who seeks to acquire a basic understanding of computer science and to gain insights beyond what they know as mere consumers of technology would benefit from taking this course.
@@ -59,41 +59,42 @@ Generally speaking, most students should plan to take the 400 level courses in t
 Generally speaking, students who plan to major in computer science or computer engineering should complete CSE 142 and CSE 143 (or CSE 143X), as they are prerequisites for admission. Students may also need to complete CSE 142 and/or CSE 143 to satisfy requirements for majors from other departments.
 Geographic Information Systems The Geography department at the UW offers a Geography degree with a concentration in Geographic Information Systems (GIS). A GIS degree gives its majors an understanding of the development, sources, and uses of geographic information. The GIS curriculum focuses on geographic system analysis, map sources and map error, urban transportation GIs analysis, and natural resources and environmental analysis.
 Gonzaga University
-Green River College &#8211; Bachelor of Applied Science in Software Development
-If a student completes EE 215 that can use that to replace EE 205, however EE 205 is strongly encouraged for our CE majors
-If a student completes EE 271, they can use that to replace CSE 369
+Green River College – Bachelor of Applied Science in Software Development
+If you are a senior, file for graduation to get Graduating Senior Priority during your registration. After filing, you will get two quarters of priority registration which will allow you to register before anyone else (including other seniors who have not yet filed for graduation).
 If you have MATH 300 completed, you can take CSE 311 and CSE 332 at the same time. Your Allen School adviser can help you register since you won’t have CSE 311 pre-req credit yet.
+If you have trouble registering due to prerequisites, contact an adviser for assistance.
+If you think you will not be able to graduate due to scheduling issues, contact an adviser.
 In addition to our 100-level courses, we offer a selection of 300- and 400-level courses in which students can explore in some depth specific areas of computing in a format suited to non-majors. Topics include algorithms, intermediate programming, artificial intelligence and database systems. See our overview of UW CSE’s non-major courses above to learn about options for additional study.
+In general students should plan to take the required degree requirements. In some cases, a student may petition to take a different course in place of a stated degree requirement. This usually requires either a conversation with your assigned adviser in the Allen School, or sometimes it requires further approval with an official petition that would then be reviewed by the Director of Student Services and the Faculty Undergraduate Program Chair.
 Informatics Minor If you love your major but want to know more about how to apply data, information and technology to solve problems in your chosen field, then the Informatics minor might be for you. The Informatics minor includes required components in data, design, policy and ethics, and code.
 Introduction to Data Science (STAT/INFO/CSE 180)
-Lake Washington Institute of Technology &#8211; Bachelor of Applied Science in Software Development
+Lake Washington Institute of Technology – Bachelor of Applied Science in Software Development
 Majors with an asterisk (*) are capacity-constrained: Students must complete all minimum requirements to apply and must then compete with the entire applicant pool for a limited number of spaces. These majors often have application forms and application deadlines; some of them require standardized tests, recommendations, and/or interviews.
 Many students enter the UW with an interest in computers. There are a variety of ways you can gain an understanding of how computers work, and several majors other than Computer Science and Computer Engineering can prepare you for employment in a field where computers are used.
 MATH 134, 135 and 136: honors math track students have two options:
 MATH 336: For students who complete MATH 336, they may petition to request to take CSE 431 in place of taking CSE 311. This waiver is contingent on the strength of the grade in MATH 336.
 Most students should take CSE 122 or CSE 123 instead of CSE 143. We will offer CSE 143 during the 2022-2023 academic year for students who already completed CSE 142 or a corresponding course at another institution.
-None
-North Seattle College &#8211; Applied Bachelor’s in Application Development
+North Seattle College – Applied Bachelor’s in Application Development
 OLD: Computer Programming I (CSE 142)
 OLD: Computer Programming II (CSE 143)
 OLD: Science and Art of Digital Photography (CSE 131)
 Other Programs in Washington State
 Pacific Lutheran University
-Please refer to the Allen School Continuation Policy for information about minimum course load, dropping required courses, and other academic policies and procedures.
-Prerequisite(s)
-Renton Technical College &#8211; Bachelor of Applied Science in Application Development
+Paul G. Allen School of Computer Science & Engineering: There are no double majors/double degrees between Computer Science and Computer Engineering
+Renton Technical College – Bachelor of Applied Science in Application Development
 Saint Martin’s University
 Seattle Pacific University
 Seattle University
-Some students may need to petition the university for additional credits or quarters to complete their degree due to extenuating circumstances. Students must have a conversation with their academic adviser if they feel their situation warrants an extension of the University&#8217;s academic satisfactory progress policy, which requires students to complete their undergraduate degree program within 30 credits beyond the minimum required for their degree.
+Some students choose to pursue a double major or double degree. There are a few known substitutions that we’ll list here:
+Sometimes a student will enter the Allen School with a significant number of MATH and STAT courses completed. If this is the case, you may try petitioning to waive CSE 311 via a substitution from a math course. Generally asking for just MATH 300 or just MATH/STAT 394 is not enough for a substitution. If you have not taken a significant number of MATH or STAT courses that cover this material, then generally you should plan to take CSE 311. A few known exceptions to this outcome follow:
+Stat/CSE Double Majors: STAT 435 can count as a CSE core-course in place of CSE 446 (no credit for both toward the CSE degree) In the Data Science option, STAT 303 can replace SOC 225
 STAT/INFO/CSE 180, Introduction to Data Science (IDS), is a course offered every quarter. It is a survey course introducing the essential elements of data science: data integrity including the ethics and social context of data; data methods including using tables, graphs, and other visualizations; and data analysis, including statistics methods and machine learning. It is not a programming course: rather than programming, students gain hands-on experience with other software tools and methods.
 Students have a number of options for further study. Three complementary courses are specifically designed to follow CSE 142: (1) CSE 143 is the continuation course for those who want to develop more advanced programming skills in Java and is the next step toward most upper-division CSE courses, (2) CSE 154 is a web programming course covering many technologies used to implement web pages, and (3) CSE 163 is a programming course focused on data analysis with a variety of data-science programming tools.
 Students have multiple options for building on what they learn in CSE 110. A natural next step may be to follow principle with practice by enrolling in one of our introductory programming courses, CSE 121 or CSE 160. While CSE 110 offers a great introduction to computer science concepts, it is not a necessary prerequisite for enrollment in those programming courses.
 Students sometimes decide to delay taking CSE 331 until the end of their time in the Allen School with the intention to waive the course based on prior internship/industry experience. These petition requests are always denied. If you are petitioning a waiver for any course, you typically need to prove how you have acquired the academic knowledge covered in the course. Simply having internship experience has been determined to not be a viable substitute for this course. Ideally students would complete 331 early in their academic career and before embarking on a software internship to get the most benefit from the course.
-The information below is meant to help you understand the CSE 300-level courses and their prerequisites. Click here for a visual representation of the information .
+The CS and CE programs each require you to take 180 total credits to graduate. You will need to fulfill a General Education component, a Mathematics and Science component, and a Computer (Science or Engineering) component that consists of required classes and senior electives. For those students who are considering a double major, see below for an explanation of exceptions to our standard degree requirements.
 The last offering of CSE 142 will be Summer 2022 as we transition to CSE 121, CSE 122, and CSE 123 in place of CSE 142 and CSE 143. We retain the information below as reference for students who took CSE 142 or corresponding courses at other institutions.
-There are a host of other jointly listed courses between ECE and CSE
-There are similar programs in the area which take transfer students, and we highly recommend that you apply to multiple programs if you&#8217;re sure you want to study Computer Science or Computer Engineering. You should consider:
+There are similar programs in the area which take transfer students, and we highly recommend that you apply to multiple programs if you’re sure you want to study Computer Science or Computer Engineering. You should consider:
 This course is a joint project of Statistics, the Information School, and the Allen School, synthesizing the perspectives and expertise of the units. It was jointly developed, and each department/school leads one quarter’s offering each year. The offerings cover the same material.
 University of Washington Bothell
 University of Washington in Seattle
@@ -101,10 +102,10 @@ University of Washington Tacoma
 Upper-Level Courses
 UW Bothell & Tacoma Campuses
 UW Bothell offers a Bachelor’s of Science degree in Computing and Software Systems , Computer Engineering , as well as a BA in Applied Computing and a Bachelor of Arts in Interactive Media Design . Bothell also offers a Graduate Certificate in Software Developement .
-UW Computing &#038; Communications offers training courses in computing areas, including HTML, Word Processing, Spreadsheets, Databases, Desktop Publishing, etc.
+UW Computing & Communications offers training courses in computing areas, including HTML, Word Processing, Spreadsheets, Databases, Desktop Publishing, etc.
 UW CSE offers honors sections connected to CSE 142 and 143 in which students take part in readings and discussions exploring a variety of computer science topics, including the nature of computation, the mathematical underpinnings of computer science, social issues related to computing, and current trends in the field. Participating students earn one additional credit for the seminar; in addition, the Honors Program grants students who complete CSE 142 or 143 in conjunction with the seminar credit for one 5-unit math or science course in the core.
 UW Extension offers certificate programs in many computer-related areas as well as evening courses for credit and noncredit.
-UW Tacoma offers a Bachelor&#8217;s of Science degree in Computing and Software Systems , Information Technology and Computer Engineering .
+UW Tacoma offers a Bachelor’s of Science degree in Computing and Software Systems , Information Technology and Computer Engineering .
 What is it?
 What next?
 While the course is not a direct prerequisite for other courses, students are likely to be motivated to follow-up with additional courses in computer science, informatics, and statistics. See CSE 121 and CSE 160 for programming-focused courses. In particular, the programming aspects of 180 are not sufficient by themselves to skip 121/160.

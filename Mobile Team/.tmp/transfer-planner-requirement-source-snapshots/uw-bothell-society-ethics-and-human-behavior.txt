@@ -3,11 +3,11 @@ Source: https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavi
 Title: Society, Ethics & Human Behavior - School of Interdisciplinary Arts & Sciences
 
 School of Interdisciplinary Arts & Sciences
-&#124;
+|
 Undergraduate
-&#124;
+|
 Majors
-&#124;
+|
 Society, Ethics & Human Behavior
 Society, Ethics & Human Behavior
 IMPORTANT NOTICE

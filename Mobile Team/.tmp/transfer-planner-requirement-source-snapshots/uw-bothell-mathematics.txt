@@ -17,8 +17,8 @@ Expand Navigation
 STEM Advisory Board
 Departments
 Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
+Computing & Software Systems
+Engineering & Mathematics
 Physical Sciences
 Awards & Endowments
 Undergraduate
@@ -27,7 +27,7 @@ Majors
 Applied Computing
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 STMATH 124: Calculus I
 STMATH 125: Calculus II
 STMATH 126: Calculus III

@@ -288,14 +288,14 @@ Master of Fine Arts (MFA) Program Fund
 American Muslim Research Institute Fund
 All IAS Funds
 School of Interdisciplinary Arts & Sciences
-&#124;
+|
 Majors
 School of Interdisciplinary Arts & Sciences
-&#124;
+|
 Undergraduate
-&#124;
+|
 Majors
-&#124;
+|
 Media & Communication Studies
 Media & Communication Studies
 BACHELOR OF ARTS
@@ -405,7 +405,7 @@ BIS 333 Life Online: Interpreting the Internet
 BIS 347 History of American Documentary Films
 BIS 363 Politics and Popular Music
 BIS 373 Caribbean Film and Popular Culture
-BIS 375 Contemporary &#8220;Muslim&#8221; Artists
+BIS 375 Contemporary “Muslim” Artists
 BIS 464 Topics in Advanced Cinema Studies
 BISAES 369 American Culture and Mass Media
 BISMCS 471 Advanced Topics in Media and Communication

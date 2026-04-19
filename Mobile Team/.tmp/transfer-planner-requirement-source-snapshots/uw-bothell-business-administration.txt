@@ -3,9 +3,9 @@ Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administ
 Title: Bachelor of Business Administration - School of Business
 
 [Supplemental official source] UW Bothell BBA curriculum hub
-&#124;
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
+|
 18807 Beardslee Blvd, Suite 210
 425.352.5000
 425.352.5394
@@ -50,7 +50,7 @@ Close mobile menu
 Commuter Services
 Completion of prerequisite coursework is required before starting.
 Concentrations
-Connections that matter. Access internships, networking, and mentorship across greater Seattle&#8217;s dynamic business community.
+Connections that matter. Access internships, networking, and mentorship across greater Seattle’s dynamic business community.
 Contact
 Contact Us
 Contact us by phone at:
@@ -97,11 +97,11 @@ Leadership & Strategic Innovation (LSI)
 Leadership & Strategic Innovation Option
 Leadership and Strategic Innovation
 Leadership History
-Learn how firms make financial decisions and how these decisions affect individual organizations and society as a whole. You&#8217;ll learn how firms acquire and allocate funds, how financial markets operate, and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Graduates take positions in financial institutions such as commercial and investments banks, finance departments of major corporations, or consulting firms. Learn more about the Finance concentration .
+Learn how firms make financial decisions and how these decisions affect individual organizations and society as a whole. You’ll learn how firms acquire and allocate funds, how financial markets operate, and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Graduates take positions in financial institutions such as commercial and investments banks, finance departments of major corporations, or consulting firms. Learn more about the Finance concentration .
 Learn more about admissions requirements as well as how to apply .
-Learn the technical and business skills required to solve business problems in technology-based environments. You&#8217;ll learn to conduct structured and informal analyses to design and improve applications and systems, from e-commerce storefronts to enterprise applications. MIS students complete courses in both Business and Computing Software Systems (CSS). Learn more about the MIS concentration .
-Learn to develop and implement coordinated marketing programs to successfully manage a company&#8217;s relationship with its target customers in order to meet its strategic goals in a competitive environment. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures. Learn more about the Marketing concentration .
-Learn to develop and implement coordinated marketing programs to successfully manage a company&#8217;s relationship with its target customers in order to meet its strategic goals in a competitive environment. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures. Learn more about the Marketing option .
+Learn the technical and business skills required to solve business problems in technology-based environments. You’ll learn to conduct structured and informal analyses to design and improve applications and systems, from e-commerce storefronts to enterprise applications. MIS students complete courses in both Business and Computing Software Systems (CSS). Learn more about the MIS concentration .
+Learn to develop and implement coordinated marketing programs to successfully manage a company’s relationship with its target customers in order to meet its strategic goals in a competitive environment. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures. Learn more about the Marketing concentration .
+Learn to develop and implement coordinated marketing programs to successfully manage a company’s relationship with its target customers in order to meet its strategic goals in a competitive environment. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures. Learn more about the Marketing option .
 Library
 Management
 Management Concentration
@@ -134,7 +134,7 @@ Our curriculum and approach blends business fundamentals with practical, applied
 People
 PharmD-MBA Program
 Policies & Petitions
-Prepare to lead, innovate, and create impact in today&#8217;s dynamic business world. In the School of Business at the University of Washington Bothell, the Bachelor of Arts in Business Administration prepares you to think strategically, act ethically, and drive results in any industry. Through small classes, close mentorship, and connections to the Puget Sound business community, you will gain the confidence, knowledge, and experience to launch a meaningful career.
+Prepare to lead, innovate, and create impact in today’s dynamic business world. In the School of Business at the University of Washington Bothell, the Bachelor of Arts in Business Administration prepares you to think strategically, act ethically, and drive results in any industry. Through small classes, close mentorship, and connections to the Puget Sound business community, you will gain the confidence, knowledge, and experience to launch a meaningful career.
 Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
 Prerequisite Courses
 Prerequisites

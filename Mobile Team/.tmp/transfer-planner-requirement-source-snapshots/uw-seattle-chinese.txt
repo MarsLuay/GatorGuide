@@ -2,14 +2,10 @@ Owner: uw-seattle-chinese
 Source: https://asian.washington.edu/ba-chinese
 Title: B.A. in Chinese | Asian Languages & Literature | University of Washington
 
-[Supplemental official source] CHIN Courses
 [Supplemental official source] previous requirements
 &copy; 2026 University of Washington . All rights reserved.
 10 credits :
 10 credits from among the following (if the course has not already been used to satisfy other requirements):
-10653
-10654
-10655
 15 credits , MUST INCLUDE:
 15-20 credits of Chinese language classes. Students must take at least CHIN 213 or CHIN 303, unless waived because of advanced skills. Remaining credits may be drawn from the following:
 15-45 credits , with a minimum of 15 credits beyond the third year of the language, chosen from among:
@@ -36,9 +32,6 @@ ASIAN 404 Writing Systems
 ASIAN 498 (by approval when offered as a Chinese language course)
 Asian Languages & Literature
 asianll@uw.edu
-Autumn 2023
-Autumn 2024
-Autumn 2025
 Awards & Honors
 B.A. in Chinese
 B.A. in Chinese | Asian Languages & Literature | University of Washington
@@ -47,8 +40,6 @@ Bilingual and Biliteracy Research Lab
 Box 353521
 Calendar
 Careers
-CHIN 134 A
-CHIN 138 A
 CHIN 211, CHIN 212, CHIN 213
 CHIN 301, CHIN 302, CHIN 303
 CHIN 331 Chinese Extensive Reading
@@ -76,7 +67,6 @@ CHIN 462 History of Chinese Literature
 CHIN 470 Advanced Readings in Modern Chinese
 CHIN 482 Advanced Readings in Modern Chinese
 CHIN 496 Special Studies in Chinese (when the topic is advanced language instruction)
-CHIN 499 A
 CHIN Courses
 Chinese
 Chinese Add Codes & Wait Lists
@@ -84,10 +74,7 @@ Chinese Flagship Program
 Chinese Language Courses
 College of Arts & Sciences
 Contact Us
-Course
-Course Title (click for details)
 Courses
-Courses by Term
 Current Grad Students
 Degree Requirements
 Department of Asian Languages & Literature
@@ -103,8 +90,6 @@ Faculty
 Featured Courses
 Fields of Interest
 Financial Support
-First-Year Intensive Chinese for Heritage Learners
-First-Year Intensive Chinese for Non-Heritage Learners
 For Faculty and Staff
 For Graduate Students
 For Teaching Assistants
@@ -141,12 +126,10 @@ Main menu
 Majors & Minors
 Maps
 Markus Memorial Lecture
-Meeting Time
 Menu
 Minor in Chinese
 Mission & Vision
 More ways to connect
-MTWThF 9:10am - 12:20pm
 MyUW
 News & Events
 Newsletter
@@ -184,21 +167,12 @@ Seattle, WA 98195-3521
 Share
 Site Map
 Skip to main content
-SLN
-Spring 2023
-Spring 2024
-Spring 2025
-Spring 2026
 Staff
 Stay Connected
 Students who earn a B.A. in Chinese develop proficiency in the language, literature, and culture of a country with a powerful global reach and a literary tradition dating back more than 3,000 years. They learn to read, write, and converse in Chinese while exploring the major works of Chinese literature—from classical texts to recent works of modern fiction—and analyzing the features of the Chinese language in order to understand its history and use. Students benefit from one of the strongest Chinese language curriculum programs in the country and extensive university resources, including distinctive courses, language-intensive study abroad opportunities, and on-campus resources such as the East Asia Library . Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe.
 Students with advanced skills may alternatively take additional courses in linguistics, literature, culture, and/or classical language beyond the minimum 30 credits required, with approval of program coordinator. Note that no more than 20 credits of modern Chinese language courses may apply toward the major, although students may need to take more to reach the required third-year level of language competence.
 Study Abroad
 Submit an Update
-Summer 2023
-Summer 2024
-Summer 2025
-Summer 2026
 Summer Study
 Support Asian Languages & Literature
 Support Us
@@ -208,12 +182,10 @@ Teaching Endorsements
 Terms
 The Chinese Language & Literature major requires a minimum of 50 credits. The actual number of credits required depends on the level of Chinese language attained upon entering the University of Washington.
 The Chinese Language & Literature major requires a total of 50-80 credits depending upon the level of Chinese attained before entering the University of Washington. [ Note : These requirements apply to students who declared their major before Winter 2019.]
-to be arranged
 Transfer Students
 Transferring Credits
 Twitter
 Undergraduate
-Undergraduate Research
 University of Washington
 Upcoming Courses
 Urdu
@@ -223,7 +195,4 @@ Voicing Concerns
 Washin Kai
 Washington
 Welcome
-Winter 2024
-Winter 2025
-Winter 2026
 You are here

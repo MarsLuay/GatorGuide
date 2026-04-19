@@ -5,15 +5,15 @@ Title: BSECE Degree Requirements | UW Department of Electrical & Computer Engine
 -->
 (Only EE course credits may apply except where specifically noted)
 (Please note that EE 398 is not considered a seminar and thus does not apply to the 2-credit seminar limit.)
-[Supplemental official source] BSECE Admissions Requirements
-[Supplemental official source] BSECE Transfer Admissions FAQs
+[Supplemental official source] Bachelor of Science in Electrical and Computer Engineering (BSECE)
 [Supplemental official source] Computer Architecture Pathway
 [Supplemental official source] Control Systems Pathway
+[Supplemental official source] Digital Systems Design Pathway
 [Supplemental official source] Embedded Systems Pathway
 [Supplemental official source] Machine Learning Pathway
-[Supplemental official source] Microelectronics and Nanotechnology Pathway
 [Supplemental official source] Supplemental official track and option pages
-*Recommended from list for ECE: CSE 121, CSE 122, CSE 123, CSE 142, or PHYS 122
+[Supplemental official source] Sustainable Energy Systems Pathway
+[Supplemental official source] VLSI Design / Digital Systems Design Pathway
 *Recommended. Please note that EE 398 is not considered a seminar and thus does not apply to the 2-credit seminar limit.
 &copy; 2026 University of Washington | Seattle, WA
 <!--
@@ -24,19 +24,19 @@ Title: BSECE Degree Requirements | UW Department of Electrical & Computer Engine
 1.0 or higher in the Advanced Technical Communication, Capstone and Advanced ECE Electives requirements​
 1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward*
 1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*
-2:30 to 3:30 p.m.
 2. General Education Courses
 2.0 or higher in the ECE Core and Computer Programming (CSE 123 or 143) requirements​
 3. Free Electives
-A maximum of 2 credits of seminar courses (see adviser for list of approved seminar courses &#8211; scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list )
+A career focused on developing and operating power and energy systems
+A career focused on public service
+A maximum of 2 credits of seminar courses (see adviser for list of approved seminar courses – scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list )
 A maximum of 6 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
 A minimum of 180 credit hours of coursework
 A minimum of 45 credits earned in residence at the UW
-A pre-enrollment requirement is a course that is required to be completed (with a grade of 2.0 or higher) before the start of Autumn Quarter if admitted to the ECE major. These courses are pre-enrollment requirements for the ECE program:
-A prerequisite is a course that is required to be completed (with a grade of 2.0 or higher) prior to the April 5 th ECE application deadline . We cannot consider applicants who have not completed all of the following prerequisite courses by the application deadline, even if the courses are in-progress at the time of application:
 A student following the Computer Architecture pathway will focus on the fundamentals of computing systems — how they work, how we can best harness their power and how to create new microprocessor-based systems to continue this amazing trajectory. This pathway combines a strong focus on microprocessors and their implementation with software techniques to efficiently use these systems.
 A&H (10 credits)
 A&H/SSc courses are designated in the quarterly time schedule and the UW course catalog . A minimum of 5 credits of diversity (DIV) coursework is required. The DIV credits may overlap with A&H or SSc. Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
+ABET Accreditation Information
 ABET Accreditation: BSECE
 ABET Accreditation: BSEE
 About
@@ -46,9 +46,10 @@ Accessibility
 Additional 300 and 400 level EE courses to reach 36 credits. These credits are subject to the following:
 Additional 300 and 400 level EE courses to reach 39 credits. These credits are subject to the following:
 Additional credits in A&H or SSc to bring total to 24 credits
-Additional NSc courses from approved list to reach 45 credits: see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list).
+Additional NSc courses from approved list to reach 45 credits: see adviser for list of approved courses (scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list).
 Adjunct Faculty
-Admissions requirements:
+Admission Requirements
+Admissions
 Advanced Electrical and Computer Engineering Electives (36 credits):
 Advanced Electrical and Computer Engineering Electives (39 credits):
 Advanced Technical Communication (4 credits) :
@@ -57,7 +58,7 @@ Advisory Board
 Affiliate Faculty
 Air and Space
 Alumni
-An electric car does not simply run on batteries, but it requires a wide variety of semiconductor devices to manage the transfer of charge from the grid to the car, and from the car to the road. Materials and devices to meet the increasing demand of electric vehicle companies who are interested in cameras/lidars is also on the increase.
+Analyzing the impact of increased residential solar penetration on the voltage profile of distribution feeders
 Any AMATH class
 Any BIOL class except for BIOL 100: Introductory Biology , BIOL 161: Advanced Placement (AP) in General Biology 1 , BIOL 162: Advanced Placement (AP) in General Biology 2
 Any MATH class at 200 level or above
@@ -65,78 +66,67 @@ Any Natural Sciences (NSc) course from this list:
 Any NEUSCI class
 Any PHYS class at 200 level or above
 Any STAT class with STAT 394: Probability I as a prerequisite
-Anything with an electronics component uses, or will soon use, microelectronics and nanotechnology — from a cellphone to medical equipment to aircraft for space missions.
 Application of machine learning algorithms to cybersecurity. Anomaly detection, spam detection and IP blacklisting, use of natural language processing to improve performance in architecture identification. Optimization methods for determining adversarial inputs to bias the detection and classification outputs of deep neural networks (DNN). Backdoor trigger embedding in DNN. Generative Adversarial Networks.
 Applied Cybersecurity Engineering (ACE)
-Apply to UW by February 15.
-Apply to UW ECE by April 5 (Apply via UApp HERE )
 Applying rigorous mathematical modeling for applications, identifying and designing suitable optimization algorithms.
-Applying to start autumn quarter
 Applying trained machine learning models for various applications and tasks, such as classification, detection, segmentation and recommendation.
 Approved Additional Natural Sciences (NSc) Courses:
-Are you a running start student? Learn more .
 Areas of Impact
 Areas of Inquiry (69 credits)
 Arts and Humanities (A&H), Social Sciences (SSc) (24 credits):
-As an Engineering Undeclared student, your first year will include engineering foundational coursework such as math and science, as well as UW general education courses. At the end of your first year, you will request placement into an engineering major. The requirements to request placement in the UW ECE program are as follows:
 As health and medicine evolve to use ever greater amounts of electronics, development of computing systems helps to create these diagnostic and treatment systems. From a smartphone that can automatically detect disease to the electronics that capture data and recreate imaging from CT and PET scanners, this technology relies heavily on embedded systems.
-As of autumn 2024, the ECE degree will be the only undergraduate option for students seeking admission to the ECE department.
-As of the autumn 2024 admission cycle, the BSECE degree will be the only undergraduate option for students seeking admission to the ECE department.
+As health and medicine evolve to use ever greater amounts of electronics, digital systems engineers help to create these diagnostic and treatment systems. From a smartphone that can automatically detect disease to the electronics that capture data and recreate imaging from CT and PET scanners, this technology relies heavily on computing systems.
+As health and medicine evolve to use ever greater amounts of electronics, VLSI / digital systems engineers help to create these diagnostic and treatment systems. From a smartphone that can automatically detect disease to the electronics that capture data and recreate imaging from CT and PET scanners, this technology relies heavily on computing systems.
 As the COVID crisis has shown, modern automobiles are reliant on a large number of digital chips and embedded systems to function. As we move toward self-driving automobiles, this will increasingly be the case. Development of computing systems brings together the hardware and software that underpins this technology.
-As the transistors that make up the bulk of our electronic systems continue to shrink, traditional ways of controlling digital circuits and systems are becoming inadequate. Designing these digital circuits for transistors today (and tomorrow) requires a deeper understanding of how transistors operate at nanoscale dimensions. Classical mechanics knocks on the door of quantum mechanics when transistors shrink to microscopic sizes, and the abstract notion of a single electron controlling the behavior of a simple analog circuit is no longer a far-fetched idea. Emerging quantum technologies are already using semiconductors to build qubits and control electronics. And the integration of silicon and optical active semiconductors is an important, concurrent advance, leading to enhanced optoelectronic devices for sensing, navigation and computing.
+As the supply-chain crunch in semiconductors has shown, modern automobiles are reliant on a large number of digital chips and embedded systems to function. As we move toward self-driving automobiles, this will increasingly be the case. Digital systems engineers bring together the hardware and software that underpins this technology.
+As the supply-chain crunch in semiconductors has shown, modern automobiles are reliant on a large number of digital chips and embedded systems to function. As we move toward self-driving automobiles, this will increasingly be the case. VLSI / digital systems engineers bring together the hardware and software that underpins this technology.
 At least 20 EE course credits from the 36 credits of Advanced ECE Electives must be completed at the 400 level .
 At least 20 EE course credits from the 39 credits of Advanced ECE Electives must be completed at the 400 level .
 Autonomous vehicles, which include a network of interconnected sensors and microprocessors that rely on real-time embedded systems engineering
 Bachelor of Science
 Bachelor of Science in Electrical and Computer Engineering (BSECE)
+Bachelor of Science in Electrical and Computer Engineering (BSECE) | UW Department of Electrical & Computer Engineering
 Bachelor of Science in Electrical Engineering (BSEE)
 Be boundless
-Be sure to confirm you have met the prerequisites for the major.
-BIOL 130
-BIOL 220
 Biosystems
 BluHaptics (Olis Robotics): Underwater Robots with Human Touch
+BSECE — Flexible, Adaptable, Versatile
 BSECE Admissions Requirements
-BSECE Admissions Requirements | UW Department of Electrical & Computer Engineering
 BSECE and BSEE FAQs
 BSECE Coursework Requirements
 BSECE Degree Requirements
 BSECE Degree Requirements | UW Department of Electrical & Computer Engineering
+BSECE DTC Students
 BSECE Honors Options
 BSECE Pathways
+BSECE Sample 4 Year Plan & Requirements (PDF)
 BSECE Satisfactory Progress
+BSECE Transfer / Interest Changer Students
 BSECE Transfer Admissions FAQs
-Business analyst
+Building automation and services company such as McKinstry, Stantec
 Campus Safety
-Can I apply to ECE if I have already completed a bachelor’s degree?
 Capstone
-Capstone (4 &#8211; 8 credits):
-Capstone (4–8 credits): see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list)
+Capstone (4 – 8 credits):
+Capstone (4–8 credits): see adviser for list of approved courses (scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list)
 Capstone courses do NOT count toward Advanced ECE Electives.
 Capstone:
-Careers in Electrical and Computer Engineering
-Certificate Program in GPU-Accelerated Computing &#038; Visualization
-Certificate Program in Machine Learning &#038; Deep Learning
+Certificate Program in GPU-Accelerated Computing & Visualization
+Certificate Program in Machine Learning & Deep Learning
 Certificate Programs
-CHEM 142 (or CHEM 143 or CHEM 145)
-CHEM 142 (or CHEM 143 or CHEM 145) — 5 credits
 CHEM 152: General Chemistry , CHEM 153: Accelerated General Chemistry , CHEM 155: Honors General Chemistry , CHEM 220: Principles of Chemistry II
 CHIPS at UW ECE
 CHIPS Faculty
-CHIPS News &#038; Media
+CHIPS News & Media
 class="pr-button" style="max-height: 70px; max-width: 180px; border: 0;" alt="" />
 Combined BS-MS
 Community Engagement
-Completed the following prerequisite courses or equivalent by the UW ECE application deadline :
-Completed the following prerequisite courses or equivalent prior to July 1 , the deadline for requesting placement:
-Completing the admissions requirements does not guarantee admission, and we may not be able to offer admission to all applicants who meet the minimum prerequisites.
+Computation is a marriage of hardware and software to help enable new forms of systems, from microprocessors and mobile devices to network routers, neural computation chips and other devices. Digital systems design couples the hardware and software focus of computing with the physical realities of very large-scale integrated (VLSI) chip design.
 Computer Architecture
 Computer Architecture Courses
 Computer architecture is at the heart of computing technology, and because of that, it has a profound, fundamental impact in this area.
 Computer Architecture Pathway
 Computer Architecture Pathway | UW Department of Electrical & Computer Engineering
 Computer Programming (4-5 credits):
-Computer Science: University of Washington’s introductory computing sequences (CSE 121, 122, 123 or CSE 142 and CSE 143) are taught in Java and therefore ECE looks for transfer coursework in the Java programming language when determining potential equivalencies to the prerequisite and pre-enrollment requirements. CSE 123/143 (or an approved equivalent to either CSE 123 or CSE 143) will fulfill ECE’s computer programming prerequisite requirement. If you have taken CSE 123 or 143, you do not need to go back and take CSE 122 or 142.
 Computers are all around us, from the smartphones in our pocket, to the control systems in cars, planes, and robots, to many other systems where a microprocessor is embedded into a system it controls. This course takes a practical approach to introducing the hardware and software components needed to build an embedded system from the ground up.
 Computing
 Computing and Networking
@@ -144,6 +134,7 @@ Computing Data and Digital Technologies
 Computing is moving away from the traditional keyboard/mouse paradigm and instead is becoming embedded into the world around us through vast numbers of microprocessors. Every large scale data center in existence today is composed of many microprocessors that coordinate interconnections between larger computing systems.
 Computing Pathway
 Connect with ECE:
+Consulting companies such as DNV, Power Engineers, Black & Veatch
 Contact Advising
 Contact Us
 Control Systems
@@ -158,6 +149,7 @@ Control systems use math to model and manipulate the physical and non-physical w
 Course Offerings & Course Enrollments
 Course Offerings and Enrollments
 Courses
+Courses in economics or public policy can also help to give a student an appreciation of the context in which sustainable energy systems develop.
 Courses used to satisfy requirements must be taken on a graded basis. Courses taken as S/NS cannot be used towards degree requirements.
 Covers key software development concepts and tools not in introductory courses. Concepts of lower-level programming (C/C++) and explicit memory management; techniques and tools for individual and group software development; design, implementation, and testing strategies.
 Covers the application of control system analysis and synthesis techniques to electromechanical systems. Includes time and frequency domain methods, analog and digital electronics, DC motors, and unstable mechanical systems.
@@ -165,10 +157,6 @@ COVID-19 Information and Resources for
 Creating software to control mobile robots and Internet of Things (IoT) devices.
 Creation of new microprocessor designs from Intel, Apple and ARM
 Crossing Paths
-CSE 122 (or CSE 123 or CSE 142 or CSE 143)
-CSE 122 (or CSE 123 or CSE 142 or CSE 143) — 4 credits
-CSE 123 — 4 credits (or CSE 143 — 5 credits)
-CSE 123 (or CSE 143 )
 CSE 373 — Data Structures and Algorithms
 CSE 374 — Intermediate Programming Concepts and Tools
 CSE 410 — Operating Systems
@@ -178,47 +166,67 @@ CSE 414 — Databases
 CSE 415 — Artificial Intelligence
 CSE 415 — Introduction to Artificial Intelligence
 CSE 416 — Machine Learning
+Current ECE students can schedule an appointment with an adviser or find drop-in hours online.
 Current Students
 Current UW ECE students can schedule an appointment with an adviser online.
-Current UW students in majors other than Engineering Undeclared
-Current UW students who complete the prerequisites outlined below can apply for admission to UW ECE.
+Curriculum
+Cutting-edge startups
 Data Science
-Dates and times are available on our events calendar .
-Deadline: April 5th (Apply via UApp HERE )
-Deadlines
+Dates and times are available on our Events calendar .
 Department-approved alternative
 Department-Approved Lists
 Departmental Computing
-Design engineer
+Design and verification of microprocessors used in a range of applications from ultra-low power sensors, cellphones and data centers
 Designing accelerators for deep learning
 Designing and implementing control algorithms for robotic arms used in manufacturing processes or developing adaptive cruise control systems that adjust vehicle speed based on traffic conditions.
+Designing and implementing electrical energy protection, communication and control schemes
+Designing and reliably operating a sustainable power system requires a considerable amount of computer modeling and simulation, as well as a fundamental understanding of a wide range of embedded systems connected to the control center through a dedicated, high-speed communication network.
 Designing and testing control algorithms for automated lighting and home security systems.
+Designing at an abstraction level closer to technology
+Designing automation systems to improve the energy efficiency of buildings
+Designing circuits that are suited to emerging device and interconnect semiconductor technologies
+Designing distribution network reinforcements to accommodate a forecast increase in demand for electricity
+Designing the connection of a wind or solar farm to the grid.
 Designing the next Apple iPhone
 Designing the next Nvidia GPU
+Determining how much power can be reliably transmitted from the Pacific Northwest to California.
+Developing ‘design thinking,’ and becoming equipped with the skills needed to manage the scale and complexity of modern computing and communication systems
+Developing ‘design thinking’ and becoming equipped with skills needed to manage the scale and complexity of modern computing and communication systems
 Developing accelerator chips for data centers.
 Developing and testing control systems for drones, ensuring stable flight and accurate navigation or collaborating in the design of autopilot systems for commercial aircraft, enhancing safety and efficiency.
-Developing fabrication processes for the next generation of AI computing chips.
 Developing mixed hardware/software systems for embedded AI applications, such as many of the features found on smartphones today.
+Developing silicon accelerators for deep learning applications.
+Developing software for the real-time operation, control and protection of transmission and distribution networks
 Developing the next generation of microprocessors and computers
 Development of computing systems focuses on the hardware and software underpinning of computational systems and in harnessing current and future digital technologies.
 Developments in computing are leading to advances in hardware, which enable machine learning to be run both on the device (for fast, lightweight processing) and in the cloud (using big data and graphics processing units). Real-world examples include autonomous vehicle navigation, Alexa, Google Maps for routes with the least traffic, Roomba and Boston Dynamic robots.
+Digital Systems Design Courses
 Digital Systems Design Pathway
+Digital Systems Design Pathway | UW Department of Electrical & Computer Engineering
+Digital systems engineers are focused on the hardware and software underpinning of computational systems and in harnessing current and future digital technologies.
+Direct to College (DTC) Student Flyer
+Direct to College FAQ
 Do embedded systems touch on global impact, equity and/or quality of life?
 Do I need a graduate degree specializing in this area to be marketable to industry?
-Do microelectronics and nanotechnology touch on global impact, equity and/or quality of life?
+Do sustainable energy systems touch on global impact, equity and/or quality of life?
 Does a student need a graduate degree specializing in this area to be marketable to industry?
 Does computer architecture touch on global impact, equity and/or quality of life?
+Does digital systems design touch on global impact, equity and/or quality of life?
 Does machine learning touch on global impact, equity and/or quality of life?
+Does this pathway touch on global impact, equity and/or quality of life?
 ECE Students, Faculty, and Staff
-ECE Tutoring
 EE 201 , EE 215 , EE 241 or CSE 163 , EE 242 , EE 271 , EE 280
+EE 331 — Devices and Circuits
 EE 331 — Devices and Circuits 1
 EE 331 — Devices and Circuits I
+EE 332 — Circuits 2
 EE 332 — Devices and Circuits 2
+EE 332 — Devices and Circuits II
 EE 342 — Signals, Systems, and Data II
 EE 344 — Data-Driven Modeling and Machine Learning
 EE 345 — Introduction to Foundations of Machine Learning
 EE 347 — Introduction to Robotics and Control Systems
+EE 351 — Energy Systems
 EE 371 — Design of Digital Circuits and Systems
 EE 393 , ENGR 333 (ENGR 333 will no longer be offered after the Spring 2024 quarter), or Department-approved alternative
 EE 393 or Department-approved alternative
@@ -228,35 +236,37 @@ EE 406: Teaching Engineering
 EE 418: Network Security and Cryptography
 EE 419 — Introduction to Computer-Communication Networks
 EE 419 — Introduction to Networks
-EE 421 — Quantum Mechanics for Engineers
 EE 437: Integrated Systems Capstone
 EE 440 — Introduction to Digital Imaging Systems
 EE 442 — Digital Signals and Filtering
 EE 443 — Machine Learning for Signal Processing Applications
 EE 445 — Foundations of Machine Learning and Optimization
 EE 445 — Fundamentals of Optimization and Machine Learning
+EE 447 — Control System Analysis I
 EE 447 — Feedback Control Systems
 EE 447 — Introduction to Control Systems
 EE 448 — Control Systems Laboratory
 EE 449 — Robotics and Controls Capstone
 EE 449: Robotics and Controls Capstone
+EE 451 — Wind Energy (Renewable Energy: Technology and Integration)
 EE 452 — Power Electronics Design
+EE 454 — Power System Analysis and Operation
 EE 461: Neural Engineering Tech Studio
 EE 467 — Machine Learning for Cybersecurity
+EE 469 — Computer Architecture
 EE 469 — Computer Architecture I
 EE 470 — Computer Architecture II
+EE 473 — Linear ICs
 EE 473 — Linear Integrated Circuits
 EE 474 — Introduction to Embedded Systems
 EE 475 — Embedded Systems Capstone
 EE 475: Embedded Systems Capstone
-EE 476 — Digital Integrated Circuit Design
+EE 476 — Introduction to Very Large-Scale Integrated Design (Custom VLSI Design)
 EE 476 — Very Large-Scale Integrated Design II (Automated VLSI Design)
 EE 477 — Very Large-Scale Integrated Design II (Automated VLSI Design)
-EE 477 — VLSI II
+EE 477 — VLSI II (Automated VLSI Design)
 EE 478 — Capstone Integrated Digital Design Projects
 EE 478: Capstone Integrated Digital Design Projects
-EE 482 — Semiconductor Devices
-EE 484 — Sensors and Sensor Systems
 EE 490 (graded CR/NC) may not apply toward Advanced ECE Electives and may only apply to free electives.
 EE 491: Undergraduate Seminar
 EE 492: Electrical Engineering Leadership Seminar
@@ -265,77 +275,66 @@ EE 497: Engineering Entrepreneurial Capstone and EE 498: Engineering Entrepreneu
 EE 497/498 (winter/spring) — (ENGINE) Engineering Entrepreneurial Capstone
 EE 510 , 547 , 548 , 549 are available for students who are interested in graduate school.
 Either CSE 123: Intro to Computer Programming III or CSE 143: Computer Programming II
-Electrical and Computer Engineering Core (22 &#8211; 24 credits) :
-Electronic devices
-Electronic skin, which is an emerging area of technology development
+Electrical and Computer Engineering Core (22 – 24 credits) :
 Electronic, Photonic, and Integrated Quantum Systems (EPIQS)
 Embedded Systems
 Embedded Systems Courses
 Embedded Systems Pathway
 Embedded Systems Pathway | UW Department of Electrical & Computer Engineering
-Emerging technologies
 Emeritus Faculty
 ENGINE Showcase
-ENGINE: Engineering Innovation &#038; Entrepreneurship Capstone
-Engineering Undeclared (ENGRUD) students
-Engineering Undeclared (ENGRUD) Students
-ENGL 131 or other composition course
-ENGL 131 or other composition course — 5 credits
+ENGINE: Engineering Innovation & Entrepreneurship Capstone
 English Composition: 5 credits from the University-approved list
-English Composition: In order to transfer English composition to the University of Washington, the course must be from a university located in an English speaking country. Students who transfer credit from a university outside of the US that is located in a non-English speaking country do not meet the prerequisite for English Composition. English speaking countries include: U.S., UK, Australia, New Zealand, Canada, Ireland.
-ENGR 101 — 1 credit
 Enriching Your Path
+Environmental sustainability
 Environmental Sustainability and Energy
+Equipment manufacturers such as Hitachi, Siemens, Schweitzer Engineering Laboratories
 Facebook
 Faculty
 Faculty Highlights
 FAQs
-First-year applicants who meet UW admissions criteria and who list an engineering department (or engineering undeclared) as their first-choice major on their application will automatically be considered for Direct to College (DTC) admission.
+Financial Aid
 For multi-quarter capstones, students must complete all courses in the capstone sequence to receive credit. One of the following must be completed:
-For students at a college or university other than UW
 For students starting the BSECE major in Autumn 2024 or later: A maximum of 6 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
 For students starting the BSECE major in Autumn 2024 or later: Up to a maximum of 6 credits combined of ENGR 321 and EE 499 may apply toward Advanced ECE Electives.
-For students transferring from a WA State community college or technical college :
-For students transferring from an institution besides a Washington State community college or technical college :
 For students who started the BSECE major prior to Autumn 2024: A maximum of 10 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
 For students who started the BSECE major prior to Autumn 2024: Up to a maximum of 10 credits combined of ENGR 321 and EE 499 may apply toward Advanced ECE Electives.
 From the computational heart of a robot, to the central processing units (CPUs) controlling an automobile or airplane, and the microprocessors embedded in every mobile phone and smart device — the Embedded Systems pathway helps students to develop the hardware, software and firmware behind each of these systems. Students following this pathway learn how to interface with sensors and actuators, as well as how to optimize systems to operate under a variety of different constraints.
 From the embedded systems that control the flight systems in aircraft, to the autonomous guidance and driving of a Mars rover, computer engineers with a focus in embedded systems are experts in creating such hardware and software systems.
+From the on-board electronics that guide, control and power the Hubble Space telescope and the Mars rover to Cubesats, digital systems engineers are building the sophisticated electronics that enable these sorts of applications.
+From the on-board electronics that guide, control and power the Hubble Space telescope and the Mars rover to Cubesats, VLSI / digital systems engineers are building the sophisticated electronics that enable these sorts of applications.
 Fundamental algorithms and data structures for implementation. Techniques for solving problems by programming. Linked lists, stacks, queues, directed graphs. Trees: representations, traversals. Searching (hashing, binary search trees, multiway trees). Garbage collection, memory management. Internal and external sorting.
 General Education Courses are comprised of the following:
 Get Involved
 Give to UW ECE
 Google, Amazon and Microsoft have a new focus on an emerging area of development in the field of Green AI, which explores optimizing hardware and software to minimize power consumption. The development teams aim to detect drift in machine learning models, thereby alerting users that they need to re-train their models, which will lead to more accurate predictions and consume less energy.
-Grade of 2.0 or higher in each prerequisite course
 Graduate Courses Applied to Advanced ECE Electives
 Graduates will have the advantage of being qualified for jobs at companies that require skills in firmware and embedded systems, as well as software development skills. This includes well-known companies such as Google, Apple, Amazon and Microsoft, and it also includes other large-scale industries such as automotive, manufacturing/robotics and aerospace.
 Graduation
+Graphics processors (NVIDIA, AMD, ARM)
+Graphics processors such as those built by Nvidia, AMD and ARM
 Hands-on Master Class on LLMs and ChatGPT
 Hardware development in conjunction with machine learning algorithms improves autonomous robot efficiency, effectiveness and usability, enabling better manipulation and navigation of robotics on land, sea and in the air.
-Have a question about our transfer admissions policies or processes? It may be answered on our Transfer Admissions Frequently Asked Questions (FAQs) page .
 Health and Medicine
 Helpful Links
 Helping to create chip designs for future, low-power microcontrollers.
-High School Students — Direct to College
-High School Students &#8211; Direct to College
 Home
+How can a knowledge of digital systems design be applied in the real world?
 How can a knowledge of machine learning be applied in the real world?
-How can a knowledge of microelectronics and nanotechnology be applied in the real world?
-How can I determine equivalency for the courses I take at my transfer institution?
+How can a knowledge of sustainable energy systems be applied in the real world?
+How can knowledge about electrical engineering fundamentals be combined with digital logic to build the sorts of digital circuits that lie at the heart of processors today? This course begins with a close examination of a simple CMOS inverter design and uses it to introduce students to the world of digital circuit design.
+How does one ensure voltages and power flows are operating properly in a network made up of thousands of nodes and branches? In this class, we focus on how to analyze large power systems and how to operate such systems at the lowest cost possible while still ensuring that the lights stay on.
 How does the machine code produced by a compiler translate into computation by a processor? How can we improve the performance of a processor, and what are the trade-offs that must be made? These questions and many more are answered by this course, as students receive an initial exposure to computer architecture and design their own processor in Verilog Hardware Design Language, an industry standard for hardware description.
-If admitted to DTC, you will enter the UW as an Engineering Undeclared (ENGRUD) student and will have the opportunity to explore many engineering disciplines before requesting placement in an engineering major after your first year. Admission to DTC is only available in autumn quarter.
-If you have utilized the resources above and are still concerned about your eligibility to apply for the UW ECE program based on the pre-requisites needed for admissions, please attend prospective student drop-ins to discuss your situation with an adviser.
-If you meet placement requirements, and rank all of the majors you are eligible for, you are guaranteed to be placed into one of the engineering majors that you selected. However, you may or may not be placed in your first choice major. Some majors may receive more placement requests than they can accommodate. Learn more about the placement process .
-If your first bachelor&#8217;s degree was in a STEM field relevant to ECE, we would encourage you to instead consider applying to graduate studies in ECE.
-Imagine a world with very fast, reliable and power-efficient electronics but with no way for those electronics to ‘talk’ to the outside world. A world without sensors is a world where electronics have minimal impact both on the quality of everyday life and on pressing global challenges. Sensors convert light, chemicals, viruses, bacteria, force, acceleration, temperature and more into electronic signals so that information from the external world can enter the internal signal processing, computing and other high-performance tasks that contemporary electronics can accomplish.
+IEEE Scholarship Opportunities
 Implementing Field Programmable Gate Array (FPGA)-based designs for network routing.
-In addition, complete the following courses before the start of autumn quarter (grade of 2.0 or higher in each course):
 In Memoriam
+In the BSECE degree program, students can choose to gain broad knowledge of the field or increase expertise in specialized areas. Thanks to this added flexibility, students may have the capacity to pursue minors, double degrees, study abroad opportunities, research or internships that may enhance a student’s educational experience — all while pursuing a degree that is highly sought after by employers.
 In this capstone class, students will work in teams to apply knowledge they gained in EE 474, Introduction to Embedded Systems, and from other previous ECE courses to prototype and build a substantial project that mixes hardware and embedded software and communication. Students often build projects in specific application areas that include but are not limited to health, robotics, Internet of Things (IoT), and smart systems. Students will also hear from experts in embedded systems to learn about emerging platforms, trends and job opportunities/prospects.
 In this capstone class, students work on a substantial team-based engineering design project involving robotics. This entails fabrication, assembly, and test of hardware that includes sensing, actuation, and computation in a feedback loop. The project work considers realistic constraints, engineering standards, and real-world consequences.
 In this course, students will learn how to understand the mathematics of optimization models and machine learning, and they will rigorously formulate and solve automated decision-making problems such as those found in machine learning systems, data-driven modeling and engineering design.
 In this course, students will review basic signal processing concepts. Topics include two-sided Laplace and z -transforms and connection to Fourier transforms; modulation, sampling and the fast Fourier transform; short-time Fourier transform; and multirate signal processing. Applications covered include inference and machine learning. Students will also participate in a computer laboratory.
-In-person and full-time (12 or more credits per quarter) students. The program is not designed to be taken part-time, and all EE classes are offered in person.
+IND E 250 — Fundamentals of Engineering Economy
+Independent system operators such as ERCOT, California ISO, PJM
 Industry
 Information Sessions
 Infrastructure, Transportation, and Society
@@ -347,16 +346,17 @@ Introduces fundamentals of robotics and control systems, focusing on the modelin
 Introduction to machine learning models and algorithms motivated by their application in areas including statistics, decision-making and control, communication and signal processing, and data science, with a focus on the mathematical foundations for machine learning. Topics include linear algebra for data science, supervised learning such as linear regression and classification, and unsupervised learning such as clustering.
 Introduction to machine learning models and algorithms motivated by their applications in areas including statistics, decision-making and control, signal processing, and scientific computing. Topics include supervised and unsupervised learning, neural networks and deep learning, and reinforcement learning. Students gain hands-on experience with machine-learning frameworks.
 Introduction to optimization and machine learning models motivated by their application in areas including statistics, decision-making and control, and communication and signal processing. Topics include convex sets and functions, convex optimization problems and properties, convex modeling, duality, linear and quadratic programming, with emphasis on usage in machine learning problems including regularized linear regression and classification.
-Inventing new biosensors for early cancer biomarker detection.
+Is Electrical and Computer Engineering the right major for you? UW ECE holds monthly information sessions where advisers provide information on admissions, curriculum, electrical and computer engineering as a profession and more.
 Jeeva Wireless (now WaveWorks): Reimagining connectivity with low-power backscatter technology
 Job Openings
 Knowledge about embedded systems is widely applicable in the real world. Two important examples of real-world applications are:
+Knowledge about sustainable energy systems is widely applicable in the real world. Examples of early-career assignments include:
 Laptop Policy
 Latest News
 Learn about advanced computer architecture. Topics in this course include performance evaluation and energy efficiency, instruction set architectures, instruction-level parallelism, modern microprocessor micro-architecture, thread-level parallelism, cache coherency and memory consistency in shared-memory multiprocessors, memory hierarchy, GPU architecture, warehouse-scale computing, and trends in computer design.
 Learn about the application of machine learning and deep learning algorithms to real-world signal, image and video processing problems using cloud computing with central, graphics, and tensor processing units (CPU/GPU/TPU). Course topics include covering the characteristics of multi-dimensional signals and systems, unsupervised and supervised learning, deep learning convolutional neural networks, generative adversarial learning, open long-tailed recognition, and object detection and segmentation.
-Learn the basics of silicon and devices made from it that form the backbone of the trillion-dollar semiconductor industry. We will start from basic quantum mechanics and quickly get to the band structure, conduction and valence bands of silicon. You will learn what a negative effective mass stands for. The bulk of this course will focus on the device physics of semiconductor devices such as diodes, MOSFETs and more.
 Learning fundamental concepts of how to manage datasets, which includes pre-processing, cleaning, feature extraction, selection and iteration, and how to train and test models using cross-validation, supervised, unsupervised and reinforcement learning
+Learning how to analyze and optimize large, complex systems
 Learning how to distinguish between use cases for core techniques such as classification versus regression, and causation versus correlation
 LinkedIn
 Links for Faculty
@@ -369,62 +369,44 @@ Machine learning is part of a wide range of health and medical applications such
 Machine learning is used to improve efficiency and accuracy for robots on-board the International Space Station, such as Astrobee, to collect data in microgravity conditions while interacting with astronauts. Drones deployed in search-and-rescue missions can use integrated sensor imaging along with machine learning to improve their search time and accuracy of locating people who are lost or injured.
 Machine Learning Pathway
 Machine Learning Pathway | UW Department of Electrical & Computer Engineering
+Machine learning, signal processing, cryptography , and accelerators in integrated circuits used in a range of different applications from mobile communication, to autonomous vehicles to neural interfaces (Qualcomm, Tesla, Medtronic)
+Machine learning, signal processing, cryptography and accelerators within integrated circuits used in a range of different applications from mobile communication to autonomous vehicles to neural interfaces
 Makerspace: Accelerating Innovation
-Making future transistors out of only a few atoms.
-Master’s &#038; Ph.D. Programs
-Math : Taking two semesters of Calculus is often considered equivalent to taking three quarters of Calculus. Additionally, some Washington State Community Colleges teach Calculus in a 4-part sequence – please be aware that you may need both Calculus III and Calculus IV to be eligible for ECE transfer admissions.
+Master’s & Ph.D. Programs
 Math (especially calculus, linear algebra, algorithms, and differential equations)
 MATH 124 , MATH 125 , MATH 126 , MATH 207 (or AMATH 351 ), MATH 208 (or AMATH 352 )
-MATH 124, 125 and 126 — 15 credits
-MATH 124, 125, 126 (or MATH 134, MATH 135, MATH 136)— 15 credits
-MATH 124, 125, and 126
 MATH 134 , MATH 135 , MATH 136
-MATH 207 or AMATH 351, unless MATH 135 was completed
-MATH 207 or AMATH 351, unless MATH 135 was completed — 4 credits
-MATH 208 (or AMATH 352)
-MATH 224
 Mathematics (15–21 credits), complete one of the following:
 Maximum of 4 credits of ENGR 321 may apply toward Advanced ECE Electives
 Medical devices, such as implantable and point-of-care diagnostics tools, which extensively rely on embedded systems
-MEMS — microelectromechanical devices
 Message from the Chair
-Metal-oxide-semiconductor and charge-coupled devices are central to camera applications for space exploration. The Mars rovers have used semiconductor-based devices for sensing and imaging light, the first digital movie was based on the use of semiconductor devices, and this trend has continued.
 MicrobiomX (Tend): Providing rapid, personalized restorative guy therapy through microbiota transplants
-Microelectronics
-Microelectronics and nanotechnology are an integral component of many medical devices used in hospitals and doctors&#8217; offices today. Portable ultrasound machines to detect lung and organ damage use semiconductor chips, which have improved device performance and reduced cost. The ventilator systems used to assist patients with breathing contain semiconductor sensors and processors to monitor vital signals. These microelectronics help to determine the rate, volume and amount of oxygen per breath, so the device can accurately adjust oxygen levels according to the needs of the patient.
-Microelectronics and Nanotechnology Courses
 Microelectronics and Nanotechnology Pathway
-Microelectronics and Nanotechnology Pathway | UW Department of Electrical & Computer Engineering
-Minimum 2.0 cumulative GPA in courses used to satisfy placement requirements
+Microprocessor designs , used in a range of applications from ultra-low power sensors, cellphones and data centers (Intel, AMD, Apple, ARM)
 Minimum 2.0 grade in course required
 Minimum 2.0 grade in each course
-Minimum 2.5 cumulative GPA in courses required for application
 Modern control systems are data-driven and implemented digitally with microprocessors and often networked computation.
+Modularity, scalability and abstraction are cornerstones of being able to translate a knowledge of digital circuits gained in EE 331 into substantially more complex VLSI sub-systems (such as an arithmetic logic unit). Engineering design is a practitioner’s art. In this class, students learn the fundamentals of digital VLSI design and solidify their knowledge by taking part in a challenging quarter-long series of design assignments, which culminate in a high-quality custom design of a computational module. VLSI-1 is sponsored and supported by industry members such as Micron because of the relevance of the knowledge and skills imparted in this course.
 My UW
-Nanoelectronics
-Nanosensors
-Nanotechnology
+National labs and other research and development organizations such as PNNL, NREL, Sandia, EPRI, Breakthrough Energy
 Natural Science (NSc) Courses (45 credits):
 Neurotechnology
 Neurotechnology Pathway
-New semiconductor technologies offer the possibility of consuming far less power than traditional devices and thereby curbing the impact of our ever-increasing hunger for electronic devices and appliances. As important, exposing many of our semiconductor and related devices to light produces energy — enough to make semiconductor photovoltaics the global leader in solar energy technologies. However, a wide range of challenges remain to be overcome to improve the efficiency and viability of these devices for residential and commercial customers, as well as on-grid and off-grid users. Semiconductor technologies are prevalent in renewable energy systems today. For example, the energy-efficient light bulbs you use at home are based on light-emitting semiconductor diodes, and the green solar cells on rooftops are also based on diodes.
 News + Events
-No. Control systems engineers at big companies that design safety-critical systems (for example, aerospace and automotive) tend to have master&#8217;s and doctoral degrees. Control systems for less safety-critical systems, such as some robots and consumer products, may employ more basic control algorithms and focus more on programming and implementation. For those designing and developing less safety-critical control systems, a bachelor&#8217;s degree may suffice. Students with a focus in control systems often go on to do graduate work in systems theory, optimization, game theory, machine learning, neural engineering, power systems and data science.
-No. However, while a student with a bachelor&#8217;s degree and good skills can easily find employment, a master&#8217;s degree opens up a noticeably wider range of positions in this area. A doctoral degree is generally required for research and teaching.
-No. However, while a student with a bachelor&#8217;s degree can easily find employment, a master&#8217;s degree opens up a noticeably wider range of positions in this area. A doctoral degree is generally required for research or teaching.
-No. Students can find a good job with a bachelor&#8217;s degree, and this trend is expected to increase because semiconductor manufacturing is making a move back to the United States. The U.S. government has allocated more than $20B to support growth in semiconductor jobs, and graduates with a focus in microelectronics and nanotechnology will find great prospects for jobs overseas as well.
+No. Control systems engineers at big companies that design safety-critical systems (for example, aerospace and automotive) tend to have master’s and doctoral degrees. Control systems for less safety-critical systems, such as some robots and consumer products, may employ more basic control algorithms and focus more on programming and implementation. For those designing and developing less safety-critical control systems, a bachelor’s degree may suffice. Students with a focus in control systems often go on to do graduate work in systems theory, optimization, game theory, machine learning, neural engineering, power systems and data science.
+No. However, while a student with a bachelor’s degree and good skills can easily find employment, a master’s degree opens up a noticeably wider range of positions in this area. A doctoral degree is generally required for research and teaching.
+No. However, while a student with a bachelor’s degree can easily find employment, a master’s degree opens up a noticeably wider range of positions in this area. A doctoral degree is generally required for research or teaching.
+No. Students completing their BSECE degree are well-prepared to pursue a career in sustainable energy. For those interested in graduate school, some recent graduates have pursued a master’s or doctoral degree at the UW, UC Berkeley, the University of Texas at Austin and the University of Wisconsin-Madison.
+No. While a student with a bachelor’s degree can easily find employment, a master’s degree opens up a noticeably wider range of positions in this area. A doctoral degree is generally required for research or teaching.
 Non-Degree Options
-Note that ECE is a capacity constrained major and we may prioritize admission for applicants who have not yet earned a bachelor’s degree.
 Note: if you have transfer credit that is similar to the courses above, but which did not transfer as one of the courses listed above, please check with the ECE Advising Office.
-Notes on Prerequisite Coursework
 Office of the Chair
-Often postbac students will have classes from their first bachelor&#8217;s degree that will count towards their second bachelor&#8217;s, such as general education requirements. We recommend postbac applicants come to prospective student drop-ins to learn more/ask questions.
 On-the-job tasks for graduates with a focus in Computer Architecture include:
 On-the-job tasks for graduates with a focus in Control Systems include:
 On-the-job tasks for graduates with a focus in Embedded Systems include:
 On-the-job tasks for graduates with a focus in Machine Learning include:
-On-the-job tasks for graduates with a focus in Microelectronics and Nanotechnology include:
-One course from the following list: AMATH 301, BIOEN 215, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CSE 121, CSE 122, CSE 123, CSE 142, CSE 160, ENGR 115, ME 123, MSE 170, PHYS 122, PHYS 123, PHYS 142, PHYS 143, STAT 220
+On-the-job tasks for graduates with a focus in Sustainable Energy Systems include:
+On-the-job tasks for graduates with a focus in VLSI Design / Digital Systems Design include:
 OneRadio: Changing the way we access the radio-frequency spectrum
 Operations and Intranet
 Other Degree Information
@@ -434,37 +416,29 @@ Passing Grades
 People
 Ph.D. Graduate Visit Days
 Ph.D. Students
-Photonics
 Photonics Pathway
-PHYS 121 (or PHYS 141) — 5 credits
-PHYS 121 and 122
-PHYS 121 and 122 — 10 credits
-PHYS 123
 Physics (10 credits): PHYS 121 , PHYS 122 (or PHYS 141 , PHYS 142 )
-Please be sure to review the UW ECE admissions requirements to ensure you understand the courses needed for eligibility of admission to the ECE major.
-Please do not reach out directly to the UW Office of Admissions or specific UW departments for assistance as they do not have the capacity to review equivalency for prospective transfer courses.
-Please note that the autumn 2023 admission cycle was the FINAL admission cycle to apply for the Electrical Engineering major.
-Please note that the last cohort of DTC students able to request placement into the BSEE degree program was for the autumn 2022 placement cycle. The final admission cycle to apply for the BSEE was the autumn 2023 admission cycle.
 Policies and Course Registration
 Power and Energy Systems
+Power and energy systems research at UW ECE includes interdisciplinary work at all energy scales, ranging from nanowatts to gigawatts. Our faculty are active in smart grid design, integration of renewable energy sources, grid security, energy economics, and solar and electromagnetic energy harvesting. UW ECE faculty are leaders in the Clean Energy Institute and work frequently with local utilities and grid systems operators.
 Power systems that incorporate renewable energy use feedback control in a variety of ways — to control relative phase of two different power plants, to control the direction a wind turbine is pointing, and to decide which energy sources to ‘spin up’ and when.
 Privacy
-Professional Issues (1–4 credits): see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list)
+Professional Issues (1–4 credits): see adviser for list of approved courses (scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list)
 Professional Issues:
 Professional Master’s Certificate Programs
 Professional Master’s Program
 Professional Master’s Short Courses
 Programming
 Proprio: Using computer vision and machine learning to enhance human and computer performance
-Prospective Drop-in Hours
 Prospective student drop-in hours
 Prospective Students
-Prospective Students Drop-In Hours
-Quality control engineer
+Public and private electric utilities such as Puget Sound Energy, Seattle City Light, BPA
 Quantum Technologies Pathway
 Quick Facts
 Quick Links
+Read more about ABET accreditation on this page: ABET Accreditation: BSECE
 Related Career Paths
+Renewable energy developers such as Iberdrola, NextEra Energy, EDF Renewable
 Research
 Research Centers
 Research Colloquium Lecture Series
@@ -472,36 +446,43 @@ Research Labs
 Research Showcase
 Researchers
 Resources for Students
-Review the course syllabus for the course you took outside of UW and compare it to the course syllabus you believe it is equivalent to at UW, looking for overlap in content covered in the course you took.
-Review UW’s transfer credit policies webpage
+Review the College of Engineering’s website for information about the Engineering Program Enhancement Fee .
 Robotic systems couple hardware actuators with computing hardware and software to achieve a set of motions. Students following the Embedded Systems pathway, especially those who broaden into the related Control Systems pathway, will bring computation skills to these electromechanical systems.
 Robotics
 Robotics and Controls
 Robotics and Manufacturing
 Schedule an Advising Appointment
-Second Thursday of every month:
-Semiconductor technology
+Scheduling energy transactions in the Western Energy Imbalance Market
+Scholarships
+Scholarships for Studying Abroad
+Second Thursday of every month, 2:30 to 3:30 p.m.
 Seminars:
 Sensing and Communication Pathway
+Several types of scholarships are available to all UW ECE undergraduate and graduate students. Below are current resources and links:
 Signal processing
 Site Menu
-Skills in developing microelectronics and nanotechnology are widely applicable in the real world, for example:
 Skip to main content
 SNUPI: Home Monitoring Systems
+Software developers such as GE Digital, Nexant
 SSc (10 credits)
 Staff
+Starting autumn quarter 2022, the University of Washington Department of Electrical & Computer Engineering will offer a Bachelor of Science in Electrical and Computer Engineering (BSECE) . This new degree program provides students with increased flexibility in choosing their academic pathways and is highly adaptable to technological advances in popular research areas such as neural engineering, sustainable energy, quantum computing, data science, photonics and nanotechnology.
+Startup companies working on the development of new renewable energy technologies or systems for controlling the grid
 Statistics (3–4 credits): one of IND E 315 , or STAT 390
-Student Job &#038; Internship Opportunities
-Students applying to enter the UW as first-year students
+Student Job & Internship Opportunities
+Students and graduates applying their knowledge and skills in digital system design contribute to several key enabling technologies in the real world, for example:
+Students applying their knowledge and skills in VLSI design / digital systems design contribute to several key enabling technologies in the real world:
 Students are also encouraged to take courses that provide a large amount of programming experience such as:
-Students are notified via email of their admission status approximately one month following the application deadline .
-Students following the Microelectronics and Nanotechnology pathway can look forward to becoming part of an exciting global effort to develop the next generation of nanoscale transistors and digital circuits, which will serve as the foundation for faster, cheaper and higher-performance computing and electronics. This pathway teaches students how to build today&#8217;s circuits and code today&#8217;s microcontrollers while also providing a vision for how tomorrow&#8217;s circuits and devices are going to work.
+Students following the Digital Systems Design pathway could benefit from a stronger foundation in analog circuits. With that in mind, these courses are recommended:
+Students get jobs in design and verification in the growing and increasingly critical semiconductor industry . Students in this pathway continue to be sought after by companies that include Intel, Apple, AMD, Micron, NVidia, Qualcomm, Meta and Tenstorrent.
 Students graduating with a focus in computer architecture will be prepared to pursue careers in many different types of organizations. Graduates often work at top semiconductor companies such as Intel, Apple, Nvidia, SiFive and AMD.
+Students graduating with a focus in digital systems design often get jobs in design and verification in the growing and increasingly critical semiconductor industry. Graduates continue to be sought after by large companies such as Intel, Qualcomm, Apple, IBM, AMD and Micron.
 Students graduating with a focus in machine learning will be qualified for jobs in hardware and software engineering at leading tech companies such as Google, Amazon, Microsoft, T-Mobile, Tesla, Meta, Nvidia and Apple, as well as startup companies.
-Students graduating with a focus in microelectronics and nanotechnology will be prepared for many different types of jobs, such as:
+Students graduating with a focus in sustainable energy systems will be prepared to pursue careers in many different types of organizations, for example:
 Students in the Computer Architecture Pathway are encouraged to take either EE 475 or EE 478 as their capstone; using EE 497/498 (ENGINE) instead as the capstone is also possible.
 Students in the Control Systems Pathway are encouraged to take EE 449 as their capstone; using ENGINE instead as the capstone is also possible.
 Students in the Embedded Pathway are encouraged to take EE 475 as their capstone; using ENGINE instead as the capstone is also possible.
+Students in the VLSI Design Pathway are encouraged to take 478 as their capstone; using ENGINE instead as the capstone is also possible.
 Students in this area have job opportunities in aerospace, robotics, manufacturing, medical devices, VR / AR, and embedded systems, at companies such as Boeing, SpaceX, Microsoft, Meta Reality Lab, Apple and Amazon.
 Students may pursue optional pathways in order to complete their 36 credits of Advanced ECE Electives.
 Students may pursue optional pathways in order to complete their 39 credits of Advanced ECE Electives.
@@ -511,109 +492,111 @@ Students must take additional electives in order to reach the 180 total credits 
 Students studying Computer Architecture should also consider the following customizable pathways:
 Students studying Embedded Systems should also consider the following customizable pathways:
 Students studying Machine Learning should also consider the following customizable pathways:
-Students studying Microelectronics and Nanotechnology should also consider the following pathways:
-Students who have not already earned a bachelor’s degree in EE or ECE.
-Students who want to focus on the physical side of computing and/or electrical engineering, including areas such as hardware-software integration, digital systems design, electromagnetics, photonics, and power systems.
+Students studying Sustainable Energy Systems should also consider the following customizable pathways:
+Students studying VLSI Design / Digital Systems Design consider the following pathways:
 Students will learn how to synthesize and analyze algorithms that control physical systems such as vehicle autopilots, mobile robots, electrical generators and motors.
 Students work in groups of three to implement design projects which have, in the past, included the design of an ultra-low-power mixed-signal sensor chip containing data-converters, integrated power electronics for energy-efficient computing, and higher-performance microprocessor implementations. Students will use a variety of industry standard tools to implement and validate their designs.
 Sustainable Energy Systems
+Sustainable Energy Systems Courses
 Sustainable Energy Systems Pathway
-Table of Contents:
+Sustainable Energy Systems Pathway | UW Department of Electrical & Computer Engineering
 Terms
-Test engineer
-Thank you for your interest in the UW Department of Electrical & Computer Engineering. There are many avenues for admission into our Bachelor of Science in Electrical and Computer Engineering (BSECE) program. Use the information below to help you better understand the process and plan your application. Applicants are encouraged to attend a UW ECE information session or prospective student drop-in hours to learn more (see details below). If you have questions, contact the UW ECE Advising Office at undergradece@uw.edu .
-The Admissions Committee will evaluate qualifications based on submitted materials which include an essay and ALL transcripts for ALL colleges attended. Due to the large number of applicants, we cannot include personal interviews as part of the selection process.
-The Admissions Committee will evaluate qualifications based on submitted materials which include an essay and ALL transcripts for ALL colleges attended. Due to the large number of applicants, we do not include personal interviews as part of the selection process.
+The BSECE degree program prepares students for jobs in industry or for further graduate study. Students may choose to complete their degree by following one or more customizable pathways within the Department. Each of these pathways culminates in a capstone design project.
 The BSECE major requirements are comprised of the following areas of study ( Grade requirements: minimum 2.0 cumulative GPA in all courses applied to the major, with no grade below 1.0 in these courses) :
-The BSECE program is a good fit for:
+The BSECE program is capacity constrained. Applications are accepted from current UW students as well as first-year and transfer applicants. UW ECE enrolls students for the autumn quarter only.
 The computing side of engineering
+The Digital Systems Design pathway is intended for students who are interested in careers at the boundary of hardware and software that require an understanding of computation ranging from software to physical implementation. The pathway provides students with the digital design foundation needed to leverage increasingly evolving technological advances across the computing stack, which ranges from algorithms to real-world hardware engines, and drives advances in science, engineering, medicine and sustainability that improve our quality of life.
 The Engineering Entrepreneurial Capstone program (ENGINE) is the culmination of a student’s electrical and computer engineering education at UW ECE. The program provides a unique opportunity for students to develop skills in collaborative systems engineering, project management, and most importantly, working in teams on real-world problems from industry-sponsored projects. The program is overseen by UW ECE faculty and students are guided by practicing engineers. The course culminates in a showcase of student projects, which is attended by industry sponsors and held at the end of spring quarter every year.
 The following course at the 200 level may count: EE 233
 The following courses are also recommended for those following the Computer Architecture pathway:
 The following courses are also recommended for those following the Embedded Systems pathway:
 The following courses are also recommended for those following the Machine Learning pathway:
-The following courses are also recommended for those following the Microelectronics and Nanotechnology pathway:
+The following courses are also recommended for those following the Sustainable Energy Systems pathway:
 The following courses are also recommended:
 The following non-EE courses may count: CSE 373 , CSE 374 and ENGR 321
-The Integrator News &#038; Research Magazine
+The Integrator News & Research Magazine
 The Link Newsletter
 The Machine Learning pathway connects computing, machine learning and data science together by explaining how hardware and sensor design enables data collection at-scale; then how to store, process and clean the data; and finally how to train and test machine learning models using collected data to produce new insights and model predictions applicable to real-world problems. This is an excellent pathway for students who want to learn how to combine hardware and software into projects that address needs in a wide range of fields.
 The Machine Learning pathway offers the potential to pursue projects that synthesize concepts in computing, machine learning and data science through the ENGINE Capstone series of courses (see description below). Additionally, the Embedded Systems Capstone (see below) can allow students to explore machine learning projects within an embedded systems framework. Examples of recent machine-learning-oriented ENGINE Capstone projects include: A Lockheed-Martin sponsored project to design, build, and test a scaled self-driving vehicle; a JPL sponsored project exploring autonomous distributed robotic exploration, and a drone automated payload and battery swap/charging project.
 The major requirements are comprised of the following areas of study ( Grade requirements: minimum 2.0 cumulative GPA in all courses applied to the major, with no grade below 1.0 in these courses) :
 The microprocessor is a triumph of modern technology. From the desktops and laptops that enable our work, to mobile processors in smartphones that help to keep us connected and informed, our world is significantly richer because of these computer systems.
-The University of Washington prohibits discrimination, harassment and sexual misconduct in any education program or activity that it operates. Individuals may report concerns, make complaints, or direct inquiries to the Civil Rights Compliance Office. The statement of nondiscrimination is located at: uw.edu/civilrights/policies-and-guidance/statement-of-nondiscrimination/
+The primary path for undergraduates to earn a BSECE degree while spending all four years at the UW is ‘Direct To College.’ Students are admitted to the UW College of Engineering as first-year students, and then can be placed into electrical and computer engineering during the summer between their first and sophomore years.
+The size and complexity of the infrastructure required to deliver electrical energy to homes and businesses is enormous and its importance will only grow as our nation and world migrates towards 100% renewable energy.
+The Sustainable Energy Systems pathway is an opportunity to learn how to control, connect and deliver electricity reliably to the places it’s needed. Students will take into account changing variables such as strengthening existing energy infrastructure while integrating large amounts of electricity from renewable energy sources such as wind, solar and tidal power. Because of the scope, scale and complexity of sustainable energy systems, studying this area is an opportunity to learn how to model, analyze and optimize not only power systems but also other complex cyber-physical systems.
+The UW participates in both federal and state financial aid programs. Information on grants, loans and other forms of financial assistance is available from the Student Financial Aid Office .
 The vast portion of modern integrated circuits today are constructed using synthesis, auto-place and route (SAPR) methodologies. These methodologies allow a designer to describe their design using a hardware design language such as System Verilog and rely on electronic design automation to produce digital circuits that implement the desired function. Managing the massive scale achievable by such designs requires understanding both system-building principles and higher-level concepts in digital design, as well as the skills for effective use of industry-standard design tools to produce these designs. The relevance of the content and skills taught in this class have led to its support by Intel.
-The vision system in robots is based on microelectronic devices such as light-emitting diodes, lidars, etc. Low-power semiconductor devices are also important to building light-weight robots.
+The Very Large-Scale Integrated (VLSI) Design / Digital Systems Design pathway is intended for students interested in developing high-performance semiconductor chips, including microprocessors, for networking, machine learning, memory systems and other applications used frequently by large companies such as Intel, Qualcomm, Apple, IBM, AMD, Micron and others. VLSI designers combine an interest in electronics, computing and digital logic. Digital systems design couples the hardware and software focus of computing with the physical realities of VLSI chip design.
 There are many possible real-world applications of computer architecture. Here are a few examples:
 There is an evolving need for developing new sensing systems that can better monitor energy in homes and buildings, as well as better monitor the environment (wildfires, soil, air quality) so appropriate action can be taken on information these sensors deliver.
 These courses are suggested for those following the Computer Architecture pathway but are not required to complete the BSECE degree program:
 These courses are suggested for those following the Control Systems pathway but are not required to complete the BSECE degree program:
+These courses are suggested for those following the Digital Systems Design pathway but are not required to complete the BSECE degree program:
 These courses are suggested for those following the Embedded Systems pathway but are not required to complete the BSECE degree program:
 These courses are suggested for those following the Machine Learning pathway but are not required to complete the BSECE degree program:
-These courses are suggested for those following the Microelectronics and Nanotechnology pathway but are not required to complete the BSECE degree program:
-These technologies would not exist without those scientists and engineers who deeply understood the underlying physics of operation associated with diodes, transistors and other semiconductor devices. And now in the 21st century, similar minds and expertise will be needed, particularly in engineering, to bring novel ways of making transistors from the research laboratory into practice.
-Think Quantum! The focus of this course is to introduce students to quantum mechanics using 1D, 2D and 3D nanomaterials and quantum computing. Students will develop a working knowledge of qubits, quantization in quantum dots/wells/wires and band structure. Applications will focus on qubits, nanodevices, nanomaterials and the basics of quantum information. In this course, students will get to use Qiskit, IBM’s software on quantum computing/information.
+These courses are suggested for those following the Sustainable Energy Systems pathway but are not required to complete the BSECE degree program:
+These courses are suggested for those following the VLSI Design / Digital Systems Design pathway but are not required to complete the BSECE degree program:
+theWashBoard.org Scholarship Matching Site
 This course provides a theoretical background and practical experience with tools and techniques for modeling complex digital systems, using the Verilog hardware description language. Students will learn how to maintain signal integrity, manage power consumption and ensure robust intra- and inter-system communication.
-This is the only admission point to the BSECE program for current UW students admitted to a major other than through the Direct to College pathway. Please be aware that this is a capacity-constrained admission pathway. Completing the admissions requirements does not guarantee admission, and we may not be able to offer admission to all applicants who meet the minimum prerequisites.
 This pathway is a good fit for students who are interested in:
+This pathway is intended for students who are interested in careers at the boundary of hardware and software that require an understanding of computation ranging from software to physical implementation. The area emphasizes the technology of designing digital microelectronic circuits, which can be implemented as a single integrated circuit with millions of transistors. Example VLSI design applications include computer memory, logic gates, digital ASIC (application-specific integrated circuit) and various programmable gate array systems. The VLSI Design / Digital Systems Design pathway provides students with the strong foundation needed to leverage increasingly evolving technological advances across the computing stack — from semiconductors to algorithms — into real-world hardware engines that drive advances in science, engineering, medicine, sustainability and our quality of life.
 This requirement includes two components described below: English Composition and Additional Writing Requirements.
 ThruWave: Providing state-of-the-art millimeter-wave (mmW) 3D imaging
-To be eligible for admission, you should have:
-To be eligible to apply, transfer students must meet the admission requirements as laid out below. You are strongly encouraged to attend a Prospective Student Information Session early to prepare for applying to the ECE major.
+Trading electrical energy on the Western Imbalance Market.
 Training large machine learning models using optimization techniques, testing how they generalize information and finding ways to improve the models.
-Transfer Admissions FAQs
-Transfer Admissions Frequently Asked Questions (FAQs):
-Transfer Students
-Transferring into UW ECE involves two separate admissions processes. You must complete both by the deadlines below to be considered. Note that the deadline for the UW is significantly earlier than for UW ECE.
+Transfer / Interest Changer Student Flyer
+Tuition and Fees
+Tuition rates are established by the UW Board of Regents at the end of spring quarter. Complete tuition and fee information is available on the Office of Planning and Budgeting website . The total costs of full-time undergraduate tuition and fees are for one quarter.
+Tuition, Fees and Funding
 Tunoptix: Tunable metasurface optics for machine vision and AR/VR
 Twitter
 Two courses from BIOL 130 , BIOL 220 , CHEM 142 (or CHEM 143 or CHEM 145 ), MATH 224 , PHYS 123 (or PHYS 143 )
-Two courses from the following list:
 Under special circumstances you may petition, as an undergraduate, to apply up to 4 credits earned in EE graduate courses toward your 400 level Advanced ECE Electives. Before such a request can be approved, you must demonstrate that you have the required background for the graduate courses. Consult the UW ECE Advising Office for additional information about the petition process.
 undergradece@uw.edu
+Understanding and building sophisticated systems ranging from low-power cellphone technology to distributed computing systems
 Understanding optimization across software and hardware
 Understanding the entire computing stack, which provides an advantage in designing embedded computing solutions that are fast, efficient and low-cost
 Understanding, designing and optimizing digital hardware
 University of Washington
 University of Washington -->
 Up to a maximum of 6 credits combined of ENGR 321 and EE 499 may apply toward Advanced ECE Electives.
-Use the UW Equivalency Guide to determine course equivalency.
+UW College of Engineering Scholarship Resources
 UW Department of Electrical & Computer Engineering
 UW ECE Entrepreneurial Fellows Program
 UW ECE Entrepreneurial Fellows Program (UW ECE-EFP)
 UW ECE Event Photos
 UW ECE Events Calendar
-UW ECE holds monthly information sessions for prospective students where advisers provide information on admissions, curriculum, electrical and computer engineering as a profession and more. Information sessions are open to anyone interested in pursuing a bachelors degree in electrical and computer engineering.
 UW ECE Launches New BSECE Degree Program
 UW ECE Undergraduate Program Mission Objectives and Outcomes
-UW Interest Changers
+UW Office of Merit Scholarships, Fellowships and Awards
+Verifying correctness of high-performance microprocessors.
 Verifying correctness of next-generation microprocessors.
+VLSI / digital systems designers benefit from a strong foundation in analog circuits. The following courses are recommended:
+VLSI / digital systems engineers are focused on the hardware and software underpinning of computational systems and in harnessing current and future digital technologies.
 VLSI Design / Digital Systems Design
 VLSI Design / Digital Systems Design Pathway
+VLSI Design / Digital Systems Design Pathway | UW Department of Electrical & Computer Engineering
+VLSI Design Courses
 WAFER: WomXn at the Forefront of Engineering Research
 Washington Nanofabrication Facility
-We also have drop-in hours set aside for prospective UW ECE students. Drop-ins take place over Zoom every Thursday from 2 to 4 p.m. (except on dates with information sessions). Available times, along with the Zoom links, are posted here: Drop-In Hours .
-We recommend that transfer students attend a Transfer Thursday sessio n hosted by the UW.
+We live in a world where lowering the impact of energy consumption on the environment will be vital to a sustainable future. However, increasingly greater demands are being placed on energy systems we rely on everyday. Power plants, transmission lines, communication links, control systems and a wide range of embedded computing devices together form complex networks that have important local, regional, national and global impacts.
 What are some examples of real-world applications?
 What are some examples of real-world areas of application?
 What do merging and important hardware platforms such as autonomous vehicles, robotics and the Internet of Things (IoT) all have in common? They all depend on machine learning, a branch of artificial intelligence and computer science that focuses on the use of data and algorithms to imitate the way humans learn. Machine learning is revolutionizing the ways in which hardware platforms are being used to collect data to provide new insights and advance fields ranging from medicine to agriculture to aerospace.
-What is the difference between a prerequisite and a pre-enrollment requirement?
+What happens to the electrical grid when a large number of people install solar panels? In this course, we take a deeper dive into the technologies of renewable energy generation and storage. We also consider issues that the integration of these distributed energy resources create in distribution networks and how these issues can be mitigated.
+What’s behind the light switch? In this class, we discuss how electrical energy is generated from renewable and conventional sources, and how it is delivered to homes and businesses. We will also extend the techniques learned in EE215 to the analysis of single-phase and three-phase AC circuits.
 When and Where
 When planning for courses, review projected course offerings here and be sure to check all course prerequisites (course titles below link to the catalog course description, which includes prerequisite information).
-When you first learned about NAND, inverter, OR and other logic gates, did you ever wonder how they worked? How does the flow of electrons become a ‘0’ or a ‘1’ in the vast numbers of logic gates that make up today’s microcontrollers, microprocessors and other integrated circuits? And, how are the electrons so reliable in producing those zeroes and ones? This course jumps right into the fascinating, inner world of logic gates. We’ll explore together the basic operation of a transistor ‘switch’ to the efficient design of fast and reliable complex logic.
-While there is no area-specific capstone for the Microelectronics and Nanotechnology pathway, industry-sponsored capstone projects that require semiconductor expertise can be completed through the ENGINE capstone course sequence (see description below), or alternatively, pursued in the labs of individual faculty conducting research in microelectronics and nanotechnology applications. Consult with UW ECE Advising for more information.
-Who is this program a good fit for?
 WiBotic: Wireless Power for Robots
 width="19px" height="51px" viewBox="0 0 18.776 51.062" enable-background="new 0 0 18.776 51.062" xml:space="preserve" focusable="false">
-Writing: 3 credits of &#8220;W&#8221; coursework
+Writing: 3 credits of “W” coursework
 Writing: Remaining 4 credits met by coursework in the major ( EE 393 )
 Written and Oral Communication (12 credits)
+Yes. A large fraction of the world’s population does not yet have access to electricity. Rural electrification in the developing world spurs economic growth and has the potential to improve quality of life for hundreds of millions of people. For a student who wants their career to have meaning, studying sustainable energy systems could be an excellent choice. Students in this pathway will become the next generation of engineers working toward mitigating the effects of climate change and building a clean energy future for all.
+Yes. Advances in communication, sensing, and computing over the last few decades, manifesting as the Internet of Things (IoT), data centers, or 6G, for example, are all built upon systems engineered by VLSI designers. In doing so, the area has made a significant contribution to transforming the fields of science and medicine, enhanced human productivity, and improved quality and convenience of life. Affordable, low-power smartphones designed by VLSI engineers, for instance, continue to play a transformational role in developing countries, allowing low-resource sections of the world to participate in the global supply chain and provide improved access to banking, education and medical services.
+Yes. Advances in computing over the last few decades have transformed the fields of science and medicine, enhanced human productivity, and improved convenience and quality of life. Affordable, low-power smartphones, for instance, continue to play a transformational role in developing countries, allowing low-resource sections of the world to participate in the global supply chain and providing improved access to banking, education and medical services.
 Yes. Advances in computing, alongside machine learning, can be used to make an impact locally, nationally and globally. For example, machine learning can contribute toward helping to better predict and improve population health, detect plastics that are polluting our rivers and improve the sustainability of crops.
 Yes. Embedded systems make up much of the digital world, and so they have a huge impact on how we think about equitable access to technology, as well as the responsible use and sustainability of that technology.
-Yes. It would be difficult to find any part of society today that is not touched, supported or assisted by electronic devices. Integrated circuits, smartphones, rockets, telescopes, refrigerators and other home appliances, computers, tablets, televisions, video games, augmented and virtual reality, missiles, blood pressure monitors and other home medical devices — the list is endless. While often invisible to the everyday user, electronic devices are integral to addressing today&#8217;s most pressing global challenges — from climate change to vaccines to transportation and many other areas.
-Yes. Students who have already completed a bachelor’s degree are considered postbaccalaureate (postbac) students. Postbac students can apply to the ECE program by following the same admissions process and admissions requirements as a transfer student. More information on how to apply to UW as a postbac student can be found here on the UW Office of Admissions’ website.
 Yes. The advancement of computing technology over the last few decades has transformed modern life, while low-power mobile processors in the form of cellphones have brought many of these advances to low-resource environments as well. As computers become more powerful and more affordable, they will continue to transform almost all facets of our lives.
-You may find a syllabus for most UW courses via Google search or on the department’s website. If you cannot find the syllabus, you can use the course catalog to compare a description of the UW course (here are some common course catalogs you can reference: Math , Physics , Computer Science & Engineering , English ).
 You may want to consider coursework in the following pathways:
 YouTube
 Zoom link

@@ -288,14 +288,14 @@ Master of Fine Arts (MFA) Program Fund
 American Muslim Research Institute Fund
 All IAS Funds
 School of Interdisciplinary Arts & Sciences
-&#124;
+|
 Majors
 School of Interdisciplinary Arts & Sciences
-&#124;
+|
 Undergraduate
-&#124;
+|
 Majors
-&#124;
+|
 Interdisciplinary Arts
 Interdisciplinary Arts
 BACHELOR OF ARTS
@@ -410,7 +410,7 @@ BIS 322 Topics in Performance Study
 BIS 323 History of Photography
 BIS 347 History of American Documentary Films
 BIS 372 Representation, Colonialism, and the Tropical World
-BIS 375 Contemporary &#8220;Muslim&#8221; Artists
+BIS 375 Contemporary “Muslim” Artists
 BIS 378 Languages of Poetry
 BIS 431 Sexual Politics and Cultures
 BIS 464 Topics in Advanced Cinema Studies

@@ -288,14 +288,14 @@ Master of Fine Arts (MFA) Program Fund
 American Muslim Research Institute Fund
 All IAS Funds
 School of Interdisciplinary Arts & Sciences
-&#124;
+|
 Majors
 School of Interdisciplinary Arts & Sciences
-&#124;
+|
 Undergraduate
-&#124;
+|
 Majors
-&#124;
+|
 Culture, Literature & the Arts
 Culture, Literature & the Arts
 BACHELOR OF ARTS
@@ -319,7 +319,7 @@ Investigate the importance of form, design, and genre across the arts;
 Understand how creativity and artistic expression are embedded within larger social and cultural contexts;
 Understand how artistic practices and cultural production vary across time and space.
 Ready to apply?
-If you&#8217;re a current UW Bothell student interested in applying to the Culture, Literature & the Arts major, you can find more information on our How to apply page.
+If you’re a current UW Bothell student interested in applying to the Culture, Literature & the Arts major, you can find more information on our How to apply page.
 If you are NOT a current UW Bothell student, please contact the UW Bothell Admissions team at uwbinfo@uw.edu .
 Plan your degree
 Recommended preparation
@@ -413,7 +413,7 @@ BIS 379 American Ethnic Literatures
 BIS 387 Women and American Literature
 BIS 388 Literature in Translation
 BIS 389 American Indian Literature
-BIS 407 Children&#8217;s Literature and Reader Response Criticism
+BIS 407 Children’s Literature and Reader Response Criticism
 BIS 471 Women in Art
 BISCLA 380 Arts in Context
 BISCLA 384 Literary and Popular Genres
@@ -434,7 +434,7 @@ BIS 115 Digital Cultures
 BIS 140 Numbers in News Media
 BIS 163 The Lives of Objects
 BIS 165 Introduction to Ethnic Studies
-BIS 167 People&#8217;s History of the United States
+BIS 167 People’s History of the United States
 BIS 183 Introduction to the Middle East
 BIS 193 Introduction to Philosophy
 BIS 205 Technologies of Expression

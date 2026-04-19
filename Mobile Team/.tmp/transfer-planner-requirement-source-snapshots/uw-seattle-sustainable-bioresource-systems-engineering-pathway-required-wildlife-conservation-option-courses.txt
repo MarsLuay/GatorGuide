@@ -3,55 +3,20 @@ Source: https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/
 Title: SBSE Schedule and Major Requirements | School of Environmental and Forest Sciences
 
 -->
+[Note: As of Autumn 2025, the Bioresource Science and Engineering (BSE) major is superseded by the Sustainable Bioresource Systems Engineering (SBSE) major. Present BSE majors will be able to complete their BSE degrees, but the BSE major is no longer admitting. The SBSE Major and the BSE Majors are very similar, but SBSE has a handful of different requirements, and many existing SBSE courses have been substantially updated. Both BSE and SBSE students take the same core courses, only now at the SBSE course prefix. If you have any questions, please email SEFS Advising ]
 [Note: this list last updated July 23, 2025]
-[supersedes CSE 142, 143]
-[Supplemental official source] BSE Academic Requirements
-[Supplemental official source] BSE Majors Considering the Switch to the SBSE Major
-[Supplemental official source] ESRM Course Schedule and Major Requirements
-[Supplemental official source] ESRM: Natural Resource and Environmental Management Academic Requirements
 [Supplemental official source] ESRM: Restoration Ecology and Environmental Horticulture Academic Requirements
 [Supplemental official source] ESRM: Sustainable Forest Management Academic Requirements
 [Supplemental official source] ESRM: Wildlife Conservation Academic Requirements
-[This course is being replaced by CSE 121, 122, 123]
+[Supplemental official source] Sustainable Bioresource Systems Engineering (SBSE) Major [formerly BSE]
 *Many of the credits for this minor are completed through the required wildlife coursework
 &copy; 2026 University of Washington |
-% =ENGRUD Placement requirement or recommended
-+ % CHEM 142 &#8211; General Chemistry (5 cr) or CHEM 143/CHEM 145
-+ % CHEM 152 &#8211; General Chemistry (5 cr) or CHEM 153/155
-+ % English Composition – ENGL 131 or similar (5cr)
-+ % MATH 124, 125, 126- Calculus with Analytical Geometry I, II, III (15cr) or honors equivalent (MATH 134, 135, 136)
-+ % PHYS 121 &#8211; Mechanics (5cr) (or PHYS 141 – honors)
-+ = Admission Requirements – to be completed prior to application
-+ CHEM 162 – General Chemistry (5 cr) or CHEM 165 (162/165 not required if CHEM 153 completed)
 <!--
 <svg id="college_black_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 <svg version="1.1" id="university_logo_black" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 <svg version="1.1" id="university_logo_white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 | (206) 543-2730
-$ = Enrollment or satisfactory progress requirements – to be completed before Fall quarter of Junior year
-$ AA 260 &#8211; Thermodynamics (4 cr) [must be completed before Fall Junior year]
-$ BSE 210: Concepts in Bioproduct Sustainability (4 cr) (Junior transfers can take this Junior year)
-$ BSE 248: Paper Properties (4cr) (Junior transfers can take this Junior year)
-$ CHEM 237 – Organic Chemistry (4 cr)
-$ CHEM 238 &#8211; Organic Chemistry (4 cr)
-$ MATH 207 (or AMATH 351) &#8211; Introduction to Differential Equations (3cr) [pr: MATH 125] (not required if MATH 134-136 completed)
-$ MATH 208 (or AMATH 352) &#8211; Matrix Algebra with Applications (3cr) [pr: MATH 126] (not required if MATH 134-136 completed)
-$ PHYS 122 &#8211; Electromagnetism (5 cr) (or PHYS 142 &#8211; honors)
-$ PHYS 123 &#8211; Waves (5 cr) (or PHYS 143 &#8211; honors)
-1
-10 Writing (W) credits met by other courses in the major
-12 credits chosen from the courses on this list:
-2
-2.0+ in both MATH 126/136 and PHYS 121/141
-3
-3, max 12
-4
-5
-5 Credits English Composition (ENGL 131 Preferred)
-A A 210
 A minor in quantitative science is recommended for graduate study. See more on this minor here .
-A PDF of the course requirements and a sample 4-year degree plan is available at this document . Students must complete the BSE-prefixed courses in the quarter and year indicated.
-A substantial majority of our students pursue the ESRM: General program of study, as it is the most flexible. The final ~45 credits in ESRM: General can be any ESRM 400-level or ESRM 300-level elective course. The final ~45 credits in all 4 of the Degree Options are a specific fixed set of courses.
 ABET Accreditation: BSE
 ABET Accreditation: SBSE
 About
@@ -60,108 +25,43 @@ About the Rooms
 Academic and Health & Wellness Support Resources
 Academic Planning Resources
 Academic Policies
-ACCTG 215
-ACCTG 215; ECON 200
-ACCTG 225
-ACCTG 225; ECON 200; either MATH 112, MATH 124, MATH 125, MATH 134, or MATH 145; either ECON 311, IND E 315, QMETH 201, Q SCI 381, PSYCH 315, PSYCH 318, STAT 220, STAT 301, STAT 221, STAT 311, or STAT 390.
-Adaptive Management Elective: Choose one course from the following list (5 credits)
-Additional Math/Statistics/Sciences courses: 0-11 NSc credit if needed to reach 68 NSc credits (formerly NW)
 Adjunct Faculty
 Admission to the Environmental Science and Terrestrial Resource Management (ESRM) Major
-Admission to the ESRM major (All Pathways/Options)
 Admission to the Sustainable Bioresource Systems Engineering (SBSE) major
 Admission to the Sustainable Bioresource Systems Engineering (SBSE) Major
 Admissions
-Aeronautics and Astronautics
 Affiliate Faculty
-Air-Pollution Control
-Air-Quality Modeling
 All pathways in ESRM require the same set of ESRM Core courses, UW General Education requirements, and fundamental Science, Math, and Social Science course content. The only distinction is in the final set of upper division course requirements (40-55 credits, depending on the pathway chosen and the classes selected within that pathway).
 All prospective SBSE students should be aware that while students can join the major at any time, the SBSE-prefixed courses begin in Autumn Quarter of Junior Year (year 3). Students admitted prior to this need to be completing all of the courses included in years 1 and 2 of the SBSE academic plan so they are ready to start the SBSE-prefixed courses in Autumn of year 3. There are two years (6 quarters, Autumn-Spring) of required SBSE-prefixed courses.
-All UW Courses are listed in the UW Course Descriptions . Departments with specific courses identified below: A A , AMATH , BSE , CHEM , CSE , ECON , ENGL , ESRM , INFO , MATH , PHYS , Q SCI , SBSE ,
 Alumni
 AMATH 301: Beginning Scientific Computing (4 credits)
 Anderson Hall, Box 352100 Seattle, WA 98195
-Applies vector analysis to equilibrium of rigid body systems and subsystems. Includes force and moment resultants, free body diagrams, internal forces, and friction. Analyzes basic structural and machine systems and components.
 Aquatic and Fishery Sciences
-Areas of Inquiry (25 cr):
-Areas of Inquiry: Arts and Humanities (A&H) and Social Science (SSc)
-Arts & Humanities (A&H) &#8211; formerly VLPA (10cr)
-Arts and Humanities (A&H): 10 credits Chosen from the University A&H list
 Atmospheric and Climate Science
 Back to Top
-Basic Skills
-Basic Skills (8-11 cr):
 Be Boundless
 Best Practices for PIs
 Beth Gardner (lead), Sarah Converse, Joshua Lawler, Alex McInturff, L. Monika Moskal, Laura Prugh, Sandor Toth, and Aaron Wirsing.
-Biological Frameworks for Engineers
-Bioresource Science and Engineering
-Bioresource Science and Engineering - Business Option: Engineering Electives
-Bioresource Science and Engineering: Engineering Electives
-Both prospective transfer student applicants and current UW students can download this ESRM 4-year course plan document and use it to plan your required courses.
+Bioconversion of biomass into biofuels and bio-based chemicals and materials.
+Biodegradable fiber composites.
+Biomass cultivation for the dual purposes of treating wastewater and providing biorefinery feedstock.
+Biorefinery anerobic digesters to treat waste and produce renewable natural gas.
 Both prospective transfer student applicants and current UW students can download this SBSE 4-year course plan document and use it to plan your required courses.
 Brockman Memorial Tree Tour
-BSE 391 Engineering Principles of Biorefineries (5 cr)
-BSE 392 Bioresource Transport Phenomena (5 cr)
-BSE 406 Natural Products Chemistry (5 cr)
-BSE 410 Industrial Wastewater Treatment and Reduction (4 cr)
-BSE 420 Bioresource Engineering 1 (4 cr)
-BSE 421 Bioresource Engineering 2 (4 cr)
-BSE 422 Bioresource Engineering 3 (4 cr)
-BSE 426 Bioresource Laboratory (4 cr)
-BSE 430 Papermaking Processes (5 cr)
-BSE 436 Pulp and Paper Laboratory II (4 cr)
-BSE 475
-BSE 480 Bioresource Design I (4 cr) (first Capstone course)
-BSE 481 Bioresource Design II (5 cr) (second Capstone course)
-BSE 497 Internship (1 cr)
 BSE Academic Requirements
-BSE Academic Requirements | School of Environmental and Forest Sciences
 BSE Admissions Events
-BSE Major
-BSE Major Requirements
-BSE Major: Business Option
+BSE Brochure
 BSE Majors Considering the Switch to the SBSE Major
-BSE Schedule
 Business, Policy, and Economics
 Business, Policy, and Economics (1 course required)
 Calendars
 Carbon-Related Research at SEFS
 Career Opportunities and Graduate Study
-CEE 220
-CEE 291
-CEE 350 or CEE 357
-CEE 354
-CEE 357
-CEE 480
-CEE 482
-CEE 490
-CEE 497
 Center for Quantitative Science
-CHEM 142, CHEM 143, or CHEM 145
-CHEM E 325
-CHEM E 326
-CHEM E 326; CHEM E 340 which may be taken concurrently; HCDE/ENGR 231
-CHEM E 341
-CHEM E 355
-CHEM E 375
-CHEM E 435; CHEM E 465
-CHEM E 436
-CHEM E 455
-CHEM E 480
-CHEM E 481
-Chemical Engineering
-Chemical Engineering Computer Skills
-Chemical Engineering Lab I
-Chemical Engineering Thermodynamics
 Choose one course from each topic area:
 Choose one from the following list (3 credits minimum) :
-Choose one of the following:
-Civil and Environmental Engineering
 Classroom Calendars
 Click here to join the Wildlife Conservation Option
-Click on ESRM Courses and Sample 4-year Course Plan . Review all 4 years of the plan.
 Click on Import Plan (on right side of screen)
 Click on SBSE Courses and Sample 4-year Course Plan . Review all 4 years of the plan.
 Climate Impacts Group
@@ -169,93 +69,39 @@ College Home
 College of the Environment
 Committees
 Communications
-Comparison Table: BSE vs SBSE
 Completing a Senior Capstone is required for the Wildlife Conservation option. Wildlife Conservation students may choose any of the three capstone options. Go to the Capstone page for more Capstone details.
-Composite Materials in Manufacturing
 Computation and Data Science
 Computation and Data Science Elective list (1 course required)
-Computer programming for students with significant previous programming experience. Emphasizes implementation and run-time analysis of data structures and algorithms using techniques including linked references, recursion, and object-oriented inheritance to solve computational problems motivated by modern societal and scientific needs.
-Computer programming for students with some previous programming experience. Emphasizes program design, style, and decomposition. Uses data structures (e.g., lists, dictionaries, sets) to solve computational problems motivated by modern societal and scientific needs. Introduces data abstraction and interface versus implementation.
-Computer Programming I
-Computer Programming II
 Computer Resources
-Computer Science and Engineering
-Concepts and techniques of optimizing chemical engineering processes and systems, including classical and direct methods of search, linear and nonlinear programming, dynamic programming, statistical experimental design, and evolutionary operation.
-Conducting Financial, Environmental, and Social Responsibility Performance Research
-Consumer Behavior
 Contact Student & Academic Services
 Contact Us
+Conversion of biomass into sustainable aviation fuel.
 Cooperative Institute for Climate,
-Corrosion and Wear of Materials
 Cost Share
-Course
 Courses already encoded on the REEH degree audit
-Cr
-CSE 121
 CSE 121/122/123/142/143: Introduction to Computer Programming (various versions) (4 credits)
-CSE 122
-CSE 123
-CSE 142
-CSE 143
-CSE 160
 CSE 160: Data Programming (4 credits)
-Current BSE majors are either starting year 3 (Junior year) or year 4 (Senior year) of the major. While all student situations are different, by and large, most Seniors will likely find it advantageous to stay in the BSE major, whereas many Juniors will likely find it advantageous to switch to the SBSE major. In the end though, it comes down to which set of requirements you would prefer to complete and which major title you would prefer. Please reach out to SEFS Advising if you have specific questions about your particular situation.
-Current BSE Majors who know they wish to switch to the SBSE curriculum can do so by emailing a request to be switched to SEFS Advising .
-Current UW students who want to download some or all of the 4-year course plan directly into MyPlan can do so by going to the ESRM sample 4-year course plan for importing into MyPlan [coming soon] (UW NetID required for access). Here are additional access instructions for current UW students:
 Current UW students who want to download some or all of the 4-year course plan directly into MyPlan can do so by going to the SBSE sample 4-year course plan for importing into MyPlan (UW NetID required for access). Here are additional access instructions for current UW students:
 Currently, the courses on each list are as follows. More courses are expected to be added.
-Data Programming
-Data Science and Materials Informatics
-Department Requirements (62 Credits)
-Describes water and air resources, parameters that characterize their quality, and how their use alters their properties. Elements of hydrology. Mass and energy balances as applied to environmental systems. Global environmental change. Basics of aquatic chemistry and microbiology applied to municipal water and wastewater treatment operation. Groundwater contamination and treatment.
-Description
-Description of manufacturing systems. Includes discussion of current trends in manufacturing. Introduces process flow analysis, manufacturing organizations including job-shop, assembly lines, and group technology, manufacturing inventory philosophies (just-in-time, MRP, OPT), work environment, and work simplification.
-Director&#8217;s Office Staff
-Director&#8217;s Welcome
+Degree Overview
+Director’s Office Staff
+Director’s Welcome
 Directories
-Diversity (DIV): 5 credits. Course may also apply to an Area of Inquiry requirement
-Diversity-DIV (3cr) – choose a course that also meets A&H/SSc for it to double-count
 Diversity, Equity and Inclusivity Committee
 Doctor of Philosophy Degree (Ph.D.)
-Dynamics of process units and systems; instrumentation and control system design and analysis. Includes weekly laboratory.
-E E 215
+Double Degree or Double Major Opportunities and Opportunities to Minor
+Download the BSE Major Brochure:
 Earth and Space Sciences
 EarthLab
 Ecological Restoration (ECORES) Minor
-ECON 200
 ECON 200: Introduction to Microeconomics (5 credits)
-ECON 200: Microeconomics
 ECON 201: Introduction to Macroeconomics (5 Credits)
-Economics and Society Elective: Choose one course from the following list (3-5 credits)
-Ecosystem Threats Elective: Choose one course from the following list (3-5 credits)
-Either CHEM 142, CHEM 143, or CHEM 145
-either CHEM 142/145; and either MATH 124/134
-either CHEM 153, CHEM 162, or CHEM 165
-either MATH 136; or MATH 126 and either MATH 207, MATH 307, or AMATH 351, any of which may be taken concurrently; and either PHYS 122 or PHYS 142
-Electrical and Computer Engineering
 Emeritus Faculty
 Employment After Graduation: Looking for Jobs
-Energy & Environment
-Energy use. Fossil energy conversion. Oil, gas, coal resources. Air impacts. Nuclear energy principles, reactors, fuel cycle.
-Engages engineering students&#8217; energy, creativity, social conscience, and on-the-ground perspectives in advancing diversity and inclusion in engineering. Students explore topics such as diversity in science and engineering, impact of unconscious bias, the role of allies, community engagement, and leadership in supporting all current and potential engineers. Credit/no-credit only
-Engineering
-Engineering Elective Credit (12 credits)
-Engineering Exploration
-Engineering Jordan: Water in an Arid Land Study Abroad
-Engineering Statics
-ENGR 101
-ENGR 231 – Introduction to Technical Communication (3cr)
-ENGR 401
 Environmental and Forest Sciences
-Environmental Engineering
 Environmental Science and Terrestrial Resource Management (ESRM) Major
 ESRM 235/ECON 235/ENVIR 235: Introduction to Environmental Economics (5 credits)
-ESRM 320
-ESRM 320 : Marketing and Management from a Sustainability Perspective (5 cr)
-ESRM 320 (5) Marketing/Management Sustainability Perspective
 ESRM 320: Marketing and Management from a Sustainability Perspective (5 credits)
-ESRM 321
-ESRM 321 : Finance and Accounting from a Sustainability Perspective (5 cr)
 ESRM 321: Finance and Accounting from a Sustainability Perspective (5 credits)
 ESRM 323 (5) Silviculture
 ESRM 325 (3) Environmental Applications of Plants: Bioenergy and Bioremediation
@@ -264,14 +110,10 @@ ESRM 350 (5) Wildlife Biology and Conservation
 ESRM 351 (5) Wildlife Research Techniques
 ESRM 362 (5) Intro to Restoration Ecology
 ESRM 368 (4) Natural Resources Measurements
-ESRM 371 (5) Environmental Sociology
 ESRM 381 (4) Management of Wildland Recreation and Amenities
-ESRM 381 (4) Wildland Recreation and Amenities Management
-ESRM 400
 ESRM 400 (3) Natural Resource Conflict Management
 ESRM 400: Natural Resource Conflict Management (3 credits)
 ESRM 401 (5) Forest Ecology
-ESRM 403 (4) Econ Development in Developing World
 ESRM 404 (5) Plant Microbiology Laboratory
 ESRM 409 (5) Soil Ecology
 ESRM 410 (5) Forest Soils and Site Productivity
@@ -281,7 +123,6 @@ ESRM 415 (5) Terrestrial Invasion Ecology
 ESRM 420 (5) Wildland Fire Management
 ESRM 421 (3) Role of Culture and Place in Natural Resource Stewardship: Yakama Nation Experience
 ESRM 422 (2; max 4) Plant Microbiology Seminar
-ESRM 423 (3) International Trade, Marketing, and the Environment
 ESRM 423: International Trade, Marketing, and the Environment (3 credits)
 ESRM 425 (5) Ecosystem Management
 ESRM 426 (4) Wildland Hydrology
@@ -301,9 +142,7 @@ ESRM 458 (5) Management of Endangered, Threatened and Sensitive Species
 ESRM 458 (5) Management of Endangered, Threatened, and Sensitive Species
 ESRM 459 (3) Wildlife Conservation in Northwest Ecosystems
 ESRM 459 (3) Wildlife Conservation in NW Ecosystems
-ESRM 461 (5) Forest Management and Economics
 ESRM 461/SBSE 461 (5) Forest Management and Economics
-ESRM 465 (3) Economics of Conservation
 ESRM 465: Economics of Conservation (3 credits)
 ESRM 468 (5) Forest Operations
 ESRM 470 (5) Natural Resource Policy and Planning
@@ -312,185 +151,83 @@ ESRM Minor
 ESRM students can join the Wildlife Conservation Option at any time, though must complete certain ESRM major graduation requirements first, and fill out a plan of study regarding how they will complete all of the degree requirements.
 ESRM: General Academic Requirements
 ESRM: Natural Resource and Environmental Management Academic Requirements
-ESRM: NREM Course Requirements
 ESRM: REEH Course Requirements
 ESRM: Restoration Ecology and Environmental Horticulture Academic Requirements
 ESRM: Sustainable Forest Management Academic Requirements
 ESRM: Wildlife Conservation Academic Requirements
 ESRM: Wildlife Conservation Academic Requirements | School of Environmental and Forest Sciences
-Evaluation of air-quality models relating air pollution emissions to environmental concentrations. Emphasis on models used for air pollution permits. Emphasizes current problems.
 Events
-Examines impacts of a hot dry climate on water engineering systems by studying the engineered water cycle in Jordan including: water cycles and sources in Jordan; drinking water treatment and desalination; wastewater treatment and reuse; decentralized and on-site treatment; and ancient water engineering.
 Expand/contract subsection
 Facebook
 Facility Resources
 Faculty
 Faculty and Research
 Field Stations and Labs
-Finance and Accounting from a Sustainability Perspective
-For a full listing of all requirements in all 5 undergraduate degree pathways, please see the ESRM Major in the UW Catalog .
 For a full listing of all requirements, please see the SBSE Major in the UW Catalog .
-For engineers with no prior experience in the biological sciences. Hands-on, project-based course covers fundamental concepts and language of biology, from an engineering perspective. Topics include functions of life, information processing, proteins, DNA, genetic variability, control loops, energetics, tissues, organisms, ecosystems.
 Forest Ecology and Biology
 Forest Resource Management
-Free elective credits to bring the credit total to 180.
-Free Electives
 Friday Harbor Laboratories
-Fundamental concepts of air pollution Control including emission sources, atmospheric dispersion, ambient concentrations, and emission standards, with emphasis on processes and equipment for controlling emissions
-Fundamental principles of structure and properties of materials utilized in the practice of engineering. Properties of materials as related to atomic, molecular, and crystalline structures. Metals, ceramics, multiphase systems, and polymeric materials. Relationships between structure and electrical, mechanical, thermal, and chemical properties.
-Fundamentals of Electrical Engineering
-Fundamentals of Managerial Accounting
-Fundamentals of Materials Science
-General Education Requirements
 Giving
-Global Business Perspectives
 Graduate Admissions
 Graduate Programs
 Graduate Programs Resources and Forms
 Graduate Student Directory
 Graduate Student Travel Awards
 Graduation
-Graduation in ESRM
 Graduation in the Sustainable Bioresource Systems Engineering major
-How to switch from the BSE major to the SBSE major
-I BUS 300
+High performance sensors manufactured from bio-based materials.
+How Can I Learn More and Join the Mailing List?
+How Do I Join the SBSE Major?
+If SBSE sounds interesting to you, please contact or make an appointment with an Academic Advisor from our School , who can provide you program details and connect you with BSE faculty and/or students to find out more about the program. You may be able to do research in a SBSE lab even before picking a major or take a SBSE course if you have the right prerequisites.
 In the ESRM: Restoration Ecology and Environmental Horticulture degree option, students learn to produce plant materials, manage sustainable landscapes, and repair damaged ecosystems.
 In the ESRM: Sustainable Forest Management Option, for their final credits of degree requirements students acquire the knowledge and skills to measure and assess natural resources to understand the ecology of forest systems; manage for environmental services; treat forest fuels; achieve sustainable harvest; market and sell forest products; and understand how social, economic, and ecologic forces impact the management of forests and their resources.
 Inclusive Excellence at SEFS
-IND E 337
-Industrial and Systems Engineering
-Influence of structure on the mechanical properties materials. Definition of different mechanical properties and experimental techniques to measure them. Elastic, viscoelastic, and plastic deformation. Introduction to fracture.
 INFO 180/CSE 180/STAT 180: Introduction to Data Science (4 credits)
-Information for current BSE Majors considering a switch to the Sustainable Bioresource Systems Engineering Major (SBSE)
 instagram
 Intranet
-Intro to Composite Materials
-Intro to Polymer Science & Engineering
-Introduces wastewater treatment and systems, emphasizing fundamental biological, chemical, and physical processes related to protection of public health environmental quality and water reuse. Process analysis of the configuration and sizing of major types of treatment processes for various sizes of plants and effluent requirements.
-Introduction of preparative methods of polymers; physical chemistry of polymeric molecules in solution, liquid and solid phase; thermodynamics of polymers; methods of characterization; mechanical properties; fabrication techniques; properties of commercial polymers.
-Introduction to Accounting and Financial Reporting
-Introduction to AutoCAD for Civil Engineers
-Introduction to Chemical Principles in Environmental Engineering
-Introduction to chemical processes occurring within soil, water, and air in natural and engineered environmental systems. Includes identification of inorganic and organic chemicals; fundamental thermodynamics and kinetics of chemical processes; examination of chemical processes in environmental and engineered systems; and impacts of chemicals and chemical processes on ecological and human health.
-Introduction to computer programming for students without previous programming experience. Students write programs to express algorithmic thinking and solve computational problems motivated by modern societal and scientific needs. Includes procedural programming constructs (methods), control structures (loops, conditionals), and standard data types, including arrays.
-Introduction to Computer Programming I
-Introduction to Computer Programming II
-Introduction to Computer Programming III
-Introduction to computer programming. Assignments solve real data manipulation tasks from science, engineering, business, and the humanities. Concepts of computational thinking, problem-solving, data analysis, Python programming, control and data abstraction, file processing, and data visualization. Intended for students without prior programming experience. Cannot be taken for credit if credit received for either CSE 123 or CSE 143
-Introduction to data science approaches and their applications to materials science research. Basic skills in data mining, data processing, and machine learning for materials research topics using Python taught through case studies and other methodologies.
-Introduction to electrical engineering. Basic circuit and systems concepts. Mathematical models of components. Kirchhoff&#8217;s laws. Resistors, sources, capacitors, inductors, and operational amplifiers. Solution of first and second order linear differential equations associated with basic circuit forms.
-Introduction to Manufacturing Systems
-Introduction to Mechanics of Materials
-Introduction to Modern Materials
-Introduction to the concepts of stress, deformation, and strain in solid materials. Development of basic relationships among loads, stresses, and deflections of structural and machine elements such as rods, shafts, and beams. Load-carrying capacity of these elements under tension, compression, torsion, bending, and shear forces.
-Introduction to Visualization and Computer-Aided Design
-Items to Consider in Your Decision: Major Start
 Jobs
 Joining the Wildlife Conservation Option
-Key
-Kinematics & Dynamics
-Kinematics of particles, systems of particles, and rigid bodies; moving reference frames; kinetics of particles, systems of particles, and rigid bodies; equilibrium, energy, linear momentum, angular momentum.
-L. Monika Moskal
 Lab Safety
-Laboratory techniques, equipment, and underlying fundamentals in surface and colloid science. Experiments in the measurement of surface tension, adsorption, wetting and spreading, colloid properties, emulsion preparation and stability, electrophoresis, and interfacial hydrodynamics.
-Landscape ecology is an integrated approach to studying the interaction of physical, biological and social processes on ecological systems at a wide range of spatial scales. The NREM option focuses on applied aspects of landscape ecology that create, sustain and alter landscapes to achieve biological diversity and integrity, as well as social purposes.
-Leadership and Organizational Behavior
-Leadership Development to Promote Equity in Engineering Relationships
-Leadership, Critical Thinking, and Decision Making
-Lectures on statistics, experimental design, instrumentation, laboratory safety, and report writing; laboratory experiments on fluid mechanics and heat transfer. Emphasis on teaming, experimental planning, procedures, report writing, and oral presentations.
-Life Cycle Assessment: Fundamentals and Bio-Based Applications
+Learn more about the SBSE Major and how the Washington Pulp and Paper Foundation supports career pathways in the video below.
 linkedin
-M E 230
 Make a Gift
-Manufacturing processes for composite materials, with a focus on thermosets. Composite manufacturing process from raw materials manufacturing to shipping final products. Controlling parameters leading to defects. Balance between design and quality system manufacturing controls, relationship of process development to engineering design, and procedures for materials and process changes. Identification and repair of manufacturing anomalies.
 Maps
 Marine and Environmental Affairs
 Marine Biology
-Marketing and Management from a Sustainability Perspective
-Marketing Concepts
 Master of Forest Resources (M.F.R.) Forest Management Degree
 Master of Forest Resources (MFR) Forest Management Degree
 Master of Science (M.S.) and Ph.D. Graduate Admissions
 Master of Science (M.S.) Degree
 Master of Science (M.S.)/Master of Arts in International Studies (MAIS) Concurrent Degree
 Master of Science (MS)/Master of Public Administration (MPA) Concurrent Degree
-Materials and advances in materials are at the core of a large number of significant technological advances. Seminar format highlights processing, properties, and uses of a broad class of materials for a variety of applications, each introduced by a faculty member from the department.
-Materials Science and Engineering
-MATH 112, MATH 124, MATH 134, or Q SCI 291; and either CHEM 120, CHEM 142, CHEM 143, CHEM 145, PHYS 114, PHYS 121, or PHYS 141
-MATH 124 or MATH 112.
-MATH 125
-Math and Statistics (18-26 credits)
 McIntire-Stennis (MS) Cooperative Forestry Research Program
-ME 123
-ME 124
-Mechanical Behavior of Materials I
-Mechanical Engineering
-Mechanisms of corrosion, thermodynamics, kinetics of corrosion. Passivity; Pourbaix diagrams; corrosion rate testing and measurements; forms of corrosion; effects of alloy and environmental variables; corrosion testing. Wear mechanisms: adhesive, abrasive, erosive. Fretting; surface roughness, wear testing. Coatings for corrosion and wear protection.
 Meeting Room Calendars
-Methods of depicting three-dimensional objects and communicating design information. Development of three-dimensional skills through freehand sketching and computer-aided design using parametric solid modeling.
-Methods of depicting three-dimensional objects and communicating design information. Development of three-dimensional visualization skills through computer-aided design using parametric solid modeling.
 MFR Restricted Elective Courses
-MGMT 300
-MGMT 401
-MGMT 403
-Microstructural design and processing of composite materials; polymeric, metallic, and ceramic matrices; fibers and fiber-reinforced composites, thermal, mechanical, and electrical properties.
-Minimum grade of 2.0 in A A 210
 Minors to Consider
-MKTG 301
-MKTG 335
-MKTG 450
-Motivating High Performance
-MSE 170
-MSE 298
-MSE 362
-MSE 463
-MSE 471
-MSE 475
-MSE 477
-MSE 490
 My UW
-Natural Resource Conflict Management
 Need one course:
 News and Events
 Newsletters
-Note: This is a record of the academic requirements for the BSE major, which is no longer admitting students. The BSE major has been superseded by the SBSE major as of Autumn 2025
 Ocean, and Ecosystem Studies
 Oceanography
 Once the classes are in your Plan, you will be able to register for the classes as normal
-Once the classes are in your Plan, you will be able to register for the classes as normal.
-One course from the following elective list:
 One course is required from each of the following two SBSE Elective Lists:
-One Statistics course from the following (3-5 credits): QSCI 381, IND E 315, or STAT 390
-OPMGT 301
+Our Admissions Section has all the information you need.
 Our Legacy
-Overview of life cycle thinking, the fundamental theory of the Life Cycle Assessment (LCA) framework, and practical applications in supporting real-world decision-making. Presents state-of-the-art LCA tools, industrial case studies, and advanced LCA methodologies using the framework of bio-based materials and bioenergy solutions. Emphasizes systems thinking.
 Partnerships with Indigenous Tribes and Nations
-Phase equilibria and chemical equilibria in multicomponent systems; theories of solution; chemical reaction analysis.
 Postdoctoral Scholars
-Prerequisites
-Principles of Operations Management
-Principles of Selling
 Privacy
-Process Dynamics & Control
-Process Optimization
+Production of nanocellulose, and other nanomaterials, from biomass.
 Program on Climate Change
 Program on the Environment
 Proposal Templates
 Prospective Graduate Student Visit Day
-Provides an introduction to engineering drafting and graphical communication. Includes application of drafting standards and structure as well as creating and modifying basic drawings in 2D and 3D drafting in AutoCAD. Introduces reading plan sets and creating portions of plan sets applied to civil and environmental engineering fields.
 Public Events Calendar
 Pursuing Study Abroad Opportunities
 Q SCI 256: Introduction to Data Science Methods for Environmental Science (4 credits)
 QSCI 482 (5) Statistical Inference in Applied Research
 Quaternary Research Center
-Reasoning (RSN): 10 credits met by other program requirements
-Recommended: completion of guided self-placement test at https://placement.cs.washington.edu/
-Recommended: CSE 121 or completion of guided self-placement test at https://placement.cs.washington.edu/
-Recommended: CSE 122, or completion of guided self-placement test at https://placement.cs.washington.edu/
-Recommended: prior programming experience; some experience with Python helpful.
 Reimagining Anderson Hall
-Required Autumn quarter first year course for ENGRUD students.
-Required NREM Option Courses (29 credits)
 Required REEH Option Elective Courses (complete a minimum 35 credits from this list; at least 15 credits at 400 level )
 Required Sustainable Forest Management Option courses
 Required Sustainable Forest Management Option Courses
@@ -499,22 +236,25 @@ Research Archive
 Research Centers, Programs and Partnerships
 Research Grants & Contracts
 Routing Proposals & Deadlines
+Sample Areas of Research Conducted by SBSE Faculty
+SBSE and SBSE graduates begin careers in manufacturing, engineering, technical service, sustainability consulting, and management training. Positions include process engineer, process designers in engineering consulting firms, technical sales engineer, product development engineer, environmental engineer, research engineer, and sustainability specialists and experts in government, corporations, and NGO firms, as well as many other specialties that require a fundamental background in process engineering, bio-based processes, and sustainability. Select recent employers of SBSE alumni are featured in the BSE Brochure .
+SBSE Careers and Career Support
 SBSE Course Schedule and Major Requirements
 SBSE Employer Recruiting Program
 SBSE Faculty
+SBSE graduates apply their scientific know-how, process engineering expertise, and knowledge of sustainability fundamentals to manufacturing environmentally friendly products and designing low impact, but economically viable, processes. Students in the major are also challenged to address social and cultural impacts of their engineering solutions so that any proposed bio-based product or process is truly sustainable.
 SBSE in the News – for Prospective Majors
 SBSE is a Minimum Requirements major, which means all students who complete the Minimum Requirements for Admission are admitted to the major. All details regarding SBSE Admission are available under SBSE Admissions .
-SBSE Major Requirements
 SBSE Schedule and Major Requirements
+SBSE students apply a strong science foundation and engineering problem solving skills to address many of the grand challenges facing us today. Students acquire expertise in the bio-based processes that provide a means to address grand challenges such as climate change and plastic pollution in our oceans. Production of fuels, chemicals and biodegradable materials from biomass is a route to having a truly circular economy that meets these challenges.
+SBSE students are supported by the Washington Pulp and Paper Foundation (WPPF), a 501c3 organization based in our School, in acquiring engineering internships and permanent employment. Virtually all SBSE and BSE students have one or more internships before they graduate. SBSE and BSE students also receive help from SEFS Advising, the UW Career Center, and the Career Center @ Engineering in seeking employment and internships.
+SBSE students can apply annually for substantial scholarship funding through the SEFS ESRM and SBSE Undergraduate Scholarship program. These scholarships are supported by our generous SEFS donors, and also by donors from the Washington Pulp and Paper Foundation (WPPF).
 Schedules
-Schedules are available on the Academic Planning Resources Page.
 Schedules are available over on the Academic Planning Resource s page.
 Schedules are available over on the Academic Planning Resources page.
+Scholarships and Other Funding
 School of Environmental and Forest Sciences
-Sciences (39-42 Credits)
 Search
-SEFS 519
-SEFS 540 (5) Optimization Techniques for Natural Resources
 SEFS Advisory Committee
 SEFS and Affiliated Faculty
 SEFS and UW Student Organizations
@@ -531,36 +271,32 @@ SEFS Undergraduate Honors Program
 sefs@uw.edu
 Senior Capstone
 Skip to main content Skip to footer unit links
-Social Science (SSc) &#8211; formerly I&S (10cr) (other than ECON 200)
-Social Science (SSc): ECON 200; 10 credits chosen from the University SSc list (outside the major); 5 credits met by coursework in the major
+Some students may find that earning a double degree or double major is the best way to meet their educational objectives. The two most common additional degrees SBSE students earn are with Environmental Science and Resource Management (ESRM) or with Chemical Engineering, though completing a double degree with SBSE and CHEM E is very time-consuming. Potential students interested in this possibility are encouraged to discuss their goals with the pertinent academic advisors to review your potential plan of study and to determine whether a double degree or double major is the best option to meet your educational goals, or would it be best completing only one Bachelor’s degree, and earn a Master’s degree in the second major area. Particularly with Chemical Engineering, or with Materials Science and Engineering , where it is possible to earn a Master’s degree with only one additional year of study, it is much less time consuming to earn a Bachelor’s degree in SBSE and a Master’s in one of those fields, and an SBSE degree will prepare you for graduate school in either of these areas.
 Staff
 Staff login
+Statement of Non-Discrimination
 Strategic Plan
 Student Forms
 Student Procedures and Policies
 Students
 Students admitted after Autumn quarter of Junior year (year 3) will need to be working on other courses required for the major and begin the SBSE courses in the following Autumn quarter. SBSE course content builds from quarter to quarter, with completion of previous courses a prerequisite for enrolling in courses in the following quarter, so beginning the first quarter of SBSE-prefixed courses in Autumn quarter of year 3 is required.
-Students earn a B.S. in Environmental Science and Terrestrial Resource Management. The Option in Natural Resources and Environmental Management is noted on student transcripts only, not the diploma.
 Students earn a B.S. in Environmental Science and Terrestrial Resource Management. The option in Restoration Ecology and Environmental Horticulture is noted on student transcripts, not the diploma .
 Students earn a B.S., Environmental Science and Terrestrial Resource Management: Option in Wildlife Conservation. Beginning with the Spring 2025 graduating class , majors, and options (when applicable) are printed on Bachelor degree diplomas .
 Students earn a B.S., Environmental Science and Terrestrial Resource Management. The Option in Sustainable Forest Management is noted on student transcripts only, not the diploma.
 Students learn and apply fundamental concepts of biology, plant science, and ecology. This disciplinary knowledge, with supporting coursework and experience, allows students to become accomplished in producing plant materials, managing sustainable landscapes, repairing damaged ecosystems, and participating in large interdisciplinary projects.
 Suggested: Completing the Quantitative Science Minor- 27 credits
-Surface & Colloid Science Lab
 Sustainable Bioresource Systems Engineering (SBSE) Major [formerly BSE]
+Sustainable Bioresource Systems Engineering (SBSE) Major [formerly BSE] | School of Environmental and Forest Sciences
 Sustainable Bioresource Systems Engineering (SBSE) Major Elective Lists
 Sustaining Our World Lecture Series
+Techno-economic and life cycle assessments of processes to produce fuels, chemicals, and materials from biomass.
 Terms
-The Environmental Science and Terrestrial Resource Management (ESRM) major (including all ESRM degree options) is a Minimum Requirements major, which means all students who complete the Minimum Requirements for Admission are admitted to the major. All details regarding ESRM Admission are available under ESRM Admissions . Transfer Applicants should be aware that there are some significant issues regarding completing the Minimum Admission course requirements at other colleges/universities that may involve you needing to complete more courses in order to have your Minimum Admission requirements transfer correctly to the UW. Please consult ESRM Admissions for more information.
-The Natural Resources and Environmental Management option is accredited by the Society of American Foresters through 2027.
+The department maintains a mailing list for students interested in the SBSE major and also students who are declared pre-majors for SBSE (PREBSE-coded UW students). Current UW and non-UW students can join the PREBSE mailing list by submitting the Mailman sign-up form .
+The Sustainable Bioresource Systems Engineering (SBSE) major combines process engineering, materials science, and sustainability fundamentals to provide students with a versatile foundation to engineer sustainable bio-based systems. Students in the major study bio-based processes and products by applying sustainability metrics and process engineering fundamentals. Graduates of the major find employment opportunities with industry, consulting firms, NGOs, and government agencies.
 The Sustainable Forest Management option is accredited by the Society of American Foresters through 2027.
-The table compares the present BSE major requirements to the SBSE major requirements.
-This image is made from LIDAR, or Light Detection and Ranging, which is a remote sensing method that is used to measure distances.
-Title
-To complete the BSE degree with a transcripted option in Business, all the above courses plus an additional 12 credits minimum must be completed:
-To earn a B.S in Bioresource Science and Engineering, undergraduate students complete the following courses.
+The University of Washington prohibits discrimination, harassment and sexual misconduct in any education program or activity that it operates. Individuals may report concerns, make complaints, or direct inquiries to the Civil Rights Compliance Office . The statement of nondiscrimination is located at: uw.edu/civilrights/policies-and-guidance/statement-of-nondiscrimination/ .
+The UW offers numerous degree minors , including the ESRM minor in our School. Minors are declared with your major advisor.
 To earn a B.S in Sustainable Bioresource Systems Engineering, undergraduate students complete a minimum of 180 credits.
-To earn a B.S with a major in ESRM undergraduate students complete a minimum of 180 credits.
 Twitter
 Undergraduate Admissions
 Undergraduate Admissions Advising
@@ -568,17 +304,13 @@ Undergraduate Advising Services
 Undergraduate Programs
 Undergraduate Research Opportunities
 University of Washington
-Use Excel, Matlab, and AspenPlus to solve typical chemical engineering problems. Solve realistic problems and explore alternatives that would be inaccessible for hand calculations. Includes equations of state, chemical equilibrium of simultaneous reactions, phase equilibria, plug flow reactors, heat transfer in 1-D, and time-dependent heat transfer.
 Using ESRM 399 B section credits for your Internship
 UW Botanic Gardens
 UW Home
 UW SEFS (@ sefs_uw ) • Instagram photos and videos
 View this profile on Instagram
-Visualization and Computer-Aided Design Laboratory
-W Credits or Additional Composition (10 credits): ENGR 231 (3 Credits): remaining W credits satisfied by coursework in Major
 Washington Sea Grant
-Wastewater Reuse and Resource Recovery
-When to start the SBSE Major &#8211; Timing is Important
+When to start the SBSE Major – Timing is Important
 width="215px" height="12px" class="college-name" alt="UW College of the Environment" viewBox="33 379.4 677.4 34.6" style="enable-background:new 33 379.4 677.4 34.6;"
 width="215px" height="14px" class="uw-name" viewBox="-70 381.4 469.1 31.6" style="enable-background:new -70 381.4 469.1 31.6;"
 width="252.993px" height="17.033px" viewBox="0 0 252.993 17.033" enable-background="new 0 0 252.993 17.033"

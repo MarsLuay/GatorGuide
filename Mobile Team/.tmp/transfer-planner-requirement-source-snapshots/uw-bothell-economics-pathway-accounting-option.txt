@@ -4,16 +4,14 @@ Title: Bachelor of Economics - School of Business
 
 (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
 [Supplemental official source] Accounting Option
-[Supplemental official source] Entrepreneurship Concentration
 [Supplemental official source] Finance Option and Concentration
-[Supplemental official source] Management Concentration
 [Supplemental official source] Supplemental official track and option pages
 **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
 *If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses):
-&#124;
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
+|
 10 credits – Complete 2 courses from this list:
 18807 Beardslee Blvd, Suite 210
 425.352.5000
@@ -59,10 +57,10 @@ BBUS 451 – Financial Policy & Planning
 BBUS 451 – Financial Policy & Planning (350) **
 BBUS 453 – Financial Institutions & Markets
 BBUS 454 – Investments
-BBUS 458 &#8211; Risk Modeling
-BBUS 463 &#8211; Advanced Financial Accounting (362)
-BBUS 465 &#8211; Applied Financial Accounting (350)
-BBUs 466 &#8211; Applied Managerial Accounting (350)
+BBUS 458 – Risk Modeling
+BBUS 463 – Advanced Financial Accounting (362)
+BBUS 465 – Applied Financial Accounting (350)
+BBUs 466 – Applied Managerial Accounting (350)
 BBUS 467 – Advanced Taxation (450)
 BBUS 468 – Advanced Accounting and Analytics (363)
 BBUS 470 – Business Policy & Strategic Management

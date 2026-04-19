@@ -1,0 +1,10 @@
+---
+exclude_paths:
+  - ".tmp/**"
+  - "Mobile Team/.tmp/**"
+  - "Mobile Team/dist/**"
+engines:
+  psscriptanalyzer:
+    exclude_paths:
+      - "Mobile Team/scripts/run-transfer-planner-maintenance.ps1"
+      - "Mobile Team/scripts/run-transfer-planner-refresh.ps1"

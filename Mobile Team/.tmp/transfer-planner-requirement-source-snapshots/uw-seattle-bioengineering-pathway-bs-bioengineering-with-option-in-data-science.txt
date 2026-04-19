@@ -1,8 +1,8 @@
 Owner: uw-seattle-bioengineering:pathway:bs-bioengineering-with-option-in-data-science
 Source: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-Title: Undergraduate Degree Requirements &#8211; UW Bioengineering
+Title: Undergraduate Degree Requirements – UW Bioengineering
 
-Undergraduate Degree Requirements &#8211; UW Bioengineering
+Undergraduate Degree Requirements – UW Bioengineering
 Skip to content
 Toggle Navigation
 News /
@@ -24,7 +24,7 @@ Undergraduate Program
 Undergraduate Admissions
 Master’s Programs
 Bachelor’s/Master’s Program (BS/MS)
-Master&#8217;s Program (MS)
+Master’s Program (MS)
 Master of Applied Bioengineering (MAB)
 Online Master of Pharmaceutical Bioengineering (PharBE)
 About the Program
@@ -124,7 +124,7 @@ Introductory Biology
 15
 TOTAL
 44
-Programming &#8211; Choose one option (4 credits)
+Programming – Choose one option (4 credits)
 Course
 Topic
 Credits
@@ -370,15 +370,15 @@ Academic Programs
 Undergraduate Program
 Undergraduate Admissions
 ABET Accreditation
-BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)
+BS Bioengineering with Option in Nano & Molecular Engineering (NME)
 BS Bioengineering with Option in Data Science
 Undergraduate Degree Requirements
 Undergraduate Sample 4-Year Schedule
 Prerequisites to BIOEN core courses
 Capstone Help Page
-Master&#8217;s Programs
+Master’s Programs
 Master of Science (MS)
-Bachelor&#8217;s/Master&#8217;s Program (BS/MS)
+Bachelor’s/Master’s Program (BS/MS)
 Master of Applied Bioengineering (MAB)
 MAB Alumni Stories
 MAB Admissions
@@ -424,10 +424,10 @@ Media Information
 UW Home
 UW College of Engineering
 UW School of Medicine
-BioEngage &#8211; UW BioE Industry Engagement
+BioEngage – UW BioE Industry Engagement
 MyBioE
 My UW
 Connect with us
-Copyright 2025 University of Washington &#8211; Seattle &#8211; Department of Bioengineering | All Rights Reserved | Privacy | Terms
+Copyright 2025 University of Washington – Seattle – Department of Bioengineering | All Rights Reserved | Privacy | Terms
 Page load link
 Go to Top

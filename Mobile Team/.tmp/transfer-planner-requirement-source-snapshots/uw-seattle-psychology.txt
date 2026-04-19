@@ -2,11 +2,11 @@ Owner: uw-seattle-psychology
 Source: https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements
 Title: Graduation Requirements | Department of Psychology
 
-&#62;
+>
 Undergraduate
-&#62;
+>
 Prospective Students
-&#62;
+>
 Graduation Requirements
 To earn a BA or BS degree in Psychology at UW, you’ll complete a combination of major-specific courses and university-wide general education requirements . For students who have 60 or more quarter credits, you may have completed a number of the Social Sciences (SSc), Natural Science (NSc), and Reasoning (R) requirements, but be sure to plan for the following:
 English Composition (C) – 5 credits

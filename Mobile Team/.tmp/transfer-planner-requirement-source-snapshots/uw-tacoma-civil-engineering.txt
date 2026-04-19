@@ -123,7 +123,7 @@ Visiting Appointments
 Events
 expand_more
 Advising Events
-Annual Dean&#039;s Awards
+Annual Dean's Awards
 Engineering Week
 Women in Data Science (WiDS) Tacoma @ UW Tacoma
 End of Quarter Colloquia
@@ -176,7 +176,7 @@ alt="Emese Hadgany">
 arrow_back_ios
 arrow_forward_ios
 Emese Hadnagy
-"Creating a Community of Fixers" - Dr. Emese Hadnagy and her new faculty colleagues are designing UW Tacoma&#039;s new Civil Engineering program to be inclusive and engaged
+"Creating a Community of Fixers" - Dr. Emese Hadnagy and her new faculty colleagues are designing UW Tacoma's new Civil Engineering program to be inclusive and engaged
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2022-04/uwtnews-lornearnold-featureimage.jpeg"
 srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2022-04/uwtnews-lornearnold-featureimage.jpeg 1940w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2022-04/uwtnews-lornearnold-featureimage.jpeg 980w,
@@ -186,7 +186,7 @@ alt="Lorne Arnold">
 arrow_back_ios
 arrow_forward_ios
 Lorne Arnold
-"Under Construction" - Tacoma native Dr. Lorne Arnold is helping build UW Tacoma&#039;s new Civil Engineering program
+"Under Construction" - Tacoma native Dr. Lorne Arnold is helping build UW Tacoma's new Civil Engineering program
 <img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2023-07/uwtnews-set-researchforall-featureimage.jpg"
 srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2023-07/uwtnews-set-researchforall-featureimage.jpg 1940w,
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2023-07/uwtnews-set-researchforall-featureimage.jpg 980w,
@@ -196,7 +196,7 @@ alt="Dr. Jeff Walters and Dr. Angela Kitali ">
 arrow_back_ios
 arrow_forward_ios
 Jeff Walters & Angela Kitali
-"Breaking Down Engineering Barriers" - Dr. Angela Kitali and Dr. Jeff Walters&#039;s project called "Research for All" aims to get students involved in hands-on engineering research as an integral part of their classroom experience
+"Breaking Down Engineering Barriers" - Dr. Angela Kitali and Dr. Jeff Walters's project called "Research for All" aims to get students involved in hands-on engineering research as an integral part of their classroom experience
 The CE Chair's Message
 Civil Engineering Directory
 Have questions? Schedule an appointment with one of our Academic Advisors!

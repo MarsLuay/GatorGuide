@@ -21,15 +21,15 @@ Gator Guide helps students:
 
 - On Windows, double-click `Start-to-run.bat`
 - On macOS or Linux, run `Start-to-run.sh`
-- After the server comes online, it opens `http://127.0.0.1:8081` in your default browser automatically.
+- After the server comes online, it opens `<http://127.0.0.1:8081>` in your default browser automatically.
 
 ### Manual Start
 
 #### 1) Install required tools
 
-- Download VS Code: https://code.visualstudio.com/download
-- Download Node.js: https://nodejs.org/en/download
-- Install Git: https://git-scm.com/downloads
+- Download VS Code: <https://code.visualstudio.com/download>
+- Download Node.js: <https://nodejs.org/en/download>
+- Install Git: <https://git-scm.com/downloads>
 
 #### 2) Clone and install the project
 

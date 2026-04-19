@@ -2,423 +2,245 @@ Owner: uw-bothell-business-administration-supply-chain-management
 Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain
 Title: Supply Chain Management Option - School of Business
 
-Supply Chain Management Option - School of Business
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
-height="0" width="0" style="display:none;visibility:hidden">
-Skip To Content
-Current site
-All UW Bothell
-Search keywords
-Search
-Open mobile menu
-Quick Links
-School of Business
-Close mobile menu
-School of Business
-Search keywords
-Current site
-All UW Bothell
-About
-Expand Navigation
-News
-Vision, Mission & Values
-Leadership History
-Undergraduate
-Expand Navigation
-Bachelor in Business Administration
-Expand Navigation
-Admissions
-Expand Navigation
-How to apply
-Prerequisite Courses
-Accounting Option
-Leadership & Strategic Innovation Option
-Marketing Option and Concentration
-Supply Chain Management Option
-Entrepreneurship Concentration
-Finance Option and Concentration
-Management Concentration
-Management Information Systems (MIS) Concentration
-Retail Management Concentration
-Technology & Innovation Management (TIM) Concentration
-Bachelor in Economics
-Expand Navigation
-Admissions
-Expand Navigation
-Prerequisites
-Curriculum
-Direct First-Year Admit (DFA)
-Minor in Actuarial Science
-Minor in Business Administration
-Minor in Economics
-Minor in Retail Management
-Policies & Petitions
-Graduate
-Expand Navigation
-Master of Business Administration
-Expand Navigation
-PharmD-MBA Program
-Admissions
-Curriculum
-Tuition & Financial Aid
-Master of Science in Accounting
-Expand Navigation
-Admissions
-Curriculum
-Tuition and Financial Aid
-MSA Faculty
-MS Accounting Advisory Board
-Certificate in Accounting
-Executive Education
-Expand Navigation
-Ethics Conference
-Opportunities
-Expand Navigation
-Mentorship EDGE
-Expand Navigation
-Get a Mentor
-Become a Mentor
-Mentors
-Events
-Awards
-Scholarships
-Expand Navigation
-Ron Tilden Accounting Scholarship
-Don Whitney Scholarship for Graduate Students
-Donor Excellence Scholarship
-Internships
-Expand Navigation
-Why hire a business student?
-Business Consulting Course
-Professional Coaching
-Independent Study Projects
-People
-Expand Navigation
-Faculty
-Expand Navigation
-Promotion and Tenure Guidelines
-Staff
-Advisory boards
-Expand Navigation
-Dean’s Advisory Board
-Mentorship EDGE Mentors
-Events
-Give
-UW Bothell Home
-Quick Links
-MyUW
-Canvas
-Directory
-Library
-Workday Login
-Give
-Apply As Undergraduate
-More Links
-Time Schedule
-Information Technology
-Commuter Services
-Facilities
-Human Resources
-Campus Safety
-Alumni
-About
-News
-Vision, Mission & Values
-Leadership History
-Undergraduate
-Bachelor in Business Administration
-Bachelor in Economics
-Direct First-Year Admit (DFA)
-Minor in Actuarial Science
-Minor in Business Administration
-Minor in Economics
-Minor in Retail Management
-Policies & Petitions
-Graduate
-Master of Business Administration
-Master of Science in Accounting
-Certificate in Accounting
-Executive Education
-Ethics Conference
-Opportunities
-Mentorship EDGE
-Scholarships
-Internships
-Business Consulting Course
-Professional Coaching
-Independent Study Projects
-People
-Faculty
-Staff
-Advisory boards
-Mentorship EDGE Mentors
-Events
-Give
-Close mobile menu
-In this section
-About
-Expand Navigation
-News
-Vision, Mission & Values
-Leadership History
-Undergraduate
-Expand Navigation
-Bachelor in Business Administration
-Expand Navigation
-Admissions
-Expand Navigation
-How to apply
-Prerequisite Courses
-Accounting Option
-Leadership & Strategic Innovation Option
-Marketing Option and Concentration
-Supply Chain Management Option
-Entrepreneurship Concentration
-Finance Option and Concentration
-Management Concentration
-Management Information Systems (MIS) Concentration
-Retail Management Concentration
-Technology & Innovation Management (TIM) Concentration
-Bachelor in Economics
-Expand Navigation
-Admissions
-Expand Navigation
-Prerequisites
-Curriculum
-Direct First-Year Admit (DFA)
-Minor in Actuarial Science
-Minor in Business Administration
-Minor in Economics
-Minor in Retail Management
-Policies & Petitions
-Graduate
-Expand Navigation
-Master of Business Administration
-Expand Navigation
-PharmD-MBA Program
-Admissions
-Curriculum
-Tuition & Financial Aid
-Master of Science in Accounting
-Expand Navigation
-Admissions
-Curriculum
-Tuition and Financial Aid
-MSA Faculty
-MS Accounting Advisory Board
-Certificate in Accounting
-Executive Education
-Expand Navigation
-Ethics Conference
-Opportunities
-Expand Navigation
-Mentorship EDGE
-Expand Navigation
-Get a Mentor
-Become a Mentor
-Mentors
-Events
-Awards
-Scholarships
-Expand Navigation
-Ron Tilden Accounting Scholarship
-Don Whitney Scholarship for Graduate Students
-Donor Excellence Scholarship
-Internships
-Expand Navigation
-Why hire a business student?
-Business Consulting Course
-Professional Coaching
-Independent Study Projects
-People
-Expand Navigation
-Faculty
-Expand Navigation
-Promotion and Tenure Guidelines
-Staff
-Advisory boards
-Expand Navigation
-Dean’s Advisory Board
-Mentorship EDGE Mentors
-Events
-Give
-School of Business
-&#124;
-Bachelor of Business Administration
-School of Business
-&#124;
-Undergraduate Programs
-&#124;
-Bachelor of Business Administration
-&#124;
-Supply Chain Management Option
-Supply Chain Management Option
-Why study Supply Chain Management?
-The Supply Chain Management (SCM) Option provides students the ability to manage suppliers across globally distributed locations, to procure the right materials, at the right time, at the right quality, and at the lowest cost to meet company objectives. Graduates can go on to work as buyers, operations managers, forecasting analysts among many things.
-The Supply Chain Management Option qualifies as a STEM-designated program categorized under “Management Science” (CIP Code 52.1301) on the Department of Homeland Security&#8217;s roster of STEM-designated degrees .
-International students who engage in post-completion Optional Practical Training (OPT) can seek a 24-month extension of their initial OPT. This extension, known as a STEM OPT Extension , permits international students to prolong their employment with a qualifying employer for a combined total of 36 months of U.S. work experience.
-Requirements to declare the option
-Students must have completed the following courses with a minimum grade of 3.0 in each course in order to declare the SCM Option.
-Calculus
-Statistics
-BBUS 340 – Operations & Project Management
 (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
-Supply Chain Management curriculum
-Students must complete the following courses for graduation:
-Course Type
-Bothell Location Course Numbers & Names
-Core Courses (prerequisites in parentheses)
+(CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
+(CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
+(CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
+[Supplemental official source] Management Concentration
+[Supplemental official source] Management Information Systems (MIS) Concentration
+[Supplemental official source] Retail Management Concentration
+[Supplemental official source] Supplemental official track and option pages
+[Supplemental official source] Technology & Innovation Management (TIM) Concentration
+* A minimum grade of 2.7 in either course is required.
+&copy; 2026 University of Washington Bothell
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
+|
+10 credits
+10 credits – 2 courses from the list below:
+10 credits – Complete 2 courses from this list:
+18807 Beardslee Blvd, Suite 210
+30 Credits
+425.352.5000
+425.352.5394
+90 credits
+90 Credits
+A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
+About
+Accessibility
+Accounting Option
+Acquire the necessary skills to critically analyze the potential impact of upcoming technologies on various industrial sectors
+Admissions
+Advisory boards
+After graduation, students apply their knowledge in industries such as telecommunications, computing, engineering and biotechnology.
+All Business degree program students start out in the following introductory management course, which is a prerequisite to all other courses in the concentration:
+All UW Bothell
+Alumni
+Apply As Undergraduate
+Awards
+Bachelor in Business Administration
+Bachelor in Economics
+Bachelor of Business Administration
+BBUS 300 – Organizational Behavior, Ethics and Inclusivity (DIV)
 BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
 BBUS 307 – Business Writing, Writing Designated Course
 BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
 BBUS 320 – Marketing Management
+BBUS 330 – Information Management & Analysis
+BBUS 330 – Information Management and Analysis
 BBUS 340 – Operations & Project Management
 BBUS 350 – Business Finance (310)
-Required SCM Courses (prerequisites in parentheses)
+BBUS 373 – Cost Accounting
+BBUS 401 – Work Motivation and Performance
+BBUS 402 – Managing Work Teams
+BBUS 429 – Special Topics in Marketing (320)
+BBUS 431 – Electronic Marketing (320)
 BBUS 441 – Business Project Management (340)
+BBUS 441 – Business Project Management (BBUS/ELCBUS 340)
+BBUS 443 – Entrepreneurship Seminar
+BBUS 444 – Product Development Laboratory
+BBUS 445 – Merchandise Acquisition (300)
+BBUS 446 – Strategic Retail Promotion (300, 320)
+BBUS 447 – Retail Operations & Supply Chain Management (300)
+BBUS 447 – Retail Operations and Supply Chain Management (300)
+BBUS 448 – Retail Technology and Leadership (300, 445, 446, 447)
+BBUS 460 – Sustainable Business
+BBUS 461 – Business, Government, & Society (300, 310)
+BBUS 462 – Negotiations & Conflict Management (300, 320)
+BBUS 462 – Negotiations & Conflict Management (BBUS/ELCBUS 320)
+BBUS 463 – Advanced Financial Accounting (362)
+BBUS 464 – New Product Marketing (320)
+BBUS 470 – Business Policy & Strategic Management
+BBUS 471 – Entrepreneurial Management
+BBUS 473 – Leadership & Decision Making (300)
+BBUS 475 – Managing Innovation
+BBUS 476 – New Technology & Future Markets (300, 320, 350)
+BBUS 479 – Special Topics in Management (300) , Only counts when approved for concentration; see your advisor before registering.
+BBUS 480 – Global Environment of Business
 BBUS 482 – Introduction to Supply Chain Management (340)
 BBUS 483 – Global Strategic Sourcing (441, 482)
 BBUS 486 – Supply Chain Resource Planning (340)
 BBUS 487 – Management and Improving Supply Chain Processes (441, 482)
-BBUS 492 – Supply Chain Field Study (441, 482, 483, 486, 487) , or BBUS 497 – Internship, or BBUS 499 – Independent Research, or BBUS 491 &#8211; Business Consulting
-SCM Electives (prerequisites in parentheses)
-10 credits – 2 courses from the list below:
-BBUS 373 – Cost Accounting
-BBUS 402 – Managing Work Teams
-BBUS 447 – Retail Operations & Supply Chain Management (300)
-BBUS 460 – Sustainable Business
-BBUS 462 – Negotiations & Conflict Management (300, 320)
-BBUS 463 – Advanced Financial Accounting (362)
-BBUS 464 – New Product Marketing (320)
-BBUS 473 – Leadership & Decision Making (300)
-BBUS 475 – Managing Innovation
-General Electives (any 300/400 level UW course)
-10 credits
-Capstone Courses
+BBUS 489 – Digital Business Lab
+BBUS 490 – Special Topics in Business (300, 310) , Only counts when approved for concentration; see your advisor before registering.
+BBUS 491 – Business Consulting
+BBUS 492 – Supply Chain Field Study (441, 482, 483, 486, 487) , or BBUS 497 – Internship, or BBUS 499 – Independent Research, or BBUS 491 – Business Consulting
+Beardslee Building (UWBB)
+Become a Mentor
 Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
-BBUS 470 – Business Policy & Strategic Management
-BBUS 480 – Global Environment of Business
-Total Credits
-90 credits
-In this section
-About
-Expand Navigation
-News
-Vision, Mission & Values
-Leadership History
-Undergraduate
-Expand Navigation
-Bachelor in Business Administration
-Expand Navigation
-Admissions
-Expand Navigation
-How to apply
-Prerequisite Courses
-Accounting Option
-Leadership & Strategic Innovation Option
-Marketing Option and Concentration
-Supply Chain Management Option
-Entrepreneurship Concentration
-Finance Option and Concentration
-Management Concentration
-Management Information Systems (MIS) Concentration
-Retail Management Concentration
-Technology & Innovation Management (TIM) Concentration
-Bachelor in Economics
-Expand Navigation
-Admissions
-Expand Navigation
-Prerequisites
+Bothell Location Course Numbers & Names
+Bothell, WA 98011
+Bothell, Washington View our location on Google maps.
+Box 358533
+Business Consulting Course
+Calculus
+Campus Safety
+Canvas
+Capstone Courses
+Certificate in Accounting
+Close mobile menu
+Commuter Services
+Contact
+Contact Us
+Contact us by phone at:
+Core Courses (prerequisites in parentheses)
+Course Numbers & Names
+Course Type
+CSS 143 – Computer Programming II and corequisite CSSSKL 143 – Computer Programming Skills II
+CSS 173 – Fundamentals of Programming Theory and Applications
+CSS 360 – Software Engineering
+Current site
 Curriculum
+Dean’s Advisory Board
 Direct First-Year Admit (DFA)
+Directions & Maps
+Directory
+Don Whitney Scholarship for Graduate Students
+Donor Excellence Scholarship
+Entrepreneurship Concentration
+Ethics Conference
+Events
+Executive Education
+Expand Navigation
+Facilities
+Faculty
+Finance Option and Concentration
+General Electives (any 300/400 level UW course)
+General Electives (any 300/400 level UW courses)
+Get a Mentor
+Give
+Graduate
+height="0" width="0" style="display:none;visibility:hidden">
+How to apply
+Human Resources
+In this section
+Independent Study Projects
+Information Technology
+International students who engage in post-completion Optional Practical Training (OPT) can seek a 24-month extension of their initial OPT. This extension, known as a STEM OPT Extension , permits international students to prolong their employment with a qualifying employer for a combined total of 36 months of U.S. work experience.
+Internships
+Jobs
+Leadership & Strategic Innovation Option
+Leadership History
+Library
+Make more informed investment decisions
+Management Concentration
+Management curriculum
+Management Electives (prerequisites in parentheses)
+Management Information Systems (MIS) Concentration
+Maps & directions
+Marketing Option and Concentration
+Master of Business Administration
+Master of Science in Accounting
+Mentors
+Mentorship EDGE
+Mentorship EDGE Mentors
 Minor in Actuarial Science
 Minor in Business Administration
 Minor in Economics
 Minor in Retail Management
-Policies & Petitions
-Graduate
-Expand Navigation
-Master of Business Administration
-Expand Navigation
-PharmD-MBA Program
-Admissions
-Curriculum
-Tuition & Financial Aid
-Master of Science in Accounting
-Expand Navigation
-Admissions
-Curriculum
-Tuition and Financial Aid
-MSA Faculty
+MIS curriculum
+MIS students must complete the following courses for graduation:
+More Links
 MS Accounting Advisory Board
-Certificate in Accounting
-Executive Education
-Expand Navigation
-Ethics Conference
+MSA Faculty
+MyUW
+News
+Open mobile menu
 Opportunities
-Expand Navigation
-Mentorship EDGE
-Expand Navigation
-Get a Mentor
-Become a Mentor
-Mentors
-Events
-Awards
-Scholarships
-Expand Navigation
-Ron Tilden Accounting Scholarship
-Don Whitney Scholarship for Graduate Students
-Donor Excellence Scholarship
-Internships
-Expand Navigation
-Why hire a business student?
-Business Consulting Course
-Professional Coaching
-Independent Study Projects
+or
 People
-Expand Navigation
-Faculty
-Expand Navigation
-Promotion and Tenure Guidelines
-Staff
-Advisory boards
-Expand Navigation
-Dean’s Advisory Board
-Mentorship EDGE Mentors
-Events
-Give
-Related Links
-Directions & Maps
-Contact Us
-School of Business
-uwbbusiness@uw.edu
-425.352.5394
-Box 358533
-18807 Beardslee Blvd, Suite 210
-Bothell, WA 98011
-Beardslee Building (UWBB)
-University of Washington Bothell Homepage
-Bothell, Washington View our location on Google maps.
-Contact us by phone at:
-425.352.5000
-Contact
-Visitors
-Maps & directions
-Jobs
-Accessibility
+PharmD-MBA Program
+Policies & Petitions
+Position themselves to work in high-technology companies in areas such as product/project management, strategic planning and technology development
+Prerequisite Courses
+Prerequisites
 Privacy
+Professional Coaching
+Promotion and Tenure Guidelines
+Quick Links
+Related Links
+Required Management Courses (prerequisites in parentheses)
+Required MIS Courses (prerequisites in parentheses)
+Required Retail Management Courses (prerequisites in parentheses)
+Required SCM Courses (prerequisites in parentheses)
+Required TIM Courses (prerequisites in parentheses)
+Requirements to declare the concentration
+Requirements to declare the option
+Retail Management Concentration
+Retail Management Concentration - School of Business
+Retail Management curriculum
+Ron Tilden Accounting Scholarship
 Rules Docket
-Terms
+Scholarships
+School of Business
+SCM Electives (prerequisites in parentheses)
+Search
+Search keywords
 Seattle Campus
+Skip To Content
+Staff
+Statistics
+Students in the Retail Management concentration must complete the following courses for graduation:
+Students must complete the following courses for graduation:
+Students must have completed BBUS 300 – Organizational Behavior, Ethics and Inclusivity (DIV), and BBUS 320 – Marketing Management to declare the Retail Management concentration.
+Students must have completed BBUS 300 – Organizational Behavior, Ethics and Inclusivity (DIV), BBUS 320 – Marketing Management, and BBUS 350 – Business Finance to declare the Technology and Innovation Management concentration.
+Students must have completed the following courses with a minimum grade of 3.0 in each course in order to declare the SCM Option.
+Study local high-technology companies and meet their decision-makers and innovators
+Supply Chain Management curriculum
+Supply Chain Management Option
+Supply Chain Management Option - School of Business
 Tacoma Campus
+Target new business opportunities
+Technology & Innovation Management (TIM) Concentration
+Technology & Innovation Management (TIM) Concentration - School of Business
+Terms
+The Management Concentration offers a wide variety of courses that examine the many challenges facing modern business organizations and provide the tools to meet those challenges. Specific areas of study include entrepreneurship, leadership and decision-making, conflict resolution, human resources and managing employees. Students who graduate with a concentration in management often pursue careers in consulting or as leaders in the private or public sector.
+The Management Information Systems (MIS) Concentration provides students with technical and business skills to solve business problems in technology-based environments. Students learn to analyze and design effective information systems, successfully manage software projects and maximize online customer experiences. The concentration was developed in collaboration with Computing and Software Systems faculty and included suggestions by an industry advisory board. Students in the MIS Concentration take courses in both the Business degree program and the CSS program.
+The Retail Management Concentration provides a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge.
+The Supply Chain Management (SCM) Option provides students the ability to manage suppliers across globally distributed locations, to procure the right materials, at the right time, at the right quality, and at the lowest cost to meet company objectives. Graduates can go on to work as buyers, operations managers, forecasting analysts among many things.
+The Supply Chain Management Option qualifies as a STEM-designated program categorized under “Management Science” (CIP Code 52.1301) on the Department of Homeland Security’s roster of STEM-designated degrees .
+This specialized management concentration offers an understanding of the nature of innovation, the relationship between strategic leadership and innovation, and how organizations use technology and new product development processes to successfully manage change. Students examine the intersection of technology and innovation within the context of the firm and its industry. Students have the opportunity to:
+TIM curriculum
+TIM Elective Courses (prerequisites in parentheses)
+Time Schedule
+Total Credits
+Tuition & Financial Aid
+Tuition and Financial Aid
+Undergraduate
+Undergraduate Programs
+University of Washington Bothell Homepage
+UW Bothell Facebook
+UW Bothell Home
 UW Bothell Instagram
 UW Bothell Linkedin
-UW Bothell Facebook
 UW Bothell Twitter
 UW Bothell Youtube
-&copy; 2026 University of Washington Bothell
-UW Bothell Instagram
-UW Bothell Linkedin
-UW Bothell Facebook
-UW Bothell Twitter
-UW Bothell Youtube
+uwbbusiness@uw.edu
+Vision, Mission & Values
+Visitors
+Why hire a business student?
+Why Study Management Information Systems?
+Why study Management?
+Why study Retailing?
+Why study Supply Chain Management?
+Why study Technology & Innovation Management?
+Workday Login

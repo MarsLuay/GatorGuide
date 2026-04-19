@@ -279,7 +279,7 @@ main() {
     EXPO_START_PORT="$SERVER_PORT" npm run start
   ) || {
     printf '%s %s\n' "$LOG_PREFIX" "Failed to start Expo." >&2
-    printf '%s %s\n' "$LOG_PREFIX" 'Run `npm run start` manually from:' >&2
+    printf '%s %s\n' "$LOG_PREFIX" "Run \`npm run start\` manually from:" >&2
     printf '%s %s\n' "$LOG_PREFIX" "$APP_DIR" >&2
     exit 1
   }

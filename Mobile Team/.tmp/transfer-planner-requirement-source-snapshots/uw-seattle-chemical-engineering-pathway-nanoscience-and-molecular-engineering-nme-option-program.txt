@@ -2,15 +2,9 @@ Owner: uw-seattle-chemical-engineering:pathway:nanoscience-and-molecular-enginee
 Source: https://www.cheme.washington.edu/undergraduate_students/curriculum
 Title: Curriculum | UW Chemical Engineering
 
-(M E 495 replaces CHEM E 486)
 [Supplemental official source] Engineering Electives
 [Supplemental official source] NME Option
 [Supplemental official source] Optional focus areas
-[Supplemental official source] Pre-health planning
-***Students may use CHEM E 455 or CHEM E 460 to satisfy the the Molecular and Nano Engineering requirement. CHEM E 460 is offered spring quarters only and CHEM E 455 is offered autumn and spring quarter.
-**Electives and/or
-**Other credits may be engineering electives (16 credits are required); VLPA (humanities) and I&S (social sciences) (24 credits required, at least 10 in each category); or other courses. For a list of all courses and credits required for the degree, see the Department of Chemical Engineering Bachelor of Science Degree Requirements
-*The Honors sections of these courses can be substituted. Additionally, students can take the accelerated CHEM series (CHEM 143 and 153) in lieu of the full general chemistry series and the accelerated organic chemistry series (CHEM 223 and 224) in lieu of CHEM 237 and 238.
 &copy; 2026 UW Chemical Engineering | UW College of Engineering | Seattle, WA
 <a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
 <a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
@@ -31,7 +25,6 @@ Additional Links
 Admission
 Advanced Materials & Interfacial Engineering
 Advanced Materials Interfacial Engineering
-Advanced Surface Analysis
 Aeronautics and Astronautics
 Air & Space Computing & Data Science Energy & Environment Health & Medicine Transportation & Society Manufacturing & Robotics
 Alumni opportunities
@@ -63,7 +56,6 @@ Be Boundless
 Beginning Scientific Computing
 Below are a list of courses that may serve as engineering electives for ChemE undergraduate students.
 Benson Hall 137C
-Biochemical Engineering
 Biochemical Engineering (w/CHEM E 467)
 BIOEN 215 (3)
 BIOEN 420 (4)
@@ -73,7 +65,6 @@ BIOEN 490 (3)
 BIOEN 491 (3)
 BIOENG 488 (4)
 Bioengineering
-Biological Frameworks for Engineers
 Biological Systems
 Calendar
 Careers in Chemical Engineering
@@ -87,17 +78,14 @@ CEE 480: Air-quality Modeling (3)
 CEE 490: Air Pollution Control (4)
 CEE 495: Sustainability and Design for Environment (3)
 CHEM E 341: Energy & Environment (3)
-CHEM E 355 (3)
 CHEM E 355: Biological Frameworks for Engineers (3)
 CHEM E 434: Physiological transport for engineering nanomedicine
 CHEM E 440: Energy Materials, Devices, and Systems (3)
 CHEM E 442: Renewable Energy (4)
 CHEM E 445: Fuel Cell Engineering (3)
 CHEM E 455 (3): Surface and Colloid Lab OR CHEM E 460 (3): Polymers Lab
-CHEM E 458 (3)
 CHEM E 458: Surface Analysis (3)
 CHEM E 461: Electrochemical Engineering (3)
-CHEM E 467 (3)
 CHEM E 467 Biochemical engineering
 CHEM E 476: Introduction to Synthetic Biology (3)
 CHEM E 477: Advanced Systems and Synthetic Biology (3)
@@ -106,13 +94,9 @@ CHEM E 481: Process Optimization (3)
 CHEM E 484: Electronic and Optoelectronic Polymers (3)
 CHEM E 485 (4): Process Design I
 CHEM E 486 (5): Process Design II
-CHEM E 490 (3)
 CHEM E 490: Engineering Materials for Biomedical Applications (3)
-CHEM E 491 (3)
 CHEM E 491: Controlled Release Systems
-CHEM E 493 (3)
 CHEM E 493: Advanced Surface Analysis (3)
-CHEM E 534 (3)
 CHEM E 554: Nanoscale Science I (3)
 CHEM E 556: Colloidal Systems (3)
 CHEM E: 467 Biochemical engineering
@@ -126,12 +110,10 @@ class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
 class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
 Clean Energy & Sustainability
 College of Engineering University of Washington logo
-Computational Protein Design
 Computational Protein Design*
 Connect with us:
 Contact us
 Contact Us
-Controlled Release Systems
 Controlled Release Systems (w/CHEM E 491)*
 CSE 160: Data Programming (4)
 CSE 163: Intermediate Data Programming (4)
@@ -161,9 +143,7 @@ Employment
 Energy Conversion
 Engineering electives
 Engineering Electives (16 credits)
-Engineering Innovation and Medicine and Mechanical Engineering Design Series
 Engineering Statics
-Engr. Materials for Biomedical Appls.
 Engr. Materials for Biomedical Appls. (w/CHEM E 490)
 Environmental & Bioresource Engineering
 Event calendar
@@ -176,7 +156,6 @@ Financial support and housing
 Focus areas are designed as guidance for students who wish to deepen their knowledge in a specific subject. Students will be asked to identify any completed focus areas during the graduation survey - this survey allows us to plan for graduation and recognize student curricular accomplishments.
 Foundational & Applied Knowledge Courses
 Frequently asked questions
-GENOME 361 (3)**
 Give
 GIVE
 Give to ChemE
@@ -187,7 +166,6 @@ Helpful Links
 Honors Program
 href="#main-menu-links">Additional Links
 Husky Card
-In addition to tailoring engineering electives, pre-health students should plan to complete all other requirements for the target professional schools. Students should confirm the requirements for their specific target health professional schools when planning their class schedules. These courses often include some combination of the following:
 In Memoriam
 In-Person Appointments
 Industry & Alumni
@@ -200,7 +178,6 @@ ISC/Workday
 Learn about our ABET Accreditation
 Libraries
 Login
-M E 414 (3), M E 416 (3), and M E (495)
 M.S. Degree Program
 Main menu
 Maps
@@ -233,16 +210,13 @@ NME option
 NME Option for CHEM E Majors
 NME option students complete a keystone course in the spring quarter of their sophomore year. This course introduces them to the underlying physical concepts of nanoscale science and its applications to engineering. Following this course, students complete engineering electives, hands-on experiences in laboratory courses, and independent research or a capstone project. Through these experiences, NME students get the opportunity to test, apply and expand their knowledge in nanoscience and molecular engineering.
 Note - many of these courses list BIOEN 315 as prerequisites, but they waive that for ChemE students who have completed CHEM E 310, and often waive other prerequisites as well. There's no need to plan on taking a number of preparatory BIOEN courses for most of these courses.
-Note: Schools have differing policies for accepting AP, IB or CLEP credits to meet program prerequisites. Students should contact the schools to which they would like to apply to find out that school's policy. Since most students will not know what schools they will apply to when they are planning their schedules, many students choose to retake the science prerequisites or take the honors version of the course. The decision should be made on an individual basis and it is recommended that students speak to an adviser when making this choice.
 Only one, 1-credit seminar is allowed to count toward engineering electives (e.g. CHEM E 301).
 Optional focus areas
 Optional focus areas | UW Chemical Engineering
 Optional focus areas: Students may choose to complete an optional focus area. These focus areas are not listed on the transcript. Many courses that count for the focus areas also count as engineering electives. For a list of focus areas, please see our Optional Focus Areas page.
-Other coursework
 People
 Petitioning engineering electives
 Ph.D. Degree Program
-Physiology & Nanomedicine
 Plan of study
 Policies
 Postdoctoral scholars
@@ -252,7 +226,6 @@ Program requirements : NME option (19 credits)
 Questions?
 Research and fabrication facilities
 Research areas
-Research**
 Scholarships
 Search
 SEE ALL ELECTIVES
@@ -267,7 +240,6 @@ Student Profiles
 Students hoping to receive recognition for a focus area can talk with their faculty mentors and academic advisers about educational opportunities in and out of the classroom. If you want to learn more about undergraduate research and how to get involved, or assistance in planning to complete a meaningful focus area, contact chemeadv@uw.edu or visit drop-in undergraduate advising times.
 Students should plan to take one (1) exploratory course and 6+ credits of relevant engineering electives from the list. Students may also want to review the related Areas of Knowledge, capstone, research and other opportunities on the careers page . While these are helpful for deepening your experience in this area, they do not count toward the 9 credits required.
 Study abroad
-Surface Analysis
 Synthetic biology: CHEME 476, CHEME 477, CHEME 478
 tabindex="-1">Computing/IT
 Terms

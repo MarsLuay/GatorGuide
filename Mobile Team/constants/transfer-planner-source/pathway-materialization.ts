@@ -3,6 +3,11 @@ import type {
   TransferPlannerMajorPlan,
 } from "../transfer-planner-types";
 import type { TransferPlannerParsedRequirementSourceBlock } from "./schema";
+import {
+  hasTransferPlannerHtmlEntityLeak,
+  normalizeTransferPlannerText,
+  stripTransferPlannerPlanTitlePrefix,
+} from "./pathway-title-normalization";
 
 export type TransferPlannerDerivedPathwaySeed = {
   id: string;
@@ -77,6 +82,9 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /\bdepending on (?:credential\/)?option\b/i,
   /\bvaries by option\b/i,
   /\bchoose thesis, project, or course-only option\b/i,
+  /^for the\b.*\b(?:concentration|option|track|route|pathway)\b/i,
+  /^(?:[†*§◊]+)?\s*if not taken\b.*\b(?:concentration|option|track|route|pathway)\b/i,
+  /^concentration\s+[ivxlcdm]+\b.*\b(?:credits?|courses?)\b/i,
 ];
 const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^\d+-.*choose-one-option\b/i,
@@ -151,17 +159,11 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
 };
 
 function decodeDerivedPathwayHtmlEntities(value: string) {
-  return value
-    .replace(/&#0*38;|&amp;/gi, " & ")
-    .replace(/&#8211;|&#8212;|&ndash;|&mdash;/gi, " - ")
-    .replace(/&#8217;|&rsquo;/gi, "'")
-    .replace(/&#8220;|&#8221;|&quot;/gi, '"');
+  return normalizeTransferPlannerText(value);
 }
 
 function normalizeDerivedPathwayText(value: string | null | undefined) {
-  return decodeDerivedPathwayHtmlEntities(String(value ?? ""))
-    .replace(/\s+/g, " ")
-    .trim();
+  return decodeDerivedPathwayHtmlEntities(String(value ?? ""));
 }
 
 function stripDerivedPathwayKindSuffix(value: string) {
@@ -188,10 +190,18 @@ function normalizeDerivedPathwaySimilarityToken(value: string) {
     .replace(/s$/i, "");
 }
 
-function getDerivedPathwaySimilarityKey(value: string) {
+function getDerivedPathwaySimilarityKey(
+  value: string,
+  planTitle: string | null | undefined = null
+) {
+  const semanticLabel = stripTransferPlannerPlanTitlePrefix(
+    planTitle,
+    stripDerivedPathwayKindSuffix(value)
+  );
+
   return Array.from(
     new Set(
-      stripDerivedPathwayKindSuffix(value)
+      semanticLabel
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, " ")
         .split(/\s+/)
@@ -283,8 +293,10 @@ function inferDerivedPathwayKind(
   return null;
 }
 
-function normalizeDerivedPathwayCandidate(value: string) {
-  return normalizeDerivedPathwayText(value)
+function normalizeDerivedPathwayCandidate(planTitle: string, value: string) {
+  return stripTransferPlannerPlanTitlePrefix(
+    planTitle,
+    normalizeDerivedPathwayText(value)
     .replace(/^[A-Z]\.\s+/i, "")
     .replace(/^\d+\)\s+/i, "")
     .replace(/^option\s+\d+\s*:\s*/i, "")
@@ -294,15 +306,17 @@ function normalizeDerivedPathwayCandidate(value: string) {
     )
     .replace(/^(?:B\.?\s*A\.?|B\.?\s*S\.?) [^:]{1,80}:\s*/i, "")
     .replace(
-      /^(?:\d{1,3}(?:-\d{1,3})?\s+credits?\s+for\s+(?:the\s+)?)((?:.|\s)+)$/i,
+      /^(?:\d{1,3}(?:-\d{1,3})?\s+credits?\s+for\s+(?:the\s+)?)([\s\S]+)$/i,
       "$1"
     )
     .replace(/^(?:declaring(?: the)?|how to declare(?: the)?|program requirements?)\s+/i, "")
+    .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-–—]\s+.*$/i, "$1")
     .replace(/\s+[-–]\s+UW\b.*$/i, "")
     .replace(/\s+\((?:\d+(?:-\d+)?\s+credits?)\)\s*$/i, "")
     .replace(/\s+-\s+please see website\.?$/i, "")
     .replace(/\s+\|\s+.*$/, "")
-    .replace(/\s+[.;:]\s*$/, "");
+    .replace(/\s+[.;:]\s*$/, "")
+  );
 }
 
 function extractDerivedPathwaySemanticPrefix(
@@ -317,7 +331,7 @@ function extractDerivedPathwaySemanticPrefix(
   }
 
   const [, prefix, explicitKind] = structuralPrefixMatch;
-  const normalizedPrefix = normalizeDerivedPathwayCandidate(prefix);
+  const normalizedPrefix = normalizeDerivedPathwayCandidate("", prefix);
   if (
     !normalizedPrefix ||
     DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS.some((pattern) => pattern.test(normalizedPrefix))
@@ -344,13 +358,14 @@ function applyDerivedPathwayAlias(planId: string, value: string) {
 
 function canonicalizeDerivedPathwayCandidate(
   planId: string,
+  planTitle: string,
   value: string | null | undefined,
   defaultKind: "option" | "track" | "route" | null,
   options: {
     allowBareLabel?: boolean;
   } = {}
 ) {
-  let normalized = normalizeDerivedPathwayCandidate(String(value ?? ""));
+  let normalized = normalizeDerivedPathwayCandidate(planTitle, String(value ?? ""));
   if (!normalized) {
     return null;
   }
@@ -420,6 +435,7 @@ function canonicalizeDerivedPathwayCandidate(
 
 function extractDerivedPathwayCandidateFromLine(
   planId: string,
+  planTitle: string,
   value: string | null | undefined,
   defaultKind: "option" | "track" | "route" | null
 ) {
@@ -434,52 +450,63 @@ function extractDerivedPathwayCandidateFromLine(
 
   const enumeratedLabelMatch = normalized.match(/^[A-Z]\.\s+(.{2,80})$/);
   if (enumeratedLabelMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, enumeratedLabelMatch[1], defaultKind);
+    return canonicalizeDerivedPathwayCandidate(
+      planId,
+      planTitle,
+      enumeratedLabelMatch[1],
+      defaultKind
+    );
   }
 
   const degreeTitleMatch = normalized.match(DERIVED_PATHWAY_DEGREE_TITLE_PATTERN);
   if (degreeTitleMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, degreeTitleMatch[1], defaultKind, {
+    return canonicalizeDerivedPathwayCandidate(planId, planTitle, degreeTitleMatch[1], defaultKind, {
       allowBareLabel: true,
     });
   }
 
   const degreeParenthesesMatch = normalized.match(DERIVED_PATHWAY_DEGREE_PARENTHESES_PATTERN);
   if (degreeParenthesesMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, degreeParenthesesMatch[1], defaultKind, {
-      allowBareLabel: true,
-    });
+    return canonicalizeDerivedPathwayCandidate(
+      planId,
+      planTitle,
+      degreeParenthesesMatch[1],
+      defaultKind,
+      {
+        allowBareLabel: true,
+      }
+    );
   }
 
   const withOptionInMatch = normalized.match(DERIVED_PATHWAY_WITH_OPTION_IN_PATTERN);
   if (withOptionInMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, withOptionInMatch[1], defaultKind, {
+    return canonicalizeDerivedPathwayCandidate(planId, planTitle, withOptionInMatch[1], defaultKind, {
       allowBareLabel: true,
     });
   }
 
   const pathwayTitleMatch = normalized.match(/^(?:B\.?\s*A\.?|B\.?\s*S\.?) [^:]{1,80}:\s+(.{2,80})$/i);
   if (pathwayTitleMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, pathwayTitleMatch[1], defaultKind, {
+    return canonicalizeDerivedPathwayCandidate(planId, planTitle, pathwayTitleMatch[1], defaultKind, {
       allowBareLabel: true,
     });
   }
 
   const listLabelMatch = normalized.match(DERIVED_PATHWAY_LIST_LABEL_PATTERN);
   if (listLabelMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, listLabelMatch[1], defaultKind);
+    return canonicalizeDerivedPathwayCandidate(planId, planTitle, listLabelMatch[1], defaultKind);
   }
 
   const applyDirectlyMatch = normalized.match(DERIVED_PATHWAY_APPLY_DIRECTLY_PATTERN);
   if (applyDirectlyMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, applyDirectlyMatch[1], defaultKind, {
+    return canonicalizeDerivedPathwayCandidate(planId, planTitle, applyDirectlyMatch[1], defaultKind, {
       allowBareLabel: true,
     });
   }
 
   const credentialMatch = normalized.match(DERIVED_PATHWAY_CREDENTIAL_PATTERN);
   if (credentialMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, credentialMatch[1], defaultKind, {
+    return canonicalizeDerivedPathwayCandidate(planId, planTitle, credentialMatch[1], defaultKind, {
       allowBareLabel: true,
     });
   }
@@ -488,14 +515,14 @@ function extractDerivedPathwayCandidateFromLine(
     /^([^:]{1,100}\b(?:track|option|route|pathway|certificate|concentration)\b(?:\s*\([^)]{1,40}\))?)\s*:/i
   );
   if (inlineLabelMatch) {
-    return canonicalizeDerivedPathwayCandidate(planId, inlineLabelMatch[1], defaultKind);
+    return canonicalizeDerivedPathwayCandidate(planId, planTitle, inlineLabelMatch[1], defaultKind);
   }
 
   if (!DERIVED_PATHWAY_LABEL_PATTERN.test(normalized)) {
     return null;
   }
 
-  return canonicalizeDerivedPathwayCandidate(planId, normalized, defaultKind);
+  return canonicalizeDerivedPathwayCandidate(planId, planTitle, normalized, defaultKind);
 }
 
 function splitDerivedPathwayChoiceValues(value: string) {
@@ -514,6 +541,7 @@ function splitDerivedPathwayChoiceValues(value: string) {
 
 function extractDerivedPathwayCandidatesFromChoiceStatement(
   planId: string,
+  planTitle: string,
   value: string | null | undefined,
   defaultKind: "option" | "track" | "route" | null
 ) {
@@ -533,7 +561,12 @@ function extractDerivedPathwayCandidatesFromChoiceStatement(
   const results: Array<{ id: string; label: string }> = [];
   for (const tail of tails) {
     for (const candidate of splitDerivedPathwayChoiceValues(tail)) {
-      const resolved = canonicalizeDerivedPathwayCandidate(planId, candidate, defaultKind);
+      const resolved = canonicalizeDerivedPathwayCandidate(
+        planId,
+        planTitle,
+        candidate,
+        defaultKind
+      );
       if (resolved) {
         results.push(resolved);
       }
@@ -589,7 +622,7 @@ function buildDerivedPathwaySeeds(
       return;
     }
 
-    const similarityKey = getDerivedPathwaySimilarityKey(candidate.label);
+    const similarityKey = getDerivedPathwaySimilarityKey(candidate.label, plan.title);
     const existingIdForSimilarity = similarityKey
       ? seedIdsBySimilarityKey.get(similarityKey) ?? null
       : null;
@@ -627,6 +660,7 @@ function buildDerivedPathwaySeeds(
   for (const statement of choiceStatements) {
     for (const candidate of extractDerivedPathwayCandidatesFromChoiceStatement(
       plan.id,
+      plan.title,
       statement,
       defaultKind
     )) {
@@ -635,7 +669,7 @@ function buildDerivedPathwaySeeds(
   }
 
   for (const line of orderedSourceLines) {
-    pushSeed(extractDerivedPathwayCandidateFromLine(plan.id, line, defaultKind));
+    pushSeed(extractDerivedPathwayCandidateFromLine(plan.id, plan.title, line, defaultKind));
   }
 
   const seeds = [...seedById.values()].filter(
@@ -656,6 +690,7 @@ export function deriveTransferPlannerPathwaySeeds(
 }
 
 function shouldPreferDerivedPathways(
+  plan: TransferPlannerMajorPlan,
   basePathways: TransferPlannerMajorPathway[],
   derivedPathways: TransferPlannerDerivedPathwaySeed[]
 ) {
@@ -671,10 +706,6 @@ function shouldPreferDerivedPathways(
     (pathway) =>
       isSuspiciousStructuralPathwayId(pathway.id) || isSuspiciousStructuralPathwayLabel(pathway.label)
   );
-  if (!suspiciousBasePathways.length) {
-    return false;
-  }
-
   const semanticDerivedPathways = derivedPathways.filter(
     (pathway) =>
       !isSuspiciousStructuralPathwayId(pathway.id) &&
@@ -684,19 +715,28 @@ function shouldPreferDerivedPathways(
     return false;
   }
 
-  const semanticBaseFamilyCount = new Set(
-    basePathways
-      .filter(
-        (pathway) =>
-          !isSuspiciousStructuralPathwayId(pathway.id) &&
-          !isSuspiciousStructuralPathwayLabel(pathway.label)
-      )
-      .map((pathway) => getDerivedPathwaySimilarityKey(pathway.label) || pathway.id.toLowerCase())
-      .filter(Boolean)
-  ).size;
+  const semanticBaseFamilies = basePathways
+    .filter(
+      (pathway) =>
+        !isSuspiciousStructuralPathwayId(pathway.id) &&
+        !isSuspiciousStructuralPathwayLabel(pathway.label)
+    )
+    .map((pathway) => getDerivedPathwaySimilarityKey(pathway.label, plan.title) || pathway.id.toLowerCase())
+    .filter(Boolean);
+  const semanticBaseFamilyCount = new Set(semanticBaseFamilies).size;
+  const hasDuplicateSemanticBaseFamilies = semanticBaseFamilyCount < semanticBaseFamilies.length;
+  const hasHtmlEntityLeak = basePathways.some((pathway) => hasTransferPlannerHtmlEntityLeak(pathway.label));
 
   if (suspiciousBasePathways.length === basePathways.length) {
     return true;
+  }
+
+  if (hasDuplicateSemanticBaseFamilies || hasHtmlEntityLeak) {
+    return true;
+  }
+
+  if (!suspiciousBasePathways.length) {
+    return false;
   }
 
   if (semanticBaseFamilyCount > 0 && semanticDerivedPathways.length >= semanticBaseFamilyCount) {
@@ -706,13 +746,44 @@ function shouldPreferDerivedPathways(
   return semanticDerivedPathways.length >= basePathways.length - suspiciousBasePathways.length;
 }
 
+function filterDerivedPathwaysToKnownBaseFamilies(
+  plan: TransferPlannerMajorPlan,
+  basePathways: TransferPlannerMajorPathway[],
+  derivedPathways: TransferPlannerDerivedPathwaySeed[]
+) {
+  const baseFamilies = new Set(
+    basePathways
+      .filter(
+        (pathway) =>
+          !isSuspiciousStructuralPathwayId(pathway.id) &&
+          !isSuspiciousStructuralPathwayLabel(pathway.label)
+      )
+      .map((pathway) => getDerivedPathwaySimilarityKey(pathway.label, plan.title))
+      .filter(Boolean)
+  );
+
+  if (!baseFamilies.size) {
+    return derivedPathways;
+  }
+
+  const matchingDerivedPathways = derivedPathways.filter((pathway) =>
+    baseFamilies.has(getDerivedPathwaySimilarityKey(pathway.label, plan.title))
+  );
+
+  return matchingDerivedPathways.length ? matchingDerivedPathways : derivedPathways;
+}
+
 export function materializeTransferPlannerPathways(
   plan: TransferPlannerMajorPlan,
   basePathways: TransferPlannerMajorPathway[],
   parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
 ): TransferPlannerMajorPathway[] {
-  const derivedPathways = buildDerivedPathwaySeeds(plan, parsedSourceBlocks);
-  if (basePathways.length && !shouldPreferDerivedPathways(basePathways, derivedPathways)) {
+  const derivedPathways = filterDerivedPathwaysToKnownBaseFamilies(
+    plan,
+    basePathways,
+    buildDerivedPathwaySeeds(plan, parsedSourceBlocks)
+  );
+  if (basePathways.length && !shouldPreferDerivedPathways(plan, basePathways, derivedPathways)) {
     if (
       !derivedPathways.length &&
       basePathways.every(
@@ -724,7 +795,10 @@ export function materializeTransferPlannerPathways(
       return [];
     }
 
-    return basePathways;
+    return basePathways.map((pathway) => ({
+      ...pathway,
+      label: normalizeTransferPlannerText(pathway.label),
+    }));
   }
 
   if (derivedPathways.length) {

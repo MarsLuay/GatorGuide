@@ -3,11 +3,11 @@ Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administ
 Title: Finance Option and Concentration - School of Business
 
 School of Business
-&#124;
+|
 Undergraduate Programs
-&#124;
+|
 Bachelor of Business Administration
-&#124;
+|
 Finance Option and Concentration
 Finance Option and Concentration
 Why study finance?

@@ -26,9 +26,9 @@ Gemini itself is now configured server-side in [`../functions/.env.example`](../
 ## Configuring Real APIs
 
 ### Step 1: Get API Keys
-1. **Firebase**: Create project at https://console.firebase.google.com
-2. **College Scorecard**: Sign up at https://api.data.gov/signup/
-3. **Gemini**: Get key at https://aistudio.google.com/app/apikey
+1. **Firebase**: Create project at <https://console.firebase.google.com>
+2. **College Scorecard**: Sign up at <https://api.data.gov/signup/>
+3. **Gemini**: Get key at <https://aistudio.google.com/app/apikey>
 
 ### Step 2: Update Environment Variables
 ```bash

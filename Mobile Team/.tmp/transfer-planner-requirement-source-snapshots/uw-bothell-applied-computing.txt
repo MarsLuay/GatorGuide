@@ -24,8 +24,8 @@ STEM Advisory Board
 Departments
 Expand Navigation
 Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
+Computing & Software Systems
+Engineering & Mathematics
 Physical Sciences
 Awards & Endowments
 Undergraduate
@@ -38,58 +38,58 @@ Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Careers
 Biology
 Expand Navigation
 Admissions
 Curriculum
 Investigative Biology
-Student Forms &#038; Resources
-Research &#038; Internships
+Student Forms & Resources
+Research & Internships
 Student Organizations
 Friday Harbor Laboratories
 Chemistry
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Computer Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Computer Science & Software Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Earth System Science
 Electrical Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Mathematics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Mechanical Engineering
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Student Organizations
 Physics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Student Organizations
 Minors
@@ -97,7 +97,7 @@ Expand Navigation
 Actuarial Science
 Biology
 Chemistry
-Computer Science &#038; Software Engineering (CSSE)
+Computer Science & Software Engineering (CSSE)
 Cybersecurity
 Data Science
 Information Technology (IT)
@@ -148,7 +148,7 @@ Curriculum
 Research
 Expand Navigation
 Computer Engineering
-Power &#038; Energy
+Power & Energy
 Signal Processing
 Biomedical Systems and Devices
 Microelectronics and Devices
@@ -194,7 +194,7 @@ Expand Navigation
 Capstones
 Events
 News
-Research &#038; labs
+Research & labs
 Expand Navigation
 Center for Biotechnology Innovation & Training
 National Center of Academic Excellence in Cybersecurity
@@ -266,7 +266,7 @@ Industry partners
 Capstones
 Events
 News
-Research &#038; labs
+Research & labs
 Center for Biotechnology Innovation & Training
 National Center of Academic Excellence in Cybersecurity
 Department of Physical Sciences Research
@@ -284,8 +284,8 @@ STEM Advisory Board
 Departments
 Expand Navigation
 Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
+Computing & Software Systems
+Engineering & Mathematics
 Physical Sciences
 Awards & Endowments
 Undergraduate
@@ -298,58 +298,58 @@ Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Careers
 Biology
 Expand Navigation
 Admissions
 Curriculum
 Investigative Biology
-Student Forms &#038; Resources
-Research &#038; Internships
+Student Forms & Resources
+Research & Internships
 Student Organizations
 Friday Harbor Laboratories
 Chemistry
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Computer Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Computer Science & Software Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Earth System Science
 Electrical Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Mathematics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Mechanical Engineering
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Student Organizations
 Physics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Student Organizations
 Minors
@@ -357,7 +357,7 @@ Expand Navigation
 Actuarial Science
 Biology
 Chemistry
-Computer Science &#038; Software Engineering (CSSE)
+Computer Science & Software Engineering (CSSE)
 Cybersecurity
 Data Science
 Information Technology (IT)
@@ -408,7 +408,7 @@ Curriculum
 Research
 Expand Navigation
 Computer Engineering
-Power &#038; Energy
+Power & Energy
 Signal Processing
 Biomedical Systems and Devices
 Microelectronics and Devices
@@ -454,7 +454,7 @@ Expand Navigation
 Capstones
 Events
 News
-Research &#038; labs
+Research & labs
 Expand Navigation
 Center for Biotechnology Innovation & Training
 National Center of Academic Excellence in Cybersecurity
@@ -479,16 +479,16 @@ Physics
 Heritage University REU
 Give
 School of Science, Technology, Engineering & Mathematics
-&#124;
+|
 Applied Computing
 School of Science, Technology, Engineering & Mathematics
-&#124;
+|
 Undergraduate
-&#124;
+|
 Majors
-&#124;
+|
 Applied Computing
-&#124;
+|
 Applied Computing Curriculum
 Applied Computing Curriculum
 This page contains information on the curriculum of the Bachelor of Arts in Applied Computing .
@@ -509,12 +509,12 @@ Visit the admissions page for information on prerequisite coursework.
 Not sure about how to approach programming? Visit our Getting Started with Computer Programming page.
 General education courses
 All UW students must complete a common set of general education requirements . As an Applied Computing major, you will already have completed the English Composition (C) , Additional Writing (W) , Natural Science (NSc) , and Reasoning (R) requirements by taking your prerequisite and core courses, but make sure to plan for completion of the following:
-Diversity (DIV) &#8211; 5 credits (almost always also fulfills A&H or SSc)
-Arts & Humanities (A&H) &#8211; 15 credits (cannot overlap with SSc)
-Social Sciences (SSc) &#8211; 15 credits (cannot overlap with A&H)
+Diversity (DIV) – 5 credits (almost always also fulfills A&H or SSc)
+Arts & Humanities (A&H) – 15 credits (cannot overlap with SSc)
+Social Sciences (SSc) – 15 credits (cannot overlap with A&H)
 In general, these general education courses can overlap with the Second Discipline and Elective courses for your major.
 Core courses
-Applied Computing is a multidisciplinary major that integrates expertise in computer technology (your CSS courses) with another area of expertise called your &#8220;Second Discipline.&#8221; Together, these areas of expertise will become the focal point for your CSS 496 capstone course at the end of the program.
+Applied Computing is a multidisciplinary major that integrates expertise in computer technology (your CSS courses) with another area of expertise called your “Second Discipline.” Together, these areas of expertise will become the focal point for your CSS 496 capstone course at the end of the program.
 CSS courses
 Statistics course
 CSS 301: Technical Writing
@@ -577,7 +577,7 @@ Management Skills
 Project Management: Plans, monitors, and controls projects; ensures efficient utilization of resources; keeps projects on schedule and within budgeted resource allocation.
 Project Administration: Administers and maintains projects, using appropriate monitoring tools and complying with relevant standards and reporting requirements.
 Risk Management: Foresees and takes action pro-actively in anticipation of future problems and opportunities.
-User Orientation: Gains understanding of users needs by immersing self in users environment; carefully studies user&#8217;s requirements; puts self in users shoes.
+User Orientation: Gains understanding of users needs by immersing self in users environment; carefully studies user’s requirements; puts self in users shoes.
 Technical Level
 General Business, Social & Technical
 Business Case Justification: Justifies project expenditures, equipment and other resources in terms of business costs, benefits and risks.
@@ -588,14 +588,14 @@ General Software Systems: Has general understanding of the principles and applic
 Social Implications of Science & Technology: Understands the interaction between science and technology and the broader social, political, and organizational environment; critically assesses ethical implications of computing technology.
 Technical Writing: Designs and writes effective guidelines, standards, procedures, processes, applications, using appropriate methods, tools and delivery options.
 Application Programming
-Requirements Definition and Analysis: Elicits and clearly defines user\&#8217;s needs, assessing potential solutions against benefits and risks; uses appropriate tools for analyzing requirements and creating appropriate data and work flow models.
+Requirements Definition and Analysis: Elicits and clearly defines user\’s needs, assessing potential solutions against benefits and risks; uses appropriate tools for analyzing requirements and creating appropriate data and work flow models.
 Software Development Life Cycle: Understands and effectively manages the process of developing designing, testing, and delivering a software application.
 Functional Design: Identifies system platform, components, inputs, interface requirements, and dependencies which ensure that the system will achieve its objectives.
-Testing: Plans, executes, and validates results of unit, systems, and acceptance testing to ensure conformity to user\&#8217;s requirements.
+Testing: Plans, executes, and validates results of unit, systems, and acceptance testing to ensure conformity to user\’s requirements.
 Implementation: Plans and executes smooth integration of an application into the computing environment.
 Programming: Comprehends and applies principles of programming; effectively translates design specifications into appropriate software components.
 Collaborative Programming Techniques: Uses methods and tools that support cooperative software development among users in different locations.
-Quality Assurance: Employs appropriate quality assurance standards and procedures to ensure delivery of bug-free applications that meet user\&#8217;s needs.
+Quality Assurance: Employs appropriate quality assurance standards and procedures to ensure delivery of bug-free applications that meet user\’s needs.
 Infrastructure/Operations
 Technology Integration: Integrates various technologies, systems, applications, database and components across multiple platforms.
 Hardware Architecture: Understands hardware components, architecture, and interrelationship among hardware, software, and operating systems.
@@ -610,8 +610,8 @@ STEM Advisory Board
 Departments
 Expand Navigation
 Biological Sciences
-Computing &#038; Software Systems
-Engineering &#038; Mathematics
+Computing & Software Systems
+Engineering & Mathematics
 Physical Sciences
 Awards & Endowments
 Undergraduate
@@ -624,58 +624,58 @@ Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Careers
 Biology
 Expand Navigation
 Admissions
 Curriculum
 Investigative Biology
-Student Forms &#038; Resources
-Research &#038; Internships
+Student Forms & Resources
+Research & Internships
 Student Organizations
 Friday Harbor Laboratories
 Chemistry
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Computer Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Computer Science & Software Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Earth System Science
 Electrical Engineering
 Expand Navigation
 Admissions
 Curriculum
 Capstone
-Student Forms &#038; Resources
+Student Forms & Resources
 Mathematics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Mechanical Engineering
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Student Organizations
 Physics
 Expand Navigation
 Admissions
 Curriculum
-Student Forms &#038; Resources
+Student Forms & Resources
 Research
 Student Organizations
 Minors
@@ -683,7 +683,7 @@ Expand Navigation
 Actuarial Science
 Biology
 Chemistry
-Computer Science &#038; Software Engineering (CSSE)
+Computer Science & Software Engineering (CSSE)
 Cybersecurity
 Data Science
 Information Technology (IT)
@@ -734,7 +734,7 @@ Curriculum
 Research
 Expand Navigation
 Computer Engineering
-Power &#038; Energy
+Power & Energy
 Signal Processing
 Biomedical Systems and Devices
 Microelectronics and Devices
@@ -780,7 +780,7 @@ Expand Navigation
 Capstones
 Events
 News
-Research &#038; labs
+Research & labs
 Expand Navigation
 Center for Biotechnology Innovation & Training
 National Center of Academic Excellence in Cybersecurity

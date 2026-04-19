@@ -9,23 +9,26 @@ Title: Bachelor of Economics - School of Business
 [Supplemental official source] Finance Option and Concentration
 [Supplemental official source] Leadership & Strategic Innovation Option
 [Supplemental official source] Management Concentration
-[Supplemental official source] Prerequisite Courses
+[Supplemental official source] Marketing Option and Concentration
 [Supplemental official source] Prerequisites
 [Supplemental official source] Supplemental official track and option pages
 **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
 *If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses):
-&#124;
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
-10 credits &#8211; Complete two courses from this list:
+|
+10 credits – Complete 2 courses from this list:
+10 credits – Complete two courses from this list:
 15 credits
+15 credits – Complete 3 courses from this list:
 18807 Beardslee Blvd, Suite 210
+20 credits
 30 credits
 425.352.5000
 425.352.5394
+5 credits – Complete one course from this list:
 5 credits – Complete one Enrichment Elective from this list:
-5 credits &#8211; Complete one course from this list:
 90 Credits
 About
 Accessibility
@@ -63,6 +66,15 @@ BBUS 361 – Intermediate Accounting I
 BBUS 361 – Intermediate Accounting I*
 BBUS 373 – Cost Accounting
 BBUS 373 – Cost Accounting*
+BBUS 421 – Consumer Marketing (320)
+BBUS 423 – Market Intelligence (320)
+BBUS 426 – International Marketing (320)
+BBUS 427 – Entrepreneurial Marketing (320)
+BBUS 429 – Special Topics in Marketing (320)
+BBUS 431 – Electronic Marketing (320)
+BBUS 438 – Marketing Management Lab (320, and one of the following: 421, 423, 426, 427, 429, or 431)
+BBUS 445 – Merchandising Acquisition (300)
+BBUS 446 – Strategic Retail Promotion (300, 320)
 BBUS 451 – Financial Policy & Planning
 BBUS 451 – Financial Policy and Practice (350)
 BBUS 452 – Financial Modeling (350)
@@ -74,11 +86,19 @@ BBUS 455 – Financial Risk Management (454)
 BBUS 456 – Entrepreneurial Finance (350)
 BBUS 457 – Advance Valuation (454)
 BBUS 459 – Special Topics in Finance (350)
+BBUS 464 – New Product Marketing (320)
 BBUS 465 – Applied Finance Accounting (350)
 BBUS 470 – Business Policy & Strategic Management
 BBUS 480 – Global Environment of Business
+BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your adviser before registering.
+BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your advisor before registering.
 BBUS 490 – Special Topics in Business (300, 310), Only counts when approved for concentration; see your advisor before registering.
 BBUS 491 – Business Consulting
+BBUS 491 – Business Consulting . Only counts when approved for concentration; see your advisor before registering.
+BBUS 491 – Business Consulting . Only counts when approved for option; see your advisor before registering.
+BBUS 497 – Internship
+BBUS 499 – Undergraduate Research. Only counts when approved for concentration; see your advisor before registering.
+BBUS 499 – Undergraduate Research. Only counts when approved for option; see your advisor before registering.
 Become a Mentor
 Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
 Bothell, WA 98011
@@ -91,6 +111,7 @@ Capstone Courses
 Certificate in Accounting
 Close mobile menu
 Commuter Services
+Concentration Course Numbers & Names
 Concentration Courses
 Contact
 Contact Us
@@ -101,6 +122,7 @@ Current site
 Curriculum
 Dean’s Advisory Board
 Direct First-Year Admit (DFA)
+Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
@@ -116,6 +138,7 @@ Finance Electives (prerequisites in parentheses)
 Finance Option and Concentration
 Finance Option and Concentration - School of Business
 General Electives
+General Electives (any 300/400 level UW courses)
 Get a Mentor
 Give
 Graduate
@@ -134,7 +157,10 @@ Library
 Management Concentration
 Management Information Systems (MIS) Concentration
 Maps & directions
+Marketing Electives (prerequisites in parentheses)
 Marketing Option and Concentration
+Marketing Option and Concentration - School of Business
+Marketing option/concentration students must complete the following courses for graduation:
 Master of Business Administration
 Master of Science in Accounting
 Mentors
@@ -151,6 +177,8 @@ MyUW
 News
 Open mobile menu
 Opportunities
+Option and concentration curriculum
+Option Course Numbers & Names
 Option Courses
 People
 PharmD-MBA Program
@@ -161,7 +189,9 @@ Privacy
 Professional Coaching
 Promotion and Tenure Guidelines
 Quick Links
+Related Links
 Required Courses (prerequisites in parentheses)
+Required Marketing Courses (prerequisites in parentheses)
 Requirements to declare the Option or the Concentration
 Retail Management Concentration
 Ron Tilden Accounting Scholarship
@@ -180,6 +210,7 @@ Tacoma Campus
 Technology & Innovation Management (TIM) Concentration
 Terms
 The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
+The Marketing Option/Concentration prepares students to thrive in customer-centric organizations with a blend of analytical thinking, experiential learning and professional experiences. Identifying, delivering, communicating and sustaining value to the target customer is fundamental to success in a competitive environment. They will learn to develop and implement coordinated marketing programs to successfully manage a company’s relationship with its target customers in order to meet its strategic goals. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures.
 Time Schedule
 Total Credits
 Tuition & Financial Aid
@@ -198,4 +229,5 @@ Vision, Mission & Values
 Visitors
 Why hire a business student?
 Why study finance?
+Why study marketing?
 Workday Login

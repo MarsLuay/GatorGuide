@@ -27,7 +27,7 @@ Source-generated from parsed UW requirement-source registries.
 - 5 credits Foundation (5 credits)
 - ADMISSION REQUIREMENTS
 - AMERICAN CULTURES TRACK
-- Arts, Media & Culture majors have five tracks to choose from:
+- Arts, Media &amp; Culture majors have five tracks to choose from:
 - At least 45 lower-division credits
 - Comparative Arts Track
 - COMPARATIVE ARTS TRACK
@@ -40,7 +40,7 @@ Source-generated from parsed UW requirement-source registries.
 - 5 credits Foundation (5 credits)
 - ADMISSION REQUIREMENTS
 - AMERICAN CULTURES TRACK
-- Arts, Media & Culture majors have five tracks to choose from:
+- Arts, Media &amp; Culture majors have five tracks to choose from:
 - At least 45 lower-division credits
 - Comparative Arts Track
 - COMPARATIVE ARTS TRACK
@@ -50,13 +50,13 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Arts, Media and Culture (BA) parsed choices and pathway notes
 
-- Arts, Media & Culture majors have five tracks to choose from:
+- Arts, Media &amp; Culture majors have five tracks to choose from:
 - AMERICAN CULTURES TRACK
 - Comparative Arts Track
 - COMPARATIVE ARTS TRACK
 - Film and Media Track
 - FILM AND MEDIA TRACK
-- Film and Media Track | Culture, Arts & Communication | University of Washington Tacoma
+- Film and Media Track | Culture, Arts &amp; Communication | University of Washington Tacoma
 - Literature Track
 - LITERATURE TRACK
 - Visual and Performing Arts Track
@@ -67,7 +67,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL& 101 -> `ENGL& 101`
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -160,47 +160,34 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Biomedical Sciences (BS) parsed official source requirements
 
-- The BS in Biomedical Sciences immerses students in an exploration of topics in the life sciences, including cell biology, genetics, microbiology, molecular biology, neurobiology and physiology, as they are applied to the science of human health. The BS in Biomedical Sciences allows students to fulfill some undergraduate course requirements for admission to medical, dental, veterinary, pharmacy and other health- and science-related graduate or professional schools.
-- Admission Requirements
-- Introductory courses (64 credits)
-- Core courses (39 credits)
-- Biomedical Electives (15 credits)
-- Complete a minimum of 15 credits of advanced Biomedical Sciences. Select a minimum of two classes from List A, and an additional class from List A or List B.
-- TBIOL 320 Vertebrate Anatomy and Diversity
-- Bookend courses (8 credits)
-- TBIOMD 310 Foundations in Biomedical Sciences (5 credits, to be completed early in the third year)
-- TBIOMD 410 Biomedical Sciences Senior Seminar (3 credits, to be completed in the fourth year)
+- TPSYCH 441 Diversity and Health Psychology
+- Pre-Health Additional Requirements
+- Students who wish to complete pre-medical, -veterinary, -dental, -pharmacy, or other professional or graduate school program in conjunction with the Biomedical Sciences degree are advised to research specific schools and programs they wish to attend, as requirements vary. Some additional coursework may be required, such as:
+- ADMISSION REQUIREMENTS
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Biomedical Sciences major, students should reach out to the major academic advisor.
+- DEGREE REQUIREMENTS
+- For a BS in Biomedical Sciences, students must complete 144 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Biomedical Sciences (BS) parsed official requirement cues
 
-- The BS in Biomedical Sciences immerses students in an exploration of topics in the life sciences, including cell biology, genetics, microbiology, molecular biology, neurobiology and physiology, as they are applied to the science of human health. The BS in Biomedical Sciences allows students to fulfill some undergraduate course requirements for admission to medical, dental, veterinary, pharmacy and other health- and science-related graduate or professional schools.
-- Admission Requirements
-- Introductory courses (64 credits)
-- Core courses (39 credits)
-- Biomedical Electives (15 credits)
-- Complete a minimum of 15 credits of advanced Biomedical Sciences. Select a minimum of two classes from List A, and an additional class from List A or List B.
-- TBIOL 320 Vertebrate Anatomy and Diversity
-- Bookend courses (8 credits)
-- TBIOMD 310 Foundations in Biomedical Sciences (5 credits, to be completed early in the third year)
-- TBIOMD 410 Biomedical Sciences Senior Seminar (3 credits, to be completed in the fourth year)
-
-##### Biomedical Sciences (BS) parsed choices and pathway notes
-
-- Complete a minimum of 15 credits of advanced Biomedical Sciences. Select a minimum of two classes from List A, and an additional class from List A or List B.
-- Select one course:
+- TPSYCH 441 Diversity and Health Psychology
+- Pre-Health Additional Requirements
+- Students who wish to complete pre-medical, -veterinary, -dental, -pharmacy, or other professional or graduate school program in conjunction with the Biomedical Sciences degree are advised to research specific schools and programs they wish to attend, as requirements vary. Some additional coursework may be required, such as:
+- ADMISSION REQUIREMENTS
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Biomedical Sciences major, students should reach out to the major academic advisor.
+- DEGREE REQUIREMENTS
+- For a BS in Biomedical Sciences, students must complete 144 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 #### GRC Equivalent Courses
 
-- `PHYS& 114`
-- `PHYS& 154`
 - `PHYS& 223`
 
 #### Required sequences for specific credits
 
 - Required before application: TPHYS 123 -> `PHYS& 223`. note: Auto-promoted because TPHYS 123 matches a stable lower-division UW course family that already maps cleanly to the same Green River path elsewhere in the planner.
-- Source-backed note: Added the Green River course path PHYS& 223 because the current planner rows did not expose it yet.
+- Source-backed note: Added the Green River course path PHYS&amp; 223 because the current planner rows did not expose it yet.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS& 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TPHYS 123 falls under the existing PHYS 123 lower-division UW course family, which already maps consistently to PHYS&amp; 223 across 5/5 planner samples. Supporting UW course codes: PHYS 123, T PHYS 123. The current planner rows were still missing that stable Green River course path for this major.
 - Source-backed note: Course-family consensus: 5/5 samples for PHYS 123.
 - Source-backed note: Requirement cue lines: TPHYS 123 Physics 3
 - Source-backed note: Source parse confidence: high.
@@ -208,7 +195,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-biomedical-sciences:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Civil Engineering (BSCE)
@@ -385,16 +371,16 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Computer Engineering parsed choices and pathway notes
 
-- In consultation with a faculty advisor, choose core & elective courses (CSS or other) based on a coherent theme in regards to the student's interests and the student’s portfolio.
+- In consultation with a faculty advisor, choose core &amp; elective courses (CSS or other) based on a coherent theme in regards to the student's interests and the student’s portfolio.
 - Students pursuing the Bachelor of Arts degree in TCSS are required to choose a minor from one of UW campuses unless the student has earned a previous bachelor’s degree.
 - Students graduating from our information focused programs will be able to choose many different roles; becoming IT and IS consultants, project planners, project managers, interface designers, information systems researchers, web developers, and systems analysts. To emphasize, consider some of the general tasks that an information technology and systems specialist is likely to perform depending on where she works:
 - The MS in Information Technology (MSIT) program at the University of Washington's Tacoma campus is designed to prepare students for successful professional careers that advance the information technology industries and communities both locally and globally. Through a combination of specialized knowledge, hands-on practical experience, and theoretical applications, MSIT students will further their professional development and diversity their employment opportunities. MSIT graduates will be qualified to serve as advanced IT experts and leaders in business, manufacturing, operations, healthcare, government agencies, and other organizations. Students who select the thesis degree-completion option may be eligible for a PhD program in Information Technology post-graduation.
 - Depth Courses (20 credits). Choose 4 course from: TINFO 510, TINFO 520, TINFO 530, TINFO 540, TINFO 550, TINFO 560, TINFO 570, TINFO 580, TINFO 590
 - 40-45 credits, depending on option
+- Bachelor of Science degree with a major in Information Technology: Information Assurance and Cybersecurity
+- Bachelor of Science degree with a major in Information Technology: Mobile Digital Forensics
+- Bioinformatics Option (20 credits):
 - Bioinformatics Option Courses (20 credits): Course list maintained internally by the program.
-- Course Option - Approved Focus Area must consist of 25-35 credits. Students will need to work closely with an academic advisor to map out a feasible schedule.
-- Create your own pathway as a separate option
-- Make adequate progress with the thesis or capstone project, if pursuing this option, as demonstrated by the faculty advisor or committee chair, including interest, responsibility in working toward completion of project or thesis, and number of credits taken before a proposal has been approved.
 
 #### GRC Equivalent Courses
 
@@ -424,18 +410,18 @@ Source-generated from parsed UW requirement-source registries.
 - Required before application: MATH 207 -> `MATH 238`
 - Required before application: Circuit preparation -> `ENGR& 204`
 - Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Source-backed note: Added the Green River course path MATH& 264 because the current planner rows did not expose it yet.
+- Source-backed note: Added the Green River course path MATH&amp; 264 because the current planner rows did not expose it yet.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 224 under uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry. The planner was missing the source-backed Green River course path MATH& 264 for this UW requirement.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 224 under uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry. The planner was missing the source-backed Green River course path MATH&amp; 264 for this UW requirement.
 - Source-backed note: Guide-backed rule: uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry.
 - Source-backed note: Requirement cue lines: TMATH 224 or MATH 224
 - Source-backed note: Source parse confidence: high.
 - Source-backed note: Choice-set resolution strategies: auto-promoted-guide-direct-equivalent.
 - Source-backed note: Choice-set supporting UW codes: A A 210.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TME 221 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: A A 210. Published Green River options now exposed: ENGR& 214.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TME 221 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: A A 210. Published Green River options now exposed: ENGR&amp; 214.
 - Source-backed note: Requirement cue lines: TME 221 or A A 210
 - Source-backed note: Choice-set supporting UW codes: M E 230.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TME 223 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: M E 230. Published Green River options now exposed: ENGR& 215.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TME 223 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: M E 230. Published Green River options now exposed: ENGR&amp; 215.
 - Source-backed note: Requirement cue lines: TME 223 or M E 230
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-computer-engineering:source-degree-map:.
@@ -491,7 +477,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Computer Science and Systems (BA) parsed choices and pathway notes
 
 - All prerequisites must be completed before you can advance to the next academic level; advanced concentration courses build upon knowledge gained in the core courses.
-- The B.A. in CSS schedule planning grid shows a sample pathway to complete the Bachelor of Arts degree in Computer Science & Systems degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
+- The B.A. in CSS schedule planning grid shows a sample pathway to complete the Bachelor of Arts degree in Computer Science &amp; Systems degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
 - Transfer students at Washington State community colleges are encouraged to pursue the Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
 
 #### GRC Equivalent Courses
@@ -508,7 +494,7 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
 - Source-backed note: Choice-set resolution strategies: auto-promoted-single-sample-consensus.
 - Source-backed note: Choice-set supporting UW codes: TCHEM 142.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TBIOL 120 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: TCHEM 142. Published Green River options now exposed: CHEM& 161.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TBIOL 120 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: TCHEM 142. Published Green River options now exposed: CHEM&amp; 161.
 - Source-backed note: Requirement cue lines: You may need one additional approved lab-based science course (Chemistry I -TCHEM 142 or Biology I - TBIOL 120) to meet the total number of lab science credits required (18 minimum) for graduation.
 - Source-backed note: Source parse confidence: high.
 - Source-backed note: Added the Green River course path MATH 240 because the current planner rows did not expose it yet.
@@ -537,35 +523,25 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Computer Science and Systems (BS) parsed official source requirements
 
-- Diversity, Equity and Inclusion at SET
-- Internships for Credit
 - Bachelor of Arts Option
 - Learn more about the application requirements and curriculum for the B.A program on the Bachelor of Arts in CSS page.
 - Admission Requirements
 - **UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122. We do accept lab based science courses other than these options.
 - GPA Requirements
 - Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course.
-- Required minimum cumulative GPA of 2.0 in all college coursework.
 
 ##### Computer Science and Systems (BS) parsed official requirement cues
 
-- Diversity, Equity and Inclusion at SET
-- Internships for Credit
 - Bachelor of Arts Option
 - Learn more about the application requirements and curriculum for the B.A program on the Bachelor of Arts in CSS page.
 - Admission Requirements
 - **UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122. We do accept lab based science courses other than these options.
 - GPA Requirements
 - Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course.
-- Required minimum cumulative GPA of 2.0 in all college coursework.
-- You may need one additional approved lab-based science course (Chemistry I -TCHEM 142 or Biology I - TBIOL 120) to meet the total number of lab science credits required (18 minimum) for graduation.
 
 ##### Computer Science and Systems (BS) parsed choices and pathway notes
 
-- All prerequisites must be completed before advancing to the next academic level. All courses within the major must be completed with a minimum grade of 2.0 (including TCSS 142 and 143) . Courses may only be repeated once. Advanced concentration courses build upon knowledge gained in the core courses.
 - Bachelor of Arts Option
-- The CSS Schedule Planning Grid (PDF) shows a sample pathway to complete the B.S. in Computer Science & Systems degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
-- Transfer students at Washington State community colleges are encouraged to pursue the Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
 
 #### GRC Equivalent Courses
 
@@ -655,7 +631,7 @@ Source-generated from parsed UW requirement-source registries.
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Economic and Policy Analysis major, students should reach out to the major advisor .
 - Admission Requirements
 - ADMISSION REQUIREMENTS
-- Arts and Humanities (A&H): 20 credits
+- Arts and Humanities (A&amp;H): 20 credits
 - As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - Capstone Seminar (5 credits)
 - Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
@@ -668,7 +644,7 @@ Source-generated from parsed UW requirement-source registries.
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Economic and Policy Analysis major, students should reach out to the major advisor .
 - Admission Requirements
 - ADMISSION REQUIREMENTS
-- Arts and Humanities (A&H): 20 credits
+- Arts and Humanities (A&amp;H): 20 credits
 - As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - Capstone Seminar (5 credits)
 - Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
@@ -689,7 +665,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL& 101 -> `ENGL& 101`
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-economics-and-policy-analysis:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -811,16 +787,16 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Electrical Engineering parsed choices and pathway notes
 
-- In consultation with a faculty advisor, choose core & elective courses (CSS or other) based on a coherent theme in regards to the student's interests and the student’s portfolio.
+- In consultation with a faculty advisor, choose core &amp; elective courses (CSS or other) based on a coherent theme in regards to the student's interests and the student’s portfolio.
 - Students pursuing the Bachelor of Arts degree in TCSS are required to choose a minor from one of UW campuses unless the student has earned a previous bachelor’s degree.
 - Students graduating from our information focused programs will be able to choose many different roles; becoming IT and IS consultants, project planners, project managers, interface designers, information systems researchers, web developers, and systems analysts. To emphasize, consider some of the general tasks that an information technology and systems specialist is likely to perform depending on where she works:
 - The MS in Information Technology (MSIT) program at the University of Washington's Tacoma campus is designed to prepare students for successful professional careers that advance the information technology industries and communities both locally and globally. Through a combination of specialized knowledge, hands-on practical experience, and theoretical applications, MSIT students will further their professional development and diversity their employment opportunities. MSIT graduates will be qualified to serve as advanced IT experts and leaders in business, manufacturing, operations, healthcare, government agencies, and other organizations. Students who select the thesis degree-completion option may be eligible for a PhD program in Information Technology post-graduation.
 - Depth Courses (20 credits). Choose 4 course from: TINFO 510, TINFO 520, TINFO 530, TINFO 540, TINFO 550, TINFO 560, TINFO 570, TINFO 580, TINFO 590
 - 40-45 credits, depending on option
+- Bachelor of Science degree with a major in Information Technology: Information Assurance and Cybersecurity
+- Bachelor of Science degree with a major in Information Technology: Mobile Digital Forensics
+- Bioinformatics Option (20 credits):
 - Bioinformatics Option Courses (20 credits): Course list maintained internally by the program.
-- Course Option - Approved Focus Area must consist of 25-35 credits. Students will need to work closely with an academic advisor to map out a feasible schedule.
-- Create your own pathway as a separate option
-- Make adequate progress with the thesis or capstone project, if pursuing this option, as demonstrated by the faculty advisor or committee chair, including interest, responsibility in working toward completion of project or thesis, and number of credits taken before a proposal has been approved.
 
 #### GRC Equivalent Courses
 
@@ -850,18 +826,18 @@ Source-generated from parsed UW requirement-source registries.
 - Required before application: Programming I -> `CS 121`
 - Required before application: Programming II -> `CS 122`
 - Required before enrollment: MATH 208 -> `MATH 240`. note: Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.
-- Source-backed note: Added the Green River course path MATH& 264 because the current planner rows did not expose it yet.
+- Source-backed note: Added the Green River course path MATH&amp; 264 because the current planner rows did not expose it yet.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 224 under uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry. The planner was missing the source-backed Green River course path MATH& 264 for this UW requirement.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes MATH 224 under uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry. The planner was missing the source-backed Green River course path MATH&amp; 264 for this UW requirement.
 - Source-backed note: Guide-backed rule: uw-grc-guide:0817:mathematics:mathand-254-5-see-also-mathand-153-combined-entry.
 - Source-backed note: Requirement cue lines: TMATH 224 or MATH 224
 - Source-backed note: Source parse confidence: high.
 - Source-backed note: Choice-set resolution strategies: auto-promoted-guide-direct-equivalent.
 - Source-backed note: Choice-set supporting UW codes: A A 210.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TME 221 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: A A 210. Published Green River options now exposed: ENGR& 214.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TME 221 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: A A 210. Published Green River options now exposed: ENGR&amp; 214.
 - Source-backed note: Requirement cue lines: TME 221 or A A 210
 - Source-backed note: Choice-set supporting UW codes: M E 230.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TME 223 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: M E 230. Published Green River options now exposed: ENGR& 215.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. TME 223 only appeared in alternate or choice-based requirement lines, so the planner resolved the published Green River prep paths from the same source-backed choice set. Supporting UW choice-set codes: M E 230. Published Green River options now exposed: ENGR&amp; 215.
 - Source-backed note: Requirement cue lines: TME 223 or M E 230
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-electrical-engineering:source-degree-map:.
@@ -919,7 +895,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `custom`.
+Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -964,11 +940,11 @@ Source-generated from parsed UW requirement-source registries.
 
 #### GRC Equivalent Courses
 
-On To Do list.
+- `ENGL& 101`
 
 #### Required sequences for specific credits
 
-- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-environmental-sustainability:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -994,7 +970,7 @@ Source-generated from parsed UW requirement-source registries.
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
 - Admission Requirements
 - ADMISSION REQUIREMENTS
-- Arts and Humanities (A&H): 20 credits
+- Arts and Humanities (A&amp;H): 20 credits
 - As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - Choose one:
 - Chose one of the following:
@@ -1007,7 +983,7 @@ Source-generated from parsed UW requirement-source registries.
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
 - Admission Requirements
 - ADMISSION REQUIREMENTS
-- Arts and Humanities (A&H): 20 credits
+- Arts and Humanities (A&amp;H): 20 credits
 - As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - Choose one:
 - Chose one of the following:
@@ -1034,7 +1010,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL& 101 -> `ENGL& 101`
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1361,6 +1337,516 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### History (BA) parsed official requirement cues
 
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
 - History | Department of Social Sciences | University of Washington Tacoma
 - Department of Social Sciences
 - Global Studies Concentration
@@ -1422,6 +1908,66 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-27-history-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-28-history-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-29-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-30-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-31-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-32-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-33-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-34-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-35-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-36-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-37-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-38-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-39-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-40-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-41-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-42-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-43-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-44-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-45-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-46-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-47-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-48-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-49-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-50-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-51-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-52-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-53-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-54-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-55-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-56-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-57-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-58-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-59-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-60-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-61-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-62-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-63-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-64-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-65-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-66-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-67-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-68-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-69-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-70-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-71-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-72-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-73-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-74-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-75-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-76-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-77-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-78-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-79-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-80-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-81-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-82-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-83-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-84-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-85-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-86-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-87-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-88-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-89-history-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-90-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1470,7 +2016,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Information Technology (BS) parsed choices and pathway notes
 
 - Students graduating from our information focused programs will be able to choose many different roles; becoming IT and IS consultants, project planners, project managers, interface designers, information systems researchers, web developers, and systems analysts. To emphasize, consider some of the general tasks that an information technology and systems specialist is likely to perform depending on where she works:
-- Use systemic approaches to select, develop, apply, integrate, and administer secure computing technologies to accomplish user goals. [IT]
+- Use systemic approaches to select, develop, apply, integrate, and administer secure computing technologies to accomplish user goals. \[IT\]
 - The IT schedule planning grid shows a sample pathway to complete the B.S. in Information Technology degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
 - Transfer students at Washington State community colleges are encouraged to pursue the Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
 
@@ -1595,9 +2141,9 @@ Source-generated from parsed UW requirement-source registries.
 - 5 credits from One of the following four courses (List A):
 - 5 credits from one of the following courses (List B):
 - 5 credits from one of the following courses (List C):
-- Complete the requirements for a major or concentration (minors are optional).
-- List A - Arts, Culture and Society Option - Please See Website
-- List B - Global History Option - Please See Website
+- Bachelor of Arts degree with a major in Ethnic, Gender, and Labor Studies: Ethnic
+- Bachelor of Arts degree with a major in Ethnic, Gender, and Labor Studies: Gender
+- Bachelor of Arts degree with a major in Ethnic, Gender, and Labor Studies: Labor
 
 #### GRC Equivalent Courses
 
@@ -1605,7 +2151,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL& 101 -> `ENGL& 101`
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1686,29 +2232,27 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Mathematics (BS) parsed official source requirements
 
-- The BS in Mathematics provides students with a strong theoretical foundation and practical applications to help graduates secure STEM-related jobs. The major is structured so that you will see the three branches of mathematics: algebra, analysis and geometry and study one of these topics in depth. A two-quarter sequence of study in one of these branches is required, fostering a depth and maturity of mathematical thought in a modern context. The flexibility of this degree allows you to follow multiple pathways into the major and through the upper division courses while supporting your personal career goals.
-- Admission Requirements
-- Core courses (49 credits)
-- A grade of at least 1.5 is required for TMATH 402 and TMATH 424 to satisfy the major requirements. A 2.0 is required if you wish to take the second class in the sequence TMATH 403 or TMATH 425.
-- Extended Core (5 credits)
-- Electives (20 credits)
-- No more than 5 credits can be satisfied by a course numbered below 300. No more than 5 credits can be satisfied by TMATH 495 , TMATH 496 , TMATH 498 or TMATH 499 . Note that a class may satisfy two elective areas, which will afford students flexibility to tailor their studies toward their desired career goals.
-- Area: Computing (Required: A minimum of three credits and at least one course.)
-- TMATH 412 Cryptography OR TCSS 487 Cryptography (may receive elective credit for one class only)
-- Area: Math in Culture (Required: A minimum of three credits and at least one course.)
+- Any additional courses beyond the required 5 credits from the extended core list.
+- Capstone (5 credits)
+- TMATH 450 , the Mathematics Capstone class, is designed to both provide opportunities to earn Mathematics Community Points and to hone students' technical communication skills. Students must complete a research experience such as an independent reading, undergraduate research experience, special topics course, internship or senior thesis before enrolling so that they can draw upon the experience and results when creating their paper and presentation.
+- To prepare to enroll in TMATH 450, the Capstone project should be started no later than the summer before 450 is to be taken. The Capstone experience culminates in a paper, which is used as a basis for enrollment in TMATH 450 in Winter quarter. The paper must be 75 percent complete to be considered for enrollment in TMATH 450, which is required for graduation. Students in TMATH 450 must earn marks at or above 1.5, and must co-enroll in TMATH 351 .
+- ADMISSION REQUIREMENTS
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Mathematics major, students should reach out to the major academic advisor .
+- DEGREE REQUIREMENTS
+- For a BS in Mathematics, students must complete 79 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Mathematics Portfolio Requirements
 
 ##### Mathematics (BS) parsed official requirement cues
 
-- The BS in Mathematics provides students with a strong theoretical foundation and practical applications to help graduates secure STEM-related jobs. The major is structured so that you will see the three branches of mathematics: algebra, analysis and geometry and study one of these topics in depth. A two-quarter sequence of study in one of these branches is required, fostering a depth and maturity of mathematical thought in a modern context. The flexibility of this degree allows you to follow multiple pathways into the major and through the upper division courses while supporting your personal career goals.
-- Admission Requirements
-- Core courses (49 credits)
-- A grade of at least 1.5 is required for TMATH 402 and TMATH 424 to satisfy the major requirements. A 2.0 is required if you wish to take the second class in the sequence TMATH 403 or TMATH 425.
-- Extended Core (5 credits)
-- Electives (20 credits)
-- No more than 5 credits can be satisfied by a course numbered below 300. No more than 5 credits can be satisfied by TMATH 495 , TMATH 496 , TMATH 498 or TMATH 499 . Note that a class may satisfy two elective areas, which will afford students flexibility to tailor their studies toward their desired career goals.
-- Area: Computing (Required: A minimum of three credits and at least one course.)
-- TMATH 412 Cryptography OR TCSS 487 Cryptography (may receive elective credit for one class only)
-- Area: Math in Culture (Required: A minimum of three credits and at least one course.)
+- Any additional courses beyond the required 5 credits from the extended core list.
+- Capstone (5 credits)
+- TMATH 450 , the Mathematics Capstone class, is designed to both provide opportunities to earn Mathematics Community Points and to hone students' technical communication skills. Students must complete a research experience such as an independent reading, undergraduate research experience, special topics course, internship or senior thesis before enrolling so that they can draw upon the experience and results when creating their paper and presentation.
+- To prepare to enroll in TMATH 450, the Capstone project should be started no later than the summer before 450 is to be taken. The Capstone experience culminates in a paper, which is used as a basis for enrollment in TMATH 450 in Winter quarter. The paper must be 75 percent complete to be considered for enrollment in TMATH 450, which is required for graduation. Students in TMATH 450 must earn marks at or above 1.5, and must co-enroll in TMATH 351 .
+- ADMISSION REQUIREMENTS
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Mathematics major, students should reach out to the major academic advisor .
+- DEGREE REQUIREMENTS
+- For a BS in Mathematics, students must complete 79 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Mathematics Portfolio Requirements
 
 #### GRC Equivalent Courses
 
@@ -1721,7 +2265,7 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before application: Calculus I-III sequence -> `MATH& 151`, `MATH& 152`, `MATH& 163`. alternate path `MATH& 151`, `MATH& 152`, `MATH& 153`, `MATH& 254`
-- Source-backed note: Parser confidence: high.
+- Source-backed note: Parser confidence: medium.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-mathematics:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -1789,9 +2333,9 @@ Source-generated from parsed UW requirement-source registries.
 #### Required sequences for specific credits
 
 - Required before application: EE 215 -> `ENGR& 204`. note: Auto-promoted because the current source-backed planner already has a strong exact-title consensus for EE 215.
-- Source-backed note: Added the Green River course path ENGR& 204 because the current planner rows did not expose it yet.
+- Source-backed note: Added the Green River course path ENGR&amp; 204 because the current planner rows did not expose it yet.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 2/2 exact-title requirement samples mapping EE 215 to ENGR& 204. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner already has 2/2 exact-title requirement samples mapping EE 215 to ENGR&amp; 204. The current planner rows were still missing that clean Green River course path for this major. Phase inference is high confidence and resolves to before-application.
 - Source-backed note: Requirement cue lines: Electrical Circuits (TCES 215 or UWS: EE 215) is recommended but not required at the time of admission.
 - Source-backed note: Requirement-mapping consensus: 2/2 exact-title samples for EE 215.
 - Source-backed note: Source parse confidence: high.
@@ -1820,7 +2364,7 @@ Source-generated from parsed UW requirement-source registries.
 - Credits
 - Diversity, Equity and Inclusion
 - Diversity, Health and Inequalities
-- Elective offerings through SNHCL are available at: https://www.washington.edu/students/crscatt/thlth.html
+- Elective offerings through SNHCL are available at: <https://www.washington.edu/students/crscatt/thlth.html>
 - ELECTIVE: Addiction and Mental Illness in Film
 - ELECTIVE: Adolescents in Film
 - ELECTIVE: Health Policy and Ethics in Film
@@ -1833,7 +2377,7 @@ Source-generated from parsed UW requirement-source registries.
 - Credits
 - Diversity, Equity and Inclusion
 - Diversity, Health and Inequalities
-- Elective offerings through SNHCL are available at: https://www.washington.edu/students/crscatt/thlth.html
+- Elective offerings through SNHCL are available at: <https://www.washington.edu/students/crscatt/thlth.html>
 - ELECTIVE: Addiction and Mental Illness in Film
 - ELECTIVE: Adolescents in Film
 - ELECTIVE: Health Policy and Ethics in Film
@@ -1848,7 +2392,7 @@ On To Do list.
 #### Required sequences for specific credits
 
 - Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
-- Source-backed note: Parser confidence: medium.
+- Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-nursing:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
@@ -1871,7 +2415,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor .
 - Admission Requirements
-- Arts and Humanities (A&H): 20 credits
+- Arts and Humanities (A&amp;H): 20 credits
 - As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - At least one class from each of the following three lists, for a total of 20 credits:
 - Chose one of the following:
@@ -1884,7 +2428,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor .
 - Admission Requirements
-- Arts and Humanities (A&H): 20 credits
+- Arts and Humanities (A&amp;H): 20 credits
 - As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - At least one class from each of the following three lists, for a total of 20 credits:
 - Chose one of the following:
@@ -1899,7 +2443,7 @@ Source-generated from parsed UW requirement-source registries.
 - Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
 - Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
 - Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
-- PP&E majors take a shared set of Core courses, then choose from three specializations:
+- PP&amp;E majors take a shared set of Core courses, then choose from three specializations:
 - Students in the Global Studies concentration study a variety of subjects and themes in an international context, including artistic, cultural, political and economic patterns among and within other nations and may choose to focus their studies on one or more world regions or on specific themes. Advanced language study is an integral component of Global Studies.
 - Global Studies Concentration
 
@@ -1909,7 +2453,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL& 101 -> `ENGL& 101`
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-politics-philosophy-and-economics:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1992,7 +2536,7 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
@@ -2001,13 +2545,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2019,13 +2563,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2037,13 +2581,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2055,13 +2599,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2073,13 +2617,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2091,13 +2635,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2109,13 +2653,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2127,13 +2671,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2145,13 +2689,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2163,13 +2707,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2181,13 +2725,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2199,13 +2743,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2217,13 +2761,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2235,13 +2779,13 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2253,13 +2797,49 @@ Source-generated from parsed UW requirement-source registries.
 - BASW Admission Requirements
 - General Education Requirements
 - Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+- Social Welfare Course Requirements
+- Social Welfare Practicum
+- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
+- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
+
+##### Social Welfare (BA) parsed official requirement cues
+
+- BASW Admission Requirements
+- General Education Requirements
+- Graduation Requirements
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+- Social Welfare Course Requirements
+
+##### Social Welfare (BA) parsed choices and pathway notes
+
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+- Social Welfare Course Requirements
+- Social Welfare Practicum
+- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
+- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
+
+##### Social Welfare (BA) parsed official requirement cues
+
+- BASW Admission Requirements
+- General Education Requirements
+- Graduation Requirements
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+- Social Welfare Course Requirements
+
+##### Social Welfare (BA) parsed choices and pathway notes
+
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
 - Social Welfare Course Requirements
 - Social Welfare Practicum
@@ -2269,7 +2849,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Social Welfare (BA) parsed official requirement cues
 
 - The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called "general electives." Students may choose from a variety of disciplines outside their major to fulfill general electives.
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
 - To qualify for graduation with a Bachelor of Arts in Social Welfare a student must complete a minimum of 180 credits as outlined:
 - CREDITS
@@ -2317,6 +2897,10 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-27-social-welfare-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-28-social-welfare-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-29-social-welfare-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-30-social-welfare-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-31-social-welfare-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-32-social-welfare-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-33-social-welfare-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-90-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2340,7 +2924,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Spanish Language and Cultures (BA) parsed official source requirements
 
 - ADMISSION REQUIREMENTS
-- Arts and Humanities (A&H): 20 credits
+- Arts and Humanities (A&amp;H): 20 credits
 - As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 - Core courses (35 credits)
@@ -2353,7 +2937,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Spanish Language and Cultures (BA) parsed official requirement cues
 
 - ADMISSION REQUIREMENTS
-- Arts and Humanities (A&H): 20 credits
+- Arts and Humanities (A&amp;H): 20 credits
 - As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 - Core courses (35 credits)
@@ -2376,7 +2960,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL& 101 -> `ENGL& 101`
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-spanish-language-and-cultures:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2399,40 +2983,32 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Sustainable Urban Development (BA) parsed official source requirements
 
-- * Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits.
-- *** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits.
-- 5 credits of English composition
-- Admission Requirements
 - ADMISSION REQUIREMENTS
-- Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).
-- Choose 2 of the following:
-- Complete all of the following:
-- Completion of a minimum of 40 college-level credits
+- Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:
 - Contact the School of Urban Studies Academic Advisor to help track your progress through the program.
+- GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.
+- Graduation Requirements
+- GRADUATION REQUIREMENTS
+- Graduation Requirements:
+- In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits, including the above requirements, to 180.
+- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
+- Major Electives (20 credits)
 
 ##### Sustainable Urban Development (BA) parsed official requirement cues
 
-- * Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits.
-- *** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits.
-- 5 credits of English composition
-- Admission Requirements
 - ADMISSION REQUIREMENTS
-- Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).
-- Choose 2 of the following:
-- Complete all of the following:
-- Completion of a minimum of 40 college-level credits
+- Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major:
 - Contact the School of Urban Studies Academic Advisor to help track your progress through the program.
+- GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.
+- Graduation Requirements
+- GRADUATION REQUIREMENTS
+- Graduation Requirements:
+- In addition to the coursework required for the major, students are required to complete general university requirements and electives, and to bring their total number of credits, including the above requirements, to 180.
+- In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
+- Major Electives (20 credits)
 
 ##### Sustainable Urban Development (BA) parsed choices and pathway notes
 
-- Beginning spring 2026 BA in Sustainable Urban Development students will choose one of two formal options: Community Engagement or Geographic Information Systems (GIS).
-- Choose 2 of the following:
-- Formal options ( choose one option ) (25 credits)
-- Foundation Courses (25 credits, choose 5 courses)
-- Students declare one of the following formal options:
-- Sustainable Urban Development Majors select one of two formal options: Community Engagement or Geographic Information Systems (GIS) .
-- * Students choosing the Community Engagement formal option cannot apply T URB 220 to their foundation course credits.
-- *** Students choosing the GIS formal option cannot apply T GIS 311 to their foundation course credits.
 - Contact the School of Urban Studies Academic Advisor to help track your progress through the program.
 - GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.
 
@@ -2442,7 +3018,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL& 101 -> `ENGL& 101`
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2501,7 +3077,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL& 101 -> `ENGL& 101`
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-urban-design:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2574,7 +3150,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before application: T GEOG 101 -> `GEOG& 100`. note: Auto-promoted because T GEOG 101 has a single clean exact-title match in the current Green River course catalog metadata.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
-- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between T GEOG 101 (Introduction to Geography) and GEOG& 100 (Introduction to Geography). That exact-title Green River path was not already exposed in the current planner rows.
+- Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The planner's course catalog metadata shows a single clean exact-title match between T GEOG 101 (Introduction to Geography) and GEOG&amp; 100 (Introduction to Geography). That exact-title Green River path was not already exposed in the current planner rows.
 - Source-backed note: Exact-title match source: parsed-source-cue.
 - Source-backed note: Matched Green River title: Introduction to Geography.
 - Source-backed note: Matched source title: Introduction to Geography.
@@ -2642,7 +3218,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL& 101 -> `ENGL& 101`
+- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
 - Source-backed note: Parser confidence: medium.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.

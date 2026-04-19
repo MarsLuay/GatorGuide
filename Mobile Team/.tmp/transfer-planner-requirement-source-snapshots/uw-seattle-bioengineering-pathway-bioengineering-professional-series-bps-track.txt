@@ -1,6 +1,6 @@
 Owner: uw-seattle-bioengineering:pathway:bioengineering-professional-series-bps-track
 Source: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-Title: Undergraduate Degree Requirements &#8211; UW Bioengineering
+Title: Undergraduate Degree Requirements – UW Bioengineering
 
 3
 BIOEN 599

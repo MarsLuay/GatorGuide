@@ -49,7 +49,7 @@ vercel --prod
 Notes:
 
 - [`vercel.json`](vercel.json) runs the Expo static web export and serves the built `dist` output.
-- The current production URL is `https://gator-guide.vercel.app`.
+- The current production URL is <https://gator-guide.vercel.app>.
 
 ### Planner Maintenance
 

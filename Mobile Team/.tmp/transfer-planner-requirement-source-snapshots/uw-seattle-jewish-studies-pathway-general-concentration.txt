@@ -7,11 +7,11 @@ Title: Jewish Studies - Major - The Henry M. Jackson School of International Stu
 (206) 543-6001
 (a max. of 5 cr.
 (Winter)
-[Supplemental official source] Asian Studies &#8211; China Concentration
-[Supplemental official source] Asian Studies &#8211; Japan Concentration
-[Supplemental official source] Asian Studies &#8211; Korea Concentration
-[Supplemental official source] Asian Studies &#8211; South Asia Concentration
-[Supplemental official source] Asian Studies &#8211; Southeast Asia Concentration
+[Supplemental official source] Asian Studies – China Concentration
+[Supplemental official source] Asian Studies – Japan Concentration
+[Supplemental official source] Asian Studies – Korea Concentration
+[Supplemental official source] Asian Studies – South Asia Concentration
+[Supplemental official source] Asian Studies – Southeast Asia Concentration
 [Supplemental official source] Supplemental official track and option pages
 &copy; 2026 Henry M. Jackson School of International Studies, University of Washington | Seattle, WA
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMF8KQZ"
@@ -66,12 +66,12 @@ Asian Studies - South Asia Concentration
 Asian Studies - South Asia Concentration - The Henry M. Jackson School of International Studies
 Asian Studies - Southeast Asia Concentration
 Asian Studies - Southeast Asia Concentration - The Henry M. Jackson School of International Studies
-Asian Studies &#8211; China Concentration
-Asian Studies &#8211; Japan Concentration
-Asian Studies &#8211; Korea Concentration
-Asian Studies &#8211; Major
-Asian Studies &#8211; South Asia Concentration
-Asian Studies &#8211; Southeast Asia Concentration
+Asian Studies – China Concentration
+Asian Studies – Japan Concentration
+Asian Studies – Korea Concentration
+Asian Studies – Major
+Asian Studies – South Asia Concentration
+Asian Studies – Southeast Asia Concentration
 Asian Traditions
 Autumn
 Autumn / Winter
@@ -117,14 +117,14 @@ E: jsis@uw.edu
 East Asia
 East Asia Center
 East Asia Resource Center
-Electives &#8211; 25 credits from the list of approved South Asia electives, found below.
+Electives – 25 credits from the list of approved South Asia electives, found below.
 Ellison Center for Russian, East European and Central Asian Studies
 European Union Center
 Events
 Executive Master of International Studies
 Facebook
 Faculty
-Faculty &#038; Affiliate Faculty
+Faculty & Affiliate Faculty
 FAQs
 Funding Opportunities
 General Questions
@@ -146,10 +146,10 @@ HSTAS 201 South Asian History pre-history to 1500
 HSTAS 201, 202, 211, JSIS A 206, 212, 221
 HSTAS 211 or
 HSTAS 212
-HSTAS 401 &#8211; History of Ancient India
-HSTAS 402 &#8211; History of Medieval and Mughal India
-HSTAS 403 &#8211; History of Modern India
-HSTAS 404 &#8211; History of Twentieth-Century India
+HSTAS 401 – History of Ancient India
+HSTAS 402 – History of Medieval and Mughal India
+HSTAS 403 – History of Modern India
+HSTAS 404 – History of Twentieth-Century India
 HSTAS 481 or JSIS A 466
 HSTAS 482
 HSTAS: 201, 211, JSIS A 202, 205, 206, 212, 241, 242
@@ -173,31 +173,31 @@ JEW ST 250/HSTCMP 250: Jewish Cultural History (5 Ssc; WIN)
 Jewish languages may include Biblical Hebrew, Modern Hebrew, Ladino, or Yiddish. Learn more about Jewish language offerings at UW here . Contact Jason Groves , the Jewish Studies faculty adviser, with additional questions regarding approved Jewish languages.
 Journal of Japanese Studies
 JSIS 201
-JSIS 201 &#8211; The Making of the Twenty-first Century (5 credits)
-JSIS 203 &#8211; Rise of Asia
+JSIS 201 – The Making of the Twenty-first Century (5 credits)
+JSIS 203 – Rise of Asia
 JSIS 203 or
 JSIS 203 or JSIS A 207
 JSIS A 205 Filipino Histories (5)
 JSIS A 206 Contemporary India & Pakistan
 JSIS A 207
-JSIS A 207 &#8211; Asian Traditions
+JSIS A 207 – Asian Traditions
 JSIS A 221 History of Southeast Asia (5)
 JSIS A 241 or JSIS A 242
 JSIS A 254
 JSIS A 265 The Viet Nam Wars (5)
 JSIS A 315 Southeast Asia Civilization: Buddhist and Vietnamese (5)
 JSIS A 423
-JSIS A 461 &#8211; Ramayana in Comparative Perspective
-JSIS A 485 &#8211; Special Topics on South Asia
+JSIS A 461 – Ramayana in Comparative Perspective
+JSIS A 485 – Special Topics on South Asia
 JSIS A/ ANTH 448
-JSIS A/ GEOG 438 &#8211; Social and Political Geographies of South Asia
-JSIS A/ANTH 316 &#8211; Modern South Asia
-JSIS A/ANTH 339 &#8211; Social Movements in Contemporary India
-JSIS A/ANTH 341 &#8211; Political Violence and the Post-Colonial State in South Asia
+JSIS A/ GEOG 438 – Social and Political Geographies of South Asia
+JSIS A/ANTH 316 – Modern South Asia
+JSIS A/ANTH 339 – Social Movements in Contemporary India
+JSIS A/ANTH 341 – Political Violence and the Post-Colonial State in South Asia
 JSIS A/HSTAS 202 South Asian History 1500-present
-JSIS A/HSTAS 303 &#8211; Divided Lands/Divided Lives: An Environmental History of South Asia
-JSIS A/POL S 340 &#8211; Politics of India, Pakistan, and South Asia
-JSIS A/POL S 417 &#8211; Political Economy of India
+JSIS A/HSTAS 303 – Divided Lands/Divided Lives: An Environmental History of South Asia
+JSIS A/POL S 340 – Politics of India, Pakistan, and South Asia
+JSIS A/POL S 417 – Political Economy of India
 JSIS B 264 Violence, Race, and Memory (5)
 JSIS Business Office
 JSIS Centers, Programs, and Initiatives
@@ -211,7 +211,7 @@ Korea Electives List
 Korea Studies Courses
 Korean Language
 Language Courses
-Language requirement &#8211; Students must achieve proficiency in a South Asian language through 2nd year college level. Accepted languages include Bengali, Hindi, Nepali, Sanskrit, Tibetan, and Urdu. Students must earn an average GPA of 2.0 in first and second year language courses.
+Language requirement – Students must achieve proficiency in a South Asian language through 2nd year college level. Accepted languages include Bengali, Hindi, Nepali, Sanskrit, Tibetan, and Urdu. Students must earn an average GPA of 2.0 in first and second year language courses.
 Latest News
 Latin America and Caribbean Studies
 LinkedIn
@@ -219,16 +219,16 @@ Looking for help?
 Major
 Major in Jewish Studies
 Make a Gift
-Max Lower Division Credit &#8211; No more than 5 of the 35 credits for the South Asia concentration core and electives may be at the 200-level
+Max Lower Division Credit – No more than 5 of the 35 credits for the South Asia concentration core and electives may be at the 200-level
 Meet an Adviser
 Middle East Center
 Minimum Grade
-Minimum Grade &#8211; A minimum grade of 2.0 is required for all courses applied to major
+Minimum Grade – A minimum grade of 2.0 is required for all courses applied to major
 Minimum grade 2.0 in all courses applied to major.
 Minor
 Modern Korean Society
 MODHEB 100
-News &#038; Events
+News & Events
 of 200-level may be applied w/
 One Asian Civilization course chosen from:
 One Asian Civilization course chosen from: HSTAS 201, 202, 211, JSIS A 206, 221, 241, 242, 254, RELIG 202
@@ -249,23 +249,23 @@ Quick Links
 Related Regions
 RELIG 145
 RELIG 145: Introduction to Judaism (5 Ssc; AUT)
-RELIG 352 &#8211; Hinduism
-RELIG 354 &#8211; Buddhism
-RELIG 356 &#8211; Buddhism & Society: The Theravada Buddhist Tradition in South & SE Asia
+RELIG 352 – Hinduism
+RELIG 354 – Buddhism
+RELIG 356 – Buddhism & Society: The Theravada Buddhist Tradition in South & SE Asia
 RELIG 356 Buddhism and Society: The Theravada Buddhist Tradition in South and Southeast Asia (5)
-RELIG 456 &#8211; Perceptions of the Feminine Divine in Hinduism
+RELIG 456 – Perceptions of the Feminine Divine in Hinduism
 Research Paper
-Research Paper &#8211; Students must work with a South Asia Studies professor to write a final research paper of at least 15 pages in length. This must be written in an upper division South Asia Studies course and may need to be expanded to meet the research paper requirements. Students should coordinate with the professor prior to writing to ensure the paper will meet the requirements.
-Resident Credit &#8211; 30 credits must be taken in residence through UW (not including 1st or 2nd year language).
+Research Paper – Students must work with a South Asia Studies professor to write a final research paper of at least 15 pages in length. This must be written in an upper division South Asia Studies course and may need to be expanded to meet the research paper requirements. Students should coordinate with the professor prior to writing to ensure the paper will meet the requirements.
+Resident Credit – 30 credits must be taken in residence through UW (not including 1st or 2nd year language).
 Rise of Asia or
 Rise of Asia or Asian Traditions
-See a student profile of a Jackson School major&#8217;s in-depth study of contemporary Korean dramas.
+See a student profile of a Jackson School major’s in-depth study of contemporary Korean dramas.
 Sign up for the newsletter
 Skip to main content
 SoundCloud
 South Asia
 South Asia Center
-South Asia includes India, Pakistan, Bangladesh, Sri Lanka, Nepal, Bhutan, Maldives, Afghanistan and Tibet. Students are expected to gain proficiency in a South Asian language (Hindi, Urdu, Bengali and Sanskrit are offered regularly at all levels) and to pursue a course of study that includes both disciplinary concentration and interdisciplinary breadth. Students have opportunities to pursue language study in India through the program&#8217;s membership in the American Institute of Indian Studies. Other organizations provide similar opportunities for study in many of the other countries of the region.
+South Asia includes India, Pakistan, Bangladesh, Sri Lanka, Nepal, Bhutan, Maldives, Afghanistan and Tibet. Students are expected to gain proficiency in a South Asian language (Hindi, Urdu, Bengali and Sanskrit are offered regularly at all levels) and to pursue a course of study that includes both disciplinary concentration and interdisciplinary breadth. Students have opportunities to pursue language study in India through the program’s membership in the American Institute of Indian Studies. Other organizations provide similar opportunities for study in many of the other countries of the region.
 South Asia Studies Courses
 Southeast Asia
 Southeast Asia – primary electives

@@ -35,10 +35,10 @@ This doc is current-only.
 
 It uses only the most recent public Green River sources I could verify on April 2, 2026:
 
-- Green River transfer-degree index: `https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html`
-- Latest public consolidated planning sheet PDF: `https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf`
-- Green River `2024-2025` annual schedule PDF: `https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf`
-- Green River `2025-2026` annual schedule PDF: `https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf`
+- Green River transfer-degree index: <https://www.greenriver.edu/students/academics/areas-of-interest/university-and-college-transfer/index.html>
+- Latest public consolidated planning sheet PDF: <https://www.greenriver.edu/marketing/media/documents/grad-to-gator/Associate%20Transfer%20Sample%20Ed%20Plans%202024.pdf>
+- Green River `2024-2025` annual schedule PDF: <https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2024-2025-Annual-Schedule.pdf>
+- Green River `2025-2026` annual schedule PDF: <https://www.greenriver.edu/students/media/documents/schedules-and-catalog/2025-2026%20Annual%20Schedule%20w%20Cover.pdf>
 - Recent Green River registrar-form snippets found in search results, used only as cross-checks for active degree codes
 
 This doc does not backfill missing pieces from older pre-2024 planning sheets.
@@ -927,7 +927,7 @@ Checked against the official UW Seattle Green River College equivalency guide on
 
 Official source:
 
-- https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/
+- <https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/>
 
 This doc is a current-only extraction of active Green River College courses that still appear in the UW Seattle equivalency guide.
 

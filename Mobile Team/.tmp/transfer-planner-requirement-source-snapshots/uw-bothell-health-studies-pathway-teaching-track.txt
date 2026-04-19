@@ -92,7 +92,7 @@ MS Capstone
 Community Partners
 Resources
 News
-Info sessions &#038; events
+Info sessions & events
 People
 Expand Navigation
 Faculty
@@ -142,7 +142,7 @@ Master of Nursing
 Master of Science in Community Health & Social Justice
 Resources
 News
-Info sessions &#038; events
+Info sessions & events
 People
 Faculty
 Staff
@@ -229,7 +229,7 @@ MS Capstone
 Community Partners
 Resources
 News
-Info sessions &#038; events
+Info sessions & events
 People
 Expand Navigation
 Faculty
@@ -243,14 +243,14 @@ Excellence Fund
 Support our growth
 Student Support Fund
 School of Nursing & Health Studies
-&#124;
+|
 Health Studies
 School of Nursing & Health Studies
-&#124;
+|
 Undergraduate
-&#124;
+|
 Health Studies
-&#124;
+|
 Overview
 Overview
 Learning objectives
@@ -265,20 +265,20 @@ Credits
 Statistics
 5
 Required Core Courses:
-BHS 201 &#8211; Introduction to Public Health
-BHS 210 &#8211; Community Health Promotion & Communication
-BHS 300 &#8211; Principles of Health Research
-BHS 302 &#8211; Social Dimensions of Health
-BHS 305 &#8211; Introduction to Healthcare Policy & Systems
-BHS 403 &#8211; Introduction to Epidemiology
-BHS 496 &#8211; Fieldwork in Health
+BHS 201 – Introduction to Public Health
+BHS 210 – Community Health Promotion & Communication
+BHS 300 – Principles of Health Research
+BHS 302 – Social Dimensions of Health
+BHS 305 – Introduction to Healthcare Policy & Systems
+BHS 403 – Introduction to Epidemiology
+BHS 496 – Fieldwork in Health
 35
 Approved Health Studies Electives, with at least 10 credits in B HLTH course offerings
 35
 Upper Division UW Electives (300-400 level)
 15
 Health Studies electives
-The Health Studies faculty select electives each year, based on UW-Bothell&#8217;s catalog of courses. The approved electives are categorized into four areas of interest: 1) Health & Life Sciences, 2) Community Health Intervention & Practice, 3) Health & Society, and 4) Health Policy, Leadership, & Ethics.
+The Health Studies faculty select electives each year, based on UW-Bothell’s catalog of courses. The approved electives are categorized into four areas of interest: 1) Health & Life Sciences, 2) Community Health Intervention & Practice, 3) Health & Society, and 4) Health Policy, Leadership, & Ethics.
 Learn more by visiting the Health Studies Elective webpage .
 Quarterly courses
 To help you prepare for future course registration, review the quarterly course offering spreadsheets below. These spreadsheets are useful tools in helping you to review courses related to the Health Studies major. Keep in mind that these spreadsheets are static, and so any changes to the UWB Time Schedule will not be reflected in these documents. For up-to-date course information, visit the UW Bothell Time Schedule .
@@ -364,7 +364,7 @@ MS Capstone
 Community Partners
 Resources
 News
-Info sessions &#038; events
+Info sessions & events
 People
 Expand Navigation
 Faculty

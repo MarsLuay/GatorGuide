@@ -4,8 +4,8 @@ Title: Food Systems Major Requirements | Food Systems, Nutrition, and Health
 
 -->
 [Supplemental official source] Declare the Major
-[Supplemental official source] Food Systems Major
 [Supplemental official source] Food Systems Major FAQ
+[Supplemental official source] Food Systems, Nutrition, and Health Major
 [Supplemental official source] Interdisciplinary Breadth Courses
 [Supplemental official source] Learning Competencies for the BA in Food Systems, Nutrition, and Health
 [Supplemental official source] Requirements
@@ -70,7 +70,7 @@ BIOST 310
 Biostatistics for the Health Sciences (4)
 Body Weight and Size Inclusivity: Clinical, Behavioral, and Societal Perspectives (5)
 Both of the following courses:
-Brand &#038; Templates
+Brand & Templates
 Briefs
 Business, Economics, & Marketing: advertising, business, communication, consumers, distribution, economics, entrepreneurship, food production, informatics, law, leadership, marketing, retail
 Calendar
@@ -80,7 +80,7 @@ Capstone
 Careers
 Carmela Stewart
 Center for Public Health Nutrition
-Centers &#038; Affiliations
+Centers & Affiliations
 CEP 200
 CHEM 120
 CHEM 142
@@ -116,7 +116,7 @@ Contacts
 Core
 Core Requirements (6 credits)
 Costs
-Costs &#038; Funding
+Costs & Funding
 Course Listings
 Courses
 Courses that satisfy the Interdisciplinary Breadth requirement
@@ -165,7 +165,7 @@ Environmental Ethics (5)
 Environmental Justice (5)
 EPI 221
 EPI 320
-Equity &#038; Inclusion
+Equity & Inclusion
 ESRM 100
 ESRM 210
 ESRM 235
@@ -318,17 +318,17 @@ Learning Competencies for the BA in Food Systems, Nutrition, and Health | Food S
 Learning objectives
 Master of Public Health
 Master of Science
-Master&#8217;s Capstone
-Master&#8217;s Thesis
+Master’s Capstone
+Master’s Thesis
 Maternal and Child Health-a Population Health Approach (5)
-Meetings &#038; Events – Spaces and Planning Resources
+Meetings & Events – Spaces and Planning Resources
 Menu
 Minimum cumulative 2.0 GPA is needed for courses applied toward the minor.
 Minimum of 13 credits must be taken from the School of Public Health (NUTR, ENV H, or EPI courses).
 Minimum of 15 credits applied to the minor must be completed in residence through the University of Washington.
 Minimum of 15 credits applied to the minor must be taken outside of the student’s major requirements.
 Minimum of 15 credits must be completed in 300- and 400-level courses.
-Mission &#038; Goals
+Mission & Goals
 MNT Concentration Projects
 More Information
 More profiles
@@ -340,7 +340,7 @@ MS Application and Materials
 My UW
 Natural History of the Puget Sound Region (5)
 News
-News &#038; Events
+News & Events
 Nikki Zielinski
 NMETH
 NURS 211
@@ -442,7 +442,7 @@ Registration
 Reports
 Requirements
 Research
-Research &#038; Practice
+Research & Practice
 Research Methods & Technologies - 9-10 credits
 Research Methods in Environmental Studies (5)
 Research Methods in Food Systems, Nutrition, and Health (5)

@@ -2,368 +2,387 @@ Owner: uw-seattle-mechanical-engineering
 Source: https://www.me.washington.edu/students/ug/requirements
 Title: BSME degree requirements | UW Department of Mechanical Engineering
 
--->
-[Supplemental official source] Bachelor of Science
-[Supplemental official source] Time schedule & curriculum
-*formerly I&S
-*formerly VLPA
-&copy; 2026 UW Department of Mechanical Engineering | UW College of Engineering | Seattle, WA
-‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
-<a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
-<a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
-<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
-<a class="toggler nav-link collapsed" data-toggle="collapse" data-target="#main-menu-links"
-<a href="https://www.washington.edu/itconnect/forstudents.html"
-<button aria-label="Open search" aria-haspopup="true" aria-owns="search-modal" aria-controls="search-modal"
-<button class="menu-toggler d-sm-none collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
-<button class="uw-links-wrapper mr-n2 uwlinks-button-toggle" role="button" aria-label="Show UW quick links" aria-owns="uwlinks"
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDDQSLD"
-<nav aria-label="Audience links, search, and quick links"
-1 cr.
-1-4 cr.
-1-5 cr.
-10 cr.
-12 cr.
-15 cr.
-19 cr.
-206-221-1235
-206-616-5844
-206-685-0908
-24 cr.
-25 cr.
-27-28 cr.
-28 cr.
-3 cr.
-3-4 cr.
-3-5 cr.
-3.67: Average cumulative GPA of incoming undergraduates
-4 cr.
-4 years: Average time to receive the BSME degree
-46 cr.
-5 cr.
-65 scholarships awarded by the department
-7 cr.
-A maximum of 90 credits may be transferred from a two-year college and a maximum of 135 credits obtained from a four-year ABET-accredited college may be transferred. However, of the courses needed to satisfy departmental requirements for a BSME, some have direct transfer, and others may be used only if approved by the Undergraduate Adviser and Associate Chair for Academics. For more information see the UW Transfer Credit Policies .
-A total of 180 credits are required for the BSME degree. Regardless of the number of mechanical engineering courses taken at another institution, a minimum of 45 credits in ME courses must be taken in residence at the University of Washington.
-AA 210
-ABET accreditation
-About the department
-About Us
-Academic Counselor
-Accessibility
-Additional A&H or SSc courses to reach 24 credit total
-Additional Links
-Additive Manufacturing: Materials, Processing and Applications
-Admission requirements
-Admission statistics
-Advanced Energy Conversion Systems
-Advanced Fluid Mechanics
-Advanced Materials & Manufacturing
-Advanced Mechanics of Materials and Solids
-Advising
-Advising appointment scheduler
-Advising Appointments
-All students participate in laboratory courses and research or design projects.
-Alumni connections
-AMATH 301
-Any course selected from the UW English composition list
-Applications of Dynamics in Engineering
-Areas of Inquiry
-aria-controls="toggle_main-menu-1" aria-expanded="false"
-aria-controls="toggle_main-menu-2" aria-expanded="false"
-aria-controls="toggle_main-menu-3" aria-expanded="false"
-aria-controls="toggle_main-menu-4" aria-expanded="false"
-aria-controls="toggle_main-menu-5" aria-expanded="false"
-aria-controls="toggle_main-menu-6" aria-expanded="false"
-aria-controls="toggle_main-menu-7" aria-expanded="false"
-aria-controls="toggleMainMenu" aria-expanded="false" aria-label="Toggle Main Menu">
-aria-controls="toggleMainMenuLinks" aria-expanded="false" aria-label="Toggle Main Menu Links"
-aria-controls="toggleMainMenuSearch" aria-expanded="false" aria-label="Toggle Main Menu Search" href="#">
-aria-controls="uwlinks" aria-haspopup="true">
-aria-controls="uwlinks" aria-label="Show UW links">
-aria-label="Toggle main-menu-1" href="#main-menu-1">
-aria-label="Toggle main-menu-2" href="#main-menu-2">
-aria-label="Toggle main-menu-3" href="#main-menu-3">
-aria-label="Toggle main-menu-4" href="#main-menu-4">
-aria-label="Toggle main-menu-5" href="#main-menu-5">
-aria-label="Toggle main-menu-6" href="#main-menu-6">
-aria-label="Toggle main-menu-7" href="#main-menu-7">
-Arts and Humanities (A&H)
-Assistant Director of Academic Services
-At least 10 credits required
-At least 10 credits required (4cr will come from ME 123)
-Automatic Control
-Bachelor of Science
-Bachelor of Science | UW Department of Mechanical Engineering
-Be Boundless
-Beginning Scientific Computing
-Biological Frameworks for Engineers
-Biomechanics
-Biomechanics of Movement (every other year, odd years only)
-Biomechanics Seminar (only 1 ME seminar can be chosen towards 19-credits of senior electives)
-BSME degree options
-BSME degree requirements
-BSME Degree Requirements
 BSME degree requirements | UW Department of Mechanical Engineering
-BSME Sample Schedules
-Calculus with Analytic Geometry
+Skip to main content
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TDDQSLD"
+height="0" width="0" style="display:none;visibility:hidden">
+MyUW
 Calendar
-CEE 220
-CHEM 142 , CHEM 152
-class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
-class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
-Clubs and competitions
-College of Engineering University of Washington logo
-Concentrations available in mechatronics, biomechanics, energy, and engineering innovation in health.
-Connect with us:
-Contact grad advising
-Contact undergrad advising
-Contact us
-Contact Us
-Controls, Mechatronics & Robotics
-Corrosion and Surface Treatment of Materials
-Course catalog
-Courses explore fundamental principles of mechanical engineering and their application to modern technological problems. Students collaborate on interdisciplinary work where they research and design creative, leading-edge solutions to these problems.
-Current and future quarters
-Current graduate students
-Current students
-Current undergraduate students
-Curriculum
-Dana Cornacchio
-data-bs-target="#search-modal">
-data-toggle="collapse" data-target="#main-menu-1"
-data-toggle="collapse" data-target="#main-menu-2"
-data-toggle="collapse" data-target="#main-menu-3"
-data-toggle="collapse" data-target="#main-menu-4"
-data-toggle="collapse" data-target="#main-menu-5"
-data-toggle="collapse" data-target="#main-menu-6"
-data-toggle="collapse" data-target="#main-menu-7"
-Degree requirements
 Directories
-Diversity (DIV)
-Diversity, equity & inclusion
+Libraries
+UW Medicine
+Maps
+UW Today
+Helpful Links
+<a href="https://www.washington.edu/itconnect/forstudents.html"
+tabindex="-1">Computing/IT
+ISC/Workday
+Husky Card
+UW Bothell
+UW Tacoma
+UW Facebook
+UW Twitter
+<nav aria-label="Audience links, search, and quick links"
+class="d-none d-sm-flex justify-content-end desktop-section position-absolute">
 Diversity, equity and inclusion
-Doctor of Philosophy
-Dynamics & Vibrations
-EE 215
-Embedded Computing in Mechanical Systems
-Energy
-Energy and Environment
-Engineering fundamentals
-Engineering Internship Credit (4 maximum)
-Engineering societies
-Engineering Statics
-Engineering Thermodynamics
-English Composition
-ENGR 321
-Events calendar
-Excellence
-External advisory board
+Log in
+MyME
+<button aria-label="Open search" aria-haspopup="true" aria-owns="search-modal" aria-controls="search-modal"
+class="px-1 search d-flex align-self-center align-items-center" data-bs-toggle="modal"
+data-bs-target="#search-modal">
+<button class="uw-links-wrapper mr-n2 uwlinks-button-toggle" role="button" aria-label="Show UW quick links" aria-owns="uwlinks"
+aria-controls="uwlinks" aria-haspopup="true">
+UW Links
+<button class="menu-toggler d-sm-none collapsed" type="button" data-toggle="collapse" data-target="#main-menu"
+aria-controls="toggleMainMenu" aria-expanded="false" aria-label="Toggle Main Menu">
+Menu
+Search
+Main menu
+About Us
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-1"
+aria-controls="toggle_main-menu-1" aria-expanded="false"
+aria-label="Toggle main-menu-1" href="#main-menu-1">
+About Us
+What is mechanical engineering?
+About the department
+ABET accreditation
+Diversity, equity & inclusion
+Job openings
+Contact us
+People
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-2"
+aria-controls="toggle_main-menu-2" aria-expanded="false"
+aria-label="Toggle main-menu-2" href="#main-menu-2">
+People
 Faculty
+Research associates
+Staff
+Research
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-3"
+aria-controls="toggle_main-menu-3" aria-expanded="false"
+aria-label="Toggle main-menu-3" href="#main-menu-3">
+Research
+Research areas
+Research centers
+Research laboratories
+Innovation & impact
+Prototype shops
+News & Events
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-4"
+aria-controls="toggle_main-menu-4" aria-expanded="false"
+aria-label="Toggle main-menu-4" href="#main-menu-4">
+News & Events
+News archive
+Our stories
 Faculty honors
-Finite Element Analysis
-Fluid Mechanics/Microfluidics
-For ME Master’s students during the registration Period I
-From the list of approved 400-level ME courses
-Fundamental coursework in energy engineering, fluid and solid mechanics, heat and mass transfer, dynamics and vibrations, mechatronics and robotics, biomechanics, acoustics, materials, design, controls and manufacturing.
-Fundamentals of Electrical Engineering
-Fundamentals of Material Science
+Events calendar
+Seminar series
+The MEssenger alumni newsletter
 Future students
-General Chemistry with laboratory
-General education requirements
-Give
-GIVE
-Give to Mechanical Engineering
-Graduate Academic Adviser, Ph.D. program
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-5"
+aria-controls="toggle_main-menu-5" aria-expanded="false"
+aria-label="Toggle main-menu-5" href="#main-menu-5">
+Future students
+Why choose Mechanical Engineering?
+Bachelor of Science
+Master of Science
+Doctor of Philosophy
 Graduate admission overview
 Graduate Certificate in Data-Driven Dynamic Systems and Controls for Engineering
 Graduate Certificate in I-BEAM: Intelligent Battery Engineering and Automated Manufacturing
 Graduate non-matriculated status
-Graduate students
-Graduate students can focus their studies on one of several subject areas:
+Current students
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-6"
+aria-controls="toggle_main-menu-6" aria-expanded="false"
+aria-label="Toggle main-menu-6" href="#main-menu-6">
+Current students
+Current undergraduate students
+Current graduate students
+Time schedule & curriculum
+Advising appointment scheduler
+Clubs and competitions
+Engineering societies
+Prototype shops
+Jobs & internships
+Student resources
 Graduation
-Health
-height="0" width="0" style="display:none;visibility:hidden">
-Helpful Links
-href="#main-menu-links">Additional Links
-Husky Card
-HVAC Engineering
-In addition to rigorous courses , undergraduates complete a senior design project , or capstone, and can undertake formal degree options . Students are encouraged to participate in extracurricular student projects and competitions and undergraduate research .
-INDE 315 (or STAT 290 or 390)
+Industry & Alumni
+<a class="toggler nav-link collapsed d-inline-flex flex-grow-1 justify-content-end d-sm-none"
+data-toggle="collapse" data-target="#main-menu-7"
+aria-controls="toggle_main-menu-7" aria-expanded="false"
+aria-label="Toggle main-menu-7" href="#main-menu-7">
 Industry & Alumni
 Industry partnerships
-Information sessions
-Innovation & impact
-Instrumentation
-Introduction to Biomechanics
-Introduction to Composite Materials and Design
-Introduction to Computer-Aided Technology
-Introduction to Differential Equations
-Introduction to Fluid Mechanics [ Course website ]
-Introduction to Heat Transfer
-Introduction to Mechanical Design or Engineering Innovations in Health
-Introduction to Mechanics of Materials
-Introduction to System Dynamics
-Introduction to Visualization and Computer-Aided Design (A&H)
-ISC/Workday
-Job openings
-Jobs & internships
-Kei Hattori
-Kendra Burdett
-Kinematics and Dynamics
-Kinematics and Linkage Design
-Learn about our ABET Accreditation
-Learn more about upcoming courses by viewing the course descriptions.
-Libraries
-Linear Analysis or Multivariate Calculus
+Alumni connections
+Give to Mechanical Engineering
+Notable alumni
+External advisory board
+<a class="toggler nav-link collapsed" data-toggle="collapse" data-target="#main-menu-links"
+aria-controls="toggleMainMenuLinks" aria-expanded="false" aria-label="Toggle Main Menu Links"
+href="#main-menu-links">Additional Links
+Additional Links
+Diversity, equity and inclusion
 Log in
-Machine Design Analysis
-Main menu
-Manufacturing Processes
-Maps
-Master of Science
-MATH 124 , MATH 125 , MATH 126
-MATH 207 (or MATH 307)‡ or AMATH 351
-MATH 208 (or MATH 308)‡ or AMATH 352
-MATH 209 (or MATH 309) or MATH 224 (or MATH 324)‡ or AMATH 353
+MyME
+<a class="toggler hide-menu-arrow search nav-link collapsed" data-bs-toggle="modal" data-bs-target="#search-modal"
+aria-controls="toggleMainMenuSearch" aria-expanded="false" aria-label="Toggle Main Menu Search" href="#">
+Search
+Give
+<a class="toggler hide-menu-arrow nav-link collapsed uw-links-wrapper uwlinks-button-toggle" aria-owns="uwlinks"
+aria-controls="uwlinks" aria-label="Show UW links">
+UW Links
+GIVE
+Diversity, equity and inclusion
+Log in
+MyME
+Current students
+Current students
+Current undergraduate students
+Degree requirements
+BSME degree requirements
+BSME degree requirements
+A total of 180 credits are required for the BSME degree. Regardless of the number of mechanical engineering courses taken at another institution, a minimum of 45 credits in ME courses must be taken in residence at the University of Washington.
 Mathematics
+27-28 cr.
+MATH 124 , MATH 125 , MATH 126
+15 cr.
+Calculus with Analytic Geometry
+MATH 207 (or MATH 307)‡ or AMATH 351
+3 cr.
+Introduction to Differential Equations
+MATH 208 (or MATH 308)‡ or AMATH 352
+3 cr.
 Matrix Algebra with Applications
-ME 123
-ME 230
-ME 323
-ME 331
-ME 333
-ME 354 (W)
+MATH 209 (or MATH 309) or MATH 224 (or MATH 324)‡ or AMATH 353
+3 cr.
+Linear Analysis or Multivariate Calculus
+INDE 315 (or STAT 290 or 390)
+3-4 cr.
+Probability and statistics for Engineers
+‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
+Physics and chemistry
+25 cr.
+PHYS 121 , PHYS 122 , PHYS 123
+15 cr.
+Mechanics, Electromagnetism and Oscillatory Motion, & Waves
+CHEM 142 , CHEM 152
+10 cr.
+General Chemistry with laboratory
+Written & oral communication
+12 cr.
+English Composition
+5 cr.
+Any course selected from the UW English composition list
+Satisfied by major coursework
+7 cr.
 ME 354 + ME 493 or ME 414
-ME 355
-ME 356
-ME 373
-ME 374
-ME 402
-ME 406
-ME 410
-ME 411
-ME 412
-ME 419
-ME 425
-ME 426
-ME 430
-ME 431
-ME 440
-ME 442
-ME 445
-ME 450
-ME 460
-ME 461
-ME 469
-ME 470
-ME 471
-ME 473
-ME 477
-ME 478
-ME 480
-ME 493 or ME 414 (W, starting 2023)
-ME 494
-ME 495
-ME 498
-ME 499
-ME Autumn Quarter 2025
+Engineering fundamentals
+28 cr.
+AA 210
+4 cr.
+Engineering Statics
+CEE 220
+4 cr.
+Introduction to Mechanics of Materials
+ME 230
+4 cr.
+Kinematics and Dynamics
+AMATH 301
+4 cr.
+Beginning Scientific Computing
+EE 215
+4 cr.
+Fundamentals of Electrical Engineering
+ME 123
+4 cr.
+Introduction to Visualization and Computer-Aided Design (A&H)
+MSE 170
+4 cr.
+Fundamentals of Material Science
+Areas of Inquiry
+24 cr.
+General education requirements
+Arts and Humanities (A&H)
+*formerly VLPA
+10 cr.
+At least 10 credits required (4cr will come from ME 123)
+Social Sciences (SSc)
+*formerly I&S
+10 cr.
+At least 10 credits required
+Areas of Inquiry
+4 cr.
+Additional A&H or SSc courses to reach 24 credit total
+Diversity (DIV)
+3-5 cr.
+University requirement varies from 3 to 5 depending on matriculation to university. Credits can be simultaneously earned across A&H/SSc and DIV.
 ME core courses
-ME course catalog
-ME MS Autumn Quarter 2025
-ME MS Spring Quarter 2026
-ME MS Summer Quarter 2026
-ME MS Winter Quarter 2026
+46 cr.
+ME 323
+5 cr.
+Engineering Thermodynamics
+ME 331
+4 cr.
+Introduction to Heat Transfer
+ME 333
+5 cr.
+Introduction to Fluid Mechanics [ Course website ]
+ME 354 (W)
+5 cr.
+Mechanics of Materials Lab
+ME 355
+4 cr.
+Manufacturing Processes
+ME 356
+4 cr.
+Machine Design Analysis
+ME 373
+5 cr.
+Introduction to System Dynamics
+ME 374
+5 cr.
+System Dynamic Analysis/Design
+ME 493 or ME 414 (W, starting 2023)
+3 cr.
+Introduction to Mechanical Design or Engineering Innovations in Health
+ME 494
+3 cr.
+Mechanical Engineering Design Preparation
+ME 495
+3 cr.
+Mechanical Engineering Design
 ME option courses
-ME Spring Quarter 2026
-ME Summer Quarter 2026
-ME Winter Quarter 2026
+19 cr.
+From the list of approved 400-level ME courses
+ME 402
+3 cr.
+Additive Manufacturing: Materials, Processing and Applications
+ME 406
+3 cr.
+Corrosion and Surface Treatment of Materials
+ME 410
+3 cr.
+Nanodevices: Design and Manufacture
+ME 411
+3 cr.
+Biological Frameworks for Engineers
+ME 412
+3 cr.
+Biomechanics of Movement (every other year, odd years only)
+ME 419
+1 cr.
+Biomechanics Seminar (only 1 ME seminar can be chosen towards 19-credits of senior electives)
+ME 425
+4 cr.
+HVAC Engineering
+ME 426
+3 cr.
+Renewable Energy II
+ME 430
+4 cr.
+Advanced Energy Conversion Systems
+ME 431
+4 cr.
+Advanced Fluid Mechanics
+ME 440
+3 cr.
+Advanced Mechanics of Materials and Solids
+ME 442
+4 cr.
+Renewable Energy
+ME 445
+4 cr.
+Introduction to Biomechanics
+ME 450
+3 cr.
+Introduction to Composite Materials and Design
+ME 460
+3 cr.
+Kinematics and Linkage Design
+ME 461
+3 cr.
+Mechanics of Thin Films
+ME 469
+4 cr.
+Applications of Dynamics in Engineering
+ME 470
+3 cr.
+Mechanical Vibrations
+ME 471
+4 cr.
+Automatic Control
+ME 473
+4 cr.
+Instrumentation
+ME 477
+4 cr.
+Embedded Computing in Mechanical Systems
+ME 478
+4 cr.
+Finite Element Analysis
+ME 480
+4 cr.
+Introduction to Computer-Aided Technology
+ME 498
+1-5 cr.
+Special Topics in Mechanical Engineering
+ME 499
+1-5 cr.
+Special Projects (graded option only, 6 maximum)
+ENGR 321
+1-4 cr.
+Engineering Internship Credit (4 maximum)
+This guide supplements the University of Washington course catalog, time schedules, and other announcements about registration. Students are responsible for planning their program of studies and for remaining informed of dates, deadlines, rules, and regulations. Contact an undergraduate adviser for help planning your course of study.
+Transfer credit
+A maximum of 90 credits may be transferred from a two-year college and a maximum of 135 credits obtained from a four-year ABET-accredited college may be transferred. However, of the courses needed to satisfy departmental requirements for a BSME, some have direct transfer, and others may be used only if approved by the Undergraduate Adviser and Associate Chair for Academics. For more information see the UW Transfer Credit Policies .
+General education requirements
+The College of Engineering requires that all degree programs include a minimum of 24 credits in the Areas of Inquiry : Arts and Humanities (A&H) and Social Sciences (SSc). Course selection to fulfill the A&H/SSc requirements must meet the following selection criteria: A minimum of 10 credits of A&H and 10 credits of SSc. A total of 24 credits of A&H/SSc credits.
+ME option courses
+The BSME requirements include a minimum of 19 credits of ME option courses (otherwise known as "senior technical electives"). These courses are designed for seniors and most require many of the 300-level courses as prerequisites. A maximum of 6 credits of ME 499 (Graded, Special Projects) may count toward the option course requirement. Additional credits of ME 499 are possible as CR/NC but will not apply to a students ME option courses. The three formal degree options have a set of courses students must take to earn those options. Up to four credits of ENGR 321 may also be applied to the 19-credits of ME option credits required.
+Non-ME courses as ME option
+Occasionally students wish to substitute a 300 or 400 level course offered by another College of Engineering department for ME option course credits. By petition, up to 3 credits of a 300 or 400 level class offered by another engineering department may be applied to satisfy the 19 required option credits of ME. Classes in another department that are equivalent to a required ME class (e.g., CEE 342 for ME 333) will not count for ME option credit.
+Current undergraduate students
+Advising
+ABET accreditation
+Degree requirements
+Sample schedules
+BSME degree options
+Senior design projects
+Undergraduate advising
+Kendra Burdett
+Assistant Director of Academic Services
+206-616-5844
 meadvise@uw.edu
 MEB 143
+Kei Hattori
+Academic Counselor
+206-685-0908
+meadvise@uw.edu
 MEB 143B
+Dana Cornacchio
+Academic Counselor
+206-221-1235
+meadvise@uw.edu
 MEB 148
-Mechanical Engineering Design
-Mechanical Engineering Design Preparation
-Mechanical Vibrations
-Mechanics of Materials Lab
-Mechanics of Thin Films
-Mechanics, Electromagnetism and Oscillatory Motion, & Waves
-Mechanics, Materials & Manufacturing
-Mechatronics and Robotics
-megrad@uw.edu
-Menu
-MSE 170
-MyME
-MyUW
-Nanodevices: Design and Manufacture
-News & Events
-News archive
-Non-major course registration policy
-Non-ME courses as ME option
-Notable alumni
-Occasionally students wish to substitute a 300 or 400 level course offered by another College of Engineering department for ME option course credits. By petition, up to 3 credits of a 300 or 400 level class offered by another engineering department may be applied to satisfy the 19 required option credits of ME. Classes in another department that are equivalent to a required ME class (e.g., CEE 342 for ME 333) will not count for ME option credit.
-Our curriculum focuses on the study of the following topics:
-Our stories
-People
-PHYS 121 , PHYS 122 , PHYS 123
-Physics and chemistry
-Privacy
-Probability and statistics for Engineers
-Program features
-Prototype shops
-Questions?
-Renewable Energy
-Renewable Energy II
-Research
-Research areas
-Research associates
-Research centers
-Research laboratories
-Sample schedules
-Satisfied by major coursework
-Schedule an appointment
-Scholarships
-Search
-Seminar series
-Senior design projects
-Sitemap
-Skip to main content
-Social Sciences (SSc)
-Special Projects (graded option only, 6 maximum)
-Special Topics in Mechanical Engineering
-Staff
-Student resources
-System Dynamic Analysis/Design
-tabindex="-1">Computing/IT
-Teamwork, communication and problem-solving skills development, systems analysis, process and product design, prototyping and interdisciplinary projects.
-Terms
-The Bachelor of Science (BSME) program prepares students for diverse careers in engineering, industry or graduate work.
-The BSME requirements include a minimum of 19 credits of ME option courses (otherwise known as "senior technical electives"). These courses are designed for seniors and most require many of the 300-level courses as prerequisites. A maximum of 6 credits of ME 499 (Graded, Special Projects) may count toward the option course requirement. Additional credits of ME 499 are possible as CR/NC but will not apply to a students ME option courses. The three formal degree options have a set of courses students must take to earn those options. Up to four credits of ENGR 321 may also be applied to the 19-credits of ME option credits required.
-The College of Engineering requires that all degree programs include a minimum of 24 credits in the Areas of Inquiry : Arts and Humanities (A&H) and Social Sciences (SSc). Course selection to fulfill the A&H/SSc requirements must meet the following selection criteria: A minimum of 10 credits of A&H and 10 credits of SSc. A total of 24 credits of A&H/SSc credits.
-The MEssenger alumni newsletter
-There are many different ways to plan your schedule and complete the required courses and electives for the BSME degree in four years. See below for sample schedules to use as a starting point. Contact undergraduate advising for more information about alternative schedules or electives.
-This guide supplements the University of Washington course catalog, time schedules, and other announcements about registration. Students are responsible for planning their program of studies and for remaining informed of dates, deadlines, rules, and regulations. Contact an undergraduate adviser for help planning your course of study.
-Time schedule
-Time schedule & curriculum
-Time schedule and curriculum
-Time schedule and curriculum | UW Department of Mechanical Engineering
+Advising Appointments
 To meet with the undergraduate or graduate advisers:
-Transfer credit
-Undergraduate Academic Counselor
-Undergraduate advising
-Undergraduate students
-University requirement varies from 3 to 5 depending on matriculation to university. Credits can be simultaneously earned across A&H/SSc and DIV.
-UW Bothell
+Schedule an appointment
 UW College of Engineering
-UW Facebook
+College of Engineering University of Washington logo
+Be Boundless
+Connect with us:
+Accessibility
 UW Home
-UW Links
-UW Medicine
-UW PCE Time Schedule
-UW Tacoma
-UW Today
-UW Twitter
-Wanwisa Kisalang
-What is mechanical engineering?
-Why choose Mechanical Engineering?
-Written & oral communication
+Contact Us
+Sitemap
+Log in
+Privacy
+Terms
+Learn about our ABET Accreditation
+&copy; 2026 UW Department of Mechanical Engineering | UW College of Engineering | Seattle, WA

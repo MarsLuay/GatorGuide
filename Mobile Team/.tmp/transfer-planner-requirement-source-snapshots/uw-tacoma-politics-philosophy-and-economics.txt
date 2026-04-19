@@ -3,14 +3,10 @@ Source: https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-pp
 Title: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences | University of Washington Tacoma
 
 [Supplemental official source] Economics Specialization
-[Supplemental official source] Global Studies Concentration
-[Supplemental official source] International Studies Specialization
 [Supplemental official source] Politics and Philosophy Specialization
 [Supplemental official source] Supplemental official track and option pages
-[Supplemental official source] UWT general education
 &copy; 2026 University of Washington Tacoma
 <a
-<a href="/sias"
 <a href="https://instagram.com/uwtacoma"
 <a href="https://www.facebook.com/uwtacoma"
 <a href="https://www.linkedin.com/school/university-of-washington-tacoma"
@@ -23,11 +19,7 @@ Title: Politics, Philosophy and Economics (PP&E) | Department of Social Sciences
 <img class="mobile-show desktop-hide"
 <img src=""
 >
->Home
->School of Interdisciplinary Arts & Sciences
 1900 Commerce Street, Tacoma, WA 98402-3100
-253-692-4450
-253-692-5718
 25Live
 600w"
 980w,
@@ -49,56 +41,38 @@ alt="University of Washington Tacoma"/>
 American Indian Studies Minor
 Apply
 aria-label="University of Washington Tacoma Homepage">
-Arts and Humanities (A&H): 20 credits
-As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 At least one class from each of the following three lists, for a total of 20 credits:
 Bachelor of Arts
 Bothell
-Breadcrumb
 Business
 Calendar
 CAMPUS
 Campus Safety
 Canvas
 Career Opportunities
-Chose one of the following:
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
 Close Search
 Community Work
 Connect with Advising
 Contact
 Contact us |
-Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 Core courses (20 credits)
-Core courses (5 credits; *restricted to Global Honors students) (25 credits)
-Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
-Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
-Courses that focus on sociocultural, political, and economic diversity of human experience
-Current Students
 Degree Requirements
 DEPARTMENT
 Department of Social Sciences
 Department of Social Sciences (SOCS)
 Diplomacy Government
 Directory
-Diversity (DIV): 5 credits
 Economics (20 credits)
 Economics and Policy Analysis (EPA)
 Economics Minor
 Economics Specialization
 Education and Community Engagement Minor
-English Composition (C): 5 credits
 Equity & Inclusion
 Ethnic, Gender and Labor Studies
 expand_more
-Faculty & Staff
-Fax Number
 Financial Aid
 For a BA in Politics, Philosophy and Economics, students must complete 65 major credits, which must include 45 credits of upper-division (300–400 level courses), including a Capstone, with a minimum 2.0 GPA in courses applied to the major, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 Gender and Sexuality Studies Minor
-General Education Requirements
 Global Studies Concentration
 height="0"
 History
@@ -107,11 +81,9 @@ Honors
 Housing
 href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
 Human Rights Minor
-iashelp@uw.edu
 Information Technology
 Institutional Research
 Interdisciplinary Arts and Sciences
-International Focus (40 credits; at least 30 credits must be at the 300–400 level)
 International Studies Specialization
 IT Help
 Jobs
@@ -125,7 +97,6 @@ Library
 List A: Economics Core
 List B: Philosophy Core
 List C: Politics Core
-M-F 9a.m.-5p.m.
 Main Content
 MAJOR COORDINATOR
 Majors
@@ -133,20 +104,14 @@ Map
 Methods courses (10 credits)
 Minors
 more_vert
-Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
 MyUW
-Natural Sciences (NSc): 20 credits
 Nonprofit Management
 Note: Politics, Philosophy and Economics (PP&E) majors cannot minor in Economics, Law and Policy, or Politics.
-Office Hours:
 Office365
-One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
 Open Public Meetings
 Panopto
 Parking & transportation
-Politics and Philosophy
 Politics and Philosophy (20 credits; *restricted to Global Honors students)
-Politics and Philosophy or Economics (10 credits; *restricted to Global Honors students)
 Politics and Philosophy Specialization
 Politics Minor
 Politics, Philosophy and Economics (PP&E)
@@ -158,116 +123,61 @@ Professor Charles Williams
 Psychology
 Public Agencies
 Puyallup Tribe of Indians
-Reasoning (RSN): 5 credits
 Religious Studies Minor
 Research
-Resources
 Rules Docket
-School of Interdisciplinary Arts & Sciences
 Schools and programs
 Scout
 Search
 Shelli Veal
-SIAS Scholarships
-SIAS Student Advisory Council
 sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
 Skip to main content
 Social Science Research Methods Minor
-Social Sciences (SSc): 20 credits
 Sociology Minor
 SOCS Directory
 SOCS Resources
-Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
 src="/sites/default/files/sites/uwtd8main/W.svg"
 src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
 src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
 srcset=" 1940w,
 Student Life
-Students in the Global Studies concentration study a variety of subjects and themes in an international context, including artistic, cultural, political and economic patterns among and within other nations and may choose to focus their studies on one or more world regions or on specific themes. Advanced language study is an integral component of Global Studies.
 Study Abroad
 style="display:none;
-TANTH 354 History of the Concept of Culture
-TARTS 281 Art and Culture in India
-TARTS 282 Art and Culture in China
-TARTS 283 Art and Culture in Japan
-TARTS 284 Art and Culture in the Pacific
-TARTS 406 Labor, Globalization and Art
-TARTS 480 Contemporary Art and Society 1945–Present
 TBECON 220 Introduction to Microeconomics Theory
 TBECON 221 Introduction to Macroeconomic Theory
 TBECON 420 Intermediate Microeconomic Theory
-TCHIN 101 First-Year Chinese
-TCHIN 102 First-Year Chinese
-TCHIN 103 First-Year Chinese
-TCHIN 201 Second-Year Chinese
-TCHIN 202 Second-Year Chinese
-TCHIN 203 Second-Year Chinese
-TCOM 230 Media Globalization and Citizenship
-TCOM 430 Global Networks, Local Identities
-TCOM 461 Media and Identity in Asia
 Teaching and Learning Center
 Teaching, Learning and Justice Minor
 TECON 200 Introduction to Microeconomics OR
 TECON 201 Introduction to Macroeconomics OR
 TECON 210 Ethics and Economics
 TECON 316 Current Issues in U.S. Public Policy
-TECON 320 Gender and Development
-TECON 325 Contemporary Issues in International Political Economy
 Terms of Use |
-TGH 301 Global Interactions *
 TGH 301 Global Interactions*
 TGH 303 Global Challenges*
 The Economics specialization emphasizes economic theory and reasoning. It provides a solid foundation for understanding how the interplay of economics and politics shape our everyday lives, with particular emphasis on analytical and critical thinking skills and problem solving.
 The International Studies specialization focuses on the study of relations between states, domestic groups and transnational actors from an interdisciplinary perspective that includes politics, philosophy, history and economics. Students gain the background knowledge and skills necessary to understand the sources of conflict, cooperation and peace in the global arena.
 The Politics and Philosophy specialization provides an in-depth study of political theory, political and social interactions, relations between states and capital and the history of relationships between governments and citizens. The specialization aims to develop skills needed for an informed and effective citizenship.
 The Politics, Philosophy and Economics (PP&E) major offers an innovative curriculum for students drawn to interdisciplinary approaches and diverse frameworks for understanding social phenomenon.
-THIST 150 World History I
-THIST 151 World History II
 THIST 322 American Labor Since the Civil War
-THIST 350 Modern Germany Since 1848
 title="Follow UW Tacoma on Facebook">
 title="Follow UW Tacoma on Instagram">
 title="Follow UW Tacoma on Linkedin">
 title="Follow UW Tacoma on TikTok">
 title="Follow UW Tacoma on Youtube">
-TLAW 320 American Constitutional Law: Institutional Powers and Constraints
-TLAW 361 American Constitutional Law: Rights and Liberties
-TLAW 424 The Politics and Law of International Human Rights
-TLAW 465 Law and Public Policy in the United States
 Tools
 TPHIL 101 Introduction to Philosophy
-TPHIL 200 Introduction to the Philosophy of Human Rights
 TPHIL 240 Introduction to Ethics
 TPHIL 250 Practical Reasoning
 TPHIL 251 Data and Discourse
-TPHIL 315 Chinese Philosophy and Religions Today
-TPHIL 355 The Modern Mind
-TPHIL 358 History of Philosophy: Medieval and Modern
-TPHIL 360 History of Philosophy: Modern and Contemporary
-TPHIL 361 Ethics in Society
-TPHIL 367 Utopias
-TPHIL 414 Philosophy of Law
-TPHIL 451 The Enlightenment
-TPHIL 453 Political Theory of Human Rights
-TPHIL 456 Environmental Ethics
-TPHIL 466 Philosophy of the Future
 TPOLS 201 Introduction to Political Values and Ideas
 TPOLS 202 Introduction to American Politics
 TPOLS 203 Introduction to International Relations
 TPOLS 204 Introduction to Comparative Politics
-TPOLS 230 International Human Rights
 TPOLS 260 America Political Theory
-TPOLS 310 Modern European Political Theory
-TPOLS 319 Theories of Political Violence
-TPOLS 321 American Foreign Policy
-TPOLS 451 Human Rights and the Use of Force
 Transfer Equivalencies
 TRELIG 321 Comparative Religion
-TRELIG 333 Buddhist Thought
-TRELIG 366 Islam
 Tribal Sponsor of UW Tacoma
-TSUD 444 Green Internationalism and the City
-TWOMN 420 Women in the Global Economy
 University YMCA Student Center
 UW Gmail
 UW Seattle | UW
@@ -275,5 +185,4 @@ UWNetID login
 visibility:hidden">
 width="0"
 Workday
-Writing (W): 10 credits
 Zoom

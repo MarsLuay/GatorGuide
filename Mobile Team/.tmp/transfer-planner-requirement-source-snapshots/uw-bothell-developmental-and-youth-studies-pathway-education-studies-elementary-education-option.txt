@@ -3,30 +3,30 @@ Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-stud
 Title: Degree Requirements - School of Educational Studies
 
 [Supplemental official source] Degree Requirements
-&#124;
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
+|
 10
-10 credits &#8211; Capstone Sequence
-10 credits &#8211; Writing Across the Curriculum (W)
+10 credits – Capstone Sequence
+10 credits – Writing Across the Curriculum (W)
 100
-15 credits &#8211; Arts & Humanities (A&H)
-15 credits &#8211; Natural Sciences (NSc)
-15 credits &#8211; Social Sciences (SSc)
-15 credits from list &#8211; Electives
+15 credits – Arts & Humanities (A&H)
+15 credits – Natural Sciences (NSc)
+15 credits – Social Sciences (SSc)
+15 credits from list – Electives
 18115 Campus Way NE
 2
-25 credits &#8211; School of Educational Studies Core Courses
+25 credits – School of Educational Studies Core Courses
 3
-35 credits &#8211; Developmental & Youth Studies Foundation Courses
+35 credits – Developmental & Youth Studies Foundation Courses
 4
 40
 425.352.5000
 425.352.5411
 5
-5 credits &#8211; Composition (C)
-5 credits &#8211; Diversity (DIV)
-5 credits &#8211; Reasoning (RSN)
+5 credits – Composition (C)
+5 credits – Diversity (DIV)
+5 credits – Reasoning (RSN)
 6
 60
 8
@@ -260,10 +260,10 @@ Search keywords
 Seattle Campus
 See Elementary Education Option requirements effective Autumn 2025 for the full list Elementary Education Option course requirements. Courses with a minimum grade of 2.0 (C letter grade) satisfy Academic Breadth requirements .
 Skip To Content
-Some academic requirements related to BEDUC 495 must be completed for each quarter enrolled&#8211;see the BEDUC 495 Applied Experience syllabus for details.
+Some academic requirements related to BEDUC 495 must be completed for each quarter enrolled–see the BEDUC 495 Applied Experience syllabus for details.
 Student Clubs & Organizations
 Students are held to the Student Conduct Code for the University of Washington .
-Students seeking academic advising can schedule an appointment through our Academic Advising page. To learn more about Developmental & Youth Studies&#8217; policies and petitions, please visit our Undergraduate Policies & Petitions page.
+Students seeking academic advising can schedule an appointment through our Academic Advising page. To learn more about Developmental & Youth Studies’ policies and petitions, please visit our Undergraduate Policies & Petitions page.
 Students should meet with their academic advisor at least one quarter before beginning Applied Experience to discuss which Community-Engaged Learning & Research (CELR) placement option, or self-placement, best meets their academic and career interests. Students can use the EXPO database to explore available CBLR opportunities.
 Students will receive support and guidance on all certification requirements from academic advisors, field placement coordinators, and field instructors.
 Tacoma Campus

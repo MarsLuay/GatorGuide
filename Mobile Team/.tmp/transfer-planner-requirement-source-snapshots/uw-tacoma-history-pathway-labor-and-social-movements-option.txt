@@ -5,7 +5,6 @@ Title: History | Department of Social Sciences | University of Washington Tacoma
 [Supplemental official source] Arts, Culture and Society Option
 [Supplemental official source] General History Option
 [Supplemental official source] Global History Option
-[Supplemental official source] Global Studies Concentration
 [Supplemental official source] Labor and Social Movements Option
 [Supplemental official source] Power, Gender and Identity Option
 [Supplemental official source] Supplemental official track and option pages
@@ -31,7 +30,6 @@ Title: History | Department of Social Sciences | University of Washington Tacoma
 25Live
 30 credits from the list below; 25 credits must be upper-division (300–400) level THIST courses
 30 credits from the list below; 25 credits must be upper-division (300–400) level THIST courses.
-A minimum of 45 lower-division credits is required before declaring the major. To declare the Global Studies Concentration of the Interdisciplinary Arts and Sciences major, students should reach out to the major advisor .
 A minimum of 45 lower-division credits is required before declaring the major. To declare the History major, students should reach out to the major advisor .
 ABOUT UW TACOMA
 Academic advising
@@ -58,7 +56,6 @@ Arts, Culture and Society Option
 As Pierce County and the South Sound region continue to grow, History graduates are finding more opportunities in the fields of education, records management, museum curation, government service, heritage tourism, journalism, and other professions. History also provides an excellent foundation for graduate study in law, education, and many other areas. Visit the American Association for State and Local History and USAJobs.gov to find more opportunities.
 Bachelor of Arts
 Bothell
-Business
 Calendar
 CAMPUS
 Campus Safety
@@ -85,14 +82,11 @@ Ethnic, Gender and Labor Studies
 expand_more
 Financial Aid
 For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-For a BA in the Global Studies Concentration of Interdisciplinary Arts and Sciences, students must complete at least 50 major credits, depending on foreign language competency, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-Foreign Language (0–10 credits to Demonstrate Competency)
 Gender and Sexuality Studies Minor
 General History Option
 Global History Option
 Global History Option | Department of Social Sciences | University of Washington Tacoma
 Global Studies Concentration
-Government
 Government Service
 height="0"
 Heritage Tourism
@@ -119,7 +113,6 @@ Human Rights Minor
 Information Technology
 Institutional Research
 Interdisciplinary Arts and Sciences
-International Law
 IT Help
 Jobs
 Journalism
@@ -132,34 +125,22 @@ Learn More >
 Library
 Main Content
 MAJOR COORDINATOR
-MAJOR COORDINATORS
 Majors
 Map
-Media
 Minors
 more_vert
 Museum Curation
 MyUW
-Natural World (5 credits)
-Nonprofit Management
 Office365
-One TESC course or an Environmental Science transfer course. Please see your advisor for applicable courses.
 Open Public Meetings
-Option Four: Non-native English speakers are exempt from this requirement; a student is considered a "native speaker" of a foreign language if that language was the language (or one of the languages) spoken at home during the first 6 years of childhood AND if it was the language in which the student received instruction in elementary school through the seventh grade. Students not meeting this standard have the option to demonstrate competency through testing if desired.
-Option One: 10 credits of upper-division foreign language (300–400 level)
-Option Three: One year of college-level Asian, Slavic or non-Western language
-Option Two: Two years of college-level lower-division foreign language in a Western European language
 Panopto
 Parking & transportation
 Phi Alpha Theta (PAT)
 Politics Minor
 Politics, Philosophy and Economics (PP&E)
-Post-graduate Studies
 Power, Gender and Identity Option
 Power, Gender and Identity Option | Department of Social Sciences | University of Washington Tacoma
 Privacy |
-Professor Cynthia Howson
-Professor Johann Reusch
 Professor Will Burghart
 Psychology
 Puyallup Tribe of Indians
@@ -279,12 +260,7 @@ TPOLS 360 Genocide
 Tribal Sponsor of UW Tacoma
 TSOC 265 Race and Ethnicity in the United States
 TSOC 270 Introduction to Asian America: Sociological and Interdisciplinary Perspectives
-TSPAN 393 Foreign Study
-TURB 340 Urban Social Change
-TURB 430 Pacific Rim Cities
 TWOMN 347 History of Women in the United States
-TWOMN 420 Women in the Global Economy
-TWOMN 434 Women's Voices: Transnational Testimonials
 University YMCA Student Center
 UW Gmail
 UW Seattle | UW

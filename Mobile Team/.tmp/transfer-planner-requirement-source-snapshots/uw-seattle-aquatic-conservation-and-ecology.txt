@@ -5,7 +5,6 @@ Title: Major Requirements | School of Aquatic and Fishery Sciences
 -->
 [Supplemental official source] Aquatic and Fishery Sciences (AFS) Bachelor of Science
 [Supplemental official source] Aquatic Conservation and Ecology (ACE) Bachelor of Science
-&#115;a&#102;&#115;d&#101;&#115;&#107;&#64;u&#46;&#119;&#97;s&#104;i&#110;g&#116;on.edu
 &copy; 2026 University of Washington |
 <!--
 <svg id="college_black_logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -141,7 +140,8 @@ Reasoning (RSN)
 Recommended Preparation
 Research
 Research Staff
-SAFS majors are required to complete both the College of Environment&#8217;s General Education requirements and the School&#8217;s degree requirements listed below. These requirements lead to a Bachelor of Science degree, with a major in Aquatic Conservation and Ecology (ACE), or a major in Aquatic and Fishery Sciences (AFS).
+SAFS majors are required to complete both the College of Environment’s General Education requirements and the School’s degree requirements listed below. These requirements lead to a Bachelor of Science degree, with a major in Aquatic Conservation and Ecology (ACE), or a major in Aquatic and Fishery Sciences (AFS).
+safsdesk@u.washington.edu
 Scholarships
 School of
 School of Aquatic and Fishery Sciences
@@ -159,7 +159,7 @@ Student Awards
 Student Organizations
 Students
 Students Explore Aquatic Sciences (SEAS)
-Students studying Aquatic and Fishery Sciences (AFS) learn the dynamics of freshwater and marine environments and the sustainable management of aquatic resources. Our bachelor&#8217;s degree program emphasizes experiential learning through unique lab and field research opportunities. Undergraduate students receive individualized attention and mentorship from a small supportive community, while also benefiting from the diversity of a large research institution.
+Students studying Aquatic and Fishery Sciences (AFS) learn the dynamics of freshwater and marine environments and the sustainable management of aquatic resources. Our bachelor’s degree program emphasizes experiential learning through unique lab and field research opportunities. Undergraduate students receive individualized attention and mentorship from a small supportive community, while also benefiting from the diversity of a large research institution.
 Study Abroad
 Support Resources
 Terms
