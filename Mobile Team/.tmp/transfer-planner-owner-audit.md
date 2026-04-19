@@ -1,44 +1,26 @@
 # Transfer Planner Owner Audit
 
-Generated: 2026-04-18T10:35:53.687Z
+Generated: 2026-04-19T03:18:45.444Z
 
 - Owners audited: 460
 - Owners with errors: 0
-- Owners with warnings: 10
+- Owners with warnings: 8
 - Owners with source-only UW course codes: 0
 - Root-cause errors: 0
-- Root-cause warnings: 10
+- Root-cause warnings: 8
 - Raw symptom errors: 0
-- Raw symptom warnings: 10
+- Raw symptom warnings: 8
 - Auto-promoted owner invariant violations: 0
 - Total source-only UW course codes: 0
 
 ## Root Cause Counts
 
-- no-parsed-uw-course-codes: 10
+- no-parsed-uw-course-codes: 8
 
 ## Owners With Warnings
 
 ### Business Administration (BA)
 - Owner: uw-bothell-business-administration
-- Campus: uw-bothell
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
-- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
-- Diagnostic signals: no-parsed-uw-course-codes
-### Business Administration (BA) - Accounting Option
-- Owner: uw-bothell-business-administration:pathway:accounting-option
-- Campus: uw-bothell
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
-- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
-- Diagnostic signals: no-parsed-uw-course-codes
-### Business Administration (BA) - Leadership & Strategic Innovation Option
-- Owner: uw-bothell-business-administration:pathway:leadership-and-strategic-innovation-option
-- Campus: uw-bothell
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
-- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
-- Diagnostic signals: no-parsed-uw-course-codes
-### Business Administration (BA) - Supply Chain Management Option
-- Owner: uw-bothell-business-administration:pathway:supply-chain-management-option
 - Campus: uw-bothell
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
@@ -49,19 +31,25 @@ Generated: 2026-04-18T10:35:53.687Z
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
-### Economics (BS) - Leadership & Strategic Innovation Option
+### Economics (BS) - Leadership and Strategic Innovation option
 - Owner: uw-bothell-economics:pathway:leadership-and-strategic-innovation-option
 - Campus: uw-bothell
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
-### Economics (BS) - Supply Chain Management Option
+### Economics (BS) - Supply Chain Management option
 - Owner: uw-bothell-economics:pathway:supply-chain-management-option
 - Campus: uw-bothell
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
-### Communications (BA) - Professional Track
+### Italian
+- Owner: uw-seattle-italian
+- Campus: uw-seattle
+- Source: https://frenchitalian.washington.edu/undergraduate-studies-italian
+- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
+- Diagnostic signals: no-parsed-uw-course-codes
+### Communications (BA) - PROFESSIONAL TRACK
 - Owner: uw-tacoma-communications:pathway:professional-track
 - Campus: uw-tacoma
 - Source: https://www.tacoma.uw.edu/sias/cac/communication

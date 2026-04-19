@@ -2,498 +2,149 @@ Owner: uw-seattle-physics:pathway:biological-physics-track-addl-48-56-credits
 Source: https://phys.washington.edu/physics-bs-degree-requirements
 Title: Physics B.S. Degree Requirements | Department of Physics | University of Washington
 
-Physics B.S. Degree Requirements | Department of Physics | University of Washington
-Skip to main content
-Washington
-University of Washington
-College of Arts & Sciences
-Quick links
-Quick Links
-Make a Gift
-Directories
-Maps
-MyUW
-MyPhys
-User account menu
-Search
-Search
-Main menu
-Department of Physics
-Menu
-People
-Full Directory
-Faculty
-Department Faculty
+[Supplemental official source] B.S. Degree
+&copy; 2026 University of Washington . All rights reserved.
+100-level:
+200-level:
+2025-26 Quarterly Course Offerings
+About
 Adjuncts & Affiliates
-Emeritus Faculty
-In Memoriam
-Staff
-All Staff
 Administrative Contacts
-Postdocs
-PhD Students
-Programs & Courses
-B.S. Degree
-Requirements
-Declaring Major
-Honors in Physics
-Undergraduate Research
-Mentoring Program
+Advice For Prospective Majors
 Advice for Students
-Graduation
-Physics Minor
-PhD Program
-Professional Master&#039;s
+Advising & Student Services
+All Staff
+Alumni News
+Alumni Update
+Applied physics track
+Applied Physics Track
+Awards
+B.S. Degree
+Bachelor of Science in Physics
+Bachelor of Science in Physics | Department of Physics | University of Washington
+Biological physics track (No longer accepting new students as of Spring 2024)
+Box 351560
+BS Degree Requirements Before Autumn 2021
+Calendar
+Capstone Options
+Centers & Institutes
+Climate & Diversity
+College of Arts & Sciences
+Common requirements, all tracks
+Common Requirements, All Tracks (52 credits)
+Community Support
+Comprehensive & Applied Physics Track Electives
+Comprehensive Physics Track
+Comprehensive track
+Contact Us
+Continuation Policy
+Course Exam Archive
+Course Syllabi
 Courses
 Courses Offered
-Course Syllabi
-Course Exam Archive
+Declaring a Physics Major
+Declaring Major
+Department Faculty
+Department of Physics
+Department Profile
+Differential Calculus (5)
+Directories
+Electromagnetism (5)
+Emeritus Faculty
+Employment
+Events
+Events Mailing Lists
+Every Physics B.S. degree option requires completion of a selection of courses plus fulfilment of a capstone requirement involving activities outside a typical classroom. Continuation in the major requires maintaining satisfactory progress. For further information on the range of activies which may be used to satisfy the capstone requirement for each degree track, and on satisfactory progress criteria, refer to:
+Faculty
+Fax: (206) 685-0635
+For students interested in biophysics or medical physics
+Frontiers of Physics Lecture Series
+Full Directory
+Get Involved
+Graduation
+History
+Home
+Honors in Physics
+In Memoriam
+In the Press
+Instagram
+Integral Calculus (5)
 Introductory Courses
+IT Support (PACS)
+LinkedIn
+Machine Shop
+Main menu
+Make a Gift
+Maps
+Math 124 or Math 134
+Math 125 or Math 135
+Math 126 or Math 136
+Mechanics (5)
+Mentoring Program
+Menu
+Multivariate Calculus (5)
+MyPhys
+MyUW
+News & Events
+Newsletter
+Our Physics B.S. degree program is one of the largest in the nation, with 175 degrees awarded annually. Graduates pursue diverse paths including further studies in physics, teaching careers, and positions in the private sector. The program offers three B.S. degree tracks: Comprehensive Physics, Applied Physics, and Teaching Physics, allowing students to tailor their degree to their interests and goals. Students choose a track when declaring a major, but can change it anytime before applying to graduate.
+People
+PhD Program
+PhD Students
+Phone: (206) 543-2771
+Phys 121 or Phys 141
+Phys 122 or Phys 142
+Phys 123 or Phys 143
+Physics B.S. Degree Requirements
+Physics Colloquium
+Physics Minor
+Physics News
+Physics-Astronomy Building, Rm. C121
+physrecp@uw.edu
+Postdocs
+Postdoctoral Fellowship Programs
+Privacy
+Professional Master&#039;s
+Programs & Courses
+Quick links
+Quick Links
+Recipients
+Requirements
 Research
 Research Areas
-Research News
-Centers & Institutes
-Postdoctoral Fellowship Programs
 Research Experiences for Undergrads (REU)
-News & Events
-Physics News
-Events
-Upcoming Events
-Physics Colloquium
-Frontiers of Physics Lecture Series
+Research News
 Research Seminars
-Calendar
-Newsletter
-In the Press
-Alumni News
 Resources
-Advising & Student Services
-Community Support
-IT Support (PACS)
-Machine Shop
-Student Shop
-About
-Department Profile
-History
-Climate & Diversity
-Awards
-Recipients
-Visitor Information
-Employment
-Get Involved
-Support Us
-Contact Us
-Make a Gift
-Directories
-Maps
-MyUW
-You are here
-Home
-Programs & Courses
-B.S. Degree
-Physics B.S. Degree Requirements
-Every Physics B.S. degree option requires completion of a selection of courses plus fulfilment of a capstone requirement involving activities outside a typical classroom. Continuation in the major requires maintaining satisfactory progress. For further information on the range of activies which may be used to satisfy the capstone requirement for each degree track, and on satisfactory progress criteria, refer to:
-Capstone Options
-Continuation Policy
-The course requirements for a Physics B.S. degree begin with a common set of course options, applicable to all degree tracks, followed by a selection of additional option-specific courses. Note that any single course may satisfy at most one physics-specific degree requirement.
-Common requirements, all tracks
-Comprehensive track
-Applied physics track
-Biological physics track (No longer accepting new students as of Spring 2024)
-Teaching physics track
-Comprehensive & Applied Physics Track Electives
-BS Degree Requirements Before Autumn 2021
-Common Requirements, All Tracks (52 credits)
-Courses
-Topics
-100-level:
-Phys 121 or Phys 141
-Mechanics (5)
-Phys 122 or Phys 142
-Electromagnetism (5)
-Phys 123 or Phys 143
-Waves, Optics & Heat (5)
-Math 124 or Math 134
-Differential Calculus (5)
-Math 125 or Math 135
-Integral Calculus (5)
-Math 126 or Math 136
-Multivariate Calculus (5)
-200-level:
-Phys 224
-Thermal & Statistical Physics (3)
-Phys 225
-Introduction to Quantum Mechanics (3)
-Phys 227
-Mathematical Methods of Physics I (4)
-Phys 294
-Introduction to Research: Frontiers of Physics (1)
-300-level:
-Phys 321
-Electromagnetism I (4)
-Phys 322
-Electromagnetism II (4)
-Phys 334
-Electronics Lab: Analog (3)
-Comprehensive Track (addl. 38-46 credits)
-Courses
-Topics
-Core Physics:
-Phys 226
-Particles & Symmetries (3)
-Phys 228
-Mathematical Methods of Physics II (4)
-Phys 324
-Quantum Mechanics I (4)
-More Physics,
-3 courses from:
-Phys 323
-Electromagnetism III (4)
-Phys 325
-Quantum Mechanics II (4)
-Phys 328
-Statistical Physics (3)
-Phys 329
-Classical Mechanics (3)
-Astr 321 *
-Solar System (3)
-Astr 322 *
-Our Galaxy (3)
-Astr 323 *
-Extragalactic Astronomy & Cosmology (3)
-More Math (3-5 credits),
-2 courses from:
-Math 207 or AMath 351
-Ordinary Differential Equations (3)
-Math 208 or AMath 352
-Linear Algebra (3)
-Math 209 or AMath 353
-Partial Differential Equations (3)
-Math 224
-Advanced Multivariable Calculus (3)
-AMath 401
-Vector Calculus & Complex Variables (4)
-Math 334 or 335 or 336
-Accelerated Advanced Calculus (5)
-Advanced Laboratory (6-8 credits),
-2 courses from:
-Phys 331
-Optics Lab (3)
-Phys 335
-Electronics Lab: Digital (3)
-Phys 417 ‖
-Neural Network Methods (3)
-Phys 431
-Modern Physics Lab: Condensed Matter (3)
-Phys 432
-Modern Physics Lab: Atomic (3)
-Phys 433
-Modern Physics Lab: Nuclear & Particle (3)
-Phys 434
-Computers in Data Acquisition (3)
-Astr 480 or Astr 481 ‡
-Astronomical Data Analysis/Acquisition (5)
-Electives,
-6 credits from:
-Additional physics or cognate electives
-Capstone,
-3 to 5 credits from any
-combination of:
-Phys 494 , 495 or 496
-Senior Seminar (1)
-Phys 485 , 486 or 487
-Honors Seminar (1)
-Phys 499 or Astr 499 §
-Undergraduate Research (1-6)
-Astr 481
-Astronomical Observation (5)
-* At most two of Astr 321, 322 and 323 may be used to satisfy this Physics requirement.
-‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
-‡ Students taking other advanced labs may petition the UFA to have them substitute for Astr 480.
-§ Students receiving credit for physics-related research or independent project work in another department may petition the UFA to have it meet the capstone requirement by writing a paper describing how they applied physics to their independent project.
-Applied Physics Track (addl. 34-43 credits)
-Courses
-Topics
-Data Acquisition
-& Analysis:
-Phys 231
-Introductory Experimental Physics (3)
-AMath 301 *
-Beginning Scientific Computing (4)
-More Physics,
-1 course from:
-Phys 226
-Particles & Symmetries (3)
-Phys 323
-Electromagnetism III (4)
-Phys 324
-Quantum Mechanics I (4)
-Phys 328
-Statistical Physics (3)
-Phys 329
-Classical Mechanics (3)
-More Math,
-3 courses from:
-Phys 228
-Mathematical Methods of Physics II (4)
-Math 207 or AMath 351
-Ordinary Differential Equations (3)
-Math 208 or AMath 352
-Linear Algebra (3)
-Math 209 or AMath 353
-Partial Differential Equations (3)
-Math 224
-Vector Calculus (3)
-AMath 401
-Vector Calculus & Complex Variables (4)
-Math 334 or 335 or 336
-Accelerated Advanced Calculus (5)
-Advanced Laboratory,
-2 courses from:
-Phys 331
-Optics Lab (3)
-Phys 335
-Electronics Lab: Digital (3)
-Phys 417 ‖
-Neural Network Methods (3)
-Phys 431
-Modern Physics Lab: Condensed Matter (3)
-Phys 432
-Modern Physics Lab: Atomic (3)
-Phys 433
-Modern Physics Lab: Nuclear & Particle (3)
-Phys 434
-Computers in Data Acquisition (3)
-Astr 480 ‡ or Astr 481
-Astronomical Data Analysis/Acquisition (5)
-Electives,
-9 credits from:
-Additional physics or cognate electives
-Capstone,
-3 credits from:
-Phys 494 , 495 or 496
-Senior Seminar (1)
-Phys 485 , 486 or 487
-Honors Seminar (1)
-Phys 498
-Direct Reading in Physics (2)
-Phys 499 or Astr 499 §
-Undergraduate Research (1-6)
-Astr 481
-Astronomical Observation (5)
-* Astronomy students may substitute Astr 300 or 427 for AMath 301; contact the undergraduate faculty advisor (UFA) to have this entered into your DARS. Students may petition the UFA for other upper-division data science, computing or statistics classes to substitute for AMath 301, note however that STAT 311, CS 142, and CS 143 do not meet this requirement.
-‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
-‡ Students taking other advanced labs may petition the UFA to have them substitute for Astr 480.
-§ Students receiving credit for physics-related research or independent project work in another department may petition the UFA to have it meet the capstone requirement by writing a paper describing how they applied physics to their independent project.
-Biological Physics Track (addl. 48-56 credits)
-No longer accepting new students as of Spring 2024
-Courses
-Topics
-Core Physics:
-Phys 228
-Mathematical Methods of Physics II (4)
-Phys 324
-Quantum Mechanics I (4)
-Phys 328 *
-Statistical Physics (3)
-Phys 429
-Biological Physics (3)
-Introductory Biology
-(10 credits)
-Biol 180
-Evolution & Ecology (5)
-Biol 200
-Cellular & Developmental Biology (5)
-Introductory Chemistry,
-12-15 credits from the
-following options:
-a) Chem 142 (or Chem 145 ), 152 (or Chem 155 ), 162 (or Chem 165 )
-General Chemistry
-b) Chem 143 and CHEM 153
-Accelerated General Chemistry
-More Physics,
-1 course from:
-Phys 226
-Particles & Symmetries (3)
-Phys 323
-Electromagnetism III (4)
-Phys 325
-Quantum Mechanics II (4)
-Phys 329
-Classical Mechanics (3)
-More Math,
-1 course from:
-Math 207 or AMath 351
-Ordinary Differential Equations (3)
-Math 208 or AMath 352
-Linear Algebra (3)
-Math 209 or AMath 353
-Partial Differential Equations (3)
-Math 224
-Vector Calculus (3)
-AMath 401
-Vector Calculus & Complex Variables (4)
-Math 334 or 335 or 336
-Accelerated Advanced Calculus (5)
-Biology & Chemistry
-(6-10 credits),
-2 courses from:
-Chem 223 (or 237 or 335 )
-Organic Chemistry I (4)
-Chem 224 (or 238 or 336 )
-Organic Chemistry II (4)
-Chem 428
-Biomolecular Analysis (3)
-Chem 452 (or 456 )
-Physical Chemistry for Biochemists I
-Chem 453
-Physical Chemistry for Biochemists II
-Chem 454
-Biomolecular Spectroscopy (3)
-Chem 455 (or 456)
-Physical Chemistry I & II (3)
-Biol 220
-Introductory Biology (5)
-Biol 340
-Genetics & Molecular Ecology (5)
-Biol 350
-Foundations in Physiology (3)
-Biol 355
-Foundations in Molecular Cell Biology (3)
-Biol 401
-Advanced Cell Biology (3)
-Biol 404
-Animal Physiology:
-Cellular Aspects (3)
-Biol 427
-Biomechanics (5)
-Biol 461
-Neurobiology (3)
-Biol 467
-Comparative Animal Physiology (3)
-BioC 405 or 440
-Biochemistry (3-4)
-Capstone,
-3 credits from any
-combination of:
-Phys 499 or BioC 499
-Undergraduate Research (1-6)
-Biol 499 or Chem 499
-Undergraduate Research (1-6)
-P Bio 499 or BioE 499
-Undergraduate Research (1-6)
-Neusci 499
-Undergraduate Research (1-6)
-Genome 499 or MicroM 499
-Undergraduate Research (1-6)
-Biophysics-related projects in Phys 498
-Direct Reading in Physics
-Biophysics-related projects in Phys 499
-Undergraduate Research (1-6)
-* Chem 457 plus an additional upper-division physics course may substitute for the Phys 328 requirement with permission from the undergraduate faculty advisor (UFA). Most students should not take both Phys 328 and Chem 457.
-‡ Chem 143 + 153 , Accelerated General Chemistry, may substitute for Chem 142+152+162; see the UFA to allow this.
-Teaching Physics Track (addl. 41-43 credits)
-Courses
-Topics
-Core Physics:
-Phys 226
-Particles & Symmetries (3)
-Phys 228
-Mathematical Methods of Physics II (4)
-Phys 324
-Quantum Mechanics I (4)
-Phys 407 + 408 + 409
-Physics by Inquiry (15)
-More Physics,
-1 course from:
-Phys 323
-Electromagnetism III (4)
-Phys 328 *
-Statistical Physics (3)
-Phys 329
-Classical Mechanics (3)
-More Math,
-1 course from:
-Math 207 or AMath 351
-Ordinary Differential Equations (3)
-Math 208 or AMath 352
-Linear Algebra (3)
-Math 209 or AMath 353
-Partial Differential Equations (3)
-Math 224
-Vector Calculus (3)
-AMath 401
-Vector Calculus & Complex Variables (4)
-Math 334 or 335 or 336
-Accelerated Advanced Calculus (5)
-Advanced Laboratory,
-1 course from:
-Phys 331
-Optics Lab (3)
-Phys 335
-Electronics Lab: Digital (3)
-Phys 417 ‖
-Neural Network Methods (3)
-Phys 431
-Modern Physics Lab: Condensed Matter (3)
-Phys 432
-Modern Physics Lab: Atomic (3)
-Phys 433
-Modern Physics Lab: Nuclear & Particle (3)
-Phys 434
-Computers in Data Acquisition (3)
-Astr 480 or Astr 481 ‡
-Astronomical Data Analysis/Acquisition (5)
-Capstone,
-3 credits from:
-Phys 401 or Phys 402 or Phys 403
-Physics Pedagogy (3)
-Phys 499 , working on a project that
-involves teaching
-Undergraduate Research (1-6)
-‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
-‡ Students taking other advanced labs may petition the UFA to have them substitute for Astr 480.
+Search
+Seattle, WA 98195-1560
 Share
-Programs & Courses
-B.S. Degree
-Requirements
-Capstone Options
-Continuation Policy
-Transfer Credit
-Declaring Major
-Honors in Physics
-Undergraduate Research
-Mentoring Program
-Advice for Students
-Graduation
-Physics Minor
-PhD Program
-Professional Master&#039;s
-Courses
-Quick Links
-Student Services
+Site Map
+Skip to main content
 Society of Physics Students (SPS)
+Staff
+Student Services
+Student Shop
 Summer REU at UW
+Support Physics
+Support Us
+Teaching physics track
+Teaching Physics Track
+Terms
+The Applied Physics track is ideal for students pursuing technical jobs with a Physics B.S., offering a broad grounding in physics with fewer required courses and less intense math. It allows students to diversify skills in climate science, data science, electrical engineering, aerospace, or entrepreneurship, so students can easily pursue a double major in another STEM field. Unique requirements include a statistics-focused lab, a relevant computer programming class, and elective options in related science areas.
+The Comprehensive track is for students seeking a strong foundation in physics, including in-depth mathematical understanding. It is ideal for those planning to pursue a career in physics or related fields, as well as those considering graduate studies in physics or astronomy. To fully prepare for graduate school, take as many upper-division courses and research opportunities as possible.
+The course requirements for a Physics B.S. degree begin with a common set of course options, applicable to all degree tracks, followed by a selection of additional option-specific courses. Note that any single course may satisfy at most one physics-specific degree requirement.
+The Teaching Physics track is for those interested in teaching physics or math at pre-college levels, as well as for students pursuing careers in science journalism or other fields involving the communication of physics to a broader audience. The track includes the Physics by Inquiry sequence, Phys 407 / 408 / 409 , to develop conceptual understanding and communication skills without college-level math. Students in this track can benefit from and contribute to the UW's esteemed Physics Education Research Group .
+Topics
+Transfer Credit
+Undergraduate Research
+University of Washington
+Upcoming Events
+User account menu
 UW Course Catalog
 UW Time Schedule
-Support Physics
-Instagram
-LinkedIn
+Visitor Information
+Washington
+Waves, Optics & Heat (5)
+You are here
 YouTube
-Events Mailing Lists
-Newsletter
-Department of Physics
-University of Washington
-Physics-Astronomy Building, Rm. C121
-Box 351560
-Seattle, WA 98195-1560
-Phone: (206) 543-2771
-Fax: (206) 685-0635
-physrecp@uw.edu
-Privacy
-Terms
-Site Map
-Alumni Update
-Employment
-Contact Us
-&copy; 2026 University of Washington . All rights reserved.

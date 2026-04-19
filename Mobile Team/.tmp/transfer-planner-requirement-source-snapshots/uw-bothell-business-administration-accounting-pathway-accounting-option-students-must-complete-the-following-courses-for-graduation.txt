@@ -5,7 +5,11 @@ Title: Accounting Option - School of Business
 (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
 [Supplemental official source] Curriculum
 [Supplemental official source] Diversity Designated Course
+[Supplemental official source] Entrepreneurship Concentration
+[Supplemental official source] Finance Option and Concentration
+[Supplemental official source] Leadership & Strategic Innovation Option
 [Supplemental official source] Prerequisite Courses
+[Supplemental official source] Supplemental official track and option pages
 [Supplemental official source] Writing Designated Course
 **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 **AP Statistics score not accepted
@@ -15,10 +19,13 @@ Title: Accounting Option - School of Business
 &#124;
 ● English Composition (C) – 5 credits (A grade of 2.0 is required)
 10 credits – Complete 2 courses from this list:
+15 credits
 20 Credits from the following list:
 30 credits:
 5 credits
 55 Credits
+60 Credits
+90 credits
 90 Credits
 A diverse student body is an essential educational resource offered by the University of Washington Bothell. Students and faculty educate each other, in the classroom and in many informal settings; they challenge one another’s assumptions, they broaden one another’s range of experience, and they teach one another to see the world from varied perspectives.
 About
@@ -46,6 +53,30 @@ B BECN/B BUS 458: Risk Modeling (B BECN 302)
 B BUS 210: Financial Accounting
 B BUS 221/BIS 201: Principles of Macroeconomics (BBUS 220, or BIS 200, or B CUSP 200)
 B BUS 301: Data Management ( BIS 215, or BBUS 215, or B MATH 215, or STMATH 341)
+B BUS 402 – Managing Work Teams
+B BUS 402 Managing Work Teams
+B BUS 427 Entrepreneurial Marketing (320)
+B BUS 441 – Business Project Management (340)
+B BUS 443 – Entrepreneurship Seminar
+B BUS 443 Entrepreneurship Seminar
+B BUS 444 – Product Development Lab
+B BUS 444 Product Development Lab
+B BUS 456 Entrepreneurial Finance (350)
+B BUS 460 – Sustainable Business
+B BUS 461 – Business, Government, and Society ( 300, 310 )
+B BUS 462 – Negotiations and Conflict Management (300, 320)
+B BUS 464 New Product Marketing (320)
+B BUS 471 – Entrepreneurial Management
+B BUS 471 Entrepreneurial Management
+B BUS 472 – Managing Employees (300)
+B BUS 473 – Leadership and Decision Making ( 300 )
+B BUS 475 – Managing Innovation
+B BUS 476 – New Technology and Future Markets (320, 350)
+B BUS 476 New Technology & Future Markets (300, 320, 350)
+B BUS 477 – Human Resource Management (300)
+B BUS 478 Venture Startup, Management & Growth
+B BUS 479 – Special Topics in Management (300)
+B BUS 491 – Business Consulting
 B BUS220/BIS 200: Principles of Microeconomics
 B MATH 144
 BA& 240
@@ -55,8 +86,10 @@ Bachelor of Economics
 Bachelor of Science in Economics degree
 BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
 BBUS 307 – Business Writing, Writing Designated Course
+BBUS 310 – Managerial Economics (BMATH 144, or STMATH 124, or MATH 112)
 BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
 BBUS 320 – Marketing Management
+BBUS 340 – Operations & Project Management
 BBUS 340 – Operations & Project Management (310)
 BBUS 350 – Business Finance (310)
 BBUS 361 – Intermediate Accounting 1*
@@ -72,8 +105,12 @@ BBUS 449 – Accounting Practices in Not-for-Profit Organizations (363)
 BBUS 450 – Federal Income Taxation (361)
 BBUS 451 – Financial Policy & Planning
 BBUS 451 – Financial Policy & Planning (350) **
+BBUS 451 – Financial Policy and Practice (350)
+BBUS 452 – Financial Modeling (350)
 BBUS 453 – Financial Institutions & Markets
+BBUS 453 – Financial Institutions and Markets (350)
 BBUS 454 – Investments
+BBUS 454 – Investments (350)
 BBUS 458 &#8211; Risk Modeling
 BBUS 463 &#8211; Advanced Financial Accounting (362)
 BBUS 465 &#8211; Applied Financial Accounting (350)
@@ -81,6 +118,8 @@ BBUs 466 &#8211; Applied Managerial Accounting (350)
 BBUS 467 – Advanced Taxation (450)
 BBUS 468 – Advanced Accounting and Analytics (363)
 BBUS 470 – Business Policy & Strategic Management
+BBUS 476 – New Technology and Future Markets (300, 320, 350)
+BBUS 477 – Human Resource Management (300)
 BBUS 480 – Global Environment of Business
 BBUS 490 – Special Topics in Business (300, 310)
 Because the Bachelor Degree in Business Administration is an upper division program, students begin the program after completing prerequisite coursework. Transfer students applying to UW Bothell as Business majors and UW Bothell students declaring a Business major must have completed the majority of following courses at the time of application. All prerequisite coursework must be completed prior to matriculation (i.e., the start of studies at UW Bothell).
@@ -88,8 +127,11 @@ Before you can register for the capstone courses, you must complete all core cou
 BIS 215 (previously BIS 315), B BUS 215, BMATH 215, or STMATH 341
 Calculus
 Capstone Courses
+Choose two courses (10 credits) from the following:
 Choosing courses
 COMMON TRANSFER COURSE NUMBERING
+Complete one of the following:
+Concentration Courses
 Contact us
 Contact Us
 Core Courses ( prerequisites in parentheses)
@@ -109,8 +151,11 @@ Diversity
 Economics Electives (prerequisites in parentheses)
 Effective writing is one of the most valuable skills you’ll develop at UW. It’s essential for success in your courses, future career, and graduate or professional programs. To build this skill, you must complete at least 10 credits of writing-intensive (“W”) courses, in addition to the 5-credit English composition requirement.
 English Composition
+Entrepreneurship Concentration
+Entrepreneurship curriculum
 Expand Navigation
 FAQs
+Finance Option and Concentration
 For example, if you&#8217;re a transfer student completing the remaining prerequisites in summer quarter, you can still apply to UW Bothell in spring with the intention of starting Business classes in fall quarter, so long as you&#8217;ve completed all the prerequisites before fall quarter begins.
 For most majors (including those in the School of Interdisciplinary Arts & Sciences), writing courses may be additional courses from the English Composition list , or any courses designated in the quarterly Time Schedule with the comment “Writing.” The easiest way to look for W courses is to use the MyPlan course search tool.
 For new students
@@ -120,6 +165,7 @@ General education requirements
 General Education Requirements
 General Electives (any 300/400 level B BECN or B BUS course)
 General Electives (any 300/400 level UW course)
+General Electives (any 300/400 level UW courses)
 Grades required
 Graduate Programs
 How to apply
@@ -128,10 +174,14 @@ In addition to public accounting, the Accounting Option will thoroughly prepare 
 In addition to the B.S. in Economics course requirements, students are required to fulfill the UW Bothell general education requirements.
 In college, writing goes beyond summarizing—it’s about developing your own ideas and arguments through research and analysis. Much of your learning will happen through this process. As you write, focus on organizing your thoughts clearly, revising your work, and learning from instructor feedback. Strong writing will also sharpen your analytical and communication skills.
 In this section
+Leadership & Strategic Innovation Option
 Leadership History
 Looking ahead
+LSI curriculum
+LSI Electives (prerequisites in parentheses)
 Majors & minors
 Many students transfer courses which required enough writing to qualify as W courses. A “W” usually means that a course requires either several short papers or a term paper with a required revision. If you think you have transferred a course that should count as a W course, consult your advisor.
+Marketing Option and Concentration
 MATH 112, 124, 125, 126, 134, or 145
 MATH 390, Q SCI 381, or IND E 315
 MATH& 146 or
@@ -141,6 +191,7 @@ Minors
 Must have completed all required prerequisite Accounting courses with a minimum grade of 2.5 in each course.
 Must have earned a minimum 3.0 cumulative grade point average across all prerequisite Accounting courses.
 News
+Option Courses
 Overlap with other requirements
 Postbaccalaureate students are not required to complete the additional writing requirement.
 Prerequisite Courses
@@ -150,14 +201,29 @@ Q METH 201
 Q SCI 291
 Reasoning
 Required Accounting Courses (prerequisites in parentheses)
+Required Capstone Courses
+Required Courses (prerequisites in parentheses)
+Required Electives
+Required Entrepreneurship Courses (prerequisites in parentheses)
+Required LSI Courses (prerequisites in parentheses)
 Requirements to declare the option
+Requirements to declare the Option or the Concentration
 STAT 220, 221 (221 prior to A&#8217;17), 311, or 390
 Statistics
 STMATH 113 & 114, 124, 125, or 126, or
+Students in the Entrepreneurship concentration must complete the following courses for graduation.
+Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
+Students in the Leadership & Strategic Innovation option must complete the following courses for graduation.
 Students may NOT enroll in any Accounting courses until speaking to their advisor to determine whether they meet the requirements.
 Students pursuing the B.S. in Economics major must complete the following 55 credits for graduation.
 Students wanting to declare the Accounting option must meet the following requirements:
+Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
+Students wanting to declare the LSI Option must complete BBUS 300 and BBUS 307 with a minimum grade of 3.0 in each course.
+Supply Chain Management Option
 The Accounting Option prepares students for careers in private, government, non-profit and public accounting. Demand for accountants is extremely high as businesses work to plan, manage and control their operations. Graduates can serve as internal auditors, managerial accountants, tax examiners, budget analysts or government auditors. After completing this option, students are eligible to take the Certified Management Accounting (CMA) exam. If you want to be a Certified Public Accountant (CPA), a minimum of 225 quarter hours or five years of college is required.
+The Entrepreneurship Concentration prepares students to start their own companies, whether they be tech startups, local shops, or professional services. Students learn by developing actual startup ideas on real startup teams. They spot new business opportunities and create value propositions, which align products or services with customer needs. And they develop strategies and business models for their startups. The concentration prepares students (if interested) to compete in UW&#8217;s Dempsey Startup Competition or to apply to the Buerk Accelerator Program .
+The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
+The Leadership & Strategic Innovation (LSI) option will engage students in a rigorous study of leadership, strategy, and innovation. You will graduate ready to lead teams, manage innovation, and inspire employees. LSI graduates can go on to become project leads, managers, consultants, business development leads, HR analysts, market analysts, sales managers, entrepreneurs, and much more.
 These five credits will simultaneously satisfy other Area of Inquiry requirements and do not add to the total number of credits you need to graduate.
 This requirement is intended to help you develop an understanding of the complexities of living in increasingly diverse and interconnected societies.
 Topics may include cross-cultural communication, historical and current inequities (e.g., race, gender, class, sexuality, ability), and critical thinking about power, inequality, and social change.
@@ -169,4 +235,7 @@ Vision, Mission & Values
 W courses may overlap with any other requirement except the 5-credit English composition course. The courses you use to satisfy the W-course requirement may also count toward your major, a minor, the Areas of Inquiry requirement, and/or the RSN requirement.
 Where to find W courses
 Why study accounting?
+Why study Entrepreneurship?
+Why study finance?
+Why study Leadership & Strategic Innovation?
 You must complete at least 5 credits in approved courses that explore the sociocultural, political, and economic diversity of human experience on local to global scales. These courses aim to deepen your understanding of life in diverse, interconnected societies.

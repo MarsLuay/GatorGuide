@@ -18,7 +18,6 @@ Title: Informatics Curriculum | Information School | University of Washington
 <!--
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TM46LWX"
 12:00-11:59 PM
-12:30-1:30 PM
 2:00-3:30 PM
 2017-02-13
 2024-04-19
@@ -43,9 +42,9 @@ Alumni
 any two courses at the INFO 35x-level.
 Apply to graduate in autumn of senior year
 Approved electives
-Apr 17
 Apr 22
 Apr 23
+Apr 24
 As cybersecurity and artificial intelligence intersect, they introduce both new capabilities and potential risks. To better understand these dynamics, Informatics students in INFO 492 devised cybersecurity attack and defense simulations... Read more
 Attend iWelcome Week and Informatics New Student Orientation in September
 Autumn
@@ -56,6 +55,7 @@ Before you are able to graduate, you are required to complete the following proc
 Begin applying for internships in autumn quarter (recommended)
 Begin taking major electives/degree option classes spring of junior year
 Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478.
+Bloedel Wayfinding Design Competition
 Bluesky
 Box 352840 - Mary Gates Hall, Ste. 370
 CALMA Round Table: Practical Perspectives on the Impact of Artificial Intelligence on Library, Archives, and Museum Careers
@@ -273,7 +273,6 @@ Outlook on the web
 Past Time Schedules
 People
 Ph.D.
-Pick Your Path Through MSIM
 Podcast
 Privacy Policy
 Product and Information Systems Management (5 cr)

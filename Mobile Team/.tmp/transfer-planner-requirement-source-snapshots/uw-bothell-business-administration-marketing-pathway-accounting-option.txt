@@ -2,28 +2,39 @@ Owner: uw-bothell-business-administration-marketing:pathway:accounting-option
 Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
 Title: Marketing Option and Concentration - School of Business
 
-[Supplemental official source] Curriculum
+(*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
+[Supplemental official source] Accounting Option
+[Supplemental official source] Finance Option and Concentration
+[Supplemental official source] Supplemental official track and option pages
+**Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
+*Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
 &#124;
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 10 credits – Complete 2 courses from this list:
+10 credits &#8211; Complete two courses from this list:
 15 credits – Complete 3 courses from this list:
 18807 Beardslee Blvd, Suite 210
 20 credits
 30 credits
 425.352.5000
 425.352.5394
+5 credits
 90 Credits
 About
 Accessibility
+Accounting certification preparation
+Accounting curriculum
+Accounting Electives (prerequisites in parentheses)
 Accounting Option
+Accounting Option - School of Business
+Accounting Option students must complete the following courses for graduation.
 Admissions
 Advisory boards
+After completing the two-year Accounting Option, students are eligible to take the Certified Management Accountant (CMA) exam . Students who wish to become a Certified Public Accountant (CPA) , however, should plan on spending three years in the program. To take the CPA exam, a student needs a minimum of 225 quarter hours or five years of college (a master degree is not required).
 All UW Bothell
 Alumni
-Analyzes economic structures and trends in nations across the globe and examines their implications for business decision-making. Examines how these economies are influenced by political, legal, regulatory, and technological issues in a global context.
 Apply As Undergraduate
-Apply Now
 Awards
 Bachelor in Business Administration
 Bachelor in Economics
@@ -33,19 +44,46 @@ BBUS 307 – Business Writing, Writing Designated Course
 BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
 BBUS 320 – Marketing Management
 BBUS 340 – Operations & Project Management
+BBUS 340 – Operations & Project Management (310)
 BBUS 350 – Business Finance (310)
+BBUS 361 – Intermediate Accounting 1*
+BBUS 361 – Intermediate Accounting I
+BBUS 362 – Intermediate Accounting 2 (361)
+BBUS 363 – Intermediate Accounting 3 (362)
+BBUS 373 – Cost Accounting
+BBUS 373 – Cost Accounting*
+BBUS 411 – Auditing Theory & Practice (362)
+BBUS 412 – Advanced Business Law
 BBUS 421 – Consumer Marketing (320)
 BBUS 423 – Market Intelligence (320)
 BBUS 426 – International Marketing (320)
 BBUS 427 – Entrepreneurial Marketing (320)
 BBUS 429 – Special Topics in Marketing (320)
 BBUS 431 – Electronic Marketing (320)
+BBUS 435 – Accounting Information Systems (361)
 BBUS 438 – Marketing Management Lab (320, and one of the following: 421, 423, 426, 427, 429, or 431)
 BBUS 445 – Merchandising Acquisition (300)
 BBUS 446 – Strategic Retail Promotion (300, 320)
+BBUS 449 – Accounting Practices in Not-for-Profit Organizations (363)
+BBUS 450 – Federal Income Taxation (361)
+BBUS 451 – Financial Policy & Planning
+BBUS 451 – Financial Policy & Planning (350) **
+BBUS 451 – Financial Policy and Practice (350)
+BBUS 452 – Financial Modeling (350)
+BBUS 453 – Financial Institutions & Markets
+BBUS 453 – Financial Institutions and Markets (350)
+BBUS 454 – Investments
+BBUS 454 – Investments (350)
+BBUS 458 &#8211; Risk Modeling
+BBUS 463 &#8211; Advanced Financial Accounting (362)
 BBUS 464 – New Product Marketing (320)
+BBUS 465 &#8211; Applied Financial Accounting (350)
+BBUs 466 &#8211; Applied Managerial Accounting (350)
+BBUS 467 – Advanced Taxation (450)
+BBUS 468 – Advanced Accounting and Analytics (363)
 BBUS 470 – Business Policy & Strategic Management
 BBUS 480 – Global Environment of Business
+BBUS 490 – Special Topics in Business (300, 310)
 BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your adviser before registering.
 BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your advisor before registering.
 BBUS 491 – Business Consulting . Only counts when approved for concentration; see your advisor before registering.
@@ -53,6 +91,7 @@ BBUS 491 – Business Consulting . Only counts when approved for option; see you
 BBUS 497 – Internship
 BBUS 499 – Undergraduate Research. Only counts when approved for concentration; see your advisor before registering.
 BBUS 499 – Undergraduate Research. Only counts when approved for option; see your advisor before registering.
+Beardslee Building (UWBB)
 Become a Mentor
 Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
 Bothell, WA 98011
@@ -66,10 +105,12 @@ Certificate in Accounting
 Close mobile menu
 Commuter Services
 Concentration Course Numbers & Names
+Concentration Courses
 Contact
 Contact Us
 Contact us by phone at:
 Core Courses (prerequisites in parentheses)
+Course Numbers & Names
 Course Type
 Current site
 Curriculum
@@ -79,32 +120,29 @@ Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
-Email Us
 Entrepreneurship Concentration
 Ethics Conference
 Events
-Examines strategies and state-of-the art analytical methods that support profitable new product introductions.
 Executive Education
 Expand Navigation
-Explores the critical challenges facing businesses in becoming more environmentally sustainable without forgoing traditional indicators of success. Topics drawn from current major concerns related to environment and sustainability, such as climate, water, toxics, transportation, buildings, and food. Application of economics, strategy, marketing, manufacturing and technology, finance, organization theory, and accounting.
 Facilities
 Faculty
+Finance Electives (prerequisites in parentheses)
 Finance Option and Concentration
-For questions regarding your submitted online application, please contact our program team.
+General Electives (any 300/400 level UW course)
 General Electives (any 300/400 level UW courses)
 Get a Mentor
 Give
-Global Study Tour
 Graduate
 height="0" width="0" style="display:none;visibility:hidden">
 How to apply
 Human Resources
+In addition to public accounting, the Accounting Option will thoroughly prepare students for careers in private, government and non-profit accounting. The curriculum is designed to enable graduates to fill a number of corporate positions such as internal auditor, managerial accountant and tax accountant. Graduates will also be prepared to serve in government positions such as tax examiner, budget analyst and government auditor. You can get more information from the Washington Society of Certified Public Accountants .
 In this section
 Independent Study Projects
 Information Technology
 Internships
 Jobs
-Join an Info Session
 Leadership & Strategic Innovation Option
 Leadership History
 Library
@@ -127,12 +165,15 @@ Minor in Retail Management
 More Links
 MS Accounting Advisory Board
 MSA Faculty
+Must have completed all required prerequisite Accounting courses with a minimum grade of 2.5 in each course.
+Must have earned a minimum 3.0 cumulative grade point average across all prerequisite Accounting courses.
 MyUW
 News
 Open mobile menu
 Opportunities
 Option and concentration curriculum
 Option Course Numbers & Names
+Option Courses
 People
 PharmD-MBA Program
 Policies & Petitions
@@ -140,15 +181,14 @@ Prerequisite Courses
 Prerequisites
 Privacy
 Professional Coaching
-Project Management
 Promotion and Tenure Guidelines
-Provides a general manager&#8217;s perspective on the management of innovation. Focuses on conceptual frameworks and analytical tools for managing innovation throughout the firm. Topics include the nature of innovation, how organizational and technical capabilities affect innovation, product/process development systems, and technology implementation.
-Questions?
 Quick Links
-Ready to design your MBA path?
 Related Links
-Request Information
+Required Accounting Courses (prerequisites in parentheses)
+Required Courses (prerequisites in parentheses)
 Required Marketing Courses (prerequisites in parentheses)
+Requirements to declare the option
+Requirements to declare the Option or the Concentration
 Retail Management Concentration
 Ron Tilden Accounting Scholarship
 Rules Docket
@@ -157,19 +197,19 @@ School of Business
 Search
 Search keywords
 Seattle Campus
-Seminar on Global Economic Issues
 Skip To Content
-Special Electives
 Staff
-Study abroad tour that cultivates a rich understanding of business theory and a genuine global perspective. Develops an appreciation of national difference in culture and economic, legal, and political systems that affect business strategy, operations, and performance.
+Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
+Students may NOT enroll in any Accounting courses until speaking to their advisor to determine whether they meet the requirements.
+Students wanting to declare the Accounting option must meet the following requirements:
+Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
 Supply Chain Management Option
-Sustainability
 Tacoma Campus
 Technology & Innovation Management (TIM) Concentration
-Technology and Innovation Management
 Terms
+The Accounting Option prepares students for careers in private, government, non-profit and public accounting. Demand for accountants is extremely high as businesses work to plan, manage and control their operations. Graduates can serve as internal auditors, managerial accountants, tax examiners, budget analysts or government auditors. After completing this option, students are eligible to take the Certified Management Accounting (CMA) exam. If you want to be a Certified Public Accountant (CPA), a minimum of 225 quarter hours or five years of college is required.
+The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
 The Marketing Option/Concentration prepares students to thrive in customer-centric organizations with a blend of analytical thinking, experiential learning and professional experiences. Identifying, delivering, communicating and sustaining value to the target customer is fundamental to success in a competitive environment. They will learn to develop and implement coordinated marketing programs to successfully manage a company&#8217;s relationship with its target customers in order to meet its strategic goals. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures.
-This course is designed to introduce students to concepts, methods and tools of project management. Students will be exposed to topics such as exploring the processes of selecting and defining the project, planning the project, leading the project team, monitoring and controlling the execution of the project, and closing and evaluating the project.
 Time Schedule
 Total Credits
 Tuition & Financial Aid
@@ -187,5 +227,7 @@ uwbbusiness@uw.edu
 Vision, Mission & Values
 Visitors
 Why hire a business student?
+Why study accounting?
+Why study finance?
 Why study marketing?
 Workday Login

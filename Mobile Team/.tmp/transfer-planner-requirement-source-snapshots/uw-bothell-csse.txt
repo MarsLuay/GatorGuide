@@ -2,7 +2,6 @@ Owner: uw-bothell-csse
 Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
 Title: CSSE Curriculum - School of Science, Technology, Engineering & Mathematics
 
-[Supplemental official source] Culminating Experience
 [Supplemental official source] Curriculum
 * CSS 432 Computer Networking
 * INFO 314: Computer Networks and Distributed Applications

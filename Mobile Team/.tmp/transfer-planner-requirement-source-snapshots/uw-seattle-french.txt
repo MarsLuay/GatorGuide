@@ -1,175 +1,146 @@
 Owner: uw-seattle-french
-Source: https://www.washington.edu/students/gencat/program/S/FrenchandItalianStudies-1102.html
-Title: 
+Source: https://frenchitalian.washington.edu/major-french-studies
+Title: Major in French Studies | French & Italian Studies | University of Washington
 
-Home
-Home
-Students
-Parents
-Faculty & Staff
-Alumni
-College of Arts and Sciences
-French and Italian Studies
-C254 Padelford Hall
-206-616-3486
-Website
-Faculty Website
-frenital@uw.edu
-We strive to prepare our students to become leaders in an increasingly diverse society by providing them with French and Italian cultural literacy in dialogue with global contexts, and professionally relevant linguistic, research, interpretive, and expressive skills and tools. Students learn to understand their multilingual, multicultural world in historical perspective, to convincingly convey this understanding to others in both English and one or both of our target languages, and to articulate and implement the career transferability of their skills.
-The study of French and Italian language and culture is more important than ever in our increasingly interconnected world. France and Italy are core members of the European Union and important players in the global economy and their cultures are among the world's richest and most influential. French and Italian are among the five most popular languages studied at American universities, ranking second and fifth respectively.
-Undergraduate Programs
-Program of Study: Major: French
-Bachelor of Arts degree with a major in French
-Program of Study: Major: Italian
-Bachelor of Arts degree with a major in Italian
-Program of Study: Minor: French
-Minor in French
-Program of Study: Minor: Italian Language and Culture
-Minor in Italian Language and Culture
-Program of Study: Minor: Textual Studies and Digital Humanities
-Minor in Textual Studies and Digital Humanities
-Graduate Programs
-Program of Study: Doctor Of Philosophy (French Studies)
-Doctor Of Philosophy (French Studies)
-Program of Study: Master Of Arts (Italian Studies)
-Master Of Arts (Italian Studies)
-Undergraduate Programs
-French and Italian Studies
-C252 Padelford Hall
-206-616-5366
-frenital@uw.edu
-Program of Study: Major: French
-Program Overview
-Allows students to develop advanced French language skills and cultural fluency. French is a key language of government and non-governmental organizations, business, and the arts, and an official language of countries in Africa, Europe, the Americas, and Southeast Asia. Students refine skills in French while pursuing topics ranging from the development of the French language to contemporary debates on immigration. Students engage with cultural forms (art, literature, cinema, environment, sport) through a variety of lenses (language, gender, race, religion), and develop robust analytical and rhetorical skills to accompany advanced proficiency in the language.
-This program of study leads to the following credential:
-Bachelor of Arts degree with a major in French
-Recommended Preparation
-Suggested First- and Second-Year College Courses: Transfer students should take as many lower-division French language courses as possible before transferring to the UW.
-Admission Requirements
-Students in good academic standing may declare this major at any time.
-Bachelor of Arts degree with a major in French
-Credential Overview
-French Studies allows you to develop advanced French language skills and cultural fluency. French is a key language of government and non-governmental organizations, business, and the arts and an official language of countries in Africa, Europe, the Americas, and Southeast Asia. You will refine your skills in French while pursuing topics ranging from the literature of the European Middle Ages to contemporary popular culture. As you engage with cultural forms (art, literature, cinema, environment, sport) through a variety of lenses (language, gender, race, religion), you will develop robust analytical and rhetorical skills.
-Completion Requirements
-50 credits
-Core (25 credits): FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303; one of the following: FRENCH 320, FRENCH 376, FRENCH 378, or FRENCH 379.
-Advanced: 10 credits at the 400-level. Transfer credits at the 400-level accepted only by petition.
-Electives: 15 credits above FRENCH 203 from an approved list. See adviser for approved list
-Minimum 2.00 cumulative GPA for courses applied to the major
-Maximum 15 credits of approved study-abroad coursework may be petitioned to apply to the major
-Back to Top
-Program of Study: Major: Italian
-Program Overview
-Italian Studies allows you to develop advanced Italian language skills and cultural fluency. Italy, the birthplace of the Renaissance, remains central in the realms of art, design, food, and manufacturing. In the major, you will refine your skills in Italian while pursuing topics ranging from Dante to contemporary popular culture. As you engage with cultural forms (art, literature, cinema, language and identity, fashion, immigration, religion), you will develop robust analytical, rhetorical, and methodological skills.
-This program of study leads to the following credential:
-Bachelor of Arts degree with a major in Italian
-Recommended Preparation
-Suggested First- and Second-Year College Courses: Community college students should take as many lower-division language courses as possible before transferring to the UW.
-Admission Requirements
-Students in good academic standing may declare this major at any time.
-Bachelor of Arts degree with a major in Italian
-Credential Overview
-Italian Studies allows you to develop advanced Italian language skills and cultural fluency. Italy, the birthplace of the Renaissance, remains central in the realms of art, design, food, and manufacturing. In the major, you will refine your skills in Italian while pursuing topics ranging from Dante to contemporary popular culture. As you engage with cultural forms (art, literature, cinema, language and identity, fashion, immigration, religion), you will develop robust analytical, rhetorical, and methodological skills.
-Completion Requirements
-55 credits
-Core: 30 credits from ITAL 203, ITAL 301, ITAL 302, ITAL 304, and two courses at the ITAL 350-level
-Electives: 25 credits above ITAL 203 from an approved list of electives. See adviser for approved list.
-Must include 5 credits at the ITAL 400-level. Transfer credits at the 400 level accepted only by petition
-Minimum 15 credits in courses taught in Italian
-Minimum 2.00 cumulative GPA for courses applied to the major
-Maximum 15 credits of approved study-abroad coursework may be petitioned to apply to the major
-Back to Top
-Program of Study: Minor: French
-Program Overview
-The French minor provides students with the language skills and cultural knowledge that serve as the basis for further study and foster more meaningful experiences abroad. Language courses develop skills in oral and written expression while introducing cultural knowledge. Core courses that pursue topics ranging from the development of the French language to contemporary debates on immigration deepen cultural knowledge and refine language skills.
-This program of study leads to the following credential:
-Minor in French
-Minor in French
-Completion Requirements
-30 credits
-FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303 (20 credits)
-One course at the FRENCH 370 level or FRENCH 320 (5 credits)
-Electives: Refer to department website for approved list of elective courses (5 credits)
-Minimum 2.00 cumulative GPA for courses applied to the minor
-Maximum 10 credits of approved study-abroad coursework may be petitioned to apply to the minor
-Back to Top
-Program of Study: Minor: Italian Language and Culture
-Program Overview
-The minor in Italian language and culture provides students with the language skills and basic cultural knowledge that serve as the basis for further study and foster more meaningful experiences abroad. Language courses develop skills in oral and written expression while introducing cultural knowledge. Core courses that pursue topics ranging from Dante to contemporary popular culture deepen cultural knowledge and refine language skills.
-This program of study leads to the following credential:
-Minor in Italian Language and Culture
-Minor in Italian Language and Culture
-Credential Overview
-The Italian minor provides students with the language skills and basic cultural knowledge that serve as the basis for further study and foster more meaningful experiences abroad. Language courses develop your skills in oral and written expression while introducing cultural knowledge. Core courses that pursue topics ranging from Dante to contemporary popular culture deepen your cultural knowledge and refine your language skills.
-Completion Requirements
-25 credits
-ITAL 201, ITAL 202, ITAL 203; or ITAL 234 (15 credits)
-One of ITAL 351, ITAL 352, ITAL 353, ITAL 354, ITAL 355, ITAL 356, ITAL 357 (5 credits)
-Electives (see website or adviser for approved list of courses) (5 credits)
-Minimum 2.00 cumulative GPA for courses applied to the minor
-Maximum 10 credits of approved study-abroad coursework may be petitioned to apply to the minor.
-Back to Top
-Program of Study: Minor: Textual Studies and Digital Humanities
-Program Overview
-Study of textual forms from scrolls, manuscripts and printed books to digital texts and textual data, highlighting factors that have shaped their creation, editing, publication, and reception, historically and globally. Courses offer opportunities to work with primary sources and archival materials and to learn techniques for digitizing, editing and curating these materials as well as for analyzing digitized text as data. May be of interest to undergraduates interested in careers in editing and publishing, libraries, archives, cultural institutions, and working with cultural and literary texts in digital environments.
-This program of study leads to the following credential:
-Minor in Textual Studies and Digital Humanities
-Minor in Textual Studies and Digital Humanities
-Completion Requirements
-25 credits
-Core Courses (10 credits): two courses from TXTDS 401, TXTDS 402, TXTDS 403, TXTDS 404, TXTDS 413, TXTDS 414
-Electives (10 credits): refer to program website for list of approved courses
-Capstone (5 credits): TXTDS 405
-Minimum 15 credits taken from outside student's major requirements.
-Back to Top
-Additional Information
-Formerly the Department of French and Italian Studies offered two minor credentials: (1) Minor in French Language, Sociolinguistics, and Translation; and (2) Minor in French Language, Literature, and Culture. As of winter quarter 2023, however, these two minor credentials have been replaced by a single minor. Please refer to the UW Seattle General Catalog Archive for information about the minor credentials.
-Student Outcomes and Opportunities
-Learning Objectives and Expected Outcomes: Students achieve levels of linguistic and cultural competency that allow them to pursue professional opportunities in a wide variety of internationally oriented fields and to be effective citizens in a rapidly changing world.
-Students with substantial foreign language fluency who combine language skills with a solid foundation in liberal education and adequate job preparation and internships find fulfilling occupations. . The combination of studies in foreign languages and international affairs is ideal for students seeking job opportunities in government (foreign service and diplomatic fields, intelligence agencies, immigration and customs, Department of Labor, law enforcement, armed forces, legal agencies, public aid, social and community work, and international agencies, such as the United Nations and UNICEF), business (airlines, marketing, banking/finance, multi-national corporations, shipping industry, travel and hotel industries, import/export firms, publishing houses, and consulting), and communication fields (journalism, radio and television, fashion enterprises, teaching/counseling, translation, bilingual office work, library/museum work, nursing, phone companies, art and cultural affairs, and film and theatrical industries).
-Beyond the practical, the department's commitment is to impart to our students the skills and the genuine desire to learn throughout their lives, fostering the type of cultural and intellectual flexibility that lends itself to the multiple work and personal changes that most will face over the course of their lives.
-Instructional and Research Facilities: UW Rome Center in Rome, Italy.
-Honors Options Available: With College Honors (Completion of Honors Core Curriculum and Departmental Honors); With Honors (Completion of Departmental Honors requirements in the major). See adviser for requirements.
-Research, Internships, and Service Learning: The Rome Center offers one intern position per year, providing room and board and a modest stipend. Interns work in the administrative Rome/UW office and are required to follow an independent course of language and literature study or other proposed course of study.
-Department Scholarships: Scholarships for departmental study abroad programs are available. Program applicants are notified of opportunities by their program director.
-Student Organizations/Associations: French Club, Italian Club.
-Of Special Note: The department sponsors study-abroad programs in France, Italy, and Martinique. See adviser for details.
-Graduate Programs
-French and Italian Studies
-Program of Study: Doctor Of Philosophy (French Studies)
-This program of study leads to the following credential:
-Doctor Of Philosophy (French Studies)
-Admission Requirements
-Contact department for requirements.
-Doctor Of Philosophy (French Studies)
-Completion Requirements
-Contact department for requirements.
-Back to Top
-Program of Study: Master Of Arts (Italian Studies)
-This program of study leads to the following credential:
-Master Of Arts (Italian Studies)
-Admission Requirements
-Contact department for requirements.
-Master Of Arts (Italian Studies)
-Completion Requirements
-Contact department for requirements.
-Back to Top
+Major in French Studies | French & Italian Studies | University of Washington
+Skip to main content
+Washington
 University of Washington
-Be boundless
-Connect with us:
-Facebook
-Twitter
-Instagram
-YouTube
-LinkedIn
-Pinterest
-Accessibility
+College of Arts & Sciences
+Quick links
+Quick Links
+Make a Gift
+Directories
+Maps
+MyUW
+User account menu
+Search
+Search
+Main menu
+French & Italian Studies
+Menu
+People
+Faculty
+Staff
+Graduate Students
+Current Students
+Teaching Assistants & Predoctoral Instructors
+Alumni
+Alumni Profiles
+Alumni News
+Submit an Update
+Programs & Courses
+Undergraduate
+French Studies
+Italian Studies
+Honors Program
+Learning Goals
+Graduate
+French Studies
+Italian Studies
+Textual Studies
+Application Information
+Current Student Information
+Graduate Reading Tests
+Courses
+Upcoming Courses
+Featured Courses
+Projected Courses
+Registration/Credit Policies
+Placement Tests
+Summer Study
+Non-Degree Study
+Study Abroad
+Autumn in Nantes
+Summer in Paris
+Rome in Residence
+Italian Studies Perugia
+French in Quebec City
+Framing Rome: Summer Exploration Seminar
+Additional Opportunities
+Research
+Publications
+Projects
+Graduate
+Undergraduate
+Fields of Interest
+News & Events
+Recent News
+Newsletter
+Calendar
+Photo Contest
+Resources
+Advising
+Alumni & Careers
+Internships and Service Learning
+Scholarships, Fellowships, and Grants
+Placement Tests
+Organizations and Links
+Coronavirus Resources for Students
+For Community Members
+For Employees
+About
+Mission
+History
+Diversity, Equity & Inclusion
+Community Outreach
+Stay Connected
+Support Us
 Contact Us
-Jobs
-Campus Safety
-My UW
-Rules Docket
+Make a Gift
+Directories
+Maps
+MyUW
+You are here
+Home
+Programs & Courses
+Undergraduate
+French Studies
+Major in French Studies
+To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at has-center@uw.edu .
+French Major Requirements
+50 credits total
+FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303 (20 credits)
+5 credits from one course at the FRENCH 370-level (FRENCH 376, 378, 379) or FRENCH 320
+Two 400-level French Courses (10 credits). Transfer credits at the 400-level accepted only by petition
+Electives: 15 credits above FRENCH 203 from the following approved list of electives: FRENCH, 210, FRENCH 211, FRENCH 212, FRENCH 214, FRENCH 222, FRENCH 223, FRENCH 224, FRENCH 225, FRENCH 226, FRENCH 228, FRENCH 229, FRENCH 240, FRENCH 250, FRENCH 313, FRENCH 314, FRENCH 315, FRENCH 320, FRENCH 376, FRENCH 378, FRENCH 379, FRENCH 404, FRENCH 406, FRENCH 415, FRENCH 416, FRENCH 419, FRENCH 420, FRENCH 431, FRENCH 435, FRENCH 441, FRENCH 445, FRENCH 447, FRENCH, 448, FRENCH 450, FRENCH 455, FRENCH 457, FRENCH 458, FRENCH 470, FRENCH 472, FRENCH 474, FRENCH 499
+Maximum 15 credits of approved study-abroad coursework may be petitioned to apply to the major
+A minimum 2.00 cumulative GPA is required for courses applied toward the major.
+Prerequisites
+FRENCH 203 required for FRENCH 301 or FRENCH 302
+FRENCH 301 and FRENCH 302 do not have to be taken in sequence. FRENCH 302 can be completed before FRENCH 301.
+Either FRENCH 301 or FRENCH 302 required for FRENCH 303. Both FRENCH 301 and 302 do not have to be completed in order to take FRENCH 303.
+Previous French Major Requirements
+French Major Requirements, Autumn 2015-Summer 2021 (PDF)
+Share
+Programs & Courses
+Undergraduate
+French Studies
+Why Study French?
+Major Requirements
+Minor Requirements
+Teaching Certificate
+Italian Studies
+Honors Program
+Learning Goals
+Graduate
+Courses
+Summer Study
+Non-Degree Study
+Support French & Italian Studies
+Facebook
+Instagram
+Mailing List
+Department of French & Italian Studies
+University of Washington
+c-254 Padelford Hall
+Box 354361
+Seattle, WA 98195-4361
+Phone: (206) 616-3486
+frenital@uw.edu
 Privacy
 Terms
-Newsletter
-&copy; University of Washington | Seattle, WA
+Site Map
+Alumni Update
+Contact Us
+&copy; 2026 University of Washington . All rights reserved.

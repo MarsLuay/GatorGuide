@@ -2,53 +2,37 @@ Owner: uw-bothell-csse-information-assurance-and-cybersecurity:pathway:informati
 Source: https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum
 Title: CSSE Curriculum - School of Science, Technology, Engineering & Mathematics
 
-[Supplemental official source] Culminating Experience
 [Supplemental official source] Curriculum
 * CSS 432 Computer Networking
 * INFO 314: Computer Networks and Distributed Applications
 * T INFO 250 Foundations of Information Networking
 10 credits at 300-level or higher in any subject area
 300-400 Level Electives (15 credits / usually 3 courses)
-About
-Admissions
 After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
 Analysis & Problem Solving
-Applied Computing
-Awards & Endowments
-Biological Sciences
 Business Case Justification: Justifies project expenditures, equipment and other resources in terms of business costs, benefits and risks.
-Capstone
 Collaboration & Team Building: Collaborates effectively with others to achieve a common objective, creates an environment that fosters and sustains successful teamwork.
-Computing &#038; Software Systems
 Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
 Computing-related courses that are not listed above or transfer courses are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
-Course
 Creativity: Challenges existing assumptions, proposes novel alternative ways to framing or solving a problem, pushes the boundaries of knowledge.
 CSS 310: Information Assurance and Cybersecurity
 CSS 337 Secure Systems
 CSS 411 Computer Technology and Public Policy
 CSS 415 Emerging Topics in Information Assurance and Cybersecurity (topics vary)
-Curriculum
 Declaring the IAC option
-Departments
 Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
-Engineering &#038; Mathematics
-Expand Navigation
 Foundation Level
 General Business, Social & Technical
 IAC-option students take the same core courses as those of the general CSSE major, but replace the 25 credits of &#8220;CSS Electives&#8221; with the courses below:
-In this section
 INFO 312: Enterprise Risk Management
 INFO 415: Emerging Topics in Information Assurance and Cybersecurity (topics vary)
 Information Assurance and Cybersecurity (IAC) is a Computer Science & Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
 Information Assurance and Cybersecurity (IAC) option
 Information Gathering: Effectively searches out and organizes pertinent information before making decisions or taking actions.
-Internship
 Interpersonal Skills
 Leadership: Champions new ideas, persuades and influences, breaks logjams, and promotes momentum toward solving problems.
 Learning by Doing: Demonstrates the ability to learn continuously, capitalize on mistakes, exploit new knowledge, increase productivity over time.
 Learning goals
-Majors
 Management Skills
 Managing Change & Uncertainty: Adapts to changing circumstances, deals positively with uncertainties and contingencies, manages crises effectively.
 Mathematical Principles and Techniques: Understands theory and application of numerical, statistical, set theory, and other mathematical techniques in the context of applications and systems programming.
@@ -57,23 +41,11 @@ Minimum 15 credits (3 courses) of elective coursework from the lists below. Only
 Minimum of 5 additional credits (usually 1 course) of 200-level or higher CSS Elective coursework in any topic.
 Petition
 Petitions
-Physical Sciences
-Present and defend research
 Process Reengineering: Performs business requirement analysis, using appropriate tools and methodologies to maximize organizational performance.
 Project Administration: Administers and maintains projects, using appropriate monitoring tools and complying with relevant standards and reporting requirements.
 Project Management: Plans, monitors, and controls projects; ensures efficient utilization of resources; keeps projects on schedule and within budgeted resource allocation.
-Read more about the Culminating course process
-Read more about the Culminating internship process
-Read more about the project process
-Read more about the thesis process
 Requirements
 Risk Management: Foresees and takes action pro-actively in anticipation of future problems and opportunities.
-STEM Advisory Board
-Students choose one of three 5-credit culminating cybersecurity courses (CSS 538 in autumn, CSS 518 in winter, or CSS 539 in spring) to apply and advance learnings from their core and elective coursework. A deliverable (such as a comprehensive report) will be produced by the student at the end of the quarter. To complete the coursework option, students take one additional 5-credit elective, bringing their elective total for the degree to 25.
-Students complete a 10-credit project (CSS 595) which involves working under the guidance of a faculty committee to apply knowledge obtained from the program’s curriculum to build connections between academic concepts and the application of those concepts into real-world context. Students present and defend their work at the end of the program and produce a comprehensive report of their findings.
-Students complete a 10-credit thesis (CSS 700) which involves working under the guidance of a faculty committee to apply knowledge obtained from the program’s curriculum to conduct research and produce a scholarly written document aimed at an academic audience as a contribution to an existing body of knowledge. Students present and defend the culmination of their work at the end of the master&#8217;s program.
-Students pursuing the project or thesis Culminating Experience will present their research to their faculty committee. Check out recent titles and abstracts in the final defense schedule to learn more about the latest master&#8217;s student research.
-Students who secure and finish a cybersecurity-related internship will complete 5 credits of CSS 601 Internship where they work with a faculty sponsor to set learning goals and demonstrate their ability to apply their learnings from the curriculum in a professional and practical setting. To complete the internship Culminating Experience option, students take one additional 5-credit elective, bringing their elective total for the degree to 25.
 Submit an applied computing petition
 Systemic Thinking: Follows a well-ordered and logical approach to analyzing problems, organizing work, and searching for solutions.
 T INFO 441 Network Security
@@ -84,10 +56,8 @@ Technology Evaluation and Selection: Evaluates and selects software and hardware
 The Foundation Level includes very broad competencies that are found in every CSS core course. The Technical Level is a set of broadly important competencies specific to the software engineering and computer science professions, to be developed in every undergraduate CSS education, across the set of required core courses. Competencies specific to the interests and needs of the individual student are achieved in the CSS advanced elective courses.
 The learning objectives for the Bachelor of Arts in Applied Computing and the Bachelor of Science in Computer Science & Software Engineering are described in terms of competencies achieved by students within the CSS programs.
 These courses may overlap with your General Education requirements (A&H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
-Thesis
 This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
 Thoroughness: Ensures that work is done correctly, completely, on time and to the highest standards.
-Undergraduate
 Up to 10 credits combined of CSS 290, 390, or 490 (Special Topics)
 Up to 10 credits combined of CSS 397 (Internship), 498 (Independent Study), or 499 (Undergraduate Research)
 User Orientation: Gains understanding of users needs by immersing self in users environment; carefully studies user&#8217;s requirements; puts self in users shoes.

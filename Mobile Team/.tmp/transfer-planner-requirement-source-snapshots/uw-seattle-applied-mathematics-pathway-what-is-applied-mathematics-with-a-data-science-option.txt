@@ -3,7 +3,6 @@ Source: https://amath.washington.edu/undergraduate-major-applied-mathematics
 Title: Undergraduate Major: Applied Mathematics | Department of Applied Mathematics | University of Washington
 
 [Supplemental official source] B.S. in Applied Mathematics: Data Science Option
-[Supplemental official source] B.S. in Computational Finance & Risk Management
 [Supplemental official source] B.S. in Computational Finance & Risk Management: Data Science Option
 [Supplemental official source] B.S. to M.S. Pathway
 [Supplemental official source] Supplemental official track and option pages
@@ -24,7 +23,6 @@ Title: Undergraduate Major: Applied Mathematics | Department of Applied Mathemat
 About
 Additional information for prospective students
 Additional policies, useful links, and resources may be found here !
-Additional policies, useful links, and resources may be found on our website!
 Admissions
 Admissions Criteria For Non-AMATH Majors in a B.S. Program:
 Admissions: Incoming Freshmen , Transfers , International Students
@@ -44,8 +42,8 @@ Applied & Computational Math Sciences (ACMS)
 Applied Math Tutors
 Applied Mathematics Graduate Advisor
 Applied mathematics incorporates interdisciplinary study in the physical, engineering, and biological sciences. We provide dynamic and engaging training that is especially strong in mathematical methods (scientific computing, data science, etc.) and in application areas (mathematical biology, health sciences, nonlinear waves and coherent structures, mathematical finance, data analysis and climate modeling).
-Applied Mathematics: AMATH 351, AMATH 352, AMATH 353 (9 credits)
 Applied Mathematics: Data Science Option
+Applied Mathematics: Data Science Option | Department of Applied Mathematics | University of Washington
 Approved course plan for remainder of undergrad program
 At least one 400-level AMATH course
 Autumn 2026 Deadlines:
@@ -63,11 +61,10 @@ Career Preparation : students will experience a broad curriculum to learn high l
 Careers
 Centers & Institutes
 CFRM Course Catalog
-CFRM undergraduate programs are designed to provide students with a rigorous applied mathematical foundation and solid understanding of how mathematical models, and statistical and computational methods, are used in financial applications such as portfolio optimization, derivatives pricing, and risk management.
 College of Arts & Sciences
 Computational Finance & Risk Management: Data Science Option
+Computational Finance & Risk Management: Data Science Option | Department of Applied Mathematics | University of Washington
 Computational Finance and Risk Management (CFRM) is the application of advanced mathematical, statistical, and computational methods to solving quantitative finance problems. Students will investigate financial topics and explore the business world rationally, creatively, and critically, in a quantitative way.
-Computational Finance and Risk Management is the application of advanced mathematical, statistical, and computational methods to solving quantitative finance problems. Students will investigate financial topics and explore the business world rationally, creatively, and critically, in a quantitative way.
 Computing: AMATH 301 (4 credits)
 Computing: AMATH 301, CFRM 425 (7 credits)
 Conferences
@@ -86,7 +83,6 @@ Degree requirements:
 Degree Requirements:
 Department of Applied Mathematics
 Directories
-Electives (minimum 26 credits) : CFRM 421, CFRM 422, CFRM 426, CFRM 430, CFRM 442, CFRM 450, AMATH 481, AMATH 482, AMATH 483
 Electives (minimum 27 credits)
 Faculty
 Faculty Books
@@ -96,7 +92,6 @@ Frequently Asked Questions
 Full Directory
 Funding & Financial Support
 General Education requirements for College of Arts and Sciences students may be found here .
-General Education requirements for College of Arts and Sciences students may be found on the UW undergraduate advising page .
 Give now
 Graduate
 Graduate Student Guide
@@ -106,7 +101,6 @@ Home
 How do you major in AMATH with a Data Science option?
 How do you major in AMATH?
 How do you major in CFRM with a Data Science option?
-How do you major in CFRM?
 How do you meet with a departmental major advisor?
 How do you meet with an departmental major advisor?
 How to Apply
@@ -129,7 +123,6 @@ Minimum 2.00 cumulative GPA in courses applied to the major.
 Minimum 54-58 credits:
 Minimum 54-59 credits:
 Minimum 63-67 credits:
-Minimum 69 credits:
 Minor in Applied Mathematics
 Minor in Computational Finance
 MyUW
@@ -157,7 +150,6 @@ Privacy
 Program Start
 Programs & Courses
 Quantitative Finance: CFRM 405, CFRM 410, CFRM 415, CFRM 420 (12 credits)
-Quantitative Finance: CFRM 405, CFRM 415, CFRM 420 (9 credits)
 Quick links
 Quick Links
 Recent News
@@ -178,7 +170,6 @@ Skip to main content
 Societies
 Society and Data (3-5 credits):
 Staff
-Statistics for Finance: CFRM 410 (3 credits)
 Stay Connected
 Student Honor Code
 Students may apply for the AMATH: Data Science option at the time of their application to the major.
@@ -186,14 +177,11 @@ Students may apply for the CFRM: Data Science option at the time of their applic
 Support Applied Math
 Support Us
 Terms
-The BS in CFRM will jump start students’ knowledge and skills for a career in a variety of fields, or further academic study in Mathematical/Computational Finance or Financial Engineering, such as the MS-CFRM program . Be a leader in a society that exhibits increasing demands for competence in communication, computation, and quantitative analysis.
 The Data Science option in Applied Mathematics provides students with training in data science methods and practices through the study of statistical modeling, machine learning, artificial intelligence, and optimization , among other aspects of applied mathematics .
 The Data Science option in CFRM provides students with training in data science methods and practices through the study of statistical modeling, machine learning, artificial intelligence, and optimization, among other aspects of applied mathematics.
 Undergraduate
 Undergraduate Major: Applied Mathematics
 Undergraduate Major: Applied Mathematics | Department of Applied Mathematics | University of Washington
-Undergraduate Major: Computational Finance & Risk Management
-Undergraduate Major: Computational Finance & Risk Management | Department of Applied Mathematics | University of Washington
 University of Washington
 User account menu
 Washington
@@ -201,10 +189,8 @@ We recommend submitting your BS to MS pre-application form with enough time to r
 What is Applied Mathematics with a Data Science option?
 What is Applied Mathematics?
 What is Computational Finance & Risk Management with a Data Science option?
-What is Computational Finance & Risk Management?
 When to Apply
 Why study Applied Mathematics (AMATH)?
-Why study Computational Finance & Risk Management (CFRM)?
 You are here
 Your starting quarter is the first autumn quarter after you earn your BS degree (e.g. a student graduating from any quarter between Autumn 2025 - Spring 2026 will begin the graduate program Autumn 2026).
 YouTube

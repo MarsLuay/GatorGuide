@@ -2,186 +2,250 @@ Owner: uw-tacoma-environmental-sustainability:pathway:education-option
 Source: https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option
 Title: Pre-Environmental Education Option | Department of Sciences and Mathematics | University of Washington Tacoma
 
-Pre-Environmental Education Option | Department of Sciences and Mathematics | University of Washington Tacoma
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
-height="0"
-width="0"
-style="display:none;
-visibility:hidden">
-Skip to main content
-Apply
-Canvas
-Map
-Calendar
-Library
-Directory
-MyUW
-more_vert
-more_vert
-Close Search
-<img
-src="/sites/default/files/sites/uwtd8main/W.svg"
-alt="Block W - Link to UW Tacoma homepage"/>
-<img class="mobile-hide desktop-show"
-src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
-alt="University of Washington Tacoma"/>
-<img class="mobile-show desktop-hide"
-src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
-alt="University of Washington Tacoma"/>
-Tools
-25Live
-Canvas
-Directory
-IT Help
-Library
-Map
-MyUW
-Office365
-Panopto
-Scout
-UW Gmail
-Workday
-Zoom
-Search
+[Supplemental official source] UW Tacoma Environmental Sustainability overview
+[Supplemental official source] UWT general education
+&copy; 2026 University of Washington Tacoma
 <a
-href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
-Department of Sciences and Mathematics
-<span
-class="path2">
-Make a Gift
-Department of Sciences and Mathematics
-ACCESS in STEM
-Advising Resources
-Majors
-expand_more
-Biomedical Sciences
-Environmental Science
-Environmental Sustainability
-Mathematics
-Minors
-expand_more
-Environmental Studies Minor
-Mathematics Minor
-Restoration Ecology Minor
-Sustainability Minor
-Partners in Science
-Research
-SAM DEI Initiatives
-SAM Resources
-expand_more
-SAM Directory
-Open Public Meetings
-SAMURS
-MyUW
-Map
-Tools
-Breadcrumb
-<a href="https://www.tacoma.uw.edu/"
-class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
->Home
 <a href="/sias"
->School of Interdisciplinary Arts & Sciences
 <a href="/sias/sam"
->Department of Sciences and Mathematics
-Pre-Environmental Education Option
-Pre-Environmental Education Option
-Main Content
+<a href="https://instagram.com/uwtacoma"
+<a href="https://www.facebook.com/uwtacoma"
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+<a href="https://www.tacoma.uw.edu/"
+<a href="https://www.tiktok.com/@uwtacoma"
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+<img
+<img class="mobile-hide desktop-show"
+<img class="mobile-show desktop-hide"
 <img src=""
-srcset=" 1940w,
-980w,
-600w"
-sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
-alt="">
-Degree Requirements
-40 credits Preparatory courses (Preparatory courses must have been completed with the last 5 years.)
-TBIOL 110 General Biology (with lab); minimum 1.5 GPA
-TCHEM 131 Chemistry and Society (with lab); minimum 1.7 GPA
-TECON 200 Introduction to Microeconomics; minimum 2.0 GPA
-TGEOS 243 Geography of the Physical Environment; minimum 2.0 GPA
-TMATH 110 Introductory Statistics with Applications; minimum 2.0 GPA
-TPHIL 251 Data and Discourse; minimum 2.0 GPA
-TWRT 211 Argumentation and Research; minimum 2.0 GPA OR TWRT 291 Technical Communication in the Workplace; minimum 2.0 GPA
-58–60 credits Required courses
+<span
+>
+>Department of Sciences and Mathematics
+>Home
+>School of Interdisciplinary Arts & Sciences
+1900 Commerce Street, Tacoma, WA 98402-3100
+20 credits for the Environmental Education option
+253-692-4450
+253-692-5718
+25Live
 35 credits Core courses
-TBIOL 232 Issues in Biological Conservation
-TESC 201 The Science of Environmental Sustainability
-TESC 345 Pollution and Public Policy
-TEST 200 Fundamentals of Environmental Studies and Sustainability
-TGEOS 341 Climate Change
-TLAW 438 Federal Environmental Law
-TWRT 331 Writing in the Natural Sciences
-One of the following:
-TEGL 304 Indigenous Ethnoecology
-TPHIL 456 Environmental Ethics
-TRELIG 350 Religion, Philosophy & the Environment
+40 credits Preparatory courses (Preparatory courses must have been completed with the last 5 years.)
+58–60 credits Required courses
+600w"
+980w,
+A minimum of 45 lower-division credits is required before declaring the major. To declare the Environmental Sustainability major, students should reach out to the major academic advisor .
+ABOUT UW TACOMA
+Academic advising
+Academic calendar
+Academic Planning Resources
+ACADEMICS
+ACCESS in STEM
+Accessibility |
+Acknowledgement
+add
+Administration
+ADMISSION REQUIREMENTS
+Admissions
+Advising
+Advising Resources
+ADVISOR
+alt="">
+alt="Block W - Link to UW Tacoma homepage"/>
+alt="University of Washington Tacoma"/>
+Apply
+aria-label="University of Washington Tacoma Homepage">
+Arts and Humanities (A&H): 20 credits
+As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
+Biomedical Sciences
+Bothell
+Breadcrumb
+Business/Nonprofit Environmental Sustainability Option (20 credits)
+Calendar
+CAMPUS
+Campus Safety
+Canvas
 Capstone experience: must select at least a 3-credit option from the following list.
+CAREER OPPORTUNITIES
+Choose four or more courses from the following list to total at least 20 credits:
+Choose one course from the following list:
+class="breadcrumb--home-icon uwt-icon" title="UW Tacoma Homepage"
+class="path2">
+Close Search
+Complete GIS or REN certificate program. (Planned with faculty advisor; may span more than one quarter.)
+Complete the following three courses:
+Connect with Advising
+Contact
+Contact us |
+Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
+Corporate Sustainability
+Course Repeats
+Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
+Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
+Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
+Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
+Courses that focus on sociocultural, political, and economic diversity of human experience
+Current Students
+Degree Requirements
+DEGREE REQUIREMENTS
+DEPARTMENT
+Department of Sciences and Mathematics
+Department of Sciences and Mathematics (SAM)
+Directory
+Diversity (DIV): 5 credits
+Economics and Policy Analysis (EPA)
+English Composition (C): 5 credits
+Environmental Consulting
+Environmental Education Option (20 credits)
+Environmental Policy
+Environmental Science
+Environmental Studies Minor
+Environmental Sustainability
+Equity & Inclusion
+Ethnic, Gender and Labor Studies
+expand_more
+Faculty & Staff
+Fax Number
+Financial Aid
+For a BA in Environmental Sustainability, students must complete 100 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+General Education Requirements
+Global Studies Concentration
+Government
+height="0"
+History
+Housing
+href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
+iashelp@uw.edu
+Information Technology
+Institutional Research
+Interdisciplinary Arts and Sciences
+IT Help
+Jobs
+Land
+Law and Policy
+Learn More >
+Library
+M-F 9a.m.-5p.m.
+Main Content
+MAJOR COORDINATOR
+Majors
+Make a Gift
+Map
+Mathematics
+Mathematics Minor
+Minors
+more_vert
+Most students who transfer from another college have already completed many of these requirements. Any requirements that aren't complete when a transfer student is admitted to UW Tacoma become part of the student's degree program.
+MyUW
+Natural Sciences (NSc): 20 credits
+Nonprofit Organizations
+Office Hours:
+Office365
+One course may be part of the major requirements for students in majors such as Communication, History (all tracks), PP&E (all tracks), Law & Policy, Psychology, and Writing Studies
+One of the following:
+Open Public Meetings
+Panopto
+Parking & transportation
+Partners in Science
+Politics, Philosophy and Economics (PP&E)
+Post-graduate Studies
+Pre-Environmental Education Option
+Pre-Environmental Education Option | Department of Sciences and Mathematics | University of Washington Tacoma
+Privacy |
+Professor Tom Koontz
+Psychology
+Puyallup Tribe of Indians
+Reasoning (RSN): 5 credits
+Research
+Resources
+Restoration Ecology Minor
+Rules Docket
+Ryan Branchini
+SAM DEI Initiatives
+SAM Directory
+SAM Resources
+SAMURS
+School of Interdisciplinary Arts & Sciences
+Schools and programs
+Sciences and Mathematics
+Scout
+Search
+SIAS Scholarships
+SIAS Student Advisory Council
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+Skip to main content
+Social Sciences
+Social Sciences (SSc): 20 credits
+Some courses may fulfill more than one general education category at the same time. For example, a course might be a Writing course and also an Arts and Humanities (A&H). Courses that are both A&H and Social Science (SSc) can only fulfill one general education area.
+Spanish Language and Cultures
+src="/sites/default/files/sites/uwtd8main/W.svg"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+srcset=" 1940w,
+Student Life
+Study Abroad
+style="display:none;
+Sustainability Minor
+TBGEN 212 Introduction to Corporate Responsibility
+TBIOL 110 General Biology (with lab); minimum 1.5 GPA
+TBIOL 232 Issues in Biological Conservation
 TBIOMD 490 Context for Global Health Experiential Learning AND TBIOMD 491 Global Health Experiential Learning Program
+TBUS 300 Managing Organizations
+TCHEM 131 Chemistry and Society (with lab); minimum 1.7 GPA
+Teaching and Learning Center
+TECON 200 Introduction to Microeconomics; minimum 2.0 GPA
+TEDUC 290 Introduction to Teaching
+TEDUC 471 Diversity and Equity in Schools and Curriculum
+TEDUC 482 Foundations of Education: Policy, Ethics, and Philosophy
+TEGL 304 Indigenous Ethnoecology
+Terms of Use |
+TESC 201 The Science of Environmental Sustainability
 TESC 301 Sustainability in Action
+TESC 345 Pollution and Public Policy
 TESC 495 Environmental Research Experiences
 TESC 496 Internship
 TESC 497 Senior Thesis
 TESC 499 UG Research
+TEST 200 Fundamentals of Environmental Studies and Sustainability
 TEST 495 Environmental Studies Experience
+TGEOS 243 Geography of the Physical Environment; minimum 2.0 GPA
+TGEOS 341 Climate Change
+title="Follow UW Tacoma on Facebook">
+title="Follow UW Tacoma on Instagram">
+title="Follow UW Tacoma on Linkedin">
+title="Follow UW Tacoma on TikTok">
+title="Follow UW Tacoma on Youtube">
+TLAW 438 Federal Environmental Law
+TLIT 237 Introduction to Literature and Environment
+TMATH 110 Introductory Statistics with Applications; minimum 2.0 GPA
+TMGMT 420 Managing Corporate Responsibility
+TMGMT 452 The Dynamics of Leadership
+TMGMT 457 Negotiation and Conflict Management
+TMGMT 465 Board Governance I (If not taken as capstone experience.)
 TMGMT 465 Board Governance I AND TMGMT 466 Board Governance II
-Complete GIS or REN certificate program. (Planned with faculty advisor; may span more than one quarter.)
-20 credits for the Environmental Education option
-TEDUC 290 Introduction to Teaching
-TEDUC 471 Diversity and Equity in Schools and Curriculum
-TEDUC 482 Foundations of Education: Policy, Ethics, and Philosophy
-Choose one course from the following list:
+TMGMT 466 Board Governance II (If not taken as capstone experience.)
+Tools
+TPHIL 251 Data and Discourse; minimum 2.0 GPA
+TPHIL 456 Environmental Ethics
 TPSYCH 220 Lifespan Development
 TPSYCH 320 The Race, Class and Gender Context of Child Development
 TPSYCH 321 Adolescent Psychology
-Contact
-Department of Sciences and Mathematics
-ACADEMICS
-Academic advising
-Academic calendar
-Canvas
-Library
-Schools and programs
-Study Abroad
-Teaching and Learning Center
-CAMPUS
-Campus Safety
-Equity & Inclusion
-Financial Aid
-Housing
-Information Technology
-Student Life
-University YMCA Student Center
-ABOUT UW TACOMA
-Administration
-Admissions
-Institutional Research
-Jobs
-Parking & transportation
-Research
-UWNetID login
-<a href="https://www.tacoma.uw.edu/"
-aria-label="University of Washington Tacoma Homepage">
-<a href="https://www.facebook.com/uwtacoma"
-title="Follow UW Tacoma on Facebook">
-<a href="https://instagram.com/uwtacoma"
-title="Follow UW Tacoma on Instagram">
-<a href="https://www.tiktok.com/@uwtacoma"
-title="Follow UW Tacoma on TikTok">
-<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
-title="Follow UW Tacoma on Youtube">
-<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
-title="Follow UW Tacoma on Linkedin">
-Puyallup Tribe of Indians
+TRELIG 350 Religion, Philosophy & the Environment
 Tribal Sponsor of UW Tacoma
-Learn More >
-Land
-Acknowledgement
->
+TWRT 211 Argument and Research in Writing OR TWRT 291 Technical Communication in the Workplace (whichever one was not taken as preparatory course)
+TWRT 211 Argumentation and Research; minimum 2.0 GPA OR TWRT 291 Technical Communication in the Workplace; minimum 2.0 GPA
+TWRT 331 Writing in the Natural Sciences
+TWRT 372 Writing Eco-Poetry
+TWRT 388 Writing for Social Change
+TWRT 389 Nature Writing
+TWRT 391 Advanced Technical Communication
+University YMCA Student Center
+UW Gmail
 UW Seattle | UW
-Bothell
-&copy; 2026 University of Washington Tacoma
-1900 Commerce Street, Tacoma, WA 98402-3100
-Contact us |
-Terms of Use |
-Privacy |
-Accessibility |
-Rules Docket
+UWNetID login
+visibility:hidden">
+width="0"
+Workday
+Writing (W): 10 credits
+Writing Studies
+Zoom

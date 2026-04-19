@@ -97,9 +97,12 @@ const SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN =
   /Auto-promotion was intentionally skipped/i;
 const SOURCE_BACKED_TRACK_MATCH_SAFE_SKIP_REASON_PATTERN =
   /\balternate path that the planner already represents\b|\bexisting requirement row\b/i;
+const SOURCE_BACKED_SIBLING_OPTION_SKIP_REASON_PATTERN =
+  /\bmatched source lines list several sibling UW options\b/i;
 const SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN =
   /\b(suggested general education|not required for transferring|approved list|highly recommended|elective|replacement|course list|course lists|course evaluation|course evaluations|capstone course|capstone courses|suggested course pathways?)\b/i;
 const DEGREE_MAP_GUIDE_BLOCK_TITLE_EXCLUSION_PATTERN = /\bchoices and pathway notes\b/i;
+const MIN_SOURCE_BACKED_SIBLING_CHOICE_RECOVERY_COUNT = 3;
 const SOURCE_BACKED_MAJOR_SCOPE_CUE_PATTERN =
   /\b(?:if|for)\s+([^:.;]+?)\s+(?:major|majors|option|options|program|programs)\b/i;
 const SOURCE_BACKED_MAJOR_SCOPE_STOPWORDS = new Set([
@@ -884,6 +887,105 @@ function shouldIncludeTrackMatchSourceBackedClassification(
   return Boolean(classification.guideRuleId) && classification.mappingConfidence === "high";
 }
 
+function getReferenceCourseSubjectPrefix(courseCode: string) {
+  return normalizeCourseCode(courseCode).replace(/\s+\d{3}(?:\.\d+)?[A-Z]?$/, "").trim();
+}
+
+function buildSiblingChoiceSourceBackedRecoveryCourseList(
+  planId: string,
+  pathwayId?: string | null
+) {
+  const recoveredCoursesByGroupKey = new Map<
+    string,
+    {
+      cueLine: string;
+      subjectPrefix: string;
+      courseCodes: Set<string>;
+    }
+  >();
+
+  for (const classification of getRequirementDiffClassificationsForScope(planId, pathwayId)) {
+    if (classification.classificationKind !== "auto-promoted-guide-direct-equivalent") {
+      continue;
+    }
+    if (!classification.guideRuleId) {
+      continue;
+    }
+    if (!hasOnlySiblingOptionSourceBackedSkipReason(classification.validationNotes)) {
+      continue;
+    }
+
+    const classificationCourseCodes = uniqueReferenceCourseLabels([
+      ...(classification.grcCourseCodes ?? []),
+      ...((classification.alternativeCourseCodeSets ?? []).flat()),
+    ]);
+    if (!classificationCourseCodes.length) {
+      continue;
+    }
+
+    const cueLines = getRequirementCueLinesFromClassification(classification);
+    if (!cueLines.length) {
+      continue;
+    }
+
+    for (const courseCode of classificationCourseCodes) {
+      const normalizedCourseCode = normalizeCourseCode(courseCode);
+      const subjectPrefix = getReferenceCourseSubjectPrefix(normalizedCourseCode);
+      if (!normalizedCourseCode || !subjectPrefix) {
+        continue;
+      }
+
+      for (const cueLine of cueLines) {
+        const normalizedCueLine = String(cueLine ?? "").trim().toLowerCase();
+        if (!normalizedCueLine) {
+          continue;
+        }
+
+        const groupKey = `${normalizedCueLine}|${subjectPrefix}`;
+        const groupEntry =
+          recoveredCoursesByGroupKey.get(groupKey) ?? {
+            cueLine: normalizedCueLine,
+            subjectPrefix,
+            courseCodes: new Set<string>(),
+          };
+        groupEntry.courseCodes.add(normalizedCourseCode);
+        recoveredCoursesByGroupKey.set(groupKey, groupEntry);
+      }
+    }
+  }
+
+  const recoveredCourseOrder = [...recoveredCoursesByGroupKey.values()]
+    .filter((groupEntry) => groupEntry.courseCodes.size >= MIN_SOURCE_BACKED_SIBLING_CHOICE_RECOVERY_COUNT)
+    .sort((left, right) => {
+      const sizeDelta = right.courseCodes.size - left.courseCodes.size;
+      if (sizeDelta !== 0) {
+        return sizeDelta;
+      }
+      if (left.subjectPrefix !== right.subjectPrefix) {
+        return left.subjectPrefix.localeCompare(right.subjectPrefix);
+      }
+      return left.cueLine.localeCompare(right.cueLine);
+    })
+    .flatMap((groupEntry) =>
+      orderStringsByBase(uniquePlannerStrings([...groupEntry.courseCodes]), [])
+    );
+
+  return uniqueReferenceCourseLabels(recoveredCourseOrder);
+}
+
+function applySiblingChoiceSourceBackedRecovery(
+  courseList: string[],
+  planId: string,
+  pathwayId?: string | null
+) {
+  const normalizedCourseList = uniqueReferenceCourseLabels(courseList);
+  if (normalizedCourseList.length > 0) {
+    return normalizedCourseList;
+  }
+
+  return buildSiblingChoiceSourceBackedRecoveryCourseList(planId, pathwayId);
+}
+
 const SOURCE_BACKED_TRACK_MATCH_COURSES_BY_KEY = new Map<PathwayPlanKey, string[]>();
 for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY) {
   if (!shouldIncludeTrackMatchSourceBackedClassification(classification)) {
@@ -1394,6 +1496,23 @@ function hasUnsafeSourceBackedValidationNote(notes: string[] | null | undefined)
 function hasTrackMatchSafeSourceBackedSkipReason(notes: string[] | null | undefined) {
   return (notes ?? []).some((note) =>
     SOURCE_BACKED_TRACK_MATCH_SAFE_SKIP_REASON_PATTERN.test(String(note ?? ""))
+  );
+}
+
+function hasSiblingOptionSourceBackedSkipReason(notes: string[] | null | undefined) {
+  return (notes ?? []).some((note) =>
+    SOURCE_BACKED_SIBLING_OPTION_SKIP_REASON_PATTERN.test(String(note ?? ""))
+  );
+}
+
+function hasOnlySiblingOptionSourceBackedSkipReason(notes: string[] | null | undefined) {
+  return (
+    hasSiblingOptionSourceBackedSkipReason(notes) &&
+    !(notes ?? []).some(
+      (note) =>
+        SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN.test(String(note ?? "")) &&
+        !SOURCE_BACKED_SIBLING_OPTION_SKIP_REASON_PATTERN.test(String(note ?? ""))
+    )
   );
 }
 
@@ -2620,6 +2739,10 @@ for (const pathway of TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY) {
   PATHWAYS_BY_PLAN.set(pathway.planId, current);
 }
 
+function getRegistryPathwayEntry(planId: string, pathwayId: string) {
+  return PATHWAYS_BY_PLAN.get(planId)?.find((entry) => entry.pathwayId === pathwayId) ?? null;
+}
+
 const PATHWAY_TITLE_SUFFIX_PATTERNS = [
   /\s+degree preparation and admissions$/i,
   /\s+before-enrollment degree head starts$/i,
@@ -2955,10 +3078,23 @@ function buildFallbackPathwayDegreeMapSections(
 
 function buildBootstrapBasePathways(plan: TransferPlannerMajorPlan) {
   if ((plan.pathways ?? []).length > 0) {
-    return (plan.pathways ?? []).map((pathway) => ({
-      ...pathway,
-      label: resolveStructuredPathwayLabel(plan.id, plan.title, pathway.id, pathway.label),
-    }));
+    return (plan.pathways ?? []).map((pathway) => {
+      const registryPathway = getRegistryPathwayEntry(plan.id, pathway.id);
+      return {
+        ...pathway,
+        label: resolveStructuredPathwayLabel(
+          plan.id,
+          plan.title,
+          pathway.id,
+          registryPathway?.label ?? pathway.label
+        ),
+        summary: sanitizePlannerOwnedText(registryPathway?.summary ?? pathway.summary),
+        grcCourseList: uniqueReferenceCourseLabels([
+          ...(registryPathway?.grcCourseList ?? []),
+          ...(pathway.grcCourseList ?? []),
+        ]),
+      };
+    });
   }
 
   return buildRegistryBackedBasePathways(plan.id);
@@ -3098,7 +3234,7 @@ function getStructuredCourseCodesForPlan(
     (scopeKey) => DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
   );
 
-  return orderStringsByBase(
+  const structuredCourseCodes = orderStringsByBase(
     uniquePlannerStrings([
       ...baseCourseOrder,
       ...filteredCodes,
@@ -3108,6 +3244,8 @@ function getStructuredCourseCodesForPlan(
     ]),
     baseCourseOrder
   );
+
+  return applySiblingChoiceSourceBackedRecovery(structuredCourseCodes, planId, pathwayId);
 }
 
 function collectStructuredLinks(
@@ -3218,8 +3356,7 @@ function buildPathway(
 ) {
   const key = makePathwayPlanKey(basePlan.id, basePathway.id);
   const policy = POLICIES_BY_KEY.get(key);
-  const registryPathway =
-    PATHWAYS_BY_PLAN.get(basePlan.id)?.find((entry) => entry.pathwayId === basePathway.id) ?? null;
+  const registryPathway = getRegistryPathwayEntry(basePlan.id, basePathway.id);
   const structuredDegreeMapSections = buildDegreeMapSections(
     basePlan.id,
     basePathway.degreeMapSections,
@@ -3432,7 +3569,7 @@ function buildAutomaticCourseList(
       ])
     : [];
 
-  return orderStringsByBase(
+  const automaticCourseList = orderStringsByBase(
     uniquePlannerStrings([
       ...runtimeRequirementCourseCodes,
       ...scopeKeys.flatMap(
@@ -3447,6 +3584,8 @@ function buildAutomaticCourseList(
     ]),
     []
   );
+
+  return applySiblingChoiceSourceBackedRecovery(automaticCourseList, planId, pathwayId);
 }
 
 function buildStudentVisibleAutomaticCourseList(scope: {
@@ -3465,7 +3604,7 @@ function buildStudentVisibleAutomaticCourseList(scope: {
 function buildAutomaticTrackMatchCourseList(planId: string, pathwayId?: string | null) {
   const scopeKeys = getAutomaticScopeKeys(planId, pathwayId);
 
-  return orderStringsByBase(
+  const automaticTrackMatchCourseList = orderStringsByBase(
     uniquePlannerStrings([
       ...scopeKeys.flatMap(
         (scopeKey) => DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
@@ -3479,18 +3618,35 @@ function buildAutomaticTrackMatchCourseList(planId: string, pathwayId?: string |
     ]),
     []
   );
+
+  return applySiblingChoiceSourceBackedRecovery(
+    automaticTrackMatchCourseList,
+    planId,
+    pathwayId
+  );
 }
 
 function buildTrackMatchSeedCourseList(items: TransferPlannerChecklistItem[]) {
   return uniqueReferenceCourseLabels(
     items.flatMap((item) => {
       const targetCount = Math.max(item.minCompletedCount ?? 0, 1);
+      const alternativeGroups = item.alternatives ?? [];
       if (item.grcCourses.length) {
+        if (item.minCompletedCount == null && alternativeGroups.length === 1) {
+          return uniqueReferenceCourseLabels([
+            ...item.grcCourses,
+            ...alternativeGroups[0],
+          ]);
+        }
+
         return item.grcCourses.slice(0, targetCount);
       }
 
-      const [firstAlternative = []] = item.alternatives ?? [];
-      return firstAlternative.slice(0, targetCount);
+      const [firstAlternative = []] = alternativeGroups;
+      return firstAlternative.slice(
+        0,
+        item.minCompletedCount == null ? firstAlternative.length : targetCount
+      );
     })
   );
 }
@@ -3566,11 +3722,16 @@ function buildStudentRuntimePathway(
   basePathway: TransferPlannerMajorPathway
 ) {
   const trackMetadata = getPathwayScopedTrackMetadata(basePlan, basePathway);
+  const registryPathway = getRegistryPathwayEntry(basePlan.id, basePathway.id);
+  const pathwayCourseSeed = uniqueReferenceCourseLabels([
+    ...(registryPathway?.grcCourseList ?? []),
+    ...(basePathway.grcCourseList ?? []),
+  ]);
   const structuredCourseSeed = getStructuredCourseCodesForPlan(
     basePlan.id,
     uniqueReferenceCourseLabels([
       ...(basePlan.grcCourseList ?? []),
-      ...(basePathway.grcCourseList ?? []),
+      ...pathwayCourseSeed,
     ]),
     basePathway.id
   );

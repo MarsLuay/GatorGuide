@@ -292,6 +292,7 @@ JSIS 396*
 JSIS 480
 JSIS 493 Senior Research 2
 JSIS 497
+JSIS A 202
 JSIS A 207
 JSIS A 301
 JSIS A 323 Inter-American Relations SSc, DIV 5
@@ -556,6 +557,7 @@ Traces the roots of the modern global health movement by examining the history o
 Transnational Latinx Migrations
 TRELIG 461
 Twentieth Century Brazilian Literature in English
+Two Asian Civilization courses chosen from:HSTAS 201, 202, 211; JSIS A 202, 205, 206, 212, 221, 235, 241, 242, 254
 Undergraduate Minors
 Undergraduate Programs
 Unions, Labor, and Civil Rights in California and Pacific Northwest Agriculture

@@ -5,11 +5,6 @@ Title: DESIGN & COURSES (BABA) | Milgard School of Business | University of Wash
 (253) 692-5630
 [Supplemental official source] BA in Business Administration
 &copy; 2026 University of Washington Tacoma
-• Become familiar with human resource management tools such as recruiting, hiring, performance appraisal, and reward systems
-• Learn how to build and work effectively in teams
-• Learn how to motivate people towards common goals
-• Sharpen your interpersonal skills and ability to communicate well with others from diverse backgrounds
-• Understand how to make better decisions, alone and in collaboration with others
 <a href="/business"
 <a href="https://instagram.com/uwtacoma"
 <a href="https://www.facebook.com/uwtacoma"
@@ -28,10 +23,7 @@ Title: DESIGN & COURSES (BABA) | Milgard School of Business | University of Wash
 >Milgard School of Business
 1900 Commerce Street, Tacoma, WA 98402-3100
 25Live
-30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option.
 30 credits of core courses:
-30 credits of upper-division Business courses. Check with program advisors for list of approved courses.
-5 credits TBUS 400 Business Policy and Strategic Management
 5 Major Options to Choose
 8 Centers of Excellence
 A Message from the Dean
@@ -44,6 +36,8 @@ Academic Programs
 ACADEMICS
 Accessibility |
 ACCOUNTING
+Accounting curriculum
+Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment.
 Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment. The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become Certified Public Accountants (CPA). Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education.
 Accounting Hub
 Acknowledgement
@@ -52,13 +46,17 @@ Administration
 Admission
 Admissions
 alt="Block W - Link to UW Tacoma homepage"/>
+alt="Design & Courses BABA">
 alt="University of Washington Tacoma"/>
 alt="UW Students">
 Alumni
 Apply
 APPLY NOW FOR AUTUMN 2026
 aria-label="University of Washington Tacoma Homepage">
+arrow_back_ios
+arrow_forward_ios
 At the Milgard School of Business, we believe business has the power to transform lives and communities to positively impact societal change. Our undergraduate program focuses on cultivating compassionate leaders who better the world one step at a time and inspire change and lifelong learning. We offer an undergraduate degree program in Business Administration, with options in Accounting, Finance, Management, Marketing or General Business. This degree program is designed to prepare students for entry into professional positions in business and government. The curriculum emphasizes critical learning outcomes needed to succeed in the business environment of the 21st century.
+Auditing financial statements using GAAP
 BA in Business Administration
 BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA)
 BACHELOR OF ARTS IN BUSINESS ADMINISTRATION (BABA) | Milgard School of Business | University of Washington Tacoma
@@ -92,8 +90,9 @@ Contact us |
 Design & Courses
 Direct Admission (First-year students)
 Directory
+Distinction of Excellence
 Distinction of Excellence Program
-Elective credits to bring total to 180
+Elective courses provide extensive studies in corporate and non-profit accounting, forensic accounting, and taxation.
 Entrepreneurship Center
 Equity & Inclusion
 Events
@@ -106,16 +105,14 @@ Faculty Research
 FINANCE
 Financial Aid
 Foundations of Data Analytics
+Gathering and using cost data for planning and control decisions
 GENERAL BUSINESS
-General Business curriculum
-General Business graduates are prepared for employment opportunities in finance, marketing, public relations, sales, management, human resources, and more.
-Go to Top
 Graduate Advising
 Graduate Programs
 height="0"
 Housing
-How do you manage and be managed in the 21st century? The Management option enhances your ability to get work done with and through other people in a variety of workplaces. Whether you are managing a project team, a small group of customer service representatives, a large accounting department, your own start-up, or a family-run restaurant, all managerial positions require a common set of skills. This program is designed to equip you with exactly those skills and prepare you to meet the managerial responsibilities and challenges of the 21st century.
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2023-09/52395808453_cbe0a46af2_k-min.jpg 600w"
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2023-09/52662133705_0fc4a7bb8a_k.jpg 600w"
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2023-09/52395808453_cbe0a46af2_k-min.jpg 980w,
 IBC Advisory Council
 Inclusion, Belonging, and Community
@@ -144,6 +141,7 @@ Master of Business Administration (MBA)
 Master of Cybersecurity and Leadership (MCL)
 Master of Science in Accounting (MSAcc)
 Master of Science in Business Analytics (MSBA)
+Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education. MSAcc students learn advanced technical and analytical skills, and take specialized courses in leadership, forensic, cost, tax and audit.
 Milgard Commemorative Book
 Milgard Executive Council
 Milgard School of Business
@@ -156,13 +154,14 @@ MyUW
 Non-matriculated Accounting
 Office Hours:
 Office365
-Once accepted into the Business School, general business students must complete the following courses for graduation.
+Once accepted into the Business School, accounting students must complete the following courses for graduation.
 Over $450,000 in Scholarships Annually
 Panopto
 Parking & transportation
 Prepare for success in the world of business with us
 Privacy |
 Puyallup Tribe of Indians
+Recording and reporting of financial data under generally accepted accounting principles (GAAP)
 Research
 Resources & Alumni Engagement
 Review Milgard School of Business course descriptions .
@@ -176,7 +175,7 @@ Skip to main content
 Small Class Size
 Sound Credit Union
 South Sound Business
-Specifically, through a variety of different courses, you will:
+Specific areas covered within the MSB accounting option include:
 Sports Enterprise Management
 src="/sites/default/files/sites/uwtd8main/W.svg"
 src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
@@ -190,16 +189,14 @@ style="display:none;
 Success Conference
 TBUS 300 Managing Organizations
 TBUS 301 Quantitative Methods
-TBUS 310 Effective Managerial Communication
-TBUS 320 Introduction to Marketing Management
-TBUS 330 Introduction to Information Technology
-TBUS 350 Business Finance
 Teaching and Learning Center
 Terms of Use |
 The General Business option is designed for the student interested in a broad perspective that draws from multiple disciplines. Combining courses from management, marketing, economics, finance, and business data analytics you have flexibility in course selection allowing you to customize your skill set. Upon completing this option, you will be prepared to do anything from running your own business, to leading in a large organization where your expertise will provide support for cross-functional projects and teams.
+The importance of accounting information systems
 The Management option enhances your ability to get work done with and through other people in a variety of workplaces. This program is designed to equip you with leadership skills and prepare you to meet the managerial responsibilities and challenges of the 21st century more effectively.
 The Milgard School of Business at UWT can open the world of finance for you and, thereby, the world itself. Whether you are managing your own money or other peoples, whether you are running your own business or involved with the financial affairs of a corporation, whether you work at a bank or the loan department of a car dealership, a comprehensive understanding of finance together with the ability to apply it in your decision making is critical to your future wellbeing.
 The Milgard School of Business offers one major-Business Administration. Your diploma will say Bachelor of Arts Business Administration. Students chose one of five study options: Accounting, Finance, General Business, Management, or Marketing. The formal study option is noted on the transcript, for example, an accounting graduate's transcript will say Bachelor of Arts Business Administration (Accounting). Business students may only have one transcripted option.
+The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become Certified Public Accountants (CPA).
 title="Follow UW Tacoma on Facebook">
 title="Follow UW Tacoma on Instagram">
 title="Follow UW Tacoma on Linkedin">
@@ -214,15 +211,15 @@ Undergraduate Enrollment Request Form
 Undergraduate Internship Policies and Forms
 Undergraduate Minors
 Undergraduate Programs
+Understanding tax law and its effect on business decisions
+Understanding the composition of consolidated financial statements
 University YMCA Student Center
-Upon completing this option, you will be prepared to do anything from running your own business, to leading in a large organization where your expertise will provide support for cross-functional projects and teams.
 UW Gmail
 UW Seattle | UW
 UW Tacoma finance student wins 2026 Investment Challenge with groundbreaking AI investment model
 UW Tacoma Lands in the Top 3 for MICCSR 2026
 UWNetID login
 visibility:hidden">
-Want to get a degree in business, but have flexibility to mix and match courses from a variety of business disciplines? The General Business option is for you! Combining courses from management, marketing, economics, finance, and business data analytics you have flexibility in course selection allowing you to customize your skill set. The General Business option is designed for the student interested in a broad perspective that draws from multiple disciplines.
 Why Milgard?
 width="0"
 Workday

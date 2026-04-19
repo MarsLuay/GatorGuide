@@ -2,9 +2,15 @@ Owner: uw-bothell-business-administration-leadership-and-strategic-innovation:pa
 Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
 Title: Leadership & Strategic Innovation Option - School of Business
 
+[Supplemental official source] Accounting Option
 [Supplemental official source] Curriculum
+[Supplemental official source] Entrepreneurship Concentration
+[Supplemental official source] Finance Option and Concentration
 [Supplemental official source] Prerequisite Courses
 [Supplemental official source] Prerequisites
+[Supplemental official source] Supplemental official track and option pages
+**Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
+*Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
 &#124;
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
@@ -13,29 +19,42 @@ Title: Leadership & Strategic Innovation Option - School of Business
 18807 Beardslee Blvd, Suite 210
 425.352.5000
 425.352.5394
+60 Credits
 90 credits
+90 Credits
 About
 Accessibility
+Accounting certification preparation
 Accounting Option
 Admissions
 Advisory boards
+After completing the two-year Accounting Option, students are eligible to take the Certified Management Accountant (CMA) exam . Students who wish to become a Certified Public Accountant (CPA) , however, should plan on spending three years in the program. To take the CPA exam, a student needs a minimum of 225 quarter hours or five years of college (a master degree is not required).
 All UW Bothell
 Alumni
 Apply As Undergraduate
 Awards
 B BUS 402 – Managing Work Teams
+B BUS 402 Managing Work Teams
+B BUS 427 Entrepreneurial Marketing (320)
 B BUS 441 – Business Project Management (340)
 B BUS 443 – Entrepreneurship Seminar
+B BUS 443 Entrepreneurship Seminar
 B BUS 444 – Product Development Lab
+B BUS 444 Product Development Lab
+B BUS 456 Entrepreneurial Finance (350)
 B BUS 460 – Sustainable Business
 B BUS 461 – Business, Government, and Society ( 300, 310 )
 B BUS 462 – Negotiations and Conflict Management (300, 320)
+B BUS 464 New Product Marketing (320)
 B BUS 471 – Entrepreneurial Management
+B BUS 471 Entrepreneurial Management
 B BUS 472 – Managing Employees (300)
 B BUS 473 – Leadership and Decision Making ( 300 )
 B BUS 475 – Managing Innovation
 B BUS 476 – New Technology and Future Markets (320, 350)
+B BUS 476 New Technology & Future Markets (300, 320, 350)
 B BUS 477 – Human Resource Management (300)
+B BUS 478 Venture Startup, Management & Growth
 B BUS 479 – Special Topics in Management (300)
 B BUS 491 – Business Consulting
 Bachelor in Business Administration
@@ -43,10 +62,20 @@ Bachelor in Economics
 Bachelor of Business Administration
 BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
 BBUS 307 – Business Writing, Writing Designated Course
+BBUS 310 – Managerial Economics (BMATH 144, or STMATH 124, or MATH 112)
 BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
 BBUS 320 – Marketing Management
 BBUS 340 – Operations & Project Management
 BBUS 350 – Business Finance (310)
+BBUS 361 – Intermediate Accounting I
+BBUS 373 – Cost Accounting
+BBUS 451 – Financial Policy & Planning
+BBUS 451 – Financial Policy and Practice (350)
+BBUS 452 – Financial Modeling (350)
+BBUS 453 – Financial Institutions & Markets
+BBUS 453 – Financial Institutions and Markets (350)
+BBUS 454 – Investments
+BBUS 454 – Investments (350)
 BBUS 470 – Business Policy & Strategic Management
 BBUS 476 – New Technology and Future Markets (300, 320, 350)
 BBUS 477 – Human Resource Management (300)
@@ -62,9 +91,11 @@ Campus Safety
 Canvas
 Capstone Courses
 Certificate in Accounting
+Choose two courses (10 credits) from the following:
 Close mobile menu
 Commuter Services
 Complete one of the following:
+Concentration Courses
 Contact
 Contact Us
 Contact us by phone at:
@@ -80,6 +111,8 @@ Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
 Entrepreneurship Concentration
+Entrepreneurship Concentration - School of Business
+Entrepreneurship curriculum
 Ethics Conference
 Events
 Executive Education
@@ -94,6 +127,7 @@ Graduate
 height="0" width="0" style="display:none;visibility:hidden">
 How to apply
 Human Resources
+In addition to public accounting, the Accounting Option will thoroughly prepare students for careers in private, government and non-profit accounting. The curriculum is designed to enable graduates to fill a number of corporate positions such as internal auditor, managerial accountant and tax accountant. Graduates will also be prepared to serve in government positions such as tax examiner, budget analyst and government auditor. You can get more information from the Washington Society of Certified Public Accountants .
 In this section
 Independent Study Projects
 Information Technology
@@ -125,6 +159,7 @@ MyUW
 News
 Open mobile menu
 Opportunities
+Option Courses
 People
 PharmD-MBA Program
 Policies & Petitions
@@ -135,8 +170,13 @@ Professional Coaching
 Promotion and Tenure Guidelines
 Quick Links
 Related Links
+Required Capstone Courses
+Required Courses (prerequisites in parentheses)
+Required Electives
+Required Entrepreneurship Courses (prerequisites in parentheses)
 Required LSI Courses (prerequisites in parentheses)
 Requirements to declare the option
+Requirements to declare the Option or the Concentration
 Retail Management Concentration
 Ron Tilden Accounting Scholarship
 Rules Docket
@@ -147,12 +187,17 @@ Search keywords
 Seattle Campus
 Skip To Content
 Staff
+Students in the Entrepreneurship concentration must complete the following courses for graduation.
+Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
 Students in the Leadership & Strategic Innovation option must complete the following courses for graduation.
+Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
 Students wanting to declare the LSI Option must complete BBUS 300 and BBUS 307 with a minimum grade of 3.0 in each course.
 Supply Chain Management Option
 Tacoma Campus
 Technology & Innovation Management (TIM) Concentration
 Terms
+The Entrepreneurship Concentration prepares students to start their own companies, whether they be tech startups, local shops, or professional services. Students learn by developing actual startup ideas on real startup teams. They spot new business opportunities and create value propositions, which align products or services with customer needs. And they develop strategies and business models for their startups. The concentration prepares students (if interested) to compete in UW&#8217;s Dempsey Startup Competition or to apply to the Buerk Accelerator Program .
+The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
 The Leadership & Strategic Innovation (LSI) option will engage students in a rigorous study of leadership, strategy, and innovation. You will graduate ready to lead teams, manage innovation, and inspire employees. LSI graduates can go on to become project leads, managers, consultants, business development leads, HR analysts, market analysts, sales managers, entrepreneurs, and much more.
 Time Schedule
 Total Credits
@@ -171,5 +216,7 @@ uwbbusiness@uw.edu
 Vision, Mission & Values
 Visitors
 Why hire a business student?
+Why study Entrepreneurship?
+Why study finance?
 Why study Leadership & Strategic Innovation?
 Workday Login

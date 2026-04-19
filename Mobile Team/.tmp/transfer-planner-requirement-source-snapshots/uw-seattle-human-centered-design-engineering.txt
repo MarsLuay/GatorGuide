@@ -9,6 +9,7 @@ Title: Degree Requirements: Autumn 2024 Onwards | Human Centered Design & Engine
 [Supplemental official source] HCDE planned undergraduate course schedule
 [Supplemental official source] special topics course descriptions
 [Supplemental official source] Undergraduate Curriculum Changes FAQs
+[Supplemental official source] Undergraduate students
 * Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
 * Effective Autumn 2024, HCDE 318 and HCDE 300 have been replaced with the new 2-course foundations sequence, HCDE 302 and HCDE 303.
 *Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
@@ -82,6 +83,7 @@ Additional Links
 Adjunct & affiliate faculty
 Admission requirements
 Admissions
+Advising
 All courses taken for the HCDE Natural Sciences requirements must come from the HCDE-specific mathematics, statistics, and sciences course lists .
 Although most of the other changes to our requirements for graduation from the HCDE major will primarily impact courses not taken until after a student has entered the HCDE program, we have also made some changes to the courses that can apply to our math, statistics, science, and engineering fundamentals requirements. Prospective HCDE students who are getting started on these requirements can refer to the course lists linked from the HCDE BS degree requirements for students admitted Autumn 2024 onwards for more information.
 Alumni & industry events calendar
@@ -156,6 +158,7 @@ BIOL 250
 Bringing ideas to actualization through expertise in design strategy and processes, effective communication and collaboration skills, and ethical perspectives.
 Calendar
 Capstone Showcase
+Career Center @ Engineering
 Careers
 Careers & internships
 CEE 220
@@ -181,10 +184,12 @@ Core & Elective Courses
 Core & Elective Courses (82 credits)
 Corporate & foundation relations
 Course descriptions
+Course Descriptions
 Course descriptions are available here .
 Course is open to students who have completed both HCDE 318 and HCDE 300.
 Course is open to students who have completed either HCDE 303 or both HCDE 318 and HCDE 300.
 Course schedule
+Course Schedule
 Course schedule | Human Centered Design & Engineering
 Course Substitution Petition
 Courses that count toward these requirements are identified as A&H, SSc, and DIV in the quarterly Time Schedule and in the UW Catalogue.
@@ -210,6 +215,7 @@ CSE 373 : Data Structures and Algorithms (4)
 CSE 374 : Intermediate Programming Concepts and Tools (3)
 CSE 414 : Introduction to Database Systems (4)
 CSE 416 : Introduction to Machine Learning (4)
+Current and prospective HCDE undergraduate students are encouraged to schedule an appointment with an adviser to discuss admission, graduation, and degree planning. Find advising contact information .
 Current and upcoming courses for students enrolled in the Human Centered Design & Engineering undergraduate program are indicated with an "X" below.
 Current students
 Curriculum
@@ -223,6 +229,7 @@ data-toggle="collapse" data-target="#main-menu-5"
 data-toggle="collapse" data-target="#main-menu-6"
 data-toggle="collapse" data-target="#main-menu-7"
 Degree requirements
+Degree Requirements
 Degree requirements | Human Centered Design & Engineering
 Degree Requirements: After Autumn 2024
 Degree Requirements: Autumn 2024 Onwards
@@ -251,6 +258,7 @@ Employment opportunities
 Engineering Electives (15 credits)
 Engineering Fundamentals
 Engineering Fundamentals (12 credits)
+Engineering Internship Program
 English Composition: 5 credits from the University list .
 ENGR 115 : Engineering Transformation of Health (3)
 ENGR 321 - Internship
@@ -287,6 +295,7 @@ Graduate Certificate in Human Centered Artificial Intelligence
 Graduate Certificate in User Centered Design
 Graduating
 Graduation ceremony
+Handshake
 HCDE 300
 HCDE 301
 HCDE 302 : Foundations of Human Centered Design I (5)
@@ -344,6 +353,7 @@ HCDE 498 : Advanced Special Topics (variable credits) See special topics course 
 HCDE 498 (up to 10 credits)
 HCDE 498A - Advanced Special Topics
 HCDE 499 : Individual Research (variable credits)
+HCDE Career and Internship Resources
 HCDE continuously reviews the undergraduate curriculum to identify areas of success and opportunities that will enhance student learning. These program changes are the result of a 3-year comprehensive review that included faculty, staff, and students. An additional motivation for the changes is to bring the program into compliance with the General Engineering Degree requirements specified by ABET.
 HCDE Core Courses
 HCDE Core Courses (41 credits)
@@ -385,6 +395,8 @@ IND E 315
 Industry & alumni
 Information sessions
 Internal Resources
+Internships
+Internships allow students to practice and grow their skills in a professional setting. ENGR 321 credits can apply towards the HCDE experiential learning requirement. Students may search for internships by using the following resources:
 Investigate how human centered design approaches might change entrepreneurship practices in specific ways; we will tie these changes to HCDE theories and methods.
 Investigating people and systems , using quantitative and qualitative methods, to identify opportunities for new systems and strengths and weaknesses of existing systems.
 ISC/Workday
@@ -462,6 +474,9 @@ Research areas
 Research labs and centers
 Research scientists
 Research updates
+Resources & policies
+Resources for all HCDE students
+Resources for all UW students
 Schedule an appointment
 Schedule Appointment
 Scholarships & funding
@@ -488,6 +503,7 @@ Students
 Students applying to HCDE for Autumn 2025 may still use these courses to meet admission prerequisites; however, if they have not yet taken these courses, we would encourage them to select other courses from the HCDE admission prerequisite list.
 Students are encouraged to use MyPlan and DARS * for degree planning and for tracking their progress through the HCDE major requirements. Students can also refer to the HCDE planned undergraduate course schedule for information regarding HCDE course scheduling in the upcoming year.
 Students are encouraged to use UW's MyPlan to plan their schedule. Current and prospective HCDE students may also run a DARS report through MyUW to track their progress. Students interested in substituting a course required by HCDE curriculum with another must fill out the form linked below .
+Students enrolled in the Bachelor of Science in Human Centered Design & Engineering complete 180 credits to graduate, including general education courses, engineering fundamentals, experiential learning, core courses, major electives, and additional free electives.
 Students in the HCDE degree program participate in student activities such as the HCDE Student Association , Women Engineers Rise (WE Rise) , HuskyADAPT , UX @ UW , and many more .
 Students in the Human Centered Design & Engineering Bachelor of Science program learn engineering principles rooted in a broad range of disciplines to investigate the interaction of people with technology and technical development.
 Students must complete 4 credits from the following list. Credits received from HCDE 499, INFO 497, or ENGR 498/ENGR 490 credits associated with the Emerging Leaders in Engineering (ELE) Program may also be considered for this requirement via course substitution petition (see below).
@@ -536,7 +552,9 @@ Topic: Service Design
 Tuition & financial aid
 Undergraduate curriculum changes FAQs
 Undergraduate curriculum changes FAQs | Human Centered Design & Engineering
+Undergraduate student policies
 Undergraduate students
+Undergraduate students | Human Centered Design & Engineering
 University of Washington
 Updates to the HCDE math statistics, science, and engineering fundamentals course lists
 Use this form to request to count a course not listed above towards an HCDE degree requirement (login with UWNetID required). Substitutions will not be approved for general education requirements or other degree requirements not included in this form.

@@ -216,8 +216,16 @@ const NOISY_SUPPLEMENTAL_HTML_LINK_LABEL_PATTERN =
   /\b(apply|canvas|calendar|directory|map|myuw|library|tools|about|news|faculty|staff|contact|privacy|accessibility|terms|alumni|events|parking|transportation|research|housing|student life|jobs|visit|give|get involved|post graduation|minor|certificate|graduate|scholarships?|course lists?|course evaluations?|capstone courses?|study abroad|policy(?:\s*&\s*|\s+and\s+)procedures|suggested course pathways?)\b/i;
 const NON_STUDENT_FACING_REQUIREMENT_HINT_PATTERN =
   /\b(suggested general education|not required for transferring|highly recommended courses?|other recommended courses?|approved list|study abroad|capstone courses?|course evaluations?|course lists?|policy(?:\s*&\s*|\s+and\s+)procedures|graduate school|graduate programs?)\b/i;
+const LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN =
+  /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
+const GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN =
+  /\b(graduate|ph\.?\s*d\.?|doctor(?:al|ate)?|m\.?\s*a\.?|master(?:'s)?)\b|\/(?:ma|phd|graduate)(?:[-/]|$)/i;
+const TRACK_CATALOG_SUPPLEMENTAL_SOURCE_PATTERN =
+  /\b(course(?:s)? by track|courses-track|list of geography courses by track|suggested course pathways?)\b/i;
+const HTML_SECTION_BOUNDARY_LINE_PATTERN =
+  /^(?:Program of Study:|Bachelor\b|Minor\b|Master\b|Doctor\b|Undergraduate Programs\b|Graduate Programs\b|Back to Top\b)/i;
 const REQUIREMENT_FRIENDLY_HINT_PATTERN =
-  /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence)\b/i;
+  /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence|prior to the start of|before the start of|continuation requirements?)\b/i;
 const CROSS_MAJOR_SCOPE_PATTERN =
   /\b(?:if|for|required for)\s+([a-z][a-z&/,\- ]+?)\s+major\b/i;
 const CAMPUS_ORDER = ["uw-seattle", "uw-bothell", "uw-tacoma"];
@@ -375,6 +383,19 @@ function stripHtml(value) {
 
 function uniqueSorted(values) {
   return Array.from(new Set(values.filter(Boolean))).sort((left, right) => left.localeCompare(right));
+}
+
+function uniqueInOrder(values) {
+  const seen = new Set();
+  const uniqueValues = [];
+  for (const value of values ?? []) {
+    if (!value || seen.has(value)) {
+      continue;
+    }
+    seen.add(value);
+    uniqueValues.push(value);
+  }
+  return uniqueValues;
 }
 
 function normalizeUrlForComparison(value) {
@@ -906,6 +927,131 @@ function getTitleScopeTokens(entry) {
   ).slice(0, 8);
 }
 
+function getOwnerSearchableText(entry) {
+  return normalizeMatcherText(
+    `${entry.ownerTitle ?? ""} ${entry.label ?? ""} ${entry.sourceLabel ?? ""}`
+  );
+}
+
+function getBaseRouteOwnerAliasTokens(entry) {
+  const ownerSearchableText = getOwnerSearchableText(entry);
+  if (
+    !ownerSearchableText ||
+    !/\b(standard|default|base)\b/.test(ownerSearchableText) ||
+    !/\b(route|pathway|option)\b/.test(ownerSearchableText)
+  ) {
+    return [];
+  }
+
+  return getTitleScopeTokens(entry).filter(
+    (token) => !["base", "default", "option", "pathway", "route", "standard"].includes(token)
+  );
+}
+
+function lineIntroducesDifferentOwnerDescriptor(entry, normalizedLine) {
+  const ownerSearchableText = getOwnerSearchableText(entry);
+  if (!ownerSearchableText) {
+    return false;
+  }
+
+  if (
+    (entry.ownerType === "major" || entry.ownerType === "pathway") &&
+    /\b(minor|master|doctor|graduate)\b/.test(normalizedLine)
+  ) {
+    return true;
+  }
+
+  if (/\bdata science\b/.test(normalizedLine) && !ownerSearchableText.includes("data science")) {
+    return true;
+  }
+
+  const descriptorMatch = normalizedLine.match(/:\s*([a-z0-9][a-z0-9 -]{0,80})$/);
+  const descriptor = normalizeMatcherText(descriptorMatch?.[1] ?? "");
+  if (
+    descriptor &&
+    /\b(data science|track|option|route|pathway|concentration|specialization)\b/.test(
+      descriptor
+    ) &&
+    !ownerSearchableText.includes(descriptor)
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
+function isLikelyOwnerHtmlSectionStartLine(entry, line) {
+  const normalizedLine = normalizeMatcherText(line);
+  if (!normalizedLine || !HTML_SECTION_BOUNDARY_LINE_PATTERN.test(normalizeWhitespace(line))) {
+    return false;
+  }
+  if (lineIntroducesDifferentOwnerDescriptor(entry, normalizedLine)) {
+    return false;
+  }
+
+  const titleTokens = getTitleScopeTokens(entry);
+  if (!titleTokens.length) {
+    return false;
+  }
+
+  const exactTitle = normalizeMatcherText(entry.ownerTitle ?? "");
+  const tokenMatches = titleTokens.filter((token) => normalizedLine.includes(token)).length;
+  const minimumTokenMatches = Math.max(1, Math.min(2, titleTokens.length));
+
+  return Boolean(
+    (exactTitle && normalizedLine.includes(exactTitle)) || tokenMatches >= minimumTokenMatches
+  );
+}
+
+function findOwnerHtmlSectionRange(entry, lines, anchorIndex) {
+  const backwardLimit = Math.max(0, anchorIndex - 80);
+  let sectionStartIndex = null;
+
+  for (let index = anchorIndex; index >= backwardLimit; index -= 1) {
+    const line = normalizeWhitespace(lines[index]);
+    if (!line) {
+      continue;
+    }
+    if (isLikelyOwnerHtmlSectionStartLine(entry, line)) {
+      sectionStartIndex = index;
+      break;
+    }
+    if (/^Back to Top\b/i.test(line)) {
+      break;
+    }
+  }
+
+  if (sectionStartIndex === null) {
+    return null;
+  }
+
+  let sectionEndIndex = Math.min(lines.length - 1, sectionStartIndex + 80);
+  const forwardLimit = Math.min(lines.length - 1, sectionStartIndex + 220);
+
+  for (let index = sectionStartIndex + 1; index <= forwardLimit; index += 1) {
+    const line = normalizeWhitespace(lines[index]);
+    if (!line) {
+      continue;
+    }
+    if (/^Back to Top\b/i.test(line)) {
+      sectionEndIndex = Math.max(sectionStartIndex, index - 1);
+      break;
+    }
+    if (
+      HTML_SECTION_BOUNDARY_LINE_PATTERN.test(line) &&
+      !isLikelyOwnerHtmlSectionStartLine(entry, line)
+    ) {
+      sectionEndIndex = Math.max(sectionStartIndex, index - 1);
+      break;
+    }
+  }
+
+  return {
+    startIndex: Math.max(0, sectionStartIndex - 2),
+    endIndex: Math.max(sectionStartIndex, sectionEndIndex),
+  };
+}
+
 function buildPdfPageLineTexts(textContent) {
   const positionedItems = (textContent?.items ?? [])
     .map((item) => {
@@ -1018,6 +1164,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
     return lines;
   }
 
+  const useOwnerSectionScoping = isLegacyStudentCatalogSource(entry);
   const exactTitle = normalizeMatcherText(entry.ownerTitle ?? "");
   const normalizedHeadings = new Set((headings ?? []).map((heading) => normalizeWhitespace(heading)));
   const scoredLineIndexes = lines
@@ -1028,6 +1175,14 @@ function scopeHtmlLines(entry, title, headings, lines) {
         const tokenScore = titleTokens.filter((token) => normalizedLine.includes(token)).length;
         const exactTitleScore = exactTitle && normalizedLine.includes(exactTitle) ? 10 : 0;
         const headingScore = normalizedHeadings.has(line) ? 2 : 0;
+        const ownerSectionStartBonus =
+          useOwnerSectionScoping && isLikelyOwnerHtmlSectionStartLine(entry, line) ? 10 : 0;
+        const otherSectionBoundaryPenalty =
+          useOwnerSectionScoping &&
+          HTML_SECTION_BOUNDARY_LINE_PATTERN.test(line) &&
+          !isLikelyOwnerHtmlSectionStartLine(entry, line)
+            ? 4
+            : 0;
         const requirementSignalScore =
           (
             normalizedLine.match(
@@ -1036,7 +1191,15 @@ function scopeHtmlLines(entry, title, headings, lines) {
           ).length;
         const transferNoisePenalty = TRANSFER_CREDIT_NOISE_PATTERN.test(line) ? 8 : 0;
 
-        return exactTitleScore + tokenScore * 2 + headingScore + requirementSignalScore - transferNoisePenalty;
+        return (
+          exactTitleScore +
+          tokenScore * 2 +
+          headingScore +
+          ownerSectionStartBonus +
+          requirementSignalScore -
+          otherSectionBoundaryPenalty -
+          transferNoisePenalty
+        );
       })(),
     }))
     .filter((entryScore) => entryScore.score > 0)
@@ -1060,8 +1223,15 @@ function scopeHtmlLines(entry, title, headings, lines) {
     return lines;
   }
 
-  const startIndex = Math.max(0, Math.min(...matchingIndexes) - 6);
-  const endIndex = Math.min(lines.length - 1, Math.max(...matchingIndexes) + 24);
+  const ownerSectionRange = useOwnerSectionScoping
+    ? findOwnerHtmlSectionRange(entry, lines, bestLineIndex)
+    : null;
+  const startIndex = ownerSectionRange
+    ? ownerSectionRange.startIndex
+    : Math.max(0, Math.min(...matchingIndexes) - 6);
+  const endIndex = ownerSectionRange
+    ? ownerSectionRange.endIndex
+    : Math.min(lines.length - 1, Math.max(...matchingIndexes) + 24);
   const scopedLines = lines.slice(startIndex, endIndex + 1);
 
   if (scopedLines.length < 12 && title) {
@@ -1652,6 +1822,60 @@ function buildHtmlParsedResult(entry, title, headings, lines) {
   };
 }
 
+function getParsedCourseSubjects(parsed) {
+  return uniqueSorted(
+    (parsed.courseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode).match(/^([A-Z& ]+)\s+\d/))
+      .map((match) => match?.[1] ?? null)
+      .filter(Boolean)
+  );
+}
+
+function getCourseCodeSubject(courseCode) {
+  return normalizeCourseCode(courseCode).match(/^([A-Z& ]+)\s+\d/)?.[1] ?? null;
+}
+
+function buildFocusedScopedHtmlOverflowParsed(fullParsed, scopedParsed) {
+  const scopedSubjectSet = new Set(getParsedCourseSubjects(scopedParsed));
+  if (!scopedSubjectSet.size) {
+    return scopedParsed;
+  }
+
+  const safeOverflowCourseCodes = uniqueSorted(
+    (fullParsed.courseCodes ?? []).filter((courseCode) => {
+      if ((scopedParsed.courseCodes ?? []).includes(courseCode)) {
+        return false;
+      }
+      const level = getCourseCodeNumericLevel(courseCode);
+      if (level === null || level >= 300) {
+        return false;
+      }
+      const subject = getCourseCodeSubject(courseCode);
+      return Boolean(subject) && scopedSubjectSet.has(subject);
+    })
+  );
+
+  if (!safeOverflowCourseCodes.length) {
+    return scopedParsed;
+  }
+
+  const safeOverflowCodeSet = new Set(safeOverflowCourseCodes);
+  const safeOverflowSnapshotLines = (fullParsed.snapshotLines ?? []).filter((line) =>
+    extractCourseCodesFromLine(line).some((courseCode) =>
+      safeOverflowCodeSet.has(normalizeCourseCode(courseCode))
+    )
+  );
+
+  return {
+    ...scopedParsed,
+    courseCodes: uniqueSorted([...(scopedParsed.courseCodes ?? []), ...safeOverflowCourseCodes]),
+    snapshotLines: uniqueInOrder([
+      ...(scopedParsed.snapshotLines ?? []),
+      ...safeOverflowSnapshotLines,
+    ]),
+  };
+}
+
 function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
   if (!scopedParsed) {
     return fullParsed;
@@ -1661,17 +1885,33 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
   const scopedAlignment = getParsedOwnerAlignmentScore(entry, scopedParsed);
   const fullCourseCount = fullParsed.courseCodes?.length ?? 0;
   const scopedCourseCount = scopedParsed.courseCodes?.length ?? 0;
+  const fullSubjects = getParsedCourseSubjects(fullParsed);
+  const scopedSubjects = getParsedCourseSubjects(scopedParsed);
+  const enrichedScopedParsed =
+    !isLegacyStudentCatalogSource(entry) &&
+    ["html-degree-page", "html-curriculum-page"].includes(entry.parserType)
+      ? buildFocusedScopedHtmlOverflowParsed(fullParsed, scopedParsed)
+      : scopedParsed;
 
   if (fullAlignment < 2 && scopedAlignment >= 2) {
-    return scopedParsed;
+    return enrichedScopedParsed;
   }
 
   if (scopedAlignment >= fullAlignment + 1 && scopedCourseCount >= Math.max(2, Math.floor(fullCourseCount * 0.25))) {
-    return scopedParsed;
+    return enrichedScopedParsed;
   }
 
   if (fullCourseCount >= 80 && scopedAlignment >= fullAlignment && scopedCourseCount >= 4) {
-    return scopedParsed;
+    return enrichedScopedParsed;
+  }
+
+  if (
+    scopedAlignment >= fullAlignment &&
+    scopedCourseCount >= 2 &&
+    scopedSubjects.length > 0 &&
+    fullSubjects.length >= scopedSubjects.length + 2
+  ) {
+    return enrichedScopedParsed;
   }
 
   return fullParsed;
@@ -1947,6 +2187,33 @@ function mergeParsedSources(baseParsed, supplementalSources, parserType) {
     };
 }
 
+function getCourseCodeNumericLevel(courseCode) {
+  const match = normalizeCourseCode(courseCode).match(/\b(\d{3})[A-Z]?$/);
+  return match?.[1] ? Number.parseInt(match[1], 10) : null;
+}
+
+function isTrackCatalogSupplementalHtmlCandidate(candidate) {
+  return TRACK_CATALOG_SUPPLEMENTAL_SOURCE_PATTERN.test(
+    `${candidate?.label ?? ""} ${candidate?.url ?? ""}`
+  );
+}
+
+function filterParsedSupplementalHtmlCandidateCourses(candidate, parsed) {
+  if (!isTrackCatalogSupplementalHtmlCandidate(candidate)) {
+    return parsed;
+  }
+
+  return {
+    ...parsed,
+    courseCodes: uniqueSorted(
+      (parsed.courseCodes ?? []).filter((courseCode) => {
+        const level = getCourseCodeNumericLevel(courseCode);
+        return level !== null && level < 500;
+      })
+    ),
+  };
+}
+
 function extractSupplementalHtmlLinkCandidates(entry, html) {
   const baseUrl = normalizeUrlForComparison(entry.url);
   if (!baseUrl) {
@@ -1984,6 +2251,9 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
     }
 
     const linkText = `${label} ${resolvedUrl}`;
+    if (GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(linkText)) {
+      continue;
+    }
     const highSignal = HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
     const specializationSignal = SPECIALIZATION_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
     const degreeProgramSignal = LOW_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
@@ -2149,7 +2419,7 @@ async function parseSupplementalHtmlSources(entry, html, timeoutMs, visitedUrls)
     }
 
     try {
-      const parsed = await parseHtmlSource(
+      const rawParsed = await parseHtmlSource(
         {
           ...entry,
           url: candidate.url,
@@ -2161,6 +2431,7 @@ async function parseSupplementalHtmlSources(entry, html, timeoutMs, visitedUrls)
           visitedUrls: new Set([...visitedUrls, candidate.url]),
         }
       );
+      const parsed = filterParsedSupplementalHtmlCandidateCourses(candidate, rawParsed);
 
       if (!hasMeaningfulParsedContent(parsed)) {
         continue;
@@ -2345,7 +2616,19 @@ function getParsedOwnerAlignmentScore(entry, parsed) {
     return 10;
   }
 
-  return getTitleScopeTokens(entry).filter((token) => sampledText.includes(token)).length;
+  const tokenMatches = getTitleScopeTokens(entry).filter((token) => sampledText.includes(token))
+    .length;
+  const baseRouteAliasTokens = getBaseRouteOwnerAliasTokens(entry);
+  if (
+    tokenMatches < 2 &&
+    baseRouteAliasTokens.length > 0 &&
+    baseRouteAliasTokens.every((token) => sampledText.includes(token)) &&
+    /\b(bachelor|major|b a)\b/.test(sampledText)
+  ) {
+    return 2;
+  }
+
+  return tokenMatches;
 }
 
 function isFocusedDegreeSource(entry) {
@@ -2361,6 +2644,24 @@ function isBroadSupplementalSource(entry) {
   return (
     getSourceRoleScore(entry) <= 2 ||
     ["html-overview-page", "generic-html"].includes(entry.parserType)
+  );
+}
+
+function isLegacyStudentCatalogSource(entryOrUrl) {
+  const url = typeof entryOrUrl === "string" ? entryOrUrl : entryOrUrl?.url;
+  return LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN.test(String(url ?? ""));
+}
+
+function isSharedLanguageDepartmentSource(entryOrUrl) {
+  const sourceText = normalizeMatcherText(
+    typeof entryOrUrl === "string"
+      ? entryOrUrl
+      : `${entryOrUrl?.url ?? ""} ${entryOrUrl?.label ?? ""} ${entryOrUrl?.sourceLabel ?? ""} ${entryOrUrl?.ownerTitle ?? ""}`
+  );
+
+  return (
+    sourceText.includes("frenchitalian") ||
+    (sourceText.includes("french") && sourceText.includes("italian"))
   );
 }
 
@@ -2401,11 +2702,25 @@ function shouldAllowAlternateToReplaceBestSource(
     return true;
   }
 
+  if (isLegacyStudentCatalogSource(alternateEntry)) {
+    return false;
+  }
+
+  const bestIsWeak = isWeakParsedResult(bestEntry, bestParsed);
+  const bestAlignment = getParsedOwnerAlignmentScore(bestEntry, bestParsed);
+  const alternateAlignment = getParsedOwnerAlignmentScore(alternateEntry, alternateParsed);
+
+  if (!bestIsWeak) {
+    if (alternateAlignment <= bestAlignment) {
+      return false;
+    }
+  }
+
   if (!isBroadSupplementalSource(alternateEntry)) {
     return true;
   }
 
-  return isWeakParsedResult(bestEntry, bestParsed);
+  return bestIsWeak;
 }
 
 function shouldMergeSupplementalAlternateSource(
@@ -2419,6 +2734,24 @@ function shouldMergeSupplementalAlternateSource(
   }
 
   if (getParsedOwnerAlignmentScore(alternateEntry, alternateParsed) < 2) {
+    return false;
+  }
+
+  if (
+    isFocusedDegreeSource(baseEntry) &&
+    isLegacyStudentCatalogSource(alternateEntry) &&
+    isSharedLanguageDepartmentSource(baseEntry)
+  ) {
+    return false;
+  }
+
+  const baseIsWeak = isWeakParsedResult(baseEntry, baseParsed);
+
+  if (!baseIsWeak && isLegacyStudentCatalogSource(alternateEntry)) {
+    return false;
+  }
+
+  if (!baseIsWeak && isFocusedDegreeSource(baseEntry) && isFocusedDegreeSource(alternateEntry)) {
     return false;
   }
 

@@ -1,13 +1,13 @@
 # Transfer Planner Primary Source Promotions
 
-Generated: 2026-04-18T10:16:06.122Z
+Generated: 2026-04-19T01:46:39.113Z
 
-- Auto-promoted high-confidence primary sources: 71
+- Auto-promoted high-confidence primary sources: 76
 - Skipped because they still appear in the review queue: 0
 
 ## uw-seattle
 
-- Auto-promoted owners: 28
+- Auto-promoted owners: 33
 
 ### American Indian Studies
 
@@ -81,6 +81,38 @@ Generated: 2026-04-18T10:16:06.122Z
 - Discovery score: 49
 - Why: discovered from an official campus major index; explicitly names the selected major; matches major keyword "finnish"; official source path matches the selected major; page title fetched successfully; stays on an official UW domain
 
+### French
+
+- Owner: uw-seattle-french
+- Primary source: https://frenchitalian.washington.edu/major-french-studies
+- Label: UW French Studies major requirements
+- Discovery score: 999
+- Why: manual official-source promotion for dedicated major requirements page; replaces the shared French and Italian catalog page as the parser primary; keeps French course-family parsing isolated to the dedicated French major page
+
+### Geography
+
+- Owner: uw-seattle-geography
+- Primary source: https://geography.washington.edu/ba-geography
+- Label: UW Geography B.A. major requirements
+- Discovery score: 999
+- Why: manual official-source promotion for dedicated B.A. in Geography requirements page; replaces the mixed general catalog page as the parser primary; lets the parser recover structured base-major requirements while keeping option content separate
+
+### Geography - Data Science option
+
+- Owner: uw-seattle-geography:pathway:data-science-option
+- Primary source: https://geography.washington.edu/ba-geography-data-science-option
+- Label: UW Geography Data Science option major requirements
+- Discovery score: 999
+- Why: manual official-source promotion for dedicated Geography Data Science option page; replaces the mixed general catalog page as the parser primary for this pathway; preserves option-specific lower-division requirement cues without collapsing them into the base route
+
+### Geography - Standard B.A. route
+
+- Owner: uw-seattle-geography:pathway:standard-ba-route
+- Primary source: https://geography.washington.edu/ba-geography
+- Label: UW Geography B.A. major requirements
+- Discovery score: 999
+- Why: manual official-source promotion for dedicated B.A. in Geography requirements page; replaces the mixed general catalog page as the parser primary for the standard route; keeps the standard B.A. route anchored to the base-major requirements page
+
 ### German
 
 - Owner: uw-seattle-german
@@ -104,6 +136,14 @@ Generated: 2026-04-18T10:16:06.122Z
 - Label: UW General Studies Individualized Studies requirements
 - Discovery score: 63
 - Why: checklist-style wording; discovered from an official source page; explicitly names the selected major; matches major keyword "individualized"; official source text matches the selected major; stays on an official UW domain
+
+### Italian
+
+- Owner: uw-seattle-italian
+- Primary source: https://frenchitalian.washington.edu/undergraduate-studies-italian
+- Label: UW Italian undergraduate studies and major requirements status
+- Discovery score: 999
+- Why: manual official-source promotion for the dedicated Italian undergraduate page; replaces the shared French and Italian catalog page as the parser primary; keeps Italian source targeting on the department's dedicated page even if it still proves insufficient for matching
 
 ### Jazz Studies, B.M.
 
@@ -137,6 +177,14 @@ Generated: 2026-04-18T10:16:06.122Z
 - Discovery score: 54
 - Why: already stored as an official source; explicitly names the selected major; matches major keyword "laboratory"; matches major keyword "medical"; matches multiple major keywords; official source text matches the selected major; overview wording; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
 
+### Music, B.A.
+
+- Owner: uw-seattle-music-b-a
+- Primary source: https://music.washington.edu/bachelor-arts-music-instrumental-option
+- Label: UW Bachelor of Arts - Music, Instrumental Option
+- Discovery score: 56
+- Why: already stored as an official source; matches major keyword "music"; official source path matches the selected major; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; verified against an official source candidate
+
 ### Music Composition, B.M.
 
 - Owner: uw-seattle-music-composition-b-m
@@ -152,14 +200,6 @@ Generated: 2026-04-18T10:16:06.122Z
 - Label: UW Bachelor of Music - Music Education, Instrumental Emphasis
 - Discovery score: 52
 - Why: already stored as an official source; matches major keyword "education"; matches major keyword "music"; matches multiple major keywords; official source text matches the selected major; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
-
-### Music, B.A.
-
-- Owner: uw-seattle-music-b-a
-- Primary source: https://music.washington.edu/bachelor-arts-music-instrumental-option
-- Label: UW Bachelor of Arts - Music, Instrumental Option
-- Discovery score: 56
-- Why: already stored as an official source; matches major keyword "music"; official source path matches the selected major; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; verified against an official source candidate
 
 ### Orchestral Instruments, B.M.
 

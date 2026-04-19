@@ -9,7 +9,6 @@ Title: Arts, Media & Culture | Culture, Arts & Communication | University of Was
 [Supplemental official source] Supplemental official track and option pages
 [Supplemental official source] UWT general education
 [Supplemental official source] VISUAL AND PERFORMING ARTS TRACK
-** Creative Writing Courses
 **Creative Writing Courses
 &copy; 2026 University of Washington Tacoma
 <a
@@ -65,7 +64,6 @@ alt="Water play from 2017">
 ALUMNI SPOTLIGHT
 American Cultures Track
 AMERICAN CULTURES TRACK
-American Cultures Track | Culture, Arts & Communication | University of Washington Tacoma
 American Popular Cultures Minor
 Apply
 aria-label="University of Washington Tacoma Homepage">
@@ -94,7 +92,6 @@ Close Search
 Communication
 Comparative Arts Track
 COMPARATIVE ARTS TRACK
-Comparative Arts Track | Culture, Arts & Communication | University of Washington Tacoma
 Connect with Advising
 Contact
 Contact us |
@@ -105,7 +102,6 @@ Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other su
 Courses in this list set the study of arts and media in broad cultural or social contexts.
 Courses such as Macroeconomics, Microeconomics, General Chemistry, Statistics, and others may fulfill this requirement
 Courses that focus on sociocultural, political, and economic diversity of human experience
-Culture (List B; must be 25 credits not taken as part of another requirement for the major) (25 credits)
 Culture (List B) (5 credits)
 Culture Arts & Communication
 Culture, Arts & Communication
@@ -127,7 +123,6 @@ Faculty & Staff
 FAQs
 Fax Number
 Film and Media (List F) (25 credits)
-Film and Media (List F) or Visual and Performing Arts (List G) (5 credits)
 Film and Media Track
 FILM AND MEDIA TRACK
 Film and Media Track | Culture, Arts & Communication | University of Washington Tacoma
@@ -161,13 +156,7 @@ Inspired by their immigrant parents, filmmakers and SIAS alumni Nuk and Nut Suwa
 Institutional Research
 Interdisciplinary Arts and Sciences
 Internships
-INTERPRETATION
 Interpretation (List C) (5 credits)
-Interpretation (one class from two of each: Literature, Film and Media or Visual and Performing Arts) (10 credits)
-Interpretation (One of TAMST 120, 210, 220, or 250) (5 credits)
-Interpretation for Film and Media Track
-Interpretation for Literature Track
-Interpretation for Visual and Performing Arts Track
 IT Help
 Jobs
 Land
@@ -182,14 +171,9 @@ LIST D: PRACTICE / STUDIO COURSES
 LIST E: LITERATURE
 LIST F: FILM AND MEDIA
 LIST G: VISUAL AND PERFORMING ARTS
-Lists E, F or G (10 credits)
-Literature (List E) (25 credits)
-Literature (List E) or Film and Media (List F) (5 credits)
 Literature (List E) or Visual and Performing Arts (List G) (5 credits)
-Literature (List E), Film and Media (List F) or Visual and Performing Arts (List G) (25 credits)
 Literature Track
 LITERATURE TRACK
-Literature Track | Culture, Arts & Communication | University of Washington Tacoma
 M-F 9a.m.-5p.m.
 Main Content
 MAJOR COORDINATOR
@@ -213,7 +197,6 @@ Parking & transportation
 Politics, Philosophy and Economics (PP&E)
 Post Graduation
 Post-graduate Studies
-Practice/Studio (List D) (15 credits)
 Practice/Studio (List D) (5 credits)
 Print and Television writing
 Print and Video editing
@@ -292,7 +275,6 @@ TARTS 367 Ideas Through Objects: A Conceptual Approach to Art
 TARTS 368 Human Figure in Contemporary Art
 TARTS 371 Theatre History: Ancient Drama
 TARTS 372 Theatre History: World Drama through French Neoclassicism
-TARTS 372 Theatre History: World Drama Through French Neoclassicism
 TARTS 373 Theatre History: Modern Drama
 TARTS 386 Contemporary Art and Studio Drawing
 TARTS 390 Site Specificity in Art
@@ -350,7 +332,6 @@ TFILM 350 Screenwriting
 TFILM 350 Screenwriting **
 TFILM 377 Spanish Film
 TFILM 380 Hollywood Cinema I: Classical Hollywood Cinema 1930–1959
-TFILM 381 Hollywood Cinema II: Post-Classical Hollywood Cinema 1960–2000
 TFILM 381 Hollywood Cinema II: Post–Classical Hollywood Cinema 1960–2000
 TFILM 386 Silent Cinema
 TFILM 387 World Film 1927–1959
@@ -473,7 +454,6 @@ TWRT 270 Introduction to Writing Poetry **
 TWRT 280 Introduction to Creative Writing: Fiction **
 TWRT 287 Writing Creative Non-Fiction **
 TWRT 330 Written and Visual Rhetoric
-TWRT 333 Writing through Comics **
 TWRT 333 Writing Through Comics **
 TWRT 340 Asian American Rhetorics, Literacies and Activism
 TWRT 360 Playwriting **
@@ -488,10 +468,8 @@ UW Gmail
 UW Seattle | UW
 UWNetID login
 visibility:hidden">
-Visual and Performing Arts (List G) (15 credits)
 Visual and Performing Arts Track
 VISUAL AND PERFORMING ARTS TRACK
-Visual and Performing Arts Track | Culture, Arts & Communication | University of Washington Tacoma
 width="0"
 Workday
 Writing (W): 10 credits

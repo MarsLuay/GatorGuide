@@ -2,18 +2,6 @@ Owner: uw-seattle-drama:pathway:option-specific-credits
 Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 Title: 
 
-Drama
-129 Hutchinson Hall
-206-543-4204
-uwdrama@uw.edu
-Program of Study: Major: Drama
-Program Overview
-The Bachelor of Arts in Drama enhances and enriches the general bachelor's degree at the University of Washington with the specific study of the history, methods and applications in the dramatic arts. Students who graduate from the School of Drama with a bachelor's degree have evolved creative skills, are poised to become citizen leaders and possess a wide range of skills that are applicable to any career that requires collaborative skills, creative innovation, project realization, personnel organization and critical thinking. In addition, we have designed the major so that students can access the hundreds of diverse course offerings at the University of Washington. The Bachelor of Arts degree in Drama also allows students the opportunity to double major with another program at UW.
-This program of study leads to the following credentials:
-Bachelor of Arts degree with a major in Drama
-Bachelor of Arts degree with a major in Drama: Design
-Bachelor of Arts degree with a major in Drama: Performance
-Admission Requirements
 DRAMA 201
 No audition is required to enter the program.
 Bachelor of Arts degree with a major in Drama
@@ -85,7 +73,3 @@ DRAMA 251, DRAMA 252 (10 credits)
 Minimum 2.00 cumulative GPA for courses applied to the minor
 Back to Top
 Minor in Drama (Design for Performance)
-Credential Overview
-Students who earn a Minor in Design for Performance will begin to develop the skills to work in the areas of costume design, set design, lighting design or sound design, as well as learning about being citizen leaders and developing skills that are applicable to any career that requires collaboration, creative innovation, project realization, personnel organization and critical thinking.
-Completion Requirements
-25 credits

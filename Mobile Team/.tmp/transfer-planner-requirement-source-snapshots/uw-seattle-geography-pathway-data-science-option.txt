@@ -1,35 +1,64 @@
 Owner: uw-seattle-geography:pathway:data-science-option
-Source: https://www.washington.edu/students/gencat/program/S/Geography-188.html
-Title: 
+Source: https://geography.washington.edu/ba-geography-data-science-option
+Title: B.A. in Geography with Data Science Option | Department of Geography | University of Washington
 
-Back to Top
-Additional Information
-Student Outcomes and Opportunities
-Learning Objectives and Expected Outcomes: Geographers address some of the world's most urgent challenges, including global and environmental change, economic and social inequality and poverty, world hunger, global health and healthcare, social justice in the city, migration and immigration, and what it means to be a global citizen in the twenty-first century. Responses to such questions are complex and partial, and these issues are not "fixable" by one-dimensional solutions. Geography's contribution to these public issues and solutions is through evidence-based, multi-scalar analyses and mapping of socio-spatial and environmental change. Social justice, community engagement and activism, and an accountability to place inform our inquiry and study.
-In geography classes students learn how to design and conduct research, employing quantitative and qualitative methods; use statistical and demographic analysis; and interpret and analyze data, discourses, and texts and images in order to address significant topics and questions in human geography. Students combine classroom study with internships, community service, and independent research to develop integrated, rich, and relevant learning experiences. These experiences help develop and refine critical and analytical research and communication skills, offer hopeful and engaged responses to daunting problems, and emphasize that individuals can make a difference.
-Typical lines of inquiry in each track include:
-Cities, Citizenship, and Migration: Why do people move, and where do they go? What are the constraints and opportunities for migrants as they settle and integrate in new cities and new nations? How are cities formed and what are the forces that impact their economic and cultural development? The courses in this track focus on themes of urbanization and human movement, emphasizing the importance of labor and housing, as well as cultural processes and historical forms of discrimination that shape where people live and work. Students in this track develop an understanding of the intersections of power and place as they pertain to migration and immigrant life, citizenship and belonging, and the production of urban space.
-Environment, Economy, and Sustainability: Courses in this track study the reciprocal and often contradictory forces of economic activity, environmental policy, and sustainability. Using such key geographic concepts as scale, place and location, they analyze relations between such complex processes as: land use, labor markets, corporate location, international trade, energy policy and consumption, environmental regulatory policy, resource use, and food systems.
-Globalization, Health, and Development: How does globalization shape life and death around the planet? How can development initiatives address global health disparities? Providing geographical answers to such questions, this track traces the extraordinarily uneven effects of global trade, global finance, and market-led development on food systems, health, and the geography of impoverishment. By putting global health challenges in a global socio-economic context, the track simultaneously highlights how social movements and social organizing can make a difference, including differences in formal policies affecting human well-being directly as well as innovations in the ethics of care. Courses in the track provide frequent opportunities for service learning as part of the goal of helping students engage with real world challenges. All classes also approach these themes through a geographical lens: charting global-local relations and the links between nature, society, and political-economy in particular places. This geographical approach in turn enables us to explore how nutrition, health, and development are intertwined with other processes ranging from the personal experiences of migrant farm workers, to urban and regional redevelopment, to global financial reforms. Specific questions that frame our classes include: What are the links between life and debt (GEOG 123)? How have sixty years of development increased in-country inequality (GEOG 230)? How do global disease etiologies reflect other global interconnections (GEOG 280)? How does agricultural modernization relate to hunger (GEOG 371)? And what are the implications for food security, health security, and developmental security when they are re-framed in terms of geopolitics and the global security challenges of international relations (GEOG 375)?
-GIS, Mapping, and Society: In courses that comprise the GIS, Mapping, and Society track, students learn to use GIS, web-based geospatial applications, and database management systems for problem solving in relation to a diverse range of societal concerns, such as those within the other geography tracks. Students learn a range of analytical and critical methods for cartographic representation, spatial analysis, geovisualization, and database management. Further, students learn about the politics, ethics, and values of mapping and geospatial technologies, and integrate their social and technical skills to undertake projects with research partners in the region.
-Geography Data Science:The data science option builds on geography coursework in data management, data visualization and the societal implications of geospatial data while offering students additional opportunities to engage in coursework in programming, machine learning, and advanced statistics and probability.
-Geography students find positions in non-profit organizations, business, data visualization, geographic information systems, and community engagement. Refer to department website for resources including career exploration and preparation courses.
-Instructional and Research Facilities: A map center in Suzzallo Library houses atlases, sheet maps, and aerial photographs. Departmental facilities include the Edward L. Ullman Geography Collaboratory and the John C. Sherman Laboratory, which houses a variety of computer workstations connected to the campus computer network. The Ullman Collaboratory in Smith Hall 415 provides a unique collaborative classroom with networked computer workstations. The Geography Commons also provides computer workstations for students. The Department of Geography is a member of the Center for Social Science Computation and Research, which maintains an extensive data archive and offers many statistical and software consulting services.
-Honors Options Available: With College Honors (Completion of Honors Core Curriculum and Departmental Honors); With Honors (Completion of Departmental Honors requirements in the major). Refer to department website for more information.
-Research, Internships, and Service Learning: More than 125 geography students participate each year in internships. For support with these opportunities, contact Geography Advising.
-Department Scholarships: Gerald W. Halmo Geography Scholars Program. Refer to department website for more information.
-Student Organizations/Associations: Plenum Journal of Undergraduate Geography; GeoDat: The Society for Geography Data Science at UW; Geography Graduate Students Association (GGSA).
-Of Special Note: Students interested in GIS are encouraged to learn a high-level programming language such as C , C++, Java, Javascript, R or Python.
-Graduate Programs
-Geography
-Program of Study: Doctor Of Philosophy (Geography)
-This program of study leads to the following credential:
-Doctor Of Philosophy (Geography)
-Admission Requirements
-Please see this program's Graduate Admissions page for requirements.
-Doctor Of Philosophy (Geography)
-Completion Requirements
-90 credits total
-Required Courses:
-GEOG 500
-GEOG 511
+[Supplemental official source] B.A. in Geography
+[Supplemental official source] B.A. with Honors in Geography
+B.A. in Geography
+B.A. in Geography: Data Science Option
+B.A. in Geography: Data Science Option Sample Course Plan
+B.A. with Honors in Geography
+College to Career
+Community
+Completion of a minimum of 180 credits, with a cumulative UW GPA of 2.0 or above ( final 45 credits must be earned in-residence ).
+Completion of all General Education requirements for the College of Arts & Sciences.
+Completion of all geography major requirements as noted above.
+Courses
+Declare the Geography Major
+Degree Options
+Department of Geography
+Electives: Complete all of the requirements below (36-39 credits).
+Explain your reasons for wanting to substitute this course for a geography (GEOG-prefix) course in your major requirements
+Facebook
+Fax: (206) 543-3313
+Foundations: GEOG 258, GEOG 360 and GEOG 381; plus one course from either the Environment, Economy, and Sustainability track or Globalization, Health, and Development track (20 credits). Check out the three-quarter planner to find when these courses are offered, then review the list of Geography courses by track for all eligible course options.
+GEOG 315: Explanation and Understanding in Geography (5 credits). This course covers the beginning steps in the research process. Students develop basic library and writing skills as preparation for future research methods classes and independent research. Recommended preparation includes 10-15 credits of prior GEOG curriculum coursework.
+geog@uw.edu
+GIS, Mapping, and Society: GEOG 458; GEOG 461; GEOG 465; GEOG 482
+Graduate
+If you are requesting to substitute a course outside of the Department of Geography, please also include the following:
+Include the syllabus for the course you wish to substitute
+Instagram
+LinkedIn
+Machine Learning: either STAT 311 or MATH/STAT 390; one of CSE 416/STAT 416, STAT 435, or INFO 371
+Methods: One course from among GEOG 317 or 326, or other courses approved by petition to the Geography Advising Office (5 credits).
+Minor in Geography
+Name the requirement & the course you would like to substitute
+Newsletter
+One from CSE 180, INFO 201, GEOG 245, or GEOG 258
+Phone: (206) 543-5843
+Privacy
+Programming: either CSE 142 or CSE 160; either CSE 143 or CSE 163
+Programs & Courses
+Requirements Prior to SUM 2022
+Sample Course Plan in MyPlan
+Scholarships & Financial Aid
+Seattle, WA 98195
+Share
+Smith Hall 408, Box 353550
+Students may substitute GEOG 426 or GEOG 469 for any one of the GIS, Mapping & Society courses listed above
+Students may substitute GEOG 462 for GEOG 461
+Students may substitute QSCI 381 for STAT 311 or STAT 390 if planning to take CSE/STAT 416
+Students may substitute STAT 220, STAT 221/CS&SS 221/SOC 221, STAT 290, QMETH 201 or Q SCI 381 for STAT 311 or STAT 390 if planning to take INFO 371 (note this requires taking INFO 370 as well)
+Students may substitute STAT 341 or STAT 391 for STAT 390 if planning to take STAT 435
+Study Abroad
+Submission of graduation application by the end of the third week of the quarter you intend to graduate.
+Support Geography
+Terms
+The Geography B.A. with Data Science Option is awarded upon:
+Total required: 60-65 credits. No single course may be counted toward more than one degree requirement. Minimum 2.00 cumulative GPA in courses applied to the major.
+Total required: 66-69 credits. No single course may be counted toward more than one degree requirement. Minimum 2.00 cumulative GPA in courses applied to the major.
+Transfer Students
+Undergraduate
+University of Washington
+Welcome

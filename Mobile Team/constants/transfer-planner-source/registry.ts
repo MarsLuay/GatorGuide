@@ -859,9 +859,295 @@ function getSourceManifestPrimaryScore(link: TransferPlannerSourceLink) {
   if (parserType === "pdf-degree-sheet") score += 20;
   if (/degree requirements|major requirements|graduation requirements/.test(searchable)) score += 25;
   if (/curriculum/.test(searchable)) score += 15;
+  if (
+    (role === "degree-requirements" || role === "curriculum") &&
+    /\b(track|option|route|pathway|concentration|specialization)\b/.test(searchable)
+  ) {
+    score += 8;
+  }
+  if (/\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//.test(searchable)) {
+    score -= 15;
+  }
   if (role === "admissions" || role === "equivalency" || role === "availability") score -= 40;
 
   return score;
+}
+
+const PATHWAY_TITLE_SUFFIX_PATTERNS = [
+  /\s+degree preparation and admissions$/i,
+  /\s+before-enrollment degree head starts$/i,
+  /\s+stay-at-green-river degree support$/i,
+  /\s+source-backed degree planning$/i,
+  /\s+parsed official source requirements$/i,
+  /\s+parsed official requirement cues$/i,
+  /\s+parsed choices and pathway notes$/i,
+];
+const PATHWAY_LABEL_SPECIAL_TOKEN_MAP: Record<string, string> = {
+  aas: "AAS",
+  acs: "ACS",
+  ba: "B.A.",
+  bs: "B.S.",
+  ce: "CE",
+  cs: "CS",
+  ece: "ECE",
+  egls: "EGLS",
+  esrm: "ESRM",
+  gis: "GIS",
+  gls: "GLS",
+  iac: "IAC",
+  nme: "NME",
+  phd: "Ph.D.",
+  phgh: "PH-GH",
+  sud: "SUD",
+  uw: "UW",
+};
+const PATHWAY_LABEL_LOWERCASE_TOKENS = new Set([
+  "and",
+  "for",
+  "in",
+  "of",
+  "on",
+  "option",
+  "pathway",
+  "route",
+  "to",
+  "track",
+  "with",
+]);
+const PATHWAY_LABEL_ALIGNMENT_STOPWORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "concentration",
+  "family",
+  "for",
+  "in",
+  "of",
+  "on",
+  "option",
+  "pathway",
+  "route",
+  "school",
+  "the",
+  "to",
+  "track",
+  "with",
+]);
+
+function normalizePathwayLabel(value: string | null | undefined) {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function stripPathwayTitleSuffix(value: string) {
+  let stripped = normalizePathwayLabel(value);
+  for (const pattern of PATHWAY_TITLE_SUFFIX_PATTERNS) {
+    stripped = stripped.replace(pattern, "").trim();
+  }
+  return stripped;
+}
+
+function stripPlanTitlePrefix(planTitle: string, value: string) {
+  const normalizedPlanTitle = normalizePathwayLabel(planTitle);
+  const normalizedValue = normalizePathwayLabel(value);
+  if (!normalizedPlanTitle) {
+    return normalizedValue;
+  }
+  if (normalizedValue === normalizedPlanTitle) {
+    return "";
+  }
+
+  for (const separator of [" - ", ": ", " â€“ "]) {
+    const prefix = `${normalizedPlanTitle}${separator}`;
+    if (normalizedValue.startsWith(prefix)) {
+      return normalizedValue.slice(prefix.length).trim();
+    }
+  }
+
+  return normalizedValue;
+}
+
+function isLikelyStructuredPathwayLabel(label: string) {
+  const normalized = normalizePathwayLabel(label);
+  if (!normalized) {
+    return false;
+  }
+  if (/^\[page \d+\]/i.test(normalized)) {
+    return false;
+  }
+  if (/parsed official|parsed choices|parsed requirement/i.test(normalized)) {
+    return false;
+  }
+  if (normalized.length > 96) {
+    return false;
+  }
+  if (normalized.includes("?")) {
+    return false;
+  }
+  if (normalized.split(/\s+/).length > 12) {
+    return false;
+  }
+  return true;
+}
+
+function formatPathwayLabelToken(token: string) {
+  const normalizedToken = String(token ?? "").trim().toLowerCase();
+  if (!normalizedToken) {
+    return "";
+  }
+  if (PATHWAY_LABEL_SPECIAL_TOKEN_MAP[normalizedToken]) {
+    return PATHWAY_LABEL_SPECIAL_TOKEN_MAP[normalizedToken];
+  }
+  if (PATHWAY_LABEL_LOWERCASE_TOKENS.has(normalizedToken)) {
+    return normalizedToken;
+  }
+  return normalizedToken.charAt(0).toUpperCase() + normalizedToken.slice(1);
+}
+
+function formatPathwayLabelFromId(pathwayId: string) {
+  const optionFamilyMatch = String(pathwayId ?? "").match(/^(ba|bs)-option-family:(.+)$/i);
+  if (optionFamilyMatch) {
+    const degreeLabel = formatPathwayLabelToken(optionFamilyMatch[1]);
+    const optionLabel = optionFamilyMatch[2]
+      .split(/[-:]+/)
+      .map((token) => formatPathwayLabelToken(token))
+      .filter(Boolean)
+      .join(" ");
+    return normalizePathwayLabel(`${degreeLabel} ${optionLabel} option`);
+  }
+
+  return String(pathwayId ?? "")
+    .split(/[:]+/)
+    .flatMap((segment) => segment.split(/-+/))
+    .map((token) => formatPathwayLabelToken(token))
+    .filter(Boolean)
+    .join(" ");
+}
+
+function maybeExtractStructuredPathwayLabel(planTitle: string, candidate: string | null | undefined) {
+  const strippedLabel = stripPathwayTitleSuffix(
+    stripPlanTitlePrefix(planTitle, String(candidate ?? ""))
+  );
+  if (!isLikelyStructuredPathwayLabel(strippedLabel)) {
+    return null;
+  }
+  return strippedLabel;
+}
+
+function getPathwayAlignmentTokens(label: string) {
+  return Array.from(
+    new Set(
+      normalizePathwayLabel(label)
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .split(/\s+/)
+        .filter((token) => token.length >= 2 && !PATHWAY_LABEL_ALIGNMENT_STOPWORDS.has(token))
+    )
+  );
+}
+
+function getPathwayLabelAlignmentScore(left: string, right: string) {
+  const rightTokens = new Set(getPathwayAlignmentTokens(right));
+  if (!rightTokens.size) {
+    return 0;
+  }
+
+  return getPathwayAlignmentTokens(left).filter((token) => rightTokens.has(token)).length;
+}
+
+function resolveRegistryPathwayLabel(
+  plan: TransferPlannerMajorPlan,
+  pathway: TransferPlannerMajorPathway
+) {
+  const formattedIdLabel = formatPathwayLabelFromId(pathway.id);
+  const candidates = new Map<string, number>();
+
+  function pushCandidate(
+    label: string | null | undefined,
+    priority: number,
+    options: { requirePathwayAlignment?: boolean } = {}
+  ) {
+    const normalizedLabel = normalizePathwayLabel(label);
+    if (!normalizedLabel) {
+      return;
+    }
+    if (options.requirePathwayAlignment) {
+      const alignmentScore = getPathwayLabelAlignmentScore(normalizedLabel, formattedIdLabel);
+      if (alignmentScore === 0) {
+        return;
+      }
+    }
+    const currentPriority = candidates.get(normalizedLabel) ?? Number.NEGATIVE_INFINITY;
+    if (priority > currentPriority) {
+      candidates.set(normalizedLabel, priority);
+    }
+  }
+
+  const scopedRequirements = TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY.filter(
+    (entry) => entry.planId === plan.id && entry.pathwayId === pathway.id
+  );
+  const scopedDegreeMapBlocks = TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY.filter(
+    (entry) => entry.planId === plan.id && entry.pathwayId === pathway.id
+  );
+  const scopedParsedBlocks = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
+    (entry) => entry.planId === plan.id && entry.pathwayId === pathway.id
+  );
+
+  for (const requirement of scopedRequirements) {
+    pushCandidate(
+      maybeExtractStructuredPathwayLabel(plan.title, requirement.majorTitle),
+      140,
+      { requirePathwayAlignment: true }
+    );
+  }
+
+  for (const block of scopedDegreeMapBlocks) {
+    pushCandidate(
+      maybeExtractStructuredPathwayLabel(plan.title, block.majorTitle),
+      130,
+      { requirePathwayAlignment: true }
+    );
+    pushCandidate(
+      maybeExtractStructuredPathwayLabel(plan.title, block.title),
+      120,
+      { requirePathwayAlignment: true }
+    );
+  }
+
+  for (const parsedBlock of scopedParsedBlocks) {
+    pushCandidate(
+      maybeExtractStructuredPathwayLabel(plan.title, parsedBlock.ownerTitle),
+      110,
+      { requirePathwayAlignment: true }
+    );
+    for (const candidate of parsedBlock.parsedDegreeMapBlockCandidates ?? []) {
+      pushCandidate(
+        maybeExtractStructuredPathwayLabel(plan.title, candidate.title),
+        105,
+        { requirePathwayAlignment: true }
+      );
+    }
+  }
+
+  pushCandidate(
+    maybeExtractStructuredPathwayLabel(plan.title, pathway.label),
+    80,
+    { requirePathwayAlignment: true }
+  );
+  pushCandidate(formattedIdLabel, 10);
+
+  const [resolvedLabel = normalizePathwayLabel(pathway.label) || formattedIdLabel] = [...candidates.entries()]
+    .sort((left, right) => {
+      if (right[1] !== left[1]) {
+        return right[1] - left[1];
+      }
+      if (left[0].length !== right[0].length) {
+        return left[0].length - right[0].length;
+      }
+      return left[0].localeCompare(right[0]);
+    })
+    .map(([label]) => label);
+
+  return resolvedLabel;
 }
 
 const BLOCKED_PRIMARY_SOURCE_URL_PATTERN =
@@ -1997,15 +2283,20 @@ function buildPathwayRegistry() {
   for (const plan of TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS) {
     for (const pathway of plan.pathways ?? []) {
       const pathwaySources = getPathwaySources(plan, pathway);
+      const supplementalDerivedPathwayCourses =
+        SUPPLEMENTAL_DERIVED_PATHWAY_GRC_COURSES_BY_KEY[`${plan.id}::${pathway.id}`] ?? [];
       pushPathwayEntry({
         id: `${plan.id}:pathway:${pathway.id}`,
         planId: plan.id,
         pathwayId: pathway.id,
         campusId: plan.campusId,
         majorTitle: plan.title,
-        label: pathway.label,
+        label: resolveRegistryPathwayLabel(plan, pathway),
         summary: "",
-        grcCourseList: [...(pathway.grcCourseList ?? [])],
+        grcCourseList: [
+          ...(pathway.grcCourseList ?? []),
+          ...supplementalDerivedPathwayCourses,
+        ],
         sourceLinks: pathwaySources.sourceLinks,
         validationNotes: [],
       });
@@ -2125,6 +2416,12 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
     (entry) => entry.ownerId === promotion.ownerId && entry.url === promotion.url
   );
 
+  for (const entry of entries) {
+    if (entry.ownerId === promotion.ownerId) {
+      entry.isPrimaryDegreeRequirementsLink = false;
+    }
+  }
+
   if (existingEntry) {
     existingEntry.isPrimaryDegreeRequirementsLink = true;
     existingEntry.validationNotes = unique(
@@ -2166,6 +2463,9 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
 
 function buildSourceManifestRegistry() {
   const entries: TransferPlannerSourceManifestEntry[] = [];
+  const bootstrapPlanIds = new Set(
+    TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => plan.id)
+  );
 
   for (const plan of TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS) {
     pushSourceManifestEntries(entries, {
@@ -2180,6 +2480,10 @@ function buildSourceManifestRegistry() {
   }
 
   for (const supplementalMajor of SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES) {
+    if (bootstrapPlanIds.has(supplementalMajor.planId)) {
+      continue;
+    }
+
     pushSourceManifestEntries(entries, {
       ownerType: "major",
       ownerId: supplementalMajor.planId,

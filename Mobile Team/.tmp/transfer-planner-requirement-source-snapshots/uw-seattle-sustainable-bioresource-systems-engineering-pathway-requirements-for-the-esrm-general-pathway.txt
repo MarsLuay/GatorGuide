@@ -3,15 +3,6 @@ Source: https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/
 Title: SBSE Schedule and Major Requirements | School of Environmental and Forest Sciences
 
 -->
-(1-15, max 15)
-(1-20, max 20)
-(1-4, max. 10)(NSc)
-(1-5, max 10)
-(1-5, max 15)
-(1, max 2) DIV
-(1, max 2) NSc
-(1, max 6)
-(5, max 10) (SSc)
 [Note: this list last updated July 23, 2025]
 [supersedes CSE 142, 143]
 [Supplemental official source] BSE Academic Requirements
@@ -56,28 +47,14 @@ $ PHYS 123 &#8211; Waves (5 cr) (or PHYS 143 &#8211; honors)
 2.0+ in both MATH 126/136 and PHYS 121/141
 25-45 credits must be from 400-level courses. You can select up to 20 credits of non-400-level courses if you want instead.
 3
-3 (478 meets SSc/NSc)
 3 (NSc)
-3 (NSc/SSc)
-3 (SSc)
-3 (SSc/NSc)
-3 or 5 (NSc)
 3, max 12
 4
-4 (NSc)
 5
 5 (NSc, RSN)
-5 (NSc)
-5 (NSc/SSc)
 5 (SSc, DIV)
-5 (SSc, RSN)
-5 (SSc)
-5 (SSc/A&H)
-5 (SSc/NSc, DIV)
 5 (SSc/NSc)
-5 (SSC/NSc)
 5 Credits English Composition (ENGL 131 Preferred)
-6
 A A 210
 A maximum of 10 credits can be from the ESRM Elective List of applicable classes from outside the department (see below), or courses approved via SEFS Course Petition.
 A maximum of 10 credits can be from the Q SCI Elective List below.
@@ -133,16 +110,6 @@ Basic Skills (8-11 cr):
 Be Boundless
 Best Practices for PIs
 Beth Gardner (lead), Sarah Converse, Joshua Lawler, Alex McInturff, L. Monika Moskal, Laura Prugh, Sandor Toth, and Aaron Wirsing.
-BIOL 356: Foundations in Ecology
-BIOL 396: Peer Facilitation &#8211; Teaching in Biology
-BIOL 406: Conservation of Large Vertebrates
-BIOL 425: Plant Physiology and Development
-BIOL 442: Genetics of Plant Innovations
-BIOL 443: Evolution of Mammals and their Ancestors
-BIOL 446: Plant Classification and Identification
-BIOL 447: The Greening of the Earth: Influence of Plants on the Evolution of Terrestrial Ecosystems
-BIOL 483: Senior Seminar in Paleobiology
-BIOL 499: Undergraduate Research
 Biological Frameworks for Engineers
 Bioresource Science and Engineering
 Bioresource Science and Engineering - Business Option: Engineering Electives
@@ -182,15 +149,12 @@ CEE 291
 CEE 350 or CEE 357
 CEE 354
 CEE 357
-CEE 357: Environmental Engineering
 CEE 480
 CEE 482
 CEE 490
 CEE 497
 Center for Quantitative Science
-CEP 302: Environmental Response
 CHEM 142, CHEM 143, or CHEM 145
-CHEM 237: Organic Chemistry
 CHEM E 325
 CHEM E 326
 CHEM E 326; CHEM E 340 which may be taken concurrently; HCDE/ENGR 231
@@ -242,7 +206,6 @@ Cost Share
 Course
 Courses already encoded on the REEH degree audit
 Cr
-Credits
 CSE 121
 CSE 121/122/123/142/143: Introduction to Computer Programming (various versions) (4 credits)
 CSE 122
@@ -278,7 +241,6 @@ ECON 200
 ECON 200: Introduction to Microeconomics (5 credits)
 ECON 200: Microeconomics
 ECON 201: Introduction to Macroeconomics (5 Credits)
-ECON 300: Intermediate Microeconomics
 Economics and Society Elective: Choose one course from the following list (3-5 credits)
 Ecosystem Threats Elective: Choose one course from the following list (3-5 credits)
 Either CHEM 142, CHEM 143, or CHEM 145
@@ -299,25 +261,6 @@ Engineering Statics
 ENGR 101
 ENGR 231 – Introduction to Technical Communication (3cr)
 ENGR 401
-ENV H 311: Introduction to Environmental Health
-ENV H 442: Zoonotic Diseases and Their Control
-ENV H 447: Environmental Change and Infectious Disease
-ENV H 478 / ENV H 578: Remote Sensing for Environmental Health
-ENV H 479/ G H 420: Climate Change and Public Health Practice
-ENVIR 310: Data Analysis in Environmental Studies
-ENVIR 312 /NUTR 312: Food System Sustainability and Resilience
-ENVIR 315: Environmental Pedagogy
-ENVIR 380: Wilderness in the Anthropocene
-ENVIR 384 / POL S 384: Global Environmental Politics
-ENVIR 386: Environmental Justice Seminar
-ENVIR 389: Agriculture and Urban Food Systems Seminar
-ENVIR 400: Professional Environmental Communication
-ENVIR 420: People, Planet, and Profit in Sustainable Cannabis Production
-ENVIR 430: Environmental Issues: Regional Perspectives
-ENVIR 439: Attaining a Sustainable Society
-ENVIR 495: Advanced Topics in Environmental Studies
-ENVIR 496: Study Abroad &#8211; Advanced Environmental Studies
-ENVIR 497: Seminar in Environmental Studies
 Environmental and Forest Sciences
 Environmental Engineering
 Environmental Science and Terrestrial Resource Management (ESRM) Major
@@ -382,7 +325,6 @@ ESRM Elective List of courses from outside the department (10 credits Max) &#821
 ESRM Minor
 ESRM students can join the Wildlife Conservation Option at any time, though must complete certain ESRM major graduation requirements first, and fill out a plan of study regarding how they will complete all of the degree requirements.
 ESRM: General Academic Requirements
-ESRM: General Academic Requirements | School of Environmental and Forest Sciences
 ESRM: General Pathway-Specific Requirements
 ESRM: General requires 45 credits of upper- division courses from within the School of Environmental and Forest Sciences (ESRM and SBSE courses) or from a list of approved courses outside of SEFS. There are some specific requirements of those 45 credits:
 ESRM: Natural Resource and Environmental Management Academic Requirements
@@ -391,10 +333,6 @@ ESRM: REEH Course Requirements
 ESRM: Restoration Ecology and Environmental Horticulture Academic Requirements
 ESRM: Sustainable Forest Management Academic Requirements
 ESRM: Wildlife Conservation Academic Requirements
-ESS 313: Geobiology
-ESS 331: Geology of the Northwest
-ESS 420: Introduction to Geographic Information Systems for the Earth Sciences
-ESS 421: Introduction to Geological Remote Sensing
 Evaluation of air-quality models relating air pollution emissions to environmental concentrations. Emphasis on models used for air pollution permits. Emphasizes current problems.
 Events
 Examines impacts of a hot dry climate on water engineering systems by studying the engineered water cycle in Jordan including: water cycles and sources in Jordan; drinking water treatment and desalination; wastewater treatment and reuse; decentralized and on-site treatment; and ancient water engineering.
@@ -403,23 +341,13 @@ Facebook
 Facility Resources
 Faculty
 Faculty and Research
-FHL 375: Marine Mammals of the Salish Sea
-FHL 430: Marine Zoology
-FHL 440: Marine Botany
 Field Stations and Labs
 Finance and Accounting from a Sustainability Perspective
-FISH 200: Freshwater Ecology and Conservation
-FISH 400: Seminar in Freshwater Sustainability
-FISH 406: Parasite Ecology
-FISH 427: Tropical Marine Biology
-FISH 428: Stream and Watershed Restoration
-FISH 454/ Q SCI 454: Introduction to Quantitative Ecology
 For a full listing of all requirements in all 5 undergraduate degree pathways, please see the ESRM Major in the UW Catalog .
 For a full listing of all requirements, please see the SBSE Major in the UW Catalog .
 For engineers with no prior experience in the biological sciences. Hands-on, project-based course covers fundamental concepts and language of biology, from an engineering perspective. Topics include functions of life, information processing, proteins, DNA, genetic variability, control loops, energetics, tissues, organisms, ecosystems.
 Forest Ecology and Biology
 Forest Resource Management
-Formerly ESS 301
 Free elective credits to bring the credit total to 180.
 Free Electives
 Friday Harbor Laboratories
@@ -429,7 +357,6 @@ Fundamentals of Electrical Engineering
 Fundamentals of Managerial Accounting
 Fundamentals of Materials Science
 General Education Requirements
-GEOG 360:GIS and Mapping
 Giving
 Global Business Perspectives
 Graduate Admissions
@@ -475,12 +402,9 @@ Introduction to Visualization and Computer-Aided Design
 Items to Consider in Your Decision: Major Start
 Jobs
 Joining the Wildlife Conservation Option
-JSIS B 435 / ENVIR 435: Environmental Degradation in the Tropics
 Key
 Kinematics & Dynamics
 Kinematics of particles, systems of particles, and rigid bodies; moving reference frames; kinetics of particles, systems of particles, and rigid bodies; equilibrium, energy, linear momentum, angular momentum.
-L ARCH 403: Ecological Systems Studio
-L ARCH 423: Plant Identification and Management
 L. Monika Moskal
 Lab Safety
 Laboratory techniques, equipment, and underlying fundamentals in surface and colloid science. Experiments in the measurement of surface tension, adsorption, wetting and spreading, colloid properties, emulsion preparation and stability, electrophoresis, and interfacial hydrodynamics.
@@ -546,8 +470,6 @@ News and Events
 Newsletters
 Note: This is a record of the academic requirements for the BSE major, which is no longer admitting students. The BSE major has been superseded by the SBSE major as of Autumn 2025
 Notes
-NUTR 302: Food Systems: Harvest to Health
-OCEAN 409: Marine Pollution
 Ocean, and Ecosystem Studies
 Oceanography
 Once the classes are in your Plan, you will be able to register for the classes as normal
@@ -562,7 +484,6 @@ Partnerships with Indigenous Tribes and Nations
 Phase equilibria and chemical equilibria in multicomponent systems; theories of solution; chemical reaction analysis.
 PLEASE NOTE: Q SCI courses are on both the Q SCI Elective List and the ESRM Elective List , which means you can complete up to 20 Q SCI credits as part of your degree.
 PLEASE NOTE: The elective list is new for the degree audits as of Autumn 2025, and we are still building out this elective list. If you have courses that you think should be added, please let SEFS Advising know. We are trying to reduce the number of elective petitions students need to submit.
-POL S 458: Climate Politics
 Postdoctoral Scholars
 Prerequisites
 Principles of Operations Management
@@ -578,13 +499,6 @@ Provides an introduction to engineering drafting and graphical communication. In
 Public Events Calendar
 Pursuing Study Abroad Opportunities
 Q SCI 256: Introduction to Data Science Methods for Environmental Science (4 credits)
-Q SCI 403 / STAT 403: Introduction to Resampling Inference
-Q SCI 403 /STAT 403: Introduction to Resampling Inference
-Q SCI 454/FISH 454: Introduction to Quantitative Ecology
-Q SCI 482: Statistical Inference in Applied Research I: Hypothesis Testing and Estimation for Ecologists and Resource Managers
-Q SCI 483: Statistical Inference in Applied Research II: Regression Analysis for Ecologists and Resource Managers
-Q SCI 499: Research Experience
-Q SCI Elective List (10 credits Max)
 QSCI 482 (5) Statistical Inference in Applied Research
 Quaternary Research Center
 Reasoning (RSN): 10 credits met by other program requirements

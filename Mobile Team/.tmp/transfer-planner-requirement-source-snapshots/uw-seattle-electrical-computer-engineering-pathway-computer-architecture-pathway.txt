@@ -4,7 +4,6 @@ Title: BSECE Degree Requirements | UW Department of Electrical & Computer Engine
 
 -->
 (Only EE course credits may apply except where specifically noted)
-(Please note that EE 398 is not considered a seminar and thus does not apply to the 2-credit seminar limit.)
 [Supplemental official source] BSECE Admissions Requirements
 [Supplemental official source] BSECE Transfer Admissions FAQs
 [Supplemental official source] Computer Architecture Pathway
@@ -14,20 +13,14 @@ Title: BSECE Degree Requirements | UW Department of Electrical & Computer Engine
 [Supplemental official source] Microelectronics and Nanotechnology Pathway
 [Supplemental official source] Supplemental official track and option pages
 *Recommended from list for ECE: CSE 121, CSE 122, CSE 123, CSE 142, or PHYS 122
-*Recommended. Please note that EE 398 is not considered a seminar and thus does not apply to the 2-credit seminar limit.
 &copy; 2026 University of Washington | Seattle, WA
 <!--
 <!-- Rather than edit these items here, edit template file menu-quicklinks.php
 <img src="/wp-content/themes/uw-ee-main/images/button-give.png"
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-0.7 or higher for all other requirements​
-1.0 or higher in the Advanced Technical Communication, Capstone and Advanced ECE Electives requirements​
 1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward*
 1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*
 2:30 to 3:30 p.m.
-2. General Education Courses
-2.0 or higher in the ECE Core and Computer Programming (CSE 123 or 143) requirements​
-3. Free Electives
 A maximum of 2 credits of seminar courses (see adviser for list of approved seminar courses &#8211; scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list )
 A maximum of 6 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
 A minimum of 180 credit hours of coursework
@@ -35,8 +28,6 @@ A minimum of 45 credits earned in residence at the UW
 A pre-enrollment requirement is a course that is required to be completed (with a grade of 2.0 or higher) before the start of Autumn Quarter if admitted to the ECE major. These courses are pre-enrollment requirements for the ECE program:
 A prerequisite is a course that is required to be completed (with a grade of 2.0 or higher) prior to the April 5 th ECE application deadline . We cannot consider applicants who have not completed all of the following prerequisite courses by the application deadline, even if the courses are in-progress at the time of application:
 A student following the Computer Architecture pathway will focus on the fundamentals of computing systems — how they work, how we can best harness their power and how to create new microprocessor-based systems to continue this amazing trajectory. This pathway combines a strong focus on microprocessors and their implementation with software techniques to efficiently use these systems.
-A&H (10 credits)
-A&H/SSc courses are designated in the quarterly time schedule and the UW course catalog . A minimum of 5 credits of diversity (DIV) coursework is required. The DIV credits may overlap with A&H or SSc. Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
 ABET Accreditation: BSECE
 ABET Accreditation: BSEE
 About
@@ -44,13 +35,9 @@ About Us
 Academic achievements (such as the prerequisite GPA, academic trends, coursework rigor, and consistency or irregularities in their academic performance)
 Academics
 Accessibility
-Additional 300 and 400 level EE courses to reach 36 credits. These credits are subject to the following:
 Additional 300 and 400 level EE courses to reach 39 credits. These credits are subject to the following:
-Additional credits in A&H or SSc to bring total to 24 credits
-Additional NSc courses from approved list to reach 45 credits: see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list).
 Adjunct Faculty
 Admissions requirements:
-Advanced Electrical and Computer Engineering Electives (36 credits):
 Advanced Electrical and Computer Engineering Electives (39 credits):
 Advanced Technical Communication (4 credits) :
 Advising
@@ -60,13 +47,6 @@ Air and Space
 All verified applications are then reviewed by members of the undergraduate admissions committee and assigned scores along a rubric, rating each applicant on aspects of their application, including:
 Alumni
 An electric car does not simply run on batteries, but it requires a wide variety of semiconductor devices to manage the transfer of charge from the grid to the car, and from the car to the road. Materials and devices to meet the increasing demand of electric vehicle companies who are interested in cameras/lidars is also on the increase.
-Any AMATH class
-Any BIOL class except for BIOL 100: Introductory Biology , BIOL 161: Advanced Placement (AP) in General Biology 1 , BIOL 162: Advanced Placement (AP) in General Biology 2
-Any MATH class at 200 level or above
-Any Natural Sciences (NSc) course from this list:
-Any NEUSCI class
-Any PHYS class at 200 level or above
-Any STAT class with STAT 394: Probability I as a prerequisite
 Anything with an electronics component uses, or will soon use, microelectronics and nanotechnology — from a cellphone to medical equipment to aircraft for space missions.
 Application of machine learning algorithms to cybersecurity. Anomaly detection, spam detection and IP blacklisting, use of natural language processing to improve performance in architecture identification. Optimization methods for determining adversarial inputs to bias the detection and classification outputs of deep neural networks (DNN). Backdoor trigger embedding in DNN. Generative Adversarial Networks.
 Applied Cybersecurity Engineering (ACE)
@@ -75,18 +55,14 @@ Apply to UW ECE by April 5 (Apply via UApp HERE )
 Applying rigorous mathematical modeling for applications, identifying and designing suitable optimization algorithms.
 Applying to start autumn quarter
 Applying trained machine learning models for various applications and tasks, such as classification, detection, segmentation and recommendation.
-Approved Additional Natural Sciences (NSc) Courses:
 Are you a running start student? Learn more .
 Areas of Impact
-Areas of Inquiry (69 credits)
-Arts and Humanities (A&H), Social Sciences (SSc) (24 credits):
 As an Engineering Undeclared student, your first year will include engineering foundational coursework such as math and science, as well as UW general education courses. At the end of your first year, you will request placement into an engineering major. The requirements to request placement in the UW ECE program are as follows:
 As health and medicine evolve to use ever greater amounts of electronics, development of computing systems helps to create these diagnostic and treatment systems. From a smartphone that can automatically detect disease to the electronics that capture data and recreate imaging from CT and PET scanners, this technology relies heavily on embedded systems.
 As of autumn 2024, the ECE degree will be the only undergraduate option for students seeking admission to the ECE department.
 As of the autumn 2024 admission cycle, the BSECE degree will be the only undergraduate option for students seeking admission to the ECE department.
 As the COVID crisis has shown, modern automobiles are reliant on a large number of digital chips and embedded systems to function. As we move toward self-driving automobiles, this will increasingly be the case. Development of computing systems brings together the hardware and software that underpins this technology.
 As the transistors that make up the bulk of our electronic systems continue to shrink, traditional ways of controlling digital circuits and systems are becoming inadequate. Designing these digital circuits for transistors today (and tomorrow) requires a deeper understanding of how transistors operate at nanoscale dimensions. Classical mechanics knocks on the door of quantum mechanics when transistors shrink to microscopic sizes, and the abstract notion of a single electron controlling the behavior of a simple analog circuit is no longer a far-fetched idea. Emerging quantum technologies are already using semiconductors to build qubits and control electronics. And the integration of silicon and optical active semiconductors is an important, concurrent advance, leading to enhanced optoelectronic devices for sensing, navigation and computing.
-At least 20 EE course credits from the 36 credits of Advanced ECE Electives must be completed at the 400 level .
 At least 20 EE course credits from the 39 credits of Advanced ECE Electives must be completed at the 400 level .
 Attend drop-in hours or info sessions. Please attend our prospective student drop-ins and/or prospective student information sessions! During prospective drop-ins, you will be able to meet with an ECE adviser for about 10 minutes to ask questions and discuss the ECE program and/or its application process. During the prospective information sessions, an ECE adviser presents on the ECE program for about 45 minutes, with time for some quick questions after the presentation. The drop-ins and information sessions are held via Zoom on Thursdays from 2:30pm to 3:30pm. You can find the dates/times and Zoom info here on our calendar.
 Autonomous vehicles, which include a network of interconnected sensors and microprocessors that rely on real-time embedded systems engineering
@@ -105,7 +81,6 @@ BSECE Admissions Requirements | UW Department of Electrical & Computer Engineeri
 BSECE and BSEE FAQs
 BSECE Coursework Requirements
 BSECE Degree Requirements
-BSECE Degree Requirements | UW Department of Electrical & Computer Engineering
 BSECE Honors Options
 BSECE Pathways
 BSECE Satisfactory Progress
@@ -116,16 +91,13 @@ Campus Safety
 Can I apply to ECE if I have already completed a bachelor’s degree?
 Capstone
 Capstone (4 &#8211; 8 credits):
-Capstone (4–8 credits): see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list)
 Capstone courses do NOT count toward Advanced ECE Electives.
-Capstone:
 Careers in Electrical and Computer Engineering
 Certificate Program in GPU-Accelerated Computing &#038; Visualization
 Certificate Program in Machine Learning &#038; Deep Learning
 Certificate Programs
 CHEM 142 (or CHEM 143 or CHEM 145)
 CHEM 142 (or CHEM 143 or CHEM 145) — 5 credits
-CHEM 152: General Chemistry , CHEM 153: Accelerated General Chemistry , CHEM 155: Honors General Chemistry , CHEM 220: Principles of Chemistry II
 CHIPS at UW ECE
 CHIPS Faculty
 CHIPS News &#038; Media
@@ -163,7 +135,6 @@ Control systems use math to model and manipulate the physical and non-physical w
 Course Offerings & Course Enrollments
 Course Offerings and Enrollments
 Courses
-Courses used to satisfy requirements must be taken on a graded basis. Courses taken as S/NS cannot be used towards degree requirements.
 Covers key software development concepts and tools not in introductory courses. Concepts of lower-level programming (C/C++) and explicit memory management; techniques and tools for individual and group software development; design, implementation, and testing strategies.
 Covers the application of control system analysis and synthesis techniques to electromechanical systems. Includes time and frequency domain methods, analog and digital electronics, DC motors, and unstable mechanical systems.
 COVID-19 Information and Resources for
@@ -184,15 +155,12 @@ CSE 415 — Artificial Intelligence
 CSE 415 — Introduction to Artificial Intelligence
 CSE 416 — Machine Learning
 Current Students
-Current UW ECE students can schedule an appointment with an adviser online.
 Current UW students in majors other than Engineering Undeclared
 Current UW students who complete the prerequisites outlined below can apply for admission to UW ECE.
 Data Science
 Dates and times are available on our events calendar .
 Deadline: April 5th (Apply via UApp HERE )
 Deadlines
-Department-approved alternative
-Department-Approved Lists
 Departmental Computing
 Design engineer
 Designing accelerators for deep learning
@@ -225,12 +193,7 @@ EE 344 — Data-Driven Modeling and Machine Learning
 EE 345 — Introduction to Foundations of Machine Learning
 EE 347 — Introduction to Robotics and Control Systems
 EE 371 — Design of Digital Circuits and Systems
-EE 393 , ENGR 333 (ENGR 333 will no longer be offered after the Spring 2024 quarter), or Department-approved alternative
 EE 393 or Department-approved alternative
-EE 397: Sex and Gender in Engineering
-EE 398: Introduction to Professional Issues *
-EE 406: Teaching Engineering
-EE 418: Network Security and Cryptography
 EE 419 — Introduction to Computer-Communication Networks
 EE 419 — Introduction to Networks
 EE 421 — Quantum Mechanics for Engineers
@@ -263,8 +226,6 @@ EE 478: Capstone Integrated Digital Design Projects
 EE 482 — Semiconductor Devices
 EE 484 — Sensors and Sensor Systems
 EE 490 (graded CR/NC) may not apply toward Advanced ECE Electives and may only apply to free electives.
-EE 491: Undergraduate Seminar
-EE 492: Electrical Engineering Leadership Seminar
 EE 497 (winter quarter) and EE 498 (spring quarter) — Engineering Entrepreneurial Capstone (ENGINE)
 EE 497: Engineering Entrepreneurial Capstone and EE 498: Engineering Entrepreneurial Capstone
 EE 497/498 (winter/spring) — (ENGINE) Engineering Entrepreneurial Capstone
@@ -286,7 +247,6 @@ Engineering Undeclared (ENGRUD) students
 Engineering Undeclared (ENGRUD) Students
 ENGL 131 or other composition course
 ENGL 131 or other composition course — 5 credits
-English Composition: 5 credits from the University-approved list
 English Composition: In order to transfer English composition to the University of Washington, the course must be from a university located in an English speaking country. Students who transfer credit from a university outside of the US that is located in a non-English speaking country do not meet the prerequisite for English Composition. English speaking countries include: U.S., UK, Australia, New Zealand, Canada, Ireland.
 ENGR 101 — 1 credit
 Enriching Your Path
@@ -300,16 +260,11 @@ First-year applicants who meet UW admissions criteria and who list an engineerin
 Following the April 5 th application deadline, ECE Advising first completes a coursework verification process. This entails double-checking that all prerequisite requirements have been completed, that pre-enrollment requirements have either been completed or marked as in-progress or planned for a future quarter, that the minimum grades and GPA requirements have been met, and that a personal statement has been submitted.
 For multi-quarter capstones, students must complete all courses in the capstone sequence to receive credit. One of the following must be completed:
 For students at a college or university other than UW
-For students starting the BSECE major in Autumn 2024 or later: A maximum of 6 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
-For students starting the BSECE major in Autumn 2024 or later: Up to a maximum of 6 credits combined of ENGR 321 and EE 499 may apply toward Advanced ECE Electives.
 For students transferring from a WA State community college or technical college :
 For students transferring from an institution besides a Washington State community college or technical college :
-For students who started the BSECE major prior to Autumn 2024: A maximum of 10 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
-For students who started the BSECE major prior to Autumn 2024: Up to a maximum of 10 credits combined of ENGR 321 and EE 499 may apply toward Advanced ECE Electives.
 From the computational heart of a robot, to the central processing units (CPUs) controlling an automobile or airplane, and the microprocessors embedded in every mobile phone and smart device — the Embedded Systems pathway helps students to develop the hardware, software and firmware behind each of these systems. Students following this pathway learn how to interface with sensors and actuators, as well as how to optimize systems to operate under a variety of different constraints.
 From the embedded systems that control the flight systems in aircraft, to the autonomous guidance and driving of a Mars rover, computer engineers with a focus in embedded systems are experts in creating such hardware and software systems.
 Fundamental algorithms and data structures for implementation. Techniques for solving problems by programming. Linked lists, stacks, queues, directed graphs. Trees: representations, traversals. Searching (hashing, binary search trees, multiway trees). Garbage collection, memory management. Internal and external sorting.
-General Education Courses are comprised of the following:
 Get Involved
 Give to UW ECE
 Google, Amazon and Microsoft have a new focus on an emerging area of development in the field of Green AI, which explores optimizing hardware and software to minimize power consumption. The development teams aim to detect drift in machine learning models, thereby alerting users that they need to re-train their models, which will lead to more accurate predictions and consume less energy.
@@ -382,16 +337,13 @@ Making future transistors out of only a few atoms.
 Master’s &#038; Ph.D. Programs
 Math : Taking two semesters of Calculus is often considered equivalent to taking three quarters of Calculus. Additionally, some Washington State Community Colleges teach Calculus in a 4-part sequence – please be aware that you may need both Calculus III and Calculus IV to be eligible for ECE transfer admissions.
 Math (especially calculus, linear algebra, algorithms, and differential equations)
-MATH 124 , MATH 125 , MATH 126 , MATH 207 (or AMATH 351 ), MATH 208 (or AMATH 352 )
 MATH 124, 125 and 126 — 15 credits
 MATH 124, 125, 126 (or MATH 134, MATH 135, MATH 136)— 15 credits
 MATH 124, 125, and 126
-MATH 134 , MATH 135 , MATH 136
 MATH 207 or AMATH 351, unless MATH 135 was completed
 MATH 207 or AMATH 351, unless MATH 135 was completed — 4 credits
 MATH 208 (or AMATH 352)
 MATH 224
-Mathematics (15–21 credits), complete one of the following:
 Maximum of 4 credits of ENGR 321 may apply toward Advanced ECE Electives
 Medical devices, such as implantable and point-of-care diagnostics tools, which extensively rely on embedded systems
 MEMS — microelectromechanical devices
@@ -412,7 +364,6 @@ My UW
 Nanoelectronics
 Nanosensors
 Nanotechnology
-Natural Science (NSc) Courses (45 credits):
 Neurotechnology
 Neurotechnology Pathway
 New semiconductor technologies offer the possibility of consuming far less power than traditional devices and thereby curbing the impact of our ever-increasing hunger for electronic devices and appliances. As important, exposing many of our semiconductor and related devices to light produces energy — enough to make semiconductor photovoltaics the global leader in solar energy technologies. However, a wide range of challenges remain to be overcome to improve the efficiency and viability of these devices for residential and commercial customers, as well as on-grid and off-grid users. Semiconductor technologies are prevalent in renewable energy systems today. For example, the energy-efficient light bulbs you use at home are based on light-emitting semiconductor diodes, and the green solar cells on rooftops are also based on diodes.
@@ -423,7 +374,6 @@ No. However, while a student with a bachelor&#8217;s degree can easily find empl
 No. Students can find a good job with a bachelor&#8217;s degree, and this trend is expected to increase because semiconductor manufacturing is making a move back to the United States. The U.S. government has allocated more than $20B to support growth in semiconductor jobs, and graduates with a focus in microelectronics and nanotechnology will find great prospects for jobs overseas as well.
 Non-Degree Options
 Note that ECE is a capacity constrained major and we may prioritize admission for applicants who have not yet earned a bachelor’s degree.
-Note: if you have transfer credit that is similar to the courses above, but which did not transfer as one of the courses listed above, please check with the ECE Advising Office.
 Notes on Prerequisite Coursework
 Notes on Prerequisite Coursework:
 Office of the Chair
@@ -437,10 +387,8 @@ Once this process has been completed, admissions decisions are sent to all appli
 One course from the following list: AMATH 301, BIOEN 215, CHEM 152, CHEM 153, CHEM 155, CHEM 162, CHEM 165, CSE 121, CSE 122, CSE 123, CSE 142, CSE 160, ENGR 115, ME 123, MSE 170, PHYS 122, PHYS 123, PHYS 142, PHYS 143, STAT 220
 OneRadio: Changing the way we access the radio-frequency spectrum
 Operations and Intranet
-Other Degree Information
 Our Bachelor of Science in Electrical and Computer Engineering (BSECE) degree prepares undergraduates for careers in industry or further study at the graduate level. Degree requirements include UW general graduation requirements as well as BSECE prerequisites and curriculum.
 Parse BioSciences: Providing scalable single cell RNA-sequencing solutions
-Passing Grades
 People
 Personal statement (how well the statement answers the prompt, reflects on the applicant’s experiences, and how it describes their interest and goals in ECE)
 Ph.D. Graduate Visit Days
@@ -451,7 +399,6 @@ PHYS 121 (or PHYS 141) — 5 credits
 PHYS 121 and 122
 PHYS 121 and 122 — 10 credits
 PHYS 123
-Physics (10 credits): PHYS 121 , PHYS 122 (or PHYS 141 , PHYS 142 )
 Please be sure to review the UW ECE admissions requirements to ensure you understand the courses needed for eligibility of admission to the ECE major.
 Please do not reach out directly to the UW Office of Admissions or specific UW departments for assistance as they do not have the capacity to review equivalency for prospective transfer courses.
 Please note that the autumn 2023 admission cycle was the FINAL admission cycle to apply for the Electrical Engineering major.
@@ -461,14 +408,12 @@ Power and Energy Systems
 Power systems that incorporate renewable energy use feedback control in a variety of ways — to control relative phase of two different power plants, to control the direction a wind turbine is pointing, and to decide which energy sources to ‘spin up’ and when.
 Privacy
 Professional Issues (1–4 credits): see adviser for list of approved courses (scroll to &#8220;Other Degree Information&#8221; on bottom of page and open &#8220;Department-Approved Lists&#8221; accordion to review list)
-Professional Issues:
 Professional Master’s Certificate Programs
 Professional Master’s Program
 Professional Master’s Short Courses
 Programming
 Proprio: Using computer vision and machine learning to enhance human and computer performance
 Prospective Drop-in Hours
-Prospective student drop-in hours
 Prospective Student Drop-ins:
 Prospective Students
 Prospective Students Drop-In Hours
@@ -494,16 +439,13 @@ Save all past course syllabi. We recommend transfer students save all course syl
 Schedule an Advising Appointment
 Second Thursday of every month:
 Semiconductor technology
-Seminars:
 Sensing and Communication Pathway
 Signal processing
 Site Menu
 Skills in developing microelectronics and nanotechnology are widely applicable in the real world, for example:
 Skip to main content
 SNUPI: Home Monitoring Systems
-SSc (10 credits)
 Staff
-Statistics (3–4 credits): one of IND E 315 , or STAT 390
 Student Job &#038; Internship Opportunities
 Students applying to enter the UW as first-year students
 Students are also encouraged to take courses that provide a large amount of programming experience such as:
@@ -516,11 +458,8 @@ Students in the Computer Architecture Pathway are encouraged to take either EE 4
 Students in the Control Systems Pathway are encouraged to take EE 449 as their capstone; using ENGINE instead as the capstone is also possible.
 Students in the Embedded Pathway are encouraged to take EE 475 as their capstone; using ENGINE instead as the capstone is also possible.
 Students in this area have job opportunities in aerospace, robotics, manufacturing, medical devices, VR / AR, and embedded systems, at companies such as Boeing, SpaceX, Microsoft, Meta Reality Lab, Apple and Amazon.
-Students may pursue optional pathways in order to complete their 36 credits of Advanced ECE Electives.
 Students may pursue optional pathways in order to complete their 39 credits of Advanced ECE Electives.
-Students must achieve passing grades in their classes to fulfill degree requirements. Passing grades are defined as the following:​
 Students must complete coursework in the following three areas:
-Students must take additional electives in order to reach the 180 total credits required to graduate with the BSECE. Free elective credits may be fulfilled by any course for which the University of Washington gives credit, except courses that duplicate or parallel courses for which you have already received credit.
 Students studying Computer Architecture should also consider the following customizable pathways:
 Students studying Embedded Systems should also consider the following customizable pathways:
 Students studying Machine Learning should also consider the following customizable pathways:
@@ -569,7 +508,6 @@ Think Quantum! The focus of this course is to introduce students to quantum mech
 This course provides a theoretical background and practical experience with tools and techniques for modeling complex digital systems, using the Verilog hardware description language. Students will learn how to maintain signal integrity, manage power consumption and ensure robust intra- and inter-system communication.
 This is the only admission point to the BSECE program for current UW students admitted to a major other than through the Direct to College pathway. Please be aware that this is a capacity-constrained admission pathway. Completing the admissions requirements does not guarantee admission, and we may not be able to offer admission to all applicants who meet the minimum prerequisites.
 This pathway is a good fit for students who are interested in:
-This requirement includes two components described below: English Composition and Additional Writing Requirements.
 ThruWave: Providing state-of-the-art millimeter-wave (mmW) 3D imaging
 To be eligible for admission, you should have:
 To be eligible to apply, transfer students must meet the admission requirements as laid out below. You are strongly encouraged to attend a Prospective Student Information Session early to prepare for applying to the ECE major.
@@ -580,10 +518,8 @@ Transfer Students
 Transferring into UW ECE involves two separate admissions processes. You must complete both by the deadlines below to be considered. Note that the deadline for the UW is significantly earlier than for UW ECE.
 Tunoptix: Tunable metasurface optics for machine vision and AR/VR
 Twitter
-Two courses from BIOL 130 , BIOL 220 , CHEM 142 (or CHEM 143 or CHEM 145 ), MATH 224 , PHYS 123 (or PHYS 143 )
 Two courses from the following list:
 Under special circumstances you may petition, as an undergraduate, to apply up to 4 credits earned in EE graduate courses toward your 400 level Advanced ECE Electives. Before such a request can be approved, you must demonstrate that you have the required background for the graduate courses. Consult the UW ECE Advising Office for additional information about the petition process.
-undergradece@uw.edu
 Understanding optimization across software and hardware
 Understanding the entire computing stack, which provides an advantage in designing embedded computing solutions that are fast, efficient and low-cost
 Understanding, designing and optimizing digital hardware
@@ -622,9 +558,6 @@ Who is this program a good fit for?
 WiBotic: Wireless Power for Robots
 width="19px" height="51px" viewBox="0 0 18.776 51.062" enable-background="new 0 0 18.776 51.062" xml:space="preserve" focusable="false">
 Write a strong and relevant personal statement. When working on your ECE application, please spend some time writing a unique personal statement for ECE that answers all parts of the prompt. Please include reflection or experience that is directly relevant to ECE.
-Writing: 3 credits of &#8220;W&#8221; coursework
-Writing: Remaining 4 credits met by coursework in the major ( EE 393 )
-Written and Oral Communication (12 credits)
 Yes. Advances in computing, alongside machine learning, can be used to make an impact locally, nationally and globally. For example, machine learning can contribute toward helping to better predict and improve population health, detect plastics that are polluting our rivers and improve the sustainability of crops.
 Yes. Embedded systems make up much of the digital world, and so they have a huge impact on how we think about equitable access to technology, as well as the responsible use and sustainability of that technology.
 Yes. It would be difficult to find any part of society today that is not touched, supported or assisted by electronic devices. Integrated circuits, smartphones, rockets, telescopes, refrigerators and other home appliances, computers, tablets, televisions, video games, augmented and virtual reality, missiles, blood pressure monitors and other home medical devices — the list is endless. While often invisible to the everyday user, electronic devices are integral to addressing today&#8217;s most pressing global challenges — from climate change to vaccines to transportation and many other areas.

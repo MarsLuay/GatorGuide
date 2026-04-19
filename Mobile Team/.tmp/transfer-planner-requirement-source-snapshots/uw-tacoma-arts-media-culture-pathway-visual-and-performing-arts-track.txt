@@ -8,7 +8,6 @@ Title: Arts, Media & Culture | Culture, Arts & Communication | University of Was
 [Supplemental official source] LITERATURE TRACK
 [Supplemental official source] Supplemental official track and option pages
 [Supplemental official source] VISUAL AND PERFORMING ARTS TRACK
-** Creative Writing Courses
 **Creative Writing Courses
 &copy; 2026 University of Washington Tacoma
 <a
@@ -147,12 +146,9 @@ LIST D: PRACTICE / STUDIO COURSES
 LIST E: LITERATURE
 LIST F: FILM AND MEDIA
 LIST G: VISUAL AND PERFORMING ARTS
-Literature (List E) (25 credits)
 Literature (List E) or Film and Media (List F) (5 credits)
 Literature (List E) or Visual and Performing Arts (List G) (5 credits)
-Literature Track
 LITERATURE TRACK
-Literature Track | Culture, Arts & Communication | University of Washington Tacoma
 Main Content
 MAJOR COORDINATOR
 Majors

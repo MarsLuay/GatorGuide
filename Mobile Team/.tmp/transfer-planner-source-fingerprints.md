@@ -1,13 +1,13 @@
 # Transfer Planner Source Fingerprints
 
-Generated: 2026-04-18T10:21:55.267Z
+Generated: 2026-04-19T03:18:14.898Z
 
 - Source snapshot generated: 2026-04-18T10:16:01.486Z
-- Requirement parse report generated: 2026-04-18T10:21:54.627Z
-- Source fingerprints: 331
+- Requirement parse report generated: 2026-04-19T03:17:46.056Z
+- Source fingerprints: 335
 - Requirement-source fingerprints: 460
-- Changed source resource fingerprints: 144
-- Changed parsed requirement fingerprints: 0
+- Changed source resource fingerprints: 0
+- Changed parsed requirement fingerprints: 2
 - Added source fingerprints: 0
 - Added requirement fingerprints: 0
 - Removed source fingerprints: 0
@@ -16,126 +16,16 @@ Generated: 2026-04-18T10:21:55.267Z
 Source resource fingerprints track official URL metadata/body hashes.
 Requirement-source fingerprints track parsed requirement facts separately, so cosmetic page changes do not automatically become planner requirement changes.
 
-## Changed Source Resources
+## Changed Parsed Requirement Facts
 
-- http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html
-  - owners: uw-seattle-cinema-and-media-studies
-  - fingerprint: e9dc309d371a04529290cac76e0434a0cf21ea90d6d9707cd7fd8ad300be623e
-- https://aes.washington.edu/ba-american-ethnic-studies
-  - owners: uw-seattle-american-ethnic-studies
-  - fingerprint: e7f18ef2dd8a823f0f56195afcf86ce3c2fb7417a2ac4171911fbf5b1778926f
-- https://ais.washington.edu/ba-american-indian-studies
-  - owners: uw-seattle-american-indian-studies
-  - fingerprint: f009f2dccce6386d4db27cdf627c3d6461e150bc699ab0f7eb6c4504b9175016
-- https://amath.washington.edu/undergraduate-major-applied-mathematics
-  - owners: uw-seattle-applied-mathematics, uw-seattle-applied-mathematics::applied-mathematics-data-science-option, uw-seattle-applied-mathematics::b-s-to-m-s-pathway, uw-seattle-applied-mathematics::computational-finance-and-risk-management-data-science-option, uw-seattle-applied-mathematics::data-science-option, uw-seattle-applied-mathematics::requirements-for-data-science-option, uw-seattle-applied-mathematics::what-is-applied-mathematics-with-a-data-science-option, uw-seattle-applied-mathematics:pathway:applied-mathematics-data-science-option, uw-seattle-applied-mathematics:pathway:b-s-to-m-s-pathway, uw-seattle-applied-mathematics:pathway:computational-finance-and-risk-management-data-science-option, uw-seattle-applied-mathematics:pathway:data-science-option, uw-seattle-applied-mathematics:pathway:requirements-for-data-science-option, uw-seattle-applied-mathematics:pathway:what-is-applied-mathematics-with-a-data-science-option
-  - fingerprint: 3eeb21a28c99d1880e82a3300e16253ec3beaf3791f615be803c8bcd0618dbfc
-- https://asian.washington.edu/ba-asian-languages-cultures
-  - owners: uw-seattle-asian-languages-and-cultures
-  - fingerprint: b3d80e2616e95dd231263b47ae945147015b8e8f0352274181219063fe9d34d9
-- https://asian.washington.edu/ba-chinese
-  - owners: uw-seattle-chinese
-  - fingerprint: 4070e1a6f71b49c9b36e200d5643d9e580e8d16d4061221af2c40413615c3767
-- https://asian.washington.edu/ba-japanese
-  - owners: uw-seattle-japanese, uw-seattle-japanese::linguistics-option, uw-seattle-japanese::literature-option, uw-seattle-japanese:pathway:linguistics-option, uw-seattle-japanese:pathway:literature-option
-  - fingerprint: 7759e8a969646467ce926e1d60135adb88bff8ee71dbf0f1b1d25c5808328f50
-- https://asian.washington.edu/ba-korean
-  - owners: uw-seattle-korean
-  - fingerprint: 7519e9d9a590bd130e73ae081b7999d82a5ba6bd94600ef408dd9928fbbacf2d
-- https://asian.washington.edu/ba-south-asian-languages-and-cultures
-  - owners: uw-seattle-south-asian-languages-and-cultures
-  - fingerprint: 1a7ff678b4ed34823530565b893e609444cc27479ff4df2d37ddbb224e9495c5
-- https://astro.washington.edu/timeline-and-requirements
-  - owners: uw-seattle-astronomy
-  - fingerprint: 719f08f73f866dca5b944efa6c9abdc58759eea4dc8c6ca74e5124a1ebfa5076
-- https://catalog.greenriver.edu/
-  - owners: grc-catalog-2025-2026
-  - fingerprint: bf8d87d6c220913cf7fe5728b82e20d0daccf9b776f29ee5ff77f18eb939eafe
-- https://catalog.greenriver.edu/content.php?catoid=10&navoid=624
-  - owners: grc-course-descriptions-2025-2026
-  - fingerprint: 837e6b85b9db2075fd3c55fc50a177ba3a0618f74be7e916bf4e8f5fb7e99848
-- https://chem.washington.edu/ba-biochemistry
-  - owners: uw-seattle-biochemistry::ba-route, uw-seattle-biochemistry::bs-route
-  - fingerprint: 98ffa0de86c7b5745b1eed855c53e7f036bf742afbf4ffd52b344ad7464c981a
-- https://chem.washington.edu/ba-chemistry
-  - owners: uw-seattle-chemistry, uw-seattle-chemistry::ba-route, uw-seattle-chemistry::bs-route, uw-seattle-chemistry:pathway:ba-route, uw-seattle-chemistry:pathway:bs-route
-  - fingerprint: a709e4af002560c8776726c81d79f4b08463414592e7d8b61f7143e8b9367f51
-- https://cinema.washington.edu/ba-comparative-literature
-  - owners: uw-seattle-comparative-literature
-  - fingerprint: c02e37c93e35e06a2a05f1e56424a6a1ec14c9ec6ca01dc5d2787aca9431ae2d
-- https://classics.washington.edu/ba-classics
-  - owners: uw-seattle-classics
-  - fingerprint: 8bf744995bacc7cc6c565744175507274d79dc618b7bdec0675153efdd93c25a
-- https://classics.washington.edu/ba-greek
-  - owners: uw-seattle-greek
-  - fingerprint: 217ca9d67df76ca22da8c54448dca7512cd8426c46459c89731fb4409754f15d
-- https://classics.washington.edu/ba-latin
-  - owners: uw-seattle-latin
-  - fingerprint: c60d7fd39e563ee1dbe3c2eff2535652b9ba3ca8fab41ef4c94800cf8b318fed
-- https://disabilitystudies.washington.edu/DS_major
-  - owners: uw-seattle-disability-studies
-  - fingerprint: 420e0bf64f95a26e3bae315ed1db5809ace963b1b994552df26516dfd9bba33b
-- https://dlmp.uw.edu/education/mls-undergrad
-  - owners: uw-seattle-medical-laboratory-science
-  - fingerprint: 7a401a88380512e5dd8d7c005c66d58f68717b14abcfacf6066426bb484cb053
-- https://english.washington.edu/english-language-literature-and-culture-option
-  - owners: uw-seattle-english-language-literature-and-culture, uw-seattle-english-language-literature-and-culture::ba-in-english-creative-writing-option, uw-seattle-english-language-literature-and-culture::ba-in-english-language-and-literature-option, uw-seattle-english-language-literature-and-culture::english-language-literature-and-culture-option, uw-seattle-english-language-literature-and-culture::language-and-literature-option, uw-seattle-english-language-literature-and-culture::language-and-literature-option-requirements-summer-2019-spring-2022, uw-seattle-english-language-literature-and-culture:pathway:ba-in-english-creative-writing-option, uw-seattle-english-language-literature-and-culture:pathway:ba-in-english-language-and-literature-option, uw-seattle-english-language-literature-and-culture:pathway:english-language-literature-and-culture-option, uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option, uw-seattle-english-language-literature-and-culture:pathway:language-and-literature-option-requirements-summer-2019-spring-2022
-  - fingerprint: 5a6e0742b9a11658efb338dc4757a057f918093246b147bd326f7487105ac37c
-- https://german.washington.edu/german-studies
-  - owners: uw-seattle-german
-  - fingerprint: 0bbb0139771c213618ad03e450cf61f5deb6b3a50149ae5e276b95a084352c8b
-- https://history.washington.edu/major
-  - owners: uw-seattle-history
-  - fingerprint: 2d66639133f5e78388a0bca087255c47b32b0df7eb8af75e53e5e706c785a59a
-- https://ischool.uw.edu/academics/informatics/curriculum
-  - owners: uw-seattle-informatics, uw-seattle-informatics::begin-taking-major-electives-degree-option-classes-spring-of-junior-year, uw-seattle-informatics::biomedical-and-health-informatics-option, uw-seattle-informatics::data-science-option, uw-seattle-informatics::declare-your-major-option-by-spring-of-junior-year-recommended, uw-seattle-informatics::declaring-an-option, uw-seattle-informatics:pathway:begin-taking-major-electives-degree-option-classes-spring-of-junior-year, uw-seattle-informatics:pathway:biomedical-and-health-informatics-option, uw-seattle-informatics:pathway:data-science-option, uw-seattle-informatics:pathway:declare-your-major-option-by-spring-of-junior-year-recommended, uw-seattle-informatics:pathway:declaring-an-option
-  - fingerprint: 8a1b64eea3de767a838c1b8894631dde970764ba4d4f50c6e106e7e3d46164dc
-- https://jsis.washington.edu/programs/undergraduate/asia-studies/
-  - owners: uw-seattle-asian-studies
-  - fingerprint: 58c17d538f4737ccb23788090063422eb432d28f0f5d2fb766f97164615c98f7
-- https://jsis.washington.edu/programs/undergraduate/jewish-studies/
-  - owners: uw-seattle-jewish-studies
-  - fingerprint: 00d2b0914d6243a0eac3fc00d437f5293c2b8b7cc9c6d627cf70aabfa6eb6d0d
-- https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/
-  - owners: uw-seattle-latin-american-and-caribbean-studies
-  - fingerprint: 3e69f0bcb4b574ee641e64d47a6dadf005308828f663b2b1fa5475f3eee4fe1e
-- https://linguistics.washington.edu/ba-linguistics
-  - owners: uw-seattle-linguistics
-  - fingerprint: 90be39881bca7563e3b87363841508ac8513f0e0cf6c26e4538036a8b1d0934e
-- https://lsj.washington.edu/lsj-gold-curriculum-requirements
-  - owners: uw-seattle-law-societies-and-justice, uw-seattle-law-societies-and-justice::graduate-certificate-program-requirements-and-admissions, uw-seattle-law-societies-and-justice::honors-option, uw-seattle-law-societies-and-justice:pathway:graduate-certificate-program-requirements-and-admissions, uw-seattle-law-societies-and-justice:pathway:honors-option
-  - fingerprint: 0e77ee70df3c7651d8e013bd393dfb5f24133ff6d1ebf7baa9dde27f16209329
-- https://math.washington.edu/ba-mathematics-standard-major-requirements-0
-  - owners: uw-seattle-mathematics, uw-seattle-mathematics::math-option-change, uw-seattle-mathematics::math-option-change-for-current-math-majors, uw-seattle-mathematics:pathway:math-option-change, uw-seattle-mathematics:pathway:math-option-change-for-current-math-majors
-  - fingerprint: e6caadaf23d8760ce05b30a0036e24074a5346590087ea0089f788a00ea1b83b
-- https://music.washington.edu/bachelor-arts-music-instrumental-option
-  - owners: uw-seattle-music-b-a, uw-seattle-music-b-a::bachelor-of-arts-instrumental-option-degree-program-sheet-pdf, uw-seattle-music-b-a::bachelor-of-arts-music-instrumental-option, uw-seattle-music-b-a::music-instrumental-option, uw-seattle-music-b-a::music-music-history-option, uw-seattle-music-b-a::music-music-theory-option, uw-seattle-music-b-a::music-voice-option, uw-seattle-music-b-a:pathway:bachelor-of-arts-instrumental-option-degree-program-sheet-pdf, uw-seattle-music-b-a:pathway:bachelor-of-arts-music-instrumental-option, uw-seattle-music-b-a:pathway:music-instrumental-option, uw-seattle-music-b-a:pathway:music-music-history-option, uw-seattle-music-b-a:pathway:music-music-theory-option, uw-seattle-music-b-a:pathway:music-voice-option
-  - fingerprint: f194ac871be65996334aa36d81cc41b279149b7261983e16a0d774c1ac568157
-- https://music.washington.edu/bachelor-music-composition
-  - owners: uw-seattle-music-composition-b-m
-  - fingerprint: f960e934ed1265e7030c22f3cc4e7a0e676508ea4624076a10ffd64503bcdfc1
-- https://music.washington.edu/bachelor-music-guitar
-  - owners: uw-seattle-guitar-b-m
-  - fingerprint: e1dc5d4efcced4c3a8f07d32453c219e550b617fd93b550a4a7ece283d1678a7
-- https://music.washington.edu/bachelor-music-jazz-studies
-  - owners: uw-seattle-jazz-studies-b-m
-  - fingerprint: 701928ee5d103be6c8835aaaae7b4471233c230b33eaea07e44e09c1f59c028a
-- https://music.washington.edu/bachelor-music-music-education-instrumental-emphasis
-  - owners: uw-seattle-music-education-b-m
-  - fingerprint: 6b53ed9daedfef81e351641917133c6be401f860b32b9faa8479d807d6ae0fd8
-- https://music.washington.edu/bachelor-music-orchestral-instruments
-  - owners: uw-seattle-orchestral-instruments-b-m
-  - fingerprint: 8da6ac612c24fa1cadd65221f9151107e4cc971d03267a6da62976472a2b8787
-- https://music.washington.edu/bachelor-music-organ
-  - owners: uw-seattle-organ-b-m
-  - fingerprint: 01197c844f884034642e601a5d208934b47841fb22586c57abd95ea48ed58668
-- https://music.washington.edu/bachelor-music-percussion-performance
-  - owners: uw-seattle-percussion-performance-b-m
-  - fingerprint: bdda4d29c2e94d016e3c81200d9f80b754fba2a3d5861de0ea742465d9b49bdc
-- https://music.washington.edu/bachelor-music-piano
-  - owners: uw-seattle-piano-b-m
-  - fingerprint: 3623e09284ea7a1bf267387e5f315ea508ac258e1f7aa2840db2a6dd8e5edef0
-- https://music.washington.edu/bachelor-music-voice
-  - owners: uw-seattle-voice-b-m
-  - fingerprint: 80eb02c5a51705622b144d86f14f54849cbf7df26e8b50eff082d15fe73abb87
+- History (uw-seattle-history)
+  - source: https://history.washington.edu/major
+  - fingerprint: 4a79f8d16b59c9061d9e0af417796e21758a427f6172c7229a072cd1a589d54d
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Italian (uw-seattle-italian)
+  - source: https://frenchitalian.washington.edu/undergraduate-studies-italian
+  - fingerprint: a95ac9843d056942918282a2018cfb8aed7bee6e12f44c965e94012794ca168d
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
 

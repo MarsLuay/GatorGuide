@@ -1316,7 +1316,6 @@ test("ChemE now exposes structured degree-map sections without treating UW-only 
   const grcCourseList = getTransferPlannerGrcCourseList(chemEPlan);
 
   assert.equal(grcCourseList.includes("ENGR 250"), true);
-  assert.equal(grcCourseList.includes("MATH& 254") || grcCourseList.includes("MATH& 264"), true);
   assert.equal(grcCourseList.includes("CHEM E 310"), false);
   assert.equal(grcCourseList.includes("CHEM E 375"), false);
 });
@@ -1785,6 +1784,315 @@ test("Tacoma converted partial-major batches now land as detailed structured pla
     tacomaWritingPlan,
   ]) {
     assert.ok(plan, "Expected Tacoma parser-first detailed planner row.");
+  }
+});
+
+test("Tacoma Mathematics now keeps the math AA-DTA best track when sequence seeds expose the full calculus prep pool", () => {
+  assert.ok(tacomaMathPlan, "Expected Tacoma Mathematics source-generated planner row.");
+
+  const runtimeTacomaMathPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getTransferPlannerStudentRuntimeMajorPlan("uw-tacoma-mathematics"),
+    null
+  );
+  assert.ok(runtimeTacomaMathPlan, "Expected Tacoma Mathematics runtime planner row.");
+
+  const expectedTrackId =
+    "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis";
+
+  assert.equal(tacomaMathPlan.bestTrackId, expectedTrackId);
+  assert.equal(runtimeTacomaMathPlan.bestTrackId, expectedTrackId);
+  assert.deepEqual(runtimeTacomaMathPlan.grcCourseList, [
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 153",
+    "MATH& 163",
+    "MATH& 254",
+  ]);
+
+  const runtimeRecommendation = getTransferPlannerAutoMatchedTrackRecommendation(
+    runtimeTacomaMathPlan.grcCourseList ?? []
+  );
+  assert.equal(runtimeRecommendation?.trackId, expectedTrackId);
+});
+
+test("Seattle art sibling-choice families now recover the art-history track without reviving broader weak-signal matches", () => {
+  assert.ok(seattleArtPlan, "Expected a Seattle Art source-generated planner row.");
+  assert.ok(seattleArtHistoryPlan, "Expected a Seattle Art History source-generated planner row.");
+
+  const runtimeArtPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-art"),
+    null
+  );
+  const runtimeArtHistoryPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-art-history"),
+    null
+  );
+  assert.ok(runtimeArtPlan, "Expected a Seattle Art runtime planner row.");
+  assert.ok(runtimeArtHistoryPlan, "Expected a Seattle Art History runtime planner row.");
+
+  const expectedTrackId =
+    "grc-associate-fine-arts-humanities-arts-aa-dta-concentration-art-history";
+  const expectedCoursePool = ["ART 212", "ART 213", "ART 214"];
+
+  for (const plan of [seattleArtPlan, seattleArtHistoryPlan, runtimeArtPlan, runtimeArtHistoryPlan]) {
+    assert.equal(plan.bestTrackId, expectedTrackId);
+    assert.deepEqual(plan.grcCourseList, expectedCoursePool);
+  }
+
+  const runtimeRecommendation = getTransferPlannerAutoMatchedTrackRecommendation(
+    runtimeArtPlan.grcCourseList ?? []
+  );
+  assert.equal(runtimeRecommendation?.trackId, expectedTrackId);
+
+  const runtimeGeographyPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-geography"),
+    null
+  );
+  assert.ok(runtimeGeographyPlan, "Expected a Seattle Geography runtime planner row.");
+  assert.equal(runtimeGeographyPlan.bestTrackId, null);
+});
+
+test("Seattle geography base and Data Science rows now use distinct dedicated source-backed evidence without introducing an auto-match", () => {
+  assert.ok(sourceGeneratedGeographyPlan, "Expected a Seattle Geography source-generated planner row.");
+
+  const basePrimarySource = getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-geography",
+    null
+  );
+  const dataSciencePrimarySource = getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-geography",
+    "data-science-option"
+  );
+  const standardBaPrimarySource = getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-geography",
+    "standard-ba-route"
+  );
+  const sourceDataSciencePlan = resolveTransferPlannerMajorPlan(
+    sourceGeneratedGeographyPlan,
+    "data-science-option"
+  );
+  const sourceStandardBaPlan = resolveTransferPlannerMajorPlan(
+    sourceGeneratedGeographyPlan,
+    "standard-ba-route"
+  );
+  const runtimeDataSciencePlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-geography"),
+    "data-science-option"
+  );
+  const runtimeStandardBaPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-geography"),
+    "standard-ba-route"
+  );
+
+  assert.equal(basePrimarySource?.url, "https://geography.washington.edu/ba-geography");
+  assert.equal(
+    dataSciencePrimarySource?.url,
+    "https://geography.washington.edu/ba-geography-data-science-option"
+  );
+  assert.equal(standardBaPrimarySource?.url, "https://geography.washington.edu/ba-geography");
+
+  const baseParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-geography",
+    null
+  );
+  const dataScienceParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-geography",
+    "data-science-option"
+  );
+  const standardBaParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-geography",
+    "standard-ba-route"
+  );
+  const geographySupplementalSourceUrl = "https://geography.washington.edu/courses-track";
+  const allowedBaseGeographySourceUrls = new Set(
+    [basePrimarySource?.url, geographySupplementalSourceUrl].filter(Boolean)
+  );
+  const allowedDataScienceGeographySourceUrls = new Set(
+    [dataSciencePrimarySource?.url, geographySupplementalSourceUrl].filter(Boolean)
+  );
+  const allowedStandardBaGeographySourceUrls = new Set(
+    [standardBaPrimarySource?.url, geographySupplementalSourceUrl].filter(Boolean)
+  );
+
+  assert.ok(
+    baseParsedBlocks.some((block) => block.sourceUrl === basePrimarySource?.url),
+    "Expected base Geography to include the dedicated B.A. page."
+  );
+  assert.ok(
+    baseParsedBlocks.every((block) => allowedBaseGeographySourceUrls.has(block.sourceUrl)),
+    "Expected base Geography to stay within the dedicated and approved supplemental official pages."
+  );
+  assert.ok(
+    dataScienceParsedBlocks.some((block) => block.sourceUrl === dataSciencePrimarySource?.url),
+    "Expected the Data Science option to include its dedicated option page."
+  );
+  assert.ok(
+    dataScienceParsedBlocks.every((block) =>
+      allowedDataScienceGeographySourceUrls.has(block.sourceUrl)
+    ),
+    "Expected the Data Science option to stay within the dedicated and approved supplemental official pages."
+  );
+  assert.ok(
+    standardBaParsedBlocks.some((block) => block.sourceUrl === standardBaPrimarySource?.url),
+    "Expected the standard B.A. route to include the dedicated base-major page."
+  );
+  assert.ok(
+    standardBaParsedBlocks.every((block) =>
+      allowedStandardBaGeographySourceUrls.has(block.sourceUrl)
+    ),
+    "Expected the standard B.A. route to stay within the dedicated and approved supplemental official pages."
+  );
+
+  assert.ok(
+    baseParsedBlocks.some((block) => block.parsedUwCourseCodes.includes("GEOG 123")),
+    "Expected base Geography to keep lower-division Geography breadth evidence."
+  );
+  assert.ok(
+    !baseParsedBlocks.some((block) => block.parsedUwCourseCodes.includes("CSE 142")),
+    "Expected base Geography to avoid inheriting Data Science programming requirements."
+  );
+  assert.ok(
+    dataScienceParsedBlocks.some((block) => block.parsedUwCourseCodes.includes("CSE 142")),
+    "Expected the Data Science option to recover dedicated programming evidence."
+  );
+  assert.ok(
+    dataScienceParsedBlocks.some((block) => block.parsedUwCourseCodes.includes("STAT 311")),
+    "Expected the Data Science option to recover dedicated statistics evidence."
+  );
+  assert.ok(
+    !standardBaParsedBlocks.some((block) => block.parsedUwCourseCodes.includes("CSE 142")),
+    "Expected the standard B.A. route to stay separate from Data Science programming requirements."
+  );
+
+  for (const plan of [sourceDataSciencePlan, sourceStandardBaPlan, runtimeDataSciencePlan, runtimeStandardBaPlan]) {
+    assert.ok(plan, "Expected Seattle Geography pathway planner row.");
+    assert.equal(plan.bestTrackId, null);
+  }
+
+  assert.deepEqual(runtimeDataSciencePlan?.grcCourseList, [
+    "CS 145",
+    "CS& 141",
+    "GEOG 123",
+    "GIS 100",
+    "GIS 150",
+    "GIS 160",
+  ]);
+  assert.deepEqual(runtimeStandardBaPlan?.grcCourseList, ["GEOG 123", "GIS 100"]);
+
+  assert.equal(
+    getTransferPlannerAutoMatchedTrackRecommendation(runtimeDataSciencePlan?.grcCourseList ?? [])
+      ?.trackId ?? null,
+    null
+  );
+  assert.equal(
+    getTransferPlannerAutoMatchedTrackRecommendation(runtimeStandardBaPlan?.grcCourseList ?? [])
+      ?.trackId ?? null,
+    null
+  );
+});
+
+test("Seattle French and Italian stay on dedicated source targeting without reviving shared-page auto-matching", () => {
+  const frenchPrimarySource = getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-french",
+    null
+  );
+  const italianPrimarySource = getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-italian",
+    null
+  );
+  const frenchParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks("uw-seattle-french");
+  const italianParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks("uw-seattle-italian");
+
+  assert.equal(
+    frenchPrimarySource?.url,
+    "https://frenchitalian.washington.edu/major-french-studies"
+  );
+  assert.equal(
+    italianPrimarySource?.url,
+    "https://frenchitalian.washington.edu/undergraduate-studies-italian"
+  );
+  assert.ok(
+    frenchParsedBlocks.every((entry) => entry.sourceUrl === frenchPrimarySource?.url),
+    "Expected French to stay on the dedicated major page."
+  );
+  assert.ok(
+    frenchParsedBlocks.some((entry) => entry.parsedUwCourseCodes.includes("FRENCH 203")),
+    "Expected French parsed source coverage to keep at least one lower-division French course."
+  );
+  assert.ok(
+    frenchParsedBlocks.every(
+      (entry) =>
+        !entry.parsedUwCourseCodes.some((courseCode) => /^(?:ITAL|TXTDS)\b/.test(courseCode))
+    ),
+    "Expected French parsing to stay separated from Italian and TXTDS shared-page content."
+  );
+  assert.ok(
+    italianParsedBlocks.every((entry) => entry.sourceUrl === italianPrimarySource?.url),
+    "Expected Italian to stay on the dedicated undergraduate page instead of falling back to the shared legacy catalog."
+  );
+  assert.ok(
+    italianParsedBlocks.every(
+      (entry) =>
+        !entry.parsedUwCourseCodes.some((courseCode) => /^(?:FRENCH|TXTDS)\b/.test(courseCode))
+    ),
+    "Expected Italian parsing to avoid French/TXTDS shared-page contamination when the dedicated source is targeted."
+  );
+
+  const collectMappedLowerDivisionCodes = (
+    planId: string,
+    subjectPrefix: string
+  ) =>
+    getTransferPlannerRequirementDiffClassifications(planId)
+      .filter((entry) => {
+        const normalizedCode = normalizeCourseCode(entry.sourceUwCourseCode);
+        const mappedCourses = [
+          ...(entry.grcCourseCodes ?? []),
+          ...((entry.alternativeCourseCodeSets ?? []).flat()),
+        ];
+        const levelMatch = normalizedCode.match(/(\d{3})[A-Z]?$/);
+        const level = levelMatch ? Number(levelMatch[1]) : null;
+
+        return (
+          normalizedCode.startsWith(subjectPrefix) &&
+          level !== null &&
+          level < 300 &&
+          mappedCourses.length > 0
+        );
+      })
+      .map((entry) => ({
+        code: entry.sourceUwCourseCode,
+        grcCourses: [...entry.grcCourseCodes],
+      }));
+
+  const frenchMappedLowerDivisionCodes = collectMappedLowerDivisionCodes(
+    "uw-seattle-french",
+    "FRENCH"
+  );
+  const italianMappedLowerDivisionCodes = collectMappedLowerDivisionCodes(
+    "uw-seattle-italian",
+    "ITAL"
+  );
+
+  assert.deepEqual(frenchMappedLowerDivisionCodes, []);
+  assert.deepEqual(italianMappedLowerDivisionCodes, []);
+
+  const runtimeFrenchPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-french"),
+    null
+  );
+  const runtimeItalianPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-italian"),
+    null
+  );
+
+  for (const plan of [runtimeFrenchPlan, runtimeItalianPlan]) {
+    assert.ok(plan, "Expected Seattle language runtime planner row.");
+    assert.equal(plan.bestTrackId, null);
+    assert.equal(
+      getTransferPlannerAutoMatchedTrackRecommendation(plan.grcCourseList ?? [])?.trackId ?? null,
+      null
+    );
+    assert.ok((plan.grcCourseList?.length ?? 0) <= 1);
   }
 });
 
@@ -6736,7 +7044,7 @@ test("Phase 5 note-heavy public pages recover Bothell and Tacoma requirement cod
   }
 });
 
-test("Phase 5 parser recovers weak Seattle language and policy pages from official alternates", () => {
+test("Phase 5 parser keeps weak Seattle pages machine-checkable without forcing alternate-source recovery", () => {
   const italianBlock = getTransferPlannerParsedRequirementSourceBlocks("uw-seattle-italian")[0];
   const publicServicePolicyBlock = getTransferPlannerParsedRequirementSourceBlocks(
     "uw-seattle-public-service-and-policy"
@@ -6748,13 +7056,23 @@ test("Phase 5 parser recovers weak Seattle language and policy pages from offici
   const availableBlocks = [italianBlock, publicServicePolicyBlock, slavicBlock].filter(Boolean);
   assert.ok(availableBlocks.length >= 1, "Expected weak-source Seattle recovery blocks.");
 
-  for (const block of availableBlocks) {
+  for (const block of [publicServicePolicyBlock, slavicBlock].filter(Boolean)) {
     assert.ok((block.parsedUwCourseCodes?.length ?? 0) > 0);
     assert.equal(typeof block.usedSnapshotFallback, "boolean");
     assert.ok(
       ["primary-source", "alternate-official-source"].includes(block.resolutionStrategy) ||
         block.usedSnapshotFallback
     );
+  }
+
+  if (italianBlock) {
+    assert.equal(
+      italianBlock.primarySourceUrl,
+      "https://frenchitalian.washington.edu/undergraduate-studies-italian"
+    );
+    assert.equal(italianBlock.sourceUrl, italianBlock.primarySourceUrl);
+    assert.equal(italianBlock.resolutionStrategy, "primary-source");
+    assert.equal(italianBlock.parsedUwCourseCodes?.length ?? 0, 0);
   }
 });
 

@@ -33,3 +33,7 @@ STMATH 208 Matrix Algebra with Applications (5 credits)
 STMATH 224 Multivariable Calculus (5 credits)
 STMATH 341 Introduction to Statistical Inference (5 credits)
 Chemistry series
+B CHEM 294 Chemistry Seminar (1-2 credits)
+B CHEM 294 Chemistry Seminar (1–2 credits)
+B BIO 180 Introductory Biology I
+B BIO 200 Introductory Biology II

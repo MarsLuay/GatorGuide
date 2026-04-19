@@ -10,629 +10,104 @@ Title: Degree Planning & Requirements - Paul G. Allen School of Computer Science
 * Informatics The Information School, also known as the Information School, offers a Bachelor of Science in Informatics that prepares students to analyze, design, and develop information technologies for the good of people, organizations, and society. The degree is a balance between technical skills in building information systems, and social, ethical, design, and organizational perspectives on the role of technology in people&#8217;s lives.Most Informatics students seek careers as software developers, data scientists, web developers, user experience designers, project manager, cybersecurity analysts or product managers.
 * Masters in Clinical Informatics and Patient Centered Technologies Offered through the Evening Degree program, learn to manage and evaluate the use of information technology and informatics applications to improve patient care processes and outcomes. Explore IT tools used in clinical and community settings, and study how to design and test systems that enhance care.
 * Visual Communications Design and Interaction Design The School of Art&#8217;s Division of Design educates and trains designers to create and develop concepts that optimize the function, value, and appearance of communications, products and systems for the benefit of both industry and society. Within the Division of Design, there are three majors: Visual Communication Design, Industrial Design and Interaction Design.
-&copy; 2026 Paul G. Allen School of Computer Science & Engineering, University of Washington, Seattle WA
-<input id="uw-search-bar" type="search"
 180 is designed for all undergraduates. No previous exposure to programming or statistics is expected. Many important decisions made by individuals and society at large are or should be data driven. Therefore, understanding the fundamentals of data science is essential for functioning as an informed citizen.
-185 E Stevens Way NE
-2 undergraduate majors only CSE courses maximum allowed per quarter (excludes support courses)
 311 Foundations I
 312 Foundations II
 331 Software Design & Implementation
 332 Data Structures & Parallelism
-333 Systems Programming
-340 Interaction Programming
-341 Programming Languages
-344 Data Management
-351 Hardware/Software Interface
-369 Digital Design
-371 Digital Circuits
-3800 E Stevens Way NE
-391 Tools
-5 total undergraduate majors only CSE courses allowed (excluding support courses like CSE 391 and CSE 390Z). If you officially audit a course, that is counted as one of the 5.
-A cumulative GPA of at least 3.5 in all CSE courses.
-A cumulative UW GPA of at least 3.3.
 A minimum grade of 2.0 in CSE 123 or 143
 A minimum grade of 2.0 in CSE 123 or 143; a minimum grade of 2.0 in MATH 126 or 135
-ABET Accreditation
-Academic Programs
 Academic Satisfactory Progress Petition
-Academics
-Academics Overview
-Accelerated Computer Programming (CSE 143X)
-Access Students (anyone 60 plus can ask to audit courses for a small fee)
-Accessibility
 Accessible Accordion
-Adjunct Faculty
-Administrative Support Team
-Admissions
-Advising
-Advisory Board
-Affiliate Faculty
-After completing CSE 160, students can already use programming for a variety of data analyses. For more data programming, including using common tools and libraries for a variety of types of data, continue on to CSE 163 Intermediate Data Programming. For students who are interested in taking additional programming classes or who intend to major in computer science or computer engineering, take CSE 122 (not CSE 121, which is for students without programming experience). Students who would like to learn how to build websites and web-based applications and have achieved a grade of at least 2.0 in CSE 160 can enroll in CSE 154 Web Programming.
-After completing CSE 163, students will be well-positioned to pursue various data-science courses across campus, including in majors that have data-science options. It is also great preparation for CSE 414 and CSE / STAT 416 — courses where any one of CSE 123, CSE 143, or CSE 163 are sufficient.
-After completing the Educational Outreach &#8220;NM Student Registration Approval Form,&#8221; turn it into the Computer Science and Engineering undergraduate advisers. You can do this via fax (206-543-2969), email (ugrad-adviser@cs.washington.edu), or drop it off at the CSE Advising Office in the Bill & Melinda Gates Center for Computer Science and Engineering, CSE2 170. We will get the form signed by both the department and the instructor. Please make sure to include your return fax number, email address or indicate that you will pick it up in person from our office.
-After CSE 122, students can take any combination of CSE 123, CSE 154, and CSE 163, three complementary courses described below.
-After CSE 123, students can take various upper-division computing courses. A good next step for students who enjoyed CSE 123 would be CSE 373 Data Structures, a more advanced course designed for non-majors. CSE 154 and CSE 163 complement CSE 123. Completion of CSE 123 satisfies the prerequisites for students to apply for admission to the Computer Science or Computer Engineering majors.
 After CSE 143, students can take various upper-division computing courses. A good next step for students who enjoyed CSE 143 would be CSE 373 Data Structures and Algorithms, a more advanced course designed for non-majors. Other 100-level courses, such as CSE 154 and CSE 163, are also options (the exception is CSE 160, which cannot be taken after CSE 143). Completion of CSE 143 satisfies the prerequisites for students to apply for admission to the CS or CE major.
 After speaking with their assigned adviser, students may complete this form to request approval to extend beyond 210 credits AND 12 quarters at the UW. If a student receives approval from the Allen School, they will also need to petition the University. The Allen School Advising Team will assist students with that process if their Allen School petition is approved. Departmental approval alone does not guarantee University approval for a graduation extension.
-AI Education in the Allen School
-All students in the UW Honors Program must complete CSE honors in addition to Honors Program requirements to graduate &#8220;with College Honors.&#8221; Students who complete CSE honors (and are not in the UW Honors Program) graduate &#8220;with Distinction.&#8221;
-All the UW
-Allen School Alumni
-Allen School Ambassadors
-Allen School Blog ↗
-Allen School Events Calendar
-Allen School Faculty
-Allen School Petitions Process &#8211; Guidelines for Students
-Alternative Courses to Consider
-An approved copy of the thesis, with the faculty advisor’s signature on the cover page , must be submitted electronically through CSE’s Google Form for honors thesis submissions.
 Any student who is new to programming, and is interested in learning Java and general programming skills while working on entertaining assignments, would benefit from taking CSE 142.
 Applied and Computational Mathematical Sciences . ACMS is an inter-departmental program that combines higher math, computer science, probability and statistics, modeling, and applied math. Mathematics is used in a fundamental way in most fields of science and engineering, and its use is rapidly expanding in the social sciences and humanities, as well. Recent increases in computing power have made mathematical modeling, computer simulation, and statistical analysis more important than ever. This degree offers several pathways, combining higher math courses with courses in computer science, probability and statistics, modeling, and/or applied math.
-Applied Computational Mathematical Science: Note: starting in spring 2024, no double majors/degrees with Computer Science or Computer Engineering
-Approved_Science_Courses_sp09
 Approximately 100 students per quarter.
-April 3 (5 pm)
-Art in the Allen School
-Artificial Intelligence
-Autumn 2006-Spring 2007
-Autumn 2007-Spring 2009
-Autumn 2025
-Award Papers
-B.S./M.S. Graduate Courses (CSE M courses)
 Back to top
-Back To Top
-Before You Register
 Bellevue College &#8211; Bachelor of Science in Computer Science
 Below are specific suggestions of related major areas at the UW campuses in Seattle, Bothell, and Tacoma and at other Washington state colleges and universities.
-Below we articulate a few known exceptions or common responses regarding requests to petition. Please review this list in its entirety before requesting an exception.
-Bill & Melinda Gates Center
-Box 352350
-Box 352355
-Building Directory
 Business at University of Washington in Seattle and Business at UW Tacoma . The Business programs at the University of Washington in Seattle and UW Tacoma offer concentrations in Information Systems that address the use of information technologies in business and organizational environments. The programs focus on the use and design of information systems to meet an organization&#8217;s tactical and strategic needs. The curriculum includes programming and database management, information system analysis and design.
-Can a non-matriculated (non-UW) student request enrollment in an Allen School 500-level course?
-Can I register for CSE 519 or CSE 520?
-Can I take a CSE 590 or 591 course?
 Capacity
-Capstone Courses
-Capstones
-Career Resources
 Cascadia College &#8211; Bachelors of Applied Science in Mobile Application Development
-Catering Requests
-Centers and Initiatives
 Central Washington University
 Co-requisite(s)
-College of Engineering Honors Programs
-Community Engagement
-Complete list of all WA State Colleges and Universities
-Complete the Educational Outreach enrollment process according to the Educational Outreach instructions .
-Computer Engineering
-Computer Engineering [PDF]
-Computer Engineering degree program accredited by ABET
-Computer Engineering Hardware Specialization (opens in new window)
-Computer Engineering majors may also consider:
-Computer Engineering Software Specialization (opens in new window)
-Computer Engineering Spring 2011-Spring 2013 [PDF]
-Computer Engineering Spring 2013 &#8211; Spring 2015 [PDF]
-Computer Engineering Spring 2015 &#8211; Summer 2022 [PDF]
-Computer Science
-Computer Science [PDF]
-Computer Science &#8211; Data Science Option [PDF]
-Computer Science &#8211; Data Science Option Autumn 2016 &#8211; Summer 2022 [PDF]
-Computer science and engineering increasingly shape the way we live and interact with the world around us. Even non-major fields have seen significant transformation. Computing has transformed nearly every industry, from law and government to education and health care, to travel and entertainment. It has also become an essential tool for researchers in every scientific and business discipline as we have entered an age of data-driven discovery.
 Computer Science Principles (CSE 110)
-Computer Science Spring 2011-Spring 2013 [PDF]
-Computer Science Spring 2013 &#8211; Summer 2022 [PDF]
-Computer Science students who wish to specialize in data-science-focused careers need to take courses that cover the core areas of data science, including algorithms, machine learning, data visualization, data management, and societal implications of data science. To achieve this goal, the Allen School has a new transcriptable option in Data Science to be added to the Computer Science major; students who complete all of the required coursework will have the option listed on their transcript upon graduation . This specialization will ensure that computer science students interested in data-science-related careers get the broad and deep education they need and that they obtain a strong foundation in this fast-growing field.
-Computer Science Teaching
-Computing + Biology
-Computing Specializations
 Computing-Related Majors
-Connect with the Allen School
-Contact & Location Info
-Contact Us
-Contact UW Educational Outreach for non-degree enrollment .
-Core & Elective Course Lists
 Course
-Course Annoucement
-Course Evaluations
-Course Lists
-Courses
-Courses in the Allen School’s evening Professional Master’s Program (PMP) may be open to local professionals who wish to take classes without being enrolled in the master’s program. Taking PMP classes with non-matriculated status is an opportunity for software professionals to refresh or expand their knowledge or to prepare to apply to a graduate program later on.
-CS Lab &#038; Technical Support
 CSE 110 (which had number CSE 120 until 2022) introduces students to the fundamental principles of computer science and to basic programming concepts as a means to develop their computational thinking. Students explore the creative aspects of computing, including abstraction, problem-solving and managing complexity, and have the opportunity to consider the social, ethical and legal ramifications of various computing technologies. CSE 110 is related to the Advance Placement course in Computer Science Principles.
 CSE 120 was renumbered CSE 110 just to emphasize that it is not part of the CSE 121, CSE 122, CSE 123 sequence. It did not change otherwise.
-CSE 121 is a computer programming course for students who are new to programming. Students write programs to express algorithmic thinking and solve computational problems motivated by modern societal and scientific needs. You will learn procedural programming constructs (methods), control structures (loops, conditionals), and standard data types, including arrays – we do not expect any of these terms to be familiar to you yet. The course uses the Java programming language and teaching you how to write, test, and debug small and useful programs.
-CSE 121 will be offered every quarter starting Fall 2022, and we expect it will serve thousands of students each year, several hundred each quarter. But remember two of the four weekly meetings will be in a recitation section of < 25 students.
-CSE 121, 122, 123 has replaced CSE 142, 143 starting in academic year 2022-2023
-CSE 122 is a programming course that uses the Java programming language to teach program design, style, and decomposition. Students use data structures such as lists, dictionaries, and sets (no experience with what these are expected) to solve computational problems motivated by modern societal and scientific needs. The course also uses basic object-oriented programming to separate an interface from an implementation.
-CSE 122 is designed to be a “second programming course” for students who have taking a range of first programming courses. While it follows CSE 121, it is also the right starting point for students who took a programming course in high school that covered the CSE 121 programming features, such as AP Computer Science A. Prior experience does not need to be in Java. See our guided self-placement to help you choose among CSE 121, CSE 122, and CSE 123 if you haven’t already taken any of them. All three courses enthusiastically welcome students based on self-placement.
-CSE 122 will be offered every quarter starting Fall 2022, and we expect it will serve thousands of students each year, several hundred each quarter. But remember two of the four weekly meetings will be in a recitation section of < 25 students.
-CSE 122, CSE 123, or CSE 143
-CSE 123 emphasizes implementation and run-time analysis of data structures and algorithms using techniques including linked references, recursion, and object-oriented inheritance. Students will see how they can implement the data structures and abstractions they used in CSE 122 and how to use additional object-oriented features to create and use flexible software. They will use these techniques to solve computational problems motivated by modern societal and scientific needs.
-CSE 123 or 143
-CSE 123 will be first offered Winter 2023 and will then be offered every quarter. Like CSE 121 and CSE 122, we are committed to having enough capacity for everyone, regardless of major or interest, interested in the course.
 CSE 131 offers students the opportunity to express their creativity while exploring the technical aspects of digital photography, including photographic composition, the science of optics and digital imaging, and the future of internet-enabled photography. Students practice using a variety of software tools and techniques for incorporating design elements such as line, color, texture and light, culminating in a final project organized around a theme. View examples of past student projects curated by course instructors here and here.
 CSE 131 was offered once per year with room for approximately 200 students through 2021, but the instructor and course creator has retired and we do not have plans at this time to offer the course.
 CSE 142 is an entry-level course that introduces students to essential computing concepts and teaches them how to write programs in Java—the most widely-used programming language in the world and an integral part of the UW CSE curriculum. CSE 142 is designed for students with no programming experience. Students attend a combination of large lectures and small (< 25 students) weekly recitation sections led by a community of TAs who foster a supportive and inclusive learning environment for beginning programmers. Students also have access to the Introductory Programming Lab for individualized help.
 CSE 143 builds on the material in CSE 142 to develop more advanced programming skills, essential for writing more complex programs over larger and more interesting data. The format is similar to CSE 142, with two small weekly recitation sections.
 CSE 143 is designed as a follow-on course to CSE 142. While students who already know the material covered in CSE 142 are allowed to take CSE 143 without formal approval, doing so is often not advised because the two courses are designed together. CSE 143 is a great choice for any student wanting to learn more after CSE 142, and CSE 123 or CSE 143 is generally required for entry to the CS or CE major. CSE 123 or CSE 143 also may be required for other majors on campus.
-CSE 143X is an accelerated version of CSE 122 and CSE 123 that covers the material of both in a single quarter. This course doubles the pace of learning—not the assignment workload. CSE 143X used to be an accelerated version of CSE 142 and CSE 143 and it is currently taught in a way more reminiscent of our old introductory courses.
-CSE 143X is designed for students who want to take CSE 122 and CSE 123 but feel they have sufficient experience and ability to learn the material in a condensed time frame. More information is here.
-CSE 154 is offered a couple times each year, with room for roughly 250 students per offering, sometimes more.
-CSE 154 provides an introduction to programming languages and tools for creating websites and web-based applications—skills that are increasingly useful in a variety of fields, as many people conduct much of their professional and personal lives online. Students learn how to author web page content using Hypertext Markup Language (HTML), control design and layout through the use of Cascading Style Sheets (CSS), create interactive web pages with JavaScript, and run code and maintain data on web servers.
-CSE 160 is offered roughly twice per year to approximately 200 students.
-CSE 160 is particularly beneficial to students who wish to perform data analysis. Students who are majoring in or intend to major in one of the natural, physical or social sciences, or another data-intensive discipline, are encouraged to consider CSE 160 as a first course.
 CSE 160 offers a firm grounding in computer programming to any student, and no previous programming experience is assumed. Although it is aimed at those who are new to programming, students who have taken CSE 121, CSE 122, or CSE 142 (but not CSE 123 or CSE 143) can enroll in this course, but also see CSE 163, which is designed to follow CSE 122 or CSE 160.
-CSE 160 teaches students to program for data analysis and visualization using Python, the standard programming language used in various scientific disciplines and in other data-driven fields. Students perform real data manipulation tasks and write programs that solve problems using actual data sets drawn from the sciences, engineering, business and the humanities. See this article on how student Krittika D’Silva applied her programming skills to addressing real-world problems in health care for an example of how CSE 160 is useful in a variety of fields.
-CSE 163 is designed for broad interests in data science, data analysis, and programming. Students in any major may benefit from this course. It is complementary to CSE 123 (or CSE 143), and CSE 154; the material in CSE 123, CSE 154, and CSE 163 have minimal overlap. CSE 123 (or 143) remains a prerequisite for admission to the Computer Science and Computer Engineering majors.
 CSE 163 provides students who have taken CSE 122, CSE 142, or CSE 160 with a programming course about how to write programs that (a) manipulate different types of data (images, text, tables, etc.), (b) leverage the growing ecosystem of tools and libraries for data programming, (c) are both efficient and elegant, and (d) are medium-scale in size (100 to 200 lines). The course complements CSE 123, which focuses more deeply on fundamental programming concepts and the internals of data structures. In contrast, CSE163 emphasizes the efficient use of those concepts for data programming. CSE 163 uses the Python programming language.
-CSE 163 requires CSE122, CSE 123, CSE 142, CSE143, or CSE 160 (any one of these courses) as pre-requisites. CSE 121 is not enough prior experience — take CSE 122 or CSE 160 instead.
 CSE 300-Level Courses & their Prerequisites
-CSE 311 Petitions
-CSE 311: Foundations I: This is a discrete math/logic course with little coding. 311 is a prerequisite for 332 (Data Abstractions) and 312 (Foundations of Computing II). All new students should take 311 in their first quarter if possible.
-CSE 311&312: Foundations of Computing I and II
 CSE 331 Petitions
-CSE 331: Software Design and Implementation : A coding-oriented class, required for CS and recommended for CE. This is a fine class to take your first, second or third quarter in the class. It&#8217;s valuable before internships.
-CSE 332: Data Structures & Parallelism
-CSE 333: Systems Programming
-CSE 340: Interactive Systems : An exciting new elective that counts toward the CSE core courses .
-CSE 341: Programming Languages
-CSE 341: Programming Languages : An elective that counts toward the CSE core courses . Most CSE majors take this! Not offered every quarter.
-CSE 344: Introduction to Data Management
-CSE 351 Hardware/Software Interface
-CSE 351: Hardware/Software Interface : A coding-oriented class. CE majors should take it in their first quarter, and many CS majors should consider it for their first quarter. CSE 351 focuses on how computer programs actually run on CPUs. You should take CSE 391 (a 1-cr class) concurrently.
-CSE 351: The Hardware/Software Interface
-CSE 373
-CSE 373 : Data Structures and Algorithms (typically offered every quarter, including Summer)
-CSE 373: Students will be required to take CSE 332 (and will not receive credit) even if they have CSE 373 prior to admission into the Allen School.
-CSE 374
-CSE 374 : Intermediate Programming Concepts and Tools (typically offered about twice per year)
-CSE 374: will only be considered a Free Elective
-CSE 391: System and Software Tools
-CSE 391: System and Software Tools : A 1-credit seminar introducing important tools for future CSE courses. You should take this with or before CSE 351. Since this is only a 1-credit seminar, most people take this in addition to two &#8220;real&#8221; CSE courses.
-CSE 401: Introduction to Compiler Construction
-CSE 410
-CSE 410: Computer Systems (typically offered alternating years)
-CSE 410: Has not been offered in several years, currently only applies to Free Electives
-CSE 412
-CSE 412: Introduction to Data Visualization (typically offered once or twice per year)
-CSE 413
-CSE 413: Programming Languages &#038; Their Implementation (typically offered alternating years)
-CSE 413: will be allowed to count as CSE Senior Elective, can not take 341 for credit if 413 completed.
-CSE 414
-CSE 414: considered equivalent to CSE 344 a major&#8217;s course and will be allowed as a 300 level core course (does not apply to the 4, 400 level core courses)
-CSE 414: Introduction to Database Systems (typically offered every quarter)
-CSE 415
-CSE 415: Introduction to Artificial Intelligence (typically offered twice per year)
-CSE 415: will be allowed to count as a CSE Elective; students cannot take 473 for credit if 415 is completed.
-CSE 415: will be allowed to count as CSE Elective, students cannot take 473 for credit if 415 completed.
-CSE 416
-CSE 416: Students can take CSE 446 after getting into the major and will still receive credit. CSE 446 is a substantially more advanced and rigorous course that is a better fit for CSE majors. CSE 416 will apply to general electives by default. If a student does NOT take CSE 446, they can petition their adviser to allow CSE 416 as a CSE Elective as they near graduation. If a student opts to take 446 after 416, 416 will only be considered a Free Elective.
-CSE 416/STAT 416: Introduction to Machine Learning (typically offered twice per year, once by Statistics and once by the Allen School)
-CSE 417: Algorithms and Computational Complexity (typically offered twice per year)
-CSE 417: Students can take CSE 421 after getting into the major, courses are similar but not enough overlap to preclude credit. If a student does NOT take CSE 421, they can petition their adviser to allow CSE 417 as a CSE Elective. If a student opts to take 421, they will receive credit but 417 will only be considered a Free Elective.
-CSE 421 Introduction to Algorithms (3)
-CSE 421: Introduction to Algorithms
-CSE 427 Computational Biology (3)
-CSE 442 Data Visualization (4)
-CSE 442: Data Visualization
-CSE 444 Database Systems Internals (4)
-CSE 446 Machine Learning (4)
-CSE 446: Machine Learning
-CSE 447 Natural Language Processing (4)
-CSE 451: Introduction to Operating Systems
-CSE 455 Computer Vision (4)
-CSE 461: Introduction to Computer Communication Networks
-CSE 473: Introduction to Artificial Intelligence
-CSE 484 Computer Security (4)
 CSE 500 Level Course Petitions
-CSE courses serve as an entry point for students across the campus to explore the world of computing. We offer courses designed to enable all students, regardless of major, to develop computational thinking and hands-on programming skills. Some students discover after taking one of our classes that CSE is the right path for them. Others apply their new knowledge and skills to a field outside of CSE. No matter what path you choose, taking a CSE course—or courses!—can enrich your educational experience and enhance your career prospects.
-CSE Doctoral Course Enrollment Petition
-CSE Honors
-CSE M classes are typically jointly offered with CSE undergraduate courses. During the first week of class, a student enrolled in the undergraduate version of the class may switch to the CSE M version if they have instructor permission and space is available. If a CSE M course is not jointly offered with an undergraduate course, students can email vgrad-advisor@cs.washington.edu . There is often limited or no space for non-majors in CSE M courses. CSE undergraduates not (yet) admitted to B.S./M.S. can similarly switch into CSE M courses the first week of class if space is available and they have instructor permission (or the instructor is OK with any student switching). CSE undergraduates that have been admitted to B.S./M.S. may register at any time for CSE M classes while still an undergraduate, but need to email vgrad-advisor@cs.washington.edu to get registered.
-CSE Major Courses & Suggested Alternatives
-CSE Majors
-CSE Majors-Only Course
-CSE Pre-majors
-CSE Satisfactory Progress Policy to understand expectations
-CSE Teaching Schedule for long-term planning
-CSE_Senior_Electives_sp09
-Current site
-Current UW Admissions
-Curriculum
-Data Programming (CSE 160)
-Data Science and Society Seminar:
-Data Science Option
-Data Science Option Requirements
-December 11
-December 12
-Declaring CSE Honors
-Degree Overview
-Degree Planning & Requirements
-Degree Planning & Requirements - Paul G. Allen School of Computer Science & Engineering
-Degree Requirements
-Degree Requirements Petition
-Direct to Major (First-Year) Admissions
-Distinguished Lecture Series
-Distribution Begins
-Do Allen School undergraduate majors need to fill in the enrollment petition if they wish to take a graduate-level course?
-Double Majors
-Due to limited resources and an overwhelming number of requests, we are no longer able to accommodate large numbers of non-major students in our Allen School Undergraduate Majors Only courses during the regular academic year (Autumn, Winter and Spring). Over the last several years we have developed additional non-major courses that we currently offer. These are a better fit for non-Allen School students.
 Due to relatively low demand, we have not been offering this course every year. We hope to relaunch it at some point.
 DXARTS (Minor). The Digital Arts and Experimental Media program creates opportunities for artists to pursue lines of inquiry within the scientific, technical and creative realms while discovering and documenting new areas of knowledge and practice in this emerging field. This inherently interdisciplinary curriculum requires all students to diversify their artistic practice across four major content areas (sound, video, 3D, and sensing and control systems) as well as compliment their study with relevant upper-division coursework selected from related fields (computer science, music, drama, dance, art, engineering, architecture, cinema studies, etc.). Students are positioned to pursue original creative and technical research.
-E E 461
-Each of CSE 121, CSE 122, and CSE 123 has two large class meetings and two small (< 25 students) weekly recitations sections each week, with the recitations sections led by a community of undergraduate TAs who foster a supportive and inclusive learning environment for beginning programmers.
 Eastern Washington University
 ECE Course Petitions:
-EE 205: Introduction to Signal Conditioning : CE majors can take 215 instead if the timing of 205 does not fit your schedule, but 205 is strongly preferred.
-EE205 / EE215 Signal Conditioning
-either E E 205 or E E 215; either E E 271 or CSE 369
-Email grad-advising@cs.washington.edu with:
-Emeritus Faculty
-Employment Opportunities
-Engineering: While double majors are not allowed between Computer Engineering and any other Engineering degree, occasionally, on rare exceptions, a student may pursue a Computer Science degree along with another Engineering degree. Please note however, there are no double degrees with any Allen School major and the Electrical and Computer Engineering degree.
 Enrollment in CSE 142 has increased dramatically, and the course has been particularly successful at engaging more women in computer science and engineering. CSE 190A, a seminar linked to a section of CSE 142, enables students to explore the role of women in the field through group discussions, hands-on activities, and guest speakers. Watch our video exploring the growing popularity of CSE 142 and its follow-on course, CSE 143, and how these courses contribute to greater diversity in computing.
-Enter search text
-Evening Professional Master's Courses (CSE P courses)
-Events Calendar
 Evergreen State College
 Every student, no matter what his/her chosen field, should be familiar with the concepts and technologies that underpin computing and its role in our society. Anyone who seeks to acquire a basic understanding of computer science and to gain insights beyond what they know as mere consumers of technology would benefit from taking this course.
-Exchange Students
-Faculty Honors &#038; Awards
-Faculty Leadership
-Faculty/Staff Directories
-February 12 (2 pm)
-February 13
-Fill out the CSE Doctoral Course Enrollment Petition .
-Fill out the NM Student Registration Form . Save this PDF for later.
-Follow the Allen School
 For example, any engineering, science, or technical major integrates computing since computers are powerful tools for computation, design, modeling, and data manipulation. Any major plus some computer coursework can satisfy a computing interest. For example, the Allen School offers a series of non-major courses.
-For non-majors who still want to take majors-only courses, Summer quarter will have some unrestricted access for non-major registration during Period 2 registration. We typically offer over 15 undergraduate courses each summer with about half of them being courses that are majors only during the academic year.
-Frequently Asked Questions (FAQ)
-Friends &#038; Supporters
-Full CSE Degree Requirements , including links to curriculum and electives lists
-Future Students
-General Advice
 Generally speaking, most students should plan to take the 400 level courses in the Allen School. There are exceptions however for students who have advanced understanding to occasionally take CSE 500 level courses. Typically a PhD Breadth 500 level course where a student has not previously taken the undergraduate version of the course can be allowed to count as a Core course. Note that this is only for PhD breadth courses. If a course is listed on our breadth requirements for PhD students they are often (not always) allowed as a Core Course substitution. Sometimes there are restrictions however on whether or not a student has taken the 400 level version of the course. An example would be that you are allowed to take 421 and 521 because they differ enough to both count. However there are other courses where you are NOT allowed to receive credit for both, i.e. 446 and 546 for example. It’s best to check with an adviser about your long term plans before requesting an exception. We hope to have an explicit list in the future, but for now, you should check with an adviser.
 Generally speaking, students who plan to major in computer science or computer engineering should complete CSE 142 and CSE 143 (or CSE 143X), as they are prerequisites for admission. Students may also need to complete CSE 142 and/or CSE 143 to satisfy requirements for majors from other departments.
 Geographic Information Systems The Geography department at the UW offers a Geography degree with a concentration in Geographic Information Systems (GIS). A GIS degree gives its majors an understanding of the development, sources, and uses of geographic information. The GIS curriculum focuses on geographic system analysis, map sources and map error, urban transportation GIs analysis, and natural resources and environmental analysis.
-Get Directions
-GitLab
-Give an oral presentation, arranged by you and your faculty advisor, on the honors project. You should also arrange for at least five additional people (e.g., other students, family, etc.) to attend your presentation.
 Gonzaga University
-grad-advising at cs.washington.edu
-Graduate (Ph.D.) Advising:
-Graduate Education
-Graduate School
-Graduate students if they are already involved in an Allen School collaboration &#8211; students must list the person they are collaborating with in the form.
-Grand Challenges
 Green River College &#8211; Bachelor of Applied Science in Software Development
-Handbooks/Degree Requirements 1977-2001
-Helpful Information
-Home
-How a course applies to the CS or CE Degree
-Human-Centered Computing
 If a student completes EE 215 that can use that to replace EE 205, however EE 205 is strongly encouraged for our CE majors
 If a student completes EE 271, they can use that to replace CSE 369
-If you are a non-matriculated student (i.e., someone not currently enrolled as a student at UW) interested in taking any of our non-major courses, please follow the instructions below. If you are interested in taking any of our majors-only courses, please follow these petition guidelines. If granted a spot in a majors-only course, our advising team will work with you to complete the required paperwork outlined below.
-If you are a senior, file for graduation to get Graduating Senior Priority during your registration. After filing, you will get two quarters of priority registration which will allow you to register before anyone else (including other seniors who have not yet filed for graduation).
-If you are interested in taking an upper-division non-major course that is full, please note that we will no longer be maintaining overload lists for these courses. Sign up for NotifyUW to receive alerts when space becomes available in the class. We will try to adjust class sizes to meet demand as best we can. Graduate students are generally only allowed to register during Period II registration unless they are in a data science major that requires these courses.
-If you are NOT a current UW student and want to take courses as a non-degree student, please review the information concerning non-matriculated enrollment and contact UW Educational Outreach for non-degree enrollment .
-If you do not meet the honors thesis requirements, you will not graduate with honors even if you have successfully completed nine credits of research. In many cases, the faculty will not issue grades for honors research until the entire project is finished and approved.
 If you have MATH 300 completed, you can take CSE 311 and CSE 332 at the same time. Your Allen School adviser can help you register since you won’t have CSE 311 pre-req credit yet.
-If you have trouble registering due to prerequisites, contact an adviser for assistance.
-If you plan to apply to CSE, your first goal is to complete the prerequisites while working on general requirements and exploring related majors . Review our full degree requirements and our admissions application guidelines .
-If you think you will not be able to graduate due to scheduling issues, contact an adviser.
-Image Credits
-Important Resources
 In addition to our 100-level courses, we offer a selection of 300- and 400-level courses in which students can explore in some depth specific areas of computing in a format suited to non-majors. Topics include algorithms, intermediate programming, artificial intelligence and database systems. See our overview of UW CSE’s non-major courses above to learn about options for additional study.
-In general students should plan to take the required degree requirements. In some cases, a student may petition to take a different course in place of a stated degree requirement. This usually requires either a conversation with your assigned adviser in the Allen School, or sometimes it requires further approval with an official petition that would then be reviewed by the Director of Student Services and the Faculty Undergraduate Program Chair.
-In Memoriam
-In order to ensure the honors designation will be marked on your diploma, thesis submission is due no later than the last day of finals during the quarter in which you plan to graduate. Earlier submissions are encouraged.
-Industry Affiliates
 Informatics Minor If you love your major but want to know more about how to apply data, information and technology to solve problems in your chosen field, then the Informatics minor might be for you. The Informatics minor includes required components in data, design, policy and ethics, and code.
-Information Sessions
-Interaction with the Physical World
-Interdisciplinary Offerings
-Intermediate Data Programming (CSE 163)
-Internal Resources
-Internal Web
-Introduction to Computer Programming I (CSE 121)
-Introduction to Computer Programming II (CSE 122)
-Introduction to Computer Programming III (CSE 123)
 Introduction to Data Science (STAT/INFO/CSE 180)
-Introductory Courses
-It should be a well-written, clearly presented document, typically 15-25 pages long.
-It should reflect work done independently under the supervision of a faculty member.
-January 2
-January 9 (5 pm)
-Jump To A Section
-June 1
-June 1 (2 pm)
-June 11
-June 19
-June 6
-K-12 Outreach
 Lake Washington Institute of Technology &#8211; Bachelor of Applied Science in Software Development
-Latest News
-Links for planning your CSE curriculum:
-Main Administrative Offices
-Main Tel: (206) 543-1695
-Maintain the minimum UW and departmental GPA required for honors (listed above).
 Majors with an asterisk (*) are capacity-constrained: Students must complete all minimum requirements to apply and must then compete with the entire applicant pool for a limited number of spaces. These majors often have application forms and application deadlines; some of them require standardized tests, recommendations, and/or interviews.
-Majors: The CS and CE programs each require 180 total credits to graduate. Students will need to fulfill a General Education component, a Mathematics and Science component, and a Computer (Science or Engineering) component that consists of required classes and senior electives. Please refer to our guidelines below.
-Make A Gift ♥
 Many students enter the UW with an interest in computers. There are a variety of ways you can gain an understanding of how computers work, and several majors other than Computer Science and Computer Engineering can prepare you for employment in a field where computers are used.
-March 11
-March 13
-March 27
-masters at cs.washington.edu
-Math 126 or Math 136; Phys 122 or 142
 MATH 134, 135 and 136: honors math track students have two options:
 MATH 336: For students who complete MATH 336, they may petition to request to take CSE 431 in place of taking CSE 311. This waiver is contingent on the strength of the grade in MATH 336.
-Math 381 , CSE 417
-Maybe. All courses listed under CSE 590 and CSE 591 are seminars or group meetings offered by Allen School research groups and are designed for current doctoral students engaged in academic research. Typically offerings are not confirmed until the first week of the quarter. Students interested in any of these seminars should check the current time schedule and contact the listed instructor for permission. Email permission can then be forwarded to grad-advising@cs.washington.edu at which time an add code can be issued. Detailed information about each 590 and 591, if/when we have it, is posted on the Graduate Special Topics page.
-Media Inquiries: media at cs.washington.edu
-Menu
-Message from the Director
 Most students should take CSE 122 or CSE 123 instead of CSE 143. We will offer CSE 143 during the 2022-2023 academic year for students who already completed CSE 142 or a corresponding course at another institution.
-MyCSE
-MyCSE Resources
-MyCSE Undergraduate Resources
-name="s"
-New CSE Majors
-News &#038; Events
-No Equivalent
-Non-CSE Majors
-Non-Major Courses
-Non-Major Options
-Non-Major Options - Paul G. Allen School of Computer Science & Engineering
-Non-Major Registration
-Non-Majors: If you are interested in taking a CSE course visit our Non-major Options page for more information.
-Non-Matriculated Student
-Non-Matriculated Students
-Non-Matriculated Students: If you are interested in taking CSE coursework, please see the Non-Matriculated information here .
 None
 North Seattle College &#8211; Applied Bachelor’s in Application Development
-NOTE : The Allen School keeps complete archives of prior year degree requirements if needed by alumni or potential employers. See below:
-Note: we do not have the resources to consider requests from undergraduates based on interest in a topic area or desire to apply to the Allen School.
-November 6
-October 30 (2 pm)
 OLD: Computer Programming I (CSE 142)
 OLD: Computer Programming II (CSE 143)
 OLD: Science and Art of Digital Photography (CSE 131)
-Once the thesis is completed, one copy should be submitted to the faculty supervisor and one to the CSE undergraduate advisers. In order to ensure the honors designation will be marked on your diploma, thesis submission is due no later than the last day of finals during the quarter in which you plan to graduate .
-One additional course chosen from the following Data Science electives:
-One of the most important things to know about the CSE registration process is how to get advice and help from Allen School advisers. CSE advisers can help you plan your courses, connect with resources, and provide general advice.
-Only graduate students engaged in research with a CSE faculty member (not an adjunct or affiliate) are eligible to enroll in CSE 519 or 520. The talks featured in CSE 519 and 520 are open to the public, so students do not need to be registered in order to attend. Complete viewing information on the CSE Colloquia and Distinguished Lecturer Series can be found on the event webpage.
-Other – explain why a majors-only course is necessary for completion of your UW program (must have supporting documentation from your current major academic adviser)
 Other Programs in Washington State
-Our Courses
-Our most common advice for CSE majors is:
-Outgoing Ph.D.s &#038; Postdocs
-outreach at cs.washington.edu
 Pacific Lutheran University
-Paul G. Allen Center
-Paul G. Allen School of Computer Science & Engineering
-Paul G. Allen School of Computer Science &#038; Engineering: There are no double majors/double degrees between Computer Science and Computer Engineering
-Peer Advising
-People
-Petition Closes
-Petition Opens
-Ph.D. Dissertation Talks
-Ph.D. Student Recognition
-Ph.D./Doctoral Courses (CSE 500 level)
-Plan a balanced schedule. Prepare yourself for a good academic experience and strong grades by planning a manageable schedule with a good mix of courses. We recommend two math/science/CSE courses per quarter, plus one non-math/science/CSE course, such as a VLPA or I&#038;S requirement. If you hope to take on heavier schedules, such as three CSE courses or four total courses, build up to this heavy workload after a strong quarter in lighter schedule. Remember that it’s easier to ramp up your workload over time than to recover from a quarter in which you’ve taken on too much.
-Plan ahead. Use MyPlan (available on MyUW) to draft a 2-, 3-, or 4-year plan, then send it to a CSE adviser for feedback. We can note any missing requirements, mixed-up prereqs, or other scheduling issues, and we can discuss how to fit in extra-curricular activities — TAing, research, study abroad, etc. Planning ahead will help you form a better picture of your goals an opportunities, and avoid issues.
-Plan for the amount of work in a course, not the number of credits. Most CSE majors take 12-15 credits per quarter, occasionally more. The number of credits does not always reflect the workload: A 4-credit CSE course or a 3-credit Math course will often require more work than many 5-credit courses.
-Please contact an adviser if you have any questions about taking CSE coursework as a non-matriculated student.
-Please do not contact faculty directly unless instructed by an adviser for special permissions. If you are interested in taking a 300-level or 400-level course that is full, please note that we will no longer be maintaining overload lists for these courses. Here are some actions you can take if desired classes are full:
-Please note that if you are enrolled in another major at UW (or you are a pre-major) but plan on applying to the CSE program in the future, you should visit our admissions page to learn more about the application requirements and prerequisite requirements.
-Please note: CSE 434, CSE 440, and the animation series are each exceptions to this process and have separate petition processes, which are linked directly in the time schedule for each quarter.
 Please refer to the Allen School Continuation Policy for information about minimum course load, dropping required courses, and other academic policies and procedures.
-Policy & Procedures
-Popular Links
-PostBac Students
-Postdoctoral Program
-Postdoctoral Scholars
-Pre-Majors: If you plan to apply to be a CS or CE major, refer to our guidelines below. If you are interested in taking a majors-only course, please see our Non-major Options page for more information.
-Preparing for Industry: Suggested Computing Specializations
 Prerequisite(s)
-Previous Computer Engineering Handbooks
-Previous Computer Science Handbooks
-Previous Handbook 1986-1987
-Previous Handbook 1987-1988
-Previous Handbook 1988-1989
-Previous Handbook 1989-1990
-Previous Handbook 1990-1991 &#8211; missing
-Previous Handbook 1991-1992 &#8211; missing
-Previous Handbook 1992-1993
-Previous Handbook 1993-1994
-Previous Handbook 1994-1995
-Previous Handbook 1995-1996
-Previous Handbook 1996-1997
-Previous Handbook 1998-1999
-Previous Handbook 2000-2002
-Previous Handbook Autumn 1977
-Previous Handbook Autumn 1978
-Previous Handbook Autumn 1980
-Previous Handbook Autumn 1981
-Previous Handbook Autumn 1982
-Previous Handbook Autumn 1983
-Previous Handbook Autumn 1984
-Previous Handbook Spring 1984
-Previous Handbook Winter 1981
-Previous Honors Handbook 1999-2001
-Prior Years Degree Requirements
-Prior Years&#8217; Degree Requirements
-Priority Deadline
-Privacy
-Professional Master's Program Advising:
-Programming is for everyone! If you haven’t coded before, come experience the beauty and creativity of creating running code.
-Quarter
-Read about this change here.
-Register for back-up courses in case you can&#8217;t get into your first choice.
-Register on NotifyUW to get an alert if space opens in the course and attend the first week to try and keep up in the course in case you do get a spot. We will monitor demand on NotifyUW and try to add more space when needed.
-Registering for full CSE courses:
 Renton Technical College &#8211; Bachelor of Applied Science in Application Development
-Requirements to Graduate with CSE Honors
-Research
-Research &#038; Innovation
-Research Colloquia
-Research Opportunities
-Research Overview
-Room Reservations
 Saint Martin’s University
-Scholarships &#038; Awards
-School History
-Schoolwide Policies
-Search scope
 Seattle Pacific University
 Seattle University
-Seattle, WA 98195-2350
-Seattle, WA 98195-2355
-See Above
-Send the two completed, saved PDFs to the registrar via email at c2reg@uw.edu
-September 23
-September 3
-September 30 (5 pm)
-Sitemap
-Skip to content
-SOC 225 Data & Society (either 3cr or 5cr version) (3-5)
-Software & Hardware Systems
-Software &#038; Hardware Systems
-Some non-matriculated students (students finishing a degree from another program and moved to the area with a spouse, an alumni wanting to take a course they didn’t get to as a ugrad, etc)
-Some of the concepts are covered in: Math 300 , Phil 120 , Stat 390 or 391 , and E E 271
-Some students choose to pursue a double major or double degree. There are a few known substitutions that we&#8217;ll list here:
 Some students may need to petition the university for additional credits or quarters to complete their degree due to extenuating circumstances. Students must have a conversation with their academic adviser if they feel their situation warrants an extension of the University&#8217;s academic satisfactory progress policy, which requires students to complete their undergraduate degree program within 30 credits beyond the minimum required for their degree.
-Sometimes a student will enter the Allen School with a significant number of MATH and STAT courses completed. If this is the case, you may try petitioning to waive CSE 311 via a substitution from a math course. Generally asking for just MATH 300 or just MATH/STAT 394 is not enough for a substitution. If you have not taken a significant number of MATH or STAT courses that cover this material, then generally you should plan to take CSE 311. A few known exceptions to this outcome follow:
-Space is extremely limited in our majors-only classes, and we often do not have space for students outside of the Allen School. Highly qualified non-majors can request space in these classes on a quarterly basis through our non-major enrollment request form (formerly referred to as a &#8220;petition&#8221;). Unfortunately, most requests cannot be accommodated due to capacity constraints. The Allen School has an extensive set of upper-division non-major course offerings for Non-Major students in Computer Science or Computer Engineering degree programs. These courses are open to all matriculated students at UW who meet the course prerequisites.
-Spring 2010-Spring 2011
-Spring 2026
-Stat/CSE Double Majors: STAT 435 can count as a CSE core-course in place of CSE 446 (no credit for both toward the CSE degree) In the Data Science option, STAT 303 can replace SOC 225
 STAT/INFO/CSE 180, Introduction to Data Science (IDS), is a course offered every quarter. It is a survey course introducing the essential elements of data science: data integrity including the ethics and social context of data; data methods including using tables, graphs, and other visualizations; and data analysis, including statistics methods and machine learning. It is not a programming course: rather than programming, students gain hands-on experience with other software tools and methods.
-Student Engagement & Access Team
-Student Life
-Student Organizations
-Student Recognition
-Student Recruitment Representatives
-Student Resources
-Student Services
-Students can take CSE 123 after CSE 122 self-place into CSE 123 if they have substantial prior experience such that they are already familiar with the CSE 122 material. See our guided self-placement. The course content is designed for students aiming toward academic and career plans where software implementation is a major component
 Students have a number of options for further study. Three complementary courses are specifically designed to follow CSE 142: (1) CSE 143 is the continuation course for those who want to develop more advanced programming skills in Java and is the next step toward most upper-division CSE courses, (2) CSE 154 is a web programming course covering many technologies used to implement web pages, and (3) CSE 163 is a programming course focused on data analysis with a variety of data-science programming tools.
 Students have multiple options for building on what they learn in CSE 110. A natural next step may be to follow principle with practice by enrolling in one of our introductory programming courses, CSE 121 or CSE 160. While CSE 110 offers a great introduction to computer science concepts, it is not a necessary prerequisite for enrollment in those programming courses.
-Students must have achieved a grade of at least 2.0 in any one of CSE 122, CSE123, CSE 142, CSE 143, CSE 160, or CSE 163 to enroll in this course.
 Students sometimes decide to delay taking CSE 331 until the end of their time in the Allen School with the intention to waive the course based on prior internship/industry experience. These petition requests are always denied. If you are petitioning a waiver for any course, you typically need to prove how you have acquired the academic knowledge covered in the course. Simply having internship experience has been determined to not be a viable substitute for this course. Ideally students would complete 331 early in their academic career and before embarking on a software internship to get the most benefit from the course.
-Students typically complete their thesis during their last quarter of research. Once a decision is made to pursue departmental honors, you should notify your faculty advisor and determine a topic for your senior thesis. The honors research and project should be completed with one faculty member, or, in the rare instance where you need to switch advisors, faculty within the same area of research as the original advisor.
-Students who complete CSE 143X have the same options for further study as students who have completed CSE 123 or CSE 143.
-Students without programming experience — see our guided self-placement to help you choose among CSE 121, CSE 122, and CSE 123 if you haven’t already taken any of them. All three courses enthusiastically welcome students based on self-placement.
-Study Abroad
-Study Center
-Study resourcefully. UW and CSE provide lots of academic aids. Get help before you need it. Visit your professors and TAs during Office Hours. Collaborate with classmates in the undergrad labs. Email the CSE advisers about tutoring groups if you want extra study help in 300- and 400-level CSE classes. For introductory courses, the Intro Programming Labs (IPL), the Math Study Center, and CLUE are all great resources.
-Submit a Senior Thesis that meets the following requirements:
-Suggested Course Pathways to prepare for industry and graduate school
-Summer 2026
-TA Tools
-Take nine credits of graded research in honors section 496 . If you are uncertain whether your research will lead to an honors project when you start, you may take the first three credits in CSE 498. However, the last six credits of honors work must be in 496.
-Teaching Assistants
-Terms
-The &#8220;Distribution Begins&#8221; date is the earliest we&#8217;ll start issuing add codes, contingent on instructor readiness. You may not hear about your petition until the end of the first week of the quarter.
-The Allen School allows for people outside the Ph.D. program (otherwise known as a &#8216;non-major&#8217;) to take 500-level courses. Matriculated students should complete the enrollment petition linked below. The petition is updated every quarter, so be sure the title reflects the correct term. Non-matriculated students can use the same enrollment petition.
-The Allen School has an extensive set of upper-division course offerings for students NOT majoring in Computer Science or Computer Engineering degree programs. These courses are open to all matriculated students at UW who meet the course prerequisites. Non-matriculated students may enroll on a space-available basis (see below). Please check our catalog for a general description of these courses. The links below take you directly to the CSE course webs rather than the course catalog.
-The course is offered 2-3 times per year with each offering having capacity for approximately 300 students. We will continue to expand overall capacity as needed in the years ahead.
-The course name and number of the course you&#8217;d like to take.
-The CS and CE programs each require you to take 180 total credits to graduate. You will need to fulfill a General Education component, a Mathematics and Science component, and a Computer (Science or Engineering) component that consists of required classes and senior electives. For those students who are considering a double major, see below for an explanation of exceptions to our standard degree requirements.
-The descriptions below do NOT describe our lower-division (100-level) courses. Those courses are described on our Introductory courses section , which we STRONGLY recommend you visit. Our upper-division courses have lower-division courses as prerequisites.
-The enrollment request form for the upcoming quarters will be available on this page as follows:
-The following links provide all the information required to (1) determine your core and elective options, (2) see yearly capstone course offerings, (3) plan a pathway toward a specific specialization, and (4) help in determining your future course planning:
-The following restrictions apply for undergraduate CSE courses:
-The following restrictions may also apply to students who submit the non-major enrollment petition:
-The Grad Advising team will then email you a digital copy of the NM Student Registration Approval Form via Docusign. Sign and complete the document. We will manage contact with the faculty member on your behalf.
 The information below is meant to help you understand the CSE 300-level courses and their prerequisites. Click here for a visual representation of the information .
 The last offering of CSE 142 will be Summer 2022 as we transition to CSE 121, CSE 122, and CSE 123 in place of CSE 142 and CSE 143. We retain the information below as reference for students who took CSE 142 or corresponding courses at other institutions.
-The main courses required to complete the Data Science option are already among the listed “CSE Core Courses” that Computer Science majors chose from to fulfill the degree requirements. The overall number of credits required for the Computer Science degree is the same. Students wanting to explore or declare the Computer Science- Data Science degree should make an appointment with an academic adviser to discuss their options and to complete necessary paperwork.
-The most up-to-date information on courses is found on our Time Schedule page , which includes links to the time schedules and our internal teaching schedule that outlines when and what courses will be taught each academic year.
-The student clearly articulates why learning the course material will directly benefit them
-The student is able to attend the first day of school and all subsequent classes
-The student is qualified for the course and has taken the prerequisites or appropriate alternatives
-The work should be original and demonstrate creative thinking, as judged by your faculty supervisor.
-Theory & Models of Computation
-Theory &#038; Models of Computation
-There are a few populations who may still petition to take a majors-only course during the academic year. While we can not guarantee space, these students may still inquire:
 There are a host of other jointly listed courses between ECE and CSE
 There are similar programs in the area which take transfer students, and we highly recommend that you apply to multiple programs if you&#8217;re sure you want to study Computer Science or Computer Engineering. You should consider:
-There is sufficient course staff available
-These 4 CSE Core Courses:
-These courses are specifically designed for students in other majors. While their content overlaps with courses for CSE majors as described below, they aim to have fewer prerequisites, are often broader in scope, and should complement the courses that students take in other majors.
 This course is a joint project of Statistics, the Information School, and the Allen School, synthesizing the perspectives and expertise of the units. It was jointly developed, and each department/school leads one quarter’s offering each year. The offerings cover the same material.
-This petition is only for 500-level classes, and students who petition are not guaranteed to be approved. Once the petition is live, review of petitions occurs at the timing discretion of the course instructor, usually on a quasi-rolling basis. Students may not receive an add code for several reasons, including but not limited to, lack of seating in the class, instructor preference to keep their course to Allen School Ph.D. students, or not having background skill suitable for the course. Our goal is to send out add codes, if available, by the first week of the term. Current CSE Ph.D. students are given priority in these course offerings. The CSE Grad Advising Office reserves the right to distribute add-codes in all ways that promote administrative coherence.
-This section describes our introductory courses (100-level courses), so you can find the best course to start &#8212; or continue &#8212; your journey.
-This was the last year CSE had separate tracks for Hardware and Software within Computer Engineering.
-Time Schedules
-Transfer Admissions
-Types of Research Credit
-ugrad-adviser at cs.washington.edu
-Undergraduate Advising Team
-Undergraduate Advising:
-Undergraduate Courses (up to CSE 400 level)
-Undergraduate Demographics
-Undergraduate Education
-Undergraduate Events Calendar
-Undergraduate Outreach & Recruitment:
-Undergraduate Research Registration
-Undergraduate Teaching Awards
-University of Puget Sound
 University of Washington Bothell
 University of Washington in Seattle
 University of Washington Tacoma
-Upper-Division Non-Major Courses
 Upper-Level Courses
 UW Bothell & Tacoma Campuses
 UW Bothell offers a Bachelor’s of Science degree in Computing and Software Systems , Computer Engineering , as well as a BA in Applied Computing and a Bachelor of Arts in Interactive Media Design . Bothell also offers a Graduate Certificate in Software Developement .
 UW Computing &#038; Communications offers training courses in computing areas, including HTML, Word Processing, Spreadsheets, Databases, Desktop Publishing, etc.
 UW CSE offers honors sections connected to CSE 142 and 143 in which students take part in readings and discussions exploring a variety of computer science topics, including the nature of computation, the mathematical underpinnings of computer science, social issues related to computing, and current trends in the field. Participating students earn one additional credit for the seminar; in addition, the Honors Program grants students who complete CSE 142 or 143 in conjunction with the seminar credit for one 5-unit math or science course in the core.
-UW CSE Prior Degree Requirements
-UW Employee (student employees not eligible)
 UW Extension offers certificate programs in many computer-related areas as well as evening courses for credit and noncredit.
-UW President Ana Mari Cauce participates in the Hour of Code
 UW Tacoma offers a Bachelor&#8217;s of Science degree in Computing and Software Systems , Information Technology and Computer Engineering .
-value="" autocomplete="off" placeholder="Search" />
-View all calendar events &raquo;
-Visit the PMP single course enrollment page for a CSE P course list and more information about eligibility criteria and the registration process. Feel free to contact PMP staff at masters [at] cs [dot] washington [dot] edu with any questions; we will be happy to help.
-Visiting Researchers
-Walla Walla University
-Washington State University
-Washington State University @ TriCities
-Washington State University @ Vancouver
-We aim to offer CSE 143X in Fall or both Fall and Winter.
-We make every effort to open the enrollment petition when Registration Period I begins. If it is not open, check back the following week. Add codes will begin being issued two (2) weeks before the start of the quarter. However, in many cases students will not hear about the result of the petition until the first week of the quarter. Note that the graduate course enrollment petition does not include &#8220;CSE M&#8221; or &#8220;CSE P&#8221; courses as these courses are typically not available for non-major registration.
-We offer courses designed to enable all students, regardless of major, to develop computational thinking and hands-on programming skills.
-We will begin issuing add codes on the priority deadline date. You must fill out a request before the first day of the quarter to be considered for a space in a majors-only course. We will not be accepting any non-major requests or giving any add codes after the first day of the quarter. The exception being to Access students and UW Employees who are not able to enroll until the third day of the quarter.
-We will return the completed NM Student Registration Approval Form when approval is granted. If approved, your course add code will be included in the returned form. This may not occur until the deadlines listed above. Save this signed and completed PDF for the next step.
-Web Programming (CSE 154)
-Webmaster: support at cs.washington.edu
-Welcome to the Allen School! You can register for CSE major courses after you are coded as a CS or CE major (instructions on the new majors orientation page). We do not require new students to take a CSE course their first quarter in the major; however, beginning your second quarter, our CSE Continuation Policy requires at least one (1) Math, CSE or Science degree-required course per quarter. Consider the following classes for your first quarters:
-Western Washington University
 What is it?
 What next?
-When will I receive an add code for 500-level courses?
-While CSE 121 will teach you useful programming skills you can use in to solve real problems, the next course is CSE 122, which covers additional essential topics for writing well-designed programs using powerful data structures.
 While the course is not a direct prerequisite for other courses, students are likely to be motivated to follow-up with additional courses in computer science, informatics, and statistics. See CSE 121 and CSE 160 for programming-focused courses. In particular, the programming aspects of 180 are not sufficient by themselves to skip 121/160.
-While there is no exact correspondence between majors and non-majors courses, if you are interested in a CSE major course but are not planning to be a CSE major, we have provided a list of suggested alternatives.
-Whitman College
-Whitworth University
 Who should take it?
-Who We Are
-Winter 2004-Spring 2006
-Winter 2026
-Yearly Time Schedule
-Yes! By default the majority of graduate-level CSE courses are restricted to CSE graduate students. Interested Allen School undergraduates should fill in the form, ideally after speaking with an undergraduate staff adviser about whether a graduate-level course is appropriate for them or the course instructor to determine an appropriate fit.
-Yes! Here&#8217;s how:
 You can take CSE 311 and CSE 332 at the same time AFTER completing MATH 136. Note that you will need help from an adviser when registering for CSE 332 as it generally requires CSE 311 to be completed. Your Allen School adviser can help you get registered for both courses.
 You can take MATH 136 and CSE 311 at the same time (typically in the Spring) as the CSE 311 prereq is MATH 126 or MATH 135.
-You might be interested in:
-You must be a Computer Science or Computer Engineering major and meet the following requirements to pursue CSE honors:
-You must meet with a CSE adviser to review the honors requirements and have CSE honors coded into your DARS. As soon as you know you will be pursuing CSE honors, visit an undergrad adviser during drop-in hours or make an appointment .
-Your faculty advisor must be a CSE faculty member. If you are working on a research project in another department, you must have a CSE faculty member approve your project and sign off on your thesis and presentation.
-Your intention to enroll as a non-matriculated student.

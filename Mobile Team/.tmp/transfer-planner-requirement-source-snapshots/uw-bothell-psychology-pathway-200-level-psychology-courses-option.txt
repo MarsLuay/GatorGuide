@@ -2,355 +2,41 @@ Owner: uw-bothell-psychology:pathway:200-level-psychology-courses-option
 Source: https://www.uwb.edu/ias/undergraduate/majors/psychology
 Title: Psychology - School of Interdisciplinary Arts & Sciences
 
-(8 credits, Summer)
-[Supplemental official source] Curriculum
-*IAS will maintain the list of courses
-&#124;
-&copy; 2026 University of Washington Bothell
-<a class="bothell-link-block link-block-1 bothell-link-block--margin-top "
-<a class="bothell-link-block link-block-2 bothell-link-block--margin-top "
-<a class="bothell-link-block link-block-3 bothell-link-block--margin-top "
-<a class="bothell-link-block link-block-4 bothell-link-block--margin-top "
-<a class="bothell-link-block link-block-5 bothell-link-block--margin-top "
-<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
->
-18115 Campus Way NE
-200 Level Psychology Courses * (10 credits)
-425.352.5000
-425.352.5350
-A. Psychology core courses
-About IAS
-Academic Excellence & Emerging Initiatives Fund
-Accessibility
-Additional IAS Coursework (20 credits)
-Admissions
-Admitted Students
-All IAS Funds
-All UW Bothell
-Also, some courses offered under BIS 316 (special topics), BIS 449 (advanced topics), or BIS 490 (senior seminar), particularly BIS 490: Empathy and BIS 490: Program Evaluation .
-Although psychology will be applied/applicable in a wide variety of IAS courses, and a wide variety of IAS courses will be applicable to psychology and psychologists, we offer a solid range of courses that specifically introduce, develop, and apply psychological theory and research.
-Alumni
-American & Ethnic Studies
-American Muslim Research Institute Fund
-Apply As Undergraduate
-B BIO 310 Brain & Behavior
-B BIO 320 Behavioral Neuroscience
-B BIO 394 Special Topics in Neuroscience
-B BIO 480 Neurobiology
-B EDUC 451 Early Childhood Development
-B EDUC 458 Emerging Adulthood
 B EDUC 481 Adolescent Development
-B WRIT 133, B WRIT 134, ENGL 131, or equivalent composition course
-B WRIT 135, ENGL 141, or equivalent advanced composition course
-B. Research Methods courses
-BACHELOR OF ARTS
+B BIO 480 Neurobiology
 BACK TO TOP
-BIS 115 Digital Cultures
-BIS 140 Numbers in News Media
-BIS 162 Race, Gender, and Sexuality through Film & TV
-BIS 165 Introduction to Ethnic Studies
-BIS 170 Introduction to Psychology
-BIS 170 Introduction to Psychology (or PSYCH 101 equivalent)
-BIS 170: Introductory Psychology (taken prior to entering the major)
-BIS 180 Introduction to Human Geography
-BIS 181 Introduction to Sociology
-BIS 193 Introduction to Philosophy
-BIS 215 Understanding Statistics
-BIS 215 Understanding Statistics (or B MATH 215, B BUS 215, STAT 220, STAT 290, or equivalent introductory statististics course)
-BIS 216 Introduction to Cultural Studies
-BIS 219 Politics of Sex Education
-BIS 220 Developmental Psychology
-BIS 220: Developmental Psychology
-BIS 222 Introduction to Human Sexuality
-BIS 222 Introduction to Human Sexuality (equivalent to PSYCH 210)
-BIS 225 Social Psychology
-BIS 225 Social Psychology (overlapping with PSYCH 245)
-BIS 225: Social Psychology
-BIS 226 Foundations of US Social Services
-BIS 235 Critical Media Literacy
-BIS 238 Language, Identity, Culture, and Power
-BIS 249 Introduction to Labor Studies
-BIS 252 Politics of Science
-BIS 255 Critical Diversity Studies
-BIS 256 Intro to African American Studies
-BIS 257 Intro to Asian American Studies
-BIS 258 Intro to Latinx Studies
-BIS 270 Abnormal Psychology
-BIS 270: Abnormal Psychology
-BIS 270: Abnormal Psychology should be taken before BIS 422: Clinical Psychology . These courses are paired and meant to build upon one another. Therefore, to benefit from the instruction students should take the more basic course prior to taking the more advanced course.
-BIS 279 Introduction to Law & Society
-BIS 282 Introduction to Globalization
-BIS 307 Environmental Justice
-BIS 312 Approaches to Social Research Methods (min 2.0 grade)
-BIS 312 Approaches to Social Research- min. 2.0 grade (5 credits)
-BIS 316 Topics in Psychology (can be taken maximum 3 times, different topics)
-BIS 317 Language, Society, and Cultural Knowledge
-BIS 336 History of Mass Incarceration in the US
-BIS 337: Risk and Resilience
-BIS 348 Industrial and Organizational Psychology
-BIS 349 Personality Psychology
-BIS 349: Personality Psychology
-BIS 352 Mapping Communities
-BIS 352: Mapping Communities
-BIS 353 Human Rights in Theory and Practice
-BIS 364 Realities & Representations of Adolescent Development
-BIS 365 Institutions and Social Change (formally BISSTA 304)
-BIS 365: Institutions and Social Change
-BIS 367 Ethics and Society (formally BISSTA 359)
-BIS 367: Ethics in Society
-BIS 368 Asian American Psychology
-BIS 369 Indigenous Psychology and Health
-BIS 380 Bioethics
-BIS 384 Health, Medicine and Society
-BIS 422 Clinical Psychology
-BIS 422: Clinical Psychology
-BIS 422: Clinical Psychology (take after BIS 270)
-BIS 438 Prevention and Promotion
-BIS 438: Prevention & Promotion (take after BIS 337)
-BIS 438: Prevention and Promotion
-BIS 445 Meanings and Realities of Inequality
-BIS 445: Meanings and Reality of Inequality
-BIS 448 Social Policy
-BIS 449 Advanced Topics in Psychology
-BIS 449: Advanced Topics in Psychology
-BIS 450 Decolonizing Psychology
-BIS 456 Climate Anxiety, Grief, and Resilience
-BIS 483 Community Organizing
-BISAES 305 Power, Dissent, and American Culture
-BISAES 367 Race, Ethnicity, and Immigration
-BISGST 303 History and Globalization
-BISGWS 301 Critical Gender & Sexuality Studies
-BISLEP 302 Policy Analysis
-BISPSY 337 Risk and Resilience (If not taken as a core)
-BISPSY 337 Risk and Resilience (not offered regularly)
-BISPSY 337: Risk & Resilience
-BISPSY 343 Community Psychology (Autumn Quarter)
-BISPSY 343 Community Psychology (if not taken as a core)
-BISPSY 343: Community Psychology should be taken before taking any other 300-level psychology course or 400-level psychology courses. This course introduces students to a community psychology perspective that is incorporated in all specialized and upper-level courses.
-BISPSY 348 Cultural Psychology (if not taken as a core)
-BISPSY 348 Cultural Psychology (Winter Quarter)
-BISPSY 348: Cultural Psychology
-BISPSY 350 Intergroup Relations (if not taken as a core)
-BISPSY 350 Intergroup Relations (Spring Quarter)
-BISPSY 489 Projects in Psychology
-BISPSY 489: Projects in Community Psychology
-BISPSY 489: Projects in Psychology
-BISSTS 231 Genes, Genomes and Heredity
-Bothell, WA 98011-8246
-Bothell, Washington View our location on Google maps.
-Box 358530
-BPOLST 515 Capstone Project
-BPOLST 594 Research Design is the default means of satisfying the Research Methods requirement. (You may petition for other options, including BPOLST 520 Internship, or BPOLST 598 Directed Research in Advanced Quantitative Methods). The course’s goal is to develop students’ own research questions and explore appropriate research methods for addressing these questions. Readings and discussion provide grounding in research designs, including experimental, longitudinal, cross-sectional, case-study, and participatory action research. Special attention will be devoted to planning and developing student capstone projects.
-C. 200-level Psychology courses (10 credits)
-Campus Safety
-Canvas
-Career Planning
-Career Resources
-Careers
-Check BIS 316: Special Topics in Psychology and BIS 449: Advanced Topics in Psychology for additional psychology courses that are not offered on a regular basis.
-Close mobile menu
-Coaching appointments are offered in-person or over Zoom.
-Community Engagement
-Community Organizing/Community Development Path
-Community Psychology
-Commuter Services
-Conservation & Restoration Science
-Contact
-Contact Us
-Contact us by phone at:
-Courses
-Courses in the Psychology major focus on theory and practice in psychology. Students also learn research methods in various fields including sociology, public health, anthropology, cultural studies, and social justice.
-Creative Writing & Poetics (MFA)
-Culture, Literature & the Arts
-Cumulative GPA Requirement: Major GPA must be at a cumulative of 2.00 or higher.
-Current site
-Curriculum
-D. Upper Division Psychology courses (15 credits)
-D.C. Human Rights Seminar
-Data Visualization
-Degree Requirements
-Develop an understanding of human development and well-being within an ecological framework.
-Did you know? UW Alumni can access Career Services for three years after graduation (and Veterans have lifetime access)!
-Directory
-Diversity and Equity
-Diversity Plan
-Do courses like Abnormal Psychology and Intergroup Relations sound exciting to you?
-Do you want to explore a career in mental health counseling or community development?
-Draw upon the strengths and perspectives of diverse stakeholders in defining and solving social problems.
-E. Psychology electives (15 credits)
-Earth System Science
-Educational Access & Opportunity Fund
-Elective Credits
-Environmental Science
-Environmental Studies
-Events
-Examples of coursework pathways emphasizing particular areas within psychology:
-Expand Navigation
-Experiential & Community Based Learning Fund
-Facilities
-Faculty
-Faculty & staff
-Fall Convergence
-Foundational courses in psychology:
-Funding
-Gender, Women & Sexuality Studies
-Give
-Global Scholars
-Global Scholars Fund
-Global Studies
-Grade Appeal
-Graduate Programs
-Graduate Programs in Washington State
-Graduate Studies Excellence Fund
-Graduates have pursued careers in human services, community development, mental health, family and youth programs, counseling, program evaluation, community arts, and public relations.
-Graduation Programs in Washington State
-Grievances and Complaints
-Hands-on Learning (IPR)
-height="0" width="0" style="display:none;visibility:hidden">
-Housing
-How to apply
-href="https://psych.uw.edu/undergraduate/life-after-uw/graduate-school/programs-in-washington"
-href="https://www.uwb.edu/career-services/appointments"
-href="https://www.uwb.edu/ias/career-planning#interest"
-href="https://www.uwb.edu/ias/undergraduate/admissions"
-href="https://www.washington.edu/undergradresearch/find/"
-Human Resources
-iasinfo@uw.edu
-If you are NOT a current UW Bothell student, please contact the UW Bothell Admissions team at uwbinfo@uw.edu .
-If you would like to explore the major, consider taking one of the below courses. Any of these selections will help familiarize you with the academic program and prepare you for advanced coursework in the major.
-If you’re a current UW Bothell student interested in applying to the Psychology major, you can find more information on our How to apply page.
-In this section
-Information Technology
-Integrate knowledge across disciplines and contexts in ways that respect different approaches to understanding human development and well-being.
-Interdisciplinary Arts
-Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with the 70 credits of major coursework, or it can be completed through elective credits. Please see the IPR webpage for course options.
-Interdisciplinary Social Sciences
-Interdisciplinary Studies
-Interested in graduate school?
-Internships
-Jobs
-Law, Economics & Public Policy
-Learn more about how to apply
-Learn more about how to conduct an Internship
-Learn more about how to enroll in Directed Research
-Learn more about how to participate in Study Abroad program
-Learn more about the capstone research process
-Learning objectives
-Learning Objectives
-Library
-Listed below are three possible coursework pathways within the major that, along with other elective courses related to particular problems, communities, or settings, would help students acquire and articulate a clear skill set and knowledge base for different career interests. These are not meant to be the only pathway options, and some pathways may combine various interests. For example, students interested in early intervention for youth might want to combine and tailor the first and second, or the second and third pathways.
-Major Requirements
-Majors
-Make an appointment for graduate school coaching
-Maps & directions
-Master of Fine Arts (MFA) Program Fund
-Mathematical Thinking & Visualization
-Media & Communication Studies
-Mental Health/Human Services Path
-MFA Publications
-Minor in Climate Change & Society
-Minor in Creative Writing
-Minor in Diversity Studies
-Minor in Ecological Restoration
-Minor in Gender, Women & Sexuality Studies
-Minor in Geographic Information Systems
-Minor in Human Rights
-Minor in Performance
-Minor in Policy Studies
-Minor in Science, Technology & Society
-Minor in Visual & Media Arts
-Minors
-Mission, Values, and Goals
-More Links
-MyUW
-News
-Nony Clark Milmoe Scholarship
-Note that not all psychology courses have the name psychology in the title. For example, the following courses do not include “psychology” in their title: BISPSY 337: Risk and Resilience ; BISPSY 350: Intergroup Relations ; BIS 438: Prevention and Promotion ; Also, some courses that are not focused on psychology per se will be very valuable for Psychology majors, for instance BIS 352: Mapping Communities .
-Note: See all IAS policies and procedures on the Student Resources webpage .
-On this page: Major Description | Learning Objectives | Degree Planning
-One Psychology Core Course &#8211; min. 2.0 grade (5 credits)
-Open mobile menu
-Other options
-Peer Facilitation
-People
-Petitions and Forms
-Plan your career
-Plan your degree
-Policy Studies (MA)
-PRACTICE
-Prerequisites
-Prevention and Health Promotion Path
-Privacy
-PROFESSION
-Prospective Students
-Psychology
-Psychology - School of Interdisciplinary Arts & Sciences
-Psychology Electives * (15 credits)
-Psychology is a dynamic major that offers students various pathways for academic and professional development. Students should take courses that provide a foundation for and a broad perspective on psychology. But the field also draws from theory and practice in sociology, community development, social ecology, public health, anthropology, cultural and performance studies, public policy, social work, and social justice movements. Students should aim to define and develop their own interdisciplinary perspectives and contextual approaches for the study of social problems and the promotion of people’s well-being. Students have freedom to define the major for their own goals and interests, but that means they also have the responsibility for making it meaningful.
-Psychology students are passionate about understanding the well-being of individuals and communities. Students interested in examining social problems will thrive within the Psychology major.
-PURPOSE
-Quick Links
-Ready to apply?
-Recommended preparation
-Research Opportunities
-Residency Requirement: 30 credits must be completed in residency at UW Bothell.
-Rules Docket
-Sandra Martin Roberts Memorial Scholarship
-Scholarship
-School of IAS Requirements & Policies
-School of Interdisciplinary Arts & Sciences
-Science, Technology & Society
-Search
-Search keywords
-Seattle Campus
-See a description of current courses being offered.
-See your Academic Advisor if you have transferred in one of the 200 level Psychology Courses
-Skip To Content
-Society, Ethics & Human Behavior
-Spring Festival
-Staff
-Start thinking about what courses will be required by or desirable to graduate programs or employers, and plan your schedule accordingly. Many courses offered only once a year (e.g., developmental psychology or personality psychology) may be required for admission to particular graduate programs. Some 400-level courses will provide students the chance to do significant integrative projects that will make grad school applications competitive (e.g., BISCP 489, BIS 438, or BIS 490). These kinds of courses also provide the kinds of interactions with faculty that ground effective letters of recommendation.
-Student Feedback
-Student Resources
-Students have some choices about which psychology courses they take and the areas of psychology they emphasize (e.g., clinical or developmental), but we recommend that students aim for at least 4 courses in foundational psychology (these are listed in the next section).
-Students must complete the following prerequisites, with a minimum 2.0 grade, to declare the Bachelor of Arts in Psychology major.
-Students wishing to receive elective credit for courses taken in other departments (either at UW Bothell or UW Seattle) must fill out a Petition for Outside Coursework and obtain faculty approval.
-Study Abroad
-style="color:var(--wp--custom--color--purple-100)"
-style="color:var(--wp--custom--color--purple-300)"
-Tacoma Campus
-Take advantage of the free resources offered by UW Bothell’s Career Services team. From mock interviews to internships and events, Career Services has everything you need to plan for your future!
-Terms
-The Capstone is an independent research project intended to be the culmination of the degree program. Building on the networking and research done in the Practicum as well as the planning and design work from the previous quarter, students will work with a faculty advisor to complete and write up their own research. Depending on the nature of the research question and the kind of partners or collaborators students engage, the capstone manuscript may take different formats. In general, capstone manuscripts will include a description of the policy problem, literature review, description of research methods, review of research findings, and conclusions or implications.
-The major curriculum advances the five core IAS learning objectives . Additionally, students taking courses and/or majoring in Psychology:
-The Psychology major at the University of Washington Bothell offers students the opportunity to study social problems and improve the well-being of people in their communities. While the field draws heavily from psychology, it also draws from texts and research in sociology, community development, ecology, public health, anthropology, cultural and performance studies, public policy, social work, and social justice movements. Through community based research, community psychologists produce knowledge that can inform social policies, social service work, helping practices, and community change.
-The University of Washington offers numerous free resources to help IAS students prepare for a career after college. Featured career planning tools are listed on the IAS Student Resources page.
-There are many options available to students when it comes to choosing electives. The first place to look is at the BPOLST elective offerings, located for the year on the current courses page. Students can also take graduate level coursework in other degrees, or 400-level classes that are relevant to their field of study. To find other UWB courses, please refer to the UWB Time Schedule . To find courses on the Seattle campus, please refer to the UWS Time Schedule .
-Thesis Work
-Time Schedule
 Tips for choosing and planning courses
+Psychology is a dynamic major that offers students various pathways for academic and professional development. Students should take courses that provide a foundation for and a broad perspective on psychology. But the field also draws from theory and practice in sociology, community development, social ecology, public health, anthropology, cultural and performance studies, public policy, social work, and social justice movements. Students should aim to define and develop their own interdisciplinary perspectives and contextual approaches for the study of social problems and the promotion of people’s well-being. Students have freedom to define the major for their own goals and interests, but that means they also have the responsibility for making it meaningful.
 Tips for determining what courses to take and when to take them:
-Tips for exploring graduate school
-Total = 70 Credits
-Undergraduate
-Undergraduate degrees offered in the School of IAS prepare students for a wide variety of graduate programs. If you think you might be interested in earning a master’s or doctoral degree, start planning now!
-Undergraduate research
-Understand, evaluate and participate in the development of effective intervention, prevention, and health promotion strategies and programs for individuals, small groups, and communities.
-University of Washington Bothell Homepage
-Upper Division Credit Policy: A maximum of 35 credits earned in 100- and 200-level courses may apply toward the major. Remaining credits must be earned in upper division courses (300-level and above).
-Upper Division Psychology Courses * (15 Credits)
-Utilize interdisciplinary methods and approaches to community action and research.
-UW Bothell Facebook
-UW Bothell Home
-UW Bothell Instagram
-UW Bothell Linkedin
-UW Bothell Twitter
-UW Bothell Youtube
-Visitors
-Washington D.C. Travel Assistance Fund
-We strongly recommend that students in the Psychology major take at least 4 of the following courses (in addition to BISPSY 343: Community Psychology ), and probably more if they plan on graduate study in some area of psychology. Again, it works best if they are taken sequentially (200-level before 300-level before 400-level).
 When possible, take 200-level psychology courses before taking 300-level or 400-level psychology courses. 200-level psychology courses (e.g., BIS 270: Abnormal Psychology , BIS 220: Developmental Psychology ) are basic courses meant to provide foundational knowledge that is helpful for doing well in more advanced courses (e.g., BISPSY 337: Risk and Resilience , BIS 422: Clinical Psychology , or other advanced topics courses).
+BISPSY 343: Community Psychology should be taken before taking any other 300-level psychology course or 400-level psychology courses. This course introduces students to a community psychology perspective that is incorporated in all specialized and upper-level courses.
+BIS 270: Abnormal Psychology should be taken before BIS 422: Clinical Psychology . These courses are paired and meant to build upon one another. Therefore, to benefit from the instruction students should take the more basic course prior to taking the more advanced course.
 When possible, take the required methods course early ( BIS 312: Approaches to Social Research Methods ). This course provides necessary knowledge for understanding 300- and 400-level specialized courses (e.g., BISPSY 337: Risk and Resilience ; BIS 349: Personality Psychology ; BISPSY 489: Projects in Psychology ), and should ideally be taken prior to the last 3 quarters in the major.
-Why Policy Studies?
-Work collaboratively across diverse groups and organizations through Community-Based experience and internships.
-Workday Login
+Check BIS 316: Special Topics in Psychology and BIS 449: Advanced Topics in Psychology for additional psychology courses that are not offered on a regular basis.
+Note that not all psychology courses have the name psychology in the title. For example, the following courses do not include “psychology” in their title: BISPSY 337: Risk and Resilience ; BISPSY 350: Intergroup Relations ; BIS 438: Prevention and Promotion ; Also, some courses that are not focused on psychology per se will be very valuable for Psychology majors, for instance BIS 352: Mapping Communities .
+Students have some choices about which psychology courses they take and the areas of psychology they emphasize (e.g., clinical or developmental), but we recommend that students aim for at least 4 courses in foundational psychology (these are listed in the next section).
+Start thinking about what courses will be required by or desirable to graduate programs or employers, and plan your schedule accordingly. Many courses offered only once a year (e.g., developmental psychology or personality psychology) may be required for admission to particular graduate programs. Some 400-level courses will provide students the chance to do significant integrative projects that will make grad school applications competitive (e.g., BISCP 489, BIS 438, or BIS 490). These kinds of courses also provide the kinds of interactions with faculty that ground effective letters of recommendation.
+Foundational courses in psychology:
+Although psychology will be applied/applicable in a wide variety of IAS courses, and a wide variety of IAS courses will be applicable to psychology and psychologists, we offer a solid range of courses that specifically introduce, develop, and apply psychological theory and research.
+We strongly recommend that students in the Psychology major take at least 4 of the following courses (in addition to BISPSY 343: Community Psychology ), and probably more if they plan on graduate study in some area of psychology. Again, it works best if they are taken sequentially (200-level before 300-level before 400-level).
+BIS 170: Introductory Psychology (taken prior to entering the major)
+BIS 220: Developmental Psychology
+BIS 225: Social Psychology
+BIS 270: Abnormal Psychology
+BISPSY 337: Risk & Resilience
+BISPSY 348: Cultural Psychology
+BIS 349: Personality Psychology
+BIS 422: Clinical Psychology (take after BIS 270)
+BIS 438: Prevention & Promotion (take after BIS 337)
+BISPSY 489: Projects in Psychology
+Also, some courses offered under BIS 316 (special topics), BIS 449 (advanced topics), or BIS 490 (senior seminar), particularly BIS 490: Empathy and BIS 490: Program Evaluation .
+Examples of coursework pathways emphasizing particular areas within psychology:
+Listed below are three possible coursework pathways within the major that, along with other elective courses related to particular problems, communities, or settings, would help students acquire and articulate a clear skill set and knowledge base for different career interests. These are not meant to be the only pathway options, and some pathways may combine various interests. For example, students interested in early intervention for youth might want to combine and tailor the first and second, or the second and third pathways.
+Mental Health/Human Services Path
+BIS 220: Developmental Psychology
+BIS 270: Abnormal Psychology
+BIS 349: Personality Psychology
+BIS 367: Ethics in Society
+BIS 422: Clinical Psychology
+BIS 449: Advanced Topics in Psychology
+Prevention and Health Promotion Path

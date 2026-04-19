@@ -33,3 +33,16 @@ BIS 455 Literature & Sexuality (A&H, SSc)
 BIS 481 Modernism, Postmodernism, and American Literature (A&H)
 BIS 486 Studies in Women and Literature (A&H)
 BIS 487 Topics in American Literature (A&H)
+B EDUC 205 Education & Equity in the United States (DIV, SSc)
+B EDUC 210 Teaching & Learning in a Multicultural Society (DIV, SSc)
+B EDUC 170 Math for Elementary Teachers (NSc)
+B EDUC 240 Science & Engineering for an Ethical and Just Society with Lab (NSc, DIV)
+B EDUC 241 Time in Socio-Ecological Systems: Sun, Moon, Clocks, and Contaminants with Lab (NSc, DIV)
+B EDUC 242 U.S. History and the Enduring War For Control of K-12 Curriculum: From Invasion to Insurrection (SSc, DIV, W)
+B EDUC 205 Education & Equity in the United States
+B EDUC 210 Teaching & Learning in a Multicultural Society
+BIS 175 Introduction to American Government (SSc)
+BIS 180 Introduction to Human Geography (SSc)
+BIS 200/B BUS 220 Introduction to Microeconomics (SSc, RSN)
+BIS 203 Economics of Gender (SSc, RSN, DIV)
+For example, if a student took HIST& 146 US History I, the student can petition that the course take the place of B EDUC 242 U.S. History and the Enduring War For Control of K-12 Curriculum.

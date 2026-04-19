@@ -2,11 +2,9 @@ Owner: uw-seattle-greek
 Source: https://classics.washington.edu/ba-greek
 Title: B.A. in Greek | Department of Classics | University of Washington
 
-[Supplemental official source] Admissions
 [Supplemental official source] B.A. in Classical Studies
 [Supplemental official source] B.A. in Classics
 [Supplemental official source] B.A. in Latin
-[Supplemental official source] Ph.D. Requirements
 &copy; 2026 University of Washington . All rights reserved.
 10 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 15 credits of 300-level classical Greek, excluding GREEK 300, GREEK 301
@@ -20,8 +18,6 @@ Title: B.A. in Greek | Department of Classics | University of Washington
 400-level Latin/Greek Overview
 5 credits from approved classics in English, classical art and archaeology, ancient history, the history of ancient philosophy, and the history of ancient science. See list of acceptable courses .
 A B.A. in Classical Studies opens the door to exploring the literature, history, art, archaeology and philosophy of the ancient Greeks and Romans, primarily through English translations. Students see the lasting influence of these complex civilizations in our civic, professional, intellectual, and cultural lives through a variety of learning opportunities: interactive language classes, specialized courses on topics ranging from gender and sexuality to STEM in the ancient world, and affordable study abroad opportunities. From this work, they develop intermediate skills in ancient Greek or Latin, as well as advanced skills in innovative analysis, creative and collaborative problem solving, and outstanding, persuasive communication. Graduates pursue careers in a variety of fields such as education, law, journalism, business and entrepreneurship, and health sciences.
-A dissertation approved by the student’s Supervisory Committee, and an oral examination on the dissertation.
-A minimum of three academic years of graduate study, of which at least two must be at the University of Washington and one, in full-time residence at the University for three out of four consecutive quarters.
 About
 About Us
 Admissions
@@ -30,11 +26,8 @@ Advising
 AIA Puget Sound Society
 Alumni
 Alumni Update
-An oral general examination on Greek and Roman history, literature, and related subjects. This examination may be taken only after completion of requirements 2-5; upon passing it, the student is admitted to candidacy for the Ph.D.
 Annual Faculty Lecture on Classical Culture
 Annual Teachers&#039; Conference
-Application Procedures
-Applications for admission WITH FUNDING are due on January 5. Applications to the Graduate School WITHOUT consideration for an Assistantship or Fellowship are accepted until July 1 for Autumn Quarter, November 1 for Winter Quarter, February 1 for Spring Quarter, and May 15 for Summer Quarter, but students are encouraged to apply by the January 5th deadline.
 B.A. in Classical Studies
 B.A. in Classics
 B.A. in Greek
@@ -46,7 +39,6 @@ Careers
 CLAS 495, the Senior Essay (2-3 credits)
 clasdept@uw.edu
 College of Arts & Sciences
-Competence in reading German and French or German and Italian, demonstrated by passing Departmental examinations.
 Contact Us
 Courses
 Current Year Overview
@@ -68,15 +60,10 @@ Featured Courses
 Fields of Interest
 Financial support
 Financial Support
-For Ph.D. in Classics:
-Fulfillment of all Graduate School requirements (see the University’s General Catalog).
 Full Directory
 Graduate
-Graduate Admission Requirements
 Graduate Courses
-Graduate courses (or the equivalent) in Greek and Latin composition.
 Graduate Students & TAs
-Graduate students are expected to have teaching experience before completing their terminal degrees.
 Harmon Lectures
 Home
 Honors
@@ -95,13 +82,9 @@ MyUW
 News & Events
 News Feed
 Newsletter
-Ninety credits in courses approved by the Department as applicable toward an advanced degree. At least half of these credits (which include dissertation credits) must be at the 500-level or above.
 Non-Degree Study
-NOTE: ADMISSION TO GRADUATE PROGRAM IS SUSPENDED FOR THE CURRENT ACADEMIC CYCLE. WE EXPECT TO RESUME ADMISSIONS NEXT YEAR FOR THE FALL OF 2027.
 On Campus & Beyond
 People
-Ph.D. in Classics
-Ph.D. Reading List
 Ph.D. Requirements
 Phone: (206) 543-2266
 Placement of Ph.D.s
@@ -109,9 +92,7 @@ Please see our Undergraduate Programs section for information about applying to 
 Privacy
 Programs & Courses
 Projects
-Prospective graduate students should have as strong a preparation as possible in Latin and Greek, preferably a full undergraduate major. Although the M.A. may be attained with work in only one of the languages, students who plan to work toward the Ph.D. must be prepared to do graduate work in both Latin and Greek.
 Publications
-Questions? Please contact the Department of Classics' Graduate Program Coordinator Professor Olga Levaniouk ( olevan@uw.edu )
 Quick links
 Quick Links
 Recent News
@@ -143,11 +124,8 @@ Summer Study
 Support Classics
 Support Us
 Terms
-The application to our graduate program is completed and submitted online. Instructions on how to apply, with a link to the online application, may be found in the Application Procedures section of our website .
 The Classical Studies major is especially suited for students not preparing for graduate study in classics but wishing to explore the literature, history, art, archaeology, and philosophy of classical antiquity, primarily through English translation. Those with no previous exposure to ancient Greek or Latin can complete the Classical Studies major in two years.
 Through the B.A. in Greek, students analyze a complex civilization of people whose ideologies and practices still guide daily life in communities around the globe. They gain advanced expertise in the language, literature, and culture of ancient Greece, which enriches their perspective on issues that are still under debate in our cultural, intellectual, professional and civic lives. Through interactive language classes, specialized courses on topics ranging from epic, tragic, and comic poetry to religion and sports in the ancient Greek and Roman world, and affordable study abroad opportunities, they build skills in innovative analysis, creative and collaborative problem-solving, and outstanding, persuasive communication. Graduates pursue careers in a variety of fields such as education, law, journalism, business and entrepreneurship, and health sciences.
-Translation exams on Greek and Latin literature. Reading lists in each language guide the student’s preparation for these exams.
-Two written examinations on focused topics in Classical studies, one primarily Greek and the other primarily Roman. Such topics might include a specific author or genre; or, e.g., a literary theme or cultural institution; a historical period, or an area of social or intellectual history; an area of art history or archaeology; Athenian or Roman topography; a technical skill such as epigraphy, linguistics, metrics, or palaeography. These examinations will assume a deep familiarity with the relevant texts and/or material evidence, together with important secondary works and trends in scholarship. They must be taken before the doctoral orals, but normally may be taken only after the translation examination in the corresponding language has been passed.
 Undergraduate
 Undergraduate Bulletin Board
 University of Washington
@@ -157,5 +135,4 @@ Washington
 We also offer a Minor in Classical Studies .
 We also offer a Minor in Greek and an Honors Program .
 We also offer an Honors Program .
-Written preliminary examinations:
 You are here

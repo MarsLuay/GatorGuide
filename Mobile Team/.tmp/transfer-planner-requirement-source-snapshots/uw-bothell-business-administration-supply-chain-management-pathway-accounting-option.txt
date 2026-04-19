@@ -2,28 +2,57 @@ Owner: uw-bothell-business-administration-supply-chain-management:pathway:accoun
 Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain
 Title: Supply Chain Management Option - School of Business
 
+(*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
 (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
+(any 300/400 level UW courses)
+[Supplemental official source] Accounting Option
 [Supplemental official source] Curriculum
+[Supplemental official source] Entrepreneurship Concentration
+[Supplemental official source] Finance Option and Concentration
 [Supplemental official source] Prerequisite Courses
 [Supplemental official source] Prerequisites
+[Supplemental official source] Supplemental official track and option pages
+*If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses):
 &#124;
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 10 credits
 10 credits – 2 courses from the list below:
+10 credits – Complete 2 courses from this list:
+10 credits &#8211; Complete two courses from this list:
+15 credits
 18807 Beardslee Blvd, Suite 210
+30 credits
 425.352.5000
 425.352.5394
+5 credits – Complete one Enrichment Elective from this list:
+5 credits &#8211; Complete one course from this list:
 90 credits
+90 Credits
 About
 Accessibility
+Accounting curriculum
+Accounting Electives (prerequisites in parentheses)
 Accounting Option
+Accounting Option students must complete the following courses for graduation.
 Admissions
 Advisory boards
 All UW Bothell
 Alumni
 Apply As Undergraduate
 Awards
+B BUS 361 – Intermediate Accounting I
+B BUS 362 – Intermediate Accounting II (361)
+B BUS 373 – Cost Accounting
+B BUS 441 – Business Project Management (340)
+B BUS 455 – Financial Risk Management (454)
+B BUS 456 – Entrepreneurial Finance (350)
+B BUS 457 – Advanced Valuation (454)
+B BUS 459 – Special Topics in Finance (350)
+B BUS 463 – Advanced Financial Accounting (362)
+B BUS 465 – Applied Financial Accounting (350)
+B BUS 468 – Advanced Accounting and Analytics (363)
+B BUS 491 – Business Consulting
 Bachelor in Business Administration
 Bachelor in Economics
 Bachelor of Business Administration
@@ -32,15 +61,35 @@ BBUS 307 – Business Writing, Writing Designated Course
 BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
 BBUS 320 – Marketing Management
 BBUS 340 – Operations & Project Management
+BBUS 340 – Operations & Project Management (310)
 BBUS 350 – Business Finance (310)
+BBUS 361 – Intermediate Accounting 1*
+BBUS 361 – Intermediate Accounting I
+BBUS 361 – Intermediate Accounting I*
+BBUS 362 – Intermediate Accounting 2 (361)
+BBUS 363 – Intermediate Accounting 3 (362)
 BBUS 373 – Cost Accounting
+BBUS 373 – Cost Accounting*
 BBUS 402 – Managing Work Teams
+BBUS 411 – Auditing Theory & Practice (362)
+BBUS 412 – Advanced Business Law
+BBUS 435 – Accounting Information Systems (361)
 BBUS 441 – Business Project Management (340)
 BBUS 447 – Retail Operations & Supply Chain Management (300)
+BBUS 450 – Federal Income Taxation (361)
+BBUS 451 – Financial Policy and Practice (350)
+BBUS 452 – Financial Modeling (350)
+BBUS 453 – Financial Institutions and Markets (350)
+BBUS 454 – Investments (350)
+BBUS 455 – Financial Risk Management (454)
+BBUS 456 – Entrepreneurial Finance (350)
+BBUS 457 – Advance Valuation (454)
+BBUS 459 – Special Topics in Finance (350)
 BBUS 460 – Sustainable Business
 BBUS 462 – Negotiations & Conflict Management (300, 320)
 BBUS 463 – Advanced Financial Accounting (362)
 BBUS 464 – New Product Marketing (320)
+BBUS 465 – Applied Finance Accounting (350)
 BBUS 470 – Business Policy & Strategic Management
 BBUS 473 – Leadership & Decision Making (300)
 BBUS 475 – Managing Innovation
@@ -49,6 +98,8 @@ BBUS 482 – Introduction to Supply Chain Management (340)
 BBUS 483 – Global Strategic Sourcing (441, 482)
 BBUS 486 – Supply Chain Resource Planning (340)
 BBUS 487 – Management and Improving Supply Chain Processes (441, 482)
+BBUS 490 – Special Topics in Business (300, 310), Only counts when approved for concentration; see your advisor before registering.
+BBUS 491 – Business Consulting
 BBUS 492 – Supply Chain Field Study (441, 482, 483, 486, 487) , or BBUS 497 – Internship, or BBUS 499 – Independent Research, or BBUS 491 &#8211; Business Consulting
 Beardslee Building (UWBB)
 Become a Mentor
@@ -65,10 +116,12 @@ Capstone Courses
 Certificate in Accounting
 Close mobile menu
 Commuter Services
+Concentration Courses
 Contact
 Contact Us
 Contact us by phone at:
 Core Courses (prerequisites in parentheses)
+Course Numbers & Names
 Course Type
 Current site
 Curriculum
@@ -78,6 +131,7 @@ Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
+ELCBUS 463 – International Finance and Trade (350)
 Entrepreneurship Concentration
 Ethics Conference
 Events
@@ -85,7 +139,10 @@ Executive Education
 Expand Navigation
 Facilities
 Faculty
+Finance Electives (prerequisites in parentheses)
 Finance Option and Concentration
+Finance Option and Concentration - School of Business
+General Electives
 General Electives (any 300/400 level UW course)
 Get a Mentor
 Give
@@ -118,10 +175,13 @@ Minor in Retail Management
 More Links
 MS Accounting Advisory Board
 MSA Faculty
+Must have completed all required prerequisite Accounting courses with a minimum grade of 2.5 in each course.
+Must have earned a minimum 3.0 cumulative grade point average across all prerequisite Accounting courses.
 MyUW
 News
 Open mobile menu
 Opportunities
+Option Courses
 People
 PharmD-MBA Program
 Policies & Petitions
@@ -132,8 +192,11 @@ Professional Coaching
 Promotion and Tenure Guidelines
 Quick Links
 Related Links
+Required Accounting Courses (prerequisites in parentheses)
+Required Courses (prerequisites in parentheses)
 Required SCM Courses (prerequisites in parentheses)
 Requirements to declare the option
+Requirements to declare the Option or the Concentration
 Retail Management Concentration
 Ron Tilden Accounting Scholarship
 Rules Docket
@@ -146,14 +209,20 @@ Seattle Campus
 Skip To Content
 Staff
 Statistics
+Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
+Students may NOT enroll in any Accounting courses until speaking to their advisor to determine whether they meet the requirements.
 Students must complete the following courses for graduation:
 Students must have completed the following courses with a minimum grade of 3.0 in each course in order to declare the SCM Option.
+Students wanting to declare the Accounting option must meet the following requirements:
+Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
 Supply Chain Management curriculum
 Supply Chain Management Option
 Supply Chain Management Option - School of Business
 Tacoma Campus
 Technology & Innovation Management (TIM) Concentration
 Terms
+The Accounting Option prepares students for careers in private, government, non-profit and public accounting. Demand for accountants is extremely high as businesses work to plan, manage and control their operations. Graduates can serve as internal auditors, managerial accountants, tax examiners, budget analysts or government auditors. After completing this option, students are eligible to take the Certified Management Accounting (CMA) exam. If you want to be a Certified Public Accountant (CPA), a minimum of 225 quarter hours or five years of college is required.
+The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
 The Supply Chain Management (SCM) Option provides students the ability to manage suppliers across globally distributed locations, to procure the right materials, at the right time, at the right quality, and at the lowest cost to meet company objectives. Graduates can go on to work as buyers, operations managers, forecasting analysts among many things.
 The Supply Chain Management Option qualifies as a STEM-designated program categorized under “Management Science” (CIP Code 52.1301) on the Department of Homeland Security&#8217;s roster of STEM-designated degrees .
 Time Schedule
@@ -173,5 +242,7 @@ uwbbusiness@uw.edu
 Vision, Mission & Values
 Visitors
 Why hire a business student?
+Why study accounting?
+Why study finance?
 Why study Supply Chain Management?
 Workday Login

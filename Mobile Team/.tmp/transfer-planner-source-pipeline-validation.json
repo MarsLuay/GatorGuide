@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-18T10:22:00.501Z",
+  "generatedAt": "2026-04-19T03:18:39.580Z",
   "outcome": "passed",
   "passedCount": 9,
   "failedCount": 0,
@@ -9,7 +9,7 @@
     "eligibleAutoPromotionOwnerKeys": [],
     "reviewQueueOwnerCount": 0,
     "sourceGapOwnerCount": 0,
-    "promotedOwnerCount": 71,
+    "promotedOwnerCount": 76,
     "promotedOwnerKeys": [
       "uw-bothell-american-and-ethnic-studies",
       "uw-bothell-business-administration-accounting",
@@ -41,9 +41,14 @@
       "uw-seattle-early-childhood-and-family-studies",
       "uw-seattle-english-language-literature-and-culture",
       "uw-seattle-finnish",
+      "uw-seattle-french",
+      "uw-seattle-geography",
+      "uw-seattle-geography:pathway:data-science-option",
+      "uw-seattle-geography:pathway:standard-ba-route",
       "uw-seattle-german",
       "uw-seattle-guitar-b-m",
       "uw-seattle-individualized-studies",
+      "uw-seattle-italian",
       "uw-seattle-jazz-studies-b-m",
       "uw-seattle-linguistics",
       "uw-seattle-mathematics",
@@ -104,7 +109,7 @@
       "label": "Generated promotion registry matches the promotion report",
       "status": "passed",
       "details": [
-        "Promoted owners: 71"
+        "Promoted owners: 76"
       ]
     },
     {
@@ -128,7 +133,7 @@
       "label": "Auto-promoted owners are materialized in the canonical primary-source registry",
       "status": "passed",
       "details": [
-        "Promoted owners: 71",
+        "Promoted owners: 76",
         "Canonical primary owners: 460"
       ]
     },
@@ -146,7 +151,7 @@
       "label": "Promoted owners appear in parser output and requirement fingerprints",
       "status": "passed",
       "details": [
-        "Promoted owners verified end-to-end: 71"
+        "Promoted owners verified end-to-end: 76"
       ]
     },
     {

@@ -7,8 +7,6 @@ Title: LSJ Gold Curriculum Requirements | Law, Societies & Justice | University 
 [Supplemental official source] LSJ Major
 [Supplemental official source] Major Requirements
 [Supplemental official source] Purple Curriculum Requirements
-[Supplemental official source] Requirements & Admissions
-* For graduate fellows admitted before Autumn 2020 click here to see applicable program requirements.
 **IMPORTANT CHANGE**
 **The following requirements are in effect beginning Autumn 2024**
 *anyone admitted to the major prior to autumn 2024)
@@ -63,19 +61,14 @@ Amsterdam
 An LSJ 400-level course is a small, discussion-driven course (often referred to as a "seminar) on a focused topic. Students can expect plenty of reading, writing, discussion and active participation in the topic.
 An LSJ Capstone Seminar course is a small discussion-driven course on a focused topic at the 400-level. Students can expect plenty of reading, writing, discussion, and active participation in the topic. These same courses can alternatively be used for completion of the electives section, but the student will need to choose whether to use as an elective or capstone seminar. They cannot work towards two requirements simultaneously.
 An LSJ Departmental Seminar course is a small, discussion-driven course on a focused topic at the 400-level. Students can expect plenty of reading, writing, discussion and active participation in the topic. These same courses can alternatively be used for completion of the LSJ Subfield requirements, but the student will need to choose whether to use it as a Subfield or as a Seminar. They cannot work towards two requirements simultaneously.
-Analytic pape r: Students will satisfy the “capstone” requirement by developing an analytic paper that engages the law and society tradition. This paper must be presented at a relevant national conference such as the Law & Society Association meetings or another relevant conference) or in a LSJ workshare .
 Answer: Applicants admitted to LSJ are usually strong students, but what makes a student strong is rather complex. Because this is an academic program that explores law in social science perspectives, students should show particular aptitude in social science courses. They should also be able to communicate clearly and concisely, and show an interest in the academic topics and social issues discussed in LSJ classes. Admission is based on a student’s academic record and his/her essay. The number of admitted students varies by quarter, based on the characteristics of each applicant pool and the number of students the program can admit. All students who have completed the minimum requirements and who are interested in the major are strongly encouraged to apply.
 Answer: It is fine to take LSJ classes before being admitted to the major. Students should try to give preference to the classes in the LSJ Core Course list over those in the subfields. The Core Courses are meant to ground the knowledge covered in more detail in the subfield courses, so taking them first improves your chance of doing well in the upper level coursework.
 Answer: The first task is getting into the University of Washington so that you can complete the last prerequisite course(s) before applying to the major. When applying to the university, you should certainly mention your interest in this major, even if you still have prerequisite courses to complete. The Admissions staff knows that one of the LSJ prerequisites has to be completed after being admitted, so not having it completed will not keep you from getting into UW.
 Answer: The Law, Societies, and Justice Department does not offer graduate degrees, however, we do have a Graduate Certificate. The details of which are available under the Programs and Courses tab on this website.
 Applicants are allowed to apply to the LSJ major a maximum of two times.
 Application Information
-Application Process
-Applications are accepted on a rolling basis. Students usually apply for the program in their first or second year of their PhD program.
-Apply Here
 Apply Now
 APPLY NOW
-APPLY NOW!
 Apply to the LSJ Major
 Apply to the LSJ Major | Law, Societies & Justice | University of Washington
 Applying to LSJ Major
@@ -104,7 +97,6 @@ College of Arts & Sciences
 COM 440/POL S 461 Mass Media Law (5)
 Complete Application Information
 Complete Personal Information
-Completion Process
 Conference Room Calendar
 Congruence between student interests/questions and questions/topics covered in LSJ courses
 Connect with us
@@ -113,7 +105,6 @@ Core Courses (20 credits)
 Course Catalog
 Course Planning
 Courses
-Courses: Students must complete at least two approved graduate courses to earn a graduate certificate. Currently, approved graduate courses include any course taught by an LSJ faculty member and JSIS 599 (Law, Rights & Governance). One of these courses must be taught in a department other than the graduate student's home department.
 Coursework, experiences, and skills that can enrich discussion
 Criteria
 Current & Upcoming
@@ -155,7 +146,6 @@ Fields of Interest
 First Name
 Fit of learning goals with LSJ curriculum
 Fit of long-term goals with LSJ curriculum
-For a list of approved graduate courses taught during the 2020-21 school year, click here . Independent study courses cannot be substituted for these courses.
 Frequently Asked Questions
 GEOG 472 Race, Nature, and Power (5)
 GEOG 472 Race, Nature, and Power (5)#
@@ -164,12 +154,9 @@ GEOG 479 Gentrification, Displacement, and Housing Justice (5)#
 Given the recent concerns of COVID-19 and its effect on higher education institutions, the LSJ Department has adapted its undergraduate admissions policy for LSJ courses where an S grade was earned during a designated UW Extraordinary Circumstances Quarter (ECQ): Spring 2020, Summer 2020, Autumn 2020, Winter 2021, Spring 2021, Summer 2021, and Winter 2022. An S grade will not negatively impact a student's application. To be eligible for admission to the LSJ Department, at least one (1) LSJ course must have a numerical grade (4.0 scale).
 GOLD Curriculum
 Gold Curriculum Requirements
-GPA : Students must maintain a 3.5 or better.
 Graduate Certificate
 Graduate Certificate Alumni
 Graduate Certificate Fellows
-Graduate Certificate Program Requirements & Admissions
-Graduate Certificate Program Requirements & Admissions | Law, Societies & Justice | University of Washington
 Graduate Fellow Resources
 Graduating Senior Priority: Up to 2 quarters before your graduation quarter (for example, apply in autumn to graduate in spring). Quarterly deadlines are posted on UW's Academic Calendar.
 Graduation
@@ -288,10 +275,6 @@ LSJ faculty integrate research, teaching, and service in innovative and impactfu
 LSJ Gold Curriculum Major Requirements (effective Autumn 2024)
 LSJ Gold Curriculum Requirements
 LSJ Gold Curriculum Requirements | Law, Societies & Justice | University of Washington
-LSJ Grad Completion Form
-LSJ Graduate Certificate Completion Form : Upon completion of these requirements, the student must complete and submit the LSJ Graduate Certificate Completion Form here:
-LSJ Graduate Certificate Program Application form
-LSJ Graduate Certificate Program Completion form
 LSJ is competitive because we cannot admit all who seek to pursue the major. Students are welcome to apply up to two times, but in deciding a second submission should have a parallel plan in case they are not admitted to LSJ. The best plan will vary depending on student interests, but it should be a major that has either open admission or minimum requirement admission.
 LSJ Major
 LSJ Major | Law, Societies & Justice | University of Washington
@@ -369,7 +352,6 @@ Optional Hardship Statement (250 words): Describe any personal or economic hards
 Other majors/degrees that you are completing. You must apply for graduation with each program.
 Our general policy is that LSJ minors, may not count outside study abroad experiences towards LSJ minor requirements. However, students may petition for an exception, and the Department will review. Please note, no more than 5 credits may be petitioned.
 Our Mission
-Participate in eight LSJ workshare sessions while earning the certificate.
 People
 Personal Statement
 Petition to Have Outside Course Count Toward Major
@@ -378,7 +360,6 @@ PHIL 314 Philosophy of Crime and Punishment (5)
 PHIL 338 Philosophy of Human Rights (5)
 PHIL 414 Philosophy of Law (5)
 Phone: (206) 543-2396
-Please be aware that per Graduate School Memo #43 , the overlap of coursework applied towards your Graduate Program Certificate and your Ph.D. must not exceed 6 credits and is limited to elective coursework in each program.
 PLEASE NOTE: Students are still required to complete 11 classes (55 credits).
 Please submit a PDF of your MyPlan or Excel document, showing your quarterly plans from the quarter you are applying through graduation as accurately as possible . We understand that plans are not permanent and can change, but we want all applicants to be well-aware of their academic plans, especially in regard to the UW's Satisfactory Progress Policies .
 POL S 320/JSIS B 310 State-Society Relations in Third World Countries (5)
@@ -392,7 +373,6 @@ Preamble: Although we wish we could accept all interested students into our majo
 Prerequisite Information
 Privacy
 Program Description
-Program Requirements*
 Programs & Courses
 Prompt: In a single essay of no more than 750 words, please explain why you want to major in LSJ. Be sure that your essay addresses each of the topics listed below. Please note that some of these questions may overlap and you do not need to repeat yourself or address them in any particular order.
 Publications
@@ -403,7 +383,6 @@ Quarterly Graduation Application Deadline: Third Friday of the quarter you inten
 Quick links
 Quick Links
 Recent News
-Related Files
 Relevance of prior/preparatory experiences
 Reports
 Required LSJ 300-Level Courses
@@ -480,7 +459,6 @@ University of Washington
 Upload your optional hardship statement
 Upload your personal statement in PDF format
 Upload your unofficial transcript in PDF format
-Upon completion of the LSJ Graduate Certificate, please complete the Concurrent Degree Graduation Review
 Upper-Division 300- and 400- Level Electives
 Upper-Division Electives (16-20 credits)
 User account menu
