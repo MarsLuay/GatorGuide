@@ -854,8 +854,8 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Links Used
 
-- [degree requirements](https://astro.washington.edu/timeline-and-requirements)
-- [degree requirements](https://astro.washington.edu/timeline-and-requirements) - Source used for parser-backed UW requirement extraction.
+- [degree requirements](https://astro.washington.edu/undergraduate-program)
+- [degree requirements](https://astro.washington.edu/undergraduate-program) - Source used for parser-backed UW requirement extraction.
 
 ##### Astronomy parsed official source requirements
 

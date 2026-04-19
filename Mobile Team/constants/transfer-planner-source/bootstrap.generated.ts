@@ -16714,7 +16714,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "officialLinks": [
       {
         "label": "degree requirements",
-        "url": "https://astro.washington.edu/timeline-and-requirements",
+        "url": "https://astro.washington.edu/undergraduate-program",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"

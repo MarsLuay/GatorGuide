@@ -374,8 +374,8 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "resourceFingerprint": "1a7ff678b4ed34823530565b893e609444cc27479ff4df2d37ddbb224e9495c5"
   },
   {
-    "url": "https://astro.washington.edu/timeline-and-requirements",
-    "finalUrl": "https://astro.washington.edu/timeline-and-requirements",
+    "url": "https://astro.washington.edu/undergraduate-program",
+    "finalUrl": "https://astro.washington.edu/undergraduate-program",
     "labels": [
       "degree requirements"
     ],
