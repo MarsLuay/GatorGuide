@@ -11369,58 +11369,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "leadership-and-strategic-innovation-option",
-        "label": "Leadership and Strategic Innovation option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Leadership and Strategic Innovation option major requirements",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "management-concentration",
-        "label": "Management concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Management concentration major requirements",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "marketing-option-and-concentration",
         "label": "Marketing option and concentration",
         "summary": "",
@@ -11471,84 +11419,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
-      },
-      {
-        "id": "retail-management-concentration",
-        "label": "Retail Management concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Retail Management concentration major requirements",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "supply-chain-management-option",
-        "label": "Supply Chain Management option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Supply Chain Management option major requirements",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "tim-concentration",
-        "label": "Technology and Innovation Management concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Technology and Innovation Management concentration major requirements",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
       }
     ]
   },
@@ -11585,32 +11455,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "accounting-option",
-        "label": "Accounting Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Accounting option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "accounting-option-school-of-business",
         "label": "Accounting Option",
         "summary": "",
         "applicationChecklist": [],
@@ -11714,164 +11558,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "leadership-and-strategic-innovation-option",
-        "label": "Leadership and Strategic Innovation option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Accounting option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "management-concentration",
-        "label": "Management Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Accounting option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "management-information-systems-mis-concentration",
-        "label": "Management Information Systems (MIS) Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Accounting option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "marketing-option-and-concentration",
         "label": "Marketing option and Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Accounting option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "retail-management-concentration",
-        "label": "Retail Management Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Accounting option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "supply-chain-management-option",
-        "label": "Supply Chain Management option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Accounting option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "technology-and-innovation-management-tim-concentration",
-        "label": "Technology & Innovation Management (TIM) Concentration",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -12170,112 +11858,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "management-concentration",
-        "label": "Management Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Leadership and Strategic Innovation option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "management-information-systems-mis-concentration",
-        "label": "Management Information Systems (MIS) Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Leadership and Strategic Innovation option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "marketing-option-and-concentration",
         "label": "Marketing option and Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Leadership and Strategic Innovation option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "retail-management-concentration",
-        "label": "Retail Management Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Leadership and Strategic Innovation option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "supply-chain-management-option",
-        "label": "Supply Chain Management option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -12411,32 +11995,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "leadership-and-strategic-innovation-option",
-        "label": "Leadership and Strategic Innovation option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Marketing option and concentration",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "marketing-option-and-concentration",
         "label": "Marketing option and Concentration",
         "summary": "",
@@ -12517,32 +12075,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "option-course-numbers-and-names",
         "label": "Concentration Course Numbers & Names",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Marketing option and concentration",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "supply-chain-management-option",
-        "label": "Supply Chain Management option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -12654,32 +12186,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "finance-option-and-concentration",
         "label": "Finance option and Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Supply Chain Management option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "leadership-and-strategic-innovation-option",
-        "label": "Leadership and Strategic Innovation option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -12919,32 +12425,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "biochemistry-option",
-        "label": "Biochemistry Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Chemistry curriculum",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "chemistry-ba-b-s-in-chemistry-biochemistry-option",
         "label": "Chemistry (Ba) - B.S. in Chemistry (Biochemistry Option)",
         "summary": "",
@@ -13051,32 +12531,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "iac-option",
         "label": "Iac Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Chemistry curriculum",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "information-assurance-and-cybersecurity-iac-option",
-        "label": "Information Assurance and Cybersecurity (Iac) Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -13290,32 +12744,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "information-assurance-and-cybersecurity-iac-option",
-        "label": "Information Assurance and Cybersecurity (Iac) Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Chemistry curriculum",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "teaching-track-faculty",
         "label": "Teaching track Faculty",
         "summary": "",
@@ -13374,32 +12802,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "plannerNote": "",
     "sourceType": "master-generated",
     "pathways": [
-      {
-        "id": "biochemistry-option",
-        "label": "Biochemistry Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Chemistry curriculum",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
       {
         "id": "chemistry-bs-b-s-in-chemistry-biochemistry-option",
         "label": "Chemistry (Bs) - B.S. in Chemistry (Biochemistry Option)",
@@ -13576,84 +12978,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "b-s-in-chemistry-biochemistry-option-requirements",
-        "label": "B.S. in Chemistry (Biochemistry Option) Requirements",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell CSSE curriculum",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "b-s-in-chemistry-general-option-requirements",
-        "label": "B.S. in Chemistry (General Option) Requirements",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell CSSE curriculum",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "biochemistry-option",
-        "label": "Biochemistry Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell CSSE curriculum",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "computer-science-and-software-engineering-option-1",
         "label": "Computer Science and Software Engineering option 1",
         "summary": "",
@@ -13708,32 +13032,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "iac-option",
         "label": "Iac Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell CSSE curriculum",
-            "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "information-assurance-and-cybersecurity-iac-option",
-        "label": "Information Assurance and Cybersecurity IAC option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -13998,58 +13296,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "education-studies-elementary-education-option",
-        "label": "Education Studies: Elementary Education Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Developmental and Youth Studies degree requirements",
-            "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "m-ed-with-critical-educational-change-and-leadership-cecl-concentration",
-        "label": "M.Ed. with Critical Educational Change and Leadership (Cecl) Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Developmental and Youth Studies degree requirements",
-            "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "m-ed-with-educating-for-critical-race-theory-e-crit-concentration",
         "label": "M.Ed. with Educating for Critical Race Theory (E-Crit) Concentration",
         "summary": "",
@@ -14090,32 +13336,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "m-ed-with-leadership-development-for-educators-lede-concentration",
-        "label": "M.Ed. with Leadership Development for Educators (Lede) Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Developmental and Youth Studies degree requirements",
-            "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -14232,32 +13452,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "leadership-and-strategic-innovation-option",
-        "label": "Leadership and Strategic Innovation option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Bachelor of Economics overview",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-            "visibility": "visible",
-            "status": "verified",
             "sourceConfidence": "medium"
           }
         ],
@@ -14273,32 +13467,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "marketing-option-and-concentration",
         "label": "Marketing option and Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell Bachelor of Economics overview",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "supply-chain-management-option",
-        "label": "Supply Chain Management option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -15436,58 +14604,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "culture-and-history-concentration-courses",
-        "label": "Culture and History Concentration Courses:",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW B.A. in American Indian Studies",
-            "url": "https://ais.washington.edu/ba-american-indian-studies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "environment-and-health-concentration-courses",
-        "label": "Environment and Health Concentration Courses:",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW B.A. in American Indian Studies",
-            "url": "https://ais.washington.edu/ba-american-indian-studies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "governance-concentration-courses",
         "label": "Governance Concentration Courses:",
         "summary": "",
@@ -15599,32 +14715,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "archaeological-sciences",
-        "label": "Archaeological Sciences",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Anthropology page",
-            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "archaeology",
         "label": "Archaeology)",
         "summary": "",
@@ -15665,32 +14755,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "low"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "human-evolutionary-biology",
-        "label": "Human Evolutionary Biology",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Anthropology page",
-            "url": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -15814,86 +14878,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "data-science-and-statistics",
-        "label": "Data Science and Statistics",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "discrete-mathematics-and-algorithms",
-        "label": "Discrete Mathematics and Algorithms",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "mathematical-economics-and-quantitative-finance",
         "label": "Mathematical Economics and Quantitative Finance",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "scientific-computing-and-numerical-analysis",
-        "label": "Scientific Computing and Numerical Analysis",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -16332,294 +15318,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "asian-studies-and-8211-china-concentration",
-        "label": "Asian Studies &#8211; China Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-japan-concentration",
-        "label": "Asian Studies &#8211; Japan Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-korea-concentration",
-        "label": "Asian Studies &#8211; Korea Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-south-asia-concentration",
-        "label": "Asian Studies &#8211; South Asia Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-southeast-asia-concentration",
-        "label": "Asian Studies &#8211; Southeast Asia Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-china-concentration",
+        "id": "china-concentration",
         "label": "China Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-japan-concentration",
-        "label": "Japan Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-korea-concentration",
-        "label": "Korea Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-south-asia-concentration",
-        "label": "South Asia Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-southeast-asia-concentration",
-        "label": "Southeast Asia Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "concentration-i-themes-2-courses-10-credits",
-        "label": "Concentration I - Themes 2 Courses 10 Credits",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Asian Studies major page",
-            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "concentration-ii-regions-2-courses-10-credits",
-        "label": "Concentration Ii - Regions 2 Courses 10 Credits",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -16670,8 +15370,86 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "if-not-taken-for-the-japan-concentration-and-8217-s-core-requirement",
-        "label": "†If Not Taken for the Japan Concentration&#8217;S Core Requirement",
+        "id": "japan-concentration",
+        "label": "Japan Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Asian Studies major page",
+            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "korea-concentration",
+        "label": "Korea Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Asian Studies major page",
+            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "south-asia-concentration",
+        "label": "South Asia Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Asian Studies major page",
+            "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "southeast-asia-concentration",
+        "label": "Southeast Asia Concentration",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -16760,32 +15538,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "plannerNote": "",
     "sourceType": "master-generated",
     "pathways": [
-      {
-        "id": "chemistry-option",
-        "label": "Chemistry option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Atmospheric and Climate Science page",
-            "url": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
       {
         "id": "climate-option",
         "label": "Climate option",
@@ -16983,60 +15735,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "bioengineering-bioengineering-professional-series-bps-track",
+        "id": "bioengineering-professional-series-bps-track",
         "label": "Bioengineering Professional Series Bps Track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bioengineering degree requirements",
-            "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bioengineering-data-science-option",
-        "label": "Data Science Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bioengineering degree requirements",
-            "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bioengineering-ph-d-data-science-option-and-8211-uw-bioengineering",
-        "label": "Ph.D. Data Science Option and 8211 UW Bioengineering",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -17113,8 +15813,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "phd-data-science-option",
-        "label": "Ph.D. Data Science option",
+        "id": "ph-d-data-science-option-and-8211-uw-bioengineering",
+        "label": "Ph.D. Data Science Option and 8211 UW Bioengineering",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -17172,8 +15872,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "ba-general-biology",
-        "label": "B.A. general biology",
+        "id": "b-s-general-biology-option",
+        "label": "B.S. General Biology Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -17198,8 +15898,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "bs-option-family:ecology-evolution-and-conservation",
-        "label": "B.S. Ecology, Evolution, and Conservation option",
+        "id": "b-s-molecular-cellular-and-developmental-biology-option",
+        "label": "B.S. Molecular, Cellular, and Developmental Biology Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -17224,8 +15924,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "bs-option-family:general-biology",
-        "label": "B.S. General Biology option",
+        "id": "b-s-plant-biology-option",
+        "label": "B.S. Plant Biology Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -17250,60 +15950,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "bs-option-family:molecular-cellular-and-developmental-biology",
-        "label": "B.S. Molecular, Cellular, and Developmental Biology option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Biology page",
-            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bs-option-family:physiology",
-        "label": "B.S. Physiology option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Biology page",
-            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bs-option-family:plant-biology",
-        "label": "B.S. Plant Biology option",
+        "id": "physiology",
+        "label": "Physiology",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -17349,7 +15997,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "high"
+        "sourceConfidence": "medium"
       }
     ],
     "degreeMapSections": [],
@@ -17392,136 +16040,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "plannerNote": "",
     "sourceType": "master-generated",
     "pathways": [
-      {
-        "id": "chemical-engineering-nanoscience-and-molecular-engineering-nme-option",
-        "label": "Nanoscience and Molecular Engineering Nme Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Chemical Engineering curriculum",
-            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "chemical-engineering-nanoscience-and-molecular-engineering-nme-option-program",
-        "label": "Nanoscience and Molecular Engineering Nme Option Program",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Chemical Engineering curriculum",
-            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "chemical-engineering-nme-option",
-        "label": "Nme Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Chemical Engineering curriculum",
-            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "chemical-engineering-nme-option-for-chem-e-majors",
-        "label": "Nme Option for Chem E Majors",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Chemical Engineering curriculum",
-            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "chemical-engineering-standard-option",
-        "label": "Standard Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Chemical Engineering curriculum",
-            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
       {
         "id": "nanoscience-and-molecular-engineering-nme-option",
         "label": "Nanoscience and Molecular Engineering NME option",
@@ -18155,58 +16673,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
-      },
-      {
-        "id": "jewish-studies",
-        "label": "Jewish Studies",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Comparative Religion requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "latin-america-and-caribbean",
-        "label": "Latin America and Caribbean",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Comparative Religion requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
       }
     ]
   },
@@ -18242,32 +16708,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "advanced-data-science-option",
-        "label": "Advanced Data Science Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Computational Finance and Risk Management requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "applied-and-computational-mathematics-fee-based",
         "label": "Applied & Computational Mathematics) (Fee Based)",
         "summary": "",
@@ -18296,32 +16736,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "applied-and-computational-mathematics-online-fee-based",
         "label": "Applied & Computational Mathematics) (Online) (Fee-Based)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Computational Finance and Risk Management requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "data-science",
-        "label": "Data Science",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -18761,136 +17175,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "design",
-        "label": "Design",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Drama requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "design-costume",
-        "label": "Design - Costume)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Drama requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "design-lighting",
-        "label": "Design - Lighting)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Drama requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "design-scenery",
-        "label": "Design - Scenery)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Drama requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "performance",
-        "label": "Performance",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Drama requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "textual-studies",
         "label": "Textual Studies)",
         "summary": "",
@@ -18951,32 +17235,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "route-menu-active-trails-main",
-        "label": "* route.menu_active_trails:main",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Early Childhood & Family Studies program page",
-            "url": "https://education.washington.edu/academics/program/early-childhood-family-studies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "route-menu-active-trails-thinstrip-menu",
         "label": "* route.menu_active_trails:main",
         "summary": "",
         "applicationChecklist": [],
@@ -19087,32 +17345,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "bs-option-family:biology",
-        "label": "B.S. Biology option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "bs-option-family:geology",
         "label": "B.S. Geology option",
         "summary": "",
@@ -19141,32 +17373,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "bs-option-family:geoscience",
         "label": "B.S. Geoscience option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bs-option-family:physics",
-        "label": "B.S. Physics option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19497,32 +17703,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "early-childhood-studies",
-        "label": "Early Childhood Studies",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "education-research-and-policy",
         "label": "Education Research and Policy",
         "summary": "",
@@ -19653,32 +17833,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "leadership-for-learning-fee-based",
-        "label": "Leadership for Learning (Fee-Based)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "mathematics-education",
         "label": "Mathematics Education",
         "summary": "",
@@ -19707,32 +17861,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "multilingual-language-in-education",
         "label": "Multilingual/Language in Education",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "organizational-and-policy-studies",
-        "label": "Organizational and Policy Studies",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19797,58 +17925,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "social-and-cultural-foundations",
-        "label": "Social and Cultural Foundations",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "social-studies",
-        "label": "Social Studies",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "low"
           }
         ],
         "degreeMapSections": [],
@@ -19963,32 +18039,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
-      },
-      {
-        "id": "wellness-and-social-emotional-learning",
-        "label": "Wellness and Social Emotional Learning",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
       }
     ]
   },
@@ -20050,60 +18100,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "computing-pathway",
-        "label": "Computing pathway",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "control-systems-pathway",
         "label": "Control Systems pathway",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "digital-systems-design-pathway",
-        "label": "Digital Systems Design pathway",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -20234,58 +18232,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "photonics-pathway",
         "label": "Photonics pathway",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "sensing-and-communication-pathway",
-        "label": "Sensing and Communication pathway",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW ECE degree requirements",
-            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "sustainable-energy-systems-pathway",
-        "label": "Sustainable Energy Systems pathway",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -20481,58 +18427,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "ba-in-english-creative-writing-option",
-        "label": "BA in English, Creative Writing Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW English LLC option requirements",
-            "url": "https://english.washington.edu/english-language-literature-and-culture-option",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "ba-in-english-language-and-literature-option",
-        "label": "BA in English, Creative Writing Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW English LLC option requirements",
-            "url": "https://english.washington.edu/english-language-literature-and-culture-option",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "english-language-literature-and-culture-option",
         "label": "BA in English, Creative Writing Option",
         "summary": "",
         "applicationChecklist": [],
@@ -21121,58 +19015,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
-      },
-      {
-        "id": "jewish-studies",
-        "label": "Jewish Studies",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog European Studies requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "latin-america-and-caribbean",
-        "label": "Latin America and Caribbean",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog European Studies requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
       }
     ]
   },
@@ -21423,8 +19265,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "data-science-option",
-        "label": "UW Geography courses by track",
+        "id": "b-a-in-geography-with-data-science-option",
+        "label": "B.a. in Geography with Data Science Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -21432,16 +19274,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Geography courses by track",
-            "url": "https://geography.washington.edu/courses-track",
-            "note": "Supplemental official route-separation context only. Keep this course-by-track page secondary to the dedicated degree-requirements pages.",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
-          {
-            "label": "UW Geography Data Science option major requirements",
-            "url": "https://geography.washington.edu/ba-geography-data-science-option",
+            "label": "UW Geography B.A. major requirements",
+            "url": "https://geography.washington.edu/ba-geography",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -21457,8 +19291,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "standard-ba-route",
-        "label": "UW Geography courses by track",
+        "id": "cities-citizenship-and-migration-track",
+        "label": "Cities, Citizenship and Migration Track",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -21471,11 +19305,107 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
-          },
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "geography-major-data-science-option-requirements",
+        "label": "Geography Major Data Science Option Requirements",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
           {
             "label": "UW Geography courses by track",
             "url": "https://geography.washington.edu/courses-track",
-            "note": "Supplemental official route-separation context only. Keep this course-by-track page secondary to the dedicated degree-requirements pages.",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "gis-mapping-and-society-track",
+        "label": "GIS, Mapping and Society Track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Geography B.A. major requirements",
+            "url": "https://geography.washington.edu/ba-geography",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "standard-b-a-route",
+        "label": "Standard B.a. Route",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Geography B.A. major requirements",
+            "url": "https://geography.washington.edu/ba-geography",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "the-geography-b-a-with-data-science-option-is-awarded-upon",
+        "label": "The Geography B.a. with Data Science Option Is Awarded Upon:",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Geography B.A. major requirements",
+            "url": "https://geography.washington.edu/ba-geography",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -21769,32 +19699,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "data-science-option",
-        "label": "Data Science option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW HCDE degree requirements",
-            "url": "https://www.hcde.washington.edu/bs/requirements/2024",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "human-computer-interaction-option",
         "label": "Human Computer Interaction option",
         "summary": "",
@@ -21944,32 +19848,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "an-option",
-        "label": "An option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Informatics curriculum",
-            "url": "https://ischool.uw.edu/academics/informatics/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "begin-taking-major-electives-degree-option-classes-spring-of-junior-year",
         "label": "Begin taking major electives/degree option classes spring of junior year",
         "summary": "",
@@ -21998,84 +19876,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "biomedical-and-health-informatics-option",
         "label": "Biomedical and Health Informatics option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Informatics curriculum",
-            "url": "https://ischool.uw.edu/academics/informatics/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "data-science-option",
-        "label": "Data Science option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Informatics curriculum",
-            "url": "https://ischool.uw.edu/academics/informatics/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "declare-your-major-option-by-spring-of-junior-year-recommended",
-        "label": "Begin taking major electives/degree option classes spring of junior year",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Informatics curriculum",
-            "url": "https://ischool.uw.edu/academics/informatics/curriculum",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "informatics-data-science-option",
-        "label": "Data Science Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -22209,58 +20009,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
-      },
-      {
-        "id": "jewish-studies",
-        "label": "Jewish Studies",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog International Studies overview",
-            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "latin-america-and-caribbean",
-        "label": "Latin America and Caribbean",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog International Studies overview",
-            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
       }
     ]
   },
@@ -22326,60 +20074,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": [
-      {
-        "id": "linguistics-option",
-        "label": "LINGUISTICS OPTION",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Japanese degree requirements",
-            "url": "https://asian.washington.edu/ba-japanese",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "literature-option",
-        "label": "Literature option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Japanese degree requirements",
-            "url": "https://asian.washington.edu/ba-japanese",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      }
-    ]
+    "pathways": []
   },
   {
     "id": "uw-seattle-jazz-studies-b-m",
@@ -22444,110 +20139,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "plannerNote": "",
     "sourceType": "master-generated",
     "pathways": [
-      {
-        "id": "asian-studies-and-8211-japan-concentration",
-        "label": "Asian Studies &#8211; Japan Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Jewish Studies major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-korea-concentration",
-        "label": "Asian Studies &#8211; Korea Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Jewish Studies major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-south-asia-concentration",
-        "label": "Asian Studies &#8211; South Asia Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Jewish Studies major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-southeast-asia-concentration",
-        "label": "Asian Studies &#8211; Southeast Asia Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Jewish Studies major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
       {
         "id": "general-concentration",
         "label": "General Concentration",
@@ -22703,136 +20294,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "plannerNote": "",
     "sourceType": "master-generated",
     "pathways": [
-      {
-        "id": "asian-studies-and-8211-china-concentration",
-        "label": "Asian Studies &#8211; China Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Latin American and Caribbean Studies major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-japan-concentration",
-        "label": "Asian Studies &#8211; Japan Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Latin American and Caribbean Studies major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-korea-concentration",
-        "label": "Asian Studies &#8211; Korea Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Latin American and Caribbean Studies major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-south-asia-concentration",
-        "label": "Asian Studies &#8211; South Asia Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Latin American and Caribbean Studies major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-studies-and-8211-southeast-asia-concentration",
-        "label": "Asian Studies &#8211; Southeast Asia Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Latin American and Caribbean Studies major requirements",
-            "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
       {
         "id": "general-concentration",
         "label": "General Concentration",
@@ -23238,32 +20699,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "non-me-courses-as-me-option",
-        "label": "ME option courses",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Mechanical Engineering degree requirements",
-            "url": "https://www.me.washington.edu/students/ug/requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "special-projects-graded-option-only-6-maximum",
         "label": "Special Projects Graded option Only 6 Maximum",
         "summary": "",
@@ -23311,7 +20746,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://dlmp.uw.edu/education/mls-undergrad",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "medium"
+        "sourceConfidence": "low"
       }
     ],
     "degreeMapSections": [],
@@ -23499,58 +20934,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "bachelor-of-arts-instrumental-option-degree-program-sheet-pdf",
-        "label": "Bachelor of Arts - Instrumental Option Degree Program Sheet (PDF)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bachelor of Arts - Music, Instrumental Option",
-            "url": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bachelor-of-arts-music-instrumental-option",
-        "label": "Bachelor of Arts - Instrumental Option Degree Program Sheet (PDF)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bachelor of Arts - Music, Instrumental Option",
-            "url": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "music-instrumental-option",
         "label": "Bachelor of Arts - Instrumental Option Degree Program Sheet (PDF)",
         "summary": "",
         "applicationChecklist": [],
@@ -24086,110 +21469,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "applied-physics-track-addl-34-43-credits",
-        "label": "Applied physics track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Physics B.S. Degree Requirements",
-            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "biological-physics-track-addl-48-56-credits",
-        "label": "Applied physics track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Physics B.S. Degree Requirements",
-            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "comprehensive-and-applied-physics-track-electives",
-        "label": "Applied physics track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Physics B.S. Degree Requirements",
-            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "comprehensive-physics-track",
-        "label": "Applied physics track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Physics B.S. Degree Requirements",
-            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "comprehensive-track",
         "label": "Comprehensive track",
         "summary": "",
@@ -24218,58 +21497,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "comprehensive-track-addl-38-46-credits",
         "label": "Comprehensive track Addl 38 46 Credits",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Physics B.S. Degree Requirements",
-            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "teaching-physics-track",
-        "label": "Applied physics track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Physics B.S. Degree Requirements",
-            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "teaching-physics-track-addl-41-43-credits",
-        "label": "Applied physics track",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -24361,58 +21588,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "international-security-and-political-economy-option-courses",
         "label": "International Security and Political Economy option Courses",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Political Science major declaration and requirements",
-            "url": "https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "international-security-option",
-        "label": "International Security option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Political Science major declaration and requirements",
-            "url": "https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "international-security-option-pdf",
-        "label": "International Security option Pdf",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -24607,8 +21782,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "ba-global-health-option",
-        "label": "B.A. Global Health option",
+        "id": "b-a-global-health-option",
+        "label": "B.a. Global Health Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -24633,60 +21808,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "ba-health-education-promotion-option",
-        "label": "B.A. Health Education and Promotion option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Public Health-Global Health AUT 2024 curriculum sheet",
-            "url": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bs-global-health-option",
-        "label": "B.S. Global Health option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Public Health-Global Health AUT 2024 curriculum sheet",
-            "url": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "bs-nutritional-sciences-option",
-        "label": "B.S. Nutritional Sciences option",
+        "id": "b-a-health-education-and-promotion-option",
+        "label": "B.a. Health Education and Promotion Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -24742,60 +21865,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": [
-      {
-        "id": "advanced-data-science",
-        "label": "Advanced Data Science)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Public Service and Policy degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#program-UG-PSP-MAJOR",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "data-science",
-        "label": "Data Science)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Public Service and Policy degree requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#program-UG-PSP-MAJOR",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      }
-    ]
+    "pathways": []
   },
   {
     "id": "uw-seattle-real-estate",
@@ -25047,32 +22117,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "communication-disorders-not-admitting",
-        "label": "Communication Disorders (Not Admitting)",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Speech and Hearing Sciences requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "educational-speech-language-pathology-fee-based",
         "label": "Educational Speech-Language Pathology) (Fee Based)",
         "summary": "",
@@ -25212,32 +22256,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "applied-statistics-track",
         "label": "Applied Statistics track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Statistics B.S. major requirements",
-            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "data-science-track",
-        "label": "Data Science track",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -25536,7 +22554,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "high"
+        "sourceConfidence": "medium"
       }
     ],
     "degreeMapSections": [],
@@ -25548,86 +22566,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "american-cultures-track",
-        "label": "American Cultures Track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Arts, Media and Culture overview",
-            "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "comparative-arts-track",
-        "label": "Comparative Arts track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Arts, Media and Culture overview",
-            "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "film-and-media-track",
         "label": "Film and Media track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Arts, Media and Culture overview",
-            "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "literature-track",
-        "label": "Literature track",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -25765,32 +22705,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "general-business-option",
         "label": "General Business option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma BABA design and courses",
-            "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "management-option",
-        "label": "Management option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -26075,32 +22989,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "information-assurance-and-cybersecurity",
-        "label": "Information Assurance and Cybersecurity",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma SET catalog page",
-            "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "mobile-digital-forensics",
         "label": "Mobile Digital Forensics",
         "summary": "",
@@ -26288,32 +23176,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "english-language-learners-ell-dual-endorsement-option",
-        "label": "English Language Learners (Ell) Dual Endorsement Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma B.A. in Education overview",
-            "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "special-education-dual-endorsement-option",
         "label": "Special Education Dual Endorsement Option",
         "summary": "",
@@ -26401,32 +23263,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "create-your-own-pathway-as-a-separate-option",
         "label": "Create Your Own pathway As A Separate option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma SET catalog page",
-            "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "information-assurance-and-cybersecurity",
-        "label": "Information Assurance and Cybersecurity",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -26542,86 +23378,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "business-nonprofit-leadership-option",
-        "label": "Business and Nonprofit Leadership option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Environmental Sustainability Business and Nonprofit Leadership option",
-            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "education-option",
-        "label": "Education option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Environmental Sustainability overview",
-            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "environmental-communication-option",
         "label": "Environmental Communication option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Environmental Sustainability overview",
-            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "policy-law-option",
-        "label": "Policy and Law option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -26900,32 +23658,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "labor-and-social-movements-option",
-        "label": "Labor and Social Movements option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma History overview",
-            "url": "https://www.tacoma.uw.edu/sias/socs/history",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "power-gender-and-identity-option",
         "label": "Power Gender and Identity option",
         "summary": "",
@@ -27075,58 +23807,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "economics",
-        "label": "Economics",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
-            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "ethnic",
-        "label": "Ethnic",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
-            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "gender",
         "label": "Gender",
         "summary": "",
@@ -27153,112 +23833,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
-        "id": "global-history",
-        "label": "Global History",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
-            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "international-studies",
-        "label": "International Studies",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
-            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "labor",
         "label": "Labor",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
-            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "labor-and-social-movements",
-        "label": "Labor and Social Movements",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
-            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "politics-and-philosophy",
-        "label": "Politics and Philosophy",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -27814,58 +24390,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "rhetoric-writing-and-social-change-track",
-        "label": "Creative Writing Track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Writing Studies",
-            "url": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "technical-communication-track",
-        "label": "Technical Communication track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "Writing Studies",
-            "url": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],

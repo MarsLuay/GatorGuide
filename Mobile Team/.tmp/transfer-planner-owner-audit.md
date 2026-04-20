@@ -1,21 +1,21 @@
 # Transfer Planner Owner Audit
 
-Generated: 2026-04-19T20:09:54.116Z
+Generated: 2026-04-20T03:46:21.418Z
 
-- Owners audited: 595
+- Owners audited: 466
 - Owners with errors: 0
-- Owners with warnings: 14
-- Owners with source-only UW course codes: 38
+- Owners with warnings: 13
+- Owners with source-only UW course codes: 0
 - Root-cause errors: 0
-- Root-cause warnings: 14
+- Root-cause warnings: 13
 - Raw symptom errors: 0
-- Raw symptom warnings: 14
+- Raw symptom warnings: 13
 - Auto-promoted owner invariant violations: 0
-- Total source-only UW course codes: 1172
+- Total source-only UW course codes: 0
 
 ## Root Cause Counts
 
-- no-parsed-uw-course-codes: 14
+- no-parsed-uw-course-codes: 13
 
 ## Owners With Warnings
 
@@ -43,18 +43,6 @@ Generated: 2026-04-19T20:09:54.116Z
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
-### Economics (BS) - Leadership and Strategic Innovation option
-- Owner: uw-bothell-economics:pathway:leadership-and-strategic-innovation-option
-- Campus: uw-bothell
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
-- Diagnostic signals: no-parsed-uw-course-codes
-### Economics (BS) - Supply Chain Management option
-- Owner: uw-bothell-economics:pathway:supply-chain-management-option
-- Campus: uw-bothell
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
-- Diagnostic signals: no-parsed-uw-course-codes
 ### Anthropology - Biological Anthropology)
 - Owner: uw-seattle-anthropology:pathway:biological-anthropology
 - Campus: uw-seattle
@@ -73,16 +61,22 @@ Generated: 2026-04-19T20:09:54.116Z
 - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
-### Education Studies - Social Studies
-- Owner: uw-seattle-education-studies:pathway:social-studies
-- Campus: uw-seattle
-- Source: https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html
-- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
-- Diagnostic signals: no-parsed-uw-course-codes
 ### Italian
 - Owner: uw-seattle-italian
 - Campus: uw-seattle
 - Source: https://frenchitalian.washington.edu/undergraduate-studies-italian
+- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
+- Diagnostic signals: no-parsed-uw-course-codes
+### Medical Laboratory Science
+- Owner: uw-seattle-medical-laboratory-science
+- Campus: uw-seattle
+- Source: https://dlmp.uw.edu/education/mls-undergrad
+- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
+- Diagnostic signals: no-parsed-uw-course-codes
+### Arts, Media and Culture (BA)
+- Owner: uw-tacoma-arts-media-culture
+- Campus: uw-tacoma
+- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
 ### Communications (BA) - PROFESSIONAL TRACK
@@ -103,7 +97,3 @@ Generated: 2026-04-19T20:09:54.116Z
 - Source: https://www.tacoma.uw.edu/swcj/basw-curriculum
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
-## Coverage Notes
-
-- Source-only UW course codes are tracked in the JSON report as coverage gaps, but they are not treated as warnings in this audit because that bucket is still broadly expected across many majors.
-

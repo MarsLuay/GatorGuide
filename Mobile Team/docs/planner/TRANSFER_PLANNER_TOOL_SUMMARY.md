@@ -21,7 +21,7 @@ The current one-click Windows entrypoints are:
 
 - `npm run planner:windows:maintenance`
 - `npm run planner:full:verify`
-- `scripts\Course-Planner-Updater.bat`
+- `..\Course-Planner-Updater.bat`
 
 The maintenance launcher is interactive now:
 
@@ -32,6 +32,8 @@ The maintenance launcher is interactive now:
 - it can run one section only
 - it can start from a chosen section and complete the rest
 - it can print a cache summary showing what artifacts already exist and when the latest maintenance/refresh runs happened
+- it can open an `Edit course links` flow that browses institution, then campus or Green River program group, then major/program before saving source-link edits through the source-manifest override layer
+- it now prints a `Laymans Diagnosis` section when the tooling can explain a failure or important warning in plain language
 
 The run summary is written to:
 
@@ -82,7 +84,7 @@ The current green-state maintenance baseline is:
   - `scripts/planner/generate-transfer-planner-course-metadata.cjs`
   - `scripts/planner/verify-transfer-planner-hardening.cjs`
   - `scripts/planner/refresh-transfer-planner-sources.cjs`
-  - `scripts/Course-Planner-Updater.bat`
+  - `../Course-Planner-Updater.bat`
   - `scripts/run-transfer-planner-maintenance.ps1`
   - `npm run planner:check-sources`
   - `npm run planner:discover-primary-sources`
@@ -308,11 +310,11 @@ Running `npm run planner:refresh` now does the highest-value automatic maintenan
 
 This gives the project one script that can check the tracked sources and update all current generated planner outputs.
 
-There are now also one-click Windows launchers in `scripts/`:
+There is now a one-click Windows launcher at the repo root:
 
 - `Course-Planner-Updater.bat`
 
-It is meant to be double-clicked and now exposes the old refresh variants as built-in choices: full maintenance, maintenance with downloads skipped, refresh only, refresh only with downloads skipped, and cache summary only. The PowerShell launchers still handle dependency repair, timestamped logs in `.tmp/planner-refresh-logs/`, and the detailed refresh/maintenance flow itself.
+It is meant to be double-clicked and now exposes the old refresh variants as built-in choices plus root-level `Edit course links` and `Laymans Diagnosis` entries. The PowerShell launchers still handle dependency repair, timestamped logs in `.tmp/planner-refresh-logs/`, `Laymans Diagnosis`, and the detailed refresh/maintenance flow itself.
 
 The maintenance launcher adds:
 

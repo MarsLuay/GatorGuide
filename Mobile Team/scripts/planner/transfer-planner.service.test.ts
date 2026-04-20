@@ -5358,7 +5358,18 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
     "utf8"
   );
   const updaterBat = readFileSync("scripts/Course-Planner-Updater.bat", "utf8");
+  const rootUpdaterBat = readFileSync("../Course-Planner-Updater.bat", "utf8");
   const refreshScript = readFileSync("scripts/run-transfer-planner-refresh.ps1", "utf8");
+  const maintenanceCommon = readFileSync("scripts/transfer-planner-maintenance-common.ps1", "utf8");
+  const diagnosisScript = readFileSync(
+    "scripts/planner/transfer-planner-laymans-diagnosis.cjs",
+    "utf8"
+  );
+  const linkManagerScript = readFileSync("scripts/planner/course-planner-link-manager.cjs", "utf8");
+  const manualSourceOverrideData = readFileSync(
+    "constants/transfer-planner-source/manual-source-link-overrides.data.ts",
+    "utf8"
+  );
   const windowsQaScript = readFileSync("scripts/qa/run-windows-qa.cjs", "utf8");
   const windowsInteractionsScript = readFileSync(".tools/windows-interactions.mjs", "utf8");
   const packageJson = readFileSync("package.json", "utf8");
@@ -5367,9 +5378,20 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(maintenanceScript, /run-transfer-planner-refresh\.ps1/);
   assert.match(maintenanceScript, /Get-InteractiveMaintenanceSelection/);
   assert.match(maintenanceScript, /Show-CacheSummary/);
+  assert.match(maintenanceScript, /Edit course links/);
+  assert.match(maintenanceScript, /Invoke-CourseLinkEditor/);
+  assert.match(maintenanceScript, /Choose an institution/);
+  assert.match(maintenanceScript, /course-planner-link-manager\.cjs/);
+  assert.match(maintenanceScript, /Write-TransferPlannerLaymansDiagnosis/);
+  assert.match(maintenanceScript, /Show-LaymansDiagnosis/);
+  assert.match(maintenanceScript, /ShowLaymansDiagnosis/);
   assert.match(maintenanceScript, /Get-RefreshTrackedPlan/);
   assert.match(maintenanceScript, /Update-RefreshMaintenanceProgressFromOutputLine/);
   assert.match(maintenanceScript, /Tracked maintenance steps:/);
+  assert.doesNotMatch(maintenanceScript, /X\. Exit/);
+  assert.doesNotMatch(maintenanceScript, /B=Back,\s*X=Exit/);
+  assert.doesNotMatch(maintenanceScript, /Write-Host "5\. Edit course links"/);
+  assert.match(maintenanceScript, /Write-Host "5\. Back"/);
   assert.match(maintenanceScript, /playwright",\s*"install",\s*"chromium"/);
   assert.match(
     maintenanceScript,
@@ -5383,13 +5405,38 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(maintenanceScript, /-OnlySection/);
   assert.match(maintenanceScript, /-StartSection/);
 
-  assert.match(updaterBat, /run-transfer-planner-maintenance\.ps1/);
-  assert.match(updaterBat, /run-transfer-planner-refresh\.ps1/);
-  assert.match(updaterBat, /maintenance-no-downloads/);
-  assert.match(updaterBat, /refresh-no-downloads/);
-  assert.match(updaterBat, /cache-summary/);
+  assert.match(updaterBat, /\.\.\\\.\.\\Course-Planner-Updater\.bat/);
+  assert.match(rootUpdaterBat, /run-transfer-planner-maintenance\.ps1/);
+  assert.match(rootUpdaterBat, /run-transfer-planner-refresh\.ps1/);
+  assert.match(rootUpdaterBat, /maintenance-no-downloads/);
+  assert.match(rootUpdaterBat, /refresh-no-downloads/);
+  assert.match(rootUpdaterBat, /cache-summary/);
+  assert.match(rootUpdaterBat, /edit-course-links/);
+  assert.match(rootUpdaterBat, /laymans-diagnosis/);
+  assert.match(rootUpdaterBat, /echo 1\. Full maintenance/);
+  assert.match(rootUpdaterBat, /echo 2\. Refresh only/);
+  assert.match(rootUpdaterBat, /echo 3\. Show cache summary/);
+  assert.match(rootUpdaterBat, /echo 4\. Edit course links/);
+  assert.match(rootUpdaterBat, /echo 5\. Laymans Diagnosis/);
+  assert.match(rootUpdaterBat, /echo 6\. Back/);
+  assert.doesNotMatch(rootUpdaterBat, /echo 2\. Full maintenance \^\(skip downloads\^\)/);
+  assert.doesNotMatch(rootUpdaterBat, /echo 4\. Refresh only \^\(skip downloads\^\)/);
+  assert.match(rootUpdaterBat, /echo 2\. Skip downloads/);
+  assert.match(rootUpdaterBat, /echo B\. Back/);
   assert.match(refreshScript, /--only-section/);
   assert.match(refreshScript, /--start-section/);
+  assert.match(refreshScript, /Write-TransferPlannerLaymansDiagnosis/);
+  assert.match(maintenanceCommon, /Get-TransferPlannerLaymansDiagnosis/);
+  assert.match(diagnosisScript, /Laymans Diagnosis/);
+  assert.match(diagnosisScript, /no-parsed-uw-course-codes/);
+  assert.match(diagnosisScript, /rowsNeedingAttentionCount/);
+  assert.match(linkManagerScript, /--add-link/);
+  assert.match(linkManagerScript, /--replace-link/);
+  assert.match(linkManagerScript, /--remove-link/);
+  assert.match(linkManagerScript, /--set-primary/);
+  assert.match(linkManagerScript, /manual-source-link-overrides\.data\.ts/);
+  assert.match(manualSourceOverrideData, /TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES/);
+  assert.equal(existsSync("../Course-Planner-Updater.bat"), true);
   assert.equal(existsSync("scripts/run-planner-maintenance.cmd"), false);
   assert.equal(existsSync("scripts/run-planner-maintenance.bat"), false);
   assert.equal(existsSync("scripts/run-planner-refresh.cmd"), false);
@@ -5412,6 +5459,61 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(readme, /Course-Planner-Updater\.bat/);
   assert.doesNotMatch(readme, /run-planner-maintenance\.cmd/);
   assert.match(readme, /transfer-planner-maintenance-summary\.md/);
+});
+
+test("Course link manager builds inventory and laymans diagnosis returns plain-language follow-up items", () => {
+  const { buildMajorInventory, getPlanDetails } = require("./course-planner-link-manager.cjs");
+  const { buildLaymansDiagnosis } = require("./transfer-planner-laymans-diagnosis.cjs");
+
+  const inventory = buildMajorInventory();
+  const institutionLabels = inventory.institutions.map((institution: { label: string }) => institution.label);
+  assert.deepEqual(institutionLabels, ["University of Washington", "Green River College"]);
+
+  const uwInstitution = inventory.institutions.find(
+    (institution: { label: string }) => institution.label === "University of Washington"
+  );
+  const grcInstitution = inventory.institutions.find(
+    (institution: { label: string }) => institution.label === "Green River College"
+  );
+  assert.ok(
+    uwInstitution?.groups.some(
+      (group: { label: string; items: unknown[] }) =>
+        group.label === "UW Seattle" && group.items.length > 0
+    ),
+    "Expected the UW institution branch to expose campus-grouped majors."
+  );
+  assert.ok(grcInstitution?.groups.length > 0, "Expected Green River to expose program groups.");
+
+  const firstPlanId = uwInstitution?.groups[0]?.items[0]?.planId ?? null;
+  assert.ok(firstPlanId, "Expected the course link inventory to expose a plan id.");
+  const planDetails = getPlanDetails(firstPlanId);
+  assert.equal(planDetails.planId, firstPlanId);
+  assert.equal(planDetails.institutionLabel, "University of Washington");
+  assert.ok(planDetails.sourceOfTruthPath.endsWith("manual-source-link-overrides.data.ts"));
+  assert.match(
+    planDetails.automaticValidationCommand,
+    /-OnlySection source-audit/,
+    "Expected course-link validation to stay scoped to the minimum source-audit refresh."
+  );
+
+  const firstGrcTrackId = grcInstitution?.groups[0]?.items[0]?.planId ?? null;
+  assert.ok(firstGrcTrackId, "Expected the Green River branch to expose an editable track id.");
+  const grcDetails = getPlanDetails(firstGrcTrackId);
+  assert.equal(grcDetails.institutionLabel, "Green River College");
+  assert.ok(grcDetails.currentLinks.length > 0, "Expected Green River track links to resolve through the source manifest.");
+
+  const diagnoses = buildLaymansDiagnosis({
+    projectRoot: process.cwd(),
+    includeWarnings: true,
+  });
+  assert.ok(diagnoses.length > 0, "Expected laymans diagnosis items from the current planner reports.");
+  assert.ok(
+    diagnoses.some((entry: { whereToLook?: string; symptom?: string }) =>
+      String(entry.whereToLook ?? "").includes("transfer-planner-status.md") ||
+      /usable UW course list|need follow-up/i.test(String(entry.symptom ?? ""))
+    ),
+    "Expected laymans diagnosis to explain at least one current planner follow-up area."
+  );
 });
 
 test("Generated Green River availability sources now include future-year published schedules", () => {
@@ -9079,6 +9181,26 @@ test("Asian Studies visible pathways use one clean concentration label per route
   assert.equal(runtimePathways.some(([, label]) => /&#\d+;|&[a-z]+;/i.test(label)), false);
   assert.equal(sourcePathways.some(([, label]) => /^Asian Studies\s*[-–—]/i.test(label)), false);
   assert.equal(runtimePathways.some(([, label]) => /^Asian Studies\s*[-–—]/i.test(label)), false);
+});
+
+test("Sibling JSIS majors no longer surface Asian Studies pathway labels", () => {
+  const seattlePlans = getTransferPlannerSourceGeneratedMajorsForCampus("uw-seattle");
+
+  for (const planId of [
+    "uw-seattle-jewish-studies",
+    "uw-seattle-latin-american-and-caribbean-studies",
+  ]) {
+    const plan = seattlePlans.find((entry) => entry.id === planId);
+    assert.ok(plan, `Expected a source-generated Seattle planner row for ${planId}.`);
+
+    const labels = getTransferPlannerPathwaysForPlan(plan).map((pathway) => pathway.label);
+    assert.equal(
+      labels.some((label) => /asian studies/i.test(label)),
+      false,
+      `${planId} should not surface Asian Studies pathway labels: ${JSON.stringify(labels)}`
+    );
+    assert.equal(labels.some((label) => /&#\d+;|&[a-z]+;/i.test(label)), false);
+  }
 });
 
 test("Visible pathway labels decode HTML entities even when base pathways are retained", () => {

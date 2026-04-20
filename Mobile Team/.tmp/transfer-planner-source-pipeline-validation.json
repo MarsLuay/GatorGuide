@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-19T20:09:41.785Z",
+  "generatedAt": "2026-04-20T03:46:17.141Z",
   "outcome": "passed",
   "passedCount": 9,
   "failedCount": 0,
@@ -9,7 +9,7 @@
     "eligibleAutoPromotionOwnerKeys": [],
     "reviewQueueOwnerCount": 0,
     "sourceGapOwnerCount": 0,
-    "promotedOwnerCount": 76,
+    "promotedOwnerCount": 74,
     "promotedOwnerKeys": [
       "uw-bothell-american-and-ethnic-studies",
       "uw-bothell-business-administration-accounting",
@@ -43,8 +43,6 @@
       "uw-seattle-finnish",
       "uw-seattle-french",
       "uw-seattle-geography",
-      "uw-seattle-geography:pathway:data-science-option",
-      "uw-seattle-geography:pathway:standard-ba-route",
       "uw-seattle-german",
       "uw-seattle-guitar-b-m",
       "uw-seattle-individualized-studies",
@@ -88,10 +86,10 @@
       "uw-tacoma-urban-studies",
       "uw-tacoma-writing-studies"
     ],
-    "canonicalPrimaryOwnerCount": 595,
-    "parseablePrimaryOwnerCount": 595,
-    "parsedOwnerCount": 595,
-    "requirementFingerprintOwnerCount": 595
+    "canonicalPrimaryOwnerCount": 472,
+    "parseablePrimaryOwnerCount": 472,
+    "parsedOwnerCount": 472,
+    "requirementFingerprintOwnerCount": 472
   },
   "checks": [
     {
@@ -109,7 +107,7 @@
       "label": "Generated promotion registry matches the promotion report",
       "status": "passed",
       "details": [
-        "Promoted owners: 76"
+        "Promoted owners: 74"
       ]
     },
     {
@@ -133,8 +131,8 @@
       "label": "Auto-promoted owners are materialized in the canonical primary-source registry",
       "status": "passed",
       "details": [
-        "Promoted owners: 76",
-        "Canonical primary owners: 595"
+        "Promoted owners: 74",
+        "Canonical primary owners: 472"
       ]
     },
     {
@@ -142,8 +140,8 @@
       "label": "Canonical parseable primary owners align with parser input and parser output",
       "status": "passed",
       "details": [
-        "Canonical parseable primary owners: 595",
-        "Parsed owners: 595"
+        "Canonical parseable primary owners: 472",
+        "Parsed owners: 472"
       ]
     },
     {
@@ -151,7 +149,7 @@
       "label": "Promoted owners appear in parser output and requirement fingerprints",
       "status": "passed",
       "details": [
-        "Promoted owners verified end-to-end: 76"
+        "Promoted owners verified end-to-end: 74"
       ]
     },
     {
@@ -159,10 +157,10 @@
       "label": "Requirement fingerprint coverage stays aligned with parsed requirement owners",
       "status": "passed",
       "details": [
-        "Requirement fingerprints: 595",
-        "Parsed owners: 595",
+        "Requirement fingerprints: 472",
+        "Parsed owners: 472",
         "Added source fingerprints: 0",
-        "Added requirement fingerprints: 37"
+        "Added requirement fingerprints: 0"
       ]
     },
     {

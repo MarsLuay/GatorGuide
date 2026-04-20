@@ -8,6 +8,8 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
+. (Join-Path $PSScriptRoot "transfer-planner-maintenance-common.ps1")
+
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $tmpDir = Join-Path $projectRoot ".tmp"
 $logDir = Join-Path $tmpDir "planner-refresh-logs"
@@ -137,6 +139,10 @@ try {
   Write-Section "Refresh complete"
   Write-Host "Success. The planner refresh finished cleanly." -ForegroundColor Green
   Write-Host "Log saved to: $logPath"
+  $diagnosisItems = @(
+    Get-TransferPlannerLaymansDiagnosis -ProjectRoot $projectRoot -LogPath $logPath -IncludeWarnings
+  )
+  Write-TransferPlannerLaymansDiagnosis -Items $diagnosisItems -Header "Laymans Diagnosis"
 
   if (-not $NoOpenReports) {
     $reportPaths = @(
@@ -162,9 +168,18 @@ try {
 
   exit 0
 } catch {
+  $failureMessage = $_.Exception.Message
   Write-Host ""
   Write-Host "Planner refresh failed." -ForegroundColor Red
-  Write-Host $_.Exception.Message -ForegroundColor Red
+  Write-Host $failureMessage -ForegroundColor Red
   Write-Host "Log saved to: $logPath" -ForegroundColor Yellow
+  $diagnosisItems = @(
+    Get-TransferPlannerLaymansDiagnosis `
+      -ProjectRoot $projectRoot `
+      -FailureMessage $failureMessage `
+      -LogPath $logPath `
+      -IncludeWarnings
+  )
+  Write-TransferPlannerLaymansDiagnosis -Items $diagnosisItems -Header "Laymans Diagnosis"
   exit 1
 }

@@ -24,9 +24,13 @@ const {
   isSuspiciousStructuralPathwayLabel,
 } = require("../../constants/transfer-planner-source/pathway-materialization");
 const {
+  labelMentionsDifferentTransferPlannerMajor,
   normalizeTransferPlannerText,
   stripTransferPlannerPlanTitlePrefix,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
+const {
+  applyTransferPlannerManualSourceLinkOverride,
+} = require("../../constants/transfer-planner-source/manual-source-link-overrides");
 
 const OUTPUT_PATH = path.resolve(
   __dirname,
@@ -489,6 +493,7 @@ function normalizePathwayLabelCandidate(planTitle, value) {
 
   if (
     !normalized ||
+    /\b(?:elective courses?|course lists?|courses by track)\b/i.test(normalized) ||
     PATHWAY_EXPLICIT_COURSE_CODE_PATTERN.test(normalized) ||
     isSuspiciousStructuralPathwayLabel(normalized)
   ) {
@@ -563,6 +568,15 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
     groupedByPlanId.set(planId, existing);
   }
 
+  const primaryMajorTitlesByPlanId = new Map(
+    [...groupedByPlanId.entries()].map(([planId, planBlocks]) => {
+      const rootBlock =
+        planBlocks.find((entry) => String(entry.pathwayId ?? "").trim().length === 0) ??
+        planBlocks[0] ??
+        null;
+      return [planId, String(rootBlock?.ownerTitle ?? "").trim() || planId];
+    })
+  );
   const plans = [];
 
   for (const [planId, planBlocks] of groupedByPlanId.entries()) {
@@ -586,6 +600,12 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
       }
 
       const label = buildPathwayLabelFromBlock(title, block);
+      if (
+        !label ||
+        labelMentionsDifferentTransferPlannerMajor(planId, label, primaryMajorTitlesByPlanId)
+      ) {
+        continue;
+      }
       pathwayById.set(pathwayId, {
         id: pathwayId,
         label,
@@ -690,37 +710,43 @@ function buildMajorPlansFromParsedRegistries() {
       SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY.get(makePlanPathwayKey(planId, pathwayId ?? null)) ??
       [];
 
-    return uniqueLinks([
-      ...(Array.isArray(links) ? links : []).map((entry) => ({
-        label: String(entry?.label ?? "").trim(),
-        url: String(entry?.url ?? "").trim(),
-        note: String(entry?.note ?? "").trim() || undefined,
-        visibility: defaults.visibility,
-        status: defaults.status,
-        reason: defaults.reason,
-        sourceConfidence: defaults.sourceConfidence,
-      })),
-      ...supplementalLinks.map((entry) => ({
-        label: String(entry?.label ?? "").trim(),
-        url: String(entry?.url ?? "").trim(),
-        note: String(entry?.note ?? "").trim() || undefined,
-        visibility: defaults.visibility,
-        status: defaults.status,
-        reason: defaults.reason,
-        sourceConfidence: defaults.sourceConfidence,
-      })),
-      ...parsedBlocks.map((entry) => {
-        const sourceStatus = buildSourceStatusForParsedBlock(entry);
-        return {
-          label: entry.sourceLabel,
-          url: entry.sourceUrl,
-          visibility: sourceStatus.visibility,
-          status: sourceStatus.status,
-          reason: sourceStatus.reason,
-          sourceConfidence: sourceStatus.sourceConfidence,
-        };
-      }),
-    ]);
+    return uniqueLinks(
+      applyTransferPlannerManualSourceLinkOverride(
+        planId,
+        pathwayId ?? null,
+        uniqueLinks([
+          ...(Array.isArray(links) ? links : []).map((entry) => ({
+            label: String(entry?.label ?? "").trim(),
+            url: String(entry?.url ?? "").trim(),
+            note: String(entry?.note ?? "").trim() || undefined,
+            visibility: defaults.visibility,
+            status: defaults.status,
+            reason: defaults.reason,
+            sourceConfidence: defaults.sourceConfidence,
+          })),
+          ...supplementalLinks.map((entry) => ({
+            label: String(entry?.label ?? "").trim(),
+            url: String(entry?.url ?? "").trim(),
+            note: String(entry?.note ?? "").trim() || undefined,
+            visibility: defaults.visibility,
+            status: defaults.status,
+            reason: defaults.reason,
+            sourceConfidence: defaults.sourceConfidence,
+          })),
+          ...parsedBlocks.map((entry) => {
+            const sourceStatus = buildSourceStatusForParsedBlock(entry);
+            return {
+              label: entry.sourceLabel,
+              url: entry.sourceUrl,
+              visibility: sourceStatus.visibility,
+              status: sourceStatus.status,
+              reason: sourceStatus.reason,
+              sourceConfidence: sourceStatus.sourceConfidence,
+            };
+          }),
+        ])
+      )
+    );
   };
 
   return basePlans

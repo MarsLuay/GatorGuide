@@ -34,6 +34,11 @@ import {
   stripTransferPlannerPlanTitlePrefix,
 } from "./pathway-title-normalization";
 import { TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES } from "./derived-shared-source-plans";
+import {
+  applyTransferPlannerManualSourceLinkOverride,
+  getTransferPlannerManualPreferredPrimaryUrl,
+  shouldSkipTransferPlannerAutoPromotedPrimarySource,
+} from "./manual-source-link-overrides";
 import type {
   TransferPlannerChecklistItem,
   TransferPlannerDegreeMapSection,
@@ -798,7 +803,11 @@ function getOwnerSourceLinks(
   pathwayId?: string | null,
   links?: TransferPlannerLink[]
 ) {
-  return mergeAutoPromotedPrimarySourceLink(toSourceLinks(links), planId, pathwayId);
+  return applyTransferPlannerManualSourceLinkOverride(
+    planId,
+    pathwayId,
+    mergeAutoPromotedPrimarySourceLink(toSourceLinks(links), planId, pathwayId)
+  );
 }
 
 function getSupplementalManifestSourceLinks(planId: string, pathwayId?: string | null) {
@@ -2478,7 +2487,14 @@ function pushSourceManifestEntries(
 ) {
   const dedupedLinks = dedupeLinks(params.links);
   const mergedValidationNotes = unique(compact([...(params.validationNotes ?? [])]));
-  const primaryUrl = pickPrimaryDegreeRequirementsUrl(dedupedLinks);
+  const preferredPrimaryUrl = getTransferPlannerManualPreferredPrimaryUrl(
+    params.planId ?? params.ownerId,
+    params.pathwayId ?? null
+  );
+  const primaryUrl =
+    preferredPrimaryUrl && dedupedLinks.some((link) => link.url === preferredPrimaryUrl)
+      ? preferredPrimaryUrl
+      : pickPrimaryDegreeRequirementsUrl(dedupedLinks);
   const lastValidatedOn = getLastValidatedOn(mergedValidationNotes);
 
   dedupedLinks.forEach((link, index) => {
@@ -2512,6 +2528,16 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
   entries: TransferPlannerSourceManifestEntry[],
   promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
 ) {
+  if (
+    shouldSkipTransferPlannerAutoPromotedPrimarySource(
+      promotion.planId,
+      promotion.pathwayId,
+      promotion.url
+    )
+  ) {
+    return;
+  }
+
   const link: TransferPlannerSourceLink = {
     label: promotion.label,
     url: promotion.url,
@@ -2646,7 +2672,11 @@ function buildSourceManifestRegistry() {
       ownerTitle: track.title,
       trackId: track.id,
       campusId: "grc",
-      links: toSourceLinks(track.officialLinks),
+      links: applyTransferPlannerManualSourceLinkOverride(
+        track.id,
+        null,
+        toSourceLinks(track.officialLinks)
+      ),
       validationNotes: [...(track.notes ?? []), ...(track.catalogYears ?? []).flatMap((year) => year.notes ?? [])],
     });
   }

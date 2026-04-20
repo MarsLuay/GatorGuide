@@ -1,6 +1,6 @@
 # Scripts
 
-This folder contains the Windows launcher and PowerShell helpers for the transfer planner refresh flow.
+This folder contains the PowerShell helpers and compatibility wrapper for the transfer planner refresh flow.
 
 ## Quick start for future people
 
@@ -10,9 +10,9 @@ For the easiest full run, use one command:
 npm run planner:full:verify
 ```
 
-Or double-click:
+Or double-click the repo-root launcher:
 
-- `scripts/Course-Planner-Updater.bat`
+- `..\Course-Planner-Updater.bat`
 
 This executes refresh + verification + hardening + Windows QA and writes a summary to:
 
@@ -21,7 +21,7 @@ This executes refresh + verification + hardening + Windows QA and writes a summa
 If a run fails because of temporary schedule-download/network issues, use the updater's built-in no-download option:
 
 ```bash
-scripts/Course-Planner-Updater.bat refresh-no-downloads
+..\Course-Planner-Updater.bat refresh-no-downloads
 ```
 
 Then rerun the full maintenance command once network access is stable.
@@ -30,13 +30,17 @@ Then rerun the full maintenance command once network access is stable.
 
 - `Course-Planner-Updater.bat`
   - Main one to use.
+  - Lives at the repo root now, with `scripts/Course-Planner-Updater.bat` kept as a thin compatibility wrapper.
   - Double-click it for a menu, or run it from a terminal with one of the built-in modes:
     - `maintenance`
     - `maintenance-no-downloads`
     - `refresh`
     - `refresh-no-downloads`
     - `cache-summary`
+    - `edit-course-links`
+    - `laymans-diagnosis`
   - This is now the single user-facing Windows launcher for the planner update flow.
+  - The root launcher now also includes `Edit course links` and `Laymans Diagnosis`, and both launchers print `Laymans Diagnosis` when they can explain failures or important warnings in plain language.
 
 ## Required update inputs
 

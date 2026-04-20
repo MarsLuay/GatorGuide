@@ -19,6 +19,7 @@ const {
 } = require("../../constants/transfer-planner-source");
 const {
   decodeTransferPlannerHtmlEntities,
+  labelMentionsDifferentTransferPlannerMajor,
   normalizeTransferPlannerText,
   stripTransferPlannerPlanTitlePrefix,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
@@ -934,17 +935,6 @@ const PRIMARY_MAJOR_TITLES_BY_PLAN_ID = new Map(
   ).map((entry) => [entry.planId, normalizeTransferPlannerText(entry.ownerTitle)])
 );
 
-const MAJOR_SIGNATURE_TOKENS_BY_PLAN_ID = new Map(
-  [...PRIMARY_MAJOR_TITLES_BY_PLAN_ID.entries()].map(([planId, ownerTitle]) => [
-    planId,
-    uniqueSorted(
-      normalizeMatcherText(ownerTitle)
-        .split(" ")
-        .filter((token) => token.length >= 4 && !["major", "program", "science", "studies", "the"].includes(token))
-    ),
-  ])
-);
-
 function getPrimaryMajorTitle(entry) {
   return normalizeTransferPlannerText(
     PRIMARY_MAJOR_TITLES_BY_PLAN_ID.get(entry.planId) ?? entry.ownerTitle ?? ""
@@ -1795,26 +1785,11 @@ function extractChooseStatements(lines) {
 }
 
 function pathwayLabelMentionsDifferentMajor(entry, line) {
-  const currentPlanTokens = MAJOR_SIGNATURE_TOKENS_BY_PLAN_ID.get(entry.planId) ?? [];
-  const normalizedLineTokens = new Set(normalizeMatcherText(line).split(" ").filter(Boolean));
-
-  if (currentPlanTokens.some((token) => normalizedLineTokens.has(token))) {
-    return false;
-  }
-
-  for (const [planId, tokens] of MAJOR_SIGNATURE_TOKENS_BY_PLAN_ID.entries()) {
-    if (planId === entry.planId || !tokens.length) {
-      continue;
-    }
-
-    const minimumMatches = tokens.length >= 3 ? 2 : 1;
-    const overlapCount = tokens.filter((token) => normalizedLineTokens.has(token)).length;
-    if (overlapCount >= minimumMatches) {
-      return true;
-    }
-  }
-
-  return false;
+  return labelMentionsDifferentTransferPlannerMajor(
+    entry.planId,
+    line,
+    PRIMARY_MAJOR_TITLES_BY_PLAN_ID
+  );
 }
 
 function normalizeExtractedPathwayLabel(entry, line) {
@@ -1840,6 +1815,7 @@ function extractPathwayLabels(entry, lines, headings) {
       normalized.length > 120 ||
       normalized.split(/\s+/).length > 14 ||
       /^(?:\[supplemental official source\]|learn more|about|apply)\b/i.test(normalized) ||
+      /\b(?:elective courses?|course lists?|courses by track)\b/i.test(normalized) ||
       /^(?:[†*§◊]+)?\s*(?:if|for)\b/i.test(normalized) ||
       /^concentration\s+[ivxlcdm]+\b.*\b(?:credits?|courses?)\b/i.test(normalized) ||
       pathwayLabelMentionsDifferentMajor(entry, normalized)

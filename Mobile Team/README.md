@@ -69,7 +69,7 @@ npm run planner:discover-grc-materials
 Or double-click:
 
 ```text
-scripts\Course-Planner-Updater.bat
+..\Course-Planner-Updater.bat
 ```
 
 The unified updater now includes the old refresh variants as built-in options:
@@ -78,7 +78,10 @@ The unified updater now includes the old refresh variants as built-in options:
 - full maintenance with downloads skipped
 - refresh only
 - refresh only with downloads skipped
-- cache summary only
+-- cache summary only
+- edit course links from the root launcher (select "Edit course links" from the main Course-Planner-Updater menu)
+
+The maintenance and refresh launchers — and the root updater launcher — now also print a `Laymans Diagnosis` section whenever the tooling already knows enough to explain a failure or important warning in simple language.
 
 This launcher writes one human-readable summary to:
 

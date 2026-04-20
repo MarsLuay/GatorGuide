@@ -1,13 +1,13 @@
 # Transfer Planner Primary Source Promotions
 
-Generated: 2026-04-19T20:05:41.804Z
+Generated: 2026-04-20T03:41:43.695Z
 
-- Auto-promoted high-confidence primary sources: 76
+- Auto-promoted high-confidence primary sources: 74
 - Skipped because they still appear in the review queue: 0
 
 ## uw-seattle
 
-- Auto-promoted owners: 33
+- Auto-promoted owners: 31
 
 ### American Indian Studies
 
@@ -96,22 +96,6 @@ Generated: 2026-04-19T20:05:41.804Z
 - Label: UW Geography B.A. major requirements
 - Discovery score: 999
 - Why: manual official-source promotion for dedicated B.A. in Geography requirements page; replaces the mixed general catalog page as the parser primary; lets the parser recover structured base-major requirements while keeping option content separate
-
-### Geography - Data Science option
-
-- Owner: uw-seattle-geography:pathway:data-science-option
-- Primary source: https://geography.washington.edu/ba-geography-data-science-option
-- Label: UW Geography Data Science option major requirements
-- Discovery score: 999
-- Why: manual official-source promotion for dedicated Geography Data Science option page; replaces the mixed general catalog page as the parser primary for this pathway; preserves option-specific lower-division requirement cues without collapsing them into the base route
-
-### Geography - Standard B.A. route
-
-- Owner: uw-seattle-geography:pathway:standard-ba-route
-- Primary source: https://geography.washington.edu/ba-geography
-- Label: UW Geography B.A. major requirements
-- Discovery score: 999
-- Why: manual official-source promotion for dedicated B.A. in Geography requirements page; replaces the mixed general catalog page as the parser primary for the standard route; keeps the standard B.A. route anchored to the base-major requirements page
 
 ### German
 

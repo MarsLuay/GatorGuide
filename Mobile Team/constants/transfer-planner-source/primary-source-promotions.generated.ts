@@ -754,44 +754,6 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
     "generatedAt": "2026-04-18T00:00:00.000Z"
   },
   {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-geography:pathway:data-science-option",
-    "ownerKey": "uw-seattle-geography:pathway:data-science-option",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "data-science-option",
-    "ownerTitle": "Geography - Data Science option",
-    "campusId": "uw-seattle",
-    "url": "https://geography.washington.edu/ba-geography-data-science-option",
-    "label": "UW Geography Data Science option major requirements",
-    "score": 999,
-    "confidence": "high",
-    "reasons": [
-      "manual official-source promotion for dedicated Geography Data Science option page",
-      "replaces the mixed general catalog page as the parser primary for this pathway",
-      "preserves option-specific lower-division requirement cues without collapsing them into the base route"
-    ],
-    "generatedAt": "2026-04-18T00:00:00.000Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-geography:pathway:standard-ba-route",
-    "ownerKey": "uw-seattle-geography:pathway:standard-ba-route",
-    "planId": "uw-seattle-geography",
-    "pathwayId": "standard-ba-route",
-    "ownerTitle": "Geography - Standard B.A. route",
-    "campusId": "uw-seattle",
-    "url": "https://geography.washington.edu/ba-geography",
-    "label": "UW Geography B.A. major requirements",
-    "score": 999,
-    "confidence": "high",
-    "reasons": [
-      "manual official-source promotion for dedicated B.A. in Geography requirements page",
-      "replaces the mixed general catalog page as the parser primary for the standard route",
-      "keeps the standard B.A. route anchored to the base-major requirements page"
-    ],
-    "generatedAt": "2026-04-18T00:00:00.000Z"
-  },
-  {
     "ownerType": "major",
     "ownerId": "uw-seattle-german",
     "ownerKey": "uw-seattle-german",

@@ -2195,27 +2195,32 @@ async function main() {
         },
       },
       {
-        prompt: (state) =>
-          askChoice(
-            rl,
-            state.action === "remove"
-              ? "What would you like to remove?"
-              : "What would you like to add?",
-            [
-              { value: "scholarship", label: "Scholarship" },
-              { value: "internship", label: "Internship / work opportunity" },
-              { value: "college_deadline", label: "College deadline" },
-              { value: "general_deadline", label: "General deadline" },
-              {
-                value: "resource",
-                label:
-                  "Resource / helpful link (student tool, Green River transfer link, university link, transfer guide, or similar)",
-              },
-            ],
+        prompt: async (state) => {
+          const options = [
+            { value: "scholarship", label: "Scholarship" },
+            { value: "internship", label: "Internship / work opportunity" },
+            { value: "college_deadline", label: "College deadline" },
+            { value: "general_deadline", label: "General deadline" },
             {
-              invalidMessage: "Enter in 1, 2, 3, 4, or 5 for your choice.",
+              value: "resource",
+              label:
+                "Resource / helpful link (student tool, Green River transfer link, university link, transfer guide, or similar)",
+            },
+            { value: "__back__", label: "Back" },
+          ];
+
+          const choice = await askChoice(
+            rl,
+            state.action === "remove" ? "What would you like to remove?" : "What would you like to add?",
+            options,
+            {
+              invalidMessage: "Enter in 1, 2, 3, 4, 5, or 6 for your choice.",
             }
-          ),
+          );
+
+          if (choice === "__back__") return BACK_SIGNAL;
+          return choice;
+        },
         assign(state, value) {
           state.entryType = value;
         },

@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-04-19T20:09:54.116Z",
-  "totalOwners": 595,
+  "generatedAt": "2026-04-20T03:46:21.418Z",
+  "totalOwners": 466,
   "ownersWithErrorsCount": 0,
-  "ownersWithWarningsCount": 14,
-  "ownersWithSourceOnlyUwCourseCodesCount": 38,
-  "totalSourceOnlyUwCourseCodes": 1172,
+  "ownersWithWarningsCount": 13,
+  "ownersWithSourceOnlyUwCourseCodesCount": 0,
+  "totalSourceOnlyUwCourseCodes": 0,
   "issueCounts": {
     "error": 0,
-    "warning": 14
+    "warning": 13
   },
   "symptomIssueCounts": {
     "error": 0,
-    "warning": 14
+    "warning": 13
   },
   "countsByIssueCode": {
-    "no-parsed-uw-course-codes": 14
+    "no-parsed-uw-course-codes": 13
   },
   "countsBySymptomCode": {
-    "no-parsed-uw-course-codes": 14
+    "no-parsed-uw-course-codes": 13
   },
   "promotedOwnerInvariantViolationCount": 0,
   "owners": [
@@ -162,27 +162,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-business-administration-accounting:pathway:accounting-option-school-of-business",
-      "ownerKey": "uw-bothell-business-administration-accounting::accounting-option-school-of-business",
-      "planId": "uw-bothell-business-administration-accounting",
-      "pathwayId": "accounting-option-school-of-business",
-      "title": "Business Administration: Accounting (BA) - Accounting Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-business-administration-accounting:pathway:accounting-option-students-must-complete-the-following-courses-for-graduation",
       "ownerKey": "uw-bothell-business-administration-accounting::accounting-option-students-must-complete-the-following-courses-for-graduation",
       "planId": "uw-bothell-business-administration-accounting",
@@ -246,137 +225,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-business-administration-accounting:pathway:leadership-and-strategic-innovation-option",
-      "ownerKey": "uw-bothell-business-administration-accounting::leadership-and-strategic-innovation-option",
-      "planId": "uw-bothell-business-administration-accounting",
-      "pathwayId": "leadership-and-strategic-innovation-option",
-      "title": "Business Administration: Accounting (BA) - Leadership and Strategic Innovation option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-accounting:pathway:management-concentration",
-      "ownerKey": "uw-bothell-business-administration-accounting::management-concentration",
-      "planId": "uw-bothell-business-administration-accounting",
-      "pathwayId": "management-concentration",
-      "title": "Business Administration: Accounting (BA) - Management Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-accounting:pathway:management-information-systems-mis-concentration",
-      "ownerKey": "uw-bothell-business-administration-accounting::management-information-systems-mis-concentration",
-      "planId": "uw-bothell-business-administration-accounting",
-      "pathwayId": "management-information-systems-mis-concentration",
-      "title": "Business Administration: Accounting (BA) - Management Information Systems (MIS) Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-business-administration-accounting:pathway:marketing-option-and-concentration",
       "ownerKey": "uw-bothell-business-administration-accounting::marketing-option-and-concentration",
       "planId": "uw-bothell-business-administration-accounting",
       "pathwayId": "marketing-option-and-concentration",
       "title": "Business Administration: Accounting (BA) - Marketing option and Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-accounting:pathway:retail-management-concentration",
-      "ownerKey": "uw-bothell-business-administration-accounting::retail-management-concentration",
-      "planId": "uw-bothell-business-administration-accounting",
-      "pathwayId": "retail-management-concentration",
-      "title": "Business Administration: Accounting (BA) - Retail Management Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-accounting:pathway:supply-chain-management-option",
-      "ownerKey": "uw-bothell-business-administration-accounting::supply-chain-management-option",
-      "planId": "uw-bothell-business-administration-accounting",
-      "pathwayId": "supply-chain-management-option",
-      "title": "Business Administration: Accounting (BA) - Supply Chain Management option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-accounting:pathway:technology-and-innovation-management-tim-concentration",
-      "ownerKey": "uw-bothell-business-administration-accounting::technology-and-innovation-management-tim-concentration",
-      "planId": "uw-bothell-business-administration-accounting",
-      "pathwayId": "technology-and-innovation-management-tim-concentration",
-      "title": "Business Administration: Accounting (BA) - Technology & Innovation Management (TIM) Concentration",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
@@ -603,95 +456,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:management-concentration",
-      "ownerKey": "uw-bothell-business-administration-leadership-and-strategic-innovation::management-concentration",
-      "planId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
-      "pathwayId": "management-concentration",
-      "title": "Business Administration: Leadership & Strategic Innovation (BA) - Management Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:management-information-systems-mis-concentration",
-      "ownerKey": "uw-bothell-business-administration-leadership-and-strategic-innovation::management-information-systems-mis-concentration",
-      "planId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
-      "pathwayId": "management-information-systems-mis-concentration",
-      "title": "Business Administration: Leadership & Strategic Innovation (BA) - Management Information Systems (MIS) Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:marketing-option-and-concentration",
       "ownerKey": "uw-bothell-business-administration-leadership-and-strategic-innovation::marketing-option-and-concentration",
       "planId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
       "pathwayId": "marketing-option-and-concentration",
       "title": "Business Administration: Leadership & Strategic Innovation (BA) - Marketing option and Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:retail-management-concentration",
-      "ownerKey": "uw-bothell-business-administration-leadership-and-strategic-innovation::retail-management-concentration",
-      "planId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
-      "pathwayId": "retail-management-concentration",
-      "title": "Business Administration: Leadership & Strategic Innovation (BA) - Retail Management Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:supply-chain-management-option",
-      "ownerKey": "uw-bothell-business-administration-leadership-and-strategic-innovation::supply-chain-management-option",
-      "planId": "uw-bothell-business-administration-leadership-and-strategic-innovation",
-      "pathwayId": "supply-chain-management-option",
-      "title": "Business Administration: Leadership & Strategic Innovation (BA) - Supply Chain Management option",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
@@ -792,27 +561,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-business-administration-marketing:pathway:leadership-and-strategic-innovation-option",
-      "ownerKey": "uw-bothell-business-administration-marketing::leadership-and-strategic-innovation-option",
-      "planId": "uw-bothell-business-administration-marketing",
-      "pathwayId": "leadership-and-strategic-innovation-option",
-      "title": "Business Administration: Marketing (BA) - Leadership and Strategic Innovation option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-business-administration-marketing:pathway:marketing-option-and-concentration",
       "ownerKey": "uw-bothell-business-administration-marketing::marketing-option-and-concentration",
       "planId": "uw-bothell-business-administration-marketing",
@@ -897,27 +645,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-business-administration-marketing:pathway:supply-chain-management-option",
-      "ownerKey": "uw-bothell-business-administration-marketing::supply-chain-management-option",
-      "planId": "uw-bothell-business-administration-marketing",
-      "pathwayId": "supply-chain-management-option",
-      "title": "Business Administration: Marketing (BA) - Supply Chain Management option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-business-administration-supply-chain-management",
       "ownerKey": "uw-bothell-business-administration-supply-chain-management::",
       "planId": "uw-bothell-business-administration-supply-chain-management",
@@ -986,27 +713,6 @@
       "planId": "uw-bothell-business-administration-supply-chain-management",
       "pathwayId": "finance-option-and-concentration",
       "title": "Business Administration: Supply Chain Management (BA) - Finance option and Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-supply-chain-management:pathway:leadership-and-strategic-innovation-option",
-      "ownerKey": "uw-bothell-business-administration-supply-chain-management::leadership-and-strategic-innovation-option",
-      "planId": "uw-bothell-business-administration-supply-chain-management",
-      "pathwayId": "leadership-and-strategic-innovation-option",
-      "title": "Business Administration: Supply Chain Management (BA) - Leadership and Strategic Innovation option",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
@@ -1233,48 +939,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-business-administration:pathway:leadership-and-strategic-innovation-option",
-      "ownerKey": "uw-bothell-business-administration::leadership-and-strategic-innovation-option",
-      "planId": "uw-bothell-business-administration",
-      "pathwayId": "leadership-and-strategic-innovation-option",
-      "title": "Business Administration (BA) - Leadership & Strategic Innovation Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration:pathway:management-concentration",
-      "ownerKey": "uw-bothell-business-administration::management-concentration",
-      "planId": "uw-bothell-business-administration",
-      "pathwayId": "management-concentration",
-      "title": "Business Administration (BA) - Management Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-business-administration:pathway:marketing-option-and-concentration",
       "ownerKey": "uw-bothell-business-administration::marketing-option-and-concentration",
       "planId": "uw-bothell-business-administration",
@@ -1317,69 +981,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-business-administration:pathway:retail-management-concentration",
-      "ownerKey": "uw-bothell-business-administration::retail-management-concentration",
-      "planId": "uw-bothell-business-administration",
-      "pathwayId": "retail-management-concentration",
-      "title": "Business Administration (BA) - Retail Management Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration:pathway:supply-chain-management-option",
-      "ownerKey": "uw-bothell-business-administration::supply-chain-management-option",
-      "planId": "uw-bothell-business-administration",
-      "pathwayId": "supply-chain-management-option",
-      "title": "Business Administration (BA) - Supply Chain Management Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration:pathway:tim-concentration",
-      "ownerKey": "uw-bothell-business-administration::tim-concentration",
-      "planId": "uw-bothell-business-administration",
-      "pathwayId": "tim-concentration",
-      "title": "Business Administration (BA) - Technology & Innovation Management (TIM) Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-chemistry-ba",
       "ownerKey": "uw-bothell-chemistry-ba::",
       "planId": "uw-bothell-chemistry-ba",
@@ -1401,27 +1002,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-chemistry-ba:pathway:biochemistry-option",
-      "ownerKey": "uw-bothell-chemistry-ba::biochemistry-option",
-      "planId": "uw-bothell-chemistry-ba",
-      "pathwayId": "biochemistry-option",
-      "title": "Chemistry (BA) - Biochemistry Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-chemistry-ba:pathway:chemistry-ba-b-s-in-chemistry-biochemistry-option",
       "ownerKey": "uw-bothell-chemistry-ba::chemistry-ba-b-s-in-chemistry-biochemistry-option",
       "planId": "uw-bothell-chemistry-ba",
@@ -1430,7 +1010,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1451,7 +1031,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1472,7 +1052,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1493,7 +1073,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1514,28 +1094,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-chemistry-ba:pathway:information-assurance-and-cybersecurity-iac-option",
-      "ownerKey": "uw-bothell-chemistry-ba::information-assurance-and-cybersecurity-iac-option",
-      "planId": "uw-bothell-chemistry-ba",
-      "pathwayId": "information-assurance-and-cybersecurity-iac-option",
-      "title": "Chemistry (BA) - Information Assurance and Cybersecurity (Iac) Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 36,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1598,7 +1157,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1619,7 +1178,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1640,7 +1199,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1661,7 +1220,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1682,28 +1241,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-chemistry-biochemistry:pathway:information-assurance-and-cybersecurity-iac-option",
-      "ownerKey": "uw-bothell-chemistry-biochemistry::information-assurance-and-cybersecurity-iac-option",
-      "planId": "uw-bothell-chemistry-biochemistry",
-      "pathwayId": "information-assurance-and-cybersecurity-iac-option",
-      "title": "Chemistry: Biochemistry (BS) - Information Assurance and Cybersecurity (Iac) Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 36,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1758,27 +1296,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-chemistry-bs:pathway:biochemistry-option",
-      "ownerKey": "uw-bothell-chemistry-bs::biochemistry-option",
-      "planId": "uw-bothell-chemistry-bs",
-      "pathwayId": "biochemistry-option",
-      "title": "Chemistry (BS) - Biochemistry Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-chemistry-bs:pathway:chemistry-bs-b-s-in-chemistry-biochemistry-option",
       "ownerKey": "uw-bothell-chemistry-bs::chemistry-bs-b-s-in-chemistry-biochemistry-option",
       "planId": "uw-bothell-chemistry-bs",
@@ -1787,7 +1304,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1808,7 +1325,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1829,7 +1346,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1934,7 +1451,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 7,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1968,69 +1485,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-csse:pathway:b-s-in-chemistry-biochemistry-option-requirements",
-      "ownerKey": "uw-bothell-csse::b-s-in-chemistry-biochemistry-option-requirements",
-      "planId": "uw-bothell-csse",
-      "pathwayId": "b-s-in-chemistry-biochemistry-option-requirements",
-      "title": "Computer Science & Software Engineering - B.S. in Chemistry (Biochemistry Option) Requirements",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 30,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-csse:pathway:b-s-in-chemistry-general-option-requirements",
-      "ownerKey": "uw-bothell-csse::b-s-in-chemistry-general-option-requirements",
-      "planId": "uw-bothell-csse",
-      "pathwayId": "b-s-in-chemistry-general-option-requirements",
-      "title": "Computer Science & Software Engineering - B.S. in Chemistry (General Option) Requirements",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 73,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-csse:pathway:biochemistry-option",
-      "ownerKey": "uw-bothell-csse::biochemistry-option",
-      "planId": "uw-bothell-csse",
-      "pathwayId": "biochemistry-option",
-      "title": "Computer Science & Software Engineering - Biochemistry Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 53,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-csse:pathway:computer-science-and-software-engineering-option-1",
       "ownerKey": "uw-bothell-csse::computer-science-and-software-engineering-option-1",
       "planId": "uw-bothell-csse",
@@ -2039,7 +1493,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 7,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2060,7 +1514,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 53,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2078,27 +1532,6 @@
       "planId": "uw-bothell-csse",
       "pathwayId": "iac-option",
       "title": "Computer Science & Software Engineering - Iac Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 7,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-csse:pathway:information-assurance-and-cybersecurity-iac-option",
-      "ownerKey": "uw-bothell-csse::information-assurance-and-cybersecurity-iac-option",
-      "planId": "uw-bothell-csse",
-      "pathwayId": "information-assurance-and-cybersecurity-iac-option",
-      "title": "Computer Science & Software Engineering - Information Assurance and Cybersecurity IAC option",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
@@ -2123,7 +1556,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-      "sourceOnlyUwCourseCodeCount": 7,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2220,48 +1653,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:education-studies-elementary-education-option",
-      "ownerKey": "uw-bothell-developmental-and-youth-studies::education-studies-elementary-education-option",
-      "planId": "uw-bothell-developmental-and-youth-studies",
-      "pathwayId": "education-studies-elementary-education-option",
-      "title": "Developmental and Youth Studies (BA) - Education Studies: Elementary Education Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:m-ed-with-critical-educational-change-and-leadership-cecl-concentration",
-      "ownerKey": "uw-bothell-developmental-and-youth-studies::m-ed-with-critical-educational-change-and-leadership-cecl-concentration",
-      "planId": "uw-bothell-developmental-and-youth-studies",
-      "pathwayId": "m-ed-with-critical-educational-change-and-leadership-cecl-concentration",
-      "title": "Developmental and Youth Studies (BA) - M.Ed. with Critical Educational Change and Leadership (Cecl) Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:m-ed-with-educating-for-critical-race-theory-e-crit-concentration",
       "ownerKey": "uw-bothell-developmental-and-youth-studies::m-ed-with-educating-for-critical-race-theory-e-crit-concentration",
       "planId": "uw-bothell-developmental-and-youth-studies",
@@ -2330,27 +1721,6 @@
           "details": null
         }
       ]
-    },
-    {
-      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:m-ed-with-leadership-development-for-educators-lede-concentration",
-      "ownerKey": "uw-bothell-developmental-and-youth-studies::m-ed-with-leadership-development-for-educators-lede-concentration",
-      "planId": "uw-bothell-developmental-and-youth-studies",
-      "pathwayId": "m-ed-with-leadership-development-for-educators-lede-concentration",
-      "title": "Developmental and Youth Studies (BA) - M.Ed. with Leadership Development for Educators (Lede) Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
     },
     {
       "ownerId": "uw-bothell-earth-system-science",
@@ -2451,41 +1821,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-economics:pathway:leadership-and-strategic-innovation-option",
-      "ownerKey": "uw-bothell-economics::leadership-and-strategic-innovation-option",
-      "planId": "uw-bothell-economics",
-      "pathwayId": "leadership-and-strategic-innovation-option",
-      "title": "Economics (BS) - Leadership and Strategic Innovation option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
-    },
-    {
       "ownerId": "uw-bothell-economics:pathway:marketing-option-and-concentration",
       "ownerKey": "uw-bothell-economics::marketing-option-and-concentration",
       "planId": "uw-bothell-economics",
@@ -2505,41 +1840,6 @@
       },
       "rootIssues": [],
       "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-economics:pathway:supply-chain-management-option",
-      "ownerKey": "uw-bothell-economics::supply-chain-management-option",
-      "planId": "uw-bothell-economics",
-      "pathwayId": "supply-chain-management-option",
-      "title": "Economics (BS) - Supply Chain Management option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
     },
     {
       "ownerId": "uw-bothell-educational-studies-elementary-education",
@@ -3319,48 +2619,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-american-indian-studies:pathway:culture-and-history-concentration-courses",
-      "ownerKey": "uw-seattle-american-indian-studies::culture-and-history-concentration-courses",
-      "planId": "uw-seattle-american-indian-studies",
-      "pathwayId": "culture-and-history-concentration-courses",
-      "title": "American Indian Studies - Culture and History Concentration Courses:",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://ais.washington.edu/ba-american-indian-studies",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-american-indian-studies:pathway:environment-and-health-concentration-courses",
-      "ownerKey": "uw-seattle-american-indian-studies::environment-and-health-concentration-courses",
-      "planId": "uw-seattle-american-indian-studies",
-      "pathwayId": "environment-and-health-concentration-courses",
-      "title": "American Indian Studies - Environment and Health Concentration Courses:",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://ais.washington.edu/ba-american-indian-studies",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-american-indian-studies:pathway:governance-concentration-courses",
       "ownerKey": "uw-seattle-american-indian-studies::governance-concentration-courses",
       "planId": "uw-seattle-american-indian-studies",
@@ -3445,27 +2703,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-anthropology:pathway:archaeological-sciences",
-      "ownerKey": "uw-seattle-anthropology::archaeological-sciences",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "archaeological-sciences",
-      "title": "Anthropology - Archaeological Sciences",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-anthropology:pathway:archaeology",
       "ownerKey": "uw-seattle-anthropology::archaeology",
       "planId": "uw-seattle-anthropology",
@@ -3520,27 +2757,6 @@
           "details": null
         }
       ]
-    },
-    {
-      "ownerId": "uw-seattle-anthropology:pathway:human-evolutionary-biology",
-      "ownerKey": "uw-seattle-anthropology::human-evolutionary-biology",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "human-evolutionary-biology",
-      "title": "Anthropology - Human Evolutionary Biology",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
     },
     {
       "ownerId": "uw-seattle-anthropology:pathway:indigenous-archaeology",
@@ -3641,74 +2857,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-applied-and-computational-mathematical-sciences:pathway:data-science-and-statistics",
-      "ownerKey": "uw-seattle-applied-and-computational-mathematical-sciences::data-science-and-statistics",
-      "planId": "uw-seattle-applied-and-computational-mathematical-sciences",
-      "pathwayId": "data-science-and-statistics",
-      "title": "Applied & Computational Mathematical Sciences (ACMS) - Data Science and Statistics",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-applied-and-computational-mathematical-sciences:pathway:discrete-mathematics-and-algorithms",
-      "ownerKey": "uw-seattle-applied-and-computational-mathematical-sciences::discrete-mathematics-and-algorithms",
-      "planId": "uw-seattle-applied-and-computational-mathematical-sciences",
-      "pathwayId": "discrete-mathematics-and-algorithms",
-      "title": "Applied & Computational Mathematical Sciences (ACMS) - Discrete Mathematics and Algorithms",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-applied-and-computational-mathematical-sciences:pathway:mathematical-economics-and-quantitative-finance",
       "ownerKey": "uw-seattle-applied-and-computational-mathematical-sciences::mathematical-economics-and-quantitative-finance",
       "planId": "uw-seattle-applied-and-computational-mathematical-sciences",
       "pathwayId": "mathematical-economics-and-quantitative-finance",
       "title": "Applied & Computational Mathematical Sciences (ACMS) - Mathematical Economics and Quantitative Finance",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-applied-and-computational-mathematical-sciences:pathway:scientific-computing-and-numerical-analysis",
-      "ownerKey": "uw-seattle-applied-and-computational-mathematical-sciences::scientific-computing-and-numerical-analysis",
-      "planId": "uw-seattle-applied-and-computational-mathematical-sciences",
-      "pathwayId": "scientific-computing-and-numerical-analysis",
-      "title": "Applied & Computational Mathematical Sciences (ACMS) - Scientific Computing and Numerical Analysis",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
@@ -4019,242 +3172,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-and-8211-china-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-and-8211-china-concentration",
+      "ownerId": "uw-seattle-asian-studies:pathway:china-concentration",
+      "ownerKey": "uw-seattle-asian-studies::china-concentration",
       "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-and-8211-china-concentration",
-      "title": "Asian Studies - Asian Studies &#8211; China Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-and-8211-japan-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-and-8211-japan-concentration",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-and-8211-japan-concentration",
-      "title": "Asian Studies - Asian Studies &#8211; Japan Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-and-8211-korea-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-and-8211-korea-concentration",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-and-8211-korea-concentration",
-      "title": "Asian Studies - Asian Studies &#8211; Korea Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-and-8211-south-asia-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-and-8211-south-asia-concentration",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-and-8211-south-asia-concentration",
-      "title": "Asian Studies - Asian Studies &#8211; South Asia Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-and-8211-southeast-asia-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-and-8211-southeast-asia-concentration",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-and-8211-southeast-asia-concentration",
-      "title": "Asian Studies - Asian Studies &#8211; Southeast Asia Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-china-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-china-concentration",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-china-concentration",
+      "pathwayId": "china-concentration",
       "title": "Asian Studies - China Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-japan-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-japan-concentration",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-japan-concentration",
-      "title": "Asian Studies - Japan Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-korea-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-korea-concentration",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-korea-concentration",
-      "title": "Asian Studies - Korea Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-south-asia-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-south-asia-concentration",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-south-asia-concentration",
-      "title": "Asian Studies - South Asia Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:asian-studies-southeast-asia-concentration",
-      "ownerKey": "uw-seattle-asian-studies::asian-studies-southeast-asia-concentration",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "asian-studies-southeast-asia-concentration",
-      "title": "Asian Studies - Southeast Asia Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:concentration-i-themes-2-courses-10-credits",
-      "ownerKey": "uw-seattle-asian-studies::concentration-i-themes-2-courses-10-credits",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "concentration-i-themes-2-courses-10-credits",
-      "title": "Asian Studies - Concentration I - Themes 2 Courses 10 Credits",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-asian-studies:pathway:concentration-ii-regions-2-courses-10-credits",
-      "ownerKey": "uw-seattle-asian-studies::concentration-ii-regions-2-courses-10-credits",
-      "planId": "uw-seattle-asian-studies",
-      "pathwayId": "concentration-ii-regions-2-courses-10-credits",
-      "title": "Asian Studies - Concentration Ii - Regions 2 Courses 10 Credits",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
@@ -4292,11 +3214,74 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-asian-studies:pathway:if-not-taken-for-the-japan-concentration-and-8217-s-core-requirement",
-      "ownerKey": "uw-seattle-asian-studies::if-not-taken-for-the-japan-concentration-and-8217-s-core-requirement",
+      "ownerId": "uw-seattle-asian-studies:pathway:japan-concentration",
+      "ownerKey": "uw-seattle-asian-studies::japan-concentration",
       "planId": "uw-seattle-asian-studies",
-      "pathwayId": "if-not-taken-for-the-japan-concentration-and-8217-s-core-requirement",
-      "title": "Asian Studies - †If Not Taken for the Japan Concentration&#8217;S Core Requirement",
+      "pathwayId": "japan-concentration",
+      "title": "Asian Studies - Japan Concentration",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-seattle-asian-studies:pathway:korea-concentration",
+      "ownerKey": "uw-seattle-asian-studies::korea-concentration",
+      "planId": "uw-seattle-asian-studies",
+      "pathwayId": "korea-concentration",
+      "title": "Asian Studies - Korea Concentration",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-seattle-asian-studies:pathway:south-asia-concentration",
+      "ownerKey": "uw-seattle-asian-studies::south-asia-concentration",
+      "planId": "uw-seattle-asian-studies",
+      "pathwayId": "south-asia-concentration",
+      "title": "Asian Studies - South Asia Concentration",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-seattle-asian-studies:pathway:southeast-asia-concentration",
+      "ownerKey": "uw-seattle-asian-studies::southeast-asia-concentration",
+      "planId": "uw-seattle-asian-studies",
+      "pathwayId": "southeast-asia-concentration",
+      "title": "Asian Studies - Southeast Asia Concentration",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
@@ -4320,7 +3305,7 @@
       "title": "Astronomy",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://astro.washington.edu/timeline-and-requirements",
+      "primarySourceUrl": "https://astro.washington.edu/undergraduate-program",
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
@@ -4339,27 +3324,6 @@
       "planId": "uw-seattle-atmospheric-and-climate-science",
       "pathwayId": null,
       "title": "Atmospheric and Climate Science",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-atmospheric-and-climate-science:pathway:chemistry-option",
-      "ownerKey": "uw-seattle-atmospheric-and-climate-science::chemistry-option",
-      "planId": "uw-seattle-atmospheric-and-climate-science",
-      "pathwayId": "chemistry-option",
-      "title": "Atmospheric and Climate Science - Chemistry option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
@@ -4523,57 +3487,15 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-bioengineering:pathway:bioengineering-bioengineering-professional-series-bps-track",
-      "ownerKey": "uw-seattle-bioengineering::bioengineering-bioengineering-professional-series-bps-track",
+      "ownerId": "uw-seattle-bioengineering:pathway:bioengineering-professional-series-bps-track",
+      "ownerKey": "uw-seattle-bioengineering::bioengineering-professional-series-bps-track",
       "planId": "uw-seattle-bioengineering",
-      "pathwayId": "bioengineering-bioengineering-professional-series-bps-track",
+      "pathwayId": "bioengineering-professional-series-bps-track",
       "title": "Bioengineering - Bioengineering Professional Series Bps Track",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 4,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-bioengineering:pathway:bioengineering-data-science-option",
-      "ownerKey": "uw-seattle-bioengineering::bioengineering-data-science-option",
-      "planId": "uw-seattle-bioengineering",
-      "pathwayId": "bioengineering-data-science-option",
-      "title": "Bioengineering - Data Science Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 15,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-bioengineering:pathway:bioengineering-ph-d-data-science-option-and-8211-uw-bioengineering",
-      "ownerKey": "uw-seattle-bioengineering::bioengineering-ph-d-data-science-option-and-8211-uw-bioengineering",
-      "planId": "uw-seattle-bioengineering",
-      "pathwayId": "bioengineering-ph-d-data-science-option-and-8211-uw-bioengineering",
-      "title": "Bioengineering - Ph.D. Data Science Option and 8211 UW Bioengineering",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 3,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -4628,11 +3550,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-bioengineering:pathway:phd-data-science-option",
-      "ownerKey": "uw-seattle-bioengineering::phd-data-science-option",
+      "ownerId": "uw-seattle-bioengineering:pathway:ph-d-data-science-option-and-8211-uw-bioengineering",
+      "ownerKey": "uw-seattle-bioengineering::ph-d-data-science-option-and-8211-uw-bioengineering",
       "planId": "uw-seattle-bioengineering",
-      "pathwayId": "phd-data-science-option",
-      "title": "Bioengineering - Ph.D. Data Science option",
+      "pathwayId": "ph-d-data-science-option-and-8211-uw-bioengineering",
+      "title": "Bioengineering - Ph.D. Data Science Option and 8211 UW Bioengineering",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
@@ -4670,11 +3592,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-biology:pathway:ba-general-biology",
-      "ownerKey": "uw-seattle-biology::ba-general-biology",
+      "ownerId": "uw-seattle-biology:pathway:b-s-general-biology-option",
+      "ownerKey": "uw-seattle-biology::b-s-general-biology-option",
       "planId": "uw-seattle-biology",
-      "pathwayId": "ba-general-biology",
-      "title": "Biology - B.A. general biology",
+      "pathwayId": "b-s-general-biology-option",
+      "title": "Biology - B.S. General Biology Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
@@ -4691,11 +3613,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-biology:pathway:bs-option-family:ecology-evolution-and-conservation",
-      "ownerKey": "uw-seattle-biology::bs-option-family:ecology-evolution-and-conservation",
+      "ownerId": "uw-seattle-biology:pathway:b-s-molecular-cellular-and-developmental-biology-option",
+      "ownerKey": "uw-seattle-biology::b-s-molecular-cellular-and-developmental-biology-option",
       "planId": "uw-seattle-biology",
-      "pathwayId": "bs-option-family:ecology-evolution-and-conservation",
-      "title": "Biology - B.S. Ecology, Evolution, and Conservation option",
+      "pathwayId": "b-s-molecular-cellular-and-developmental-biology-option",
+      "title": "Biology - B.S. Molecular, Cellular, and Developmental Biology Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
@@ -4712,11 +3634,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-biology:pathway:bs-option-family:general-biology",
-      "ownerKey": "uw-seattle-biology::bs-option-family:general-biology",
+      "ownerId": "uw-seattle-biology:pathway:b-s-plant-biology-option",
+      "ownerKey": "uw-seattle-biology::b-s-plant-biology-option",
       "planId": "uw-seattle-biology",
-      "pathwayId": "bs-option-family:general-biology",
-      "title": "Biology - B.S. General Biology option",
+      "pathwayId": "b-s-plant-biology-option",
+      "title": "Biology - B.S. Plant Biology Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
@@ -4733,53 +3655,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-biology:pathway:bs-option-family:molecular-cellular-and-developmental-biology",
-      "ownerKey": "uw-seattle-biology::bs-option-family:molecular-cellular-and-developmental-biology",
+      "ownerId": "uw-seattle-biology:pathway:physiology",
+      "ownerKey": "uw-seattle-biology::physiology",
       "planId": "uw-seattle-biology",
-      "pathwayId": "bs-option-family:molecular-cellular-and-developmental-biology",
-      "title": "Biology - B.S. Molecular, Cellular, and Developmental Biology option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-biology:pathway:bs-option-family:physiology",
-      "ownerKey": "uw-seattle-biology::bs-option-family:physiology",
-      "planId": "uw-seattle-biology",
-      "pathwayId": "bs-option-family:physiology",
-      "title": "Biology - B.S. Physiology option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-biology:pathway:bs-option-family:plant-biology",
-      "ownerKey": "uw-seattle-biology::bs-option-family:plant-biology",
-      "planId": "uw-seattle-biology",
-      "pathwayId": "bs-option-family:plant-biology",
-      "title": "Biology - B.S. Plant Biology option",
+      "pathwayId": "physiology",
+      "title": "Biology - Physiology",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
@@ -4826,111 +3706,6 @@
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
       "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-chemical-engineering:pathway:chemical-engineering-nanoscience-and-molecular-engineering-nme-option",
-      "ownerKey": "uw-seattle-chemical-engineering::chemical-engineering-nanoscience-and-molecular-engineering-nme-option",
-      "planId": "uw-seattle-chemical-engineering",
-      "pathwayId": "chemical-engineering-nanoscience-and-molecular-engineering-nme-option",
-      "title": "Chemical Engineering - Nanoscience and Molecular Engineering Nme Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-      "sourceOnlyUwCourseCodeCount": 56,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-chemical-engineering:pathway:chemical-engineering-nanoscience-and-molecular-engineering-nme-option-program",
-      "ownerKey": "uw-seattle-chemical-engineering::chemical-engineering-nanoscience-and-molecular-engineering-nme-option-program",
-      "planId": "uw-seattle-chemical-engineering",
-      "pathwayId": "chemical-engineering-nanoscience-and-molecular-engineering-nme-option-program",
-      "title": "Chemical Engineering - Nanoscience and Molecular Engineering Nme Option Program",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-      "sourceOnlyUwCourseCodeCount": 56,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-chemical-engineering:pathway:chemical-engineering-nme-option",
-      "ownerKey": "uw-seattle-chemical-engineering::chemical-engineering-nme-option",
-      "planId": "uw-seattle-chemical-engineering",
-      "pathwayId": "chemical-engineering-nme-option",
-      "title": "Chemical Engineering - Nme Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-      "sourceOnlyUwCourseCodeCount": 52,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-chemical-engineering:pathway:chemical-engineering-nme-option-for-chem-e-majors",
-      "ownerKey": "uw-seattle-chemical-engineering::chemical-engineering-nme-option-for-chem-e-majors",
-      "planId": "uw-seattle-chemical-engineering",
-      "pathwayId": "chemical-engineering-nme-option-for-chem-e-majors",
-      "title": "Chemical Engineering - Nme Option for Chem E Majors",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-      "sourceOnlyUwCourseCodeCount": 86,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-chemical-engineering:pathway:chemical-engineering-standard-option",
-      "ownerKey": "uw-seattle-chemical-engineering::chemical-engineering-standard-option",
-      "planId": "uw-seattle-chemical-engineering",
-      "pathwayId": "chemical-engineering-standard-option",
-      "title": "Chemical Engineering - Standard Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-      "sourceOnlyUwCourseCodeCount": 52,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -5035,7 +3810,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
-      "sourceOnlyUwCourseCodeCount": 52,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -5405,74 +4180,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-comparative-religion:pathway:jewish-studies",
-      "ownerKey": "uw-seattle-comparative-religion::jewish-studies",
-      "planId": "uw-seattle-comparative-religion",
-      "pathwayId": "jewish-studies",
-      "title": "Comparative Religion - Jewish Studies",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-comparative-religion:pathway:latin-america-and-caribbean",
-      "ownerKey": "uw-seattle-comparative-religion::latin-america-and-caribbean",
-      "planId": "uw-seattle-comparative-religion",
-      "pathwayId": "latin-america-and-caribbean",
-      "title": "Comparative Religion - Latin America and Caribbean",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-computational-finance-and-risk-management",
       "ownerKey": "uw-seattle-computational-finance-and-risk-management::",
       "planId": "uw-seattle-computational-finance-and-risk-management",
       "pathwayId": null,
       "title": "Computational Finance & Risk Management",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-computational-finance-and-risk-management:pathway:advanced-data-science-option",
-      "ownerKey": "uw-seattle-computational-finance-and-risk-management::advanced-data-science-option",
-      "planId": "uw-seattle-computational-finance-and-risk-management",
-      "pathwayId": "advanced-data-science-option",
-      "title": "Computational Finance & Risk Management - Advanced Data Science Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
@@ -5515,27 +4227,6 @@
       "planId": "uw-seattle-computational-finance-and-risk-management",
       "pathwayId": "applied-and-computational-mathematics-online-fee-based",
       "title": "Computational Finance & Risk Management - Applied & Computational Mathematics) (Online) (Fee-Based)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-computational-finance-and-risk-management:pathway:data-science",
-      "ownerKey": "uw-seattle-computational-finance-and-risk-management::data-science",
-      "planId": "uw-seattle-computational-finance-and-risk-management",
-      "pathwayId": "data-science",
-      "title": "Computational Finance & Risk Management - Data Science",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
@@ -5860,111 +4551,6 @@
       ]
     },
     {
-      "ownerId": "uw-seattle-drama:pathway:design",
-      "ownerKey": "uw-seattle-drama::design",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "design",
-      "title": "Drama - Design",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-drama:pathway:design-costume",
-      "ownerKey": "uw-seattle-drama::design-costume",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "design-costume",
-      "title": "Drama - Design - Costume)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-drama:pathway:design-lighting",
-      "ownerKey": "uw-seattle-drama::design-lighting",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "design-lighting",
-      "title": "Drama - Design - Lighting)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-drama:pathway:design-scenery",
-      "ownerKey": "uw-seattle-drama::design-scenery",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "design-scenery",
-      "title": "Drama - Design - Scenery)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-drama:pathway:performance",
-      "ownerKey": "uw-seattle-drama::performance",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "performance",
-      "title": "Drama - Performance",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-drama:pathway:textual-studies",
       "ownerKey": "uw-seattle-drama::textual-studies",
       "planId": "uw-seattle-drama",
@@ -6011,27 +4597,6 @@
       "ownerKey": "uw-seattle-early-childhood-and-family-studies::route-menu-active-trails-main",
       "planId": "uw-seattle-early-childhood-and-family-studies",
       "pathwayId": "route-menu-active-trails-main",
-      "title": "Early Childhood & Family Studies - * route.menu_active_trails:main",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-early-childhood-and-family-studies:pathway:route-menu-active-trails-thinstrip-menu",
-      "ownerKey": "uw-seattle-early-childhood-and-family-studies::route-menu-active-trails-thinstrip-menu",
-      "planId": "uw-seattle-early-childhood-and-family-studies",
-      "pathwayId": "route-menu-active-trails-thinstrip-menu",
       "title": "Early Childhood & Family Studies - * route.menu_active_trails:main",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
@@ -6112,27 +4677,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:bs-option-family:biology",
-      "ownerKey": "uw-seattle-earth-and-space-sciences::bs-option-family:biology",
-      "planId": "uw-seattle-earth-and-space-sciences",
-      "pathwayId": "bs-option-family:biology",
-      "title": "Earth & Space Sciences - B.S. Biology option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-earth-and-space-sciences:pathway:bs-option-family:geology",
       "ownerKey": "uw-seattle-earth-and-space-sciences::bs-option-family:geology",
       "planId": "uw-seattle-earth-and-space-sciences",
@@ -6159,27 +4703,6 @@
       "planId": "uw-seattle-earth-and-space-sciences",
       "pathwayId": "bs-option-family:geoscience",
       "title": "Earth & Space Sciences - B.S. Geoscience option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:bs-option-family:physics",
-      "ownerKey": "uw-seattle-earth-and-space-sciences::bs-option-family:physics",
-      "planId": "uw-seattle-earth-and-space-sciences",
-      "pathwayId": "bs-option-family:physics",
-      "title": "Earth & Space Sciences - B.S. Physics option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
@@ -6427,27 +4950,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-education-studies:pathway:early-childhood-studies",
-      "ownerKey": "uw-seattle-education-studies::early-childhood-studies",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "early-childhood-studies",
-      "title": "Education Studies - Early Childhood Studies",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-education-studies:pathway:education-research-and-policy",
       "ownerKey": "uw-seattle-education-studies::education-research-and-policy",
       "planId": "uw-seattle-education-studies",
@@ -6553,27 +5055,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-education-studies:pathway:leadership-for-learning-fee-based",
-      "ownerKey": "uw-seattle-education-studies::leadership-for-learning-fee-based",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "leadership-for-learning-fee-based",
-      "title": "Education Studies - Leadership for Learning (Fee-Based)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-education-studies:pathway:mathematics-education",
       "ownerKey": "uw-seattle-education-studies::mathematics-education",
       "planId": "uw-seattle-education-studies",
@@ -6600,27 +5081,6 @@
       "planId": "uw-seattle-education-studies",
       "pathwayId": "multilingual-language-in-education",
       "title": "Education Studies - Multilingual/Language in Education",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:organizational-and-policy-studies",
-      "ownerKey": "uw-seattle-education-studies::organizational-and-policy-studies",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "organizational-and-policy-studies",
-      "title": "Education Studies - Organizational and Policy Studies",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
@@ -6677,62 +5137,6 @@
       },
       "rootIssues": [],
       "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:social-and-cultural-foundations",
-      "ownerKey": "uw-seattle-education-studies::social-and-cultural-foundations",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "social-and-cultural-foundations",
-      "title": "Education Studies - Social and Cultural Foundations",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:social-studies",
-      "ownerKey": "uw-seattle-education-studies::social-studies",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "social-studies",
-      "title": "Education Studies - Social Studies",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
     },
     {
       "ownerId": "uw-seattle-education-studies:pathway:sports-and-education",
@@ -6819,27 +5223,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-education-studies:pathway:wellness-and-social-emotional-learning",
-      "ownerKey": "uw-seattle-education-studies::wellness-and-social-emotional-learning",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "wellness-and-social-emotional-learning",
-      "title": "Education Studies - Wellness and Social Emotional Learning",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-electrical-computer-engineering",
       "ownerKey": "uw-seattle-electrical-computer-engineering::",
       "planId": "uw-seattle-electrical-computer-engineering",
@@ -6882,53 +5265,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-electrical-computer-engineering:pathway:computing-pathway",
-      "ownerKey": "uw-seattle-electrical-computer-engineering::computing-pathway",
-      "planId": "uw-seattle-electrical-computer-engineering",
-      "pathwayId": "computing-pathway",
-      "title": "Electrical & Computer Engineering - Computing pathway",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway",
       "ownerKey": "uw-seattle-electrical-computer-engineering::control-systems-pathway",
       "planId": "uw-seattle-electrical-computer-engineering",
       "pathwayId": "control-systems-pathway",
       "title": "Electrical & Computer Engineering - Control Systems pathway",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-electrical-computer-engineering:pathway:digital-systems-design-pathway",
-      "ownerKey": "uw-seattle-electrical-computer-engineering::digital-systems-design-pathway",
-      "planId": "uw-seattle-electrical-computer-engineering",
-      "pathwayId": "digital-systems-design-pathway",
-      "title": "Electrical & Computer Engineering - Digital Systems Design pathway",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
@@ -7034,48 +5375,6 @@
       "planId": "uw-seattle-electrical-computer-engineering",
       "pathwayId": "photonics-pathway",
       "title": "Electrical & Computer Engineering - Photonics pathway",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-electrical-computer-engineering:pathway:sensing-and-communication-pathway",
-      "ownerKey": "uw-seattle-electrical-computer-engineering::sensing-and-communication-pathway",
-      "planId": "uw-seattle-electrical-computer-engineering",
-      "pathwayId": "sensing-and-communication-pathway",
-      "title": "Electrical & Computer Engineering - Sensing and Communication pathway",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-electrical-computer-engineering:pathway:sustainable-energy-systems-pathway",
-      "ownerKey": "uw-seattle-electrical-computer-engineering::sustainable-energy-systems-pathway",
-      "planId": "uw-seattle-electrical-computer-engineering",
-      "pathwayId": "sustainable-energy-systems-pathway",
-      "title": "Electrical & Computer Engineering - Sustainable Energy Systems pathway",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
@@ -7222,48 +5521,6 @@
       "ownerKey": "uw-seattle-english-language-literature-and-culture::ba-in-english-creative-writing-option",
       "planId": "uw-seattle-english-language-literature-and-culture",
       "pathwayId": "ba-in-english-creative-writing-option",
-      "title": "English - Language, Literature & Culture - BA in English, Creative Writing Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-english-language-literature-and-culture:pathway:ba-in-english-language-and-literature-option",
-      "ownerKey": "uw-seattle-english-language-literature-and-culture::ba-in-english-language-and-literature-option",
-      "planId": "uw-seattle-english-language-literature-and-culture",
-      "pathwayId": "ba-in-english-language-and-literature-option",
-      "title": "English - Language, Literature & Culture - BA in English, Creative Writing Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://english.washington.edu/english-language-literature-and-culture-option",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-english-language-literature-and-culture:pathway:english-language-literature-and-culture-option",
-      "ownerKey": "uw-seattle-english-language-literature-and-culture::english-language-literature-and-culture-option",
-      "planId": "uw-seattle-english-language-literature-and-culture",
-      "pathwayId": "english-language-literature-and-culture-option",
       "title": "English - Language, Literature & Culture - BA in English, Creative Writing Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
@@ -7701,48 +5958,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-european-studies:pathway:jewish-studies",
-      "ownerKey": "uw-seattle-european-studies::jewish-studies",
-      "planId": "uw-seattle-european-studies",
-      "pathwayId": "jewish-studies",
-      "title": "European Studies - Jewish Studies",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-european-studies:pathway:latin-america-and-caribbean",
-      "ownerKey": "uw-seattle-european-studies::latin-america-and-caribbean",
-      "planId": "uw-seattle-european-studies",
-      "pathwayId": "latin-america-and-caribbean",
-      "title": "European Studies - Latin America and Caribbean",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-finnish",
       "ownerKey": "uw-seattle-finnish::",
       "planId": "uw-seattle-finnish",
@@ -7911,14 +6126,14 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-geography:pathway:data-science-option",
-      "ownerKey": "uw-seattle-geography::data-science-option",
+      "ownerId": "uw-seattle-geography:pathway:b-a-in-geography-with-data-science-option",
+      "ownerKey": "uw-seattle-geography::b-a-in-geography-with-data-science-option",
       "planId": "uw-seattle-geography",
-      "pathwayId": "data-science-option",
-      "title": "Geography - Data Science option",
+      "pathwayId": "b-a-in-geography-with-data-science-option",
+      "title": "Geography - B.a. in Geography with Data Science Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://geography.washington.edu/ba-geography-data-science-option",
+      "primarySourceUrl": "https://geography.washington.edu/ba-geography",
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
@@ -7932,11 +6147,95 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-geography:pathway:standard-ba-route",
-      "ownerKey": "uw-seattle-geography::standard-ba-route",
+      "ownerId": "uw-seattle-geography:pathway:cities-citizenship-and-migration-track",
+      "ownerKey": "uw-seattle-geography::cities-citizenship-and-migration-track",
       "planId": "uw-seattle-geography",
-      "pathwayId": "standard-ba-route",
-      "title": "Geography - Standard B.A. route",
+      "pathwayId": "cities-citizenship-and-migration-track",
+      "title": "Geography - Cities, Citizenship and Migration Track",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://geography.washington.edu/ba-geography",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-seattle-geography:pathway:geography-major-data-science-option-requirements",
+      "ownerKey": "uw-seattle-geography::geography-major-data-science-option-requirements",
+      "planId": "uw-seattle-geography",
+      "pathwayId": "geography-major-data-science-option-requirements",
+      "title": "Geography - Geography Major Data Science Option Requirements",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://geography.washington.edu/ba-geography",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-seattle-geography:pathway:gis-mapping-and-society-track",
+      "ownerKey": "uw-seattle-geography::gis-mapping-and-society-track",
+      "planId": "uw-seattle-geography",
+      "pathwayId": "gis-mapping-and-society-track",
+      "title": "Geography - GIS, Mapping and Society Track",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://geography.washington.edu/ba-geography",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-seattle-geography:pathway:standard-b-a-route",
+      "ownerKey": "uw-seattle-geography::standard-b-a-route",
+      "planId": "uw-seattle-geography",
+      "pathwayId": "standard-b-a-route",
+      "title": "Geography - Standard B.a. Route",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://geography.washington.edu/ba-geography",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-seattle-geography:pathway:the-geography-b-a-with-data-science-option-is-awarded-upon",
+      "ownerKey": "uw-seattle-geography::the-geography-b-a-with-data-science-option-is-awarded-upon",
+      "planId": "uw-seattle-geography",
+      "pathwayId": "the-geography-b-a-with-data-science-option-is-awarded-upon",
+      "title": "Geography - The Geography B.a. with Data Science Option Is Awarded Upon:",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://geography.washington.edu/ba-geography",
@@ -8142,27 +6441,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-human-centered-design-engineering:pathway:data-science-option",
-      "ownerKey": "uw-seattle-human-centered-design-engineering::data-science-option",
-      "planId": "uw-seattle-human-centered-design-engineering",
-      "pathwayId": "data-science-option",
-      "title": "Human Centered Design & Engineering - Data Science option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.hcde.washington.edu/bs/requirements/2024",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-human-centered-design-engineering:pathway:human-computer-interaction-option",
       "ownerKey": "uw-seattle-human-centered-design-engineering::human-computer-interaction-option",
       "planId": "uw-seattle-human-centered-design-engineering",
@@ -8268,27 +6546,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-informatics:pathway:an-option",
-      "ownerKey": "uw-seattle-informatics::an-option",
-      "planId": "uw-seattle-informatics",
-      "pathwayId": "an-option",
-      "title": "Informatics - An option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 19,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-informatics:pathway:begin-taking-major-electives-degree-option-classes-spring-of-junior-year",
       "ownerKey": "uw-seattle-informatics::begin-taking-major-electives-degree-option-classes-spring-of-junior-year",
       "planId": "uw-seattle-informatics",
@@ -8319,69 +6576,6 @@
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
       "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-informatics:pathway:data-science-option",
-      "ownerKey": "uw-seattle-informatics::data-science-option",
-      "planId": "uw-seattle-informatics",
-      "pathwayId": "data-science-option",
-      "title": "Informatics - Data Science option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-informatics:pathway:declare-your-major-option-by-spring-of-junior-year-recommended",
-      "ownerKey": "uw-seattle-informatics::declare-your-major-option-by-spring-of-junior-year-recommended",
-      "planId": "uw-seattle-informatics",
-      "pathwayId": "declare-your-major-option-by-spring-of-junior-year-recommended",
-      "title": "Informatics - Begin taking major electives/degree option classes spring of junior year",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-informatics:pathway:informatics-data-science-option",
-      "ownerKey": "uw-seattle-informatics::informatics-data-science-option",
-      "planId": "uw-seattle-informatics",
-      "pathwayId": "informatics-data-science-option",
-      "title": "Informatics - Data Science Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 22,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -8462,48 +6656,6 @@
       "planId": "uw-seattle-international-studies",
       "pathwayId": "europe",
       "title": "International Studies - Europe",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-international-studies:pathway:jewish-studies",
-      "ownerKey": "uw-seattle-international-studies::jewish-studies",
-      "planId": "uw-seattle-international-studies",
-      "pathwayId": "jewish-studies",
-      "title": "International Studies - Jewish Studies",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-international-studies:pathway:latin-america-and-caribbean",
-      "ownerKey": "uw-seattle-international-studies::latin-america-and-caribbean",
-      "planId": "uw-seattle-international-studies",
-      "pathwayId": "latin-america-and-caribbean",
-      "title": "International Studies - Latin America and Caribbean",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
@@ -8660,90 +6812,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-jewish-studies:pathway:asian-studies-and-8211-japan-concentration",
-      "ownerKey": "uw-seattle-jewish-studies::asian-studies-and-8211-japan-concentration",
-      "planId": "uw-seattle-jewish-studies",
-      "pathwayId": "asian-studies-and-8211-japan-concentration",
-      "title": "Jewish Studies - Asian Studies &#8211; Japan Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-jewish-studies:pathway:asian-studies-and-8211-korea-concentration",
-      "ownerKey": "uw-seattle-jewish-studies::asian-studies-and-8211-korea-concentration",
-      "planId": "uw-seattle-jewish-studies",
-      "pathwayId": "asian-studies-and-8211-korea-concentration",
-      "title": "Jewish Studies - Asian Studies &#8211; Korea Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-jewish-studies:pathway:asian-studies-and-8211-south-asia-concentration",
-      "ownerKey": "uw-seattle-jewish-studies::asian-studies-and-8211-south-asia-concentration",
-      "planId": "uw-seattle-jewish-studies",
-      "pathwayId": "asian-studies-and-8211-south-asia-concentration",
-      "title": "Jewish Studies - Asian Studies &#8211; South Asia Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-jewish-studies:pathway:asian-studies-and-8211-southeast-asia-concentration",
-      "ownerKey": "uw-seattle-jewish-studies::asian-studies-and-8211-southeast-asia-concentration",
-      "planId": "uw-seattle-jewish-studies",
-      "pathwayId": "asian-studies-and-8211-southeast-asia-concentration",
-      "title": "Jewish Studies - Asian Studies &#8211; Southeast Asia Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-jewish-studies:pathway:general-concentration",
       "ownerKey": "uw-seattle-jewish-studies::general-concentration",
       "planId": "uw-seattle-jewish-studies",
@@ -8849,111 +6917,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-latin-american-and-caribbean-studies:pathway:asian-studies-and-8211-china-concentration",
-      "ownerKey": "uw-seattle-latin-american-and-caribbean-studies::asian-studies-and-8211-china-concentration",
-      "planId": "uw-seattle-latin-american-and-caribbean-studies",
-      "pathwayId": "asian-studies-and-8211-china-concentration",
-      "title": "Latin American & Caribbean Studies - Asian Studies &#8211; China Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-latin-american-and-caribbean-studies:pathway:asian-studies-and-8211-japan-concentration",
-      "ownerKey": "uw-seattle-latin-american-and-caribbean-studies::asian-studies-and-8211-japan-concentration",
-      "planId": "uw-seattle-latin-american-and-caribbean-studies",
-      "pathwayId": "asian-studies-and-8211-japan-concentration",
-      "title": "Latin American & Caribbean Studies - Asian Studies &#8211; Japan Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-latin-american-and-caribbean-studies:pathway:asian-studies-and-8211-korea-concentration",
-      "ownerKey": "uw-seattle-latin-american-and-caribbean-studies::asian-studies-and-8211-korea-concentration",
-      "planId": "uw-seattle-latin-american-and-caribbean-studies",
-      "pathwayId": "asian-studies-and-8211-korea-concentration",
-      "title": "Latin American & Caribbean Studies - Asian Studies &#8211; Korea Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-latin-american-and-caribbean-studies:pathway:asian-studies-and-8211-south-asia-concentration",
-      "ownerKey": "uw-seattle-latin-american-and-caribbean-studies::asian-studies-and-8211-south-asia-concentration",
-      "planId": "uw-seattle-latin-american-and-caribbean-studies",
-      "pathwayId": "asian-studies-and-8211-south-asia-concentration",
-      "title": "Latin American & Caribbean Studies - Asian Studies &#8211; South Asia Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-latin-american-and-caribbean-studies:pathway:asian-studies-and-8211-southeast-asia-concentration",
-      "ownerKey": "uw-seattle-latin-american-and-caribbean-studies::asian-studies-and-8211-southeast-asia-concentration",
-      "planId": "uw-seattle-latin-american-and-caribbean-studies",
-      "pathwayId": "asian-studies-and-8211-southeast-asia-concentration",
-      "title": "Latin American & Caribbean Studies - Asian Studies &#8211; Southeast Asia Concentration",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-latin-american-and-caribbean-studies:pathway:general-concentration",
       "ownerKey": "uw-seattle-latin-american-and-caribbean-studies::general-concentration",
       "planId": "uw-seattle-latin-american-and-caribbean-studies",
@@ -9025,7 +6988,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://lsj.washington.edu/lsj-gold-curriculum-requirements",
-      "sourceOnlyUwCourseCodeCount": 50,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -9248,27 +7211,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-mechanical-engineering:pathway:non-me-courses-as-me-option",
-      "ownerKey": "uw-seattle-mechanical-engineering::non-me-courses-as-me-option",
-      "planId": "uw-seattle-mechanical-engineering",
-      "pathwayId": "non-me-courses-as-me-option",
-      "title": "Mechanical Engineering - ME option courses",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.me.washington.edu/students/ug/requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-mechanical-engineering:pathway:special-projects-graded-option-only-6-maximum",
       "ownerKey": "uw-seattle-mechanical-engineering::special-projects-graded-option-only-6-maximum",
       "planId": "uw-seattle-mechanical-engineering",
@@ -9301,14 +7243,28 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
-      "rootIssues": [],
-      "symptomIssues": []
+      "rootIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ],
+      "symptomIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-seattle-microbiology",
@@ -9441,48 +7397,6 @@
       "ownerKey": "uw-seattle-music-b-a::bachelor-of-arts-instrumental-option-degree-program-sheet-pdf",
       "planId": "uw-seattle-music-b-a",
       "pathwayId": "bachelor-of-arts-instrumental-option-degree-program-sheet-pdf",
-      "title": "Music, B.A. - Bachelor of Arts - Instrumental Option Degree Program Sheet (PDF)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-music-b-a:pathway:bachelor-of-arts-music-instrumental-option",
-      "ownerKey": "uw-seattle-music-b-a::bachelor-of-arts-music-instrumental-option",
-      "planId": "uw-seattle-music-b-a",
-      "pathwayId": "bachelor-of-arts-music-instrumental-option",
-      "title": "Music, B.A. - Bachelor of Arts - Instrumental Option Degree Program Sheet (PDF)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-music-b-a:pathway:music-instrumental-option",
-      "ownerKey": "uw-seattle-music-b-a::music-instrumental-option",
-      "planId": "uw-seattle-music-b-a",
-      "pathwayId": "music-instrumental-option",
       "title": "Music, B.A. - Bachelor of Arts - Instrumental Option Degree Program Sheet (PDF)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
@@ -9857,90 +7771,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-physics:pathway:applied-physics-track-addl-34-43-credits",
-      "ownerKey": "uw-seattle-physics::applied-physics-track-addl-34-43-credits",
-      "planId": "uw-seattle-physics",
-      "pathwayId": "applied-physics-track-addl-34-43-credits",
-      "title": "Physics - Applied physics track",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-physics:pathway:biological-physics-track-addl-48-56-credits",
-      "ownerKey": "uw-seattle-physics::biological-physics-track-addl-48-56-credits",
-      "planId": "uw-seattle-physics",
-      "pathwayId": "biological-physics-track-addl-48-56-credits",
-      "title": "Physics - Applied physics track",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-physics:pathway:comprehensive-and-applied-physics-track-electives",
-      "ownerKey": "uw-seattle-physics::comprehensive-and-applied-physics-track-electives",
-      "planId": "uw-seattle-physics",
-      "pathwayId": "comprehensive-and-applied-physics-track-electives",
-      "title": "Physics - Applied physics track",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-physics:pathway:comprehensive-physics-track",
-      "ownerKey": "uw-seattle-physics::comprehensive-physics-track",
-      "planId": "uw-seattle-physics",
-      "pathwayId": "comprehensive-physics-track",
-      "title": "Physics - Applied physics track",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-physics:pathway:comprehensive-track",
       "ownerKey": "uw-seattle-physics::comprehensive-track",
       "planId": "uw-seattle-physics",
@@ -9967,48 +7797,6 @@
       "planId": "uw-seattle-physics",
       "pathwayId": "comprehensive-track-addl-38-46-credits",
       "title": "Physics - Comprehensive track Addl 38 46 Credits",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-physics:pathway:teaching-physics-track",
-      "ownerKey": "uw-seattle-physics::teaching-physics-track",
-      "planId": "uw-seattle-physics",
-      "pathwayId": "teaching-physics-track",
-      "title": "Physics - Applied physics track",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-physics:pathway:teaching-physics-track-addl-41-43-credits",
-      "ownerKey": "uw-seattle-physics::teaching-physics-track-addl-41-43-credits",
-      "planId": "uw-seattle-physics",
-      "pathwayId": "teaching-physics-track-addl-41-43-credits",
-      "title": "Physics - Applied physics track",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://phys.washington.edu/physics-bs-degree-requirements",
@@ -10072,48 +7860,6 @@
       "planId": "uw-seattle-political-science",
       "pathwayId": "international-security-and-political-economy-option-courses",
       "title": "Political Science - International Security and Political Economy option Courses",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-political-science:pathway:international-security-option",
-      "ownerKey": "uw-seattle-political-science::international-security-option",
-      "planId": "uw-seattle-political-science",
-      "pathwayId": "international-security-option",
-      "title": "Political Science - International Security option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-political-science:pathway:international-security-option-pdf",
-      "ownerKey": "uw-seattle-political-science::international-security-option-pdf",
-      "planId": "uw-seattle-political-science",
-      "pathwayId": "international-security-option-pdf",
-      "title": "Political Science - International Security option Pdf",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
@@ -10256,11 +8002,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-public-health-global-health:pathway:ba-global-health-option",
-      "ownerKey": "uw-seattle-public-health-global-health::ba-global-health-option",
+      "ownerId": "uw-seattle-public-health-global-health:pathway:b-a-global-health-option",
+      "ownerKey": "uw-seattle-public-health-global-health::b-a-global-health-option",
       "planId": "uw-seattle-public-health-global-health",
-      "pathwayId": "ba-global-health-option",
-      "title": "Public Health - Global Health - B.A. Global Health option",
+      "pathwayId": "b-a-global-health-option",
+      "title": "Public Health - Global Health - B.a. Global Health Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
@@ -10277,53 +8023,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-public-health-global-health:pathway:ba-health-education-promotion-option",
-      "ownerKey": "uw-seattle-public-health-global-health::ba-health-education-promotion-option",
+      "ownerId": "uw-seattle-public-health-global-health:pathway:b-a-health-education-and-promotion-option",
+      "ownerKey": "uw-seattle-public-health-global-health::b-a-health-education-and-promotion-option",
       "planId": "uw-seattle-public-health-global-health",
-      "pathwayId": "ba-health-education-promotion-option",
-      "title": "Public Health - Global Health - B.A. Health Education and Promotion option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-public-health-global-health:pathway:bs-global-health-option",
-      "ownerKey": "uw-seattle-public-health-global-health::bs-global-health-option",
-      "planId": "uw-seattle-public-health-global-health",
-      "pathwayId": "bs-global-health-option",
-      "title": "Public Health - Global Health - B.S. Global Health option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-public-health-global-health:pathway:bs-nutritional-sciences-option",
-      "ownerKey": "uw-seattle-public-health-global-health::bs-nutritional-sciences-option",
-      "planId": "uw-seattle-public-health-global-health",
-      "pathwayId": "bs-nutritional-sciences-option",
-      "title": "Public Health - Global Health - B.S. Nutritional Sciences option",
+      "pathwayId": "b-a-health-education-and-promotion-option",
+      "title": "Public Health - Global Health - B.a. Health Education and Promotion Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
@@ -10571,27 +8275,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-speech-and-hearing-sciences:pathway:communication-disorders-not-admitting",
-      "ownerKey": "uw-seattle-speech-and-hearing-sciences::communication-disorders-not-admitting",
-      "planId": "uw-seattle-speech-and-hearing-sciences",
-      "pathwayId": "communication-disorders-not-admitting",
-      "title": "Speech & Hearing Sciences - Communication Disorders (Not Admitting)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-speech-and-hearing-sciences:pathway:educational-speech-language-pathology-fee-based",
       "ownerKey": "uw-seattle-speech-and-hearing-sciences::educational-speech-language-pathology-fee-based",
       "planId": "uw-seattle-speech-and-hearing-sciences",
@@ -10702,27 +8385,6 @@
       "planId": "uw-seattle-statistics",
       "pathwayId": "applied-statistics-track",
       "title": "Statistics - Applied Statistics track",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-statistics:pathway:data-science-track",
-      "ownerKey": "uw-seattle-statistics::data-science-track",
-      "planId": "uw-seattle-statistics",
-      "pathwayId": "data-science-track",
-      "title": "Statistics - Data Science track",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
@@ -10939,56 +8601,28 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 0
+        "warning": 1
       },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-arts-media-culture:pathway:american-cultures-track",
-      "ownerKey": "uw-tacoma-arts-media-culture::american-cultures-track",
-      "planId": "uw-tacoma-arts-media-culture",
-      "pathwayId": "american-cultures-track",
-      "title": "Arts, Media and Culture (BA) - American Cultures Track",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-arts-media-culture:pathway:comparative-arts-track",
-      "ownerKey": "uw-tacoma-arts-media-culture::comparative-arts-track",
-      "planId": "uw-tacoma-arts-media-culture",
-      "pathwayId": "comparative-arts-track",
-      "title": "Arts, Media and Culture (BA) - Comparative Arts track",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
+      "rootIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ],
+      "symptomIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ]
     },
     {
       "ownerId": "uw-tacoma-arts-media-culture:pathway:film-and-media-track",
@@ -10996,27 +8630,6 @@
       "planId": "uw-tacoma-arts-media-culture",
       "pathwayId": "film-and-media-track",
       "title": "Arts, Media and Culture (BA) - Film and Media track",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-arts-media-culture:pathway:literature-track",
-      "ownerKey": "uw-tacoma-arts-media-culture::literature-track",
-      "planId": "uw-tacoma-arts-media-culture",
-      "pathwayId": "literature-track",
-      "title": "Arts, Media and Culture (BA) - Literature track",
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
@@ -11122,27 +8735,6 @@
       "planId": "uw-tacoma-bachelor-of-arts-in-business-administration",
       "pathwayId": "general-business-option",
       "title": "Bachelor of Arts in Business Administration (BABA) - General Business option",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-bachelor-of-arts-in-business-administration:pathway:management-option",
-      "ownerKey": "uw-tacoma-bachelor-of-arts-in-business-administration::management-option",
-      "planId": "uw-tacoma-bachelor-of-arts-in-business-administration",
-      "pathwayId": "management-option",
-      "title": "Bachelor of Arts in Business Administration (BABA) - Management option",
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/business/design-courses-baba",
@@ -11362,27 +8954,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-tacoma-computer-engineering:pathway:information-assurance-and-cybersecurity",
-      "ownerKey": "uw-tacoma-computer-engineering::information-assurance-and-cybersecurity",
-      "planId": "uw-tacoma-computer-engineering",
-      "pathwayId": "information-assurance-and-cybersecurity",
-      "title": "Computer Engineering - Information Assurance and Cybersecurity",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-tacoma-computer-engineering:pathway:mobile-digital-forensics",
       "ownerKey": "uw-tacoma-computer-engineering::mobile-digital-forensics",
       "planId": "uw-tacoma-computer-engineering",
@@ -11509,27 +9080,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-tacoma-education:pathway:english-language-learners-ell-dual-endorsement-option",
-      "ownerKey": "uw-tacoma-education::english-language-learners-ell-dual-endorsement-option",
-      "planId": "uw-tacoma-education",
-      "pathwayId": "english-language-learners-ell-dual-endorsement-option",
-      "title": "Education (BA) - English Language Learners (Ell) Dual Endorsement Option",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-tacoma-education:pathway:special-education-dual-endorsement-option",
       "ownerKey": "uw-tacoma-education::special-education-dual-endorsement-option",
       "planId": "uw-tacoma-education",
@@ -11614,27 +9164,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-tacoma-electrical-engineering:pathway:information-assurance-and-cybersecurity",
-      "ownerKey": "uw-tacoma-electrical-engineering::information-assurance-and-cybersecurity",
-      "planId": "uw-tacoma-electrical-engineering",
-      "pathwayId": "information-assurance-and-cybersecurity",
-      "title": "Electrical Engineering - Information Assurance and Cybersecurity",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-tacoma-electrical-engineering:pathway:mobile-digital-forensics",
       "ownerKey": "uw-tacoma-electrical-engineering::mobile-digital-forensics",
       "planId": "uw-tacoma-electrical-engineering",
@@ -11698,74 +9227,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-tacoma-environmental-sustainability:pathway:business-nonprofit-leadership-option",
-      "ownerKey": "uw-tacoma-environmental-sustainability::business-nonprofit-leadership-option",
-      "planId": "uw-tacoma-environmental-sustainability",
-      "pathwayId": "business-nonprofit-leadership-option",
-      "title": "Environmental Sustainability (BA) - Business and Nonprofit Leadership option",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-environmental-sustainability:pathway:education-option",
-      "ownerKey": "uw-tacoma-environmental-sustainability::education-option",
-      "planId": "uw-tacoma-environmental-sustainability",
-      "pathwayId": "education-option",
-      "title": "Environmental Sustainability (BA) - Education option",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-tacoma-environmental-sustainability:pathway:environmental-communication-option",
       "ownerKey": "uw-tacoma-environmental-sustainability::environmental-communication-option",
       "planId": "uw-tacoma-environmental-sustainability",
       "pathwayId": "environmental-communication-option",
       "title": "Environmental Sustainability (BA) - Environmental Communication option",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-      "sourceOnlyUwCourseCodeCount": 5,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-environmental-sustainability:pathway:policy-law-option",
-      "ownerKey": "uw-tacoma-environmental-sustainability::policy-law-option",
-      "planId": "uw-tacoma-environmental-sustainability",
-      "pathwayId": "policy-law-option",
-      "title": "Environmental Sustainability (BA) - Policy and Law option",
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
@@ -11985,27 +9451,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-tacoma-history:pathway:labor-and-social-movements-option",
-      "ownerKey": "uw-tacoma-history::labor-and-social-movements-option",
-      "planId": "uw-tacoma-history",
-      "pathwayId": "labor-and-social-movements-option",
-      "title": "History (BA) - Labor and Social Movements option",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/history",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-tacoma-history:pathway:power-gender-and-identity-option",
       "ownerKey": "uw-tacoma-history::power-gender-and-identity-option",
       "planId": "uw-tacoma-history",
@@ -12111,48 +9556,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:economics",
-      "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::economics",
-      "planId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
-      "pathwayId": "economics",
-      "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA) - Economics",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:ethnic",
-      "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::ethnic",
-      "planId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
-      "pathwayId": "ethnic",
-      "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA) - Ethnic",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:gender",
       "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::gender",
       "planId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
@@ -12174,95 +9577,11 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:global-history",
-      "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::global-history",
-      "planId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
-      "pathwayId": "global-history",
-      "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA) - Global History",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:international-studies",
-      "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::international-studies",
-      "planId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
-      "pathwayId": "international-studies",
-      "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA) - International Studies",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:labor",
       "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::labor",
       "planId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
       "pathwayId": "labor",
       "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA) - Labor",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:labor-and-social-movements",
-      "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::labor-and-social-movements",
-      "planId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
-      "pathwayId": "labor-and-social-movements",
-      "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA) - Labor and Social Movements",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed:pathway:politics-and-philosophy",
-      "ownerKey": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed::politics-and-philosophy",
-      "planId": "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed",
-      "pathwayId": "politics-and-philosophy",
-      "title": "Interdisciplinary Arts and Sciences: Individually-designed (BA) - Politics and Philosophy",
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
@@ -12655,48 +9974,6 @@
       "planId": "uw-tacoma-writing-studies",
       "pathwayId": "creative-writing-track",
       "title": "Writing Studies (BA) - Creative Writing Track",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-writing-studies:pathway:rhetoric-writing-and-social-change-track",
-      "ownerKey": "uw-tacoma-writing-studies::rhetoric-writing-and-social-change-track",
-      "planId": "uw-tacoma-writing-studies",
-      "pathwayId": "rhetoric-writing-and-social-change-track",
-      "title": "Writing Studies (BA) - Creative Writing Track",
-      "campusId": "uw-tacoma",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-tacoma-writing-studies:pathway:technical-communication-track",
-      "ownerKey": "uw-tacoma-writing-studies::technical-communication-track",
-      "planId": "uw-tacoma-writing-studies",
-      "pathwayId": "technical-communication-track",
-      "title": "Writing Studies (BA) - Technical Communication track",
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/writing-studies",

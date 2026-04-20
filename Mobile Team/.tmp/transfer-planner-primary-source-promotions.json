@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-04-19T20:05:41.804Z",
-  "totalPromotions": 76,
+  "generatedAt": "2026-04-20T03:41:43.695Z",
+  "totalPromotions": 74,
   "countsByCampus": {
     "uw-bothell": 21,
-    "uw-seattle": 33,
+    "uw-seattle": 31,
     "uw-tacoma": 22
   },
   "skippedInReviewQueueCount": 0,
@@ -756,44 +756,6 @@
         "manual official-source promotion for dedicated B.A. in Geography requirements page",
         "replaces the mixed general catalog page as the parser primary",
         "lets the parser recover structured base-major requirements while keeping option content separate"
-      ],
-      "generatedAt": "2026-04-18T00:00:00.000Z"
-    },
-    {
-      "ownerType": "pathway",
-      "ownerId": "uw-seattle-geography:pathway:data-science-option",
-      "ownerKey": "uw-seattle-geography:pathway:data-science-option",
-      "planId": "uw-seattle-geography",
-      "pathwayId": "data-science-option",
-      "ownerTitle": "Geography - Data Science option",
-      "campusId": "uw-seattle",
-      "url": "https://geography.washington.edu/ba-geography-data-science-option",
-      "label": "UW Geography Data Science option major requirements",
-      "score": 999,
-      "confidence": "high",
-      "reasons": [
-        "manual official-source promotion for dedicated Geography Data Science option page",
-        "replaces the mixed general catalog page as the parser primary for this pathway",
-        "preserves option-specific lower-division requirement cues without collapsing them into the base route"
-      ],
-      "generatedAt": "2026-04-18T00:00:00.000Z"
-    },
-    {
-      "ownerType": "pathway",
-      "ownerId": "uw-seattle-geography:pathway:standard-ba-route",
-      "ownerKey": "uw-seattle-geography:pathway:standard-ba-route",
-      "planId": "uw-seattle-geography",
-      "pathwayId": "standard-ba-route",
-      "ownerTitle": "Geography - Standard B.A. route",
-      "campusId": "uw-seattle",
-      "url": "https://geography.washington.edu/ba-geography",
-      "label": "UW Geography B.A. major requirements",
-      "score": 999,
-      "confidence": "high",
-      "reasons": [
-        "manual official-source promotion for dedicated B.A. in Geography requirements page",
-        "replaces the mixed general catalog page as the parser primary for the standard route",
-        "keeps the standard B.A. route anchored to the base-major requirements page"
       ],
       "generatedAt": "2026-04-18T00:00:00.000Z"
     },

@@ -6,11 +6,16 @@ param(
   [string]$OnlySection,
   [string]$StartSection,
   [switch]$ShowCacheSummary,
-  [switch]$NoPrompt
+  [switch]$ShowLaymansDiagnosis,
+  [switch]$NoPrompt,
+  [switch]$EditCourseLinks,
+  [int]$BackExitCode = 0
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+
+. (Join-Path $PSScriptRoot "transfer-planner-maintenance-common.ps1")
 
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $tmpDir = Join-Path $projectRoot ".tmp"
@@ -24,6 +29,7 @@ $logPath = Join-Path $logDir "planner-maintenance-$timestamp.log"
 $summaryPath = Join-Path $tmpDir "transfer-planner-maintenance-summary.md"
 $refreshLauncherPath = Join-Path $PSScriptRoot "run-transfer-planner-refresh.ps1"
 $refreshPipelineScriptPath = Join-Path $projectRoot "scripts\planner\refresh-transfer-planner-sources.cjs"
+$linkManagerScriptPath = Join-Path $projectRoot "scripts\planner\course-planner-link-manager.cjs"
 $plannerStatusScriptPath = Join-Path $projectRoot "scripts\planner\planner-status.cjs"
 $qaResultsRoot = Join-Path $projectRoot ".tools"
 $qaWebPath = Join-Path $qaResultsRoot "qa-web"
@@ -584,6 +590,586 @@ function Show-CacheSummary {
     Write-Host "Current required update queue:" -ForegroundColor Cyan
     @(& node $plannerStatusScriptPath 2>$null) | ForEach-Object { Write-Host $_ }
   }
+
+  $diagnosisItems = @(
+    Get-TransferPlannerLaymansDiagnosis -ProjectRoot $projectRoot -LogPath $logPath -IncludeWarnings
+  )
+  Write-TransferPlannerLaymansDiagnosis -Items $diagnosisItems -Header "Laymans Diagnosis"
+}
+
+function Show-LaymansDiagnosis {
+  $diagnosisItems = @(
+    Get-TransferPlannerLaymansDiagnosis -ProjectRoot $projectRoot -LogPath $logPath -IncludeWarnings
+  )
+
+  if ($diagnosisItems.Count -eq 0) {
+    Write-Section "Laymans Diagnosis"
+    Write-Host "No current simple-language follow-up notes were found." -ForegroundColor DarkGreen
+    return
+  }
+
+  Write-TransferPlannerLaymansDiagnosis -Items $diagnosisItems -Header "Laymans Diagnosis"
+}
+
+function Invoke-TransferPlannerNodeJsonCommand {
+  param(
+    [string[]]$Arguments,
+    [string]$FailureContext
+  )
+
+  $rawOutput = @(& node @Arguments 2>&1)
+  $exitCode = if ($null -ne $LASTEXITCODE) { [int]$LASTEXITCODE } elseif ($?) { 0 } else { 1 }
+  if ($exitCode -ne 0) {
+    $errorText = ($rawOutput | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine
+    if ([string]::IsNullOrWhiteSpace($errorText)) {
+      throw "$FailureContext failed with exit code $exitCode."
+    }
+    throw "$FailureContext failed: $errorText"
+  }
+
+  $jsonText = ($rawOutput | ForEach-Object { $_.ToString() }) -join [Environment]::NewLine
+  if ([string]::IsNullOrWhiteSpace($jsonText)) {
+    return $null
+  }
+
+  try {
+    return $jsonText | ConvertFrom-Json
+  } catch {
+    throw "$FailureContext returned invalid JSON."
+  }
+}
+
+function Get-CourseLinkInventory {
+  return Invoke-TransferPlannerNodeJsonCommand `
+    -Arguments @($linkManagerScriptPath, "--inventory", "--format", "json") `
+    -FailureContext "Course link inventory lookup"
+}
+
+function Get-CourseLinkPlanDetails {
+  param([string]$PlanId)
+
+  return Invoke-TransferPlannerNodeJsonCommand `
+    -Arguments @($linkManagerScriptPath, "--show-plan", "--plan-id", $PlanId, "--format", "json") `
+    -FailureContext "Course link details lookup"
+}
+
+function Invoke-CourseLinkManagerUpdate {
+  param(
+    [string[]]$Arguments,
+    [string]$FailureContext
+  )
+
+  $commandArguments = @($linkManagerScriptPath) + @($Arguments)
+  return Invoke-TransferPlannerNodeJsonCommand `
+    -Arguments $commandArguments `
+    -FailureContext $FailureContext
+}
+
+function Select-NavigableMenuItem {
+  param(
+    [object[]]$Items,
+    [string]$Prompt,
+    [scriptblock]$LabelSelector,
+    [scriptblock]$DescriptionSelector = $null,
+    [string]$BackLabel = "Back"
+  )
+
+  while ($true) {
+    Write-Host ""
+    Write-Host $Prompt -ForegroundColor Cyan
+
+    if (-not $Items -or $Items.Count -eq 0) {
+      Write-Host "No items are available right now." -ForegroundColor Yellow
+      Write-Host ("B. {0}" -f $BackLabel) -ForegroundColor Yellow
+
+      $rawChoice = Read-Host "Enter your choice"
+      if ($rawChoice -match '^[Bb]$') {
+        return @{
+          Action = "back"
+        }
+      }
+
+      Write-Host "Enter B to go back." -ForegroundColor Yellow
+      continue
+    }
+
+    for ($index = 0; $index -lt $Items.Count; $index += 1) {
+      $item = $Items[$index]
+      $label = if ($LabelSelector) { & $LabelSelector $item } else { [string]$item }
+      Write-Host ("{0}. {1}" -f ($index + 1), $label) -ForegroundColor White
+      if ($DescriptionSelector) {
+        $description = & $DescriptionSelector $item
+        if (-not [string]::IsNullOrWhiteSpace([string]$description)) {
+          Write-Host ("   {0}" -f $description) -ForegroundColor DarkGray
+        }
+      }
+    }
+
+    Write-Host ("B. {0}" -f $BackLabel) -ForegroundColor Yellow
+
+    $rawChoice = Read-Host "Enter your choice"
+    if ($rawChoice -match '^[Bb]$') {
+      return @{
+        Action = "back"
+      }
+    }
+
+    $selectedIndex = 0
+    if ([int]::TryParse($rawChoice, [ref]$selectedIndex) -and $selectedIndex -ge 1 -and $selectedIndex -le $Items.Count) {
+      return @{
+        Action = "select"
+        Item = $Items[$selectedIndex - 1]
+      }
+    }
+
+    Write-Host "Enter one of the listed numbers, or B for Back." -ForegroundColor Yellow
+  }
+}
+
+function Read-CourseLinkEditorInput {
+  param(
+    [string]$Prompt,
+    [switch]$AllowEmpty
+  )
+
+  while ($true) {
+    $rawValue = Read-Host ("{0} [B=Back]" -f $Prompt)
+    if ($rawValue -match '^[Bb]$') {
+      return @{
+        Action = "back"
+      }
+    }
+
+    $value = [string]$rawValue
+    if ($AllowEmpty -or -not [string]::IsNullOrWhiteSpace($value)) {
+      return @{
+        Action = "value"
+        Value = $value.Trim()
+      }
+    }
+
+    Write-Host "Enter a value, or use B to leave this step." -ForegroundColor Yellow
+  }
+}
+
+function Read-CourseLinkEditorYesNo {
+  param(
+    [string]$Prompt,
+    [bool]$Default = $true
+  )
+
+  while ($true) {
+    $suffix = if ($Default) { "[Y=Yes, N=No, B=Back] (default: Yes)" } else { "[Y=Yes, N=No, B=Back] (default: No)" }
+    $rawValue = Read-Host ("{0} {1}" -f $Prompt, $suffix)
+
+    if ([string]::IsNullOrWhiteSpace($rawValue)) {
+      return @{
+        Action = "value"
+        Value = $Default
+      }
+    }
+    if ($rawValue -match '^[Bb]$') {
+      return @{
+        Action = "back"
+      }
+    }
+    if ($rawValue -match '^[Yy]') {
+      return @{
+        Action = "value"
+        Value = $true
+      }
+    }
+    if ($rawValue -match '^[Nn]') {
+      return @{
+        Action = "value"
+        Value = $false
+      }
+    }
+
+    Write-Host "Enter Y, N, or B." -ForegroundColor Yellow
+  }
+}
+
+function Show-CourseLinkPlanDetails {
+  param([object]$PlanDetails)
+
+  Write-Section ("Edit course links: {0}" -f $PlanDetails.title)
+  Write-Host ("Institution: {0}" -f $PlanDetails.institutionLabel) -ForegroundColor DarkCyan
+  if ($PlanDetails.groupLabel) {
+    $groupCaption = if ($PlanDetails.groupKind -eq "program-group") {
+      "Program group"
+    } else {
+      "Campus"
+    }
+    Write-Host ("{0}: {1}" -f $groupCaption, $PlanDetails.groupLabel) -ForegroundColor DarkCyan
+  }
+  Write-Host ("{0}: {1}" -f $PlanDetails.itemKindLabel, $PlanDetails.title) -ForegroundColor DarkCyan
+  Write-Host ("Source owner id: {0}" -f $PlanDetails.planId) -ForegroundColor DarkCyan
+  Write-Host ("Source-of-truth file: {0}" -f $PlanDetails.sourceOfTruthPath) -ForegroundColor DarkCyan
+  Write-Host ""
+
+  if (@($PlanDetails.primaryLinks).Count -gt 0) {
+    Write-Host "Primary source link(s):" -ForegroundColor Cyan
+    foreach ($link in $PlanDetails.primaryLinks) {
+      Write-Host ("- {0}" -f $link.label) -ForegroundColor White
+      Write-Host ("  {0}" -f $link.url) -ForegroundColor DarkGray
+      Write-Host ("  Role: {0} | Parser: {1} | Confidence: {2} | Source: {3}" -f $link.role, $link.parserType, $link.confidence, $link.sourceKind) -ForegroundColor DarkGray
+      if ($link.note) {
+        Write-Host ("  Note: {0}" -f $link.note) -ForegroundColor DarkGray
+      }
+    }
+  } else {
+    Write-Host "Primary source link(s): none tracked right now." -ForegroundColor Yellow
+  }
+
+  Write-Host ""
+  if (@($PlanDetails.alternateLinks).Count -gt 0) {
+    Write-Host "Alternate / supplemental source link(s):" -ForegroundColor Cyan
+    foreach ($link in $PlanDetails.alternateLinks) {
+      Write-Host ("- {0}" -f $link.label) -ForegroundColor White
+      Write-Host ("  {0}" -f $link.url) -ForegroundColor DarkGray
+      Write-Host ("  Role: {0} | Parser: {1} | Confidence: {2} | Source: {3}" -f $link.role, $link.parserType, $link.confidence, $link.sourceKind) -ForegroundColor DarkGray
+      if ($link.note) {
+        Write-Host ("  Note: {0}" -f $link.note) -ForegroundColor DarkGray
+      }
+    }
+  } else {
+    Write-Host "Alternate / supplemental source link(s): none tracked right now." -ForegroundColor Yellow
+  }
+
+  if ($PlanDetails.manualOverride) {
+    Write-Host ""
+    Write-Host ("Manual override mode: {0}" -f $PlanDetails.manualOverride.mode) -ForegroundColor DarkCyan
+    if ($PlanDetails.manualOverride.preferredPrimaryUrl) {
+      Write-Host ("Manual preferred primary: {0}" -f $PlanDetails.manualOverride.preferredPrimaryUrl) -ForegroundColor DarkCyan
+    }
+    if (@($PlanDetails.manualOverride.removedUrls).Count -gt 0) {
+      Write-Host ("Manual removed URLs: {0}" -f ((@($PlanDetails.manualOverride.removedUrls)) -join ", ")) -ForegroundColor DarkGray
+    }
+  }
+}
+
+function Invoke-CourseLinkValidation {
+  param(
+    [object]$PlanDetails,
+    [string]$ChangedFile
+  )
+
+  Write-Section "Regenerate and validate course links"
+  Write-Host ("Changed file/config: {0}" -f $ChangedFile) -ForegroundColor DarkCyan
+  Write-Host ("Regeneration required: {0}" -f ($(if ($PlanDetails.regenerationRequired) { "yes" } else { "no" }))) -ForegroundColor DarkCyan
+  Write-Host "Regeneration ran automatically: yes" -ForegroundColor DarkCyan
+  Write-Host ("Validation command: {0}" -f $PlanDetails.automaticValidationCommand) -ForegroundColor DarkGray
+
+  try {
+    Invoke-LoggedCommand `
+      -FilePath "powershell.exe" `
+      -Arguments @(
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        $refreshLauncherPath,
+        "-SkipDownloads",
+        "-OnlySection",
+        "source-audit",
+        "-NoOpenReports"
+      ) `
+      -Description ("Validate updated course links for {0}" -f $PlanDetails.planId)
+    Write-Host "The course-link edit saved and the automatic refresh/validation run succeeded." -ForegroundColor Green
+    return $true
+  } catch {
+    Write-Host "The course-link edit saved, but the automatic refresh/validation run failed." -ForegroundColor Yellow
+    Write-Host $_.Exception.Message -ForegroundColor Yellow
+    return $false
+  }
+}
+
+function Select-CourseLinkEntry {
+  param(
+    [object]$PlanDetails,
+    [string]$Prompt
+  )
+
+  return Select-NavigableMenuItem `
+    -Items @($PlanDetails.currentLinks) `
+    -Prompt $Prompt `
+    -LabelSelector {
+      param($Link)
+      if ($Link.isPrimary) {
+        return "[Primary] $($Link.label)"
+      }
+      return $Link.label
+    } `
+    -DescriptionSelector {
+      param($Link)
+      return "{0} | {1}" -f $Link.url, $Link.sourceKind
+    }
+}
+
+function Invoke-CourseLinkAddFlow {
+  param([object]$PlanDetails)
+
+  $urlResponse = Read-CourseLinkEditorInput -Prompt "Enter the new official source URL"
+  if ($urlResponse.Action -ne "value") {
+    return $urlResponse
+  }
+
+  $labelResponse = Read-CourseLinkEditorInput -Prompt "Enter the link label"
+  if ($labelResponse.Action -ne "value") {
+    return $labelResponse
+  }
+
+  $noteResponse = Read-CourseLinkEditorInput -Prompt "Enter an optional note (blank is okay)" -AllowEmpty
+  if ($noteResponse.Action -ne "value") {
+    return $noteResponse
+  }
+
+  $primaryResponse = Read-CourseLinkEditorYesNo -Prompt "Make this the preferred primary source?" -Default $false
+  if ($primaryResponse.Action -ne "value") {
+    return $primaryResponse
+  }
+
+  $commandArguments = @(
+      "--add-link",
+      "--plan-id",
+      $PlanDetails.planId,
+      "--url",
+      $urlResponse.Value,
+      "--label",
+      $labelResponse.Value,
+      "--note",
+      $noteResponse.Value
+    )
+  if ($primaryResponse.Value) {
+    $commandArguments += "--make-primary"
+  }
+
+  $result = Invoke-CourseLinkManagerUpdate `
+    -Arguments $commandArguments `
+    -FailureContext "Adding a course link"
+
+  Write-Host ("Changed file/config: {0}" -f $result.changedFile) -ForegroundColor DarkCyan
+  Invoke-CourseLinkValidation -PlanDetails $PlanDetails -ChangedFile $result.changedFile | Out-Null
+  return @{
+    Action = "saved"
+  }
+}
+
+function Invoke-CourseLinkReplaceFlow {
+  param([object]$PlanDetails)
+
+  $selectedLink = Select-CourseLinkEntry -PlanDetails $PlanDetails -Prompt "Choose the link to replace"
+  if ($selectedLink.Action -ne "select") {
+    return $selectedLink
+  }
+
+  $urlResponse = Read-CourseLinkEditorInput -Prompt "Enter the replacement URL"
+  if ($urlResponse.Action -ne "value") {
+    return $urlResponse
+  }
+
+  $labelResponse = Read-CourseLinkEditorInput -Prompt "Enter the replacement label"
+  if ($labelResponse.Action -ne "value") {
+    return $labelResponse
+  }
+
+  $noteResponse = Read-CourseLinkEditorInput -Prompt "Enter an optional replacement note (blank is okay)" -AllowEmpty
+  if ($noteResponse.Action -ne "value") {
+    return $noteResponse
+  }
+
+  $primaryResponse = Read-CourseLinkEditorYesNo -Prompt "Make the replacement the preferred primary source?" -Default $true
+  if ($primaryResponse.Action -ne "value") {
+    return $primaryResponse
+  }
+
+  $commandArguments = @(
+      "--replace-link",
+      "--plan-id",
+      $PlanDetails.planId,
+      "--old-url",
+      $selectedLink.Item.url,
+      "--url",
+      $urlResponse.Value,
+      "--label",
+      $labelResponse.Value,
+      "--note",
+      $noteResponse.Value
+    )
+  if (-not $primaryResponse.Value) {
+    $commandArguments += "--no-make-primary"
+  }
+
+  $result = Invoke-CourseLinkManagerUpdate `
+    -Arguments $commandArguments `
+    -FailureContext "Replacing a course link"
+
+  Write-Host ("Changed file/config: {0}" -f $result.changedFile) -ForegroundColor DarkCyan
+  Invoke-CourseLinkValidation -PlanDetails $PlanDetails -ChangedFile $result.changedFile | Out-Null
+  return @{
+    Action = "saved"
+  }
+}
+
+function Invoke-CourseLinkRemoveFlow {
+  param([object]$PlanDetails)
+
+  $selectedLink = Select-CourseLinkEntry -PlanDetails $PlanDetails -Prompt "Choose the link to remove"
+  if ($selectedLink.Action -ne "select") {
+    return $selectedLink
+  }
+
+  $confirmResponse = Read-CourseLinkEditorYesNo -Prompt ("Remove {0}?" -f $selectedLink.Item.url) -Default $false
+  if ($confirmResponse.Action -ne "value") {
+    return $confirmResponse
+  }
+  if (-not $confirmResponse.Value) {
+    return @{
+      Action = "back"
+    }
+  }
+
+  $result = Invoke-CourseLinkManagerUpdate `
+    -Arguments @(
+      "--remove-link",
+      "--plan-id",
+      $PlanDetails.planId,
+      "--url",
+      $selectedLink.Item.url
+    ) `
+    -FailureContext "Removing a course link"
+
+  Write-Host ("Changed file/config: {0}" -f $result.changedFile) -ForegroundColor DarkCyan
+  Invoke-CourseLinkValidation -PlanDetails $PlanDetails -ChangedFile $result.changedFile | Out-Null
+  return @{
+    Action = "saved"
+  }
+}
+
+function Invoke-CourseLinkSetPrimaryFlow {
+  param([object]$PlanDetails)
+
+  $selectedLink = Select-CourseLinkEntry -PlanDetails $PlanDetails -Prompt "Choose the link to make primary"
+  if ($selectedLink.Action -ne "select") {
+    return $selectedLink
+  }
+
+  $result = Invoke-CourseLinkManagerUpdate `
+    -Arguments @(
+      "--set-primary",
+      "--plan-id",
+      $PlanDetails.planId,
+      "--url",
+      $selectedLink.Item.url
+    ) `
+    -FailureContext "Setting the preferred primary course link"
+
+  Write-Host ("Changed file/config: {0}" -f $result.changedFile) -ForegroundColor DarkCyan
+  Invoke-CourseLinkValidation -PlanDetails $PlanDetails -ChangedFile $result.changedFile | Out-Null
+  return @{
+    Action = "saved"
+  }
+}
+
+function Invoke-CourseLinkEditorForPlan {
+  param([string]$PlanId)
+
+  while ($true) {
+    $planDetails = Get-CourseLinkPlanDetails -PlanId $PlanId
+    Show-CourseLinkPlanDetails -PlanDetails $planDetails
+
+    $actionChoice = Select-NavigableMenuItem `
+      -Items @(
+        [pscustomobject]@{ Id = "add"; Label = "Add a link"; Description = "Add a new source link to the real source-of-truth override file." },
+        [pscustomobject]@{ Id = "replace"; Label = "Replace a link"; Description = "Swap one tracked link for another and remove the old URL if needed." },
+        [pscustomobject]@{ Id = "remove"; Label = "Remove a link"; Description = "Remove a tracked link from this item if it should no longer be used." },
+        [pscustomobject]@{ Id = "set-primary"; Label = "Set preferred primary link"; Description = "Choose which tracked link the source manifest should treat as the primary degree page." }
+      ) `
+      -Prompt ("Choose an edit action for this {0}" -f ([string]$planDetails.itemKindLabel).ToLowerInvariant()) `
+      -LabelSelector { param($Item) $Item.Label } `
+      -DescriptionSelector { param($Item) $Item.Description }
+
+    if ($actionChoice.Action -eq "back") {
+      return @{
+        Action = "back"
+      }
+    }
+
+    $result = switch ($actionChoice.Item.Id) {
+      "add" { Invoke-CourseLinkAddFlow -PlanDetails $planDetails }
+      "replace" { Invoke-CourseLinkReplaceFlow -PlanDetails $planDetails }
+      "remove" { Invoke-CourseLinkRemoveFlow -PlanDetails $planDetails }
+      "set-primary" { Invoke-CourseLinkSetPrimaryFlow -PlanDetails $planDetails }
+      default {
+        @{
+          Action = "back"
+        }
+      }
+    }
+
+    if ($result.Action -eq "back") {
+      continue
+    }
+  }
+}
+
+function Invoke-CourseLinkEditor {
+  while ($true) {
+    $inventory = Get-CourseLinkInventory
+    $institutionChoice = Select-NavigableMenuItem `
+      -Items @($inventory.institutions) `
+      -Prompt "Choose an institution" `
+      -LabelSelector { param($Item) $Item.label } `
+      -DescriptionSelector {
+        param($Item)
+        $groupItemCounts = @($Item.groups | ForEach-Object { @($_.items).Count })
+        $itemCount = if ($groupItemCounts.Count -gt 0) { ($groupItemCounts | Measure-Object -Sum).Sum } else { 0 }
+        "{0} {1}(s) | {2} item(s)" -f @($Item.groups).Count, $Item.groupPromptLabel, $itemCount
+      } `
+      -BackLabel "Back to the maintainer menu"
+    if ($institutionChoice.Action -eq "back") {
+      return @{
+        Action = "back"
+      }
+    }
+
+    while ($true) {
+      $groupChoice = Select-NavigableMenuItem `
+        -Items @($institutionChoice.Item.groups) `
+        -Prompt ("Choose a {0} under {1}" -f $institutionChoice.Item.groupPromptLabel, $institutionChoice.Item.label) `
+        -LabelSelector { param($Item) $Item.label } `
+        -DescriptionSelector {
+          param($Item)
+          "{0} {1}(s)" -f @($Item.items).Count, $institutionChoice.Item.itemPromptLabel
+        }
+      if ($groupChoice.Action -eq "back") {
+        break
+      }
+
+      while ($true) {
+        $itemChoice = Select-NavigableMenuItem `
+          -Items @($groupChoice.Item.items) `
+          -Prompt ("Choose a {0} under {1} / {2}" -f $institutionChoice.Item.itemPromptLabel, $institutionChoice.Item.label, $groupChoice.Item.label) `
+          -LabelSelector { param($Item) $Item.title } `
+          -DescriptionSelector {
+            param($Item)
+            if ($Item.primarySourceUrl) {
+              return "Primary source: {0}" -f $Item.primarySourceUrl
+            }
+            return "Source owner id: {0}" -f $Item.planId
+          }
+        if ($itemChoice.Action -eq "back") {
+          break
+        }
+
+        $planResult = Invoke-CourseLinkEditorForPlan -PlanId $itemChoice.Item.planId
+        if ($planResult.Action -eq "back") {
+          continue
+        }
+      }
+    }
+  }
 }
 
 function Select-MaintenanceSection {
@@ -592,23 +1178,12 @@ function Select-MaintenanceSection {
     [string]$Prompt
   )
 
-  while ($true) {
-    Write-Host ""
-    Write-Host $Prompt -ForegroundColor Cyan
-    for ($index = 0; $index -lt $SectionCatalog.Count; $index += 1) {
-      $section = $SectionCatalog[$index]
-      Write-Host ("{0}. [{1}] {2}" -f ($index + 1), $section.Id, $section.Title)
-      Write-Host ("   {0}" -f $section.Description) -ForegroundColor DarkGray
-    }
-
-    $rawChoice = Read-Host "Enter the section number"
-    $selectedIndex = 0
-    if ([int]::TryParse($rawChoice, [ref]$selectedIndex) -and $selectedIndex -ge 1 -and $selectedIndex -le $SectionCatalog.Count) {
-      return $SectionCatalog[$selectedIndex - 1]
-    }
-
-    Write-Host "Enter one of the listed section numbers." -ForegroundColor Yellow
-  }
+  return Select-NavigableMenuItem `
+    -Items @($SectionCatalog) `
+    -Prompt $Prompt `
+    -LabelSelector { param($Section) "[{0}] {1}" -f $Section.Id, $Section.Title } `
+    -DescriptionSelector { param($Section) $Section.Description } `
+    -BackLabel "Back to the maintainer menu"
 }
 
 function Get-InteractiveMaintenanceSelection {
@@ -616,12 +1191,12 @@ function Get-InteractiveMaintenanceSelection {
 
   while ($true) {
     Write-Host ""
-    Write-Host "Choose a transfer planner maintenance action:" -ForegroundColor Cyan
-    Write-Host "1. Run the full maintenance flow"
-    Write-Host "2. Run one section only"
+    Write-Host "Choose a transfer planner update action:" -ForegroundColor Cyan
+    Write-Host "1. Update everything"
+    Write-Host "2. Update one section only"
     Write-Host "3. Start from a section and continue through the rest"
-    Write-Host "4. Show cached status and last run summary"
-    Write-Host "5. Exit"
+    Write-Host "4. Show summary of last run + cached status"
+    Write-Host "5. Back"
 
     switch (Read-Host "Enter 1-5") {
       "1" {
@@ -631,24 +1206,30 @@ function Get-InteractiveMaintenanceSelection {
       }
       "2" {
         $selectedSection = Select-MaintenanceSection -SectionCatalog $SectionCatalog -Prompt "Select one section to run"
+        if ($selectedSection.Action -eq "back") {
+          continue
+        }
         return @{
           Mode = "only"
-          SectionId = $selectedSection.Id
+          SectionId = $selectedSection.Item.Id
         }
       }
       "3" {
         $selectedSection = Select-MaintenanceSection -SectionCatalog $SectionCatalog -Prompt "Select the section to start from"
+        if ($selectedSection.Action -eq "back") {
+          continue
+        }
         return @{
           Mode = "start"
-          SectionId = $selectedSection.Id
+          SectionId = $selectedSection.Item.Id
         }
       }
       "4" {
         Show-CacheSummary -SectionCatalog $SectionCatalog
       }
       "5" {
-        return @{
-          Mode = "exit"
+        return @{ 
+          Mode = "back"
         }
       }
       default {
@@ -859,6 +1440,13 @@ function Write-Summary {
   $ownerAuditReport = Read-JsonReport -Path $ownerAuditReportPath
   $hardeningReport = Read-JsonReport -Path $hardeningReportPath
   $sourceYearCoverageReport = Read-JsonReport -Path $sourceYearCoverageReportPath
+  $laymansDiagnosisItems = @(
+    Get-TransferPlannerLaymansDiagnosis `
+      -ProjectRoot $projectRoot `
+      -FailureMessage $FailureMessage `
+      -LogPath $logPath `
+      -IncludeWarnings
+  )
 
   $requiredActions = [System.Collections.Generic.List[string]]::new()
 
@@ -909,6 +1497,10 @@ function Write-Summary {
       "- $FailureMessage",
       ""
     )
+  }
+
+  if ($laymansDiagnosisItems.Count -gt 0) {
+    $summaryLines += Convert-TransferPlannerLaymansDiagnosisToMarkdownLines -Items $laymansDiagnosisItems
   }
 
   $summaryLines += @(
@@ -1032,8 +1624,22 @@ try {
     throw "No maintenance sections are available for the current launcher settings."
   }
 
+  if ($EditCourseLinks) {
+    $editorResult = Invoke-CourseLinkEditor
+    if ($editorResult.Action -eq "back") {
+      Write-Host "Course link editor closed." -ForegroundColor Yellow
+      exit $BackExitCode
+    }
+    exit 0
+  }
+
   if ($ShowCacheSummary) {
     Show-CacheSummary -SectionCatalog $maintenanceSectionCatalog
+    exit 0
+  }
+
+  if ($ShowLaymansDiagnosis) {
+    Show-LaymansDiagnosis
     exit 0
   }
 
@@ -1055,9 +1661,9 @@ try {
     }
   }
 
-  if ($selection.Mode -eq "exit") {
+  if ($selection.Mode -eq "back") {
     Write-Host "Maintenance launcher closed without running a section." -ForegroundColor Yellow
-    exit 0
+    exit $BackExitCode
   }
 
   $selectedSectionIds = @(
@@ -1184,6 +1790,10 @@ try {
   Write-Host "Success. Planner maintenance and QA finished cleanly." -ForegroundColor Green
   Write-Host "Summary: $summaryPath"
   Write-Host "Log: $logPath"
+  $successDiagnosisItems = @(
+    Get-TransferPlannerLaymansDiagnosis -ProjectRoot $projectRoot -LogPath $logPath -IncludeWarnings
+  )
+  Write-TransferPlannerLaymansDiagnosis -Items $successDiagnosisItems -Header "Laymans Diagnosis"
 
   if (-not $NoOpenSummary -and (Test-Path $summaryPath)) {
     Start-Process $summaryPath | Out-Null
@@ -1200,6 +1810,14 @@ try {
   Write-Host $message -ForegroundColor Red
   Write-Host "Summary: $summaryPath" -ForegroundColor Yellow
   Write-Host "Log: $logPath" -ForegroundColor Yellow
+  $failureDiagnosisItems = @(
+    Get-TransferPlannerLaymansDiagnosis `
+      -ProjectRoot $projectRoot `
+      -FailureMessage $message `
+      -LogPath $logPath `
+      -IncludeWarnings
+  )
+  Write-TransferPlannerLaymansDiagnosis -Items $failureDiagnosisItems -Header "Laymans Diagnosis"
 
   if (-not $NoOpenSummary -and (Test-Path $summaryPath)) {
     Start-Process $summaryPath | Out-Null
