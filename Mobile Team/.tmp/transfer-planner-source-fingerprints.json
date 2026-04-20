@@ -1,18 +1,835 @@
 {
-  "generatedAt": "2026-04-20T03:28:26.337Z",
-  "sourceSnapshotGeneratedAt": "2026-04-20T03:20:36.429Z",
-  "requirementParseReportGeneratedAt": "2026-04-20T03:28:25.243Z",
+  "generatedAt": "2026-04-20T08:41:50.313Z",
+  "sourceSnapshotGeneratedAt": "2026-04-20T03:41:34.256Z",
+  "requirementParseReportGeneratedAt": "2026-04-20T08:41:38.043Z",
   "totalSourceFingerprints": 342,
   "totalRequirementSourceFingerprints": 472,
-  "changedSourceFingerprintCount": 79,
-  "changedRequirementFingerprintCount": 2,
+  "changedSourceFingerprintCount": 31,
+  "changedRequirementFingerprintCount": 3,
   "addedSourceFingerprintCount": 0,
   "addedRequirementFingerprintCount": 0,
-  "removedSourceFingerprintCount": 1,
+  "removedSourceFingerprintCount": 0,
   "removedRequirementFingerprintCount": 0,
   "sourceDiff": {
     "added": [],
     "changed": [
+      {
+        "url": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
+        "finalUrl": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
+        "labels": [
+          "UW Bothell major planning worksheet - Data Visualization (BS)"
+        ],
+        "ownerIds": [
+          "uw-bothell-data-visualization-bs"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "contentLength": "15950",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "d6613d84e81c6073cf0c82dcbd0ba6841ef969e8987e1bb7a8ad73e395fcc374"
+      },
+      {
+        "url": "https://asian.washington.edu/ba-japanese",
+        "finalUrl": "https://asian.washington.edu/ba-japanese",
+        "labels": [
+          "UW Japanese degree requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-japanese",
+          "uw-seattle-japanese::linguistics-option",
+          "uw-seattle-japanese::literature-option",
+          "uw-seattle-japanese:pathway:linguistics-option",
+          "uw-seattle-japanese:pathway:literature-option"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "54266",
+        "etag": "\"1776656158\"",
+        "lastModified": "Mon, 20 Apr 2026 03:35:58 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "7d23fb4d9f7cbcc9235e6a4e8c6735a8dc61bae4452bb5b7a13d09688d12dda7"
+      },
+      {
+        "url": "https://disabilitystudies.washington.edu/DS_major",
+        "finalUrl": "https://disabilitystudies.washington.edu/DS_major",
+        "labels": [
+          "UW Disability Studies major requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-disability-studies"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "35851",
+        "etag": "\"1776656159\"",
+        "lastModified": "Mon, 20 Apr 2026 03:35:59 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "d9ac19d45ac9be20f60dd6f3523b43a286d168eacb99996b64cb26a874680156"
+      },
+      {
+        "url": "https://dlmp.uw.edu/education/mls-undergrad",
+        "finalUrl": "https://dlmp.uw.edu/education/mls-undergrad",
+        "labels": [
+          "UW Medical Laboratory Science program overview"
+        ],
+        "ownerIds": [
+          "uw-seattle-medical-laboratory-science"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": "Mon, 20 Apr 2026 03:36:00 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "eecc3a394561d99e26b44141b82ec8c2567fd8a2f7a69b345bda7ebf7c9bcdfb"
+      },
+      {
+        "url": "https://ischool.uw.edu/academics/informatics/curriculum",
+        "finalUrl": "https://ischool.uw.edu/programs/informatics/curriculum",
+        "labels": [
+          "UW Informatics curriculum"
+        ],
+        "ownerIds": [
+          "uw-seattle-informatics",
+          "uw-seattle-informatics::begin-taking-major-electives-degree-option-classes-spring-of-junior-year",
+          "uw-seattle-informatics::biomedical-and-health-informatics-option",
+          "uw-seattle-informatics:pathway:begin-taking-major-electives-degree-option-classes-spring-of-junior-year",
+          "uw-seattle-informatics:pathway:biomedical-and-health-informatics-option"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "69424",
+        "etag": "\"1776656168\"",
+        "lastModified": "Mon, 20 Apr 2026 03:36:08 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "f66196066617901862ebabb5f025bc4cdf9708ba7843605bee746ba6ec8738b1"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
+        "labels": [
+          "UW Bothell Accounting option",
+          "UW Bothell Accounting option major requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration-accounting",
+          "uw-bothell-business-administration-accounting::accounting-option",
+          "uw-bothell-business-administration-accounting::accounting-option-students-must-complete-the-following-courses-for-graduation",
+          "uw-bothell-business-administration-accounting::entrepreneurship-concentration",
+          "uw-bothell-business-administration-accounting::finance-option-and-concentration",
+          "uw-bothell-business-administration-accounting::marketing-option-and-concentration",
+          "uw-bothell-business-administration-accounting:pathway:accounting-option",
+          "uw-bothell-business-administration-accounting:pathway:accounting-option-students-must-complete-the-following-courses-for-graduation",
+          "uw-bothell-business-administration-accounting:pathway:entrepreneurship-concentration",
+          "uw-bothell-business-administration-accounting:pathway:finance-option-and-concentration",
+          "uw-bothell-business-administration-accounting:pathway:marketing-option-and-concentration",
+          "uw-bothell-business-administration::accounting-option",
+          "uw-bothell-business-administration:pathway:accounting-option"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "58343",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "b8aff7437d31d28a6cc7749dcf2a686e45935c737774d84bda13791268214fec"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
+        "labels": [
+          "UW Bothell BBA admissions hub"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration",
+          "uw-bothell-business-administration::accounting-option",
+          "uw-bothell-business-administration::entrepreneurship-concentration",
+          "uw-bothell-business-administration::finance-option-and-concentration",
+          "uw-bothell-business-administration::marketing-option-and-concentration",
+          "uw-bothell-business-administration::mis-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "58840",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "91c27dd39c1e3e3b46c88aebd637a81d3e24b6f2167647a18bab1b5face49b50"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
+        "labels": [
+          "UW Bothell BBA how to apply"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration",
+          "uw-bothell-business-administration::accounting-option",
+          "uw-bothell-business-administration::entrepreneurship-concentration",
+          "uw-bothell-business-administration::finance-option-and-concentration",
+          "uw-bothell-business-administration::marketing-option-and-concentration",
+          "uw-bothell-business-administration::mis-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "57994",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "9bc6efd80195a45db77dcc1d0b84ec2cf7f575e8a9f873e48606144bd8468d9c"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+        "labels": [
+          "UW Bothell BBA prerequisite courses"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration",
+          "uw-bothell-business-administration::accounting-option",
+          "uw-bothell-business-administration::entrepreneurship-concentration",
+          "uw-bothell-business-administration::finance-option-and-concentration",
+          "uw-bothell-business-administration::marketing-option-and-concentration",
+          "uw-bothell-business-administration::mis-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "56629",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "0dce7086fce526304aeb6eda0f7fb7e57628112181b57df71ebf55a0dd104362"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+        "labels": [
+          "UW Bothell BBA curriculum hub"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration",
+          "uw-bothell-business-administration::accounting-option",
+          "uw-bothell-business-administration::entrepreneurship-concentration",
+          "uw-bothell-business-administration::finance-option-and-concentration",
+          "uw-bothell-business-administration::marketing-option-and-concentration",
+          "uw-bothell-business-administration::mis-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "57940",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "0870c8df8fa3ac3aca9db2238c3537cf0239bd2ce1aaf57bae03b863e6f76daf"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
+        "labels": [
+          "UW Bothell Entrepreneurship concentration major requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration::entrepreneurship-concentration",
+          "uw-bothell-business-administration:pathway:entrepreneurship-concentration"
+        ],
+        "kinds": [
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "56416",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "24b69dd23d2e7448426cb79586398791d46f29527f040b87a54e56e9cc28e202"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+        "labels": [
+          "UW Bothell Leadership and Strategic Innovation option"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration-leadership-and-strategic-innovation",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation::accounting-option",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation::entrepreneurship-concentration",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation::finance-option-and-concentration",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation::leadership-and-strategic-innovation-option",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation::leadership-and-strategic-innovation-option-school-of-business",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation::marketing-option-and-concentration",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation::technology-and-innovation-management-tim-concentration",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:accounting-option",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:entrepreneurship-concentration",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:finance-option-and-concentration",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:leadership-and-strategic-innovation-option",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:leadership-and-strategic-innovation-option-school-of-business",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:marketing-option-and-concentration",
+          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:technology-and-innovation-management-tim-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "56493",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "0bb5d51c8de757b0bd7c7c7aa921c8b03c2c4f188558926f0b98d0d06634aebc"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+        "labels": [
+          "UW Bothell Supply Chain Management option"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration-supply-chain-management",
+          "uw-bothell-business-administration-supply-chain-management::accounting-option",
+          "uw-bothell-business-administration-supply-chain-management::entrepreneurship-concentration",
+          "uw-bothell-business-administration-supply-chain-management::finance-option-and-concentration",
+          "uw-bothell-business-administration-supply-chain-management::management-concentration",
+          "uw-bothell-business-administration-supply-chain-management::management-information-systems-mis-concentration",
+          "uw-bothell-business-administration-supply-chain-management::marketing-option-and-concentration",
+          "uw-bothell-business-administration-supply-chain-management::retail-management-concentration",
+          "uw-bothell-business-administration-supply-chain-management::supply-chain-management-option",
+          "uw-bothell-business-administration-supply-chain-management::supply-chain-management-option-school-of-business",
+          "uw-bothell-business-administration-supply-chain-management::technology-and-innovation-management-tim-concentration",
+          "uw-bothell-business-administration-supply-chain-management:pathway:accounting-option",
+          "uw-bothell-business-administration-supply-chain-management:pathway:entrepreneurship-concentration",
+          "uw-bothell-business-administration-supply-chain-management:pathway:finance-option-and-concentration",
+          "uw-bothell-business-administration-supply-chain-management:pathway:management-concentration",
+          "uw-bothell-business-administration-supply-chain-management:pathway:management-information-systems-mis-concentration",
+          "uw-bothell-business-administration-supply-chain-management:pathway:marketing-option-and-concentration",
+          "uw-bothell-business-administration-supply-chain-management:pathway:retail-management-concentration",
+          "uw-bothell-business-administration-supply-chain-management:pathway:supply-chain-management-option",
+          "uw-bothell-business-administration-supply-chain-management:pathway:supply-chain-management-option-school-of-business",
+          "uw-bothell-business-administration-supply-chain-management:pathway:technology-and-innovation-management-tim-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "57444",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "6d59d2b7ae41f2f55a01a25a147d60221c4c51c75792e6f4b448fbd8754a06a4"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
+        "labels": [
+          "UW Bothell Bachelor of Economics overview"
+        ],
+        "ownerIds": [
+          "uw-bothell-economics",
+          "uw-bothell-economics::accounting-option",
+          "uw-bothell-economics::finance-option-and-concentration",
+          "uw-bothell-economics::marketing-option-and-concentration",
+          "uw-bothell-economics:pathway:accounting-option",
+          "uw-bothell-economics:pathway:finance-option-and-concentration",
+          "uw-bothell-economics:pathway:marketing-option-and-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "57431",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "41c9fa37152a116dcdddd05b2f8f5db2338c0a8d7823d6d14d317815461e28bd"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio",
+        "labels": [
+          "UW Bothell IAS degree portfolio overview"
+        ],
+        "ownerIds": [
+          "uw-bothell-interdisciplinary-studies-individualized-study"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "59278",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "39abefa7816ec98b48df40068e4f06b129362539636b1d463c3e6e21c7f2e9ad"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
+        "labels": [
+          "UW Bothell Conservation and Restoration Science requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-conservation-and-restoration-science"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "66823",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "7cd101b6ab16a52ad377fdd87995f6996a080a108864f9e15abe83dca5966832"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
+        "labels": [
+          "UW Bothell Earth System Science requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-earth-system-science"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "69860",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "7f2945e12860f666628662398311f526e798120a69283ca7fc3426b63873f7f6"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
+        "labels": [
+          "UW Bothell Environmental Studies requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-environmental-studies"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "64529",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "260232bf6509f24e4ffecff1e51f3064c568776f93097624b98e392927506366"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
+        "labels": [
+          "UW Bothell Gender, Women & Sexuality Studies requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-gender-women-and-sexuality-studies"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "67030",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "ff9dbc63e28b5b89e1c40e6a3e2603c34528ada793e237fe8e14fcd1c797337a"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
+        "labels": [
+          "UW Bothell Global Studies requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-global-studies"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "64696",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "2d312fe636c4eeb7ed3eadd93aadec46418613c77d24cab38b8e38289a7bc3f0"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
+        "labels": [
+          "UW Bothell Law, Economics & Public Policy requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-law-economics-and-public-policy"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "37443",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "adb254831b1e7827e60116016d89bcc0b596103208cabefaab9fe02789c98d25"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
+        "labels": [
+          "UW Bothell Mathematical Thinking & Visualization requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-mathematical-thinking-and-visualization"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "63492",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "b0ef9ea5455eaab0eeae7255312d49c5b8af9a8083b410ce5bd9368afe341d26"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
+        "labels": [
+          "UW Bothell Media & Communication Studies requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-media-and-communications-studies"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "64183",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "8edce07b92f6db8eff0cc419a0898340a4e777f2845bfee9a3c9383a39233243"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
+        "labels": [
+          "UW Bothell Science, Technology & Society requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-science-technology-and-society"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "67824",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "093edca8052f66b542856a0b119b3767152b102294c887c2bef608c7326eb8cd"
+      },
+      {
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
+        "labels": [
+          "UW Bothell Society, Ethics & Human Behavior requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-society-ethics-and-human-behavior"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "62235",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "821bd98479eabb2a002617f75686adc5c3cdc51c8057dd943f7fea574844b0e3"
+      },
+      {
+        "url": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
+        "finalUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
+        "labels": [
+          "UW Bothell Health Studies overview and curriculum"
+        ],
+        "ownerIds": [
+          "uw-bothell-health-studies",
+          "uw-bothell-health-studies::teaching-track",
+          "uw-bothell-health-studies::tenure-track",
+          "uw-bothell-health-studies:pathway:teaching-track",
+          "uw-bothell-health-studies:pathway:tenure-track"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "57559",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "3de03022cb47153be84487a03e5ee4def3b0c2904030031ff72d63b49637b5ee"
+      },
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
+        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
+        "labels": [
+          "UW Bothell Applied Computing curriculum"
+        ],
+        "ownerIds": [
+          "uw-bothell-applied-computing"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "68745",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "c2ec90525c878d4501193459a6ae337211b9341d4332bd789d46f4f1ed23cf79"
+      },
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
+        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
+        "labels": [
+          "UW Bothell Biology curriculum"
+        ],
+        "ownerIds": [
+          "uw-bothell-biology"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "67933",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "570aa95375c8038b3d9273ba1a350301bc2b60b05748f392d8dde0e3c3f24d68"
+      },
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
+        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
+        "labels": [
+          "UW Bothell Computer Engineering curriculum"
+        ],
+        "ownerIds": [
+          "uw-bothell-computer-engineering"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "65667",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "45e2e9d2850b03f332bae22e8591fc3d6692819e6c62912383fec438fea48d9c"
+      },
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
+        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
+        "labels": [
+          "UW Bothell CSSE curriculum"
+        ],
+        "ownerIds": [
+          "uw-bothell-csse",
+          "uw-bothell-csse-information-assurance-and-cybersecurity",
+          "uw-bothell-csse-information-assurance-and-cybersecurity::iac-option",
+          "uw-bothell-csse-information-assurance-and-cybersecurity::information-assurance-and-cybersecurity-iac-option",
+          "uw-bothell-csse-information-assurance-and-cybersecurity:pathway:iac-option",
+          "uw-bothell-csse-information-assurance-and-cybersecurity:pathway:information-assurance-and-cybersecurity-iac-option",
+          "uw-bothell-csse::computer-science-and-software-engineering-option-1",
+          "uw-bothell-csse::general-option",
+          "uw-bothell-csse::iac-option",
+          "uw-bothell-csse::teaching-track-faculty",
+          "uw-bothell-csse:pathway:computer-science-and-software-engineering-option-1",
+          "uw-bothell-csse:pathway:general-option",
+          "uw-bothell-csse:pathway:iac-option",
+          "uw-bothell-csse:pathway:teaching-track-faculty"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "69186",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "5ad23f3033dafc9c97cd0e6c37538b561792db16e4637f22ddf35dd2b3998494"
+      },
+      {
+        "url": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
+        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
+        "labels": [
+          "UW Bothell Electrical Engineering curriculum"
+        ],
+        "ownerIds": [
+          "uw-bothell-electrical-engineering"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "64767",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "5e7499ae7f408f809cb5852612feae13cf3cb27fd20e39e2d2e52169bbf6a7a5"
+      }
+    ],
+    "unchanged": [
+      {
+        "url": "http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
+        "finalUrl": "https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
+        "labels": [
+          "UW General Catalog Cinema and Media Studies page"
+        ],
+        "ownerIds": [
+          "uw-seattle-cinema-and-media-studies"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html",
+        "contentLength": "45179",
+        "etag": "\"b07b-64fc0b4c3d877\"",
+        "lastModified": "Sat, 18 Apr 2026 19:02:25 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "ef6ab34c45b0294ccd6a97c1f276eab7f9eebf7a0b1e3bf414971b22d98d675c"
+      },
       {
         "url": "https://admissions.uwb.edu/register/mpw-DataVis-BA",
         "finalUrl": "https://admissions.uwb.edu/register/mpw-DataVis-BA",
@@ -36,26 +853,54 @@
         "resourceFingerprint": "f33b0f4a5aeae54a7ea6447b10101d13ed4352a360efc9f1d85274fd6959b32b"
       },
       {
-        "url": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
-        "finalUrl": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
+        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
+        "finalUrl": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
         "labels": [
-          "UW Bothell major planning worksheet - Data Visualization (BS)"
+          "UW Green River transfer equivalency guide"
         ],
         "ownerIds": [
-          "uw-bothell-data-visualization-bs"
+          "uw-bothell-conservation-and-restoration-science",
+          "uw-bothell-law-economics-and-public-policy",
+          "uw-seattle-biochemistry::ba-route",
+          "uw-seattle-biochemistry::bs-route",
+          "uw-seattle-biology",
+          "uw-seattle-chemistry",
+          "uw-seattle-chemistry::ba-route",
+          "uw-seattle-chemistry::bs-route",
+          "uw-seattle-economics",
+          "uw-seattle-economics::ba-route",
+          "uw-seattle-economics::bs-route",
+          "uw-seattle-environmental-public-health",
+          "uw-seattle-environmental-science-and-terrestrial-resource-management",
+          "uw-seattle-food-systems-nutrition-and-health",
+          "uw-seattle-human-centered-design-engineering",
+          "uw-seattle-landscape-architecture",
+          "uw-seattle-latin-american-and-caribbean-studies",
+          "uw-seattle-marine-biology",
+          "uw-seattle-microbiology",
+          "uw-seattle-neuroscience",
+          "uw-seattle-political-science",
+          "uw-seattle-psychology",
+          "uw-seattle-psychology::ba-route",
+          "uw-seattle-psychology::bs-route",
+          "uw-seattle-public-health-global-health",
+          "uw-seattle-sustainable-bioresource-systems-engineering",
+          "uw-tacoma-computer-engineering",
+          "uw-tacoma-electrical-engineering"
         ],
         "kinds": [
-          "major"
+          "major",
+          "pathway"
         ],
         "ok": true,
         "status": 200,
-        "contentType": "text/html; charset=utf-8",
-        "contentLength": "15947",
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "356497",
         "etag": null,
         "lastModified": null,
         "title": null,
         "fetchMode": "head",
-        "resourceFingerprint": "3c7d4597b64f5e66ca8d30b1d0b72edc9b901a707a69b5dd7afe536b8bed3002"
+        "resourceFingerprint": "21303892173d121b4bb346a6c147ede8a91acec127e284f0bfda1feef68d7a1f"
       },
       {
         "url": "https://aes.washington.edu/ba-american-ethnic-studies",
@@ -145,6 +990,50 @@
         "resourceFingerprint": "a2b415dcb231f5b6572ad39a7cdbb9d4cb83fd95ebef23b2e54743e8969bb49e"
       },
       {
+        "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
+        "finalUrl": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
+        "labels": [
+          "UW BA in Architectural Studies curriculum PDF"
+        ],
+        "ownerIds": [
+          "uw-seattle-architectural-studies"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": "104481",
+        "etag": "\"19821-60fb66330e54b\"",
+        "lastModified": "Wed, 24 Jan 2024 19:51:22 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "9450d7278561a51973258265c3b1f66a760e0890087594c9ed74e32750abc5cc"
+      },
+      {
+        "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/03/BA-Arch-Design_2024_.pdf",
+        "finalUrl": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/03/BA-Arch-Design_2024_.pdf",
+        "labels": [
+          "UW BA in Architectural Design curriculum PDF"
+        ],
+        "ownerIds": [
+          "uw-seattle-architectural-design"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": "99347",
+        "etag": "\"18413-6129e87772452\"",
+        "lastModified": "Fri, 01 Mar 2024 19:39:07 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "bba20ffe6c93a953250c4a40467ed385a80619b87f0461bb4c626f1c41f5665f"
+      },
+      {
         "url": "https://asian.washington.edu/ba-asian-languages-cultures",
         "finalUrl": "https://asian.washington.edu/ba-asian-languages-cultures",
         "labels": [
@@ -187,33 +1076,6 @@
         "title": null,
         "fetchMode": "head",
         "resourceFingerprint": "ff63879231ed32a5cef682893302ca4a68c0ca5353e2ba02b3afa5793fe3b7e6"
-      },
-      {
-        "url": "https://asian.washington.edu/ba-japanese",
-        "finalUrl": "https://asian.washington.edu/ba-japanese",
-        "labels": [
-          "UW Japanese degree requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-japanese",
-          "uw-seattle-japanese::linguistics-option",
-          "uw-seattle-japanese::literature-option",
-          "uw-seattle-japanese:pathway:linguistics-option",
-          "uw-seattle-japanese:pathway:literature-option"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "54266",
-        "etag": "\"1776652266\"",
-        "lastModified": "Mon, 20 Apr 2026 02:31:06 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "e5659da44acd4dfb1f10b180de8602da831f7c22fb692d77b3d6f8cd17401e6d"
       },
       {
         "url": "https://asian.washington.edu/ba-korean",
@@ -282,6 +1144,81 @@
         "resourceFingerprint": "6f69426c753e2114c2000c0a4f86abaf772c21c0bcf42be54d07966bdca93288"
       },
       {
+        "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
+        "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
+        "labels": [
+          "UW Bioengineering degree requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-bioengineering",
+          "uw-seattle-bioengineering::bioengineering-professional-series-bps-track",
+          "uw-seattle-bioengineering::bs-bioengineering-with-option-in-data-science",
+          "uw-seattle-bioengineering::bs-bioengineering-with-option-in-nano-and-molecular-engineering-nme",
+          "uw-seattle-bioengineering::ph-d-data-science-option-and-8211-uw-bioengineering",
+          "uw-seattle-bioengineering:pathway:bioengineering-professional-series-bps-track",
+          "uw-seattle-bioengineering:pathway:bs-bioengineering-with-option-in-data-science",
+          "uw-seattle-bioengineering:pathway:bs-bioengineering-with-option-in-nano-and-molecular-engineering-nme",
+          "uw-seattle-bioengineering:pathway:ph-d-data-science-option-and-8211-uw-bioengineering"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "33963a60f821a5f1ac9a9df27014979bd513863de95ccfb92d25216a88e2292a"
+      },
+      {
+        "url": "https://catalog.greenriver.edu/",
+        "finalUrl": "https://catalog.greenriver.edu/",
+        "labels": [
+          "Green River current catalog 2025-2026"
+        ],
+        "ownerIds": [
+          "grc-catalog-2025-2026"
+        ],
+        "kinds": [
+          "reference-page"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": "Mon, 20 Apr 2026 00:27:38 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "ebbc1a659137423751c75e9c5765a7b9ae4123d8190b6bdae719cad2663f03aa"
+      },
+      {
+        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624",
+        "finalUrl": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624",
+        "labels": [
+          "Green River course descriptions 2025-2026"
+        ],
+        "ownerIds": [
+          "grc-course-descriptions-2025-2026"
+        ],
+        "kinds": [
+          "reference-page"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": "Mon, 20 Apr 2026 00:27:38 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "ffb8a83c6aa42d62ae5d1a8421876f5ce2e21d9142f5e4dab5b06cf0b556f6a3"
+      },
+      {
         "url": "https://chem.washington.edu/ba-biochemistry",
         "finalUrl": "https://chem.washington.edu/ba-biochemistry",
         "labels": [
@@ -330,6 +1267,60 @@
         "title": null,
         "fetchMode": "head",
         "resourceFingerprint": "5b4c90722b6a200c37ead2bd07f8004337c20f7eae774a368a3c19ba0ffbb8d5"
+      },
+      {
+        "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
+        "finalUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
+        "labels": [
+          "BS Chemistry Checklist - ACS Certified (PDF)"
+        ],
+        "ownerIds": [
+          "uw-seattle-chemistry",
+          "uw-seattle-chemistry::acs-certified-bs-route",
+          "uw-seattle-chemistry::ba-route",
+          "uw-seattle-chemistry::bs-route",
+          "uw-seattle-chemistry:pathway:acs-certified-bs-route"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": null,
+        "etag": "W/\"65f85c06-6d5e\"",
+        "lastModified": "Mon, 18 Mar 2024 15:21:42 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "4c5014238c8bc40b5f6e1ee019d9b36c48ebf00f9af70fbd17257a56d2b94f0f"
+      },
+      {
+        "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
+        "finalUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
+        "labels": [
+          "BA Biochemistry Checklist (PDF)"
+        ],
+        "ownerIds": [
+          "uw-seattle-biochemistry",
+          "uw-seattle-biochemistry::ba-route",
+          "uw-seattle-biochemistry::bs-route",
+          "uw-seattle-biochemistry:pathway:ba-route",
+          "uw-seattle-biochemistry:pathway:bs-route"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": null,
+        "etag": "W/\"65f85c06-9de5\"",
+        "lastModified": "Mon, 18 Mar 2024 15:21:42 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "85cfce93412d16ef7ab4777bf7038a28c0935728790e9142272b74c915491540"
       },
       {
         "url": "https://cinema.washington.edu/ba-comparative-literature",
@@ -420,48 +1411,53 @@
         "resourceFingerprint": "1fcbdc6e580ddf4e64e2b7799a59187abbe2ea34d3c314c07c92960daacf6d06"
       },
       {
-        "url": "https://disabilitystudies.washington.edu/DS_major",
-        "finalUrl": "https://disabilitystudies.washington.edu/DS_major",
+        "url": "https://education.washington.edu/academics/program/early-childhood-family-studies",
+        "finalUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
         "labels": [
-          "UW Disability Studies major requirements"
+          "UW Early Childhood & Family Studies program page"
         ],
         "ownerIds": [
-          "uw-seattle-disability-studies"
+          "uw-seattle-early-childhood-and-family-studies",
+          "uw-seattle-early-childhood-and-family-studies::route-menu-active-trails-main",
+          "uw-seattle-early-childhood-and-family-studies::route-name-is-layout-builder-ui",
+          "uw-seattle-early-childhood-and-family-studies:pathway:route-menu-active-trails-main",
+          "uw-seattle-early-childhood-and-family-studies:pathway:route-name-is-layout-builder-ui"
         ],
         "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "35851",
-        "etag": "\"1776654045\"",
-        "lastModified": "Mon, 20 Apr 2026 03:00:45 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "85d56a7416fef48c623f3bfe7120a5a5fa28471880114d15f1d0281ba7fcf242"
-      },
-      {
-        "url": "https://dlmp.uw.edu/education/mls-undergrad",
-        "finalUrl": "https://dlmp.uw.edu/education/mls-undergrad",
-        "labels": [
-          "UW Medical Laboratory Science program overview"
-        ],
-        "ownerIds": [
-          "uw-seattle-medical-laboratory-science"
-        ],
-        "kinds": [
-          "major"
+          "major",
+          "pathway"
         ],
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=UTF-8",
         "contentLength": null,
         "etag": null,
-        "lastModified": "Mon, 20 Apr 2026 03:15:02 GMT",
+        "lastModified": null,
         "title": null,
         "fetchMode": "head",
-        "resourceFingerprint": "95ee743d0ded5bc1fa06bd6381870926ddbd5b14b60a2c4cc4c5f0e178d75b71"
+        "resourceFingerprint": "7f81f6aeca9d4e62601e59b75c9e25a2324672824a52c5b607f06106750ae891"
+      },
+      {
+        "url": "https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf",
+        "finalUrl": "https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf",
+        "labels": [
+          "Download degree requirements checklist"
+        ],
+        "ownerIds": [
+          "uw-seattle-education-communities-and-organizations"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": "118633",
+        "etag": "\"1cf69-63b907e26263e\"",
+        "lastModified": "Mon, 04 Aug 2025 21:07:18 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "a116309c60ffc22b8fe86947884c690ed1080182a8082ef5c216fcd1d5a1c552"
       },
       {
         "url": "https://english.washington.edu/english-language-literature-and-culture-option",
@@ -491,6 +1487,79 @@
         "title": null,
         "fetchMode": "head",
         "resourceFingerprint": "2695d2ec8bfcd9221788eba2a91d33e2ee771fc923a58b2349c8b4100d70599a"
+      },
+      {
+        "url": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
+        "finalUrl": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
+        "labels": [
+          "UW Aquatic Conservation and Ecology major requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-aquatic-conservation-and-ecology"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "51257a969b53b70b2b9c0b66ad38a858ee5244cb544f6181b5e8f6bdda947e57"
+      },
+      {
+        "url": "https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/",
+        "finalUrl": "https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/",
+        "labels": [
+          "UW Food Systems major requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-food-systems-nutrition-and-health",
+          "uw-seattle-food-systems-nutrition-and-health::mnt-concentration-projects",
+          "uw-seattle-food-systems-nutrition-and-health::ph-concentration-projects",
+          "uw-seattle-food-systems-nutrition-and-health::public-health-concentration-projects",
+          "uw-seattle-food-systems-nutrition-and-health:pathway:mnt-concentration-projects",
+          "uw-seattle-food-systems-nutrition-and-health:pathway:ph-concentration-projects",
+          "uw-seattle-food-systems-nutrition-and-health:pathway:public-health-concentration-projects"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "3148793c68e14c090814138d24f48d67d3de8be586ed2f9916c824809c7c1a37"
+      },
+      {
+        "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
+        "finalUrl": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
+        "labels": [
+          "Foster business majors and areas of study"
+        ],
+        "ownerIds": [
+          "uw-seattle-business-administration"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "fdbb86c5ba1077120323bab3d0d998af96003521e961671a00ec95d258c2f0cf"
       },
       {
         "url": "https://frenchitalian.washington.edu/major-french-studies",
@@ -645,17 +1714,47 @@
         "resourceFingerprint": "adefc6bc8f1f9b62acca26ef20a40bdac96fc1f21f503fe5d88abd2de46ea003"
       },
       {
-        "url": "https://ischool.uw.edu/academics/informatics/curriculum",
-        "finalUrl": "https://ischool.uw.edu/programs/informatics/curriculum",
+        "url": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
+        "finalUrl": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
         "labels": [
-          "UW Informatics curriculum"
+          "UW Industrial & Systems Engineering degree requirements"
         ],
         "ownerIds": [
-          "uw-seattle-informatics",
-          "uw-seattle-informatics::begin-taking-major-electives-degree-option-classes-spring-of-junior-year",
-          "uw-seattle-informatics::biomedical-and-health-informatics-option",
-          "uw-seattle-informatics:pathway:begin-taking-major-electives-degree-option-classes-spring-of-junior-year",
-          "uw-seattle-informatics:pathway:biomedical-and-health-informatics-option"
+          "uw-seattle-industrial-systems-engineering"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": "239642",
+        "etag": "\"3a81a-641141b903c80\"",
+        "lastModified": "Tue, 14 Oct 2025 01:14:37 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "94c5c42f1d36fabd94badf5f63a9cf17ef36b1361f2ee3a70fc3f39da8436f7a"
+      },
+      {
+        "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+        "finalUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
+        "labels": [
+          "UW Asian Studies major page"
+        ],
+        "ownerIds": [
+          "uw-seattle-asian-studies",
+          "uw-seattle-asian-studies::china-concentration",
+          "uw-seattle-asian-studies::general-concentration",
+          "uw-seattle-asian-studies::japan-concentration",
+          "uw-seattle-asian-studies::korea-concentration",
+          "uw-seattle-asian-studies::south-asia-concentration",
+          "uw-seattle-asian-studies::southeast-asia-concentration",
+          "uw-seattle-asian-studies:pathway:china-concentration",
+          "uw-seattle-asian-studies:pathway:general-concentration",
+          "uw-seattle-asian-studies:pathway:japan-concentration",
+          "uw-seattle-asian-studies:pathway:korea-concentration",
+          "uw-seattle-asian-studies:pathway:south-asia-concentration",
+          "uw-seattle-asian-studies:pathway:southeast-asia-concentration"
         ],
         "kinds": [
           "major",
@@ -664,12 +1763,62 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=UTF-8",
-        "contentLength": "69424",
-        "etag": "\"1776654906\"",
-        "lastModified": "Mon, 20 Apr 2026 03:15:06 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "91e0167faaafb66b783a3c65dc14abb59f52414844261252ae452a97c3baa1b4"
+        "contentLength": "88182",
+        "etag": null,
+        "lastModified": null,
+        "title": "Asian Studies - Major - The Henry M. Jackson School of International Studies",
+        "fetchMode": "curl",
+        "resourceFingerprint": "a8d177e7c4a1792ae78d462e6f7cbf29a8f8594e0c359cf61b6f69bbd8199c72"
+      },
+      {
+        "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
+        "finalUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
+        "labels": [
+          "UW Jewish Studies major requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-jewish-studies",
+          "uw-seattle-jewish-studies::general-concentration",
+          "uw-seattle-jewish-studies:pathway:general-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "88996",
+        "etag": null,
+        "lastModified": null,
+        "title": "Jewish Studies - Major - The Henry M. Jackson School of International Studies",
+        "fetchMode": "curl",
+        "resourceFingerprint": "237ac5d8e8b9cde1b4716686c3674fde7cc1cef106415fc5e67078a463558f81"
+      },
+      {
+        "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
+        "finalUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
+        "labels": [
+          "UW Latin American and Caribbean Studies major requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-latin-american-and-caribbean-studies",
+          "uw-seattle-latin-american-and-caribbean-studies::general-concentration",
+          "uw-seattle-latin-american-and-caribbean-studies:pathway:general-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "112779",
+        "etag": null,
+        "lastModified": null,
+        "title": "Latin American and Caribbean Studies - Major - The Henry M. Jackson School of International Studies",
+        "fetchMode": "curl",
+        "resourceFingerprint": "339e62918a7f4c1e655000aac5c0ab754aaa2539b68df59e7e3486be627f768f"
       },
       {
         "url": "https://linguistics.washington.edu/ba-linguistics",
@@ -721,6 +1870,50 @@
         "resourceFingerprint": "f105394bc4d561b735de4ec9dc0c18bab1707bc07127f44eb5cc9aadeb7ed8cd"
       },
       {
+        "url": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+        "finalUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+        "labels": [
+          "UW Marine Biology major requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-marine-biology"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "0616fe14cbfe8ca78bf7b5012be7495fe6bd41d47f136e540ece3cedaa73cc47"
+      },
+      {
+        "url": "https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf",
+        "finalUrl": "https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf",
+        "labels": [
+          "Marine Biology Major Requirements Worksheet"
+        ],
+        "ownerIds": [
+          "uw-seattle-marine-biology"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": "484782",
+        "etag": "\"765ae-6437f5f867818\"",
+        "lastModified": "Thu, 13 Nov 2025 20:03:22 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "53712f507fba564b853058b100ef61eaa5edb82e3d15afef7baa81ef35fc9a3a"
+      },
+      {
         "url": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
         "finalUrl": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
         "labels": [
@@ -746,6 +1939,55 @@
         "title": null,
         "fetchMode": "head",
         "resourceFingerprint": "d61e4fa0de2ec4a84152088cfea254c1f8c267ea446fed124d5272ea58ab6f49"
+      },
+      {
+        "url": "https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf",
+        "finalUrl": "https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf",
+        "labels": [
+          "MICROBIOLOGY DEGREE REQUIREMENTS AND ELECTIVES PACKET"
+        ],
+        "ownerIds": [
+          "uw-seattle-microbiology"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "application/pdf",
+        "contentLength": "256264",
+        "etag": "\"68f9256d-3e908\"",
+        "lastModified": "Wed, 22 Oct 2025 18:41:49 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "b4975967a22537a03415567a79d58c4217e7b22c04b47f007024dd70f5499711"
+      },
+      {
+        "url": "https://mse.washington.edu/current/undergrad/courses",
+        "finalUrl": "https://mse.washington.edu/current/undergrad/courses",
+        "labels": [
+          "UW Materials Science degree requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-materials-science-engineering",
+          "uw-seattle-materials-science-engineering::concentration-areas",
+          "uw-seattle-materials-science-engineering::nanoscience-and-molecular-engineering-nme-option",
+          "uw-seattle-materials-science-engineering:pathway:concentration-areas",
+          "uw-seattle-materials-science-engineering:pathway:nanoscience-and-molecular-engineering-nme-option"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "a056332bda105c012ff668dd0d3ce6b8e0416f404e696afa05cdfaaf268db3e5"
       },
       {
         "url": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
@@ -1006,6 +2248,33 @@
         "resourceFingerprint": "7fa3fe7f1e6db964d96abf5ee461723a96e81a0a9bb92e86047aafb3fffeefaa"
       },
       {
+        "url": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
+        "finalUrl": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
+        "labels": [
+          "UW Psychology graduation requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-psychology",
+          "uw-seattle-psychology::ba-route",
+          "uw-seattle-psychology::bs-route",
+          "uw-seattle-psychology:pathway:ba-route",
+          "uw-seattle-psychology:pathway:bs-route"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "3ef488d91932418ccee04d237691a17556b62eb22523097b087fc5734c8a7f67"
+      },
+      {
         "url": "https://scandinavian.washington.edu/ba-danish",
         "finalUrl": "https://scandinavian.washington.edu/ba-danish",
         "labels": [
@@ -1094,6 +2363,61 @@
         "resourceFingerprint": "06d01eb9f6c56e911832e51a21a19a10d9d97985fbef6112b3f56a62eaae0e05"
       },
       {
+        "url": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
+        "finalUrl": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
+        "labels": [
+          "UW SBSE schedule and major requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-sustainable-bioresource-systems-engineering",
+          "uw-seattle-sustainable-bioresource-systems-engineering::esrm-general-pathway",
+          "uw-seattle-sustainable-bioresource-systems-engineering::joining-the-wildlife-conservation-option",
+          "uw-seattle-sustainable-bioresource-systems-engineering::required-sustainable-forest-management-option-courses",
+          "uw-seattle-sustainable-bioresource-systems-engineering::required-wildlife-conservation-option-courses",
+          "uw-seattle-sustainable-bioresource-systems-engineering::requirements-for-the-esrm-general-pathway",
+          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:esrm-general-pathway",
+          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:joining-the-wildlife-conservation-option",
+          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:required-sustainable-forest-management-option-courses",
+          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:required-wildlife-conservation-option-courses",
+          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:requirements-for-the-esrm-general-pathway"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "ef2cc9abc362be004a81d5b0d92cea646d1ea3c3770e1d0644df016124575f0f"
+      },
+      {
+        "url": "https://sites.uw.edu/neusci/about/degree-requirements/",
+        "finalUrl": "https://sites.uw.edu/neusci/about/degree-requirements/",
+        "labels": [
+          "UW Undergraduate Neuroscience degree requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-neuroscience"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "f39dd231def0e88981e11fdb9834357dd72f54d7ee2f477b01ae5b649159c7ca"
+      },
+      {
         "url": "https://slavic.washington.edu/ba-global-literary-studies-glits",
         "finalUrl": "https://slavic.washington.edu/ba-global-literary-studies-glits",
         "labels": [
@@ -1158,1447 +2482,6 @@
         "title": null,
         "fetchMode": "head",
         "resourceFingerprint": "3f0170396fb0016d78c839e0eb6fd4cdc67f6ff7438fa39f059c235e62d31ee2"
-      },
-      {
-        "url": "https://www.deohs.washington.edu/degree-requirements",
-        "finalUrl": "https://www.deohs.washington.edu/degree-requirements",
-        "labels": [
-          "UW Environmental Public Health degree requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-environmental-public-health"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": "\"1776654652\"",
-        "lastModified": "Mon, 20 Apr 2026 03:10:52 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "a3d6a6242ca6426d0cec13b66e66e7f6dea1c0654ead6a04906a1c683c3b7f89"
-      },
-      {
-        "url": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-        "finalUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-        "labels": [
-          "UW Political Science major declaration and requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-political-science",
-          "uw-seattle-political-science::international-security-and-political-economy-option-courses",
-          "uw-seattle-political-science::political-economy-option",
-          "uw-seattle-political-science::political-economy-option-pdf"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "65156",
-        "etag": "\"1776653029\"",
-        "lastModified": "Mon, 20 Apr 2026 02:43:49 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "4756e5cb0a06e8eff0f18f44ce578140cb39514123badfd8ec4076123ddaab3e"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
-        "labels": [
-          "UW Bothell Bachelor of Business Administration overview"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration",
-          "uw-bothell-business-administration::accounting-option",
-          "uw-bothell-business-administration::entrepreneurship-concentration",
-          "uw-bothell-business-administration::finance-option-and-concentration",
-          "uw-bothell-business-administration::marketing-option-and-concentration",
-          "uw-bothell-business-administration::mis-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "58615",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "44f63928b1cce482e9f3e5705f3ce65e84fb9038c113a8d8d0b9000ac9663622"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
-        "labels": [
-          "UW Bothell BBA admissions hub"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration",
-          "uw-bothell-business-administration::accounting-option",
-          "uw-bothell-business-administration::entrepreneurship-concentration",
-          "uw-bothell-business-administration::finance-option-and-concentration",
-          "uw-bothell-business-administration::marketing-option-and-concentration",
-          "uw-bothell-business-administration::mis-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "58841",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "6356bff294c866e742c56c5ce4e554f1b38758112352992b2a7e779f5f34f935"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
-        "labels": [
-          "UW Bothell BBA how to apply"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration",
-          "uw-bothell-business-administration::accounting-option",
-          "uw-bothell-business-administration::entrepreneurship-concentration",
-          "uw-bothell-business-administration::finance-option-and-concentration",
-          "uw-bothell-business-administration::marketing-option-and-concentration",
-          "uw-bothell-business-administration::mis-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "57997",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "090b9e757701b7956b5d055006b8973a696d9d3e550d38cfde00bfcc8ca4ea80"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
-        "labels": [
-          "UW Bothell BBA prerequisite courses"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration",
-          "uw-bothell-business-administration::accounting-option",
-          "uw-bothell-business-administration::entrepreneurship-concentration",
-          "uw-bothell-business-administration::finance-option-and-concentration",
-          "uw-bothell-business-administration::marketing-option-and-concentration",
-          "uw-bothell-business-administration::mis-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "56632",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "6da44ec606b6f2f616ef58dd0f85ef3f6b6e7c60ce8e971e13644453aae9ddca"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
-        "labels": [
-          "UW Bothell Entrepreneurship concentration major requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration::entrepreneurship-concentration",
-          "uw-bothell-business-administration:pathway:entrepreneurship-concentration"
-        ],
-        "kinds": [
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "56417",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "c1c07b67392f391561947c18a646b01daed509ec90dc14f71aa142eedc433281"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
-        "labels": [
-          "UW Bothell Finance option and concentration",
-          "UW Bothell Finance option and concentration major requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration-finance",
-          "uw-bothell-business-administration-finance::concentration-courses",
-          "uw-bothell-business-administration-finance::finance-option-and-concentration",
-          "uw-bothell-business-administration-finance::option-courses",
-          "uw-bothell-business-administration-finance:pathway:concentration-courses",
-          "uw-bothell-business-administration-finance:pathway:finance-option-and-concentration",
-          "uw-bothell-business-administration-finance:pathway:option-courses",
-          "uw-bothell-business-administration::finance-option-and-concentration",
-          "uw-bothell-business-administration:pathway:finance-option-and-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "59040",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "b16eb59da69684c149d1b42643525d615084c7ecc3cb006988320959f7aa6dda"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-        "labels": [
-          "UW Bothell Leadership and Strategic Innovation option"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration-leadership-and-strategic-innovation",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation::accounting-option",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation::entrepreneurship-concentration",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation::finance-option-and-concentration",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation::leadership-and-strategic-innovation-option",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation::leadership-and-strategic-innovation-option-school-of-business",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation::marketing-option-and-concentration",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation::technology-and-innovation-management-tim-concentration",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:accounting-option",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:entrepreneurship-concentration",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:finance-option-and-concentration",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:leadership-and-strategic-innovation-option",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:leadership-and-strategic-innovation-option-school-of-business",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:marketing-option-and-concentration",
-          "uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:technology-and-innovation-management-tim-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "56494",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "38bfc1f64e82a30d44fbe47b9a10aaeebb6f4503c2057a1807b188c9128e62bd"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
-        "labels": [
-          "UW Bothell Management concentration major requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration:pathway:management-concentration"
-        ],
-        "kinds": [
-          "pathway"
-        ],
-        "ok": true,
-        "status": null,
-        "contentType": "requirement-source-snapshot",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": "Management Concentration - School of Business",
-        "fetchMode": "requirement-snapshot",
-        "resourceFingerprint": "a660348d1664aea562924ecfd450159220354e91378c1f9d88664d7d5f199380"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-        "labels": [
-          "UW Bothell Marketing option and concentration",
-          "UW Bothell Marketing option and concentration major requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration-marketing",
-          "uw-bothell-business-administration-marketing::accounting-option",
-          "uw-bothell-business-administration-marketing::finance-option-and-concentration",
-          "uw-bothell-business-administration-marketing::marketing-option-and-concentration",
-          "uw-bothell-business-administration-marketing::marketing-option-and-concentration-school-of-business",
-          "uw-bothell-business-administration-marketing::option-and-concentration-curriculum",
-          "uw-bothell-business-administration-marketing::option-course-numbers-and-names",
-          "uw-bothell-business-administration-marketing:pathway:accounting-option",
-          "uw-bothell-business-administration-marketing:pathway:finance-option-and-concentration",
-          "uw-bothell-business-administration-marketing:pathway:marketing-option-and-concentration",
-          "uw-bothell-business-administration-marketing:pathway:marketing-option-and-concentration-school-of-business",
-          "uw-bothell-business-administration-marketing:pathway:option-and-concentration-curriculum",
-          "uw-bothell-business-administration-marketing:pathway:option-course-numbers-and-names",
-          "uw-bothell-business-administration::marketing-option-and-concentration",
-          "uw-bothell-business-administration:pathway:marketing-option-and-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "56849",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "beab848dd2039c84944f7255b26a0deaca6e744845ee66827966bca93e362219"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
-        "labels": [
-          "UW Bothell Retail Management concentration major requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration:pathway:retail-management-concentration"
-        ],
-        "kinds": [
-          "pathway"
-        ],
-        "ok": true,
-        "status": null,
-        "contentType": "requirement-source-snapshot",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": "Retail Management Concentration - School of Business",
-        "fetchMode": "requirement-snapshot",
-        "resourceFingerprint": "039f7d0145f93bc04497e53d216cabab753677216ff6187d609dba93600768a5"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
-        "labels": [
-          "UW Bothell Technology and Innovation Management concentration major requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration:pathway:tim-concentration"
-        ],
-        "kinds": [
-          "pathway"
-        ],
-        "ok": true,
-        "status": null,
-        "contentType": "requirement-source-snapshot",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": "Technology & Innovation Management (TIM) Concentration - School of Business",
-        "fetchMode": "requirement-snapshot",
-        "resourceFingerprint": "1d4443a605dcb142a4ed71594cc282c128d72117e6ca53e1a840e67fe789f758"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-        "labels": [
-          "UW Bothell Bachelor of Economics overview"
-        ],
-        "ownerIds": [
-          "uw-bothell-economics",
-          "uw-bothell-economics::accounting-option",
-          "uw-bothell-economics::finance-option-and-concentration",
-          "uw-bothell-economics::marketing-option-and-concentration",
-          "uw-bothell-economics:pathway:accounting-option",
-          "uw-bothell-economics:pathway:finance-option-and-concentration",
-          "uw-bothell-economics:pathway:marketing-option-and-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "57428",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "db3c9a0d0745b6b264f3f657229f2aa9259f341a4956ee50f58e842b7a3c2dd2"
-      },
-      {
-        "url": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
-        "finalUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
-        "labels": [
-          "UW Bothell Elementary Education degree requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-educational-studies-elementary-education",
-          "uw-bothell-educational-studies-elementary-education::elementary-education-option-requirements",
-          "uw-bothell-educational-studies-elementary-education::elementary-education-option-requirements-and-8211-2025-cohort",
-          "uw-bothell-educational-studies-elementary-education:pathway:elementary-education-option-requirements",
-          "uw-bothell-educational-studies-elementary-education:pathway:elementary-education-option-requirements-and-8211-2025-cohort"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "76155",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "3119a40ad002379f7f4e7a2ed430eaf132bd255e08ae88b7763142b0c96cb6d4"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/ias-degree-portfolio",
-        "labels": [
-          "UW Bothell IAS degree portfolio overview"
-        ],
-        "ownerIds": [
-          "uw-bothell-interdisciplinary-studies-individualized-study"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "59279",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "1e0d8c1ebd72342ac1a19354f7d5aea10aa4dbe23a2b1111252a9be07fb0a864"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/conservation-restoration-science",
-        "labels": [
-          "UW Bothell Conservation and Restoration Science requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-conservation-and-restoration-science"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "66820",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "3a573a6c83643729d5d8906deb99ba20bb921f296da73ee3c7d6e7f2cacfc0bb"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/earth-system-science",
-        "labels": [
-          "UW Bothell Earth System Science requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-earth-system-science"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "69857",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "09a6e70c44d7492db8713481927efa0b3eaf30b53e4ac69b65bd980fd8d673d3"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
-        "labels": [
-          "UW Bothell Global Studies requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-global-studies"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "64697",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "0797055c1addde2726f38374e2288e7d26717f4500dc6b57e596172d0379237f"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
-        "labels": [
-          "UW Bothell Interdisciplinary Arts requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-interdisciplinary-arts"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "64373",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "33c81debb89c6961159c1032829011d36e934a37996b60f5b22aaf67f2846bc7"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/law-economics-public-policy",
-        "labels": [
-          "UW Bothell Law, Economics & Public Policy requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-law-economics-and-public-policy"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "64875",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "32fb8ef61338931809166f8853588a3a963123e2fe44c18b405b94a44826c907"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
-        "labels": [
-          "UW Bothell Mathematical Thinking & Visualization requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-mathematical-thinking-and-visualization"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "63489",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "f2a75398b65f67b2d600108366966dae58c503711e3681e93a98311b44219f4d"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
-        "labels": [
-          "UW Bothell Media & Communication Studies requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-media-and-communications-studies"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "64184",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "ccbc341c5caccc270acd8fd2b77e71b067b92186610417bc79b6b5faa03fb88b"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
-        "labels": [
-          "UW Bothell Psychology requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-psychology",
-          "uw-bothell-psychology::200-level-psychology-courses-option",
-          "uw-bothell-psychology::psychology-electives-option",
-          "uw-bothell-psychology::upper-division-psychology-courses-option",
-          "uw-bothell-psychology:pathway:200-level-psychology-courses-option",
-          "uw-bothell-psychology:pathway:psychology-electives-option",
-          "uw-bothell-psychology:pathway:upper-division-psychology-courses-option"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "68622",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "0817db39a85a1e30da3311cd4eae0b81b726c6e95bfbedf76a0978a6224f0064"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/science-technology-society",
-        "labels": [
-          "UW Bothell Science, Technology & Society requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-science-technology-and-society"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "67827",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "46ffab63cf6def2106803bc984558b656266285fe0cad31146737d4eaf9a582c"
-      },
-      {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
-        "labels": [
-          "UW Bothell Society, Ethics & Human Behavior requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-society-ethics-and-human-behavior"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "62236",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "0314c1faa3d14b2faa7fa26e4438147d0cd1691fb33eb3db0f2f85807ff9e20d"
-      },
-      {
-        "url": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
-        "finalUrl": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
-        "labels": [
-          "UW Bothell Health Studies overview and curriculum"
-        ],
-        "ownerIds": [
-          "uw-bothell-health-studies",
-          "uw-bothell-health-studies::teaching-track",
-          "uw-bothell-health-studies::tenure-track",
-          "uw-bothell-health-studies:pathway:teaching-track",
-          "uw-bothell-health-studies:pathway:tenure-track"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "57558",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "43d64f631364b569fae13af0ddeef8501dd6846a4f5affc427fef2f118484cdd"
-      },
-      {
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
-        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
-        "labels": [
-          "UW Bothell Applied Computing curriculum"
-        ],
-        "ownerIds": [
-          "uw-bothell-applied-computing"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "68742",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "9b76c24a6cd13bc86845acc62845e39a885e0576114d5f4f46419dde6601b53a"
-      },
-      {
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
-        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
-        "labels": [
-          "UW Bothell Computer Engineering curriculum"
-        ],
-        "ownerIds": [
-          "uw-bothell-computer-engineering"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "65664",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "9fbe7ec6fd3097309665f54da8394aa2d763573e8b750f707a07015d9a70e70d"
-      },
-      {
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
-        "labels": [
-          "UW Bothell CSSE curriculum"
-        ],
-        "ownerIds": [
-          "uw-bothell-csse",
-          "uw-bothell-csse-information-assurance-and-cybersecurity",
-          "uw-bothell-csse-information-assurance-and-cybersecurity::iac-option",
-          "uw-bothell-csse-information-assurance-and-cybersecurity::information-assurance-and-cybersecurity-iac-option",
-          "uw-bothell-csse-information-assurance-and-cybersecurity:pathway:iac-option",
-          "uw-bothell-csse-information-assurance-and-cybersecurity:pathway:information-assurance-and-cybersecurity-iac-option",
-          "uw-bothell-csse::computer-science-and-software-engineering-option-1",
-          "uw-bothell-csse::general-option",
-          "uw-bothell-csse::iac-option",
-          "uw-bothell-csse::teaching-track-faculty",
-          "uw-bothell-csse:pathway:computer-science-and-software-engineering-option-1",
-          "uw-bothell-csse:pathway:general-option",
-          "uw-bothell-csse:pathway:iac-option",
-          "uw-bothell-csse:pathway:teaching-track-faculty"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "69184",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "93e408adb694fcfa71fc45c7ba75caeaea827c829c8aac141368c5fd6d885d1d"
-      },
-      {
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
-        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
-        "labels": [
-          "UW Bothell Electrical Engineering curriculum"
-        ],
-        "ownerIds": [
-          "uw-bothell-electrical-engineering"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "64765",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "ed0c9126429255a135be72b12334dc31e07b8a0b17cc79f98920abdb094d8bd4"
-      }
-    ],
-    "unchanged": [
-      {
-        "url": "http://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
-        "finalUrl": "https://www.washington.edu/students/gencat/program/S/CinemaandMediaStudies-132.html",
-        "labels": [
-          "UW General Catalog Cinema and Media Studies page"
-        ],
-        "ownerIds": [
-          "uw-seattle-cinema-and-media-studies"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html",
-        "contentLength": "45179",
-        "etag": "\"b07b-64fc0b4c3d877\"",
-        "lastModified": "Sat, 18 Apr 2026 19:02:25 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "ef6ab34c45b0294ccd6a97c1f276eab7f9eebf7a0b1e3bf414971b22d98d675c"
-      },
-      {
-        "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
-        "finalUrl": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
-        "labels": [
-          "UW Green River transfer equivalency guide"
-        ],
-        "ownerIds": [
-          "uw-bothell-conservation-and-restoration-science",
-          "uw-bothell-law-economics-and-public-policy",
-          "uw-seattle-biochemistry::ba-route",
-          "uw-seattle-biochemistry::bs-route",
-          "uw-seattle-biology",
-          "uw-seattle-chemistry",
-          "uw-seattle-chemistry::ba-route",
-          "uw-seattle-chemistry::bs-route",
-          "uw-seattle-economics",
-          "uw-seattle-economics::ba-route",
-          "uw-seattle-economics::bs-route",
-          "uw-seattle-environmental-public-health",
-          "uw-seattle-environmental-science-and-terrestrial-resource-management",
-          "uw-seattle-food-systems-nutrition-and-health",
-          "uw-seattle-human-centered-design-engineering",
-          "uw-seattle-landscape-architecture",
-          "uw-seattle-latin-american-and-caribbean-studies",
-          "uw-seattle-marine-biology",
-          "uw-seattle-microbiology",
-          "uw-seattle-neuroscience",
-          "uw-seattle-political-science",
-          "uw-seattle-psychology",
-          "uw-seattle-psychology::ba-route",
-          "uw-seattle-psychology::bs-route",
-          "uw-seattle-public-health-global-health",
-          "uw-seattle-sustainable-bioresource-systems-engineering",
-          "uw-tacoma-computer-engineering",
-          "uw-tacoma-electrical-engineering"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "356497",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "21303892173d121b4bb346a6c147ede8a91acec127e284f0bfda1feef68d7a1f"
-      },
-      {
-        "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
-        "finalUrl": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
-        "labels": [
-          "UW BA in Architectural Studies curriculum PDF"
-        ],
-        "ownerIds": [
-          "uw-seattle-architectural-studies"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "application/pdf",
-        "contentLength": "104481",
-        "etag": "\"19821-60fb66330e54b\"",
-        "lastModified": "Wed, 24 Jan 2024 19:51:22 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "9450d7278561a51973258265c3b1f66a760e0890087594c9ed74e32750abc5cc"
-      },
-      {
-        "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/03/BA-Arch-Design_2024_.pdf",
-        "finalUrl": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/03/BA-Arch-Design_2024_.pdf",
-        "labels": [
-          "UW BA in Architectural Design curriculum PDF"
-        ],
-        "ownerIds": [
-          "uw-seattle-architectural-design"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "application/pdf",
-        "contentLength": "99347",
-        "etag": "\"18413-6129e87772452\"",
-        "lastModified": "Fri, 01 Mar 2024 19:39:07 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "bba20ffe6c93a953250c4a40467ed385a80619b87f0461bb4c626f1c41f5665f"
-      },
-      {
-        "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "labels": [
-          "UW Bioengineering degree requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-bioengineering",
-          "uw-seattle-bioengineering::bioengineering-professional-series-bps-track",
-          "uw-seattle-bioengineering::bs-bioengineering-with-option-in-data-science",
-          "uw-seattle-bioengineering::bs-bioengineering-with-option-in-nano-and-molecular-engineering-nme",
-          "uw-seattle-bioengineering::ph-d-data-science-option-and-8211-uw-bioengineering",
-          "uw-seattle-bioengineering:pathway:bioengineering-professional-series-bps-track",
-          "uw-seattle-bioengineering:pathway:bs-bioengineering-with-option-in-data-science",
-          "uw-seattle-bioengineering:pathway:bs-bioengineering-with-option-in-nano-and-molecular-engineering-nme",
-          "uw-seattle-bioengineering:pathway:ph-d-data-science-option-and-8211-uw-bioengineering"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "33963a60f821a5f1ac9a9df27014979bd513863de95ccfb92d25216a88e2292a"
-      },
-      {
-        "url": "https://catalog.greenriver.edu/",
-        "finalUrl": "https://catalog.greenriver.edu/",
-        "labels": [
-          "Green River current catalog 2025-2026"
-        ],
-        "ownerIds": [
-          "grc-catalog-2025-2026"
-        ],
-        "kinds": [
-          "reference-page"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": "Mon, 20 Apr 2026 00:27:38 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "ebbc1a659137423751c75e9c5765a7b9ae4123d8190b6bdae719cad2663f03aa"
-      },
-      {
-        "url": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624",
-        "finalUrl": "https://catalog.greenriver.edu/content.php?catoid=10&navoid=624",
-        "labels": [
-          "Green River course descriptions 2025-2026"
-        ],
-        "ownerIds": [
-          "grc-course-descriptions-2025-2026"
-        ],
-        "kinds": [
-          "reference-page"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": "Mon, 20 Apr 2026 00:27:38 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "ffb8a83c6aa42d62ae5d1a8421876f5ce2e21d9142f5e4dab5b06cf0b556f6a3"
-      },
-      {
-        "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
-        "finalUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
-        "labels": [
-          "BS Chemistry Checklist - ACS Certified (PDF)"
-        ],
-        "ownerIds": [
-          "uw-seattle-chemistry",
-          "uw-seattle-chemistry::acs-certified-bs-route",
-          "uw-seattle-chemistry::ba-route",
-          "uw-seattle-chemistry::bs-route",
-          "uw-seattle-chemistry:pathway:acs-certified-bs-route"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "application/pdf",
-        "contentLength": null,
-        "etag": "W/\"65f85c06-6d5e\"",
-        "lastModified": "Mon, 18 Mar 2024 15:21:42 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "4c5014238c8bc40b5f6e1ee019d9b36c48ebf00f9af70fbd17257a56d2b94f0f"
-      },
-      {
-        "url": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
-        "finalUrl": "https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf",
-        "labels": [
-          "BA Biochemistry Checklist (PDF)"
-        ],
-        "ownerIds": [
-          "uw-seattle-biochemistry",
-          "uw-seattle-biochemistry::ba-route",
-          "uw-seattle-biochemistry::bs-route",
-          "uw-seattle-biochemistry:pathway:ba-route",
-          "uw-seattle-biochemistry:pathway:bs-route"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "application/pdf",
-        "contentLength": null,
-        "etag": "W/\"65f85c06-9de5\"",
-        "lastModified": "Mon, 18 Mar 2024 15:21:42 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "85cfce93412d16ef7ab4777bf7038a28c0935728790e9142272b74c915491540"
-      },
-      {
-        "url": "https://education.washington.edu/academics/program/early-childhood-family-studies",
-        "finalUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
-        "labels": [
-          "UW Early Childhood & Family Studies program page"
-        ],
-        "ownerIds": [
-          "uw-seattle-early-childhood-and-family-studies",
-          "uw-seattle-early-childhood-and-family-studies::route-menu-active-trails-main",
-          "uw-seattle-early-childhood-and-family-studies::route-name-is-layout-builder-ui",
-          "uw-seattle-early-childhood-and-family-studies:pathway:route-menu-active-trails-main",
-          "uw-seattle-early-childhood-and-family-studies:pathway:route-name-is-layout-builder-ui"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "7f81f6aeca9d4e62601e59b75c9e25a2324672824a52c5b607f06106750ae891"
-      },
-      {
-        "url": "https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf",
-        "finalUrl": "https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf",
-        "labels": [
-          "Download degree requirements checklist"
-        ],
-        "ownerIds": [
-          "uw-seattle-education-communities-and-organizations"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "application/pdf",
-        "contentLength": "118633",
-        "etag": "\"1cf69-63b907e26263e\"",
-        "lastModified": "Mon, 04 Aug 2025 21:07:18 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "a116309c60ffc22b8fe86947884c690ed1080182a8082ef5c216fcd1d5a1c552"
-      },
-      {
-        "url": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
-        "finalUrl": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
-        "labels": [
-          "UW Aquatic Conservation and Ecology major requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-aquatic-conservation-and-ecology"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "51257a969b53b70b2b9c0b66ad38a858ee5244cb544f6181b5e8f6bdda947e57"
-      },
-      {
-        "url": "https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/",
-        "finalUrl": "https://foodsystems.uw.edu/undergraduate/foodsystems/requirements/",
-        "labels": [
-          "UW Food Systems major requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-food-systems-nutrition-and-health",
-          "uw-seattle-food-systems-nutrition-and-health::mnt-concentration-projects",
-          "uw-seattle-food-systems-nutrition-and-health::ph-concentration-projects",
-          "uw-seattle-food-systems-nutrition-and-health::public-health-concentration-projects",
-          "uw-seattle-food-systems-nutrition-and-health:pathway:mnt-concentration-projects",
-          "uw-seattle-food-systems-nutrition-and-health:pathway:ph-concentration-projects",
-          "uw-seattle-food-systems-nutrition-and-health:pathway:public-health-concentration-projects"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "3148793c68e14c090814138d24f48d67d3de8be586ed2f9916c824809c7c1a37"
-      },
-      {
-        "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
-        "finalUrl": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
-        "labels": [
-          "Foster business majors and areas of study"
-        ],
-        "ownerIds": [
-          "uw-seattle-business-administration"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "fdbb86c5ba1077120323bab3d0d998af96003521e961671a00ec95d258c2f0cf"
-      },
-      {
-        "url": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
-        "finalUrl": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
-        "labels": [
-          "UW Industrial & Systems Engineering degree requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-industrial-systems-engineering"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "application/pdf",
-        "contentLength": "239642",
-        "etag": "\"3a81a-641141b903c80\"",
-        "lastModified": "Tue, 14 Oct 2025 01:14:37 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "94c5c42f1d36fabd94badf5f63a9cf17ef36b1361f2ee3a70fc3f39da8436f7a"
-      },
-      {
-        "url": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-        "finalUrl": "https://jsis.washington.edu/programs/undergraduate/asia-studies/",
-        "labels": [
-          "UW Asian Studies major page"
-        ],
-        "ownerIds": [
-          "uw-seattle-asian-studies",
-          "uw-seattle-asian-studies::china-concentration",
-          "uw-seattle-asian-studies::general-concentration",
-          "uw-seattle-asian-studies::japan-concentration",
-          "uw-seattle-asian-studies::korea-concentration",
-          "uw-seattle-asian-studies::south-asia-concentration",
-          "uw-seattle-asian-studies::southeast-asia-concentration",
-          "uw-seattle-asian-studies:pathway:china-concentration",
-          "uw-seattle-asian-studies:pathway:general-concentration",
-          "uw-seattle-asian-studies:pathway:japan-concentration",
-          "uw-seattle-asian-studies:pathway:korea-concentration",
-          "uw-seattle-asian-studies:pathway:south-asia-concentration",
-          "uw-seattle-asian-studies:pathway:southeast-asia-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "88182",
-        "etag": null,
-        "lastModified": null,
-        "title": "Asian Studies - Major - The Henry M. Jackson School of International Studies",
-        "fetchMode": "curl",
-        "resourceFingerprint": "a8d177e7c4a1792ae78d462e6f7cbf29a8f8594e0c359cf61b6f69bbd8199c72"
-      },
-      {
-        "url": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-        "finalUrl": "https://jsis.washington.edu/programs/undergraduate/jewish-studies/",
-        "labels": [
-          "UW Jewish Studies major requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-jewish-studies",
-          "uw-seattle-jewish-studies::general-concentration",
-          "uw-seattle-jewish-studies:pathway:general-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "88996",
-        "etag": null,
-        "lastModified": null,
-        "title": "Jewish Studies - Major - The Henry M. Jackson School of International Studies",
-        "fetchMode": "curl",
-        "resourceFingerprint": "237ac5d8e8b9cde1b4716686c3674fde7cc1cef106415fc5e67078a463558f81"
-      },
-      {
-        "url": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-        "finalUrl": "https://jsis.washington.edu/programs/undergraduate/latin-america-and-caribbean-studies/",
-        "labels": [
-          "UW Latin American and Caribbean Studies major requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-latin-american-and-caribbean-studies",
-          "uw-seattle-latin-american-and-caribbean-studies::general-concentration",
-          "uw-seattle-latin-american-and-caribbean-studies:pathway:general-concentration"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "112779",
-        "etag": null,
-        "lastModified": null,
-        "title": "Latin American and Caribbean Studies - Major - The Henry M. Jackson School of International Studies",
-        "fetchMode": "curl",
-        "resourceFingerprint": "339e62918a7f4c1e655000aac5c0ab754aaa2539b68df59e7e3486be627f768f"
-      },
-      {
-        "url": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
-        "finalUrl": "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
-        "labels": [
-          "UW Marine Biology major requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-marine-biology"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "0616fe14cbfe8ca78bf7b5012be7495fe6bd41d47f136e540ece3cedaa73cc47"
-      },
-      {
-        "url": "https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf",
-        "finalUrl": "https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf",
-        "labels": [
-          "Marine Biology Major Requirements Worksheet"
-        ],
-        "ownerIds": [
-          "uw-seattle-marine-biology"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "application/pdf",
-        "contentLength": "484782",
-        "etag": "\"765ae-6437f5f867818\"",
-        "lastModified": "Thu, 13 Nov 2025 20:03:22 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "53712f507fba564b853058b100ef61eaa5edb82e3d15afef7baa81ef35fc9a3a"
-      },
-      {
-        "url": "https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf",
-        "finalUrl": "https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf",
-        "labels": [
-          "MICROBIOLOGY DEGREE REQUIREMENTS AND ELECTIVES PACKET"
-        ],
-        "ownerIds": [
-          "uw-seattle-microbiology"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "application/pdf",
-        "contentLength": "256264",
-        "etag": "\"68f9256d-3e908\"",
-        "lastModified": "Wed, 22 Oct 2025 18:41:49 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "b4975967a22537a03415567a79d58c4217e7b22c04b47f007024dd70f5499711"
-      },
-      {
-        "url": "https://mse.washington.edu/current/undergrad/courses",
-        "finalUrl": "https://mse.washington.edu/current/undergrad/courses",
-        "labels": [
-          "UW Materials Science degree requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-materials-science-engineering",
-          "uw-seattle-materials-science-engineering::concentration-areas",
-          "uw-seattle-materials-science-engineering::nanoscience-and-molecular-engineering-nme-option",
-          "uw-seattle-materials-science-engineering:pathway:concentration-areas",
-          "uw-seattle-materials-science-engineering:pathway:nanoscience-and-molecular-engineering-nme-option"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "a056332bda105c012ff668dd0d3ce6b8e0416f404e696afa05cdfaaf268db3e5"
-      },
-      {
-        "url": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
-        "finalUrl": "https://psych.uw.edu/undergraduate/prospective-students/graduation-requirements",
-        "labels": [
-          "UW Psychology graduation requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-psychology",
-          "uw-seattle-psychology::ba-route",
-          "uw-seattle-psychology::bs-route",
-          "uw-seattle-psychology:pathway:ba-route",
-          "uw-seattle-psychology:pathway:bs-route"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=utf-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "3ef488d91932418ccee04d237691a17556b62eb22523097b087fc5734c8a7f67"
-      },
-      {
-        "url": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
-        "finalUrl": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
-        "labels": [
-          "UW SBSE schedule and major requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-sustainable-bioresource-systems-engineering",
-          "uw-seattle-sustainable-bioresource-systems-engineering::esrm-general-pathway",
-          "uw-seattle-sustainable-bioresource-systems-engineering::joining-the-wildlife-conservation-option",
-          "uw-seattle-sustainable-bioresource-systems-engineering::required-sustainable-forest-management-option-courses",
-          "uw-seattle-sustainable-bioresource-systems-engineering::required-wildlife-conservation-option-courses",
-          "uw-seattle-sustainable-bioresource-systems-engineering::requirements-for-the-esrm-general-pathway",
-          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:esrm-general-pathway",
-          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:joining-the-wildlife-conservation-option",
-          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:required-sustainable-forest-management-option-courses",
-          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:required-wildlife-conservation-option-courses",
-          "uw-seattle-sustainable-bioresource-systems-engineering:pathway:requirements-for-the-esrm-general-pathway"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "ef2cc9abc362be004a81d5b0d92cea646d1ea3c3770e1d0644df016124575f0f"
-      },
-      {
-        "url": "https://sites.uw.edu/neusci/about/degree-requirements/",
-        "finalUrl": "https://sites.uw.edu/neusci/about/degree-requirements/",
-        "labels": [
-          "UW Undergraduate Neuroscience degree requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-neuroscience"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": null,
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "f39dd231def0e88981e11fdb9834357dd72f54d7ee2f477b01ae5b649159c7ca"
       },
       {
         "url": "https://sph.washington.edu/sites/default/files/2024-09/Public-Health-Global-Health-Major-OnePager-Purple-Curriculum-AUT2024.pdf",
@@ -2850,6 +2733,28 @@
         "title": null,
         "fetchMode": "head",
         "resourceFingerprint": "3b8850fa13183fd5e81000abe6a0add859d7e8f1fee9d52116f739495d6fc7df"
+      },
+      {
+        "url": "https://www.deohs.washington.edu/degree-requirements",
+        "finalUrl": "https://www.deohs.washington.edu/degree-requirements",
+        "labels": [
+          "UW Environmental Public Health degree requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-environmental-public-health"
+        ],
+        "kinds": [
+          "major"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": null,
+        "etag": "\"1776654652\"",
+        "lastModified": "Mon, 20 Apr 2026 03:10:52 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "a3d6a6242ca6426d0cec13b66e66e7f6dea1c0654ead6a04906a1c683c3b7f89"
       },
       {
         "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
@@ -6089,6 +5994,32 @@
         "resourceFingerprint": "d432ef0b7420eb0a8190403858dc2556d84a23d6474c08517eb743c226a83696"
       },
       {
+        "url": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
+        "finalUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
+        "labels": [
+          "UW Political Science major declaration and requirements"
+        ],
+        "ownerIds": [
+          "uw-seattle-political-science",
+          "uw-seattle-political-science::international-security-and-political-economy-option-courses",
+          "uw-seattle-political-science::political-economy-option",
+          "uw-seattle-political-science::political-economy-option-pdf"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "65156",
+        "etag": "\"1776653029\"",
+        "lastModified": "Mon, 20 Apr 2026 02:43:49 GMT",
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "4756e5cb0a06e8eff0f18f44ce578140cb39514123badfd8ec4076123ddaab3e"
+      },
+      {
         "url": "https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf",
         "finalUrl": "https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf",
         "labels": [
@@ -6855,46 +6786,10 @@
         "resourceFingerprint": "d3c1f41ed2cc9603f046b2076beba0e6130bcc4281d7d144ae91d44da6576201"
       },
       {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
         "labels": [
-          "UW Bothell Accounting option",
-          "UW Bothell Accounting option major requirements"
-        ],
-        "ownerIds": [
-          "uw-bothell-business-administration-accounting",
-          "uw-bothell-business-administration-accounting::accounting-option",
-          "uw-bothell-business-administration-accounting::accounting-option-students-must-complete-the-following-courses-for-graduation",
-          "uw-bothell-business-administration-accounting::entrepreneurship-concentration",
-          "uw-bothell-business-administration-accounting::finance-option-and-concentration",
-          "uw-bothell-business-administration-accounting::marketing-option-and-concentration",
-          "uw-bothell-business-administration-accounting:pathway:accounting-option",
-          "uw-bothell-business-administration-accounting:pathway:accounting-option-students-must-complete-the-following-courses-for-graduation",
-          "uw-bothell-business-administration-accounting:pathway:entrepreneurship-concentration",
-          "uw-bothell-business-administration-accounting:pathway:finance-option-and-concentration",
-          "uw-bothell-business-administration-accounting:pathway:marketing-option-and-concentration",
-          "uw-bothell-business-administration::accounting-option",
-          "uw-bothell-business-administration:pathway:accounting-option"
-        ],
-        "kinds": [
-          "major",
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "58344",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "6adff0e75d95fbd352c6bd672570ed7c76bfadd2f05a518702cb8a6970882782"
-      },
-      {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
-        "labels": [
-          "UW Bothell BBA curriculum hub"
+          "UW Bothell Bachelor of Business Administration overview"
         ],
         "ownerIds": [
           "uw-bothell-business-administration",
@@ -6911,12 +6806,104 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=UTF-8",
-        "contentLength": "57938",
+        "contentLength": "58615",
         "etag": null,
         "lastModified": null,
         "title": null,
         "fetchMode": "head",
-        "resourceFingerprint": "8d5434c2da0c93fd4cbf6cca932a2f865b8c90f6b9ef137f2bf02f9b32e4757e"
+        "resourceFingerprint": "44f63928b1cce482e9f3e5705f3ce65e84fb9038c113a8d8d0b9000ac9663622"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
+        "labels": [
+          "UW Bothell Finance option and concentration",
+          "UW Bothell Finance option and concentration major requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration-finance",
+          "uw-bothell-business-administration-finance::concentration-courses",
+          "uw-bothell-business-administration-finance::finance-option-and-concentration",
+          "uw-bothell-business-administration-finance::option-courses",
+          "uw-bothell-business-administration-finance:pathway:concentration-courses",
+          "uw-bothell-business-administration-finance:pathway:finance-option-and-concentration",
+          "uw-bothell-business-administration-finance:pathway:option-courses",
+          "uw-bothell-business-administration::finance-option-and-concentration",
+          "uw-bothell-business-administration:pathway:finance-option-and-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "59040",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "b16eb59da69684c149d1b42643525d615084c7ecc3cb006988320959f7aa6dda"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
+        "labels": [
+          "UW Bothell Management concentration major requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration:pathway:management-concentration"
+        ],
+        "kinds": [
+          "pathway"
+        ],
+        "ok": true,
+        "status": null,
+        "contentType": "requirement-source-snapshot",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": "Management Concentration - School of Business",
+        "fetchMode": "requirement-snapshot",
+        "resourceFingerprint": "a660348d1664aea562924ecfd450159220354e91378c1f9d88664d7d5f199380"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
+        "labels": [
+          "UW Bothell Marketing option and concentration",
+          "UW Bothell Marketing option and concentration major requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration-marketing",
+          "uw-bothell-business-administration-marketing::accounting-option",
+          "uw-bothell-business-administration-marketing::finance-option-and-concentration",
+          "uw-bothell-business-administration-marketing::marketing-option-and-concentration",
+          "uw-bothell-business-administration-marketing::marketing-option-and-concentration-school-of-business",
+          "uw-bothell-business-administration-marketing::option-and-concentration-curriculum",
+          "uw-bothell-business-administration-marketing::option-course-numbers-and-names",
+          "uw-bothell-business-administration-marketing:pathway:accounting-option",
+          "uw-bothell-business-administration-marketing:pathway:finance-option-and-concentration",
+          "uw-bothell-business-administration-marketing:pathway:marketing-option-and-concentration",
+          "uw-bothell-business-administration-marketing:pathway:marketing-option-and-concentration-school-of-business",
+          "uw-bothell-business-administration-marketing:pathway:option-and-concentration-curriculum",
+          "uw-bothell-business-administration-marketing:pathway:option-course-numbers-and-names",
+          "uw-bothell-business-administration::marketing-option-and-concentration",
+          "uw-bothell-business-administration:pathway:marketing-option-and-concentration"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "56849",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "beab848dd2039c84944f7255b26a0deaca6e744845ee66827966bca93e362219"
       },
       {
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis",
@@ -6942,47 +6929,48 @@
         "resourceFingerprint": "6628bbf74e5b59a180f8297819d2c5170eddc542bc66cf680156ff8a41ec7804"
       },
       {
-        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
-        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
         "labels": [
-          "UW Bothell Supply Chain Management option"
+          "UW Bothell Retail Management concentration major requirements"
         ],
         "ownerIds": [
-          "uw-bothell-business-administration-supply-chain-management",
-          "uw-bothell-business-administration-supply-chain-management::accounting-option",
-          "uw-bothell-business-administration-supply-chain-management::entrepreneurship-concentration",
-          "uw-bothell-business-administration-supply-chain-management::finance-option-and-concentration",
-          "uw-bothell-business-administration-supply-chain-management::management-concentration",
-          "uw-bothell-business-administration-supply-chain-management::management-information-systems-mis-concentration",
-          "uw-bothell-business-administration-supply-chain-management::marketing-option-and-concentration",
-          "uw-bothell-business-administration-supply-chain-management::retail-management-concentration",
-          "uw-bothell-business-administration-supply-chain-management::supply-chain-management-option",
-          "uw-bothell-business-administration-supply-chain-management::supply-chain-management-option-school-of-business",
-          "uw-bothell-business-administration-supply-chain-management::technology-and-innovation-management-tim-concentration",
-          "uw-bothell-business-administration-supply-chain-management:pathway:accounting-option",
-          "uw-bothell-business-administration-supply-chain-management:pathway:entrepreneurship-concentration",
-          "uw-bothell-business-administration-supply-chain-management:pathway:finance-option-and-concentration",
-          "uw-bothell-business-administration-supply-chain-management:pathway:management-concentration",
-          "uw-bothell-business-administration-supply-chain-management:pathway:management-information-systems-mis-concentration",
-          "uw-bothell-business-administration-supply-chain-management:pathway:marketing-option-and-concentration",
-          "uw-bothell-business-administration-supply-chain-management:pathway:retail-management-concentration",
-          "uw-bothell-business-administration-supply-chain-management:pathway:supply-chain-management-option",
-          "uw-bothell-business-administration-supply-chain-management:pathway:supply-chain-management-option-school-of-business",
-          "uw-bothell-business-administration-supply-chain-management:pathway:technology-and-innovation-management-tim-concentration"
+          "uw-bothell-business-administration:pathway:retail-management-concentration"
         ],
         "kinds": [
-          "major",
           "pathway"
         ],
         "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "57445",
+        "status": null,
+        "contentType": "requirement-source-snapshot",
+        "contentLength": null,
         "etag": null,
         "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "bc526fc291ca7c04b649b520321099f8f306fd9aa7e370b42479c0733c36d28a"
+        "title": "Retail Management Concentration - School of Business",
+        "fetchMode": "requirement-snapshot",
+        "resourceFingerprint": "039f7d0145f93bc04497e53d216cabab753677216ff6187d609dba93600768a5"
+      },
+      {
+        "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
+        "finalUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
+        "labels": [
+          "UW Bothell Technology and Innovation Management concentration major requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-business-administration:pathway:tim-concentration"
+        ],
+        "kinds": [
+          "pathway"
+        ],
+        "ok": true,
+        "status": null,
+        "contentType": "requirement-source-snapshot",
+        "contentLength": null,
+        "etag": null,
+        "lastModified": null,
+        "title": "Technology & Innovation Management (TIM) Concentration - School of Business",
+        "fetchMode": "requirement-snapshot",
+        "resourceFingerprint": "1d4443a605dcb142a4ed71594cc282c128d72117e6ca53e1a840e67fe789f758"
       },
       {
         "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
@@ -7010,6 +6998,33 @@
         "title": null,
         "fetchMode": "head",
         "resourceFingerprint": "e7da52df5df70b1bf10746ef3e614b4a7e3d0491992b3590e69db6ad692e9757"
+      },
+      {
+        "url": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+        "finalUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+        "labels": [
+          "UW Bothell Elementary Education degree requirements"
+        ],
+        "ownerIds": [
+          "uw-bothell-educational-studies-elementary-education",
+          "uw-bothell-educational-studies-elementary-education::elementary-education-option-requirements",
+          "uw-bothell-educational-studies-elementary-education::elementary-education-option-requirements-and-8211-2025-cohort",
+          "uw-bothell-educational-studies-elementary-education:pathway:elementary-education-option-requirements",
+          "uw-bothell-educational-studies-elementary-education:pathway:elementary-education-option-requirements-and-8211-2025-cohort"
+        ],
+        "kinds": [
+          "major",
+          "pathway"
+        ],
+        "ok": true,
+        "status": 200,
+        "contentType": "text/html; charset=UTF-8",
+        "contentLength": "76155",
+        "etag": null,
+        "lastModified": null,
+        "title": null,
+        "fetchMode": "head",
+        "resourceFingerprint": "3119a40ad002379f7f4e7a2ed430eaf132bd255e08ae88b7763142b0c96cb6d4"
       },
       {
         "url": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
@@ -7080,13 +7095,13 @@
         "resourceFingerprint": "4778a4df3193d024a431fc22dc43738a76b5083d853dd4578d094885f812d216"
       },
       {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
         "labels": [
-          "UW Bothell Environmental Studies requirements"
+          "UW Bothell Interdisciplinary Arts requirements"
         ],
         "ownerIds": [
-          "uw-bothell-environmental-studies"
+          "uw-bothell-interdisciplinary-arts"
         ],
         "kinds": [
           "major"
@@ -7094,34 +7109,41 @@
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=UTF-8",
-        "contentLength": "64528",
+        "contentLength": "64373",
         "etag": null,
         "lastModified": null,
         "title": null,
         "fetchMode": "head",
-        "resourceFingerprint": "686eac82b86de8991f8bc98624b4c8bd413ca90d5911a2701c9bf7055b07c631"
+        "resourceFingerprint": "33c81debb89c6961159c1032829011d36e934a37996b60f5b22aaf67f2846bc7"
       },
       {
-        "url": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
-        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
+        "url": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
+        "finalUrl": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
         "labels": [
-          "UW Bothell Gender, Women & Sexuality Studies requirements"
+          "UW Bothell Psychology requirements"
         ],
         "ownerIds": [
-          "uw-bothell-gender-women-and-sexuality-studies"
+          "uw-bothell-psychology",
+          "uw-bothell-psychology::200-level-psychology-courses-option",
+          "uw-bothell-psychology::psychology-electives-option",
+          "uw-bothell-psychology::upper-division-psychology-courses-option",
+          "uw-bothell-psychology:pathway:200-level-psychology-courses-option",
+          "uw-bothell-psychology:pathway:psychology-electives-option",
+          "uw-bothell-psychology:pathway:upper-division-psychology-courses-option"
         ],
         "kinds": [
-          "major"
+          "major",
+          "pathway"
         ],
         "ok": true,
         "status": 200,
         "contentType": "text/html; charset=UTF-8",
-        "contentLength": "67032",
+        "contentLength": "68622",
         "etag": null,
         "lastModified": null,
         "title": null,
         "fetchMode": "head",
-        "resourceFingerprint": "b1d5429ac55253eca23097065bb041e8c2d72ecd19945814126f3054f12ad883"
+        "resourceFingerprint": "0817db39a85a1e30da3311cd4eae0b81b726c6e95bfbedf76a0978a6224f0064"
       },
       {
         "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
@@ -7176,28 +7198,6 @@
         "title": null,
         "fetchMode": "head",
         "resourceFingerprint": "3750401af968a46b86e9250d17fb5bde68864c35f0fa35f52dcbeeb371ed86d4"
-      },
-      {
-        "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
-        "finalUrl": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
-        "labels": [
-          "UW Bothell Biology curriculum"
-        ],
-        "ownerIds": [
-          "uw-bothell-biology"
-        ],
-        "kinds": [
-          "major"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "67934",
-        "etag": null,
-        "lastModified": null,
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "96b072e8667cc9612ae0315ff3c2ef9c6843d7318fae03077caa2ec460ea4eea"
       },
       {
         "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
@@ -8261,109 +8261,145 @@
         "resourceFingerprint": "bebad78b9615157a8b3c8456e7766bed4ccd742065b5a60f133d57424579aca7"
       }
     ],
-    "removed": [
-      {
-        "url": "https://geography.washington.edu/ba-geography-data-science-option",
-        "finalUrl": "https://geography.washington.edu/ba-geography-data-science-option",
-        "labels": [
-          "UW Geography Data Science option major requirements"
-        ],
-        "ownerIds": [
-          "uw-seattle-geography::data-science-option"
-        ],
-        "kinds": [
-          "pathway"
-        ],
-        "ok": true,
-        "status": 200,
-        "contentType": "text/html; charset=UTF-8",
-        "contentLength": "54610",
-        "etag": "\"1776648596\"",
-        "lastModified": "Mon, 20 Apr 2026 01:29:56 GMT",
-        "title": null,
-        "fetchMode": "head",
-        "resourceFingerprint": "d6692b58708428538eb4e1b83b00f4942193a08a700dc3a376a90415937e3a82"
-      }
-    ]
+    "removed": []
   },
   "requirementDiff": {
     "added": [],
     "changed": [
       {
-        "ownerId": "uw-tacoma-environmental-sustainability:pathway:education-option",
-        "ownerTitle": "Environmental Sustainability (BA) - Education option",
-        "planId": "uw-tacoma-environmental-sustainability",
-        "pathwayId": "education-option",
-        "campusId": "uw-tacoma",
-        "parserType": "generic-html",
-        "sourceUrl": "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
-        "sourceLabel": "UW Tacoma Environmental Sustainability Education option",
+        "ownerId": "uw-seattle-early-childhood-and-family-studies",
+        "ownerTitle": "Early Childhood & Family Studies",
+        "planId": "uw-seattle-early-childhood-and-family-studies",
+        "pathwayId": null,
+        "campusId": "uw-seattle",
+        "parserType": "html-overview-page",
+        "sourceUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
+        "sourceLabel": "UW Early Childhood & Family Studies program page",
         "ok": true,
         "parseConfidence": "high",
-        "parsedUwCourseCodeCount": 12,
+        "parsedUwCourseCodeCount": 17,
         "sourceOnlyUwCourseCodeCount": 0,
-        "structuredOnlyUwCourseCodeCount": 0,
-        "extractedHeadingCount": 5,
-        "requirementCueLineCount": 6,
-        "chooseStatementCount": 0,
+        "structuredOnlyUwCourseCodeCount": 1,
+        "extractedHeadingCount": 20,
+        "requirementCueLineCount": 40,
+        "chooseStatementCount": 3,
         "qualitySignalCodes": [],
         "qualityWarningCount": 0,
         "qualityNoteCount": 0,
-        "requirementFingerprint": "664d1e974ce2abe0320896642f90912da648f5c3cb8dd89f43e738338d5b7cdb",
+        "requirementFingerprint": "5b89cfe8e6e75275c89745448766cc8721de2bd33d959bc95389a3bcbdf792bc",
         "parsedUwCourseCodes": [
-          "TBIOL 110",
-          "TBIOL 232",
-          "TCHEM 131",
-          "TECON 200",
-          "TESC 201",
-          "TESC 345",
-          "TEST 200",
-          "TGEOS 243",
-          "TGEOS 341",
-          "TMATH 110",
-          "TWRT 211",
-          "TWRT 291"
+          "ECFS 200",
+          "ECFS 301",
+          "ECFS 303",
+          "ECFS 311",
+          "ECFS 312",
+          "ECFS 315",
+          "ECFS 320",
+          "ECFS 321",
+          "ECFS 400",
+          "ECFS 419",
+          "ECFS 456",
+          "EDSPE 304",
+          "EDSPE 414",
+          "EDSPE 427",
+          "EDSPE 435",
+          "ENGL 131",
+          "IECMH 432"
         ],
         "sourceOnlyUwCourseCodes": [],
-        "structuredOnlyUwCourseCodes": []
+        "structuredOnlyUwCourseCodes": [
+          "IN ECFS 200"
+        ]
       },
       {
-        "ownerId": "uw-tacoma-environmental-sustainability:pathway:policy-law-option",
-        "ownerTitle": "Environmental Sustainability (BA) - Policy and Law option",
-        "planId": "uw-tacoma-environmental-sustainability",
-        "pathwayId": "policy-law-option",
-        "campusId": "uw-tacoma",
-        "parserType": "generic-html",
-        "sourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
-        "sourceLabel": "UW Tacoma Environmental Policy and Law option",
+        "ownerId": "uw-seattle-early-childhood-and-family-studies:pathway:route-menu-active-trails-main",
+        "ownerTitle": "Early Childhood & Family Studies - * route.menu_active_trails:main",
+        "planId": "uw-seattle-early-childhood-and-family-studies",
+        "pathwayId": "route-menu-active-trails-main",
+        "campusId": "uw-seattle",
+        "parserType": "html-overview-page",
+        "sourceUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
+        "sourceLabel": "UW Early Childhood & Family Studies program page",
         "ok": true,
         "parseConfidence": "high",
-        "parsedUwCourseCodeCount": 12,
+        "parsedUwCourseCodeCount": 17,
         "sourceOnlyUwCourseCodeCount": 0,
-        "structuredOnlyUwCourseCodeCount": 0,
-        "extractedHeadingCount": 5,
-        "requirementCueLineCount": 6,
-        "chooseStatementCount": 0,
+        "structuredOnlyUwCourseCodeCount": 1,
+        "extractedHeadingCount": 20,
+        "requirementCueLineCount": 40,
+        "chooseStatementCount": 3,
         "qualitySignalCodes": [],
         "qualityWarningCount": 0,
         "qualityNoteCount": 0,
-        "requirementFingerprint": "40e61511e7d8bf5896b9a9686c77e7a3cf5c2e1ef6e0d5e6b0e7a75695b3ed35",
+        "requirementFingerprint": "5b89cfe8e6e75275c89745448766cc8721de2bd33d959bc95389a3bcbdf792bc",
         "parsedUwCourseCodes": [
-          "TBIOL 110",
-          "TBIOL 232",
-          "TCHEM 131",
-          "TECON 200",
-          "TESC 201",
-          "TESC 345",
-          "TEST 200",
-          "TGEOS 243",
-          "TGEOS 341",
-          "TMATH 110",
-          "TWRT 211",
-          "TWRT 291"
+          "ECFS 200",
+          "ECFS 301",
+          "ECFS 303",
+          "ECFS 311",
+          "ECFS 312",
+          "ECFS 315",
+          "ECFS 320",
+          "ECFS 321",
+          "ECFS 400",
+          "ECFS 419",
+          "ECFS 456",
+          "EDSPE 304",
+          "EDSPE 414",
+          "EDSPE 427",
+          "EDSPE 435",
+          "ENGL 131",
+          "IECMH 432"
         ],
         "sourceOnlyUwCourseCodes": [],
-        "structuredOnlyUwCourseCodes": []
+        "structuredOnlyUwCourseCodes": [
+          "IN ECFS 200"
+        ]
+      },
+      {
+        "ownerId": "uw-seattle-early-childhood-and-family-studies:pathway:route-name-is-layout-builder-ui",
+        "ownerTitle": "Early Childhood & Family Studies - route Name Is Layout Builder Ui",
+        "planId": "uw-seattle-early-childhood-and-family-studies",
+        "pathwayId": "route-name-is-layout-builder-ui",
+        "campusId": "uw-seattle",
+        "parserType": "html-overview-page",
+        "sourceUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
+        "sourceLabel": "UW Early Childhood & Family Studies program page",
+        "ok": true,
+        "parseConfidence": "high",
+        "parsedUwCourseCodeCount": 17,
+        "sourceOnlyUwCourseCodeCount": 0,
+        "structuredOnlyUwCourseCodeCount": 1,
+        "extractedHeadingCount": 20,
+        "requirementCueLineCount": 40,
+        "chooseStatementCount": 3,
+        "qualitySignalCodes": [],
+        "qualityWarningCount": 0,
+        "qualityNoteCount": 0,
+        "requirementFingerprint": "5b89cfe8e6e75275c89745448766cc8721de2bd33d959bc95389a3bcbdf792bc",
+        "parsedUwCourseCodes": [
+          "ECFS 200",
+          "ECFS 301",
+          "ECFS 303",
+          "ECFS 311",
+          "ECFS 312",
+          "ECFS 315",
+          "ECFS 320",
+          "ECFS 321",
+          "ECFS 400",
+          "ECFS 419",
+          "ECFS 456",
+          "EDSPE 304",
+          "EDSPE 414",
+          "EDSPE 427",
+          "EDSPE 435",
+          "ENGL 131",
+          "IECMH 432"
+        ],
+        "sourceOnlyUwCourseCodes": [],
+        "structuredOnlyUwCourseCodes": [
+          "IN ECFS 200"
+        ]
       }
     ],
     "unchanged": [
@@ -19546,141 +19582,6 @@
         ]
       },
       {
-        "ownerId": "uw-seattle-early-childhood-and-family-studies",
-        "ownerTitle": "Early Childhood & Family Studies",
-        "planId": "uw-seattle-early-childhood-and-family-studies",
-        "pathwayId": null,
-        "campusId": "uw-seattle",
-        "parserType": "html-overview-page",
-        "sourceUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
-        "sourceLabel": "UW Early Childhood & Family Studies program page",
-        "ok": true,
-        "parseConfidence": "high",
-        "parsedUwCourseCodeCount": 17,
-        "sourceOnlyUwCourseCodeCount": 0,
-        "structuredOnlyUwCourseCodeCount": 1,
-        "extractedHeadingCount": 20,
-        "requirementCueLineCount": 40,
-        "chooseStatementCount": 3,
-        "qualitySignalCodes": [],
-        "qualityWarningCount": 0,
-        "qualityNoteCount": 0,
-        "requirementFingerprint": "d3626ecfc11c3be73d872432dcaea1c1867cab727bc6aa76cef08f68fd48e80a",
-        "parsedUwCourseCodes": [
-          "ECFS 200",
-          "ECFS 301",
-          "ECFS 303",
-          "ECFS 311",
-          "ECFS 312",
-          "ECFS 315",
-          "ECFS 320",
-          "ECFS 321",
-          "ECFS 400",
-          "ECFS 419",
-          "ECFS 456",
-          "EDSPE 304",
-          "EDSPE 414",
-          "EDSPE 427",
-          "EDSPE 435",
-          "ENGL 131",
-          "IECMH 432"
-        ],
-        "sourceOnlyUwCourseCodes": [],
-        "structuredOnlyUwCourseCodes": [
-          "IN ECFS 200"
-        ]
-      },
-      {
-        "ownerId": "uw-seattle-early-childhood-and-family-studies:pathway:route-menu-active-trails-main",
-        "ownerTitle": "Early Childhood & Family Studies - * route.menu_active_trails:main",
-        "planId": "uw-seattle-early-childhood-and-family-studies",
-        "pathwayId": "route-menu-active-trails-main",
-        "campusId": "uw-seattle",
-        "parserType": "html-overview-page",
-        "sourceUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
-        "sourceLabel": "UW Early Childhood & Family Studies program page",
-        "ok": true,
-        "parseConfidence": "high",
-        "parsedUwCourseCodeCount": 17,
-        "sourceOnlyUwCourseCodeCount": 0,
-        "structuredOnlyUwCourseCodeCount": 1,
-        "extractedHeadingCount": 20,
-        "requirementCueLineCount": 40,
-        "chooseStatementCount": 3,
-        "qualitySignalCodes": [],
-        "qualityWarningCount": 0,
-        "qualityNoteCount": 0,
-        "requirementFingerprint": "d3626ecfc11c3be73d872432dcaea1c1867cab727bc6aa76cef08f68fd48e80a",
-        "parsedUwCourseCodes": [
-          "ECFS 200",
-          "ECFS 301",
-          "ECFS 303",
-          "ECFS 311",
-          "ECFS 312",
-          "ECFS 315",
-          "ECFS 320",
-          "ECFS 321",
-          "ECFS 400",
-          "ECFS 419",
-          "ECFS 456",
-          "EDSPE 304",
-          "EDSPE 414",
-          "EDSPE 427",
-          "EDSPE 435",
-          "ENGL 131",
-          "IECMH 432"
-        ],
-        "sourceOnlyUwCourseCodes": [],
-        "structuredOnlyUwCourseCodes": [
-          "IN ECFS 200"
-        ]
-      },
-      {
-        "ownerId": "uw-seattle-early-childhood-and-family-studies:pathway:route-name-is-layout-builder-ui",
-        "ownerTitle": "Early Childhood & Family Studies - route Name Is Layout Builder Ui",
-        "planId": "uw-seattle-early-childhood-and-family-studies",
-        "pathwayId": "route-name-is-layout-builder-ui",
-        "campusId": "uw-seattle",
-        "parserType": "html-overview-page",
-        "sourceUrl": "https://education.washington.edu/academics/program/early-childhood-family-studies",
-        "sourceLabel": "UW Early Childhood & Family Studies program page",
-        "ok": true,
-        "parseConfidence": "high",
-        "parsedUwCourseCodeCount": 17,
-        "sourceOnlyUwCourseCodeCount": 0,
-        "structuredOnlyUwCourseCodeCount": 1,
-        "extractedHeadingCount": 20,
-        "requirementCueLineCount": 40,
-        "chooseStatementCount": 3,
-        "qualitySignalCodes": [],
-        "qualityWarningCount": 0,
-        "qualityNoteCount": 0,
-        "requirementFingerprint": "d3626ecfc11c3be73d872432dcaea1c1867cab727bc6aa76cef08f68fd48e80a",
-        "parsedUwCourseCodes": [
-          "ECFS 200",
-          "ECFS 301",
-          "ECFS 303",
-          "ECFS 311",
-          "ECFS 312",
-          "ECFS 315",
-          "ECFS 320",
-          "ECFS 321",
-          "ECFS 400",
-          "ECFS 419",
-          "ECFS 456",
-          "EDSPE 304",
-          "EDSPE 414",
-          "EDSPE 427",
-          "EDSPE 435",
-          "ENGL 131",
-          "IECMH 432"
-        ],
-        "sourceOnlyUwCourseCodes": [],
-        "structuredOnlyUwCourseCodes": [
-          "IN ECFS 200"
-        ]
-      },
-      {
         "ownerId": "uw-seattle-earth-and-space-sciences",
         "ownerTitle": "Earth & Space Sciences",
         "planId": "uw-seattle-earth-and-space-sciences",
@@ -25023,6 +24924,44 @@
         "structuredOnlyUwCourseCodes": []
       },
       {
+        "ownerId": "uw-tacoma-environmental-sustainability:pathway:education-option",
+        "ownerTitle": "Environmental Sustainability (BA) - Education option",
+        "planId": "uw-tacoma-environmental-sustainability",
+        "pathwayId": "education-option",
+        "campusId": "uw-tacoma",
+        "parserType": "generic-html",
+        "sourceUrl": "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+        "sourceLabel": "UW Tacoma Environmental Sustainability Education option",
+        "ok": true,
+        "parseConfidence": "high",
+        "parsedUwCourseCodeCount": 12,
+        "sourceOnlyUwCourseCodeCount": 0,
+        "structuredOnlyUwCourseCodeCount": 0,
+        "extractedHeadingCount": 5,
+        "requirementCueLineCount": 6,
+        "chooseStatementCount": 0,
+        "qualitySignalCodes": [],
+        "qualityWarningCount": 0,
+        "qualityNoteCount": 0,
+        "requirementFingerprint": "664d1e974ce2abe0320896642f90912da648f5c3cb8dd89f43e738338d5b7cdb",
+        "parsedUwCourseCodes": [
+          "TBIOL 110",
+          "TBIOL 232",
+          "TCHEM 131",
+          "TECON 200",
+          "TESC 201",
+          "TESC 345",
+          "TEST 200",
+          "TGEOS 243",
+          "TGEOS 341",
+          "TMATH 110",
+          "TWRT 211",
+          "TWRT 291"
+        ],
+        "sourceOnlyUwCourseCodes": [],
+        "structuredOnlyUwCourseCodes": []
+      },
+      {
         "ownerId": "uw-tacoma-environmental-sustainability:pathway:environmental-communication-option",
         "ownerTitle": "Environmental Sustainability (BA) - Environmental Communication option",
         "planId": "uw-tacoma-environmental-sustainability",
@@ -25077,6 +25016,44 @@
           "TRELIG 350",
           "TWRT 331",
           "TWRT 391"
+        ],
+        "sourceOnlyUwCourseCodes": [],
+        "structuredOnlyUwCourseCodes": []
+      },
+      {
+        "ownerId": "uw-tacoma-environmental-sustainability:pathway:policy-law-option",
+        "ownerTitle": "Environmental Sustainability (BA) - Policy and Law option",
+        "planId": "uw-tacoma-environmental-sustainability",
+        "pathwayId": "policy-law-option",
+        "campusId": "uw-tacoma",
+        "parserType": "generic-html",
+        "sourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
+        "sourceLabel": "UW Tacoma Environmental Policy and Law option",
+        "ok": true,
+        "parseConfidence": "high",
+        "parsedUwCourseCodeCount": 12,
+        "sourceOnlyUwCourseCodeCount": 0,
+        "structuredOnlyUwCourseCodeCount": 0,
+        "extractedHeadingCount": 5,
+        "requirementCueLineCount": 6,
+        "chooseStatementCount": 0,
+        "qualitySignalCodes": [],
+        "qualityWarningCount": 0,
+        "qualityNoteCount": 0,
+        "requirementFingerprint": "40e61511e7d8bf5896b9a9686c77e7a3cf5c2e1ef6e0d5e6b0e7a75695b3ed35",
+        "parsedUwCourseCodes": [
+          "TBIOL 110",
+          "TBIOL 232",
+          "TCHEM 131",
+          "TECON 200",
+          "TESC 201",
+          "TESC 345",
+          "TEST 200",
+          "TGEOS 243",
+          "TGEOS 341",
+          "TMATH 110",
+          "TWRT 211",
+          "TWRT 291"
         ],
         "sourceOnlyUwCourseCodes": [],
         "structuredOnlyUwCourseCodes": []
@@ -35495,12 +35472,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=utf-8",
-      "contentLength": "15947",
+      "contentLength": "15950",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "3c7d4597b64f5e66ca8d30b1d0b72edc9b901a707a69b5dd7afe536b8bed3002"
+      "resourceFingerprint": "d6613d84e81c6073cf0c82dcbd0ba6841ef969e8987e1bb7a8ad73e395fcc374"
     },
     {
       "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
@@ -35748,11 +35725,11 @@
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "54266",
-      "etag": "\"1776652266\"",
-      "lastModified": "Mon, 20 Apr 2026 02:31:06 GMT",
+      "etag": "\"1776656158\"",
+      "lastModified": "Mon, 20 Apr 2026 03:35:58 GMT",
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "e5659da44acd4dfb1f10b180de8602da831f7c22fb692d77b3d6f8cd17401e6d"
+      "resourceFingerprint": "7d23fb4d9f7cbcc9235e6a4e8c6735a8dc61bae4452bb5b7a13d09688d12dda7"
     },
     {
       "url": "https://asian.washington.edu/ba-korean",
@@ -36103,11 +36080,11 @@
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "35851",
-      "etag": "\"1776654045\"",
-      "lastModified": "Mon, 20 Apr 2026 03:00:45 GMT",
+      "etag": "\"1776656159\"",
+      "lastModified": "Mon, 20 Apr 2026 03:35:59 GMT",
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "85d56a7416fef48c623f3bfe7120a5a5fa28471880114d15f1d0281ba7fcf242"
+      "resourceFingerprint": "d9ac19d45ac9be20f60dd6f3523b43a286d168eacb99996b64cb26a874680156"
     },
     {
       "url": "https://dlmp.uw.edu/education/mls-undergrad",
@@ -36126,10 +36103,10 @@
       "contentType": "text/html; charset=UTF-8",
       "contentLength": null,
       "etag": null,
-      "lastModified": "Mon, 20 Apr 2026 03:15:02 GMT",
+      "lastModified": "Mon, 20 Apr 2026 03:36:00 GMT",
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "95ee743d0ded5bc1fa06bd6381870926ddbd5b14b60a2c4cc4c5f0e178d75b71"
+      "resourceFingerprint": "eecc3a394561d99e26b44141b82ec8c2567fd8a2f7a69b345bda7ebf7c9bcdfb"
     },
     {
       "url": "https://education.washington.edu/academics/program/early-childhood-family-studies",
@@ -36455,11 +36432,11 @@
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
       "contentLength": "69424",
-      "etag": "\"1776654906\"",
-      "lastModified": "Mon, 20 Apr 2026 03:15:06 GMT",
+      "etag": "\"1776656168\"",
+      "lastModified": "Mon, 20 Apr 2026 03:36:08 GMT",
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "91e0167faaafb66b783a3c65dc14abb59f52414844261252ae452a97c3baa1b4"
+      "resourceFingerprint": "f66196066617901862ebabb5f025bc4cdf9708ba7843605bee746ba6ec8738b1"
     },
     {
       "url": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
@@ -41590,12 +41567,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58344",
+      "contentLength": "58343",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "6adff0e75d95fbd352c6bd672570ed7c76bfadd2f05a518702cb8a6970882782"
+      "resourceFingerprint": "b8aff7437d31d28a6cc7749dcf2a686e45935c737774d84bda13791268214fec"
     },
     {
       "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
@@ -41618,12 +41595,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "58841",
+      "contentLength": "58840",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "6356bff294c866e742c56c5ce4e554f1b38758112352992b2a7e779f5f34f935"
+      "resourceFingerprint": "91c27dd39c1e3e3b46c88aebd637a81d3e24b6f2167647a18bab1b5face49b50"
     },
     {
       "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
@@ -41646,12 +41623,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57997",
+      "contentLength": "57994",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "090b9e757701b7956b5d055006b8973a696d9d3e550d38cfde00bfcc8ca4ea80"
+      "resourceFingerprint": "9bc6efd80195a45db77dcc1d0b84ec2cf7f575e8a9f873e48606144bd8468d9c"
     },
     {
       "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
@@ -41674,12 +41651,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56632",
+      "contentLength": "56629",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "6da44ec606b6f2f616ef58dd0f85ef3f6b6e7c60ce8e971e13644453aae9ddca"
+      "resourceFingerprint": "0dce7086fce526304aeb6eda0f7fb7e57628112181b57df71ebf55a0dd104362"
     },
     {
       "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
@@ -41702,12 +41679,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57938",
+      "contentLength": "57940",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "8d5434c2da0c93fd4cbf6cca932a2f865b8c90f6b9ef137f2bf02f9b32e4757e"
+      "resourceFingerprint": "0870c8df8fa3ac3aca9db2238c3537cf0239bd2ce1aaf57bae03b863e6f76daf"
     },
     {
       "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
@@ -41725,12 +41702,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56417",
+      "contentLength": "56416",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "c1c07b67392f391561947c18a646b01daed509ec90dc14f71aa142eedc433281"
+      "resourceFingerprint": "24b69dd23d2e7448426cb79586398791d46f29527f040b87a54e56e9cc28e202"
     },
     {
       "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
@@ -41794,12 +41771,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "56494",
+      "contentLength": "56493",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "38bfc1f64e82a30d44fbe47b9a10aaeebb6f4503c2057a1807b188c9128e62bd"
+      "resourceFingerprint": "0bb5d51c8de757b0bd7c7c7aa921c8b03c2c4f188558926f0b98d0d06634aebc"
     },
     {
       "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
@@ -41942,12 +41919,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57445",
+      "contentLength": "57444",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "bc526fc291ca7c04b649b520321099f8f306fd9aa7e370b42479c0733c36d28a"
+      "resourceFingerprint": "6d59d2b7ae41f2f55a01a25a147d60221c4c51c75792e6f4b448fbd8754a06a4"
     },
     {
       "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
@@ -41993,12 +41970,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57428",
+      "contentLength": "57431",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "db3c9a0d0745b6b264f3f657229f2aa9259f341a4956ee50f58e842b7a3c2dd2"
+      "resourceFingerprint": "41c9fa37152a116dcdddd05b2f8f5db2338c0a8d7823d6d14d317815461e28bd"
     },
     {
       "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
@@ -42069,12 +42046,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "59279",
+      "contentLength": "59278",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "1e0d8c1ebd72342ac1a19354f7d5aea10aa4dbe23a2b1111252a9be07fb0a864"
+      "resourceFingerprint": "39abefa7816ec98b48df40068e4f06b129362539636b1d463c3e6e21c7f2e9ad"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
@@ -42113,12 +42090,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "66820",
+      "contentLength": "66823",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "3a573a6c83643729d5d8906deb99ba20bb921f296da73ee3c7d6e7f2cacfc0bb"
+      "resourceFingerprint": "7cd101b6ab16a52ad377fdd87995f6996a080a108864f9e15abe83dca5966832"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts",
@@ -42181,12 +42158,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "69857",
+      "contentLength": "69860",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "09a6e70c44d7492db8713481927efa0b3eaf30b53e4ac69b65bd980fd8d673d3"
+      "resourceFingerprint": "7f2945e12860f666628662398311f526e798120a69283ca7fc3426b63873f7f6"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
@@ -42203,12 +42180,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64528",
+      "contentLength": "64529",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "686eac82b86de8991f8bc98624b4c8bd413ca90d5911a2701c9bf7055b07c631"
+      "resourceFingerprint": "260232bf6509f24e4ffecff1e51f3064c568776f93097624b98e392927506366"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
@@ -42225,12 +42202,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67032",
+      "contentLength": "67030",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "b1d5429ac55253eca23097065bb041e8c2d72ecd19945814126f3054f12ad883"
+      "resourceFingerprint": "ff9dbc63e28b5b89e1c40e6a3e2603c34528ada793e237fe8e14fcd1c797337a"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
@@ -42247,12 +42224,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64697",
+      "contentLength": "64696",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "0797055c1addde2726f38374e2288e7d26717f4500dc6b57e596172d0379237f"
+      "resourceFingerprint": "2d312fe636c4eeb7ed3eadd93aadec46418613c77d24cab38b8e38289a7bc3f0"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
@@ -42291,12 +42268,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64875",
+      "contentLength": "37443",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "32fb8ef61338931809166f8853588a3a963123e2fe44c18b405b94a44826c907"
+      "resourceFingerprint": "adb254831b1e7827e60116016d89bcc0b596103208cabefaab9fe02789c98d25"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
@@ -42313,12 +42290,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "63489",
+      "contentLength": "63492",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "f2a75398b65f67b2d600108366966dae58c503711e3681e93a98311b44219f4d"
+      "resourceFingerprint": "b0ef9ea5455eaab0eeae7255312d49c5b8af9a8083b410ce5bd9368afe341d26"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
@@ -42335,12 +42312,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64184",
+      "contentLength": "64183",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "ccbc341c5caccc270acd8fd2b77e71b067b92186610417bc79b6b5faa03fb88b"
+      "resourceFingerprint": "8edce07b92f6db8eff0cc419a0898340a4e777f2845bfee9a3c9383a39233243"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
@@ -42386,12 +42363,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67827",
+      "contentLength": "67824",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "46ffab63cf6def2106803bc984558b656266285fe0cad31146737d4eaf9a582c"
+      "resourceFingerprint": "093edca8052f66b542856a0b119b3767152b102294c887c2bef608c7326eb8cd"
     },
     {
       "url": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
@@ -42408,12 +42385,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "62236",
+      "contentLength": "62235",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "0314c1faa3d14b2faa7fa26e4438147d0cd1691fb33eb3db0f2f85807ff9e20d"
+      "resourceFingerprint": "821bd98479eabb2a002617f75686adc5c3cdc51c8057dd943f7fea574844b0e3"
     },
     {
       "url": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
@@ -42435,12 +42412,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "57558",
+      "contentLength": "57559",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "43d64f631364b569fae13af0ddeef8501dd6846a4f5affc427fef2f118484cdd"
+      "resourceFingerprint": "3de03022cb47153be84487a03e5ee4def3b0c2904030031ff72d63b49637b5ee"
     },
     {
       "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
@@ -42511,12 +42488,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "68742",
+      "contentLength": "68745",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "9b76c24a6cd13bc86845acc62845e39a885e0576114d5f4f46419dde6601b53a"
+      "resourceFingerprint": "c2ec90525c878d4501193459a6ae337211b9341d4332bd789d46f4f1ed23cf79"
     },
     {
       "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
@@ -42533,12 +42510,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "67934",
+      "contentLength": "67933",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "96b072e8667cc9612ae0315ff3c2ef9c6843d7318fae03077caa2ec460ea4eea"
+      "resourceFingerprint": "570aa95375c8038b3d9273ba1a350301bc2b60b05748f392d8dde0e3c3f24d68"
     },
     {
       "url": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
@@ -42555,12 +42532,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "65664",
+      "contentLength": "65667",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "9fbe7ec6fd3097309665f54da8394aa2d763573e8b750f707a07015d9a70e70d"
+      "resourceFingerprint": "45e2e9d2850b03f332bae22e8591fc3d6692819e6c62912383fec438fea48d9c"
     },
     {
       "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
@@ -42591,12 +42568,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "69184",
+      "contentLength": "69186",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "93e408adb694fcfa71fc45c7ba75caeaea827c829c8aac141368c5fd6d885d1d"
+      "resourceFingerprint": "5ad23f3033dafc9c97cd0e6c37538b561792db16e4637f22ddf35dd2b3998494"
     },
     {
       "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
@@ -42668,12 +42645,12 @@
       "ok": true,
       "status": 200,
       "contentType": "text/html; charset=UTF-8",
-      "contentLength": "64765",
+      "contentLength": "64767",
       "etag": null,
       "lastModified": null,
       "title": null,
       "fetchMode": "head",
-      "resourceFingerprint": "ed0c9126429255a135be72b12334dc31e07b8a0b17cc79f98920abdb094d8bd4"
+      "resourceFingerprint": "5e7499ae7f408f809cb5852612feae13cf3cb27fd20e39e2d2e52169bbf6a7a5"
     },
     {
       "url": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
@@ -54881,7 +54858,7 @@
       "qualitySignalCodes": [],
       "qualityWarningCount": 0,
       "qualityNoteCount": 0,
-      "requirementFingerprint": "d3626ecfc11c3be73d872432dcaea1c1867cab727bc6aa76cef08f68fd48e80a",
+      "requirementFingerprint": "5b89cfe8e6e75275c89745448766cc8721de2bd33d959bc95389a3bcbdf792bc",
       "parsedUwCourseCodes": [
         "ECFS 200",
         "ECFS 301",
@@ -54926,7 +54903,7 @@
       "qualitySignalCodes": [],
       "qualityWarningCount": 0,
       "qualityNoteCount": 0,
-      "requirementFingerprint": "d3626ecfc11c3be73d872432dcaea1c1867cab727bc6aa76cef08f68fd48e80a",
+      "requirementFingerprint": "5b89cfe8e6e75275c89745448766cc8721de2bd33d959bc95389a3bcbdf792bc",
       "parsedUwCourseCodes": [
         "ECFS 200",
         "ECFS 301",
@@ -54971,7 +54948,7 @@
       "qualitySignalCodes": [],
       "qualityWarningCount": 0,
       "qualityNoteCount": 0,
-      "requirementFingerprint": "d3626ecfc11c3be73d872432dcaea1c1867cab727bc6aa76cef08f68fd48e80a",
+      "requirementFingerprint": "5b89cfe8e6e75275c89745448766cc8721de2bd33d959bc95389a3bcbdf792bc",
       "parsedUwCourseCodes": [
         "ECFS 200",
         "ECFS 301",

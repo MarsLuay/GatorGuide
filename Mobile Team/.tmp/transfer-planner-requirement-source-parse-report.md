@@ -1,13 +1,13 @@
 # Transfer Planner Requirement Source Parse Report
 
-Generated: 2026-04-20T03:28:25.243Z
+Generated: 2026-04-20T08:41:38.043Z
 
 - Primary degree sources parsed: 472
 - Parsed successfully: 472
 - Parse failures: 0
 - Parsed requirement source adapter blocks: 472
 - Parsed requirement atom candidates: 13644
-- Parsed degree-map block candidates: 1127
+- Parsed degree-map block candidates: 1164
 - Parsed from cached snapshots after live-source failures: 0
 - Parsed from alternate official source URLs: 6
 - Owners with parsed UW course codes: 459

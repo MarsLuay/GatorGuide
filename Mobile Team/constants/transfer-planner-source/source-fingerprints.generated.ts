@@ -61,12 +61,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=utf-8",
-    "contentLength": "15947",
+    "contentLength": "15950",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "3c7d4597b64f5e66ca8d30b1d0b72edc9b901a707a69b5dd7afe536b8bed3002"
+    "resourceFingerprint": "d6613d84e81c6073cf0c82dcbd0ba6841ef969e8987e1bb7a8ad73e395fcc374"
   },
   {
     "url": "https://admit.washington.edu/apply/transfer/equivalency-guide/green-river/",
@@ -314,11 +314,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "54266",
-    "etag": "\"1776652266\"",
-    "lastModified": "Mon, 20 Apr 2026 02:31:06 GMT",
+    "etag": "\"1776656158\"",
+    "lastModified": "Mon, 20 Apr 2026 03:35:58 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "e5659da44acd4dfb1f10b180de8602da831f7c22fb692d77b3d6f8cd17401e6d"
+    "resourceFingerprint": "7d23fb4d9f7cbcc9235e6a4e8c6735a8dc61bae4452bb5b7a13d09688d12dda7"
   },
   {
     "url": "https://asian.washington.edu/ba-korean",
@@ -669,11 +669,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "35851",
-    "etag": "\"1776654045\"",
-    "lastModified": "Mon, 20 Apr 2026 03:00:45 GMT",
+    "etag": "\"1776656159\"",
+    "lastModified": "Mon, 20 Apr 2026 03:35:59 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "85d56a7416fef48c623f3bfe7120a5a5fa28471880114d15f1d0281ba7fcf242"
+    "resourceFingerprint": "d9ac19d45ac9be20f60dd6f3523b43a286d168eacb99996b64cb26a874680156"
   },
   {
     "url": "https://dlmp.uw.edu/education/mls-undergrad",
@@ -692,10 +692,10 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "contentType": "text/html; charset=UTF-8",
     "contentLength": null,
     "etag": null,
-    "lastModified": "Mon, 20 Apr 2026 03:15:02 GMT",
+    "lastModified": "Mon, 20 Apr 2026 03:36:00 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "95ee743d0ded5bc1fa06bd6381870926ddbd5b14b60a2c4cc4c5f0e178d75b71"
+    "resourceFingerprint": "eecc3a394561d99e26b44141b82ec8c2567fd8a2f7a69b345bda7ebf7c9bcdfb"
   },
   {
     "url": "https://education.washington.edu/academics/program/early-childhood-family-studies",
@@ -1021,11 +1021,11 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
     "contentLength": "69424",
-    "etag": "\"1776654906\"",
-    "lastModified": "Mon, 20 Apr 2026 03:15:06 GMT",
+    "etag": "\"1776656168\"",
+    "lastModified": "Mon, 20 Apr 2026 03:36:08 GMT",
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "91e0167faaafb66b783a3c65dc14abb59f52414844261252ae452a97c3baa1b4"
+    "resourceFingerprint": "f66196066617901862ebabb5f025bc4cdf9708ba7843605bee746ba6ec8738b1"
   },
   {
     "url": "https://ise.washington.edu/files/BSIE%20Graduation%20Requirements.pdf",
@@ -6156,12 +6156,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "58344",
+    "contentLength": "58343",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6adff0e75d95fbd352c6bd672570ed7c76bfadd2f05a518702cb8a6970882782"
+    "resourceFingerprint": "b8aff7437d31d28a6cc7749dcf2a686e45935c737774d84bda13791268214fec"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions",
@@ -6184,12 +6184,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "58841",
+    "contentLength": "58840",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6356bff294c866e742c56c5ce4e554f1b38758112352992b2a7e779f5f34f935"
+    "resourceFingerprint": "91c27dd39c1e3e3b46c88aebd637a81d3e24b6f2167647a18bab1b5face49b50"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply",
@@ -6212,12 +6212,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57997",
+    "contentLength": "57994",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "090b9e757701b7956b5d055006b8973a696d9d3e550d38cfde00bfcc8ca4ea80"
+    "resourceFingerprint": "9bc6efd80195a45db77dcc1d0b84ec2cf7f575e8a9f873e48606144bd8468d9c"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
@@ -6240,12 +6240,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "56632",
+    "contentLength": "56629",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "6da44ec606b6f2f616ef58dd0f85ef3f6b6e7c60ce8e971e13644453aae9ddca"
+    "resourceFingerprint": "0dce7086fce526304aeb6eda0f7fb7e57628112181b57df71ebf55a0dd104362"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
@@ -6268,12 +6268,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57938",
+    "contentLength": "57940",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "8d5434c2da0c93fd4cbf6cca932a2f865b8c90f6b9ef137f2bf02f9b32e4757e"
+    "resourceFingerprint": "0870c8df8fa3ac3aca9db2238c3537cf0239bd2ce1aaf57bae03b863e6f76daf"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
@@ -6291,12 +6291,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "56417",
+    "contentLength": "56416",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "c1c07b67392f391561947c18a646b01daed509ec90dc14f71aa142eedc433281"
+    "resourceFingerprint": "24b69dd23d2e7448426cb79586398791d46f29527f040b87a54e56e9cc28e202"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
@@ -6360,12 +6360,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "56494",
+    "contentLength": "56493",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "38bfc1f64e82a30d44fbe47b9a10aaeebb6f4503c2057a1807b188c9128e62bd"
+    "resourceFingerprint": "0bb5d51c8de757b0bd7c7c7aa921c8b03c2c4f188558926f0b98d0d06634aebc"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
@@ -6508,12 +6508,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57445",
+    "contentLength": "57444",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "bc526fc291ca7c04b649b520321099f8f306fd9aa7e370b42479c0733c36d28a"
+    "resourceFingerprint": "6d59d2b7ae41f2f55a01a25a147d60221c4c51c75792e6f4b448fbd8754a06a4"
   },
   {
     "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
@@ -6559,12 +6559,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57428",
+    "contentLength": "57431",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "db3c9a0d0745b6b264f3f657229f2aa9259f341a4956ee50f58e842b7a3c2dd2"
+    "resourceFingerprint": "41c9fa37152a116dcdddd05b2f8f5db2338c0a8d7823d6d14d317815461e28bd"
   },
   {
     "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
@@ -6635,12 +6635,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "59279",
+    "contentLength": "59278",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "1e0d8c1ebd72342ac1a19354f7d5aea10aa4dbe23a2b1111252a9be07fb0a864"
+    "resourceFingerprint": "39abefa7816ec98b48df40068e4f06b129362539636b1d463c3e6e21c7f2e9ad"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/american-ethnic-studies",
@@ -6679,12 +6679,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "66820",
+    "contentLength": "66823",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "3a573a6c83643729d5d8906deb99ba20bb921f296da73ee3c7d6e7f2cacfc0bb"
+    "resourceFingerprint": "7cd101b6ab16a52ad377fdd87995f6996a080a108864f9e15abe83dca5966832"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/culture-literature-arts",
@@ -6747,12 +6747,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "69857",
+    "contentLength": "69860",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "09a6e70c44d7492db8713481927efa0b3eaf30b53e4ac69b65bd980fd8d673d3"
+    "resourceFingerprint": "7f2945e12860f666628662398311f526e798120a69283ca7fc3426b63873f7f6"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/environmental-studies",
@@ -6769,12 +6769,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64528",
+    "contentLength": "64529",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "686eac82b86de8991f8bc98624b4c8bd413ca90d5911a2701c9bf7055b07c631"
+    "resourceFingerprint": "260232bf6509f24e4ffecff1e51f3064c568776f93097624b98e392927506366"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/gender-women-sexuality",
@@ -6791,12 +6791,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "67032",
+    "contentLength": "67030",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "b1d5429ac55253eca23097065bb041e8c2d72ecd19945814126f3054f12ad883"
+    "resourceFingerprint": "ff9dbc63e28b5b89e1c40e6a3e2603c34528ada793e237fe8e14fcd1c797337a"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/global-studies",
@@ -6813,12 +6813,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64697",
+    "contentLength": "64696",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0797055c1addde2726f38374e2288e7d26717f4500dc6b57e596172d0379237f"
+    "resourceFingerprint": "2d312fe636c4eeb7ed3eadd93aadec46418613c77d24cab38b8e38289a7bc3f0"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/interdisciplinary-arts",
@@ -6857,12 +6857,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64875",
+    "contentLength": "37443",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "32fb8ef61338931809166f8853588a3a963123e2fe44c18b405b94a44826c907"
+    "resourceFingerprint": "adb254831b1e7827e60116016d89bcc0b596103208cabefaab9fe02789c98d25"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/mathematical-thinking-visualization",
@@ -6879,12 +6879,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "63489",
+    "contentLength": "63492",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "f2a75398b65f67b2d600108366966dae58c503711e3681e93a98311b44219f4d"
+    "resourceFingerprint": "b0ef9ea5455eaab0eeae7255312d49c5b8af9a8083b410ce5bd9368afe341d26"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/media-communication",
@@ -6901,12 +6901,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64184",
+    "contentLength": "64183",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ccbc341c5caccc270acd8fd2b77e71b067b92186610417bc79b6b5faa03fb88b"
+    "resourceFingerprint": "8edce07b92f6db8eff0cc419a0898340a4e777f2845bfee9a3c9383a39233243"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/psychology",
@@ -6952,12 +6952,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "67827",
+    "contentLength": "67824",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "46ffab63cf6def2106803bc984558b656266285fe0cad31146737d4eaf9a582c"
+    "resourceFingerprint": "093edca8052f66b542856a0b119b3767152b102294c887c2bef608c7326eb8cd"
   },
   {
     "url": "https://www.uwb.edu/ias/undergraduate/majors/society-ethics-human-behavior",
@@ -6974,12 +6974,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "62236",
+    "contentLength": "62235",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "0314c1faa3d14b2faa7fa26e4438147d0cd1691fb33eb3db0f2f85807ff9e20d"
+    "resourceFingerprint": "821bd98479eabb2a002617f75686adc5c3cdc51c8057dd943f7fea574844b0e3"
   },
   {
     "url": "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
@@ -7001,12 +7001,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "57558",
+    "contentLength": "57559",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "43d64f631364b569fae13af0ddeef8501dd6846a4f5affc427fef2f118484cdd"
+    "resourceFingerprint": "3de03022cb47153be84487a03e5ee4def3b0c2904030031ff72d63b49637b5ee"
   },
   {
     "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
@@ -7077,12 +7077,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "68742",
+    "contentLength": "68745",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9b76c24a6cd13bc86845acc62845e39a885e0576114d5f4f46419dde6601b53a"
+    "resourceFingerprint": "c2ec90525c878d4501193459a6ae337211b9341d4332bd789d46f4f1ed23cf79"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
@@ -7099,12 +7099,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "67934",
+    "contentLength": "67933",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "96b072e8667cc9612ae0315ff3c2ef9c6843d7318fae03077caa2ec460ea4eea"
+    "resourceFingerprint": "570aa95375c8038b3d9273ba1a350301bc2b60b05748f392d8dde0e3c3f24d68"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/bscompe/curriculum",
@@ -7121,12 +7121,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "65664",
+    "contentLength": "65667",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "9fbe7ec6fd3097309665f54da8394aa2d763573e8b750f707a07015d9a70e70d"
+    "resourceFingerprint": "45e2e9d2850b03f332bae22e8591fc3d6692819e6c62912383fec438fea48d9c"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
@@ -7157,12 +7157,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "69184",
+    "contentLength": "69186",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "93e408adb694fcfa71fc45c7ba75caeaea827c829c8aac141368c5fd6d885d1d"
+    "resourceFingerprint": "5ad23f3033dafc9c97cd0e6c37538b561792db16e4637f22ddf35dd2b3998494"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
@@ -7234,12 +7234,12 @@ export const TRANSFER_PLANNER_SOURCE_FINGERPRINTS: TransferPlannerSourceFingerpr
     "ok": true,
     "status": 200,
     "contentType": "text/html; charset=UTF-8",
-    "contentLength": "64765",
+    "contentLength": "64767",
     "etag": null,
     "lastModified": null,
     "title": null,
     "fetchMode": "head",
-    "resourceFingerprint": "ed0c9126429255a135be72b12334dc31e07b8a0b17cc79f98920abdb094d8bd4"
+    "resourceFingerprint": "5e7499ae7f408f809cb5852612feae13cf3cb27fd20e39e2d2e52169bbf6a7a5"
   },
   {
     "url": "https://www.uwb.edu/stem/undergraduate/majors/mathematics/curriculum",
@@ -19448,7 +19448,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "qualitySignalCodes": [],
     "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "d3626ecfc11c3be73d872432dcaea1c1867cab727bc6aa76cef08f68fd48e80a",
+    "requirementFingerprint": "5b89cfe8e6e75275c89745448766cc8721de2bd33d959bc95389a3bcbdf792bc",
     "parsedUwCourseCodes": [
       "ECFS 200",
       "ECFS 301",
@@ -19493,7 +19493,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "qualitySignalCodes": [],
     "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "d3626ecfc11c3be73d872432dcaea1c1867cab727bc6aa76cef08f68fd48e80a",
+    "requirementFingerprint": "5b89cfe8e6e75275c89745448766cc8721de2bd33d959bc95389a3bcbdf792bc",
     "parsedUwCourseCodes": [
       "ECFS 200",
       "ECFS 301",
@@ -19538,7 +19538,7 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS: TransferPlannerRe
     "qualitySignalCodes": [],
     "qualityWarningCount": 0,
     "qualityNoteCount": 0,
-    "requirementFingerprint": "d3626ecfc11c3be73d872432dcaea1c1867cab727bc6aa76cef08f68fd48e80a",
+    "requirementFingerprint": "5b89cfe8e6e75275c89745448766cc8721de2bd33d959bc95389a3bcbdf792bc",
     "parsedUwCourseCodes": [
       "ECFS 200",
       "ECFS 301",

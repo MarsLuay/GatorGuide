@@ -28,7 +28,6 @@ import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerCanonicalCourse,
   getTransferPlannerEquivalencyRulesForSourceCourse,
-  getTransferPlannerRequirementDiffClassifications,
   getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
   getTransferPlannerTrack,
@@ -49,6 +48,7 @@ import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { errorLoggingService, transcriptPlannerDebugService } from "@/services";
 import { storageService, type UploadedFile } from "@/services/storage/storage.service";
 import {
+  buildSourceBackedRequiredCourseCodes,
   buildSourceBackedGeneralEducationRequirementTargets,
   buildSuggestedQuarterPlan,
   buildUwGeneralTransferRequirementSection,
@@ -808,20 +808,6 @@ function appendUniqueCourseCodesFromLabels(
   }
 }
 
-function getPreferredAlternativeCourseSet(
-  alternativeCourseCodeSets: string[][],
-  preferredCourseCodes: Set<string>
-) {
-  if (!alternativeCourseCodeSets.length) return [] as string[];
-
-  const preferredSet =
-    alternativeCourseCodeSets.find((courseSet) =>
-      courseSet.some((courseCode) => preferredCourseCodes.has(normalizePlannerCourseCode(courseCode)))
-    ) ?? alternativeCourseCodeSets[0];
-
-  return preferredSet ?? [];
-}
-
 function buildMajorSpecificsFallbackGrcCourseLabels(plan: TransferPlannerResolvedMajorPlan) {
   const orderedLabels: string[] = [];
   const seenLabels = new Set<string>();
@@ -847,33 +833,6 @@ function buildMajorSpecificsFallbackGrcCourseLabels(plan: TransferPlannerResolve
     appendUniqueCourseCodesFromLabels(fallbackCourseCodes, seenCourseCodes, item.grcCourses ?? []);
   }
 
-  const preferredPlanCourseCodes = new Set(
-    (plan.grcCourseList ?? [])
-      .flatMap((entry) => extractCourseCodes(entry))
-      .map((courseCode) => normalizePlannerCourseCode(courseCode))
-      .filter(Boolean)
-  );
-
-  for (const classification of getTransferPlannerRequirementDiffClassifications(
-    plan.id,
-    plan.selectedPathwayId
-  )) {
-    if (classification.displayPhase === "stay-at-grc") continue;
-    appendUniqueCourseCodesFromLabels(
-      fallbackCourseCodes,
-      seenCourseCodes,
-      classification.grcCourseCodes
-    );
-    appendUniqueCourseCodesFromLabels(
-      fallbackCourseCodes,
-      seenCourseCodes,
-      getPreferredAlternativeCourseSet(
-        classification.alternativeCourseCodeSets ?? [],
-        preferredPlanCourseCodes
-      )
-    );
-  }
-
   return fallbackCourseCodes.map((courseCode) => buildCourseDisplayLabel("grc", courseCode));
 }
 
@@ -896,6 +855,16 @@ function buildMajorSpecificsGrcRequiredMajorCourseLines(args: {
   completedCourses: TranscriptCourseEntry[];
 }) {
   const { plan, track, completedCourses } = args;
+  if (plan) {
+    const requiredCourseCodes = buildRequiredPlannerCourseCodes(plan);
+    if (requiredCourseCodes.length) {
+      return requiredCourseCodes.map((courseCode) => ({
+        id: courseCode,
+        text: buildRequiredCourseSentence(buildCourseDisplayLabel("grc", courseCode)),
+      }));
+    }
+  }
+
   const orderedLines: { id: string; text: string }[] = [];
   const seenCourseCodes = new Set<string>();
   const preparatoryCourseCodes = getPreparatoryTrackCourseCodeSet(track);
@@ -1073,47 +1042,17 @@ function buildBestSingleCourseUwEquivalentLabel(
 }
 
 function buildRequiredPlannerCourseCodes(plan: TransferPlannerResolvedMajorPlan) {
-  const orderedCourseCodes: string[] = [];
-  const seenCourseCodes = new Set<string>();
-  const checklistItems = [...plan.applicationChecklist, ...plan.beforeEnrollmentChecklist];
-
-  for (const item of checklistItems) {
-    appendUniqueCourseCodesFromLabels(orderedCourseCodes, seenCourseCodes, item.grcCourses ?? []);
-  }
-
-  const preferredPlanCourseCodes = new Set(
-    (plan.grcCourseList ?? [])
-      .flatMap((entry) => extractCourseCodes(entry))
-      .map((courseCode) => normalizePlannerCourseCode(courseCode))
-      .filter(Boolean)
-  );
-
-  for (const classification of getTransferPlannerRequirementDiffClassifications(
-    plan.id,
-    plan.selectedPathwayId
-  )) {
-    if (classification.displayPhase === "stay-at-grc") continue;
-    appendUniqueCourseCodesFromLabels(
-      orderedCourseCodes,
-      seenCourseCodes,
-      classification.grcCourseCodes
-    );
-    appendUniqueCourseCodesFromLabels(
-      orderedCourseCodes,
-      seenCourseCodes,
-      getPreferredAlternativeCourseSet(
-        classification.alternativeCourseCodeSets ?? [],
-        preferredPlanCourseCodes
-      )
-    );
-  }
+  const orderedCourseCodes = buildSourceBackedRequiredCourseCodes(plan);
 
   if (!orderedCourseCodes.length) {
+    const fallbackCourseCodes: string[] = [];
+    const seenCourseCodes = new Set<string>();
     appendUniqueCourseCodesFromLabels(
-      orderedCourseCodes,
+      fallbackCourseCodes,
       seenCourseCodes,
       plan.grcCourseList ?? []
     );
+    return fallbackCourseCodes;
   }
 
   return orderedCourseCodes;

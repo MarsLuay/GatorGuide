@@ -82,6 +82,7 @@ import {
   buildCompletedTransferableQuarterCreditSummary,
   buildGeneralEducationRequirementTargets,
   buildGeneralEducationRequirementLayerDiagnostics,
+  buildSourceBackedRequiredCourseCodes,
   parseCompletedTranscriptCourses,
   normalizeCourseCode,
   extractCourseCodes,
@@ -3456,6 +3457,121 @@ test("Seattle Computer Engineering source-backed recovery keeps a useful lower-d
   assert.equal(runtimeCourseList.length >= 12, true);
   assert.equal(runtimeRecommendation?.trackId, runtimePlan?.bestTrackId ?? null);
   assert.equal((runtimeRecommendation?.matchCount ?? 0) >= 10, true);
+});
+
+test("Seattle Computer Engineering source-backed required-course summary excludes approved-list spillover and keeps true required prep", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+
+  const requiredCourseCodes = buildSourceBackedRequiredCourseCodes(runtimePlan);
+  const forbiddenCourseCodes = [
+    "BIOL& 211",
+    "BIOL& 212",
+    "BIOL& 213",
+    "CHEM& 131",
+    "CHEM& 161",
+    "CHEM& 162",
+    "CHEM& 163",
+    "CHEM& 261",
+    "CHEM& 262",
+    "CHEM& 263",
+    "CS 145",
+    "ENGL 128",
+    "PHYS& 116",
+    "PHYS& 156",
+  ];
+  for (const courseCode of forbiddenCourseCodes) {
+    assert.equal(
+      requiredCourseCodes.includes(courseCode),
+      false,
+      `Did not expect Seattle Computer Engineering to label ${courseCode} as an individually required Green River course.`
+    );
+  }
+
+  const expectedCourseCodes = [
+    "CS 121",
+    "CS 122",
+    "CS 123",
+    "ENGL& 101",
+    "ENGR& 204",
+    "MATH 240",
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 163",
+    "PHYS& 221",
+    "PHYS& 222",
+  ];
+  for (const courseCode of expectedCourseCodes) {
+    assert.equal(
+      requiredCourseCodes.includes(courseCode),
+      true,
+      `Expected Seattle Computer Engineering to keep ${courseCode} in the source-backed required-course summary.`
+    );
+  }
+});
+
+test("Seattle Computer Engineering source-backed required-course summary stays aligned with the quarter planner", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+
+  const requiredCourseCodes = buildSourceBackedRequiredCourseCodes(runtimePlan);
+  const applicationStatuses = buildRequirementStatuses(runtimePlan.applicationChecklist, []);
+  const beforeEnrollmentStatuses = buildRequirementStatuses(
+    runtimePlan.beforeEnrollmentChecklist,
+    []
+  );
+  const stayAtGrcStatuses = buildRequirementStatuses(runtimePlan.stayAtGrcChecklist, []);
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    applicationStatuses,
+    beforeEnrollmentStatuses,
+    stayAtGrcStatuses,
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId),
+    includeStayAtGrcCourses: true,
+  });
+  const plannedCourseCodes = new Set(
+    quarterPlan
+      .flatMap((quarter) => quarter.courses)
+      .flatMap((course) => extractCourseCodes(course.label))
+  );
+
+  for (const courseCode of requiredCourseCodes) {
+    assert.equal(
+      plannedCourseCodes.has(courseCode),
+      true,
+      `Expected the suggested quarter plan to include ${courseCode} because it appears in the source-backed required-course summary.`
+    );
+  }
+});
+
+test("Architectural Design automatically drops unsafe suggested-course spillover from the source-backed required-course summary", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-architectural-design");
+  const math112Classification = getTransferPlannerRequirementDiffClassifications(
+    "uw-seattle-architectural-design"
+  ).find((entry) => entry.sourceUwCourseCode === "MATH 112");
+
+  assert.ok(runtimePlan, "Expected the Seattle Architectural Design runtime plan.");
+  assert.ok(
+    math112Classification,
+    "Expected Seattle Architectural Design to keep the underlying source-backed MATH 112 classification."
+  );
+  assert.equal(
+    math112Classification?.grcCourseCodes.includes("MATH& 148"),
+    true,
+    "Expected the underlying classification registry to still record the guide-backed MATH& 148 path."
+  );
+  assert.ok(
+    (math112Classification?.validationNotes ?? []).some((note) =>
+      /suggested|elective|approved-list/i.test(note)
+    )
+  );
+
+  const requiredCourseCodes = buildSourceBackedRequiredCourseCodes(runtimePlan);
+  assert.equal(requiredCourseCodes.includes("MATH& 148"), false);
+  assert.equal(requiredCourseCodes.includes("ENGL& 101"), true);
 });
 
 test("Runtime computing-sequence recovery uses shared guide-backed evidence without leaking optional engineering lists", () => {

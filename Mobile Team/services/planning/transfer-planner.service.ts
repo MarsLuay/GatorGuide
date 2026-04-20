@@ -17,12 +17,20 @@ import {
   TransferPlannerStudentCourseEvaluation,
   TransferPlannerTrack,
 } from "@/constants/transfer-planner-source";
+import {
+  TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA,
+  type TransferPlannerNormalizedCourseMetadataEntry,
+} from "@/constants/transfer-planner-source/course-metadata";
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
   "uw-green-river-equivalency-guide",
   "uw-green-river-equivalency-guide-derived",
 ]);
 const CHECKLIST_CHOICE_PREVIEW_LIMIT = 8;
+const SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN =
+  /\b(approved list|not required for transferring|elective|replacement|course list|course lists|course evaluation|course evaluations|highly recommended|suggested general education|suggested course pathways?)\b/i;
+const SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_PATTERN =
+  /\bCourse (?:equivalent to|overlaps with):\s*([^.]*)/gi;
 
 export type TranscriptCourseEntry = {
   code: string;
@@ -415,6 +423,242 @@ function getTransferGuidanceCandidateRulesForSourceCourse(
   return allCandidateRules.filter((rule) => rule.targetSchoolIds.includes("uw-seattle"));
 }
 
+function getCourseLevel(courseCode: string) {
+  const match = normalizeCourseCode(courseCode).match(/(\d{3})[A-Z]?$/);
+  return match ? Number(match[1]) : null;
+}
+
+function isLowerDivisionCourseCode(courseCode: string) {
+  const level = getCourseLevel(courseCode);
+  return level !== null && level < 300;
+}
+
+function getCourseSubject(courseCode: string) {
+  return normalizeCourseCode(courseCode).match(/^([A-Z&]+(?: [A-Z&]+)*)\s+\d/)?.[1] ?? null;
+}
+
+function getSourceBackedRequiredCourseSemanticRelations(courseCode: string) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  if (!normalizedCourseCode) {
+    return [] as string[];
+  }
+
+  const cached = SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_CACHE.get(normalizedCourseCode);
+  if (cached) {
+    return cached;
+  }
+
+  const metadata = NORMALIZED_COURSE_METADATA_BY_CODE.get(normalizedCourseCode);
+  const subject = getCourseSubject(normalizedCourseCode);
+  const relatedCourseCodes = unique(
+    Array.from(
+      String(metadata?.catalogDescription ?? "").matchAll(
+        SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_PATTERN
+      )
+    )
+      .flatMap((match) => extractCourseCodes(match[1] ?? ""))
+      .map((relatedCourseCode) => normalizeCourseCode(relatedCourseCode))
+      .filter(
+        (relatedCourseCode) =>
+          relatedCourseCode &&
+          relatedCourseCode !== normalizedCourseCode &&
+          isLowerDivisionCourseCode(relatedCourseCode) &&
+          getCourseSubject(relatedCourseCode) === subject
+      )
+  );
+
+  SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_CACHE.set(
+    normalizedCourseCode,
+    relatedCourseCodes
+  );
+  return relatedCourseCodes;
+}
+
+function buildBestSingleCourseUwEquivalentCourseCodes(
+  sourceCourseCode: string,
+  campusId: TransferPlannerMajorPlan["campusId"] | null | undefined
+) {
+  const normalizedSourceCourseCode = normalizeCourseCode(sourceCourseCode);
+  if (!campusId || !normalizedSourceCourseCode) {
+    return [] as string[];
+  }
+
+  const candidateRules = getTransferGuidanceCandidateRulesForSourceCourse(
+    normalizedSourceCourseCode,
+    campusId
+  )
+    .filter((rule) =>
+      (rule.sourceCourseSets ?? []).some((courseSet) => {
+        const normalizedCourseSet = courseSet.map((courseCode) =>
+          normalizeCourseCode(courseCode)
+        );
+        return (
+          normalizedCourseSet.length === 1 &&
+          normalizedCourseSet[0] === normalizedSourceCourseCode
+        );
+      })
+    )
+    .sort(compareTransferGuidanceRules);
+
+  const selectedRule = candidateRules[0];
+  if (!selectedRule) {
+    return [] as string[];
+  }
+
+  return unique(
+    (selectedRule.targetCourseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(isSpecificTransferTargetCourseCode)
+  );
+}
+
+function shouldIncludeSourceBackedParsedRequiredCourseCandidate(candidate: {
+  uwCourseCode?: string | null;
+  sourceLineHints?: string[] | null;
+}) {
+  const normalizedCourseCode = normalizeCourseCode(candidate.uwCourseCode ?? "");
+  if (!normalizedCourseCode) {
+    return false;
+  }
+
+  const level = getCourseLevel(normalizedCourseCode);
+  if (level !== null && level >= 300) {
+    return false;
+  }
+
+  const sourceLineHints = (candidate.sourceLineHints ?? [])
+    .map((line) => String(line ?? "").replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+  if (!sourceLineHints.length) {
+    return true;
+  }
+
+  return sourceLineHints.some(
+    (line) => !SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN.test(line)
+  );
+}
+
+function getSourceBackedRequiredUwCourseCodeSet(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  const requiredUwCourseCodes = new Set<string>();
+  if (!plan) {
+    return requiredUwCourseCodes;
+  }
+
+  const selectedPathwayId =
+    (plan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
+
+  for (const block of getTransferPlannerParsedRequirementSourceBlocks(plan.id, selectedPathwayId)) {
+    for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
+      if (!shouldIncludeSourceBackedParsedRequiredCourseCandidate(candidate)) {
+        continue;
+      }
+
+      const normalizedCourseCode = normalizeCourseCode(candidate.uwCourseCode ?? "");
+      if (!normalizedCourseCode) {
+        continue;
+      }
+
+      requiredUwCourseCodes.add(normalizedCourseCode);
+    }
+  }
+
+  return requiredUwCourseCodes;
+}
+
+export function buildSourceBackedRequiredCourseCodes(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan) {
+    return [] as string[];
+  }
+
+  const orderedCourseCodes: string[] = [];
+  const seenCourseCodes = new Set<string>();
+  const coveredRequiredUwCourseCodes = new Set<string>();
+  const requiredUwCourseCodes = getSourceBackedRequiredUwCourseCodeSet(plan);
+  const isCoveredRequiredUwCourseCode = (targetCourseCode: string) => {
+    const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
+    if (!normalizedTargetCourseCode) {
+      return false;
+    }
+
+    if (coveredRequiredUwCourseCodes.has(normalizedTargetCourseCode)) {
+      return true;
+    }
+
+    return getSourceBackedRequiredCourseSemanticRelations(normalizedTargetCourseCode).some(
+      (relatedCourseCode) =>
+        requiredUwCourseCodes.has(relatedCourseCode) &&
+        coveredRequiredUwCourseCodes.has(relatedCourseCode)
+    );
+  };
+  const markCoveredRequiredUwCourseCodes = (targetCourseCodes: string[]) => {
+    for (const targetCourseCode of targetCourseCodes) {
+      const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
+      if (!normalizedTargetCourseCode || !requiredUwCourseCodes.has(normalizedTargetCourseCode)) {
+        continue;
+      }
+
+      coveredRequiredUwCourseCodes.add(normalizedTargetCourseCode);
+    }
+  };
+  const addCourseCodes = (courseLabels: string[] | null | undefined) => {
+    for (const label of courseLabels ?? []) {
+      for (const courseCode of extractCourseCodes(label)) {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        if (!normalizedCourseCode || seenCourseCodes.has(normalizedCourseCode)) {
+          continue;
+        }
+
+        seenCourseCodes.add(normalizedCourseCode);
+        orderedCourseCodes.push(normalizedCourseCode);
+        markCoveredRequiredUwCourseCodes(
+          buildBestSingleCourseUwEquivalentCourseCodes(normalizedCourseCode, plan.campusId)
+        );
+      }
+    }
+  };
+
+  for (const item of [...(plan.applicationChecklist ?? []), ...(plan.beforeEnrollmentChecklist ?? [])]) {
+    addCourseCodes(item.grcCourses ?? []);
+  }
+
+  if (!requiredUwCourseCodes.size) {
+    return orderedCourseCodes;
+  }
+
+  for (const courseLabel of getTransferPlannerGrcCourseList(plan)) {
+    for (const courseCode of extractCourseCodes(courseLabel)) {
+      const normalizedCourseCode = normalizeCourseCode(courseCode);
+      if (!normalizedCourseCode || seenCourseCodes.has(normalizedCourseCode)) {
+        continue;
+      }
+
+      const equivalentUwCourseCodes = buildBestSingleCourseUwEquivalentCourseCodes(
+        normalizedCourseCode,
+        plan.campusId
+      );
+      if (!equivalentUwCourseCodes.some((targetCourseCode) => requiredUwCourseCodes.has(targetCourseCode))) {
+        continue;
+      }
+      if (
+        equivalentUwCourseCodes.length &&
+        equivalentUwCourseCodes.every((targetCourseCode) => isCoveredRequiredUwCourseCode(targetCourseCode))
+      ) {
+        continue;
+      }
+
+      seenCourseCodes.add(normalizedCourseCode);
+      orderedCourseCodes.push(normalizedCourseCode);
+      markCoveredRequiredUwCourseCodes(equivalentUwCourseCodes);
+    }
+  }
+
+  return orderedCourseCodes;
+}
+
 function buildTransferEquivalencyGuidanceSummary(
   explicitCourseCodes: string[],
   campusId: TransferPlannerMajorPlan["campusId"] | null | undefined,
@@ -583,6 +827,19 @@ export function normalizeCourseCode(value: string) {
     .replace(/\s+/g, " ");
   return LEGACY_COURSE_CODE_ALIASES.get(normalized) ?? normalized;
 }
+
+const NORMALIZED_COURSE_METADATA_BY_CODE = new Map<
+  string,
+  TransferPlannerNormalizedCourseMetadataEntry
+>(
+  TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA.map(
+    (entry): [string, TransferPlannerNormalizedCourseMetadataEntry] => [
+      normalizeCourseCode(entry.code),
+      entry,
+    ]
+  ).filter((entry) => entry[0])
+);
+const SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_CACHE = new Map<string, string[]>();
 
 export function extractCourseCodes(value: string) {
   return unique(
