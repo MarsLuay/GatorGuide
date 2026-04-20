@@ -79,16 +79,16 @@ function buildFailureMessageDiagnosis(failureMessage, logPath) {
   const whereToLook = normalizeText(logPath) || "the maintenance or refresh log";
 
   if (/Use either -OnlySection or -StartSection/i.test(normalizedMessage)) {
-    addDiagnosis(diagnoses, {
-      id: "invalid-section-selection",
-      severity: "error",
-      symptom: "The tool was given two conflicting section choices at the same time.",
-      whyItMatters: "The launcher cannot tell which part of the planner flow you actually want to run.",
-      likelyCause: "Both the one-section option and the start-from-section option were supplied together.",
-      nextAction: "Run the launcher again with only one section-selection mode.",
-      whereToLook,
-    });
-  }
+  addDiagnosis(diagnoses, {
+    id: "invalid-section-selection",
+    severity: "error",
+    symptom: "The tool was given two section options that cannot be used together.",
+    whyItMatters: "The tool cannot tell which part of the planner you want it to run.",
+    likelyCause: "Two different section choices were entered at the same time.",
+    nextAction: "Run the tool again and choose only one section option.",
+    whereToLook,
+  });
+}
 
   if (/not installed or not on PATH/i.test(normalizedMessage)) {
     addDiagnosis(diagnoses, {
@@ -103,16 +103,16 @@ function buildFailureMessageDiagnosis(failureMessage, logPath) {
   }
 
   if (/Run repo health check failed|health:repo/i.test(normalizedMessage)) {
-    addDiagnosis(diagnoses, {
-      id: "repo-health-failed",
-      severity: "error",
-      symptom: "The repo was not in a healthy enough state to start the planner refresh safely.",
-      whyItMatters: "Missing or broken dependencies can make every later planner step fail in misleading ways.",
-      likelyCause: "Project dependencies are missing, corrupted, or out of sync.",
-      nextAction: "Repair dependencies with npm install or fix the repo-health errors, then rerun the planner flow.",
-      whereToLook,
-    });
-  }
+  addDiagnosis(diagnoses, {
+    id: "repo-health-failed",
+    severity: "error",
+    symptom: "The project was not in a good enough state to safely start updating the planner.",
+    whyItMatters: "If important project files or setup are broken, later planner steps can fail in confusing ways.",
+    likelyCause: "Some project files, installed packages, or setup steps are missing, broken, or out of sync.",
+    nextAction: "Fix the project setup issues, run npm install if needed, and then try the planner process again.",
+    whereToLook,
+  });
+}
 
   if (/parse-transfer-planner-requirement-sources\.cjs|Parse UW major requirement sources/i.test(normalizedMessage)) {
     addDiagnosis(diagnoses, {
@@ -121,7 +121,7 @@ function buildFailureMessageDiagnosis(failureMessage, logPath) {
       symptom: "The planner could not finish reading the official UW requirement pages.",
       whyItMatters: "If the parser cannot read those pages, the planner cannot build reliable class requirements.",
       likelyCause: "A source page changed shape, a link now points to a weak page, or the parser needs to be updated.",
-      nextAction: "Check the parse report and repair the source link or parser adapter for the owners that failed.",
+      nextAction: "Check the parse report and repair the source link or parser adapter for the courses that failed.",
       whereToLook: ".tmp/transfer-planner-requirement-source-parse-report.md",
     });
   }
@@ -142,25 +142,25 @@ function buildFailureMessageDiagnosis(failureMessage, logPath) {
     addDiagnosis(diagnoses, {
       id: "owner-audit-command-failed",
       severity: "error",
-      symptom: "The planner owner audit found majors or pathways with broken source coverage.",
+      symptom: "The planner course audit found majors or pathways with broken source coverage.",
       whyItMatters: "Those rows can look complete in code while still pointing at the wrong source or no usable source at all.",
       likelyCause: "A primary source is missing, invalid, or no longer producing usable parsed requirements.",
-      nextAction: "Review the owner audit and repair the affected source links or parser coverage.",
+      nextAction: "Review the course audit and repair the affected source links or parser coverage.",
       whereToLook: ".tmp/transfer-planner-owner-audit.md",
     });
   }
 
   if (/verify-transfer-planner-hardening\.cjs|hardening/i.test(normalizedMessage)) {
-    addDiagnosis(diagnoses, {
-      id: "hardening-command-failed",
-      severity: "error",
-      symptom: "A planner safety check failed.",
-      whyItMatters: "That usually means the refreshed planner data now violates a rule we rely on before shipping or trusting the output.",
-      likelyCause: "A generated file drifted, a source-backed invariant regressed, or unsafe planner wording came back.",
-      nextAction: "Open the hardening report and fix the specific failing checks before proceeding.",
-      whereToLook: ".tmp/transfer-planner-hardening-report.md",
-    });
-  }
+  addDiagnosis(diagnoses, {
+    id: "hardening-command-failed",
+    severity: "error",
+    symptom: "A planner safety check failed.",
+    whyItMatters: "This usually means the updated planner broke one of the rules we use to make sure it is safe and reliable.",
+    likelyCause: "A generated file changed unexpectedly, an important rule was broken, or unsafe planner text came back.",
+    nextAction: "Open the hardening report, fix the failed checks, and do not continue until they pass.",
+    whereToLook: ".tmp/transfer-planner-hardening-report.md",
+  });
+}
 
   if (/\btsc\b|TypeScript typecheck/i.test(normalizedMessage)) {
     addDiagnosis(diagnoses, {
@@ -253,16 +253,16 @@ function buildReportDiagnoses(reports) {
   }
 
   if (Number(reports.requirementParse?.withNoParsedCourseCodesCount ?? 0) > 0) {
-    addDiagnosis(diagnoses, {
-      id: "no-parsed-course-codes",
-      severity: "warning",
-      symptom: `The planner found some source pages, but still could not recover a usable UW course list for ${reports.requirementParse.withNoParsedCourseCodesCount} owner(s).`,
-      whyItMatters: "Those majors may show source-backed pages without turning into useful class guidance yet.",
-      likelyCause: "The page is mostly descriptive, the real degree sheet is somewhere else, or the parser only recovered headings instead of course requirements.",
-      nextAction: "Swap in a stronger official requirements page or improve the parser for those source shapes.",
-      whereToLook: ".tmp/transfer-planner-requirement-source-parse-report.md",
-    });
-  }
+  addDiagnosis(diagnoses, {
+    id: "no-parsed-course-codes",
+    severity: "warning",
+    symptom: `The planner found source pages for ${reports.requirementParse.withNoParsedCourseCodesCount} item(s), but still could not pull out a usable UW course list.`,
+    whyItMatters: "Those majors may have source information available, but the planner still cannot turn it into useful class guidance.",
+    likelyCause: "The page may be too general, the actual requirements may be on a different page, or the planner could only read headings instead of the course list.",
+    nextAction: "Use a stronger official requirements page or improve how the planner reads those page formats.",
+    whereToLook: ".tmp/transfer-planner-requirement-source-parse-report.md",
+  });
+}
 
   if (Number(reports.requirementParse?.ownersWithQualityWarningsCount ?? 0) > 0) {
     addDiagnosis(diagnoses, {
@@ -295,10 +295,10 @@ function buildReportDiagnoses(reports) {
     addDiagnosis(diagnoses, {
       id: "owner-audit-errors",
       severity: "error",
-      symptom: `The owner audit still has ${reports.ownerAudit.issueCounts.error} blocking error(s).`,
-      whyItMatters: "Some planner owners are not wired to a safe or usable source setup.",
+      symptom: `The course audit still has ${reports.ownerAudit.issueCounts.error} blocking error(s).`,
+      whyItMatters: "Some planner courses are not wired to a safe or usable source setup.",
       likelyCause: "A source manifest row is missing or invalid, or a promoted primary source no longer lines up with parsed output.",
-      nextAction: "Repair the owner-audit errors before trusting the planner output.",
+      nextAction: "Repair the course-audit errors before trusting the planner output.",
       whereToLook: ".tmp/transfer-planner-owner-audit.md",
     });
   }
@@ -307,10 +307,10 @@ function buildReportDiagnoses(reports) {
     addDiagnosis(diagnoses, {
       id: "owner-audit-no-parsed-codes",
       severity: "warning",
-      symptom: `The owner audit confirms ${reports.ownerAudit.countsByIssueCode["no-parsed-uw-course-codes"]} owner(s) with no usable parsed UW course codes.`,
-      whyItMatters: "Those majors are source-backed in name only until the planner can recover real class requirements.",
-      likelyCause: "The official page is too narrative, the wrong source page is linked, or a better degree sheet exists elsewhere.",
-      nextAction: "Point those owners at a better official source page or extend the parser for their current page.",
+      symptom: `The course audit confirms ${reports.ownerAudit.countsByIssueCode["no-parsed-uw-course-codes"]} course(s) with no usable parsed UW course codes.`,
+      whyItMatters: "The parser cannot find any parsable courses from the links provided for these majors.",
+      likelyCause: "The pages used are not structured for easy parsing, or there are no parsable courses available (Ex: Math 151 is labelled as Calculus 1).",
+      nextAction: "Find better sources with actual parsable courses, or extend the parser for their current page if the courses are there but it is still not getting detected.",
       whereToLook: ".tmp/transfer-planner-owner-audit.md",
     });
   }
@@ -320,24 +320,24 @@ function buildReportDiagnoses(reports) {
       id: "pipeline-validation-failed",
       severity: "error",
       symptom: "The source pipeline validation report is failing.",
-      whyItMatters: "The planner's source discovery, manifests, parsed blocks, and generated outputs are no longer aligned.",
-      likelyCause: "A source or generated layer changed without the rest of the pipeline catching up.",
-      nextAction: "Fix the invariant failures and rerun validation before shipping planner changes.",
+      whyItMatters: "Parts of the planner are no longer matching up correctly, which can lead to missing or incorrect results.",
+      likelyCause: "A source file or generated file was changed, but related parts were not updated to match.",
+      nextAction: "Review the validation errors, fix the mismatched parts, and run the check again before releasing changes.",
       whereToLook: ".tmp/transfer-planner-source-pipeline-validation.md",
     });
   }
 
   if (normalizeText(reports.hardening?.outcome).toLowerCase() && normalizeText(reports.hardening?.outcome).toLowerCase() !== "passed") {
-    addDiagnosis(diagnoses, {
-      id: "hardening-failed",
-      severity: "error",
-      symptom: "A planner hardening rule is failing.",
-      whyItMatters: "The refreshed planner state is violating one of the safety checks we use before treating it as healthy.",
-      likelyCause: "A source-backed invariant regressed or stale/generated output slipped back into the repo.",
-      nextAction: "Use the hardening report to fix the failing rules and rerun maintenance.",
-      whereToLook: ".tmp/transfer-planner-hardening-report.md",
-    });
-  }
+  addDiagnosis(diagnoses, {
+    id: "hardening-failed",
+    severity: "error",
+    symptom: "A planner safety check is failing.",
+    whyItMatters: "The planner is currently breaking one of the checks we use to make sure it is safe and working properly.",
+    likelyCause: "Something changed in the planner data or files, and an older or mismatched result may have been left behind.",
+    nextAction: "Open the hardening report, fix the listed problems, and run maintenance again.",
+    whereToLook: ".tmp/transfer-planner-hardening-report.md",
+  });
+}
 
   if (normalizeText(reports.sourceYearCoverage?.outcome).toLowerCase() && normalizeText(reports.sourceYearCoverage?.outcome).toLowerCase() !== "ok") {
     addDiagnosis(diagnoses, {
@@ -352,26 +352,26 @@ function buildReportDiagnoses(reports) {
   }
 
   if (Number(reports.status?.summary?.rowsNeedingAttentionCount ?? 0) > 0) {
-    addDiagnosis(diagnoses, {
-      id: "rows-needing-attention",
-      severity: "warning",
-      symptom: `The planner still has ${reports.status.summary.rowsNeedingAttentionCount} row(s) that need follow-up.`,
-      whyItMatters: "Those majors or pathways are still not turning clean parsed source data into a stable visible planner row.",
-      likelyCause: normalizeText(reports.status?.dominantIncompleteBucket)
-        ? `The most common remaining problem is "${reports.status.dominantIncompleteBucket}".`
-        : "Some source-backed owners still are not fully materializing.",
-      nextAction: "Open the planner status report and repair the incomplete rows from the dominant bucket first.",
-      whereToLook: ".tmp/transfer-planner-status.md",
-    });
-  }
+  addDiagnosis(diagnoses, {
+    id: "rows-needing-attention",
+    severity: "warning",
+    symptom: `The planner still has ${reports.status.summary.rowsNeedingAttentionCount} item(s) that need review.`,
+    whyItMatters: "Some majors or pathways are still not showing up correctly in the planner.",
+    likelyCause: normalizeText(reports.status?.dominantIncompleteBucket)
+      ? `The most common remaining issue is "${reports.status.dominantIncompleteBucket}".`
+      : "Some parts of the planner data are still incomplete.",
+    nextAction: "Open the planner status report and fix the most common issue first.",
+    whereToLook: ".tmp/transfer-planner-status.md",
+  });
+}
 
   if (Number(reports.status?.summary?.unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners ?? 0) > 0) {
     addDiagnosis(diagnoses, {
       id: "null-runtime-rows",
       severity: "warning",
-      symptom: `The planner built some visible source-backed rows, but ${reports.status.summary.unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners} of them still do not produce runtime planner rows.`,
-      whyItMatters: "The parser found source-backed data, but the student-facing planner still cannot turn it into a usable class list.",
-      likelyCause: "Structured generation or runtime materialization is missing for some source-backed owners.",
+      symptom: `The planner built some visible rows, but ${reports.status.summary.unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners} of them still do not produce runtime planner rows.`,
+      whyItMatters: "The parser found eligible data, but the student-facing planner still cannot turn it into a usable class list.",
+      likelyCause: "Structured generation or runtime materialization is missing for some courses.",
       nextAction: "Inspect the planner status report and repair the generated/runtime path for those rows.",
       whereToLook: ".tmp/transfer-planner-status.md",
     });
