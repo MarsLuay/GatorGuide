@@ -40,6 +40,7 @@ const GENERATED_OUTPUT_PATH = path.resolve(
   "transfer-planner-source",
   "primary-source-promotions.generated.ts"
 );
+const WEAK_SOURCE_REPLACEMENT_REASON_PATTERN = /Replaces existing primary .*weak-source re-evaluation/i;
 
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
@@ -120,6 +121,12 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
   const activeOwnerIds = buildActiveOwnerIdSet();
   const entriesByOwnerId = new Map(
     (previousEntries ?? [])
+      .filter(
+        (entry) =>
+          !(entry.reasons ?? []).some((reason) =>
+            WEAK_SOURCE_REPLACEMENT_REASON_PATTERN.test(String(reason ?? ""))
+          )
+      )
       .filter((entry) => activeOwnerIds.has(entry.ownerId))
       .map((entry) => [
         entry.ownerId,
@@ -154,6 +161,31 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
         score: owner.suggestedPrimary.score,
         confidence: "high",
         reasons: owner.suggestedPrimary.reasons ?? [],
+        generatedAt: discoveryReport.generatedAt,
+      });
+    });
+
+  (discoveryReport.weakExistingOwners ?? [])
+    .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
+    .filter((owner) => owner?.suggestedPrimary?.confidence === "high")
+    .forEach((owner) => {
+      const ownerId = buildOwnerId(owner.planId, owner.pathwayId ?? null);
+      entriesByOwnerId.set(ownerId, {
+        ownerType: owner.ownerType,
+        ownerId,
+        ownerKey: owner.ownerKey,
+        planId: owner.planId,
+        pathwayId: owner.pathwayId ?? null,
+        ownerTitle: owner.title,
+        campusId: owner.campusId,
+        url: owner.suggestedPrimary.url,
+        label: normalizeLabel(owner),
+        score: owner.suggestedPrimary.score,
+        confidence: "high",
+        reasons: [
+          ...(owner.suggestedPrimary.reasons ?? []),
+          `Replaces existing primary ${owner.existingPrimaryUrl} after weak-source re-evaluation.`,
+        ],
         generatedAt: discoveryReport.generatedAt,
       });
     });

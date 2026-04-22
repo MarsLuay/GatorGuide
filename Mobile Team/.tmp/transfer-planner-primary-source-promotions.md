@@ -1,13 +1,13 @@
 # Transfer Planner Primary Source Promotions
 
-Generated: 2026-04-20T03:41:43.695Z
+Generated: 2026-04-22T10:27:31.573Z
 
-- Auto-promoted high-confidence primary sources: 74
+- Auto-promoted high-confidence primary sources: 90
 - Skipped because they still appear in the review queue: 0
 
 ## uw-seattle
 
-- Auto-promoted owners: 31
+- Auto-promoted owners: 48
 
 ### American Indian Studies
 
@@ -17,6 +17,30 @@ Generated: 2026-04-20T03:41:43.695Z
 - Discovery score: 62
 - Why: already stored as an official source; explicitly names the selected major; matches major keyword "american"; matches major keyword "indian"; matches multiple major keywords; official source path matches the selected major; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
 
+### Aquatic Conservation & Ecology
+
+- Owner: uw-seattle-aquatic-conservation-and-ecology
+- Primary source: https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/
+- Label: UW Aquatic Conservation and Ecology major requirements
+- Discovery score: 110
+- Why: already stored as an official source; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "aquatic"; matches major keyword "conservation"; matches major keyword "ecology"; matches multiple major keywords; official source text matches the selected major; page title fetched successfully; requirements path segment; stays on an official UW domain; undergraduate path segment; verified against an official source candidate
+
+### Art
+
+- Owner: uw-seattle-art
+- Primary source: https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html
+- Label: UW General Catalog Art and Art History page
+- Discovery score: 63
+- Why: checklist-style wording; discovered from an official source page; explicitly names the selected major; matches major keyword "art"; official source path matches the selected major; stays on an official UW domain
+
+### Art History
+
+- Owner: uw-seattle-art-history
+- Primary source: https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html
+- Label: UW General Catalog Art History requirements
+- Discovery score: 69
+- Why: checklist-style wording; discovered from an official source page; explicitly names the selected major; matches major keyword "art"; matches major keyword "history"; matches multiple major keywords; official source text matches the selected major; stays on an official UW domain
+
 ### Asian Studies
 
 - Owner: uw-seattle-asian-studies
@@ -24,6 +48,38 @@ Generated: 2026-04-20T03:41:43.695Z
 - Label: UW Asian Studies major page
 - Discovery score: 55
 - Why: already stored as an official source; explicitly names the selected major; matches major keyword "asian"; official source text matches the selected major; stays on an official UW domain; verified against an official source candidate
+
+### Biochemistry - B.A. route
+
+- Owner: uw-seattle-biochemistry:pathway:ba-route
+- Primary source: https://chem.washington.edu/ba-biochemistry
+- Label: UW BA in Biochemistry requirements
+- Discovery score: 64
+- Why: admissions wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "biochemistry"; matches the selected degree route; official source path matches the selected major; page title fetched successfully; stays on an official UW domain; stays on the current official department host; verified against an official source candidate; Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf after weak-source re-evaluation.
+
+### Biochemistry - B.S. route
+
+- Owner: uw-seattle-biochemistry:pathway:bs-route
+- Primary source: https://chem.washington.edu/bs-biochemistry
+- Label: BS in Biochemistry
+- Discovery score: 80
+- Why: admissions wording; already stored as an official source; checklist-style wording; explicit degree-requirements wording; matches major keyword "biochemistry"; matches the selected degree route; official source path matches the selected major; page title fetched successfully; stays on an official UW domain; stays on the current official department host; verified against an official source candidate; Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf after weak-source re-evaluation.
+
+### Chemistry - B.A. route
+
+- Owner: uw-seattle-chemistry:pathway:ba-route
+- Primary source: https://chem.washington.edu/ba-chemistry
+- Label: UW BA in Chemistry requirements
+- Discovery score: 64
+- Why: admissions wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "chemistry"; matches the selected degree route; official source path matches the selected major; page title fetched successfully; stays on an official UW domain; stays on the current official department host; verified against an official source candidate; Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf after weak-source re-evaluation.
+
+### Chemistry - B.S. route
+
+- Owner: uw-seattle-chemistry:pathway:bs-route
+- Primary source: https://chem.washington.edu/bs-chemistry-acs-certified
+- Label: BS in Chemistry - ACS Certified
+- Discovery score: 56
+- Why: admissions wording; discovered from an official source page; explicit degree-requirements wording; matches major keyword "chemistry"; matches the selected degree route; official source path matches the selected major; page title fetched successfully; stays on an official UW domain; stays on the current official department host; Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf after weak-source re-evaluation.
 
 ### Chinese
 
@@ -64,6 +120,78 @@ Generated: 2026-04-20T03:41:43.695Z
 - Label: UW Early Childhood & Family Studies program page
 - Discovery score: 54
 - Why: already stored as an official source; matches major keyword "childhood"; matches major keyword "early"; matches major keyword "family"; matches multiple major keywords; official source path matches the selected major; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
+
+### Education, Communities & Organizations
+
+- Owner: uw-seattle-education-communities-and-organizations
+- Primary source: https://education.washington.edu/academics/degree/bachelor-arts-ba
+- Label: Bachelor of Arts (B.A.)
+- Discovery score: 72
+- Why: already stored as an official source; matches major keyword "communities"; matches major keyword "education"; matches major keyword "organizations"; matches multiple major keywords; official source text matches the selected major; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate; Replaces existing primary https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf after weak-source re-evaluation.
+
+### Electrical & Computer Engineering
+
+- Owner: uw-seattle-electrical-computer-engineering
+- Primary source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+- Label: UW ECE degree requirements
+- Discovery score: 92
+- Why: advising wording; already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; explicitly names the selected major; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches multiple major keywords; official source text matches the selected major; page title fetched successfully; requirements path segment; route-specific page may not cover every pathway in the selected major; specific bachelor route wording; stays on an official UW domain; verified against an official source candidate
+
+### Electrical & Computer Engineering - Computer Architecture pathway
+
+- Owner: uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway
+- Primary source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+- Label: UW ECE degree requirements
+- Discovery score: 54
+- Why: advising wording; already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches multiple major keywords; page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain
+
+### Electrical & Computer Engineering - Control Systems pathway
+
+- Owner: uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway
+- Primary source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+- Label: UW ECE degree requirements
+- Discovery score: 54
+- Why: advising wording; already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches multiple major keywords; page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain
+
+### Electrical & Computer Engineering - Embedded Systems pathway
+
+- Owner: uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway
+- Primary source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+- Label: UW ECE degree requirements
+- Discovery score: 54
+- Why: advising wording; already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches multiple major keywords; page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain
+
+### Electrical & Computer Engineering - Machine Learning pathway
+
+- Owner: uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway
+- Primary source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+- Label: UW ECE degree requirements
+- Discovery score: 54
+- Why: advising wording; already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches multiple major keywords; page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain
+
+### Electrical & Computer Engineering - Microelectronics and Nanotechnology pathway
+
+- Owner: uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway
+- Primary source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+- Label: UW ECE degree requirements
+- Discovery score: 54
+- Why: advising wording; already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches multiple major keywords; page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain
+
+### Electrical & Computer Engineering - Neurotechnology pathway
+
+- Owner: uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway
+- Primary source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+- Label: UW ECE degree requirements
+- Discovery score: 54
+- Why: advising wording; already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches multiple major keywords; page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain
+
+### Electrical & Computer Engineering - Photonics pathway
+
+- Owner: uw-seattle-electrical-computer-engineering:pathway:photonics-pathway
+- Primary source: https://www.ece.uw.edu/academics/bachelor-of-science/bsee/degree-requirements/
+- Label: BSEE Degree Requirements
+- Discovery score: 88
+- Why: admissions wording; already stored as an official source; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches major keyword "photonics"; matches multiple major keywords; official source text matches the selected major; older year signal than current primary (2022 vs 2025); page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate; Replaces existing primary https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/ after weak-source re-evaluation.
 
 ### English - Language, Literature & Culture
 
@@ -145,6 +273,14 @@ Generated: 2026-04-20T03:41:43.695Z
 - Discovery score: 56
 - Why: already stored as an official source; explicitly names the selected major; matches major keyword "linguistics"; official source path matches the selected major; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
 
+### Marine Biology
+
+- Owner: uw-seattle-marine-biology
+- Primary source: https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/
+- Label: UW Marine Biology major requirements
+- Discovery score: 126
+- Why: already stored as an official source; explicit degree-requirements wording; explicit major-requirements wording; explicitly names the selected major; generic campus requirements wording; matches major keyword "biology"; matches major keyword "marine"; matches multiple major keywords; official source path matches the selected major; page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate; Replaces existing primary https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf after weak-source re-evaluation.
+
 ### Mathematics
 
 - Owner: uw-seattle-mathematics
@@ -156,10 +292,10 @@ Generated: 2026-04-20T03:41:43.695Z
 ### Medical Laboratory Science
 
 - Owner: uw-seattle-medical-laboratory-science
-- Primary source: https://dlmp.uw.edu/education/mls-undergrad
-- Label: UW Medical Laboratory Science program overview
-- Discovery score: 54
-- Why: already stored as an official source; explicitly names the selected major; matches major keyword "laboratory"; matches major keyword "medical"; matches multiple major keywords; official source text matches the selected major; overview wording; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
+- Primary source: https://dlmp.uw.edu/education/mls-requirements
+- Label: Learn more about these phases and our graduation requirements.
+- Discovery score: 102
+- Why: already stored as an official source; explicitly names the selected major; graduation requirements wording; matches major keyword "laboratory"; matches major keyword "medical"; matches multiple major keywords; official source text matches the selected major; page title fetched successfully; stays on an official UW domain; undergraduate-program wording; verified against an official source candidate
 
 ### Music Composition, B.M.
 
@@ -431,7 +567,7 @@ Generated: 2026-04-20T03:41:43.695Z
 
 ## uw-tacoma
 
-- Auto-promoted owners: 22
+- Auto-promoted owners: 21
 
 ### Arts, Media and Culture (BA)
 
@@ -520,14 +656,6 @@ Generated: 2026-04-20T03:41:43.695Z
 - Label: UW Tacoma Ethnic, Gender and Labor Studies overview
 - Discovery score: 46
 - Why: already stored as an official source; matches major keyword "ethnic"; matches major keyword "gender"; matches major keyword "labor"; matches multiple major keywords; official source text matches the selected major; overview wording; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
-
-### History (BA)
-
-- Owner: uw-tacoma-history
-- Primary source: https://www.tacoma.uw.edu/sias/socs/history
-- Label: UW Tacoma History overview
-- Discovery score: 38
-- Why: discovered from an official source page; matches major keyword "history"; official source path matches the selected major; page title fetched successfully; stays on an official UW domain
 
 ### Information Technology (BS)
 

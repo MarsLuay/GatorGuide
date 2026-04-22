@@ -21,6 +21,27 @@ const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-requirement-diff-promotion-report.json");
 const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-requirement-diff-promotion-report.md");
 
+function getArgValue(flag) {
+  const args = process.argv.slice(2);
+  const directPrefix = `${flag}=`;
+  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
+  if (directMatch) {
+    return directMatch.slice(directPrefix.length).trim() || null;
+  }
+
+  const flagIndex = args.indexOf(flag);
+  if (flagIndex === -1) {
+    return null;
+  }
+
+  const nextValue = args[flagIndex + 1];
+  if (!nextValue || nextValue.startsWith("--")) {
+    return null;
+  }
+
+  return String(nextValue).trim() || null;
+}
+
 function ensureTmpDir() {
   fs.mkdirSync(TMP_DIR, { recursive: true });
 }
@@ -69,52 +90,61 @@ function buildPromotedEntries(classifications, generatedAt) {
   }));
 }
 
-function buildReport() {
+function buildReport(options = {}) {
   const classifications = TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS ?? [];
+  const scopedClassifications = options.targetPlanId
+    ? classifications.filter((entry) => entry.planId === options.targetPlanId)
+    : classifications;
   const summary = TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY ?? {};
-  const promotedEntries = buildPromotedEntries(classifications, summary.generatedAt);
-  const countsByKind = countBy(classifications, (entry) => entry.classificationKind);
-  const countsByCampus = countBy(classifications, (entry) => entry.campusId);
+  const promotedEntries = buildPromotedEntries(scopedClassifications, summary.generatedAt);
+  const countsByKind = countBy(scopedClassifications, (entry) => entry.classificationKind);
+  const countsByCampus = countBy(scopedClassifications, (entry) => entry.campusId);
 
-  assert.equal(
-    summary.classifiedCount,
-    classifications.length,
-    "Requirement-diff summary classified count must match generated classification entries."
-  );
-  assert.equal(
-    summary.promotedCount,
-    promotedEntries.length,
-    "Requirement-diff summary promoted count must match generated promoted entries."
-  );
-  assert.equal(
-    summary.nonPromotedClassificationCount,
-    classifications.length - promotedEntries.length,
-    "Requirement-diff summary non-promoted count must match generated classification entries."
-  );
-  assert.deepEqual(
-    summary.countsByKind,
-    countsByKind,
-    "Requirement-diff summary kind counts must match generated classification entries."
-  );
-  assert.deepEqual(
-    summary.countsByCampus,
-    countsByCampus,
-    "Requirement-diff summary campus counts must match generated classification entries."
-  );
+  if (!options.targetPlanId) {
+    assert.equal(
+      summary.classifiedCount,
+      classifications.length,
+      "Requirement-diff summary classified count must match generated classification entries."
+    );
+    assert.equal(
+      summary.promotedCount,
+      promotedEntries.length,
+      "Requirement-diff summary promoted count must match generated promoted entries."
+    );
+    assert.equal(
+      summary.nonPromotedClassificationCount,
+      classifications.length - promotedEntries.length,
+      "Requirement-diff summary non-promoted count must match generated classification entries."
+    );
+    assert.deepEqual(
+      summary.countsByKind,
+      countsByKind,
+      "Requirement-diff summary kind counts must match generated classification entries."
+    );
+    assert.deepEqual(
+      summary.countsByCampus,
+      countsByCampus,
+      "Requirement-diff summary campus counts must match generated classification entries."
+    );
+  }
 
   return {
     generatedAt: summary.generatedAt,
-    totalOwners: summary.totalOwners,
-    promotedCount: summary.promotedCount,
-    classifiedCount: summary.classifiedCount,
-    nonPromotedClassificationCount: summary.nonPromotedClassificationCount,
-    reviewCandidateCount: summary.reviewCandidateCount,
-    unmappedCount: summary.unmappedCount,
+    totalOwners: options.targetPlanId ? new Set(scopedClassifications.map((entry) => entry.ownerId)).size : summary.totalOwners,
+    promotedCount: promotedEntries.length,
+    classifiedCount: scopedClassifications.length,
+    nonPromotedClassificationCount: scopedClassifications.length - promotedEntries.length,
+    reviewCandidateCount: options.targetPlanId ? 0 : summary.reviewCandidateCount,
+    unmappedCount: options.targetPlanId ? 0 : summary.unmappedCount,
     promotedEntries,
-    classifiedEntries: classifications,
+    classifiedEntries: scopedClassifications,
     reviewCandidates: [],
     unmappedCandidates: [],
-    classificationSummary: summary,
+    classificationSummary: {
+      ...summary,
+      countsByKind,
+      countsByCampus,
+    },
   };
 }
 
@@ -149,7 +179,9 @@ function writeMarkdown(report) {
 
 function main() {
   ensureTmpDir();
-  const report = buildReport();
+  const report = buildReport({
+    targetPlanId: getArgValue("--target-plan-id"),
+  });
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
   writeMarkdown(report);
 

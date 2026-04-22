@@ -152,7 +152,7 @@ ECON 400 or ECON 401
 One course from ECON 424, ECON 483, ECON 487
 ECON 488
 Data Science (22-24 credits):
-CSE 160 or CSE 163
+CSE or CSE 163
 One course from SOC 225, INFO 351, GEOG 258
 ECON 481, ECON 482, ECON 484
 Minimum 50 credits in ECON-prefix courses; minimum 2.00 cumulative GPA in these 50 credits

@@ -21,10 +21,12 @@ const {
   TRANSFER_PLANNER_SOURCE_GAP_ENTRIES,
 } = require("../../constants/transfer-planner-source/source-gaps.generated");
 const {
+  isSuspiciousStructuralPathwayId,
   isSuspiciousStructuralPathwayLabel,
 } = require("../../constants/transfer-planner-source/pathway-materialization");
 const {
   labelMentionsDifferentTransferPlannerMajor,
+  normalizeTransferPlannerSemanticPathwayLabel,
   normalizeTransferPlannerText,
   stripTransferPlannerPlanTitlePrefix,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
@@ -53,6 +55,8 @@ const PATHWAY_STRUCTURAL_PREFIX_PATTERN =
   /^(.{2,80}?)\s+(option|track|route|pathway|certificate|concentration)[-\s]*specific\b.*$/i;
 const PATHWAY_EXPLICIT_COURSE_CODE_PATTERN =
   /\b[A-Z]{2,8}(?:\/[A-Z]{2,8})?\s+\d{3}(?:\.\d+)?[A-Z]?\b/i;
+const PATHWAY_KIND_PATTERN =
+  /\b(option|track|route|pathway|certificate|concentration)\b/i;
 const SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY = new Map([
   [
     makePlanPathwayKey("uw-bothell-business-administration", null),
@@ -461,11 +465,34 @@ function titleCasePathwayLabel(value) {
     .join(" ");
 }
 
+function selectPathwayKindSegment(value) {
+  const normalized = normalizeTransferPlannerText(value);
+  const segments = normalized
+    .split(/\s+(?:[-\u2013\u2014]|:)\s+|,\s+/)
+    .map((segment) => normalizeTransferPlannerText(segment))
+    .filter(Boolean);
+
+  for (let index = segments.length - 1; index >= 0; index -= 1) {
+    const segment = segments[index];
+    if (
+      PATHWAY_KIND_PATTERN.test(segment) &&
+      !/^(?:older|prior|current)\b/i.test(segment) &&
+      !/^requirements?\s+for\b/i.test(segment)
+    ) {
+      return segment;
+    }
+  }
+
+  return normalized;
+}
+
 function normalizePathwayLabelCandidate(planTitle, value) {
   let normalized = normalizeTransferPlannerText(value);
   if (!normalized) {
     return "";
   }
+
+  normalized = selectPathwayKindSegment(normalized);
 
   const degreeTitleMatch = normalized.match(PATHWAY_DEGREE_TITLE_PATTERN);
   if (degreeTitleMatch) {
@@ -484,15 +511,15 @@ function normalizePathwayLabelCandidate(planTitle, value) {
     ).trim()}`.trim();
   }
 
-  normalized = normalized
-    .replace(/^option\s+\d+\s*:\s*/i, "")
-    .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-–—]\s+.*$/i, "$1")
-    .replace(/\s+\((?:\d+(?:-\d+)?\s+credits?)\)\s*$/i, "")
-    .replace(/\s+[.;:]\s*$/, "")
-    .trim();
+  normalized = normalizeTransferPlannerSemanticPathwayLabel(
+    planTitle,
+    normalized.replace(/^option\s+\d+\s*:\s*/i, "")
+  ).trim();
 
   if (
     !normalized ||
+    /^(?:download|click here to join|joining the)\b/i.test(normalized) ||
+    /\b(?:double major|double degree)\b/i.test(normalized) ||
     /\b(?:elective courses?|course lists?|courses by track)\b/i.test(normalized) ||
     PATHWAY_EXPLICIT_COURSE_CODE_PATTERN.test(normalized) ||
     isSuspiciousStructuralPathwayLabel(normalized)
@@ -501,6 +528,47 @@ function normalizePathwayLabelCandidate(planTitle, value) {
   }
 
   return normalized;
+}
+
+function toCanonicalPathwayId(label) {
+  return normalizeTransferPlannerText(label)
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getPathwayCandidateScore(label, sourceKind) {
+  let score = 0;
+
+  switch (sourceKind) {
+    case "supplemental":
+      score += 60;
+      break;
+    case "parsed":
+      score += 45;
+      break;
+    case "owner":
+      score += 20;
+      break;
+    default:
+      break;
+  }
+
+  if (PATHWAY_KIND_PATTERN.test(label)) {
+    score += 15;
+  }
+  if (!/\b(?:requirements?|pdf|worksheet|check\s*list|checklist|credits?)\b/i.test(label)) {
+    score += 12;
+  }
+  if (!/\b(?:autumn|winter|spring|summer|fall)\s+\d{4}\b/i.test(label)) {
+    score += 6;
+  }
+  if (!/\b(?:bachelor|master|doctor|associate|minor)\b/i.test(label)) {
+    score += 4;
+  }
+
+  return score - label.length * 0.01;
 }
 
 function buildPathwayLabelFromSupplementalLink(planId, pathwayId) {
@@ -527,33 +595,110 @@ function buildPathwayLabelFromSupplementalLink(planId, pathwayId) {
   return "";
 }
 
-function buildPathwayLabelFromBlock(planTitle, block) {
+function buildPathwayCandidateFromBlock(planTitle, block) {
   const pathwayId = String(block.pathwayId ?? "").trim();
-  if (pathwayId) {
-    const supplementalLabel = buildPathwayLabelFromSupplementalLink(block.planId, pathwayId);
-    if (supplementalLabel) {
-      return supplementalLabel;
+  const candidates = [];
+
+  function pushCandidate(rawValue, sourceKind) {
+    const label = normalizePathwayLabelCandidate(planTitle, rawValue);
+    if (!label) {
+      return;
     }
-  }
 
-  const ownerLabel = normalizePathwayLabelCandidate(planTitle, block.ownerTitle);
-  if (ownerLabel) {
-    return ownerLabel;
-  }
+    const id = toCanonicalPathwayId(label);
+    if (!id || isSuspiciousStructuralPathwayId(id)) {
+      return;
+    }
 
-  const parsedLabel = uniqueStrings(block.pathwayLabels ?? [])
-    .map((value) => normalizePathwayLabelCandidate(planTitle, value))
-    .filter(Boolean)
-    .sort((left, right) => left.length - right.length || left.localeCompare(right))[0] ?? "";
-  if (parsedLabel) {
-    return parsedLabel;
+    candidates.push({
+      id,
+      label,
+      score: getPathwayCandidateScore(label, sourceKind),
+    });
   }
 
   if (pathwayId) {
-    return titleCasePathwayLabel(pathwayId);
+    pushCandidate(buildPathwayLabelFromSupplementalLink(block.planId, pathwayId), "supplemental");
   }
 
-  return "Pathway";
+  for (const value of uniqueStrings(block.pathwayLabels ?? [])) {
+    pushCandidate(value, "parsed");
+  }
+
+  pushCandidate(block.ownerTitle, "owner");
+
+  if (pathwayId) {
+    pushCandidate(titleCasePathwayLabel(pathwayId), "fallback");
+  }
+
+  return candidates
+    .sort(
+      (left, right) =>
+        right.score - left.score ||
+        left.label.length - right.label.length ||
+        left.label.localeCompare(right.label)
+    )[0] ?? null;
+}
+
+function buildPrimaryMajorTitlesByPlanId(parsedBlocks) {
+  const groupedByPlanId = new Map();
+
+  for (const block of parsedBlocks) {
+    const planId = String(block.planId ?? "").trim();
+    if (!planId) {
+      continue;
+    }
+
+    const existing = groupedByPlanId.get(planId) ?? [];
+    existing.push(block);
+    groupedByPlanId.set(planId, existing);
+  }
+
+  return new Map(
+    [...groupedByPlanId.entries()].map(([planId, planBlocks]) => {
+      const rootBlock =
+        planBlocks.find((entry) => String(entry.pathwayId ?? "").trim().length === 0) ??
+        planBlocks[0] ??
+        null;
+      return [planId, String(rootBlock?.ownerTitle ?? "").trim() || planId];
+    })
+  );
+}
+
+function buildUrlIdentitySnippet(url) {
+  const normalizedUrl = String(url ?? "").trim();
+  if (!normalizedUrl) {
+    return "";
+  }
+
+  try {
+    const parsedUrl = new URL(normalizedUrl);
+    return decodeURIComponent(`${parsedUrl.hostname} ${parsedUrl.pathname}`)
+      .replace(/[-_/]+/g, " ")
+      .replace(/\.[A-Za-z0-9]{2,6}(?=$|\s)/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  } catch {
+    return "";
+  }
+}
+
+function parsedBlockMentionsDifferentMajor(block, titlesByPlanId) {
+  const planId = String(block?.planId ?? "").trim();
+  if (!planId) {
+    return false;
+  }
+
+  const sourceIdentityCandidates = uniqueStrings([
+    String(block?.sourceLabel ?? "").trim(),
+    String(block?.primarySourceLabel ?? "").trim(),
+    buildUrlIdentitySnippet(block?.sourceUrl),
+    buildUrlIdentitySnippet(block?.primarySourceUrl),
+  ]);
+
+  return sourceIdentityCandidates.some((candidate) =>
+    labelMentionsDifferentTransferPlannerMajor(planId, candidate, titlesByPlanId)
+  );
 }
 
 function buildBasePlansFromParsedBlocks(parsedBlocks) {
@@ -568,15 +713,7 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
     groupedByPlanId.set(planId, existing);
   }
 
-  const primaryMajorTitlesByPlanId = new Map(
-    [...groupedByPlanId.entries()].map(([planId, planBlocks]) => {
-      const rootBlock =
-        planBlocks.find((entry) => String(entry.pathwayId ?? "").trim().length === 0) ??
-        planBlocks[0] ??
-        null;
-      return [planId, String(rootBlock?.ownerTitle ?? "").trim() || planId];
-    })
-  );
+  const primaryMajorTitlesByPlanId = buildPrimaryMajorTitlesByPlanId(parsedBlocks);
   const plans = [];
 
   for (const [planId, planBlocks] of groupedByPlanId.entries()) {
@@ -595,20 +732,30 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
 
     for (const block of planBlocks) {
       const pathwayId = String(block.pathwayId ?? "").trim();
-      if (!pathwayId || pathwayById.has(pathwayId)) {
+      if (!pathwayId || isSuspiciousStructuralPathwayId(pathwayId)) {
         continue;
       }
 
-      const label = buildPathwayLabelFromBlock(title, block);
+      const pathwayCandidate = buildPathwayCandidateFromBlock(title, block);
       if (
-        !label ||
-        labelMentionsDifferentTransferPlannerMajor(planId, label, primaryMajorTitlesByPlanId)
+        !pathwayCandidate ||
+        labelMentionsDifferentTransferPlannerMajor(
+          planId,
+          pathwayCandidate.label,
+          primaryMajorTitlesByPlanId
+        )
       ) {
         continue;
       }
-      pathwayById.set(pathwayId, {
-        id: pathwayId,
-        label,
+
+      const existingPathway = pathwayById.get(pathwayCandidate.id) ?? null;
+      if (existingPathway && existingPathway.__score >= pathwayCandidate.score) {
+        continue;
+      }
+
+      pathwayById.set(pathwayCandidate.id, {
+        id: pathwayCandidate.id,
+        label: pathwayCandidate.label,
         summary: "",
         applicationChecklist: [],
         beforeEnrollmentChecklist: [],
@@ -623,6 +770,7 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
         bestTrackId: null,
         recommendedTrackSummary: "",
         whyThisTrack: [],
+        __score: pathwayCandidate.score,
       });
     }
 
@@ -648,7 +796,9 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
       bankIds: [],
       plannerNote: "",
       sourceType: "master-generated",
-      pathways: [...pathwayById.values()].sort((left, right) => left.id.localeCompare(right.id)),
+      pathways: [...pathwayById.values()]
+        .map(({ __score, ...pathway }) => pathway)
+        .sort((left, right) => left.id.localeCompare(right.id)),
     });
   }
 
@@ -661,6 +811,9 @@ function buildBasePlansFromParsedBlocks(parsedBlocks) {
 
 function buildMajorPlansFromParsedRegistries() {
   const basePlans = buildBasePlansFromParsedBlocks(TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS);
+  const primaryMajorTitlesByPlanId = buildPrimaryMajorTitlesByPlanId(
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS
+  );
 
   const parsedBlocksByOwnerScope = new Map();
   for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
@@ -704,8 +857,9 @@ function buildMajorPlansFromParsedRegistries() {
 
   const enrichOfficialLinks = (links, planId, pathwayId) => {
     const defaults = getOwnerLinkDefaults(planId, pathwayId);
-    const parsedBlocks =
-      parsedBlocksByOwnerScope.get(makePlanPathwayKey(planId, pathwayId ?? null)) ?? [];
+    const parsedBlocks = (
+      parsedBlocksByOwnerScope.get(makePlanPathwayKey(planId, pathwayId ?? null)) ?? []
+    ).filter((entry) => !parsedBlockMentionsDifferentMajor(entry, primaryMajorTitlesByPlanId));
     const supplementalLinks =
       SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY.get(makePlanPathwayKey(planId, pathwayId ?? null)) ??
       [];

@@ -2,267 +2,257 @@ Owner: uw-seattle-chemistry:pathway:ba-route
 Source: https://chem.washington.edu/ba-chemistry
 Title: BA in Chemistry | Department of Chemistry | University of Washington
 
-[Page 1] __________________________
-[Page 1] 1) Mathematics (MATH)
-[Page 1] 2) Physics (PHYS)  456 (3)
-[Page 1] 3) General Chemistry (CHEM) a) Choose one 400 level lab from the
-[Page 1] 4) Analytical Lab (CHEM)
-[Page 1] 5) Inorganic Chemistry (CHEM) Honors students only may apply
-[Page 1] 7) Physical Chemistry (CHEM)
-[Page 1] a) Calculus or Honors Calculus 6) Organic Chemistry (CHEM)
-[Page 1] a) Calculus-based or Algebra-based  457 (3)
-[Page 1] b) Additional 400-level CHEM/BIOC
-[Page 1] b) One credit of laboratory The two parts of this requirement must
-[Page 1] b) Two additional math courses above  239 (4)  337 (4)
-[Page 1] Bachelor of Science in Chemistry ACS certified
-[Page 1] calculus-based physics series. 9) Advanced Chemistry
-[Page 1] Calculus-based series is recommended.
-[Page 1] Chem 399 or 499 for Part B.
-[Page 1] course not previously taken.
-[Page 1] Degree Requirements
-[Page 1] following:
-[Page 1] from CHEM 312.
-[Page 1] One credit lab is included in the
-[Page 1] Recommended:  241 (3)  346 (3)
-[Page 1] regular calculus sequence is taken. b) Laboratory
-[Page 1] Regular or Accelerated or Honors
-[Page 1] Students completing 155 and 165 are exempt
-[Page 1] the 200 level are required if the
-[Page 1]  117, 118, 119 (1) total a minimum of 5 credits
-[Page 1]  121 (5)  114 (4)  461 (3)
-[Page 1]  122 (5)  115 (4)
-[Page 1]  123 (5)  116 (4) 8) Biochemistry
-[Page 1]  124 (5)  134 (5) a) Lecture
-[Page 1]  125 (5)  135 (5) Regular or Honors
-[Page 1]  126 (5)  136 (5)  237 (4)  335 (4)
-[Page 1]  142 (5)  143 (6)  145 (5)  462 Organic Synthesis
-[Page 1]  152 (5)  153 (6)  155 (5)  463 Spectroscopy
-[Page 1]  162 (5)  165 (5)  464 Computers in Data Acquisition
-[Page 1]  238 (4)  336 (4)
-[Page 1]  242 (3)  347 (3)
-[Page 1]  307 (3) or  AMATH 351 (3)
-[Page 1]  308 (3) or  AMATH 352 (3)
-[Page 1]  312 Lecture (3)
-[Page 1]  317 Laboratory (4)
-[Page 1]  321 (5)
-[Page 1]  416 Transition Metals (3)
-[Page 1]  426 (3) or 428 (3)
-[Page 1]  455 (3)
-[Page 1]  466 Energy Materials, Devices
-[Page 1]  BIOC 405 or CHEM 432 or CHEM 436
-[Supplemental official source] BS Chemistry Checklist - ACS Certified (PDF)
-* Arts and Humanities (A&H), Social Science (SSc). They are general education requirements. Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
-*note clicking on a subject (EX. CHEM) will take you to the course catalog for that subject, hovering on a course number will tell you the title and clicking on a course number will take you to the MyPlan course description of the course, clicking on "choose one" will take you to the information about course sequences.
-&copy; 2026 University of Washington . All rights reserved.
-109 Bagley Hall
-1st Year
-1xx Series: Introductory Chemistry
-2nd Year
-2xx/3xx Series: Organic Chemistry
-3rd Year
-4th Year
-A cumulative grade point average of 2.0 is required for all chemistry courses counted toward the degree.
-A&H "W" (5)*
-A&H (5)*
-About
-Accelerated: CHEM 143 (6), 153 (6)
-Accident Reporting & Prevention
-Add/Drop Class
-Additional 400-level chemistry courses , not previously mentioned, taken for a numerical grade. The two parts of this requirement must total eleven credits.
-Adjuncts & Affiliates
-Admissions
-Advanced Chem Course (2-3)
-Advanced Chem Course (3)
-Advanced Chem Lab
-Advanced Chemistry
-Advising
-Advising & Academic Support
-Advising: 206.616.9880
-Algebra-based: PHYS 114 (4), 115 (4), 116 (4)
-Alumni
-Alumni News
-Alumni Update
-Analytical Lab
-Autumn Courses
-BA Chemistry Checklist (PDF)
-BA in Biochemistry
-BA in Chemistry
 BA in Chemistry | Department of Chemistry | University of Washington
-Beginning Spring quarter 2010, students enrolled in degree programs in biochemistry and chemistry must maintain both a cumulative GPA and individual-course grades consistent with requirements for their degree. Students pursuing B.S. degrees must maintain a minimum cumulative major GPA of 2.50 and minimum 2.0 for individual courses required for the major. Students pursuing a B.A. degree must maintain a minimum cumulative major GPA of 2.00 and minimum 1.7 for individual courses required for the major. Failure to maintain these GPA and grade standards results in the student being placed on departmental academic probation for one quarter, and dropped from the major if marked improvement in academic performance is not achieved. Students who experience extraordinary circumstances may petition for one or more additional probationary quarters.
-Box 351700
-BS in Biochemistry
-BS in Chemistry
-BS in Chemistry - ACS Certified
-Buildings & Labs
-Calculus-based: PHYS 121 (5), 122 (5), 123 (5)
-Calendar
-Centers & Institutes
-Chem 142 (5)
-Chem 152 (5)
-Chem 162 (5)
-Chem 237 (4)
-Chem 238 (4)
-Chem 239 (4)
-Chem 241 (3)
-Chem 242 (3)
-Chem 312 (3)
-CHEM 312 Lecture (3)
-CHEM 317 (4) Inorganic Chem Lab or 461 (3) Physical Chemistry Lab
-Chem 317 (4) or 461 (3)
-Chem 321 (5)
-CHEM 321 (5) Quantitative Analysis
-CHEM 416 Transition Metals Lecture (3)
-Chem 452 (3)
-CHEM 452 (3), 453 (3)
-Chem 453 (3)
-CHEM 455 (3), 456 (3), 457 (3)
-chemadv@uw.edu
-chemdesk@uw.edu
-Chemical Database
-Chemistry involves the understanding of the structure and reactivity of matter from atomic- and molecular-level perspectives. Degrees in Chemistry involve training in analytical, inorganic, organic, and physical chemistry. Elective courses are also available allowing students to pursue interests in materials, biological, and other advanced areas of chemistry.
-Chemistry Sharepoint
-Choosing Advanced Electives
-Choosing Introductory Courses
-Choosing Organic Courses
+Skip to main content
+Washington
+University of Washington
 College of Arts & Sciences
-Community Resources
-Computing Resources
-Computing Support
-Contact Us
-Continuation Policy
-Core Instrumentation
-Course Materials & Syllabi
-Courses
-Degree Requirements
-Department Faculty
-Department of Chemistry
-Department Profile
-Departmental Users
-Directories
-Duplication Guidelines
-Education
-Electives (5)
-Electronics Shop
-Eleven credits of numerically graded CHEM 400 level courses to include one of the following sequences:
-Emeriti Faculty
-Employment
-Endowed Lectures
-English Composition (5)
-Facebook
-Facilities
-Faculty
-Faculty Meetings: Agenda & Minutes
-Foreign Language 101 (5)
-Foreign Language 102 (5)
-Foreign Language 103 (5)
-Full Directory
-General Chemistry ( choose one sequence)
-Give now
-Grade Point Average Requirements
-Graduate
-Graduation Information
-Health & Safety
-Home
-Honors: CHEM 145 (5), 155 (5), 165 (5)
-Honors: CHEM 335 (4), 336 (4), 337 (4)
-Honors: MATH 134 (5), 135 (5), 136 (5)
-In Memoriam
-Inclusive Chemistry
-Inorganic Chemistry (choose one)
-Instructor Information
-Instrument Reservations
-Internal Resources
-Lab Information
-Laboratory: 241 (3), 242 (3)
-Laboratory: 346 (3), 347 (3)
-Learning Strategies
-Lecture Demos
-Machine Shop
-Main menu
-Main Office: 206.543.1610
-Major & Minor Requirements
-Make a Gift
-Maps
-Mass Spectrometry
-Master's Program
-Math 124 (5)
-Math 125 (5)
-Math 126 (5)
-Mathematics ( choose one sequence)
-Menu
-Minimum grade of 1.7 in chemistry courses required for the degree.
-Minor in Chemistry
-MyUW
-New Employee Safety Orientation
-News & Events
-News Feed
-Newsletter
-NMR
-One quarter of physics laboratory: 117 , 118 , 119 (1)
-Organic Chemistry ( choose one sequence)
-People
-Ph.D. Program
-Photonics Research Center
-Phys 121 (5)
-Phys 122 (5)
-Phys 123 (5)
-Physics ( choose one sequence)
-Policies & Procedures
-Postdoctoral Scholars
-Privacy
-Programs & Courses
-Proposal Preparation
-Purchasing & Accounting
 Quick links
 Quick Links
-Recent News
-Registration & Course Selection
-Regular: CHEM 142 (5), 152 (5), 162 (5)
-Regular: CHEM 237 (4), 238 (4), 239 (4)
-Regular: MATH 124 (5), 125 (5), 126 (5)
-Research
-Research & Careers
-Research Areas
-Research credits counted as electives, not major requirements in this example.
-Research News
-Research Stockroom
-Resources
-Resources & Opportunities
-Sample Schedule
-Search
-Seattle, WA 98195-1700
-See Admissions for information about entrance pathways and application instructions.
-Services
-Share
-Site Map
-Skip to main content
-Spring Courses
-SSc "W" (5)*
-SSc (5)*
-Staff
-Stay Connected
-Student Community
-Student Organizations
-Study Centers
-Submit an Update
-Support Chemistry
-Support Us
-TA Information
-Teaching & Learning
-Terms
-The Bachelor of Arts degree is designed for students whose career interests require a strong background in Chemistry or Biochemistry but are also interested in acquiring expertise in other disciplines. The coursework for this degree provides broad training and does not include extensive advanced laboratory training. The degree is appropriate for students interested in applying to professional programs in medicine, dentistry, pharmacy, and other health allied fields.
-The calculus-based series is recommended. NOTE: One credit lab is included with each course in the calculus-based physics series. If algebra-based physics is taken, students must take one lab from below:
-This degree requires 180 credits.
-Training Opportunities
-Twitter
-Undergraduate
-Undergraduate advisers can help set up individual schedules according to students’ needs and constraints.
-University of Washington
-Upcoming Courses
+Make a Gift
+Directories
+Maps
+MyUW
 User account menu
+Search
+Search
+Give now
+Main menu
+Department of Chemistry
+Menu
+People
+Full Directory
+Faculty
+Department Faculty
+Adjuncts & Affiliates
+Emeriti Faculty
+In Memoriam
+Postdoctoral Scholars
+Staff
 Visitors
-Washington
-Winter Courses
+Alumni
+Alumni News
+Submit an Update
+Programs & Courses
+Undergraduate
+Advising & Academic Support
+Admissions
+Major & Minor Requirements
+Graduation Information
+Registration & Course Selection
+Resources & Opportunities
+Research & Careers
+Learning Strategies
+Graduate
+Admissions
+Master's Program
+Ph.D. Program
+Student Community
+Courses
+Upcoming Courses
+Course Materials & Syllabi
+Choosing Introductory Courses
+Choosing Organic Courses
+Choosing Advanced Electives
+Duplication Guidelines
+Add/Drop Class
+Lab Information
+1xx Series: Introductory Chemistry
+2xx/3xx Series: Organic Chemistry
+Research
+Research Areas
+Centers & Institutes
+Computing Resources
+Training Opportunities
+Research News
+News & Events
+Recent News
+Newsletter
+Calendar
+Endowed Lectures
+Resources
+Advising
+Education
+Study Centers
+Teaching & Learning
+Lecture Demos
+Student Organizations
+Community Resources
+Facilities
+NMR
+Mass Spectrometry
+Core Instrumentation
 X-Ray Crystallography
-Year
+Photonics Research Center
+Instrument Reservations
+Services
+Research Stockroom
+Computing Support
+Electronics Shop
+Machine Shop
+Health & Safety
+Accident Reporting & Prevention
+Buildings & Labs
+Chemical Database
+New Employee Safety Orientation
+Departmental Users
+Policies & Procedures
+Purchasing & Accounting
+Proposal Preparation
+Instructor Information
+TA Information
+Internal Resources
+Faculty Meetings: Agenda & Minutes
+Chemistry Sharepoint
+About
+Department Profile
+Inclusive Chemistry
+Employment
+Stay Connected
+Support Us
+Contact Us
+Make a Gift
+Directories
+Maps
+MyUW
 You are here
+Home
+Programs & Courses
+Undergraduate
+Major & Minor Requirements
+BA in Chemistry
+Chemistry involves the understanding of the structure and reactivity of matter from atomic- and molecular-level perspectives. Degrees in Chemistry involve training in analytical, inorganic, organic, and physical chemistry. Elective courses are also available allowing students to pursue interests in materials, biological, and other advanced areas of chemistry.
+The Bachelor of Arts degree is designed for students whose career interests require a strong background in Chemistry or Biochemistry but are also interested in acquiring expertise in other disciplines. The coursework for this degree provides broad training and does not include extensive advanced laboratory training. The degree is appropriate for students interested in applying to professional programs in medicine, dentistry, pharmacy, and other health allied fields.
+Admissions
+See Admissions for information about entrance pathways and application instructions.
+Degree Requirements
+BA Chemistry Checklist (PDF)
+*note clicking on a subject (EX. CHEM) will take you to the course catalog for that subject, hovering on a course number will tell you the title and clicking on a course number will take you to the MyPlan course description of the course, clicking on "choose one" will take you to the information about course sequences.
+Mathematics ( choose one sequence)
+Regular: MATH 124 (5), 125 (5), 126 (5)
+Honors: MATH 134 (5), 135 (5), 136 (5)
+Physics ( choose one sequence)
+Calculus-based: PHYS 121 (5), 122 (5), 123 (5)
+Algebra-based: PHYS 114 (4), 115 (4), 116 (4)
+The calculus-based series is recommended. NOTE: One credit lab is included with each course in the calculus-based physics series. If algebra-based physics is taken, students must take one lab from below:
+One quarter of physics laboratory: 117 , 118 , 119 (1)
+General Chemistry ( choose one sequence)
+Regular: CHEM 142 (5), 152 (5), 162 (5)
+Honors: CHEM 145 (5), 155 (5), 165 (5)
+Accelerated: CHEM 143 (6), 153 (6)
+Organic Chemistry ( choose one sequence)
+Regular: CHEM 237 (4), 238 (4), 239 (4)
+Laboratory: 241 (3), 242 (3)
+Honors: CHEM 335 (4), 336 (4), 337 (4)
+Laboratory: 346 (3), 347 (3)
+Inorganic Chemistry (choose one)
+CHEM 312 Lecture (3)
+CHEM 416 Transition Metals Lecture (3)
+Analytical Lab
+CHEM 321 (5) Quantitative Analysis
+Advanced Chemistry
+Eleven credits of numerically graded CHEM 400 level courses to include one of the following sequences:
+CHEM 455 (3), 456 (3), 457 (3)
+CHEM 452 (3), 453 (3)
+Additional 400-level chemistry courses , not previously mentioned, taken for a numerical grade. The two parts of this requirement must total eleven credits.
+Advanced Chem Lab
+CHEM 317 (4) Inorganic Chem Lab or 461 (3) Physical Chemistry Lab
+Sample Schedule
+Research credits counted as electives, not major requirements in this example.
+Year
+Autumn Courses
+Winter Courses
+Spring Courses
+1st Year
+Chem 142 (5)
+Math 124 (5)
+Electives (5)
+Chem 152 (5)
+Math 125 (5)
+SSc (5)*
+Chem 162 (5)
+Math 126 (5)
+English Composition (5)
+2nd Year
+Chem 237 (4)
+Phys 121 (5)
+Foreign Language 101 (5)
+Chem 238 (4)
+Chem 241 (3)
+Phys 122 (5)
+Foreign Language 102 (5)
+Chem 239 (4)
+Chem 242 (3)
+Phys 123 (5)
+Foreign Language 103 (5)
+3rd Year
+Chem 312 (3)
+Chem 321 (5)
+A&H "W" (5)*
+Electives (5)
+Chem 452 (3)
+A&H (5)*
+Electives (5)
+Chem 453 (3)
+A&H (5)*
+Electives (5)
+4th Year
+Advanced Chem Course (3)
+SSc "W" (5)*
+A&H (5)*
+Electives (5)
+Advanced Chem Course (2-3)
+SSc (5)*
+Electives (5)
+Chem 317 (4) or 461 (3)
+SSc (5)*
+Electives (5)
+* Arts and Humanities (A&H), Social Science (SSc). They are general education requirements. Students are expected to understand and complete all general education requirements as detailed in the General Catalog.
+Undergraduate advisers can help set up individual schedules according to students’ needs and constraints.
+Grade Point Average Requirements
+This degree requires 180 credits.
+Minimum grade of 1.7 in chemistry courses required for the degree.
+A cumulative grade point average of 2.0 is required for all chemistry courses counted toward the degree.
+Continuation Policy
+Beginning Spring quarter 2010, students enrolled in degree programs in biochemistry and chemistry must maintain both a cumulative GPA and individual-course grades consistent with requirements for their degree. Students pursuing B.S. degrees must maintain a minimum cumulative major GPA of 2.50 and minimum 2.0 for individual courses required for the major. Students pursuing a B.A. degree must maintain a minimum cumulative major GPA of 2.00 and minimum 1.7 for individual courses required for the major. Failure to maintain these GPA and grade standards results in the student being placed on departmental academic probation for one quarter, and dropped from the major if marked improvement in academic performance is not achieved. Students who experience extraordinary circumstances may petition for one or more additional probationary quarters.
+Share
+Programs & Courses
+Undergraduate
+Advising & Academic Support
+Admissions
+Major & Minor Requirements
+BS in Biochemistry
+BA in Biochemistry
+BS in Chemistry - ACS Certified
+BS in Chemistry
+BA in Chemistry
+Minor in Chemistry
+Graduation Information
+Registration & Course Selection
+Resources & Opportunities
+Research & Careers
+Learning Strategies
+Graduate
+Courses
+1xx Series: Introductory Chemistry
+2xx/3xx Series: Organic Chemistry
+Support Chemistry
+Facebook
+Twitter
+Newsletter
+News Feed
+Department of Chemistry
+University of Washington
+109 Bagley Hall
+Box 351700
+Seattle, WA 98195-1700
+Main Office: 206.543.1610
+chemdesk@uw.edu
+Advising: 206.616.9880
+chemadv@uw.edu
+Privacy
+Terms
+Site Map
+Alumni Update
+Contact Us
+&copy; 2026 University of Washington . All rights reserved.

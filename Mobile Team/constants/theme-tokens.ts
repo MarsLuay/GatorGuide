@@ -176,6 +176,8 @@ const THEME_TOKENS: Record<ResolvedAppTheme, ThemeTokens> = {
   },
 };
 
+THEME_TOKENS.green = THEME_TOKENS.dark;
+
 export function getThemeTokens(resolvedTheme: ResolvedAppTheme) {
   return THEME_TOKENS[resolvedTheme];
 }

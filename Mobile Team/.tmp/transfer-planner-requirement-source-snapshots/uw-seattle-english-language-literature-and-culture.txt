@@ -2,32 +2,21 @@ Owner: uw-seattle-english-language-literature-and-culture
 Source: https://english.washington.edu/english-language-literature-and-culture-option
 Title: English, Language, Literature, and Culture Option | Department of English | University of Washington
 
-(1) Theories and Methodologies of English Language and Literature
-(2) Forms and Genres of Language and Literature
-(3) Cultures in Context
-(Excluded courses are ENGL 285, Writers on Writing; ENGL 297, 298, and 299 Interdisciplinary Writing courses; ENGL 491, Internships; and ENGL 474-476, courses associated with the Puget Sound Writing Project; these cannot be counted toward the English major Distribution or Electives requirement.)
-[Supplemental official source] old requirements
 [Supplemental official source] Older Requirements
 &copy; 2026 University of Washington . All rights reserved.
-10 credits in ENGL courses must be focused on pre-1945 Literature and 5 credits of pre-1700 literature.
-A Minimum grade of 2.0 required. Must be taken within two quarters of declaring the English major per department continuation/satisfactory progress policy.
-A minimum of 60 credits in English courses:
 A Senior Capstone
 A101 Padelford Hall
 About
 About the Readings
 Additional Resources
 Adjuncts & Affiliates
-Admission
 Admission to the English Major:
-Admission to the major
 Advising
 Affiliated Journals & Publications
 Alumni
 Alumni News
 Alumni Profiles
 As an alternative to the special topics courses, "ENGL 490: Professionalization and Public Life" focuses on the role of the humanities in the world and helps students prepare for the job market, graduate school, and other post-graduation plans.
-At least 30 ENGL credits applicable to the English major must be taken in residence at the UW Seattle.
 Autumn 2005 through Spring 2010
 Autumn 2010 through Spring 2012
 Autumn 2012 through Spring 2013
@@ -42,9 +31,6 @@ College of Arts & Sciences
 Community Literacy Program
 Computer-Integrated Courses
 Contact Us
-Course Goals: While core courses may not achieve every goal, they will participate in the conversations represented in these goals as a central feature.
-Course list :
-Course list:
 Course Offerings
 Courses
 Creative Writing
@@ -52,8 +38,6 @@ Creative Writing:
 Department Faculty
 Department Meetings
 Department of English
-Department of English Admission and Continuation Policy (PDF) (rules for satisfactory progress)
-Description: These courses foreground theoretical approaches or methodological developments, including how they affect formal or historical topics. They explore how theories and methods such as Marxism, psychoanalysis, structuralism, phenomenology, reader reception, feminism, critical race theory or ethnography have influenced the production, practice or study of literature, language and culture in English.
 Directories
 Distribution Areas:
 Diversity & Equity
@@ -61,8 +45,6 @@ Diversity and Equity
 Emergency Plan
 Emeriti Faculty
 ENGL 200: Reading Literary Forms
-ENGL 202 (Introduction to English Language and Literature)
-ENGL 202, 302, and the Senior Capstone require minimum grades of 2.0 in each course. English majors must maintain a minimum overall GPA of 2.00 in all UW ENGL courses.
 ENGL 204: Popular Fiction & Media
 ENGL 205: Method, Imagination, and Inquiry
 ENGL 206: Rhetoric in Everyday Life
@@ -82,15 +64,11 @@ ENGL 250: American Literature
 ENGL 251: Literature & American Political Culture
 ENGL 256: Introduction to Queer Cultural Studies (GML)
 ENGL 256: Introduction to Queer Cultural Studies (P&D)
-ENGL 257 (Asian-American Literature)
 ENGL 257: Introduction to Asian American Literature
-ENGL 258 (Introduction to African American Literature)
 ENGL 258: Introduction to African American Literature
-ENGL 259 (Literature and Social Difference)
 ENGL 259: Literature and Social Difference
 ENGL 259: Literature and Social Difference (P&D)
 ENGL 262: Introduction to Latina/o Literature
-ENGL 265 (Introduction to Environmental Humanities)
 ENGL 265: Introduction to Environmental Humanities (GML)
 ENGL 265: Introduction to Environmental Humanities (P&D)
 ENGL 266: Literature and Technology
@@ -107,47 +85,30 @@ ENGL 297: Intermediate Interdisciplinary Writing - Humanities
 ENGL 298: Intermediate Interdisciplinary Writing - Social Sciences
 ENGL 299: Intermediate Interdisciplinary Writing - Natural Sciences
 ENGL 300: Reading Major Texts (can also count as pre-1700 depending on texts)
-ENGL 302 (Critical Practice): 5 credits
-ENGL 302 Critical Practice (counts as a theory requirement for Creative Writing Students only)
-ENGL 303 (History of Literary Criticism and Theory I)
 ENGL 303 History of Literary Criticism and Theory I (GML)
 ENGL 303: History of Literary Criticism and Theory I (HD)
-ENGL 304 (History of Literary Criticism and Theory II)
 ENGL 304: History of Literary Criticism and Theory II
-ENGL 305 (Theories of the Imagination)
-ENGL 306 (Introduction to Rhetoric)
 ENGL 306: Introduction to Rhetoric
-ENGL 307 (Cultural Studies)
 ENGL 307: Cultural Studies
 ENGL 307: Cultural Studies (P&D)
-ENGL 308 (Marxism and Literary Theory)
 ENGL 308: Marxism and Literary Theory
-ENGL 309 (Theories of Reading)
 ENGL 309: Theories of Reading
 ENGL 310 The Bible as Literature
 ENGL 311: Modern Jewish Literature in Translation
-ENGL 312 (Jewish Literature: Biblical to Modern)
 ENGL 312 Jewish Literature: Biblical to Modern (P&D)
 ENGL 312: Jewish Literature: Biblical to Modern (HD)
 ENGL 313: Modern European Literature in Translation
 ENGL 314: Transatlantic Literature and Culture (HD)
 ENGL 314: Transatlantic Literature and Culture (P&D)
-ENGL 315 (Literary Modernism)
 ENGL 315: Literary Modernism (GML)
 ENGL 315: Literary Modernism (HD)
-ENGL 316 (Postcolonial Literature and Culture)
 ENGL 316: Postcolonial Literature and Culture
-ENGL 317 (Literature of the Americas)
 ENGL 317: Literature of the Americas
-ENGL 318 (Black Literary Genres)
 ENGL 318: Black Literary Genres (DIV, GML)
 ENGL 318: Black Literary Genres (P&D)
-ENGL 319 (African Literatures)
 ENGL 319: African Literatures (DIV)
-ENGL 320 (English Literature: The Middle Ages)
 ENGL 320 English Literature: The Middle Ages
 ENGL 321 Chaucer
-ENGL 322 (English Literature: The Age of Elizabeth)
 ENGL 322 Medieval & Early Modern Literatures of Encounter (HD)
 ENGL 322 Medieval & Early Modern Literatures of Encounter (P&D)
 ENGL 323 Shakespeare to 1603
@@ -155,81 +116,51 @@ ENGL 324 Shakespeare after 1603
 ENGL 325 Early Modern English Literature
 ENGL 326 Milton (GML)
 ENGL 326: Milton (HD)
-ENGL 327 (English Literature: Restoration & Early 18th Century)
 ENGL 327 Narratives of Bondage & Freedom (HD)
 ENGL 327 Narratives of Bondage & Freedom (P&D)
 ENGL 328 Eighteenth Century Literature & Culture
-ENGL 329 (Rise of the English Novel)
 ENGL 329 Rise of the English Novel (GML)
 ENGL 329: Rise of the English Novel (HD)
-ENGL 330 (English Literature: The Romantic Age)
 ENGL 330 English Literature: The Romantic Age
-ENGL 331 (Romantic Poetry I)
 ENGL 331 Globalization & Nationalism in the Age of Empire (HD)
 ENGL 331 Globalization & Nationalism in the Age of Empire (P&D)
-ENGL 332 (Romatic Poetry II)
 ENGL 332 Nineteenth Century Poetry (GML)
 ENGL 332 Nineteenth Century Poetry (HD)
 ENGL 333 Nineteenth Century Novel (GML)
 ENGL 333: Nineteenth Century Novel (HD)
-ENGL 335 (English Literature: Age of Victoria)
 ENGL 335 English Literature: The Victorian Age
-ENGL 336 (English Literature: The Early Modern Period)
 ENGL 336 English Literature: Early Twentieth Century
 ENGL 337 The Modern Novel (GML)
 ENGL 337: The Modern Novel (HD)
 ENGL 338 Modern Poetry (GML)
 ENGL 338: Modern Poetry (HD)
-ENGL 339 (English Literature: Contemporary England)
 ENGL 339: Globalization & Contemporary World Literature (GML)
 ENGL 339: Globalization & Contemporary World Literature (P&D)
-ENGL 340 (Modern Anglo-Irish Literature)
 ENGL 340: Irish Literature (P&D)
-ENGL 341 (Studies in the Novel)
 ENGL 341: Studies in the Novel
 ENGL 342: Contemporary Novel
-ENGL 343 (Studies in Poetry)
 ENGL 343: Contemporary Poetry
-ENGL 344 (Studies in Drama)
 ENGL 344: Studies in Drama
-ENGL 345 (Studies in Film)
 ENGL 345: Studies in Film
-ENGL 346 (Studies in Short Fiction)
 ENGL 346: Studies in Short Fiction
-ENGL 347 (Studies in Non Fiction Prose)
 ENGL 347: Studies in Nonfiction Prose
-ENGL 348 (Studies in Popular Culture)
 ENGL 348: Studies in Popular Culture
-ENGL 349 (Science Fiction and Fantasy)
 ENGL 349: Science Fiction & Fantasy
 ENGL 349: Science Fiction and Fantasy (P&D)
 ENGL 350: American Fiction
-ENGL 351 (American Literature: The Colonial Period)
 ENGL 351: Writing in the Contact Zone: North America 1492 - 1800 (P&D)
 ENGL 351: Writing in the Contact Zone: North America to 1800 (HD)
-ENGL 352 (American Literature: The Early Nation)
 ENGL 352 Literatures of the United States to 1865 (P&D)
 ENGL 352: American Literatures to 1865 (HD)
-ENGL 353 (American Literature: The Later 19th Century)
 ENGL 353 American Literature: Later Nineteenth Century
-ENGL 354 (American Literature: The Early Modern Period)
 ENGL 354 American Literature: Early Twentieth Century
-ENGL 355 (American Literature: Contemporary America)
 ENGL 355: Contemporary American Literature
 ENGL 356: American Poetry
-ENGL 357 (Jewish American Literature and Culture)
 ENGL 357: Jewish American Literature and Culture
-ENGL 358 (African American Literature)
 ENGL 358: African American Literature
-ENGL 359 (Contemporary American Indian Literature)
 ENGL 359: Contemporary American Indian Literature
-ENGL 360 (American Political Culture: to 1865)
 ENGL 360: American Literature & Culture
-ENGL 361 (American Political Culture: 1865 - Present)
-ENGL 361 (American Political Culture: After 1865)
 ENGL 361: American Political Culture After 1865
-ENGL 362 ( Latino Literary Genres)
-ENGL 362 Latino Literary Genres
 ENGL 362: Latino Literary Genres (GML)
 ENGL 362: Latino Literary Genres (P&D)
 ENGL 363: Literature and Other Arts and Disciplines
@@ -239,31 +170,19 @@ ENGL 365: Literature & Environment (GML)
 ENGL 365: Literature and Environment (P&D)
 ENGL 366: Literature & Law
 ENGL 366: Literature and Law (P&D)
-ENGL 367 (Gender Studies in Literature)
 ENGL 367: Gender Studies in Literature
-ENGL 368 (Women Writers)
 ENGL 368: Women Writers
-ENGL 369 (Research Methods in Language & Literature)
 ENGL 369: Research Methods in Language and Rhetoric
-ENGL 370 (English Language Study)
 ENGL 370: English Language Study
-ENGL 371 (English Syntax)
 ENGL 371: English Syntax
-ENGL 372 (World Englishes)
 ENGL 372: World Englishes (GML)
-ENGL 373 (History of the English Language)
 ENGL 373: History of the English Language
 ENGL 373: History of the English Language (GML)
-ENGL 374 (The Language of Literature)
 ENGL 374: The Language of Literature
-ENGL 375 (Rhetorical Genre Theory & Practice)
 ENGL 375: Rhetorical Genre Theory and Practice
 ENGL 376: Introduction to Middle English Language (HD)
-ENGL 378 (Special Topics in Theories/Methods)
 ENGL 378: Special Topics in Genre, Method, & Language
-ENGL 379 (Special Topics in Genres/Media)
 ENGL 379: Special Topics in Power & Difference
-ENGL 380 (Special Topics in Histories)
 ENGL 380: Special Topics in History
 ENGL 381: Advanced Expository Writing
 ENGL 382: Special Topics in Multimodal Composition
@@ -296,21 +215,15 @@ ENGL 451 (American Writers: Studies in Major Authors)
 ENGL 452 (Topics in American Literature)
 ENGL 453: Introduction to American Folklore
 ENGL 457: Pacific Northwest Literature
-ENGL 466 (Gay and Lesbian Studies)
 ENGL 466: Queer and LGBT Literature
-ENGL 470 (Theory and Practice of Teaching Literature)
 ENGL 470: Theory and Practice of Teaching Literature
-ENGL 471 (Theory and Practice of Teaching Writing)
 ENGL 471: Theory and Practice of Teaching Writing
 ENGL 472: Language Learning
 ENGL 473 (Current Development in English Studies)
 ENGL 474: Special Topics in English for Teachers
 ENGL 477: Children’s Literature
-ENGL 478 (Language and Social Policy)
 ENGL 478: Language and Social Policy (GML)
 ENGL 478: Language and Social Policy (P&D)
-ENGL 479 (Language Variation and Language Policy in North America)
-ENGL 479 (Language Variation and Policy in North America)
 ENGL 479: Language Variation and Language Policy in North America (GML)
 ENGL 479: Language Variation and Language Policy in North America (P&D)
 ENGL 480: Workplace Research Methods
@@ -328,12 +241,9 @@ ENGL 498 (Senior Seminar)
 English 202: Introduction to the Study of English Language and Literature
 English 302: Critical Practice
 English Composition Requirement
-English Distribution: 15 credits
-English Electives: 30 credits
 English GSO
 English Major Requirements
 English Majors must also take at least 15 credits in each of the following areas:
-English Senior Capstone course: 5 credits
 English, Language, Literature, and Culture Option
 English, Language, Literature, and Culture Option | Department of English | University of Washington
 Evening Degree Program
@@ -345,8 +255,6 @@ Faculty Computing
 Faculty Dialogue Series
 Faculty Guidelines
 Fields of Interest
-Five credits from each of the three distribution categories below.
-For assistance with planning and for questions, please visit the Humanities Academic Services Center .
 For Employees
 For example, ENGL 351 is listed under both “Historical Depth” and “Power and Difference.” However, it will only count in one of those categories in a student's degree progress. The student may choose (and can change their mind, shuffling courses as long as they are enrolled). Students noticing issues with how these classes are applying to the distribution areas in their degree audit can contact an advisor at Humanities Academic Services Center (HAS), A-2-B Padelford Hall for support.
 For students who declared the major in the Evening Degree Program prior to Autumn 2014.
@@ -354,7 +262,6 @@ Genre, Method, and Language
 Genre, Method, and Language Courses:
 Genre, Method, and Language:
 Genre:
-Grades and GPA Requirements:
 Graduate
 Graduate Faculty
 Graduate Staff
@@ -362,8 +269,6 @@ Graduate Students
 Graduation
 have an English grade point average of at least 2.50 among all English coursework completed at the college level.
 have an overall UW grade point average of at least a 2.00;
-Have questions?
-Historical Breadth :
 Historical Depth
 Historical Depth Courses:
 Historical Depth:
@@ -372,44 +277,29 @@ Honors
 How to Apply
 If you declared an English major in Summer 2022 or later, please see the current requirements , otherwise, consult the requirements in effect during the quarter in which you declared:
 If you declared the English major prior to AUT 2005, please see an adviser in the Humanities Academic Services Center .
-If you declared your English major prior to the start of Summer 2019, please see the older requirement sets pertaining to the quarter and year when you became, or will become, an English major officially.
 Instagram
-Language and Literature Option Requirements, Summer 2019 - Spring 2022
-Language and Literature Option Requirements, Summer 2019 - Spring 2022 | Department of English | University of Washington
 Language and Literature Option: Older Requirements
 Language and Literature Option: Older Requirements | Department of English | University of Washington
 Language and literature provide the infrastructure for human thought, mediating the interactions of culture and history. In order to understand this mediation, English majors are required to take at least 15 credits organized by form, genre, or methodological framework. The courses gathered in this area provide a tool kit for examining and producing structures in writing, literature, language, and culture. This diverse array offers breadth across disciplinary approaches in English and writing studies. By exploring forms or genres, methods and/or theoretical orientations, and the study of language itself, these classes offer strategies to communicate in a complex world, opening up a global perspective on varieties of English across different registers and communities of practice. They also illustrate how structure plays a vibrant role in meaning; introduce a range of literary styles and forms; offer rich experiences in reading, theorizing, writing and collaborating; help students understand how different methodologies are rooted historically and are contested; and offer different ways of knowing, listening, learning, and communicating.
 Language, Literature, and Culture majors will be dropped from ENGL 387 and the 400-level CW courses unless they have special permission from the faculty (even if they have taken all of the pre requisites for these courses). The 400 level courses are critical for the Creative Writing majors to graduate. They must be given priority. If a Language and Literature major is given permission to add ENGL 387 or one of the 400-level CW courses, they will not be able to add until registration period 3.
 Language:
-Limit on 200-level ENGL credit:
-Limit on Creative Writing courses:
-LING 200 (Introduction to Linguistic Thought) -- through Department of Linguistics
 Literature, language, and culture have been shaped by and in turn shape systems of power. Such systems include capitalism, colonialism, imperialism, and hierarchies of race, status, caste, sex, gender, and sexuality. Over time, systems of power elevate some voices and stories and marginalize and silence others. English majors are required to take at least 15 credits focused on how systems of power operate in and through literature, language, and culture. These courses explore the evolving relationship of literature, language, and culture to structures of violence and dispossession and center critical perspectives that have been marginalized or silenced. They embrace alternative ways of learning about the past and present, and the impress of the former on the latter. They highlight the complex, sometimes contradictory ways in which literature and culture mediate systems of power. In so doing, Power and Difference courses foster our imagination of more just and equitable futures.
 MA/PhD
 Main menu
-Major requirements
-Major Requirements
 Make a Gift
 Maps
 MATESOL
-meet with a HAS adviser in A-2-B Padelford Hall . At that meeting, the student and adviser will sign a Change of Major form (PDF) to add the English major to the student's official UW record.
 meet with a HAS adviser in A-2-B Padelford Hall.
 Menu
 Method:
 MFA
-Minimum grade of 2.0 required. We suggest that you take this requirement during the final two quarters in the major, and after successful completion of ENGL 302.
 Minor in English
 Minor in Technical & Professional Communication
 Mission
 Multilingual Language Learner Support
-Must be taken within one quarter of declaring the English Major. A minimum grade of 2.0 required. 202 does not count as a pre-1900 after Fall, 2018 .
 MyUW
 News & Events
 Newsletter
-No more than 15 credits in 200-level ENGL courses (beyond the introductory ENGL 202 ) may be applied toward the English major electives: all other English credits must be taken at the 300 or 400 level.
-No more than 5 credits in creative writing courses may be applied to the Language & Literature English major. Students who have been accepted by the competitive admission process to the English: Creative Writing option follow different requirements.
-Note: students who've been accepted to the competitive-admission Creative Writing option in the major may count ENGL 302 toward this category.
-Note! If you declared your major after the spring of 2022 , please consult the current requirements . These requirements are for those who declared their major between summer 2019 -- spring 2022).
 Note! The requirements described below took effect in Summer 2022 . Students who declared the major before that time should consult the old requirements . If you have questions about which version of the major applies to you, please contact HAS .
 Odegaard Writing & Research Center
 Older Requirements
@@ -437,17 +327,14 @@ Publications
 Quick links
 Quick Links
 Recent News
-Recommended:
 Registration Policies
 Reimbursement Process
 Research
 Research Groups
-Residency:
 Resources
 Resources & FAQ
 Roethke Reading
 Safety & Health
-Satisfactory Progress
 Scholarships & Financial Support
 Search
 Seattle, WA 98195-4330
@@ -476,31 +363,18 @@ Teaching Resources
 Technical and Professional Communication
 Terms
 The capstone must be completed in a student's final year. Capstones offer advanced study of a special topic, and involve independent research that enables students to build on the skills and expertise they have gained in English major courses.
-The department also strongly recommends , but does not require, 5 credits in one of the following English language courses:
-The English department supports the central importance of the UW's requirement that students take at least one course dedicated at a primary level to the study of diversity. English courses that satisfy the DIV requirement include:
 The English major consists of 60 ENGL Credits, at least 30 of which must be completed in residence at the University of Washington. A maximum of 20 credits in 200-level courses may count toward the English major, and may be used to fulfill the distribution requirements.
 The English major in language, literature, and culture is structured around three key perspectives:
 The English major in Language, Literature, and Culture offers a highly adaptable course of study, grounding students in a range of methods, approaches, periods, and genres while providing the freedom to pursue their individual interests. Effective writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers.
-The English major requires the completion of a minimum of 60 ENGL credits (the competitive-admission creative writing option requires a minimum of 60 ENGL credits). At least 30 credits of English applying toward the major must be earned in residence at the University of Washington. A maximum of 20 credits in 200-level courses, including required course work within the options, may count toward the English major. At least 15 credits must be in courses must be within the Historical Breadth requirement (these courses can overlap with any of the other major requirements with the exception of ENGL 202). Except for students completing the creative writing option, no more than 5 credits in creative writing may be applied toward the major.
 The majority of English courses are distributed among three overlapping areas: Historical Depth, Power and Difference, and Genre, Method, and Language. All upper-division English courses fulfill at least one of these areas. However, the categories also overlap, allowing students to specialize in a particular area if they so choose. Descriptions of each area, along with the courses fulfilling it, are available below.
-The undergraduate English major with language and literature emphasis offers students a broadly based, culturally contextualized introduction to the literatures of Britain, the United States, and, increasingly, Anglophone literature from around the world. Students majoring in English are exposed to a variety of critical perspectives, and have the opportunity to pursue interests in literary history, critical theory, language study, cultural studies, and creative writing. Good writing, analytical ability, research skills, and a broadened perspective on the world are among the practical accomplishments majors can expect to acquire, all of which can be applied to a range of careers .
-These courses concentrate on exploring the historical contexts of the development of English language and literature. Courses may include a range of approaches, including literary history as well as cultural studies. At times, courses may also take up a discussion of genre or theory, but historical context remains pivotal. The goal of these courses is to introduce the ways in which literature responds to and/or shapes historical conditions.
-These courses spotlight study of the significant written or literary modes of English, including poetry, the short story, the novel, drama, film, and hypertexts. These genres of literature may be approached either as the subjects of critical study or as creative practices. Because they survey both older and emerging forms of written expression, some of the courses will undoubtedly undertake a consideration of the historical terms of a genre's appearance and evolution. Still, the chief purpose of these courses will be to introduce the workings and evolution of the various genres of literature.
 These three overlapping areas of study help students understand how language, literature, and culture are always intertwined with the movement of history, bound up with questions of power and difference, and dynamically shaped by form, genre, and grammar. By giving students the tools to think critically and reflectively about these concepts, the major prepares them to be engaged readers, writers, and thinkers throughout their lives.
 This lecture course offers an introduction to the English major at the University of Washington. Combining lecture with discussion sections, it is open to all students, but must be completed within one quarter of declaring the English major.
 This small, writing-intensive course introduces students to literary theory and the practice of critical writing. It must be completed the quarter after ENGL 202.
-To be able to compare and contrast what is distinct about different theoretical or methodological approaches
-To be able to identify main concepts, premises/assumptions, and strengths/liabilities of a theoretical or methodological approach
 To be eligible to declare the English major, you must:
 To declare the English major, students should:
-To engage theory and method as a focus of analysis and research
-To examine and develop theoretical or methodological strategies for producing and circulating texts and implementing findings within salient academic and/or public conversations
-To explore how social groups or identities emerge through or participate in the production, significance, and reception of theories and methods
 To maintain satisfactory progress in the English major students must take ENGL 202 within one quarter of declaring the English major. Additionally, students must earn a 2.0 or higher in the course. If students do not earn a 2.0 or higher they must repeat the course to remain in the English major. This course can be repeated one time only.
-To understand the historical and political contexts and stakes of different theoretical or methodological approaches
 Twitter
 Undergraduate
-University Diversity Requirement
 University of Washington
 Upcoming Programs
 User account menu

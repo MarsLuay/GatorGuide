@@ -21,6 +21,27 @@ function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
 }
 
+function getArgValue(flag) {
+  const args = process.argv.slice(2);
+  const directPrefix = `${flag}=`;
+  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
+  if (directMatch) {
+    return directMatch.slice(directPrefix.length).trim() || null;
+  }
+
+  const flagIndex = args.indexOf(flag);
+  if (flagIndex === -1) {
+    return null;
+  }
+
+  const nextValue = args[flagIndex + 1];
+  if (!nextValue || nextValue.startsWith("--")) {
+    return null;
+  }
+
+  return String(nextValue).trim() || null;
+}
+
 function runDiscovery() {
   const result = spawnSync("node", ["scripts/planner/discover-transfer-planner-primary-sources.cjs"], {
     cwd: REPO_ROOT,
@@ -95,7 +116,7 @@ function buildSourceGapEntry(owner, generatedAt) {
   };
 }
 
-function buildSourceGapReport(discoveryReport) {
+function buildSourceGapReport(discoveryReport, options = {}) {
   const entries = (discoveryReport.owners ?? [])
     .filter((owner) => owner?.suggestedPrimary?.confidence !== "high")
     .map((owner) => buildSourceGapEntry(owner, discoveryReport.generatedAt))
@@ -104,19 +125,22 @@ function buildSourceGapReport(discoveryReport) {
       left.title.localeCompare(right.title) ||
       left.ownerKey.localeCompare(right.ownerKey)
     );
+  const scopedEntries = options.targetPlanId
+    ? entries.filter((entry) => entry.planId === options.targetPlanId)
+    : entries;
 
-  const countsByStatus = entries.reduce((counts, entry) => {
+  const countsByStatus = scopedEntries.reduce((counts, entry) => {
     counts[entry.sourceCoverageStatus] = (counts[entry.sourceCoverageStatus] ?? 0) + 1;
     return counts;
   }, {});
-  const countsByCampus = entries.reduce((counts, entry) => {
+  const countsByCampus = scopedEntries.reduce((counts, entry) => {
     counts[entry.campusId] = (counts[entry.campusId] ?? 0) + 1;
     return counts;
   }, {});
 
   return {
     generatedAt: discoveryReport.generatedAt,
-    totalSourceGapOwners: entries.length,
+    totalSourceGapOwners: scopedEntries.length,
     countsByStatus,
     countsByCampus,
     entries,
@@ -133,7 +157,10 @@ function buildGeneratedFile(report) {
   ].join("\n");
 }
 
-function writeMarkdown(report) {
+function writeMarkdown(report, options = {}) {
+  const scopedEntries = options.targetPlanId
+    ? report.entries.filter((entry) => entry.planId === options.targetPlanId)
+    : report.entries;
   const lines = [
     "# Transfer Planner Source Gap Report",
     "",
@@ -149,7 +176,7 @@ function writeMarkdown(report) {
   ];
 
   for (const campusId of ["uw-seattle", "uw-bothell", "uw-tacoma"]) {
-    const campusEntries = report.entries.filter((entry) => entry.campusId === campusId);
+    const campusEntries = scopedEntries.filter((entry) => entry.campusId === campusId);
     if (!campusEntries.length) {
       continue;
     }
@@ -186,6 +213,7 @@ function writeMarkdown(report) {
 
 function main() {
   const discoverFirst = hasArg("--discover-first") || !fs.existsSync(DISCOVERY_REPORT_PATH);
+  const targetPlanId = getArgValue("--target-plan-id");
 
   fs.mkdirSync(TMP_DIR, { recursive: true });
 
@@ -200,11 +228,11 @@ function main() {
   }
 
   const discoveryReport = JSON.parse(fs.readFileSync(DISCOVERY_REPORT_PATH, "utf8"));
-  const sourceGapReport = buildSourceGapReport(discoveryReport);
+  const sourceGapReport = buildSourceGapReport(discoveryReport, { targetPlanId });
 
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(sourceGapReport, null, 2)}\n`);
   fs.writeFileSync(GENERATED_OUTPUT_PATH, buildGeneratedFile(sourceGapReport));
-  writeMarkdown(sourceGapReport);
+  writeMarkdown(sourceGapReport, { targetPlanId });
 
   console.log(`Source-gap owners: ${sourceGapReport.totalSourceGapOwners}`);
   console.log(`Parser/source adapter needed: ${sourceGapReport.countsByStatus["parser-unsupported"] ?? 0}`);

@@ -18,6 +18,11 @@ import {
   type ResourceCatalogSubsection,
 } from "@/constants/resource-catalog";
 import { ROUTES } from "@/constants/routes";
+import {
+  getTransferEquivalencyTagLabel,
+  TRANSFER_EQUIVALENCY_ALL_TRACKED_TAGS_PARAM,
+  TRANSFER_EQUIVALENCY_TRACKED_TAGS,
+} from "@/constants/transfer-equivalency-tags";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AnimatedCardPressable, AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
@@ -64,6 +69,11 @@ type OpportunitySection = {
   subsections: OpportunitySubsection[];
 };
 
+type InternalToolTarget = {
+  pathname: string;
+  params?: Record<string, string | string[]>;
+};
+
 function resolveCatalogText(
   entry: Pick<
     ResourceCatalogItem | ResourceCatalogSection | ResourceCatalogSubsection,
@@ -90,6 +100,89 @@ function mapCatalogItem(
     tags: item.tags ?? [],
     expiresAt: item.expiresAt ?? null,
   };
+}
+
+function joinResourceLabelList(values: string[]) {
+  if (values.length <= 1) return values[0] ?? "";
+  if (values.length === 2) {
+    return `${values[0]} and ${values[1]}`;
+  }
+  return `${values.slice(0, -1).join(", ")}, and ${values[values.length - 1]}`;
+}
+
+function buildInternalAppUrl(
+  pathname: string,
+  params?: Record<string, string | null | undefined>
+) {
+  const normalizedPath = String(pathname ?? "").trim().replace(/^\/+/, "");
+  if (!normalizedPath) return "app://";
+
+  const searchParams = new URLSearchParams();
+  for (const [key, value] of Object.entries(params ?? {})) {
+    const normalizedValue = String(value ?? "").trim();
+    if (!normalizedValue) continue;
+    searchParams.set(key, normalizedValue);
+  }
+
+  const query = searchParams.toString();
+  return `app://${normalizedPath}${query ? `?${query}` : ""}`;
+}
+
+function parseInternalAppUrl(url: string): InternalToolTarget | null {
+  const normalizedUrl = String(url ?? "").trim();
+  if (!normalizedUrl.startsWith("app://")) return null;
+
+  const withoutScheme = normalizedUrl.slice("app://".length);
+  const queryIndex = withoutScheme.indexOf("?");
+  const rawPath = queryIndex >= 0 ? withoutScheme.slice(0, queryIndex) : withoutScheme;
+  const normalizedPath = `/${rawPath.replace(/^\/+/, "").replace(/\/+$/, "")}`;
+  if (normalizedPath === "/") return null;
+
+  const rawQuery = queryIndex >= 0 ? withoutScheme.slice(queryIndex + 1) : "";
+  if (!rawQuery) {
+    return { pathname: normalizedPath };
+  }
+
+  const params: Record<string, string | string[]> = {};
+  const searchParams = new URLSearchParams(rawQuery);
+  for (const [key, value] of searchParams.entries()) {
+    const existingValue = params[key];
+    if (existingValue == null) {
+      params[key] = value;
+      continue;
+    }
+    if (Array.isArray(existingValue)) {
+      existingValue.push(value);
+      continue;
+    }
+    params[key] = [existingValue, value];
+  }
+
+  return {
+    pathname: normalizedPath,
+    params: Object.keys(params).length > 0 ? params : undefined,
+  };
+}
+
+function insertResourceItemAfterUrl(
+  items: ResourceItem[],
+  itemToInsert: ResourceItem,
+  anchorUrl: string
+) {
+  if (items.some((item) => item.url === itemToInsert.url)) {
+    return items;
+  }
+
+  const anchorIndex = items.findIndex((item) => item.url === anchorUrl);
+  if (anchorIndex < 0) {
+    return [...items, itemToInsert];
+  }
+
+  return [
+    ...items.slice(0, anchorIndex + 1),
+    itemToInsert,
+    ...items.slice(anchorIndex + 1),
+  ];
 }
 
 function countResourceSectionItems(section: ResourceSection) {
@@ -278,6 +371,47 @@ export default function ResourcesPage() {
     }, [refreshOpportunitiesIfNeeded])
   );
 
+  const transferCategoryEquivalenciesResource = useMemo<ResourceItem>(() => {
+    const trackedTagLabels = TRANSFER_EQUIVALENCY_TRACKED_TAGS.map((tag) =>
+      getTransferEquivalencyTagLabel(tag)
+    );
+
+    return {
+      title: "Transfer Category Equivalencies",
+      description: `Open Transfer Category Equivalencies filtered to: ${joinResourceLabelList(
+        trackedTagLabels
+      )}.`,
+      url: buildInternalAppUrl(String(ROUTES.transferEquivalencies), {
+        collegeId: "uw",
+        tag: TRANSFER_EQUIVALENCY_ALL_TRACKED_TAGS_PARAM,
+      }),
+      tags: [
+        "transfer category equivalencies",
+        "transfer equivalencies",
+        "a&h",
+        "ssc",
+        "nsc",
+        "qsr",
+        "vlpa",
+        "div",
+        "nw",
+        "i&s",
+        "tools",
+      ],
+    };
+  }, []);
+
+  const opportunityAdminResource = useMemo<ResourceItem>(
+    () => ({
+      title: "Opportunity Admin",
+      description:
+        "Create, edit, archive, and review shared opportunity records without touching source files.",
+      url: buildInternalAppUrl(String(ROUTES.opportunityAdmin)),
+      tags: ["admin", "opportunity editor", "catalog", "staff tools"],
+    }),
+    []
+  );
+
   const referenceSections: ResourceSection[] = useMemo(
     () => {
       const sections = RESOURCE_CATALOG.map((section: ResourceCatalogSection) => ({
@@ -298,28 +432,34 @@ export default function ResourcesPage() {
           .filter((subsection) => subsection.items.length > 0),
       })).filter((section) => countResourceSectionItems(section) > 0);
 
-      if (!canShowOpportunityAdminTool) {
-        return sections;
-      }
-
       return sections.map((section) => {
         if (section.id !== "tools") return section;
+
+        let items = insertResourceItemAfterUrl(
+          section.items,
+          transferCategoryEquivalenciesResource,
+          buildInternalAppUrl(String(ROUTES.transferPlanner))
+        );
+
+        if (
+          canShowOpportunityAdminTool &&
+          !items.some((item) => item.url === opportunityAdminResource.url)
+        ) {
+          items = [...items, opportunityAdminResource];
+        }
+
         return {
           ...section,
-          items: [
-            ...section.items,
-            {
-              title: "Opportunity Admin",
-              description:
-                "Create, edit, archive, and review shared opportunity records without touching source files.",
-              url: "app://opportunity-admin",
-              tags: ["admin", "opportunity editor", "catalog", "staff tools"],
-            },
-          ],
+          items,
         };
       });
     },
-    [canShowOpportunityAdminTool, t]
+    [
+      canShowOpportunityAdminTool,
+      opportunityAdminResource,
+      t,
+      transferCategoryEquivalenciesResource,
+    ]
   );
 
   const filteredOpportunities = useMemo(() => {
@@ -431,15 +571,21 @@ export default function ResourcesPage() {
       : t("resources.countLinkPlural", { count: visibleReferenceLinks });
 
   const openInternalTool = useCallback(
-    (path: string | Parameters<typeof router.push>[0]) => {
+    (target: string | InternalToolTarget) => {
       const pathname =
-        typeof path === "string"
-          ? path
-          : String((path as { pathname?: unknown })?.pathname ?? "").trim();
+        typeof target === "string"
+          ? target
+          : String(target.pathname ?? "").trim();
+      const params = typeof target === "string" ? undefined : target.params;
+      if (!pathname) return;
+
       router.push(
         {
           pathname: pathname as never,
-          params: { returnTo: ROUTES.tabsResources },
+          params: {
+            ...(params ?? {}),
+            returnTo: ROUTES.tabsResources,
+          },
         } as never
       );
     },
@@ -459,9 +605,9 @@ export default function ResourcesPage() {
   );
 
   const openLink = async (url: string) => {
-    if (url.startsWith("app://")) {
-      const path = url.replace("app://", "/");
-      openInternalTool(path);
+    const internalToolTarget = parseInternalAppUrl(url);
+    if (internalToolTarget) {
+      openInternalTool(internalToolTarget);
       return;
     }
 

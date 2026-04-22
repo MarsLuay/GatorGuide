@@ -97,6 +97,26 @@ function cleanConfidence(value: unknown) {
   return Math.max(0, Math.min(100, Math.round(parsed)));
 }
 
+function formatExtractedGpa(value: unknown) {
+  const raw = String(value ?? '').trim();
+  if (!raw) return '';
+
+  const match = raw.match(/-?\d+(?:\.\d+)?/);
+  if (!match) return raw.slice(0, 40);
+
+  const num = Number.parseFloat(match[0]);
+  if (!Number.isFinite(num)) return raw.slice(0, 40);
+
+  // Clamp to valid GPA range and truncate (floor) to two decimal places to avoid
+  // showing float artifacts like 3.999999 -> 3.99 (don't round up to 4.00).
+  const clamped = Math.max(0, Math.min(num, 4.0));
+  const truncated = Math.floor(clamped * 100) / 100;
+
+  // Format without unnecessary trailing zeros: 4 -> "4", 3.5 -> "3.5", 3.99 -> "3.99"
+  const fixed = truncated.toFixed(2).replace(/\.0+$|0+$/g, '');
+  return fixed;
+}
+
 function inferMimeType(fileName: string, mimeType?: string | null) {
   const trimmedMime = cleanText(mimeType, 120).toLowerCase();
   if (trimmedMime) return trimmedMime;
@@ -221,7 +241,7 @@ function buildReview(
     labelKey: 'profile.gpa',
     target: 'profile',
     currentValue: cleanText(profile.gpa, 40) || null,
-    suggestedValue: cleanText(extraction.extractedFields.gpa?.value, 40),
+    suggestedValue: formatExtractedGpa(extraction.extractedFields.gpa?.value),
     sourceSnippet: extraction.extractedFields.gpa?.sourceSnippet,
     confidence: extraction.extractedFields.gpa?.confidence,
   });

@@ -74,28 +74,28 @@ Or double-click:
 
 The unified updater now includes the old refresh variants as built-in options:
 
-- full maintenance
-- full maintenance with downloads skipped
-- refresh only
-- refresh only with downloads skipped
--- cache summary only
+- Course updates + tests
+- Course updates + tests with downloads skipped
+- Course updates only
+- Course updates only with downloads skipped
+- cache summary only
 - edit course links from the root launcher (select "Edit course links" from the main Course-Planner-Updater menu)
 
 The maintenance and refresh launchers — and the root updater launcher — now also print a `Laymans Diagnosis` section whenever the tooling already knows enough to explain a failure or important warning in simple language.
 
-This launcher writes one human-readable summary to:
+This launcher writes a summary to:
 
 ```text
 Mobile Team\.tmp\transfer-planner-maintenance-summary.md
 ```
 
-It also writes the planner hardening report that verifies the current source-backed planner contract in one pass:
+It also writes a planner hardening report that clarifies the current planner contract:
 
 ```text
 Mobile Team\.tmp\transfer-planner-hardening-report.md
 ```
 
-The Green River discovery pass also writes the current public-material snapshot used by refresh:
+The Green River discovery pass also writes the current public-material snapshot used by the refresh tool:
 
 ```text
 Mobile Team\.tmp\transfer-planner-grc-public-materials.md

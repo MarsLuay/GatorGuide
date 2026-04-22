@@ -204,6 +204,7 @@ function buildFlatInventoryItems() {
       groupLabel: CAMPUS_TITLE_BY_ID[plan.campusId] ?? plan.campusId,
       groupKind: "campus",
       itemKind: "major",
+      isGeneratedPlan: true,
       campusId: plan.campusId,
       primarySourceUrl:
         normalizeText(getPrimarySourceManifestEntryForOwner(plan.id, "major")?.url) || null,
@@ -226,6 +227,7 @@ function buildFlatInventoryItems() {
       groupLabel: CAMPUS_TITLE_BY_ID[campusId] ?? campusId,
       groupKind: "campus",
       itemKind: "major",
+      isGeneratedPlan: false,
       campusId,
       primarySourceUrl:
         normalizeText(getPrimarySourceManifestEntryForOwner(manifestEntry.ownerId, "major")?.url) ||
@@ -245,6 +247,7 @@ function buildFlatInventoryItems() {
       groupLabel: getGreenRiverProgramGroupLabel(groupId),
       groupKind: "program-group",
       itemKind: "program",
+      isGeneratedPlan: false,
       campusId: "grc",
       primarySourceUrl:
         normalizeText(getPrimarySourceManifestEntryForOwner(track.id, "track")?.url) || null,
@@ -626,6 +629,48 @@ function setPreferredPrimary(planId, url) {
   };
 }
 
+function updateWithCurrentLinks(planId) {
+  const details = getPlanDetails(planId);
+  const currentLinks = uniqueLinks(
+    details.currentLinks.map((entry) => ({
+      label: entry.label,
+      url: entry.url,
+      note: entry.note ?? undefined,
+    }))
+  );
+
+  if (currentLinks.length === 0) {
+    throw new Error(`Could not capture current links because ${planId} has no tracked links yet.`);
+  }
+
+  const currentPrimaryUrl =
+    normalizeText(details.currentLinks.find((entry) => entry.isPrimary)?.url) ||
+    normalizeText(details.preferredPrimaryUrl) ||
+    null;
+  const ownerKey = getTransferPlannerManualSourceOwnerKey(planId, null);
+  const nextOverrides = upsertOverride(cloneOverrides(), ownerKey, (override) => {
+    override.planId = planId;
+    override.mode = "replace";
+    override.links = currentLinks;
+    override.removedUrls = [];
+    if (currentPrimaryUrl && currentLinks.some((link) => normalizeText(link.url) === currentPrimaryUrl)) {
+      override.preferredPrimaryUrl = currentPrimaryUrl;
+    } else {
+      delete override.preferredPrimaryUrl;
+    }
+    return override;
+  });
+
+  writeOverrides(nextOverrides);
+  return {
+    action: "update-current-links",
+    changedFile: OVERRIDE_DATA_PATH,
+    planId,
+    linkCount: currentLinks.length,
+    preferredPrimaryUrl: currentPrimaryUrl,
+  };
+}
+
 function main() {
   const format = normalizeText(getArgValue("--format")).toLowerCase() || "json";
 
@@ -731,8 +776,16 @@ function main() {
     return;
   }
 
+  if (hasArg("--update-current-links")) {
+    if (!planId) {
+      throw new Error("--plan-id is required with --update-current-links.");
+    }
+    process.stdout.write(`${JSON.stringify(updateWithCurrentLinks(planId), null, 2)}\n`);
+    return;
+  }
+
   throw new Error(
-    "No link-manager action was supplied. Use --inventory, --show-plan, --add-link, --replace-link, --remove-link, or --set-primary."
+    "No link-manager action was supplied. Use --inventory, --show-plan, --add-link, --replace-link, --remove-link, --set-primary, or --update-current-links."
   );
 }
 
@@ -743,6 +796,7 @@ module.exports = {
   removeLink,
   replaceLink,
   setPreferredPrimary,
+  updateWithCurrentLinks,
   serializeOverridesFile,
 };
 

@@ -2,7 +2,8 @@ param(
   [switch]$SkipDownloads,
   [switch]$NoOpenReports,
   [string]$OnlySection,
-  [string]$StartSection
+  [string]$StartSection,
+  [string]$TargetPlanId
 )
 
 Set-StrictMode -Version Latest
@@ -107,6 +108,9 @@ try {
   Write-Host "Transfer Planner Refresh Launcher" -ForegroundColor Green
   Write-Host "Project: $projectRoot"
   Write-Host "Log: $logPath"
+  if ($TargetPlanId) {
+    Write-Host "Target plan: $TargetPlanId" -ForegroundColor DarkCyan
+  }
 
   if ($OnlySection -and $StartSection) {
     throw "Use either -OnlySection or -StartSection, not both."
@@ -133,6 +137,9 @@ try {
   if ($StartSection) {
     $refreshArgs += @("--start-section", $StartSection)
   }
+  if ($TargetPlanId) {
+    $refreshArgs += @("--target-plan-id", $TargetPlanId)
+  }
 
   Invoke-LoggedCommand -FilePath "node" -Arguments $refreshArgs -Description "Run planner refresh pipeline"
 
@@ -140,7 +147,11 @@ try {
   Write-Host "Success. The planner refresh finished cleanly." -ForegroundColor Green
   Write-Host "Log saved to: $logPath"
   $diagnosisItems = @(
-    Get-TransferPlannerLaymansDiagnosis -ProjectRoot $projectRoot -LogPath $logPath -IncludeWarnings
+    Get-TransferPlannerLaymansDiagnosis `
+      -ProjectRoot $projectRoot `
+      -LogPath $logPath `
+      -TargetPlanId $TargetPlanId `
+      -IncludeWarnings
   )
   Write-TransferPlannerLaymansDiagnosis -Items $diagnosisItems -Header "Laymans Diagnosis"
 
@@ -178,6 +189,7 @@ try {
       -ProjectRoot $projectRoot `
       -FailureMessage $failureMessage `
       -LogPath $logPath `
+      -TargetPlanId $TargetPlanId `
       -IncludeWarnings
   )
   Write-TransferPlannerLaymansDiagnosis -Items $diagnosisItems -Header "Laymans Diagnosis"

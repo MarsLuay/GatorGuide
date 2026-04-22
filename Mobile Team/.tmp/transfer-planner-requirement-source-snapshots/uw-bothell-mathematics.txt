@@ -33,3 +33,4 @@ STMATH 125: Calculus II
 STMATH 126: Calculus III
 STMATH 207: Introduction to Differential Equations
 STMATH 208: Matrix Algebra with Applications
+STMATH 224: Multivariable Calculus

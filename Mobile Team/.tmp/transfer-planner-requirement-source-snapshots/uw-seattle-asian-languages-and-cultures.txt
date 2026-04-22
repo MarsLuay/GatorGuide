@@ -38,3 +38,6 @@ ASIAN 205 Literature and Culture of Japan from Tradition to Modernity
 ASIAN 207 Special Topics in Literature and Culture of Asia
 ASIAN 210 Asian War Epics: Working through Many Mahabharatas
 ASIAN 211 Languages and Cultures of China
+ASIAN 223 Buddhist Literature
+ASIAN 225 Indian Philosophical Literature
+ASIAN 263 Great Works of Asian Literature

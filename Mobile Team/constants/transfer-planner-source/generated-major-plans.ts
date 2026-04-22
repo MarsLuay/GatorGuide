@@ -729,6 +729,24 @@ function compareGuideRules(
   return left.id.localeCompare(right.id);
 }
 
+const GUIDE_RULES_BY_ID = new Map(
+  TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY.map((rule) => [rule.id, rule])
+);
+
+function isPresentDayGuideRule(
+  rule: ((typeof TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY)[number] | null | undefined)
+) {
+  return Boolean(rule) && !rule?.isObsoleteSourceCourse;
+}
+
+function isPresentDayGuideRuleId(guideRuleId: string | null | undefined) {
+  if (!guideRuleId) {
+    return true;
+  }
+
+  return isPresentDayGuideRule(GUIDE_RULES_BY_ID.get(guideRuleId) ?? null);
+}
+
 const GUIDE_RULES_BY_TARGET_COURSE_CODE = new Map<
   string,
   Array<(typeof TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY)[number]>
@@ -737,6 +755,7 @@ const GUIDE_RULES_BY_TARGET_COURSE_CODE = new Map<
 for (const rule of TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY) {
   if (!GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS.has(rule.sourceKind ?? "")) continue;
   if (rule.acceptanceCategory === "no-credit") continue;
+  if (!isPresentDayGuideRule(rule)) continue;
   if (!(rule.targetCourseCodes ?? []).length || !(rule.sourceCourseSets ?? []).length) continue;
 
   for (const targetCourseCode of rule.targetCourseCodes ?? []) {
@@ -866,6 +885,10 @@ for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_RE
 function shouldIncludeTrackMatchSourceBackedClassification(
   classification: TransferPlannerRequirementDiffClassificationEntry
 ) {
+  if (!isPresentDayGuideRuleId(classification.guideRuleId)) {
+    return false;
+  }
+
   if (shouldIncludeStudentFacingSourceBackedClassification(classification)) {
     return true;
   }
@@ -910,6 +933,9 @@ function buildSiblingChoiceSourceBackedRecoveryCourseList(
       continue;
     }
     if (!classification.guideRuleId) {
+      continue;
+    }
+    if (!isPresentDayGuideRuleId(classification.guideRuleId)) {
       continue;
     }
     if (!hasOnlySiblingOptionSourceBackedSkipReason(classification.validationNotes)) {
@@ -1560,6 +1586,10 @@ function shouldIncludeStudentFacingSourceBackedClassification(
   }
 
   if (hasUnsafeSourceBackedValidationNote(classification.validationNotes)) {
+    return false;
+  }
+
+  if (!isPresentDayGuideRuleId(classification.guideRuleId)) {
     return false;
   }
 

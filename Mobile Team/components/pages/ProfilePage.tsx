@@ -28,7 +28,10 @@ import {
   AnimatedChipPressable,
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
-import { ProfileField } from "@/components/ui/ProfileField";
+import {
+  ProfileField,
+  getResponsiveFieldControlSpacingStyle,
+} from "@/components/ui/ProfileField";
 import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
@@ -38,17 +41,32 @@ import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
 import { ROUTES } from "@/constants/routes";
+import { TRANSFER_PLANNER_TRACKS } from "@/constants/transfer-planner-source";
 import { collegeService } from "@/services/colleges/college.service";
 import { APP_VERSION } from "@/constants/app-version";
 import {
   PROFILE_QUESTIONNAIRE_FIELD_IDS,
   STORAGE_KEYS,
 } from "@/constants/schema";
+import type { SearchableSelectOption } from "@/components/ui/SearchableSelect";
 import { documentReaderService, errorLoggingService, type DocumentExtractionReview } from "@/services";
 
 type UploadedDocumentMeta = {
   name: string;
   url: string;
+};
+
+type EditableProfileSnapshot = {
+  name: string;
+  state: string;
+  major: string;
+  gender: string;
+  gpa: string;
+  transcript: string;
+  residencyType: string;
+  englishProficiency: string;
+  englishTestType: string;
+  englishTestValue: string;
 };
 
 function looksLikeEncodedFileName(value: string | undefined | null) {
@@ -110,7 +128,7 @@ export default function ProfilePage() {
 
   const user = state.user;
 
-  const [isEditing, setIsEditing] = useState(false);
+  const isEditing = true;
   const [editData, setEditData] = useState({
     name: "",
     state: "",
@@ -127,6 +145,7 @@ export default function ProfilePage() {
   const [isConfettiPlaying, setIsConfettiPlaying] = useState(false);
   const [confettiCooldown, setConfettiCooldown] = useState(false);
   const [showGuestProfile, setShowGuestProfile] = useState(false);
+  const [isMajorDropdownOpen, setIsMajorDropdownOpen] = useState(false);
   const [uploadedDocumentMeta, setUploadedDocumentMeta] = useState<
     Partial<Record<"transcript", UploadedDocumentMeta>>
   >({});
@@ -320,11 +339,35 @@ export default function ProfilePage() {
   const inputClass = `w-full ${inputBgClass} ${textClass} border rounded-lg px-3 py-2`;
   const borderClass = isDark ? "border-gray-800" : isGreen ? "border-emerald-700" : isLight ? "border-emerald-300" : "border-gray-200";
   const placeholderColor = isDark ? "#9CA3AF" : isGreen ? "#b6e2b6" : isLight ? "#1f8a5d" : "#6B7280";
+  const dropdownSurfaceColor = isDark ? "#111827" : isGreen ? "#064e3b" : "#FFFFFF";
   const guestCtaCardClass = isLight ? "bg-emerald-100 border border-emerald-200" : isDark ? "bg-emerald-500 border" : "bg-emerald-500";
   const guestCtaCardStyle = isDark ? { backgroundColor: "#00572b", borderColor: "#00753e" } : undefined;
   const guestCtaTextClass = isLight ? "text-emerald-900" : "text-white";
   const guestCtaBodyClass = isLight ? "text-emerald-800" : "text-emerald-100";
   const guestCtaIconColor = isLight ? "#1f8a5d" : isDark ? "#8cd19e" : "#FFFFFF";
+  const hasOpenSelectorOverlay = isMajorDropdownOpen;
+  const profileCardOverlayStyle = hasOpenSelectorOverlay
+    ? {
+        position: "relative" as const,
+        overflow: "visible" as const,
+        zIndex: 80,
+        elevation: 80,
+      }
+    : {
+        position: "relative" as const,
+        overflow: "visible" as const,
+      };
+  const majorFieldOverlayStyle = hasOpenSelectorOverlay
+    ? {
+        position: "relative" as const,
+        overflow: "visible" as const,
+        zIndex: 90,
+        elevation: 90,
+      }
+    : {
+        position: "relative" as const,
+        overflow: "visible" as const,
+      };
   const isWideLayout = viewportWidth >= 820;
   const isDesktopLayout = viewportWidth >= 1200;
   const useDesktopFitLayout = Platform.OS === "web" && isDesktopLayout;
@@ -333,9 +376,6 @@ export default function ProfilePage() {
   const sidebarWidth = isDesktopLayout ? 360 : 300;
   const avatarSize = isDesktopLayout ? 88 : isWideLayout ? 76 : 56;
   const avatarFallbackSize = isDesktopLayout ? 38 : isWideLayout ? 32 : 26;
-  const avatarBadgeSize = isDesktopLayout ? 34 : isWideLayout ? 30 : 24;
-  const avatarBadgeIconSize = isDesktopLayout ? 18 : 16;
-  const avatarBadgeBorderColor = isDark ? "#111827" : isGreen ? "#065f46" : "#FFFFFF";
   const desktopViewportHeight = useDesktopFitLayout
     ? Math.max(660, viewportHeight - insets.top - tabBarContentClearance - 20)
     : undefined;
@@ -345,6 +385,15 @@ export default function ProfilePage() {
     includeTopInset: true,
     includeBottomTabClearance: true,
     extraTop: 16,
+  });
+  const useResponsiveFieldSectionSpacing = Platform.OS === "web" && viewportWidth >= 1080;
+  const responsiveFieldSectionSpacingProps = useResponsiveFieldSectionSpacing
+    ? { responsiveSectionSpacing: true as const }
+    : {};
+  const responsiveFieldControlSpacingStyle = getResponsiveFieldControlSpacingStyle({
+    responsiveSectionSpacing: useResponsiveFieldSectionSpacing,
+    viewportWidth,
+    viewportHeight,
   });
 
   const hasQuestionnaireData = useMemo(
@@ -358,6 +407,82 @@ export default function ProfilePage() {
     if (!text) return "";
     return text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
   };
+
+  const greenRiverMajorOptions = useMemo<SearchableSelectOption[]>(() => {
+    const groupedTrackCodes = new Map<string, Set<string>>();
+
+    for (const track of TRANSFER_PLANNER_TRACKS) {
+      const title = String(track.title ?? "").trim();
+      if (!title) continue;
+
+      if (!groupedTrackCodes.has(title)) {
+        groupedTrackCodes.set(title, new Set<string>());
+      }
+
+      const code = String(track.code ?? "").trim();
+      if (code) {
+        groupedTrackCodes.get(title)?.add(code);
+      }
+    }
+
+    return [...groupedTrackCodes.entries()]
+      .sort(([leftTitle], [rightTitle]) =>
+        leftTitle.localeCompare(rightTitle, undefined, { sensitivity: "base" })
+      )
+      .map(([title, codeSet]) => {
+        const codes = [...codeSet].sort((left, right) =>
+          left.localeCompare(right, undefined, { sensitivity: "base" })
+        );
+
+        return {
+          id: title,
+          label: title,
+          description: codes.length ? codes.join(" | ") : undefined,
+          searchText: [title, ...codes].join(" "),
+        };
+      });
+  }, []);
+
+  const greenRiverMajorLookup = useMemo(
+    () =>
+      new Map(
+        greenRiverMajorOptions.map((option) => [option.id.toLowerCase(), option.id])
+      ),
+    [greenRiverMajorOptions]
+  );
+
+  const resolveGreenRiverMajorId = (value: string | undefined) => {
+    const trimmedValue = String(value ?? "").trim();
+    if (!trimmedValue) return null;
+
+    return greenRiverMajorLookup.get(trimmedValue.toLowerCase()) ?? null;
+  };
+
+  const formatMajorDisplayValue = (value: string | undefined) => {
+    const trimmedValue = String(value ?? "").trim();
+    if (!trimmedValue) return "";
+
+    const canonicalMajor = resolveGreenRiverMajorId(trimmedValue);
+    if (canonicalMajor) {
+      return canonicalMajor;
+    }
+
+    return trimmedValue === trimmedValue.toLowerCase()
+      ? capitalizeWords(trimmedValue)
+      : trimmedValue;
+  };
+
+  function formatGpaDisplay(value: string | undefined | null) {
+    const raw = String(value ?? "").trim();
+    if (!raw) return "";
+    const match = raw.match(/-?\d+(?:\.\d+)?/);
+    if (!match) return raw;
+    const num = Number.parseFloat(match[0]);
+    if (!Number.isFinite(num)) return raw;
+    const clamped = Math.max(0, Math.min(num, 4.0));
+    const truncated = Math.floor(clamped * 100) / 100;
+    return truncated.toFixed(2).replace(/\.0+$|0+$/g, '');
+  }
 
   const transcriptDisplayName = (path: string | undefined) =>
     getReadableDocumentFileName({
@@ -380,8 +505,11 @@ export default function ProfilePage() {
   const questionnaireActionLabel = hasQuestionnaireData
     ? t("profile.edit")
     : t("profile.complete");
-  const currentMajor = capitalizeWords(editData.major || user?.major || "") || t("profile.undecided");
-  const currentGpa = editData.gpa || user?.gpa || t("general.notSpecified");
+  const getResponsiveChipMinWidth = (optionCount: number) =>
+    optionCount >= 4 ? 132 : optionCount === 3 ? 152 : 180;
+  const currentMajor = formatMajorDisplayValue(editData.major || user?.major || "") || t("profile.undecided");
+  const currentGpaRaw = editData.gpa || user?.gpa || "";
+  const currentGpa = currentGpaRaw ? formatGpaDisplay(currentGpaRaw) : t("general.notSpecified");
   const residencyLabels: Record<string, string> = {
     inState: t("profile.residencyInState"),
     outOfState: t("profile.residencyOutOfState"),
@@ -403,6 +531,31 @@ export default function ProfilePage() {
     : user?.residencyType
       ? residencyLabels[user.residencyType] ?? user.residencyType
       : t("general.notSpecified");
+  const currentEnglishProficiency = user?.englishProficiency
+    ? user.englishProficiency === "native"
+      ? t("profile.englishNative")
+      : (() => {
+          const levelLabels: Record<string, string> = {
+            advanced: t("profile.englishAdvanced"),
+            intermediate: t("profile.englishIntermediate"),
+            beginner: t("profile.englishBeginner"),
+          };
+          const level = levelLabels[user.englishProficiency] ?? user.englishProficiency;
+          if (user?.englishTestType && user?.englishTestValue) {
+            const testLabels: Record<string, string> = {
+              ielts: t("profile.englishTestIELTS"),
+              toefl: t("profile.englishTestTOEFL"),
+              duolingo: t("profile.englishTestDuolingo"),
+            };
+            const suffix =
+              user.englishTestType === "self"
+                ? user.englishTestValue
+                : `${testLabels[user.englishTestType] ?? user.englishTestType} ${user.englishTestValue}`;
+            return `${level} - ${suffix}`;
+          }
+          return level;
+        })()
+    : t("general.notSpecified");
   const openQuestionnairePage = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.push(ROUTES.questionnaire);
@@ -416,51 +569,161 @@ export default function ProfilePage() {
     { key: "questionnaire", icon: "assignment" as const, label: t("profile.questionnaire"), value: questionnaireCompletionLabel },
   ];
 
-  const handleSave = async () => {
-    if (!user) return;
-    try {
-      await updateUser({
-        name: editData.name,
-        state: editData.state,
-        major: editData.major,
-        gender: editData.gender,
-        gpa: editData.gpa,
-        transcript: editData.transcript,
-        residencyType: editData.residencyType,
-        englishProficiency: editData.englishProficiency,
-        englishTestType: editData.englishProficiency === "native" ? "" : editData.englishTestType,
-        englishTestValue: editData.englishProficiency === "native" ? "" : editData.englishTestValue,
-      });
-      setIsEditing(false);
-    } catch (error) {
-      void errorLoggingService.captureException(error, {
-        category: "firestore",
-        operation: "save-profile-edit",
-        severity: "error",
-        handled: true,
-        source: "profile-page",
-        screen: "profile",
-        route: ROUTES.profile,
-      });
-      Alert.alert(t("general.error"), t("profile.prepareDataError"));
-    }
-  };
+  const normalizedProfileDraft = useMemo<EditableProfileSnapshot>(() => {
+    const trimmedMajor = String(editData.major ?? "").trim();
+    const resolvedMajor = trimmedMajor
+      ? greenRiverMajorLookup.get(trimmedMajor.toLowerCase()) ?? trimmedMajor
+      : "";
+
+    return {
+      name: editData.name,
+      state: editData.state,
+      major: resolvedMajor,
+      gender: editData.gender,
+      gpa: formatGpaDisplay(editData.gpa),
+      transcript: editData.transcript,
+      residencyType: editData.residencyType,
+      englishProficiency: editData.englishProficiency,
+      englishTestType: editData.englishProficiency === "native" ? "" : editData.englishTestType,
+      englishTestValue: editData.englishProficiency === "native" ? "" : editData.englishTestValue,
+    };
+  }, [
+    editData.englishProficiency,
+    editData.englishTestType,
+    editData.englishTestValue,
+    editData.gender,
+    editData.gpa,
+    editData.major,
+    editData.name,
+    editData.residencyType,
+    editData.state,
+    editData.transcript,
+    greenRiverMajorLookup,
+  ]);
+
+  const persistedProfileDraft = useMemo<EditableProfileSnapshot>(() => {
+    const trimmedMajor = String(user?.major ?? "").trim();
+    const resolvedMajor = trimmedMajor
+      ? greenRiverMajorLookup.get(trimmedMajor.toLowerCase()) ?? trimmedMajor
+      : "";
+    const englishProficiency = String(user?.englishProficiency ?? "");
+
+    return {
+      name: String(user?.name ?? ""),
+      state: String(user?.state ?? ""),
+      major: resolvedMajor,
+      gender: String(user?.gender ?? ""),
+      gpa: formatGpaDisplay(user?.gpa),
+      transcript: String(user?.transcript ?? ""),
+      residencyType: String(user?.residencyType ?? ""),
+      englishProficiency,
+      englishTestType:
+        englishProficiency === "native" ? "" : String(user?.englishTestType ?? ""),
+      englishTestValue:
+        englishProficiency === "native" ? "" : String(user?.englishTestValue ?? ""),
+    };
+  }, [
+    greenRiverMajorLookup,
+    user?.englishProficiency,
+    user?.englishTestType,
+    user?.englishTestValue,
+    user?.gender,
+    user?.gpa,
+    user?.major,
+    user?.name,
+    user?.residencyType,
+    user?.state,
+    user?.transcript,
+  ]);
+
+  const profileDraftPatch = useMemo<Partial<EditableProfileSnapshot>>(() => {
+    const patch: Partial<EditableProfileSnapshot> = {};
+
+    (Object.keys(normalizedProfileDraft) as (keyof EditableProfileSnapshot)[]).forEach((key) => {
+      if (normalizedProfileDraft[key] !== persistedProfileDraft[key]) {
+        patch[key] = normalizedProfileDraft[key];
+      }
+    });
+
+    return patch;
+  }, [normalizedProfileDraft, persistedProfileDraft]);
+
+  useEffect(() => {
+    if (!isHydrated || !user) return;
+    if (!Object.keys(profileDraftPatch).length) return;
+
+    const autoSaveTimer = setTimeout(() => {
+      void (async () => {
+        try {
+          await updateUser(profileDraftPatch);
+
+          if (
+            typeof profileDraftPatch.gpa === "string" &&
+            editData.gpa !== normalizedProfileDraft.gpa
+          ) {
+            setEditData((prev) =>
+              prev.gpa === normalizedProfileDraft.gpa
+                ? prev
+                : { ...prev, gpa: normalizedProfileDraft.gpa }
+            );
+          }
+        } catch (error) {
+          void errorLoggingService.captureException(error, {
+            category: "firestore",
+            operation: "auto-save-profile-edit",
+            severity: "error",
+            handled: true,
+            source: "profile-page",
+            screen: "profile",
+            route: ROUTES.profile,
+          });
+        }
+      })();
+    }, 600);
+
+    return () => {
+      clearTimeout(autoSaveTimer);
+    };
+  }, [
+    editData.gpa,
+    isHydrated,
+    normalizedProfileDraft.gpa,
+    profileDraftPatch,
+    updateUser,
+    user,
+  ]);
 
   const handleGpaChange = (value: string) => {
+    // Allow digits and at most one decimal point
     if (value === "" || /^\d*\.?\d*$/.test(value)) {
-      const num = parseFloat(value);
-      if (value === "" || value === "0" || value === "0." || (Number.isFinite(num) && num <= 4.0)) {
+      const parts = value.split('.');
+      const intPart = parts[0] ?? '';
+      const fracPart = parts[1] ?? '';
+
+      // Prevent typing more than two decimal places
+      if (fracPart.length > 2) return;
+
+      // Disallow fractional values that reach 4.00 — decimals max at 3.99
+      if (intPart === '4' && value.includes('.')) return;
+
+      const num = Number(value);
+      const isEmptyOrZeroish = value === '' || value === '0' || value === '0.';
+
+      if (
+        isEmptyOrZeroish ||
+        (Number.isFinite(num) && (value.includes('.') ? num <= 3.99 : num <= 4.0))
+      ) {
         setEditData((p) => ({ ...p, gpa: value }));
-        // Celebrate perfect GPA! 🎉
-        if (num === 4.0 && value === "4" && !confettiCooldown) {
+
+        // Celebrate perfect GPA! 🎉 — only when user types exact `4`
+        if (num === 4.0 && value === '4' && !confettiCooldown) {
           setIsConfettiPlaying(true);
           setConfettiCooldown(true);
           setTimeout(() => setIsConfettiPlaying(false), 6000);
           setTimeout(() => setConfettiCooldown(false), 1000);
           Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-          // Play cheer sound
           cheerPlayer.play();
-        } else if (value !== "4" && isConfettiPlaying) {
+        } else if (value !== '4' && isConfettiPlaying) {
           setIsConfettiPlaying(false);
         }
       }
@@ -655,26 +918,11 @@ export default function ProfilePage() {
             )}
           </AnimatedIconPressable>
 
-          {isEditing ? (
-            <AnimatedIconPressable
-              onPress={handlePickAvatar}
-              className="absolute bottom-0 right-0 rounded-full bg-emerald-500 items-center justify-center"
-              style={{
-                width: avatarBadgeSize,
-                height: avatarBadgeSize,
-                borderWidth: 2,
-                borderColor: avatarBadgeBorderColor,
-              }}
-              hitSlop={8}
-            >
-              <MaterialIcons name="edit" size={avatarBadgeIconSize} color="#001f0f" />
-            </AnimatedIconPressable>
-          ) : null}
         </View>
 
         <View className="flex-1 min-w-0">
           <Text className={`${textClass} ${isWideLayout ? "text-xl" : "text-lg"} font-semibold`} numberOfLines={2}>
-            {capitalizeWords(user?.name ?? "") || t("general.notSpecified")}
+            {capitalizeWords(editData.name || user?.name || "") || t("general.notSpecified")}
           </Text>
 
           {user?.isGuest ? (
@@ -694,10 +942,131 @@ export default function ProfilePage() {
     </View>
   );
 
+  const renderEnglishProficiencyField = () => {
+    const englishProficiencyContent = !isEditing ? (
+      <Text className={textClass}>{currentEnglishProficiency}</Text>
+    ) : (
+      <>
+        <View className="flex-row flex-wrap gap-2 mb-3">
+          {[
+            { key: "native", labelKey: "profile.englishNative" },
+            { key: "advanced", labelKey: "profile.englishAdvanced" },
+            { key: "intermediate", labelKey: "profile.englishIntermediate" },
+            { key: "beginner", labelKey: "profile.englishBeginner" },
+          ].map((option) => {
+            const isSelected = editData.englishProficiency === option.key;
+            return (
+              <AnimatedChipPressable
+                key={option.key}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                  setEditData((prev) => ({
+                    ...prev,
+                    englishProficiency: option.key,
+                    ...(option.key === "native" ? { englishTestType: "", englishTestValue: "" } : {}),
+                  }));
+                }}
+                containerStyle={{
+                  flexGrow: 1,
+                  flexBasis: getResponsiveChipMinWidth(4),
+                  minWidth: getResponsiveChipMinWidth(4),
+                }}
+                className={`px-4 py-2 rounded-lg border ${
+                  isSelected ? "bg-emerald-500/10 border-emerald-500" : `border ${borderClass}`
+                }`}
+                style={{ width: "100%" }}
+              >
+                <Text className={isSelected ? "text-emerald-500 font-semibold" : secondaryTextClass}>
+                  {t(option.labelKey)}
+                </Text>
+              </AnimatedChipPressable>
+            );
+          })}
+        </View>
+
+        {editData.englishProficiency && editData.englishProficiency !== "native" ? (
+          <>
+            <View className="flex-row flex-wrap gap-2 mb-2">
+              {(["ielts", "toefl", "duolingo", "self"] as const).map((type) => {
+                const labelKey = `profile.englishTest${type.charAt(0).toUpperCase()}${type.slice(1)}` as
+                  | "profile.englishTestIELTS"
+                  | "profile.englishTestTOEFL"
+                  | "profile.englishTestDuolingo"
+                  | "profile.englishTestSelf";
+                const isSelected = editData.englishTestType === type;
+
+                return (
+                  <AnimatedChipPressable
+                    key={type}
+                    onPress={() => {
+                      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                      setEditData((prev) => ({ ...prev, englishTestType: type, englishTestValue: "" }));
+                    }}
+                    containerStyle={{
+                      flexGrow: 1,
+                      flexBasis: getResponsiveChipMinWidth(4),
+                      minWidth: getResponsiveChipMinWidth(4),
+                    }}
+                    className={`px-3 py-1.5 rounded-lg border ${
+                      isSelected ? "bg-emerald-500/10 border-emerald-500" : `border ${borderClass}`
+                    }`}
+                    style={{ width: "100%" }}
+                  >
+                    <Text className={`text-sm ${isSelected ? "text-emerald-500 font-medium" : secondaryTextClass}`}>
+                      {t(labelKey)}
+                    </Text>
+                  </AnimatedChipPressable>
+                );
+              })}
+            </View>
+
+            {editData.englishTestType ? (
+              <TextInput
+                value={editData.englishTestValue}
+                onChangeText={(value) => setEditData((prev) => ({ ...prev, englishTestValue: value }))}
+                placeholder={
+                  editData.englishTestType === "ielts"
+                    ? t("profile.englishTestIELTSPlaceholder")
+                    : editData.englishTestType === "toefl"
+                      ? t("profile.englishTestTOEFLPlaceholder")
+                      : editData.englishTestType === "duolingo"
+                        ? t("profile.englishTestDuolingoPlaceholder")
+                        : t("profile.englishTestSelfPlaceholder")
+                }
+                placeholderTextColor={placeholderColor}
+                keyboardType={editData.englishTestType === "self" ? "default" : "decimal-pad"}
+                multiline={editData.englishTestType === "self"}
+                textAlignVertical={editData.englishTestType === "self" ? "top" : "center"}
+                className={`${inputClass} ${editData.englishTestType === "self" ? "min-h-[80px]" : ""}`}
+              />
+            ) : null}
+          </>
+        ) : null}
+      </>
+    );
+
+    return (
+      <View className={`border-t ${borderClass} pt-4 mt-4`}>
+        <View className="flex-row items-start min-w-0">
+          <MaterialIcons name="translate" size={20} color="#008f4e" />
+          <View className="flex-1 ml-3 min-w-0">
+            <Text className={`text-sm ${secondaryTextClass} mb-1`}>
+              {t("profile.englishProficiency")}
+            </Text>
+            <View className="min-w-0" style={responsiveFieldControlSpacingStyle}>
+              {englishProficiencyContent}
+            </View>
+          </View>
+        </View>
+      </View>
+    );
+  };
+
   const renderProfileFields = () => (
     <>
       {!user?.isGuest ? (
         <ProfileField
+          {...responsiveFieldSectionSpacingProps}
           noDivider
           noTopSpacing
           type="text"
@@ -734,6 +1103,7 @@ export default function ProfilePage() {
         </AnimatedCardPressable>
       ) : (
         <ProfileField
+          {...responsiveFieldSectionSpacingProps}
           type="display"
           icon="mail"
           label={t("profile.email")}
@@ -745,24 +1115,33 @@ export default function ProfilePage() {
         />
       )}
 
-      <ProfileField
-        type="text"
-        icon="school"
-        label={t("profile.major")}
-        value={capitalizeWords(user?.major ?? "") || t("profile.undecided")}
-        isEditing={isEditing}
-        editValue={editData.major}
-        onChangeText={(value) => setEditData((prev) => ({ ...prev, major: value }))}
-        placeholder={t("profile.majorPlaceholder")}
-        placeholderColor={placeholderColor}
-        inputBgClass={inputBgClass}
-        inputClass={inputClass}
-        textClass={textClass}
-        secondaryTextClass={secondaryTextClass}
-        borderClass={borderClass}
-      />
+      <View style={majorFieldOverlayStyle}>
+        <ProfileField
+          {...responsiveFieldSectionSpacingProps}
+          type="select"
+          icon="school"
+          label={t("profile.major")}
+          value={formatMajorDisplayValue(user?.major) || t("profile.undecided")}
+          isEditing={isEditing}
+          editValue={editData.major}
+          displayEditValue={formatMajorDisplayValue(editData.major)}
+          selectedOptionId={resolveGreenRiverMajorId(editData.major)}
+          options={greenRiverMajorOptions}
+          onSelect={(value) => setEditData((prev) => ({ ...prev, major: value }))}
+          selectOpen={isMajorDropdownOpen}
+          onSelectOpenChange={setIsMajorDropdownOpen}
+          searchPlaceholder="Search Green River majors"
+          placeholderColor={placeholderColor}
+          dropdownBackgroundColor={dropdownSurfaceColor}
+          overlayStrategy="inline-isolated"
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          borderClass={borderClass}
+        />
+      </View>
 
       <ProfileField
+        {...responsiveFieldSectionSpacingProps}
         type="text"
         icon="place"
         label={t("profile.state")}
@@ -785,6 +1164,7 @@ export default function ProfilePage() {
       />
 
       <ProfileField
+        {...responsiveFieldSectionSpacingProps}
         type="radio"
         icon="wc"
         label={t("profile.gender")}
@@ -807,6 +1187,7 @@ export default function ProfilePage() {
       />
 
       <ProfileField
+        {...responsiveFieldSectionSpacingProps}
         type="radio"
         icon="home"
         label={t("profile.residencyType")}
@@ -827,131 +1208,10 @@ export default function ProfilePage() {
         borderClass={borderClass}
       />
 
-      <View className={`border-t ${borderClass} pt-4 mt-4`}>
-        <View className="flex-row items-start">
-          <MaterialIcons name="translate" size={20} color="#008f4e" />
-          <View className="flex-1 ml-3">
-            <Text className={`text-sm ${secondaryTextClass} mb-1`}>{t("profile.englishProficiency")}</Text>
-            {!isEditing ? (
-              <Text className={textClass}>
-                {user?.englishProficiency
-                  ? user.englishProficiency === "native"
-                    ? t("profile.englishNative")
-                    : (() => {
-                        const levelLabels: Record<string, string> = {
-                          advanced: t("profile.englishAdvanced"),
-                          intermediate: t("profile.englishIntermediate"),
-                          beginner: t("profile.englishBeginner"),
-                        };
-                        const level = levelLabels[user.englishProficiency] ?? user.englishProficiency;
-                        if (user?.englishTestType && user?.englishTestValue) {
-                          const testLabels: Record<string, string> = {
-                            ielts: t("profile.englishTestIELTS"),
-                            toefl: t("profile.englishTestTOEFL"),
-                            duolingo: t("profile.englishTestDuolingo"),
-                          };
-                          const suffix =
-                            user.englishTestType === "self"
-                              ? user.englishTestValue
-                              : `${testLabels[user.englishTestType] ?? user.englishTestType} ${user.englishTestValue}`;
-                          return `${level} - ${suffix}`;
-                        }
-                        return level;
-                      })()
-                  : t("general.notSpecified")}
-              </Text>
-            ) : (
-              <>
-                <View className="flex-row flex-wrap gap-2 mb-3">
-                  {[
-                    { key: "native", labelKey: "profile.englishNative" },
-                    { key: "advanced", labelKey: "profile.englishAdvanced" },
-                    { key: "intermediate", labelKey: "profile.englishIntermediate" },
-                    { key: "beginner", labelKey: "profile.englishBeginner" },
-                  ].map((option) => {
-                    const isSelected = editData.englishProficiency === option.key;
-                    return (
-                      <AnimatedChipPressable
-                        key={option.key}
-                        onPress={() => {
-                          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                          setEditData((prev) => ({
-                            ...prev,
-                            englishProficiency: option.key,
-                            ...(option.key === "native" ? { englishTestType: "", englishTestValue: "" } : {}),
-                          }));
-                        }}
-                        className={`px-4 py-2 rounded-lg border ${
-                          isSelected ? "bg-emerald-500/10 border-emerald-500" : `border ${borderClass}`
-                        }`}
-                        >
-                          <Text className={isSelected ? "text-emerald-500 font-semibold" : secondaryTextClass}>
-                            {t(option.labelKey)}
-                          </Text>
-                      </AnimatedChipPressable>
-                    );
-                  })}
-                </View>
-
-                {editData.englishProficiency && editData.englishProficiency !== "native" ? (
-                  <>
-                    <View className="flex-row flex-wrap gap-2 mb-2">
-                      {(["ielts", "toefl", "duolingo", "self"] as const).map((type) => {
-                        const labelKey = `profile.englishTest${type.charAt(0).toUpperCase()}${type.slice(1)}` as
-                          | "profile.englishTestIELTS"
-                          | "profile.englishTestTOEFL"
-                          | "profile.englishTestDuolingo"
-                          | "profile.englishTestSelf";
-                        const isSelected = editData.englishTestType === type;
-
-                        return (
-                          <AnimatedChipPressable
-                            key={type}
-                            onPress={() => {
-                              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                              setEditData((prev) => ({ ...prev, englishTestType: type, englishTestValue: "" }));
-                            }}
-                            className={`px-3 py-1.5 rounded-lg border ${
-                              isSelected ? "bg-emerald-500/10 border-emerald-500" : `border ${borderClass}`
-                            }`}
-                          >
-                            <Text className={`text-sm ${isSelected ? "text-emerald-500 font-medium" : secondaryTextClass}`}>
-                              {t(labelKey)}
-                            </Text>
-                          </AnimatedChipPressable>
-                        );
-                      })}
-                    </View>
-
-                    {editData.englishTestType ? (
-                      <TextInput
-                        value={editData.englishTestValue}
-                        onChangeText={(value) => setEditData((prev) => ({ ...prev, englishTestValue: value }))}
-                        placeholder={
-                          editData.englishTestType === "ielts"
-                            ? t("profile.englishTestIELTSPlaceholder")
-                            : editData.englishTestType === "toefl"
-                              ? t("profile.englishTestTOEFLPlaceholder")
-                              : editData.englishTestType === "duolingo"
-                                ? t("profile.englishTestDuolingoPlaceholder")
-                                : t("profile.englishTestSelfPlaceholder")
-                        }
-                        placeholderTextColor={placeholderColor}
-                        keyboardType={editData.englishTestType === "self" ? "default" : "decimal-pad"}
-                        multiline={editData.englishTestType === "self"}
-                        textAlignVertical={editData.englishTestType === "self" ? "top" : "center"}
-                        className={`${inputClass} ${editData.englishTestType === "self" ? "min-h-[80px]" : ""}`}
-                      />
-                    ) : null}
-                  </>
-                ) : null}
-              </>
-            )}
-          </View>
-        </View>
-      </View>
+      {renderEnglishProficiencyField()}
 
       <ProfileField
+        {...responsiveFieldSectionSpacingProps}
         type="text"
         icon="description"
         label={t("profile.gpa")}
@@ -980,6 +1240,7 @@ export default function ProfilePage() {
   } = {}) => (
     <>
       <ProfileField
+        {...responsiveFieldSectionSpacingProps}
         noDivider={noDivider}
         noTopSpacing={noTopSpacing}
         type="upload"
@@ -1060,80 +1321,155 @@ export default function ProfilePage() {
     </View>
   );
 
+  const renderMetadataCard = (
+    card: (typeof profileSummaryCards)[number],
+    {
+      compact = false,
+      fillHeight = false,
+      containerStyle,
+    }: {
+      compact?: boolean;
+      fillHeight?: boolean;
+      containerStyle?: object;
+    } = {}
+  ) => {
+    const isQuestionnaireCard = card.key === "questionnaire";
+    const centerSummaryContent = !isQuestionnaireCard;
+    const summaryContent = (
+      <View
+        style={{
+          ...(fillHeight ? { flex: 1 } : {}),
+          ...(centerSummaryContent
+            ? {
+                alignItems: "center",
+                justifyContent: "center",
+              }
+            : {}),
+        }}
+      >
+        <View className="w-10 h-10 rounded-full bg-emerald-500/10 items-center justify-center">
+          <MaterialIcons name={card.icon} size={20} color="#008f4e" />
+        </View>
+        <View
+          className="mt-3"
+          style={centerSummaryContent ? { alignItems: "center" } : undefined}
+        >
+          <Text
+            className={`${secondaryTextClass} text-xs`}
+            numberOfLines={compact ? 1 : 2}
+            style={centerSummaryContent ? { textAlign: "center" } : undefined}
+          >
+            {card.label}
+          </Text>
+          <Text
+            className={`${textClass} text-base font-semibold mt-1`}
+            numberOfLines={compact ? 1 : 2}
+            style={centerSummaryContent ? { textAlign: "center" } : undefined}
+          >
+            {card.value}
+          </Text>
+
+          {isQuestionnaireCard && !compact && !hasQuestionnaireData ? (
+            <Text className={`${secondaryTextClass} text-sm mt-2`} numberOfLines={2}>
+              {t("profile.questionnairePrompt")}
+            </Text>
+          ) : null}
+        </View>
+
+        {isQuestionnaireCard ? (
+          <View
+            className="flex-row items-center justify-end"
+            style={{ marginTop: compact ? 10 : 14 }}
+          >
+            {renderQuestionnaireAction({ compact: true })}
+          </View>
+        ) : null}
+      </View>
+    );
+
+    return isQuestionnaireCard ? (
+      <AnimatedCardPressable
+        key={card.key}
+        onPress={openQuestionnairePage}
+        accessibilityRole="button"
+        accessibilityLabel={t("profile.questionnaire")}
+        className={`${cardBgClass} border rounded-2xl p-4`}
+        containerStyle={containerStyle}
+      >
+        {summaryContent}
+      </AnimatedCardPressable>
+    ) : (
+      <View
+        key={card.key}
+        className={`${cardBgClass} border rounded-2xl p-4`}
+        style={containerStyle}
+      >
+        {summaryContent}
+      </View>
+    );
+  };
+
   const renderMetadataCards = ({
     compact = false,
     fillHeight = false,
   }: {
     compact?: boolean;
     fillHeight?: boolean;
-  } = {}) => (
-    <View
-      className="flex-row flex-wrap gap-3"
-      style={fillHeight ? { flex: 1, alignContent: "stretch" } : undefined}
-    >
-      {profileSummaryCards.map((card) => {
-        const isQuestionnaireCard = card.key === "questionnaire";
-        const sharedCardStyle = {
-          flexBasis: "47%" as const,
-          flexGrow: 1,
-          flexShrink: 1,
-          minHeight: compact ? 112 : 132,
-        };
-        const summaryContent = (
-          <View style={fillHeight ? { flex: 1 } : undefined}>
-            <View className="w-10 h-10 rounded-full bg-emerald-500/10 items-center justify-center">
-              <MaterialIcons name={card.icon} size={20} color="#008f4e" />
-            </View>
-            <View className="mt-3">
-              <Text className={`${secondaryTextClass} text-xs`} numberOfLines={compact ? 1 : 2}>
-                {card.label}
-              </Text>
-              <Text className={`${textClass} text-base font-semibold mt-1`} numberOfLines={compact ? 1 : 2}>
-                {card.value}
-              </Text>
+  } = {}) => {
+    const minimumCardHeight = compact ? 112 : 132;
 
-              {isQuestionnaireCard && !compact && !hasQuestionnaireData ? (
-                <Text className={`${secondaryTextClass} text-sm mt-2`} numberOfLines={2}>
-                  {t("profile.questionnairePrompt")}
-                </Text>
-              ) : null}
-            </View>
+    if (fillHeight) {
+      const metadataRows = [
+        profileSummaryCards.slice(0, 2),
+        profileSummaryCards.slice(2, 4),
+        profileSummaryCards.slice(4),
+      ];
 
-            {isQuestionnaireCard ? (
-              <View
-                className="flex-row items-center justify-end"
-                style={{ marginTop: compact ? 10 : 14 }}
-              >
-                {renderQuestionnaireAction({ compact: true })}
-              </View>
-            ) : null}
-          </View>
-        );
-
-        return (
-          isQuestionnaireCard ? (
-            <AnimatedCardPressable
-              key={card.key}
-              onPress={openQuestionnairePage}
-              accessibilityRole="button"
-              accessibilityLabel={t("profile.questionnaire")}
-              className={`${cardBgClass} border rounded-2xl p-4`}
-              containerStyle={sharedCardStyle}
-            >
-              {summaryContent}
-            </AnimatedCardPressable>
-          ) : (
+      return (
+        <View style={{ flex: 1, minHeight: 0, gap: 12 }}>
+          {metadataRows.map((row, rowIndex) => (
             <View
-              key={card.key}
-              className={`${cardBgClass} border rounded-2xl p-4`}
-              style={sharedCardStyle}
+              key={`metadata-row-${rowIndex}`}
+              style={{
+                flex: 1,
+                minHeight: minimumCardHeight,
+                flexDirection: "row",
+                gap: 12,
+              }}
             >
-              {summaryContent}
+              {row.map((card) =>
+                renderMetadataCard(card, {
+                  compact,
+                  fillHeight,
+                  containerStyle: {
+                    flex: 1,
+                    minWidth: 0,
+                    minHeight: minimumCardHeight,
+                  },
+                })
+              )}
             </View>
-          )
-        )})}
-    </View>
-  );
+          ))}
+        </View>
+      );
+    }
+
+    return (
+      <View className="flex-row flex-wrap gap-3">
+        {profileSummaryCards.map((card) =>
+          renderMetadataCard(card, {
+            compact,
+            containerStyle: {
+              flexBasis: "47%" as const,
+              flexGrow: 1,
+              flexShrink: 1,
+              minHeight: minimumCardHeight,
+            },
+          })
+        )}
+      </View>
+    );
+  };
 
   if (!isHydrated) {
     return (
@@ -1261,39 +1597,31 @@ export default function ProfilePage() {
                 </View>
               ) : null}
 
-              <View className="pb-3 flex-row items-center justify-between">
+              <View className="pb-3">
                 <View>
                   <Text className={`text-2xl ${textClass} font-semibold`}>{t("home.yourProfile")}</Text>
                   <Text className={`${secondaryTextClass} text-sm mt-1`}>{t("profile.yourDataSaved")}</Text>
                 </View>
-
-                <AnimatedIconPressable
-                  onPress={() => {
-                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                    if (isEditing) {
-                      void handleSave();
-                    } else {
-                      setIsEditing(true);
-                    }
-                  }}
-                  className="bg-emerald-500 p-3 rounded-full"
-                >
-                  <MaterialIcons name={isEditing ? "save" : "edit"} size={18} color="#001f0f" />
-                </AnimatedIconPressable>
               </View>
 
               <View style={{ flex: 1, minHeight: 0, flexDirection: "row", gap: desktopPanelGap }}>
                 <View style={{ flex: 1, minWidth: 0, gap: desktopPanelGap }}>
                   <View
-                    className={`${cardBgClass} border rounded-2xl overflow-hidden`}
-                    style={{ flex: 1, minHeight: 0 }}
+                    className={`${cardBgClass} border rounded-2xl ${hasOpenSelectorOverlay ? "" : "overflow-hidden"}`}
+                    style={{ ...profileCardOverlayStyle, flex: 1, minHeight: 0 }}
                   >
                     {renderProfileHero()}
                     <ScrollView
                       nestedScrollEnabled
                       keyboardShouldPersistTaps="handled"
                       style={{ flex: 1, minHeight: 0 }}
-                      contentContainerStyle={{ paddingHorizontal: 24, paddingVertical: 24, paddingBottom: 28 }}
+                      contentContainerStyle={{
+                        flexGrow: 1,
+                        justifyContent: "space-between",
+                        paddingHorizontal: 24,
+                        paddingVertical: 24,
+                        paddingBottom: 28,
+                      }}
                     >
                       {renderProfileFields()}
                       {renderDocumentFields()}
@@ -1390,32 +1718,21 @@ export default function ProfilePage() {
             </View>
           ) : null}
           {/* Header */}
-          <View className="px-6 pt-6 pb-2 flex-row items-center justify-between">
+          <View className="px-6 pt-6 pb-2">
             <View>
               <Text className={`text-2xl ${textClass} font-semibold`}>{t("home.yourProfile")}</Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>{t("profile.yourDataSaved")}</Text>
             </View>
-
-            <AnimatedIconPressable
-              onPress={() => {
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                if (isEditing) {
-                  void handleSave();
-                } else {
-                  setIsEditing(true);
-                }
-              }}
-              className="bg-emerald-500 p-3 rounded-full"
-            >
-              <MaterialIcons name={isEditing ? "save" : "edit"} size={18} color="#001f0f" />
-            </AnimatedIconPressable>
           </View>
 
           <View className="px-6">
             {isWideLayout ? (
               <View style={{ flexDirection: "row", alignItems: "stretch", gap: desktopPanelGap }}>
                 <View style={{ flex: 1, minWidth: 0, gap: desktopPanelGap }}>
-                  <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
+                  <View
+                    className={`${cardBgClass} border rounded-2xl ${hasOpenSelectorOverlay ? "" : "overflow-hidden"}`}
+                    style={profileCardOverlayStyle}
+                  >
                     {renderProfileHero()}
                     <View className="px-6 py-6">
                       {renderProfileFields()}
@@ -1437,7 +1754,10 @@ export default function ProfilePage() {
                 </View>
               </View>
             ) : (
-              <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
+              <View
+                className={`${cardBgClass} border rounded-2xl ${hasOpenSelectorOverlay ? "" : "overflow-hidden"}`}
+                style={profileCardOverlayStyle}
+              >
                 {renderProfileHero()}
                 <View className="px-6 py-6">
                   {renderProfileFields()}

@@ -5,9 +5,11 @@ param(
   [switch]$NoOpenSummary,
   [string]$OnlySection,
   [string]$StartSection,
+  [string]$TargetPlanId,
   [switch]$ShowCacheSummary,
   [switch]$ShowLaymansDiagnosis,
   [switch]$NoPrompt,
+  [switch]$RunPostChecks,
   [switch]$EditCourseLinks,
   [int]$BackExitCode = 0
 )
@@ -53,6 +55,8 @@ $script:completedTrackedMaintenanceSteps = 0
 $script:lastRunningOverallStepIndex = 1
 $script:selectedMaintenanceMode = ""
 $script:selectedMaintenanceSectionIds = @()
+$script:selectedMaintenanceTargetPlanId = ""
+$script:selectedMaintenanceTargetPlanTitle = ""
 
 function Get-PostRefreshEnabledStepLabels {
   return @(
@@ -78,7 +82,8 @@ function Get-RefreshTrackedPlan {
   param(
     [switch]$SkipDownloads,
     [string]$OnlySection,
-    [string]$StartSection
+    [string]$StartSection,
+    [string]$TargetPlanId
   )
 
   $arguments = @(
@@ -93,6 +98,9 @@ function Get-RefreshTrackedPlan {
   }
   if ($StartSection) {
     $arguments += @("--start-section", $StartSection)
+  }
+  if ($TargetPlanId) {
+    $arguments += @("--target-plan-id", $TargetPlanId)
   }
 
   $rawOutput = @(& node @arguments 2>$null)
@@ -166,7 +174,6 @@ function Write-MaintenanceProgress {
     [string]$Detail = "",
     [int]$CompletedOverallSteps = -1
   )
-
   $totalSteps = [Math]::Max($script:totalTrackedMaintenanceSteps, 1)
   if ($CompletedOverallSteps -lt 0) {
     $CompletedOverallSteps = $script:completedTrackedMaintenanceSteps
@@ -218,7 +225,6 @@ function Write-MaintenanceProgress {
 
 function Update-RefreshMaintenanceProgressFromOutputLine {
   param([string]$Line)
-
   if ([string]::IsNullOrWhiteSpace($Line)) {
     return
   }
@@ -279,12 +285,18 @@ function Format-CacheTimestamp {
 function Get-LatestExistingItem {
   param([string[]]$Paths)
 
-  return @(
+  $existingItems = @(
     $Paths |
       Where-Object { $_ -and (Test-Path $_) } |
       ForEach-Object { Get-Item $_ } |
       Sort-Object LastWriteTime -Descending
-  )[0]
+  )
+
+  if ($existingItems.Count -eq 0) {
+    return $null
+  }
+
+  return ($existingItems | Select-Object -First 1)
 }
 
 function Get-ArtifactState {
@@ -301,7 +313,7 @@ function Get-ArtifactState {
   return [pscustomobject]@{
     TotalCount = $normalizedPaths.Count
     ExistingCount = $existingItems.Count
-    LatestItem = $existingItems[0]
+    LatestItem = if ($existingItems.Count -gt 0) { $existingItems | Select-Object -First 1 } else { $null }
     ExistingItems = $existingItems
   }
 }
@@ -494,7 +506,7 @@ function Read-LatestMaintenanceSummaryMetadata {
     return $null
   }
 
-  $summaryLines = Get-Content -Path $summaryPath -ErrorAction SilentlyContinue
+  $summaryLines = @(Get-Content -Path $summaryPath -ErrorAction SilentlyContinue)
   $runStarted = ($summaryLines | Where-Object { $_ -like "- Run started:*" } | Select-Object -First 1)
   $outcome = ($summaryLines | Where-Object { $_ -like "- Outcome:*" } | Select-Object -First 1)
   $failureMessages = [System.Collections.Generic.List[string]]::new()
@@ -592,14 +604,22 @@ function Show-CacheSummary {
   }
 
   $diagnosisItems = @(
-    Get-TransferPlannerLaymansDiagnosis -ProjectRoot $projectRoot -LogPath $logPath -IncludeWarnings
+    Get-TransferPlannerLaymansDiagnosis `
+      -ProjectRoot $projectRoot `
+      -LogPath $logPath `
+      -TargetPlanId $TargetPlanId `
+      -IncludeWarnings
   )
   Write-TransferPlannerLaymansDiagnosis -Items $diagnosisItems -Header "Laymans Diagnosis"
 }
 
 function Show-LaymansDiagnosis {
   $diagnosisItems = @(
-    Get-TransferPlannerLaymansDiagnosis -ProjectRoot $projectRoot -LogPath $logPath -IncludeWarnings
+    Get-TransferPlannerLaymansDiagnosis `
+      -ProjectRoot $projectRoot `
+      -LogPath $logPath `
+      -TargetPlanId $TargetPlanId `
+      -IncludeWarnings
   )
 
   if ($diagnosisItems.Count -eq 0) {
@@ -1072,19 +1092,66 @@ function Invoke-CourseLinkSetPrimaryFlow {
   }
 }
 
+function Invoke-CourseLinkUpdateCurrentLinksFlow {
+  param([object]$PlanDetails)
+
+  $currentLinks = @($PlanDetails.currentLinks)
+  if ($currentLinks.Count -eq 0) {
+    Write-Host "No tracked links are available for this item yet, so there is nothing to snapshot." -ForegroundColor Yellow
+    return @{
+      Action = "back"
+    }
+  }
+
+  $itemLabel = ([string]$PlanDetails.itemKindLabel).ToLowerInvariant()
+  $confirmResponse = Read-CourseLinkEditorYesNo `
+    -Prompt ("Write the {0} currently tracked link(s) for this {1} into the override file and pin that set?" -f $currentLinks.Count, $itemLabel) `
+    -Default $true
+  if ($confirmResponse.Action -ne "value") {
+    return $confirmResponse
+  }
+  if (-not $confirmResponse.Value) {
+    return @{
+      Action = "back"
+    }
+  }
+
+  $result = Invoke-CourseLinkManagerUpdate `
+    -Arguments @(
+      "--update-current-links",
+      "--plan-id",
+      $PlanDetails.planId
+    ) `
+    -FailureContext "Updating this item with the current tracked course links"
+
+  Write-Host ("Changed file/config: {0}" -f $result.changedFile) -ForegroundColor DarkCyan
+  if ($result.linkCount) {
+    Write-Host ("Pinned {0} current link(s) for this {1} into the override file." -f $result.linkCount, $itemLabel) -ForegroundColor DarkCyan
+  }
+  if ($result.preferredPrimaryUrl) {
+    Write-Host ("Pinned preferred primary: {0}" -f $result.preferredPrimaryUrl) -ForegroundColor DarkCyan
+  }
+  Invoke-CourseLinkValidation -PlanDetails $PlanDetails -ChangedFile $result.changedFile | Out-Null
+  return @{
+    Action = "saved"
+  }
+}
+
 function Invoke-CourseLinkEditorForPlan {
   param([string]$PlanId)
 
   while ($true) {
     $planDetails = Get-CourseLinkPlanDetails -PlanId $PlanId
     Show-CourseLinkPlanDetails -PlanDetails $planDetails
+    $itemLabel = ([string]$planDetails.itemKindLabel).ToLowerInvariant()
 
     $actionChoice = Select-NavigableMenuItem `
       -Items @(
         [pscustomobject]@{ Id = "add"; Label = "Add a link"; Description = "Add a new source link to the real source-of-truth override file." },
         [pscustomobject]@{ Id = "replace"; Label = "Replace a link"; Description = "Swap one tracked link for another and remove the old URL if needed." },
         [pscustomobject]@{ Id = "remove"; Label = "Remove a link"; Description = "Remove a tracked link from this item if it should no longer be used." },
-        [pscustomobject]@{ Id = "set-primary"; Label = "Set preferred primary link"; Description = "Choose which tracked link the source manifest should treat as the primary degree page." }
+        [pscustomobject]@{ Id = "set-primary"; Label = "Set preferred primary link"; Description = "Choose which tracked link the source manifest should treat as the primary degree page." },
+        [pscustomobject]@{ Id = "update-current-links"; Label = "Update this $itemLabel with current links"; Description = "Snapshot the currently tracked links into the override file and pin this $itemLabel to that set." }
       ) `
       -Prompt ("Choose an edit action for this {0}" -f ([string]$planDetails.itemKindLabel).ToLowerInvariant()) `
       -LabelSelector { param($Item) $Item.Label } `
@@ -1101,6 +1168,7 @@ function Invoke-CourseLinkEditorForPlan {
       "replace" { Invoke-CourseLinkReplaceFlow -PlanDetails $planDetails }
       "remove" { Invoke-CourseLinkRemoveFlow -PlanDetails $planDetails }
       "set-primary" { Invoke-CourseLinkSetPrimaryFlow -PlanDetails $planDetails }
+      "update-current-links" { Invoke-CourseLinkUpdateCurrentLinksFlow -PlanDetails $planDetails }
       default {
         @{
           Action = "back"
@@ -1172,6 +1240,117 @@ function Invoke-CourseLinkEditor {
   }
 }
 
+function Get-RefreshTargetInventory {
+  $inventory = Get-CourseLinkInventory
+  $uwInstitution = @(
+    $inventory.institutions |
+      Where-Object { $_.id -eq "university-of-washington" } |
+      Select-Object -First 1
+  )
+
+  if ($uwInstitution.Count -eq 0) {
+    return $null
+  }
+
+  $filteredGroups = @(
+    $uwInstitution[0].groups |
+      ForEach-Object {
+        $generatedMajorItems = @(
+          $_.items |
+            Where-Object {
+              $_.ownerType -eq "major" -and
+              $_.isGeneratedPlan -eq $true
+            }
+        )
+        if ($generatedMajorItems.Count -gt 0) {
+          [pscustomobject]@{
+            id = $_.id
+            label = $_.label
+            items = $generatedMajorItems
+          }
+        }
+      } |
+      Where-Object { $_ }
+  )
+
+  if ($filteredGroups.Count -eq 0) {
+    return $null
+  }
+
+  return [pscustomobject]@{
+    id = $uwInstitution[0].id
+    label = $uwInstitution[0].label
+    groupPromptLabel = $uwInstitution[0].groupPromptLabel
+    itemPromptLabel = "major/pathway"
+    groups = $filteredGroups
+  }
+}
+
+function Select-TransferPlannerRefreshTargetPlan {
+  while ($true) {
+    $institution = Get-RefreshTargetInventory
+    if (-not $institution) {
+      Write-Host "No generated UW majors are available to target right now." -ForegroundColor Yellow
+      return @{
+        Action = "back"
+      }
+    }
+
+    $institutionChoice = Select-NavigableMenuItem `
+      -Items @($institution) `
+      -Prompt "Choose an institution" `
+      -LabelSelector { param($Item) $Item.label } `
+      -DescriptionSelector {
+        param($Item)
+        $groupItemCounts = @($Item.groups | ForEach-Object { @($_.items).Count })
+        $itemCount = if ($groupItemCounts.Count -gt 0) { ($groupItemCounts | Measure-Object -Sum).Sum } else { 0 }
+        "{0} {1}(s) | {2} item(s)" -f @($Item.groups).Count, $Item.groupPromptLabel, $itemCount
+      } `
+      -BackLabel "Back to the maintainer menu"
+    if ($institutionChoice.Action -eq "back") {
+      return @{
+        Action = "back"
+      }
+    }
+
+    while ($true) {
+      $groupChoice = Select-NavigableMenuItem `
+        -Items @($institutionChoice.Item.groups) `
+        -Prompt ("Choose a {0} under {1}" -f $institutionChoice.Item.groupPromptLabel, $institutionChoice.Item.label) `
+        -LabelSelector { param($Item) $Item.label } `
+        -DescriptionSelector {
+          param($Item)
+          "{0} {1}(s)" -f @($Item.items).Count, $institutionChoice.Item.itemPromptLabel
+        }
+      if ($groupChoice.Action -eq "back") {
+        break
+      }
+
+      while ($true) {
+        $itemChoice = Select-NavigableMenuItem `
+          -Items @($groupChoice.Item.items) `
+          -Prompt ("Choose a {0} under {1} / {2}" -f $institutionChoice.Item.itemPromptLabel, $institutionChoice.Item.label, $groupChoice.Item.label) `
+          -LabelSelector { param($Item) $Item.title } `
+          -DescriptionSelector {
+            param($Item)
+            if ($Item.primarySourceUrl) {
+              return "Primary source: {0}" -f $Item.primarySourceUrl
+            }
+            return "Source owner id: {0}" -f $Item.planId
+          }
+        if ($itemChoice.Action -eq "back") {
+          break
+        }
+
+        return @{
+          Action = "select"
+          Item = $itemChoice.Item
+        }
+      }
+    }
+  }
+}
+
 function Select-MaintenanceSection {
   param(
     [pscustomobject[]]$SectionCatalog,
@@ -1193,18 +1372,30 @@ function Get-InteractiveMaintenanceSelection {
     Write-Host ""
     Write-Host "Choose a transfer planner update action:" -ForegroundColor Cyan
     Write-Host "1. Update everything"
-    Write-Host "2. Update one section only"
-    Write-Host "3. Start from a section and continue through the rest"
-    Write-Host "4. Show summary of last run + cached status"
-    Write-Host "5. Back"
+    Write-Host "2. Update one major/pathway only"
+    Write-Host "3. Update using one part of workflow only"
+    Write-Host "4. Start from a section and continue through the rest"
+    Write-Host "5. Show summary of last run + cached status"
+    Write-Host "6. Back"
 
-    switch (Read-Host "Enter 1-5") {
+    switch (Read-Host "Enter 1-6") {
       "1" {
         return @{
           Mode = "full"
         }
       }
       "2" {
+        $selectedTarget = Select-TransferPlannerRefreshTargetPlan
+        if ($selectedTarget.Action -eq "back") {
+          continue
+        }
+        return @{
+          Mode = "full"
+          TargetPlanId = $selectedTarget.Item.planId
+          TargetPlanTitle = $selectedTarget.Item.title
+        }
+      }
+      "3" {
         $selectedSection = Select-MaintenanceSection -SectionCatalog $SectionCatalog -Prompt "Select one section to run"
         if ($selectedSection.Action -eq "back") {
           continue
@@ -1214,7 +1405,7 @@ function Get-InteractiveMaintenanceSelection {
           SectionId = $selectedSection.Item.Id
         }
       }
-      "3" {
+      "4" {
         $selectedSection = Select-MaintenanceSection -SectionCatalog $SectionCatalog -Prompt "Select the section to start from"
         if ($selectedSection.Action -eq "back") {
           continue
@@ -1224,16 +1415,16 @@ function Get-InteractiveMaintenanceSelection {
           SectionId = $selectedSection.Item.Id
         }
       }
-      "4" {
+      "5" {
         Show-CacheSummary -SectionCatalog $SectionCatalog
       }
-      "5" {
+      "6" {
         return @{ 
           Mode = "back"
         }
       }
       default {
-        Write-Host "Enter a number from 1 to 5." -ForegroundColor Yellow
+        Write-Host "Enter a number from 1 to 6." -ForegroundColor Yellow
       }
     }
   }
@@ -1445,6 +1636,7 @@ function Write-Summary {
       -ProjectRoot $projectRoot `
       -FailureMessage $FailureMessage `
       -LogPath $logPath `
+      -TargetPlanId $script:selectedMaintenanceTargetPlanId `
       -IncludeWarnings
   )
 
@@ -1521,8 +1713,11 @@ function Write-Summary {
     "- Skip Chromium install: $([string]$SkipChromiumInstall)",
     "- Selection mode: $script:selectedMaintenanceMode",
     "- Selected sections: $($script:selectedMaintenanceSectionIds -join ', ')",
+    "- Target plan id: $script:selectedMaintenanceTargetPlanId",
+    "- Target plan title: $script:selectedMaintenanceTargetPlanTitle",
     "- Only section arg: $OnlySection",
     "- Start section arg: $StartSection",
+    "- Target plan arg: $TargetPlanId",
     ""
   )
 
@@ -1608,7 +1803,7 @@ try {
   Write-Host "Transfer Planner Maintenance Launcher" -ForegroundColor Green
   Write-Host "Project: $projectRoot"
   Write-Host "Log: $logPath"
-  Write-Host "Progress bar tracks refresh pipeline steps plus the remaining maintenance checks while live output streams below." -ForegroundColor DarkCyan
+  Write-Host "Live output streams below." -ForegroundColor DarkCyan
 
   if ($OnlySection -and $StartSection) {
     throw "Use either -OnlySection or -StartSection, not both."
@@ -1618,7 +1813,7 @@ try {
   Assert-Command -CommandName "node" -FriendlyName "Node.js"
   Assert-Command -CommandName "npm.cmd" -FriendlyName "npm"
 
-  $refreshCatalogPlan = Get-RefreshTrackedPlan -SkipDownloads:$SkipDownloads
+  $refreshCatalogPlan = Get-RefreshTrackedPlan -SkipDownloads:$SkipDownloads -TargetPlanId $TargetPlanId
   $maintenanceSectionCatalog = @(Get-MaintenanceSectionCatalog -RefreshPlanInfo $refreshCatalogPlan)
   if ($maintenanceSectionCatalog.Count -eq 0) {
     throw "No maintenance sections are available for the current launcher settings."
@@ -1647,11 +1842,18 @@ try {
     @{
       Mode = "only"
       SectionId = $OnlySection
+      TargetPlanId = $TargetPlanId
     }
   } elseif ($StartSection) {
     @{
       Mode = "start"
       SectionId = $StartSection
+      TargetPlanId = $TargetPlanId
+    }
+  } elseif ($TargetPlanId) {
+    @{
+      Mode = "full"
+      TargetPlanId = $TargetPlanId
     }
   } elseif (-not $NoPrompt) {
     Get-InteractiveMaintenanceSelection -SectionCatalog $maintenanceSectionCatalog
@@ -1676,6 +1878,21 @@ try {
 
   $script:selectedMaintenanceMode = [string]$selection.Mode
   $script:selectedMaintenanceSectionIds = @($selectedSectionIds)
+  $script:selectedMaintenanceTargetPlanId = if ($selection.ContainsKey("TargetPlanId")) { [string]$selection.TargetPlanId } else { "" }
+  $script:selectedMaintenanceTargetPlanTitle = if ($selection.ContainsKey("TargetPlanTitle")) { [string]$selection.TargetPlanTitle } else { "" }
+
+  $selectedTargetPlanDetails = $null
+  if ($script:selectedMaintenanceTargetPlanId) {
+    $selectedTargetPlanDetails = Get-CourseLinkPlanDetails -PlanId $script:selectedMaintenanceTargetPlanId
+    if (-not $script:selectedMaintenanceTargetPlanTitle) {
+      $script:selectedMaintenanceTargetPlanTitle = [string]$selectedTargetPlanDetails.title
+    }
+    if ($script:selectedMaintenanceMode -eq "full") {
+      $script:selectedMaintenanceMode = "target-plan"
+    } else {
+      $script:selectedMaintenanceMode = "{0} + target-plan" -f $script:selectedMaintenanceMode
+    }
+  }
 
   $selectionState = Apply-MaintenanceSectionSelection -SectionCatalog $maintenanceSectionCatalog -SelectedSectionIds $selectedSectionIds
   $selectionStartSection = if ($selection.ContainsKey("SectionId")) { [string]$selection.SectionId } else { "" }
@@ -1699,7 +1916,8 @@ try {
     Get-RefreshTrackedPlan `
       -SkipDownloads:$SkipDownloads `
       -OnlySection $refreshOnlySectionArg `
-      -StartSection $refreshStartSectionArg
+      -StartSection $refreshStartSectionArg `
+      -TargetPlanId $script:selectedMaintenanceTargetPlanId
   } else {
     @{
       Count = 0
@@ -1715,6 +1933,13 @@ try {
   Write-Host (
     "Selected maintenance sections: {0}" -f ($selectedSectionIds -join ", ")
   ) -ForegroundColor DarkCyan
+  if ($script:selectedMaintenanceTargetPlanId) {
+    Write-Host (
+      "Selected target major/pathway: {0} ({1})" -f
+      $script:selectedMaintenanceTargetPlanTitle,
+      $script:selectedMaintenanceTargetPlanId
+    ) -ForegroundColor DarkCyan
+  }
   Write-Host (
     "Tracked maintenance steps: {0} total ({1} refresh pipeline + {2} post-refresh)." -f
     $script:totalTrackedMaintenanceSteps,
@@ -1739,6 +1964,9 @@ try {
   if ($refreshStartSectionArg) {
     $refreshArgs += @("-StartSection", $refreshStartSectionArg)
   }
+  if ($script:selectedMaintenanceTargetPlanId) {
+    $refreshArgs += @("-TargetPlanId", $script:selectedMaintenanceTargetPlanId)
+  }
 
   if ($selectionState.SelectedRefreshIds.Count -gt 0) {
     Invoke-MaintenanceStep `
@@ -1754,44 +1982,51 @@ try {
       }
   }
 
-  if (-not $SkipWindowsQa) {
-    if (-not $SkipChromiumInstall) {
+  if ($RunPostChecks) {
+    if (-not $SkipWindowsQa) {
+      if (-not $SkipChromiumInstall) {
+        Invoke-MaintenanceStep `
+          -StepLabel "Playwright Chromium" `
+          -FilePath "npx.cmd" `
+          -Arguments @("playwright", "install", "chromium") `
+          -Description "Ensure Playwright Chromium is installed" `
+          -ProgressDetail "Installing the browser dependency used by the Windows QA smoke suite"
+      }
+
       Invoke-MaintenanceStep `
-        -StepLabel "Playwright Chromium" `
-        -FilePath "npx.cmd" `
-        -Arguments @("playwright", "install", "chromium") `
-        -Description "Ensure Playwright Chromium is installed" `
-        -ProgressDetail "Installing the browser dependency used by the Windows QA smoke suite"
+        -StepLabel "Windows QA" `
+        -FilePath "npm.cmd" `
+        -Arguments @("run", "qa:windows:ci") `
+        -Description "Run Windows QA smoke suite" `
+        -ProgressDetail "Running the Windows browser and QA smoke checks"
     }
 
     Invoke-MaintenanceStep `
-      -StepLabel "Windows QA" `
-      -FilePath "npm.cmd" `
-      -Arguments @("run", "qa:windows:ci") `
-      -Description "Run Windows QA smoke suite" `
-      -ProgressDetail "Running the Windows browser and QA smoke checks"
+      -StepLabel "Planner hardening checks" `
+      -FilePath "node" `
+      -Arguments @("scripts/planner/verify-transfer-planner-hardening.cjs") `
+      -Description "Run planner hardening checks" `
+      -ProgressDetail "Checking the planner for source-backed hardening regressions"
+  } else {
+    Write-Host "Post-refresh maintenance checks are disabled. Use -RunPostChecks to enable." -ForegroundColor DarkCyan
   }
-
-  Invoke-MaintenanceStep `
-    -StepLabel "Planner hardening checks" `
-    -FilePath "node" `
-    -Arguments @("scripts/planner/verify-transfer-planner-hardening.cjs") `
-    -Description "Run planner hardening checks" `
-    -ProgressDetail "Checking the planner for source-backed hardening regressions"
 
   Write-Summary -Outcome "passed" -FailureMessage ""
   Write-MaintenanceProgress `
     -State "completed" `
     -Detail "All tracked maintenance steps finished." `
     -CompletedOverallSteps $script:totalTrackedMaintenanceSteps
-  Write-Progress -Activity "Transfer Planner Maintenance" -Completed
 
   Write-Section "Maintenance complete"
   Write-Host "Success. Planner maintenance and QA finished cleanly." -ForegroundColor Green
   Write-Host "Summary: $summaryPath"
   Write-Host "Log: $logPath"
   $successDiagnosisItems = @(
-    Get-TransferPlannerLaymansDiagnosis -ProjectRoot $projectRoot -LogPath $logPath -IncludeWarnings
+    Get-TransferPlannerLaymansDiagnosis `
+      -ProjectRoot $projectRoot `
+      -LogPath $logPath `
+      -TargetPlanId $script:selectedMaintenanceTargetPlanId `
+      -IncludeWarnings
   )
   Write-TransferPlannerLaymansDiagnosis -Items $successDiagnosisItems -Header "Laymans Diagnosis"
 
@@ -1803,7 +2038,7 @@ try {
 } catch {
   $message = $_.Exception.Message
   Write-Summary -Outcome "failed" -FailureMessage $message
-  Write-Progress -Activity "Transfer Planner Maintenance" -Completed
+  
 
   Write-Host ""
   Write-Host "Planner maintenance failed." -ForegroundColor Red
@@ -1815,6 +2050,7 @@ try {
       -ProjectRoot $projectRoot `
       -FailureMessage $message `
       -LogPath $logPath `
+      -TargetPlanId $script:selectedMaintenanceTargetPlanId `
       -IncludeWarnings
   )
   Write-TransferPlannerLaymansDiagnosis -Items $failureDiagnosisItems -Header "Laymans Diagnosis"

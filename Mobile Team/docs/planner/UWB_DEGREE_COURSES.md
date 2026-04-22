@@ -287,6 +287,83 @@ Source-generated from parsed UW requirement-source registries.
 - Bachelor of Business Administration
 - Learn more about admissions requirements as well as how to apply .
 
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- Learn more about admissions requirements as well as how to apply .
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+- Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- Learn more about admissions requirements as well as how to apply .
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+- Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- Learn more about admissions requirements as well as how to apply .
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+- Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- Learn more about admissions requirements as well as how to apply .
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+- Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- Learn more about admissions requirements as well as how to apply .
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+- Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- Learn more about admissions requirements as well as how to apply .
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+- Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- Bachelor of Business Administration
+- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
+- Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Bachelor of Business Administration
+- Learn more about admissions requirements as well as how to apply .
+
 ##### Business Administration (BA) parsed choices and pathway notes
 
 - Bachelor of Business Administration
@@ -752,12 +829,10 @@ Source-generated from parsed UW requirement-source registries.
 - The Self-Directed Concentration allows students to create their own interdisciplinary concentration. The new Concentration combines four upper-division (i.e., 300-400-level) courses from two (or more) academic areas into a new area of study that does not already exist in the School of Business or UW Bothell. A Self-Directed Concentration may be a good choice for students creating their own career niche or wavering between two existing concentrations/options. The Self-Directed Concentration is NOT meant to allow students to pick and choose a handful of classes without developing a clear goal. Students interested in the Self-Directed Concentration should make an appointment with their Academic Advisor to find out about the declaration and approval process.
 - Why Choose Business at UW Bothell
 - Accounting Option
-- Customize your degree with one of four Options or seven Concentrations, or design your own pathway.
 - Entrepreneurship Concentration
-- Examine the many management challenges facing modern business organizations and how to use the tools needed to deal with a complex and rapidly changing environment. Areas of study include entrepreneurship, leadership and decision making, conflict resolution, human resources, and managing employees. Graduates often pursue careers in consulting or as leaders in the private or public sector. Learn more about the Management concentration .
 - Finance Option and Concentration
-- Leadership &amp; Strategic Innovation Option
-- Learn how firms make financial decisions and how these decisions affect individual organizations and society as a whole. You’ll learn how firms acquire and allocate funds, how financial markets operate, and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Graduates take positions in financial institutions such as commercial and investments banks, finance departments of major corporations, or consulting firms. Learn more about the Finance concentration .
+- Marketing can also be taken as a concentration
+- Marketing Option and Concentration
 
 #### GRC Equivalent Courses
 
@@ -777,8 +852,18 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-08-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-09-business-administration-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-10-business-administration-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-11-business-administration-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-12-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-96-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-97-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-98-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-99-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-90-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-91-planning-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-100-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-101-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-102-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-103-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-11-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-12-business-administration-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-13-business-administration-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-14-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-15-business-administration-ba-parsed-choices-and-pathway-notes.
@@ -856,8 +941,12 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-87-business-administration-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-88-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-89-business-administration-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-90-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-91-planning-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-90-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-91-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-92-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-93-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-94-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-95-business-administration-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
@@ -878,42 +967,42 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Business Administration: Accounting (BA) parsed official source requirements
 
-- Accounting Option - School of Business
-- Prerequisite Courses
+- (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
+- * A minimum grade of 2.7 in either course is required.
+- 10 credits – Complete 2 courses from this list:
+- 10 credits – Complete two courses from this list:
+- 30 credits
+- 5 credits
+- 5 credits – Complete 1 course from this list:
+- 90 Credits
+- A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
 - Accounting Option
-- Leadership &amp; Strategic Innovation Option
-- Marketing Option and Concentration
-- Supply Chain Management Option
-- Entrepreneurship Concentration
-- Finance Option and Concentration
-- Management Concentration
-- Management Information Systems (MIS) Concentration
 
 ##### Business Administration: Accounting (BA) parsed official requirement cues
 
-- Accounting Option - School of Business
-- Prerequisite Courses
+- (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
+- * A minimum grade of 2.7 in either course is required.
+- 10 credits – Complete 2 courses from this list:
+- 10 credits – Complete two courses from this list:
+- 30 credits
+- 5 credits
+- 5 credits – Complete 1 course from this list:
+- 90 Credits
+- A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
 - Accounting Option
-- Leadership &amp; Strategic Innovation Option
-- Marketing Option and Concentration
-- Supply Chain Management Option
-- Entrepreneurship Concentration
-- Finance Option and Concentration
-- Management Concentration
-- Management Information Systems (MIS) Concentration
 
 ##### Business Administration: Accounting (BA) parsed choices and pathway notes
 
-- (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
-- **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
-- *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
 - Accounting Option
-- Accounting Option - School of Business
 - Accounting Option students must complete the following courses for graduation.
-- After completing the two-year Accounting Option, students are eligible to take the Certified Management Accountant (CMA) exam . Students who wish to become a Certified Public Accountant (CPA) , however, should plan on spending three years in the program. To take the CPA exam, a student needs a minimum of 225 quarter hours or five years of college (a master degree is not required).
+- Concentration Courses
 - Entrepreneurship Concentration
 - Finance Option and Concentration
-- In addition to public accounting, the Accounting Option will thoroughly prepare students for careers in private, government and non-profit accounting. The curriculum is designed to enable graduates to fill a number of corporate positions such as internal auditor, managerial accountant and tax accountant. Graduates will also be prepared to serve in government positions such as tax examiner, budget analyst and government auditor. You can get more information from the Washington Society of Certified Public Accountants .
+- Marketing Option and Concentration
+- Option Courses
+- Requirements to declare the concentration
+- Requirements to declare the option
+- Requirements to declare the Option or the Concentration
 
 #### GRC Equivalent Courses
 
@@ -971,9 +1060,6 @@ Source-generated from parsed UW requirement-source registries.
 - Finance Option and Concentration
 - Option Courses
 - Requirements to declare the Option or the Concentration
-- Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
-- Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
-- The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
 
 #### GRC Equivalent Courses
 
@@ -1035,11 +1121,9 @@ Source-generated from parsed UW requirement-source registries.
 - Entrepreneurship Concentration
 - Finance Option and Concentration
 - Leadership &amp; Strategic Innovation Option
-- Leadership &amp; Strategic Innovation Option - School of Business
-- Management Concentration
-- Management Information Systems (MIS) Concentration
 - Marketing Option and Concentration
 - Requirements to declare the option
+- Technology &amp; Innovation Management (TIM) Concentration
 
 #### GRC Equivalent Courses
 
@@ -1098,14 +1182,13 @@ Source-generated from parsed UW requirement-source registries.
 
 - BBUS 438 – Marketing Management Lab (320, and one of the following: 421, 423, 426, 427, 429, or 431)
 - Accounting Option
-- BBUS 491 – Business Consulting . Only counts when approved for concentration; see your advisor before registering.
-- BBUS 491 – Business Consulting . Only counts when approved for option; see your advisor before registering.
-- BBUS 499 – Undergraduate Research. Only counts when approved for concentration; see your advisor before registering.
-- BBUS 499 – Undergraduate Research. Only counts when approved for option; see your advisor before registering.
 - Concentration Course Numbers &amp; Names
 - Entrepreneurship Concentration
 - Finance Option and Concentration
-- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Marketing option/concentration students must complete the following courses for graduation:
+- Option and concentration curriculum
+- Option Course Numbers &amp; Names
 
 #### GRC Equivalent Courses
 
@@ -1136,42 +1219,42 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Business Administration: Supply Chain Management (BA) parsed official source requirements
 
-- Supply Chain Management Option - School of Business
-- Prerequisite Courses
+- (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
+- * A minimum grade of 2.7 in either course is required.
+- 10 credits
+- 10 credits – 2 courses from the list below:
+- 10 credits – Complete 2 courses from this list:
+- 30 Credits
+- 90 credits
+- 90 Credits
+- A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
 - Accounting Option
-- Leadership &amp; Strategic Innovation Option
-- Marketing Option and Concentration
-- Supply Chain Management Option
-- Entrepreneurship Concentration
-- Finance Option and Concentration
-- Management Concentration
-- Management Information Systems (MIS) Concentration
 
 ##### Business Administration: Supply Chain Management (BA) parsed official requirement cues
 
-- Supply Chain Management Option - School of Business
-- Prerequisite Courses
+- (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
+- * A minimum grade of 2.7 in either course is required.
+- 10 credits
+- 10 credits – 2 courses from the list below:
+- 10 credits – Complete 2 courses from this list:
+- 30 Credits
+- 90 credits
+- 90 Credits
+- A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
 - Accounting Option
-- Leadership &amp; Strategic Innovation Option
-- Marketing Option and Concentration
-- Supply Chain Management Option
-- Entrepreneurship Concentration
-- Finance Option and Concentration
-- Management Concentration
-- Management Information Systems (MIS) Concentration
 
 ##### Business Administration: Supply Chain Management (BA) parsed choices and pathway notes
 
-- (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
 - Accounting Option
 - Entrepreneurship Concentration
 - Finance Option and Concentration
-- Leadership &amp; Strategic Innovation Option
 - Management Concentration
 - Management Information Systems (MIS) Concentration
 - Marketing Option and Concentration
+- Requirements to declare the concentration
 - Requirements to declare the option
 - Retail Management Concentration
+- Students in the Retail Management concentration must complete the following courses for graduation:
 
 #### GRC Equivalent Courses
 
@@ -1243,8 +1326,6 @@ Source-generated from parsed UW requirement-source registries.
 - B.S. in Chemistry (general option)
 - Option 1
 - Option 2
-- The Bachelor of Science in Chemistry (biochemistry option) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical), with the additional concentration on Biochemistry. It has a higher amount of core required courses and fewer electives.
-- This option also requires a lot of time-consuming lab work , so we recommend working proactively with your academic adviser when planning your academic schedule.
 
 #### GRC Equivalent Courses
 
@@ -1346,8 +1427,6 @@ Source-generated from parsed UW requirement-source registries.
 - B.S. in Chemistry (general option)
 - Option 1
 - Option 2
-- The Bachelor of Science in Chemistry (biochemistry option) allows students to pursue a rigorous curriculum focused on the atomic and molecular nature of the world around us. The degree includes the traditional areas of chemistry (organic, inorganic, physical, and analytical), with the additional concentration on Biochemistry. It has a higher amount of core required courses and fewer electives.
-- This option also requires a lot of time-consuming lab work , so we recommend working proactively with your academic adviser when planning your academic schedule.
 
 #### GRC Equivalent Courses
 
@@ -1572,10 +1651,6 @@ Source-generated from parsed UW requirement-source registries.
 - Students who complete Calculus coursework do not need to complete a Precalculus Course. See your Academic Advisor for assistance.
 - BIS 215 Understanding Statistics or other Introductory Statistics Course (B MATH 215, B BUS 215, or STAT 220/290) (5 credits)
 
-##### Conservation &amp; Restoration Science (BS) parsed choices and pathway notes
-
-- The Conservation &amp; Restoration Science (CRS) major at the University of Washington Bothell offers students the opportunity to recover habitats and protect wildlands from degradation due to disaster, contamination, overuse, or climate change. Academic and other learning experiences enhance students’ ability for lab research, data analysis, communication, and problem-solving. Conservation &amp; Restoration Science is a major in the Health &amp; Natural Sciences meta-major pathway. Sometimes it is described as a major in Natural Resource Management or Climate Science.
-
 #### GRC Equivalent Courses
 
 - `MATH& 142`
@@ -1593,7 +1668,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-conservation-and-restoration-science:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Computer Science & Software Engineering
@@ -1612,42 +1686,35 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Computer Science &amp; Software Engineering parsed official source requirements
 
+- Up to 10 credits combined of CSS 397 (Internship), 498 (Independent Study), or 499 (Undergraduate Research)
+- Up to 10 credits combined of CSS 290, 390, or 490 (Special Topics)
 - 300-400 Level Electives (15 credits / usually 3 courses)
-- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
-- Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-- Declaring the IAC option
-- Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
-- IAC-option students take the same core courses as those of the general CSSE major, but replace the 25 credits of “CSS Electives” with the courses below:
-- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
+- These courses may overlap with your General Education requirements (A&amp;H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
 - Information Assurance and Cybersecurity (IAC) option
-- Minimum 15 credits (3 courses) of elective coursework from the lists below. Only one networking class (CSS 432, INFO 314, or T INFO 250; marked with an asterisk * ) may be taken.
-- Minimum of 5 additional credits (usually 1 course) of 200-level or higher CSS Elective coursework in any topic.
+- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
+- This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
+- Declaring the IAC option
+- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
+- Requirements
 
 ##### Computer Science &amp; Software Engineering parsed official requirement cues
 
+- Up to 10 credits combined of CSS 397 (Internship), 498 (Independent Study), or 499 (Undergraduate Research)
+- Up to 10 credits combined of CSS 290, 390, or 490 (Special Topics)
 - 300-400 Level Electives (15 credits / usually 3 courses)
-- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
-- Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-- Declaring the IAC option
-- Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
-- IAC-option students take the same core courses as those of the general CSSE major, but replace the 25 credits of “CSS Electives” with the courses below:
-- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
+- These courses may overlap with your General Education requirements (A&amp;H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
 - Information Assurance and Cybersecurity (IAC) option
-- Minimum 15 credits (3 courses) of elective coursework from the lists below. Only one networking class (CSS 432, INFO 314, or T INFO 250; marked with an asterisk * ) may be taken.
-- Minimum of 5 additional credits (usually 1 course) of 200-level or higher CSS Elective coursework in any topic.
+- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
+- This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
+- Declaring the IAC option
+- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
+- Requirements
 
 ##### Computer Science &amp; Software Engineering parsed choices and pathway notes
 
-- Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
 - This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
-- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
-- B.S. in Chemistry (biochemistry option)
-- B.S. in Chemistry (general option)
+- Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
 - Declaring the IAC option
-- IAC-option students take the same core courses as those of the general CSSE major, but replace the 25 credits of “CSS Electives” with the courses below:
-- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
-- Information Assurance and Cybersecurity (IAC) option
-- Option 1
 
 #### GRC Equivalent Courses
 
@@ -1686,38 +1753,34 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Computer Science &amp; Software Engineering: Information Assurance &amp; Cybersecurity (BS) parsed official source requirements
 
-- 10 credits at 300-level or higher in any subject area
+- Up to 10 credits combined of CSS 397 (Internship), 498 (Independent Study), or 499 (Undergraduate Research)
+- Up to 10 credits combined of CSS 290, 390, or 490 (Special Topics)
 - 300-400 Level Electives (15 credits / usually 3 courses)
-- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
-- Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-- Computing-related courses that are not listed above or transfer courses are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
-- Declaring the IAC option
-- Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
-- IAC-option students take the same core courses as those of the general CSSE major, but replace the 25 credits of “CSS Electives” with the courses below:
-- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
+- These courses may overlap with your General Education requirements (A&amp;H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
 - Information Assurance and Cybersecurity (IAC) option
+- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
+- This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
+- Declaring the IAC option
+- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
+- Requirements
 
 ##### Computer Science &amp; Software Engineering: Information Assurance &amp; Cybersecurity (BS) parsed official requirement cues
 
-- 10 credits at 300-level or higher in any subject area
+- Up to 10 credits combined of CSS 397 (Internship), 498 (Independent Study), or 499 (Undergraduate Research)
+- Up to 10 credits combined of CSS 290, 390, or 490 (Special Topics)
 - 300-400 Level Electives (15 credits / usually 3 courses)
-- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
-- Computing-related courses that are not included on the core or elective requirements lists are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you wish to use as an elective, you may submit a petition to request for the course to count.
-- Computing-related courses that are not listed above or transfer courses are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count.
-- Declaring the IAC option
-- Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
-- IAC-option students take the same core courses as those of the general CSSE major, but replace the 25 credits of “CSS Electives” with the courses below:
-- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
+- These courses may overlap with your General Education requirements (A&amp;H, SSc, DIV, etc.), above, as long as they are 300-level or higher.
 - Information Assurance and Cybersecurity (IAC) option
+- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
+- This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
+- Declaring the IAC option
+- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
+- Requirements
 
 ##### Computer Science &amp; Software Engineering: Information Assurance &amp; Cybersecurity (BS) parsed choices and pathway notes
 
-- Efficiency: Identifies ways to solve problems or complete tasks smoothly and effectively; choose the optimum solution form and set of alternative possibilities.
 - This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
-- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
 - Declaring the IAC option
-- IAC-option students take the same core courses as those of the general CSSE major, but replace the 25 credits of “CSS Electives” with the courses below:
-- Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
 - Information Assurance and Cybersecurity (IAC) option
 
 #### GRC Equivalent Courses
@@ -1822,10 +1885,6 @@ Source-generated from parsed UW requirement-source registries.
 - B DATA 497 Advanced Topics in Data Visualization (5 credits)
 - B GIS 342 Geographic Information Systems (5 credits) (if not taken as core)
 
-##### Data Visualization (BA) parsed choices and pathway notes
-
-- American &amp; Ethnic Studies Applied Computing Biochemistry Biology Business Business ELC: Entrepreneurship Business ELC: General Business Business ELC: Supply Chain Management Business: Accounting Business: Finance Business: Leadership and Strategic Innovation Business: Management Business: Management Information Systems Business: Marketing Business: Retail Management Business: Supply Chain Management Business: Technology and Innovation Management Chemistry Computer Engineering Computer Science &amp; Software Engineering Conservation and Restoration Science Culture, Literature &amp; the Arts Data Visualization (BA) Data Visualization (BS) Developmental and Youth Studies Earth System Science Economics (BS) Educational Studies: Elementary Education Option Electrical Engineering Elementary (K-5) Teacher Certification Environmental Studies Gender, Women and Sexuality Studies Global Studies Health Studies Interdisciplinary Arts Interdisciplinary Social Science Law, Economics and Public Policy Mathematics Mechanical Engineering Media and Communication Studies Nursing Nursing: RN to BSN (Bothell) Nursing: RN to BSN (Everett) Nursing: RN to BSN (Shoreline) Physics Psychology Science, Technology and Society Undeclared/Pre-Major
-
 #### GRC Equivalent Courses
 
 - `ENGL& 101`
@@ -1836,7 +1895,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-data-visualization-ba:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Data Visualization (BS)
@@ -1881,10 +1939,6 @@ Source-generated from parsed UW requirement-source registries.
 - B DATA 497 Advanced Topics in Data Visualization (5 credits)
 - B GIS 342 Geographic Information Systems (5 credits) (if not taken as core)
 
-##### Data Visualization (BS) parsed choices and pathway notes
-
-- American &amp; Ethnic Studies Applied Computing Biochemistry Biology Business Business ELC: Entrepreneurship Business ELC: General Business Business ELC: Supply Chain Management Business: Accounting Business: Finance Business: Leadership and Strategic Innovation Business: Management Business: Management Information Systems Business: Marketing Business: Retail Management Business: Supply Chain Management Business: Technology and Innovation Management Chemistry Computer Engineering Computer Science &amp; Software Engineering Conservation and Restoration Science Culture, Literature &amp; the Arts Data Visualization (BA) Data Visualization (BS) Developmental and Youth Studies Earth System Science Economics (BS) Educational Studies: Elementary Education Option Electrical Engineering Elementary (K-5) Teacher Certification Environmental Studies Gender, Women and Sexuality Studies Global Studies Health Studies Interdisciplinary Arts Interdisciplinary Social Science Law, Economics and Public Policy Mathematics Mechanical Engineering Media and Communication Studies Nursing Nursing: RN to BSN (Bothell) Nursing: RN to BSN (Everett) Nursing: RN to BSN (Shoreline) Physics Psychology Science, Technology and Society Undeclared/Pre-Major
-
 #### GRC Equivalent Courses
 
 - `ENGL& 101`
@@ -1895,7 +1949,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-data-visualization-bs:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Developmental and Youth Studies (BA)
@@ -1937,12 +1990,8 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Developmental and Youth Studies (BA) parsed choices and pathway notes
 
-- Education Studies: Elementary Education Option
-- M.Ed. with Critical Educational Change and Leadership (CECL) Concentration
 - M.Ed. with Educating for Critical Race Theory (E-CRiT) Concentration
 - M.Ed. with English to Speakers of Other Languages (ESOL) Concentration
-- M.Ed. with Leadership Development for Educators (LEDE) Concentration
-- Students should meet with their academic advisor at least one quarter before beginning Applied Experience to discuss which Community-Engaged Learning &amp; Research (CELR) placement option, or self-placement, best meets their academic and career interests. Students can use the EXPO database to explore available CBLR opportunities.
 
 #### GRC Equivalent Courses
 
@@ -2056,6 +2105,62 @@ Source-generated from parsed UW requirement-source registries.
 - The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
 
 ##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed official requirement cues
+
+- The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
+
+##### Economics (BS) parsed choices and pathway notes
 
 - The 55-credit, STEM-designated B.S. in Economics at the School of Business prepares students for data-driven economic analysis through strong foundations in economic theory, quantitative analysis, and critical thinking. Core courses build analytical skills, while flexible electives support career-focused specialization.
 
@@ -2409,13 +2514,7 @@ Source-generated from parsed UW requirement-source registries.
 - Accounting Option
 - Entrepreneurship Concentration
 - Finance Option and Concentration
-- Leadership &amp; Strategic Innovation Option
-- Management Concentration
-- Management Information Systems (MIS) Concentration
 - Marketing Option and Concentration
-- Retail Management Concentration
-- Supply Chain Management Option
-- Technology &amp; Innovation Management (TIM) Concentration
 
 #### GRC Equivalent Courses
 
@@ -2435,8 +2534,18 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-08-economics-bs-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-09-economics-bs-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-10-economics-bs-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-11-economics-bs-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-12-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-96-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-97-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-98-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-99-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-90-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-91-planning-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-100-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-101-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-102-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-103-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-11-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-12-economics-bs-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-13-economics-bs-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-14-economics-bs-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-15-economics-bs-parsed-choices-and-pathway-notes.
@@ -2514,8 +2623,12 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-87-economics-bs-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-88-economics-bs-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-89-economics-bs-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-90-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-91-planning-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-90-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-91-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-92-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-93-economics-bs-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-94-economics-bs-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-economics:source-degree-map:structured:uw-bothell-economics-degree-map-10-parsed-95-economics-bs-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
@@ -2563,9 +2676,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Educational Studies: Elementary Education (BA) parsed choices and pathway notes
 
 - Elementary Education Option Requirements
-- Elementary Education Option Requirements – 2025 Cohort
-- See Elementary Education Option requirements effective Autumn 2025 for the full list Elementary Education Option course requirements. Courses with a minimum grade of 2.0 (C letter grade) satisfy Academic Breadth requirements .
-- The Elementary Education Option requires that students complete a student teaching practicum, along with a practicum in an English to Speakers of Other Languages (ESOL) classroom OR a practicum in a Special Education classroom. International students with a visa, other than F-1 visa holders, should consult an immigration attorney to determine their eligibility for completing these required practica. F-1 visa holders will need to plan and apply for Curricular Practical Training (CPT) prior to beginning these required practica. If you have any questions, please contact the International Student Services (ISS) office.
+- Elementary Education Option Requirements - 2025 Cohort
 
 #### GRC Equivalent Courses
 
@@ -3291,11 +3402,8 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Nursing (BS), First Year RN to BSN (Direct Entry) parsed choices and pathway notes
 
-- If you are interested in learning more about the RN to BSN pathway to a Nursing career, please visit Become a Registered Nurse .
 - Teaching Track
 - Tenure Track
-- The RN to BSN at UW Bothell provides a pathway for students who have earned an Associate Degree in Nursing (ADN) and want to advance their education and career by earning a Bachelor of Science in Nursing (BSN) . Our program requires students to complete a Nursing program at a community or technical college and earn an Associate Degree in Nursing, which allows the student to take the NCLEX- RN Licensure exam.
-- The RN to BSN program is designed to be completed in four (4) or eight (8) quarters. The four (4) quarter program is considered the full-time track and the eight (8) quarter program is the part-time track.
 
 #### GRC Equivalent Courses
 
@@ -3347,11 +3455,8 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Nursing (BS), RN to BSN parsed choices and pathway notes
 
-- If you are interested in learning more about the RN to BSN pathway to a Nursing career, please visit Become a Registered Nurse .
 - Teaching Track
 - Tenure Track
-- The RN to BSN at UW Bothell provides a pathway for students who have earned an Associate Degree in Nursing (ADN) and want to advance their education and career by earning a Bachelor of Science in Nursing (BSN) . Our program requires students to complete a Nursing program at a community or technical college and earn an Associate Degree in Nursing, which allows the student to take the NCLEX- RN Licensure exam.
-- The RN to BSN program is designed to be completed in four (4) or eight (8) quarters. The four (4) quarter program is considered the full-time track and the eight (8) quarter program is the part-time track.
 
 #### GRC Equivalent Courses
 
@@ -3524,10 +3629,6 @@ Source-generated from parsed UW requirement-source registries.
 - Start thinking about what courses will be required by or desirable to graduate programs or employers, and plan your schedule accordingly. Many courses offered only once a year (e.g., developmental psychology or personality psychology) may be required for admission to particular graduate programs. Some 400-level courses will provide students the chance to do significant integrative projects that will make grad school applications competitive (e.g., BISCP 489, BIS 438, or BIS 490). These kinds of courses also provide the kinds of interactions with faculty that ground effective letters of recommendation.
 - Listed below are three possible coursework pathways within the major that, along with other elective courses related to particular problems, communities, or settings, would help students acquire and articulate a clear skill set and knowledge base for different career interests. These are not meant to be the only pathway options, and some pathways may combine various interests. For example, students interested in early intervention for youth might want to combine and tailor the first and second, or the second and third pathways.
 
-##### Psychology (BA) parsed choices and pathway notes
-
-- Listed below are three possible coursework pathways within the major that, along with other elective courses related to particular problems, communities, or settings, would help students acquire and articulate a clear skill set and knowledge base for different career interests. These are not meant to be the only pathway options, and some pathways may combine various interests. For example, students interested in early intervention for youth might want to combine and tailor the first and second, or the second and third pathways.
-
 #### GRC Equivalent Courses
 
 - `PSYC& 180`
@@ -3538,7 +3639,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-psychology:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Science, Technology & Society (BA)

@@ -79,8 +79,8 @@ Conversion of biomass into sustainable aviation fuel.
 Cooperative Institute for Climate,
 Cost Share
 Courses already encoded on the REEH degree audit
+CSE : Data Programming (4 credits)
 CSE 121/122/123/142/143: Introduction to Computer Programming (various versions) (4 credits)
-CSE 160: Data Programming (4 credits)
 Current UW students who want to download some or all of the 4-year course plan directly into MyPlan can do so by going to the SBSE sample 4-year course plan for importing into MyPlan (UW NetID required for access). Here are additional access instructions for current UW students:
 Currently, the courses on each list are as follows. More courses are expected to be added.
 Degree Overview

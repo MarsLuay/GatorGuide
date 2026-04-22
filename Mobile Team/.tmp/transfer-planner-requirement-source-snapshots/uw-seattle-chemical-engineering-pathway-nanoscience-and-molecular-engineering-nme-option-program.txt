@@ -115,7 +115,7 @@ Connect with us:
 Contact us
 Contact Us
 Controlled Release Systems (w/CHEM E 491)*
-CSE 160: Data Programming (4)
+CSE : Data Programming (4)
 CSE 163: Intermediate Data Programming (4)
 CSE 373: Data Structures and Algorithms (4)
 CSE 410: Computer Systems (3)

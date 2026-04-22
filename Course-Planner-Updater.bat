@@ -28,8 +28,8 @@ set "INTERACTIVE_MENU=1"
 set "HOSTED_BACK_TARGET="
 echo.
 echo Course Planner Updater
-echo 1. Full maintenance
-echo 2. Refresh only
+echo 1. Course updates + tests
+echo 2. Course updates only
 echo 3. Show cache summary
 echo 4. Edit course links
 echo 5. Laymans Diagnosis
@@ -53,7 +53,7 @@ goto menu
 
 :maintenanceModeMenu
 echo.
-echo Full maintenance
+echo Course updates + tests
 echo 1. Normal
 echo 2. Skip downloads
 echo B. Back
@@ -76,7 +76,7 @@ goto maintenanceModeMenu
 
 :refreshModeMenu
 echo.
-echo Refresh only
+echo Course updates only
 echo 1. Normal
 echo 2. Skip downloads
 echo B. Back
@@ -94,18 +94,18 @@ goto refreshModeMenu
 :runMaintenance
 set "ACTION_LABEL=Course planner maintenance"
 if "%HOSTED_BACK_TARGET%"=="" (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1"
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt
 ) else (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -BackExitCode %BACK_EXIT_CODE%
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -BackExitCode %BACK_EXIT_CODE%
 )
 goto finish
 
 :runMaintenanceNoDownloads
 set "ACTION_LABEL=Course planner maintenance (skip downloads)"
 if "%HOSTED_BACK_TARGET%"=="" (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt
 ) else (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -BackExitCode %BACK_EXIT_CODE%
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -BackExitCode %BACK_EXIT_CODE%
 )
 goto finish
 

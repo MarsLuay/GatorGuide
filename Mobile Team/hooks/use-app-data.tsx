@@ -82,8 +82,13 @@ type AppDataContextValue = {
   signInAsGuest: () => Promise<void>;
   signOut: () => Promise<void>;
   deleteAccount: () => Promise<void>;
+  patchUserLocally: (patch: Partial<User>) => Promise<void>;
   updateUser: (patch: Partial<User>) => Promise<void>;
-  setQuestionnaireAnswers: (answers: QuestionnaireAnswers) => Promise<void>;
+  setQuestionnaireAnswers: (
+    answers:
+      | QuestionnaireAnswers
+      | ((currentAnswers: QuestionnaireAnswers) => QuestionnaireAnswers)
+  ) => Promise<void>;
   setNotificationsEnabled: (enabled: boolean) => Promise<void>;
   addSavedCollege: (college: College) => Promise<void>;
   removeSavedCollege: (collegeId: string) => Promise<void>;
@@ -105,6 +110,11 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<AppDataState>(initialState);
   const stateRef = useRef(state);
   const reconciledSavedCollegesUidRef = useRef<string | null>(null);
+  const currentDeadlineAnswer =
+    state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.deadline];
+  const currentUserUid = state.user?.uid ?? null;
+  const currentUserIsGuest = !!state.user?.isGuest;
+  const currentUserTranscript = state.user?.transcript ?? "";
 
   useEffect(() => {
     stateRef.current = state;
@@ -196,7 +206,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
 
       await notificationsService.syncDeadlineNotifications({
         enabled: true,
-        deadline: state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.deadline],
+        deadline: currentDeadlineAnswer,
       }).catch((error) => {
         void errorLoggingService.captureException(error, {
           category: "notifications",
@@ -205,9 +215,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
           handled: true,
           source: "use-app-data",
           metadata: {
-            hasDeadline: !!String(
-              state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.deadline] ?? ""
-            ).trim(),
+            hasDeadline: !!String(currentDeadlineAnswer ?? "").trim(),
           },
         });
       });
@@ -219,7 +227,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   }, [
     isHydrated,
     state.notificationsEnabled,
-    state.questionnaireAnswers?.[QUESTIONNAIRE_FIELD_IDS.deadline],
+    currentDeadlineAnswer,
   ]);
 
   const loadProfileFromServer = useCallback(async (uid: string): Promise<LoadedServerProfile> => {
@@ -451,25 +459,24 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (!isHydrated) return;
 
-    const currentUser = state.user;
-    if (!currentUser?.uid || currentUser.isGuest) {
+    if (!currentUserUid || currentUserIsGuest) {
       reconciledSavedCollegesUidRef.current = null;
       return;
     }
 
-    if (reconciledSavedCollegesUidRef.current === currentUser.uid) return;
-    reconciledSavedCollegesUidRef.current = currentUser.uid;
+    if (reconciledSavedCollegesUidRef.current === currentUserUid) return;
+    reconciledSavedCollegesUidRef.current = currentUserUid;
 
     let cancelled = false;
     (async () => {
-      const { legacySavedCollegeIds } = await loadProfileFromServer(currentUser.uid);
-      const mergedSavedColleges = await loadMergedSavedColleges(currentUser.uid, legacySavedCollegeIds, {
+      const { legacySavedCollegeIds } = await loadProfileFromServer(currentUserUid);
+      const mergedSavedColleges = await loadMergedSavedColleges(currentUserUid, legacySavedCollegeIds, {
         includeLocalSnapshot: false,
       });
 
       if (cancelled) return;
       setState((prev) => {
-        if (prev.user?.uid !== currentUser.uid || prev.user.isGuest) return prev;
+        if (prev.user?.uid !== currentUserUid || prev.user.isGuest) return prev;
         return {
           ...prev,
           savedColleges: mergedSavedColleges,
@@ -480,22 +487,21 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, [isHydrated, state.user?.uid, state.user?.isGuest, loadMergedSavedColleges, loadProfileFromServer]);
+  }, [isHydrated, currentUserUid, currentUserIsGuest, loadMergedSavedColleges, loadProfileFromServer]);
 
   useEffect(() => {
     if (!isHydrated) return;
 
-    const currentUser = state.user;
-    if (!currentUser?.uid) return;
+    if (!currentUserUid) return;
 
     let cancelled = false;
     void (async () => {
-      const localTranscript = await storageService.getTranscript(currentUser.uid).catch(() => null);
+      const localTranscript = await storageService.getTranscript(currentUserUid).catch(() => null);
       const nextTranscriptUrl = localTranscript?.url ?? "";
 
       if (cancelled) return;
       setState((prev) => {
-        if (!prev.user || prev.user.uid !== currentUser.uid) return prev;
+        if (!prev.user || prev.user.uid !== currentUserUid) return prev;
         if (String(prev.user.transcript ?? "") === nextTranscriptUrl) return prev;
         return {
           ...prev,
@@ -510,7 +516,17 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     return () => {
       cancelled = true;
     };
-  }, [isHydrated, state.user?.uid]);
+  }, [isHydrated, currentUserUid, currentUserTranscript]);
+
+  const patchUserLocally = useCallback(async (patch: Partial<User>) => {
+    setState((prev) => {
+      if (!prev.user) return prev;
+      return {
+        ...prev,
+        user: { ...prev.user, ...patch },
+      };
+    });
+  }, []);
 
   const updateUser = useCallback(async (patch: Partial<User>) => {
     const firestorePatch = buildFirestoreUserPatch(patch);
@@ -558,9 +574,19 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const setQuestionnaireAnswers = useCallback(async (answers: QuestionnaireAnswers) => {
-    const normalized = normalizeQuestionnaireAnswers(answers);
-    setState((prev) => ({ ...prev, questionnaireAnswers: { ...normalized } }));
+  const setQuestionnaireAnswers = useCallback(async (
+    answers:
+      | QuestionnaireAnswers
+      | ((currentAnswers: QuestionnaireAnswers) => QuestionnaireAnswers)
+  ) => {
+    setState((prev) => {
+      const nextAnswers =
+        typeof answers === "function"
+          ? answers(prev.questionnaireAnswers ?? {})
+          : answers;
+      const normalized = normalizeQuestionnaireAnswers(nextAnswers);
+      return { ...prev, questionnaireAnswers: { ...normalized } };
+    });
   }, []);
 
   const setNotificationsEnabled = useCallback(async (enabled: boolean) => {
@@ -685,6 +711,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       signInAsGuest,
       signOut,
       deleteAccount,
+      patchUserLocally,
       updateUser,
       setQuestionnaireAnswers,
       setNotificationsEnabled,
@@ -695,7 +722,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       clearAll,
       setOnboardingSeen,
     }),
-    [isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, addSavedCollege, removeSavedCollege, isCollegeSaved, restoreData, clearAll, setOnboardingSeen]
+    [isHydrated, state, signIn, signInWithAuthUser, signInAsGuest, signOut, deleteAccount, patchUserLocally, updateUser, setQuestionnaireAnswers, setNotificationsEnabled, addSavedCollege, removeSavedCollege, isCollegeSaved, restoreData, clearAll, setOnboardingSeen]
   );
 
   return <AppDataContext.Provider value={value}>{children}</AppDataContext.Provider>;

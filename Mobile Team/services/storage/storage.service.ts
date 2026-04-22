@@ -32,6 +32,8 @@ export type UploadedFile = {
   sizeBytes: number | null;
 };
 
+type LocalDocumentType = 'resume' | 'transcript' | 'avatar' | 'roadmap';
+
 function normalizeUploadedAt(value: unknown) {
   const raw = String(value ?? "").trim();
   if (!raw) return new Date().toISOString();
@@ -158,6 +160,36 @@ async function persistWebFileUrl(sourceUri: string): Promise<string> {
   return blobToDataUrl(blob);
 }
 
+function getLocalDocumentsBaseDir() {
+  return (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
+}
+
+function getLocalDocumentDirectoryUri(type: LocalDocumentType, userId: string) {
+  const baseDir = getLocalDocumentsBaseDir();
+  if (!baseDir) return null;
+
+  return `${baseDir}${LOCAL_DOCUMENTS_DIR_NAME}/${buildLocalDocumentSubdirectory(type, userId)}/`;
+}
+
+async function deleteLocalDocumentDirectory(type: LocalDocumentType, userId: string) {
+  const directoryUri = getLocalDocumentDirectoryUri(type, userId);
+  if (!directoryUri) return;
+
+  await FileSystem.deleteAsync(directoryUri, { idempotent: true }).catch((error) => {
+    void errorLoggingService.captureException(error, {
+      category: 'storage',
+      operation: 'delete-local-document-directory',
+      severity: 'warn',
+      handled: true,
+      source: 'storage.service',
+      metadata: {
+        type,
+        userId,
+      },
+    });
+  });
+}
+
 async function copyToLocalStorage(
   sourceUri: string,
   fileName: string,
@@ -174,7 +206,7 @@ async function copyToLocalStorage(
     }
     return persistWebFileUrl(sourceUri);
   }
-  const baseDir = (FileSystem as any).documentDirectory ?? (FileSystem as any).cacheDirectory ?? "";
+  const baseDir = getLocalDocumentsBaseDir();
   const dir = `${baseDir}${LOCAL_DOCUMENTS_DIR_NAME}/${subDir}/`;
   await FileSystem.makeDirectoryAsync(dir, { intermediates: true }).catch((error) => {
     void errorLoggingService.captureException(error, {
@@ -388,6 +420,7 @@ class StorageService {
         await deleteLegacyRemoteTranscriptCopy(existingTranscript.url);
       }
     }
+    await deleteLocalDocumentDirectory(fileType, userId);
     await AsyncStorage.removeItem(
       fileType === 'resume'
         ? getResumeStorageKey(userId)

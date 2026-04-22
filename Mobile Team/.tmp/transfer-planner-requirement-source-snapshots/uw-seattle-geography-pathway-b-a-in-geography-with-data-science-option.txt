@@ -97,9 +97,10 @@ GEOG 230 — Urbanization and Development: Geographies of Global Inequality
 GEOG 236 — Geography of Greater China
 GEOG 245 — Introduction to Population Science
 GEOG 258 — Digital Geographies
+GEOG 262 — Geographies of Everyday Life
 GEOG 270 — Geographies of International Development & The Environment
 GEOG 271 — Geography of Food and Eating
-GEOG 276 — Intro to Political Geography
+GEOG 272 — Geographies of Environmental Justice
 GEOG 276 — Introduction to Political Geography
 GEOG 277 — Geography of Cities
 GEOG 280 — Introduction to the Geography of Health and Health Care
@@ -177,8 +178,8 @@ Phone: (206) 543-5843
 Please see our Undergraduate Programs section for information about declaring the major in geography, career paths, scholarships, and other student resources. If you are ready to declare the geography major, please visit Declare the Geography Major to begin the two-step major declaration process. If you have additional questions, please contact an adviser via the Advising page .
 Policies & Procedures
 Privacy
-Programming: 2 courses from CSE 121, CSE 122, CSE 123, CSE 142, CSE 143, CSE 160, CSE 163, or INFO 370
-Programming: either CSE 142 or CSE 160; either CSE 143 or CSE 163
+Programming: 2 courses from CSE 121, CSE 122, CSE 123, CSE 142, CSE 143, CSE , CSE 163, or INFO 370
+Programming: either CSE 142 or CSE ; either CSE 143 or CSE 163
 Programs & Courses
 Publications
 Quantitative Methods: One from GEOG 317, GEOG 326, GEOG 426, STAT 220, STAT 221, STAT 290, STAT 311, STAT 390, Q SCI 381, or QMETH 201

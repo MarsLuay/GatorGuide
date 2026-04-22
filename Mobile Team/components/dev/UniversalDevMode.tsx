@@ -1112,7 +1112,7 @@ export function UniversalDevMode() {
               <View style={{ flexDirection: "row", alignItems: "flex-start", justifyContent: "space-between", gap: 12 }}>
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: textColor, fontSize: 18, fontWeight: "700" }}>
-                    Dev Mode
+                    Dev Mode. Good luck.
                   </Text>
                   <Text style={{ color: secondaryTextColor, fontSize: 13, marginTop: 4 }}>
                     {routeInfo.label} • {pathname}

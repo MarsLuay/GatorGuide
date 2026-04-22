@@ -6,7 +6,11 @@ import {
   TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS,
   TRANSFER_PLANNER_BOOTSTRAP_TRACKS,
 } from "./bootstrap.generated";
-import { TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA } from "./course-metadata";
+import {
+  TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA,
+  getTransferPlannerEquivalentCourseCodes,
+  getTransferPlannerNormalizedCourseMetadataEntry,
+} from "./course-metadata";
 import {
   TRANSFER_PLANNER_UW_GRC_ALL_EQUIVALENCY_RULES,
 } from "./equivalency-guide.generated";
@@ -1706,11 +1710,12 @@ function addParsedRequirementSourceCourses(
 }
 
 function applyNormalizedCourseMetadata(registry: Map<string, MutableCourseRegistryEntry>) {
-  for (const metadata of TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA) {
-    const normalizedCode = normalizeCourseCode(metadata.code);
-    const key = `${metadata.schoolId}|${normalizedCode}`;
-    const entry = registry.get(key);
-    if (!entry) {
+  for (const entry of registry.values()) {
+    const metadata = getTransferPlannerNormalizedCourseMetadataEntry(
+      entry.schoolId,
+      entry.code
+    );
+    if (!metadata) {
       continue;
     }
 
@@ -1761,6 +1766,14 @@ function applyNormalizedCourseMetadata(registry: Map<string, MutableCourseRegist
     for (const note of metadata.notes ?? []) {
       entry.notes.add(note);
     }
+  }
+}
+
+function seedCourseRegistryFromNormalizedMetadata(
+  registry: Map<string, MutableCourseRegistryEntry>
+) {
+  for (const metadata of TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA) {
+    getOrCreateCourse(registry, metadata.schoolId, metadata.code);
   }
 }
 
@@ -1923,6 +1936,7 @@ function buildCourseRegistry() {
     addParsedRequirementSourceCourses(registry, parsedSource);
   }
 
+  seedCourseRegistryFromNormalizedMetadata(registry);
   applyNormalizedCourseMetadata(registry);
 
   return Array.from(registry.values())
@@ -2022,6 +2036,20 @@ function hasUnsafeSourceBackedClassificationValidationNote(
   );
 }
 
+const TRANSFER_PLANNER_EQUIVALENCY_RULES_BY_ID = new Map(
+  TRANSFER_PLANNER_UW_GRC_ALL_EQUIVALENCY_RULES.map((rule) => [rule.id, rule])
+);
+
+function isPresentDayGuideRuleId(guideRuleId: string | null | undefined) {
+  if (!guideRuleId) {
+    return true;
+  }
+
+  return !(
+    TRANSFER_PLANNER_EQUIVALENCY_RULES_BY_ID.get(guideRuleId)?.isObsoleteSourceCourse ?? false
+  );
+}
+
 function shouldIncludeStudentFacingSourceBackedClassification(
   classification: TransferPlannerRequirementDiffClassificationEntry
 ) {
@@ -2034,6 +2062,10 @@ function shouldIncludeStudentFacingSourceBackedClassification(
   }
 
   if (hasUnsafeSourceBackedClassificationValidationNote(classification)) {
+    return false;
+  }
+
+  if (!isPresentDayGuideRuleId(classification.guideRuleId)) {
     return false;
   }
 
@@ -2713,6 +2745,169 @@ function buildSourceManifestRegistry() {
 }
 
 export const TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY = buildCourseRegistry();
+
+const TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY_BY_KEY = new Map(
+  TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.map((entry) => [
+    `${entry.schoolId}|${entry.code}`,
+    entry,
+  ])
+);
+
+function getCourseRegistryEntryScore(
+  entry: TransferPlannerCourseRegistryEntry,
+  requestedCode: string
+) {
+  let score = 0;
+
+  if (entry.title) score += 32;
+  if (entry.creditValue !== null) score += 16;
+  if (entry.creditLabel) score += 8;
+  if (entry.catalogDescription) score += 16;
+  if (entry.prerequisiteCourseCodes.length > 0) score += 8;
+  if (entry.prerequisiteAlternativeCourseCodeSets.length > 0) score += 6;
+  if (entry.corequisiteCourseCodes.length > 0) score += 8;
+  if (entry.corequisiteAlternativeCourseCodeSets.length > 0) score += 6;
+  if (entry.effectiveYearRanges.length > 0) score += 4;
+  if (entry.sourceLinks.length > 0) score += 4;
+  if (entry.notes.length > 0) score += 2;
+  if (entry.code === requestedCode) score += 1;
+
+  return score;
+}
+
+function mergeSortedStrings(left: string[], right: string[]) {
+  return Array.from(new Set([...left, ...right])).sort();
+}
+
+function mergeAlternativeCourseCodeSets(left: string[][], right: string[][]) {
+  return Array.from(
+    new Set(
+      [...left, ...right].map((group) =>
+        group
+          .map((code) => normalizeCourseCode(code))
+          .filter(Boolean)
+          .sort()
+          .join("||")
+      )
+    )
+  )
+    .filter(Boolean)
+    .sort()
+    .map((groupKey) => groupKey.split("||").filter(Boolean));
+}
+
+function mergeSourceLinks(left: TransferPlannerSourceLink[], right: TransferPlannerSourceLink[]) {
+  return Array.from(
+    new Map(
+      [...left, ...right].map((link) => [
+        `${link.url}||${link.label}||${link.note ?? ""}`,
+        link,
+      ])
+    ).values()
+  ).sort((firstLink, secondLink) => firstLink.label.localeCompare(secondLink.label));
+}
+
+function mergeEffectiveYearRanges(
+  left: TransferPlannerEffectiveYearRange[],
+  right: TransferPlannerEffectiveYearRange[]
+) {
+  return Array.from(
+    new Map(
+      [...left, ...right].map((range) => [getRangeKey(range), range])
+    ).values()
+  ).sort((firstRange, secondRange) =>
+    firstRange.startLabel.localeCompare(secondRange.startLabel) ||
+    (firstRange.endLabel ?? "").localeCompare(secondRange.endLabel ?? "")
+  );
+}
+
+function mergeCourseRegistryEntries(
+  primaryEntry: TransferPlannerCourseRegistryEntry,
+  fallbackEntry: TransferPlannerCourseRegistryEntry
+) {
+  return {
+    ...primaryEntry,
+    title: primaryEntry.title ?? fallbackEntry.title,
+    creditValue: primaryEntry.creditValue ?? fallbackEntry.creditValue,
+    creditLabel: primaryEntry.creditLabel ?? fallbackEntry.creditLabel,
+    catalogDescription: primaryEntry.catalogDescription ?? fallbackEntry.catalogDescription,
+    sourceKinds: mergeSortedStrings(
+      primaryEntry.sourceKinds,
+      fallbackEntry.sourceKinds
+    ) as TransferPlannerCourseSourceKind[],
+    sourceContexts: mergeSortedStrings(primaryEntry.sourceContexts, fallbackEntry.sourceContexts),
+    referencedByPlanIds: mergeSortedStrings(
+      primaryEntry.referencedByPlanIds,
+      fallbackEntry.referencedByPlanIds
+    ),
+    referencedByTrackIds: mergeSortedStrings(
+      primaryEntry.referencedByTrackIds,
+      fallbackEntry.referencedByTrackIds
+    ),
+    sourceLinks: mergeSourceLinks(primaryEntry.sourceLinks, fallbackEntry.sourceLinks),
+    effectiveYearLabels: mergeSortedStrings(
+      primaryEntry.effectiveYearLabels,
+      fallbackEntry.effectiveYearLabels
+    ),
+    effectiveYearRanges: mergeEffectiveYearRanges(
+      primaryEntry.effectiveYearRanges,
+      fallbackEntry.effectiveYearRanges
+    ),
+    prerequisiteCourseCodes: mergeSortedStrings(
+      primaryEntry.prerequisiteCourseCodes,
+      fallbackEntry.prerequisiteCourseCodes
+    ),
+    prerequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
+      primaryEntry.prerequisiteAlternativeCourseCodeSets,
+      fallbackEntry.prerequisiteAlternativeCourseCodeSets
+    ),
+    prerequisiteNotes: mergeSortedStrings(
+      primaryEntry.prerequisiteNotes,
+      fallbackEntry.prerequisiteNotes
+    ),
+    corequisiteCourseCodes: mergeSortedStrings(
+      primaryEntry.corequisiteCourseCodes,
+      fallbackEntry.corequisiteCourseCodes
+    ),
+    corequisiteAlternativeCourseCodeSets: mergeAlternativeCourseCodeSets(
+      primaryEntry.corequisiteAlternativeCourseCodeSets,
+      fallbackEntry.corequisiteAlternativeCourseCodeSets
+    ),
+    corequisiteNotes: mergeSortedStrings(
+      primaryEntry.corequisiteNotes,
+      fallbackEntry.corequisiteNotes
+    ),
+    lastValidatedOn: primaryEntry.lastValidatedOn ?? fallbackEntry.lastValidatedOn,
+    latestAvailabilitySummary:
+      primaryEntry.latestAvailabilitySummary ?? fallbackEntry.latestAvailabilitySummary,
+    latestPublishedQuarters: mergeSortedStrings(
+      primaryEntry.latestPublishedQuarters ?? [],
+      fallbackEntry.latestPublishedQuarters ?? []
+    ),
+    notes: mergeSortedStrings(primaryEntry.notes, fallbackEntry.notes),
+  } satisfies TransferPlannerCourseRegistryEntry;
+}
+
+function projectCanonicalCourseEntryToRequestedCode(
+  entry: TransferPlannerCourseRegistryEntry,
+  schoolId: TransferPlannerSourceSchoolId,
+  requestedCode: string
+) {
+  if (entry.code === requestedCode) {
+    return entry;
+  }
+
+  const parts = parseCourseParts(requestedCode);
+  return {
+    ...entry,
+    id: getCourseId(schoolId, requestedCode),
+    code: requestedCode,
+    displayLabel: requestedCode,
+    subjectCode: parts.subjectCode,
+    catalogNumber: parts.catalogNumber,
+    level: parts.level,
+  } satisfies TransferPlannerCourseRegistryEntry;
+}
 export const TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY = buildEquivalencyRuleRegistry();
 export const TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY = buildRequirementAtomRegistry();
 export const TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY = buildDegreeMapBlockRegistry();
@@ -2991,9 +3186,51 @@ export function getTransferPlannerCanonicalCourse(
   code: string
 ) {
   const normalizedCode = normalizeCourseCode(code);
-  return TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY.find(
-    (entry) => entry.schoolId === schoolId && entry.code === normalizedCode
+  const exactEntry =
+    TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY_BY_KEY.get(`${schoolId}|${normalizedCode}`) ??
+    null;
+  const candidateEntries = Array.from(
+    new Map(
+      getTransferPlannerEquivalentCourseCodes(schoolId, normalizedCode)
+        .map((candidateCode) =>
+          TRANSFER_PLANNER_CANONICAL_COURSE_REGISTRY_BY_KEY.get(
+            `${schoolId}|${normalizeCourseCode(candidateCode)}`
+          ) ?? null
+        )
+        .filter((entry): entry is TransferPlannerCourseRegistryEntry => Boolean(entry))
+        .map((entry) => [entry.code, entry])
+    ).values()
   );
+
+  const bestEquivalentEntry =
+    [...candidateEntries].sort((left, right) => {
+      const scoreDelta =
+        getCourseRegistryEntryScore(right, normalizedCode) -
+        getCourseRegistryEntryScore(left, normalizedCode);
+      if (scoreDelta !== 0) {
+        return scoreDelta;
+      }
+
+      return left.code.localeCompare(right.code);
+    })[0] ?? null;
+
+  if (!bestEquivalentEntry) {
+    return exactEntry ?? undefined;
+  }
+
+  if (!exactEntry) {
+    return projectCanonicalCourseEntryToRequestedCode(
+      bestEquivalentEntry,
+      schoolId,
+      normalizedCode
+    );
+  }
+
+  if (exactEntry.code === bestEquivalentEntry.code) {
+    return exactEntry;
+  }
+
+  return mergeCourseRegistryEntries(exactEntry, bestEquivalentEntry);
 }
 
 export function isTransferPlannerEquivalencyRuleEffectiveForTerm(

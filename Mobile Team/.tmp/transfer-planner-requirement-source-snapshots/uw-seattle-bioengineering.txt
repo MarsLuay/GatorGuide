@@ -131,7 +131,7 @@ Credits
 AMATH 301
 Beginning Scientific Computing
 4
-CSE 121 or 160 plus BIOEN 217
+CSE 121 or plus BIOEN 217
 Intro to Java or Intro to Python and Matlab Fundamentals Seminar
 5
 TOTAL
@@ -349,7 +349,7 @@ CHEM E 310, 326, 375, 445, 457, 465; NME 220
 Civil and Environmental Engineering
 CEE 220, 350, 357, 480, 495
 Computer Science and Engineering
-CSE 122, 123, 154, 160, 373, 410, 427
+CSE 122, 123, 154, , 373, 410, 427
 Electrical Engineering
 E E 215, 233, 235, 242, 271, 341, 401, 484, 485
 Industrial Engineering

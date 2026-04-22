@@ -46,8 +46,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "Select one of the following:"
+          "CMST& 240"
         ]
       },
       {
@@ -99,7 +98,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BTAC 100",
           "BTAC 101",
           "BTAC 110",
-          "or BTAC elective-any BTAC course not required in the degree"
+          "Elective or General Education"
         ]
       },
       {
@@ -138,7 +137,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "BTAC 177",
           "BTAC 266",
-          "See elective list below",
+          "Elective or General Education",
           "- Minimum 3 credits"
         ]
       },
@@ -149,8 +148,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BTAC 250",
           "CMST& 210",
           "CMST& 220",
-          "CMST& 230",
-          "Select one of the following:"
+          "CMST& 230"
         ]
       },
       {
@@ -225,7 +223,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ENGL& 101",
           "MATH 147",
-          "BUS& 101"
+          "BUS& 101",
+          "Elective or General Education"
         ]
       },
       {
@@ -236,8 +235,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 126",
           "ENGL 127",
           "ENGL 128",
-          "ENGL& 235",
-          "Select one of the following:"
+          "ENGL& 235"
         ]
       },
       {
@@ -334,8 +332,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BTAC 163",
           "CMST& 210",
           "CMST& 220",
-          "CMST& 230",
-          "Select one of the following:"
+          "CMST& 230"
         ]
       },
       {
@@ -432,8 +429,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST 117",
           "CMST& 210",
           "CMST& 220",
-          "MATH& 107",
-          "Select one of the following:"
+          "MATH& 107"
         ]
       },
       {
@@ -464,7 +460,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 127",
           "ENGL 128",
           "ENGL& 235",
-          "Program Elective: Recommended one of the following:",
+          "Elective or General Education",
           "(offered summer/winter)",
           "(offered fall/spring)"
         ]
@@ -475,8 +471,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 1 - Natural Science List A (Lab)",
           "MATH& 146",
           "ACCT 215",
-          "SDEV 101",
-          "Program Electives (see complete list below) Recommended:"
+          "SDEV 101"
         ]
       },
       {
@@ -542,8 +537,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 2 - Humanities/Fine Arts/English",
           "N 2 - Natural Science List A",
-          "S 1 - Social Science",
-          "avoid AMES courses to meet the distribution requirement"
+          "S 1 - Social Science"
         ]
       },
       {
@@ -551,15 +545,15 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 3 - Humanities/Fine Arts/English",
           "N 3 - Natural Science List A or List B",
-          "S 2 - Social Science",
-          "avoid AMES courses to meet the distribution requirement"
+          "S 2 - Social Science"
         ]
       },
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
           "AMES 103",
-          "Additional credits from any distribution Humanities/Fine Arts/English Distribution , Natural Science Distribution or Social Science Distribution Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -638,7 +632,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "N 3 - Natural Science List A or List B",
           "S 2 - Social Science",
-          "5 credits from Humanities/Fine Arts/English Distribution , Social Science Distribution or Natural Science Distribution",
+          "Humanities or Social Science",
+          "Natural Science",
           "ANTH& 205"
         ]
       },
@@ -647,7 +642,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ANTH& 206",
           "H 3 - Humanities/Fine Arts/English",
-          "5 credits from Humanities/Fine Arts/English Distribution , Social Science Distribution or Natural Science Distribution"
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -755,8 +751,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "Select one of the following:"
+          "CMST& 240"
         ]
       },
       {
@@ -819,7 +814,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "CMST& 230",
           "CJ& 105",
-          "CJ elective, see list of choices below"
+          "Elective or General Education"
         ]
       },
       {
@@ -846,8 +841,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 126",
           "ENGL 127",
           "ENGL 128",
-          "ENGL& 235",
-          "Select one of the following:"
+          "ENGL& 235"
         ]
       },
       {
@@ -855,7 +849,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "CJ& 106",
           "CJ 220",
-          "CJ elective, see list of choices below"
+          "Elective or General Education"
         ]
       },
       {
@@ -915,7 +909,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "CMST& 230",
           "CJ& 240",
-          "CJ Elective"
+          "Elective or General Education"
         ]
       },
       {
@@ -923,7 +917,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "BIOL& 160",
           "CJ 115",
-          "CJ Elective"
+          "Elective or General Education"
         ]
       },
       {
@@ -942,8 +936,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 127",
           "ENGL 128",
           "ENGL& 235",
-          "CJ Elective",
-          "Select one of the following:"
+          "Elective or General Education"
         ]
       },
       {
@@ -1036,8 +1029,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "Select one of the following:"
+          "CMST& 240"
         ]
       },
       {
@@ -1046,10 +1038,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BTAC 110",
           "ECED 175",
           "ECED& 180",
-          "ECED 141",
-          "MATH& 107",
-          "MATH& 131",
-          "MATH& 132"
+          "ECED 141"
         ]
       },
       {
@@ -1067,7 +1056,10 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ECED 165",
           "ECED 250",
           "EDUC& 240",
-          "EDUC 245"
+          "EDUC 245",
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       }
     ],
@@ -1116,7 +1108,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "EDUC& 150",
           "ECED& 170",
           "ECED& 190",
-          "Any course in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories."
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -1135,7 +1128,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "EDUC& 204",
           "ECED 214",
-          "Any course in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. Credits: 5 Any ECED or EDUC course not included in core, minimum 3 credits."
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -1143,7 +1137,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "EDUC& 240",
           "ECED 250",
-          "Any course in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. Credits: 5 Any ECED or EDUC course not included in core, mimimum 3 credits."
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       }
     ],
@@ -1191,8 +1186,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH 147",
           "MATH& 148",
           "MATH& 131",
-          "MATH& 132",
-          "Choose one of the following:"
+          "MATH& 132"
         ]
       },
       {
@@ -1203,8 +1197,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "Choose one of the following:"
+          "CMST& 240"
         ]
       },
       {
@@ -1279,8 +1272,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "GEOG& 200",
           "N 2 - Natural Science List A",
-          "S 1 - Social Science",
-          "any course except GEOG from the distribution"
+          "S 1 - Social Science"
         ]
       },
       {
@@ -1288,21 +1280,20 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 2 - Humanities/Fine Arts/English",
           "N 3 - Natural Science List A or List B",
-          "Transferrable Elective any course from a distribution"
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
           "H 3 - Humanities/Fine Arts/English",
-          "Transferrable Elective Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
-          "S 2 - Social Science",
-          "any course except GEOG from the distribution"
+          "S 2 - Social Science"
         ]
       },
       {
@@ -1341,8 +1332,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "HIST& 126",
           "HIST& 128",
           "HIST& 136",
-          "HIST& 137",
-          "or other college level Math Choose one of the following:"
+          "HIST& 137"
         ]
       },
       {
@@ -1363,9 +1353,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "HIST& 126",
           "HIST& 128",
           "HIST& 136",
-          "HIST& 137",
-          "ANTH& 106",
-          "ANTH& 206"
+          "HIST& 137"
         ]
       },
       {
@@ -1376,9 +1364,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "HIST& 126",
           "HIST& 128",
           "HIST& 136",
-          "HIST& 137",
-          "CMST& 101",
-          "CMST& 220"
+          "HIST& 137"
         ]
       },
       {
@@ -1396,7 +1382,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "AMES 100",
           "AMES 103",
           "PSYC& 100",
-          "Foreign Language or elective"
+          "Elective or General Education"
         ]
       },
       {
@@ -1499,8 +1485,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BUS& 201",
           "CMST& 210",
           "CMST& 220",
-          "CMST& 230",
-          "One of the following:"
+          "CMST& 230"
         ]
       }
     ],
@@ -1552,15 +1537,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "S 1 - Social Science",
           "N 2 - Natural Science List A",
           "CMST& 101",
-          "CMST& 220",
-          "SOC& 101",
-          "GEOG 201",
-          "HIST& 126",
-          "HIST& 127",
-          "HIST& 128",
-          "HIST& 136",
-          "HIST& 137",
-          "PSYC& 100"
+          "CMST& 220"
         ]
       },
       {
@@ -1620,7 +1597,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 1 (15 credits)",
         "courses": [
           "ENGL& 101",
-          "PSYC& 100"
+          "PSYC& 100",
+          "Elective or General Education"
         ]
       },
       {
@@ -1647,7 +1625,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "S 1 - Social Science",
           "N 2 - Natural Science List A",
-          "Consider courses from the Diversity Course List (any subject other than psychology)"
+          "Consider courses from the Diversity Course List (any subject other than psychology)",
+          "Elective or General Education"
         ]
       },
       {
@@ -1663,7 +1642,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "S 2 - Social Science",
           "(any subject other than psychology)",
-          "Psychology course from list below Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+          "Elective or General Education"
         ]
       },
       {
@@ -1712,7 +1691,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ENGL& 101",
           "SOC& 101",
-          "Transferrable Elective s from any distribution Humanities/Fine Arts/English Distribution , Natural Science Distribution or Social Science Distribution"
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -1747,7 +1728,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "H 3 - Humanities/Fine Arts/English",
           "S 2 - Social Science",
           "avoid sociology and make sure you are also taking a class from the Diversity Course List",
-          "Additional credits from any distribution Humanities/Fine Arts/English Distribution , Natural Science Distribution or Social Science Distribution"
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -1802,7 +1784,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "H 1 - Humanities/Fine Arts/English",
           "MATH& 107",
           "PHIL& 120",
-          "Not ART or PHOTO (if PHOTO taken as concentration elective)"
+          "Elective or General Education"
         ]
       },
       {
@@ -1818,7 +1800,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ENGL 126",
           "N 2 - Natural Science List A",
-          "Concentration elective see list below"
+          "Elective or General Education"
         ]
       },
       {
@@ -1834,7 +1816,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "S 3 - Social Science",
-          "Concentration elective see list below H 2 - Humanities/Fine Arts/English (if PHOTO not taken as concentration elective) or Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+          "Humanities",
+          "Elective or General Education"
         ]
       },
       {
@@ -2042,8 +2025,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ART 105",
           "ART 109",
           "PHOTO 101",
-          "PHOTO 111",
-          "Choose one of the following:"
+          "PHOTO 111"
         ]
       },
       {
@@ -2061,8 +2043,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 2 - Natural Science List A",
           "ART 119",
           "ART 105",
-          "ART 180",
-          "Choose one of the following:"
+          "ART 180"
         ]
       },
       {
@@ -2288,8 +2269,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ART 119",
           "ART 255",
           "ART 256",
-          "ART 257",
-          "Choose one of the following:"
+          "ART 257"
         ]
       },
       {
@@ -2305,7 +2285,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 5 (15 credits)",
         "courses": [
           "ART 240",
-          "N 3 - Natural Science List A or List B"
+          "N 3 - Natural Science List A or List B",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -2354,8 +2336,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ART 213",
           "ART 214",
           "ART 240",
-          "ART 241",
-          "Select one of the following:"
+          "ART 241"
         ]
       },
       {
@@ -2484,7 +2465,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "JAPN& 123",
           "N 2 - Natural Science List A",
-          "Concentration elective see list below"
+          "Elective or General Education"
         ]
       },
       {
@@ -2528,10 +2509,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MUSC 139",
           "PHIL 220",
           "AMES 230",
+          "Humanities",
           "(offered spring)",
           "(offered fall/winter/spring)",
           "(offerred fall)",
-          "(offered winter)"
+          "(offered winter)",
+          "Social Science"
         ]
       }
     ],
@@ -2570,7 +2553,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ENGL 163",
           "N 1 - Natural Science List A (Lab)",
-          "Transferable elective Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories or Generally transferable courses."
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -2587,7 +2572,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ENGL 248",
           "N 3 - Natural Science List A or List B",
-          "Transferable elective Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories or Generally transferable courses."
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -2595,6 +2582,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ENGL 127",
           "S 1 - Social Science",
+          "Social Science",
           "AMES 100",
           "AMES 103",
           "AMES 105",
@@ -2608,7 +2596,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "SCI 160",
           "SOC 214",
           "SOC 220",
-          "Transferable elective Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories or Generally transferable courses."
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -2672,7 +2662,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 1 - Humanities/Fine Arts/English",
           "N 2 - Natural Science List A",
-          "any course from distribution except CMST",
           "Course from List A (see below)"
         ]
       },
@@ -2688,8 +2677,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 5 (15 credits)",
         "courses": [
           "H 2 - Humanities/Fine Arts/English",
-          "S 2 - Social Science",
-          "any course from distribution except CMST"
+          "S 2 - Social Science"
         ]
       },
       {
@@ -2751,8 +2739,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "AMES 100",
           "ENGL 247",
           "PHIL 238",
-          "Or higher depending on placement. Select one of the following required classes: (not all classes offered every quarter)",
+          "Social Science",
           "(meets social science requirement)",
+          "Humanities",
           "(meets humanities/fine arts/English requirement)"
         ]
       },
@@ -2785,7 +2774,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
-          "15 credits of Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories."
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -2933,7 +2923,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "H 1 - Humanities/Fine Arts/English",
           "N 1 - Natural Science List A (Lab)",
           "Recommend: Studying a language other than English strengthens your grasp of mechanics and vocabulary. It can also help build toward a career in publishing and editing work in translation (a growing and in-demand field). Most graduate English programs have a foreign language requirement as well, so completing coursework as a undergraduate can help you test out of these requirements. Foreign languages you can find here are Chinese , Japanese , Arabic , Spanish , French , and German .",
-          "We don't have specific recommendations for Natural Science. We encourage students to consult with their advisors to determine the appropriate choices in this distribution."
+          "Natural Science"
         ]
       },
       {
@@ -2962,7 +2952,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "DRMA& 101",
           "CMST 215",
           "MUSC& 105",
-          "Recommend: We don't have specific courses to recommend in this distribution, but we recommend courses that will expose students to new perspectives and experiences, many of which can also fulfill the Diversity Course Requirement. Some of the classes that could compliment work in creative writing include:"
+          "Elective or General Education"
         ]
       },
       {
@@ -3025,7 +3015,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH& 107",
           "S 1 - Social Science",
           "depends on placement",
-          "See recommended courses for Social Science requirement at bottom of page."
+          "Social Science"
         ]
       },
       {
@@ -3043,7 +3033,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "S 1 - Social Science",
           "N 2 - Natural Science List A",
           "English List (see below)",
-          "See recommended courses for Social Science requirement at bottom of page."
+          "Social Science"
         ]
       },
       {
@@ -3058,15 +3048,15 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 2 - Humanities/Fine Arts/English",
           "See list of recommendations below.",
-          "English List (see below) Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "S 3 - Social Science",
-          "English List (see below) Elective",
-          "See recommended courses for Social Science requirement at bottom of page."
+          "Elective or General Education",
+          "Social Science"
         ]
       },
       {
@@ -3218,9 +3208,10 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 3 - Humanities/Fine Arts/English",
           "S 2 - Social Science",
-          "PHIL 112",
           "ANTH& 206",
-          "Transferable Elective 5 cr Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories."
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -3230,14 +3221,18 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 1 - Natural Science List A (Lab)",
           "ASTR& 101",
           "BIOL 103",
-          "Transferable Elective 5 cr Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories."
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "N 3 - Natural Science List A or List B",
-          "Transferable Elective 5 cr Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. Electives 8 credits"
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -3309,14 +3304,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "FILM 121",
           "ENGL 164",
           "ENGL 264",
-          "Additional credits from any distribution Humanities/Fine Arts/English Distribution , Natural Science Distribution or Social Science Distribution"
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
-          "FILM 122",
-          "Additional credits-Recommended to take additional FILM courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+          "FILM 122"
         ]
       },
       {
@@ -3355,8 +3350,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL& 101",
           "MATH& 107",
           "HUMAN 160",
-          "SCI 160",
-          "or higher, depending on placement Choose one of the following:"
+          "SCI 160"
         ]
       },
       {
@@ -3366,8 +3360,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 1 - Natural Science List A (Lab)",
           "H 1 - Humanities/Fine Arts/English",
           "BIOL& 100",
-          "BIOL& 160",
-          "See list of courses recommended below."
+          "BIOL& 160"
         ]
       },
       {
@@ -3376,8 +3369,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 2 - Natural Science List A",
           "H 2 - Humanities/Fine Arts/English",
           "S 1 - Social Science",
-          "Select what interests you.",
-          "See recommended list of courses below."
+          "Select what interests you."
         ]
       },
       {
@@ -3386,21 +3378,24 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "H 3 - Humanities/Fine Arts/English",
           "N 3 - Natural Science List A or List B",
           "In addition to list of recommendations below, check with transfer institution to see if foreign language is required.",
-          "General Education courses can consist of either Humanities/Fine Arts/English or Social Science recommendations below."
+          "Humanities or Social Science",
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
           "S 2 - Social Science",
-          "See recommended list of courses below."
+          "Humanities or Social Science",
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "S 3 - Social Science",
-          "See recommended list of courses below."
+          "Humanities or Social Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -3480,8 +3475,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "SPAN& 123",
           "ENGL 126",
           "ENGL 127",
-          "ENGL 128",
-          "Choose one of the following:"
+          "ENGL 128"
         ]
       },
       {
@@ -3563,7 +3557,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 126",
           "ENGL 127",
           "ENGL 128",
-          "Select one of the following:",
           "Foreign Language (see below)"
         ]
       },
@@ -3571,22 +3564,20 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 4 (15 credits)",
         "courses": [
           "N 3 - Natural Science List A or List B",
-          "Concentration Elective (see list below)",
-          "Foreign Language or elective"
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
           "S 1 - Social Science",
-          "Foreign Language or Elective",
-          "Concentration Elective (see list below)"
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
-          "Foreign Language or Elective Concentration Elective Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+          "Elective or General Education"
         ]
       },
       {
@@ -3647,7 +3638,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "HIST 230",
           "POLS& 204",
           "POLS 225",
-          "PSYC 240"
+          "PSYC 240",
+          "Humanities",
+          "Social Science"
         ]
       },
       {
@@ -3695,7 +3688,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "SPAN& 122",
           "N 1 - Natural Science List A (Lab)",
-          "Concentration Elective (see below)"
+          "Elective or General Education"
         ]
       },
       {
@@ -3705,8 +3698,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 2 - Natural Science List A",
           "ENGL 126",
           "ENGL 127",
-          "ENGL 128",
-          "Select one of the following:"
+          "ENGL 128"
         ]
       },
       {
@@ -3714,7 +3706,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "SPAN& 221",
           "N 3 - Natural Science List A or List B",
-          "Concentration Elective (see below)"
+          "Elective or General Education"
         ]
       },
       {
@@ -3730,7 +3722,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "SPAN& 223",
-          "Concentration Elective Elective All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+          "Elective or General Education"
         ]
       },
       {
@@ -3825,7 +3817,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "JOURN 125",
           "JOURN 140",
           "JOURN 157",
-          "Choose an elective:"
+          "Elective or General Education"
         ]
       },
       {
@@ -3838,7 +3830,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "JOURN 116",
           "JOURN 125",
           "JOURN 140",
-          "JOURN 157"
+          "JOURN 157",
+          "Elective or General Education"
         ]
       },
       {
@@ -4107,8 +4100,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "DRMA 151",
           "DRMA 154",
           "DANCE 101",
-          "or higher depending on placement",
-          "Select one of the following:"
+          "or higher depending on placement"
         ]
       },
       {
@@ -4129,8 +4121,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "DRMA 111",
           "DRMA 151",
           "DRMA 154",
-          "DANCE 101",
-          "Select one of the following:"
+          "DANCE 101"
         ]
       },
       {
@@ -4143,7 +4134,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "DRMA 151",
           "DRMA 154",
           "DANCE 101",
-          "Select one of the following:",
           "make sure to include a class from the Diversity Course List"
         ]
       },
@@ -4179,7 +4169,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "DRMA 298",
           "DANCE 102",
           "DANCE 103",
-          "DANCE 204"
+          "DANCE 204",
+          "Elective or General Education"
         ]
       }
     ],
@@ -4397,7 +4388,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BIOL& 242",
           "CHEM& 131",
           "H 1 - Humanities/Fine Arts/English",
-          "Any course in Humanities/Fine Arts/English Distribution with the exception of CMST/CMST&. No more than 5 credits in foreign language at the 100-level. No more than 5 credits in performance/skills courses."
+          "Humanities"
         ]
       },
       {
@@ -4406,8 +4397,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BIOL& 260",
           "MATH 147",
           "ENGL 127",
-          "ENGL 128",
-          "Select one of the following:"
+          "ENGL 128"
         ]
       },
       {
@@ -4432,8 +4422,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "SOC 205",
           "SOC 214",
           "SOC 220",
-          "Any course in Humanities/Fine Arts/English Distribution with the exception of CMST/CMST&. No more than 5 credits in foreign language at the 100-level. No more than 5 credits in performance/skills courses. Select one of the following:",
-          "Additional credits from any distribution area Humanities/Fine Arts/English Distribution , Natural Science Distribution , Social Science Distribution ."
+          "Humanities",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -4483,8 +4474,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "One of the following:"
+          "CMST& 240"
         ]
       },
       {
@@ -4558,8 +4548,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "One of the following:"
+          "CMST& 240"
         ]
       },
       {
@@ -4648,8 +4637,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "One of the following:"
+          "CMST& 240"
         ]
       },
       {
@@ -4730,7 +4718,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH 70 - Pre-Algebra",
           "ENGL& 101",
           "or higher ( math courses )",
-          "Select one of the following- must be taken prior to the start of the program :",
           "The following can be taken with OTA classes at anytime:"
         ]
       },
@@ -4838,7 +4825,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BIOL& 241",
           "MATH 70 - Pre-Algebra",
           "ENGL& 101",
-          "Select one of the following- must be taken prior to the start of the program :",
           "The following can be taken with OTA classes at anytime:",
           "or higher (math courses)"
         ]
@@ -5079,6 +5065,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BIOL& 211",
           "H 2 - Humanities/Fine Arts/English",
           "S 1 - Social Science",
+          "Humanities or Social Science",
           "The biology department recommends students take other classes (EG: Humanities, and Social Sciences) that they find interesting and relevant to their goals and curiosities. Biology's foundation is interdisciplinary, and the field thrives upon a diversity of perspectives, experiences, and expertise."
         ]
       },
@@ -5143,8 +5130,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH& 152",
           "ENGL 126",
           "ENGL 127",
-          "ENGL 128",
-          "Choose one of the following:"
+          "ENGL 128"
         ]
       },
       {
@@ -5162,6 +5148,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BIOL& 211",
           "S 1 - Social Science",
           "N 3 - Natural Science List A or List B",
+          "Natural Science",
           "Seek consultation with science advisor for additional Natural Sciences"
         ]
       },
@@ -5169,13 +5156,15 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 5 (16 credits)",
         "courses": [
           "BIOL& 212",
-          "N 3 - Natural Science List A or List B"
+          "N 3 - Natural Science List A or List B",
+          "Humanities or Social Science"
         ]
       },
       {
         "label": "Quarter 6 (11 credits)",
         "courses": [
-          "BIOL& 213"
+          "BIOL& 213",
+          "Natural Science"
         ]
       }
     ],
@@ -5221,14 +5210,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 2 (16 credits)",
         "courses": [
           "CHEM& 162",
-          "MATH& 152"
+          "MATH& 152",
+          "Humanities or Social Science"
         ]
       },
       {
         "label": "Quarter 3 (16 credits)",
         "courses": [
           "CHEM& 163",
-          "MATH& 163"
+          "MATH& 163",
+          "Humanities or Social Science"
         ]
       },
       {
@@ -5237,7 +5228,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CHEM& 261",
           "PHYS& 221",
           "MATH 240",
-          "or elective Electives can be any course numbered 100 or higher, with the exception of Basic Skills and no more than 3 credits Physical Education may be taken as electives."
+          "Elective or General Education"
         ]
       },
       {
@@ -5252,7 +5243,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 (16 credits)",
         "courses": [
           "CHEM& 263",
-          "PHYS& 223"
+          "PHYS& 223",
+          "Humanities or Social Science"
         ]
       },
       {
@@ -5296,14 +5288,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 1 (15 credits)",
         "courses": [
           "ENGL& 101",
-          "MATH& 151"
+          "MATH& 151",
+          "Humanities or Social Science"
         ]
       },
       {
         "label": "Quarter 2 (15 credits)",
         "courses": [
           "ENGL& 235",
-          "MATH& 152"
+          "MATH& 152",
+          "Humanities or Social Science"
         ]
       },
       {
@@ -5311,17 +5305,15 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "CS 121",
           "MATH& 163",
-          "CMST& 220",
-          "PSYC& 100",
-          "AMES 100",
-          "ANTH& 206"
+          "Humanities or Social Science"
         ]
       },
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
           "CS 122",
-          "PHYS& 221"
+          "PHYS& 221",
+          "Humanities or Social Science"
         ]
       },
       {
@@ -5333,14 +5325,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CS 109",
           "CS& 131",
           "CS 132",
-          "CS 202",
-          "Select one of the following:"
+          "CS 202"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
-          "Humanities/Fine Arts/English Distribution or Social Science Distribution Credits / Units: 5 Humanities/Fine Arts/English Distribution or Social Science Distribution Credits / Units: 5 One other elective of your choice See quarter 5 list for suggested options."
+          "Humanities or Social Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -5382,8 +5374,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CS 108",
           "CS 109",
           "IT 114",
-          "IT 131",
-          "Choose one of the following:"
+          "IT 131"
         ]
       },
       {
@@ -5411,8 +5402,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL& 235",
           "ENGL 126",
           "ENGL 127",
-          "ENGL 128",
-          "Choose one of the following:"
+          "ENGL 128"
         ]
       },
       {
@@ -5428,7 +5418,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "IT 244",
-          "IT 295"
+          "IT 295",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       }
     ],
@@ -5478,8 +5470,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 126",
           "ENGL 127",
           "ENGL 128",
-          "ENGL& 235",
-          "IT 201"
+          "ENGL& 235"
         ]
       },
       {
@@ -5491,8 +5482,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "Choose one of the following:"
+          "CMST& 240"
         ]
       },
       {
@@ -5558,8 +5548,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 126",
           "ENGL 127",
           "ENGL 128",
-          "ENGL& 235",
-          "IT 201"
+          "ENGL& 235"
         ]
       },
       {
@@ -5571,8 +5560,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "Choose one of the following:"
+          "CMST& 240"
         ]
       },
       {
@@ -5741,7 +5729,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Summer 1 (10 credits)",
         "courses": [
           "H 1 - Humanities/Fine Arts/English",
-          "S 1 - Social Science"
+          "S 1 - Social Science",
+          "Humanities or Social Science"
         ]
       },
       {
@@ -5930,7 +5919,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH& 151",
           "ENGL& 101",
           "S 1 - Social Science",
-          "Suggested: When choosing a Social Science classes consider a course from the Diversity Course List . Discuss specific course requirements with an advisor. Students are responsible for checking specific major requirement of the transfer institutions."
+          "Social Science"
         ]
       },
       {
@@ -5938,14 +5927,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH& 152",
           "H 1 - Humanities/Fine Arts/English",
-          "H 2 - Humanities/Fine Arts/English",
-          "CMST& 210",
-          "CMST& 220",
-          "CMST& 230",
-          "CMST& 240",
-          "CMST 245",
-          "PHIL& 115",
-          "Suggested: For pure math majors, French or German language is sometimes a school requirement. These languages may also be needed to read research from other countries."
+          "H 2 - Humanities/Fine Arts/English"
         ]
       },
       {
@@ -5965,10 +5947,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH& 254",
           "PHYS& 221",
           "H 3 - Humanities/Fine Arts/English",
-          "ART 105",
-          "ART 119",
-          "MUSC 101",
-          "MUSC& 105",
           "For best transferability take all the classes in the series at the same college."
         ]
       },
@@ -5977,8 +5955,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH 238",
           "PHYS& 222",
-          "S 2 - Social Science",
-          "SOC& 201"
+          "S 2 - Social Science"
         ]
       },
       {
@@ -5986,20 +5963,13 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH 240",
           "PHYS& 223",
-          "S 3 - Social Science",
-          "BUS& 101"
+          "S 3 - Social Science"
         ]
       },
       {
         "label": "Notes:",
         "courses": [
-          "MATH& 153",
-          "MATH 126",
-          "MATH& 254",
-          "MATH 238",
-          "MATH 240",
-          "MATH 147",
-          "MATH& 148"
+          "Elective or General Education"
         ]
       },
       {
@@ -6050,8 +6020,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "CS 121",
           "MATH& 151",
-          "H 2 - Humanities/Fine Arts/English",
-          "Recommended: Something that could be useful in the workplace, such as Spanish or Japanese (depends on region in which you're thinking about working)."
+          "H 2 - Humanities/Fine Arts/English"
         ]
       },
       {
@@ -6131,8 +6100,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH& 151",
           "ENGL& 101",
-          "H 1 - Humanities/Fine Arts/English",
-          "DRMA 154"
+          "H 1 - Humanities/Fine Arts/English"
         ]
       },
       {
@@ -6142,8 +6110,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PSYC& 100",
           "ENGL 126",
           "ENGL 127",
-          "ENGL 128",
-          "Select one of the following:"
+          "ENGL 128"
         ]
       },
       {
@@ -6173,7 +6140,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "AMES 100",
           "ANTH& 206",
           "N 3 - Natural Science List A or List B",
+          "Natural Science",
           "Any class from Natural Science List A or B that isn't already being used to fulfill one of the other requirements. We recommend whatever you find interesting. You can also continue the lab class sequence you used to fulfill the lab requirement above, if you want to.",
+          "Social Science",
           "These will meet both a Social Science requirement and Diversity."
         ]
       },
@@ -6182,16 +6151,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "CMST& 220",
           "H 2 - Humanities/Fine Arts/English",
-          "S 1 - Social Science",
-          "HIST& 137",
-          "HIST& 214",
-          "SOC 205",
-          "SOC 214",
-          "SOC 220",
-          "SOC 240",
-          "SOC 245",
-          "SOC 252",
-          "SOC 271"
+          "S 1 - Social Science"
         ]
       },
       {
@@ -6246,7 +6206,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 2 (15 credits)",
         "courses": [
           "MATH& 152",
-          "PHYS& 221"
+          "PHYS& 221",
+          "Humanities or Social Science"
         ]
       },
       {
@@ -6254,7 +6215,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH& 163",
           "PHYS& 222",
-          "Natural Science Distribution electives Consult with transfer university for program requirements and work with advisor"
+          "Natural Science"
         ]
       },
       {
@@ -6262,7 +6223,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH& 254",
           "PHYS& 223",
-          "Natural Science Distribution electives Consult with transfer university for program requirements and work with advisor"
+          "Natural Science"
         ]
       },
       {
@@ -6270,7 +6231,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH 238",
           "CHEM& 140",
-          "CHEM& 161"
+          "CHEM& 161",
+          "Humanities or Social Science"
         ]
       },
       {
@@ -6326,8 +6288,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BUS 166",
           "CMST 106",
           "CMST& 210",
-          "Select one of the following:",
-          "or eligible for MATH 72 - Elementary Algebra Select one of the following:"
+          "Elective or General Education"
         ]
       },
       {
@@ -6742,8 +6703,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 210",
           "CMST& 220",
           "CMST& 230",
-          "CMST& 240",
-          "Select one of the following:"
+          "CMST& 240"
         ]
       }
     ],
@@ -7022,8 +6982,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ECON& 201",
           "ECON& 202",
           "GEOG 120",
-          "SOC& 101",
-          "Choose one of the following:"
+          "SOC& 101"
         ]
       },
       {
@@ -7798,8 +7757,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH 240",
           "MATH& 254",
           "MATH 256",
-          "PHIL& 120",
-          "Select one of the following:"
+          "PHIL& 120"
         ]
       },
       {
@@ -7810,8 +7768,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 126",
           "ENGL 127",
           "ENGL 128",
-          "ENGL& 235",
-          "Select one of the following:"
+          "ENGL& 235"
         ]
       },
       {
@@ -7819,7 +7776,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 1 - Humanities/Fine Arts/English",
           "N 2 - Natural Science List A",
-          "Additional Credits Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. There is no restriction on the number of required disciplines. A minimum of one course from the Diversity Course list must be taken to satisfy the diversity course requirement. In most cases, a course also satisfies other distribution areas. or Generally Transferable Courses (see below)"
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -7827,7 +7785,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "N 3 - Natural Science List A or List B",
           "S 2 - Social Science",
-          "Additional Credits Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. There is no restriction on the number of required disciplines. or Generally Transferable Courses (see below)"
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -7835,13 +7794,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 2 - Humanities/Fine Arts/English",
           "S 3 - Social Science",
-          "Additional Credits Courses in Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution categories. There is no restriction on the number of required disciplines. or Generally Transferable Courses (see below)"
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
         "label": "Quarter 6 (18 credits)",
         "courses": [
-          "H 3 - Humanities/Fine Arts/English Credits: 5 Electives Credits: 13 All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
+          "Humanities"
         ]
       },
       {
@@ -7937,7 +7897,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 - Spring (15 credits)",
         "courses": [
           "ECON& 202",
-          "N 1 - Natural Science List A (Lab)"
+          "N 1 - Natural Science List A (Lab)",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       }
     ],
@@ -8126,7 +8088,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "H 1 - Humanities/Fine Arts/English",
           "S 1 - Social Science",
           "Completion of an associate degree or higher from a regionally accredited college or university.",
-          "One of the following:"
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -8223,9 +8186,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "S 1 - Social Science",
           "N 1 - Natural Science List A (Lab)",
           "MATH& 146",
-          "MATH 256",
-          "Select one of the following:",
-          "Any college-level math course, the following are recommended:"
+          "MATH 256"
         ]
       },
       {
@@ -8327,9 +8288,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CRC 361",
           "CRC 450",
           "CRC 451",
-          "Select one of the following:",
-          "Any college-level math course Select one of the following:",
-          "General Education (40 credits)",
+          "Elective or General Education",
           "Judicial Court Reporting Focus",
           "Captioning/CART Focus"
         ]
@@ -8364,7 +8323,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 4 (12 credits)",
         "courses": [
           "MGMT 400",
-          "Focus course General Education"
+          "Elective or General Education"
         ]
       },
       {
@@ -8372,13 +8331,13 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MGMT 403",
           "CRC 490",
-          "Focus course General Education"
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
-          "General Education courses"
+          "Elective or General Education"
         ]
       }
     ],
@@ -8427,12 +8386,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "S 2 - Social Science",
           "N 1 - Natural Science List A (Lab)",
           "N 3 - Natural Science List A or List B",
-          "(no additional CMST other than 1 of the courses below). Choose one of the following:",
-          "Select one of the following:",
-          "MATH& 107",
-          "MATH& 131",
-          "MATH& 132",
-          "Additional General Education (15 credits) 15 credits of Humanities/Fine Arts/English Distribution , Social Science Distribution , or Natural Science Distribution courses."
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -8528,8 +8484,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL& 235",
           "MATH& 107",
           "MATH 108",
-          "One of the following courses:",
-          "Any 5 credit college level Math 100 or higher, the following are recommended:",
+          "Humanities or Social Science",
+          "Natural Science",
           "or any IT course not in list above"
         ]
       },
@@ -8538,8 +8494,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "IT 360",
           "IT 370",
-          "S 1 - Social Science",
-          "BUS& 101"
+          "S 1 - Social Science"
         ]
       },
       {
@@ -8562,21 +8517,27 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 4 (15 credits)",
         "courses": [
           "IT 340",
-          "IT 385"
+          "IT 385",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
           "IT 450",
-          "IT 460"
+          "IT 460",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "IT 480",
-          "IT 490"
+          "IT 490",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       }
     ],
@@ -8624,8 +8585,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL& 235",
           "MATH& 107",
           "MATH 108",
-          "One of the following courses:",
-          "Any 5 credit college level Math 100 or higher, the following are recommended:",
+          "Humanities or Social Science",
+          "Natural Science",
           "or any IT course not in list above"
         ]
       },
@@ -8634,8 +8595,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "IT 360",
           "IT 370",
-          "S 1 - Social Science",
-          "BUS& 101"
+          "S 1 - Social Science"
         ]
       },
       {
@@ -8658,21 +8618,27 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 4 (15 credits)",
         "courses": [
           "IT 340",
-          "IT 385"
+          "IT 385",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
         "label": "Quarter 5 (15 credits)",
         "courses": [
           "IT 450",
-          "IT 460"
+          "IT 460",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "IT 480",
-          "IT 490"
+          "IT 490",
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       }
     ],
@@ -8721,9 +8687,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 3 - Natural Science List A or List B",
           "S 1 - Social Science",
           "S 2 - Social Science",
-          "One of the following courses:",
           "QSR course - Five credits of Quantitative Skills/Symbolic Reasoning courses from AA-DTA degree , the following are recommeded.",
-          "40 credits of General Education courses from the following:"
+          "Elective or General Education"
         ]
       },
       {
@@ -8731,7 +8696,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "SDEV 301",
           "SDEV 305",
-          "General Education course (see list above)"
+          "Elective or General Education"
         ]
       },
       {
@@ -8739,7 +8704,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "SDEV 328",
           "SDEV 333",
-          "General Education course (see list above)"
+          "Elective or General Education"
         ]
       },
       {
@@ -8747,14 +8712,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "SDEV 334",
           "SDEV 355",
-          "General Education course (see list above)"
+          "Elective or General Education"
         ]
       },
       {
         "label": "Quarter 4 (15 credits)",
         "courses": [
           "SDEV 372",
-          "General Education course (see list above) General Education course (see list above)"
+          "Elective or General Education"
         ]
       },
       {
@@ -8762,7 +8727,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "SDEV 485",
           "SDEV 494",
-          "General Education course (see list above)"
+          "Elective or General Education"
         ]
       },
       {
@@ -8770,7 +8735,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "SDEV 494",
           "SDEV 486",
-          "General Education course (see list above)"
+          "Elective or General Education"
         ]
       }
     ],
@@ -8801,7 +8766,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Entry Requirements",
         "courses": [
           "ENGL& 101",
-          "Any five (5) credit college leve math course Ten credits of courses from the Humanities , Social Science , and Natural Science distribution lists."
+          "Humanities or Social Science",
+          "Natural Science"
         ]
       },
       {
@@ -8812,8 +8778,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 126",
           "ENGL 127",
           "ENGL 128",
-          "ENGL& 235",
-          "Select one of the following:"
+          "ENGL& 235"
         ]
       },
       {
@@ -8853,7 +8818,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "AVIA 390",
           "AVIA 420",
           "AVIA 440",
-          "General Education from the Humanities , Social Science , and Natural Science distribution lists. Select one of the following:"
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       },
       {
@@ -8867,8 +8834,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "AVIA 390",
           "AVIA 420",
           "AVIA 440",
-          "Select one of the following:",
-          "General Education from the Humanities , Social Science , and Natural Science distribution lists."
+          "Humanities or Social Science",
+          "Natural Science",
+          "Elective or General Education"
         ]
       }
     ],
@@ -8921,13 +8889,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "NATRS 399",
           "NATRS 400",
           "N 1 - Natural Science List A (Lab)",
-          "H 1 - Humanities/Fine Arts/English",
-          "BIOL 110",
-          "GEOL& 208",
-          "CMST& 220",
-          "CMST& 230",
-          "PHIL& 115",
-          "PHIL 243"
+          "H 1 - Humanities/Fine Arts/English"
         ]
       },
       {
@@ -9028,13 +8990,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "NATRS 399",
           "NATRS 400",
           "N 1 - Natural Science List A (Lab)",
-          "H 1 - Humanities/Fine Arts/English",
-          "BIOL 110",
-          "GEOL& 208",
-          "CMST& 220",
-          "CMST& 230",
-          "PHIL& 115",
-          "PHIL 243"
+          "H 1 - Humanities/Fine Arts/English"
         ]
       },
       {
@@ -9228,8 +9184,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BTAC 250",
           "CMST& 210",
           "CMST& 220",
-          "CMST& 230",
-          "Select one of the following:"
+          "CMST& 230"
         ]
       },
       {
@@ -9315,8 +9270,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BTAC 250",
           "CMST& 210",
           "CMST& 220",
-          "CMST& 230",
-          "Select one of the following:"
+          "CMST& 230"
         ]
       },
       {
@@ -9801,8 +9755,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH& 146",
           "MATH 147",
           "MATH& 148",
-          "MATH& 131",
-          "Select one course from the following:"
+          "MATH& 131"
         ]
       },
       {
@@ -10810,7 +10763,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CARP 162",
           "CARP 163",
           "(13 credits required)",
-          "Select one of the following:",
           "(4 credits required)"
         ]
       }
@@ -10860,8 +10812,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CARP 162",
           "CARP 163",
           "CARP 164",
-          "CARP 171",
-          "Choose 2 of the following courses (8 credits):"
+          "CARP 171"
         ]
       }
     ],
@@ -11106,7 +11057,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
 ];
 
 export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; officialSupportedProgramCount: number; connectedAssociateTrackCount: number; connectedSupportedProgramCount: number; generatedTrackCount: number; } = {
-  "generatedAt": "2026-04-20T01:42:59.049Z",
+  "generatedAt": "2026-04-22T19:02:43.539Z",
   "currentCatalogId": 11,
   "currentCatalogName": "2025-2026 Catalog",
   "programMapPageCount": 147,

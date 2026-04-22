@@ -6,6 +6,7 @@ Title: Informatics Curriculum | Information School | University of Washington
 [Supplemental official source] Degree Planning
 2:00-3:30 PM
 5:00-6:00 PM
+6 Information School students honored in 2026 Husky 100
 Advising & Support
 AI Certificate Information Session & Q&A
 any two courses at the INFO 35x-level.
@@ -31,7 +32,6 @@ Design Methods (4 cr)
 Electives (12-15 credits)
 Events
 Growing up in a small town in Eastern Washington, Diego Licea aspired to attend college and set his sights on the University of Washington.“I'd heard it was a challenging school to get into,” he said. “If it wasn't UW, I felt like...
-Indigenous data has a history of bad management from non-Natives, says UW Information School Assistant Professor Sandy Littletree (Eastern Shoshone/Navajo). Library collections may include sacred songs, ceremonies and stories that were...
 INFO 200: Intellectual Foundations of Informatics
 INFO 201
 INFO 201: Foundational Skills for Data Science
@@ -49,9 +49,9 @@ Informatics student blends history, technology and service
 Information and Society (8-10 credits): Students learn to analyze the impacts of information technologies on individuals and society as a whole.
 Information Ethics & Policy (5 cr)
 Information Systems Analysis & Design (5 cr)
+Monday, April 20, 2026
 News
 Open Scholarship Commons, Suzzallo Library
-Professor's work helps to advance Indigenous librarianship
 Read more
 Request more information
 Research Methods in Informatics (5 credits)
@@ -64,9 +64,9 @@ Students take a range of Informatics electives (other upper-division INFO course
 Take the Capstone course sequence: INFO 490 & INFO 491 and present at spring Capstone event. Alternatively, you can complete a research Capstone. See the Informatics Capstone page for details.
 Technical Foundations of Informatics (5 cr)
 The curriculum plans below can be used to help you plan the remainder of your time in the major. The course schedule reflected on this page is typical of the path students will follow to complete their degree, but individuals may choose to pursue their own path to degree completion.
+The University of Washington honored six students from the Information School in the 2026 Husky 100. Awarded to graduate and undergraduate students making the most out of their time at the UW, the Husky 100 is celebrating its 10th...
 Tuesday, April 14, 2026
 Upcoming Info Sessions
 Videos: Alumni at Work
 Watch : A breakdown of the courses you need to take to complete the Informatics major and a bachelor's degree at the University of Washington.
-Wednesday, April 8, 2026
 Winter

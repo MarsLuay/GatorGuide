@@ -28,6 +28,7 @@ import useBack from "@/hooks/use-back";
 import type { Language } from "@/services/app/translations";
 import {
   deadlineCalendarService,
+  UPCOMING_DEADLINE_WINDOW_DAYS,
   type DeadlineCalendarEntry,
   type DeadlineCalendarGroup,
 } from "@/services/deadlines/deadline-calendar.service";
@@ -308,12 +309,14 @@ export default function DeadlineCalendarPage() {
   });
 
   useEffect(() => {
-    if (!groups.length) return;
-    const firstUpcoming = groups.find((group) => new Date(group.dueAt).getTime() >= Date.now());
-    const anchor = firstUpcoming ?? groups[0];
-    if (!anchor) return;
+    const upcomingWindowGroups = deadlineCalendarService.filterUpcomingGroups(
+      groups,
+      UPCOMING_DEADLINE_WINDOW_DAYS
+    );
     setVisibleMonth((current) => {
-      const target = getMonthStart(new Date(anchor.dueAt));
+      const target = upcomingWindowGroups[0]
+        ? getMonthStart(new Date(upcomingWindowGroups[0].dueAt))
+        : getMonthStart(new Date());
       if (
         current.getFullYear() === target.getFullYear() &&
         current.getMonth() === target.getMonth()
@@ -342,6 +345,14 @@ export default function DeadlineCalendarPage() {
     [groups, visibleMonth]
   );
 
+  const fallbackUpcomingGroups = useMemo(
+    () =>
+      deadlineCalendarService
+        .filterUpcomingGroups(groups, UPCOMING_DEADLINE_WINDOW_DAYS)
+        .slice(0, 8),
+    [groups]
+  );
+
   const monthItemCount = useMemo(
     () => monthGroups.reduce((total, group) => total + group.items.length, 0),
     [monthGroups]
@@ -352,8 +363,8 @@ export default function DeadlineCalendarPage() {
       return groups.filter((group) => group.dateKey === selectedDateKey);
     }
     if (monthGroups.length) return monthGroups;
-    return groups.slice(0, 8);
-  }, [groups, monthGroups, selectedDateKey]);
+    return fallbackUpcomingGroups;
+  }, [fallbackUpcomingGroups, groups, monthGroups, selectedDateKey]);
 
   const displayedItemCount = useMemo(
     () => displayedGroups.reduce((total, group) => total + group.items.length, 0),
@@ -437,7 +448,7 @@ export default function DeadlineCalendarPage() {
 
   const selectedGroup = selectedDateKey ? displayedGroups[0] ?? null : null;
   const monthFocusGroup = useMemo(() => findUpcomingGroup(monthGroups), [monthGroups]);
-  const focusGroup = selectedGroup ?? monthFocusGroup ?? groups[0] ?? null;
+  const focusGroup = selectedGroup ?? monthFocusGroup ?? fallbackUpcomingGroups[0] ?? null;
 
   const layout = useMemo(() => {
     const isTablet = width >= 768;
@@ -556,7 +567,9 @@ export default function DeadlineCalendarPage() {
           dateCount: monthGroups.length,
           dateLabel: monthDateLabel,
         })
-      : t("deadlineCalendar.nextAvailableSummary");
+      : fallbackUpcomingGroups.length
+        ? t("deadlineCalendar.nextAvailableSummary")
+        : t("deadlineCalendar.noDatedItemsMessage");
 
   const focusPreviewItems = focusGroup?.items.slice(0, layout.focusPreviewCount) ?? [];
   const focusRelativeLabel = focusGroup ? formatRelativeDate(focusGroup.dueAt, locale) : "";
@@ -573,10 +586,10 @@ export default function DeadlineCalendarPage() {
             dateCount: monthGroups.length,
             dateLabel: monthDateLabel,
           })
-        : t("deadlineCalendar.nextAvailableSummary")
-    : groups.length
-      ? t("deadlineCalendar.nextAvailableSummary")
-      : t("deadlineCalendar.noDatedItemsMessage");
+        : fallbackUpcomingGroups.length
+          ? t("deadlineCalendar.nextAvailableSummary")
+          : t("deadlineCalendar.noDatedItemsMessage")
+    : t("deadlineCalendar.noDatedItemsMessage");
 
   const weekdayLabels = useMemo(
     () => buildWeekdayLabels(locale, layout.showWideWeekdays),

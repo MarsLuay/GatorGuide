@@ -14,15 +14,8 @@ A final independent study project/paper on a topic of interest to you within the
 A refined version of your earlier draft from the project interest form.
 A successful Thesis Project should:
 After your advisor has been assigned, Disability Studies Advisors will send you the INDIV 493 Proposal form and you will complete it by adding the following:
-ANTH 303 Technologies of Health
-ANTH 305 Anthropology of the Body
-ANTH 322 / RELIG 320 Comparative Study of Death
-ANTH 376 Anthropology of Disability
-ANTH 420 Social Life of Psychiatry
-ANTH 478 Introduction to the Anthropology of Institutions
 Any course not on the approved lists must be approved by the Disability Studies adviser. Please fill out the Disability Studies Course Petition Form for further review by an adviser. Please note, 100- and 200-level classes will not be approved.
 aria-label="Main Navigation"
-ASL 305 Deaf Culture
 At least one course from each of two or more Subfields in the Electives list (20-30 credits to 55 total)
 Attend regular meetings to discuss progress with the faculty advisor
 BOTH of the following (10-20 credits)
@@ -37,11 +30,7 @@ Completed DIS ST/LSJ/CHID 230: Introduction to Disability Studies with a minimum
 Contact the Disability Studies Academic Advisors to plan your Thesis Project in your Junior year or sooner.
 Contact Us
 Core Courses
-Courses that examine any of the following: representations of people with disabilities and by people with disabilities in literature, art, film, and other cultural texts; processes of disability marginalization and empowerment understood through social science approaches, such as philosophy, anthropology, linguistics, and sociology; critical inquiry into how social movements and social constructions of markers of diversity and identity such as gender, sexuality, race, age, class, and nationality parallel and intersect with disability.
-Courses that examine any of the following: the history of disabled people and society’s perceptions of disability in local, national, and global contexts and in connection with other social categories; meanings, politics, and experience of disability globally and locally outside the US; historical or comparative studies of social movements, grassroots, and civil society organizations that address marginalization of disabled people; historical and comparative studies of eugenics, medicine, and institutions; ways that the concept of disability in historical or global contexts has worked with and against other forms of discrimination.
-Courses that examine any of the following: theoretical, empirical, and comparative aspects of disability civil rights and human rights; policy development and analysis from a disability perspective; comparative approaches to law and culture; rights and policy issues that impact disabled people in areas such as healthcare, technology, and education, that address exclusion or perpetuate inequalities; social and physical barriers for people with disabilities; areas of practice and study where applied knowledge about disability and ableism is needed.
 Courses/Programs
-Descriptions of the Subfields
 Directories
 DIS ST 235 / SOC 235 Representations of Disability in Popular Culture
 DIS ST 300 Disability Studies in Education
@@ -61,16 +50,11 @@ DIS ST/LSJ/CHID 230 (5): Introduction to Disability Studies (5 credits)
 Disability Studies
 Disability Studies is a minimum admission major, accepting applications at any time.
 Disability Studies Major (Individualized Studies)
-Disability Studies Major (Individualized Studies) | Disability Studies - UW College of Arts and Sciences
 disstadv@uw.edu
 Diversity, Representation, & Identity
 Diversity, Representation, & Identity (5 credits)
 Diversity, Representation, and Identity
 Draw upon sound research methods,
-EDSPE 304 Disability and Ableism in Schools
-EDSPE 422 (dis)Ability, Education, and the Arts
-EDUC 305 The Purpose of Public Schools in a Democracy
-EDUC 366 Race and Disability in Schools
 Electives
 Electives Courses List
 Eligibility Requirements
@@ -83,16 +67,11 @@ For Departmental Honors, identify ideas for the additional ad hoc honors work to
 Frame a significant question or set of questions,
 fullMainMenuContent = mainMenu.outerHTML;
 fullSearchBar = searchBar ? searchBar.outerHTML : '';
-G H 305 / LAW 305 Global Health and Justice
-G H 456 Global Mental Health
 Global & Historical Perspectives
 Global & Historical Perspectives (5 credits)
 Global and Historical Perspectives
 globalMenu = $refs.globalMenu ? $refs.globalMenu.cloneNode(true) : false;
 globalMenu: false,
-GWSS 310 Women and the Law
-GWSS 374 Introduction to Transgender Studies
-GWSS 445 Feminist Science (Fiction) Studies
 headerMenu = $refs.headerMenu ? $refs.headerMenu.cloneNode(true) : false;
 headerMenu: false,
 Home
@@ -109,8 +88,6 @@ isScrollDown: false,
 List 2-3 faculty members with related research interests who you might be interested in serving as your Faculty Advisor.​
 Lists of Approved Courses
 Log in
-LSJ 366 / JSIS B Comparative Law and Legal Cultures
-LSJ 437 / DIS ST 437 Crime, Law, and Mental Illness
 mainMenu = $refs.mainMenu.cloneNode(true);
 mainMenu: false,
 mainMenu.id = 'main-menu__mobile';
@@ -129,9 +106,6 @@ One DIS ST course from each of the three Subfields in the Required list (15 cred
 Outcomes
 Participate in library research tutorials and/or consultations
 People
-PHIL 242 Introduction to Medical Ethics
-PHIL 345 Moral Issues of Life and Death
-PHIL 409 Philosophy of Disability
 Preliminary topic ideas, research questions, methods, outcome (a paper or other creative product).
 Prepare an oral presentation, such as a DS brown bag talk, a conference paper, or a workshop
 Privacy
@@ -150,14 +124,9 @@ searchIsOpen: (window.outerWidth < 1024) ? true : false,
 searchTriggered: false }"
 Seattle, WA 98195-4380
 Skip to main content
-SOC W 576 Contexts of Disability and Anti-Ableist Practice
-SOC WF 404 Cultural Diversity and Justice
 Special topics courses may be considered for use in the Required Courses category. Please see the Disability Studies adviser for permission to use a course to fulfill a particular Subfield.
 Students must complete the General Education Requirements for the College of Arts and Sciences, including foreign language through 103 or equivalent.
 Students pursuing the Disability Studies Major must complete a Thesis Project as the culminating effort of their program of study. This substantial project is an opportunity to conduct independent research with the supervision of a faculty member, on specific issues related to Disability Studies (DS). Students will explore a chosen area of the field of disability studies in-depth, synthesize and apply knowledge and skills developed in their path through the DS curriculum, and demonstrate attainment of the learning goals of the DS major. Any questions or concerns about the Thesis Project requirement can be directed to the Disability Studies Academic Advisors .
-Subfield A. Rights, Policy, and Inequality:
-Subfield B. Global and Historical Perspectives:
-Subfield C. Diversity, Representation, and Identity:
 Subfields Required Courses List
 Submit a full draft of the paper, a process document, or a reflection essay
 Submit a Thesis Project Interest Form in Spring quarter BEFORE the academic year in which you plan to do your project. For example, if you want to enroll in Thesis Project in Winter 2022, you should submit this form in Spring 2021. The deadline is the end of week six (6) in Spring. By week ten (10), the DS Undergraduate Committee will notify you about who your Thesis Project faculty advisor will be. Project plans that are submitted AFTER the Spring deadline will be processed when the Committee meets on a quarterly basis. By the end of that quarter, the Committee will notify you about who your faculty advisor will be. Note that there will likely be fewer choices available for advisors by that point.​ Your thesis project plan will include:

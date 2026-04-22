@@ -1,45 +1,26 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import { type Href, useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import React, { useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import {
+  SearchableSelect,
+  type SearchableSelectOption,
+} from "@/components/ui/SearchableSelect";
+import {
+  getTransferEquivalencyTagLabel,
+  isTransferEquivalencyTrackedTag,
+  normalizeTransferEquivalencyTag,
+  TRANSFER_EQUIVALENCY_TRACKED_TAGS,
+  type TransferEquivalencyTrackedTag,
+} from "@/constants/transfer-equivalency-tags";
 import { TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY } from "@/constants/transfer-planner-source";
 import { ROUTES } from "@/constants/routes";
+import { useAppLanguage } from "@/hooks/use-app-language";
+import useBack from "@/hooks/use-back";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
-
-function normalizeRequirementTag(value: string | null | undefined) {
-  return String(value ?? "")
-    .trim()
-    .toUpperCase()
-    .replace(/[^A-Z]/g, "");
-}
-
-function getRequirementTagLabel(normalizedTag: string) {
-  switch (normalizedTag) {
-    case "AH":
-      return "A&H";
-    case "SSC":
-      return "SSc";
-    case "NSC":
-      return "NSc";
-    case "QSR":
-      return "QSR";
-    case "VLPA":
-      return "VLPA";
-    case "DIV":
-      return "DIV";
-    case "NW":
-      return "NW";
-    case "IANDS":
-      return "I&S";
-    default:
-      return normalizedTag;
-  }
-}
-
-const SUPPORTED_TAGS = ["SSC", "AH", "NSC", "QSR", "VLPA", "DIV", "NW", "IANDS"];
 
 type EquivalencyEntry = {
   id: string;
@@ -50,11 +31,27 @@ type EquivalencyEntry = {
 };
 
 export default function TransferEquivalencyCatalogPage() {
-  const router = useRouter();
-  const params = useLocalSearchParams<{ tag?: string | string[]; campusId?: string | string[] }>();
+  const goBack = useBack(ROUTES.transferPlanner);
+  const params = useLocalSearchParams<{
+    tag?: string | string[];
+    campusId?: string | string[];
+    collegeId?: string | string[];
+  }>();
   const styles = useThemeStyles();
-  const { textClass, secondaryTextClass, cardBgClass, borderClass } = styles;
+  const { t } = useAppLanguage();
+  const {
+    textClass,
+    secondaryTextClass,
+    cardBgClass,
+    borderClass,
+    dropdownSurfaceColor,
+  } = styles;
   const [tagOpenState, setTagOpenState] = useState<Record<string, boolean>>({});
+  const [isCollegeSelectorOpen, setIsCollegeSelectorOpen] = useState(false);
+  const backLabel = useMemo(() => {
+    const translated = t("general.back");
+    return translated && translated !== "general.back" ? translated : "Back";
+  }, [t]);
 
   const selectedTags = useMemo(() => {
     const rawTags = Array.isArray(params.tag) ? params.tag : [params.tag];
@@ -63,11 +60,33 @@ export default function TransferEquivalencyCatalogPage() {
       new Set(
         rawTags
           .flatMap((value) => String(value ?? "").split(","))
-          .map((value) => normalizeRequirementTag(value))
-          .filter((value) => SUPPORTED_TAGS.includes(value))
+          .map((value) => normalizeTransferEquivalencyTag(value))
+          .filter((value): value is TransferEquivalencyTrackedTag =>
+            isTransferEquivalencyTrackedTag(value)
+          )
       )
     );
   }, [params.tag]);
+
+  const selectedCollegeId = useMemo(() => {
+    const rawCollege = Array.isArray(params.collegeId) ? params.collegeId[0] : params.collegeId;
+    return String(rawCollege ?? "uw").trim().toLowerCase() === "uw" ? "uw" : "uw";
+  }, [params.collegeId]);
+
+  const collegeOptions = useMemo<SearchableSelectOption[]>(
+    () => [
+      {
+        id: "uw",
+        label: "University of Washington",
+        description: "Currently the only supported college in this equivalencies catalog.",
+      },
+    ],
+    []
+  );
+
+  const selectedCollegeLabel =
+    collegeOptions.find((option) => option.id === selectedCollegeId)?.label ??
+    "University of Washington";
 
   const selectedCampusId = useMemo(() => {
     const rawCampus = Array.isArray(params.campusId) ? params.campusId[0] : params.campusId;
@@ -88,8 +107,14 @@ export default function TransferEquivalencyCatalogPage() {
       if (/^\s*§/.test(String(rule.sourceCourseLabel ?? ""))) continue;
 
       const normalizedTags = Array.from(
-        new Set((rule.targetRequirementTags ?? []).map((tag) => normalizeRequirementTag(tag)).filter(Boolean))
-      ).filter((tag) => SUPPORTED_TAGS.includes(tag));
+        new Set(
+          (rule.targetRequirementTags ?? [])
+            .map((tag) => normalizeTransferEquivalencyTag(tag))
+            .filter((tag): tag is TransferEquivalencyTrackedTag =>
+              isTransferEquivalencyTrackedTag(tag)
+            )
+        )
+      );
 
       if (!normalizedTags.length) continue;
 
@@ -120,23 +145,30 @@ export default function TransferEquivalencyCatalogPage() {
 
   const visibleTags = useMemo(() => {
     if (selectedTags.length) return selectedTags;
-    return SUPPORTED_TAGS.filter((tag) => (equivalenciesByTag.get(tag)?.length ?? 0) > 0);
+    return TRANSFER_EQUIVALENCY_TRACKED_TAGS.filter(
+      (tag) => (equivalenciesByTag.get(tag)?.length ?? 0) > 0
+    );
   }, [equivalenciesByTag, selectedTags]);
 
   const campusLabel = selectedCampusId === "uw-bothell" ? "UW Bothell" : selectedCampusId === "uw-tacoma" ? "UW Tacoma" : "UW Seattle";
 
   return (
     <ScreenBackground includeTopInset includeBottomInset={false}>
-      <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 36 }} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={{ padding: 20, paddingBottom: 36 }}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        onScrollBeginDrag={() => {
+          setIsCollegeSelectorOpen(false);
+        }}
+      >
         <AnimatedIconPressable
-          onPress={() => {
-            router.replace(ROUTES.transferPlanner as Href);
-          }}
+          onPress={goBack}
           className="flex-row items-center"
           containerStyle={{ alignSelf: "flex-start" }}
         >
           <MaterialIcons name="arrow-back" size={20} color="#1f8a5d" />
-          <Text className={`${secondaryTextClass} ml-2`}>Back to planner</Text>
+          <Text className={`${secondaryTextClass} ml-2`}>{backLabel}</Text>
         </AnimatedIconPressable>
 
         <View className="mt-4">
@@ -144,6 +176,35 @@ export default function TransferEquivalencyCatalogPage() {
           <Text className={`${secondaryTextClass} text-sm mt-2`}>
             Eligible Green River to {campusLabel} transfer options for A&H, SSc, NSc, and related requirement categories.
           </Text>
+        </View>
+
+        <View className="mt-5">
+          <Text className={`${textClass} text-base font-semibold`}>College</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            Pick the college whose transfer category equivalencies you want to browse. University of Washington is the only supported option right now.
+          </Text>
+          <View className="mt-4">
+            <SearchableSelect
+              value={selectedCollegeLabel}
+              open={isCollegeSelectorOpen}
+              onToggle={() => {
+                setIsCollegeSelectorOpen((current) => !current);
+              }}
+              onDismiss={() => {
+                setIsCollegeSelectorOpen(false);
+              }}
+              options={collegeOptions}
+              onSelect={() => {
+                setIsCollegeSelectorOpen(false);
+              }}
+              selectedOptionId={selectedCollegeId}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              borderClass={borderClass}
+              dropdownBackgroundColor={dropdownSurfaceColor}
+              overlayStrategy="modal"
+            />
+          </View>
         </View>
 
         {!visibleTags.length ? (
@@ -157,7 +218,7 @@ export default function TransferEquivalencyCatalogPage() {
           <View className="mt-5 gap-4">
             {visibleTags.map((tag) => {
               const rows = equivalenciesByTag.get(tag) ?? [];
-              const isOpen = tagOpenState[tag] ?? (selectedTags.length > 0);
+              const isOpen = tagOpenState[tag] ?? false;
               return (
                 <View key={tag} className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4`}>
                   <AnimatedIconPressable
@@ -170,7 +231,9 @@ export default function TransferEquivalencyCatalogPage() {
                     className="flex-row items-start justify-between"
                   >
                     <View className="flex-1 min-w-0">
-                      <Text className={`${textClass} font-semibold`}>{getRequirementTagLabel(tag)} eligible transfers</Text>
+                      <Text className={`${textClass} font-semibold`}>
+                        {getTransferEquivalencyTagLabel(tag)} eligible transfers
+                      </Text>
                       <Text className={`${secondaryTextClass} text-xs mt-1`}>
                         {rows.length} source-backed equivalenc{rows.length === 1 ? "y" : "ies"}
                       </Text>

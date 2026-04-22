@@ -24,7 +24,7 @@ If a run fails because of temporary schedule-download/network issues, use the up
 ..\Course-Planner-Updater.bat refresh-no-downloads
 ```
 
-Then rerun the full maintenance command once network access is stable.
+Then rerun the Course updates + tests command once network access is stable.
 
 ## Planner launchers
 

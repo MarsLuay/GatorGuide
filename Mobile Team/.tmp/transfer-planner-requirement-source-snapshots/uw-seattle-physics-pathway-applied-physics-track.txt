@@ -79,6 +79,9 @@ Maps
 Math 124 or Math 134
 Math 125 or Math 135
 Math 126 or Math 136
+Math 207 or AMath 351
+Math 208 or AMath 352
+Math 209 or AMath 353
 Mechanics (5)
 Mentoring Program
 Menu

@@ -46,6 +46,55 @@ function normalizeList(values) {
   return Array.isArray(values) ? values.filter(Boolean) : [];
 }
 
+function normalizeDisplayPath(filePath) {
+  return String(filePath ?? "").split(path.sep).join("/");
+}
+
+function findDisplayRoot(projectRoot) {
+  let current = path.resolve(projectRoot);
+
+  while (true) {
+    if (
+      fs.existsSync(path.join(current, ".git")) ||
+      fs.existsSync(path.join(current, "Course-Planner-Updater.bat"))
+    ) {
+      return current;
+    }
+
+    const parent = path.dirname(current);
+    if (parent === current) {
+      break;
+    }
+
+    current = parent;
+  }
+
+  return path.resolve(projectRoot);
+}
+
+function formatWhereToLookPath(projectRoot, targetPath) {
+  const normalizedTargetPath = normalizeText(targetPath);
+  if (!normalizedTargetPath) {
+    return "";
+  }
+
+  const absoluteTargetPath = path.isAbsolute(normalizedTargetPath)
+    ? path.resolve(normalizedTargetPath)
+    : path.resolve(projectRoot, normalizedTargetPath);
+  const displayRoot = findDisplayRoot(projectRoot);
+  const relativePath = path.relative(displayRoot, absoluteTargetPath);
+
+  if (!relativePath || relativePath.startsWith("..")) {
+    return normalizeDisplayPath(absoluteTargetPath);
+  }
+
+  return normalizeDisplayPath(relativePath);
+}
+
+function formatTmpReportPath(projectRoot, fileName) {
+  return formatWhereToLookPath(projectRoot, path.join(".tmp", fileName));
+}
+
 function addDiagnosis(target, diagnosis) {
   if (!diagnosis || !diagnosis.id) {
     return;
@@ -69,14 +118,16 @@ function getSeverityRank(severity) {
   }
 }
 
-function buildFailureMessageDiagnosis(failureMessage, logPath) {
+function buildFailureMessageDiagnosis(failureMessage, logPath, projectRoot) {
   const normalizedMessage = normalizeText(failureMessage);
   if (!normalizedMessage) {
     return [];
   }
 
   const diagnoses = [];
-  const whereToLook = normalizeText(logPath) || "the maintenance or refresh log";
+  const whereToLook = normalizeText(logPath)
+    ? formatWhereToLookPath(projectRoot, logPath)
+    : "the maintenance or refresh log";
 
   if (/Use either -OnlySection or -StartSection/i.test(normalizedMessage)) {
   addDiagnosis(diagnoses, {
@@ -122,7 +173,7 @@ function buildFailureMessageDiagnosis(failureMessage, logPath) {
       whyItMatters: "If the parser cannot read those pages, the planner cannot build reliable class requirements.",
       likelyCause: "A source page changed shape, a link now points to a weak page, or the parser needs to be updated.",
       nextAction: "Check the parse report and repair the source link or parser adapter for the courses that failed.",
-      whereToLook: ".tmp/transfer-planner-requirement-source-parse-report.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-requirement-source-parse-report.md"),
     });
   }
 
@@ -134,7 +185,7 @@ function buildFailureMessageDiagnosis(failureMessage, logPath) {
       whyItMatters: "Generated outputs, source manifests, and parser inputs are no longer describing the same planner state.",
       likelyCause: "A source link, promotion, registry row, or generated file changed without the rest of the pipeline being rebuilt consistently.",
       nextAction: "Rebuild the affected source pipeline steps and fix the invariant report before trusting the planner output.",
-      whereToLook: ".tmp/transfer-planner-source-pipeline-validation.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-source-pipeline-validation.md"),
     });
   }
 
@@ -146,7 +197,7 @@ function buildFailureMessageDiagnosis(failureMessage, logPath) {
       whyItMatters: "Those rows can look complete in code while still pointing at the wrong source or no usable source at all.",
       likelyCause: "A primary source is missing, invalid, or no longer producing usable parsed requirements.",
       nextAction: "Review the course audit and repair the affected source links or parser coverage.",
-      whereToLook: ".tmp/transfer-planner-owner-audit.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-owner-audit.md"),
     });
   }
 
@@ -158,7 +209,7 @@ function buildFailureMessageDiagnosis(failureMessage, logPath) {
     whyItMatters: "This usually means the updated planner broke one of the rules we use to make sure it is safe and reliable.",
     likelyCause: "A generated file changed unexpectedly, an important rule was broken, or unsafe planner text came back.",
     nextAction: "Open the hardening report, fix the failed checks, and do not continue until they pass.",
-    whereToLook: ".tmp/transfer-planner-hardening-report.md",
+    whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-hardening-report.md"),
   });
 }
 
@@ -225,8 +276,9 @@ function buildFailureMessageDiagnosis(failureMessage, logPath) {
   return diagnoses;
 }
 
-function buildReportDiagnoses(reports) {
+function buildReportDiagnoses(reports, projectRoot, options = {}) {
   const diagnoses = [];
+  const targetPlanId = normalizeText(options.targetPlanId);
 
   if (Number(reports.sourceGap?.totalSourceGapOwners ?? 0) > 0) {
     addDiagnosis(diagnoses, {
@@ -236,7 +288,7 @@ function buildReportDiagnoses(reports) {
       whyItMatters: "Those majors may stay hidden or incomplete until the planner can prove a real source for them.",
       likelyCause: "The source link is weak, missing, or points at a page the parser cannot use well.",
       nextAction: "Replace the source with a stronger official requirements page or extend the parser for that source shape.",
-      whereToLook: ".tmp/transfer-planner-source-gaps.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-source-gaps.md"),
     });
   }
 
@@ -248,7 +300,7 @@ function buildReportDiagnoses(reports) {
       whyItMatters: "Those majors cannot produce trustworthy planner requirements until parsing works again.",
       likelyCause: "The page structure changed, the source link is weak, or the parser adapter no longer matches the page.",
       nextAction: "Fix the source link or parser adapter, then rerun requirement parsing.",
-      whereToLook: ".tmp/transfer-planner-requirement-source-parse-report.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-requirement-source-parse-report.md"),
     });
   }
 
@@ -260,7 +312,7 @@ function buildReportDiagnoses(reports) {
     whyItMatters: "Those majors may have source information available, but the planner still cannot turn it into useful class guidance.",
     likelyCause: "The page may be too general, the actual requirements may be on a different page, or the planner could only read headings instead of the course list.",
     nextAction: "Use a stronger official requirements page or improve how the planner reads those page formats.",
-    whereToLook: ".tmp/transfer-planner-requirement-source-parse-report.md",
+    whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-requirement-source-parse-report.md"),
   });
 }
 
@@ -272,7 +324,7 @@ function buildReportDiagnoses(reports) {
       whyItMatters: "The planner may be missing classes, over-trusting old structure, or depending on weak fallback content for those majors.",
       likelyCause: "The official page partially changed and the parser recovered only part of the intended requirement structure.",
       nextAction: "Review the parse warnings and tighten source selection or parser logic before those warnings turn into bad planner output.",
-      whereToLook: ".tmp/transfer-planner-requirement-source-parse-report.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-requirement-source-parse-report.md"),
     });
   }
 
@@ -287,7 +339,7 @@ function buildReportDiagnoses(reports) {
       whyItMatters: "That means some parsed course changes are still not being turned into clean planner rows.",
       likelyCause: "The source changed faster than the mapping and promotion rules.",
       nextAction: "Resolve the review-needed or unmapped diff entries and rerun the pipeline.",
-      whereToLook: ".tmp/transfer-planner-requirement-diff-promotion-report.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-requirement-diff-promotion-report.md"),
     });
   }
 
@@ -299,7 +351,7 @@ function buildReportDiagnoses(reports) {
       whyItMatters: "Some planner courses are not wired to a safe or usable source setup.",
       likelyCause: "A source manifest row is missing or invalid, or a promoted primary source no longer lines up with parsed output.",
       nextAction: "Repair the course-audit errors before trusting the planner output.",
-      whereToLook: ".tmp/transfer-planner-owner-audit.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-owner-audit.md"),
     });
   }
 
@@ -309,9 +361,9 @@ function buildReportDiagnoses(reports) {
       severity: "warning",
       symptom: `The course audit confirms ${reports.ownerAudit.countsByIssueCode["no-parsed-uw-course-codes"]} course(s) with no usable parsed UW course codes.`,
       whyItMatters: "The parser cannot find any parsable courses from the links provided for these majors.",
-      likelyCause: "The pages used are not structured for easy parsing, or there are no parsable courses available (Ex: Math 151 is labelled as Calculus 1).",
+      likelyCause: "The pages used are not structured for easy parsing, or there are no parsable courses available (Ex: Math 151 is instead labelled as Calculus 1).",
       nextAction: "Find better sources with actual parsable courses, or extend the parser for their current page if the courses are there but it is still not getting detected.",
-      whereToLook: ".tmp/transfer-planner-owner-audit.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-owner-audit.md"),
     });
   }
 
@@ -323,7 +375,7 @@ function buildReportDiagnoses(reports) {
       whyItMatters: "Parts of the planner are no longer matching up correctly, which can lead to missing or incorrect results.",
       likelyCause: "A source file or generated file was changed, but related parts were not updated to match.",
       nextAction: "Review the validation errors, fix the mismatched parts, and run the check again before releasing changes.",
-      whereToLook: ".tmp/transfer-planner-source-pipeline-validation.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-source-pipeline-validation.md"),
     });
   }
 
@@ -335,11 +387,15 @@ function buildReportDiagnoses(reports) {
     whyItMatters: "The planner is currently breaking one of the checks we use to make sure it is safe and working properly.",
     likelyCause: "Something changed in the planner data or files, and an older or mismatched result may have been left behind.",
     nextAction: "Open the hardening report, fix the listed problems, and run maintenance again.",
-    whereToLook: ".tmp/transfer-planner-hardening-report.md",
+    whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-hardening-report.md"),
   });
 }
 
-  if (normalizeText(reports.sourceYearCoverage?.outcome).toLowerCase() && normalizeText(reports.sourceYearCoverage?.outcome).toLowerCase() !== "ok") {
+  if (
+    !targetPlanId &&
+    normalizeText(reports.sourceYearCoverage?.outcome).toLowerCase() &&
+    normalizeText(reports.sourceYearCoverage?.outcome).toLowerCase() !== "ok"
+  ) {
     addDiagnosis(diagnoses, {
       id: "source-year-coverage",
       severity: "warning",
@@ -347,11 +403,11 @@ function buildReportDiagnoses(reports) {
       whyItMatters: "Green River availability and year-sensitive guidance may be based on stale published schedules.",
       likelyCause: "The latest annual schedule links changed or a new academic year rolled over.",
       nextAction: "Refresh the schedule discovery data and repair the year-coverage report.",
-      whereToLook: ".tmp/transfer-planner-source-year-coverage.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-source-year-coverage.md"),
     });
   }
 
-  if (Number(reports.status?.summary?.rowsNeedingAttentionCount ?? 0) > 0) {
+  if (!targetPlanId && Number(reports.status?.summary?.rowsNeedingAttentionCount ?? 0) > 0) {
   addDiagnosis(diagnoses, {
     id: "rows-needing-attention",
     severity: "warning",
@@ -361,11 +417,14 @@ function buildReportDiagnoses(reports) {
       ? `The most common remaining issue is "${reports.status.dominantIncompleteBucket}".`
       : "Some parts of the planner data are still incomplete.",
     nextAction: "Open the planner status report and fix the most common issue first.",
-    whereToLook: ".tmp/transfer-planner-status.md",
+    whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-status.md"),
   });
 }
 
-  if (Number(reports.status?.summary?.unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners ?? 0) > 0) {
+  if (
+    !targetPlanId &&
+    Number(reports.status?.summary?.unexpectedNullRuntimeRowsAmongVisibleSourceBackedOwners ?? 0) > 0
+  ) {
     addDiagnosis(diagnoses, {
       id: "null-runtime-rows",
       severity: "warning",
@@ -373,7 +432,7 @@ function buildReportDiagnoses(reports) {
       whyItMatters: "The parser found eligible data, but the student-facing planner still cannot turn it into a usable class list.",
       likelyCause: "Structured generation or runtime materialization is missing for some courses.",
       nextAction: "Inspect the planner status report and repair the generated/runtime path for those rows.",
-      whereToLook: ".tmp/transfer-planner-status.md",
+      whereToLook: formatTmpReportPath(projectRoot, "transfer-planner-status.md"),
     });
   }
 
@@ -407,11 +466,13 @@ function buildLaymansDiagnosis(options = {}) {
   const reports = loadReports(projectRoot);
   const diagnoses = [];
 
-  for (const entry of buildFailureMessageDiagnosis(options.failureMessage, options.logPath)) {
+  for (const entry of buildFailureMessageDiagnosis(options.failureMessage, options.logPath, projectRoot)) {
     addDiagnosis(diagnoses, entry);
   }
 
-  const reportDiagnoses = buildReportDiagnoses(reports);
+  const reportDiagnoses = buildReportDiagnoses(reports, projectRoot, {
+    targetPlanId: options.targetPlanId,
+  });
   const includeWarnings =
     options.includeWarnings !== false || normalizeText(options.failureMessage).length > 0;
 
@@ -458,6 +519,7 @@ if (require.main === module) {
     projectRoot: getArgValue("--project-root"),
     failureMessage: getArgValue("--failure-message"),
     logPath: getArgValue("--log-path"),
+    targetPlanId: getArgValue("--target-plan-id"),
     includeWarnings: hasArg("--include-warnings"),
   });
   const format = normalizeText(getArgValue("--format")).toLowerCase() || "json";

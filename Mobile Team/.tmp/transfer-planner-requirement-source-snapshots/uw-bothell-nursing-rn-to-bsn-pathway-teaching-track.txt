@@ -1,8 +1,8 @@
 Owner: uw-bothell-nursing-rn-to-bsn:pathway:teaching-track
-Source: https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview
-Title: Overview - School of Nursing & Health Studies
+Source: https://www.uwb.edu/nhs/about/promotion-and-tenure-guidelines/teaching-track
+Title: Teaching Track - School of Nursing & Health Studies
 
-Overview - School of Nursing & Health Studies
+Teaching Track - School of Nursing & Health Studies
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 height="0" width="0" style="display:none;visibility:hidden">
 Skip To Content
@@ -75,8 +75,9 @@ Meet our students
 Expand Navigation
 Alumni highlights
 Outstanding scholars
-MN Capstone
 Nursing Honors
+MN Capstone
+Community Partners
 Master of Science in Community Health & Social Justice
 Expand Navigation
 Overview
@@ -212,8 +213,9 @@ Meet our students
 Expand Navigation
 Alumni highlights
 Outstanding scholars
-MN Capstone
 Nursing Honors
+MN Capstone
+Community Partners
 Master of Science in Community Health & Social Justice
 Expand Navigation
 Overview
@@ -244,149 +246,107 @@ Support our growth
 Student Support Fund
 School of Nursing & Health Studies
 |
-RN to BSN
+Promotion and Tenure Guidelines
 School of Nursing & Health Studies
 |
-Undergraduate
+About
 |
-RN to BSN
+Promotion and Tenure Guidelines
 |
-Overview
-Overview
-The RN to BSN at UW Bothell provides a pathway for students who have earned an Associate Degree in Nursing (ADN) and want to advance their education and career by earning a Bachelor of Science in Nursing (BSN) . Our program requires students to complete a Nursing program at a community or technical college and earn an Associate Degree in Nursing, which allows the student to take the NCLEX- RN Licensure exam.
-If you are interested in learning more about the RN to BSN pathway to a Nursing career, please visit Become a Registered Nurse .
-Curriculum
-The curriculum is based on the American Association of Colleges of Nursing (AACN) Essentials of Baccalaureate Education for Professional Nursing Practice and the Commission on Collegiate Nursing Education (CCNE). One hundred practice hours are embedded in the curriculum. The program is focused on:
-evidence-based practice and nursing inquiry;
-cultural and social issues in health care;
-legal and ethical issues in clinical practice;
-and relational leadership in nursing.
-Review the course descriptions to learn more.
-Locations
-The Program is offered at Bothell, Shoreline, and Everett.
-Entry
-Location
-In-person
-Meeting Day
-Qtr: Autumn
-late Septembe
-Bothell
-Thursdays
-Qtr: Autumn
-late September
-Shoreline Community College
-Fridays
-Qtr: Winter
-January
-Everett University Center
-Tuesdays
-Schedule
-The RN to BSN program is designed to be completed in four (4) or eight (8) quarters. The four (4) quarter program is considered the full-time track and the eight (8) quarter program is the part-time track.
-The nursing courses meet one day every other week from approximately 8:00-5:30 pm. Two required Health coursework may meet online or as a hybrid, meeting in-person one (1) to three (3) times in a quarter from 5:45 – 9:00 pm.
-The program also includes a Community Health fieldwork course which requires practice hours outside the classroom and travel within the region. The fieldwork course is not offered in a hybrid modality and students are required to be available every week (10 in-person/on-site sessions).
-Full-time schedule
-4 quarters, one year to graduation
-10 – 15 credits a quarter
-Coursework meets in hybrid modality,
-5 times in person
-Fieldwork requires weekly in-person meetings
-Part-time schedule
-8 quarters, two years to graduation
-5 credits a quarter – one quarter 10 credits
-Coursework meets in a hybrid modality,
-5 times in person
-Fieldwork requires weekly in-person meetings
-Schedule with in-person dates
-Dr. Lillian Chen and Dr. Kosuke Niitsu Presenting
-Download a copy of the in-person schedule with the course information.
-<a class="bothell-link-block link-block-2 "
-style="color:var(--wp--custom--color--purple-300)"
-href="https://www.uwb.edu/nhs/wp-content/uploads/sites/9/2025/12/Winter-Everett-Tuesday-2026.docx"
-target="__blank" >
-2026, Winter Everett Tuesday
-<a class="bothell-link-block link-block-3 "
-style="color:var(--wp--custom--color--purple-300)"
-href="https://www.uwb.edu/nhs/wp-content/uploads/sites/9/2025/12/Fall-Bothell-Thursday-2026.docx"
-target="__blank" >
-2026, Fall Bothell Thursday
-<a class="bothell-link-block link-block-4 "
-style="color:var(--wp--custom--color--purple-300)"
-href="https://www.uwb.edu/nhs/wp-content/uploads/sites/9/2025/12/Fall-Shoreline-Friday-2026.docx"
-target="__blank" >
-2026, Fall Shoreline Friday
-<a class="bothell-link-block link-block-5 "
-style="color:var(--wp--custom--color--purple-300)"
-href="https://www.uwb.edu/nhs/wp-content/uploads/sites/9/2025/12/Winter-Everett-Tuesday-2027.docx"
-target="__blank" >
-2027, Winter Everett Tuesday
-Cost of attendance
-Explore the cost of attendance and related university and program fees. If you are a Washington State or a UW employee, review the Tuition Exemption Program .
-Many funding opportunities are available for students. To be considered for all types of financial aid, U.S. students must submit the
-Free Application for Federal Student Aid (FAFSA) .
-For undocumented students living in Washington, please use the Washington Application for State Financial Aid (WASFA). International students in the U.S. with an F-1 visa or any other type of non-immigrant visa are not eligible for financial aid. The Nursing Scholarship handout has information on external scholarships available.
-Tuition
-These figures are for informational purposes only for the most up-to-date figures, please refer to the tuition website .
-The University considers full-time enrollment , 10 – 18 credits a quarter.
-2024-2025
-Washington State Resident
-Non-Washington
-State Resident
-Autumn
-$4,307.00*
-$14,385.00*
-Winter
-$4,306.00
-$14,385.00
-Spring
-$4,306.00
-$14,385.00
-Summer
-$4,264.00
-$14,343.00
-Total Tuition & Fees
-$ 17,183.00
-$57,498.00
-Tuition
-*Does not include a one-time $330.00 new student enrollment and orientation fee.
-Nursing program fees
-Health and Safety Requirements and Background Check Fee.
-Admitted applicants complete a background check which has a fee of $54.00 and must purchase a
-Health and Safety Package fee of $64.99.
-Course Fees. If there is a course fee, it will be noted in the course description .
-BNURS 424 Community Health Nursing, has a $175.00 course fee.
-Expense
-Fee
-Background Check
-$54.00
-Health & Safety Package
-$64.99
-Estimated Cost of Books
-$300.00 – $500.00
-Background Check Renewal
-$16.00
-Program Expenses
-UW Tri-Campus BSN goals
-Integrate concepts and ways of knowing from the arts and sciences in promoting health and managing nursing care across the wellness-illness continuum.
-Demonstrate value-based professional behaviors that integrate empathy, autonomy, integrity, social justice, and equity as well as respect for diversity and inclusion, human rights, and human dignity through cultivating partnerships with patients, families, and communities.
-Deliver and advocate for health equity through health promotion, care coordination and disease prevention strategies at the individual, family, community, and population levels.
-Apply leadership concepts, skills, and decision-making in the provision and oversight of nursing practice in a variety of settings.
-Appraise, critically summarize and translate current evidence into nursing practice.
-Demonstrate integration of nursing scholarship, critical thinking, clinical decision-making, and psychomotor skills necessary for the delivery of competent, safe, evidence-based, holistic, compassionate and high-quality care to individuals, families, communities and populations across the lifespan.
-Translate principles of safety and quality improvement into the delivery of high-quality care to individuals, families, communities, and populations.
-Utilize information, communication, and patient care technology tools to facilitate clinical decision-making and the delivery of safe, effective and high-quality nursing care.
-Demonstrate effective professional communication and collaboration within and across disciplines and with the public to optimize health outcomes.
-Demonstrate an understanding of how health policy, economic, legal, political, and socio-cultural factors influence the delivery of and advocacy for equitable health care.
-Demonstrate critical interrogation of positionality, recognition of implicit biases, as well as knowledge and application of anti-racism principles to promote health equity.
-Philosophy of undergraduate education​
-The Nursing faculty believes that the purpose of university-based undergraduate healthcare education is to prepare healthcare professionals whose practice is informed by theory and research. The philosophy of the undergraduate curriculum is rooted in values of excellence, diversity, community, social justice, integrity, and creativity. Preparation for the various roles in practice requires knowledge of the arts, sciences, and humanities, together with content and processes specific to the discipline. An interdisciplinary emphasis engages students in a broad range of ideas and knowledge. Ultimately, professional nursing requires a commitment to scholarly inquiry, social equity, advocacy, and life-long learning.
-The members of the faculty believe that their teaching styles need to take into account the diverse nature of how students learn. We are a community of learners and scholars — a community that is created in collaboration with students.
-The curriculum focuses on critical thinking and analysis, communication, and diversity. The baccalaureate degree enables a nurse to assume a leadership role and practice from an evidence base. Graduates collaborate with transdisciplinary teams in complex organizational systems to improve health care access, cost, and quality. The curriculum prepares graduates to competently work in partnership with individuals, families, communities, and populations to promote health locally and globally.
-Accreditation
-The baccalaureate degree program in nursing at the University of Washington Bothell is accredited by the Commission on Collegiate Nursing Education , 655 K Street NW, Suite 750, Washington, DC 20001,
-202-887-6791.
-Opportunities in Seattle
-The University of Washington Seattle offers a BSN and an Accelerated BSN program (for those holding a Bachelors degree in another field). If you would like to learn more about their programs, call 206-543-8736 or
-e-mail asknursing@uw.edu .
+Teaching Track
+Teaching Track
+Scholarship of Teaching
+Assistant Teaching Professor: Demonstrates competence in facilitating student learning through teaching activities
+Organizes and conducts courses appropriate to the level of instruction, site, and nature of content
+Demonstrates competence in teaching through 5 criteria (aligned, inclusive & equitable, active & engaged, growth oriented, and relevant) using self-, peer-, and student assessment
+Creatively uses research findings and practice examples in teaching
+Contributes to community-engaged teaching innovation or curriculum design
+Creates an inclusive, supportive academic environment within the classroom and the School
+Contributes to curriculum and course development
+Mentors undergraduate and graduate students on independent study, research, and Capstones
+Associate Teaching Professor: Demonstrates advanced skills in facilitating student learning through teaching activities
+Recognizes and promotes the development, retention, and academic achievement of a diverse student body
+Provides leadership at the program level in curriculum and course development and evaluation
+Creatively uses technological developments and innovative pedagogical strategies
+Uses novel approaches to community-engaged teaching and/or curriculum design
+Mentors colleagues within the program to improve teaching effectiveness
+Provides teaching services beyond the program
+Supervises students in independent study, fieldwork, and Capstone projects
+Teaching (Full) Professor: Demonstrates expert skills in facilitating student learning through teaching activities
+Provides leadership within or beyond the program for major curricular developments and revisions
+Plans or facilitates programs that contribute to the campus teaching community
+Provides leadership in community-engaged teaching innovation, curriculum design, and/or mentorship
+Participates in campus-wide faculty councils related to teaching
+Mentors colleagues within or beyond the program to improve teaching effectiveness
+Provides expert teaching consultation beyond the program
+Recognized for teaching excellence through nomination or receipt of awards
+Scholarship of Discovery
+Assistant Teaching Professor: Demonstrates knowledge of scholarship of teaching and learning
+Applies current research in pedagogy to teaching
+Applies current research in specialty area to teaching
+Engages in or consults on community-engaged teaching programs/projects
+Associate Teaching Professor: Demonstrates competence in scholarship of teaching and learning
+Contributes to development of effective and innovative teaching strategies
+Engages in scholarly inquiry related to teaching, a focused research area, and/or community-engaged programs
+Shares knowledge through presentations, publications, or other scholarly work
+Disseminates findings from scholarly inquiry
+Teaching (Full) Professor: Demonstrates expertise in scholarship of teaching and learning
+Actively engages in a sustained program of scholarly inquiry
+Presents findings at regional or national conferences and/or in peer-reviewed publications
+Participates in organizations focused on scholarship of teaching and learning
+Participates in professional organizations focused on scholarly inquiry
+Receives funding for inquiry activities
+Serves as a reviewer or editor for professional journals
+Scholarship of Application
+Assistant Teaching Professor: Demonstrates competence in applying knowledge to service and practice
+Participates in School committees related to teaching or community-engaged programs
+Participates in shared governance at the program level
+Engages in local professional community activities
+Contributes to a positive departmental and campus climate
+Applies expertise to community practice, programs, or projects
+Uses research findings in teaching and practice
+Maintains relationships with community partners
+Participates in academic advising and mentorship
+Associate Teaching Professor: Demonstrates advanced abilities in applying knowledge to service and practice
+Provides leadership in School-level curricular and administrative activities
+Supports and mentors teaching faculty
+Participates in shared governance at the campus level
+Engages in regional and national professional/community activities
+Demonstrates impact on community practice, programs, or outcomes
+Promotes campus community through extracurricular engagement
+Develops relationships with community partners
+Evaluates research for teaching and practice
+Coordinates evaluation of curricular and student outcomes
+Teaching (Full) Professor: Demonstrates expertise in applying knowledge to service and practice
+Leads or participates in campus-level committees related to teaching, curriculum, and assessment
+Leads interdisciplinary community practice or program development
+Demonstrates sustained leadership in campus community engagement
+Leads major curricular revision or goal-setting activities
+Demonstrates leadership in regional or national professional/community activities
+Serves on editorial boards or as a journal editor
+Engages in service with community partners beyond teaching needs
+Develops student services related to teaching and learning
+Leads mentoring and professional development of colleagues and students
+Scholarship of Integration
+Assistant Teaching Professor: Demonstrates competence in synthesis of knowledge related to teaching and learning
+Uses theory and evidence from multiple disciplines in teaching
+Integrates professional experience into the academic setting
+Participates in interdisciplinary community-engagement initiatives
+Associate Teaching Professor: Demonstrates advanced skills in synthesis across disciplines
+Integrates evidence from multiple disciplines in teaching and service
+Contributes to collaborative or community-based projects
+Uses multiple disciplines in scholarly inquiry
+Presents to local community and professional groups
+Teaching (Full) Professor: Demonstrates expertise in synthesis across disciplines
+Leads or sustains interdisciplinary collaboration in campus or community programs
+Presents at regional, national, or global conferences
+Provides consultation and national leadership in interdisciplinary fields
+Contributes to cross-disciplinary publications
+Boyer, E. L. (1991). Scholarship Reconsidered: Priorities of the professorate, The Carnegie Foundation for the Advancement of Teaching.
+A description of the 3Cs framework may be found at the Academic Affairs webpage.
+Ibid.
+Ibid.
+Updated March 2026
 In this section
 About
 Expand Navigation
@@ -445,8 +405,9 @@ Meet our students
 Expand Navigation
 Alumni highlights
 Outstanding scholars
-MN Capstone
 Nursing Honors
+MN Capstone
+Community Partners
 Master of Science in Community Health & Social Justice
 Expand Navigation
 Overview
@@ -479,13 +440,10 @@ Contact Us
 School of Nursing & Health Studies
 uwbnhs@uw.edu
 425.352.5376
-Box 358532
+358532
 18115 Campus Way NE
-Bothell, WA 98011-8246
-Social Media
-Facebook
-Instagram
-LinkedIn
+Bothell, WA 98011
+UW1-211
 University of Washington Bothell Homepage
 Bothell, Washington View our location on Google maps.
 Contact us by phone at:

@@ -6,6 +6,14 @@ const { loadGrcPublicMaterials } = require("./grc-public-materials.cjs");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
+const PRIMARY_SOURCE_DISCOVERY_REPORT_PATH = path.resolve(
+  TMP_DIR,
+  "transfer-planner-primary-source-discovery.json"
+);
+const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
+  TMP_DIR,
+  "transfer-planner-requirement-source-parse-report.json"
+);
 const TS_NODE_COMPILER_OPTIONS = JSON.stringify({ module: "CommonJS" });
 const NPX_BIN = process.platform === "win32" ? "npx.cmd" : "npx";
 function hasArg(flag) {
@@ -152,6 +160,9 @@ function printRefreshSummary(summary) {
   console.log("");
   console.log("Refresh summary:");
   console.log(`- Mode: ${summary.mode}`);
+  if (summary.targetPlanId) {
+    console.log(`- Target plan: ${summary.targetPlanId}`);
+  }
   console.log(`- Steps executed: ${summary.steps.length}; skipped: ${summary.skippedSteps.length}`);
   console.log(
     `- Schedule downloads: downloaded ${summary.downloads.downloaded}; reused ${summary.downloads.reused}; fallback-used ${summary.downloads.fallbackUsed}`
@@ -248,6 +259,7 @@ function buildStepPlanFromArgs() {
   const forceRefreshDownloads = hasArg("--refresh-downloads");
   const onlySection = getArgValue("--only-section");
   const startSection = getArgValue("--start-section");
+  const targetPlanId = getArgValue("--target-plan-id");
   if (onlySection && startSection) {
     throw new Error("Use either --only-section or --start-section, not both.");
   }
@@ -261,6 +273,7 @@ function buildStepPlanFromArgs() {
     forceRefreshDownloads,
     onlySection,
     startSection,
+    targetPlanId,
   };
   const sectionPlan = buildRefreshSectionPlan(options);
   const plannedStepLabels = sectionPlan.flatMap((section) =>
@@ -311,6 +324,10 @@ function runTsNode(scriptPath) {
   );
 }
 
+function buildTargetPlanArgs(targetPlanId) {
+  return targetPlanId ? ["--target-plan-id", targetPlanId] : [];
+}
+
 function sleep(delayMs) {
   return new Promise((resolve) => setTimeout(resolve, delayMs));
 }
@@ -322,10 +339,16 @@ function runVerification(runStepFn = runStep, options = {}) {
     );
   }
   runStepFn("Refresh requirement-diff classification report", () =>
-    runCommand("node", ["scripts/planner/build-transfer-planner-requirement-diff-report.cjs"])
+    runCommand("node", [
+      "scripts/planner/build-transfer-planner-requirement-diff-report.cjs",
+      ...buildTargetPlanArgs(options.targetPlanId),
+    ])
   );
   runStepFn("Audit transfer planner owners", () =>
-    runCommand("node", ["scripts/planner/verify-transfer-planner-owner-audit.cjs"])
+    runCommand("node", [
+      "scripts/planner/verify-transfer-planner-owner-audit.cjs",
+      ...buildTargetPlanArgs(options.targetPlanId),
+    ])
   );
   runStepFn("Run TypeScript typecheck", () => runCommand(NPX_BIN, ["tsc", "--noEmit"]));
   runStepFn("Run transfer planner tests", () =>
@@ -415,6 +438,7 @@ async function main() {
     forceRefreshDownloads,
     onlySection,
     startSection,
+    targetPlanId,
     sectionPlan,
     plannedStepLabels,
   } = buildStepPlanFromArgs();
@@ -447,6 +471,7 @@ async function main() {
           forceRefreshDownloads,
           onlySection,
           startSection,
+          targetPlanId,
         },
       })
     );
@@ -460,7 +485,14 @@ async function main() {
   }
 
   const summary = {
-    mode: verifyOnly ? "verify-only" : "full-refresh",
+    mode: targetPlanId
+      ? verifyOnly
+        ? "targeted-verify-only"
+        : "targeted-refresh"
+      : verifyOnly
+        ? "verify-only"
+        : "full-refresh",
+    targetPlanId: targetPlanId ?? null,
     startedAt: Date.now(),
     finishedAt: Date.now(),
     steps: [],
@@ -508,6 +540,22 @@ async function main() {
     return refreshContext.grcPublicMaterials;
   };
 
+  const canRunTargetedDiscovery =
+    Boolean(targetPlanId) && fs.existsSync(PRIMARY_SOURCE_DISCOVERY_REPORT_PATH);
+  const canRunTargetedRequirementParse =
+    Boolean(targetPlanId) && fs.existsSync(REQUIREMENT_PARSE_REPORT_PATH);
+
+  if (targetPlanId && !canRunTargetedDiscovery) {
+    console.log(
+      `Targeted discovery requested for ${targetPlanId}, but no existing discovery baseline was found. Running full discovery for safety.`
+    );
+  }
+  if (targetPlanId && !canRunTargetedRequirementParse) {
+    console.log(
+      `Targeted requirement parsing requested for ${targetPlanId}, but no existing parse baseline was found. Running full parsing for safety.`
+    );
+  }
+
   const runSelectedSection = async (sectionId) => {
     switch (sectionId) {
       case "grc-discovery": {
@@ -532,7 +580,10 @@ async function main() {
         }
 
         runTrackedStep("Discover primary official sources", () =>
-          runCommand("node", ["scripts/planner/discover-transfer-planner-primary-sources.cjs"])
+          runCommand("node", [
+            "scripts/planner/discover-transfer-planner-primary-sources.cjs",
+            ...buildTargetPlanArgs(canRunTargetedDiscovery ? targetPlanId : null),
+          ])
         );
         runTrackedStep("Build primary-source automation queue", () =>
           runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-review-queue.cjs"])
@@ -541,14 +592,20 @@ async function main() {
           runCommand("node", ["scripts/planner/build-transfer-planner-primary-source-promotions.cjs"])
         );
         runTrackedStep("Classify hidden source gaps", () =>
-          runCommand("node", ["scripts/planner/build-transfer-planner-source-gap-report.cjs"])
+          runCommand("node", [
+            "scripts/planner/build-transfer-planner-source-gap-report.cjs",
+            ...buildTargetPlanArgs(targetPlanId),
+          ])
         );
         return;
       }
       case "requirement-parsing": {
         if (!skipRequirementParse) {
           runTrackedStep("Parse UW major requirement sources", () =>
-            runCommand("node", ["scripts/planner/parse-transfer-planner-requirement-sources.cjs"])
+            runCommand("node", [
+              "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
+              ...buildTargetPlanArgs(canRunTargetedRequirementParse ? targetPlanId : null),
+            ])
           );
         } else {
           markSkipped("Parse UW major requirement sources", "--skip-requirement-parse");
@@ -604,7 +661,10 @@ async function main() {
       }
       case "verification": {
         if (!skipVerify || verifyOnly) {
-          runVerification(runTrackedStep, { includePipelineValidation: verifyOnly });
+          runVerification(runTrackedStep, {
+            includePipelineValidation: verifyOnly,
+            targetPlanId,
+          });
         } else {
           markSkipped("Refresh verification suite", "--skip-verify");
         }
@@ -620,6 +680,9 @@ async function main() {
   console.log(
     `Selected refresh sections: ${sectionPlan.map((section) => section.id).join(", ")}.`
   );
+  if (targetPlanId) {
+    console.log(`Selected target plan: ${targetPlanId}.`);
+  }
 
   for (const section of sectionPlan) {
     await runSelectedSection(section.id);

@@ -20,8 +20,8 @@ const {
 const {
   decodeTransferPlannerHtmlEntities,
   labelMentionsDifferentTransferPlannerMajor,
+  normalizeTransferPlannerSemanticPathwayLabel,
   normalizeTransferPlannerText,
-  stripTransferPlannerPlanTitlePrefix,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
 let TRANSFER_PLANNER_GENERATED_COURSE_METADATA = [];
 try {
@@ -44,6 +44,37 @@ const OUTPUT_TS_PATH = path.resolve(
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
 }
+function getArgValue(flag) {
+  const args = process.argv.slice(2);
+  const directPrefix = `${flag}=`;
+  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
+  if (directMatch) {
+    return directMatch.slice(directPrefix.length).trim() || null;
+  }
+
+  const flagIndex = args.indexOf(flag);
+  if (flagIndex === -1) {
+    return null;
+  }
+
+  const nextValue = args[flagIndex + 1];
+  if (!nextValue || nextValue.startsWith("--")) {
+    return null;
+  }
+
+  return String(nextValue).trim() || null;
+}
+function readJsonIfExists(filePath) {
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
+}
 const DEFAULT_TIMEOUT_MS = 20000;
 const DEFAULT_CONCURRENCY = 2;
 const DEFAULT_RETRY_ATTEMPTS = 3;
@@ -55,7 +86,7 @@ const CURL_ACCEPT_HEADER =
   "text/html,application/xhtml+xml,application/xml;q=0.9,application/pdf;q=0.8,*/*;q=0.7";
 const GENERATED_CHUNK_SIZE = 40;
 const EXPLICIT_COURSE_CODE_PATTERN =
-  /\b([A-Za-z&]{2,8}|[A-Za-z&]{1,4}(?:\s+[A-Za-z&]{1,4}))\s+(\d{3}[A-Za-z]?)\b/g;
+  /\b([A-Za-z&]{1,20}(?:\s+[A-Za-z&]{1,20})?)\s+(\d{3}[A-Za-z]?)\b/g;
 const COURSE_NUMBER_CONTINUATION_PATTERN =
   /(?:^|[,(;/]\s*|\b(?:or|and)\s+)(\d{3}[A-Za-z]?)(?=$|[\s,);/]|(?:\s*(?:or|and)\b))/gi;
 const NOISY_SOURCE_LINE_PATTERN =
@@ -186,9 +217,12 @@ const RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set([
 const LEADING_LIST_MARKER_TOKENS = new Set(["I", "II", "III", "IV"]);
 const EXTRACTED_COURSE_SUBJECT_ALIASES = {
   ACCOUNTING: "ACCTG",
+  ASTRONOMY: "ASTR",
+  "APPLIED MATHEMATICS": "AMATH",
   BIOENGINEERING: "BIOEN",
   BIOSTATISTICS: "BIOST",
   BIOLOGY: "BIOL",
+  MATHEMATICS: "MATH",
   PHYSICS: "PHYS",
   SPANISH: "SPAN",
 };
@@ -614,9 +648,14 @@ function extractRelevantRequirementLines(lines, headings) {
       if (TRANSFER_CREDIT_NOISE_PATTERN.test(line)) {
         continue;
       }
+      const forwardWindow = STRUCTURAL_REQUIREMENT_PATTERN.test(line)
+        ? 14
+        : /\b\d+\s+credits?(?:\s*,?\s*from)?\b/i.test(line)
+          ? 10
+          : 5;
       for (
         let includedIndex = Math.max(0, index - 1);
-        includedIndex <= Math.min(lines.length - 1, index + 5);
+        includedIndex <= Math.min(lines.length - 1, index + forwardWindow);
         includedIndex += 1
       ) {
         relevantLineIndexes.add(includedIndex);
@@ -646,22 +685,31 @@ function extractExplicitCourseCodesFromLine(line) {
   }
 
   const extractedCourseCodes = [];
-  const explicitMatches = [...normalizedLine.matchAll(EXPLICIT_COURSE_CODE_PATTERN)];
+  const explicitMatches = [...normalizedLine.matchAll(EXPLICIT_COURSE_CODE_PATTERN)]
+    .map((match) => {
+      const subject = normalizeExtractedCourseSubject(match[1]);
+      const explicitCode = normalizeExtractedCourseCode(match[1], match[2]);
+      if (!subject || !explicitCode) {
+        return null;
+      }
+      return {
+        match,
+        subject,
+        explicitCode,
+      };
+    })
+    .filter(Boolean);
 
   for (let index = 0; index < explicitMatches.length; index += 1) {
-    const match = explicitMatches[index];
-    const subject = normalizeExtractedCourseSubject(match[1]);
-    const explicitCode = normalizeExtractedCourseCode(match[1], match[2]);
-
-    if (!subject || !explicitCode) {
-      continue;
-    }
+    const { match, subject, explicitCode } = explicitMatches[index];
 
     extractedCourseCodes.push(explicitCode);
 
     const currentMatchEnd = match.index + match[0].length;
     const nextMatchStart =
-      index + 1 < explicitMatches.length ? explicitMatches[index + 1].index : normalizedLine.length;
+      index + 1 < explicitMatches.length
+        ? explicitMatches[index + 1].match.index
+        : normalizedLine.length;
     const trailingSegment = normalizedLine.slice(currentMatchEnd, nextMatchStart);
 
     for (const numberMatch of trailingSegment.matchAll(COURSE_NUMBER_CONTINUATION_PATTERN)) {
@@ -1792,9 +1840,30 @@ function pathwayLabelMentionsDifferentMajor(entry, line) {
   );
 }
 
+function selectExtractedPathwayKindSegment(value) {
+  const normalized = normalizeTransferPlannerText(value);
+  const segments = normalized
+    .split(/\s+(?:[-â€“â€”]|:)\s+|,\s+/)
+    .map((segment) => normalizeTransferPlannerText(segment))
+    .filter(Boolean);
+
+  for (let index = segments.length - 1; index >= 0; index -= 1) {
+    const segment = segments[index];
+    if (
+      PATHWAY_LABEL_CUE_PATTERN.test(segment) &&
+      !/^(?:older|prior|current)\b/i.test(segment) &&
+      !/^requirements?\s+for\b/i.test(segment)
+    ) {
+      return segment;
+    }
+  }
+
+  return normalized;
+}
+
 function normalizeExtractedPathwayLabel(entry, line) {
   const majorTitle = getPrimaryMajorTitle(entry);
-  const normalized = stripTransferPlannerPlanTitlePrefix(
+  const normalized = normalizeTransferPlannerSemanticPathwayLabel(
     majorTitle,
     normalizeTransferPlannerText(line)
       .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-–—]\s+.*$/i, "$1")
@@ -1805,9 +1874,19 @@ function normalizeExtractedPathwayLabel(entry, line) {
   return normalized || normalizeTransferPlannerText(line);
 }
 
+function normalizeCanonicalExtractedPathwayLabel(entry, line) {
+  const majorTitle = getPrimaryMajorTitle(entry);
+  const normalized = normalizeTransferPlannerSemanticPathwayLabel(
+    majorTitle,
+    selectExtractedPathwayKindSegment(normalizeTransferPlannerText(line))
+  );
+
+  return normalized || normalizeTransferPlannerText(line);
+}
+
 function extractPathwayLabels(entry, lines, headings) {
   const isPathwayLabelCandidate = (line) => {
-    const normalized = normalizeExtractedPathwayLabel(entry, line);
+    const normalized = normalizeCanonicalExtractedPathwayLabel(entry, line);
     if (!normalized || NOISY_SOURCE_LINE_PATTERN.test(normalized)) {
       return false;
     }
@@ -1815,6 +1894,8 @@ function extractPathwayLabels(entry, lines, headings) {
       normalized.length > 120 ||
       normalized.split(/\s+/).length > 14 ||
       /^(?:\[supplemental official source\]|learn more|about|apply)\b/i.test(normalized) ||
+      /^(?:download|click here to join|joining the)\b/i.test(normalized) ||
+      /\b(?:double major|double degree)\b/i.test(normalized) ||
       /\b(?:elective courses?|course lists?|courses by track)\b/i.test(normalized) ||
       /^(?:[†*§◊]+)?\s*(?:if|for)\b/i.test(normalized) ||
       /^concentration\s+[ivxlcdm]+\b.*\b(?:credits?|courses?)\b/i.test(normalized) ||
@@ -1832,7 +1913,10 @@ function extractPathwayLabels(entry, lines, headings) {
   };
 
   return uniqueSorted(
-    [...headings, ...lines].map((line) => normalizeExtractedPathwayLabel(entry, line)).filter(isPathwayLabelCandidate).slice(0, 40)
+    [...headings, ...lines]
+      .map((line) => normalizeCanonicalExtractedPathwayLabel(entry, line))
+      .filter(isPathwayLabelCandidate)
+      .slice(0, 40)
   );
 }
 
@@ -1889,6 +1973,13 @@ function getParsedCourseSubjects(parsed) {
   );
 }
 
+function getParsedLowerDivisionCourseCount(parsed) {
+  return (parsed.courseCodes ?? []).filter((courseCode) => {
+    const level = getCourseCodeNumericLevel(courseCode);
+    return level !== null && level < 300;
+  }).length;
+}
+
 function getCourseCodeSubject(courseCode) {
   return normalizeCourseCode(courseCode).match(/^([A-Z& ]+)\s+\d/)?.[1] ?? null;
 }
@@ -1943,6 +2034,7 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
   const scopedAlignment = getParsedOwnerAlignmentScore(entry, scopedParsed);
   const fullCourseCount = fullParsed.courseCodes?.length ?? 0;
   const scopedCourseCount = scopedParsed.courseCodes?.length ?? 0;
+  const fullLowerDivisionCount = getParsedLowerDivisionCourseCount(fullParsed);
   const fullSubjects = getParsedCourseSubjects(fullParsed);
   const scopedSubjects = getParsedCourseSubjects(scopedParsed);
   const enrichedScopedParsed =
@@ -1950,9 +2042,24 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
     ["html-degree-page", "html-curriculum-page"].includes(entry.parserType)
       ? buildFocusedScopedHtmlOverflowParsed(fullParsed, scopedParsed)
       : scopedParsed;
+  const scopedLowerDivisionCount = getParsedLowerDivisionCourseCount(enrichedScopedParsed);
+  const fullHasRequirementAnchors = (fullParsed.snapshotLines ?? []).some((line) =>
+    /^(major admissions requirements|admission requirements|degree requirements|major requirements|curriculum)$/i.test(
+      normalizeWhitespace(line)
+    )
+  );
 
   if (fullAlignment < 2 && scopedAlignment >= 2) {
     return enrichedScopedParsed;
+  }
+
+  if (
+    fullHasRequirementAnchors &&
+    fullAlignment >= Math.max(2, scopedAlignment - 1) &&
+    fullLowerDivisionCount >= Math.max(4, scopedLowerDivisionCount + 4) &&
+    scopedLowerDivisionCount <= Math.max(1, Math.floor(scopedCourseCount / 4))
+  ) {
+    return fullParsed;
   }
 
   if (scopedAlignment >= fullAlignment + 1 && scopedCourseCount >= Math.max(2, Math.floor(fullCourseCount * 0.25))) {
@@ -3158,12 +3265,13 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
   }
 }
 
-function getParseablePrimaryEntries() {
+function getParseablePrimaryEntries(targetPlanId = null) {
   return TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
     (entry) =>
       (entry.ownerType === "major" || entry.ownerType === "pathway") &&
       entry.campusId &&
       entry.campusId !== "grc" &&
+      (!targetPlanId || entry.planId === targetPlanId) &&
       entry.isPrimaryDegreeRequirementsLink &&
       PARSEABLE_PARSER_TYPES.has(entry.parserType)
   ).sort((left, right) => left.ownerTitle.localeCompare(right.ownerTitle));
@@ -3175,6 +3283,78 @@ function countBy(values, getKey) {
     counts[key] = (counts[key] ?? 0) + 1;
     return counts;
   }, {});
+}
+
+function mergeParsedOwners(previousOwners, nextOwners, targetPlanId) {
+  if (!targetPlanId) {
+    return [...nextOwners].sort((left, right) => left.ownerTitle.localeCompare(right.ownerTitle));
+  }
+
+  return [...(previousOwners ?? []).filter((owner) => owner?.planId !== targetPlanId), ...nextOwners].sort(
+    (left, right) =>
+      left.ownerTitle.localeCompare(right.ownerTitle) ||
+      String(left.ownerId ?? "").localeCompare(String(right.ownerId ?? ""))
+  );
+}
+
+function buildParseReport(owners, options = {}) {
+  const mergedOwners = mergeParsedOwners(
+    options.previousOwners ?? [],
+    owners,
+    options.targetPlanId ?? null
+  );
+  const scopedOwners = options.targetPlanId
+    ? mergedOwners.filter((owner) => owner.planId === options.targetPlanId)
+    : mergedOwners;
+
+  return {
+    generatedAt: new Date().toISOString(),
+    totalOwners: scopedOwners.length,
+    okCount: scopedOwners.filter((owner) => owner.ok).length,
+    failedCount: scopedOwners.filter((owner) => !owner.ok).length,
+    parsedRequirementSourceBlockCount: scopedOwners.length,
+    parsedRequirementAtomCandidateCount: scopedOwners.reduce(
+      (count, owner) => count + owner.parsedRequirementAtomCandidates.length,
+      0
+    ),
+    parsedDegreeMapBlockCandidateCount: scopedOwners.reduce(
+      (count, owner) => count + owner.parsedDegreeMapBlockCandidates.length,
+      0
+    ),
+    snapshotFallbackCount: scopedOwners.filter((owner) => owner.usedSnapshotFallback).length,
+    countsByAdapterId: countBy(scopedOwners, (owner) => owner.adapterId),
+    countsByAdapterFamily: countBy(scopedOwners, (owner) => owner.adapterFamily),
+    countsByCampus: countBy(scopedOwners, (owner) => owner.campusId),
+    countsByResolutionStrategy: countBy(scopedOwners, (owner) => owner.resolutionStrategy),
+    withParsedCourseCodesCount: scopedOwners.filter((owner) => owner.parsedUwCourseCodes.length > 0).length,
+    withSourceOnlyCourseCodesCount: scopedOwners.filter(
+      (owner) => owner.sourceOnlyUwCourseCodes.length > 0
+    ).length,
+    withNoParsedCourseCodesCount: scopedOwners.filter(
+      (owner) => owner.ok && owner.parsedUwCourseCodes.length === 0
+    ).length,
+    ownersWithQualityWarningsCount: scopedOwners.filter((owner) =>
+      owner.qualitySignals.some((signal) => signal.severity === "warning")
+    ).length,
+    ownersWithQualityNotesCount: scopedOwners.filter((owner) =>
+      owner.qualitySignals.some((signal) => signal.severity === "note")
+    ).length,
+    qualityWarningCount: scopedOwners.reduce(
+      (count, owner) =>
+        count + owner.qualitySignals.filter((signal) => signal.severity === "warning").length,
+      0
+    ),
+    qualityNoteCount: scopedOwners.reduce(
+      (count, owner) =>
+        count + owner.qualitySignals.filter((signal) => signal.severity === "note").length,
+      0
+    ),
+    countsByQualitySignalCode: countBy(
+      scopedOwners.flatMap((owner) => owner.qualitySignals),
+      (signal) => signal.code
+    ),
+    owners: mergedOwners,
+  };
 }
 
 function addQualitySignal(signals, severity, code, message, details = null) {
@@ -3301,6 +3481,7 @@ function writeGeneratedRequirementSourceAdapters(report) {
     snapshotFallbackReason: owner.snapshotFallbackReason,
     error: owner.error,
   }));
+  const fullOwners = report.owners ?? [];
 
   const chunks = [];
   for (let index = 0; index < blocks.length; index += GENERATED_CHUNK_SIZE) {
@@ -3309,9 +3490,9 @@ function writeGeneratedRequirementSourceAdapters(report) {
 
   const summary = {
     generatedAt: report.generatedAt,
-    totalOwners: report.totalOwners,
-    okCount: report.okCount,
-    failedCount: report.failedCount,
+    totalOwners: fullOwners.length,
+    okCount: fullOwners.filter((owner) => owner.ok).length,
+    failedCount: fullOwners.filter((owner) => !owner.ok).length,
     parsedRequirementSourceBlockCount: blocks.length,
     parsedRequirementAtomCandidateCount: blocks.reduce(
       (count, block) => count + block.parsedRequirementAtomCandidates.length,
@@ -3321,14 +3502,25 @@ function writeGeneratedRequirementSourceAdapters(report) {
       (count, block) => count + block.parsedDegreeMapBlockCandidates.length,
       0
     ),
-    snapshotFallbackCount: report.snapshotFallbackCount,
-    countsByAdapterId: report.countsByAdapterId,
-    countsByAdapterFamily: report.countsByAdapterFamily,
-    countsByCampus: report.countsByCampus,
-    countsByResolutionStrategy: report.countsByResolutionStrategy,
-    qualityWarningCount: report.qualityWarningCount,
-    qualityNoteCount: report.qualityNoteCount,
-    countsByQualitySignalCode: report.countsByQualitySignalCode,
+    snapshotFallbackCount: fullOwners.filter((owner) => owner.usedSnapshotFallback).length,
+    countsByAdapterId: countBy(fullOwners, (owner) => owner.adapterId),
+    countsByAdapterFamily: countBy(fullOwners, (owner) => owner.adapterFamily),
+    countsByCampus: countBy(fullOwners, (owner) => owner.campusId),
+    countsByResolutionStrategy: countBy(fullOwners, (owner) => owner.resolutionStrategy),
+    qualityWarningCount: fullOwners.reduce(
+      (count, owner) =>
+        count + owner.qualitySignals.filter((signal) => signal.severity === "warning").length,
+      0
+    ),
+    qualityNoteCount: fullOwners.reduce(
+      (count, owner) =>
+        count + owner.qualitySignals.filter((signal) => signal.severity === "note").length,
+      0
+    ),
+    countsByQualitySignalCode: countBy(
+      fullOwners.flatMap((owner) => owner.qualitySignals),
+      (signal) => signal.code
+    ),
   };
 
   const lines = [
@@ -3510,9 +3702,21 @@ async function main() {
   ensureDir(TMP_DIR);
   ensureDir(SNAPSHOT_DIR);
   const snapshotOnly = hasArg("--snapshot-only");
+  const targetPlanId = getArgValue("--target-plan-id");
+  let effectiveTargetPlanId = targetPlanId;
+  if (effectiveTargetPlanId && !fs.existsSync(OUTPUT_JSON_PATH)) {
+    console.log(
+      `No existing parse report was found at ${OUTPUT_JSON_PATH}. Running a full parse pass instead of a targeted merge for ${effectiveTargetPlanId}.`
+    );
+    effectiveTargetPlanId = null;
+  }
 
-  const manifestEntries = getParseablePrimaryEntries();
+  const manifestEntries = getParseablePrimaryEntries(effectiveTargetPlanId);
+  const previousReport = effectiveTargetPlanId ? readJsonIfExists(OUTPUT_JSON_PATH) : null;
   console.log(`Parsing ${manifestEntries.length} primary planner requirement source(s)...`);
+  if (effectiveTargetPlanId) {
+    console.log(`Target plan scope: ${effectiveTargetPlanId}`);
+  }
   if (snapshotOnly) {
     console.log("Snapshot-only mode enabled. Reusing cached requirement-source snapshots.");
   }
@@ -3527,55 +3731,10 @@ async function main() {
     }
   );
   const owners = parsedOwners.map(enrichParsedOwnerWithQualitySignals);
-
-  const report = {
-    generatedAt: new Date().toISOString(),
-    totalOwners: owners.length,
-    okCount: owners.filter((owner) => owner.ok).length,
-    failedCount: owners.filter((owner) => !owner.ok).length,
-    parsedRequirementSourceBlockCount: owners.length,
-    parsedRequirementAtomCandidateCount: owners.reduce(
-      (count, owner) => count + owner.parsedRequirementAtomCandidates.length,
-      0
-    ),
-    parsedDegreeMapBlockCandidateCount: owners.reduce(
-      (count, owner) => count + owner.parsedDegreeMapBlockCandidates.length,
-      0
-    ),
-    snapshotFallbackCount: owners.filter((owner) => owner.usedSnapshotFallback).length,
-    countsByAdapterId: countBy(owners, (owner) => owner.adapterId),
-    countsByAdapterFamily: countBy(owners, (owner) => owner.adapterFamily),
-    countsByCampus: countBy(owners, (owner) => owner.campusId),
-    countsByResolutionStrategy: countBy(owners, (owner) => owner.resolutionStrategy),
-    withParsedCourseCodesCount: owners.filter((owner) => owner.parsedUwCourseCodes.length > 0).length,
-    withSourceOnlyCourseCodesCount: owners.filter(
-      (owner) => owner.sourceOnlyUwCourseCodes.length > 0
-    ).length,
-    withNoParsedCourseCodesCount: owners.filter(
-      (owner) => owner.ok && owner.parsedUwCourseCodes.length === 0
-    ).length,
-    ownersWithQualityWarningsCount: owners.filter((owner) =>
-      owner.qualitySignals.some((signal) => signal.severity === "warning")
-    ).length,
-    ownersWithQualityNotesCount: owners.filter((owner) =>
-      owner.qualitySignals.some((signal) => signal.severity === "note")
-    ).length,
-    qualityWarningCount: owners.reduce(
-      (count, owner) =>
-        count + owner.qualitySignals.filter((signal) => signal.severity === "warning").length,
-      0
-    ),
-    qualityNoteCount: owners.reduce(
-      (count, owner) =>
-        count + owner.qualitySignals.filter((signal) => signal.severity === "note").length,
-      0
-    ),
-    countsByQualitySignalCode: countBy(
-      owners.flatMap((owner) => owner.qualitySignals),
-      (signal) => signal.code
-    ),
-    owners,
-  };
+  const report = buildParseReport(owners, {
+    previousOwners: previousReport?.owners ?? [],
+    targetPlanId: effectiveTargetPlanId,
+  });
 
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
   writeGeneratedRequirementSourceAdapters(report);

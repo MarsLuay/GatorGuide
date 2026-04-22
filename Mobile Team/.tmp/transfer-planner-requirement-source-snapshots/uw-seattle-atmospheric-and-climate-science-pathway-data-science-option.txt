@@ -62,7 +62,7 @@ Pre-graduate Program for Physical Science, Mathematics, and Engineering Majors
 The following elective course sequence is suitable preparation for students interested in pursuing graduate study in atmospheric sciences: ATMOS 301, ATMOS 340, ATMOS 441.
 Additional Completion Requirements
 Option specific credits (29-37 credits)
-Requirements (23-27 credits): ATMOS 458/CHEM 458; CEE 480/ATMOS 480; ATMOS 310 or CSE 160; one of the following: (1) CHEM 142, CHEM 152, CHEM 162; (2) CHEM 143 and CHEM 153; (3)CHEM 145, CHEM 155, CHEM 165
+Requirements (23-27 credits): ATMOS 458/CHEM 458; CEE 480/ATMOS 480; ATMOS 310 or CSE ; one of the following: (1) CHEM 142, CHEM 152, CHEM 162; (2) CHEM 143 and CHEM 153; (3)CHEM 145, CHEM 155, CHEM 165
 Electives (6-10 credits): minimum two courses from an approved list. See adviser for approved list of electives.
 Back to Top
 Bachelor of Science degree with a major in Atmospheric and Climate Science: Climate
@@ -78,7 +78,7 @@ Pre-graduate Program for Physical Science, Mathematics, and Engineering Majors
 The following elective course sequence is suitable preparation for students interested in pursuing graduate study in atmospheric sciences: ATMOS 301, ATMOS 340, ATMOS 441.
 Additional Completion Requirements
 Option specific credits (31-40 credits)
-Requirements (22-25 credits): ATMOS 350; ATMOS 358, ATMOS 380, ATMOS 487; ATMOS 310 or CSE 160; ESS 431 or ESS 433; OCEAN 423 or OCEAN 450
+Requirements (22-25 credits): ATMOS 350; ATMOS 358, ATMOS 380, ATMOS 487; ATMOS 310 or CSE ; ESS 431 or ESS 433; OCEAN 423 or OCEAN 450
 Electives (9-15 credits): minimum three courses from an approved list. See adviser for approved list of electives.
 Back to Top
 Bachelor of Science degree with a major in Atmospheric and Climate Science: Data Science
@@ -117,7 +117,7 @@ Pre-graduate Program for Physical Science, Mathematics, and Engineering Majors
 The following elective course sequence is suitable preparation for students interested in pursuing graduate study in atmospheric sciences: ATMOS 301, ATMOS 340, ATMOS 441.
 Additional Completion Requirements
 Option specific credits (33-40 credits)
-Requirements (23-24 credits): ATMOS 358, ATMOS 441, ATMOS 442, ATMOS 451, ATMOS 452; ATMOS 310 or CSE 160
+Requirements (23-24 credits): ATMOS 358, ATMOS 441, ATMOS 442, ATMOS 451, ATMOS 452; ATMOS 310 or CSE
 Advanced Mathematics (10-16 credits): MATH 224; either AMATH 351 and AMATH 353, or MATH 207, MATH 208, and MATH 209
 Back to Top
 Program of Study: Minor: Atmospheric Sciences

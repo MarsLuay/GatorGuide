@@ -1,5 +1,5 @@
 Owner: uw-seattle-public-service-and-policy
-Source: https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html#program-UG-PSP-MAJOR
+Source: https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html
 Title: 
 
 Home

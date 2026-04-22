@@ -1,20 +1,21 @@
 # UW Catalog Ingest
 
-Generated: 2026-04-18T10:35:31.305Z
+Generated: 2026-04-22T02:12:27.084Z
 
-- Planner-relevant UW courses: 3607
-- Parsed UW catalog courses: 3249
-- Courses with credit labels: 2997
-- Courses with prerequisite notes: 738
+- Planner-relevant UW courses: 3899
+- Parsed UW catalog courses: 3499
+- Courses with credit labels: 3219
+- Courses with prerequisite notes: 765
 - Courses with corequisite notes: 5
-- Ignored invalid planner subject tokens: 13
+- Ignored invalid planner subject tokens: 10
 
 ## Campuses
 
-- UW Seattle: 2189/2435 courses parsed across 168 subject pages
-  - Missing subject pages: ACSE, AFTER, ALSJ, ANLSJ, APN, ATMS, BES, BIOENG, BIS, BLOEDEL, BSE, BUS, CR, CS, CS&SS, DAN, EACH, FND, HALL, HEALTH, HIST, HOWCSE, IN, INCSE, INECFS, INLSJ, INMATH, LABS, MEBI, MUSEC
-  - Ignored invalid planner subject tokens: ADDRESS, ALSOMHE, EXCLUDES, IFCHEM, IFMATH, IFPHIL, LANGUAGE, MORETHAN, MUSTBE, ONLYCEE, SPRCEE, THANLSJ, TOOKLSJ
-- UW Bothell: 490/559 courses parsed across 34 subject pages
-  - Missing subject pages: AMATH, BECN, BGIS, BHTLH, BIO, BISCP, BISSTA, COM, ECON, ENGL, IN, INBIS, INDE, INFO, MATH, ME, MSE, POLS, PSYCH, QMETH, QSCI, SOME, STAT, TAKEBIS, TINFO, WITHBIS
-- UW Tacoma: 570/613 courses parsed across 58 subject pages
-  - Missing subject pages: AA, ALL, AMATH, BELOW, CEE, CHEM, CSE, EE, ENGL, ENVIR, MATH, ME, PHYS, PSYCH, SOCWF
+- UW Seattle: 2378/2641 courses parsed across 162 subject pages
+  - Missing subject pages: ABOUTNUTR, AFTERCHEM, AFTERCSE, AFTERENGL, AMONGGEOG, AMONGMUSIC, ANLSJ, APPLIEDAS, ATMS, BECAUSEGERMAN, BIOENG, BIS, BUS, CLASSESARCH, CONFLICTA, COUNTINGCSE, CR, CS&SS, DAN, ELECTIVECEE, ENJOYEDCSE, EXCEPTARCH, EXCEPTATMOS, EXCEPTMUSAP, FAMILIESNCLIN, FOLLOWCSE, FORMERLYCEE, FORMERLYMATH, FROOMMUSEN, HEALTH
+  - Ignored invalid planner subject tokens: ADDRESS, ADDRESSHSERV, ALSOMHE, EXCLUDES, EXCLUDESMATH, IFPHIL, MORETHAN, ONLYCEE, SPRCEE
+- UW Bothell: 475/555 courses parsed across 34 subject pages
+  - Missing subject pages: AMATH, BECN, BGIS, BHTLH, BISCP, CHECKBIS, COM, CSE, ECON, ENGL, ENVIR, ESRM, ESS, INBIS, INDE, INFO, INSTANCEBIS, MATH, ME, MSE, OCEAN, POLS, PSYCH, QMETH, QSCI, SEQUENCECSS, SOME, STAT, TAKEBIS, THEYARE
+- UW Tacoma: 646/703 courses parsed across 56 subject pages
+  - Missing subject pages: AA, ALL, AMATH, BEGIN, CEE, CHEM, CIRCUITSTCES, CSE, EE, ENGL, ENVIR, EXCEPTTMATH, FORMERLYTECON, IN, MATH, ME, PHYS, PSYCH, SOCWF, THISP, UNDERPINALL
+  - Ignored invalid planner subject tokens: MUSTBE

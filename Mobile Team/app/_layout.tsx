@@ -16,9 +16,7 @@ import { UniversalDevMode } from "@/components/dev/UniversalDevMode";
 import { STORAGE_KEYS } from "@/constants/schema";
 import { cacheManagerService, errorLoggingService } from "@/services";
 import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
-import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
-import { ScreenBackground } from "@/components/layouts/ScreenBackground";
-import { useThemeStyles } from "@/hooks/use-theme-styles";
+import { AppStartupScreen } from "@/components/AppStartupScreen";
 
 const HAS_SEEN_STARTUP_KEY = STORAGE_KEYS.hasSeenStartup;
 
@@ -134,8 +132,7 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
 }
 
 function RootLayoutContent() {
-  const { hydrated: themeHydrated, isDark, isGreen } = useAppTheme();
-  const theme = useThemeStyles();
+  const { hydrated: themeHydrated } = useAppTheme();
   const [appIsReady, setAppIsReady] = useState(false);
   const [showAnimation, setShowAnimation] = useState<boolean | null>(null);
 
@@ -174,25 +171,7 @@ function RootLayoutContent() {
   };
 
   if (!appIsReady || showAnimation === null || !themeHydrated) {
-    return (
-      <ScreenBackground>
-        <View
-          style={{
-            flex: 1,
-            alignItems: "center",
-            justifyContent: "center",
-            paddingHorizontal: 24,
-          }}
-        >
-          <View style={{ marginBottom: 16 }}>
-            <GatorGuideMark size={96} darkMode={isDark || isGreen} />
-          </View>
-          <Text style={{ color: theme.textColor, fontSize: 16, fontWeight: "600" }}>
-            Loading Gator Guide...
-          </Text>
-        </View>
-      </ScreenBackground>
-    );
+    return <AppStartupScreen />;
   }
 
   if (showAnimation) {

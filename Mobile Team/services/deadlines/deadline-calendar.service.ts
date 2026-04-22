@@ -51,12 +51,16 @@ export type DeadlineCalendarGroup = {
   items: DeadlineCalendarEntry[];
 };
 
+export const UPCOMING_DEADLINE_WINDOW_DAYS = 180;
+
 const ROADMAP_SECTION_LABELS: Record<RoadmapSectionId, string> = {
   documents: "Planning documents",
   courses: "Planning courses",
   applications: "Planning applications",
   interests: "Planning interests",
 };
+
+const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
 
 function toDate(value: unknown): Date | null {
   const raw = String(value ?? "").trim();
@@ -78,6 +82,19 @@ function toDateKey(date: Date) {
 function compareEntries(left: DeadlineCalendarEntry, right: DeadlineCalendarEntry) {
   if (left.dueAt !== right.dueAt) return left.dueAt.localeCompare(right.dueAt);
   return left.title.localeCompare(right.title);
+}
+
+function isUpcomingDueWithinDays(
+  value: string,
+  days: number,
+  now = Date.now()
+) {
+  const parsed = toDate(value);
+  if (!parsed) return false;
+
+  const dueAt = parsed.getTime();
+  const windowEnd = now + Math.max(0, days) * MILLISECONDS_PER_DAY;
+  return dueAt >= now && dueAt <= windowEnd;
 }
 
 function buildRoadmapTarget(
@@ -203,6 +220,14 @@ class DeadlineCalendarService {
     );
   }
 
+  filterUpcomingEntries(entries: DeadlineCalendarEntry[], days = UPCOMING_DEADLINE_WINDOW_DAYS) {
+    const now = Date.now();
+
+    return [...(entries ?? [])]
+      .filter((entry) => !entry.isDone && isUpcomingDueWithinDays(entry.dueAt, days, now))
+      .sort(compareEntries);
+  }
+
   groupEntries(entries: DeadlineCalendarEntry[]) {
     const groups = new Map<string, DeadlineCalendarEntry[]>();
 
@@ -219,6 +244,14 @@ class DeadlineCalendarService {
         items: items.sort(compareEntries),
       }))
       .sort((left, right) => left.dueAt.localeCompare(right.dueAt));
+  }
+
+  filterUpcomingGroups(groups: DeadlineCalendarGroup[], days = UPCOMING_DEADLINE_WINDOW_DAYS) {
+    const now = Date.now();
+
+    return [...(groups ?? [])].filter((group) =>
+      isUpcomingDueWithinDays(group.dueAt, days, now)
+    );
   }
 }
 

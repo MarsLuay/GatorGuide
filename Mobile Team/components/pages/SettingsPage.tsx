@@ -14,6 +14,7 @@ import { ROUTES } from "@/constants/routes";
 import { SUPPORT_EMAIL, SUPPORT_MAILTO } from "@/constants/support";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
+import { resetTranscriptState } from "@/services/planning/transcript-reset.service";
 import {
   AnimatedCardPressable,
   AnimatedChipPressable,
@@ -52,14 +53,6 @@ const SUPPORT_MESSAGE_WEBHOOK =
   process.env.EXPO_PUBLIC_SUPPORT_MESSAGE_WEBHOOK ||
   "https://us-central1-gatorguide.cloudfunctions.net/sendSupportMessage";
 
-const TRANSCRIPT_COURSES_FIELD = "transferPlannerCompletedCourses";
-const TRANSCRIPT_SOURCE_FIELD = "transferPlannerTranscriptSource";
-const TRANSCRIPT_UPLOADED_AT_FIELD = "transferPlannerTranscriptUploadedAt";
-const TRANSCRIPT_PARSER_VERSION_FIELD = "transferPlannerTranscriptParserVersion";
-const CURRENT_PLANNED_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
-const SELECTED_PATHWAY_FIELD = "transferPlannerSelectedPathwayByPlan";
-const LAST_SELECTED_PLAN_FIELD = "transferPlannerLastSelectedPlan";
-
 export default function SettingsPage() {
   const router = useRouter();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -85,6 +78,7 @@ export default function SettingsPage() {
     setNotificationsEnabled,
     restoreData,
     setQuestionnaireAnswers,
+    patchUserLocally,
     updateUser,
   } = useAppData();
   const { getScrollContentPadding } = useResponsiveLayout();
@@ -143,9 +137,7 @@ export default function SettingsPage() {
       ? t("settings.system")
       : theme === "dark"
         ? t("settings.dark")
-        : theme === "light"
-          ? t("settings.light")
-          : t("settings.green");
+        : t("settings.light");
 
   const handleToggleNotifications = useCallback(async () => {
     const currentStatus = state.notificationsEnabled ?? false;
@@ -303,33 +295,20 @@ export default function SettingsPage() {
       setIsClearingCache(true);
       const { clearedCount } = await cacheManagerService.clearRelevantCaches();
 
-      const nextQuestionnaireAnswers = {
-        ...(state.questionnaireAnswers ?? {}),
-      };
+      if (user?.uid) {
+        await resetTranscriptState({
+          userId: user.uid,
+          setQuestionnaireAnswers,
+          patchUserLocally,
+          updateUser,
+        });
 
-      delete nextQuestionnaireAnswers.completedCourses;
-      delete nextQuestionnaireAnswers[TRANSCRIPT_COURSES_FIELD];
-      delete nextQuestionnaireAnswers[TRANSCRIPT_SOURCE_FIELD];
-      delete nextQuestionnaireAnswers[TRANSCRIPT_UPLOADED_AT_FIELD];
-      delete nextQuestionnaireAnswers[TRANSCRIPT_PARSER_VERSION_FIELD];
-      delete nextQuestionnaireAnswers[CURRENT_PLANNED_COURSES_FIELD];
-      delete nextQuestionnaireAnswers[SELECTED_PATHWAY_FIELD];
-      delete nextQuestionnaireAnswers[LAST_SELECTED_PLAN_FIELD];
-
-      await setQuestionnaireAnswers(nextQuestionnaireAnswers);
-
-      if (user) {
-        await updateUser(
-          user.isGuest
-            ? {
-                transcript: undefined,
-                resume: undefined,
-                avatar: undefined,
-              }
-            : {
-                transcript: undefined,
-              }
-        );
+        if (user.isGuest) {
+          await updateUser({
+            resume: undefined,
+            avatar: undefined,
+          });
+        }
       }
 
       setCacheClearedCount(clearedCount);
@@ -338,7 +317,7 @@ export default function SettingsPage() {
     } finally {
       setIsClearingCache(false);
     }
-  }, [setQuestionnaireAnswers, state.questionnaireAnswers, updateUser, user]);
+  }, [patchUserLocally, setQuestionnaireAnswers, updateUser, user]);
 
   const sendSupportMessage = async () => {
     const message = supportMessage.trim();
@@ -435,8 +414,8 @@ export default function SettingsPage() {
             type: "nav",
             value: currentThemeLabel,
             onPress: () => {
-              const order = ["system", "dark", "light", "green"] as const;
-              const currentIndex = order.indexOf(theme);
+              const order = ["system", "dark", "light"] as const;
+              const currentIndex = order.indexOf(theme === "green" ? "dark" : theme);
               const next = order[(currentIndex + 1) % order.length];
               setTheme(next);
             },

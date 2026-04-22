@@ -28,4 +28,5 @@ Admissions
 Majors
 Applied Computing
 Curriculum
+CSS 132 Computer Programming for Engineers I (5; C++) or CSS 142 Computer Programming I (5; Java)
 CSS 133 Computer Programming for Engineers II (5; C++) or CSS 143 Computer Programming II (5; Java)

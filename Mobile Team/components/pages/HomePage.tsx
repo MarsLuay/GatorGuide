@@ -49,15 +49,16 @@ function formatImportantDate(value: string | null, fallback = "Coming soon") {
   }
 }
 
-function getUpcomingDeadlineEntries(entries: DeadlineCalendarEntry[], limit = 3) {
-  const pending = entries.filter((entry) => !entry.isDone);
-  const now = Date.now();
-  const upcoming = pending.filter((entry) => {
-    const parsed = new Date(entry.dueAt);
-    return !Number.isNaN(parsed.getTime()) && parsed.getTime() >= now;
-  });
-
-  return (upcoming.length ? upcoming : pending).slice(0, limit);
+function formatGpaDisplay(value: string | null | undefined) {
+  const raw = String(value ?? "").trim();
+  if (!raw) return "";
+  const match = raw.match(/-?\d+(?:\.\d+)?/);
+  if (!match) return raw;
+  const num = Number.parseFloat(match[0]);
+  if (!Number.isFinite(num)) return raw;
+  const clamped = Math.max(0, Math.min(num, 4.0));
+  const truncated = Math.floor(clamped * 100) / 100;
+  return truncated.toFixed(2).replace(/\.0+$|0+$/g, '');
 }
 
 export default function HomePage() {
@@ -291,16 +292,18 @@ export default function HomePage() {
     desktopRecommendedCourses.length > 0 || !!desktopCoursePlanningDeadline;
   const desktopProfileName = user?.name?.trim() || t("home.student");
   const desktopProfileMajor = user?.major?.trim() || desktopRoadmap?.profileSnapshot.major?.trim() || t("home.undecided");
-  const desktopProfileGpa = user?.gpa?.trim() || desktopRoadmap?.profileSnapshot.gpa?.trim() || t("general.notSpecified");
+  const desktopProfileGpaRaw = user?.gpa?.trim() || desktopRoadmap?.profileSnapshot.gpa?.trim() || "";
+  const desktopProfileGpa = desktopProfileGpaRaw ? formatGpaDisplay(desktopProfileGpaRaw) : t("general.notSpecified");
   const desktopCombinedDeadlineEntries = useMemo(
     () =>
-      getUpcomingDeadlineEntries(
-        deadlineCalendarService.buildEntries({
-          roadmap: desktopRoadmap,
-          opportunities: unfinishedRecommendedOpportunities,
-        }),
-        5
-      ),
+      deadlineCalendarService
+        .filterUpcomingEntries(
+          deadlineCalendarService.buildEntries({
+            roadmap: desktopRoadmap,
+            opportunities: unfinishedRecommendedOpportunities,
+          })
+        )
+        .slice(0, 5),
     [desktopRoadmap, unfinishedRecommendedOpportunities]
   );
   const desktopNextDeadlineEntry = useMemo(

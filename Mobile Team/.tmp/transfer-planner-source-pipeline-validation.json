@@ -1,15 +1,31 @@
 {
-  "generatedAt": "2026-04-20T08:42:53.412Z",
-  "outcome": "passed",
-  "passedCount": 9,
-  "failedCount": 0,
+  "generatedAt": "2026-04-22T19:19:32.166Z",
+  "outcome": "failed",
+  "passedCount": 16,
+  "failedCount": 3,
   "metrics": {
-    "eligibleAutoPromotionOwnerCount": 0,
-    "eligibleAutoPromotionOwnerIds": [],
-    "eligibleAutoPromotionOwnerKeys": [],
-    "reviewQueueOwnerCount": 0,
-    "sourceGapOwnerCount": 0,
-    "promotedOwnerCount": 74,
+    "eligibleAutoPromotionOwnerCount": 6,
+    "eligibleAutoPromotionOwnerIds": [
+      "uw-seattle-biochemistry:pathway:ba-route",
+      "uw-seattle-biochemistry:pathway:bs-route",
+      "uw-seattle-chemistry:pathway:ba-route",
+      "uw-seattle-education-communities-and-organizations",
+      "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
+      "uw-seattle-marine-biology"
+    ],
+    "eligibleAutoPromotionOwnerKeys": [
+      "uw-seattle-biochemistry:pathway:ba-route",
+      "uw-seattle-biochemistry:pathway:bs-route",
+      "uw-seattle-chemistry:pathway:ba-route",
+      "uw-seattle-education-communities-and-organizations",
+      "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
+      "uw-seattle-marine-biology"
+    ],
+    "weakExistingOwnerCount": 110,
+    "highConfidenceReplacementOwnerCount": 6,
+    "reviewQueueOwnerCount": 3,
+    "sourceGapOwnerCount": 3,
+    "promotedOwnerCount": 90,
     "promotedOwnerKeys": [
       "uw-bothell-american-and-ethnic-studies",
       "uw-bothell-business-administration-accounting",
@@ -33,12 +49,28 @@
       "uw-bothell-science-technology-and-society",
       "uw-bothell-society-ethics-and-human-behavior",
       "uw-seattle-american-indian-studies",
+      "uw-seattle-aquatic-conservation-and-ecology",
+      "uw-seattle-art",
+      "uw-seattle-art-history",
       "uw-seattle-asian-studies",
+      "uw-seattle-biochemistry:pathway:ba-route",
+      "uw-seattle-biochemistry:pathway:bs-route",
+      "uw-seattle-chemistry:pathway:ba-route",
+      "uw-seattle-chemistry:pathway:bs-route",
       "uw-seattle-chinese",
       "uw-seattle-classics",
       "uw-seattle-comparative-literature",
       "uw-seattle-danish",
       "uw-seattle-early-childhood-and-family-studies",
+      "uw-seattle-education-communities-and-organizations",
+      "uw-seattle-electrical-computer-engineering",
+      "uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway",
+      "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
       "uw-seattle-english-language-literature-and-culture",
       "uw-seattle-finnish",
       "uw-seattle-french",
@@ -49,6 +81,7 @@
       "uw-seattle-italian",
       "uw-seattle-jazz-studies-b-m",
       "uw-seattle-linguistics",
+      "uw-seattle-marine-biology",
       "uw-seattle-mathematics",
       "uw-seattle-medical-laboratory-science",
       "uw-seattle-music-b-a",
@@ -74,7 +107,6 @@
       "uw-tacoma-environmental-science",
       "uw-tacoma-environmental-sustainability",
       "uw-tacoma-ethnic-gender-and-labor-studies",
-      "uw-tacoma-history",
       "uw-tacoma-information-technology",
       "uw-tacoma-interdisciplinary-arts-and-sciences",
       "uw-tacoma-mathematics",
@@ -86,20 +118,21 @@
       "uw-tacoma-urban-studies",
       "uw-tacoma-writing-studies"
     ],
-    "canonicalPrimaryOwnerCount": 472,
-    "parseablePrimaryOwnerCount": 472,
-    "parsedOwnerCount": 472,
-    "requirementFingerprintOwnerCount": 472
+    "canonicalPrimaryOwnerCount": 367,
+    "parseablePrimaryOwnerCount": 367,
+    "parsedOwnerCount": 366,
+    "requirementFingerprintOwnerCount": 366
   },
   "checks": [
     {
       "id": "discovery-partition",
-      "label": "Discovery owners partition cleanly into eligible auto-promotions and review-queue owners",
+      "label": "Missing-primary discovery owners partition cleanly into eligible auto-promotions and review-queue owners",
       "status": "passed",
       "details": [
-        "Discovery owners: 0",
-        "Eligible auto-promotions: 0",
-        "Review-queue owners: 0"
+        "Discovery owners: 3",
+        "Eligible missing-primary auto-promotions: 0",
+        "Eligible weak-existing replacements: 6",
+        "Review-queue owners: 3"
       ]
     },
     {
@@ -107,7 +140,7 @@
       "label": "Generated promotion registry matches the promotion report",
       "status": "passed",
       "details": [
-        "Promoted owners: 74"
+        "Promoted owners: 90"
       ]
     },
     {
@@ -115,7 +148,7 @@
       "label": "Eligible high-confidence discoveries are promoted unless they remain in the review queue",
       "status": "passed",
       "details": [
-        "Eligible promoted owners verified: 0"
+        "Eligible promoted owners verified: 6"
       ]
     },
     {
@@ -123,33 +156,31 @@
       "label": "Review queue and source-gap report point at the same unresolved owners",
       "status": "passed",
       "details": [
-        "Shared unresolved owners: 0"
+        "Shared unresolved owners: 3"
       ]
     },
     {
       "id": "promotions-materialized-in-canonical-registry",
       "label": "Auto-promoted owners are materialized in the canonical primary-source registry",
-      "status": "passed",
+      "status": "failed",
       "details": [
-        "Promoted owners: 74",
-        "Canonical primary owners: 472"
+        "Promoted owners missing canonical primary entries: uw-seattle-biochemistry:pathway:ba-route, uw-seattle-biochemistry:pathway:bs-route, uw-seattle-chemistry:pathway:ba-route, uw-seattle-chemistry:pathway:bs-route, uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway, uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway, uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway, uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway\n+ actual - expected\n\n+ [\n+   'uw-seattle-biochemistry:pathway:ba-route',\n+   'uw-seattle-biochemistry:pathway:bs-route',\n+   'uw-seattle-chemistry:pathway:ba-route',\n+   'uw-seattle-chemistry:pathway:bs-route',\n+   'uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway'\n+ ]\n- []\n"
       ]
     },
     {
       "id": "registry-parser-alignment",
       "label": "Canonical parseable primary owners align with parser input and parser output",
-      "status": "passed",
+      "status": "failed",
       "details": [
-        "Canonical parseable primary owners: 472",
-        "Parsed owners: 472"
+        "Parse report owner count should match the canonical parseable primary-owner count.\n\n366 !== 367\n"
       ]
     },
     {
       "id": "promoted-owners-parsed-and-fingerprinted",
       "label": "Promoted owners appear in parser output and requirement fingerprints",
-      "status": "passed",
+      "status": "failed",
       "details": [
-        "Promoted owners verified end-to-end: 74"
+        "Promoted owners missing parsed blocks: uw-seattle-biochemistry:pathway:ba-route, uw-seattle-biochemistry:pathway:bs-route, uw-seattle-chemistry:pathway:ba-route, uw-seattle-chemistry:pathway:bs-route, uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway, uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway, uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway, uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway\n+ actual - expected\n\n+ [\n+   'uw-seattle-biochemistry:pathway:ba-route',\n+   'uw-seattle-biochemistry:pathway:bs-route',\n+   'uw-seattle-chemistry:pathway:ba-route',\n+   'uw-seattle-chemistry:pathway:bs-route',\n+   'uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway'\n+ ]\n- []\n"
       ]
     },
     {
@@ -157,10 +188,10 @@
       "label": "Requirement fingerprint coverage stays aligned with parsed requirement owners",
       "status": "passed",
       "details": [
-        "Requirement fingerprints: 472",
-        "Parsed owners: 472",
+        "Requirement fingerprints: 366",
+        "Parsed owners: 366",
         "Added source fingerprints: 0",
-        "Added requirement fingerprints: 0"
+        "Added requirement fingerprints: 78"
       ]
     },
     {
@@ -168,7 +199,98 @@
       "label": "Eligible auto-promotions are fully cleared from the review queue and source-gap report",
       "status": "passed",
       "details": [
-        "Eligible owners fully cleared: 0"
+        "Eligible owners fully cleared: 6"
+      ]
+    },
+    {
+      "id": "stale-year-replacement-trigger",
+      "label": "Year-tied primary degree sheets can trigger re-evaluation even when parsing still succeeds",
+      "status": "passed",
+      "details": [
+        "primary-source-appears-year-specific"
+      ]
+    },
+    {
+      "id": "weak-existing-primary-replacement-trigger",
+      "label": "Weak-source replacement can trigger for an owner that already has an official primary source",
+      "status": "passed",
+      "details": [
+        "safe-intentional-empty-state, primary-url-looks-graduate-or-timeline, page-headings-look-graduate-or-timeline-heavy, primary-looks-overview-only"
+      ]
+    },
+    {
+      "id": "biochemistry-sibling-discovery-finds-current-route-pages",
+      "label": "Biochemistry stale-year re-evaluation discovers current sibling route pages and checklist PDFs",
+      "status": "passed",
+      "details": [
+        "Suggested replacement: https://chem.washington.edu/bs-biochemistry",
+        "Discovered newer sibling PDF: https://chem.washington.edu/sites/chem/files/documents/undergrad/biochem2018.pdf",
+        "Newer sibling PDF score: 45"
+      ]
+    },
+    {
+      "id": "newer-sibling-docs-outrank-older-pdfs-when-route-matches",
+      "label": "Newer official sibling requirement docs outrank older equivalent PDFs when the program route still matches",
+      "status": "passed",
+      "details": [
+        "Current PDF score: 13",
+        "Newer sibling PDF score: 45"
+      ]
+    },
+    {
+      "id": "year-signal-does-not-override-route-match",
+      "label": "Year recency does not override a stronger same-route major-program match",
+      "status": "passed",
+      "details": [
+        "Suggested BA-route replacement: https://chem.washington.edu/ba-biochemistry",
+        "Top BA-route candidate: https://chem.washington.edu/ba-biochemistry"
+      ]
+    },
+    {
+      "id": "multi-pathway-majors-do-not-auto-swap-to-single-route-pages",
+      "label": "Multi-pathway major owners keep review candidates instead of auto-replacing with a single-route page",
+      "status": "passed",
+      "details": [
+        "Action: keep-existing-primary",
+        "Review candidate: https://chem.washington.edu/ba-chemistry"
+      ]
+    },
+    {
+      "id": "replacement-candidates-come-from-real-official-links",
+      "label": "Replacement candidates come from real official links and discovered anchors, not guessed URLs",
+      "status": "passed",
+      "details": [
+        "Suggested replacement: https://astro.washington.edu/undergraduate-program",
+        "Source kind: discovered-anchor",
+        "Discovered from: https://astro.washington.edu/timeline-and-requirements"
+      ]
+    },
+    {
+      "id": "undergraduate-pages-outrank-timeline-and-graduate-pages",
+      "label": "Undergraduate degree pages outrank timeline and graduate pages when all are official",
+      "status": "passed",
+      "details": [
+        "Undergraduate score: 70",
+        "Timeline score: -32",
+        "Graduate score: -26"
+      ]
+    },
+    {
+      "id": "strong-existing-primaries-do-not-churn",
+      "label": "Strong existing primaries are not replaced without a clearly better candidate",
+      "status": "passed",
+      "details": [
+        "Strong undergraduate primary left in place."
+      ]
+    },
+    {
+      "id": "astronomy-fixture-prefers-undergraduate-program",
+      "label": "Focused Astronomy fixture prefers the undergraduate-program page over timeline-and-requirements",
+      "status": "passed",
+      "details": [
+        "Suggested action: replace-existing-primary",
+        "Replacement: https://astro.washington.edu/undergraduate-program",
+        "Score delta: 95"
       ]
     }
   ]

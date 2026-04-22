@@ -3,6 +3,7 @@ function Get-TransferPlannerLaymansDiagnosis {
     [string]$ProjectRoot,
     [string]$FailureMessage = "",
     [string]$LogPath = "",
+    [string]$TargetPlanId = "",
     [switch]$IncludeWarnings
   )
 
@@ -21,6 +22,9 @@ function Get-TransferPlannerLaymansDiagnosis {
   }
   if ($LogPath) {
     $arguments += @("--log-path", $LogPath)
+  }
+  if ($TargetPlanId) {
+    $arguments += @("--target-plan-id", $TargetPlanId)
   }
   if ($IncludeWarnings) {
     $arguments += "--include-warnings"

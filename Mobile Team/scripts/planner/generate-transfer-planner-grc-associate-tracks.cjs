@@ -466,6 +466,54 @@ function normalizeTrackNote(value) {
   return normalized;
 }
 
+const TRACK_GUIDANCE_NON_EXPLICIT_PATTERN =
+  /\b(?:recommended|recommendation|suggest(?:ed|ion|ions)?|select one|choose one|of the following|distribution|elective|general education|of your choice|fun and useful|see quarter)\b/i;
+const TRACK_HUMANITIES_PATTERN =
+  /\b(?:arts?\s*(?:&|and)\s*humanities|humanities|fine arts|english distribution|humanities\/fine arts\/english distribution|a&h)\b/i;
+const TRACK_SOCIAL_SCIENCE_PATTERN = /\b(?:social science|social sciences|ssc)\b/i;
+const TRACK_NATURAL_SCIENCE_PATTERN = /\b(?:natural science|natural sciences|nsc)\b/i;
+const TRACK_ELECTIVE_PATTERN = /\b(?:elective|general education)\b/i;
+
+function extractTrackGuidanceLabels(value) {
+  const normalized = normalizeTrackNote(value);
+  if (!normalized) {
+    return [];
+  }
+
+  const hasHumanities = TRACK_HUMANITIES_PATTERN.test(normalized);
+  const hasSocialScience = TRACK_SOCIAL_SCIENCE_PATTERN.test(normalized);
+  const hasNaturalScience = TRACK_NATURAL_SCIENCE_PATTERN.test(normalized);
+  const hasElective = TRACK_ELECTIVE_PATTERN.test(normalized);
+  const labels = [];
+
+  if (hasHumanities && hasSocialScience) {
+    labels.push("Humanities or Social Science");
+  } else if (hasHumanities) {
+    labels.push("Humanities");
+  } else if (hasSocialScience) {
+    labels.push("Social Science");
+  }
+
+  if (hasNaturalScience) {
+    labels.push("Natural Science");
+  }
+
+  if (hasElective) {
+    labels.push("Elective or General Education");
+  }
+
+  return labels;
+}
+
+function shouldTreatTrackTextCourseCodesAsExplicit(value) {
+  const normalized = normalizeTrackNote(value);
+  if (!normalized) {
+    return false;
+  }
+
+  return !TRACK_GUIDANCE_NON_EXPLICIT_PATTERN.test(normalized);
+}
+
 function collectCoreCourseLabels(core) {
   const labels = [];
 
@@ -481,13 +529,18 @@ function collectCoreCourseLabels(core) {
       continue;
     }
 
-    const extractedCodes = extractCourseCodes(note);
+    labels.push(...extractTrackGuidanceLabels(note));
+
+    const extractedCodes = shouldTreatTrackTextCourseCodesAsExplicit(note)
+      ? extractCourseCodes(note)
+      : [];
     if (extractedCodes.length) {
       labels.push(...extractedCodes);
       continue;
     }
 
     if (
+      shouldTreatTrackTextCourseCodesAsExplicit(note) &&
       !/^(classes to become calculus ready|minimum [0-9]+ credits|elective|humanities|social science)/i.test(
         note
       )
@@ -496,7 +549,11 @@ function collectCoreCourseLabels(core) {
     }
   }
 
-  const descriptionCodes = extractCourseCodes(core.description);
+  labels.push(...extractTrackGuidanceLabels(core.description));
+
+  const descriptionCodes = shouldTreatTrackTextCourseCodesAsExplicit(core.description)
+    ? extractCourseCodes(core.description)
+    : [];
   if (descriptionCodes.length) {
     labels.push(...descriptionCodes);
   }

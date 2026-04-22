@@ -54,7 +54,7 @@ export type TransferPlannerGeneralRequirementPlannerUsage =
   | "summary-only";
 
 export type TransferPlannerGeneralRequirementItem = {
-  id: TransferPlannerGeneralRequirementCategoryId;
+  id: string;
   label: string;
   valueText: string;
   note?: string;

@@ -1,0 +1,441 @@
+Owner: uw-seattle-computational-finance-and-risk-management:pathway:risk-management-option
+Source: https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html
+Title: 
+
+Home
+Home
+Students
+Parents
+Faculty & Staff
+Alumni
+College of Arts and Sciences
+Applied Mathematics
+201 Lewis Hall
+206-543-5493
+Website
+Faculty Website
+info@amath.washington.edu
+Applied Mathematics is the discipline of discovering, applying, and promoting the use of mathematics to model and solve practical problems in many disciplines, ranging from physical sciences and biology to medicine and business.
+Undergraduate Programs
+Program of Study: Major: Applied Mathematics
+Bachelor of Science degree with a major in Applied Mathematics
+Bachelor of Science degree with a major in Applied Mathematics: Data Science
+Program of Study: Major: Computational Finance and Risk Management
+Bachelor of Science degree with a major in Computational Finance and Risk Management
+Bachelor of Science degree with a major in Computational Finance and Risk Management: Data Science
+Program of Study: Minor: Applied Mathematics
+Minor in Applied Mathematics
+Program of Study: Minor: Computational Finance
+Minor in Computational Finance
+Graduate Programs
+Program of Study: Doctor Of Philosophy (Applied Mathematics)
+Doctor Of Philosophy (Applied Mathematics)
+Doctor Of Philosophy (Applied Mathematics: Advanced Data Science)
+Program of Study: Master Of Science (Applied Mathematics)
+Master Of Science (Applied Mathematics)
+Master Of Science (Applied Mathematics: Applied & Computational Mathematics) (fee based)
+Master Of Science (Applied Mathematics: Applied & Computational Mathematics) (online) (fee-based)
+Program of Study: Master Of Science In Computational Finance And Risk Management
+Master Of Science In Computational Finance And Risk Management (Computing) (fee-based)
+Master Of Science In Computational Finance And Risk Management (Computing) (fee-based) (Online)
+Master Of Science In Computational Finance And Risk Management (fee-based)
+Master Of Science In Computational Finance And Risk Management (fee-based) (Online)
+Master Of Science In Computational Finance And Risk Management (Risk Management) (fee-based)
+Master Of Science In Computational Finance And Risk Management (Risk Management) (fee-based) (Online)
+Undergraduate Programs
+Applied Mathematics
+201 Lewis Hall
+206-616-0386
+amathadv@uw.edu
+Program of Study: Major: Applied Mathematics
+Program Overview
+Applied and computational mathematics encompasses some of the most diverse and interdisciplinary research in the physical, engineering, and biological sciences. The Department of Applied Mathematics at the University of Washington provides a dynamic and engaging graduate training environment that is especially strong in scientific computing and in the application areas of mathematical biology (ecology, biochemistry, neuroscience), nonlinear waves and coherent structures (water waves and tsunamis, lasers, nonlinear optics), mathematical finance, climate modeling (atmospheric dynamics, global warming) and modern mathematical methods (inverse problems, numerical analysis, optimization).
+This program of study leads to the following credentials:
+Bachelor of Science degree with a major in Applied Mathematics
+Bachelor of Science degree with a major in Applied Mathematics: Data Science
+Admission Requirements
+Admission to the major is capacity constrained. Completion of minimum requirements described below does not guarantee admission. The application and additional information are available at the department website.
+There are two types of applicants - Currently Enrolled UW Students and Entering Transfers.
+Currently Enrolled UW Students
+Minimum requirements: Minimum 2.0 grade in each of MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136). Minimum 2.0 grade in AMATH 301. Successful applicants typically have earned above a minimum 2.50 cumulative GPA in courses listed above with no individual course grade lower than a 2.0.
+Determining factors: Admission is based on a holistic review of the student's record to include: grades in courses required for admission, overall cumulative GPA, and rigor of courses completed; time to degree set by the UW Satisfactory Progress Policy, including frequency of incompletes or withdrawals and number of repeated courses; personal statement that demonstrates interest in pursuing advanced study in the field of applied mathematics and related fields.
+When to Apply : Applications are accepted twice each year at the beginning of autumn and spring quarters. Refer to department website for deadlines.
+Entering Transfers
+Transfer applicants must submit a departmental application for the same quarter they submit an application to the University.
+Minimum requirements: Minimum 2.0 grade in each of MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136). Minimum 2.0 grade in AMATH 301. Successful applicants typically have earned above a minimum 2.50 cumulative GPA in courses listed above with no individual course grade lower than a 2.0.
+Determining factors: Admission is based on a holistic review of the student's record to include: grades in courses required for admission, overall cumulative GPA, and rigor of courses completed; time to degree set by the UW Satisfactory Progress Policy, including frequency of incompletes or withdrawals and number of repeated courses; personal statement that demonstrates interest in pursuing advanced study in the field of applied mathematics and related fields.
+When to apply: Admission is once per year. Application deadline: 5 p.m. April 5th of spring quarter for an autumn admission.
+Continuation Policy
+All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website.
+Bachelor of Science degree with a major in Applied Mathematics
+Completion Requirements
+General Education Requirements
+Areas of Inquiry: A&H (20 credits); SSc (20 credits); NSc (20 credits). 15 additional credits in any area.
+English Composition (C): 5 credits
+Additional Writing: 10 credits
+Foreign Language: completion of the third college quarter of a foreign language
+Reasoning (RSN): 4 or 5 credits from the RSN list
+Diversity (DIV): 5 credits. Of Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
+Major Requirements
+Minimum 54-58 credits, depending on credential/option
+Mathematics : MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136) (15 credits)
+Computing : AMATH 301 (4 credits)
+Introductory Applied Mathematics : AMATH 351, AMATH 352, AMATH 353 (9 credits)
+Additional requirements specified below
+Minimum 2.00 cumulative GPA in courses applied to the major
+Additional Completion Requirements
+Minimum 27 credits
+Minimum two courses from AMATH 401, AMATH 402, AMATH 403
+Minimum two courses from AMATH 342, AMATH 383, AMATH 422, AMATH 423
+Minimum two courses from AMATH 481, AMATH 482, AMATH 483, CFRM 410, CFRM 420, CFRM 421
+Back to Top
+Bachelor of Science degree with a major in Applied Mathematics: Data Science
+Credential Overview
+Data Science continues to be a growing area of study within Applied Mathematics and the sciences in general. It incorporates statistical modeling, machine learning, artificial intelligence, and optimization, among other aspects of Applied Mathematics. The Data Science option in Applied Mathematics is designed to provide students training in data science methods and practices.
+Additional Admission Requirements
+Students apply for the Data Science option at the time of application to the major. Non-option students in the major can petition to enroll in the Data Science option during the admissions rounds in autumn and spring quarters, and the decision is made based on course capacities.
+Completion Requirements
+General Education Requirements
+Areas of Inquiry: A&H (20 credits); SSc (20 credits); NSc (20 credits). 15 additional credits in any area.
+English Composition (C): 5 credits
+Additional Writing: 10 credits
+Foreign Language: completion of the third college quarter of a foreign language
+Reasoning (RSN): 4 or 5 credits from the RSN list
+Diversity (DIV): 5 credits. Of Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
+Major Requirements
+Minimum 54-58 credits, depending on credential/option
+Mathematics : MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136) (15 credits)
+Computing : AMATH 301 (4 credits)
+Introductory Applied Mathematics : AMATH 351, AMATH 352, AMATH 353 (9 credits)
+Additional requirements specified below
+Minimum 2.00 cumulative GPA in courses applied to the major
+Additional Completion Requirements
+Option specific credits (26-30 credits)
+Data Science (23-25 credits) :
+one of AMATH 481 or CSE 163 (4-5 credits)
+one of AMATH 482, CSE 414, or INFO 430 (4-5 credits)
+AMATH 483; CFRM 410; CFRM 420 (11 credits)
+one of CFRM 421, CSE 416/STAT 416, or STAT 435 (4 credits)
+Society and Data (3-5 credits) : INFO 351 or SOC 225
+Back to Top
+Program of Study: Major: Computational Finance and Risk Management
+Program Overview
+In the finance industry, there is a great demand for advanced quantitative computational finance competencies. Mathematical models, statistical methods, and computational techniques are becoming increasingly important as tools for quantitative analysis, risk management, as well as models and strategies implementation. The Computational Finance major is designed to provide UW undergraduate students with a rigorous applied mathematical foundation and solid understanding of how mathematical models as well as statistical and computational methods are used in financial applications, such as portfolio optimization, derivatives pricing, and risk management.
+This program of study leads to the following credentials:
+Bachelor of Science degree with a major in Computational Finance and Risk Management
+Bachelor of Science degree with a major in Computational Finance and Risk Management: Data Science
+Admission Requirements
+Admission to the major is capacity constrained. Completion of minimum requirements described below does not guarantee admission. The application and additional information are available at the department website.
+There are two types of applicants - Currently Enrolled UW Students and Entering Transfers.
+Currently Enrolled UW Students
+Minimum requirements: Minimum 2.0 grade in each of MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136). Minimum 2.0 grade in AMATH 301. Successful applicants typically have earned above a minimum 2.50 cumulative GPA in courses listed above with no individual course grade lower than a 2.0.
+Determining factors: Admission is based on a holistic review of the student's record to include: grades in courses required for admission, overall cumulative GPA, and rigor of courses completed; time to degree set by the UW Satisfactory Progress Policy, including frequency of incompletes or withdrawals and number of repeated courses; personal statement that demonstrates interest in pursuing advanced study in the field of applied mathematics and related fields.
+When to Apply : Applications are accepted twice each year at the beginning of autumn and spring quarters. Refer to department website for deadlines.
+Entering Transfers
+Transfer applicants must submit a departmental application for the same quarter they submit an application to the University.
+Minimum requirements: Minimum 2.0 grade in each of MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136). Minimum 2.0 grade in AMATH 301. Successful applicants typically have earned above a minimum 2.50 cumulative GPA in courses listed above with no individual course grade lower than a 2.0.
+Determining factors: Admission is based on a holistic review of the student's record to include: grades in courses required for admission, overall cumulative GPA, and rigor of courses completed; time to degree set by the UW Satisfactory Progress Policy, including frequency of incompletes or withdrawals and number of repeated courses; personal statement that demonstrates interest in pursuing advanced study in the field of applied mathematics and related fields.
+When to apply: Admission is once per year. Application deadline: 5 p.m. April 5th of spring quarter for an autumn admission.
+Continuation Policy
+All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website.
+Bachelor of Science degree with a major in Computational Finance and Risk Management
+Completion Requirements
+General Education Requirements
+Areas of Inquiry: A&H (20 credits); SSc (20 credits); NSc (20 credits). 15 additional credits in any area.
+English Composition (C): 5 credits
+Additional Writing: 10 credits
+Foreign Language: completion of the third college quarter of a foreign language
+Reasoning (RSN): 4 or 5 credits from the RSN list
+Diversity (DIV): 5 credits. Of Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
+Major Requirements
+Minimum 63-69 credits, depending on credential/option
+Mathematics : MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136) (15 credits)
+Computing : AMATH 301, CFRM 425 (7 credits)
+Introductory Applied Mathematics : AMATH 351, AMATH 352, AMATH 353 (9 credits)
+Quantitative Finance : CFRM 405, CFRM 410, CFRM 415, CFRM 420 (12 credits)
+Additional requirements specified below
+Minimum 2.00 cumulative GPA in courses applied to the major
+Additional Completion Requirements
+Minimum 26 credits from the following: CFRM 421, CFRM 422, CFRM 426, CFRM 430, CFRM 442, CFRM 450, AMATH 481, AMATH 482, AMATH 483
+Back to Top
+Bachelor of Science degree with a major in Computational Finance and Risk Management: Data Science
+Credential Overview
+Data Science continues to be a growing area of study within Computational Finance and the sciences in general. It incorporates statistical modeling, machine learning, artificial intelligence, and optimization, among other aspects of applied mathematics. The Data Science option in Computational Finance and Risk Management is designed to provide students training in data science methods and practices.
+Additional Admission Requirements
+Students apply for the Data Science option at the time of application to the major. Non-option students in the major can petition to enroll in the Data Science option during the admissions rounds in autumn and spring quarters, and the decision is made based on course capacities.
+Completion Requirements
+General Education Requirements
+Areas of Inquiry: A&H (20 credits); SSc (20 credits); NSc (20 credits). 15 additional credits in any area.
+English Composition (C): 5 credits
+Additional Writing: 10 credits
+Foreign Language: completion of the third college quarter of a foreign language
+Reasoning (RSN): 4 or 5 credits from the RSN list
+Diversity (DIV): 5 credits. Of Special Note: For students admitted to the University prior to autumn quarter 2023, the DIV requirement is 3 credits.
+Major Requirements
+Minimum 63-69 credits, depending on credential/option
+Mathematics : MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136) (15 credits)
+Computing : AMATH 301, CFRM 425 (7 credits)
+Introductory Applied Mathematics : AMATH 351, AMATH 352, AMATH 353 (9 credits)
+Quantitative Finance : CFRM 405, CFRM 410, CFRM 415, CFRM 420 (12 credits)
+Additional requirements specified below
+Minimum 2.00 cumulative GPA in courses applied to the major
+Additional Completion Requirements
+Option specific credits (20-24 credits)
+Data Science (17-19 credits):
+a. one of AMATH 481 or CSE 163 (4-5 credits)
+b. one of AMATH 482, CSE 414, or INFO 430 (4-5 credits)
+c. AMATH 483 (5 credits)
+d. one of CFRM 421, CSE 416/STAT 416, or STAT 435 (4 credits)
+Society and Data (3-5 credits): INFO 351 or SOC 225
+Back to Top
+Program of Study: Minor: Applied Mathematics
+Program Overview
+Applied and computational mathematics encompasses some of the most diverse and interdisciplinary research in the physical, engineering, and biological sciences. The Department of Applied Mathematics at the University of Washington provides a dynamic and engaging graduate training environment that is especially strong in scientific computing and in the application areas of mathematical biology (ecology, biochemistry, neuroscience), nonlinear waves and coherent structures (water waves and tsunamis, lasers, nonlinear optics), mathematical finance, climate modeling (atmospheric dynamics, global warming) and modern mathematical methods (inverse problems, numerical analysis, optimization).
+This program of study leads to the following credential:
+Minor in Applied Mathematics
+Minor in Applied Mathematics
+Credential Overview
+Applied and computational mathematics encompasses some of the most diverse and interdisciplinary research in the physical, engineering, and biological sciences. The Department of Applied Mathematics at the University of Washington provides a dynamic and engaging training environment that is especially strong in scientific computing and in the application areas of mathematical biology (ecology, biochemistry, neuroscience), nonlinear waves and coherent structures (water waves and tsunamis, lasers, nonlinear optics), mathematical finance, climate modeling (atmospheric dynamics, global warming) and modern mathematical methods (inverse problems, numerical analysis, optimization, data science).
+Completion Requirements
+Minimum 27 credits
+MATH 124, MATH 125, MATH 126 or equivalent
+Four applied mathematics courses at the 300 level or above (excluding AMATH 400, AMATH 498, AMATH 499)
+Minimum 2.0 grade required in each course.
+Back to Top
+Program of Study: Minor: Computational Finance
+Program Overview
+In the finance industry, there is a great demand for advanced quantitative computational finance competencies. Mathematical models, statistical methods, and computational techniques are becoming increasingly important as tools for quantitative analysis, risk management, as well as models and strategies implementation. The Computational Finance Minor is designed to provide UW undergraduate students with a rigorous applied mathematical foundation and solid understanding of how mathematical models as well as statistical and computational methods are used in financial applications, such as portfolio optimization, derivatives pricing, and risk management. This Computational Finance Minor is also useful for those preparing for graduate school in Mathematical/Computational Finance or Financial Engineering since mathematical models and computational methods are heavily used in these graduate programs.
+This program of study leads to the following credential:
+Minor in Computational Finance
+Minor in Computational Finance
+Credential Overview
+In the finance industry, there is a great demand for advanced quantitative computational finance competencies. Mathematical models, statistical methods, and computational techniques are becoming increasingly important as tools for quantitative analysis, risk management, as well as models and strategies implementation. The Computational Finance Minor is designed to provide UW undergraduate students with a rigorous applied mathematical foundation and solid understanding of how mathematical models as well as statistical and computational methods are used in financial applications, such as portfolio optimization, derivatives pricing, and risk management. This Computational Finance Minor is also useful for those preparing for graduate school in Mathematical/Computational Finance or Financial Engineering since mathematical models and computational methods are heavily used in these graduate programs.
+Completion Requirements
+29-30 credits
+Core Courses (15 credits): CFRM 405, CFRM 410, CFRM 415, CFRM 420 (or ECON 424), CFRM 425
+Additional Requirements (14-15 credits):
+MATH 125, or MATH 135, or equivalent
+MATH 126, or MATH 136, or equivalent
+STAT 311 or STAT 390
+Minimum 2.00 cumulative GPA for courses applied to the minor.
+Back to Top
+Additional Information
+Student Outcomes and Opportunities
+Learning Objectives and Expected Outcomes: Through the Applied Mathematics major, students will gain the ability to apply mathematics to problems that society is facing today in the physical, engineering and biological sciences, industry, and many additional application areas. Students develop advanced skills in mathematical modeling, computing and scientific computation, mathematical reasoning and analytical skills. Through the Computational Finance and Risk Management major, students will gain the ability to master mathematical and computing aspects, such as financial software development, financial modeling, machine learning and data science; gain advanced quantitative computational finance competencies and next generation risk management skills.
+Honors Options Available: None
+Research, Internships, and Service Learning: When available, internship opportunities are passed on to students. Course credit available for undergraduate reading/research with faculty.
+Department Scholarships: None offered
+Student Organizations/Associations: None currently active
+Graduate Programs
+Applied Mathematics
+201 Lewis Hall
+206-616-9811
+gpa@amath.washington.edu
+Program of Study: Doctor Of Philosophy (Applied Mathematics)
+Program Overview
+Primarily a research degree, based on proficiency in applied mathematics, and the ability to carry out an independent investigation. The dissertation must exhibit original mathematical contributions relevant to a significant area of application.
+This program of study leads to the following credentials:
+Doctor Of Philosophy (Applied Mathematics)
+Doctor Of Philosophy (Applied Mathematics: Advanced Data Science)
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Doctor Of Philosophy (Applied Mathematics)
+Completion Requirements
+Minimum 90 credits
+Course Requirements (40 credits): Choose eight from the following: AMATH 561, AMATH 562, AMATH 563; AMATH 567, AMATH 568, AMATH 569; AMATH 584, AMATH 585, AMATH 586.
+AMATH 600 (4 credits) (Reading during first four quarters, including first summer) (2x2 credits each with separate faculty members)
+Minimum 15 Numerically Graded Courses (to reach required total): Minimum 9 courses from Applied Mathematics curriculum. Maximum two courses at the 400 level (or cross-listed with courses at the 400 level)
+Dissertation (27 credits): AMATH 800
+Supervisory Committee: Formed no later than end of the second year
+Qualifying Examination: The qualifying exam is passed by completing six courses from AMATH 561, 562, 563, 567, 568, 569, 584, 585, 586 before the second year of study, with a minimum course grade of 3.4 in each.
+General Examination: Oral examination administered by the student's supervisory committee; students must pass their general exam prior to the start of year three of their PhD studies.
+Final Examination: Oral defense of dissertation
+Satisfactory Performance: Minimum overall 3.40 GPA
+Satisfactory Progress: Timely passing of examinations. Department funding contingent on satisfactory progress.
+Back to Top
+Doctor Of Philosophy (Applied Mathematics: Advanced Data Science)
+Completion Requirements
+Minimum 90 credits
+Course Requirements (40 credits): Choose eight from the following: AMATH 561, AMATH 562, AMATH 563; AMATH 567, AMATH 568, AMATH 569; AMATH 584, AMATH 585, AMATH 586.
+AMATH 600 (4 credits) (Reading during first four quarters, including first summer) (2x2 credits each with separate faculty members)
+Minimum 15 Numerically Graded Courses (to reach required total): Minimum 9 courses from Applied Mathematics curriculum. Maximum two courses at the 400 level (or cross-listed with courses at the 400 level)
+Dissertation (27 credits): AMATH 800
+Supervisory Committee: Formed no later than end of the second year
+Qualifying Examination: The qualifying exam is passed by completing six courses from AMATH 561, 562, 563, 567, 568, 569, 584, 585, 586 before the second year of study, with a minimum course grade of 3.4 in each.
+General Examination: Oral examination administered by the student's supervisory committee; students must pass their general exam prior to the start of year three of their PhD studies.
+Final Examination: Oral defense of dissertation
+Satisfactory Performance: Minimum overall 3.40 GPA
+Satisfactory Progress: Timely passing of examinations. Department funding contingent on satisfactory progress.
+Additional Completion Requirements
+Option-specific requirements (these courses count toward the required total of 90 credits)
+Advanced Data Science Option Specific requirement (11-12 credits): Three courses from STAT 509, CSE 546 OR STAT 535, CSE 544, CSE 512
+eScience Community Seminar (4 credits): CHEM E 599
+Back to Top
+Additional Information
+Financial Aid: Both research and teaching assistantships are available to full-time students who qualify. Fellowship funds for the study of applied mathematics are available and awarded on a competitive basis.
+Research Facilities
+Five mid-scale computer servers (12-cores and 24 GBRAM each), available to faculty, staff, students, and visitors via physical or remote access. All faculty and student accounts use Dropbox for backup and cloud access.
+In addition to desktop computers, the department maintains five network printers, scanner facilities, six Bloomberg terminals, local laptops and projectors, camera and camcorders and other computing peripherals, including a conference room wired with a large-screen television and webcams for remote conferencing.
+Licensing for commercial software packages such as Matlab, Maple and Mathematica, Microsoft products and Adobe, and media tools, is provided by the College of Engineering and the UW IT Department. In addition, the department makes use of many free and open source tools such as Python, Numpy, and Scipy, as well as mathematical software packages.
+Back to Top
+Program of Study: Master Of Science (Applied Mathematics)
+This program of study leads to the following credentials:
+Master Of Science (Applied Mathematics)
+Master Of Science (Applied Mathematics: Applied & Computational Mathematics) (fee based)
+Master Of Science (Applied Mathematics: Applied & Computational Mathematics) (online) (fee-based)
+Master Of Science (Applied Mathematics)
+Credential Overview
+The on-campus M.Sc. Program is intended to give the student a working knowledge of several areas of applied mathematics, which may include a specific area of application, in order to prepare for a productive career in industry or elsewhere, or to prepare the student for continuing towards a Ph.D. degree.
+Admission Requirements
+Graduate degree program admission requirements vary. Please see this program's Graduate Admissions Page for specific requirements.
+Completion Requirements
+All options require 36 total credits.
+Core Courses (20 credits): Core courses vary by option, see additional requirements section below for option-specific courses.
+Additional Courses (to meet required credit total): From AMATH or other departments. Any non-AMATH courses taken to fulfill degree requirements must be at the graduate level, numerically graded, and approved by the department.
+Applied Mathematics Courses: Minimum 24 credits from the Applied Mathematics curriculum. Core courses count toward this requirement.
+Minimum nine numerically graded courses, including core courses listed above, with a minimum 3.20 cumulative GPA. One may be substituted with 4 credits of AMATH 500 or AMATH 600.
+Program Plan: Approved no later than the end of the first quarter of registration.
+Satisfactory Progress: Minimum 3.20 GPA. Students normally complete requirements for an MS degree in one year.
+Additional Completion Requirements
+Core Courses for this option (20 credits): AMATH 567, AMATH 568, AMATH 569, AMATH 584.
+Back to Top
+Master Of Science (Applied Mathematics: Applied & Computational Mathematics) (fee based)
+Credential Overview
+The Master of Science in Applied and Computational Mathematics curriculum is intended to give the student a working knowledge of several areas of applied mathematics, which may include a specific area of application, in order to prepare for a productive career in industry.
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Completion Requirements
+All options require 36 total credits.
+Core Courses (20 credits): Core courses vary by option, see additional requirements section below for option-specific courses.
+Additional Courses (to meet required credit total): From AMATH or other departments. Any non-AMATH courses taken to fulfill degree requirements must be at the graduate level, numerically graded, and approved by the department.
+Applied Mathematics Courses: Minimum 24 credits from the Applied Mathematics curriculum. Core courses count toward this requirement.
+Minimum nine numerically graded courses, including core courses listed above, with a minimum 3.20 cumulative GPA. One may be substituted with 4 credits of AMATH 500 or AMATH 600.
+Program Plan: Approved no later than the end of the first quarter of registration.
+Satisfactory Progress: Minimum 3.20 GPA. Students normally complete requirements for an MS degree in one year.
+Additional Completion Requirements
+Core Courses for this option (20 credits): AMATH 501, AMATH 502, AMATH 503, AMATH 581.
+Back to Top
+Master Of Science (Applied Mathematics: Applied & Computational Mathematics) (online) (fee-based)
+Credential Overview
+The University of Washington online Master of Science in Applied & Computational Mathematics is a top-ranked degree program that prepares students for dynamic careers in a variety of fields. This interdisciplinary program offers a thorough grounding in mathematical methods that underlie the physical, engineering and biological sciences.
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Completion Requirements
+All options require 36 total credits.
+Core Courses (20 credits): Core courses vary by option, see additional requirements section below for option-specific courses.
+Additional Courses (to meet required credit total): From AMATH or other departments. Any non-AMATH courses taken to fulfill degree requirements must be at the graduate level, numerically graded, and approved by the department.
+Applied Mathematics Courses: Minimum 24 credits from the Applied Mathematics curriculum. Core courses count toward this requirement.
+Minimum nine numerically graded courses, including core courses listed above, with a minimum 3.20 cumulative GPA. One may be substituted with 4 credits of AMATH 500 or AMATH 600.
+Program Plan: Approved no later than the end of the first quarter of registration.
+Satisfactory Progress: Minimum 3.20 GPA. Students normally complete requirements for an MS degree in one year.
+Additional Completion Requirements
+Core Courses for this option (20 credits): AMATH 501, AMATH 502, AMATH 503, AMATH 581.
+Back to Top
+Additional Information
+Financial Aid: Both research and teaching assistantships are available to full-time students who qualify. Fellowship funds for the study of applied mathematics are available and awarded on a competitive basis.
+Research Facilities:
+Five mid-scale computer servers (12-cores and 24 GBRAM each), available to faculty, staff, students, and visitors via physical or remote access. All faculty and student accounts use Dropbox for backup and cloud access.
+In addition to desktop computers, the department maintains five network printers, scanner facilities, six Bloomberg terminals, local laptops and projectors, camera and camcorders and other computing peripherals, including a conference room wired with a large-screen television and webcams for remote conferencing.
+Licensing for commercial software packages such as Matlab, Maple and Mathematica, Microsoft products and Adobe, and media tools, is provided by the College of Engineering and the UW IT Department. In addition, the department makes use of many free and open source tools such as Python, Numpy, and Scipy, as well as mathematical software packages.
+Back to Top
+Program of Study: Master Of Science In Computational Finance And Risk Management
+Program Overview
+The MS-CFRM addresses the demand in the financial-services profession for advanced quantitative and computational finance skills, and next generation risk-management competencies. Three degree options are available: general program (42 credits), computing concentration (54 credits), and risk management concentration (54 credits).
+This program of study leads to the following credentials:
+Master Of Science In Computational Finance And Risk Management (Computing) (fee-based)
+Master Of Science In Computational Finance And Risk Management (Computing) (fee-based) (Online)
+Master Of Science In Computational Finance And Risk Management (fee-based)
+Master Of Science In Computational Finance And Risk Management (fee-based) (Online)
+Master Of Science In Computational Finance And Risk Management (Risk Management) (fee-based)
+Master Of Science In Computational Finance And Risk Management (Risk Management) (fee-based) (Online)
+Master Of Science In Computational Finance And Risk Management (Computing) (fee-based)
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Completion Requirements
+Total 42-54 credits, varies by option
+Core Courses (26 credits): CFRM 501, CFRM 502, CFRM 503, CFRM 504, CFRM 505, CFRM 509, and either CFRM 506 or CFRM 507
+Option-specific requirements for General, Computing, or Risk Management: (See additional requirements below for option-specific requirements)
+Final Examination: Students pursuing a thesis give an oral defense. Final examination not required for non-thesis students.
+Satisfactory Progress: minimum 3.20 GPA
+Additional Completion Requirements
+Computing option specific requirements (minimum 28 credits) : Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computational Finance And Risk Management (Computing) (fee-based) (Online)
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Completion Requirements
+Total 42-54 credits, varies by option
+Core Courses (26 credits): CFRM 501, CFRM 502, CFRM 503, CFRM 504, CFRM 505, CFRM 509, and either CFRM 506 or CFRM 507
+Option-specific requirements for General, Computing, or Risk Management: (See additional requirements below for option-specific requirements)
+Final Examination: Students pursuing a thesis give an oral defense. Final examination not required for non-thesis students.
+Satisfactory Progress: minimum 3.20 GPA
+Additional Completion Requirements
+Computing option specific requirements (minimum 28 credits): Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computational Finance And Risk Management (fee-based)
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Completion Requirements
+Total 42-54 credits, varies by option
+Core Courses (26 credits): CFRM 501, CFRM 502, CFRM 503, CFRM 504, CFRM 505, CFRM 509, and either CFRM 506 or CFRM 507
+Option-specific requirements for General, Computing, or Risk Management: (See additional requirements below for option-specific requirements)
+Final Examination: Students pursuing a thesis give an oral defense. Final examination not required for non-thesis students.
+Satisfactory Progress: minimum 3.20 GPA
+Additional Completion Requirements
+General option specific requirements (minimum 16 credits): remaining credits satisfied by available CFRM elective courses
+Back to Top
+Master Of Science In Computational Finance And Risk Management (fee-based) (Online)
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Completion Requirements
+Total 42-54 credits, varies by option
+Core Courses (26 credits): CFRM 501, CFRM 502, CFRM 503, CFRM 504, CFRM 505, CFRM 509, and either CFRM 506 or CFRM 507
+Option-specific requirements for General, Computing, or Risk Management: (See additional requirements below for option-specific requirements)
+Final Examination: Students pursuing a thesis give an oral defense. Final examination not required for non-thesis students.
+Satisfactory Progress: minimum 3.20 GPA
+Additional Completion Requirements
+General option specific requirements (minimum 16 credits): remaining credits satisfied by available CFRM elective courses
+Back to Top
+Master Of Science In Computational Finance And Risk Management (Risk Management) (fee-based)
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Completion Requirements
+Total 42-54 credits, varies by option
+Core Courses (26 credits): CFRM 501, CFRM 502, CFRM 503, CFRM 504, CFRM 505, CFRM 509, and either CFRM 506 or CFRM 507
+Option-specific requirements for General, Computing, or Risk Management: (See additional requirements below for option-specific requirements)
+Final Examination: Students pursuing a thesis give an oral defense. Final examination not required for non-thesis students.
+Satisfactory Progress: minimum 3.20 GPA
+Additional Completion Requirements
+Risk management option specific requirements: (minimum 28 credits): Course list maintained internally by the program.
+Back to Top
+Master Of Science In Computational Finance And Risk Management (Risk Management) (fee-based) (Online)
+Admission Requirements
+Please see this program's Graduate Admissions Page for specific requirements.
+Completion Requirements
+Total 42-54 credits, varies by option
+Core Courses (26 credits): CFRM 501, CFRM 502, CFRM 503, CFRM 504, CFRM 505, CFRM 509, and either CFRM 506 or CFRM 507
+Option-specific requirements for General, Computing, or Risk Management: (See additional requirements below for option-specific requirements)
+Final Examination: Students pursuing a thesis give an oral defense. Final examination not required for non-thesis students.
+Satisfactory Progress: minimum 3.20 GPA
+Additional Completion Requirements
+Risk management option specific requirements (minimum 28 credits) : Course list maintained internally by the program.
+Back to Top
+University of Washington
+Be boundless
+Connect with us:
+Facebook
+Twitter
+Instagram
+YouTube
+LinkedIn
+Pinterest
+Accessibility
+Contact Us
+Jobs
+Campus Safety
+My UW
+Rules Docket
+Privacy
+Terms
+Newsletter
+&copy; University of Washington | Seattle, WA

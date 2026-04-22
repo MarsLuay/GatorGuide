@@ -1,0 +1,60 @@
+Owner: uw-seattle-biochemistry:pathway:b-a-route
+Source: https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf
+Title: Bachelor of Arts in Biochemistry
+
+[Page 1] Bachelor of Arts in Biochemistry
+[Page 1] Degree Requirements
+[Page 1] 1) Mathematics (MATH) 6) Biochemistry (BIOC)
+[Page 1] Regular or Honors Calculus  405 (3)
+[Page 1]  124 (5)  134 (5)  406 (3)
+[Page 1]  125 (5)  135 (5)
+[Page 1]  126 (5)  136 (5)
+[Page 1] 7) Physical Chemistry (CHEM)
+[Page 1]  452 (3)
+[Page 1] 2) General Chemistry (CHEM)  453 (3)
+[Page 1] Regular or Honors or Accelerated
+[Page 1]  142 (5)  145 (5)  143 (6)
+[Page 1]  152 (5)  155 (5)  153 (6) 8) Science Electives
+[Page 1]  162 (5)  165 (5) Nine credits from the following list
+[Page 1] AMATH 351 or 352 or MATH 307 or 308
+[Page 1] 3) Organic Chemistry (CHEM) ATM S 358, 458
+[Page 1] Regular or Honors B H 311
+[Page 1]  237 (4)  335 (4) BIOL 220, 300, 355, 401, 402, 411, 457
+[Page 1]  238 (4)  336 (4) BIOST 310
+[Page 1]  239 (4)  337 (4) BSE 406
+[Page 1] Laboratory CHEM 312, 317, 321, 410, 416, 417, 418,
+[Page 1]  241 (3)  346 (3) CHEM 419, 425, 426, 429, 430, 431, 432,
+[Page 1]  242 (3)  347 (3) CHEM 434, 436, 458, 460, 461, 462, 463,
+[Page 1] CHEM 464, 465, 484, 485, 486, 491
+[Page 1] CSE 427
+[Page 1] 4) Biology (BIOL) ENV H 431
+[Page 1]  180 (5) ESS 312, 457
+[Page 1]  200 (5) GENOME 361 or 371, 372, 373, 465
+[Page 1] IMMUN 441
+[Page 1] MICROM 402, 410, 411, 412, 431, 445
+[Page 1] MSE 471, 475
+[Page 1] 5) Physics (PHYS) NBIO 404
+[Page 1] Calculus-based or Algebra-based 
+[Page 1] OCEAN 400
+[Page 1]  121 (5)  114 (4)
+[Page 1] PHYS LAB** (one credit only)
+[Page 1]  122 (5)  115 (4)
+[Page 1] Q SCI 381 or STAT 311
+[Page 1]  123 (5)  116 (4)
+[Page 1] ADVANCED RESEARCH : Up to 3 credits
+[Page 1] **The calculus-based series is
+[Page 1] of advanced undergraduate research may
+[Page 1] recommended. Students taking the calculus
+[Page 1] count toward this requirement. Research
+[Page 1] based course can apply one credit toward the
+[Page 1] conducted outside of Chemistry or
+[Page 1] science elective requirement. Students
+[Page 1] Biochemistry must first be approved by one
+[Page 1] taking the algebra-based course may count
+[Page 1] of the undergraduate advisers.
+[Page 1] one credit of physics lab (Phys 117, 118,
+[Page 1] 119) as a science elective.
+[Page 1] Additional 400 level science courses may be
+[Page 1] considered for science electives after
+[Page 1] consultation and a petition is submitted to
+[Page 1] the biochemistry advisers.

@@ -1,0 +1,65 @@
+Owner: uw-tacoma-computer-science-and-systems-bs:pathway:bachelor-of-arts-option
+Source: https://www.tacoma.uw.edu/set/programs/undergrad/css/bs
+Title: B.S. in Computer Science & Systems | Engineering & Technology | University of Washington Tacoma
+
+>Engineering & Technology
+<a href="/set/programs"
+>SET Academic Programs
+<a href="/set/programs/undergrad"
+>Undergraduate Programs
+<a href="/set/programs/undergrad/css"
+>Computer Science and Systems
+B.S. in Computer Science & Systems
+B.S. in Computer Science & Systems
+Main Content
+Modern Computing for Advanced Study and Collaboration
+The Computer Science and Systems (CSS) program provides a broad approach to computer science and software design. The CSS curriculum focuses on computer science theory, but with an equal emphasis on software application design methods relevant to the needs of local and regional industry. Students will acquire essential knowledge of object-oriented programming, algorithms and principles of abstraction, data structures, discrete structures, architecture, operating systems, software design and complex ethical and societal computing issues.
+<img src="https://www.tacoma.uw.edu/sites/default/files/styles/thumbnail/public/2024-11/pexels-pixabay-270404.jpg"
+srcset="https://www.tacoma.uw.edu/sites/default/files/styles/responsive_1940x_/public/2024-11/pexels-pixabay-270404.jpg 1940w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2024-11/pexels-pixabay-270404.jpg 980w,
+https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2024-11/pexels-pixabay-270404.jpg 600w"
+sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
+alt="Black Background with Coding Text Overlay Screengrab">
+Quick Facts
+Autumn 2026 applications are OPEN NOW!
+Application opens: January 28, 2026
+Final deadline: August 31, 2026
+Students notified: Rolling decisions until final deadline
+Keep an eye on this page for more info!
+apply now!
+What our Graduates Do
+SET students pursue internships and careers at companies like Boeing, Intel, Tacoma Power, Blue Origin, T-Mobile, and the Naval Undersea Warfare Center in Bremerton. Possible careers include:
+Project Manager
+Software Engineer
+Systems Analyst
+Video Game Designer
+Web Developer
+Bachelor of Arts Option
+The Bachelor of Arts in Computer Science & Systems blends a solid foundation in computer science with a minor in another discipline.
+Learn more about the application requirements and curriculum for the B.A program on the Bachelor of Arts in CSS page.
+The Intrepid Among Us
+Ice axe in hand, Madeline Zent broke new ground in computer science and on the slopes
+Being a first-generation student can be arduous and lonely, as can outdoor adventures. But for Madeline Zent (B.S. Computer Science, '21) , navigation is a collaborative process. Madeline founded the Outdoor Adventures club with the goal of creating unique outdoor opportunities for both first generation students and members of the BIPOC community. While at the School of Engineering & Technology, Madeline also restarted the Women in Computer Science club and served as UW Tacoma’s STEM Youth Outreach Coordinator.
+Read Madeline's story
+Have questions? Schedule an appointment with one of our Academic Advisors!
+Schedule an advising appointment
+How to Apply
+Application Details
+Admission Requirements
+Transfer Admission
+Selection Criteria
+Ready to Apply?
+Admission Requirements
+Admission to the CSS major is competitive. Please review the following prerequisites and application process carefully.
+Want to check your programming skills? Take our Java Self-Assessment Test .
+Prerequisites
+To qualify for admission, you must first be admitted to UWT and have completed the following prerequisites*:
+Calculus 1
+Calculus 2
+Any lab-based science** (except Astronomy)
+Introduction to Programming (TCSS 142 or equivalent)
+Object-Oriented Programming (TCSS 143 or equivalent)
+*All pre-requisite courses must be completed within the last seven years
+**UW Tacoma students are encouraged to complete lab sciences from the following: TBIOL 110, TCHEM 105, TCHEM 131, TGEOS 117, TPHYS 121, and TPHYS 122. We do accept lab based science courses other than these options.
+GPA Requirements
+Required cumulative prerequisite GPA of at least 2.5, with a minimum grade of 2.0 in each individual prerequisite course.

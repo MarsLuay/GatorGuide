@@ -2,120 +2,6 @@ Owner: uw-seattle-american-ethnic-studies:pathway:concentration-area-courses
 Source: https://aes.washington.edu/ba-american-ethnic-studies
 Title: B.A. in American Ethnic Studies | American Ethnic Studies | University of Washington
 
-B.A. in American Ethnic Studies | American Ethnic Studies | University of Washington
-Skip to main content
-Washington
-University of Washington
-College of Arts & Sciences
-Quick links
-Quick Links
-Make a Gift
-Directories
-Maps
-MyUW
-User account menu
-Search
-Search
-Main menu
-American Ethnic Studies
-Menu
-People
-Faculty
-Department Faculty
-Emeritus Faculty
-Adjuncts & Affiliates
-Staff
-Alumni
-Alumni News
-Submit an Update
-Programs & Courses
-Undergraduate
-B.A. in American Ethnic Studies
-Diversity Minor
-Related Minors
-Scholarships
-Careers
-Honors Program
-Resources
-Courses
-Current & Upcoming Courses
-Curriculum Forecast
-Language Courses
-Research
-Publications
-Projects
-Fields of Interest
-Communities
-About our Communities
-Arts and Culture Communities
-Professional Communities
-Social Action Communities
-News & Events
-Recent News
-Intersections
-News Archive
-Events Calendar
-Resources
-Advising
-Scholarships
-Careers
-Internships and Fellowships
-Academic Resources
-Personal/Community Resources
-Frequently Asked Questions
-About
-Mission
-History
-Honors & Awards
-Stay Connected
-Support Us
-Contact Us
-Make a Gift
-Directories
-Maps
-MyUW
-You are here
-Home
-Programs & Courses
-Undergraduate
-B.A. in American Ethnic Studies
-American Ethnic Studies brings an innovative approach to the critical study of race and ethnicity in relation to power by centering the lived experiences of communities of color in American societies. By using diverse perspectives—both from these communities and from a variety of academic fields—the program enables students to engage in unique, respectful scholarly research, dialogue and community engagements. The program extends its field of study to analyze the complicating effects of gender, sexuality, ethnicity, class, and global and transnational identities and experiences.
-Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pacific Islander Studies, Chicano/a Studies or Comparative AES. Alumni use their cultural competency, communication skills and advanced understanding of complex relationships and institutions to succeed in a variety of careers in the public and private sectors.
-Admissions, Advising & Student Resources
-Please see our Undergraduate Programs section for information about applying to the program, career paths, scholarships, and other student resources.
-Degree Requirements
-A minimum of 60 credits (12 courses total) are required for completion of the AES major:
-30 credits (6 courses) from Core Courses
-25 credits (5 courses) from the student’s Concentration Area Courses
-5 credits (1 course) from an upper-division course in an area other than the student’s concentration
-Core Courses
-30 credits (6 courses) must come from the core courses:
-5 credits: AAS 101 -- Introduction to Asian American Studies (I&S, DIV)
-offered spring quarter
-5 credits: AFRAM 101 -- Introduction to African American Studies (I&S, DIV)
-offered autumn quarter
-5 credits: CHSTU 101 -- The Chicano/Mexican Ethnic Experience in the United States (I&S, DIV)
-offered winter quarter
-5 credits: AES 150 -- In-Justice for All: Intersection of Race, Ethnicity, Class, and Gender in the United States (I&S, DIV)
-offered autumn quarter
-5 credits: AES 151 -- Identities, Cultures, and Power Across American Ethnic Groups (I&S, DIV)
-offered winter quarter
-5 credits: AES 212 -- Comparative American Ethnic Literature (I&S/VLPA, DIV)
-offered spring quarter
-Concentration Area Courses
-25 credits (5 courses) must come from the student’s concentration area and 5 credits (1 course) outside of the student’s concentration area. Courses that can be applied to the concentration area are listed below.
-African American Studies
-[Arts and Humanities Focus] AFRAM 150 , 214 , 220 , 318 , 337 , 340 , 350 , 358 , 498 , 499
-[History and Culture Heritage] AFRAM 150 , 270 , 272 , 321 , 330 , 334 , 437 , 498 , 499
-[Social and Political Analysis] AFRAM 246 , 260 , 315 , 370 , 498 , 499
-Asian American/PIA Studies
-[Arts and Humanities Focus] AAS 220 , 320 , 330 , 392 , 401 , 402 , 498 , 499
-[History, Culture, Social and Political Analysis] AAS 206 , 210 , 350 , 360 , 370 , 372 , 380 , 385 , 392 , 395 , 498 , 499
-Chicano/a Studies
-[Arts and Humanities Focus] CHSTU 330 , 332 , 340 , 465 , 466 , 498 , 499
-[History and Culture Heritage] CHSTU 200 , 254 , 256 , 342 , 352 , 416 , 498 , 499
-[Social and Political Analysis] CHSTU 200 , 256 , 330 , 342 , 352 , 356 , 416 , 498 , 499 .
-Comparative American Ethnic Studies
 The Comparative American Ethnic Studies track focuses on the study of American ethnic groups in relation to each other. The emphasis of this track is on interdisciplinarity and the multiple, overlapping, and heterogeneous experiences of these local, regional, national, and transnational communities as they inform and are informed by each other. These comparative-inflected courses endeavor to enlarge the breadth and expand the depth of the social, political, and cultural investigation of the relevant communities.
 AES 250 , 322 , 333 , 335 , 442 , 487 , 498 , 499
 Honors Thesis Option
@@ -147,10 +33,6 @@ Padelford Hall B-504
 Box 354380
 Seattle, WA 98195-4380
 Phone: (206) 543-5401
-Fax: (206) 616-4071
-aes@uw.edu
-Privacy
-Terms
-Site Map
-Contact Us
-&copy; 2026 University of Washington . All rights reserved.
+5 credits: AES 150 -- In-Justice for All: Intersection of Race, Ethnicity, Class, and Gender in the United States (I&S, DIV)
+5 credits: AES 151 -- Identities, Cultures, and Power Across American Ethnic Groups (I&S, DIV)
+5 credits: AES 212 -- Comparative American Ethnic Literature (I&S/VLPA, DIV)

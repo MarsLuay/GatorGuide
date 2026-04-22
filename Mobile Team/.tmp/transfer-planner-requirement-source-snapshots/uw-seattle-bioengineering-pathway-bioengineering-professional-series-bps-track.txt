@@ -23,6 +23,7 @@ Team Design
 BIOEN 404 & 405 BioE Team Design Capstone
 7
 Approved Engineering Elective
+3
 10 Total
 Approved Engineering Electives (9-12 credits)
 9-12 credits from the Department’s approved engineering elective list. See examples below; contact an advisor for a full list.
@@ -32,4 +33,3 @@ Aeronautics and Astronautics
 A A 210
 Applied Mathematics
 AMATH 422, 423, 424, 481, 482, 483
-CSE 121 or 160 plus BIOEN 217

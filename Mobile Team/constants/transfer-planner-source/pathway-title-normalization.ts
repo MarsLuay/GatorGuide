@@ -13,6 +13,16 @@ const HTML_ENTITY_MAP: Record<string, string> = {
   lsquo: "'",
 };
 
+const LOOSE_HTML_ENTITY_ARTIFACT_MAP: Record<string, string> = {
+  "160": " ",
+  "8211": " - ",
+  "8212": " - ",
+  "8216": "'",
+  "8217": "'",
+  "8220": '"',
+  "8221": '"',
+};
+
 const TITLE_SIGNATURE_STOPWORDS = new Set([
   "and",
   "arts",
@@ -32,6 +42,18 @@ const TITLE_SIGNATURE_STOPWORDS = new Set([
 ]);
 
 const PLAN_TITLE_PREFIX_SEPARATORS = [" - ", " – ", " — ", ": "];
+const SEMANTIC_PATHWAY_DOCUMENT_SUFFIX_PATTERN =
+  /\s*(?:\[(?:pdf|docx?|html?)\]|\((?:pdf|docx?|html?)\)|\b(?:pdf|docx?|html)\b)\s*$/i;
+const SEMANTIC_PATHWAY_DOCUMENT_TITLE_SUFFIX_PATTERN =
+  /\s+(?:degree\s+program\s+sheet|program\s+sheet|degree\s+sheet|worksheet|check\s*list|checklist)\b.*$/i;
+const SEMANTIC_PATHWAY_REQUIREMENTS_SUFFIX_PATTERN =
+  /\b(option|track|route|pathway|certificate|concentration)\b(?:\s*[:\-]\s*|\s+)(?:older\s+|prior\s+|current\s+|academic\s+|course\s+|program\s+|degree\s+|major\s+|graduation\s+)*requirements?\b.*$/i;
+const SEMANTIC_PATHWAY_DATE_SUFFIX_PATTERN =
+  /\b(option|track|route|pathway|certificate|concentration)\b(?:\s+(?:autumn|winter|spring|summer|fall)\s+\d{4})+(?:\s*[-\u2013\u2014]\s*(?:autumn|winter|spring|summer|fall)\s+\d{4})?\s*$/i;
+const SEMANTIC_PATHWAY_TRAILING_SITE_SUFFIX_PATTERN =
+  /\s+[-\u2013\u2014]\s+(?:UW|University of Washington)\b.*$/i;
+const SEMANTIC_PATHWAY_WITH_KIND_IN_PATTERN =
+  /^(?:.*?\bwith\s+(option|track|route|pathway|certificate|concentration)\s+in\s+)(.{2,100})$/i;
 
 function decodeNumericHtmlEntity(rawEntity: string) {
   const normalizedEntity = String(rawEntity ?? "").trim().toLowerCase();
@@ -51,8 +73,19 @@ function decodeNumericHtmlEntity(rawEntity: string) {
   }
 }
 
-export function decodeTransferPlannerHtmlEntities(value: string | null | undefined) {
+function repairTransferPlannerLooseHtmlEntityArtifacts(value: string | null | undefined) {
   return String(value ?? "")
+    .replace(/â€“|â€”/g, " - ")
+    .replace(/â€˜|â€™/g, "'")
+    .replace(/â€œ|â€�/g, '"')
+    .replace(
+      /(^|[\s([{,;:])(?:and\s+|amp\s+|&\s*|#\s*)?(160|8211|8212|8216|8217|8220|8221)(?=$|[\s)\]},;:!?])/gi,
+      (match, prefix, entity) => `${prefix}${LOOSE_HTML_ENTITY_ARTIFACT_MAP[String(entity)] ?? entity}`
+    );
+}
+
+export function decodeTransferPlannerHtmlEntities(value: string | null | undefined) {
+  return repairTransferPlannerLooseHtmlEntityArtifacts(value)
     .replace(/&#x[0-9a-f]+;|&#\d+;/gi, (match) =>
       decodeNumericHtmlEntity(match.slice(1, -1))
     )
@@ -136,6 +169,50 @@ export function stripTransferPlannerPlanTitlePrefix(
   }
 
   return normalizedValue;
+}
+
+export function stripTransferPlannerPlanTitlePrefixRepeatedly(
+  planTitle: string | null | undefined,
+  value: string | null | undefined
+) {
+  let previous = normalizeTransferPlannerText(value);
+  if (!previous) {
+    return "";
+  }
+
+  while (true) {
+    const next = stripTransferPlannerPlanTitlePrefix(planTitle, previous);
+    if (!next || next === previous) {
+      return next || previous;
+    }
+    previous = next;
+  }
+}
+
+export function normalizeTransferPlannerSemanticPathwayLabel(
+  planTitle: string | null | undefined,
+  value: string | null | undefined
+) {
+  const normalized = normalizeTransferPlannerText(value);
+  if (!normalized) {
+    return "";
+  }
+
+  const cleaned = normalized
+    .replace(SEMANTIC_PATHWAY_WITH_KIND_IN_PATTERN, "$2 $1")
+    .replace(SEMANTIC_PATHWAY_TRAILING_SITE_SUFFIX_PATTERN, "")
+    .replace(SEMANTIC_PATHWAY_DOCUMENT_TITLE_SUFFIX_PATTERN, "")
+    .replace(SEMANTIC_PATHWAY_DOCUMENT_SUFFIX_PATTERN, "")
+    .replace(SEMANTIC_PATHWAY_REQUIREMENTS_SUFFIX_PATTERN, "$1")
+    .replace(SEMANTIC_PATHWAY_DATE_SUFFIX_PATTERN, "$1")
+    .replace(/^requirements?\s+for\s+(?:the\s+)?/i, "")
+    .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-â€“â€”]\s+.*$/i, "$1")
+    .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-\u2013\u2014]\s+.*$/i, "$1")
+    .replace(/\s+\((?:\d+(?:-\d+)?\s+credits?)\)\s*$/i, "")
+    .replace(/\s+[.;:]\s*$/, "")
+    .trim();
+
+  return stripTransferPlannerPlanTitlePrefixRepeatedly(planTitle, cleaned);
 }
 
 export function labelMentionsDifferentTransferPlannerMajor(

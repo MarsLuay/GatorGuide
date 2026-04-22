@@ -27,8 +27,8 @@ The maintenance launcher is interactive now:
 
 - it can run the full flow
 - it can run the full flow while skipping downloads
-- it can run refresh only
-- it can run refresh only while skipping downloads
+- it can run Course updates only
+- it can run Course updates only while skipping downloads
 - it can run one section only
 - it can start from a chosen section and complete the rest
 - it can print a cache summary showing what artifacts already exist and when the latest maintenance/refresh runs happened

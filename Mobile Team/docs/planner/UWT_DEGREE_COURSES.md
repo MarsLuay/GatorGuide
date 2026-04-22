@@ -12,7 +12,7 @@ This doc already folds together the current planner rows plus Tacoma catalog gui
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -24,52 +24,87 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Arts, Media and Culture (BA) parsed official source requirements
 
-- 5 credits Foundation (5 credits)
 - ADMISSION REQUIREMENTS
-- AMERICAN CULTURES TRACK
-- Arts, Media &amp; Culture majors have five tracks to choose from:
-- At least 45 lower-division credits
-- Comparative Arts Track
-- COMPARATIVE ARTS TRACK
-- Culture (List B) (5 credits)
 - DEGREE REQUIREMENTS
-- Film and Media (List F) (25 credits)
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
-- 5 credits Foundation (5 credits)
 - ADMISSION REQUIREMENTS
-- AMERICAN CULTURES TRACK
-- Arts, Media &amp; Culture majors have five tracks to choose from:
-- At least 45 lower-division credits
-- Comparative Arts Track
-- COMPARATIVE ARTS TRACK
-- Culture (List B) (5 credits)
 - DEGREE REQUIREMENTS
-- Film and Media (List F) (25 credits)
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
+- Arts, Media &amp; Culture majors have five tracks to choose from:
+- LITERATURE TRACK
+- FILM AND MEDIA TRACK
+- VISUAL AND PERFORMING ARTS TRACK
+- COMPARATIVE ARTS TRACK
+- AMERICAN CULTURES TRACK
+- ADMISSION REQUIREMENTS
+- At least 45 lower-division credits
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Arts, Media and Culture (BA) parsed choices and pathway notes
 
 - Arts, Media &amp; Culture majors have five tracks to choose from:
-- AMERICAN CULTURES TRACK
-- Comparative Arts Track
-- COMPARATIVE ARTS TRACK
-- Film and Media Track
 - FILM AND MEDIA TRACK
-- Film and Media Track | Culture, Arts &amp; Communication | University of Washington Tacoma
-- Literature Track
-- LITERATURE TRACK
-- Visual and Performing Arts Track
+- VISUAL AND PERFORMING ARTS TRACK
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
-- Source-backed note: Parser confidence: high.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:.
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
+- Source-backed note: Parser confidence: medium.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-01-arts-media-and-culture-ba-parsed-official-source-requirements.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-02-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-03-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-04-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-05-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-06-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-07-arts-media-and-culture-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-90-requirement-cues.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
@@ -117,15 +152,9 @@ Source-generated from parsed UW requirement-source registries.
 ##### Bachelor of Arts in Business Administration (BABA) parsed choices and pathway notes
 
 - 5 Major Options to Choose
-- 30 credits from 300- and 400-level TFIN or TBECON courses. TBANLT 433 counts for the this option.
 - 30 credits of TMGMT courses. TBANLT 485 counts for this option.
-- Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment.
-- Accounting focuses on recording and reporting financial transactions and students in this option develop the financial and quantitative skills necessary to succeed in today’s fast-paced business environment. The MSB accounting option provides a pathway to a great career in accounting with the potential for students to become Certified Public Accountants (CPA). Milgard also offers a specialized Master of Science in Accounting degree for students looking to continue their accounting education.
-- and an additional 15 credits chosen from TMKTG classes. TBANLT 480 counts for this option.
-- Finance – the indispensable discipline for the future. It is impossible to participate in any discussion of financial trends for the next few decades without becoming aware of the low accumulated savings of the average individual, of the depletion of the Social Security Trust Fund, of an aging population, and other factors that will affect all of us in some way. An understanding of finance and how it, together with time, can be made to work for you and your employer is the major goal of the finance option. Whether you are managing your own money or other peoples, whether you are running your own business or involved with the financial affairs of a corporation, whether you work at a bank or the loan department of a car dealership, a comprehensive understanding of finance together with the ability to apply it in your decision making is critical to your future wellbeing.
-- How do you manage and be managed in the 21st century? The Management option enhances your ability to get work done with and through other people in a variety of workplaces. Whether you are managing a project team, a small group of customer service representatives, a large accounting department, your own start-up, or a family-run restaurant, all managerial positions require a common set of skills. This program is designed to equip you with exactly those skills and prepare you to meet the managerial responsibilities and challenges of the 21st century.
-- Marketing is about fulfilling customer needs. The Marketing option examines the dynamic world of consumer and organizational buyer behavior, and the impact of economic, technological, legal, and social changes on buyer behavior.
-- Marketing is about fulfilling customer needs. The Marketing option examines the dynamic world of consumer and organizational buyer behavior, and the impact of economic, technological, legal, and social changes on buyer behavior. It answers the question, how do you inspire others to buy your product?
+- Specific areas covered within the MSB accounting option include:
+- The courses in the marketing option cover topics such as:
 
 #### GRC Equivalent Courses
 
@@ -236,12 +265,6 @@ Source-generated from parsed UW requirement-source registries.
 - Transfer students at Washington State community colleges are encouraged to pursue the Associate of Science – Mechanical/Civil/Aero Major Related Program (MRP) or Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
 - Strong applicants typically have grades of 3.0 and higher in prerequisite math, science, engineering and programming courses, as well as a solid cumulative GPA.
 
-##### Civil Engineering (BSCE) parsed choices and pathway notes
-
-- Students may be conditionally admitted into the CE program with prerequisites in progress, but all prerequisites must be completed in order to enroll. To qualify for admission to the CE program, you must first be admitted to UWT and be on track to complete the following by the end of summer quarter before starting the major*:
-- The CE Schedule Planning Grid shows a sample pathway to complete the B.S. in Civil Engineering degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
-- Transfer students at Washington State community colleges are encouraged to pursue the Associate of Science – Mechanical/Civil/Aero Major Related Program (MRP) or Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
-
 #### GRC Equivalent Courses
 
 - `ENGR 250`
@@ -255,7 +278,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-civil-engineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Communications (BA)
@@ -302,12 +324,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - To declare the Communication major, you must take one of the following courses, with a minimum grade of 2.5:
 - PROFESSIONAL TRACK
-- Professional Track: You need to complete 60 credits, which must include a minimum of 20 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 - RESEARCH TRACK
-- Research Track: You need to complete 55 credits, which must include a minimum of 20 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
-- The Communication major at the University of Washington-Tacoma is an exciting and dynamic field of study that examines the ways people interact and communicate with each other in various contexts. In the Communication major, you will actively and systematically study the power that media wield in the world today. You will study the role media and communication play in shaping public opinion, how it crosses boundaries between private and public life, as well as the role media plays in different intersecting arenas, including culture, society, national and global development, and our own identities. To allow you to focus on your areas of interest, the Communication major offers both a professional track and a research track. Both tracks are complemented by electives from other undergraduate programs at UW Tacoma. This degree provides the education and experience necessary for a wide variety of careers in print and broadcast writing, news reporting and editing, web design, video and digital media production, and media research. Transfer students should plan on two years to complete all degree requirements.
-- The Professional track offers you a comprehensive approach to the study of media criticism and media writing and production through:
-- The Research Track provides you with an overview of foundational theoretical frameworks from various political, economic, historical, social, and cultural contexts when studying mass media. You can gain:
 
 #### GRC Equivalent Courses
 
@@ -377,10 +394,10 @@ Source-generated from parsed UW requirement-source registries.
 - The MS in Information Technology (MSIT) program at the University of Washington's Tacoma campus is designed to prepare students for successful professional careers that advance the information technology industries and communities both locally and globally. Through a combination of specialized knowledge, hands-on practical experience, and theoretical applications, MSIT students will further their professional development and diversity their employment opportunities. MSIT graduates will be qualified to serve as advanced IT experts and leaders in business, manufacturing, operations, healthcare, government agencies, and other organizations. Students who select the thesis degree-completion option may be eligible for a PhD program in Information Technology post-graduation.
 - Depth Courses (20 credits). Choose 4 course from: TINFO 510, TINFO 520, TINFO 530, TINFO 540, TINFO 550, TINFO 560, TINFO 570, TINFO 580, TINFO 590
 - 40-45 credits, depending on option
-- Bachelor of Science degree with a major in Information Technology: Information Assurance and Cybersecurity
-- Bachelor of Science degree with a major in Information Technology: Mobile Digital Forensics
 - Bioinformatics Option (20 credits):
-- Bioinformatics Option Courses (20 credits): Course list maintained internally by the program.
+- Course Option
+- Create your own pathway as a separate option
+- Cyber-Physical Systems Option Courses (20 credits):
 
 #### GRC Equivalent Courses
 
@@ -474,12 +491,6 @@ Source-generated from parsed UW requirement-source registries.
 - Required minimum cumulative GPA of 2.0 in all college coursework.
 - Transfer students at Washington State community colleges are encouraged to pursue the Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
 
-##### Computer Science and Systems (BA) parsed choices and pathway notes
-
-- All prerequisites must be completed before you can advance to the next academic level; advanced concentration courses build upon knowledge gained in the core courses.
-- The B.A. in CSS schedule planning grid shows a sample pathway to complete the Bachelor of Arts degree in Computer Science &amp; Systems degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
-- Transfer students at Washington State community colleges are encouraged to pursue the Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
-
 #### GRC Equivalent Courses
 
 - `CHEM& 161`
@@ -504,7 +515,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-computer-science-and-systems-ba:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Computer Science and Systems (BS)
@@ -616,7 +626,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -628,48 +638,39 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Economics and Policy Analysis (BA) parsed official source requirements
 
-- A minimum of 45 lower-division credits is required before declaring the major. To declare the Economic and Policy Analysis major, students should reach out to the major advisor .
+- Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
+- Global Studies Concentration
+- Social Science Research Methods Minor
 - Admission Requirements
-- ADMISSION REQUIREMENTS
-- Arts and Humanities (A&amp;H): 20 credits
-- As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
-- Capstone Seminar (5 credits)
-- Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 - Core courses (25 credits)
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-- Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
+- Junior Seminar (5 credits)
+- EPA upper division (300–400 level) courses (30 credits; at least 20 credits must be 400-level TECON classes.)
+- Capstone Seminar (5 credits)
 
 ##### Economics and Policy Analysis (BA) parsed official requirement cues
 
-- A minimum of 45 lower-division credits is required before declaring the major. To declare the Economic and Policy Analysis major, students should reach out to the major advisor .
-- Admission Requirements
-- ADMISSION REQUIREMENTS
-- Arts and Humanities (A&amp;H): 20 credits
-- As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
-- Capstone Seminar (5 credits)
-- Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
-- Core courses (25 credits)
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-- Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-
-##### Economics and Policy Analysis (BA) parsed choices and pathway notes
-
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-- Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-- Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
+- Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma
+- Department of Social Sciences
 - Global Studies Concentration
+- Social Science Research Methods Minor
+- Admission Requirements
+- Core courses (25 credits)
+- Junior Seminar (5 credits)
+- EPA upper division (300–400 level) courses (30 credits; at least 20 credits must be 400-level TECON classes.)
+- Capstone Seminar (5 credits)
+- Department of Social Sciences (SOCS)
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-economics-and-policy-analysis:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Education (BA)
@@ -721,8 +722,6 @@ Source-generated from parsed UW requirement-source registries.
 - Ethnic Studies/ Socio-Cultural (choose 1)
 - Psychology Cognate (choose 2) (1 must be a development course)
 - OPTION 1: SPECIAL EDUCATION DUAL ENDORSEMENT
-- OPTION 2: ENGLISH LANGUAGE LEARNERS (ELL) DUAL ENDORSEMENT
-- This program will prepare students to be recommended for Washington State Residency Teacher Certification in Elementary Education Endorsement and a required choice of a concentration in a high- demand area, a second endorsement, in either Special Education or Teaching English Language Learners. Successful completion of all program and state requirements will prepare students to begin a career as a classroom teacher upon graduation.
 
 #### GRC Equivalent Courses
 
@@ -793,10 +792,10 @@ Source-generated from parsed UW requirement-source registries.
 - The MS in Information Technology (MSIT) program at the University of Washington's Tacoma campus is designed to prepare students for successful professional careers that advance the information technology industries and communities both locally and globally. Through a combination of specialized knowledge, hands-on practical experience, and theoretical applications, MSIT students will further their professional development and diversity their employment opportunities. MSIT graduates will be qualified to serve as advanced IT experts and leaders in business, manufacturing, operations, healthcare, government agencies, and other organizations. Students who select the thesis degree-completion option may be eligible for a PhD program in Information Technology post-graduation.
 - Depth Courses (20 credits). Choose 4 course from: TINFO 510, TINFO 520, TINFO 530, TINFO 540, TINFO 550, TINFO 560, TINFO 570, TINFO 580, TINFO 590
 - 40-45 credits, depending on option
-- Bachelor of Science degree with a major in Information Technology: Information Assurance and Cybersecurity
-- Bachelor of Science degree with a major in Information Technology: Mobile Digital Forensics
 - Bioinformatics Option (20 credits):
-- Bioinformatics Option Courses (20 credits): Course list maintained internally by the program.
+- Course Option
+- Create your own pathway as a separate option
+- Cyber-Physical Systems Option Courses (20 credits):
 
 #### GRC Equivalent Courses
 
@@ -875,8 +874,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Environmental Science (BS) parsed choices and pathway notes
 
-- Electives for the Geoscience Option (29 credits)
-- In addition to the standard Environmental Science BS degree, students may complete a Geoscience option in the degree. These options allow students to obtain an interdisciplinary Environmental Science BS degree while demonstrating extra proficiency in the discipline.
+- Electives for the Geoscience Option
 
 #### GRC Equivalent Courses
 
@@ -895,7 +893,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -936,15 +934,15 @@ Source-generated from parsed UW requirement-source registries.
 - The BA in Environmental Sustainability prepares students to understand, analyze and solve environmental and sustainability challenges. The major combines interdisciplinary foundations in environmental sciences, including natural and social sciences with training in communications, writing, law, critical perspectives and emerging sustainability science. Students choose one of four options for in-depth study.
 - One of the following:
 - Capstone experience: must select at least a 3-credit option from the following list.
-- Environmental Policy and Law Option (20 credits)
+- Environmental Policy and Law Option
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-environmental-sustainability:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -955,7 +953,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -970,47 +968,42 @@ Source-generated from parsed UW requirement-source registries.
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
 - Admission Requirements
 - ADMISSION REQUIREMENTS
-- Arts and Humanities (A&amp;H): 20 credits
-- As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - Choose one:
-- Chose one of the following:
-- Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 - Core courses (25 credits)
-- Core courses (5 credits; *restricted to Global Honors students) (25 credits)
+- Degree Requirements
+- DEGREE REQUIREMENTS
+- Department of Social Sciences
+- Department of Social Sciences (SOCS)
+- Ethnic Studies Option
 
 ##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
 
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
 - Admission Requirements
 - ADMISSION REQUIREMENTS
-- Arts and Humanities (A&amp;H): 20 credits
-- As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - Choose one:
-- Chose one of the following:
-- Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 - Core courses (25 credits)
-- Core courses (5 credits; *restricted to Global Honors students) (25 credits)
+- Degree Requirements
+- DEGREE REQUIREMENTS
+- Department of Social Sciences
+- Department of Social Sciences (SOCS)
+- Ethnic Studies Option
 
 ##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
 
 - Choose one:
-- Chose one of the following:
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-- Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-- Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
-- Students in the Global Studies concentration study a variety of subjects and themes in an international context, including artistic, cultural, political and economic patterns among and within other nations and may choose to focus their studies on one or more world regions or on specific themes. Advanced language study is an integral component of Global Studies.
 - The Ethnic, Gender and Labor Studies major examines how communities form and are transformed, with a focus on the relationship between social class, race and ethnicity and gender. Through a wide variety of courses in the social sciences and humanities, students explore historical roots of various communities and analyze movements to facilitate labor and community organizing, coalition building, conflict resolution, group empowerment and movements for social change. Students may choose from three options:
 - Ethnic Studies Option
 - Gender Studies Option
-- Global Studies Concentration
+- Labor Studies Option
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -1139,6 +1132,125 @@ Source-generated from parsed UW requirement-source registries.
 - For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 - The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
 - The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
+
+##### History (BA) parsed official requirement cues
+
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in History, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+
+##### History (BA) parsed choices and pathway notes
+
+- General History Option
+- Global History Option
+- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
+- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
+- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
 
 ##### History (BA) parsed choices and pathway notes
 
@@ -1863,13 +1975,7 @@ Source-generated from parsed UW requirement-source registries.
 - Arts, Culture and Society Option
 - General History Option
 - Global History Option
-- Global Studies Concentration
-- History explores the past so we can better understand the present. Students will learn how to analyze primary and secondary sources to identify significant themes and trends, reach conclusions and produce effective written and oral materials related to a particular subject. There is a general history option and four thematic options within the major:
-- Labor and Social Movements Option
 - Power, Gender and Identity Option
-- The Arts, Culture and Society option is designed to offer students a strong foundation for understanding the interconnection between cultural production and historical causation where ideas, art, architecture, literature, film and the performing arts function as agents of social and historical change. This option examines the intersection and interaction between politics, science, economics, social ritual and development, class, gender and race across a global environment over time.
-- The General History option is designed to offer students a survey of history and build upon the core requirements. In addition to the 30 credits of Core courses, this option requires 30 credits of Electives with a THIST prefix; 25 credits must be upper-division (300–400 level) THIST courses. For THIST options, please see the complete list of course offerings .
-- The Global History option is designed to offer students a strong foundation for understanding the relational forces between continents, and the historical process of globalization. Colonialism, imperialism, anticolonial independence movements and the national and transnational effects they cause are additional areas of study. This option prepares students for investigating issues of globalization, such as the impact of colonization and aggressive imperial expansion on dominated territories and their history.
 
 #### GRC Equivalent Courses
 
@@ -1889,8 +1995,18 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-08-history-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-09-history-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-10-history-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-11-history-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-12-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-96-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-97-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-98-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-99-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-90-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-91-planning-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-100-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-101-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-102-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-103-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-11-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-12-history-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-13-history-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-14-history-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-15-history-ba-parsed-choices-and-pathway-notes.
@@ -1968,8 +2084,12 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-87-history-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-88-history-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-89-history-ba-parsed-choices-and-pathway-notes.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-90-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-91-planning-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-90-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-91-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-92-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-93-history-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-94-history-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-history:source-degree-map:structured:uw-tacoma-history-degree-map-10-parsed-95-history-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
@@ -2017,8 +2137,6 @@ Source-generated from parsed UW requirement-source registries.
 
 - Students graduating from our information focused programs will be able to choose many different roles; becoming IT and IS consultants, project planners, project managers, interface designers, information systems researchers, web developers, and systems analysts. To emphasize, consider some of the general tasks that an information technology and systems specialist is likely to perform depending on where she works:
 - Use systemic approaches to select, develop, apply, integrate, and administer secure computing technologies to accomplish user goals. \[IT\]
-- The IT schedule planning grid shows a sample pathway to complete the B.S. in Information Technology degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
-- Transfer students at Washington State community colleges are encouraged to pursue the Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
 
 #### GRC Equivalent Courses
 
@@ -2078,7 +2196,6 @@ Source-generated from parsed UW requirement-source registries.
 - List B (5 credits) — choose one:
 - List C (5 credits) — choose one:
 - List D (5 credits) — choose one:
-- Global Studies Concentration
 
 #### GRC Equivalent Courses
 
@@ -2141,9 +2258,9 @@ Source-generated from parsed UW requirement-source registries.
 - 5 credits from One of the following four courses (List A):
 - 5 credits from one of the following courses (List B):
 - 5 credits from one of the following courses (List C):
-- Bachelor of Arts degree with a major in Ethnic, Gender, and Labor Studies: Ethnic
-- Bachelor of Arts degree with a major in Ethnic, Gender, and Labor Studies: Gender
-- Bachelor of Arts degree with a major in Ethnic, Gender, and Labor Studies: Labor
+- a general description of the concentration
+- Complete the requirements for a major or concentration (minors are optional).
+- List A - Arts, Culture and Society Option
 
 #### GRC Equivalent Courses
 
@@ -2201,7 +2318,6 @@ Source-generated from parsed UW requirement-source registries.
 
 - Take one of the following (LAW I) :
 - Take one of the following (METHODS):
-- Global Studies Concentration
 
 #### GRC Equivalent Courses
 
@@ -2313,14 +2429,6 @@ Source-generated from parsed UW requirement-source registries.
 - Electrical Circuits (TCES 215 or UWS: EE 215) is recommended but not required at the time of admission.
 - GPA Requirements
 
-##### Mechanical Engineering parsed choices and pathway notes
-
-- Students may be conditionally admitted into the ME program with prerequisites in progress, but all prerequisites must be completed in order to enroll. To qualify for admission to the ME program, you must first be admitted to UWT and be on track to complete the following by the end of summer quarter before starting the major*:
-- The Bureau of Labor Statistics predicts stable growth in the number of jobs for mechanical engineers ( 11% per year ) at the national level between 2022-2023. The national median pay for 2023 is $99,510 per year. The average pay for mechanical engineers in WA State for is $117,705 ( BLS, 2023 ). Kitsap county is one example of a metropolitan area with the highest concentration of mechanical engineering jobs ( BLS, 2023 ). Career options include:
-- The ME 4-year schedule planning grid shows a sample pathway to complete the B.S. in Mechanical Engineering degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
-- The ME 5-year schedule planning grid shows a sample pathway to complete the B.S. in Mechanical Engineering degree. Work with your advisor to make sure you are completing required courses for the program and electives for your area of interest.
-- Transfer students at Washington State community colleges are encouraged to pursue the Associate of Science – Mechanical/Civil/Aero Major Related Program (MRP) or Associate in Science - Transfer Track 2 to meet the admission requirements. Use the UW Course Equivalency Guide to determine the equivalent prerequisites at your school.
-
 #### GRC Equivalent Courses
 
 - `ENGR 250`
@@ -2342,7 +2450,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-mechanical-engineering:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Nursing (RN-BSN)
@@ -2401,7 +2508,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2415,45 +2522,39 @@ Source-generated from parsed UW requirement-source registries.
 
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor .
 - Admission Requirements
-- Arts and Humanities (A&amp;H): 20 credits
-- As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - At least one class from each of the following three lists, for a total of 20 credits:
-- Chose one of the following:
-- Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 - Core courses (20 credits)
-- Core courses (5 credits; *restricted to Global Honors students) (25 credits)
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
+- Degree Requirements
+- Department of Social Sciences
+- Department of Social Sciences (SOCS)
+- Economics (20 credits)
+- For a BA in Politics, Philosophy and Economics, students must complete 65 major credits, which must include 45 credits of upper-division (300–400 level courses), including a Capstone, with a minimum 2.0 GPA in courses applied to the major, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Global Studies Concentration
 
 ##### Politics, Philosophy and Economics (BA) parsed official requirement cues
 
 - A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor .
 - Admission Requirements
-- Arts and Humanities (A&amp;H): 20 credits
-- As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
 - At least one class from each of the following three lists, for a total of 20 credits:
-- Chose one of the following:
-- Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 - Core courses (20 credits)
-- Core courses (5 credits; *restricted to Global Honors students) (25 credits)
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
+- Degree Requirements
+- Department of Social Sciences
+- Department of Social Sciences (SOCS)
+- Economics (20 credits)
+- For a BA in Politics, Philosophy and Economics, students must complete 65 major credits, which must include 45 credits of upper-division (300–400 level courses), including a Capstone, with a minimum 2.0 GPA in courses applied to the major, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Global Studies Concentration
 
 ##### Politics, Philosophy and Economics (BA) parsed choices and pathway notes
 
-- Chose one of the following:
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-- Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-- Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
 - PP&amp;E majors take a shared set of Core courses, then choose from three specializations:
-- Students in the Global Studies concentration study a variety of subjects and themes in an international context, including artistic, cultural, political and economic patterns among and within other nations and may choose to focus their studies on one or more world regions or on specific themes. Advanced language study is an integral component of Global Studies.
-- Global Studies Concentration
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-politics-philosophy-and-economics:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2502,7 +2603,6 @@ Source-generated from parsed UW requirement-source registries.
 ##### Psychology (BA) parsed choices and pathway notes
 
 - Two psychology foundation courses chosen from more than one of the following areas:
-- Global Studies Concentration
 
 #### GRC Equivalent Courses
 
@@ -2533,328 +2633,457 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Social Welfare (BA) parsed official source requirements
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
 - BASW Admission Requirements
-- General Education Requirements
-- Graduation Requirements
-- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Social Welfare Core Courses
-- Social Welfare Course Requirements
+- BASW Admission Requirements and How to Apply
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
 - Social Welfare Core Courses
-- Social Welfare Course Requirements
-- Social Welfare Practicum
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
 
 ##### Social Welfare (BA) parsed official requirement cues
 
-- The courses you take to meet the requirements for your degree will not always total the 180 credits you need to graduate. The additional credits you need to bring your total to 180 are called "general electives." Students may choose from a variety of disciplines outside their major to fulfill general electives.
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- BASW Admission Requirements
+- BASW Admission Requirements and How to Apply
+
+##### Social Welfare (BA) parsed choices and pathway notes
+
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 - Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
-- Students complete the required BASW core curriculum in sequence over a two-year period. The BASW curriculum consists of a 58-credit program, offered through a hybrid schedule, comprised of three major areas: foundation courses, social work practice courses and practicum (field experience) combined with practicum seminars. In addition to these three areas, students will be required to complete 10 credits of upper-division Social Welfare electives. General electives may also be required depending upon the number of college level credits applied toward the degree.
-- To qualify for graduation with a Bachelor of Arts in Social Welfare a student must complete a minimum of 180 credits as outlined:
-- CREDITS
+- Social Welfare Core Courses
+
+##### Social Welfare (BA) parsed official requirement cues
+
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- BASW Admission Requirements
+- BASW Admission Requirements and How to Apply
+
+##### Social Welfare (BA) parsed choices and pathway notes
+
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+
+##### Social Welfare (BA) parsed official requirement cues
+
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- BASW Admission Requirements
+- BASW Admission Requirements and How to Apply
+
+##### Social Welfare (BA) parsed choices and pathway notes
+
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+
+##### Social Welfare (BA) parsed official requirement cues
+
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- BASW Admission Requirements
+- BASW Admission Requirements and How to Apply
+
+##### Social Welfare (BA) parsed choices and pathway notes
+
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+
+##### Social Welfare (BA) parsed official requirement cues
+
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- BASW Admission Requirements
+- BASW Admission Requirements and How to Apply
+
+##### Social Welfare (BA) parsed choices and pathway notes
+
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+
+##### Social Welfare (BA) parsed official requirement cues
+
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- BASW Admission Requirements
+- BASW Admission Requirements and How to Apply
+
+##### Social Welfare (BA) parsed choices and pathway notes
+
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+
+##### Social Welfare (BA) parsed official requirement cues
+
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- BASW Admission Requirements
+- BASW Admission Requirements and How to Apply
+
+##### Social Welfare (BA) parsed choices and pathway notes
+
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BA in Social Welfare
+- Bachelor of Arts in Social Welfare
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
+- Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&amp;H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+- Social Welfare Core Courses
+
+##### Social Welfare (BA) parsed official requirement cues
+
+- 58-credits across three major areas: foundation courses, social work practice courses and practicum ( field education ) combined with practicum seminars.
+- A deep commitment to equity and cultural diversity is brought to the development of the Social Welfare program. The program's mission gives special attention to the poor and underserved populations, and fosters an appreciation for differences based on gender, ethnicity, race, religious creed, sexual orientation, class and physical and developmental disabilities. The BASW program is designed for students in the South Puget Sound region who are committed to providing more effective social services to populations experiencing social and economic difficulties.
+- BASW Admission Requirements and How to Apply
 - College-level credits: General Education, Prerequisites, and electives
-- The Model Program of Study shows a typical progression for the degree. To qualify for graduation with a Bachelor of Arts in Social Welfare, students must complete a minimum of 180 quarter credits. Below is an example curriculum plan based on entry to the major with at least 90 college-level credits already completed.
+- CREDITS
+- Criminal Justice Admission Requirements and How to Apply
+- Criminal Justice Online Admission Requirements and How to Apply
+- General electives may also be required depending upon the number of college level credits applied toward the degree.
+- Graduation Requirements
+- In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 
 ##### Social Welfare (BA) parsed choices and pathway notes
 
@@ -2901,6 +3130,20 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-31-social-welfare-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-32-social-welfare-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-33-social-welfare-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-34-social-welfare-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-35-social-welfare-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-36-social-welfare-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-37-social-welfare-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-38-social-welfare-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-39-social-welfare-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-40-social-welfare-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-41-social-welfare-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-42-social-welfare-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-43-social-welfare-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-44-social-welfare-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-45-social-welfare-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-46-social-welfare-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-10-parsed-47-social-welfare-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-90-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-social-welfare:source-degree-map:structured:uw-tacoma-social-welfare-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -2911,7 +3154,7 @@ On To Do list.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -2923,48 +3166,40 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Spanish Language and Cultures (BA) parsed official source requirements
 
-- ADMISSION REQUIREMENTS
-- Arts and Humanities (A&amp;H): 20 credits
-- As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
-- Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 - Core courses (35 credits)
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-- Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-- Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
-- Courses that focus on sociocultural, political, and economic diversity of human experience
+- TSPAN 299 , 393 or 496 foreign study/experiential learning or internship (10 credits)
+- We recommend that students take TSPAN 301, 302 and 303 in sequence, but it's not required. A student can begin 300-level coursework in 302 or 303, as long as they have reached that level of proficiency via placement exam or coursework prerequisites.
+- The foreign study credits must be in a program that offers at least 50 percent of the instruction in Spanish in a Spanish-speaking country. Students may combine credits from two programs, if desired. The experiential learning must be in a Spanish-speaking community, where at least 50 percent of the work the student does is in Spanish.
+- Electives (25 credits)
+- List A: Spanish Language (10 credits: 5 credits at the 300-level and 5 credits at the 400-level required.)
+- List B: Literature, Film or Culture in Spanish (15 credits: 5 credits at the 300-level and 5 credits at the 400-level required.)
+- ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
+- For a BA in Spanish Language and Cultures, you need to complete 60 upper division (300–400 level) credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 ##### Spanish Language and Cultures (BA) parsed official requirement cues
 
-- ADMISSION REQUIREMENTS
-- Arts and Humanities (A&amp;H): 20 credits
-- As part of the degree requirements, students must complete approximately 85 credits of general education coursework:
-- Contact your academic advisor if you have questions about how your coursework fulfills these requirements.
 - Core courses (35 credits)
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-- Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-- Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
-- Courses that focus on sociocultural, political, and economic diversity of human experience
+- TSPAN 299 , 393 or 496 foreign study/experiential learning or internship (10 credits)
+- We recommend that students take TSPAN 301, 302 and 303 in sequence, but it's not required. A student can begin 300-level coursework in 302 or 303, as long as they have reached that level of proficiency via placement exam or coursework prerequisites.
+- The foreign study credits must be in a program that offers at least 50 percent of the instruction in Spanish in a Spanish-speaking country. Students may combine credits from two programs, if desired. The experiential learning must be in a Spanish-speaking community, where at least 50 percent of the work the student does is in Spanish.
+- Electives (25 credits)
+- List A: Spanish Language (10 credits: 5 credits at the 300-level and 5 credits at the 400-level required.)
+- List B: Literature, Film or Culture in Spanish (15 credits: 5 credits at the 300-level and 5 credits at the 400-level required.)
+- ADMISSION REQUIREMENTS
 - DEGREE REQUIREMENTS
-
-##### Spanish Language and Cultures (BA) parsed choices and pathway notes
-
-- Courses in TARTS, TAMST, TFILM, TLIT, TWRT; select courses from other subject areas may count
-- Courses in TBIOL, TCHEM, TESC, TMATH, TPHYS, TCSS; select courses from other subject areas may count
-- Courses in TEGL, THIST, TLAWPL, TPPE, TPSYCH, TSOC; select courses from other subject areas may count
-- Global Studies Concentration
+- For a BA in Spanish Language and Cultures, you need to complete 60 upper division (300–400 level) credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-spanish-language-and-cultures:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Sustainable Urban Development (BA)
@@ -3007,11 +3242,6 @@ Source-generated from parsed UW requirement-source registries.
 - In order to graduate, all UW students are expected to meet general university requirements , many of which can be fulfilled with transfer and/or lower-division coursework:
 - Major Electives (20 credits)
 
-##### Sustainable Urban Development (BA) parsed choices and pathway notes
-
-- Contact the School of Urban Studies Academic Advisor to help track your progress through the program.
-- GIS Certificate classes: Students pursuing the GIS track must pass each GIS course with a 2.5 or better.
-
 #### GRC Equivalent Courses
 
 - `ENGL& 101`
@@ -3022,7 +3252,6 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-sustainable-urban-development:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
-- Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
 
 ### Urban Design (BS)
@@ -3139,7 +3368,7 @@ Source-generated from parsed UW requirement-source registries.
 - Formal options ( choose one option) (20-29 credits)
 - Select 4 courses from the list below:
 - Advanced GIS courses (no longer offered) : Select two courses from the list below:
-- Contact the School of Urban Studies Academic Advisor to help track your progress through the program.
+- Formal options ( choose one option )
 
 #### GRC Equivalent Courses
 
@@ -3166,7 +3395,7 @@ Source-generated from parsed UW requirement-source registries.
 
 #### Summary
 
-Planner coverage: `detailed`. Best Green River base: `AA-DTA`.
+Planner coverage: `detailed`. Best Green River base: `custom`.
 Source-generated from parsed UW requirement-source registries.
 
 #### Exact UW Courses Needed for Full Degree at UW
@@ -3206,19 +3435,15 @@ Source-generated from parsed UW requirement-source registries.
 
 - The Creative Writing track offers the opportunity to study literary and popular forms of creative writing, with supportive faculty who publish in these genres, and provides a strong base for students wishing to pursue a Master of Fine Arts. To provide a distinctive interdisciplinary approach to creative writing: students choose classes in more than one genre (poetry, nonfiction and fiction), a wide range of literature courses from multiple perspectives, as well as professional/technical writing courses that can prepare them for writing jobs in a variety of fields. The creative writing track reflects the curricular guidelines of the Association of Writing Programs (AWP), the national professional organization in creative writing. Students can gain professional experience as editors and writers of Tahoma West , UW Tacoma’s student-run literary and arts magazine, as well as the school newspaper, The Ledger . Students are encouraged to engage in the vibrant literary community of the Puget Sound and to apply for internships at local arts and publishing organizations.
 - CREATIVE WRITING TRACK
-- In the Technical Communication track, students learn to communicate complex information in a way that is concise, usable and compelling. Students learn how to identify the needs of an audience, design through an iterative process and make changes based on applied research. Courses emphasize real world design projects and students develop skills in collaborative problem solving and creativity. Technical Communication track students are well positioned for careers in technical and professional communication, user experience, usability, web design and other fields where communicating scientific and technical topics plays a central role. Students are encouraged to gain professional experience by completing internships and working with community partners.
 - RHETORIC, WRITING AND SOCIAL CHANGE TRACK
-- TECHNICAL COMMUNICATION TRACK
-- The Rhetoric, Writing and Social Change track explores writing as civic action. Working with community partners, students will engage ethically in multimodal composition for public audiences with an aim to bring about social change. Students will examine how power shapes writing contexts and develop their own sense of agency. Through co-learning experiences, students participate in civic engagement, resistance, grassroots activism and community organizing. This track centers integrative and inclusive pedagogy, critical methodologies in Rhetoric and Composition and problem-posing skills that will prepare students for professional and real-world scenarios.
-- To complete a BA in the Technical Communication track, you need to complete 65 credits, including 45 credits in upper-division (300–400) level courses, with a minimum 2.0 GPA, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 
 #### GRC Equivalent Courses
 
-- `ENGL& 101`
+On To Do list.
 
 #### Required sequences for specific credits
 
-- Required before enrollment: ENGL&amp; 101 -> `ENGL& 101`
+- Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: medium.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-writing-studies:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.

@@ -70,7 +70,7 @@ College of Arts & Sciences
 Communicate effectively about data, statistical methods, and results to both technical and non-technical audiences.
 Community
 Computing electives
-Computing: CSE 160 (strongly recommended) or CSE 122 or CSE 142. Students who have completed CSE 123 or CSE 143 satisfy this requirement even if they did not previously take CSE 122 or CSE 142.
+Computing: CSE (strongly recommended) or CSE 122 or CSE 142. Students who have completed CSE 123 or CSE 143 satisfy this requirement even if they did not previously take CSE 122 or CSE 142.
 Computing: STAT 302 and either CSE 163 (strongly recommended) or CSE 123.
 Contact Us
 Continuation and Honesty Policy

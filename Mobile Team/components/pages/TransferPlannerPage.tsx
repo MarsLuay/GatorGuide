@@ -7,6 +7,7 @@ import {
   Alert,
   Linking,
   Modal,
+  Platform,
   Pressable,
   ScrollView,
   Text,
@@ -36,6 +37,7 @@ import {
   TRANSFER_PLANNER_CAMPUSES,
   type TransferPlannerCampusId,
   type TransferPlannerEquivalencyRule,
+  type TransferPlannerGeneralRequirementSection,
   type TransferPlannerMajorPathway,
   type TransferPlannerResolvedMajorPlan,
   type TransferPlannerStudentCourseEvaluation,
@@ -48,8 +50,9 @@ import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { errorLoggingService, transcriptPlannerDebugService } from "@/services";
 import { storageService, type UploadedFile } from "@/services/storage/storage.service";
 import {
-  buildSourceBackedRequiredCourseCodes,
+  buildSourceBackedMajorGeneralEducationRequirementSection,
   buildSourceBackedGeneralEducationRequirementTargets,
+  buildSourceBackedRequiredCourseCodes,
   buildSuggestedQuarterPlan,
   buildUwGeneralTransferRequirementSection,
   buildRequirementStatuses,
@@ -63,6 +66,7 @@ import {
   type TransferPlannerStudentEvaluationReport,
   type TranscriptCourseEntry,
 } from "@/services/planning/transfer-planner.service";
+import { resetTranscriptState } from "@/services/planning/transcript-reset.service";
 import { transcriptPdfService } from "@/services/documents/transcript-pdf.service";
 
 const CTCLINK_UNOFFICIAL_TRANSCRIPT_URL =
@@ -729,6 +733,55 @@ function buildMajorSpecificsSourceBackedUwGeneralEducationCreditLines(
   totals.iands = inferRequirementCreditTotalFromText(searchableText, "IANDS") ?? 0;
 
   return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals);
+}
+
+function buildInferredMajorSpecificsSupplementalUwGeneralEducationItems(
+  plan: TransferPlannerResolvedMajorPlan
+): TransferPlannerGeneralRequirementSection["items"] {
+  const searchableText = getPlanDegreeMapSearchText(plan);
+  const totals = createEmptyMajorSpecificsGeneralEducationCreditTotals();
+  totals.div = inferRequirementCreditTotalFromText(searchableText, "DIV") ?? 0;
+  totals.qsr = inferRequirementCreditTotalFromText(searchableText, "QSR") ?? 0;
+  totals.vlpa = inferRequirementCreditTotalFromText(searchableText, "VLPA") ?? 0;
+  totals.nw = inferRequirementCreditTotalFromText(searchableText, "NW") ?? 0;
+  totals.iands = inferRequirementCreditTotalFromText(searchableText, "IANDS") ?? 0;
+
+  return buildMajorSpecificsGeneralEducationCreditLinesFromTotals(totals).map((entry) => ({
+    id: entry.id,
+    label: entry.label,
+    valueText: `${entry.credits} credits`,
+    note: undefined,
+    sourceKind: "source-backed-major" as const,
+  }));
+}
+
+function buildMajorSpecificsSourceBackedUwGeneralEducationSection(
+  plan: TransferPlannerResolvedMajorPlan
+) {
+  const sourceBackedSection = buildSourceBackedMajorGeneralEducationRequirementSection(plan);
+  const supplementalItems = buildInferredMajorSpecificsSupplementalUwGeneralEducationItems(plan);
+  const mergedItems = [
+    ...(sourceBackedSection?.items ?? []),
+    ...supplementalItems.filter(
+      (item) => !(sourceBackedSection?.items ?? []).some((existingItem) => existingItem.id === item.id)
+    ),
+  ];
+
+  if (!mergedItems.length) {
+    return null;
+  }
+
+  return {
+    id: sourceBackedSection?.id ?? "source-backed-major-general-education",
+    title: sourceBackedSection?.title ?? "Major Required Gen-Eds",
+    summary:
+      sourceBackedSection?.summary ??
+      "Source-backed major-specific general education targets from the current official major materials.",
+    campusId: sourceBackedSection?.campusId ?? plan.campusId,
+    sourceKind: sourceBackedSection?.sourceKind ?? ("source-backed-major" as const),
+    plannerUsage: sourceBackedSection?.plannerUsage ?? ("summary-only" as const),
+    items: mergedItems,
+  } satisfies TransferPlannerGeneralRequirementSection;
 }
 
 function buildMajorSpecificsGrcGeneralEducationCreditLines(args: {
@@ -1938,6 +1991,7 @@ function PlannerTrackOverviewCard({
   trackCode,
   trackTitle,
   trackSummary,
+  trackOfficialLinkUrl,
   hasNoDirectMajorEquivalencies,
   textClass,
   secondaryTextClass,
@@ -1947,6 +2001,7 @@ function PlannerTrackOverviewCard({
   trackCode: string | null;
   trackTitle: string;
   trackSummary: string;
+  trackOfficialLinkUrl: string | null;
   hasNoDirectMajorEquivalencies: boolean;
   textClass: string;
   secondaryTextClass: string;
@@ -1955,6 +2010,7 @@ function PlannerTrackOverviewCard({
   const visibleTrackSummary = getAutoTrackSummaryText(trackSummary);
   const shouldShowBestTrackCard =
     collegeId === "uw" ? Boolean(trackCode) && !hasNoDirectMajorEquivalencies : Boolean(trackTitle);
+  const headingText = trackCode ? `${trackCode} | ${trackTitle}` : trackTitle;
 
   if (!shouldShowBestTrackCard) {
     return null;
@@ -1974,11 +2030,27 @@ function PlannerTrackOverviewCard({
       </Text>
 
       <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
-        <Text className={`${textClass} font-semibold`}>
-          {trackCode ? `${trackCode} | ${trackTitle}` : trackTitle}
-        </Text>
+        {trackOfficialLinkUrl ? (
+          <AnimatedIconPressable
+            onPress={() => void openExternalLink(trackOfficialLinkUrl)}
+            className="self-start"
+          >
+            <Text className="text-emerald-500 underline font-semibold">{headingText}</Text>
+          </AnimatedIconPressable>
+        ) : (
+          <Text className={`${textClass} font-semibold`}>{headingText}</Text>
+        )}
         {visibleTrackSummary ? (
           <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
+        ) : null}
+        {trackOfficialLinkUrl ? (
+          <AnimatedIconPressable
+            onPress={() => void openExternalLink(trackOfficialLinkUrl)}
+            className="self-start"
+            containerStyle={{ marginTop: 8 }}
+          >
+            <Text className="text-emerald-500 text-sm font-medium">Open official GRC program map</Text>
+          </AnimatedIconPressable>
         ) : null}
       </View>
     </View>
@@ -2132,6 +2204,7 @@ function TranscriptSummaryCard({
   trackCode,
   trackTitle,
   trackSummary,
+  trackOfficialLinkUrl,
   completedCourses,
   transcriptDerivedCompletedCourses,
   hasTranscriptDerivedCreditSource,
@@ -2154,6 +2227,7 @@ function TranscriptSummaryCard({
   onSelectPathway,
   onUpload,
   onOpenTranscriptLink,
+  onRemoveTranscript,
   isDesktop,
   textClass,
   secondaryTextClass,
@@ -2181,6 +2255,7 @@ function TranscriptSummaryCard({
   trackCode: string | null;
   trackTitle: string;
   trackSummary: string;
+  trackOfficialLinkUrl: string | null;
   completedCourses: TranscriptCourseEntry[];
   transcriptDerivedCompletedCourses: TranscriptCourseEntry[];
   hasTranscriptDerivedCreditSource: boolean;
@@ -2203,6 +2278,7 @@ function TranscriptSummaryCard({
   onSelectPathway: (pathwayId: string) => void;
   onUpload: () => void;
   onOpenTranscriptLink: () => void;
+  onRemoveTranscript: () => void;
   isDesktop: boolean;
   textClass: string;
   secondaryTextClass: string;
@@ -2320,6 +2396,7 @@ function TranscriptSummaryCard({
               trackCode={trackCode}
               trackTitle={trackTitle}
               trackSummary={trackSummary}
+              trackOfficialLinkUrl={trackOfficialLinkUrl}
               hasNoDirectMajorEquivalencies={hasNoDirectMajorEquivalencies}
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
@@ -2347,6 +2424,7 @@ function TranscriptSummaryCard({
               trackCode={trackCode}
               trackTitle={trackTitle}
               trackSummary={trackSummary}
+              trackOfficialLinkUrl={trackOfficialLinkUrl}
               hasNoDirectMajorEquivalencies={false}
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
@@ -2379,12 +2457,20 @@ function TranscriptSummaryCard({
         </View>
       </View>
 
-      <View className="mt-3 flex-row items-center gap-4">
+      <View className="mt-3 flex-row items-center gap-2">
         <AnimatedIconPressable onPress={onUpload} className="self-start">
-          <Text className="text-emerald-500 text-sm font-medium">Update transcript</Text>
+          <Text className="text-emerald-500 text-sm font-medium">Update Transcript</Text>
         </AnimatedIconPressable>
+        <Text className={`${secondaryTextClass} text-sm text-emerald-500`}>|</Text>
+        <AnimatedIconPressable
+          onPress={onRemoveTranscript}
+          className="self-start"
+        >
+          <Text className="text-emerald-500 text-sm font-medium">Remove Transcript</Text>
+        </AnimatedIconPressable>
+        <Text className={`${secondaryTextClass} text-sm text-emerald-500`}>|</Text>
         <AnimatedIconPressable onPress={onOpenTranscriptLink} className="self-start">
-          <Text className="text-emerald-500 text-sm font-medium">Transcript</Text>
+          <Text className="text-emerald-500 text-sm font-medium">Transcript Link</Text>
         </AnimatedIconPressable>
       </View>
 
@@ -2445,6 +2531,7 @@ function TranscriptSummaryCard({
             trackCode={trackCode}
             trackTitle={trackTitle}
             trackSummary={trackSummary}
+            trackOfficialLinkUrl={trackOfficialLinkUrl}
             hasNoDirectMajorEquivalencies={hasNoDirectMajorEquivalencies}
             textClass={textClass}
             secondaryTextClass={secondaryTextClass}
@@ -2485,6 +2572,7 @@ function TranscriptSummaryCard({
             trackCode={trackCode}
             trackTitle={trackTitle}
             trackSummary={trackSummary}
+            trackOfficialLinkUrl={trackOfficialLinkUrl}
             hasNoDirectMajorEquivalencies={false}
             textClass={textClass}
             secondaryTextClass={secondaryTextClass}
@@ -2881,13 +2969,6 @@ function TranscriptEvaluationReportCard({
     return totals;
   }, [studentFacingEvaluations]);
   const activeBuckets = report.buckets.filter((bucket) => bucket.count > 0);
-  const activeBucketLabels = activeBuckets.map((bucket) => bucket.label);
-  const bucketLabelSummary =
-    activeBucketLabels.length <= 1
-      ? (activeBucketLabels[0] ?? "completed-class coverage")
-      : activeBucketLabels.length === 2
-        ? `${activeBucketLabels[0]} and ${activeBucketLabels[1]}`
-        : `${activeBucketLabels.slice(0, -1).join(", ")}, and ${activeBucketLabels[activeBucketLabels.length - 1]}`;
   const [isEvaluationOpen, setIsEvaluationOpen] = useState(false);
 
   if (!report.completedCourseCount) {
@@ -2909,7 +2990,7 @@ function TranscriptEvaluationReportCard({
           <View className="flex-1 min-w-0">
             <Text className={`${textClass} text-lg font-semibold`}>Transcript evaluation</Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              This gives you {bucketLabelSummary} for completed classes in {report.majorTitle}. These buckets come from approved equivalency rules, not custom guessing.
+              Open this dropdown for specifics on how your transcript gets applied
             </Text>
           </View>
           <View className="flex-row items-center gap-2">
@@ -3073,8 +3154,8 @@ function MajorSpecificsSection({
     () => buildMajorSpecificsGrcRequiredMajorCourseLines({ plan, track, completedCourses }),
     [completedCourses, plan, track]
   );
-  const sourceBackedUwGeneralEducationCreditLines = useMemo(
-    () => buildMajorSpecificsSourceBackedUwGeneralEducationCreditLines(plan),
+  const sourceBackedUwGeneralEducationSection = useMemo(
+    () => buildMajorSpecificsSourceBackedUwGeneralEducationSection(plan),
     [plan]
   );
   const uwGeneralTransferRequirementSection = useMemo(
@@ -3305,11 +3386,11 @@ function MajorSpecificsSection({
                     <Text className={`${textClass} text-sm font-semibold`}>
                       Major Required Gen-Eds
                     </Text>
-                    {sourceBackedUwGeneralEducationCreditLines.length ? (
+                    {sourceBackedUwGeneralEducationSection?.items.length ? (
                       <View className="mt-2 gap-2">
-                        {sourceBackedUwGeneralEducationCreditLines.map((entry) => (
+                        {sourceBackedUwGeneralEducationSection.items.map((entry) => (
                           <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                            {`${entry.label}: ${entry.credits} credits`}
+                            {`${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`}
                           </Text>
                         ))}
                       </View>
@@ -3352,7 +3433,7 @@ export default function TransferPlannerPage() {
   const { t } = useTranslation();
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
-  const { isHydrated, state, updateUser, setQuestionnaireAnswers } = useAppData();
+  const { isHydrated, state, patchUserLocally, updateUser, setQuestionnaireAnswers } = useAppData();
   const { getScrollContentPadding } = useResponsiveLayout();
 
   const [selectedCollegeId, setSelectedCollegeId] = useState<PlannerCollegeId>("uw");
@@ -3370,6 +3451,7 @@ export default function TransferPlannerPage() {
   const [allowSummerClasses, setAllowSummerClasses] = useState(false);
 
   const transcriptAnalysisAttemptsRef = useRef<Set<string>>(new Set());
+  const transcriptAnalysisGenerationRef = useRef(0);
   const selectorWasOpenOnTouchStartRef = useRef(false);
   const selectorTouchStartedInsideRef = useRef(false);
 
@@ -3681,14 +3763,14 @@ export default function TransferPlannerPage() {
       return;
     }
 
-    void setQuestionnaireAnswers({
-      ...state.questionnaireAnswers,
+    void setQuestionnaireAnswers((currentAnswers) => ({
+      ...currentAnswers,
       [LAST_SELECTED_PLAN_FIELD]: {
         collegeId: selectedCollegeId,
         campusId: effectiveSelectedCampusId,
         majorId: effectiveSelectedMajorId,
       },
-    });
+    }));
   }, [
     campusMajors,
     effectiveSelectedMajorId,
@@ -3706,6 +3788,7 @@ export default function TransferPlannerPage() {
     let active = true;
 
     if (!user?.uid) {
+      transcriptAnalysisGenerationRef.current += 1;
       setTranscriptDocument(null);
       return () => {
         active = false;
@@ -3715,6 +3798,7 @@ export default function TransferPlannerPage() {
     void (async () => {
       const stored = await storageService.getTranscript(user.uid).catch(() => null);
       if (!active) return;
+      transcriptAnalysisGenerationRef.current += 1;
       setTranscriptDocument(stored && stored.url ? stored : null);
     })();
 
@@ -3725,6 +3809,7 @@ export default function TransferPlannerPage() {
 
   const analyzeTranscript = useCallback(
     async (document: TranscriptDocument) => {
+      const analysisGeneration = transcriptAnalysisGenerationRef.current;
       setIsAnalyzingTranscript(true);
       setTranscriptError(null);
       const debugBase = {
@@ -3758,6 +3843,7 @@ export default function TransferPlannerPage() {
         );
 
         if (!parsedCourses.length) throw new Error("No completed courses extracted.");
+        if (analysisGeneration !== transcriptAnalysisGenerationRef.current) return;
 
         transcriptPlannerDebugService.setLastTranscriptPlannerDebug(
           buildTranscriptDebugSnapshot({
@@ -3773,16 +3859,17 @@ export default function TransferPlannerPage() {
           })
         );
 
-        await setQuestionnaireAnswers({
-          ...state.questionnaireAnswers,
+        await setQuestionnaireAnswers((currentAnswers) => ({
+          ...currentAnswers,
           [TRANSCRIPT_COURSES_FIELD]: parsedCourses,
           completedCourses: parsedCourses.map((course) => course.label),
           [TRANSCRIPT_SOURCE_FIELD]: document.url,
           [TRANSCRIPT_PARSER_VERSION_FIELD]: TRANSCRIPT_PARSER_VERSION,
           [TRANSCRIPT_UPLOADED_AT_FIELD]:
             document.uploadedAt || new Date().toISOString(),
-        });
+        }));
       } catch (error) {
+        if (analysisGeneration !== transcriptAnalysisGenerationRef.current) return;
         const failureSnapshot = buildTranscriptDebugSnapshot({
           ...debugBase,
           phase: "analysis-failure",
@@ -3807,7 +3894,9 @@ export default function TransferPlannerPage() {
         });
         setTranscriptError(buildFriendlyTranscriptError());
       } finally {
-        setIsAnalyzingTranscript(false);
+        if (analysisGeneration === transcriptAnalysisGenerationRef.current) {
+          setIsAnalyzingTranscript(false);
+        }
       }
     },
     [
@@ -3862,6 +3951,7 @@ export default function TransferPlannerPage() {
         sizeBytes: asset.size,
       });
       await updateUser({ transcript: uploaded.url });
+      transcriptAnalysisGenerationRef.current += 1;
       setTranscriptDocument(uploaded);
       transcriptAnalysisAttemptsRef.current.delete(
         `${uploaded.url}|${uploaded.uploadedAt}|v${TRANSCRIPT_PARSER_VERSION}`
@@ -3925,6 +4015,71 @@ export default function TransferPlannerPage() {
     updateUser,
     user?.uid,
   ]);
+
+  const removeTranscriptNow = useCallback(async () => {
+    if (!user?.uid) return;
+
+    try {
+      transcriptAnalysisGenerationRef.current += 1;
+      setTranscriptDocument(null);
+      transcriptAnalysisAttemptsRef.current.clear();
+      setTranscriptError(null);
+      setIsAnalyzingTranscript(false);
+
+      await resetTranscriptState({
+        userId: user.uid,
+        setQuestionnaireAnswers,
+        patchUserLocally,
+        updateUser,
+      });
+    } catch (err) {
+      const restoredTranscript = await storageService.getTranscript(user.uid).catch(() => null);
+      transcriptAnalysisGenerationRef.current += 1;
+      setTranscriptDocument(restoredTranscript && restoredTranscript.url ? restoredTranscript : null);
+      void errorLoggingService.captureException(err, {
+        category: 'storage',
+        operation: 'delete-transcript',
+        severity: 'warn',
+        handled: true,
+        source: 'TransferPlannerPage',
+      });
+
+      if (Platform.OS === "web" && typeof window !== "undefined" && typeof window.alert === "function") {
+        window.alert("Couldn't remove transcript.");
+      } else {
+        Alert.alert('Remove failed', "Couldn't remove transcript.");
+      }
+    }
+  }, [patchUserLocally, setQuestionnaireAnswers, updateUser, user?.uid]);
+
+  const handleRemoveTranscript = useCallback(() => {
+    if (!user?.uid) return;
+
+    const title = "Remove transcript";
+    const message = "Are you sure you want to remove your uploaded unofficial transcript?";
+
+    if (Platform.OS === "web" && typeof window !== "undefined" && typeof window.confirm === "function") {
+      if (window.confirm(`${title}\n\n${message}`)) {
+        void removeTranscriptNow();
+      }
+      return;
+    }
+
+    Alert.alert(
+      title,
+      message,
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "Remove",
+          style: "destructive",
+          onPress: () => {
+            void removeTranscriptNow();
+          },
+        },
+      ]
+    );
+  }, [removeTranscriptNow, user?.uid]);
 
   const applicationStatuses = useMemo(
     () =>
@@ -4042,10 +4197,10 @@ export default function TransferPlannerPage() {
         delete nextSelectionMap[plannerPathKey];
       }
 
-      await setQuestionnaireAnswers({
-        ...state.questionnaireAnswers,
+      await setQuestionnaireAnswers((currentAnswers) => ({
+        ...currentAnswers,
         [CURRENT_PLANNED_COURSES_FIELD]: nextSelectionMap,
-      });
+      }));
     },
     [
       currentCourseSelectionsByPath,
@@ -4053,7 +4208,6 @@ export default function TransferPlannerPage() {
       currentPlannedCourseSet,
       plannerPathKey,
       setQuestionnaireAnswers,
-      state.questionnaireAnswers,
     ]
   );
   const handleSelectPathway = useCallback(
@@ -4065,16 +4219,15 @@ export default function TransferPlannerPage() {
         [selectedBasePlan.id]: pathwayId,
       };
 
-      await setQuestionnaireAnswers({
-        ...state.questionnaireAnswers,
+      await setQuestionnaireAnswers((currentAnswers) => ({
+        ...currentAnswers,
         [SELECTED_PATHWAY_FIELD]: nextSelectionMap,
-      });
+      }));
     },
     [
       selectedBasePlan,
       selectedPathwayByPlan,
       setQuestionnaireAnswers,
-      state.questionnaireAnswers,
     ]
   );
   const plannerHeroContent = useMemo(
@@ -4121,6 +4274,11 @@ export default function TransferPlannerPage() {
   const activeTrackSummary = useMemo(
     () => (isUwPlanner ? plan?.recommendedTrackSummary ?? "" : track?.summary ?? ""),
     [isUwPlanner, plan?.recommendedTrackSummary, track]
+  );
+  const activeTrackOfficialLinkUrl = useMemo(
+    () =>
+      track?.officialLinks?.find((entry) => String(entry?.url ?? "").trim())?.url ?? null,
+    [track]
   );
   const collegeOptions = useMemo(
     () => [
@@ -4304,6 +4462,7 @@ export default function TransferPlannerPage() {
             trackCode={activeTrackCode}
             trackTitle={activeTrackTitle}
             trackSummary={activeTrackSummary}
+            trackOfficialLinkUrl={activeTrackOfficialLinkUrl}
             completedCourses={completedCourses}
             transcriptDerivedCompletedCourses={transcriptDerivedCompletedCourses}
             hasTranscriptDerivedCreditSource={shouldUseDetailedCompletedCourses}
@@ -4371,6 +4530,7 @@ export default function TransferPlannerPage() {
             onOpenTranscriptLink={() => {
               void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL);
             }}
+            onRemoveTranscript={handleRemoveTranscript}
             isDesktop={isDesktop}
             textClass={textClass}
             secondaryTextClass={secondaryTextClass}

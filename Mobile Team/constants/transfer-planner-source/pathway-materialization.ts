@@ -6,6 +6,7 @@ import type { TransferPlannerParsedRequirementSourceBlock } from "./schema";
 import {
   hasTransferPlannerHtmlEntityLeak,
   normalizeTransferPlannerText,
+  normalizeTransferPlannerSemanticPathwayLabel,
   stripTransferPlannerPlanTitlePrefix,
 } from "./pathway-title-normalization";
 
@@ -52,8 +53,10 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^degree options?\b/i,
   /^declaring an option\b/i,
   /^declaring(?: the)?\b/i,
+  /^download\b/i,
   /^formal options?\b/i,
   /^how to declare(?: the)?\b/i,
+  /^joining the\b/i,
   /^minimum \d/i,
   /^\d{1,3}(?:-\d{1,3})?\s*credits?\b/i,
   /^option \d+\b/i,
@@ -76,6 +79,8 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^students declare\b/i,
   /^the curriculum consists\b/i,
   /^why choose\b/i,
+  /\bdouble major\b/i,
+  /\bdouble degree\b/i,
   /\b(?:clinical|didactic) coursework\b/i,
   /\boption[- ]specific\b.*\b(?:credits?|requirements?|coursework)\b/i,
   /\btrack[- ]specific\b.*\b(?:credits?|requirements?|coursework)\b/i,
@@ -85,6 +90,11 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^for the\b.*\b(?:concentration|option|track|route|pathway)\b/i,
   /^(?:[†*§◊]+)?\s*if not taken\b.*\b(?:concentration|option|track|route|pathway)\b/i,
   /^concentration\s+[ivxlcdm]+\b.*\b(?:credits?|courses?)\b/i,
+  /^(?:[â€ *Â§â—Š]+\s*)?route\.menu_active_trails:/i,
+  /^(?:[â€ *Â§â—Š]+\s*)?route\.name\.is_layout_builder_ui\b/i,
+  /^route\s+name\s+is\s+layout\s+builder\s+ui\b/i,
+  /\bmenu[_-]?active[_-]?trails\b/i,
+  /\blayout[_-]?builder[_-]?ui\b/i,
 ];
 const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^\d+-.*choose-one-option\b/i,
@@ -110,6 +120,8 @@ const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^\d{1,3}(?:-\d{1,3})?-credits/i,
   /^choose-thesis-project-or-course-only-option/i,
   /^transfer-students-apply-for-admission-under-this-pathway/i,
+  /^route-menu-active-trails(?:$|[-:])/i,
+  /^route-name-is-layout-builder-ui(?:$|[-:])/i,
 ];
 const DERIVED_PATHWAY_DEGREE_TITLE_PATTERN =
   /^(?:(?:Bachelor|Master|Doctor|Minor|Associate)(?: of [^:]{1,120})?|(?:B\.?\s*A\.?|B\.?\s*S\.?|M\.?\s*A\.?|M\.?\s*S\.?)(?: degree)?(?: with a major in [^:]{1,120})?)\s*:\s+(.{2,120})$/i;
@@ -125,6 +137,16 @@ const DERIVED_PATHWAY_LIST_LABEL_PATTERN =
   /^list [A-Z]\s*[-:]\s+(.{2,100})$/i;
 const DERIVED_PATHWAY_STRUCTURAL_PREFIX_PATTERN =
   /^(.{2,80}?)\s+(option|track|route|pathway|certificate|concentration)[-\s]*specific\b.*$/i;
+const DERIVED_PATHWAY_DOCUMENT_SUFFIX_PATTERN =
+  /\s*(?:\[(?:pdf|docx?|html?)\]|\((?:pdf|docx?|html?)\)|\b(?:pdf|docx?|html)\b)\s*$/i;
+const DERIVED_PATHWAY_DOCUMENT_TITLE_SUFFIX_PATTERN =
+  /\s+(?:degree\s+program\s+sheet|program\s+sheet|degree\s+sheet|worksheet|check\s*list|checklist)\b.*$/i;
+const DERIVED_PATHWAY_REQUIREMENTS_SUFFIX_PATTERN =
+  /\b(option|track|route|pathway|certificate|concentration)\b(?:\s*[:\-]\s*|\s+)(?:older\s+|prior\s+|current\s+|academic\s+|course\s+|program\s+|degree\s+|major\s+|graduation\s+)*requirements?\b.*$/i;
+const DERIVED_PATHWAY_DATE_SUFFIX_PATTERN =
+  /\b(option|track|route|pathway|certificate|concentration)\b(?:\s+(?:autumn|winter|spring|summer|fall)\s+\d{4})+(?:\s*[-\u2013\u2014]\s*(?:autumn|winter|spring|summer|fall)\s+\d{4})?\s*$/i;
+const DERIVED_PATHWAY_TRAILING_SITE_SUFFIX_PATTERN =
+  /\s+[-\u2013\u2014]\s+(?:UW|University of Washington)\b.*$/i;
 const DERIVED_PATHWAY_DEFAULT_KIND_BY_PLAN: Partial<Record<string, "option" | "track" | "route">> = {
   "uw-tacoma-sustainable-urban-development": "option",
   "uw-tacoma-urban-studies": "option",
@@ -166,6 +188,27 @@ function normalizeDerivedPathwayText(value: string | null | undefined) {
   return decodeDerivedPathwayHtmlEntities(String(value ?? ""));
 }
 
+function selectDerivedPathwayKindSegment(value: string) {
+  const normalized = normalizeDerivedPathwayText(value);
+  const segments = normalized
+    .split(/\s+(?:[-\u2013\u2014]|:)\s+|,\s+/)
+    .map((segment) => normalizeDerivedPathwayText(segment))
+    .filter(Boolean);
+
+  for (let index = segments.length - 1; index >= 0; index -= 1) {
+    const segment = segments[index];
+    if (
+      DERIVED_PATHWAY_KIND_PATTERN.test(segment) &&
+      !/^(?:older|prior|current)\b/i.test(segment) &&
+      !/^requirements?\s+for\b/i.test(segment)
+    ) {
+      return segment;
+    }
+  }
+
+  return normalized;
+}
+
 function stripDerivedPathwayKindSuffix(value: string) {
   return normalizeDerivedPathwayText(value).replace(
     /\s+(option|track|route|pathway|certificate|concentration)\s*$/i,
@@ -196,7 +239,9 @@ function getDerivedPathwaySimilarityKey(
 ) {
   const semanticLabel = stripTransferPlannerPlanTitlePrefix(
     planTitle,
-    stripDerivedPathwayKindSuffix(value)
+    stripDerivedPathwayKindSuffix(
+      normalizeDerivedPathwayCandidate(String(planTitle ?? ""), value)
+    )
   );
 
   return Array.from(
@@ -226,6 +271,18 @@ export function isSuspiciousStructuralPathwayLabel(value: string | null | undefi
   const normalized = normalizeDerivedPathwayText(value);
   if (!normalized) {
     return false;
+  }
+
+  if (/\b(?:pdf|worksheet|check\s*list|checklist)\b/i.test(normalized)) {
+    return true;
+  }
+
+  if (
+    /\b(option|track|route|pathway|certificate|concentration)\b.*\brequirements?\b/i.test(
+      normalized
+    )
+  ) {
+    return true;
   }
 
   return DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS.some((pattern) => pattern.test(normalized));
@@ -294,28 +351,36 @@ function inferDerivedPathwayKind(
 }
 
 function normalizeDerivedPathwayCandidate(planTitle: string, value: string) {
-  return stripTransferPlannerPlanTitlePrefix(
+  return normalizeTransferPlannerSemanticPathwayLabel(
     planTitle,
-    normalizeDerivedPathwayText(value)
-    .replace(/^[A-Z]\.\s+/i, "")
-    .replace(/^\d+\)\s+/i, "")
-    .replace(/^option\s+\d+\s*:\s*/i, "")
-    .replace(
-      /^(?:(?:The\s+)?(?:Bachelor|Master|Doctor|Minor|Associate|B\.?\s*A\.?|B\.?\s*S\.?|M\.?\s*A\.?|M\.?\s*S\.?)[^()]{0,120})\((.{2,100}\b(?:track|option|route|pathway|certificate|concentration))\)\s*$/i,
-      "$1"
-    )
-    .replace(/^(?:B\.?\s*A\.?|B\.?\s*S\.?) [^:]{1,80}:\s*/i, "")
-    .replace(
-      /^(?:\d{1,3}(?:-\d{1,3})?\s+credits?\s+for\s+(?:the\s+)?)([\s\S]+)$/i,
-      "$1"
-    )
-    .replace(/^(?:declaring(?: the)?|how to declare(?: the)?|program requirements?)\s+/i, "")
-    .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-–—]\s+.*$/i, "$1")
-    .replace(/\s+[-–]\s+UW\b.*$/i, "")
-    .replace(/\s+\((?:\d+(?:-\d+)?\s+credits?)\)\s*$/i, "")
-    .replace(/\s+-\s+please see website\.?$/i, "")
-    .replace(/\s+\|\s+.*$/, "")
-    .replace(/\s+[.;:]\s*$/, "")
+    selectDerivedPathwayKindSegment(normalizeDerivedPathwayText(value))
+      .replace(/^[A-Z]\.\s+/i, "")
+      .replace(/^\d+\)\s+/i, "")
+      .replace(/^option\s+\d+\s*:\s*/i, "")
+      .replace(
+        /^(?:(?:The\s+)?(?:Bachelor|Master|Doctor|Minor|Associate|B\.?\s*A\.?|B\.?\s*S\.?|M\.?\s*A\.?|M\.?\s*S\.?)[^()]{0,120})\((.{2,100}\b(?:track|option|route|pathway|certificate|concentration))\)\s*$/i,
+        "$1"
+      )
+      .replace(/^(?:B\.?\s*A\.?|B\.?\s*S\.?) [^:]{1,80}:\s*/i, "")
+      .replace(
+        /^(?:\d{1,3}(?:-\d{1,3})?\s+credits?\s+for\s+(?:the\s+)?)([\s\S]+)$/i,
+        "$1"
+      )
+      .replace(DERIVED_PATHWAY_WITH_OPTION_IN_PATTERN, "$1 Option")
+      .replace(DERIVED_PATHWAY_TRAILING_SITE_SUFFIX_PATTERN, "")
+      .replace(DERIVED_PATHWAY_DOCUMENT_TITLE_SUFFIX_PATTERN, "")
+      .replace(DERIVED_PATHWAY_DOCUMENT_SUFFIX_PATTERN, "")
+      .replace(DERIVED_PATHWAY_REQUIREMENTS_SUFFIX_PATTERN, "$1")
+      .replace(DERIVED_PATHWAY_DATE_SUFFIX_PATTERN, "$1")
+      .replace(/^(?:declaring(?: the)?|how to declare(?: the)?|program requirements?)\s+/i, "")
+      .replace(/^requirements?\s+for\s+(?:the\s+)?/i, "")
+      .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-–—]\s+.*$/i, "$1")
+      .replace(/\s+[-–]\s+UW\b.*$/i, "")
+      .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-\u2013\u2014]\s+.*$/i, "$1")
+      .replace(/\s+\((?:\d+(?:-\d+)?\s+credits?)\)\s*$/i, "")
+      .replace(/\s+-\s+please see website\.?$/i, "")
+      .replace(/\s+\|\s+.*$/, "")
+      .replace(/\s+[.;:]\s*$/, "")
   );
 }
 
@@ -675,10 +740,6 @@ function buildDerivedPathwaySeeds(
   const seeds = [...seedById.values()].filter(
     (seed) => !isSuspiciousStructuralPathwayLabel(seed.label)
   );
-  if (seeds.length < 2) {
-    return [] as TransferPlannerDerivedPathwaySeed[];
-  }
-
   return seeds;
 }
 
@@ -706,26 +767,37 @@ function shouldPreferDerivedPathways(
     (pathway) =>
       isSuspiciousStructuralPathwayId(pathway.id) || isSuspiciousStructuralPathwayLabel(pathway.label)
   );
+  const semanticBasePathways = basePathways.filter(
+    (pathway) =>
+      !isSuspiciousStructuralPathwayId(pathway.id) && !isSuspiciousStructuralPathwayLabel(pathway.label)
+  );
   const semanticDerivedPathways = derivedPathways.filter(
     (pathway) =>
       !isSuspiciousStructuralPathwayId(pathway.id) &&
       !isSuspiciousStructuralPathwayLabel(pathway.label)
   );
-  if (semanticDerivedPathways.length < 2) {
-    return false;
-  }
-
-  const semanticBaseFamilies = basePathways
-    .filter(
-      (pathway) =>
-        !isSuspiciousStructuralPathwayId(pathway.id) &&
-        !isSuspiciousStructuralPathwayLabel(pathway.label)
-    )
+  const semanticBaseFamilies = semanticBasePathways
     .map((pathway) => getDerivedPathwaySimilarityKey(pathway.label, plan.title) || pathway.id.toLowerCase())
     .filter(Boolean);
   const semanticBaseFamilyCount = new Set(semanticBaseFamilies).size;
   const hasDuplicateSemanticBaseFamilies = semanticBaseFamilyCount < semanticBaseFamilies.length;
   const hasHtmlEntityLeak = basePathways.some((pathway) => hasTransferPlannerHtmlEntityLeak(pathway.label));
+  const shouldCollapseToSingleSemanticDerivedPathway =
+    semanticDerivedPathways.length === 1 &&
+    basePathways.length > 1 &&
+    semanticBasePathways.length > 0 &&
+    semanticBaseFamilies.length > 0 &&
+    semanticBaseFamilies.every((family) => {
+      const derivedFamily =
+        getDerivedPathwaySimilarityKey(semanticDerivedPathways[0].label, plan.title) ||
+        semanticDerivedPathways[0].id.toLowerCase();
+      return family === derivedFamily;
+    }) &&
+    (suspiciousBasePathways.length > 0 || hasDuplicateSemanticBaseFamilies || hasHtmlEntityLeak);
+
+  if (semanticDerivedPathways.length < 2) {
+    return shouldCollapseToSingleSemanticDerivedPathway;
+  }
 
   if (suspiciousBasePathways.length === basePathways.length) {
     return true;

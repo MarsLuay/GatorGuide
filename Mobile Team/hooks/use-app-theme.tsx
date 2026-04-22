@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useColorScheme } from "react-native";
-import { View } from "react-native";
+import { View, useColorScheme } from "react-native";
 import { getThemeTokens } from "@/constants/theme-tokens";
 
 export type AppTheme = "light" | "dark" | "green" | "system";
 
 const STORAGE_KEY = "app-theme";
+const APP_THEME_VALUES: AppTheme[] = ["light", "dark", "green", "system"];
 
 type AppThemeContextValue = {
   theme: AppTheme;
@@ -20,6 +20,31 @@ type AppThemeContextValue = {
 
 const AppThemeContext = createContext<AppThemeContextValue | null>(null);
 
+function isAppTheme(value: string | null): value is AppTheme {
+  return APP_THEME_VALUES.includes(value as AppTheme);
+}
+
+function normalizeAppTheme(value: AppTheme | string | null): AppTheme {
+  if (value === "light" || value === "dark" || value === "system") {
+    return value;
+  }
+
+  if (value === "green") {
+    return "dark";
+  }
+
+  return "system";
+}
+
+function syncWebThemeAttributes(theme: AppTheme, resolvedTheme: "light" | "dark" | "green") {
+  if (typeof document === "undefined") return;
+
+  const root = document.documentElement;
+  root.setAttribute("data-app-theme", theme);
+  root.setAttribute("data-app-theme-resolved", resolvedTheme);
+  root.style.colorScheme = resolvedTheme === "light" ? "light" : "dark";
+}
+
 export function AppThemeProvider({ children }: { children: React.ReactNode }) {
   const systemScheme = (useColorScheme() ?? "light") as "light" | "dark";
   const [theme, setThemeState] = useState<AppTheme>("system");
@@ -31,8 +56,13 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
       try {
         const stored = await AsyncStorage.getItem(STORAGE_KEY);
         if (!mounted) return;
-        if (stored === "light" || stored === "dark" || stored === "green" || stored === "system") {
-          setThemeState(stored);
+        if (isAppTheme(stored)) {
+          const normalizedTheme = normalizeAppTheme(stored);
+          setThemeState(normalizedTheme);
+
+          if (stored !== normalizedTheme) {
+            AsyncStorage.setItem(STORAGE_KEY, normalizedTheme).catch(() => {});
+          }
         }
       } finally {
         if (mounted) setHydrated(true);
@@ -44,12 +74,18 @@ export function AppThemeProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const setTheme = (value: AppTheme) => {
-    setThemeState(value);
-    AsyncStorage.setItem(STORAGE_KEY, value).catch(() => {});
+    const normalizedTheme = normalizeAppTheme(value);
+    setThemeState(normalizedTheme);
+    AsyncStorage.setItem(STORAGE_KEY, normalizedTheme).catch(() => {});
   };
 
-  const resolvedTheme = theme === "system" ? systemScheme : theme;
+  const normalizedTheme = normalizeAppTheme(theme);
+  const resolvedTheme = normalizedTheme === "system" ? systemScheme : normalizedTheme;
   const themeTokens = getThemeTokens(resolvedTheme);
+
+  useEffect(() => {
+    syncWebThemeAttributes(theme, resolvedTheme);
+  }, [theme, resolvedTheme]);
 
   const value = useMemo<AppThemeContextValue>(
     () => ({

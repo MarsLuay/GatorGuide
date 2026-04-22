@@ -58,6 +58,7 @@ Connect with HCDE
 Contact us
 Corporate & foundation relations
 Course Substitution Petition
+CSE : Data Programming* (4)
 CSE 121 : Introduction to Computer Programming I (4)
 CSE 121 : Introduction to Computer Programming I* (4)
 CSE 122 : Introduction to Computer Programming II (4)
@@ -67,8 +68,6 @@ CSE 123 : Introduction to Computer Programming III* (4)
 CSE 142 : Computer Programming I (4)
 CSE 142 : Computer Programming I* (4)
 CSE 143 : Computer Programming II* (5)
-CSE 160 : Data Programming (4)
-CSE 160 : Data Programming* (4)
 CSE 163 : Intermediate Data Programming (4)
 CSE 180 / STAT 180 / INFO 180 : Introduction to Data Science (4)
 CSE 373 : Data Structures and Algorithms (4)

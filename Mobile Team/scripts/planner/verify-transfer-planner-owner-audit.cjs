@@ -27,6 +27,27 @@ const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.json");
 const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.md");
 
+function getArgValue(flag) {
+  const args = process.argv.slice(2);
+  const directPrefix = `${flag}=`;
+  const directMatch = args.find((arg) => arg.startsWith(directPrefix));
+  if (directMatch) {
+    return directMatch.slice(directPrefix.length).trim() || null;
+  }
+
+  const flagIndex = args.indexOf(flag);
+  if (flagIndex === -1) {
+    return null;
+  }
+
+  const nextValue = args[flagIndex + 1];
+  if (!nextValue || nextValue.startsWith("--")) {
+    return null;
+  }
+
+  return String(nextValue).trim() || null;
+}
+
 function ensureTmpDir() {
   fs.mkdirSync(TMP_DIR, { recursive: true });
 }
@@ -220,10 +241,14 @@ function collapseOwnerIssues(ownerId, symptomIssues, isAutoPromotedOwner) {
   return rootIssues;
 }
 
-function buildOwners() {
+function buildOwners(targetPlanId = null) {
   const owners = [];
 
   for (const plan of TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS) {
+    if (targetPlanId && plan.id !== targetPlanId) {
+      continue;
+    }
+
     owners.push({
       ownerId: buildParsedBlockOwnerId(plan.id, null),
       ownerKey: buildOwnerKey(plan.id, null),
@@ -363,12 +388,13 @@ function writeMarkdown(report) {
 
 function main() {
   ensureTmpDir();
+  const targetPlanId = getArgValue("--target-plan-id");
 
   const parsedBlocksByOwnerId = new Map(
     TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.map((block) => [block.ownerId, block])
   );
 
-  const owners = buildOwners().map((owner) => {
+  const owners = buildOwners(targetPlanId).map((owner) => {
     const symptomIssues = [];
     let sourceOnlyUwCourseCodeCount = 0;
     const isAutoPromotedPrimarySource = AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS.has(owner.ownerId);

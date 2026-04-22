@@ -411,6 +411,7 @@ function getTransferGuidanceCandidateRulesForSourceCourse(
   const allCandidateRules = getTransferPlannerEquivalencyRulesForSourceCourse(sourceCourseCode)
     .filter((rule) => GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS.has(rule.sourceKind ?? ""))
     .filter((rule) => rule.acceptanceCategory !== "no-credit")
+    .filter((rule) => !rule.isObsoleteSourceCourse)
     .filter((rule) => (rule.targetCourseCodes ?? []).length > 0);
 
   const campusScopedRules = allCandidateRules.filter((rule) =>
@@ -2475,7 +2476,54 @@ export type GeneralEducationRequirementTargets = {
 export type GeneralEducationRequirementLayerDiagnostics = {
   sourceBackedTargets: GeneralEducationRequirementTargets;
   plannerGuidanceTargets: GeneralEducationRequirementTargets;
+  sourceBackedSummarySection: TransferPlannerGeneralRequirementSection | null;
   hasSourceBackedTargets: boolean;
+};
+
+type SourceBackedGeneralEducationCategoryId = "ah" | "ssc" | "nsc";
+
+type SourceBackedGeneralEducationDescriptor =
+  | {
+      kind: "category-fixed";
+      category: SourceBackedGeneralEducationCategoryId;
+      credits: number;
+      sourceLine: string;
+    }
+  | {
+      kind: "category-range";
+      category: SourceBackedGeneralEducationCategoryId;
+      minimumCredits: number;
+      maximumCredits: number;
+      sourceLine: string;
+    }
+  | {
+      kind: "shared-bucket";
+      categories: SourceBackedGeneralEducationCategoryId[];
+      totalCredits: number;
+      minimumPerCategoryCredits: number | null;
+      scope: "areas-of-inquiry" | "categories";
+      sourceLine: string;
+    }
+  | {
+      kind: "area-total";
+      totalCredits: number;
+      sourceLine: string;
+    }
+  | {
+      kind: "additional-flexible";
+      categories: SourceBackedGeneralEducationCategoryId[];
+      credits: number;
+      sourceLine: string;
+    }
+  | {
+      kind: "elective";
+      credits: number;
+      sourceLine: string;
+    };
+
+type ParsedSourceBackedGeneralEducationStructure = {
+  descriptors: SourceBackedGeneralEducationDescriptor[];
+  hasConflict: boolean;
 };
 
 export type CompletedTransferableQuarterCreditSummary = {
@@ -2500,6 +2548,15 @@ function createEmptyGeneralEducationRequirementTargets(): GeneralEducationRequir
     ...EMPTY_GENERAL_ED_REQUIREMENT_TARGETS,
   };
 }
+
+const SOURCE_BACKED_GENERAL_ED_CATEGORY_LABELS: Record<
+  SourceBackedGeneralEducationCategoryId,
+  string
+> = {
+  ah: "Arts & Humanities",
+  ssc: "Social Sciences",
+  nsc: "Natural Sciences",
+};
 
 function getTransferableCreditCandidateRulesForSourceCourse(
   sourceCourseCode: string,
@@ -3190,7 +3247,10 @@ function normalizeGeneralEducationSignalText(value: string | null | undefined) {
 }
 
 function isCourseLedRequirementLine(text: string | null | undefined) {
-  const trimmed = String(text ?? "").trim();
+  const trimmed = sanitizeGeneralEducationSourceSignalLine(text).replace(
+    /^(?:\d+\s*[\).:-]\s*)+/,
+    ""
+  );
   const leadingCourseCode = extractCourseCodes(trimmed)[0];
 
   return Boolean(leadingCourseCode) && trimmed.toUpperCase().startsWith(leadingCourseCode);
@@ -3300,115 +3360,1038 @@ function getGeneralEducationRequirementTargetSourcePlan(
   return resolveTransferPlannerMajorPlan(sourceBasePlan, selectedPathwayId) ?? sourceBasePlan;
 }
 
-export function buildSourceBackedGeneralEducationRequirementTargets(
+function sanitizeGeneralEducationSourceSignalLine(value: string | null | undefined) {
+  return String(value ?? "")
+    .replace(/^\[page\s+\d+\]\s*/i, "")
+    .replace(/[•ï±]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function splitGeneralEducationSourceSignalLine(value: string | null | undefined) {
+  const sanitized = sanitizeGeneralEducationSourceSignalLine(value);
+  if (!sanitized) {
+    return [] as string[];
+  }
+
+  const initialFragments: string[] = [];
+  const areasHeaderMatch = sanitized.match(
+    /^(.*?\bareas? of (?:inquiry|knowledge)\b[^:]*):\s*(.+)$/i
+  );
+  if (areasHeaderMatch) {
+    initialFragments.push(areasHeaderMatch[1] ?? "");
+    initialFragments.push(areasHeaderMatch[2] ?? "");
+  } else {
+    initialFragments.push(sanitized);
+  }
+
+  return unique(
+    initialFragments
+      .flatMap((fragment) => fragment.split(/\s*;\s*/))
+      .flatMap((fragment) =>
+        fragment.split(
+          /\.\s+(?=(?:\d+\s+(?:additional|credits?)|\b(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|areas?\s+of\s+(?:inquiry|knowledge))\b))/i
+        )
+      )
+      .map((fragment) => sanitizeGeneralEducationSourceSignalLine(fragment))
+      .filter(Boolean)
+  );
+}
+
+function detectSourceBackedGeneralEducationCategories(
+  text: string
+): SourceBackedGeneralEducationCategoryId[] {
+  const matches: { category: SourceBackedGeneralEducationCategoryId; index: number }[] = [];
+  const registerMatches = (
+    category: SourceBackedGeneralEducationCategoryId,
+    pattern: RegExp
+  ) => {
+    const flags = pattern.flags.includes("g") ? pattern.flags : `${pattern.flags}g`;
+    const globalPattern = new RegExp(pattern.source, flags);
+    let match: RegExpExecArray | null = null;
+
+    while ((match = globalPattern.exec(text)) !== null) {
+      matches.push({
+        category,
+        index: match.index,
+      });
+    }
+  };
+
+  registerMatches("ah", /\barts?\s+and\s+humanities\b/i);
+  registerMatches("ah", /\ba&h\b/i);
+  registerMatches("ssc", /\bsocial sciences?\b/i);
+  registerMatches("ssc", /\bssc\b/i);
+  registerMatches("nsc", /\bnatural sciences?\b/i);
+  registerMatches("nsc", /\bnsc\b/i);
+
+  return unique(
+    matches
+      .sort((left, right) => left.index - right.index)
+      .map((entry) => entry.category)
+  );
+}
+
+function parseGeneralEducationCreditAmount(rawValue: string | null | undefined) {
+  const parsed = Number.parseFloat(String(rawValue ?? ""));
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+function extractFirstMatchingGeneralEducationCreditValue(
+  text: string,
+  patterns: RegExp[]
+) {
+  for (const pattern of patterns) {
+    const match = text.match(pattern);
+    const parsed = parseGeneralEducationCreditAmount(match?.[1] ?? null);
+    if (parsed !== null) {
+      return parsed;
+    }
+  }
+
+  return null;
+}
+
+function extractAreasOfInquiryTotalCredits(text: string) {
+  return extractFirstMatchingGeneralEducationCreditValue(text, [
+    /\bareas? of (?:inquiry|knowledge)\b[^)]{0,48}\((\d+(?:\.\d+)?)\s*(?:credits?|cr)?/i,
+    /\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b[^.]{0,48}\bareas? of (?:inquiry|knowledge)\b/i,
+  ]);
+}
+
+function extractGeneralEducationMinimumPerCategoryCredits(text: string) {
+  return extractFirstMatchingGeneralEducationCreditValue(text, [
+    /\bminimum of (\d+(?:\.\d+)?)\s*(?:credits?|cr)\b[^.]{0,32}\bin each\b/i,
+    /\bat least (\d+(?:\.\d+)?)\s*(?:credits?|cr)\b[^.]{0,32}\beach\b/i,
+    /\binclude at least (\d+(?:\.\d+)?)\s*(?:credits?|cr)\b[^.]{0,32}\beach\b/i,
+  ]);
+}
+
+function extractGeneralEducationCreditRange(text: string) {
+  const match = text.match(/\b(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\b/);
+  const minimumCredits = parseGeneralEducationCreditAmount(match?.[1] ?? null);
+  const maximumCredits = parseGeneralEducationCreditAmount(match?.[2] ?? null);
+  const matchIndex = match?.index ?? -1;
+  const rangeSuffix =
+    match && matchIndex >= 0
+      ? text.slice(matchIndex + match[0].length, matchIndex + match[0].length + 16)
+      : "";
+  if (
+    minimumCredits === null ||
+    maximumCredits === null ||
+    minimumCredits > maximumCredits ||
+    maximumCredits > 60 ||
+    /\blevels?\b/i.test(rangeSuffix)
+  ) {
+    return null;
+  }
+
+  return {
+    minimumCredits,
+    maximumCredits,
+  };
+}
+
+function extractGeneralEducationFixedCredits(text: string) {
+  const explicitCreditMatches = Array.from(
+    text.matchAll(/(\d+(?:\.\d+)?)\s+(?:additional\s+)?(?:credits?|cr)\b/gi)
+  )
+    .map((match) => parseGeneralEducationCreditAmount(match[1] ?? null))
+    .filter((value): value is number => value !== null);
+  if (explicitCreditMatches.length) {
+    return explicitCreditMatches[explicitCreditMatches.length - 1] ?? null;
+  }
+
+  const parentheticalMatches = Array.from(text.matchAll(/\((\d+(?:\.\d+)?)\)/g))
+    .map((match) => parseGeneralEducationCreditAmount(match[1] ?? null))
+    .filter((value): value is number => value !== null);
+
+  return parentheticalMatches[parentheticalMatches.length - 1] ?? null;
+}
+
+function buildCategorySpecificGeneralEducationFixedDescriptors(
+  text: string
+): SourceBackedGeneralEducationDescriptor[] {
+  const descriptors = (
+    [
+      {
+        category: "ah",
+        pattern:
+          /\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b(?:\s+of)?[^.;]{0,24}\b(?:arts?\s+and\s+humanities|a&h)\b/i,
+      },
+      {
+        category: "ssc",
+        pattern:
+          /\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b(?:\s+of)?[^.;]{0,24}\b(?:social sciences?|ssc)\b/i,
+      },
+      {
+        category: "nsc",
+        pattern:
+          /\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b(?:\s+of)?[^.;]{0,24}\b(?:natural sciences?|nsc)\b/i,
+      },
+    ] as const
+  )
+    .map(({ category, pattern }) => {
+      const credits = extractFirstMatchingGeneralEducationCreditValue(text, [pattern]);
+      if (credits === null) {
+        return null;
+      }
+
+      return {
+        kind: "category-fixed" as const,
+        category,
+        credits,
+        sourceLine: text,
+      };
+    })
+    .filter(
+      (
+        descriptor
+      ): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: "category-fixed" }> =>
+        descriptor !== null
+    );
+
+  return descriptors.length >= 2 ? descriptors : [];
+}
+
+function getSourceBackedGeneralEducationCategoryPatternSource(
+  category: SourceBackedGeneralEducationCategoryId
+) {
+  switch (category) {
+    case "ah":
+      return "(?:arts?\\s+and\\s+humanities|a&h)";
+    case "ssc":
+      return "(?:social sciences?|ssc)";
+    case "nsc":
+      return "(?:natural sciences?|nsc)";
+  }
+}
+
+function buildSingleCategoryGeneralEducationFixedDescriptor(
+  text: string,
+  category: SourceBackedGeneralEducationCategoryId
+): Extract<SourceBackedGeneralEducationDescriptor, { kind: "category-fixed" }> | null {
+  const categoryPatternSource = getSourceBackedGeneralEducationCategoryPatternSource(category);
+  const credits = extractFirstMatchingGeneralEducationCreditValue(text, [
+    new RegExp(`^\\s*(?:${categoryPatternSource})\\b[^.;]{0,32}\\((\\d+(?:\\.\\d+)?)\\)`, "i"),
+    new RegExp(
+      `\\b(?:${categoryPatternSource})\\b[^.;]{0,32}\\((\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b[^)]*\\)`,
+      "i"
+    ),
+    new RegExp(
+      `\\b(?:${categoryPatternSource})\\b[^.;]{0,32}\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b`,
+      "i"
+    ),
+    new RegExp(
+      `\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b(?:\\s+of)?[^.;]{0,24}\\b(?:${categoryPatternSource})\\b`,
+      "i"
+    ),
+  ]);
+  if (credits === null) {
+    return null;
+  }
+
+  return {
+    kind: "category-fixed",
+    category,
+    credits,
+    sourceLine: text,
+  };
+}
+
+function buildSingleCategoryGeneralEducationRangeDescriptor(
+  text: string,
+  category: SourceBackedGeneralEducationCategoryId
+): Extract<SourceBackedGeneralEducationDescriptor, { kind: "category-range" }> | null {
+  const categoryPatternSource = getSourceBackedGeneralEducationCategoryPatternSource(category);
+  const match = [
+    new RegExp(
+      `\\b(?:${categoryPatternSource})\\b[^.;]{0,32}\\((\\d+(?:\\.\\d+)?)\\s*-\\s*(\\d+(?:\\.\\d+)?)\\)`,
+      "i"
+    ),
+    new RegExp(
+      `\\b(?:${categoryPatternSource})\\b[^.;]{0,32}\\b(\\d+(?:\\.\\d+)?)\\s*-\\s*(\\d+(?:\\.\\d+)?)\\b`,
+      "i"
+    ),
+    new RegExp(
+      `\\b(\\d+(?:\\.\\d+)?)\\s*-\\s*(\\d+(?:\\.\\d+)?)\\b[^.;]{0,24}\\b(?:${categoryPatternSource})\\b`,
+      "i"
+    ),
+  ]
+    .map((pattern) => text.match(pattern))
+    .find((entry) => entry !== null);
+  const minimumCredits = parseGeneralEducationCreditAmount(match?.[1] ?? null);
+  const maximumCredits = parseGeneralEducationCreditAmount(match?.[2] ?? null);
+  if (
+    minimumCredits === null ||
+    maximumCredits === null ||
+    minimumCredits > maximumCredits ||
+    maximumCredits > 60
+  ) {
+    return null;
+  }
+
+  return {
+    kind: "category-range",
+    category,
+    minimumCredits,
+    maximumCredits,
+    sourceLine: text,
+  };
+}
+
+function hasDirectSourceBackedGeneralEducationLeadContext(text: string) {
+  return (
+    /^(?:additional\s+)?(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|areas?\s+of\s+(?:inquiry|knowledge))\b/i.test(
+      text
+    ) ||
+    /^\d+(?:\.\d+)?\s+additional\b/i.test(text) ||
+    /\bgeneral education\b/i.test(text)
+  );
+}
+
+function hasExplicitSourceBackedGeneralEducationDescriptorContext(text: string) {
+  const sanitizedText = sanitizeGeneralEducationSourceSignalLine(text);
+  if (!sanitizedText) {
+    return false;
+  }
+
+  return (
+    /\bareas? of (?:inquiry|knowledge)\b|\bgeneral education\b/i.test(sanitizedText) ||
+    /^(?:additional\s+)?(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc)\b[^.;]{0,48}(?:\(\d+(?:\.\d+)?(?:\s*(?:credits?|cr))?(?:\s*-\s*\d+(?:\.\d+)?)?[^)]*\)|\b\d+(?:\.\d+)?\s*(?:credits?|cr)\b)/i.test(
+      sanitizedText
+    ) ||
+    /^\d+(?:\.\d+)?\s+(?:additional\s+)?(?:credits?|cr)\b[^.;]{0,32}\b(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc)\b/i.test(
+      sanitizedText
+    )
+  );
+}
+
+function hasSameSourceBackedCategorySet(
+  left: SourceBackedGeneralEducationCategoryId[],
+  right: SourceBackedGeneralEducationCategoryId[]
+) {
+  if (left.length !== right.length) {
+    return false;
+  }
+
+  return left.every((category, index) => category === right[index]);
+}
+
+function buildSourceBackedGeneralEducationDescriptorsFromSegment(
+  segment: string
+): SourceBackedGeneralEducationDescriptor[] {
+  const sanitizedSegment = sanitizeGeneralEducationSourceSignalLine(segment);
+  if (!sanitizedSegment) {
+    return [];
+  }
+
+  const categories = detectSourceBackedGeneralEducationCategories(sanitizedSegment);
+  const creditRange = extractGeneralEducationCreditRange(sanitizedSegment);
+  const minimumPerCategoryCredits =
+    extractGeneralEducationMinimumPerCategoryCredits(sanitizedSegment);
+  const areasOfInquiryTotalCredits = extractAreasOfInquiryTotalCredits(sanitizedSegment);
+  const fixedCredits = creditRange ? null : extractGeneralEducationFixedCredits(sanitizedSegment);
+  const hasAreasOfInquiryScope = /\bareas? of inquiry\b/i.test(sanitizedSegment);
+  const hasAdditional = /\badditional\b/i.test(sanitizedSegment);
+  const hasAnyAreaLanguage =
+    /\bany area\b/i.test(sanitizedSegment) ||
+    /\badditional areas? of inquiry\b/i.test(sanitizedSegment);
+  const hasDirectLeadContext = hasDirectSourceBackedGeneralEducationLeadContext(sanitizedSegment);
+  const hasCourseLevelContext =
+    /\b\d{3}\s*-\s*\d{3}\s*level\b|\b\d{3}-level\b/i.test(sanitizedSegment);
+  const hasMathematicsAndNaturalSciencesCombo =
+    categories.length === 1 &&
+    categories[0] === "nsc" &&
+    /\bmathematics?\b[^.]{0,24}\bnatural sciences?\b|\bnatural sciences?\b[^.]{0,24}\bmathematics?\b/i.test(
+      sanitizedSegment
+    );
+  const categorySpecificFixedDescriptors =
+    buildCategorySpecificGeneralEducationFixedDescriptors(sanitizedSegment);
+
+  if (hasMathematicsAndNaturalSciencesCombo) {
+    return [];
+  }
+
+  if (hasCourseLevelContext) {
+    return [];
+  }
+
+  if (categorySpecificFixedDescriptors.length) {
+    return categorySpecificFixedDescriptors;
+  }
+
+  if (categories.length === 1 && creditRange) {
+    const directRangeDescriptor = buildSingleCategoryGeneralEducationRangeDescriptor(
+      sanitizedSegment,
+      categories[0]
+    );
+    if (directRangeDescriptor) {
+      return [directRangeDescriptor];
+    }
+  }
+
+  if (categories.length === 1 && fixedCredits !== null) {
+    const directFixedDescriptor = buildSingleCategoryGeneralEducationFixedDescriptor(
+      sanitizedSegment,
+      categories[0]
+    );
+    if (directFixedDescriptor) {
+      return [directFixedDescriptor];
+    }
+  }
+
+  if (hasAdditional && hasAnyAreaLanguage && fixedCredits !== null) {
+    return [
+      {
+        kind: "elective",
+        credits: fixedCredits,
+        sourceLine: sanitizedSegment,
+      },
+    ];
+  }
+
+  if (!hasDirectLeadContext && !hasAreasOfInquiryScope) {
+    return [];
+  }
+
+  if (
+    hasAreasOfInquiryScope &&
+    minimumPerCategoryCredits !== null &&
+    categories.length >= 2 &&
+    areasOfInquiryTotalCredits !== null
+  ) {
+    return [
+      {
+        kind: "shared-bucket",
+        categories,
+        totalCredits: areasOfInquiryTotalCredits,
+        minimumPerCategoryCredits,
+        scope: "areas-of-inquiry",
+        sourceLine: sanitizedSegment,
+      },
+    ];
+  }
+
+  if (categories.length >= 2 && hasAdditional && fixedCredits !== null) {
+    return [
+      {
+        kind: "additional-flexible",
+        categories,
+        credits: fixedCredits,
+        sourceLine: sanitizedSegment,
+      },
+    ];
+  }
+
+  if (categories.length >= 2 && fixedCredits !== null) {
+    return [
+      {
+        kind: "shared-bucket",
+        categories,
+        totalCredits: fixedCredits,
+        minimumPerCategoryCredits,
+        scope: hasAreasOfInquiryScope ? "areas-of-inquiry" : "categories",
+        sourceLine: sanitizedSegment,
+      },
+    ];
+  }
+
+  if (categories.length === 1 && creditRange) {
+    return [];
+  }
+
+  if (categories.length === 1 && fixedCredits !== null) {
+    return [];
+  }
+
+  if (hasAreasOfInquiryScope && areasOfInquiryTotalCredits !== null) {
+    return [
+      {
+        kind: "area-total",
+        totalCredits: areasOfInquiryTotalCredits,
+        sourceLine: sanitizedSegment,
+      },
+    ];
+  }
+
+  return [];
+}
+
+function getSourceBackedGeneralEducationDescriptorKey(
+  descriptor: SourceBackedGeneralEducationDescriptor
+) {
+  switch (descriptor.kind) {
+    case "category-fixed":
+      return `${descriptor.kind}:${descriptor.category}:${descriptor.credits}`;
+    case "category-range":
+      return `${descriptor.kind}:${descriptor.category}:${descriptor.minimumCredits}:${descriptor.maximumCredits}`;
+    case "shared-bucket":
+      return [
+        descriptor.kind,
+        descriptor.scope,
+        descriptor.categories.join("-"),
+        descriptor.totalCredits,
+        descriptor.minimumPerCategoryCredits ?? "",
+      ].join(":");
+    case "area-total":
+      return `${descriptor.kind}:${descriptor.totalCredits}`;
+    case "additional-flexible":
+      return `${descriptor.kind}:${descriptor.categories.join("-")}:${descriptor.credits}`;
+    case "elective":
+      return `${descriptor.kind}:${descriptor.credits}`;
+  }
+}
+
+function buildParsedSourceBackedGeneralEducationStructure(
   plan: TransferPlannerMajorPlan | null | undefined
-): GeneralEducationRequirementTargets {
+): ParsedSourceBackedGeneralEducationStructure {
   const sourcePlan = getGeneralEducationRequirementTargetSourcePlan(plan);
   const selectedPathwayId =
-    (sourcePlan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
-  const parsedRequirementSourceLines = sourcePlan
-    ? getTransferPlannerParsedRequirementSourceBlocks(sourcePlan.id, selectedPathwayId).flatMap(
-        (block) => block.requirementCueLines ?? []
+    (sourcePlan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ??
+    null;
+  const parsedRequirementSourceBlocks = sourcePlan
+    ? uniqueBy(
+        [
+          ...getTransferPlannerParsedRequirementSourceBlocks(sourcePlan.id, selectedPathwayId),
+          ...(selectedPathwayId
+            ? getTransferPlannerParsedRequirementSourceBlocks(sourcePlan.id, null)
+            : []),
+        ],
+        (block) => block.id
       )
     : [];
-  const normalized = getGeneralEducationRequirementSignalLines(
-    sourcePlan,
-    parsedRequirementSourceLines
-  )
-    .map((line) => normalizeGeneralEducationSignalText(line))
-    .filter(Boolean)
-    .join(" ");
+  const parsedRequirementSourceLines = parsedRequirementSourceBlocks.flatMap(
+    (block) => block.requirementCueLines ?? []
+  );
+  const rawSignalLines = parsedRequirementSourceLines.length
+    ? parsedRequirementSourceLines
+    : getGeneralEducationRequirementSignalLines(sourcePlan, []);
+  const signalSegments = unique(
+    rawSignalLines
+      .filter((line) =>
+        parsedRequirementSourceLines.length
+          ? Boolean(sanitizeGeneralEducationSourceSignalLine(line)) &&
+            !isCourseLedRequirementLine(line)
+          : isGeneralEducationSignalLine({ line })
+      )
+      .flatMap((line) => splitGeneralEducationSourceSignalLine(line))
+  );
+  const hasExplicitDescriptorContext = signalSegments.some((segment) =>
+    hasExplicitSourceBackedGeneralEducationDescriptorContext(segment)
+  );
+  const descriptors = hasExplicitDescriptorContext
+    ? uniqueBy(
+        signalSegments.flatMap((segment) =>
+          buildSourceBackedGeneralEducationDescriptorsFromSegment(segment)
+        ),
+        getSourceBackedGeneralEducationDescriptorKey
+      )
+    : [];
 
-  if (!normalized) {
+  if (!descriptors.length) {
+    return {
+      descriptors: [],
+      hasConflict: false,
+    };
+  }
+
+  const fixedCreditsByCategory = new Map<SourceBackedGeneralEducationCategoryId, Set<number>>();
+  const rangeCreditsByCategory = new Map<
+    SourceBackedGeneralEducationCategoryId,
+    Set<string>
+  >();
+  const areaTotals = new Set<number>();
+  const electiveCredits = new Set<number>();
+  const additionalFlexibleByCategoryKey = new Map<string, Set<number>>();
+  const sharedBuckets = descriptors.filter(
+    (descriptor): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: "shared-bucket" }> =>
+      descriptor.kind === "shared-bucket"
+  );
+
+  for (const descriptor of descriptors) {
+    if (descriptor.kind === "category-fixed") {
+      const existing = fixedCreditsByCategory.get(descriptor.category) ?? new Set<number>();
+      existing.add(descriptor.credits);
+      fixedCreditsByCategory.set(descriptor.category, existing);
+      continue;
+    }
+
+    if (descriptor.kind === "category-range") {
+      const existing = rangeCreditsByCategory.get(descriptor.category) ?? new Set<string>();
+      existing.add(`${descriptor.minimumCredits}:${descriptor.maximumCredits}`);
+      rangeCreditsByCategory.set(descriptor.category, existing);
+      continue;
+    }
+
+    if (descriptor.kind === "area-total") {
+      areaTotals.add(descriptor.totalCredits);
+      continue;
+    }
+
+    if (descriptor.kind === "elective") {
+      electiveCredits.add(descriptor.credits);
+      continue;
+    }
+
+    if (descriptor.kind === "additional-flexible") {
+      const categoryKey = descriptor.categories.join("-");
+      const existing = additionalFlexibleByCategoryKey.get(categoryKey) ?? new Set<number>();
+      existing.add(descriptor.credits);
+      additionalFlexibleByCategoryKey.set(categoryKey, existing);
+    }
+  }
+
+  let hasConflict = false;
+  for (const creditSet of fixedCreditsByCategory.values()) {
+    if (creditSet.size > 1) {
+      hasConflict = true;
+      break;
+    }
+  }
+  for (const creditSet of rangeCreditsByCategory.values()) {
+    if (creditSet.size > 1) {
+      hasConflict = true;
+      break;
+    }
+  }
+  for (const [category] of fixedCreditsByCategory) {
+    if (rangeCreditsByCategory.has(category)) {
+      hasConflict = true;
+      break;
+    }
+  }
+  if (areaTotals.size > 1 || electiveCredits.size > 1) {
+    hasConflict = true;
+  }
+  for (const creditSet of additionalFlexibleByCategoryKey.values()) {
+    if (creditSet.size > 1) {
+      hasConflict = true;
+      break;
+    }
+  }
+  for (let index = 0; index < sharedBuckets.length && !hasConflict; index += 1) {
+    const leftBucket = sharedBuckets[index];
+    for (let compareIndex = index + 1; compareIndex < sharedBuckets.length; compareIndex += 1) {
+      const rightBucket = sharedBuckets[compareIndex];
+      const overlappingCategories = leftBucket.categories.some((category) =>
+        rightBucket.categories.includes(category)
+      );
+      if (!overlappingCategories) {
+        continue;
+      }
+
+      const isEquivalentBucket =
+        leftBucket.totalCredits === rightBucket.totalCredits &&
+        leftBucket.minimumPerCategoryCredits === rightBucket.minimumPerCategoryCredits &&
+        hasSameSourceBackedCategorySet(leftBucket.categories, rightBucket.categories) &&
+        leftBucket.scope === rightBucket.scope;
+      if (!isEquivalentBucket) {
+        hasConflict = true;
+        break;
+      }
+    }
+  }
+
+  if (!hasConflict) {
+    const additionalAhOrSscCredits =
+      additionalFlexibleByCategoryKey.get("ah-ssc")?.values().next().value ?? null;
+    for (const bucket of sharedBuckets) {
+      const overlappingFixedCredits = bucket.categories
+        .map((category) => ({
+          category,
+          credits: fixedCreditsByCategory.get(category)?.values().next().value ?? null,
+        }))
+        .filter(
+          (entry): entry is { category: SourceBackedGeneralEducationCategoryId; credits: number } =>
+            entry.credits !== null
+        );
+      if (!overlappingFixedCredits.length) {
+        continue;
+      }
+
+      const fixedCreditTotal = overlappingFixedCredits.reduce(
+        (totalCredits, entry) => totalCredits + entry.credits,
+        0
+      );
+      const hasAllBucketCategoriesFixed =
+        overlappingFixedCredits.length === bucket.categories.length;
+      const isAhOrSscBucket = hasSameSourceBackedCategorySet(bucket.categories, ["ah", "ssc"]);
+      const isFixedMinimumExpansion =
+        bucket.minimumPerCategoryCredits !== null &&
+        hasAllBucketCategoriesFixed &&
+        overlappingFixedCredits.every(
+          (entry) => entry.credits === bucket.minimumPerCategoryCredits
+        );
+      const isFullyExpandedSharedBucket =
+        hasAllBucketCategoriesFixed &&
+        additionalAhOrSscCredits !== null &&
+        isAhOrSscBucket &&
+        fixedCreditTotal + additionalAhOrSscCredits === bucket.totalCredits;
+      const isFullyAllocatedFixedBucket =
+        hasAllBucketCategoriesFixed &&
+        additionalAhOrSscCredits === null &&
+        fixedCreditTotal === bucket.totalCredits;
+
+      if (!isFixedMinimumExpansion && !isFullyExpandedSharedBucket && !isFullyAllocatedFixedBucket) {
+        hasConflict = true;
+        break;
+      }
+    }
+  }
+
+  return {
+    descriptors,
+    hasConflict,
+  };
+}
+
+function hasSameSourceBackedGeneralEducationDescriptorType<
+  K extends SourceBackedGeneralEducationDescriptor["kind"],
+>(
+  descriptor: SourceBackedGeneralEducationDescriptor,
+  kind: K
+): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: K }> {
+  return descriptor.kind === kind;
+}
+
+function canReduceAreaTotalDescriptor(
+  descriptor: Extract<SourceBackedGeneralEducationDescriptor, { kind: "area-total" }>,
+  structure: ParsedSourceBackedGeneralEducationStructure
+) {
+  const fixedCreditTotal = structure.descriptors
+    .filter((entry): entry is Extract<SourceBackedGeneralEducationDescriptor, { kind: "category-fixed" }> =>
+      hasSameSourceBackedGeneralEducationDescriptorType(entry, "category-fixed")
+    )
+    .reduce((totalCredits, entry) => totalCredits + entry.credits, 0);
+  const additionalFlexibleCreditTotal = structure.descriptors
+    .filter((entry): entry is Extract<SourceBackedGeneralEducationDescriptor, { kind: "additional-flexible" }> =>
+      hasSameSourceBackedGeneralEducationDescriptorType(entry, "additional-flexible")
+    )
+    .reduce((totalCredits, entry) => totalCredits + entry.credits, 0);
+  const electiveCreditTotal = structure.descriptors
+    .filter((entry): entry is Extract<SourceBackedGeneralEducationDescriptor, { kind: "elective" }> =>
+      hasSameSourceBackedGeneralEducationDescriptorType(entry, "elective")
+    )
+    .reduce((totalCredits, entry) => totalCredits + entry.credits, 0);
+  const matchingSharedBucket = structure.descriptors.some(
+    (entry): entry is Extract<SourceBackedGeneralEducationDescriptor, { kind: "shared-bucket" }> =>
+      hasSameSourceBackedGeneralEducationDescriptorType(entry, "shared-bucket") &&
+      entry.scope === "areas-of-inquiry" &&
+      entry.totalCredits === descriptor.totalCredits
+  );
+
+  return (
+    matchingSharedBucket ||
+    fixedCreditTotal + additionalFlexibleCreditTotal + electiveCreditTotal === descriptor.totalCredits
+  );
+}
+
+function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
+  structure: ParsedSourceBackedGeneralEducationStructure
+): GeneralEducationRequirementTargets {
+  if (!structure.descriptors.length || structure.hasConflict) {
     return createEmptyGeneralEducationRequirementTargets();
   }
 
-  const sharedAoiCredits = findGeneralEducationCreditValue(normalized, [
-    /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\ba&h\b[^.]*\bssc\b[^.]*\bnsc\b/,
-    /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\barts?\s+and\s+humanities\b[^.]*\bsocial sciences?\b[^.]*\bnatural sciences?\b/,
-  ]);
-  const sharedAreaCredits = sharedAoiCredits ?? findGeneralEducationCreditValue(normalized, [
-    /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\ba&h\b[^.]*\bssc\b/,
-    /(\d+)\s+credits?\s+(?:of|in)\s+each[^.]*\barts?\s+and\s+humanities\b[^.]*\bsocial sciences?\b/,
-  ]);
-  const ahCredits =
-    sharedAreaCredits ??
-    findGeneralEducationCreditValue(normalized, [
-      /at least\s+(\d+)\s+a&h\s+credits?\b/,
-      /(\d+)\s+credits?\s+(?:of|in)\s+a&h\b(?!\/)/,
-      /(\d+)\s+a&h\s+credits?\b/,
-      /(?:arts?\s+and\s+humanities|a&h)\b[^)]{0,32}\((\d+)\)/,
-      /at least\s+(\d+)\s+arts?\s+and\s+humanities\s+credits?\b/,
-      /(\d+)\s+credits?\s+(?:of|in)\s+arts?\s+and\s+humanities\b/,
-      /(\d+)\s+arts?\s+and\s+humanities\s+credits?\b/,
-    ]);
-  const sscCredits =
-    sharedAreaCredits ??
-    findGeneralEducationCreditValue(normalized, [
-      /at least\s+(\d+)\s+ssc\s+credits?\b/,
-      /(\d+)\s+credits?\s+(?:of|in)\s+ssc\b/,
-      /(\d+)\s+ssc\s+credits?\b/,
-      /(?:social sciences?|ssc)\b[^)]{0,32}\((\d+)\)/,
-      /at least\s+(\d+)\s+social sciences?\s+credits?\b/,
-      /(\d+)\s+credits?\s+(?:of|in)\s+social sciences?\b/,
-      /(\d+)\s+social sciences?\s+credits?\b/,
-    ]);
-  const parsedNscCredits =
-    sharedAoiCredits ??
-    findGeneralEducationCreditValue(normalized, [
-      /at least\s+(\d+)\s+nsc\s+credits?\b/,
-      /(\d+)\s+credits?\s+(?:of|in)\s+nsc\b/,
-      /(\d+)\s+nsc\s+credits?\b/,
-      /(?:natural sciences?|nsc)\b[^)]{0,32}\((\d+)\)/,
-      /at least\s+(\d+)\s+natural sciences?\s+credits?\b/,
-      /(\d+)\s+credits?\s+(?:of|in)\s+natural sciences?\b/,
-      /(\d+)\s+natural sciences?\s+credits?\b/,
-    ]);
-  const inferredAreasOfKnowledgeNscCredits =
-    parsedNscCredits === null &&
-    sourcePlan?.campusId === "uw-seattle" &&
-    /\bareas of knowledge\b/.test(normalized)
-      ? 20
-      : null;
-  const combinedBreadthCredits = findGeneralEducationCreditValue(normalized, [
-    /(\d+)\s+credits?\s+(?:of|in)\s+a&h\/ssc(?:\/div)?\b/,
-    /(\d+)\s+a&h\/ssc(?:\/div)?\s+credits?\b/,
-    /(\d+)\s+credits?\s+(?:of|in)\s+arts?\s+and\s+humanities\s+or\s+social sciences?\b/,
-    /(\d+)\s+arts?\s+and\s+humanities\s+or\s+social sciences?\s+credits?\b/,
-  ]);
-  const additionalBreadthCredits = findGeneralEducationCreditValue(normalized, [
-    /(\d+)\s+additional\s+a&h\s+or\s+ssc\s+credits?\b/,
-    /(\d+)\s+additional\s+a&h\s+and\/or\s+ssc\s+credits?\b/,
-    /additional\s+a&h\s+and\/or\s+ssc\b[^)]{0,16}\((\d+)\)/,
-    /(\d+)\s+additional\s+arts?\s+and\s+humanities\s+or\s+social sciences?\s+credits?\b/,
-    /(\d+)\s+additional\s+arts?\s+and\s+humanities\s+and\/or\s+social sciences?\s+credits?\b/,
-    /additional\s+arts?\s+and\s+humanities\s+and\/or\s+social sciences?\b[^)]{0,16}\((\d+)\)/,
-  ]);
-  const electiveCredits = findGeneralEducationCreditValue(normalized, [
-    /(\d+)\s+credits?\s+of additional areas?\s+of inquiry\b/,
-    /(\d+)\s+credits?\s+of additional coursework\b/,
-  ]);
+  const hasUnsupportedDescriptor = structure.descriptors.some((descriptor) => {
+    if (descriptor.kind === "category-range") {
+      return true;
+    }
 
-  const parsedTargets: GeneralEducationRequirementTargets = {
-    ahCredits,
-    sscCredits,
-    nscCredits: parsedNscCredits ?? inferredAreasOfKnowledgeNscCredits,
-    breadthCredits:
-      additionalBreadthCredits ??
-      (combinedBreadthCredits !== null && ahCredits !== null && sscCredits !== null
-        ? Math.max(0, combinedBreadthCredits - ahCredits - sscCredits)
-        : combinedBreadthCredits),
-    electiveCredits,
-  };
+    if (descriptor.kind === "shared-bucket") {
+      return !hasSameSourceBackedCategorySet(descriptor.categories, ["ah", "ssc"]);
+    }
 
-  const hasParsedRequirementTargets =
-    hasGeneralEducationRequirementTargets(parsedTargets);
+    if (descriptor.kind === "area-total") {
+      return !canReduceAreaTotalDescriptor(descriptor, structure);
+    }
 
-  if (hasParsedRequirementTargets) {
-    return parsedTargets;
+    if (descriptor.kind === "additional-flexible") {
+      return !hasSameSourceBackedCategorySet(descriptor.categories, ["ah", "ssc"]);
+    }
+
+    return false;
+  });
+  if (hasUnsupportedDescriptor) {
+    return createEmptyGeneralEducationRequirementTargets();
   }
 
-  return createEmptyGeneralEducationRequirementTargets();
+  const targets = createEmptyGeneralEducationRequirementTargets();
+  const fixedCreditsByCategory = new Map<SourceBackedGeneralEducationCategoryId, number>();
+
+  for (const descriptor of structure.descriptors) {
+    if (descriptor.kind === "category-fixed") {
+      fixedCreditsByCategory.set(descriptor.category, descriptor.credits);
+      if (descriptor.category === "ah") {
+        targets.ahCredits = descriptor.credits;
+      } else if (descriptor.category === "ssc") {
+        targets.sscCredits = descriptor.credits;
+      } else {
+        targets.nscCredits = descriptor.credits;
+      }
+      continue;
+    }
+
+    if (descriptor.kind === "additional-flexible") {
+      targets.breadthCredits = descriptor.credits;
+      continue;
+    }
+
+    if (descriptor.kind === "elective") {
+      targets.electiveCredits = descriptor.credits;
+      continue;
+    }
+
+    if (descriptor.kind !== "shared-bucket") {
+      continue;
+    }
+
+    const fixedAhCredits = fixedCreditsByCategory.get("ah") ?? null;
+    const fixedSscCredits = fixedCreditsByCategory.get("ssc") ?? null;
+
+    if (descriptor.minimumPerCategoryCredits !== null) {
+      targets.ahCredits = targets.ahCredits ?? descriptor.minimumPerCategoryCredits;
+      targets.sscCredits = targets.sscCredits ?? descriptor.minimumPerCategoryCredits;
+      targets.breadthCredits =
+        targets.breadthCredits ??
+        Math.max(0, descriptor.totalCredits - descriptor.minimumPerCategoryCredits * 2);
+      continue;
+    }
+
+    if (fixedAhCredits !== null && fixedSscCredits !== null) {
+      targets.breadthCredits =
+        targets.breadthCredits ??
+        Math.max(0, descriptor.totalCredits - fixedAhCredits - fixedSscCredits);
+      continue;
+    }
+
+    if (fixedAhCredits === null && fixedSscCredits === null) {
+      targets.breadthCredits = targets.breadthCredits ?? descriptor.totalCredits;
+      continue;
+    }
+
+    return createEmptyGeneralEducationRequirementTargets();
+  }
+
+  return hasGeneralEducationRequirementTargets(targets)
+    ? targets
+    : createEmptyGeneralEducationRequirementTargets();
+}
+
+function formatSourceBackedGeneralEducationCreditCount(credits: number) {
+  return `${credits} ${credits === 1 ? "credit" : "credits"}`;
+}
+
+function joinSourceBackedGeneralEducationCategoryLabels(
+  categories: SourceBackedGeneralEducationCategoryId[],
+  separator: "slash" | "and" = "and"
+) {
+  const labels = categories.map((category) => SOURCE_BACKED_GENERAL_ED_CATEGORY_LABELS[category]);
+  if (separator === "slash") {
+    return labels.join(" / ");
+  }
+
+  if (labels.length <= 1) {
+    return labels[0] ?? "";
+  }
+
+  if (labels.length === 2) {
+    return `${labels[0]} and ${labels[1]}`;
+  }
+
+  return `${labels.slice(0, -1).join(", ")}, and ${labels[labels.length - 1]}`;
+}
+
+function buildSourceBackedMajorGeneralEducationRequirementItems(
+  plan: TransferPlannerMajorPlan | null | undefined
+): TransferPlannerGeneralRequirementSection["items"] {
+  const structure = buildParsedSourceBackedGeneralEducationStructure(plan);
+  if (!structure.descriptors.length || structure.hasConflict) {
+    return [];
+  }
+
+  const fixedCreditsByCategory = new Map<SourceBackedGeneralEducationCategoryId, number>();
+  const additionalFlexibleByCategoryKey = new Map<string, number>();
+  const areaTotalCredits = structure.descriptors
+    .filter((descriptor): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: "area-total" }> =>
+      descriptor.kind === "area-total"
+    )
+    .map((descriptor) => descriptor.totalCredits);
+
+  for (const descriptor of structure.descriptors) {
+    if (descriptor.kind === "category-fixed") {
+      fixedCreditsByCategory.set(descriptor.category, descriptor.credits);
+      continue;
+    }
+
+    if (descriptor.kind === "additional-flexible") {
+      additionalFlexibleByCategoryKey.set(descriptor.categories.join("-"), descriptor.credits);
+    }
+  }
+
+  const items: TransferPlannerGeneralRequirementSection["items"] = [];
+  const areaTotalCreditsValue = areaTotalCredits[0] ?? null;
+  const pushItem = (item: TransferPlannerGeneralRequirementSection["items"][number]) => {
+    if (items.some((existingItem) => existingItem.id === item.id)) {
+      return;
+    }
+
+    items.push(item);
+  };
+
+  for (const descriptor of structure.descriptors) {
+    if (descriptor.kind === "area-total") {
+      if (canReduceAreaTotalDescriptor(descriptor, structure)) {
+        const hasRangeDescriptor = structure.descriptors.some(
+          (entry) => entry.kind === "category-range"
+        );
+        const hasUnreducedSharedBucket = structure.descriptors.some(
+          (entry) =>
+            entry.kind === "shared-bucket" &&
+            !(
+              hasSameSourceBackedCategorySet(entry.categories, ["ah", "ssc"]) &&
+              fixedCreditsByCategory.get("ah") !== undefined &&
+              fixedCreditsByCategory.get("ssc") !== undefined &&
+              (additionalFlexibleByCategoryKey.get("ah-ssc") ?? 0) +
+                (fixedCreditsByCategory.get("ah") ?? 0) +
+                (fixedCreditsByCategory.get("ssc") ?? 0) ===
+                entry.totalCredits
+            )
+        );
+        if (!hasRangeDescriptor && !hasUnreducedSharedBucket) {
+          continue;
+        }
+      }
+
+      pushItem({
+        id: "areas-of-inquiry-total",
+        label: "Areas of Inquiry",
+        valueText: `${formatSourceBackedGeneralEducationCreditCount(descriptor.totalCredits)} total`,
+        sourceKind: "source-backed-major",
+      });
+      continue;
+    }
+
+    if (descriptor.kind === "category-fixed") {
+      pushItem({
+        id: descriptor.category,
+        label: SOURCE_BACKED_GENERAL_ED_CATEGORY_LABELS[descriptor.category],
+        valueText: formatSourceBackedGeneralEducationCreditCount(descriptor.credits),
+        sourceKind: "source-backed-major",
+      });
+      continue;
+    }
+
+    if (descriptor.kind === "category-range") {
+      pushItem({
+        id: `${descriptor.category}-range`,
+        label: SOURCE_BACKED_GENERAL_ED_CATEGORY_LABELS[descriptor.category],
+        valueText: `${descriptor.minimumCredits}-${descriptor.maximumCredits} credits`,
+        note:
+          areaTotalCreditsValue !== null
+            ? `Within the ${formatSourceBackedGeneralEducationCreditCount(areaTotalCreditsValue)} Areas of Inquiry total.`
+            : undefined,
+        sourceKind: "source-backed-major",
+      });
+      continue;
+    }
+
+    if (descriptor.kind === "additional-flexible") {
+      pushItem({
+        id: `additional-${descriptor.categories.join("-")}`,
+        label:
+          descriptor.categories.length >= 3
+            ? "Additional Areas of Inquiry"
+            : `Additional ${joinSourceBackedGeneralEducationCategoryLabels(
+                descriptor.categories,
+                "slash"
+              )}`,
+        valueText: formatSourceBackedGeneralEducationCreditCount(descriptor.credits),
+        sourceKind: "source-backed-major",
+      });
+      continue;
+    }
+
+    if (descriptor.kind === "elective") {
+      pushItem({
+        id: "additional-areas-of-inquiry",
+        label: "Additional Areas of Inquiry",
+        valueText: formatSourceBackedGeneralEducationCreditCount(descriptor.credits),
+        sourceKind: "source-backed-major",
+      });
+      continue;
+    }
+
+    const fixedCreditTotal = descriptor.categories.reduce(
+      (totalCredits, category) => totalCredits + (fixedCreditsByCategory.get(category) ?? 0),
+      0
+    );
+    const additionalFlexibleCredits =
+      additionalFlexibleByCategoryKey.get(descriptor.categories.join("-")) ?? 0;
+    const isFullyExpandedAhOrSscBucket =
+      hasSameSourceBackedCategorySet(descriptor.categories, ["ah", "ssc"]) &&
+      fixedCreditTotal + additionalFlexibleCredits === descriptor.totalCredits;
+    if (isFullyExpandedAhOrSscBucket) {
+      continue;
+    }
+
+    const sharedCategoryLabel = joinSourceBackedGeneralEducationCategoryLabels(
+      descriptor.categories
+    );
+    const noteParts: string[] = [];
+    if (descriptor.scope === "areas-of-inquiry" && descriptor.categories.length) {
+      noteParts.push(`Shared across ${sharedCategoryLabel}.`);
+    }
+    if (descriptor.minimumPerCategoryCredits !== null) {
+      noteParts.push(
+        `Includes at least ${formatSourceBackedGeneralEducationCreditCount(
+          descriptor.minimumPerCategoryCredits
+        )} in each category.`
+      );
+    }
+
+    pushItem({
+      id: `shared-${descriptor.categories.join("-")}-${descriptor.totalCredits}`,
+      label:
+        descriptor.scope === "areas-of-inquiry" ? "Areas of Inquiry" : sharedCategoryLabel,
+      valueText: `${formatSourceBackedGeneralEducationCreditCount(descriptor.totalCredits)} shared`,
+      note: noteParts.join(" ").trim() || undefined,
+      sourceKind: "source-backed-major",
+    });
+  }
+
+  return items;
+}
+
+export function buildSourceBackedMajorGeneralEducationRequirementSection(
+  plan: TransferPlannerMajorPlan | null | undefined
+): TransferPlannerGeneralRequirementSection | null {
+  const sourcePlan = getGeneralEducationRequirementTargetSourcePlan(plan) ?? plan;
+  const items = buildSourceBackedMajorGeneralEducationRequirementItems(plan);
+  if (!items.length || !sourcePlan?.campusId) {
+    return null;
+  }
+
+  return {
+    id: "source-backed-major-general-education",
+    title: "Major Required Gen-Eds",
+    summary: `Source-backed major-specific general education targets from ${getGeneralEducationPlanTitle(
+      plan
+    )}.`,
+    campusId: sourcePlan.campusId,
+    sourceKind: "source-backed-major",
+    plannerUsage: "summary-only",
+    items,
+  };
+}
+
+export function buildSourceBackedGeneralEducationRequirementTargets(
+  plan: TransferPlannerMajorPlan | null | undefined
+): GeneralEducationRequirementTargets {
+  return buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
+    buildParsedSourceBackedGeneralEducationStructure(plan)
+  );
 }
 
 export function buildGeneralEducationRequirementTargets(
@@ -3421,12 +4404,16 @@ export function buildGeneralEducationRequirementLayerDiagnostics(
   plan: TransferPlannerMajorPlan | null | undefined
 ): GeneralEducationRequirementLayerDiagnostics {
   const sourceBackedTargets = buildSourceBackedGeneralEducationRequirementTargets(plan);
+  const sourceBackedSummarySection = buildSourceBackedMajorGeneralEducationRequirementSection(plan);
   const plannerGuidanceTargets = createEmptyGeneralEducationRequirementTargets();
 
   return {
     sourceBackedTargets,
     plannerGuidanceTargets,
-    hasSourceBackedTargets: hasGeneralEducationRequirementTargets(sourceBackedTargets),
+    sourceBackedSummarySection,
+    hasSourceBackedTargets:
+      hasGeneralEducationRequirementTargets(sourceBackedTargets) ||
+      Boolean(sourceBackedSummarySection?.items.length),
   };
 }
 

@@ -81,6 +81,18 @@ export default function ProfileSetupPage() {
     setTranscriptReview(null);
   };
 
+  function formatGpaDisplay(value: string | undefined | null) {
+    const raw = String(value ?? "").trim();
+    if (!raw) return "";
+    const match = raw.match(/-?\d+(?:\.\d+)?/);
+    if (!match) return raw;
+    const num = Number.parseFloat(match[0]);
+    if (!Number.isFinite(num)) return raw;
+    const clamped = Math.max(0, Math.min(num, 4.0));
+    const truncated = Math.floor(clamped * 100) / 100;
+    return truncated.toFixed(2).replace(/\.0+$|0+$/g, '');
+  }
+
   const handlePickTranscript = async () => {
     try {
       const result = await DocumentPicker.getDocumentAsync({
@@ -153,13 +165,29 @@ export default function ProfileSetupPage() {
   };
 
   const handleGpaChange = (value: string) => {
-    // Accept only valid decimal input and clamp user-entered GPA to a 4.0 scale.
+    // Allow digits and at most one decimal point
     if (value === "" || /^\d*\.?\d*$/.test(value)) {
-      const num = parseFloat(value);
-      if (value === "" || (Number.isFinite(num) && num <= 4.0) || value === "0" || value === "0.") {
+      const parts = value.split('.');
+      const intPart = parts[0] ?? '';
+      const fracPart = parts[1] ?? '';
+
+      // Prevent more than two decimal places
+      if (fracPart.length > 2) return;
+
+      // Disallow fractional values that reach 4.00 — decimals max at 3.99
+      if (intPart === '4' && value.includes('.')) return;
+
+      const num = Number(value);
+      const isEmptyOrZeroish = value === '' || value === '0' || value === '0.';
+
+      if (
+        isEmptyOrZeroish ||
+        (Number.isFinite(num) && (value.includes('.') ? num <= 3.99 : num <= 4.0))
+      ) {
         setGpa(value);
-        // Trigger celebration once per cooldown window when GPA hits exactly 4.0.
-        if (num === 4.0 && (value === "4" || value === "4.0") && !confettiCooldown) {
+
+        // Celebrate perfect GPA when user types exact '4'
+        if (num === 4.0 && value === '4' && !confettiCooldown) {
           setIsConfettiPlaying(true);
           setConfettiCooldown(true);
           setTimeout(() => setIsConfettiPlaying(false), 6000);
@@ -176,7 +204,7 @@ export default function ProfileSetupPage() {
     if (!review) return;
 
     if (review.userPatch.major) setMajor(review.userPatch.major);
-    if (review.userPatch.gpa) setGpa(review.userPatch.gpa);
+    if (review.userPatch.gpa) setGpa(formatGpaDisplay(review.userPatch.gpa));
 
     if (Object.keys(review.questionnairePatch).length) {
       await setQuestionnaireAnswers({
@@ -218,9 +246,11 @@ export default function ProfileSetupPage() {
 
       const finalTranscriptUrl = await uploadTranscriptDocument(userId, transcriptDoc);
 
+      const sanitizedGpa = formatGpaDisplay(gpa);
+
       const flatData = {
         major,
-        gpa: gpa || "",
+        gpa: sanitizedGpa || "",
         resume: "",
         transcript: finalTranscriptUrl,
         isProfileComplete: true,
@@ -232,7 +262,7 @@ export default function ProfileSetupPage() {
           userDocRef,
           {
             major,
-            gpa: gpa || "",
+            gpa: sanitizedGpa || "",
             resume: "",
             isProfileComplete: true,
             transcript: deleteField(),
@@ -245,6 +275,8 @@ export default function ProfileSetupPage() {
       }
 
       await updateUser(flatData);
+      // reflect sanitized GPA locally for consistent display
+      setGpa(sanitizedGpa);
 
       try {
         await roadmapService.ensureUserRoadmap(userId, {

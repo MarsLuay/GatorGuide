@@ -1,9 +1,8 @@
 Owner: uw-seattle-electrical-computer-engineering:pathway:photonics-pathway
-Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
-Title: BSECE Degree Requirements | UW Department of Electrical & Computer Engineering
+Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsee/degree-requirements/
+Title: BSEE Degree Requirements | UW Department of Electrical & Computer Engineering
 
 -->
-(Only EE course credits may apply except where specifically noted)
 [Supplemental official source] Bachelor of Science in Electrical and Computer Engineering (BSECE)
 [Supplemental official source] Computer Architecture Pathway
 [Supplemental official source] Control Systems Pathway
@@ -18,16 +17,11 @@ Title: BSECE Degree Requirements | UW Department of Electrical & Computer Engine
 <!-- Rather than edit these items here, edit template file menu-quicklinks.php
 <img src="/wp-content/themes/uw-ee-main/images/button-give.png"
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward*
-1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*
 A career focused on improving medical patients’ quality of life
 A career focused on operating and developing communication systems
-A maximum of 2 credits of seminar courses (see adviser for list of approved seminar courses – scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list )
-A maximum of 6 credits of EE 499 may apply toward Advanced ECE Electives. (How to register for research credit)
-A minimum of 180 credit hours of coursework
-A minimum of 45 credits earned in residence at the UW
 A rapidly growing field with exciting startups in both medical and consumer devices
 A student following the Computer Architecture pathway will focus on the fundamentals of computing systems — how they work, how we can best harness their power and how to create new microprocessor-based systems to continue this amazing trajectory. This pathway combines a strong focus on microprocessors and their implementation with software techniques to efficiently use these systems.
+AA 299, 499
 ABET Accreditation Information
 ABET Accreditation: BSECE
 ABET Accreditation: BSEE
@@ -35,12 +29,10 @@ About
 About Us
 Academics
 Accessibility
-Additional 300 and 400 level EE courses to reach 39 credits. These credits are subject to the following:
+Additional College of Engineering Electives (10 credits)
 Adjunct Faculty
 Admission Requirements
 Admissions
-Advanced Electrical and Computer Engineering Electives (39 credits):
-Advanced Technical Communication (4 credits) :
 Advising
 Advisory Board
 Affiliate Faculty
@@ -60,7 +52,6 @@ Armed with EE 487 as a prerequisite, students in EE 488 are introduced to the qu
 As health and medicine evolve to use ever greater amounts of electronics, development of computing systems helps to create these diagnostic and treatment systems. From a smartphone that can automatically detect disease to the electronics that capture data and recreate imaging from CT and PET scanners, this technology relies heavily on embedded systems.
 As the COVID crisis has shown, modern automobiles are reliant on a large number of digital chips and embedded systems to function. As we move toward self-driving automobiles, this will increasingly be the case. Development of computing systems brings together the hardware and software that underpins this technology.
 As the transistors that make up the bulk of our electronic systems continue to shrink, traditional ways of controlling digital circuits and systems are becoming inadequate. Designing these digital circuits for transistors today (and tomorrow) requires a deeper understanding of how transistors operate at nanoscale dimensions. Classical mechanics knocks on the door of quantum mechanics when transistors shrink to microscopic sizes, and the abstract notion of a single electron controlling the behavior of a simple analog circuit is no longer a far-fetched idea. Emerging quantum technologies are already using semiconductors to build qubits and control electronics. And the integration of silicon and optical active semiconductors is an important, concurrent advance, leading to enhanced optoelectronic devices for sensing, navigation and computing.
-At least 20 EE course credits from the 39 credits of Advanced ECE Electives must be completed at the 400 level .
 Authoring machine learning algorithms to interpret neural data and help to understand brain function or cure disease
 Autonomous vehicles, which include a network of interconnected sensors and microprocessors that rely on real-time embedded systems engineering
 Bachelor of Science
@@ -69,12 +60,12 @@ Bachelor of Science in Electrical and Computer Engineering (BSECE) | UW Departme
 Bachelor of Science in Electrical Engineering (BSEE)
 Be boundless
 Becoming a key contributor in cutting-edge startups
+Below are a few non-traditional coursework EE elective options:
 Biosystems
 BluHaptics (Olis Robotics): Underwater Robots with Human Touch
 BSECE — Flexible, Adaptable, Versatile
 BSECE Admissions Requirements
 BSECE and BSEE FAQs
-BSECE Coursework Requirements
 BSECE Degree Requirements
 BSECE DTC Students
 BSECE Honors Options
@@ -89,11 +80,11 @@ Building virtual reality goggles with high definition and full 3D capability.
 Business analyst
 Campus Safety
 Capstone
-Capstone (4 – 8 credits):
-Capstone courses do NOT count toward Advanced ECE Electives.
+CEE 499
 Certificate Program in GPU-Accelerated Computing & Visualization
 Certificate Program in Machine Learning & Deep Learning
 Certificate Programs
+CHEM E 499
 CHIPS at UW ECE
 CHIPS Faculty
 CHIPS News & Media
@@ -105,7 +96,6 @@ Computer Architecture Courses
 Computer architecture is at the heart of computing technology, and because of that, it has a profound, fundamental impact in this area.
 Computer Architecture Pathway
 Computer Architecture Pathway | UW Department of Electrical & Computer Engineering
-Computer Programming (4-5 credits):
 Computers are all around us, from the smartphones in our pocket, to the control systems in cars, planes, and robots, to many other systems where a microprocessor is embedded into a system it controls. This course takes a practical approach to introducing the hardware and software components needed to build an embedded system from the ground up.
 Computing
 Computing and Networking
@@ -128,6 +118,7 @@ Control systems use math to model and manipulate the physical and non-physical w
 Course Offerings & Course Enrollments
 Course Offerings and Enrollments
 Courses
+Courses required for the degree, such as MATH 207, 208, 224 (formerly MATH 307, 308, 324) *, ENGR 231, etc.
 Covers key software development concepts and tools not in introductory courses. Concepts of lower-level programming (C/C++) and explicit memory management; techniques and tools for individual and group software development; design, implementation, and testing strategies.
 Covers the application of control system analysis and synthesis techniques to electromechanical systems. Includes time and frequency domain methods, analog and digital electronics, DC motors, and unstable mechanical systems.
 COVID-19 Information and Resources for
@@ -145,6 +136,7 @@ CSE 414 — Databases
 CSE 415 — Artificial Intelligence
 CSE 415 — Introduction to Artificial Intelligence
 CSE 416 — Machine Learning
+CSE 498, 499
 Current ECE students can schedule an appointment with an adviser or find drop-in hours online.
 Current Students
 Curriculum
@@ -184,7 +176,9 @@ Does computer architecture touch on global impact, equity and/or quality of life
 Does machine learning touch on global impact, equity and/or quality of life?
 Does photonics touch on global impact, equity and/or quality of life?
 ECE Students, Faculty, and Staff
-EE 201 , EE 215 , EE 241 or CSE 163 , EE 242 , EE 271 , EE 280
+EE 200 Undergraduate Research Exploration Seminar
+EE 215 Fundamentals of Electrical Engineering
+EE 233 Circuit Theory
 EE 331 — Devices and Circuits 1
 EE 331 — Devices and Circuits I
 EE 332 — Devices and Circuits 2
@@ -194,17 +188,18 @@ EE 345 — Introduction to Foundations of Machine Learning
 EE 347 — Introduction to Robotics and Control Systems
 EE 361 — Applied Electromagnetics
 EE 371 — Design of Digital Circuits and Systems
-EE 393 or Department-approved alternative
+EE 398
 EE 400/529 — Semiconductor Optoelectronics
 EE 400/535 — Applied Nanophotonics
 EE 400/539 — Applied Quantum Optics
 EE 400/539 — Nonlinear Optics
+EE 406
+EE 418
 EE 419 — Introduction to Computer-Communication Networks
 EE 419 — Introduction to Networks
 EE 421 — Quantum Mechanics for Engineers
 EE 423 Introduction to Synthetic Biology (3)
 EE 424 Advanced Systems in Synthetic Biology (3)
-EE 437: Integrated Systems Capstone
 EE 440 — Introduction to Digital Imaging Systems
 EE 442 — Digital Signals and Filtering
 EE 443 — Machine Learning for Signal Processing Applications
@@ -214,11 +209,10 @@ EE 447 — Feedback Control Systems
 EE 447 — Introduction to Control Systems
 EE 448 — Control Systems Laboratory
 EE 449 — Robotics and Controls Capstone
-EE 449: Robotics and Controls Capstone
 EE 452 — Power Electronics Design
+EE 456 (Not offered after Spring 2022)
 EE 460 — Introduction to Neural Engineering
 EE 461 — Neural Engineering Tech Studio (Capstone)
-EE 461: Neural Engineering Tech Studio
 EE 466 — Neural Computation and Engineering Laboratory
 EE 467 — Machine Learning for Cybersecurity
 EE 469 — Computer Architecture I
@@ -226,24 +220,24 @@ EE 470 — Computer Architecture II
 EE 473 — Linear Integrated Circuits
 EE 474 — Introduction to Embedded Systems
 EE 475 — Embedded Systems Capstone
-EE 475: Embedded Systems Capstone
 EE 476 — Digital Integrated Circuit Design
 EE 476 — Very Large-Scale Integrated Design II (Automated VLSI Design)
 EE 477 — Very Large-Scale Integrated Design II (Automated VLSI Design)
 EE 477 — VLSI II
 EE 478 — Capstone Integrated Digital Design Projects
-EE 478: Capstone Integrated Digital Design Projects
 EE 482 — Semiconductor Devices
 EE 484 — Sensors and Sensor Systems
 EE 487 — Introduction to Photonics
 EE 488 — Advanced Photonics
-EE 490 (graded CR/NC) may not apply toward Advanced ECE Electives and may only apply to free electives.
+EE 491 Undergraduate Seminar – Departmental Colloquium
+EE 492 Electrical Engineering Leadership Seminar
 EE 497 (winter quarter) and EE 498 (spring quarter) — Engineering Entrepreneurial Capstone (ENGINE)
-EE 497: Engineering Entrepreneurial Capstone and EE 498: Engineering Entrepreneurial Capstone
 EE 497/498 (winter/spring) — (ENGINE) Engineering Entrepreneurial Capstone
+EE 500 Graduate Seminar
 EE 510 , 547 , 548 , 549 are available for students who are interested in graduate school.
+EE Electives (4-25 credits)
 Either CSE 123: Intro to Computer Programming III or CSE 143: Computer Programming II
-Electrical and Computer Engineering Core (22 – 24 credits) :
+either EE 235 Continuous Time Linear Systems or EE 242 Signal Processing I (EE 235 has been replaced by EE 242 starting with the autumn 2021 quarter)
 Electronic devices
 Electronic skin, which is an emerging area of technology development
 Electronic, Photonic, and Integrated Quantum Systems (EPIQS)
@@ -256,6 +250,9 @@ Emerging technologies
 Emeritus Faculty
 ENGINE Showcase
 ENGINE: Engineering Innovation & Entrepreneurship Capstone
+Engineering Internship Program
+ENGR 231 Introduction to Technical Communications (3 credits) or at least 3 credits of “W” coursework
+ENGR 297, 497
 Enriching Your Path
 Environmental Sustainability and Energy
 Examples of neural engineering applied to medical conditions include using deep brain stimulators to sense brain signals and deliver closed-loop electrical stimulation to improve symptoms of Parkinson’s disease, obsessive-compulsive disorder, depression and other neurological disorders. Electrical stimulation of the spinal cord is also being used to restore movement for the first time to people with paralysis following spinal cord injury. Students in this field work at the intersection of medical devices, signal processing, control algorithms, and machine learning to improve health and function for people with neurological disease and injury.
@@ -265,19 +262,18 @@ Faculty
 Faculty Highlights
 FAQs
 Financial Aid
-For multi-quarter capstones, students must complete all courses in the capstone sequence to receive credit. One of the following must be completed:
 From the computational heart of a robot, to the central processing units (CPUs) controlling an automobile or airplane, and the microprocessors embedded in every mobile phone and smart device — the Embedded Systems pathway helps students to develop the hardware, software and firmware behind each of these systems. Students following this pathway learn how to interface with sensors and actuators, as well as how to optimize systems to operate under a variety of different constraints.
 From the embedded systems that control the flight systems in aircraft, to the autonomous guidance and driving of a Mars rover, computer engineers with a focus in embedded systems are experts in creating such hardware and software systems.
 Fundamental algorithms and data structures for implementation. Techniques for solving problems by programming. Linked lists, stacks, queues, directed graphs. Trees: representations, traversals. Searching (hashing, binary search trees, multiway trees). Garbage collection, memory management. Internal and external sorting.
 Get Involved
 Give to UW ECE
 Google, Amazon and Microsoft have a new focus on an emerging area of development in the field of Green AI, which explores optimizing hardware and software to minimize power consumption. The development teams aim to detect drift in machine learning models, thereby alerting users that they need to re-train their models, which will lead to more accurate predictions and consume less energy.
-Graduate Courses Applied to Advanced ECE Electives
 Graduates who focus on photonics are frequently employed at:
 Graduates will have the advantage of being qualified for jobs at companies that require skills in firmware and embedded systems, as well as software development skills. This includes well-known companies such as Google, Apple, Amazon and Microsoft, and it also includes other large-scale industries such as automotive, manufacturing/robotics and aerospace.
 Graduation
 Hands-on Master Class on LLMs and ChatGPT
 Hardware development in conjunction with machine learning algorithms improves autonomous robot efficiency, effectiveness and usability, enabling better manipulation and navigation of robotics on land, sea and in the air.
+HCDE 499
 Health and Medicine
 Helpful Links
 Helping to create chip designs for future, low-power microcontrollers.
@@ -291,12 +287,14 @@ How is neurotechnology applied in the real world?
 IEEE Scholarship Opportunities
 Imagine a world with very fast, reliable and power-efficient electronics but with no way for those electronics to ‘talk’ to the outside world. A world without sensors is a world where electronics have minimal impact both on the quality of everyday life and on pressing global challenges. Sensors convert light, chemicals, viruses, bacteria, force, acceleration, temperature and more into electronic signals so that information from the external world can enter the internal signal processing, computing and other high-performance tasks that contemporary electronics can accomplish.
 Implementing Field Programmable Gate Array (FPGA)-based designs for network routing.
+In addition to the Electrical Engineering Core and Concentration Area courses, students must take additional EE courses so their total EE credits equal or exceed 58 credits. Note that the Advanced Technical Communication course (EE 393 or ENGR 333) does not apply to EE or Engineering Electives. The Professional Issues course does apply to EE Electives.
 In Memoriam
 In the BSECE degree program, students can choose to gain broad knowledge of the field or increase expertise in specialized areas. Thanks to this added flexibility, students may have the capacity to pursue minors, double degrees, study abroad opportunities, research or internships that may enhance a student’s educational experience — all while pursuing a degree that is highly sought after by employers.
 In this capstone class, students will work in teams to apply knowledge they gained in EE 474, Introduction to Embedded Systems, and from other previous ECE courses to prototype and build a substantial project that mixes hardware and embedded software and communication. Students often build projects in specific application areas that include but are not limited to health, robotics, Internet of Things (IoT), and smart systems. Students will also hear from experts in embedded systems to learn about emerging platforms, trends and job opportunities/prospects.
 In this capstone class, students work on a substantial team-based engineering design project involving robotics. This entails fabrication, assembly, and test of hardware that includes sensing, actuation, and computation in a feedback loop. The project work considers realistic constraints, engineering standards, and real-world consequences.
 In this course, students will learn how to understand the mathematics of optimization models and machine learning, and they will rigorously formulate and solve automated decision-making problems such as those found in machine learning systems, data-driven modeling and engineering design.
 In this course, students will review basic signal processing concepts. Topics include two-sided Laplace and z -transforms and connection to Fourier transforms; modulation, sampling and the fast Fourier transform; short-time Fourier transform; and multirate signal processing. Applications covered include inference and machine learning. Students will also participate in a computer laboratory.
+IND E 499
 Industry
 Information Sessions
 Infrastructure, Transportation, and Society
@@ -342,7 +340,7 @@ Making new photonic components, devices and systems for a wide range of applicat
 Making thinner cellphones and laptop cameras
 Master’s & Ph.D. Programs
 Math (especially calculus, linear algebra, algorithms, and differential equations)
-Maximum of 4 credits of ENGR 321 may apply toward Advanced ECE Electives
+ME 495, 498, 499
 Medical devices and bioengineering
 Medical devices, such as implantable and point-of-care diagnostics tools, which extensively rely on embedded systems
 MEMS — microelectromechanical devices
@@ -355,9 +353,9 @@ Microelectronics and nanotechnology are an integral component of many medical de
 Microelectronics and Nanotechnology Courses
 Microelectronics and Nanotechnology Pathway
 Microelectronics and Nanotechnology Pathway | UW Department of Electrical & Computer Engineering
-Minimum 2.0 grade in course required
-Minimum 2.0 grade in each course
 Modern control systems are data-driven and implemented digitally with microprocessors and often networked computation.
+MSE 170 Fundamentals of Materials Science
+MSE 497, 499
 My UW
 Nanoelectronics
 Nanosensors
@@ -390,7 +388,6 @@ On-the-job tasks for graduates with a focus in Photonics include:
 OneRadio: Changing the way we access the radio-frequency spectrum
 Operations and Intranet
 Optical imaging is at the center of astronomy. Photos taken by the Hubble and James Webb space telescopes simply would not be possible without advanced optical imaging. Such imaging cameras are also a key component of aeronautical navigation systems and are on track to be significantly miniaturized using photonics.
-Our Bachelor of Science in Electrical and Computer Engineering (BSECE) degree prepares undergraduates for careers in industry or further study at the graduate level. Degree requirements include UW general graduation requirements as well as BSECE prerequisites and curriculum.
 Over the long history of electrical engineering in the United States, Maxwell’s equations have remained a cornerstone to understanding key EE technologies including WiFi, 5G, Bluetooth, and a myriad of other ways to send and receive data, voice, and images wirelessly. EE 361 is an application-oriented course designed to develop fundamental understanding of how these technologies work and to set the stage for future research and courses that require wireless communication.
 Parse BioSciences: Providing scalable single cell RNA-sequencing solutions
 People
@@ -401,11 +398,12 @@ Photonics Courses
 Photonics Pathway
 Photonics Pathway | UW Department of Electrical & Computer Engineering
 Photonics plays an important role in renewable energy, including efficient photovoltaics and passive radiative cooling. Such technologies can significantly reduce the carbon footprint of human activity, and in so doing, contribute to reducing the damage wrought by climate change. LED lighting systems also play an important role in reducing residential and commercial power consumption. And to monitor reductions or changes in carbon footprint and related impacts, photonics affords powerful sensing technologies based on multi-spectral imaging that accurately and reliably monitors our air quality and greenhouse gas emissions.
+Please see a UW ECE adviser for a list of the most current course options. EE 398 is not considered a seminar and thus does not apply to the 2-credit seminar limit (see below).
 Policies and Course Registration
+Possible EE seminars include:
 Power and Energy Systems
 Power systems that incorporate renewable energy use feedback control in a variety of ways — to control relative phase of two different power plants, to control the direction a wind turbine is pointing, and to decide which energy sources to ‘spin up’ and when.
 Privacy
-Professional Issues (1–4 credits): see adviser for list of approved courses (scroll to “Other Degree Information” on bottom of page and open “Department-Approved Lists” accordion to review list)
 Professional Master’s Certificate Programs
 Professional Master’s Program
 Professional Master’s Short Courses
@@ -440,6 +438,7 @@ Scholarships for Studying Abroad
 Second Thursday of every month, 2:30 to 3:30 p.m.
 See courses listed under the Neural Computation and Engineering minor .
 Semiconductor technology
+Seminar Courses Applied to Required Credits
 Sensing and Communication
 Sensing and Communication Pathway
 Several types of scholarships are available to all UW ECE undergraduate and graduate students. Below are current resources and links:
@@ -449,6 +448,7 @@ Skills in developing microelectronics and nanotechnology are widely applicable i
 Skip to main content
 Smaller neural engineering companies such as Blackrock Neurotech, Galvani Bioelectronics, ONWARD medical, Cadence Neurosience and many others
 SNUPI: Home Monitoring Systems
+Some EE 500 seminars may not be open to general enrollment, so please check with the responsible faculty member to determine if the seminar is suitable and you can enroll in it.
 Staff
 Starting autumn quarter 2022, the University of Washington Department of Electrical & Computer Engineering will offer a Bachelor of Science in Electrical and Computer Engineering (BSECE) . This new degree program provides students with increased flexibility in choosing their academic pathways and is highly adaptable to technological advances in popular research areas such as neural engineering, sustainable energy, quantum computing, data science, photonics and nanotechnology.
 Startups working on photonics (many of which are in the Pacific Northwest) including Magic Leap, Maple Photonics, Tunoptix and ThruWave
@@ -463,8 +463,10 @@ Students in the Computer Architecture Pathway are encouraged to take either EE 4
 Students in the Control Systems Pathway are encouraged to take EE 449 as their capstone; using ENGINE instead as the capstone is also possible.
 Students in the Embedded Pathway are encouraged to take EE 475 as their capstone; using ENGINE instead as the capstone is also possible.
 Students in this area have job opportunities in aerospace, robotics, manufacturing, medical devices, VR / AR, and embedded systems, at companies such as Boeing, SpaceX, Microsoft, Meta Reality Lab, Apple and Amazon.
-Students may pursue optional pathways in order to complete their 39 credits of Advanced ECE Electives.
-Students must complete coursework in the following three areas:
+Students may apply a maximum of twelve research credits to the EE Electives, College of Engineering Electives and/or Approved Non-EE Electives requirements. The sum of the credits from the EE Core, EE Major Area, EE Electives and COE Electives must equal or exceed 68. Please note that the credits do not take the place of the Approved Non-EE Electives requirement.
+Students may apply a maximum of two seminar credits to the EE Electives, College of Engineering Electives and/or Approved Non-EE Electives requirements. Seminars are considered any course structured as a seminar (typically 1-2 credits), regardless of whether they are graded or CR/NC. EE 398 is not considered a seminar and thus does not apply to the 2 credit seminar limit.
+Students may apply up to 10 credits of EE 499 Special Projects work to the EE Electives requirement. This represents research or a design project carried out under the supervision of a faculty sponsor. Students may register for between one and five credits each quarter; the precise number of credits is determined by the student and the faculty supervisor and is dependent on the amount of work to be carried out. Each credit generally represents between three and five hours of work each week. To register for these credits, follow the process outlined on this webpage . Students may apply a maximum of 12 research credits, subject to course maximum credit limits and individual area limits, to EE elective, non-EE elective or COE elective requirements. Students may also register for EE 490, which is CR/NC. EE 490 does not apply to any EE degree requirements.
+Students must earn an additional 10 credits in technical courses from departments in the College of Engineering (COE). These credits may come from EE, another COE department or a combination of COE departments. The courses must be at the 200-level or above, with the following exceptions:
 Students on the Neurotechnology pathway learn to develop devices and algorithms that interact directly with the brain, spinal cord and peripheral nervous system. There is also a Neural Computation and Engineering minor available at the University of Washington, which includes classes in this focus area. In addition to building advanced skills in neural engineering, the minor provides training in advanced computational algorithms and neuroethics .
 Students studying Computer Architecture should also consider the following customizable pathways:
 Students studying Embedded Systems should also consider the following customizable pathways:
@@ -479,23 +481,23 @@ Sustainable Energy Systems Pathway
 Terms
 Test engineer
 The BSECE degree program prepares students for jobs in industry or for further graduate study. Students may choose to complete their degree by following one or more customizable pathways within the Department. Each of these pathways culminates in a capstone design project.
-The BSECE major requirements are comprised of the following areas of study ( Grade requirements: minimum 2.0 cumulative GPA in all courses applied to the major, with no grade below 1.0 in these courses) :
 The BSECE program is capacity constrained. Applications are accepted from current UW students as well as first-year and transfer applicants. UW ECE enrolls students for the autumn quarter only.
 The computing side of engineering
 The Engineering Entrepreneurial Capstone program (ENGINE) is the culmination of a student’s electrical and computer engineering education at UW ECE. The program provides a unique opportunity for students to develop skills in collaborative systems engineering, project management, and most importantly, working in teams on real-world problems from industry-sponsored projects. The program is overseen by UW ECE faculty and students are guided by practicing engineers. The course culminates in a showcase of student projects, which is attended by industry sponsors and held at the end of spring quarter every year.
-The following course at the 200 level may count: EE 233
+The Engineering Internship Program provides students with meaningful experience in industry, which can help guide their remaining studies. Students enrolled in the internship program have full-time or part-time paid employment while earning academic credit. Electrical & Computer Engineering students may earn up to 2 credits per quarter (ENGR 321) and apply up to 4 credits (ENGR 321) toward their degree as Engineering Electives or EE Electives. A student may apply no more than 12 credits in total of ENGR 321, EE 499, ENGR 297 or 497 or independent study courses in other departments towards their degree requirements.
 The following courses are also recommended for those following the Computer Architecture pathway:
 The following courses are also recommended for those following the Embedded Systems pathway:
 The following courses are also recommended for those following the Machine Learning pathway:
 The following courses are also recommended for those following the Microelectronics and Nanotechnology pathway:
 The following courses are also recommended:
-The following non-EE courses may count: CSE 373 , CSE 374 and ENGR 321
+The following courses DO count:
+The following non-EE research courses do not need approval in order to apply toward COE elective requirements:
+The following non-EE research courses need ECE adviser approval in order to apply toward COE elective requirements:
 The Integrator News & Research Magazine
 The internet runs largely on fiber optical communication systems. Photonic integrated circuits play an exceedingly important role in the successful operation of these systems. Beyond classical optical communication, photonics also plays an essential role in the emerging field of quantum information science and technology.
 The Link Newsletter
 The Machine Learning pathway connects computing, machine learning and data science together by explaining how hardware and sensor design enables data collection at-scale; then how to store, process and clean the data; and finally how to train and test machine learning models using collected data to produce new insights and model predictions applicable to real-world problems. This is an excellent pathway for students who want to learn how to combine hardware and software into projects that address needs in a wide range of fields.
 The Machine Learning pathway offers the potential to pursue projects that synthesize concepts in computing, machine learning and data science through the ENGINE Capstone series of courses (see description below). Additionally, the Embedded Systems Capstone (see below) can allow students to explore machine learning projects within an embedded systems framework. Examples of recent machine-learning-oriented ENGINE Capstone projects include: A Lockheed-Martin sponsored project to design, build, and test a scaled self-driving vehicle; a JPL sponsored project exploring autonomous distributed robotic exploration, and a drone automated payload and battery swap/charging project.
-The major requirements are comprised of the following areas of study ( Grade requirements: minimum 2.0 cumulative GPA in all courses applied to the major, with no grade below 1.0 in these courses) :
 The microprocessor is a triumph of modern technology. From the desktops and laptops that enable our work, to mobile processors in smartphones that help to keep us connected and informed, our world is significantly richer because of these computer systems.
 The primary path for undergraduates to earn a BSECE degree while spending all four years at the UW is ‘Direct To College.’ Students are admitted to the UW College of Engineering as first-year students, and then can be placed into electrical and computer engineering during the summer between their first and sophomore years.
 The UW participates in both federal and state financial aid programs. Information on grants, loans and other forms of financial assistance is available from the Student Financial Aid Office .
@@ -527,15 +529,14 @@ Tuition rates are established by the UW Board of Regents at the end of spring qu
 Tuition, Fees and Funding
 Tunoptix: Tunable metasurface optics for machine vision and AR/VR
 Twitter
-Under special circumstances you may petition, as an undergraduate, to apply up to 4 credits earned in EE graduate courses toward your 400 level Advanced ECE Electives. Before such a request can be approved, you must demonstrate that you have the required background for the graduate courses. Consult the UW ECE Advising Office for additional information about the petition process.
 undergradece@uw.edu
+Undergraduate Research (Independent Study)
 Understanding optimization across software and hardware
 Understanding the entire computing stack, which provides an advantage in designing embedded computing solutions that are fast, efficient and low-cost
 Understanding the vast amount of information that can be recorded from the brain and peripheral nervous system requires advanced computational methods such as artificial neural networks and machine learning. Real-time processing to convert recorded signals into treatments also requires embedded digital processing to provide low-power computing and short-latency control loops.
 Understanding, designing and optimizing digital hardware
 University of Washington
 University of Washington -->
-Up to a maximum of 6 credits combined of ENGR 321 and EE 499 may apply toward Advanced ECE Electives.
 UW College of Engineering Scholarship Resources
 UW Department of Electrical & Computer Engineering
 UW ECE Entrepreneurial Fellows Program

@@ -2,6 +2,216 @@ Owner: uw-seattle-computer-science
 Source: https://www.cs.washington.edu/academics/undergraduate/degree-requirements/
 Title: Degree Planning & Requirements - Paul G. Allen School of Computer Science & Engineering
 
+Degree Planning & Requirements - Paul G. Allen School of Computer Science & Engineering
+Skip to content
+Enter search text
+<input id="uw-search-bar" type="search"
+name="s"
+value="" autocomplete="off" placeholder="Search" />
+Current site
+All the UW
+Search scope
+Current site
+All the UW
+MyCSE
+Internal Web
+Room Reservations
+Catering Requests
+Popular Links
+Building Directory
+Faculty/Staff Directories
+GitLab
+TA Tools
+Our Courses
+Time Schedules
+Contact Us
+Make A Gift ♥
+Internal Resources
+Menu
+Who We Are
+Message from the Director
+School History
+Advisory Board
+CS Lab & Technical Support
+Art in the Allen School
+Employment Opportunities
+Contact & Location Info
+People
+Allen School Faculty
+Adjunct Faculty
+Emeritus Faculty
+Affiliate Faculty
+Faculty Leadership
+Postdoctoral Scholars
+Outgoing Ph.D.s & Postdocs
+Visiting Researchers
+In Memoriam
+Faculty Honors & Awards
+Undergraduate Teaching Awards
+Ph.D. Student Recognition
+Academic Programs
+Academics Overview
+Future Students
+Undergraduate Education
+Graduate Education
+Postdoctoral Program
+AI Education in the Allen School
+Non-Major Options
+Interdisciplinary Offerings
+Courses
+Time Schedules
+Teaching Assistants
+Schoolwide Policies
+Research & Innovation
+Research Overview
+Artificial Intelligence
+Computing + Biology
+Human-Centered Computing
+Interaction with the Physical World
+Software & Hardware Systems
+Theory & Models of Computation
+Grand Challenges
+Centers and Initiatives
+Award Papers
+Community Engagement
+K-12 Outreach
+Allen School Ambassadors
+Allen School Alumni
+Industry Affiliates
+Friends & Supporters
+News & Events
+Latest News
+Allen School Blog ↗
+Events Calendar
+Distinguished Lecture Series
+Research Colloquia
+Ph.D. Dissertation Talks
+Undergraduate Education
+Paul G. Allen School of Computer Science & Engineering
+Academic Programs
+Undergraduate Education
+Degree Planning & Requirements
+Degree Planning & Requirements
+Jump To A Section
+Degree Requirements
+Data Science Option
+Curriculum
+CSE Honors
+Prior Years Degree Requirements
+Degree Overview
+Majors: The CS and CE programs each require 180 total credits to graduate. Students will need to fulfill a General Education component, a Mathematics and Science component, and a Computer (Science or Engineering) component that consists of required classes and senior electives. Please refer to our guidelines below.
+Pre-Majors: If you plan to apply to be a CS or CE major, refer to our guidelines below. If you are interested in taking a majors-only course, please see our Non-major Options page for more information.
+Non-Majors: If you are interested in taking a CSE course visit our Non-major Options page for more information.
+Non-Matriculated Students: If you are interested in taking CSE coursework, please see the Non-Matriculated information here .
+Accessible Accordion
+General Advice
+One of the most important things to know about the CSE registration process is how to get advice and help from Allen School advisers. CSE advisers can help you plan your courses, connect with resources, and provide general advice.
+Our most common advice for CSE majors is:
+Plan a balanced schedule. Prepare yourself for a good academic experience and strong grades by planning a manageable schedule with a good mix of courses. We recommend two math/science/CSE courses per quarter, plus one non-math/science/CSE course, such as a VLPA or I&S requirement. If you hope to take on heavier schedules, such as three CSE courses or four total courses, build up to this heavy workload after a strong quarter in lighter schedule. Remember that it’s easier to ramp up your workload over time than to recover from a quarter in which you’ve taken on too much.
+Plan for the amount of work in a course, not the number of credits. Most CSE majors take 12-15 credits per quarter, occasionally more. The number of credits does not always reflect the workload: A 4-credit CSE course or a 3-credit Math course will often require more work than many 5-credit courses.
+Plan ahead. Use MyPlan (available on MyUW) to draft a 2-, 3-, or 4-year plan, then send it to a CSE adviser for feedback. We can note any missing requirements, mixed-up prereqs, or other scheduling issues, and we can discuss how to fit in extra-curricular activities — TAing, research, study abroad, etc. Planning ahead will help you form a better picture of your goals an opportunities, and avoid issues.
+Study resourcefully. UW and CSE provide lots of academic aids. Get help before you need it. Visit your professors and TAs during Office Hours. Collaborate with classmates in the undergrad labs. Email the CSE advisers about tutoring groups if you want extra study help in 300- and 400-level CSE classes. For introductory courses, the Intro Programming Labs (IPL), the Math Study Center, and CLUE are all great resources.
+Before You Register
+CSE Pre-majors
+If you plan to apply to CSE, your first goal is to complete the prerequisites while working on general requirements and exploring related majors . Review our full degree requirements and our admissions application guidelines .
+New CSE Majors
+Welcome to the Allen School! You can register for CSE major courses after you are coded as a CS or CE major (instructions on the new majors orientation page). We do not require new students to take a CSE course their first quarter in the major; however, beginning your second quarter, our CSE Continuation Policy requires at least one (1) Math, CSE or Science degree-required course per quarter. Consider the following classes for your first quarters:
+CSE 311: Foundations I: This is a discrete math/logic course with little coding. 311 is a prerequisite for 332 (Data Abstractions) and 312 (Foundations of Computing II). All new students should take 311 in their first quarter if possible.
+CSE 331: Software Design and Implementation : A coding-oriented class, required for CS and recommended for CE. This is a fine class to take your first, second or third quarter in the class. It’s valuable before internships.
+CSE 351: Hardware/Software Interface : A coding-oriented class. CE majors should take it in their first quarter, and many CS majors should consider it for their first quarter. CSE 351 focuses on how computer programs actually run on CPUs. You should take CSE 391 (a 1-cr class) concurrently.
+CSE 391: System and Software Tools : A 1-credit seminar introducing important tools for future CSE courses. You should take this with or before CSE 351. Since this is only a 1-credit seminar, most people take this in addition to two “real” CSE courses.
+CSE 340: Interactive Systems : An exciting new elective that counts toward the CSE core courses .
+CSE 341: Programming Languages : An elective that counts toward the CSE core courses . Most CSE majors take this! Not offered every quarter.
+Computer Engineering majors may also consider:
+EE 205: Introduction to Signal Conditioning : CE majors can take 215 instead if the timing of 205 does not fit your schedule, but 205 is strongly preferred.
+CSE Majors
+Links for planning your CSE curriculum:
+CSE Teaching Schedule for long-term planning
+Full CSE Degree Requirements , including links to curriculum and electives lists
+Suggested Course Pathways to prepare for industry and graduate school
+CSE Satisfactory Progress Policy to understand expectations
+Registering for full CSE courses:
+Please do not contact faculty directly unless instructed by an adviser for special permissions. If you are interested in taking a 300-level or 400-level course that is full, please note that we will no longer be maintaining overload lists for these courses. Here are some actions you can take if desired classes are full:
+Register on NotifyUW to get an alert if space opens in the course and attend the first week to try and keep up in the course in case you do get a spot. We will monitor demand on NotifyUW and try to add more space when needed.
+Register for back-up courses in case you can’t get into your first choice.
+If you are a senior, file for graduation to get Graduating Senior Priority during your registration. After filing, you will get two quarters of priority registration which will allow you to register before anyone else (including other seniors who have not yet filed for graduation).
+If you have trouble registering due to prerequisites, contact an adviser for assistance.
+If you think you will not be able to graduate due to scheduling issues, contact an adviser.
+Degree Requirements
+The CS and CE programs each require you to take 180 total credits to graduate. You will need to fulfill a General Education component, a Mathematics and Science component, and a Computer (Science or Engineering) component that consists of required classes and senior electives. For those students who are considering a double major, see below for an explanation of exceptions to our standard degree requirements.
+Computer Science [PDF]
+Computer Science – Data Science Option [PDF]
+Computer Engineering [PDF]
+Accessible Accordion
+Double Majors
+Some students choose to pursue a double major or double degree. There are a few known substitutions that we’ll list here:
+Paul G. Allen School of Computer Science & Engineering: There are no double majors/double degrees between Computer Science and Computer Engineering
+Applied Computational Mathematical Science: Note: starting in spring 2024, no double majors/degrees with Computer Science or Computer Engineering
+Engineering: While double majors are not allowed between Computer Engineering and any other Engineering degree, occasionally, on rare exceptions, a student may pursue a Computer Science degree along with another Engineering degree. Please note however, there are no double degrees with any Allen School major and the Electrical and Computer Engineering degree.
+Stat/CSE Double Majors: STAT 435 can count as a CSE core-course in place of CSE 446 (no credit for both toward the CSE degree) In the Data Science option, STAT 303 can replace SOC 225
+Degree Requirements Petition
+Allen School Petitions Process – Guidelines for Students
+In general students should plan to take the required degree requirements. In some cases, a student may petition to take a different course in place of a stated degree requirement. This usually requires either a conversation with your assigned adviser in the Allen School, or sometimes it requires further approval with an official petition that would then be reviewed by the Director of Student Services and the Faculty Undergraduate Program Chair.
+Below we articulate a few known exceptions or common responses regarding requests to petition. Please review this list in its entirety before requesting an exception.
+CSE 311 Petitions
+Sometimes a student will enter the Allen School with a significant number of MATH and STAT courses completed. If this is the case, you may try petitioning to waive CSE 311 via a substitution from a math course. Generally asking for just MATH 300 or just MATH/STAT 394 is not enough for a substitution. If you have not taken a significant number of MATH or STAT courses that cover this material, then generally you should plan to take CSE 311. A few known exceptions to this outcome follow:
+MATH 134, 135 and 136: honors math track students have two options:
+You can take MATH 136 and CSE 311 at the same time (typically in the Spring) as the CSE 311 prereq is MATH 126 or MATH 135.
+You can take CSE 311 and CSE 332 at the same time AFTER completing MATH 136. Note that you will need help from an adviser when registering for CSE 332 as it generally requires CSE 311 to be completed. Your Allen School adviser can help you get registered for both courses.
+MATH 336: For students who complete MATH 336, they may petition to request to take CSE 431 in place of taking CSE 311. This waiver is contingent on the strength of the grade in MATH 336.
+If you have MATH 300 completed, you can take CSE 311 and CSE 332 at the same time. Your Allen School adviser can help you register since you won’t have CSE 311 pre-req credit yet.
+CSE 331 Petitions
+Students sometimes decide to delay taking CSE 331 until the end of their time in the Allen School with the intention to waive the course based on prior internship/industry experience. These petition requests are always denied. If you are petitioning a waiver for any course, you typically need to prove how you have acquired the academic knowledge covered in the course. Simply having internship experience has been determined to not be a viable substitute for this course. Ideally students would complete 331 early in their academic career and before embarking on a software internship to get the most benefit from the course.
+CSE 500 Level Course Petitions
+Generally speaking, most students should plan to take the 400 level courses in the Allen School. There are exceptions however for students who have advanced understanding to occasionally take CSE 500 level courses. Typically a PhD Breadth 500 level course where a student has not previously taken the undergraduate version of the course can be allowed to count as a Core course. Note that this is only for PhD breadth courses. If a course is listed on our breadth requirements for PhD students they are often (not always) allowed as a Core Course substitution. Sometimes there are restrictions however on whether or not a student has taken the 400 level version of the course. An example would be that you are allowed to take 421 and 521 because they differ enough to both count. However there are other courses where you are NOT allowed to receive credit for both, i.e. 446 and 546 for example. It’s best to check with an adviser about your long term plans before requesting an exception. We hope to have an explicit list in the future, but for now, you should check with an adviser.
+ECE Course Petitions:
+If a student completes EE 215 that can use that to replace EE 205, however EE 205 is strongly encouraged for our CE majors
+If a student completes EE 271, they can use that to replace CSE 369
+There are a host of other jointly listed courses between ECE and CSE
+Academic Satisfactory Progress Petition
+Some students may need to petition the university for additional credits or quarters to complete their degree due to extenuating circumstances. Students must have a conversation with their academic adviser if they feel their situation warrants an extension of the University’s academic satisfactory progress policy, which requires students to complete their undergraduate degree program within 30 credits beyond the minimum required for their degree.
+After speaking with their assigned adviser, students may complete this form to request approval to extend beyond 210 credits AND 12 quarters at the UW. If a student receives approval from the Allen School, they will also need to petition the University. The Allen School Advising Team will assist students with that process if their Allen School petition is approved. Departmental approval alone does not guarantee University approval for a graduation extension.
+Please refer to the Allen School Continuation Policy for information about minimum course load, dropping required courses, and other academic policies and procedures.
+CSE 300-Level Courses & their Prerequisites
+The information below is meant to help you understand the CSE 300-level courses and their prerequisites. Click here for a visual representation of the information .
+Course
+Prerequisite(s)
+Co-requisite(s)
+311 Foundations I
+A minimum grade of 2.0 in CSE 123 or 143; a minimum grade of 2.0 in MATH 126 or 135
+None
+312 Foundations II
+311 Foundations I
+None
+331 Software Design & Implementation
+A minimum grade of 2.0 in CSE 123 or 143
+None
+332 Data Structures & Parallelism
+311 Foundations I
+None
+340 Interaction Programming
+CSE 123 or 143
+None
+341 Programming Languages
+CSE 123 or 143
+None
+344 Data Management
+311 Foundations I
+None
+333 Systems Programming
+351 Hardware/Software Interface
+None
+351 Hardware/Software Interface
+CSE 123 or 143
+None
+EE205 / EE215 Signal Conditioning
+Math 126 or Math 136; Phys 122 or 142
+None
+369 Digital Design
+311 Foundations I
+None
+371 Digital Circuits
+either E E 205 or E E 215; either E E 271 or CSE 369
 None
 391 Tools
 CSE 122, CSE 123, or CSE 143
@@ -56,3 +266,156 @@ Prior Years’ Degree Requirements
 Computer Science Spring 2013 – Summer 2022 [PDF]
 Computer Science – Data Science Option Autumn 2016 – Summer 2022 [PDF]
 Computer Engineering Spring 2015 – Summer 2022 [PDF]
+Computer Engineering Spring 2013 – Spring 2015 [PDF]
+Computer Engineering Spring 2011-Spring 2013 [PDF]
+Computer Science Spring 2011-Spring 2013 [PDF]
+NOTE : The Allen School keeps complete archives of prior year degree requirements if needed by alumni or potential employers. See below:
+UW CSE Prior Degree Requirements
+Spring 2010-Spring 2011
+This was the last year CSE had separate tracks for Hardware and Software within Computer Engineering.
+Computer Engineering Hardware Specialization (opens in new window)
+Computer Engineering Software Specialization (opens in new window)
+Autumn 2007-Spring 2009
+Computer Engineering
+Computer Science
+CSE_Senior_Electives_sp09
+Approved_Science_Courses_sp09
+Autumn 2006-Spring 2007
+Computer Engineering
+Computer Science
+Winter 2004-Spring 2006
+Computer Engineering
+Computer Science
+Handbooks/Degree Requirements 1977-2001
+Previous Computer Engineering Handbooks
+Previous Handbook 1996-1997
+Previous Handbook 1995-1996
+Previous Handbook 1994-1995
+Previous Handbook 1993-1994
+Previous Handbook 1992-1993
+Previous Computer Science Handbooks
+Previous Handbook 2000-2002
+Previous Handbook 1998-1999
+Previous Handbook 1996-1997
+Previous Handbook 1995-1996
+Previous Handbook 1994-1995
+Previous Handbook 1993-1994
+Previous Handbook 1992-1993
+Previous Handbook 1991-1992 – missing
+Previous Handbook 1990-1991 – missing
+Previous Handbook 1989-1990
+Previous Handbook 1988-1989
+Previous Handbook 1987-1988
+Previous Handbook 1986-1987
+Previous Handbook Autumn 1984
+Previous Handbook Spring 1984
+Previous Handbook Autumn 1983
+Previous Handbook Autumn 1982
+Previous Handbook Autumn 1981
+Previous Handbook Winter 1981
+Previous Handbook Autumn 1980
+Previous Handbook Autumn 1978
+Previous Handbook Autumn 1977
+College of Engineering Honors Programs
+Previous Honors Handbook 1999-2001
+Back To Top
+Home
+Undergraduate Education
+Degree Planning & Requirements
+Course Lists
+Course Evaluations
+Capstones
+Study Abroad
+Computing Specializations
+Policy & Procedures
+AI Education in the Allen School
+Admissions
+Current UW Admissions
+Direct to Major (First-Year) Admissions
+Transfer Admissions
+PostBac Students
+Information Sessions
+Student Recruitment Representatives
+Advising
+Peer Advising
+Career Resources
+Graduate School
+Computer Science Teaching
+Research Opportunities
+Undergraduate Research Registration
+Types of Research Credit
+Non-Major Options
+Student Services
+Undergraduate Advising Team
+Undergraduate Events Calendar
+Student Engagement & Access Team
+Administrative Support Team
+Student Resources
+MyCSE Undergraduate Resources
+Scholarships & Awards
+Study Center
+Student Life
+Student Organizations
+Student Recognition
+Undergraduate Demographics
+ABET Accreditation
+Important Resources
+MyCSE Resources
+Future Students
+You might be interested in:
+Non-CSE Majors
+We offer courses designed to enable all students, regardless of major, to develop computational thinking and hands-on programming skills.
+Non-CSE Majors
+Allen School Events Calendar
+View all calendar events &raquo;
+Follow the Allen School
+Helpful Information
+Main Administrative Offices
+Paul G. Allen Center
+Box 352350
+185 E Stevens Way NE
+Seattle, WA 98195-2350
+Contact Us
+Main Tel: (206) 543-1695
+Media Inquiries: media at cs.washington.edu
+Webmaster: support at cs.washington.edu
+Get Directions
+Internal Web
+MyCSE
+Sitemap
+Accessibility
+Privacy
+Terms
+Image Credits
+Student Services
+Bill & Melinda Gates Center
+Box 352355
+3800 E Stevens Way NE
+Seattle, WA 98195-2355
+Undergraduate Advising:
+ugrad-adviser at cs.washington.edu
+Undergraduate Outreach & Recruitment:
+outreach at cs.washington.edu
+Professional Master's Program Advising:
+masters at cs.washington.edu
+Graduate (Ph.D.) Advising:
+grad-advising at cs.washington.edu
+Academics
+Future Students
+Undergraduate Education
+Graduate Education
+Postdoctoral Program
+Non-Major Options
+Interdisciplinary Offerings
+Courses
+Teaching Assistants
+Research
+Artificial Intelligence
+Computing + Biology
+Human-Centered Computing
+Interaction with the Physical World
+Software & Hardware Systems
+Theory & Models of Computation
+Connect with the Allen School
+Computer Engineering degree program accredited by ABET
+&copy; 2026 Paul G. Allen School of Computer Science & Engineering, University of Washington, Seattle WA

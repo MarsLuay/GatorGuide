@@ -45,4 +45,7 @@ BIS 175 Introduction to American Government (SSc)
 BIS 180 Introduction to Human Geography (SSc)
 BIS 200/B BUS 220 Introduction to Microeconomics (SSc, RSN)
 BIS 203 Economics of Gender (SSc, RSN, DIV)
+BIS 218 The Power of Maps (SSc)
+BIS 242 Environmental Geography SSc/NSc
+BIS 280 U.S. Political Processes (SSc)
 For example, if a student took HIST& 146 US History I, the student can petition that the course take the place of B EDUC 242 U.S. History and the Enduring War For Control of K-12 Curriculum.

@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { spawnSync } from "node:child_process";
 import test from "node:test";
 
 import {
@@ -11,8 +14,10 @@ import { TRANSFER_PLANNER_GENERATED_COURSE_METADATA } from "@/constants/transfer
 import {
   TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAP_STATES,
   TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAPS,
+  getTransferPlannerNormalizedCourseMetadataEntry,
 } from "@/constants/transfer-planner-source/course-metadata";
 import {
+  TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
   TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY,
 } from "@/constants/transfer-planner-source/grc-associate-tracks.generated";
 import {
@@ -82,6 +87,7 @@ import {
   buildCompletedTransferableQuarterCreditSummary,
   buildGeneralEducationRequirementTargets,
   buildGeneralEducationRequirementLayerDiagnostics,
+  buildSourceBackedMajorGeneralEducationRequirementSection,
   buildSourceBackedRequiredCourseCodes,
   parseCompletedTranscriptCourses,
   normalizeCourseCode,
@@ -195,6 +201,36 @@ function getGeneratedMetadataGapEntriesForCourse(code: string) {
   return TRANSFER_PLANNER_COURSE_METADATA_FIELD_GAP_STATES.filter(
     (entry) => entry.schoolId === "grc" && normalizeCourseCode(entry.code) === normalizedCode
   );
+}
+
+function getPlannerVisibleSourceBackedGrcTitleGaps() {
+  const plannerVisibleCourseCodes = new Set<string>();
+
+  for (const plan of TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS) {
+    const checklistItems = [
+      ...(plan.applicationChecklist ?? []),
+      ...(plan.beforeEnrollmentChecklist ?? []),
+      ...(plan.stayAtGrcChecklist ?? []),
+    ];
+
+    for (const item of checklistItems) {
+      for (const courseCode of [item.grcCourses ?? [], ...(item.alternatives ?? [])].flat()) {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        if (normalizedCourseCode) {
+          plannerVisibleCourseCodes.add(normalizedCourseCode);
+        }
+      }
+    }
+  }
+
+  return [...plannerVisibleCourseCodes]
+    .map((courseCode) => ({
+      courseCode,
+      metadataTitle: getTransferPlannerNormalizedCourseMetadataEntry("grc", courseCode)?.title ?? null,
+      canonicalTitle: getTransferPlannerCanonicalCourse("grc", courseCode)?.title ?? null,
+    }))
+    .filter((entry) => entry.metadataTitle && !entry.canonicalTitle)
+    .sort((left, right) => left.courseCode.localeCompare(right.courseCode));
 }
 
 function getRequiredPlan(id: string) {
@@ -2905,6 +2941,44 @@ test("Direct UW transfer matches appear as their own automatic guidance sentence
   assert.match(phys223Course?.guidanceSummary ?? "", /^Transfers into PHYS 123\./i);
 });
 
+test("Obsolete guide-only GRC biology rows do not advertise current BIOL 161 transfer guidance", () => {
+  const legacyGuideRules = getTransferPlannerEquivalencyRulesForSourceCourse("BIOL 111");
+  const sequencePlan: TransferPlannerMajorPlan = {
+    id: "test-obsolete-biology-transfer-guidance-plan",
+    campusId: "uw-seattle",
+    title: "Test Obsolete Biology Transfer Guidance",
+    shortTitle: "Test Obsolete Biology Transfer Guidance",
+    coverage: "detailed",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [buildChecklistItem("biol161", "BIOL 161", ["BIOL 111"])],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [],
+  };
+
+  const plannedCourses = buildSuggestedQuarterPlan({
+    plan: sequencePlan,
+    ...buildStatuses(sequencePlan, []),
+    completedCourses: [],
+    track: null,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  }).flatMap((quarter) => quarter.courses);
+
+  const biol111Course = plannedCourses.find((course) => course.label === "BIOL 111");
+
+  assert.ok(
+    legacyGuideRules.some((rule) => rule.isObsoleteSourceCourse),
+    "Expected BIOL 111 to remain present in the raw guide as an obsolete source-course rule."
+  );
+  assert.ok(biol111Course, "Expected the synthetic fixture to still surface BIOL 111.");
+  assert.doesNotMatch(biol111Course?.guidanceSummary ?? "", /^Transfers into BIOL 161\./i);
+});
+
 test.skip("Bothell and Tacoma campuses also include automatic prerequisite plus transfer guidance", () => {
   const fixtures: {
     campusId: TransferPlannerMajorPlan["campusId"];
@@ -3887,6 +3961,133 @@ test("Major-specific breadth targets stay intact after the CADR section hides at
   assert.equal(diagnostics.hasSourceBackedTargets, true);
 });
 
+test("HCDE shared-bucket gen-ed targets now promote into source-backed major summary items and plannable fixed targets", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-human-centered-design-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the HCDE runtime plan.");
+
+  const diagnostics = buildGeneralEducationRequirementLayerDiagnostics(runtimePlan);
+  const section = buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan);
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
+    ahCredits: 10,
+    sscCredits: 10,
+    nscCredits: 50,
+    breadthCredits: 10,
+    electiveCredits: null,
+  });
+  assert.ok(section, "Expected HCDE major-specific source-backed gen-ed summary items.");
+  assert.equal(
+    section?.items.some(
+      (entry) =>
+        entry.label === "Arts & Humanities" && entry.valueText === "10 credits"
+    ),
+    true
+  );
+  assert.equal(
+    section?.items.some(
+      (entry) =>
+        entry.label === "Social Sciences" && entry.valueText === "10 credits"
+    ),
+    true
+  );
+  assert.equal(
+    section?.items.some(
+      (entry) =>
+        entry.label === "Additional Arts & Humanities / Social Sciences" &&
+        entry.valueText === "10 credits"
+    ),
+    true
+  );
+  assert.equal(
+    section?.items.some(
+      (entry) =>
+        entry.label === "Natural Sciences" && entry.valueText === "50 credits"
+    ),
+    true
+  );
+  assert.equal(diagnostics.hasSourceBackedTargets, true);
+  assert.ok(diagnostics.sourceBackedSummarySection);
+});
+
+test("Computer Engineering Areas-of-Inquiry range targets now surface as structured summary items without fake fixed credits", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+  assert.ok(runtimePlan, "Expected the Computer Engineering runtime plan.");
+
+  const diagnostics = buildGeneralEducationRequirementLayerDiagnostics(runtimePlan);
+  const section = buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan);
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
+    ahCredits: null,
+    sscCredits: null,
+    nscCredits: null,
+    breadthCredits: null,
+    electiveCredits: null,
+  });
+  assert.ok(section, "Expected Computer Engineering to expose structured ranged summary items.");
+  assert.deepEqual(
+    section?.items.map((entry) => `${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`),
+    [
+      "Areas of Inquiry: 30 credits total",
+      "Social Sciences: 10-20 credits (Within the 30 credits Areas of Inquiry total.)",
+    ]
+  );
+  assert.equal(diagnostics.hasSourceBackedTargets, true);
+  assert.ok(diagnostics.sourceBackedSummarySection);
+});
+
+test("Seattle Education Studies keeps mixed conflicting catalog gen-ed structures unsupported until a single coherent major-specific target is isolated", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-education-studies");
+  assert.ok(runtimePlan, "Expected the Education Studies runtime plan.");
+
+  const diagnostics = buildGeneralEducationRequirementLayerDiagnostics(runtimePlan);
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
+    ahCredits: null,
+    sscCredits: null,
+    nscCredits: null,
+    breadthCredits: null,
+    electiveCredits: null,
+  });
+  assert.equal(buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan), null);
+  assert.equal(diagnostics.hasSourceBackedTargets, false);
+});
+
+test("Seattle Jewish Studies does not invent major-specific gen-ed targets from 300-400-level elective prose", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-jewish-studies");
+  assert.ok(runtimePlan, "Expected the Jewish Studies runtime plan.");
+
+  const diagnostics = buildGeneralEducationRequirementLayerDiagnostics(runtimePlan);
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
+    ahCredits: null,
+    sscCredits: null,
+    nscCredits: null,
+    breadthCredits: null,
+    electiveCredits: null,
+  });
+  assert.equal(buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan), null);
+  assert.equal(diagnostics.hasSourceBackedTargets, false);
+});
+
+test("Seattle Aeronautics fixed source-backed gen-ed targets still render as simple major summary items", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
+  assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
+
+  const section = buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan);
+
+  assert.ok(section, "Expected Aeronautics source-backed gen-ed summary items.");
+  assert.deepEqual(
+    section?.items.map((entry) => `${entry.label}: ${entry.valueText}`),
+    [
+      "Arts & Humanities: 10 credits",
+      "Social Sciences: 10 credits",
+      "Additional Arts & Humanities / Social Sciences: 4 credits",
+    ]
+  );
+});
+
 test("Seattle Aeronautics does not misread the science-core NSc option as a 5-credit general-education target", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
   assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
@@ -3986,7 +4187,7 @@ test("Transfer planner UI keeps the UW transfer admission section separate and t
   const generalTransferSectionIndex = pageSource.indexOf(
     "uwGeneralTransferRequirementSection.title"
   );
-  const majorSourceSectionIndex = pageSource.indexOf("Major Required Gen-Eds");
+  const majorSourceSectionIndex = pageSource.lastIndexOf("Major Required Gen-Eds");
 
   assert.match(pageSource, /buildUwGeneralTransferRequirementSection/);
   assert.match(
@@ -4010,6 +4211,7 @@ test("Seattle American Ethnic Studies now keeps official transfer policy separat
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-american-ethnic-studies");
   assert.ok(runtimePlan, "Expected the American Ethnic Studies runtime plan.");
   const diagnostics = buildGeneralEducationRequirementLayerDiagnostics(runtimePlan);
+  const sourceBackedSection = buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan);
   const generalRequirementSection = buildUwGeneralTransferRequirementSection(runtimePlan);
 
   const fullQuarterPlan = buildSuggestedQuarterPlan({
@@ -4074,6 +4276,7 @@ test("Seattle American Ethnic Studies now keeps official transfer policy separat
     electiveCredits: null,
   });
   assert.equal(diagnostics.hasSourceBackedTargets, false);
+  assert.equal(sourceBackedSection, null);
   assert.equal(generalRequirementSection?.plannerUsage, "summary-only");
   assert.deepEqual(
     generalRequirementSection?.items.map((entry) => `${entry.label}: ${entry.valueText}`),
@@ -4298,6 +4501,24 @@ test("Generated associate tracks avoid legacy compatibility IDs and use only cur
       false
     );
   }
+});
+
+test("Generated ACS-DTA/MRP track keeps distribution guidance generic instead of promoting example social-science courses", () => {
+  const track = TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS.find(
+    (entry) =>
+      entry.id === "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp"
+  );
+  const quarter3 = track?.terms.find((term) => term.label === "Quarter 3 (15 credits)");
+  const quarter6 = track?.terms.find((term) => term.label === "Quarter 6 (15 credits)");
+  const allLabels = track?.terms.flatMap((term) => term.courses) ?? [];
+
+  assert.ok(track, "Expected the current ACS-DTA/MRP Computer Science track.");
+  assert.deepEqual(quarter3?.courses, ["CS 121", "MATH& 163", "Humanities or Social Science"]);
+  assert.deepEqual(quarter6?.courses, ["Humanities or Social Science", "Elective or General Education"]);
+  assert.equal(allLabels.includes("CMST& 220"), false);
+  assert.equal(allLabels.includes("PSYC& 100"), false);
+  assert.equal(allLabels.includes("AMES 100"), false);
+  assert.equal(allLabels.includes("ANTH& 206"), false);
 });
 
 test("GRC public-material discovery extracts annual schedules and current catalog details from public pages", () => {
@@ -5497,7 +5718,13 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(maintenanceScript, /Edit course links/);
   assert.match(maintenanceScript, /Invoke-CourseLinkEditor/);
   assert.match(maintenanceScript, /Choose an institution/);
+  assert.match(maintenanceScript, /Select-TransferPlannerRefreshTargetPlan/);
+  assert.match(maintenanceScript, /Update one major\/pathway only/);
+  assert.match(maintenanceScript, /Update using one part of workflow only/);
+  assert.match(maintenanceScript, /Update this \$itemLabel with current links/);
+  assert.match(maintenanceScript, /Invoke-CourseLinkUpdateCurrentLinksFlow/);
   assert.match(maintenanceScript, /course-planner-link-manager\.cjs/);
+  assert.match(maintenanceScript, /TargetPlanId/);
   assert.match(maintenanceScript, /Write-TransferPlannerLaymansDiagnosis/);
   assert.match(maintenanceScript, /Show-LaymansDiagnosis/);
   assert.match(maintenanceScript, /ShowLaymansDiagnosis/);
@@ -5507,7 +5734,7 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.doesNotMatch(maintenanceScript, /X\. Exit/);
   assert.doesNotMatch(maintenanceScript, /B=Back,\s*X=Exit/);
   assert.doesNotMatch(maintenanceScript, /Write-Host "5\. Edit course links"/);
-  assert.match(maintenanceScript, /Write-Host "5\. Back"/);
+  assert.match(maintenanceScript, /Write-Host "6\. Back"/);
   assert.match(maintenanceScript, /playwright",\s*"install",\s*"chromium"/);
   assert.match(
     maintenanceScript,
@@ -5529,18 +5756,20 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(rootUpdaterBat, /cache-summary/);
   assert.match(rootUpdaterBat, /edit-course-links/);
   assert.match(rootUpdaterBat, /laymans-diagnosis/);
-  assert.match(rootUpdaterBat, /echo 1\. Full maintenance/);
-  assert.match(rootUpdaterBat, /echo 2\. Refresh only/);
+  assert.match(rootUpdaterBat, /echo 1\. Course updates \+ tests/);
+  assert.match(rootUpdaterBat, /echo 2\. Course updates only/);
   assert.match(rootUpdaterBat, /echo 3\. Show cache summary/);
   assert.match(rootUpdaterBat, /echo 4\. Edit course links/);
   assert.match(rootUpdaterBat, /echo 5\. Laymans Diagnosis/);
   assert.match(rootUpdaterBat, /echo 6\. Back/);
-  assert.doesNotMatch(rootUpdaterBat, /echo 2\. Full maintenance \^\(skip downloads\^\)/);
-  assert.doesNotMatch(rootUpdaterBat, /echo 4\. Refresh only \^\(skip downloads\^\)/);
+  assert.doesNotMatch(rootUpdaterBat, /echo 2\. Course updates \+ tests \^\(skip downloads\^\)/);
+  assert.doesNotMatch(rootUpdaterBat, /echo 4\. Course updates only \^\(skip downloads\^\)/);
   assert.match(rootUpdaterBat, /echo 2\. Skip downloads/);
   assert.match(rootUpdaterBat, /echo B\. Back/);
   assert.match(refreshScript, /--only-section/);
   assert.match(refreshScript, /--start-section/);
+  assert.match(refreshScript, /TargetPlanId/);
+  assert.match(refreshScript, /--target-plan-id/);
   assert.match(refreshScript, /Write-TransferPlannerLaymansDiagnosis/);
   assert.match(maintenanceCommon, /Get-TransferPlannerLaymansDiagnosis/);
   assert.match(diagnosisScript, /Laymans Diagnosis/);
@@ -5550,6 +5779,7 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(linkManagerScript, /--replace-link/);
   assert.match(linkManagerScript, /--remove-link/);
   assert.match(linkManagerScript, /--set-primary/);
+  assert.match(linkManagerScript, /--update-current-links/);
   assert.match(linkManagerScript, /manual-source-link-overrides\.data\.ts/);
   assert.match(manualSourceOverrideData, /TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES/);
   assert.equal(existsSync("../Course-Planner-Updater.bat"), true);
@@ -5575,6 +5805,68 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(readme, /Course-Planner-Updater\.bat/);
   assert.doesNotMatch(readme, /run-planner-maintenance\.cmd/);
   assert.match(readme, /transfer-planner-maintenance-summary\.md/);
+});
+
+test("Windows planner cache summary tolerates an empty cache state", () => {
+  if (process.platform !== "win32") {
+    return;
+  }
+
+  const tempRoot = mkdtempSync(join(tmpdir(), "gg-cache-summary-"));
+  const scriptsDir = join(tempRoot, "scripts");
+  const plannerDir = join(scriptsDir, "planner");
+
+  mkdirSync(plannerDir, { recursive: true });
+  copyFileSync(
+    "scripts/run-transfer-planner-maintenance.ps1",
+    join(scriptsDir, "run-transfer-planner-maintenance.ps1")
+  );
+  copyFileSync(
+    "scripts/transfer-planner-maintenance-common.ps1",
+    join(scriptsDir, "transfer-planner-maintenance-common.ps1")
+  );
+  writeFileSync(
+    join(plannerDir, "refresh-transfer-planner-sources.cjs"),
+    `if (process.argv.includes("--print-step-plan-json")) {
+  process.stdout.write(JSON.stringify({
+    count: 0,
+    labels: [],
+    sections: [],
+    availableSections: [],
+    selectedSectionIds: [],
+  }));
+}
+`,
+    "utf8"
+  );
+
+  const result = spawnSync(
+    "powershell",
+    [
+      "-NoProfile",
+      "-ExecutionPolicy",
+      "Bypass",
+      "-File",
+      join(scriptsDir, "run-transfer-planner-maintenance.ps1"),
+      "-ShowCacheSummary",
+      "-NoPrompt",
+      "-NoOpenSummary",
+    ],
+    {
+      cwd: tempRoot,
+      encoding: "utf8",
+    }
+  );
+
+  assert.equal(
+    result.status,
+    0,
+    `Expected cache summary to handle an empty cache state.\nstdout:\n${result.stdout}\nstderr:\n${result.stderr}`
+  );
+  assert.match(result.stdout, /== Cached status ==/);
+  assert.match(result.stdout, /Last maintenance summary: missing/);
+  assert.match(result.stdout, /Latest maintenance log: missing/);
+  assert.doesNotMatch(`${result.stdout}\n${result.stderr}`, /Index was outside the bounds of the array/);
 });
 
 test("Course link manager builds inventory and laymans diagnosis returns plain-language follow-up items", () => {
@@ -5623,6 +5915,17 @@ test("Course link manager builds inventory and laymans diagnosis returns plain-l
     includeWarnings: true,
   });
   assert.ok(diagnoses.length > 0, "Expected laymans diagnosis items from the current planner reports.");
+  const diagnosisPaths = diagnoses
+    .map((entry: { whereToLook?: string }) => String(entry.whereToLook ?? ""))
+    .filter(Boolean);
+  assert.ok(
+    diagnosisPaths.some((value: string) => value.startsWith("Mobile Team/.tmp/")),
+    "Expected laymans diagnosis report paths to stay repo-root-relative for the root launcher."
+  );
+  assert.ok(
+    diagnosisPaths.every((value: string) => !value.startsWith(".tmp/")),
+    "Expected laymans diagnosis report paths to avoid ambiguous app-relative .tmp hints."
+  );
   assert.ok(
     diagnoses.some((entry: { whereToLook?: string; symptom?: string }) =>
       String(entry.whereToLook ?? "").includes("transfer-planner-status.md") ||
@@ -6409,6 +6712,122 @@ test("Quarter planning keeps UW-required classes ahead of optional Green River a
   assert.equal(plannedLabels.indexOf("ENGL& 101") < plannedLabels.indexOf("MATH 238"), true);
 });
 
+test("Seattle CS Data Science option keeps ACS track breadth generic and out of UW-transfer-only mode", () => {
+  const runtimeBasePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-science");
+  assert.ok(runtimeBasePlan, "Expected a Seattle Computer Science runtime plan.");
+
+  const resolvedPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    runtimeBasePlan,
+    "data-science-option"
+  );
+  assert.ok(resolvedPlan, "Expected the Seattle CS Data Science option runtime row.");
+  const track = getTransferPlannerTrack(resolvedPlan.bestTrackId ?? null);
+  const fullQuarterPlan = buildSuggestedQuarterPlan({
+    plan: resolvedPlan,
+    ...buildStatuses(resolvedPlan, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const transferOnlyQuarterPlan = buildSuggestedQuarterPlan({
+    plan: resolvedPlan,
+    ...buildStatuses(resolvedPlan, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: false,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const fullPlannedCourses = fullQuarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const transferOnlyPlannedCourses = transferOnlyQuarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const matchedTrackPlaceholders = fullPlannedCourses.filter(
+    (course) => course.label === "5 credits of A&H or SSc"
+  );
+  const namedDistributionExamples = ["CMST& 220", "PSYC& 100", "AMES 100", "ANTH& 206"];
+
+  assert.equal(
+    resolvedPlan.bestTrackId,
+    "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp"
+  );
+  assert.ok(
+    matchedTrackPlaceholders.length >= 1,
+    "Expected generic A&H/SSc matched-track placeholders for Seattle CS."
+  );
+  assert.match(
+    matchedTrackPlaceholders[0]?.guidanceSummary ?? "",
+    /matched Green River associate pathway in Computer Science \(Data Science option\)/i
+  );
+  assert.ok(
+    fullPlannedCourses.some(
+      (course) =>
+        course.label === "ENGL& 235" &&
+        /recommended ACS-DTA\/MRP Green River associate track/i.test(course.guidanceSummary ?? "")
+    ),
+    "Expected explicit ACS track courses like ENGL& 235 to remain visible."
+  );
+
+  for (const label of namedDistributionExamples) {
+    assert.equal(
+      fullPlannedCourses.some((course) => course.label === label),
+      false,
+      `Did not expect ${label} to remain as a named track recommendation.`
+    );
+    assert.equal(
+      transferOnlyPlannedCourses.some((course) => course.label === label),
+      false,
+      `Did not expect ${label} in UW-transfer-only planning.`
+    );
+  }
+
+  assert.equal(
+    transferOnlyPlannedCourses.some((course) => course.label === "5 credits of A&H or SSc"),
+    false
+  );
+});
+
+test("Bothell CSSE general option gets the same generic ACS track breadth cleanup without losing explicit track courses", () => {
+  const runtimeBasePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-bothell-csse");
+  assert.ok(runtimeBasePlan, "Expected a Bothell CSSE runtime plan.");
+
+  const resolvedPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    runtimeBasePlan,
+    "general-option"
+  );
+  assert.ok(resolvedPlan, "Expected the Bothell CSSE general option runtime row.");
+  const track = getTransferPlannerTrack(resolvedPlan.bestTrackId ?? null);
+  const plannedCourses = buildSuggestedQuarterPlan({
+    plan: resolvedPlan,
+    ...buildStatuses(resolvedPlan, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  })
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+
+  assert.ok(
+    plannedCourses.some(
+      (course) =>
+        course.label === "ENGL& 235" &&
+        /recommended ACS-DTA\/MRP Green River associate track/i.test(course.guidanceSummary ?? "")
+    ),
+    "Expected Bothell CSSE to keep explicit ACS track courses."
+  );
+  assert.ok(
+    plannedCourses.some((course) => course.label === "5 credits of A&H or SSc"),
+    "Expected Bothell CSSE to use generic A&H/SSc placeholders for ACS breadth guidance."
+  );
+  assert.equal(plannedCourses.some((course) => course.label === "CMST& 220"), false);
+  assert.equal(plannedCourses.some((course) => course.label === "PSYC& 100"), false);
+  assert.equal(plannedCourses.some((course) => course.label === "AMES 100"), false);
+  assert.equal(plannedCourses.some((course) => course.label === "ANTH& 206"), false);
+});
+
 test.skip("Runtime CompE planning defaults to the matched track, then UW-only hides nonessential track extras", () => {
   const runtimeCompEPlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
   assert.ok(runtimeCompEPlan, "Expected a runtime Computer Engineering plan.");
@@ -6482,6 +6901,89 @@ test("UW-only planning keeps track prerequisites when they unlock required class
   assert.equal(plannedLabels.includes("PHYS& 222"), true);
   assert.equal(plannedLabels.indexOf("MATH& 151") < plannedLabels.indexOf("PHYS& 221"), true);
   assert.equal(plannedLabels.indexOf("PHYS& 221") < plannedLabels.indexOf("PHYS& 222"), true);
+});
+
+test("Astronomy quarter planning keeps PHYS& 114 ahead of PHYS& 221 when both are planned", () => {
+  const astronomyState = getResolvedRuntimeQuarterPlanningState("uw-seattle-astronomy");
+  const plannedLabels = astronomyState.plannedQuarters.flatMap((quarter) =>
+    quarter.courses.map((course) => course.label)
+  );
+
+  assert.equal(
+    astronomyState.resolvedPlan.bestTrackId,
+    "grc-associate-stem-physics-associate-in-science-transfer-track-2-physics"
+  );
+  assert.ok(plannedLabels.includes("PHYS& 114"));
+  assert.ok(plannedLabels.includes("PHYS& 221"));
+  assert.ok(plannedLabels.includes("PHYS& 222"));
+  assert.equal(plannedLabels.indexOf("PHYS& 114") < plannedLabels.indexOf("PHYS& 221"), true);
+  assert.equal(plannedLabels.indexOf("PHYS& 221") < plannedLabels.indexOf("PHYS& 222"), true);
+});
+
+test("Bothell Biology quarter planning now keeps the AST-2 physics support course ahead of PHYS& 221", () => {
+  const biologyState = getResolvedRuntimeQuarterPlanningState("uw-bothell-biology");
+  const plannedLabels = biologyState.plannedQuarters.flatMap((quarter) =>
+    quarter.courses.map((course) => course.label)
+  );
+
+  assert.equal(
+    biologyState.resolvedPlan.bestTrackId,
+    "grc-associate-stem-physics-associate-in-science-transfer-track-2-physics"
+  );
+  assert.ok(plannedLabels.includes("PHYS& 114"));
+  assert.ok(plannedLabels.includes("PHYS& 221"));
+  assert.equal(plannedLabels.indexOf("PHYS& 114") < plannedLabels.indexOf("PHYS& 221"), true);
+});
+
+test("Quarter-plan synthesis does not place direct prerequisites after dependent courses across runtime plans", () => {
+  const violations: string[] = [];
+
+  for (const campusId of ["uw-seattle", "uw-bothell", "uw-tacoma"] as const) {
+    for (const plan of getTransferPlannerMajorsForCampus(campusId)) {
+      const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(plan.id);
+      assert.ok(runtimePlan, `Expected a runtime planner row for ${plan.id}.`);
+
+      const pathwayIds = [
+        null,
+        ...getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan).map((pathway) => pathway.id),
+      ];
+      for (const pathwayId of pathwayIds) {
+        const planningState = getResolvedRuntimeQuarterPlanningState(plan.id, pathwayId);
+        const quarterIndexByCourseCode = new Map<string, number>();
+
+        planningState.plannedQuarters.forEach((quarter, quarterIndex) => {
+          for (const course of quarter.courses) {
+            for (const courseCode of extractCourseCodes(course.label)) {
+              if (!quarterIndexByCourseCode.has(courseCode)) {
+                quarterIndexByCourseCode.set(courseCode, quarterIndex);
+              }
+            }
+          }
+        });
+
+        for (const [courseCode, courseQuarterIndex] of quarterIndexByCourseCode.entries()) {
+          const canonicalCourse = getTransferPlannerCanonicalCourse("grc", courseCode);
+          if (!canonicalCourse) {
+            continue;
+          }
+
+          for (const prerequisiteCode of canonicalCourse.prerequisiteCourseCodes ?? []) {
+            const prerequisiteQuarterIndex = quarterIndexByCourseCode.get(prerequisiteCode);
+            if (prerequisiteQuarterIndex === undefined) {
+              continue;
+            }
+            if (prerequisiteQuarterIndex > courseQuarterIndex) {
+              violations.push(
+                `${plan.id}/${pathwayId ?? "base"} scheduled ${courseCode} before ${prerequisiteCode}`
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  assert.deepEqual(violations, []);
 });
 
 test.skip("PHYS& 114 appears before engineering physics options in checklist alternatives", () => {
@@ -6656,6 +7158,74 @@ test("Generated Green River catalog metadata now expands source-backed title and
     spanishOne?.notes.some((note) =>
       /Schedule-display title from the official Green River annual schedules/i.test(note)
     )
+  );
+});
+
+test("Canonical GRC course lookup resolves source-backed titles for the missing-course-title regressions", () => {
+  const phys154 = getTransferPlannerCanonicalCourse("grc", "PHYS& 154");
+  const phys155 = getTransferPlannerCanonicalCourse("grc", "PHYS& 155");
+  const phys115 = getTransferPlannerCanonicalCourse("grc", "PHYS& 115");
+  const math264 = getTransferPlannerCanonicalCourse("grc", "MATH& 264");
+
+  assert.equal(phys154?.title, "Physics for the Life Sciences 1");
+  assert.equal(phys154?.creditValue, 5);
+  assert.equal(phys155?.title, "Physics for the Life Sciences 2");
+  assert.equal(phys155?.creditValue, 5);
+  assert.equal(phys115?.title, "General Physics II with Lab");
+  assert.equal(phys115?.creditValue, 5);
+  assert.equal(math264?.title, "Calculus IV");
+  assert.equal(math264?.creditValue, 5);
+});
+
+test("Canonical GRC course lookup now hydrates planner-visible source-backed titles beyond the Physics/Math family", () => {
+  const cs141 = getTransferPlannerCanonicalCourse("grc", "CS& 141");
+  const cs145 = getTransferPlannerCanonicalCourse("grc", "CS 145");
+
+  assert.equal(cs141?.title, "Computer Science I Java");
+  assert.equal(cs141?.creditValue, 5);
+  assert.equal(cs145?.title, "Java 2-Data Structures");
+  assert.equal(cs145?.creditValue, 5);
+});
+
+test("Planner-visible GRC courses now keep canonical title coverage whenever source-backed metadata has a title", () => {
+  assert.deepEqual(getPlannerVisibleSourceBackedGrcTitleGaps(), []);
+});
+
+test("Transfer planner page still formats GRC course rows with canonical titles when available", () => {
+  const pageSource = readFileSync("components/pages/TransferPlannerPage.tsx", "utf8");
+
+  assert.match(pageSource, /function buildCourseDisplayLabel/);
+  assert.match(pageSource, /getTransferPlannerCanonicalCourse\(schoolId,\s*normalizedCourseCode\)/);
+  assert.match(pageSource, /return `\$\{normalizedCourseCode\} - \$\{canonicalCourse\.title\}`;/);
+});
+
+test("Student runtime planner rows keep raw Physics life-science course codes after the metadata fix", () => {
+  const biochemistryBaPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getRequiredPlan("uw-seattle-biochemistry"),
+    "ba-route"
+  );
+
+  assert.ok(biochemistryBaPlan, "Expected the Seattle Biochemistry BA runtime plan.");
+  assert.ok(biochemistryBaPlan.grcCourseList?.includes("PHYS& 154"));
+  assert.ok(biochemistryBaPlan.grcCourseList?.includes("PHYS& 155"));
+});
+
+test("Current runtime ECE planning does not promote obsolete guide-only BIOL 111 coverage", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-electrical-computer-engineering"
+  );
+  const planningState = getResolvedRuntimeQuarterPlanningState(
+    "uw-seattle-electrical-computer-engineering"
+  );
+
+  assert.ok(runtimePlan, "Expected the Seattle ECE runtime planner row.");
+  assert.equal(runtimePlan?.grcCourseList?.includes("BIOL 111"), false);
+  assert.equal(getChecklistCoverageForPlan(runtimePlan).has("BIOL 111"), false);
+  assert.equal(
+    planningState.plannedQuarters.some((quarter) =>
+      quarter.courses.some((course) => course.label === "BIOL 111")
+    ),
+    false
   );
 });
 
@@ -8421,6 +8991,9 @@ test("Phase 3 Green River enrollment parser normalizes course paths before metad
   const engr214ParserResult = parseGrcEnrollmentRequirementText(
     "ENGR 106 and MATH& 152 with grades of 2.5 or higher or concurrent enrollment."
   );
+  const phys221ParserResult = parseGrcEnrollmentRequirementText(
+    "Eligible for ENGL& 101 and a grade of 2.0 or higher in PHYS& 114 or in a high school physics, or equivalent, and in MATH& 142 or equivalent with concurrent enrollment or completion in MATH& 151 ."
+  );
 
   assert.deepEqual(accountingParserResult.prerequisiteCourseCodes, []);
   assert.deepEqual(accountingParserResult.prerequisiteAlternativeCourseCodeSets, [
@@ -8430,6 +9003,10 @@ test("Phase 3 Green River enrollment parser normalizes course paths before metad
   assert.deepEqual(engr214ParserResult.prerequisiteCourseCodes, []);
   assert.deepEqual(engr214ParserResult.prerequisiteAlternativeCourseCodeSets, []);
   assert.deepEqual(engr214ParserResult.corequisiteCourseCodes, ["ENGR 106", "MATH& 152"]);
+  assert.deepEqual(phys221ParserResult.prerequisiteCourseCodes, ["MATH& 142", "PHYS& 114"]);
+  assert.deepEqual(phys221ParserResult.prerequisiteAlternativeCourseCodeSets, []);
+  assert.deepEqual(phys221ParserResult.corequisiteCourseCodes, ["MATH& 151"]);
+  assert.deepEqual(phys221ParserResult.corequisiteAlternativeCourseCodeSets, []);
 });
 
 test("Phase 3 generated catalog metadata covers official GRC and UW source families", () => {
@@ -9353,6 +9930,91 @@ test("Visible pathway labels decode HTML entities even when base pathways are re
   );
 });
 
+test("Single semantic pathway families collapse PDF, entity, and requirements variants to one clean route", () => {
+  const plan: TransferPlannerMajorPlan = {
+    id: "synthetic-single-semantic-family",
+    campusId: "uw-seattle",
+    title: "Computer Science",
+    shortTitle: "CS",
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [],
+    pathways: [
+      {
+        id: "computer-science-and-8211-data-science-option-pdf",
+        label: "Computer Science and 8211 Data Science option Pdf",
+        summary: "",
+        officialLinks: [],
+      },
+      {
+        id: "data-science-option",
+        label: "Data Science option",
+        summary: "",
+        officialLinks: [],
+      },
+      {
+        id: "data-science-option-requirements",
+        label: "Data Science option Requirements",
+        summary: "",
+        officialLinks: [],
+      },
+    ],
+  };
+  const parsedBlocks: TransferPlannerParsedRequirementSourceBlock[] = [
+    {
+      id: "synthetic-single-semantic-family:source-block:test",
+      ownerId: "synthetic-single-semantic-family",
+      ownerTitle: "Computer Science",
+      planId: plan.id,
+      pathwayId: null,
+      campusId: "uw-seattle",
+      primaryParserType: "html-degree-page",
+      primarySourceUrl: "https://example.edu/computer-science",
+      primarySourceLabel: "Computer Science degree requirements",
+      parserType: "html-degree-page",
+      adapterId: "uw-seattle-catalog-page",
+      adapterFamily: "Synthetic HTML degree page",
+      sourceUrl: "https://example.edu/computer-science",
+      sourceLabel: "Computer Science degree requirements",
+      resolutionStrategy: "primary-source",
+      ok: true,
+      parseConfidence: "high",
+      parsedUwCourseCodes: [],
+      sourceOnlyUwCourseCodes: [],
+      structuredOnlyUwCourseCodes: [],
+      requirementCueLines: [],
+      chooseStatements: [],
+      pathwayLabels: [
+        "Data Science Option",
+        "Data Science Option [PDF]",
+        "Data Science Option Requirements",
+      ],
+      qualitySignals: [],
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
+      snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
+      error: null,
+    },
+  ];
+
+  const materialized = materializeTransferPlannerPathways(plan, plan.pathways ?? [], parsedBlocks);
+
+  assert.deepEqual(
+    materialized.map((pathway) => [pathway.id, pathway.label] as const),
+    [["data-science-option", "Data Science Option"]]
+  );
+  assert.deepEqual(collectSuspiciousStructuralPathways(materialized), []);
+});
+
 test("Semantic duplicate pathway labels collapse to one canonical visible route", () => {
   const plan: TransferPlannerMajorPlan = {
     id: "synthetic-semantic-dedupe",
@@ -9521,6 +10183,32 @@ test("Already-clean pathway families stay stable when canonical cleanup is not n
       ["applied-statistics-track", "Applied Statistics track"],
       ["data-science-track", "Data Science track"],
     ]
+  );
+});
+
+test("Seattle Computer Science Data Science option resolves to one clean canonical pathway", () => {
+  const runtimeCsPlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-science");
+  assert.ok(runtimeCsPlan, "Expected a Computer Science runtime plan.");
+
+  const sourcePathways = getTransferPlannerPathwaysForPlan(csPlan)
+    .map((pathway) => [pathway.id, pathway.label] as const)
+    .sort((left, right) => left[0].localeCompare(right[0]));
+  const runtimePathways = getTransferPlannerStudentRuntimePathwaysForPlan(runtimeCsPlan)
+    .map((pathway) => [pathway.id, pathway.label] as const)
+    .sort((left, right) => left[0].localeCompare(right[0]));
+  const parsedScopes = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
+    (entry) => entry.planId === "uw-seattle-computer-science"
+  )
+    .map((entry) => entry.pathwayId)
+    .sort((left, right) => String(left ?? "").localeCompare(String(right ?? "")));
+
+  assert.deepEqual(sourcePathways, [["data-science-option", "Data Science option"]]);
+  assert.deepEqual(runtimePathways, [["data-science-option", "Data Science option"]]);
+  assert.deepEqual(parsedScopes, [null, "data-science-option"]);
+  assert.deepEqual(collectSuspiciousStructuralPathways(getTransferPlannerPathwaysForPlan(csPlan)), []);
+  assert.deepEqual(
+    collectSuspiciousStructuralPathways(getTransferPlannerStudentRuntimePathwaysForPlan(runtimeCsPlan)),
+    []
   );
 });
 

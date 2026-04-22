@@ -205,10 +205,17 @@ function hasAlternativeBoundary(text) {
     return false;
   }
 
-  const cleaned = normalized.replace(
-    /\bor\s+(?:higher|lower|better|concurrent enrollment|instructor(?:'s)?|permission|consent|appropriate|equivalent)\b/g,
-    " "
-  );
+  const cleaned = normalized
+    .replace(
+      /\bor\s+(?:higher|lower|better|concurrent enrollment|instructor(?:'s)?|permission|consent|appropriate|equivalent)\b/g,
+      " "
+    )
+    // Phrases like "or in a high school physics" or "or one year of high school algebra"
+    // describe external preparation alternatives, not a new course-code branch.
+    .replace(/\bor\s+(?:in\s+)?(?:a\s+|an\s+)?high school\b[^,;)]*/g, " ")
+    .replace(/\bor\s+(?:one|two|three|1\s*1\/2|1-1\/2|\d+)\s+years?\s+of high school\b[^,;)]*/g, " ")
+    .replace(/\bor\s+(?:appropriate\s+)?(?:english|math|reading)\s+placement\b[^,;)]*/g, " ")
+    .replace(/\bor\s+eligible for\b[^,;)]*/g, " ");
   return /\bor\b/.test(cleaned);
 }
 
@@ -331,7 +338,15 @@ function extractExplicitConcurrentEnrollmentPaths(chunk) {
   );
 
   remainder = remainder.replace(
-    /\b(?:at least\s+)?concurrent enrollment in\s+([^;.,]+)/gi,
+    /\b(?:at least\s+)?concurrent enrollment in or completion of\s+([^;.,]+)/gi,
+    (_match, expression) => {
+      explicitCorequisitePaths.push(...parseCoursePathsFromExpression(expression));
+      return " ";
+    }
+  );
+
+  remainder = remainder.replace(
+    /\b(?:at least\s+)?concurrent enrollment(?:\s+or\s+completion)? in\s+([^;.,]+)/gi,
     (_match, expression) => {
       explicitCorequisitePaths.push(...parseCoursePathsFromExpression(expression));
       return " ";
