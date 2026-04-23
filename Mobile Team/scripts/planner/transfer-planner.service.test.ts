@@ -9887,6 +9887,11 @@ test("Sibling JSIS majors no longer surface Asian Studies pathway labels", () =>
     assert.ok(plan, `Expected a source-generated Seattle planner row for ${planId}.`);
 
     const labels = getTransferPlannerPathwaysForPlan(plan).map((pathway) => pathway.label);
+    assert.deepEqual(
+      labels,
+      [],
+      `${planId} should not expose cross-major concentration pathways: ${JSON.stringify(labels)}`
+    );
     assert.equal(
       labels.some((label) => /asian studies/i.test(label)),
       false,
@@ -10184,6 +10189,352 @@ test("Already-clean pathway families stay stable when canonical cleanup is not n
       ["data-science-track", "Data Science track"],
     ]
   );
+});
+
+test("Materials Science & Engineering only exposes the real NME Option pathway", () => {
+  const plan = getRequiredPlan("uw-seattle-materials-science-engineering");
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(plan.id);
+  assert.ok(runtimePlan, "Expected an MSE runtime plan.");
+
+  const sourcePathways = getTransferPlannerPathwaysForPlan(plan).map(
+    (pathway) => [pathway.id, pathway.label] as const
+  );
+  const runtimePathways = getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan).map(
+    (pathway) => [pathway.id, pathway.label] as const
+  );
+
+  assert.deepEqual(sourcePathways, [["nme-option", "NME Option"]]);
+  assert.deepEqual(runtimePathways, [["nme-option", "NME Option"]]);
+  assert.deepEqual(collectSuspiciousStructuralPathways(getTransferPlannerPathwaysForPlan(plan)), []);
+  assert.deepEqual(
+    collectSuspiciousStructuralPathways(getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)),
+    []
+  );
+});
+
+test("Auto-promoted pathway aliases keep Seattle Biochemistry route IDs canonical", () => {
+  const plan = getRequiredPlan("uw-seattle-biochemistry");
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(plan.id);
+  assert.ok(runtimePlan, "Expected a Seattle Biochemistry runtime plan.");
+
+  const sourcePathways = getTransferPlannerPathwaysForPlan(plan).map(
+    (pathway) => [pathway.id, pathway.label] as const
+  );
+  const runtimePathways = getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan).map(
+    (pathway) => [pathway.id, pathway.label] as const
+  );
+
+  assert.deepEqual(sourcePathways, [
+    ["ba-route", "B.A. route"],
+    ["bs-route", "B.S. route"],
+  ]);
+  assert.deepEqual(runtimePathways, [
+    ["ba-route", "B.A. route"],
+    ["bs-route", "B.S. route"],
+  ]);
+});
+
+test("Officially promoted Seattle ECE pathways can expand beyond stale bootstrap pathway lists", () => {
+  const plan = getRequiredPlan("uw-seattle-electrical-computer-engineering");
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(plan.id);
+  assert.ok(runtimePlan, "Expected a Seattle ECE runtime plan.");
+
+  const expectedPathways = [
+    ["computer-architecture-pathway", "Computer Architecture Pathway"],
+    ["control-systems-pathway", "Control Systems Pathway"],
+    ["embedded-systems-pathway", "Embedded Systems Pathway"],
+    ["machine-learning-pathway", "Machine Learning Pathway"],
+    ["microelectronics-and-nanotechnology-pathway", "Microelectronics and Nanotechnology Pathway"],
+    ["neurotechnology-pathway", "Neurotechnology Pathway"],
+    ["photonics-pathway", "Photonics pathway"],
+  ] as const;
+
+  const sourcePathways = getTransferPlannerPathwaysForPlan(plan).map(
+    (pathway) => [pathway.id, pathway.label] as const
+  );
+  const runtimePathways = getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan).map(
+    (pathway) => [pathway.id, pathway.label] as const
+  );
+
+  assert.deepEqual(sourcePathways, expectedPathways);
+  assert.deepEqual(runtimePathways, expectedPathways);
+});
+
+test("Guidance-only collection headings are treated as structural pathway labels", () => {
+  for (const label of [
+    "Concentration Areas",
+    "Optional Focus Areas",
+    "Examples of coursework pathways emphasizing particular areas within psychology",
+    "Concentration I",
+  ]) {
+    assert.equal(
+      isSuspiciousStructuralPathwayLabel(label),
+      true,
+      `Expected ${label} to stay in the structural-heading bucket.`
+    );
+  }
+
+  for (const label of ["NME Option", "China Concentration", "B A route"]) {
+    assert.equal(
+      isSuspiciousStructuralPathwayLabel(label),
+      false,
+      `Expected ${label} to remain a semantic pathway label.`
+    );
+  }
+});
+
+test("Guidance-only concentration headings do not outrank real option labels during materialization", () => {
+  const plan: TransferPlannerMajorPlan = {
+    id: "synthetic-guidance-only-concentrations",
+    campusId: "uw-seattle",
+    title: "Materials Science & Engineering",
+    shortTitle: "MSE",
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [],
+    pathways: [],
+  };
+  const parsedBlocks: TransferPlannerParsedRequirementSourceBlock[] = [
+    {
+      id: "synthetic-guidance-only-concentrations:source-block:test",
+      ownerId: "synthetic-guidance-only-concentrations",
+      ownerTitle: "Materials Science & Engineering",
+      planId: plan.id,
+      pathwayId: null,
+      campusId: "uw-seattle",
+      primaryParserType: "html-degree-page",
+      primarySourceUrl: "https://example.edu/materials-science-engineering",
+      primarySourceLabel: "Materials Science & Engineering degree requirements",
+      parserType: "html-degree-page",
+      adapterId: "uw-seattle-html-degree-page",
+      adapterFamily: "Synthetic HTML degree page",
+      sourceUrl: "https://example.edu/materials-science-engineering",
+      sourceLabel: "Materials Science & Engineering degree requirements",
+      resolutionStrategy: "primary-source",
+      ok: true,
+      parseConfidence: "high",
+      parsedUwCourseCodes: [],
+      sourceOnlyUwCourseCodes: [],
+      structuredOnlyUwCourseCodes: [],
+      requirementCueLines: [
+        "Concentration areas",
+        "The MSE degree offers a large number of course elective options. For advice on choosing pertinent electives to support your interests, please check out MSE Concentration Areas.",
+      ],
+      chooseStatements: [],
+      pathwayLabels: [
+        "Concentration areas",
+        "please check out MSE Concentration Areas",
+        "Nanoscience and Molecular Engineering (NME) Option",
+      ],
+      qualitySignals: [],
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
+      snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
+      error: null,
+    },
+  ];
+
+  const materialized = materializeTransferPlannerPathways(plan, plan.pathways ?? [], parsedBlocks);
+
+  assert.deepEqual(
+    materialized.map((pathway) => [pathway.id, pathway.label] as const),
+    [["nme-option", "NME Option"]]
+  );
+});
+
+test("Coursework-pathway collection headings do not outrank real route labels during materialization", () => {
+  const plan: TransferPlannerMajorPlan = {
+    id: "synthetic-coursework-pathway-headings",
+    campusId: "uw-seattle",
+    title: "Psychology",
+    shortTitle: "Psych",
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [],
+    pathways: [],
+  };
+  const parsedBlocks: TransferPlannerParsedRequirementSourceBlock[] = [
+    {
+      id: "synthetic-coursework-pathway-headings:source-block:test",
+      ownerId: "synthetic-coursework-pathway-headings",
+      ownerTitle: "Psychology",
+      planId: plan.id,
+      pathwayId: null,
+      campusId: "uw-seattle",
+      primaryParserType: "html-degree-page",
+      primarySourceUrl: "https://example.edu/psychology",
+      primarySourceLabel: "Psychology degree requirements",
+      parserType: "html-degree-page",
+      adapterId: "uw-seattle-html-degree-page",
+      adapterFamily: "Synthetic HTML degree page",
+      sourceUrl: "https://example.edu/psychology",
+      sourceLabel: "Psychology degree requirements",
+      resolutionStrategy: "primary-source",
+      ok: true,
+      parseConfidence: "high",
+      parsedUwCourseCodes: [],
+      sourceOnlyUwCourseCodes: [],
+      structuredOnlyUwCourseCodes: [],
+      requirementCueLines: [
+        "Examples of coursework pathways emphasizing particular areas within psychology:",
+      ],
+      chooseStatements: [],
+      pathwayLabels: [
+        "Examples of coursework pathways emphasizing particular areas within psychology:",
+        "Clinical Psychology route",
+        "Cognitive Psychology route",
+      ],
+      qualitySignals: [],
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
+      snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
+      error: null,
+    },
+  ];
+
+  const materialized = materializeTransferPlannerPathways(plan, plan.pathways ?? [], parsedBlocks);
+
+  assert.deepEqual(
+    materialized.map((pathway) => [pathway.id, pathway.label] as const),
+    [
+      ["clinical-psychology-route", "Clinical Psychology Route"],
+      ["cognitive-psychology-route", "Cognitive Psychology Route"],
+    ]
+  );
+});
+
+test("Collection-style concentration placeholders no longer surface as peer pathways for Asian Studies", () => {
+  const plan = getRequiredPlan("uw-seattle-asian-studies");
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(plan.id);
+  assert.ok(runtimePlan, "Expected an Asian Studies runtime plan.");
+
+  const sourceLabels = getTransferPlannerPathwaysForPlan(plan).map((pathway) => pathway.label);
+  const runtimeLabels = getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan).map(
+    (pathway) => pathway.label
+  );
+
+  assert.equal(sourceLabels.includes("Concentration I"), false);
+  assert.equal(runtimeLabels.includes("Concentration I"), false);
+  assert.equal(sourceLabels.includes("China Concentration"), true);
+  assert.equal(runtimeLabels.includes("China Concentration"), true);
+});
+
+test("Cross-major navigation pathway noise does not outrank plan-level evidence", () => {
+  const plan: TransferPlannerMajorPlan = {
+    id: "synthetic-jsis-cross-major-noise",
+    campusId: "uw-seattle",
+    title: "Jewish Studies",
+    shortTitle: "JS",
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [],
+    pathways: [
+      {
+        id: "china-concentration",
+        label: "China Concentration",
+        summary: "",
+        officialLinks: [],
+      },
+    ],
+  };
+  const parsedBlocks: TransferPlannerParsedRequirementSourceBlock[] = [
+    {
+      id: "synthetic-jsis-cross-major-noise:source-block:major",
+      ownerId: plan.id,
+      ownerTitle: "Jewish Studies",
+      planId: plan.id,
+      pathwayId: null,
+      campusId: "uw-seattle",
+      primaryParserType: "html-degree-page",
+      primarySourceUrl: "https://example.edu/jewish-studies",
+      primarySourceLabel: "Jewish Studies requirements",
+      parserType: "html-degree-page",
+      adapterId: "uw-seattle-html-degree-page",
+      adapterFamily: "Synthetic HTML degree page",
+      sourceUrl: "https://example.edu/jewish-studies",
+      sourceLabel: "Jewish Studies requirements",
+      resolutionStrategy: "primary-source",
+      ok: true,
+      parseConfidence: "high",
+      parsedUwCourseCodes: [],
+      sourceOnlyUwCourseCodes: [],
+      structuredOnlyUwCourseCodes: [],
+      requirementCueLines: [
+        "50 credits, to include the following:",
+        "Asian Studies - China Concentration",
+      ],
+      chooseStatements: [],
+      pathwayLabels: ["China Concentration"],
+      qualitySignals: [],
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
+      snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
+      error: null,
+    },
+    {
+      id: "synthetic-jsis-cross-major-noise:source-block:pathway",
+      ownerId: `${plan.id}:pathway:china-concentration`,
+      ownerTitle: "Jewish Studies - China Concentration",
+      planId: plan.id,
+      pathwayId: "china-concentration",
+      campusId: "uw-seattle",
+      primaryParserType: "html-degree-page",
+      primarySourceUrl: "https://example.edu/jewish-studies",
+      primarySourceLabel: "Jewish Studies requirements",
+      parserType: "html-degree-page",
+      adapterId: "uw-seattle-html-degree-page",
+      adapterFamily: "Synthetic HTML degree page",
+      sourceUrl: "https://example.edu/jewish-studies",
+      sourceLabel: "Jewish Studies requirements",
+      resolutionStrategy: "primary-source",
+      ok: true,
+      parseConfidence: "high",
+      parsedUwCourseCodes: [],
+      sourceOnlyUwCourseCodes: [],
+      structuredOnlyUwCourseCodes: [],
+      requirementCueLines: [],
+      chooseStatements: [],
+      pathwayLabels: [],
+      qualitySignals: [],
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
+      snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
+      error: null,
+    },
+  ];
+
+  const materialized = materializeTransferPlannerPathways(plan, plan.pathways ?? [], parsedBlocks);
+
+  assert.deepEqual(materialized, []);
 });
 
 test("Seattle Computer Science Data Science option resolves to one clean canonical pathway", () => {

@@ -18,6 +18,7 @@ require("ts-node").register({
 
 const {
   TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
+  getTransferPlannerPathwaysForPlan,
 } = require("../../constants/transfer-planner-source");
 const {
   TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS,
@@ -127,7 +128,7 @@ function collectSourceEntries(extraSourceLinks) {
       entry.ownerIds.add(plan.id);
     }
 
-    for (const pathway of plan.pathways ?? []) {
+    for (const pathway of getTransferPlannerPathwaysForPlan(plan)) {
       for (const link of pathway.officialLinks ?? []) {
         const entry = getOrCreate(link.url);
         if (!entry) continue;

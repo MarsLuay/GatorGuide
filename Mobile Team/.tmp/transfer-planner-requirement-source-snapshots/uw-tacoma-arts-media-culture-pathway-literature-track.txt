@@ -216,7 +216,6 @@ TAMST 450 Monstrous Imagination
 TANTH 354 History of the Concept of Culture
 TARTS 150 Introduction to Theatre
 TARTS 151 Fundamentals of Acting
-TARTS 160 Introduction to Musical Theatre
 TARTS 200 Studio Foundation I: Contemporary Art Strategies
 TARTS 203 Body Image and Art
 TARTS 225 Musical History of Tacoma
@@ -254,6 +253,7 @@ TARTS 406 Labor, Globalization and Art
 TARTS 407 Art and the Public
 TARTS 410 Community and Public Arts
 TARTS 480 Contemporary Arts and Society (1945–Present)
+TARTS Introduction to Musical Theatre
 TCOM 201 Media and Society
 TCOM 221 Artificial Intelligence: Media, Culture and Power
 TCOM 230 Globalization and Media

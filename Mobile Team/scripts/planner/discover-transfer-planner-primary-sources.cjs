@@ -13,6 +13,7 @@ require("ts-node").register({
 const {
   TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
   getTransferPlannerAutoMatchedTrackRecommendation,
+  getTransferPlannerPathwaysForPlan,
   getTransferPlannerParsedRequirementSourceBlocks,
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerRequirementDiffClassifications,
@@ -955,6 +956,7 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
       continue;
     }
 
+    const visiblePathways = getTransferPlannerPathwaysForPlan(plan);
     const runtimeBasePlan = getTransferPlannerStudentRuntimeMajorPlan(plan.id);
     const owners = [
       {
@@ -966,7 +968,7 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
         label: plan.title,
         officialLinks: [...(plan.officialLinks ?? [])],
       },
-      ...(plan.pathways ?? []).map((pathway) => ({
+      ...visiblePathways.map((pathway) => ({
         ownerType: "pathway",
         ownerKey: `${plan.id}:pathway:${pathway.id}`,
         planId: plan.id,
@@ -1037,7 +1039,7 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
           reevaluationSignals: weakSignals.signals,
           reevaluationContext: weakSignals.context,
           parsedBlock,
-          pathwayCount: plan.pathways?.length ?? 0,
+          pathwayCount: visiblePathways.length,
         })
       );
     }
@@ -1057,6 +1059,7 @@ function buildOwnerTargets({ includeExisting, campusFilter, targetPlanId = null 
       continue;
     }
 
+    const visiblePathways = getTransferPlannerPathwaysForPlan(plan);
     const majorPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(plan.id, null);
     if (includeExisting || !majorPrimary) {
       targets.push(
@@ -1071,12 +1074,12 @@ function buildOwnerTargets({ includeExisting, campusFilter, targetPlanId = null 
           label: plan.title,
           officialLinks: [...(plan.officialLinks ?? [])],
           existingPrimary: majorPrimary,
-          pathwayCount: plan.pathways?.length ?? 0,
+          pathwayCount: visiblePathways.length,
         })
       );
     }
 
-    for (const pathway of plan.pathways ?? []) {
+    for (const pathway of visiblePathways) {
       const pathwayPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(plan.id, pathway.id);
       if (!includeExisting && pathwayPrimary) {
         continue;
@@ -1094,7 +1097,7 @@ function buildOwnerTargets({ includeExisting, campusFilter, targetPlanId = null 
           label: pathway.label,
           officialLinks: [...(pathway.officialLinks ?? [])],
           existingPrimary: pathwayPrimary,
-          pathwayCount: plan.pathways?.length ?? 0,
+          pathwayCount: visiblePathways.length,
         })
       );
     }

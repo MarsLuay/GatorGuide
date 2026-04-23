@@ -203,7 +203,7 @@ Ph.D. Requirements
 Phone: (206) 543-5843
 Policies & Procedures
 Privacy
-Programming: either CSE 142 or CSE 160; either CSE 143 or CSE 163
+Programming: either CSE 142 or CSE ; either CSE 143 or CSE 163
 Programs & Courses
 Publications
 Quick links

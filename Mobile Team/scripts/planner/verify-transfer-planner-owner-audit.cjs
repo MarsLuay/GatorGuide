@@ -14,6 +14,8 @@ const {
   TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
   TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
+  TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY,
+  getTransferPlannerPathwaysForPlan,
   getTransferPlannerMajorPlan,
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerSourceManifestEntriesForPlan,
@@ -21,6 +23,9 @@ const {
   resolveTransferPlannerMajorPlan,
   resolveTransferPlannerStudentRuntimeMajorPlan,
 } = require("../../constants/transfer-planner-source");
+const {
+  normalizeTransferPlannerSemanticPathwayLabel,
+} = require("../../constants/transfer-planner-source/pathway-title-normalization");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -58,6 +63,41 @@ function buildOwnerKey(planId, pathwayId) {
 
 function buildParsedBlockOwnerId(planId, pathwayId) {
   return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
+}
+
+function normalizePathwayAliasLabel(planTitle, label) {
+  return normalizeTransferPlannerSemanticPathwayLabel(planTitle, label)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
+function findPathwayOwnerAliases(owner, planTitle) {
+  if (!owner.pathwayId || !owner.pathwayLabel) {
+    return [];
+  }
+
+  const normalizedOwnerLabel = normalizePathwayAliasLabel(planTitle, owner.pathwayLabel);
+  if (!normalizedOwnerLabel) {
+    return [];
+  }
+
+  const aliasOwnerIds = new Set(
+    TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+      (entry) => entry.planId === owner.planId && entry.ownerType === "pathway"
+    )
+      .filter((entry) => {
+        const normalizedCandidateLabel = normalizePathwayAliasLabel(planTitle, entry.ownerTitle);
+        return (
+          normalizedCandidateLabel === normalizedOwnerLabel ||
+          normalizedCandidateLabel.includes(normalizedOwnerLabel) ||
+          normalizedOwnerLabel.includes(normalizedCandidateLabel)
+        );
+      })
+      .map((entry) => entry.ownerId)
+  );
+
+  return [...aliasOwnerIds];
 }
 
 function parseUrlOrNull(value) {
@@ -249,21 +289,24 @@ function buildOwners(targetPlanId = null) {
       continue;
     }
 
+    const visiblePathways = getTransferPlannerPathwaysForPlan(plan);
     owners.push({
       ownerId: buildParsedBlockOwnerId(plan.id, null),
       ownerKey: buildOwnerKey(plan.id, null),
       planId: plan.id,
       pathwayId: null,
+      pathwayLabel: null,
       title: plan.title,
       campusId: plan.campusId,
     });
 
-    for (const pathway of plan.pathways ?? []) {
+    for (const pathway of visiblePathways) {
       owners.push({
         ownerId: buildParsedBlockOwnerId(plan.id, pathway.id),
         ownerKey: buildOwnerKey(plan.id, pathway.id),
         planId: plan.id,
         pathwayId: pathway.id,
+        pathwayLabel: pathway.label,
         title: `${plan.title} - ${pathway.label}`,
         campusId: plan.campusId,
       });
@@ -399,6 +442,12 @@ function main() {
     let sourceOnlyUwCourseCodeCount = 0;
     const isAutoPromotedPrimarySource = AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS.has(owner.ownerId);
     const basePlan = getTransferPlannerMajorPlan(owner.planId);
+    const aliasOwnerIds = owner.pathwayId && basePlan
+      ? findPathwayOwnerAliases(owner, basePlan.title)
+      : [];
+    const aliasManifestEntries = aliasOwnerIds.flatMap((aliasOwnerId) =>
+      TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter((entry) => entry.ownerId === aliasOwnerId)
+    );
     if (!basePlan) {
       addIssue(
         symptomIssues,
@@ -450,7 +499,11 @@ function main() {
       owner.planId,
       owner.pathwayId
     );
-    if (!primarySource?.url) {
+    const effectivePrimarySourceUrl =
+      primarySource?.url ??
+      aliasManifestEntries.find((entry) => entry.isPrimaryDegreeRequirementsLink)?.url ??
+      null;
+    if (!effectivePrimarySourceUrl) {
       addIssue(
         symptomIssues,
         "error",
@@ -458,22 +511,22 @@ function main() {
         "No primary degree-requirements source URL is registered for this owner."
       );
     } else {
-      const parsedPrimaryUrl = parseUrlOrNull(primarySource.url);
+      const parsedPrimaryUrl = parseUrlOrNull(effectivePrimarySourceUrl);
       if (!parsedPrimaryUrl) {
         addIssue(
           symptomIssues,
           "error",
           "invalid-primary-source-url",
           "Primary degree-requirements source URL is not a valid absolute URL.",
-          primarySource.url
+          effectivePrimarySourceUrl
         );
-      } else if (urlLooksLikeBlockedPrimarySource(primarySource.url)) {
+      } else if (urlLooksLikeBlockedPrimarySource(effectivePrimarySourceUrl)) {
         addIssue(
           symptomIssues,
           "error",
           "blocked-primary-source-url",
           "Primary degree-requirements source URL looks like a login or blocked page.",
-          primarySource.url
+          effectivePrimarySourceUrl
         );
       }
     }
@@ -482,14 +535,16 @@ function main() {
       owner.planId,
       owner.pathwayId
     );
-    if ((manifestEntries ?? []).length === 0) {
+    const effectiveManifestEntries =
+      (manifestEntries ?? []).length > 0 ? manifestEntries : aliasManifestEntries;
+    if ((effectiveManifestEntries ?? []).length === 0) {
       addIssue(
         symptomIssues,
         "error",
         "missing-source-manifest-entries",
         "No source manifest entries were found for this owner."
       );
-    } else if (!manifestEntries.some((entry) => entry.isPrimaryDegreeRequirementsLink)) {
+    } else if (!effectiveManifestEntries.some((entry) => entry.isPrimaryDegreeRequirementsLink)) {
       addIssue(
         symptomIssues,
         "warning",
@@ -498,7 +553,10 @@ function main() {
       );
     }
 
-    const parsedBlock = parsedBlocksByOwnerId.get(owner.ownerId);
+    const parsedBlock =
+      parsedBlocksByOwnerId.get(owner.ownerId) ??
+      aliasOwnerIds.map((aliasOwnerId) => parsedBlocksByOwnerId.get(aliasOwnerId)).find(Boolean) ??
+      null;
     if (!parsedBlock) {
       addIssue(
         symptomIssues,
@@ -557,7 +615,7 @@ function main() {
     return {
       ...owner,
       isAutoPromotedPrimarySource,
-      primarySourceUrl: primarySource?.url ?? null,
+      primarySourceUrl: effectivePrimarySourceUrl,
       sourceOnlyUwCourseCodeCount,
       issueCounts: buildCountsBySeverity(rootIssues),
       symptomIssueCounts: buildCountsBySeverity(symptomIssues),

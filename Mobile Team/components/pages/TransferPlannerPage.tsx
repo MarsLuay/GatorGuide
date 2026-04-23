@@ -2043,15 +2043,7 @@ function PlannerTrackOverviewCard({
         {visibleTrackSummary ? (
           <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
         ) : null}
-        {trackOfficialLinkUrl ? (
-          <AnimatedIconPressable
-            onPress={() => void openExternalLink(trackOfficialLinkUrl)}
-            className="self-start"
-            containerStyle={{ marginTop: 8 }}
-          >
-            <Text className="text-emerald-500 text-sm font-medium">Open official GRC program map</Text>
-          </AnimatedIconPressable>
-        ) : null}
+        {/* Official program map link removed per request */}
       </View>
     </View>
   );

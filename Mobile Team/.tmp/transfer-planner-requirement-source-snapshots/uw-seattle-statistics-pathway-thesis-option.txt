@@ -1,0 +1,36 @@
+Owner: uw-seattle-statistics:pathway:thesis-option
+Source: https://stat.uw.edu/academics/undergraduate/statistics-bs/major
+Title: Major Requirements | University of Washington Department of Statistics
+
+LING 421 R for Linguists (5)
+LING 471 Computational Methods for Linguists (5)
+LING 472 Introduction to Computational Linguistics (5) (prereq: 400 + either LING 461 or CSE 311)
+LING 473 Basics for Computational Linguistics (3) (Prerequisite: CSE 326; STAT 391)
+Example of what your coursework will look like
+The following flow-charts will help you understand the STAT 300 level courses and their pre-requisites. For a full list of courses please see this page .
+STAT 311 and STAT 394 are among the pre-requisites for admission and therefore they are usually taken early in the sophomore year (Plan A), so that students can apply to the Stat major in Spring of their sophomore year. Once students enroll in the major, they should start working on the core major requirements by taking STAT 341 and STAT 342, which represent the statistical theory requirements, serve as pre-requisites for other core courses and give the foundations to understand Machine Learning classes (such as STAT 435) and other breadth requirements classes. STAT 302 and STAT 303 provide, respectively, the foundations of statistical computing and an understanding of the ethical implications of statistical decision-making algorithms. We expect students to take them either during their junior or their senior year. The senior year should be mainly dedicated to the capstone project and to electives; the specific courses will largely depend on the selected track and may require pre-requisites.
+Students who have AP calculus and CS credits from high-school may be eligible to apply for admission to the Statistics major in their freshmen year (see Plan B).
+In This Section
+Undergraduate
+Statistics B.S.
+Admissions
+Major Requirements
+Statistics B.S. Tracks
+Double Majors
+Honors Program
+Continuation and Honesty Policy
+Internships & CPT
+Academic Advising
+Statistics Minor
+Courses for non-majors
+Transfer Credit Evaluations
+Community
+FAQs
+Graduate
+Non-Degree Enrollment
+Courses
+Be boundless
+University of Washington
+Footer menu
+Accessibility
+Computing: STAT 302 and either CSE 163 (strongly recommended) or CSE 123.

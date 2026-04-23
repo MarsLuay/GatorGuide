@@ -3497,9 +3497,14 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
     basePlan.stayAtGrcChecklist
   );
   const degreeMapSections = buildDegreeMapSections(basePlan.id, basePlan.degreeMapSections);
+  const materializedBasePathways = materializeTransferPlannerPathways(
+    basePlan,
+    basePlan.pathways ?? [],
+    getPlanMaterializationParsedRequirementSourceBlocks(basePlan.id)
+  );
   const structuredPathways = orderByBaseIds(
-    (basePlan.pathways ?? []).map((pathway) => buildPathway(basePlan, pathway, degreeMapSections)),
-    (basePlan.pathways ?? []).map((pathway) => pathway.id)
+    materializedBasePathways.map((pathway) => buildPathway(basePlan, pathway, degreeMapSections)),
+    materializedBasePathways.map((pathway) => pathway.id)
   );
   const sourceGeneratedPlan = {
     ...basePlan,
@@ -3978,6 +3983,11 @@ function buildStudentRuntimePathway(
 }
 
 function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
+  const materializedBasePathways = materializeTransferPlannerPathways(
+    basePlan,
+    basePlan.pathways ?? [],
+    getPlanMaterializationParsedRequirementSourceBlocks(basePlan.id)
+  );
   let applicationChecklist = buildAutomaticChecklistForPhase(
     basePlan.id,
     "before-application"
@@ -3990,7 +4000,7 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
   const compatibilityChecklistItems = buildSupplementalChecklistItems({
     id: basePlan.id,
     grcCourseList: buildAutomaticCourseList(basePlan.id),
-    pathways: basePlan.pathways,
+    pathways: materializedBasePathways,
   });
   applicationChecklist = appendUniqueChecklistItems(
     applicationChecklist,
@@ -4095,8 +4105,8 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
         grcCourseListGuidance: undefined,
         plannerNote: undefined,
         pathways: orderByBaseIds(
-          (basePlan.pathways ?? []).map((pathway) => buildStudentRuntimePathway(basePlan, pathway)),
-          (basePlan.pathways ?? []).map((pathway) => pathway.id)
+          materializedBasePathways.map((pathway) => buildStudentRuntimePathway(basePlan, pathway)),
+          materializedBasePathways.map((pathway) => pathway.id)
         ),
     }, {
       trackMatchCourseList: studentVisibleTrackMatchCourseList,

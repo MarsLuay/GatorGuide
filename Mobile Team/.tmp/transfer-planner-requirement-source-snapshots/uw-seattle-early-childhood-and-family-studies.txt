@@ -24,6 +24,26 @@ All the UW
 * url.query_args
 * url.site
 -->
+<!-- CACHE KEYS:
+* entity_view
+* block
+* uw_boundless_barrio_shibbolethloginblock
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* block_view
+* config:block.block.uw_boundless_barrio_shibbolethloginblock
+* shibboleth_login_block
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* block
+* uw_boundless_barrio_shibbolethloginblock
+-->
 Login
 MyUW
 Calendar
@@ -268,6 +288,29 @@ Register
 * languages:language_interface
 * theme
 * user.permissions
+-->
+<!-- CACHE KEYS:
+* entity_view
+* node
+*
+* undergrad
+-->
+<!-- PRE-BUBBLING CACHE TAGS:
+* node_view
+* node:
+-->
+<!-- PRE-BUBBLING CACHE CONTEXTS:
+* route.name.is_layout_builder_ui
+* url.site
+* languages:language_interface
+* theme
+* user.permissions
+-->
+<!-- PRE-BUBBLING CACHE KEYS:
+* entity_view
+* node
+*
+* undergrad
 -->
 <!-- CACHE TAGS:
 * node_view
@@ -666,9 +709,9 @@ Assistant Dean for Undergraduate Programs
 -->
 <!-- CACHE CONTEXTS:
 * route.name.is_layout_builder_ui
+* user.permissions
 * languages:language_interface
 * theme
-* user.permissions
 -->
 <!-- CACHE TAGS:
 * node_view
@@ -679,9 +722,9 @@ Assistant Dean for Undergraduate Programs
 -->
 <!-- CACHE CONTEXTS:
 * route.name.is_layout_builder_ui
+* user.permissions
 * languages:language_interface
 * theme
-* user.permissions
 -->
 <!-- CACHE KEYS:
 * entity_view
@@ -695,9 +738,9 @@ Assistant Dean for Undergraduate Programs
 -->
 <!-- PRE-BUBBLING CACHE CONTEXTS:
 * route.name.is_layout_builder_ui
+* user.permissions
 * languages:language_interface
 * theme
-* user.permissions
 -->
 <!-- PRE-BUBBLING CACHE KEYS:
 * entity_view
@@ -716,9 +759,9 @@ Professor
 -->
 <!-- CACHE CONTEXTS:
 * route.name.is_layout_builder_ui
-* user.permissions
 * languages:language_interface
 * theme
+* user.permissions
 -->
 <!-- CACHE TAGS:
 * node_view
@@ -729,9 +772,9 @@ Professor
 -->
 <!-- CACHE CONTEXTS:
 * route.name.is_layout_builder_ui
-* user.permissions
 * languages:language_interface
 * theme
+* user.permissions
 -->
 <!-- CACHE KEYS:
 * entity_view
@@ -745,9 +788,9 @@ Professor
 -->
 <!-- PRE-BUBBLING CACHE CONTEXTS:
 * route.name.is_layout_builder_ui
-* user.permissions
 * languages:language_interface
 * theme
+* user.permissions
 -->
 <!-- PRE-BUBBLING CACHE KEYS:
 * entity_view
@@ -919,9 +962,9 @@ Chair, Learning Sciences & Human Development
 -->
 <!-- CACHE CONTEXTS:
 * route.name.is_layout_builder_ui
-* user.permissions
 * languages:language_interface
 * theme
+* user.permissions
 -->
 <!-- CACHE TAGS:
 * node_view
@@ -932,9 +975,9 @@ Chair, Learning Sciences & Human Development
 -->
 <!-- CACHE CONTEXTS:
 * route.name.is_layout_builder_ui
-* user.permissions
 * languages:language_interface
 * theme
+* user.permissions
 -->
 <!-- CACHE KEYS:
 * entity_view
@@ -948,9 +991,9 @@ Chair, Learning Sciences & Human Development
 -->
 <!-- PRE-BUBBLING CACHE CONTEXTS:
 * route.name.is_layout_builder_ui
-* user.permissions
 * languages:language_interface
 * theme
+* user.permissions
 -->
 <!-- PRE-BUBBLING CACHE KEYS:
 * entity_view
@@ -1159,46 +1202,3 @@ Assistant Director for Undergraduate Academic and Student Services
 * node_view
 * node:21848
 * config:image.style.media_library
-* file:15238
--->
-<!-- CACHE CONTEXTS:
-* route.name.is_layout_builder_ui
-* user.permissions
-* languages:language_interface
-* theme
--->
-<!-- CACHE TAGS:
-* node_view
-* node:21848
-* config:image.style.media_library
-* file:15238
--->
-<!-- CACHE CONTEXTS:
-* route.name.is_layout_builder_ui
-* user.permissions
-* languages:language_interface
-* theme
--->
-<!-- CACHE KEYS:
-* entity_view
-* node
-* 21848
-* teaser
--->
-<!-- PRE-BUBBLING CACHE TAGS:
-* node_view
-* node:21848
--->
-<!-- PRE-BUBBLING CACHE CONTEXTS:
-* route.name.is_layout_builder_ui
-* user.permissions
-* languages:language_interface
-* theme
--->
-<!-- PRE-BUBBLING CACHE KEYS:
-* entity_view
-* node
-* 21848
-* teaser
--->
-Ruth O. Ayodeji

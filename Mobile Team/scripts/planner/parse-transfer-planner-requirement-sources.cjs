@@ -1833,10 +1833,17 @@ function extractChooseStatements(lines) {
 }
 
 function pathwayLabelMentionsDifferentMajor(entry, line) {
+  const titlesByPlanId = PRIMARY_MAJOR_TITLES_BY_PLAN_ID.has(entry.planId)
+    ? PRIMARY_MAJOR_TITLES_BY_PLAN_ID
+    : new Map([
+        ...PRIMARY_MAJOR_TITLES_BY_PLAN_ID,
+        [entry.planId, normalizeTransferPlannerText(entry.ownerTitle || entry.planTitle || "")],
+      ]);
+
   return labelMentionsDifferentTransferPlannerMajor(
     entry.planId,
     line,
-    PRIMARY_MAJOR_TITLES_BY_PLAN_ID
+    titlesByPlanId
   );
 }
 
@@ -1885,14 +1892,17 @@ function normalizeCanonicalExtractedPathwayLabel(entry, line) {
 }
 
 function extractPathwayLabels(entry, lines, headings) {
-  const isPathwayLabelCandidate = (line) => {
-    const normalized = normalizeCanonicalExtractedPathwayLabel(entry, line);
+  const isPathwayLabelCandidate = (rawLine, normalizedLine) => {
+    if (pathwayLabelMentionsDifferentMajor(entry, rawLine)) {
+      return false;
+    }
+
+    const normalized = normalizedLine ?? normalizeCanonicalExtractedPathwayLabel(entry, rawLine);
+    const isDegreeTitleCandidate = PATHWAY_LABEL_DEGREE_TITLE_PATTERN.test(normalized);
     if (!normalized || NOISY_SOURCE_LINE_PATTERN.test(normalized)) {
       return false;
     }
     if (
-      normalized.length > 120 ||
-      normalized.split(/\s+/).length > 14 ||
       /^(?:\[supplemental official source\]|learn more|about|apply)\b/i.test(normalized) ||
       /^(?:download|click here to join|joining the)\b/i.test(normalized) ||
       /\b(?:double major|double degree)\b/i.test(normalized) ||
@@ -1903,10 +1913,16 @@ function extractPathwayLabels(entry, lines, headings) {
     ) {
       return false;
     }
+    if (
+      !isDegreeTitleCandidate &&
+      (normalized.length > 120 || normalized.split(/\s+/).length > 14)
+    ) {
+      return false;
+    }
 
     return (
       PATHWAY_LABEL_CUE_PATTERN.test(normalized) ||
-      PATHWAY_LABEL_DEGREE_TITLE_PATTERN.test(normalized) ||
+      isDegreeTitleCandidate ||
       PATHWAY_LABEL_INLINE_PATTERN.test(normalized) ||
       PATHWAY_LABEL_APPLY_PATTERN.test(normalized)
     );
@@ -1914,8 +1930,12 @@ function extractPathwayLabels(entry, lines, headings) {
 
   return uniqueSorted(
     [...headings, ...lines]
-      .map((line) => normalizeCanonicalExtractedPathwayLabel(entry, line))
-      .filter(isPathwayLabelCandidate)
+      .map((line) => ({
+        raw: line,
+        normalized: normalizeCanonicalExtractedPathwayLabel(entry, line),
+      }))
+      .filter(({ raw, normalized }) => isPathwayLabelCandidate(raw, normalized))
+      .map(({ normalized }) => normalized)
       .slice(0, 40)
   );
 }

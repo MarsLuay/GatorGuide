@@ -1,19 +1,19 @@
 # Transfer Planner Source Pipeline Validation
 
-Generated: 2026-04-22T19:19:32.166Z
+Generated: 2026-04-23T05:46:58.941Z
 
-- Outcome: failed
-- Passed checks: 16
-- Failed checks: 3
+- Outcome: passed
+- Passed checks: 19
+- Failed checks: 0
 - Eligible auto-promotions from discovery: 6
 - Weak existing primaries re-evaluated: 110
 - High-confidence replacements: 6
 - Review-queue owners: 3
 - Source-gap owners: 3
 - Promoted owners in canonical registry: 90
-- Parseable primary owners: 367
-- Parsed owners: 366
-- Requirement fingerprints: 366
+- Parseable primary owners: 476
+- Parsed owners: 476
+- Requirement fingerprints: 476
 
 | Check | Status | Details |
 | --- | --- | --- |
@@ -21,45 +21,10 @@ Generated: 2026-04-22T19:19:32.166Z
 | Generated promotion registry matches the promotion report | passed | Promoted owners: 90 |
 | Eligible high-confidence discoveries are promoted unless they remain in the review queue | passed | Eligible promoted owners verified: 6 |
 | Review queue and source-gap report point at the same unresolved owners | passed | Shared unresolved owners: 3 |
-| Auto-promoted owners are materialized in the canonical primary-source registry | failed | Promoted owners missing canonical primary entries: uw-seattle-biochemistry:pathway:ba-route, uw-seattle-biochemistry:pathway:bs-route, uw-seattle-chemistry:pathway:ba-route, uw-seattle-chemistry:pathway:bs-route, uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway, uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway, uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway, uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway
-+ actual - expected
-
-+ [
-+   'uw-seattle-biochemistry:pathway:ba-route',
-+   'uw-seattle-biochemistry:pathway:bs-route',
-+   'uw-seattle-chemistry:pathway:ba-route',
-+   'uw-seattle-chemistry:pathway:bs-route',
-+   'uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway'
-+ ]
-- []
- |
-| Canonical parseable primary owners align with parser input and parser output | failed | Parse report owner count should match the canonical parseable primary-owner count.
-
-366 !== 367
- |
-| Promoted owners appear in parser output and requirement fingerprints | failed | Promoted owners missing parsed blocks: uw-seattle-biochemistry:pathway:ba-route, uw-seattle-biochemistry:pathway:bs-route, uw-seattle-chemistry:pathway:ba-route, uw-seattle-chemistry:pathway:bs-route, uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway, uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway, uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway, uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway
-+ actual - expected
-
-+ [
-+   'uw-seattle-biochemistry:pathway:ba-route',
-+   'uw-seattle-biochemistry:pathway:bs-route',
-+   'uw-seattle-chemistry:pathway:ba-route',
-+   'uw-seattle-chemistry:pathway:bs-route',
-+   'uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway',
-+   'uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway'
-+ ]
-- []
- |
-| Requirement fingerprint coverage stays aligned with parsed requirement owners | passed | Requirement fingerprints: 366<br>Parsed owners: 366<br>Added source fingerprints: 0<br>Added requirement fingerprints: 78 |
+| Auto-promoted owners are materialized in the canonical primary-source registry | passed | Promoted owners: 90<br>Canonical primary owners: 476 |
+| Canonical parseable primary owners align with parser input and parser output | passed | Canonical parseable primary owners: 476<br>Parsed owners: 476 |
+| Promoted owners appear in parser output and requirement fingerprints | passed | Promoted owners verified end-to-end: 90 |
+| Requirement fingerprint coverage stays aligned with parsed requirement owners | passed | Requirement fingerprints: 476<br>Parsed owners: 476<br>Added source fingerprints: 1<br>Added requirement fingerprints: 50 |
 | Eligible auto-promotions are fully cleared from the review queue and source-gap report | passed | Eligible owners fully cleared: 6 |
 | Year-tied primary degree sheets can trigger re-evaluation even when parsing still succeeds | passed | primary-source-appears-year-specific |
 | Weak-source replacement can trigger for an owner that already has an official primary source | passed | safe-intentional-empty-state, primary-url-looks-graduate-or-timeline, page-headings-look-graduate-or-timeline-heavy, primary-looks-overview-only |

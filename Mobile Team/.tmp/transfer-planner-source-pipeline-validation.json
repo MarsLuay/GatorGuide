@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-22T19:19:32.166Z",
-  "outcome": "failed",
-  "passedCount": 16,
-  "failedCount": 3,
+  "generatedAt": "2026-04-23T05:46:58.941Z",
+  "outcome": "passed",
+  "passedCount": 19,
+  "failedCount": 0,
   "metrics": {
     "eligibleAutoPromotionOwnerCount": 6,
     "eligibleAutoPromotionOwnerIds": [
@@ -118,10 +118,10 @@
       "uw-tacoma-urban-studies",
       "uw-tacoma-writing-studies"
     ],
-    "canonicalPrimaryOwnerCount": 367,
-    "parseablePrimaryOwnerCount": 367,
-    "parsedOwnerCount": 366,
-    "requirementFingerprintOwnerCount": 366
+    "canonicalPrimaryOwnerCount": 476,
+    "parseablePrimaryOwnerCount": 476,
+    "parsedOwnerCount": 476,
+    "requirementFingerprintOwnerCount": 476
   },
   "checks": [
     {
@@ -162,25 +162,27 @@
     {
       "id": "promotions-materialized-in-canonical-registry",
       "label": "Auto-promoted owners are materialized in the canonical primary-source registry",
-      "status": "failed",
+      "status": "passed",
       "details": [
-        "Promoted owners missing canonical primary entries: uw-seattle-biochemistry:pathway:ba-route, uw-seattle-biochemistry:pathway:bs-route, uw-seattle-chemistry:pathway:ba-route, uw-seattle-chemistry:pathway:bs-route, uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway, uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway, uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway, uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway\n+ actual - expected\n\n+ [\n+   'uw-seattle-biochemistry:pathway:ba-route',\n+   'uw-seattle-biochemistry:pathway:bs-route',\n+   'uw-seattle-chemistry:pathway:ba-route',\n+   'uw-seattle-chemistry:pathway:bs-route',\n+   'uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway'\n+ ]\n- []\n"
+        "Promoted owners: 90",
+        "Canonical primary owners: 476"
       ]
     },
     {
       "id": "registry-parser-alignment",
       "label": "Canonical parseable primary owners align with parser input and parser output",
-      "status": "failed",
+      "status": "passed",
       "details": [
-        "Parse report owner count should match the canonical parseable primary-owner count.\n\n366 !== 367\n"
+        "Canonical parseable primary owners: 476",
+        "Parsed owners: 476"
       ]
     },
     {
       "id": "promoted-owners-parsed-and-fingerprinted",
       "label": "Promoted owners appear in parser output and requirement fingerprints",
-      "status": "failed",
+      "status": "passed",
       "details": [
-        "Promoted owners missing parsed blocks: uw-seattle-biochemistry:pathway:ba-route, uw-seattle-biochemistry:pathway:bs-route, uw-seattle-chemistry:pathway:ba-route, uw-seattle-chemistry:pathway:bs-route, uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway, uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway, uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway, uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway, uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway\n+ actual - expected\n\n+ [\n+   'uw-seattle-biochemistry:pathway:ba-route',\n+   'uw-seattle-biochemistry:pathway:bs-route',\n+   'uw-seattle-chemistry:pathway:ba-route',\n+   'uw-seattle-chemistry:pathway:bs-route',\n+   'uw-seattle-electrical-computer-engineering:pathway:computer-architecture-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:control-systems-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:embedded-systems-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:machine-learning-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:microelectronics-and-nanotechnology-pathway',\n+   'uw-seattle-electrical-computer-engineering:pathway:neurotechnology-pathway'\n+ ]\n- []\n"
+        "Promoted owners verified end-to-end: 90"
       ]
     },
     {
@@ -188,10 +190,10 @@
       "label": "Requirement fingerprint coverage stays aligned with parsed requirement owners",
       "status": "passed",
       "details": [
-        "Requirement fingerprints: 366",
-        "Parsed owners: 366",
-        "Added source fingerprints: 0",
-        "Added requirement fingerprints: 78"
+        "Requirement fingerprints: 476",
+        "Parsed owners: 476",
+        "Added source fingerprints: 1",
+        "Added requirement fingerprints: 50"
       ]
     },
     {

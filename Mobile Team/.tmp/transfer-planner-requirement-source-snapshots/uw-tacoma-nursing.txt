@@ -19,6 +19,8 @@ Title: RN-BSN Sample Program Plans | School of Nursing & Healthcare Leadership |
 >
 1:00-3:30P
 1900 Commerce Street, Tacoma, WA 98402-3100
+2026 Applications Closed
+2027 applications will open in September
 253-692-4470
 25Live
 3:45-6:15P
@@ -43,7 +45,6 @@ Alumni
 Application Link
 Apply
 Apply new knowledge in practice
-APPLY NOW
 Apply to the Master of Nursing Program
 Apply to the RN-BSN Program
 aria-label="University of Washington Tacoma Homepage">
@@ -168,7 +169,6 @@ Students in the RN to BSN program are RNs who have completed the initial phase o
 Study Abroad
 style="display:none;
 Summer
-Summer & Autumn 2026 | Applications Open
 T HLTH 340
 T HLTH 415
 T NURS 360

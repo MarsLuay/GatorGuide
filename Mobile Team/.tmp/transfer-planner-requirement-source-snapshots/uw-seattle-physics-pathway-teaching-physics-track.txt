@@ -3,134 +3,63 @@ Source: https://phys.washington.edu/physics-bs-degree-requirements
 Title: Physics B.S. Degree Requirements | Department of Physics | University of Washington
 
 [Supplemental official source] B.S. Degree
-&copy; 2026 University of Washington . All rights reserved.
 100-level:
 200-level:
 2025-26 Quarterly Course Offerings
-About
-Adjuncts & Affiliates
-Administrative Contacts
 Advice For Prospective Majors
 Advice for Students
-Advising & Student Services
-All Staff
-Alumni News
-Alumni Update
 Applied physics track
 Applied Physics Track
-Awards
 B.S. Degree
 Bachelor of Science in Physics
-Bachelor of Science in Physics | Department of Physics | University of Washington
 Biological physics track (No longer accepting new students as of Spring 2024)
-Box 351560
 BS Degree Requirements Before Autumn 2021
-Calendar
 Capstone Options
-Centers & Institutes
-Climate & Diversity
-College of Arts & Sciences
 Common requirements, all tracks
 Common Requirements, All Tracks (52 credits)
-Community Support
 Comprehensive & Applied Physics Track Electives
 Comprehensive Physics Track
 Comprehensive track
-Contact Us
 Continuation Policy
-Course Exam Archive
-Course Syllabi
 Courses
-Courses Offered
 Declaring a Physics Major
 Declaring Major
-Department Faculty
-Department of Physics
-Department Profile
 Differential Calculus (5)
-Directories
 Electromagnetism (5)
-Emeritus Faculty
-Employment
-Events
-Events Mailing Lists
 Every Physics B.S. degree option requires completion of a selection of courses plus fulfilment of a capstone requirement involving activities outside a typical classroom. Continuation in the major requires maintaining satisfactory progress. For further information on the range of activies which may be used to satisfy the capstone requirement for each degree track, and on satisfactory progress criteria, refer to:
-Faculty
-Fax: (206) 685-0635
 For students interested in biophysics or medical physics
-Frontiers of Physics Lecture Series
-Full Directory
-Get Involved
 Graduation
-History
 Home
 Honors in Physics
-In Memoriam
-In the Press
-Instagram
 Integral Calculus (5)
-Introductory Courses
-IT Support (PACS)
-LinkedIn
-Machine Shop
-Main menu
-Make a Gift
 Maps
 Math 124 or Math 134
 Math 125 or Math 135
 Math 126 or Math 136
+Math 207 or AMath 351
+Math 208 or AMath 352
+Math 209 or AMath 353
 Mechanics (5)
 Mentoring Program
-Menu
 Multivariate Calculus (5)
-MyPhys
 MyUW
-News & Events
-Newsletter
 Our Physics B.S. degree program is one of the largest in the nation, with 175 degrees awarded annually. Graduates pursue diverse paths including further studies in physics, teaching careers, and positions in the private sector. The program offers three B.S. degree tracks: Comprehensive Physics, Applied Physics, and Teaching Physics, allowing students to tailor their degree to their interests and goals. Students choose a track when declaring a major, but can change it anytime before applying to graduate.
-People
 PhD Program
-PhD Students
-Phone: (206) 543-2771
 Phys 121 or Phys 141
 Phys 122 or Phys 142
 Phys 123 or Phys 143
 Physics B.S. Degree Requirements
-Physics Colloquium
 Physics Minor
-Physics News
-Physics-Astronomy Building, Rm. C121
-physrecp@uw.edu
-Postdocs
-Postdoctoral Fellowship Programs
-Privacy
-Professional Master&#039;s
+Professional Master's
 Programs & Courses
-Quick links
 Quick Links
-Recipients
 Requirements
-Research
-Research Areas
-Research Experiences for Undergrads (REU)
-Research News
-Research Seminars
-Resources
-Search
-Seattle, WA 98195-1560
 Share
-Site Map
-Skip to main content
 Society of Physics Students (SPS)
-Staff
 Student Services
-Student Shop
 Summer REU at UW
-Support Physics
-Support Us
 Teaching physics track
 Teaching Physics Track
-Terms
 The Applied Physics track is ideal for students pursuing technical jobs with a Physics B.S., offering a broad grounding in physics with fewer required courses and less intense math. It allows students to diversify skills in climate science, data science, electrical engineering, aerospace, or entrepreneurship, so students can easily pursue a double major in another STEM field. Unique requirements include a statistics-focused lab, a relevant computer programming class, and elective options in related science areas.
 The Comprehensive track is for students seeking a strong foundation in physics, including in-depth mathematical understanding. It is ideal for those planning to pursue a career in physics or related fields, as well as those considering graduate studies in physics or astronomy. To fully prepare for graduate school, take as many upper-division courses and research opportunities as possible.
 The course requirements for a Physics B.S. degree begin with a common set of course options, applicable to all degree tracks, followed by a selection of additional option-specific courses. Note that any single course may satisfy at most one physics-specific degree requirement.
@@ -138,13 +67,5 @@ The Teaching Physics track is for those interested in teaching physics or math a
 Topics
 Transfer Credit
 Undergraduate Research
-University of Washington
-Upcoming Events
-User account menu
-UW Course Catalog
-UW Time Schedule
-Visitor Information
-Washington
 Waves, Optics & Heat (5)
 You are here
-YouTube

@@ -1,32 +1,22 @@
 # Transfer Planner Owner Audit
 
-Generated: 2026-04-22T19:18:37.565Z
+Generated: 2026-04-23T06:18:22.669Z
 
-- Owners audited: 361
-- Owners with errors: 1
-- Owners with warnings: 11
-- Owners with source-only UW course codes: 76
-- Root-cause errors: 1
-- Root-cause warnings: 11
-- Raw symptom errors: 1
-- Raw symptom warnings: 11
+- Owners audited: 468
+- Owners with errors: 0
+- Owners with warnings: 16
+- Owners with source-only UW course codes: 46
+- Root-cause errors: 0
+- Root-cause warnings: 16
+- Raw symptom errors: 0
+- Raw symptom warnings: 16
 - Auto-promoted owner invariant violations: 0
-- Total source-only UW course codes: 3970
+- Total source-only UW course codes: 1282
 
 ## Root Cause Counts
 
-- no-parsed-uw-course-codes: 11
-- registry-parser-drift: 1
+- no-parsed-uw-course-codes: 16
 
-## Owners With Errors
-
-### Education Studies - Intercollegiate Athletics Leadership) (Fee-Based)
-- Owner: uw-seattle-education-studies:pathway:intercollegiate-athletics-leadership-fee-based
-- Campus: uw-seattle
-- Source: https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html
-- Auto-promoted primary source: no
-- [error] registry-parser-drift: Canonical registry and parsed requirement blocks drifted for this owner. ({"ownerId":"uw-seattle-education-studies:pathway:intercollegiate-athletics-leadership-fee-based","autoPromotedPrimarySource":false,"symptoms":["missing-parsed-source-block"]})
-- Diagnostic signals: missing-parsed-source-block
 ## Owners With Warnings
 
 ### Business Administration (BA)
@@ -35,22 +25,52 @@ Generated: 2026-04-22T19:18:37.565Z
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
+### Developmental and Youth Studies (BA) - M.Ed. with Educating for Critical Race Theory (E-Crit) Concentration
+- Owner: uw-bothell-developmental-and-youth-studies:pathway:m-ed-with-educating-for-critical-race-theory-e-crit-concentration
+- Campus: uw-bothell
+- Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
+- Diagnostic signals: no-parsed-uw-course-codes
 ### Economics (BS)
 - Owner: uw-bothell-economics
 - Campus: uw-bothell
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
-### Nursing (BS), First Year RN to BSN (Direct Entry) - Tenure Track
-- Owner: uw-bothell-nursing-first-year-rn-to-bsn:pathway:tenure-track
+### Economics (BS) - Leadership & Strategic Innovation Option
+- Owner: uw-bothell-economics:pathway:leadership-and-strategic-innovation-option
 - Campus: uw-bothell
-- Source: https://www.uwb.edu/nhs/about/promotion-and-tenure-guidelines
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
-### Nursing (BS), RN to BSN - Tenure track
-- Owner: uw-bothell-nursing-rn-to-bsn:pathway:tenure-track
+### Economics (BS) - MIS Concentration
+- Owner: uw-bothell-economics:pathway:mis-concentration
 - Campus: uw-bothell
-- Source: https://www.uwb.edu/nhs/about/promotion-and-tenure-guidelines
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
+- Diagnostic signals: no-parsed-uw-course-codes
+### Economics (BS) - Supply Chain Management Option
+- Owner: uw-bothell-economics:pathway:supply-chain-management-option
+- Campus: uw-bothell
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
+- Diagnostic signals: no-parsed-uw-course-codes
+### Economics (BS) - TIM Concentration
+- Owner: uw-bothell-economics:pathway:tim-concentration
+- Campus: uw-bothell
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
+- Diagnostic signals: no-parsed-uw-course-codes
+### Anthropology - Biological Anthropology)
+- Owner: uw-seattle-anthropology:pathway:biological-anthropology
+- Campus: uw-seattle
+- Source: https://www.washington.edu/students/gencat/program/S/Anthropology-102.html
+- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
+- Diagnostic signals: no-parsed-uw-course-codes
+### Anthropology - Sociocultural Anthropology)
+- Owner: uw-seattle-anthropology:pathway:sociocultural-anthropology
+- Campus: uw-seattle
+- Source: https://www.washington.edu/students/gencat/program/S/Anthropology-102.html
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
 ### Art History - Textual Studies)
@@ -63,12 +83,6 @@ Generated: 2026-04-22T19:18:37.565Z
 - Owner: uw-seattle-drama:pathway:acting
 - Campus: uw-seattle
 - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
-- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
-- Diagnostic signals: no-parsed-uw-course-codes
-### Education Studies - Curriculum and Instruction): Social Studies
-- Owner: uw-seattle-education-studies:pathway:curriculum-and-instruction-social-studies
-- Campus: uw-seattle
-- Source: https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
 ### Education Studies - Social Studies
@@ -87,6 +101,12 @@ Generated: 2026-04-22T19:18:37.565Z
 - Owner: uw-tacoma-arts-media-culture
 - Campus: uw-tacoma
 - Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+- [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
+- Diagnostic signals: no-parsed-uw-course-codes
+### Communications (BA) - Professional TRACK
+- Owner: uw-tacoma-communications:pathway:professional-track
+- Campus: uw-tacoma
+- Source: https://www.tacoma.uw.edu/sias/cac/communication
 - [warning] no-parsed-uw-course-codes: Parsed requirement source block produced zero UW course codes.
 - Diagnostic signals: no-parsed-uw-course-codes
 ### Social Welfare (BA)

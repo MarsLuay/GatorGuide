@@ -1,0 +1,38 @@
+Owner: uw-seattle-physics:pathway:followed-by-a-selection-of-additional-option
+Source: https://phys.washington.edu/physics-bs-degree-requirements
+Title: Physics B.S. Degree Requirements | Department of Physics | University of Washington
+
+Programs & Courses
+B.S. Degree
+Physics B.S. Degree Requirements
+Every Physics B.S. degree option requires completion of a selection of courses plus fulfilment of a capstone requirement involving activities outside a typical classroom. Continuation in the major requires maintaining satisfactory progress. For further information on the range of activies which may be used to satisfy the capstone requirement for each degree track, and on satisfactory progress criteria, refer to:
+Capstone Options
+Continuation Policy
+The course requirements for a Physics B.S. degree begin with a common set of course options, applicable to all degree tracks, followed by a selection of additional option-specific courses. Note that any single course may satisfy at most one physics-specific degree requirement.
+Common requirements, all tracks
+Comprehensive track
+Applied physics track
+Biological physics track (No longer accepting new students as of Spring 2024)
+Teaching physics track
+Comprehensive & Applied Physics Track Electives
+BS Degree Requirements Before Autumn 2021
+Common Requirements, All Tracks (52 credits)
+Courses
+Topics
+100-level:
+Phys 121 or Phys 141
+Mechanics (5)
+Phys 122 or Phys 142
+Electromagnetism (5)
+Phys 123 or Phys 143
+Waves, Optics & Heat (5)
+Math 124 or Math 134
+Differential Calculus (5)
+Math 125 or Math 135
+Integral Calculus (5)
+Math 126 or Math 136
+Multivariate Calculus (5)
+200-level:
+Math 207 or AMath 351
+Math 208 or AMath 352
+Math 209 or AMath 353
