@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-23T06:18:22.669Z",
-  "totalOwners": 468,
+  "generatedAt": "2026-04-23T09:35:34.739Z",
+  "totalOwners": 475,
   "ownersWithErrorsCount": 0,
   "ownersWithWarningsCount": 16,
-  "ownersWithSourceOnlyUwCourseCodesCount": 46,
-  "totalSourceOnlyUwCourseCodes": 1282,
+  "ownersWithSourceOnlyUwCourseCodesCount": 5,
+  "totalSourceOnlyUwCourseCodes": 148,
   "issueCounts": {
     "error": 0,
     "warning": 16
@@ -221,7 +221,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 45,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -243,7 +243,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 19,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -287,7 +287,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 16,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -309,7 +309,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 19,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -485,7 +485,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 26,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -529,7 +529,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 26,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -551,7 +551,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 26,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -573,7 +573,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
-      "sourceOnlyUwCourseCodeCount": 31,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -705,7 +705,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-      "sourceOnlyUwCourseCodeCount": 43,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -727,7 +727,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-      "sourceOnlyUwCourseCodeCount": 27,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -771,7 +771,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-      "sourceOnlyUwCourseCodeCount": 27,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -793,7 +793,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-      "sourceOnlyUwCourseCodeCount": 27,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -815,7 +815,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-      "sourceOnlyUwCourseCodeCount": 34,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -837,7 +837,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
-      "sourceOnlyUwCourseCodeCount": 27,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -947,7 +947,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
-      "sourceOnlyUwCourseCodeCount": 33,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1158,6 +1158,28 @@
       "symptomIssues": []
     },
     {
+      "ownerId": "uw-bothell-business-administration:pathway:management-concentration",
+      "ownerKey": "uw-bothell-business-administration::management-concentration",
+      "planId": "uw-bothell-business-administration",
+      "pathwayId": "management-concentration",
+      "pathwayLabel": "Management Concentration",
+      "title": "Business Administration (BA) - Management Concentration",
+      "campusId": "uw-bothell",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
       "ownerId": "uw-bothell-business-administration:pathway:marketing-option-and-concentration",
       "ownerKey": "uw-bothell-business-administration::marketing-option-and-concentration",
       "planId": "uw-bothell-business-administration",
@@ -1167,6 +1189,72 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration:pathway:mis-concentration",
+      "ownerKey": "uw-bothell-business-administration::mis-concentration",
+      "planId": "uw-bothell-business-administration",
+      "pathwayId": "mis-concentration",
+      "pathwayLabel": "Management Information Systems (MIS) Concentration",
+      "title": "Business Administration (BA) - Management Information Systems (MIS) Concentration",
+      "campusId": "uw-bothell",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration:pathway:retail-management-concentration",
+      "ownerKey": "uw-bothell-business-administration::retail-management-concentration",
+      "planId": "uw-bothell-business-administration",
+      "pathwayId": "retail-management-concentration",
+      "pathwayLabel": "Retail Management Concentration",
+      "title": "Business Administration (BA) - Retail Management Concentration",
+      "campusId": "uw-bothell",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-bothell-business-administration:pathway:tim-concentration",
+      "ownerKey": "uw-bothell-business-administration::tim-concentration",
+      "planId": "uw-bothell-business-administration",
+      "pathwayId": "tim-concentration",
+      "pathwayLabel": "Technology & Innovation Management (TIM) Concentration",
+      "title": "Business Administration (BA) - Technology & Innovation Management (TIM) Concentration",
+      "campusId": "uw-bothell",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/tim",
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
@@ -1202,16 +1290,16 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-chemistry-ba:pathway:biochemistry-option",
-      "ownerKey": "uw-bothell-chemistry-ba::biochemistry-option",
+      "ownerId": "uw-bothell-chemistry-ba:pathway:b-s-in-chemistry-general-option",
+      "ownerKey": "uw-bothell-chemistry-ba::b-s-in-chemistry-general-option",
       "planId": "uw-bothell-chemistry-ba",
-      "pathwayId": "biochemistry-option",
-      "pathwayLabel": "Biochemistry Option",
-      "title": "Chemistry (BA) - Biochemistry Option",
+      "pathwayId": "b-s-in-chemistry-general-option",
+      "pathwayLabel": "B.S. in Chemistry (general option)",
+      "title": "Chemistry (BA) - B.S. in Chemistry (general option)",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 46,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1224,12 +1312,12 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-chemistry-ba:pathway:general-option",
-      "ownerKey": "uw-bothell-chemistry-ba::general-option",
+      "ownerId": "uw-bothell-chemistry-ba:pathway:biochemistry-option",
+      "ownerKey": "uw-bothell-chemistry-ba::biochemistry-option",
       "planId": "uw-bothell-chemistry-ba",
-      "pathwayId": "general-option",
-      "pathwayLabel": "General Option",
-      "title": "Chemistry (BA) - General Option",
+      "pathwayId": "biochemistry-option",
+      "pathwayLabel": "Biochemistry Option",
+      "title": "Chemistry (BA) - Biochemistry Option",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
@@ -1268,16 +1356,16 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-chemistry-biochemistry:pathway:biochemistry-option",
-      "ownerKey": "uw-bothell-chemistry-biochemistry::biochemistry-option",
+      "ownerId": "uw-bothell-chemistry-biochemistry:pathway:b-s-in-chemistry-general-option",
+      "ownerKey": "uw-bothell-chemistry-biochemistry::b-s-in-chemistry-general-option",
       "planId": "uw-bothell-chemistry-biochemistry",
-      "pathwayId": "biochemistry-option",
-      "pathwayLabel": "Biochemistry Option",
-      "title": "Chemistry: Biochemistry (BS) - Biochemistry Option",
+      "pathwayId": "b-s-in-chemistry-general-option",
+      "pathwayLabel": "B.S. in Chemistry (general option)",
+      "title": "Chemistry: Biochemistry (BS) - B.S. in Chemistry (general option)",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 23,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1290,12 +1378,12 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-chemistry-biochemistry:pathway:general-option",
-      "ownerKey": "uw-bothell-chemistry-biochemistry::general-option",
+      "ownerId": "uw-bothell-chemistry-biochemistry:pathway:biochemistry-option",
+      "ownerKey": "uw-bothell-chemistry-biochemistry::biochemistry-option",
       "planId": "uw-bothell-chemistry-biochemistry",
-      "pathwayId": "general-option",
-      "pathwayLabel": "General Option",
-      "title": "Chemistry: Biochemistry (BS) - General Option",
+      "pathwayId": "biochemistry-option",
+      "pathwayLabel": "Biochemistry Option",
+      "title": "Chemistry: Biochemistry (BS) - Biochemistry Option",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
@@ -1334,16 +1422,16 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-chemistry-bs:pathway:biochemistry-option",
-      "ownerKey": "uw-bothell-chemistry-bs::biochemistry-option",
+      "ownerId": "uw-bothell-chemistry-bs:pathway:b-s-in-chemistry-general-option",
+      "ownerKey": "uw-bothell-chemistry-bs::b-s-in-chemistry-general-option",
       "planId": "uw-bothell-chemistry-bs",
-      "pathwayId": "biochemistry-option",
-      "pathwayLabel": "Biochemistry Option",
-      "title": "Chemistry (BS) - Biochemistry Option",
+      "pathwayId": "b-s-in-chemistry-general-option",
+      "pathwayLabel": "B.S. in Chemistry (general option)",
+      "title": "Chemistry (BS) - B.S. in Chemistry (general option)",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 46,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1356,12 +1444,12 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-chemistry-bs:pathway:general-option",
-      "ownerKey": "uw-bothell-chemistry-bs::general-option",
+      "ownerId": "uw-bothell-chemistry-bs:pathway:biochemistry-option",
+      "ownerKey": "uw-bothell-chemistry-bs::biochemistry-option",
       "planId": "uw-bothell-chemistry-bs",
-      "pathwayId": "general-option",
-      "pathwayLabel": "General Option",
-      "title": "Chemistry (BS) - General Option",
+      "pathwayId": "biochemistry-option",
+      "pathwayLabel": "Biochemistry Option",
+      "title": "Chemistry (BS) - Biochemistry Option",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
@@ -1466,12 +1554,12 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-csse-information-assurance-and-cybersecurity:pathway:iac-option",
-      "ownerKey": "uw-bothell-csse-information-assurance-and-cybersecurity::iac-option",
+      "ownerId": "uw-bothell-csse-information-assurance-and-cybersecurity:pathway:information-assurance-and-cybersecurity-iac-option",
+      "ownerKey": "uw-bothell-csse-information-assurance-and-cybersecurity::information-assurance-and-cybersecurity-iac-option",
       "planId": "uw-bothell-csse-information-assurance-and-cybersecurity",
-      "pathwayId": "iac-option",
-      "pathwayLabel": "IAC Option",
-      "title": "Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS) - IAC Option",
+      "pathwayId": "information-assurance-and-cybersecurity-iac-option",
+      "pathwayLabel": "Information Assurance and Cybersecurity IAC option",
+      "title": "Computer Science & Software Engineering: Information Assurance & Cybersecurity (BS) - Information Assurance and Cybersecurity IAC option",
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
@@ -1607,7 +1695,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 25,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1629,7 +1717,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 45,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1673,7 +1761,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 25,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1891,7 +1979,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-      "sourceOnlyUwCourseCodeCount": 20,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1971,7 +2059,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
-      "sourceOnlyUwCourseCodeCount": 20,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3801,7 +3889,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 22,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -3977,7 +4065,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 4,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -5875,7 +5963,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -6007,7 +6095,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 19,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -6029,7 +6117,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -6689,7 +6777,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://geography.washington.edu/ba-geography",
-      "sourceOnlyUwCourseCodeCount": 17,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -6711,7 +6799,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://geography.washington.edu/ba-geography",
-      "sourceOnlyUwCourseCodeCount": 15,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -7063,7 +7151,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://ischool.uw.edu/academics/informatics/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -8331,7 +8419,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 51,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -8939,7 +9027,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-      "sourceOnlyUwCourseCodeCount": 10,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -8961,7 +9049,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-      "sourceOnlyUwCourseCodeCount": 66,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -9005,7 +9093,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-      "sourceOnlyUwCourseCodeCount": 66,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -9415,7 +9503,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
-      "sourceOnlyUwCourseCodeCount": 18,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -9459,7 +9547,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -9472,12 +9560,12 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-tacoma-education:pathway:special-education-dual-endorsement-option",
-      "ownerKey": "uw-tacoma-education::special-education-dual-endorsement-option",
+      "ownerId": "uw-tacoma-education:pathway:special-education-dual-endorsement",
+      "ownerKey": "uw-tacoma-education::special-education-dual-endorsement",
       "planId": "uw-tacoma-education",
-      "pathwayId": "special-education-dual-endorsement-option",
-      "pathwayLabel": "Special Education DUAL Endorsement Option",
-      "title": "Education (BA) - Special Education DUAL Endorsement Option",
+      "pathwayId": "special-education-dual-endorsement",
+      "pathwayLabel": "SPECIAL EDUCATION DUAL ENDORSEMENT",
+      "title": "Education (BA) - SPECIAL EDUCATION DUAL ENDORSEMENT",
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
@@ -9648,6 +9736,50 @@
       "symptomIssues": []
     },
     {
+      "ownerId": "uw-tacoma-environmental-sustainability:pathway:business-nonprofit-leadership-option",
+      "ownerKey": "uw-tacoma-environmental-sustainability::business-nonprofit-leadership-option",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": "business-nonprofit-leadership-option",
+      "pathwayLabel": "Business and Nonprofit Leadership option",
+      "title": "Environmental Sustainability (BA) - Business and Nonprofit Leadership option",
+      "campusId": "uw-tacoma",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-sustainability:pathway:education-option",
+      "ownerKey": "uw-tacoma-environmental-sustainability::education-option",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": "education-option",
+      "pathwayLabel": "Education option",
+      "title": "Environmental Sustainability (BA) - Education option",
+      "campusId": "uw-tacoma",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/pre-environmental-education-option",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
       "ownerId": "uw-tacoma-environmental-sustainability:pathway:environmental-communication-option",
       "ownerKey": "uw-tacoma-environmental-sustainability::environmental-communication-option",
       "planId": "uw-tacoma-environmental-sustainability",
@@ -9657,7 +9789,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 32,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -9679,6 +9811,28 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-sustainability:pathway:policy-law-option",
+      "ownerKey": "uw-tacoma-environmental-sustainability::policy-law-option",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": "policy-law-option",
+      "pathwayLabel": "Policy and Law option",
+      "title": "Environmental Sustainability (BA) - Policy and Law option",
+      "campusId": "uw-tacoma",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-policy-and-law-option",
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
@@ -9767,7 +9921,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
-      "sourceOnlyUwCourseCodeCount": 18,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -9987,7 +10141,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
-      "sourceOnlyUwCourseCodeCount": 53,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -10031,7 +10185,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -10141,7 +10295,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
-      "sourceOnlyUwCourseCodeCount": 31,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -10185,7 +10339,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/socs/psychology",
-      "sourceOnlyUwCourseCodeCount": 50,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -10287,7 +10441,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-      "sourceOnlyUwCourseCodeCount": 28,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -10309,7 +10463,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
-      "sourceOnlyUwCourseCodeCount": 12,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -10353,7 +10507,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
-      "sourceOnlyUwCourseCodeCount": 19,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -10397,7 +10551,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
-      "sourceOnlyUwCourseCodeCount": 42,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -10507,7 +10661,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
-      "sourceOnlyUwCourseCodeCount": 16,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0

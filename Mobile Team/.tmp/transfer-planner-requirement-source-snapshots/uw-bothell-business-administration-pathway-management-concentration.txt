@@ -9,10 +9,14 @@ Title: Management Concentration - School of Business
 [Supplemental official source] Finance Option and Concentration
 [Supplemental official source] Management Information Systems (MIS) Concentration
 [Supplemental official source] Marketing Option and Concentration
+[Supplemental official source] Prerequisite Courses
 [Supplemental official source] Retail Management Concentration
 [Supplemental official source] Supplemental official track and option pages
 [Supplemental official source] Technology & Innovation Management (TIM) Concentration
 * A minimum grade of 2.7 in either course is required.
+**AP Statistics score not accepted
+*AP Calculus score of 3, 4, or 5 accepted
+*Higher level business statistics accepted
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 |
@@ -23,6 +27,7 @@ Title: Management Concentration - School of Business
 30 Credits
 425.352.5000
 425.352.5394
+5 credits
 60 Credits
 90 Credits
 A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
@@ -31,6 +36,7 @@ Accessibility
 Accounting Option
 Acquire the necessary skills to critically analyze the potential impact of upcoming technologies on various industrial sectors
 Admissions
+Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade point average (GPA) of at least a 2.0 and also have a cumulative business prerequisite GPA of at least a 2.5, prior to beginning their business studies at UW Bothell. These credits must include all of the following prerequisite courses (with a minimum grade of 2.0 in each):
 Advisory boards
 After graduation, students apply their knowledge in industries such as telecommunications, computing, engineering and biotechnology.
 All Business degree program students start out in the following introductory management course, which is a prerequisite to all other courses in the concentration:
@@ -38,6 +44,11 @@ All UW Bothell
 Alumni
 Apply As Undergraduate
 Awards
+B BUS 210
+B BUS 211
+B BUS 220/BIS 200
+B BUS 221/BIS 201
+B BUS 230
 B BUS 361 – Intermediate Accounting I
 B BUS 402 Managing Work Teams
 B BUS 427 Entrepreneurial Marketing (320)
@@ -48,6 +59,8 @@ B BUS 464 New Product Marketing (320)
 B BUS 471 Entrepreneurial Management
 B BUS 476 New Technology & Future Markets (300, 320, 350)
 B BUS 478 Venture Startup, Management & Growth
+B MATH 144
+BA& 240
 Bachelor in Business Administration
 Bachelor in Economics
 Bachelor of Business Administration
@@ -95,18 +108,22 @@ BBUS 489 – Digital Business Lab
 BBUS 490 – Special Topics in Business (300, 310) , Only counts when approved for concentration; see your advisor before registering.
 BBUS 491 – Business Consulting
 Beardslee Building (UWBB)
+Because the Bachelor Degree in Business Administration is an upper division program, students begin the program after completing prerequisite coursework. Transfer students applying to UW Bothell as Business majors and UW Bothell students declaring a Business major must have completed the majority of following courses at the time of application. All prerequisite coursework must be completed prior to matriculation (i.e., the start of studies at UW Bothell).
 Become a Mentor
 Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
+BIS 215 (previously BIS 315), B BUS 215, BMATH 215, or STMATH 341
 Bothell, WA 98011
 Bothell, Washington View our location on Google maps.
 Box 358533
 Business Consulting Course
+Calculus
 Campus Safety
 Canvas
 Capstone Courses
 Certificate in Accounting
 Choose two courses (10 credits) from the following:
 Close mobile menu
+COMMON TRANSFER COURSE NUMBERING
 Commuter Services
 Concentration Course Numbers & Names
 Concentration Courses
@@ -116,6 +133,7 @@ Contact us by phone at:
 Core Courses (prerequisites in parentheses)
 Course Numbers & Names
 Course Type
+COURSES
 CSS 143 – Computer Programming II and corequisite CSSSKL 143 – Computer Programming Skills II
 CSS 173 – Fundamentals of Programming Theory and Applications
 CSS 360 – Software Engineering
@@ -138,6 +156,7 @@ Facilities
 Faculty
 Finance Electives (prerequisites in parentheses)
 Finance Option and Concentration
+For example, if you’re a transfer student completing the remaining prerequisites in summer quarter, you can still apply to UW Bothell in spring with the intention of starting Business classes in fall quarter, so long as you’ve completed all the prerequisites before fall quarter begins.
 General Electives (any 300/400 level UW courses)
 Get a Mentor
 Give
@@ -164,9 +183,14 @@ Marketing Option and Concentration
 Marketing option/concentration students must complete the following courses for graduation:
 Master of Business Administration
 Master of Science in Accounting
+MATH 112, 124, 125, 126, 134, or 145
+MATH 390, Q SCI 381, or IND E 315
+MATH& 146 or
+MATH&148 or MATH& 151
 Mentors
 Mentorship EDGE
 Mentorship EDGE Mentors
+Microeconomics
 Minor in Actuarial Science
 Minor in Business Administration
 Minor in Economics
@@ -190,9 +214,13 @@ Policies & Petitions
 Position themselves to work in high-technology companies in areas such as product/project management, strategic planning and technology development
 Prerequisite Courses
 Prerequisites
+Prerequisites for matriculation
 Privacy
 Professional Coaching
 Promotion and Tenure Guidelines
+PSYCH 315, 317, or 318
+Q METH 201
+Q SCI 291
 Quick Links
 Related Links
 Required Capstone Courses
@@ -218,6 +246,9 @@ Search keywords
 Seattle Campus
 Skip To Content
 Staff
+STAT 220, 221 (221 prior to A’17), 311, or 390
+Statistics
+STMATH 113 & 114, 124, 125, or 126, or
 Students in the Entrepreneurship concentration must complete the following courses for graduation.
 Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
 Students in the Retail Management concentration must complete the following courses for graduation:
@@ -247,12 +278,14 @@ Tuition and Financial Aid
 Undergraduate
 Undergraduate Programs
 University of Washington Bothell Homepage
+UW BOTHELL
 UW Bothell Facebook
 UW Bothell Home
 UW Bothell Instagram
 UW Bothell Linkedin
 UW Bothell Twitter
 UW Bothell Youtube
+UW IN SEATTLE
 uwbbusiness@uw.edu
 Vision, Mission & Values
 Visitors

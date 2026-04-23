@@ -1,17 +1,17 @@
 # Transfer Planner Owner Audit
 
-Generated: 2026-04-23T06:18:22.669Z
+Generated: 2026-04-23T09:35:34.739Z
 
-- Owners audited: 468
+- Owners audited: 475
 - Owners with errors: 0
 - Owners with warnings: 16
-- Owners with source-only UW course codes: 46
+- Owners with source-only UW course codes: 5
 - Root-cause errors: 0
 - Root-cause warnings: 16
 - Raw symptom errors: 0
 - Raw symptom warnings: 16
 - Auto-promoted owner invariant violations: 0
-- Total source-only UW course codes: 1282
+- Total source-only UW course codes: 148
 
 ## Root Cause Counts
 

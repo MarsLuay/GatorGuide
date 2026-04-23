@@ -1,16 +1,16 @@
 # Transfer Planner Requirement Source Parse Report
 
-Generated: 2026-04-23T06:09:13.305Z
+Generated: 2026-04-23T12:04:59.117Z
 
-- Primary degree sources parsed: 2
-- Parsed successfully: 2
+- Primary degree sources parsed: 1
+- Parsed successfully: 1
 - Parse failures: 0
-- Parsed requirement source adapter blocks: 2
-- Parsed requirement atom candidates: 71
-- Parsed degree-map block candidates: 2
+- Parsed requirement source adapter blocks: 1
+- Parsed requirement atom candidates: 4
+- Parsed degree-map block candidates: 1
 - Parsed from cached snapshots after live-source failures: 0
 - Parsed from alternate official source URLs: 0
-- Owners with parsed UW course codes: 2
+- Owners with parsed UW course codes: 1
 - Owners with source-only UW course codes not currently in structured degree-map blocks: 0
 - Owners with no parsed UW course codes: 0
 - Owners with parser-quality warnings: 0
@@ -18,11 +18,11 @@ Generated: 2026-04-23T06:09:13.305Z
 
 ## Parser Adapters
 
-- uw-seattle-html-degree-page: 2
+- uw-tacoma-html-degree-page: 1
 
 ## Resolution Strategies
 
-- primary-source: 2
+- primary-source: 1
 
 ## Parser Quality Signals
 
@@ -103,12 +103,6 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=24; source-only=0; structured-only=15) | large-structured-only-course-gap (structured-only=15; parsed=24; structured-coverage=39)
 
-#### Bioengineering - PHD Data Science Option
-
-- Source: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=22; source-only=22; structured-only=0)
-
 #### Community, Environment & Planning
 
 - Source: https://www.washington.edu/students/gencat/program/S/UrbanDesignandPlanning-50.html
@@ -125,49 +119,43 @@ Generated: 2026-04-23T06:09:13.305Z
 
 - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=47; source-only=0; structured-only=5)
-
-#### Drama - Acting)
-
-- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
-- Parse confidence: medium
-- Quality warnings: material-source-structured-drift (parsed=0; source-only=0; structured-only=6)
+- Quality warnings: material-source-structured-drift (parsed=70; source-only=18; structured-only=0)
 
 #### Drama - Design
 
 - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=47; source-only=0; structured-only=5)
+- Quality warnings: material-source-structured-drift (parsed=70; source-only=18; structured-only=0)
 
 #### Drama - Design - Costume)
 
 - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=47; source-only=0; structured-only=5)
+- Quality warnings: material-source-structured-drift (parsed=70; source-only=18; structured-only=0)
 
 #### Drama - Design - Lighting)
 
 - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=47; source-only=0; structured-only=5)
+- Quality warnings: material-source-structured-drift (parsed=70; source-only=18; structured-only=0)
 
 #### Drama - Design - Scenery)
 
 - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=47; source-only=0; structured-only=5)
+- Quality warnings: material-source-structured-drift (parsed=70; source-only=18; structured-only=0)
 
 #### Drama - Performance
 
 - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=47; source-only=0; structured-only=5)
+- Quality warnings: material-source-structured-drift (parsed=70; source-only=18; structured-only=0)
 
 #### Drama - Textual Studies)
 
 - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=47; source-only=0; structured-only=5)
+- Quality warnings: material-source-structured-drift (parsed=70; source-only=18; structured-only=0)
 
 #### Earth & Space Sciences
 
@@ -229,24 +217,6 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=19; source-only=0; structured-only=10) | large-structured-only-course-gap (structured-only=10; parsed=19; structured-coverage=29)
 
-#### Electrical & Computer Engineering - Digital Systems Design Pathway
-
-- Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=46; source-only=46; structured-only=0)
-
-#### Electrical & Computer Engineering - Sensing and Communication Pathway
-
-- Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=19; source-only=19; structured-only=0)
-
-#### Electrical & Computer Engineering - Sustainable Energy Systems Pathway
-
-- Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=46; source-only=46; structured-only=0)
-
 #### Environmental Science & Terrestrial Resource Management
 
 - Source: https://www.washington.edu/students/gencat/academic/sefs.html
@@ -295,18 +265,6 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=7; source-only=0; structured-only=39) | large-structured-only-course-gap (structured-only=39; parsed=7; structured-coverage=46) | high-confidence-low-course-coverage (parsed=7; structured-coverage=46; structured-only=39)
 
-#### Geography - Economy and Sustainability Track
-
-- Source: https://geography.washington.edu/ba-geography
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=17; source-only=17; structured-only=0)
-
-#### Geography - Health and Development Track
-
-- Source: https://geography.washington.edu/ba-geography
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=15; source-only=15; structured-only=0)
-
 #### History & Philosophy of Science
 
 - Source: https://www.washington.edu/students/gencat/program/S/Philosophy-221.html
@@ -331,107 +289,126 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=80; source-only=0; structured-only=23) | large-structured-only-course-gap (structured-only=23; parsed=80; structured-coverage=103)
 
+#### Mathematics
+
+- Source: https://math.washington.edu/ba-mathematics-standard-major-requirements-0
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=13; source-only=0; structured-only=15) | large-structured-only-course-gap (structured-only=15; parsed=13; structured-coverage=28)
+
+#### Mathematics - Major Option Electives
+
+- Source: https://math.washington.edu/ba-mathematics-standard-major-requirements-0
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=13; source-only=0; structured-only=15) | large-structured-only-course-gap (structured-only=15; parsed=13; structured-coverage=28)
+
+#### Middle Eastern Languages & Cultures
+
+- Source: https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=26; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=26; structured-coverage=35)
+
+#### Middle Eastern Languages & Cultures - Biblical and Ancient Near Eastern Studies
+
+- Source: https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=26; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=26; structured-coverage=35)
+
+#### Middle Eastern Languages & Cultures - Comparative Cultures
+
+- Source: https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=26; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=26; structured-coverage=35)
+
+#### Middle Eastern Languages & Cultures - Languages and Literatures
+
+- Source: https://www.washington.edu/students/gencat/program/S/MiddleEasternLanguagesandCultures-123.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=26; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=26; structured-coverage=35)
+
+#### Philosophy
+
+- Source: https://www.washington.edu/students/gencat/program/S/Philosophy-221.html
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=80; source-only=0; structured-only=23) | large-structured-only-course-gap (structured-only=23; parsed=80; structured-coverage=103)
+
 ### Possible source-vs-structured drift
 
-#### Bioengineering - PHD Data Science Option
+#### Drama
 
-- Source: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-- Parser type: html-degree-page
-- Parser adapter: uw-seattle-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: AMATH 351, AMATH 352, BIOEN 401, BIOEN 402, BIOEN 404, CEE 220, CEE 350, CEE 357, CEE 480, CEE 495, CHEM 142, CHEM 152, CHEM 162, CHEM 223, CHEM 237, CSE 121, ENGR 115, MATH 124, MATH 125, MATH 126, MATH 207, MATH 208
-- Requirement cues: Undergraduate Degree Requirements – UW Bioengineering | PHD Data Science Option | Undergraduate Degree Requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-bioengineering-pathway-phd-data-science-option.txt
-
-#### Biology - option
-
-- Source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
 - Parser type: catalog-page
 - Parser adapter: uw-seattle-catalog-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BIOL 180, BIOL 200, BIOL 220, BIOL 240
-- Requirement cues: Students may earn a Biology BA with a General Biology Option. The Biology BS degree can be earned with one of 5 options: Ecology Evolution and Conservation Biology (EEC), General Biology, Molecular Cellular and Developmental Biology (MCD), Physiology, and Plant Biology. Minors in Paleo Biology and Marine Biology are also part of the curriculum offered to Undergraduates. | Admission Requirements | Minimum requirements for consideration
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-biology-pathway-option.txt
+- Source-only UW course codes: DANCE 530, DRAMA 303, DRAMA 316, DRAMA 317, DRAMA 351, DRAMA 391, DRAMA 451, DRAMA 452, DRAMA 453, DRAMA 454, DRAMA 455, DRAMA 456, DRAMA 457, DRAMA 490, DRAMA 491, DRAMA 498, DRAMA 499, DRAMA 562
+- Requirement cues: Admission Requirements | No audition is required to enter the program. | Completion Requirements
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-drama.txt
 
-#### Electrical & Computer Engineering - Digital Systems Design Pathway
+#### Drama - Design
 
-- Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
-- Parser type: html-degree-page
-- Parser adapter: uw-seattle-html-degree-page
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
+- Parser type: catalog-page
+- Parser adapter: uw-seattle-catalog-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BIOL 161, BIOL 162, CHEM 152, CHEM 153, CHEM 155, CHEM 220, CSE 123, CSE 143, CSE 373, CSE 374, EE 233, EE 331, EE 332, EE 371, EE 393, EE 397, EE 398, EE 406, EE 418, EE 437, EE 447, EE 449, EE 461, EE 469, EE 470, EE 475, EE 476, EE 477, EE 478, EE 490, EE 492, EE 497, EE 498, EE 499, ENGL 131, ENGR 321, ENGR 333, INDE 315, MATH 134, MATH 135, MATH 136, PHYS 121, PHYS 122, PHYS 141, PHYS 142, STAT 390
-- Requirement cues: (Only EE course credits may apply except where specifically noted) | 1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward* | 1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-electrical-computer-engineering-pathway-digital-systems-design-pathway.txt
+- Source-only UW course codes: DANCE 530, DRAMA 303, DRAMA 316, DRAMA 317, DRAMA 351, DRAMA 391, DRAMA 451, DRAMA 452, DRAMA 453, DRAMA 454, DRAMA 455, DRAMA 456, DRAMA 457, DRAMA 490, DRAMA 491, DRAMA 498, DRAMA 499, DRAMA 562
+- Requirement cues: Admission Requirements | No audition is required to enter the program. | Completion Requirements
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-drama-pathway-design.txt
 
-#### Electrical & Computer Engineering - Sensing and Communication Pathway
+#### Drama - Design - Costume)
 
-- Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
-- Parser type: html-degree-page
-- Parser adapter: uw-seattle-html-degree-page
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
+- Parser type: catalog-page
+- Parser adapter: uw-seattle-catalog-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: CSE 123, CSE 143, CSE 373, CSE 374, EE 233, EE 371, EE 393, EE 419, EE 437, EE 449, EE 461, EE 469, EE 475, EE 478, EE 490, EE 497, EE 498, EE 499, ENGR 321
-- Requirement cues: (Only EE course credits may apply except where specifically noted) | 1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward* | 1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-electrical-computer-engineering-pathway-sensing-and-communication-pathway.txt
+- Source-only UW course codes: DANCE 530, DRAMA 303, DRAMA 316, DRAMA 317, DRAMA 351, DRAMA 391, DRAMA 451, DRAMA 452, DRAMA 453, DRAMA 454, DRAMA 455, DRAMA 456, DRAMA 457, DRAMA 490, DRAMA 491, DRAMA 498, DRAMA 499, DRAMA 562
+- Requirement cues: Admission Requirements | No audition is required to enter the program. | Completion Requirements
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-drama-pathway-design-costume.txt
 
-#### Electrical & Computer Engineering - Sustainable Energy Systems Pathway
+#### Drama - Design - Lighting)
 
-- Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
-- Parser type: html-degree-page
-- Parser adapter: uw-seattle-html-degree-page
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
+- Parser type: catalog-page
+- Parser adapter: uw-seattle-catalog-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BIOL 161, BIOL 162, CHEM 152, CHEM 153, CHEM 155, CHEM 220, CSE 123, CSE 143, CSE 373, CSE 374, EE 233, EE 331, EE 332, EE 371, EE 393, EE 397, EE 398, EE 406, EE 418, EE 437, EE 447, EE 449, EE 461, EE 469, EE 470, EE 475, EE 476, EE 477, EE 478, EE 490, EE 492, EE 497, EE 498, EE 499, ENGL 131, ENGR 321, ENGR 333, INDE 315, MATH 134, MATH 135, MATH 136, PHYS 121, PHYS 122, PHYS 141, PHYS 142, STAT 390
-- Requirement cues: (Only EE course credits may apply except where specifically noted) | 1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward* | 1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-electrical-computer-engineering-pathway-sustainable-energy-systems-pathway.txt
+- Source-only UW course codes: DANCE 530, DRAMA 303, DRAMA 316, DRAMA 317, DRAMA 351, DRAMA 391, DRAMA 451, DRAMA 452, DRAMA 453, DRAMA 454, DRAMA 455, DRAMA 456, DRAMA 457, DRAMA 490, DRAMA 491, DRAMA 498, DRAMA 499, DRAMA 562
+- Requirement cues: Admission Requirements | No audition is required to enter the program. | Completion Requirements
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-drama-pathway-design-lighting.txt
 
-#### Geography - Economy and Sustainability Track
+#### Drama - Design - Scenery)
 
-- Source: https://geography.washington.edu/ba-geography
-- Parser type: html-degree-page
-- Parser adapter: uw-seattle-html-degree-page
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
+- Parser type: catalog-page
+- Parser adapter: uw-seattle-catalog-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: AMONG GEOG 317, AMONG GEOG 326, AMONG GEOG 425, AMONG GEOG 426, GEOG 123, GEOG 230, GEOG 245, GEOG 258, GEOG 280, GEOG 315, GEOG 360, GEOG 371, GEOG 375, GEOG 381, GEOG 458, GEOG 496, GEOG 499
-- Requirement cues: A combined total of 5 credits of Internship (GEOG 496) and Independent Study (GEOG 499) may be counted towards the required 60 geography credits. | B.A. in Geography: Data Science Option | B.A. in Geography: Data Science Option Sample Course Plan
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-geography-pathway-economy-and-sustainability-track.txt
+- Source-only UW course codes: DANCE 530, DRAMA 303, DRAMA 316, DRAMA 317, DRAMA 351, DRAMA 391, DRAMA 451, DRAMA 452, DRAMA 453, DRAMA 454, DRAMA 455, DRAMA 456, DRAMA 457, DRAMA 490, DRAMA 491, DRAMA 498, DRAMA 499, DRAMA 562
+- Requirement cues: Admission Requirements | No audition is required to enter the program. | Completion Requirements
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-drama-pathway-design-scenery.txt
 
-#### Geography - Health and Development Track
+#### Drama - Performance
 
-- Source: https://geography.washington.edu/ba-geography
-- Parser type: html-degree-page
-- Parser adapter: uw-seattle-html-degree-page
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
+- Parser type: catalog-page
+- Parser adapter: uw-seattle-catalog-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: AMONG GEOG 317, AMONG GEOG 326, AMONG GEOG 425, AMONG GEOG 426, GEOG 123, GEOG 230, GEOG 245, GEOG 258, GEOG 280, GEOG 315, GEOG 360, GEOG 381, GEOG 458, GEOG 496, GEOG 499
-- Requirement cues: A combined total of 5 credits of Internship (GEOG 496) and Independent Study (GEOG 499) may be counted towards the required 60 geography credits. | B.A. in Geography: Data Science Option | B.A. in Geography: Data Science Option Sample Course Plan
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-geography-pathway-health-and-development-track.txt
+- Source-only UW course codes: DANCE 530, DRAMA 303, DRAMA 316, DRAMA 317, DRAMA 351, DRAMA 391, DRAMA 451, DRAMA 452, DRAMA 453, DRAMA 454, DRAMA 455, DRAMA 456, DRAMA 457, DRAMA 490, DRAMA 491, DRAMA 498, DRAMA 499, DRAMA 562
+- Requirement cues: Admission Requirements | No audition is required to enter the program. | Completion Requirements
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-drama-pathway-performance.txt
 
-#### Informatics - Data Science Option
+#### Drama - Textual Studies)
 
-- Source: https://ischool.uw.edu/academics/informatics/curriculum
-- Parser type: html-curriculum-page
-- Parser adapter: uw-seattle-html-degree-page
+- Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
+- Parser type: catalog-page
+- Parser adapter: uw-seattle-catalog-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BIME 300, BIME 435, CSE 143, CSE 163, HUSKY 100, INFO 200, INFO 201, INFO 290, INFO 300, INFO 330, INFO 340, INFO 360, INFO 370, INFO 371, INFO 380, INFO 430, INFO 442, INFO 443, INFO 468, INFO 474, INFO 478, INFO 490, INFO 491
-- Requirement cues: Begin taking major electives/degree option classes spring of junior year | Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478. | Capstone (8-credits): Students complete a culminating experience.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-informatics-pathway-data-science-option.txt
-
-#### Political Science - International Security Option
-
-- Source: https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf
-- Primary source: https://www.polisci.washington.edu/political-science-major-declaration-and-requirements
-- Parser type: pdf-degree-sheet
-- Parser adapter: generic-official-pdf-degree-sheet
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: AFRAM 246, COM 407, COM 420, CONFLICT A 401, CR 110, CR 120, CR 498, ECON 200, ECON 201, ECON 452, ENVIR 384, ENVIR 385, GWSS 206, HSTCMP 249, JSISA 213, JSISA 321, JSISA 322, JSISA 340, JSISA 342, JSISA 343, JSISA 417, JSISA 459, JSISA 487, JSISA 490, JSISB 120, JSISB 310, JSISB 419, JSISB 451, JSISB 469, JSISB 472, LSJ 347, LSJ 428, PHIL 206, PHIL 207, POLICY C 384, POLICY D 473, POLS 101, POLS 201, POLS 202, POLS 203, POLS 204, POLS 270, POLS 321, POLS 407, POLS 497, POLS 499, RIGHTS D 451, SCAND 326, SOC 266, STATES D 474, VARIABLE 496
-- Requirement cues: [Page 2] Autumn Semester, Spring Semester, Summer Quarter. This 15 credit Washington, D.C., program finds | [Page 2] See the website for Honors Program information, eligibility and requirements. Applications are due in early | [Page 2] Students in this one-year 15-credit program assist with faculty research and to also develop their own research
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-political-science-pathway-international-security-option.txt
+- Source-only UW course codes: DANCE 530, DRAMA 303, DRAMA 316, DRAMA 317, DRAMA 351, DRAMA 391, DRAMA 451, DRAMA 452, DRAMA 453, DRAMA 454, DRAMA 455, DRAMA 456, DRAMA 457, DRAMA 490, DRAMA 491, DRAMA 498, DRAMA 499, DRAMA 562
+- Requirement cues: Admission Requirements | No audition is required to enter the program. | Completion Requirements
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-drama-pathway-textual-studies.txt
 
 ### Parsed but no UW course codes found
 
@@ -447,10 +424,6 @@ Generated: 2026-04-23T06:09:13.305Z
   - Source: https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html
   - Parser type: catalog-page
   - Requirement cues found: 0
-- Drama - Acting)
-  - Source: https://www.washington.edu/students/gencat/program/S/Drama-134.html
-  - Parser type: catalog-page
-  - Requirement cues found: 5
 - Education Studies - Social Studies
   - Source: https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html
   - Parser type: html-degree-page
@@ -464,41 +437,42 @@ Generated: 2026-04-23T06:09:13.305Z
 
 ### Parser-quality warnings
 
+#### Business Administration (BA)
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=29; source-only=29; structured-only=0)
+- Primary source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum
+
 #### Business Administration (BA) - Accounting Option
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=37; source-only=0; structured-only=5)
+- Quality warnings: material-source-structured-drift (parsed=67; source-only=26; structured-only=1)
 
 #### Business Administration (BA) - Entrepreneurship Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=20; source-only=0; structured-only=6)
+- Quality warnings: material-source-structured-drift (parsed=51; source-only=26; structured-only=1)
 
 #### Business Administration (BA) - Finance option and Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=19; source-only=0; structured-only=5)
+- Quality warnings: material-source-structured-drift (parsed=24; source-only=3; structured-only=3)
 
 #### Business Administration (BA) - Management Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=21; source-only=0; structured-only=7)
-
-#### Business Administration (BA) - Management Information Systems (MIS) Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/mis
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=27; source-only=0; structured-only=5)
+- Quality warnings: material-source-structured-drift (parsed=53; source-only=26; structured-only=1)
 
 #### Business Administration (BA) - Retail Management Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=18; source-only=0; structured-only=7)
+- Quality warnings: material-source-structured-drift (parsed=50; source-only=26; structured-only=1)
 
 #### Business Administration: Accounting (BA) - Accounting Option
 
@@ -518,18 +492,6 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=20; source-only=0; structured-only=5)
 
-#### Business Administration: Accounting (BA) - Leadership & Strategic Innovation Option
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=45; source-only=45; structured-only=0)
-
-#### Business Administration: Accounting (BA) - Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=19; source-only=19; structured-only=0)
-
 #### Business Administration: Accounting (BA) - Marketing Option and Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
@@ -540,13 +502,7 @@ Generated: 2026-04-23T06:09:13.305Z
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=16; source-only=16; structured-only=0)
-
-#### Business Administration: Accounting (BA) - Retail Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=19; source-only=19; structured-only=0)
+- Quality warnings: material-source-structured-drift (parsed=16; source-only=0; structured-only=7)
 
 #### Business Administration: Finance (BA) - Finance Option and Concentration
 
@@ -566,12 +522,6 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=25; source-only=0; structured-only=5)
 
-#### Business Administration: Leadership & Strategic Innovation (BA) - Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=26; source-only=26; structured-only=0)
-
 #### Business Administration: Leadership & Strategic Innovation (BA) - Marketing Option and Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
@@ -582,61 +532,13 @@ Generated: 2026-04-23T06:09:13.305Z
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=26; source-only=26; structured-only=0)
-
-#### Business Administration: Leadership & Strategic Innovation (BA) - Retail Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=26; source-only=26; structured-only=0)
-
-#### Business Administration: Leadership & Strategic Innovation (BA) - Supply Chain Management Option
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=31; source-only=31; structured-only=0)
+- Quality warnings: material-source-structured-drift (parsed=26; source-only=0; structured-only=7)
 
 #### Business Administration: Leadership & Strategic Innovation (BA) - TIM Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=26; source-only=0; structured-only=7)
-
-#### Business Administration: Marketing (BA) - Leadership & Strategic Innovation Option
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=43; source-only=43; structured-only=0)
-
-#### Business Administration: Marketing (BA) - Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=27; source-only=27; structured-only=0)
-
-#### Business Administration: Marketing (BA) - MIS Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=27; source-only=27; structured-only=0)
-
-#### Business Administration: Marketing (BA) - Retail Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=27; source-only=27; structured-only=0)
-
-#### Business Administration: Marketing (BA) - Supply Chain Management Option
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=34; source-only=34; structured-only=0)
-
-#### Business Administration: Marketing (BA) - TIM Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=27; source-only=27; structured-only=0)
 
 #### Business Administration: Supply Chain Management (BA) - Accounting Option
 
@@ -650,12 +552,6 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=27; source-only=0; structured-only=7)
 
-#### Business Administration: Supply Chain Management (BA) - Leadership & Strategic Innovation Option
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=33; source-only=33; structured-only=0)
-
 #### Business Administration: Supply Chain Management (BA) - Marketing Option and Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain
@@ -668,247 +564,217 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=30; source-only=0; structured-only=5)
 
-#### Developmental and Youth Studies (BA) - CECL Concentration
+#### Chemistry (BA) - B.S. in Chemistry (general option)
 
-- Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=25; source-only=25; structured-only=0)
+- Quality warnings: material-source-structured-drift (parsed=46; source-only=46; structured-only=0)
 
-#### Developmental and Youth Studies (BA) - Education Studies: Elementary Education Option
+#### Chemistry (BS) - B.S. in Chemistry (general option)
 
-- Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=45; source-only=45; structured-only=0)
+- Quality warnings: material-source-structured-drift (parsed=46; source-only=46; structured-only=0)
 
-#### Developmental and Youth Studies (BA) - LEDE Concentration
+#### Chemistry: Biochemistry (BS) - B.S. in Chemistry (general option)
 
-- Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=25; source-only=25; structured-only=0)
+- Quality warnings: material-source-structured-drift (parsed=23; source-only=23; structured-only=0)
 
-#### Economics (BS) - Finance Option and Concentration
+#### Economics (BS)
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-- Parse confidence: medium
-- Quality warnings: material-source-structured-drift (parsed=2; source-only=0; structured-only=6)
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=38; source-only=38; structured-only=0)
+
+#### Economics (BS) - Accounting Option
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=25; source-only=20; structured-only=0)
+
+#### Economics (BS) - Entrepreneurship Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=30; source-only=18; structured-only=0)
 
 #### Economics (BS) - Management Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=20; source-only=20; structured-only=0)
+- Quality warnings: material-source-structured-drift (parsed=43; source-only=21; structured-only=0)
 
-#### Economics (BS) - Marketing Option and Concentration
+#### Economics (BS) - MIS Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-- Parse confidence: medium
-- Quality warnings: material-source-structured-drift (parsed=2; source-only=0; structured-only=6)
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=38; source-only=38; structured-only=0)
 
 #### Economics (BS) - Retail Management Concentration
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=20; source-only=20; structured-only=0)
+- Quality warnings: material-source-structured-drift (parsed=43; source-only=21; structured-only=0)
+
+#### Economics (BS) - TIM Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=38; source-only=38; structured-only=0)
 
 ### Possible source-vs-structured drift
 
-#### Business Administration: Accounting (BA) - Leadership & Strategic Innovation Option
+#### Business Administration (BA)
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
+- Primary source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum
+- Parser type: html-overview-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: alternate-official-source
+- Parse confidence: high
+- Source-only UW course codes: BBUS 210, BBUS 211, BBUS 215, BBUS 220, BBUS 221, BBUS 230, BIS 200, BIS 201, BIS 215, BMATH 144, BMATH 215, ENGL 131, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 113, STMATH 124, STMATH 125, STMATH 126, STMATH 341
+- Requirement cues: *Meeting the minimum requirements does not guarantee admission. | 5 credits | A minimum grade of 2.0 in each business prerequisite course
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration.txt
+
+#### Business Administration (BA) - Accounting Option
 
 - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
-- Parser type: html-overview-page
+- Parser type: html-degree-page
 - Parser adapter: uw-bothell-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 340, BBUS 350, BBUS 361, BBUS 362, BBUS 363, BBUS 373, BBUS 402, BBUS 411, BBUS 412, BBUS 429, BBUS 431, BBUS 435, BBUS 441, BBUS 443, BBUS 444, BBUS 449, BBUS 450, BBUS 451, BBUS 453, BBUS 454, BBUS 458, BBUS 460, BBUS 462, BBUS 463, BBUS 464, BBUS 465, BBUS 466, BBUS 467, BBUS 468, BBUS 470, BBUS 471, BBUS 473, BBUS 475, BBUS 476, BBUS 479, BBUS 480, BBUS 490, BBUS 491, BMATH 144, MATH 112, STMATH 124
+- Source-only UW course codes: BBUS 210, BBUS 211, BBUS 215, BBUS 220, BBUS 221, BBUS 230, BIS 200, BIS 201, BIS 215, BMATH 215, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 113, STMATH 125, STMATH 126, STMATH 341
+- Structured-only UW course codes not seen in the parsed source: BBUS 438
 - Requirement cues: (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.) | (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information). | 10 credits
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-accounting-pathway-leadership-and-strategic-innovation-option.txt
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-pathway-accounting-option.txt
 
-#### Business Administration: Accounting (BA) - Management Concentration
+#### Business Administration (BA) - Entrepreneurship Concentration
 
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 361, BBUS 373, BBUS 443, BBUS 444, BBUS 451, BBUS 453, BBUS 454, BBUS 470, BBUS 480, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives: | *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-accounting-pathway-management-concentration.txt
-
-#### Business Administration: Accounting (BA) - MIS Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 340, BBUS 350, BBUS 361, BBUS 373, BBUS 451, BBUS 453, BBUS 454, BBUS 470, BBUS 480, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives: | *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-accounting-pathway-mis-concentration.txt
-
-#### Business Administration: Accounting (BA) - Retail Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 361, BBUS 373, BBUS 443, BBUS 444, BBUS 451, BBUS 453, BBUS 454, BBUS 470, BBUS 480, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives: | *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-accounting-pathway-retail-management-concentration.txt
-
-#### Business Administration: Leadership & Strategic Innovation (BA) - Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 402, BBUS 441, BBUS 443, BBUS 444, BBUS 460, BBUS 461, BBUS 462, BBUS 470, BBUS 471, BBUS 472, BBUS 473, BBUS 475, BBUS 476, BBUS 477, BBUS 479, BBUS 480, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-leadership-and-strategic-innovation-pathway-management-concentration.txt
-
-#### Business Administration: Leadership & Strategic Innovation (BA) - MIS Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 402, BBUS 441, BBUS 443, BBUS 444, BBUS 460, BBUS 461, BBUS 462, BBUS 470, BBUS 471, BBUS 472, BBUS 473, BBUS 475, BBUS 476, BBUS 477, BBUS 479, BBUS 480, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-leadership-and-strategic-innovation-pathway-mis-concentration.txt
-
-#### Business Administration: Leadership & Strategic Innovation (BA) - Retail Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 402, BBUS 441, BBUS 443, BBUS 444, BBUS 460, BBUS 461, BBUS 462, BBUS 470, BBUS 471, BBUS 472, BBUS 473, BBUS 475, BBUS 476, BBUS 477, BBUS 479, BBUS 480, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-leadership-and-strategic-innovation-pathway-retail-management-concentration.txt
-
-#### Business Administration: Leadership & Strategic Innovation (BA) - Supply Chain Management Option
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 362, BBUS 373, BBUS 402, BBUS 441, BBUS 443, BBUS 444, BBUS 460, BBUS 461, BBUS 462, BBUS 463, BBUS 470, BBUS 471, BBUS 472, BBUS 473, BBUS 475, BBUS 476, BBUS 477, BBUS 479, BBUS 480, BBUS 490, BBUS 491, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.) | (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information). | * A minimum grade of 2.7 in either course is required.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-leadership-and-strategic-innovation-pathway-supply-chain-management-option.txt
-
-#### Business Administration: Marketing (BA) - Leadership & Strategic Innovation Option
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 340, BBUS 350, BBUS 361, BBUS 362, BBUS 373, BBUS 402, BBUS 421, BBUS 423, BBUS 426, BBUS 427, BBUS 429, BBUS 431, BBUS 441, BBUS 443, BBUS 444, BBUS 445, BBUS 446, BBUS 451, BBUS 453, BBUS 454, BBUS 460, BBUS 462, BBUS 463, BBUS 464, BBUS 465, BBUS 470, BBUS 471, BBUS 473, BBUS 475, BBUS 476, BBUS 479, BBUS 480, BBUS 490, BBUS 491, BBUS 497, BBUS 499, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.) | (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information). | 10 credits
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-marketing-pathway-leadership-and-strategic-innovation-option.txt
-
-#### Business Administration: Marketing (BA) - Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 421, BBUS 423, BBUS 426, BBUS 427, BBUS 429, BBUS 431, BBUS 443, BBUS 444, BBUS 445, BBUS 446, BBUS 464, BBUS 470, BBUS 480, BBUS 490, BBUS 491, BBUS 497, BBUS 499, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-marketing-pathway-management-concentration.txt
-
-#### Business Administration: Marketing (BA) - MIS Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 421, BBUS 423, BBUS 426, BBUS 427, BBUS 429, BBUS 431, BBUS 443, BBUS 444, BBUS 445, BBUS 446, BBUS 464, BBUS 470, BBUS 480, BBUS 490, BBUS 491, BBUS 497, BBUS 499, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-marketing-pathway-mis-concentration.txt
-
-#### Business Administration: Marketing (BA) - Retail Management Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 421, BBUS 423, BBUS 426, BBUS 427, BBUS 429, BBUS 431, BBUS 443, BBUS 444, BBUS 445, BBUS 446, BBUS 464, BBUS 470, BBUS 480, BBUS 490, BBUS 491, BBUS 497, BBUS 499, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-marketing-pathway-retail-management-concentration.txt
-
-#### Business Administration: Marketing (BA) - Supply Chain Management Option
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 340, BBUS 350, BBUS 362, BBUS 373, BBUS 402, BBUS 421, BBUS 423, BBUS 426, BBUS 427, BBUS 429, BBUS 431, BBUS 441, BBUS 443, BBUS 444, BBUS 445, BBUS 446, BBUS 460, BBUS 462, BBUS 463, BBUS 464, BBUS 470, BBUS 473, BBUS 480, BBUS 490, BBUS 491, BBUS 497, BBUS 499, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.) | (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information). | * A minimum grade of 2.7 in either course is required.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-marketing-pathway-supply-chain-management-option.txt
-
-#### Business Administration: Marketing (BA) - TIM Concentration
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 421, BBUS 423, BBUS 426, BBUS 427, BBUS 429, BBUS 431, BBUS 443, BBUS 444, BBUS 445, BBUS 446, BBUS 464, BBUS 470, BBUS 480, BBUS 490, BBUS 491, BBUS 497, BBUS 499, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-marketing-pathway-tim-concentration.txt
-
-#### Business Administration: Supply Chain Management (BA) - Leadership & Strategic Innovation Option
-
-- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain
-- Parser type: html-overview-page
-- Parser adapter: uw-bothell-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 362, BBUS 373, BBUS 402, BBUS 441, BBUS 443, BBUS 444, BBUS 447, BBUS 460, BBUS 462, BBUS 463, BBUS 464, BBUS 470, BBUS 471, BBUS 473, BBUS 475, BBUS 479, BBUS 480, BBUS 482, BBUS 483, BBUS 486, BBUS 487, BBUS 490, BBUS 491, BMATH 144, MATH 112, STMATH 124
-- Requirement cues: (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.) | (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information). | * A minimum grade of 2.7 in either course is required.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-supply-chain-management-pathway-leadership-and-strategic-innovation-option.txt
-
-#### Developmental and Youth Studies (BA) - CECL Concentration
-
-- Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship
 - Parser type: html-degree-page
 - Parser adapter: uw-bothell-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BEDUC 205, BEDUC 210, BEDUC 220, BEDUC 230, BEDUC 250, BEDUC 255, BEDUC 295, BEDUC 300, BEDUC 310, BEDUC 328, BEDUC 391, BEDUC 392, BEDUC 402, BEDUC 403, BEDUC 438, BEDUC 441, BEDUC 451, BEDUC 453, BEDUC 456, BEDUC 458, BEDUC 461, BEDUC 481, BEDUC 495, BEDUC 499, BHLTH 435
-- Requirement cues: Degree Requirements - School of Educational Studies | Degree Requirements | Degree Requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-developmental-and-youth-studies-pathway-cecl-concentration.txt
+- Source-only UW course codes: BBUS 210, BBUS 211, BBUS 215, BBUS 220, BBUS 221, BBUS 230, BIS 200, BIS 201, BIS 215, BMATH 215, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 113, STMATH 125, STMATH 126, STMATH 341
+- Structured-only UW course codes not seen in the parsed source: BBUS 438
+- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-pathway-entrepreneurship-concentration.txt
 
-#### Developmental and Youth Studies (BA) - Education Studies: Elementary Education Option
+#### Business Administration (BA) - Finance option and Concentration
 
-- Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option
 - Parser type: html-degree-page
 - Parser adapter: uw-bothell-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BEDUC 170, BEDUC 205, BEDUC 210, BEDUC 220, BEDUC 230, BEDUC 240, BEDUC 241, BEDUC 242, BEDUC 250, BEDUC 255, BEDUC 295, BEDUC 300, BEDUC 310, BEDUC 328, BEDUC 340, BEDUC 391, BEDUC 392, BEDUC 402, BEDUC 403, BEDUC 438, BEDUC 441, BEDUC 451, BEDUC 453, BEDUC 456, BEDUC 458, BEDUC 461, BEDUC 481, BEDUC 495, BEDUC 499, BHLTH 435, BIS 164, BIS 175, BIS 180, BIS 200, BIS 203, BIS 206, BIS 218, BIS 242, BIS 280, BIS 301, BIS 361, BIS 370, BIS 371, BWRIT 133, BWRIT 134
-- Requirement cues: As outlined by the State of Washington Professional Educator Standards Board , Washington state elementary school teachers must be certified to teach and must hold an elementary education endorsement. To be eligible for the elementary endorsement, students must complete college-level coursework which demonstrates their knowledge and understanding of the subject areas elementary school teachers cover in their classrooms: Social Studies, English Language Arts, Mathematics, Science and Art. | B EDUC 250 Topics in Education & Popular Culture: Adolescent Literacy, Graphic Novels, and Young Adult Fiction (A&H) | B EDUC 250 Topics in Education & Popular Culture: Banned Books & Controversial Topics in Children’s Literature & Young Adult Fiction (A&H)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-developmental-and-youth-studies-pathway-education-studies-elementary-education-option.txt
+- Source-only UW course codes: BBUS 476, BBUS 479, BBUS 491
+- Structured-only UW course codes not seen in the parsed source: BBUS 426, BBUS 429, BBUS 438
+- Requirement cues: * A minimum grade of 2.7 in either course is required. | **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives: | *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-pathway-finance-option-and-concentration.txt
 
-#### Developmental and Youth Studies (BA) - LEDE Concentration
+#### Business Administration (BA) - Management Concentration
 
-- Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management
 - Parser type: html-degree-page
 - Parser adapter: uw-bothell-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BEDUC 205, BEDUC 210, BEDUC 220, BEDUC 230, BEDUC 250, BEDUC 255, BEDUC 295, BEDUC 300, BEDUC 310, BEDUC 328, BEDUC 391, BEDUC 392, BEDUC 402, BEDUC 403, BEDUC 438, BEDUC 441, BEDUC 451, BEDUC 453, BEDUC 456, BEDUC 458, BEDUC 461, BEDUC 481, BEDUC 495, BEDUC 499, BHLTH 435
-- Requirement cues: Degree Requirements - School of Educational Studies | Degree Requirements | Degree Requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-developmental-and-youth-studies-pathway-lede-concentration.txt
+- Source-only UW course codes: BBUS 210, BBUS 211, BBUS 215, BBUS 220, BBUS 221, BBUS 230, BIS 200, BIS 201, BIS 215, BMATH 215, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 113, STMATH 125, STMATH 126, STMATH 341
+- Structured-only UW course codes not seen in the parsed source: BBUS 438
+- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-pathway-management-concentration.txt
+
+#### Business Administration (BA) - Marketing option and Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
+- Parser type: html-degree-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: BBUS 476, BBUS 479
+- Structured-only UW course codes not seen in the parsed source: BBUS 438
+- Requirement cues: * A minimum grade of 2.7 in either course is required. | **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives: | *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-pathway-marketing-option-and-concentration.txt
+
+#### Business Administration (BA) - Retail Management Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail
+- Parser type: html-degree-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: BBUS 210, BBUS 211, BBUS 215, BBUS 220, BBUS 221, BBUS 230, BIS 200, BIS 201, BIS 215, BMATH 215, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 113, STMATH 125, STMATH 126, STMATH 341
+- Structured-only UW course codes not seen in the parsed source: BBUS 438
+- Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 10 credits – Complete two courses from this list:
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-pathway-retail-management-concentration.txt
+
+#### Chemistry (BA) - B.S. in Chemistry (general option)
+
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
+- Parser type: html-curriculum-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: BBIO 180, BBIO 200, BBIO 364, BBIO 365, BBIO 366, BBIO 375, BCHEM 237, BCHEM 238, BCHEM 239, BCHEM 241, BCHEM 242, BCHEM 294, BCHEM 310, BCHEM 312, BCHEM 313, BCHEM 316, BCHEM 317, BCHEM 350, BCHEM 364, BCHEM 365, BCHEM 366, BCHEM 375, BCHEM 401, BCHEM 402, BCHEM 404, BCHEM 426, BCHEM 493, BCHEM 494, BCHEM 495, BCHEM 497, BCHEM 498, BCHEM 499, BPHYS 114, BPHYS 115, BPHYS 116, BPHYS 117, BPHYS 118, BPHYS 119, BPHYS 121, BPHYS 122, BPHYS 123, ENGL 131, STMATH 207, STMATH 208, STMATH 224, STMATH 341
+- Requirement cues: Elective Courses | Elective Courses | Teaching Track Faculty
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-chemistry-ba-pathway-b-s-in-chemistry-general-option.txt
+
+#### Chemistry (BS) - B.S. in Chemistry (general option)
+
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
+- Parser type: html-curriculum-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: BBIO 180, BBIO 200, BBIO 364, BBIO 365, BBIO 366, BBIO 375, BCHEM 237, BCHEM 238, BCHEM 239, BCHEM 241, BCHEM 242, BCHEM 294, BCHEM 310, BCHEM 312, BCHEM 313, BCHEM 316, BCHEM 317, BCHEM 350, BCHEM 364, BCHEM 365, BCHEM 366, BCHEM 375, BCHEM 401, BCHEM 402, BCHEM 404, BCHEM 426, BCHEM 493, BCHEM 494, BCHEM 495, BCHEM 497, BCHEM 498, BCHEM 499, BPHYS 114, BPHYS 115, BPHYS 116, BPHYS 117, BPHYS 118, BPHYS 119, BPHYS 121, BPHYS 122, BPHYS 123, ENGL 131, STMATH 207, STMATH 208, STMATH 224, STMATH 341
+- Requirement cues: Elective Courses | Elective Courses | Teaching Track Faculty
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-chemistry-bs-pathway-b-s-in-chemistry-general-option.txt
+
+#### Chemistry: Biochemistry (BS) - B.S. in Chemistry (general option)
+
+- Source: https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum
+- Parser type: html-curriculum-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: BCHEM 237, BCHEM 238, BCHEM 239, BCHEM 241, BCHEM 242, BCHEM 294, BCHEM 494, BCHEM 497, BCHEM 498, BCHEM 499, BPHYS 114, BPHYS 115, BPHYS 116, BPHYS 117, BPHYS 118, BPHYS 119, BPHYS 121, BPHYS 122, BPHYS 123, STMATH 207, STMATH 208, STMATH 224, STMATH 341
+- Requirement cues: B CHEM 494 Special Topics in Biochemistry (3 credits, maximum 12) | B CHEM 497 Apprenticeship in Chemistry Education (1–3 credits, maximum 6) | Approved Independent Study in Chemistry (B CHEM 498) (1–5 credits, maximum 10)
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-chemistry-biochemistry-pathway-b-s-in-chemistry-general-option.txt
+
+#### Economics (BS)
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- Parser type: html-overview-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: B CUSP 200, BBECN 302, BBECN 303, BBECN 382, BBECN 458, BBECN 460, BBUS 210, BBUS 215, BBUS 220, BBUS 221, BBUS 301, BBUS 458, BECN 302, BIS 200, BIS 201, BIS 215, BMATH 144, BMATH 215, ENGL 131, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 114, STMATH 124, STMATH 125, STMATH 126, STMATH 330, STMATH 341, STMATH 392
+- Requirement cues: *Note: The DIV credits can overlap with General Education requirements above. | ● Additional Writing (W) – 10 credits | ● Arts and Humanities (A&H) – 15 credits
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-economics.txt
+
+#### Economics (BS) - Accounting Option
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- Parser type: html-overview-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: BBUS 215, BIS 215, BMATH 144, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 114, STMATH 124, STMATH 125, STMATH 126, STMATH 341
+- Requirement cues: (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.) | *If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses): | 10 credits – Complete 2 courses from this list:
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-economics-pathway-accounting-option.txt
+
+#### Economics (BS) - Entrepreneurship Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- Parser type: html-overview-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: BBUS 215, BIS 215, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 114, STMATH 125, STMATH 126, STMATH 341
+- Requirement cues: 10 credits – Complete 2 courses from this list: | 5 credits | 60 Credits
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-economics-pathway-entrepreneurship-concentration.txt
 
 #### Economics (BS) - Management Concentration
 
@@ -917,9 +783,20 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parser adapter: uw-bothell-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 431, BBUS 441, BBUS 443, BBUS 444, BBUS 460, BBUS 470, BBUS 471, BBUS 479, BBUS 480, BBUS 491, BMATH 144, MATH 112, STMATH 124
+- Source-only UW course codes: BBUS 215, BBUS 475, BBUS 476, BBUS 490, BIS 215, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 114, STMATH 125, STMATH 126, STMATH 341
 - Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 25 Credits
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-economics-pathway-management-concentration.txt
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-economics-pathway-management-concentration.txt
+
+#### Economics (BS) - MIS Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- Parser type: html-overview-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: B CUSP 200, BBECN 302, BBECN 303, BBECN 382, BBECN 458, BBECN 460, BBUS 210, BBUS 215, BBUS 220, BBUS 221, BBUS 301, BBUS 458, BECN 302, BIS 200, BIS 201, BIS 215, BMATH 144, BMATH 215, ENGL 131, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 114, STMATH 124, STMATH 125, STMATH 126, STMATH 330, STMATH 341, STMATH 392
+- Requirement cues: *Note: The DIV credits can overlap with General Education requirements above. | ● Additional Writing (W) – 10 credits | ● Arts and Humanities (A&H) – 15 credits
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-economics-pathway-mis-concentration.txt
 
 #### Economics (BS) - Retail Management Concentration
 
@@ -928,62 +805,39 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parser adapter: uw-bothell-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 431, BBUS 441, BBUS 443, BBUS 444, BBUS 460, BBUS 470, BBUS 471, BBUS 479, BBUS 480, BBUS 491, BMATH 144, MATH 112, STMATH 124
+- Source-only UW course codes: BBUS 215, BBUS 475, BBUS 476, BBUS 490, BIS 215, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 114, STMATH 125, STMATH 126, STMATH 341
 - Requirement cues: * A minimum grade of 2.7 in either course is required. | 10 credits – Complete 2 courses from this list: | 25 Credits
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-economics-pathway-retail-management-concentration.txt
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-economics-pathway-retail-management-concentration.txt
+
+#### Economics (BS) - TIM Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+- Parser type: html-overview-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: B CUSP 200, BBECN 302, BBECN 303, BBECN 382, BBECN 458, BBECN 460, BBUS 210, BBUS 215, BBUS 220, BBUS 221, BBUS 301, BBUS 458, BECN 302, BIS 200, BIS 201, BIS 215, BMATH 144, BMATH 215, ENGL 131, INDE 315, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 114, STMATH 124, STMATH 125, STMATH 126, STMATH 330, STMATH 341, STMATH 392
+- Requirement cues: *Note: The DIV credits can overlap with General Education requirements above. | ● Additional Writing (W) – 10 credits | ● Arts and Humanities (A&H) – 15 credits
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-economics-pathway-tim-concentration.txt
 
 ### Parsed but no UW course codes found
 
-- Business Administration (BA)
-  - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
-  - Parser type: html-overview-page
-  - Requirement cues found: 31
 - Developmental and Youth Studies (BA) - M.Ed. with Educating for Critical Race Theory (E-Crit) Concentration
   - Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
   - Parser type: html-degree-page
   - Requirement cues found: 5
-- Economics (BS)
-  - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-  - Parser type: html-overview-page
-  - Requirement cues found: 34
 - Economics (BS) - Leadership & Strategic Innovation Option
   - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
   - Parser type: html-overview-page
   - Requirement cues found: 11
-- Economics (BS) - MIS Concentration
-  - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-  - Parser type: html-overview-page
-  - Requirement cues found: 34
 - Economics (BS) - Supply Chain Management Option
   - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
   - Parser type: html-overview-page
   - Requirement cues found: 11
-- Economics (BS) - TIM Concentration
-  - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
-  - Parser type: html-overview-page
-  - Requirement cues found: 34
 
 ## uw-tacoma
 
 ### Parser-quality warnings
-
-#### Arts, Media and Culture (BA) - American Cultures TRACK
-
-- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=10; source-only=10; structured-only=0)
-
-#### Arts, Media and Culture (BA) - Comparative ARTS TRACK
-
-- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=66; source-only=66; structured-only=0)
-
-#### Arts, Media and Culture (BA) - Literature TRACK
-
-- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=66; source-only=66; structured-only=0)
 
 #### Computer Engineering
 
@@ -1014,12 +868,6 @@ Generated: 2026-04-23T06:09:13.305Z
 - Source: https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=154; source-only=0; structured-only=9) | large-structured-only-course-gap (structured-only=9; parsed=154; structured-coverage=163)
-
-#### Economics and Policy Analysis (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=18; source-only=18; structured-only=0)
 
 #### Electrical Engineering
 
@@ -1053,128 +901,13 @@ Generated: 2026-04-23T06:09:13.305Z
 
 #### Environmental Sustainability (BA) - Environmental Communication option
 
-- Source: https://www.tacoma.uw.edu/sias/sam/environmental-communication-option
+- Source: https://www.tacoma.uw.edu/sias/sam/environmental-sustainability
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=15; source-only=1; structured-only=32) | large-structured-only-course-gap (structured-only=32; parsed=15; structured-coverage=46) | high-confidence-low-course-coverage (parsed=15; structured-coverage=46; structured-only=32)
-
-#### Ethnic, Gender and Labor Studies (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=18; source-only=18; structured-only=0)
-
-#### Interdisciplinary Arts and Sciences (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=53; source-only=53; structured-only=0)
-
-#### Law and Policy (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/law-and-policy
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=46; source-only=46; structured-only=0)
-
-#### Politics, Philosophy and Economics (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=31; source-only=31; structured-only=0)
-
-#### Psychology (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/psychology
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=50; source-only=50; structured-only=0)
-
-#### Sustainable Urban Development (BA) - A Minor or Certificate) or Explore the Liberal Arts
-
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=28; source-only=28; structured-only=0)
-
-#### Sustainable Urban Development (BA) - GIS option
-
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=12; source-only=12; structured-only=0)
-
-#### Urban Design (BS) - A Minor or a Certificate) or Explore the Liberal Arts
-
-- Source: https://www.tacoma.uw.edu/urban-studies/bs-urban-design
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=19; source-only=19; structured-only=0)
-
-#### Urban Studies (BA) - A Minor or Certificate) or Explore the Liberal Arts
-
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-urban-studies
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=42; source-only=42; structured-only=0)
-
-#### Writing Studies (BA) - Technical Communication TRACK
-
-- Source: https://www.tacoma.uw.edu/sias/cac/writing-studies
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=16; source-only=16; structured-only=0)
+- Quality warnings: material-source-structured-drift (parsed=46; source-only=32; structured-only=1)
 
 ### Possible source-vs-structured drift
 
-#### Arts, Media and Culture (BA) - American Cultures TRACK
-
-- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TFILM 220, THIST 150, THIST 151, THIST 200, THIST 201, THIST 220, THIST 221, THIST 222, THIST 260, TLIT 220
-- Requirement cues: 5 credits Foundation (5 credits) | ADMISSION REQUIREMENTS | American Cultures Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-arts-media-culture-pathway-american-cultures-track.txt
-
-#### Arts, Media and Culture (BA) - Comparative ARTS TRACK
-
-- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TAMST 101, TAMST 120, TAMST 210, TAMST 220, TAMST 250, TAMST 260, TAMST 350, TAMST 410, TAMST 450, TARTS 150, TARTS 151, TARTS 200, TARTS 203, TARTS 225, TARTS 240, TARTS 251, TARTS 252, TARTS 266, TARTS 280, TARTS 281, TARTS 320, TARTS 336, TARTS 367, TARTS 368, TARTS 386, TARTS 390, TARTS 391, TARTS 393, TARTS 395, TCOM 201, TCOM 221, TCOM 230, TCOM 247, TCOM 250, TCOM 254, TCOM 257, TCOM 347, TFILM 201, TFILM 220, THIST 150, THIST 151, THIST 200, THIST 201, THIST 220, THIST 221, THIST 222, THIST 260, TLAX 267, TLAX 277, TLAX 355, TLAX 465, TLAX 476, TLIT 101, TLIT 210, TLIT 220, TLIT 230, TLIT 237, TLIT 240, TLIT 251, TLIT 252, TLIT 253, TPOLS 350, TSPAN 351, TWOMN 345, TWRT 340, TWRT 480
-- Requirement cues: 5 credits Foundation (5 credits) | ADMISSION REQUIREMENTS | American Cultures Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-arts-media-culture-pathway-comparative-arts-track.txt
-
-#### Arts, Media and Culture (BA) - Literature TRACK
-
-- Source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TAMST 101, TAMST 120, TAMST 210, TAMST 220, TAMST 250, TAMST 260, TAMST 350, TAMST 410, TAMST 450, TARTS 150, TARTS 151, TARTS 200, TARTS 203, TARTS 225, TARTS 240, TARTS 251, TARTS 252, TARTS 266, TARTS 280, TARTS 281, TARTS 320, TARTS 336, TARTS 367, TARTS 368, TARTS 386, TARTS 390, TARTS 391, TARTS 393, TARTS 395, TCOM 201, TCOM 221, TCOM 230, TCOM 247, TCOM 250, TCOM 254, TCOM 257, TCOM 347, TFILM 201, TFILM 220, THIST 150, THIST 151, THIST 200, THIST 201, THIST 220, THIST 221, THIST 222, THIST 260, TLAX 267, TLAX 277, TLAX 355, TLAX 465, TLAX 476, TLIT 101, TLIT 210, TLIT 220, TLIT 230, TLIT 237, TLIT 240, TLIT 251, TLIT 252, TLIT 253, TPOLS 350, TSPAN 351, TWOMN 345, TWRT 340, TWRT 480
-- Requirement cues: 5 credits Foundation (5 credits) | ADMISSION REQUIREMENTS | American Cultures Track
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-arts-media-culture-pathway-literature-track.txt
-
-#### Economics and Policy Analysis (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TBECON 220, TBECON 221, TECON 200, TECON 201, TECON 316, TECON 320, TECON 321, TECON 325, TECON 350, TECON 360, TECON 361, TECON 362, TECON 370, TECON 410, TMATH 116, TMATH 120, TPHIL 251, TWRT 211
-- Requirement cues: Department of Social Sciences | Department of Social Sciences | Global Studies Concentration
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-economics-and-policy-analysis-pathway-global-studies-concentration.txt
-
-#### Education (BA) - English Language Learners (ELL) DUAL Endorsement Option
-
-- Source: https://www.tacoma.uw.edu/soe/bachelor-arts-education
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: medium
-- Source-only UW course codes: ENGL 131
-- Requirement cues: - Select - Special Education English Language Learners (ELL) | - Select - Yes No | Admission to the BA in Education program may be declared following the completion of 45 credits of college coursework which includes:
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-education-pathway-english-language-learners-ell-dual-endorsement-option.txt
-
-#### Education (BA) - Special Education DUAL Endorsement Option
+#### Education (BA) - SPECIAL EDUCATION DUAL ENDORSEMENT
 
 - Source: https://www.tacoma.uw.edu/soe/bachelor-arts-education
 - Parser type: html-overview-page
@@ -1183,129 +916,19 @@ Generated: 2026-04-23T06:09:13.305Z
 - Parse confidence: medium
 - Source-only UW course codes: ENGL 131
 - Requirement cues: - Select - I am registered for classes at UW Tacoma I am applying to transfer to UW Tacoma autumn quarter 2023 I am applying as a Running Start freshman to UW Tacoma autumn quarter 2023 I am a returning former UWT student (last quarter enrolled spring 2022 or earlier) Other | - Select - Special Education English Language Learners (ELL) | - Select - Yes No
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-education-pathway-special-education-dual-endorsement-option.txt
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-education-pathway-special-education-dual-endorsement.txt
 
 #### Environmental Sustainability (BA) - Environmental Communication option
 
-- Source: https://www.tacoma.uw.edu/sias/sam/environmental-communication-option
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: FORMERLY TESC 232
-- Structured-only UW course codes not seen in the parsed source: TBIOMD 490, TBIOMD 491, TCOM 275, TCOM 310, TCOM 312, TCOM 482, TECON 210, TECON 410, TECON 421, TEGL 304, TESC 301, TESC 404, TESC 495, TESC 496, TESC 497, TESC 499, TEST 337, TEST 495, TLAW 339, TLAW 465, TLIT 237, TMGMT 465, TMGMT 466, TPHIL 456, TPOLS 203, TPOLS 270, TRELIG 350, TWRT 331, TWRT 372, TWRT 388, TWRT 389, TWRT 391
-- Requirement cues: Environmental Communication Option | Environmental Communication Option | Degree Requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-environmental-sustainability-pathway-environmental-communication-option.txt
-
-#### Ethnic, Gender and Labor Studies (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies
+- Source: https://www.tacoma.uw.edu/sias/sam/environmental-sustainability
 - Parser type: html-overview-page
 - Parser adapter: uw-tacoma-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: TEGL 101, TEGL 112, TEGL 202, TEGL 210, TEGL 266, TEGL 401, THIST 220, THIST 221, THIST 222, THIST 320, THIST 322, THIST 437, TLAX 238, TPOLS 270, TSOC 270, TSOC 439, TSOC 460, TWOMN 101
-- Requirement cues: A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor . | A minimum of 45 lower-division credits is required before declaring the major. To declare the Global Studies Concentration of the Interdisciplinary Arts and Sciences major, students should reach out to the major advisor . | Admission Requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-ethnic-gender-and-labor-studies-pathway-global-studies-concentration.txt
-
-#### Interdisciplinary Arts and Sciences (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TARTS 200, TARTS 240, TARTS 280, TARTS 281, TARTS 284, TARTS 311, TARTS 314, TARTS 315, TARTS 367, TARTS 386, TARTS 404, TARTS 405, TARTS 406, TARTS 407, TARTS 411, TBIOL 203, TBIOL 204, TBIOL 422, TCOM 254, TECON 101, TECON 350, TEGL 301, TESC 102, TESC 201, TESC 239, TFILM 201, TGEOS 227, TGEOS 243, TGEOS 341, THIST 150, THIST 151, THIST 200, THIST 201, THIST 220, THIST 221, TIAS 305, TLAX 277, TLAX 355, TLAX 476, TLIT 101, TLIT 220, TLIT 230, TLIT 240, TLIT 251, TLIT 252, TLIT 371, TMATH 105, TMATH 110, TMATH 116, TPOLS 202, TPSYCH 101, TURB 340, TWOMN 211
-- Requirement cues: Interdisciplinary Arts and Sciences | Department of Social Sciences | University of Washington Tacoma | Department of Social Sciences | Department of Social Sciences
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-interdisciplinary-arts-and-sciences-pathway-global-studies-concentration.txt
-
-#### Law and Policy (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/law-and-policy
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TCOM 454, TCOM 465, TCOM 481, TCRIM 395, TCRIM 437, TECON 316, TECON 321, TECON 350, TECON 410, TECON 418, TECON 421, TECON 450, TECON 470, TESC 345, TLAW 150, TLAW 215, TLAW 320, TLAW 339, TLAW 345, TLAW 348, TLAW 363, TLAW 367, TLAW 422, TLAW 423, TLAW 424, TLAW 452, TLAW 465, TLAW 496, TLIT 433, TPHIL 250, TPHIL 251, TPOLS 202, TPOLS 203, TPOLS 204, TPOLS 230, TPOLS 317, TPOLS 323, TPOLS 324, TPOLS 343, TPOLS 355, TPOLS 451, TPOLS 480, TPOLS 496, TPOLS 497, TSOC 465, TWRT 211
-- Requirement cues: Law and Policy | Department of Social Sciences | University of Washington Tacoma | Department of Social Sciences | Department of Social Sciences
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-law-and-policy-pathway-global-studies-concentration.txt
-
-#### Politics, Philosophy and Economics (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TBECON 220, TBECON 221, TBECON 420, TECON 200, TECON 201, TECON 210, TECON 316, TECON 320, TECON 325, TECON 350, TECON 360, TECON 362, TECON 370, TGH 301, TGH 303, THIST 322, THIST 350, TLAW 320, TLAW 361, TLAW 424, TLAW 465, TPHIL 101, TPHIL 200, TPHIL 240, TPHIL 250, TPHIL 251, TPOLS 201, TPOLS 202, TPOLS 203, TPOLS 260, TRELIG 321
-- Requirement cues: A minimum of 45 lower-division credits is required before declaring the major. To declare the Global Studies Concentration of the Interdisciplinary Arts and Sciences major, students should reach out to the major advisor . | A minimum of 45 lower-division credits is required before declaring the major. To declare the Politics, Philosophy and Economics major, students should reach out to the major advisor . | Admission Requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-politics-philosophy-and-economics-pathway-global-studies-concentration.txt
-
-#### Psychology (BA) - Global Studies Concentration
-
-- Source: https://www.tacoma.uw.edu/sias/socs/psychology
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TMATH 110, TPSYCH 101, TPSYCH 202, TPSYCH 209, TPSYCH 210, TPSYCH 220, TPSYCH 230, TPSYCH 240, TPSYCH 250, TPSYCH 260, TPSYCH 300, TPSYCH 306, TPSYCH 308, TPSYCH 309, TPSYCH 310, TPSYCH 311, TPSYCH 312, TPSYCH 313, TPSYCH 314, TPSYCH 319, TPSYCH 320, TPSYCH 321, TPSYCH 322, TPSYCH 344, TPSYCH 345, TPSYCH 346, TPSYCH 347, TPSYCH 349, TPSYCH 350, TPSYCH 351, TPSYCH 352, TPSYCH 360, TPSYCH 361, TPSYCH 362, TPSYCH 400, TPSYCH 401, TPSYCH 402, TPSYCH 403, TPSYCH 404, TPSYCH 405, TPSYCH 406, TPSYCH 407, TPSYCH 409, TPSYCH 410, TPSYCH 472, TPSYCH 496, TPSYCH 498, TPSYCH 499, TSOCWF 351, TURB 225
-- Requirement cues: Psychology | Department of Social Sciences | University of Washington Tacoma | Department of Social Sciences | Department of Social Sciences
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-psychology-pathway-global-studies-concentration.txt
-
-#### Sustainable Urban Development (BA) - A Minor or Certificate) or Explore the Liberal Arts
-
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TESC 201, TEST 332, TGEOG 101, TGEOG 210, TGEOG 321, TGEOG 349, TGIS 311, TUDE 101, TUDE 210, TUDE 260, TUDE 310, TUDE 340, TUDE 350, TUDE 360, TUDE 440, TUDE 450, TUDE 460, TURB 101, TURB 102, TURB 103, TURB 200, TURB 220, TURB 225, TURB 250, TURB 312, TURB 322, TURB 403, TURB 480
-- Requirement cues: *Students transferring to UW Tacoma from other colleges or universities can satisfy course requirements (listed above and marked with an asterisk) by taking an equivalent course in any of the following areas. 300-400 level studio courses cannot be transferred in. | Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: | Choose at least 2 courses in Sustainable Urban Development (T SUD)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-sustainable-urban-development-pathway-a-minor-or-certificate-or-explore-the-liberal-arts.txt
-
-#### Sustainable Urban Development (BA) - GIS option
-
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TESC 201, TEST 332, TGEOG 101, TGEOG 210, TGEOG 321, TGEOG 349, TGIS 311, TUDE 210, TUDE 260, TURB 200, TURB 225, TURB 403
-- Requirement cues: ADMISSION REQUIREMENTS | Any T SUD or T URB course not among the required courses may be counted as a SUD major elective. A a maximum of 10 credits total of T URB or T SUD independent research or internship credit may be counted toward these 20 credits. In addition, any of the following courses may be counted as a major elective course toward the SUD major: | Contact the School of Urban Studies Academic Advisor to help track your progress through the program.
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-sustainable-urban-development-pathway-gis-option.txt
-
-#### Urban Design (BS) - A Minor or a Certificate) or Explore the Liberal Arts
-
-- Source: https://www.tacoma.uw.edu/urban-studies/bs-urban-design
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TUDE 101, TUDE 210, TUDE 260, TUDE 310, TUDE 340, TUDE 350, TUDE 360, TUDE 440, TUDE 450, TUDE 460, TURB 101, TURB 102, TURB 103, TURB 220, TURB 250, TURB 312, TURB 322, TURB 403, TURB 480
-- Requirement cues: One of the following classes (5 credits): | The additional credits needed to meet University credit requirements are general electives. Students may focus on an in-depth area of study (e.g., a minor or a certificate) or explore the liberal arts, social sciences, business, social work or health-related fields. | Degree Requirements (for students admitted prior to Winter 2026)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-urban-design-pathway-a-minor-or-a-certificate-or-explore-the-liberal-arts.txt
-
-#### Urban Studies (BA) - A Minor or Certificate) or Explore the Liberal Arts
-
-- Source: https://www.tacoma.uw.edu/urban-studies/ba-urban-studies
-- Parser type: html-overview-page
-- Parser adapter: uw-tacoma-html-degree-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: ENGL 131, TGIS 311, TGIS 312, TGIS 313, TGIS 350, TGIS 414, TGIS 415, TGIS 450, TGIS 460, TGIS 470, TSUD 475, TUDE 101, TUDE 210, TUDE 260, TUDE 310, TUDE 340, TUDE 350, TUDE 360, TUDE 440, TUDE 450, TUDE 460, TURB 101, TURB 102, TURB 103, TURB 110, TURB 200, TURB 210, TURB 220, TURB 225, TURB 235, TURB 250, TURB 312, TURB 316, TURB 322, TURB 345, TURB 379, TURB 403, TURB 432, TURB 470, TURB 479, TURB 480, TURB 498
-- Requirement cues: *Students transferring to UW Tacoma from other colleges or universities can satisfy course requirements (listed above and marked with an asterisk) by taking an equivalent course in any of the following areas. 300-400 level studio courses cannot be transferred in. | 5 credits of English composition | Admission Requirements
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-urban-studies-pathway-a-minor-or-certificate-or-explore-the-liberal-arts.txt
-
-#### Writing Studies (BA) - Technical Communication TRACK
-
-- Source: https://www.tacoma.uw.edu/sias/cac/writing-studies
-- Parser type: generic-html
-- Parser adapter: generic-official-html-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: TCORE 101, TWRT 121, TWRT 200, TWRT 270, TWRT 280, TWRT 287, TWRT 291, TWRT 292, TWRT 320, TWRT 330, TWRT 331, TWRT 333, TWRT 340, TWRT 353, TWRT 364, TWRT 440
-- Requirement cues: 10 credits from the following list: | 5 credits from the following list: | 5 credits from the following list: (These courses can only be taken once, as either Track Foundational Courses or Electives.)
-- Snapshot: C:\Users\Marwan\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-writing-studies-pathway-technical-communication-track.txt
+- Source-only UW course codes: TBIOMD 490, TBIOMD 491, TCOM 275, TCOM 310, TCOM 312, TCOM 482, TECON 210, TECON 410, TECON 421, TEGL 304, TESC 301, TESC 404, TESC 495, TESC 496, TESC 497, TESC 499, TEST 337, TEST 495, TLAW 339, TLAW 465, TLIT 237, TMGMT 465, TMGMT 466, TPHIL 456, TPOLS 203, TPOLS 270, TRELIG 350, TWRT 331, TWRT 372, TWRT 388, TWRT 389, TWRT 391
+- Structured-only UW course codes not seen in the parsed source: FORMERLY TESC 232
+- Requirement cues: The BA in Environmental Sustainability prepares students to understand, analyze and solve environmental and sustainability challenges. The major combines interdisciplinary foundations in environmental sciences, including natural and social sciences with training in communications, writing, law, critical perspectives and emerging sustainability science. Students choose one of four options for in-depth study. | Admission Requirements | Preparatory courses (37-38 credits)
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-tacoma-environmental-sustainability-pathway-environmental-communication-option.txt
 
 ### Parsed but no UW course codes found
 
@@ -1317,8 +940,4 @@ Generated: 2026-04-23T06:09:13.305Z
   - Source: https://www.tacoma.uw.edu/sias/cac/communication
   - Parser type: html-degree-page
   - Requirement cues found: 5
-- Social Welfare (BA)
-  - Source: https://www.tacoma.uw.edu/swcj/basw-curriculum
-  - Parser type: html-curriculum-page
-  - Requirement cues found: 18
 

@@ -3111,7 +3111,7 @@ function buildFallbackPathwayDegreeMapSections(
 
 function buildBootstrapBasePathways(plan: TransferPlannerMajorPlan) {
   if ((plan.pathways ?? []).length > 0) {
-    return (plan.pathways ?? []).map((pathway) => {
+    const enrichedBootstrapPathways = (plan.pathways ?? []).map((pathway) => {
       const registryPathway = getRegistryPathwayEntry(plan.id, pathway.id);
       return {
         ...pathway,
@@ -3126,8 +3126,26 @@ function buildBootstrapBasePathways(plan: TransferPlannerMajorPlan) {
           ...(registryPathway?.grcCourseList ?? []),
           ...(pathway.grcCourseList ?? []),
         ]),
+        officialLinks: uniquePlannerLinks([
+          ...(pathway.officialLinks ?? []),
+          ...((registryPathway?.sourceLinks ?? []) as TransferPlannerSourceLink[]).map(
+            toPlannerLink
+          ),
+        ]),
+        validationNotes: sanitizePlannerOwnedStrings([
+          ...(pathway.validationNotes ?? []),
+          ...(registryPathway?.validationNotes ?? []),
+        ]),
       };
     });
+    const bootstrapPathwayIds = new Set(
+      enrichedBootstrapPathways.map((pathway) => pathway.id)
+    );
+    const supplementalRegistryPathways = buildRegistryBackedBasePathways(plan.id).filter(
+      (pathway) => !bootstrapPathwayIds.has(pathway.id)
+    );
+
+    return uniqueById([...enrichedBootstrapPathways, ...supplementalRegistryPathways]);
   }
 
   return buildRegistryBackedBasePathways(plan.id);
@@ -4148,10 +4166,7 @@ function getPlanMaterializationParsedRequirementSourceBlocks(planId: string) {
 }
 
 function materializePlanPathways(plan: TransferPlannerMajorPlan, includeHiddenSourceGaps = true) {
-  const pathways = ((plan.pathways ?? []).length
-    ? plan.pathways ?? []
-    : buildRegistryBackedBasePathways(plan.id)
-  ).map(materializePlannerPathway);
+  const pathways = buildBootstrapBasePathways(plan).map(materializePlannerPathway);
   const visibleBasePathways = includeHiddenSourceGaps
     ? pathways
     : pathways.filter((pathway) => !isTransferPlannerStudentHiddenSourceGap(plan.id, pathway.id));

@@ -2267,6 +2267,10 @@ test("Seattle French and Italian stay on dedicated source targeting without revi
     ),
     "Expected Italian parsing to avoid French/TXTDS shared-page contamination when the dedicated source is targeted."
   );
+  assert.ok(
+    italianParsedBlocks.every((entry) => entry.parsedUwCourseCodes.length === 0),
+    "Expected current Italian source coverage to remain prose-only until the dedicated source publishes safe course evidence."
+  );
 
   const collectMappedLowerDivisionCodes = (
     planId: string,
@@ -2324,6 +2328,69 @@ test("Seattle French and Italian stay on dedicated source targeting without revi
     );
     assert.ok((plan.grcCourseList?.length ?? 0) <= 1);
   }
+});
+
+test("Prompt 2 upstream recovery follows same-program curriculum and prerequisite links safely", () => {
+  const bbaParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-bothell-business-administration",
+    null
+  );
+  const economicsParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-bothell-economics",
+    null
+  );
+  const bbaCourseCodes = new Set(bbaParsedBlocks.flatMap((entry) => entry.parsedUwCourseCodes));
+  const economicsCourseCodes = new Set(
+    economicsParsedBlocks.flatMap((entry) => entry.parsedUwCourseCodes)
+  );
+
+  assert.ok(
+    bbaCourseCodes.has("BBUS 210") && bbaCourseCodes.has("BBUS 220"),
+    "Expected Bothell BBA to recover official prerequisite course evidence from same-program linked pages."
+  );
+  assert.ok(
+    economicsCourseCodes.has("BBECN 302") && economicsCourseCodes.has("BBUS 220"),
+    "Expected Bothell Economics to recover official curriculum course evidence from its same-program curriculum link."
+  );
+});
+
+test("Prompt 2 source parsers recover exact official course-list evidence without room-number leakage", () => {
+  const actingParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-drama",
+    "acting"
+  );
+  const actingCourseCodes = new Set(actingParsedBlocks.flatMap((entry) => entry.parsedUwCourseCodes));
+  const socialWelfareParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-tacoma-social-welfare",
+    null
+  );
+  const socialWelfareCourseCodes = new Set(
+    socialWelfareParsedBlocks.flatMap((entry) => entry.parsedUwCourseCodes)
+  );
+
+  for (const courseCode of [
+    "DRAMA 201",
+    "DRAMA 251",
+    "DRAMA 302",
+    "DRAMA 371",
+    "DRAMA 372",
+    "DRAMA 373",
+  ]) {
+    assert.ok(
+      actingCourseCodes.has(courseCode),
+      `Expected Drama Acting to recover ${courseCode} from the official completion-requirements line.`
+    );
+  }
+
+  assert.ok(
+    socialWelfareCourseCodes.has("TSOCWF 430") && socialWelfareCourseCodes.has("TSOCWF 490"),
+    "Expected Tacoma Social Welfare to recover TSOCWF course evidence from the official curriculum page."
+  );
+  assert.equal(
+    socialWelfareCourseCodes.has("WCG 203"),
+    false,
+    "Expected Tacoma Social Welfare parsing to keep campus room/location text out of course codes."
+  );
 });
 
 test("The UW Green River equivalency guide stays registered as a shared reference instead of a degree primary", () => {
@@ -4009,6 +4076,30 @@ test("HCDE shared-bucket gen-ed targets now promote into source-backed major sum
   );
   assert.equal(diagnostics.hasSourceBackedTargets, true);
   assert.ok(diagnostics.sourceBackedSummarySection);
+});
+
+test("Bothell Applied Computing category-first breadth lines recover separate A&H and SSc targets", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-bothell-applied-computing");
+  assert.ok(runtimePlan, "Expected the Applied Computing runtime plan.");
+
+  const section = buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan);
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
+    ahCredits: 15,
+    sscCredits: 15,
+    nscCredits: null,
+    breadthCredits: null,
+    electiveCredits: null,
+  });
+  assert.ok(section, "Expected Applied Computing source-backed gen-ed summary items.");
+  assert.deepEqual(
+    section?.items.map((entry) => `${entry.label}: ${entry.valueText}`),
+    ["Arts & Humanities: 15 credits", "Social Sciences: 15 credits"]
+  );
+  assert.equal(
+    section?.items.some((entry) => /Arts & Humanities \/ Social Sciences/i.test(entry.label)),
+    false
+  );
 });
 
 test("Computer Engineering Areas-of-Inquiry range targets now surface as structured summary items without fake fixed credits", () => {
@@ -8777,6 +8868,41 @@ test("Source-gap statuses match their discovery evidence", () => {
   }
 });
 
+test("Prompt 2 Ethnomusicology source-gap handling distinguishes the B.A. catalog source from graduate route labels", () => {
+  const catalogMusicUrl = "https://www.washington.edu/students/gencat/program/S/Music-217.html";
+  const rootPrimarySource = getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-ethnomusicology-b-a",
+    null
+  );
+  const rootGap = TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.find(
+    (entry) => entry.ownerKey === "uw-seattle-ethnomusicology-b-a"
+  );
+  const remainingEthnomusicologyPathwayGaps = TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.filter(
+    (entry) => entry.ownerKey.startsWith("uw-seattle-ethnomusicology-b-a:pathway:")
+  )
+    .map((entry) => ({
+      ownerKey: entry.ownerKey,
+      status: entry.sourceCoverageStatus,
+      suggestedUrl: entry.suggestedPrimary?.url ?? null,
+    }))
+    .sort((left, right) => left.ownerKey.localeCompare(right.ownerKey));
+
+  assert.equal(rootPrimarySource?.url, catalogMusicUrl);
+  assert.equal(rootGap, undefined);
+  assert.deepEqual(remainingEthnomusicologyPathwayGaps, [
+    {
+      ownerKey: "uw-seattle-ethnomusicology-b-a:pathway:non-thesis-option",
+      status: "parser-unsupported",
+      suggestedUrl: catalogMusicUrl,
+    },
+    {
+      ownerKey: "uw-seattle-ethnomusicology-b-a:pathway:thesis-option",
+      status: "parser-unsupported",
+      suggestedUrl: catalogMusicUrl,
+    },
+  ]);
+});
+
 test("Phase 1 source discovery excludes auth and course-list URLs from primary sources and gap candidates", () => {
   const primarySourceUrls = TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY
     .filter((entry) => entry.isPrimaryDegreeRequirementsLink)
@@ -9492,6 +9618,93 @@ test("Pathways are sourced from parser-backed registries, not legacy authored pl
       `Registry pathway ids should remain stable for ${plan.id}.`
     );
   }
+});
+
+test("Parser-backed supplemental pathway rows survive into generated and runtime planner output", () => {
+  const bbaSourcePlan = getTransferPlannerMajorPlan("uw-bothell-business-administration");
+  const bbaRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-bothell-business-administration"
+  );
+  const envSourcePlan = getTransferPlannerMajorPlan("uw-tacoma-environmental-sustainability");
+  const envRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-tacoma-environmental-sustainability"
+  );
+  assert.ok(bbaSourcePlan, "Expected Bothell BBA source-generated plan.");
+  assert.ok(bbaRuntimePlan, "Expected Bothell BBA runtime plan.");
+  assert.ok(envSourcePlan, "Expected Tacoma Environmental Sustainability source-generated plan.");
+  assert.ok(envRuntimePlan, "Expected Tacoma Environmental Sustainability runtime plan.");
+
+  const bbaExpectedPathways = [
+    "accounting-option",
+    "management-concentration",
+    "mis-concentration",
+    "retail-management-concentration",
+    "tim-concentration",
+  ];
+  const envExpectedPathways = [
+    "business-nonprofit-leadership-option",
+    "education-option",
+    "environmental-communication-option",
+    "policy-law-option",
+  ];
+
+  for (const pathwayId of bbaExpectedPathways) {
+    assert.equal(
+      getTransferPlannerPathwaysForPlan(bbaSourcePlan).some((pathway) => pathway.id === pathwayId),
+      true,
+      `Expected source-generated BBA pathway ${pathwayId}.`
+    );
+    assert.equal(
+      getTransferPlannerStudentRuntimePathwaysForPlan(bbaRuntimePlan).some(
+        (pathway) => pathway.id === pathwayId
+      ),
+      true,
+      `Expected runtime BBA pathway ${pathwayId}.`
+    );
+  }
+
+  for (const pathwayId of envExpectedPathways) {
+    assert.equal(
+      getTransferPlannerPathwaysForPlan(envSourcePlan).some((pathway) => pathway.id === pathwayId),
+      true,
+      `Expected source-generated Environmental Sustainability pathway ${pathwayId}.`
+    );
+    assert.equal(
+      getTransferPlannerStudentRuntimePathwaysForPlan(envRuntimePlan).some(
+        (pathway) => pathway.id === pathwayId
+      ),
+      true,
+      `Expected runtime Environmental Sustainability pathway ${pathwayId}.`
+    );
+  }
+
+  const bbaMisPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    bbaRuntimePlan,
+    "mis-concentration"
+  );
+  assert.ok(bbaMisPlan, "Expected BBA MIS runtime pathway resolution.");
+  assert.equal(bbaMisPlan.selectedPathwayId, "mis-concentration");
+  assert.ok(
+    buildSourceBackedRequiredCourseCodes(bbaMisPlan).some((code) =>
+      ["CS 121", "CS 122", "CS 123", "CS& 141"].includes(code)
+    ),
+    "Expected recovered BBA MIS pathway to expose source-backed planner-safe course output."
+  );
+
+  const envBusinessBlocks = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-tacoma-environmental-sustainability",
+    "business-nonprofit-leadership-option"
+  );
+  assert.ok(
+    envBusinessBlocks.some((block) => (block.parsedUwCourseCodes?.length ?? 0) > 0),
+    "Expected Environmental Sustainability business/nonprofit pathway to retain parsed UW evidence."
+  );
+  const envBusinessPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    envRuntimePlan,
+    "business-nonprofit-leadership-option"
+  );
+  assert.ok(envBusinessPlan, "Expected Environmental Sustainability business pathway resolution.");
+  assert.equal(envBusinessPlan.selectedPathwayId, "business-nonprofit-leadership-option");
 });
 
 test.skip("Resolving Biology pathways keeps the selected route metadata while preserving the shared source-backed prep list", () => {

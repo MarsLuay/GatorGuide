@@ -238,6 +238,8 @@ const GENERAL_ED_REQUIREMENT_CUE_PATTERN =
   /\b(areas of inquiry|arts?\s+and\s+humanities|social sciences?|natural sciences?|a&h|ssc|nsc|diversity|additional a&h|additional areas? of inquiry|additional coursework)\b/i;
 const STRUCTURAL_REQUIREMENT_PATTERN =
   /\b(admission requirements|degree requirements|major requirements|completion requirements|required courses|elective courses|core courses|core requirements|curriculum|prerequisite courses|shared set of core courses|specialization|track|option|route|pathway|concentration|checklist|foundation|distribution requirement)\b/i;
+const COURSE_CLUSTER_REQUIREMENT_CONTEXT_PATTERN =
+  /\b(model program of study|program of study|curriculum overview|curriculum plan|core curriculum|foundation courses|practice courses|required curriculum|graduation requirements|social welfare electives|upper-division .*electives)\b/i;
 const BLOCK_TAG_PATTERN = /<(?:\/?(?:p|div|section|article|li|ul|ol|table|tr|td|th|h1|h2|h3|h4|h5|h6|br))[^>]*>/gi;
 const TITLE_PATTERN = /<title[^>]*>([\s\S]*?)<\/title>/i;
 const HEADING_PATTERN = /<h([1-4])[^>]*>([\s\S]*?)<\/h\1>/gi;
@@ -265,7 +267,7 @@ const TRACK_CATALOG_SUPPLEMENTAL_SOURCE_PATTERN =
 const HTML_SECTION_BOUNDARY_LINE_PATTERN =
   /^(?:Program of Study:|Bachelor\b|Minor\b|Master\b|Doctor\b|Undergraduate Programs\b|Graduate Programs\b|Back to Top\b)/i;
 const REQUIREMENT_FRIENDLY_HINT_PATTERN =
-  /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence|prior to the start of|before the start of|continuation requirements?)\b/i;
+  /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|credits?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence|prior to the start of|before the start of|continuation requirements?)\b/i;
 const CROSS_MAJOR_SCOPE_PATTERN =
   /\b(?:if|for|required for)\s+([a-z][a-z&/,\- ]+?)\s+major\b/i;
 const PATHWAY_LABEL_CUE_PATTERN =
@@ -738,10 +740,102 @@ function extractCourseCodesFromLine(line) {
   return uniqueSorted(extractedCourseCodes);
 }
 
-function extractCourseCodesFromLines(lines, headings) {
-  return uniqueSorted(
-    extractRelevantRequirementLines(lines, headings).flatMap((line) => extractCourseCodesFromLine(line))
+function hasRequirementContextNearLine(lines, index, radius) {
+  const startIndex = Math.max(0, index - radius);
+  const endIndex = Math.min(lines.length - 1, index + radius);
+
+  for (let contextIndex = startIndex; contextIndex <= endIndex; contextIndex += 1) {
+    const line = normalizeWhitespace(lines[contextIndex]);
+    if (
+      line &&
+      (STRUCTURAL_REQUIREMENT_PATTERN.test(line) ||
+        REQUIREMENT_CUE_PATTERN.test(line) ||
+        COURSE_CLUSTER_REQUIREMENT_CONTEXT_PATTERN.test(line))
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function hasKnownSubjectCourseCluster(lines, index, courseCode) {
+  const subject = getCourseCodeSubject(courseCode);
+  if (!subject || !KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(subject)) {
+    return false;
+  }
+
+  const level = getCourseCodeNumericLevel(courseCode);
+  if (level === null || level >= 500) {
+    return false;
+  }
+
+  const startIndex = Math.max(0, index - 8);
+  const endIndex = Math.min(lines.length - 1, index + 8);
+  let sameSubjectCourseCount = 0;
+  let hasDescriptiveCourseLine = false;
+
+  for (let contextIndex = startIndex; contextIndex <= endIndex; contextIndex += 1) {
+    const line = normalizeWhitespace(lines[contextIndex]);
+    const lineCourseCodes = extractCourseCodesFromLine(line).filter(
+      (lineCourseCode) => getCourseCodeSubject(lineCourseCode) === subject
+    );
+    sameSubjectCourseCount += lineCourseCodes.length;
+    if (
+      lineCourseCodes.length > 0 &&
+      !lineCourseCodes.every((lineCourseCode) => isBareCourseCodeSourceHint(line, lineCourseCode))
+    ) {
+      hasDescriptiveCourseLine = true;
+    }
+  }
+
+  return sameSubjectCourseCount >= 3 || (sameSubjectCourseCount >= 2 && hasDescriptiveCourseLine);
+}
+
+function isSafeKnownSubjectCourseClusterLine(entry, lines, index, courseCode) {
+  if (!entry || !Array.isArray(lines)) {
+    return false;
+  }
+
+  if (!hasKnownSubjectCourseCluster(lines, index, courseCode)) {
+    return false;
+  }
+
+  return (
+    hasRequirementContextNearLine(lines, index, 80) ||
+    /\b(curriculum|requirements?|checklist|worksheet)\b/i.test(
+      `${entry.parserType ?? ""} ${entry.sourceLabel ?? ""} ${entry.url ?? ""}`
+    )
   );
+}
+
+function extractSafeKnownSubjectCourseClusterCodesFromLines(entry, lines) {
+  if (!entry) {
+    return [];
+  }
+
+  const recoveredCodes = [];
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = normalizeWhitespace(lines[index]);
+    if (!line || NOISY_SOURCE_LINE_PATTERN.test(line) || TRANSFER_CREDIT_NOISE_PATTERN.test(line)) {
+      continue;
+    }
+
+    for (const courseCode of extractCourseCodesFromLine(line)) {
+      if (isSafeKnownSubjectCourseClusterLine(entry, lines, index, courseCode)) {
+        recoveredCodes.push(courseCode);
+      }
+    }
+  }
+
+  return uniqueSorted(recoveredCodes);
+}
+
+function extractCourseCodesFromLines(lines, headings, entry = null) {
+  return uniqueSorted([
+    ...extractRelevantRequirementLines(lines, headings).flatMap((line) => extractCourseCodesFromLine(line)),
+    ...extractSafeKnownSubjectCourseClusterCodesFromLines(entry, lines),
+  ]);
 }
 
 function buildSourceLineHint(courseCode, line) {
@@ -808,14 +902,26 @@ function isBareCourseCodeSourceHint(hint, courseCode) {
   return normalizeCourseCode(normalizedHint) === normalizeCourseCode(courseCode);
 }
 
-function isUnsafeRequirementCourseHint(entry, courseCode, hint) {
+function isRequirementSupportedBareCourseCodeHint(entry, courseCode, lines) {
+  if (!Array.isArray(lines) || !lines.length) {
+    return false;
+  }
+
+  return lines.some(
+    (line, index) =>
+      isBareCourseCodeSourceHint(line, courseCode) &&
+      isSafeKnownSubjectCourseClusterLine(entry, lines, index, courseCode)
+  );
+}
+
+function isUnsafeRequirementCourseHint(entry, courseCode, hint, lines = []) {
   const normalizedHint = normalizeWhitespace(String(hint ?? ""));
   if (!normalizedHint) {
     return false;
   }
 
   if (isBareCourseCodeSourceHint(normalizedHint, courseCode)) {
-    return true;
+    return !isRequirementSupportedBareCourseCodeHint(entry, courseCode, lines);
   }
 
   if (lineReferencesDifferentMajorScope(entry, normalizedHint)) {
@@ -846,7 +952,7 @@ function filterParsedCourseCodesByHints(entry, lines, courseCodes) {
       }
 
       return sourceLineHints.some(
-        (hint) => !isUnsafeRequirementCourseHint(entry, courseCode, hint)
+        (hint) => !isUnsafeRequirementCourseHint(entry, courseCode, hint, lines)
       );
     })
   );
@@ -1503,7 +1609,7 @@ function parseSnapshotSource(entry, originalError) {
   const courseCodes = filterParsedCourseCodesByHints(
     entry,
     snapshot.snapshotLines,
-    extractCourseCodesFromLines(snapshot.snapshotLines, [])
+    extractCourseCodesFromLines(snapshot.snapshotLines, [], entry)
   );
 
   return {
@@ -1966,7 +2072,7 @@ function buildHtmlParsedResult(entry, title, headings, lines) {
   const courseCodes = filterParsedCourseCodesByHints(
     entry,
     lines,
-    extractCourseCodesFromLines(lines, headings)
+    extractCourseCodesFromLines(lines, headings, entry)
   );
 
   return {
@@ -2227,7 +2333,7 @@ async function parsePdfSource(entry, timeoutMs) {
   const courseCodes = filterParsedCourseCodesByHints(
     entry,
     scopedPageLines,
-    extractCourseCodesFromLines(scopedPageLines, [])
+    extractCourseCodesFromLines(scopedPageLines, [], entry)
   );
 
   return {
@@ -2399,6 +2505,55 @@ function filterParsedSupplementalHtmlCandidateCourses(candidate, parsed) {
   };
 }
 
+function getSameProgramPathPrefix(url) {
+  try {
+    const parsedUrl = new URL(url);
+    const segments = parsedUrl.pathname.split("/").filter(Boolean);
+    const credentialSegmentIndex = segments.findIndex((segment) =>
+      /^(?:bachelor|bachelors?|b-a|b-s|bba|basw|major)[-_]/i.test(segment)
+    );
+    if (credentialSegmentIndex >= 0) {
+      return `/${segments.slice(0, credentialSegmentIndex + 1).join("/")}`;
+    }
+
+    const pathname = parsedUrl.pathname.replace(/\/+$/, "");
+    if (/(?:^|\/)(?:admissions?|curriculum|degree-requirements?|major-requirements?|requirements?|prerequisites?|checklist|worksheet)$/i.test(pathname)) {
+      return pathname.replace(/\/[^/]+$/, "");
+    }
+
+    return pathname;
+  } catch {
+    return "";
+  }
+}
+
+function isSameProgramRequirementHtmlLink(baseUrl, resolvedUrl, linkText, highSignal) {
+  if (!highSignal) {
+    return false;
+  }
+
+  try {
+    const base = new URL(baseUrl);
+    const resolved = new URL(resolvedUrl);
+    if (base.origin !== resolved.origin) {
+      return false;
+    }
+
+    const basePrefix = getSameProgramPathPrefix(base.href).replace(/\/+$/, "");
+    const resolvedPath = resolved.pathname.replace(/\/+$/, "");
+    if (!basePrefix || basePrefix === "/" || resolvedPath === basePrefix) {
+      return false;
+    }
+
+    return (
+      resolvedPath.startsWith(`${basePrefix}/`) &&
+      HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText)
+    );
+  } catch {
+    return false;
+  }
+}
+
 function extractSupplementalHtmlLinkCandidates(entry, html) {
   const baseUrl = normalizeUrlForComparison(entry.url);
   if (!baseUrl) {
@@ -2454,6 +2609,12 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
     const highSignal = HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
     const specializationSignal = SPECIALIZATION_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
     const degreeProgramSignal = LOW_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
+    const sameProgramRequirementLink = isSameProgramRequirementHtmlLink(
+      baseUrl,
+      resolvedUrl,
+      linkText,
+      highSignal
+    );
     const type = highSignal
       ? "general"
       : specializationSignal
@@ -2489,6 +2650,9 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
     if (degreeProgramSignal) {
       score += 6;
     }
+    if (sameProgramRequirementLink) {
+      score += 12;
+    }
     if (
       /(?:^|\/)(?:track|tracks|option|options|concentration|specialization|pathway|route)(?:\/|$|-)/i.test(
         resolvedUrl
@@ -2504,6 +2668,7 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
         label,
         score,
         type,
+        sameProgramRequirementLink,
       });
     }
   }
@@ -2646,10 +2811,20 @@ async function parseSupplementalHtmlSources(entry, html, timeoutMs, visitedUrls)
         },
         parsed
       );
-      if (parsedAlignmentScore < (candidate.type === "general" ? 3 : 2)) {
+      const minimumAlignmentScore = candidate.sameProgramRequirementLink
+        ? 0
+        : candidate.type === "general"
+          ? 3
+          : 2;
+      if (parsedAlignmentScore < minimumAlignmentScore) {
         continue;
       }
-      if (candidate.type === "general" && parsedAlignmentScore < 10 && parsed.courseCodes.length > 50) {
+      if (
+        candidate.type === "general" &&
+        !candidate.sameProgramRequirementLink &&
+        parsedAlignmentScore < 10 &&
+        parsed.courseCodes.length > 50
+      ) {
         continue;
       }
 
@@ -2899,6 +3074,17 @@ function shouldAllowAlternateToReplaceBestSource(
     return false;
   }
 
+  const bestCourseCount = bestParsed.courseCodes?.length ?? 0;
+  const alternateCourseCount = alternateParsed.courseCodes?.length ?? 0;
+  if (
+    bestCourseCount > 0 &&
+    alternateCourseCount === 0 &&
+    isFocusedDegreeSource(bestEntry) &&
+    isBroadSupplementalSource(alternateEntry)
+  ) {
+    return false;
+  }
+
   if (!isFocusedDegreeSource(bestEntry)) {
     return true;
   }
@@ -3012,6 +3198,30 @@ function resolveManifestBackedParserType(
   );
 }
 
+function recoverStructuredCourseCodesFromSourceEvidence(entry, structuredCourseCodes, parsed) {
+  if (!structuredCourseCodes.length) {
+    return [];
+  }
+
+  const evidenceLines = uniqueInOrder([
+    ...(parsed.requirementCueLines ?? []),
+    ...(parsed.chooseStatements ?? []),
+    ...(parsed.snapshotLines ?? []),
+  ]);
+  if (!evidenceLines.length) {
+    return [];
+  }
+
+  const sourceEvidenceCourseCodes = filterParsedCourseCodesByHints(
+    entry,
+    evidenceLines,
+    uniqueSorted(evidenceLines.flatMap((line) => extractCourseCodesFromLine(line)))
+  );
+  const sourceEvidenceCourseCodeSet = new Set(sourceEvidenceCourseCodes);
+
+  return structuredCourseCodes.filter((courseCode) => sourceEvidenceCourseCodeSet.has(courseCode));
+}
+
 function buildManifestParseSuccess(
   baseResult,
   structuredCourseCodes,
@@ -3046,7 +3256,10 @@ function buildManifestParseSuccess(
           label: effectiveSourceLabel,
           parserType: effectiveParserType,
         };
-  const parsedCourseCodes = uniqueSorted(parsed.courseCodes);
+  const parsedCourseCodes = uniqueSorted([
+    ...(parsed.courseCodes ?? []),
+    ...recoverStructuredCourseCodesFromSourceEvidence(effectiveEntry, structuredCourseCodes, parsed),
+  ]);
   const sourceOnlyCourseCodes = parsedCourseCodes.filter(
     (code) => !structuredCourseCodes.includes(code)
   );

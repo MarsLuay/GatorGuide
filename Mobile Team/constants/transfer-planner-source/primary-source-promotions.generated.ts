@@ -655,7 +655,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-22T10:27:31.573Z"
+    "generatedAt": "2026-04-23T12:16:51.228Z"
   },
   {
     "ownerType": "pathway",
@@ -683,7 +683,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-22T10:27:31.573Z"
+    "generatedAt": "2026-04-23T12:16:51.228Z"
   },
   {
     "ownerType": "pathway",
@@ -710,33 +710,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-22T10:27:31.573Z"
-  },
-  {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-chemistry:pathway:bs-route",
-    "ownerKey": "uw-seattle-chemistry:pathway:bs-route",
-    "planId": "uw-seattle-chemistry",
-    "pathwayId": "bs-route",
-    "ownerTitle": "Chemistry - B.S. route",
-    "campusId": "uw-seattle",
-    "url": "https://chem.washington.edu/bs-chemistry-acs-certified",
-    "label": "BS in Chemistry - ACS Certified",
-    "score": 56,
-    "confidence": "high",
-    "reasons": [
-      "admissions wording",
-      "discovered from an official source page",
-      "explicit degree-requirements wording",
-      "matches major keyword \"chemistry\"",
-      "matches the selected degree route",
-      "official source path matches the selected major",
-      "page title fetched successfully",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-04-22T10:27:31.573Z"
+    "generatedAt": "2026-04-23T12:16:51.228Z"
   },
   {
     "ownerType": "major",
@@ -881,7 +855,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-22T10:27:31.573Z"
+    "generatedAt": "2026-04-23T12:16:51.228Z"
   },
   {
     "ownerType": "major",
@@ -1098,41 +1072,6 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
     "generatedAt": "2026-04-22T10:14:00.069Z"
   },
   {
-    "ownerType": "pathway",
-    "ownerId": "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
-    "ownerKey": "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
-    "planId": "uw-seattle-electrical-computer-engineering",
-    "pathwayId": "photonics-pathway",
-    "ownerTitle": "Electrical & Computer Engineering - Photonics pathway",
-    "campusId": "uw-seattle",
-    "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsee/degree-requirements/",
-    "label": "BSEE Degree Requirements",
-    "score": 88,
-    "confidence": "high",
-    "reasons": [
-      "admissions wording",
-      "already stored as an official source",
-      "explicit degree-requirements wording",
-      "explicit major-requirements wording",
-      "generic campus requirements wording",
-      "matches major keyword \"computer\"",
-      "matches major keyword \"electrical\"",
-      "matches major keyword \"engineering\"",
-      "matches major keyword \"photonics\"",
-      "matches multiple major keywords",
-      "official source text matches the selected major",
-      "older year signal than current primary (2022 vs 2025)",
-      "page title fetched successfully",
-      "requirements path segment",
-      "specific bachelor route wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/ after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-04-22T10:27:31.573Z"
-  },
-  {
     "ownerType": "major",
     "ownerId": "uw-seattle-english-language-literature-and-culture",
     "ownerKey": "uw-seattle-english-language-literature-and-culture",
@@ -1261,6 +1200,36 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
   },
   {
     "ownerType": "major",
+    "ownerId": "uw-seattle-human-centered-design-engineering",
+    "ownerKey": "uw-seattle-human-centered-design-engineering",
+    "planId": "uw-seattle-human-centered-design-engineering",
+    "pathwayId": null,
+    "ownerTitle": "Human Centered Design & Engineering",
+    "campusId": "uw-seattle",
+    "url": "https://www.hcde.washington.edu/bs/requirements",
+    "label": "Degree requirements",
+    "score": 92,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "explicit degree-requirements wording",
+      "explicitly names the selected major",
+      "matches major keyword \"centered\"",
+      "matches major keyword \"design\"",
+      "matches major keyword \"engineering\"",
+      "matches major keyword \"human\"",
+      "matches multiple major keywords",
+      "official source text matches the selected major",
+      "older year signal than current primary (2024 vs 2025)",
+      "page title fetched successfully",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "Replaces existing primary https://www.hcde.washington.edu/bs/requirements/2024 after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-04-23T12:16:51.228Z"
+  },
+  {
+    "ownerType": "major",
     "ownerId": "uw-seattle-individualized-studies",
     "ownerKey": "uw-seattle-individualized-studies",
     "planId": "uw-seattle-individualized-studies",
@@ -1375,7 +1344,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-22T10:27:31.573Z"
+    "generatedAt": "2026-04-23T12:16:51.228Z"
   },
   {
     "ownerType": "major",

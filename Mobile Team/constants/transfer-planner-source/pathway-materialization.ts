@@ -458,12 +458,32 @@ function getPathwayMaterializationSupportKey(
     return canonicalEntry.pathwayId;
   }
 
+  const labelSimilarityKey = getDerivedPathwaySimilarityKey(pathway.label, plan.title);
+  const idSimilarityKey = getDerivedPathwaySimilarityKey(pathway.id, plan.title);
+  if (
+    labelSimilarityKey &&
+    idSimilarityKey &&
+    isCompactAcronymPathwaySupportKey(idSimilarityKey, labelSimilarityKey)
+  ) {
+    return idSimilarityKey;
+  }
+
   return (
-    getDerivedPathwaySimilarityKey(pathway.label, plan.title) ||
+    labelSimilarityKey ||
+    idSimilarityKey ||
     buildDerivedPathwayIdentityKey(plan.title, pathway.label) ||
-    buildDerivedPathwayIdentityKey(plan.title, pathway.id) ||
     pathway.id.toLowerCase()
   );
+}
+
+function isCompactAcronymPathwaySupportKey(idSimilarityKey: string, labelSimilarityKey: string) {
+  const idTokens = idSimilarityKey.split("|").filter(Boolean);
+  const labelTokens = labelSimilarityKey.split("|").filter(Boolean);
+  if (idTokens.length !== 1 || labelTokens.length <= 1) {
+    return false;
+  }
+
+  return /^[a-z0-9]{2,6}$/.test(idTokens[0]);
 }
 
 function isAutoPromotedPathway(
@@ -1292,7 +1312,12 @@ function filterUnsupportedBasePathways(
     const hasSupportingPathwayBlock = pathwayBlocks.some((block) =>
       buildPathwayEvidenceFamiliesForBlock(plan, block).has(pathwayFamily)
     );
-    if (!hasSupportingPathwayBlock) {
+    const hasDedicatedParsedPathwayBlock = hasDedicatedSourceBackedPathwayBlock(
+      plan,
+      pathway,
+      parsedSourceBlocks
+    );
+    if (!hasSupportingPathwayBlock && !hasDedicatedParsedPathwayBlock) {
       return false;
     }
 
@@ -1310,7 +1335,7 @@ function filterUnsupportedBasePathways(
       return normalizedSourceUrl && !planLevelSourceUrls.has(normalizedSourceUrl);
     });
 
-    return hasDedicatedPathwaySource;
+    return hasDedicatedPathwaySource || hasDedicatedParsedPathwayBlock;
   });
 }
 
@@ -1454,22 +1479,174 @@ function filterDerivedPathwaysToKnownBaseFamilies(
   return matchingDerivedPathways;
 }
 
+function canonicalizeDerivedPathwaysAgainstSupportedBase(
+  plan: TransferPlannerMajorPlan,
+  supportedBasePathways: TransferPlannerMajorPathway[],
+  derivedPathways: TransferPlannerDerivedPathwaySeed[]
+) {
+  if (!supportedBasePathways.length || !derivedPathways.length) {
+    return derivedPathways;
+  }
+
+  const basePathwaysByFamily = new Map<string, TransferPlannerMajorPathway[]>();
+  for (const pathway of supportedBasePathways) {
+    if (
+      isSuspiciousStructuralPathwayId(pathway.id) ||
+      isSuspiciousStructuralPathwayLabel(pathway.label)
+    ) {
+      continue;
+    }
+
+    const supportKey = getPathwayMaterializationSupportKey(plan, pathway);
+    if (!supportKey) {
+      continue;
+    }
+
+    basePathwaysByFamily.set(supportKey, [
+      ...(basePathwaysByFamily.get(supportKey) ?? []),
+      pathway,
+    ]);
+  }
+
+  const canonicalPathwaysById = new Map<string, TransferPlannerDerivedPathwaySeed>();
+  const canonicalOrder: string[] = [];
+  const pushCanonicalPathway = (pathway: TransferPlannerDerivedPathwaySeed) => {
+    if (!canonicalPathwaysById.has(pathway.id)) {
+      canonicalOrder.push(pathway.id);
+      canonicalPathwaysById.set(pathway.id, pathway);
+      return;
+    }
+
+    const existingPathway = canonicalPathwaysById.get(pathway.id)!;
+    canonicalPathwaysById.set(pathway.id, {
+      ...existingPathway,
+      label: existingPathway.label || pathway.label,
+      summary: existingPathway.summary || pathway.summary,
+    });
+  };
+
+  for (const pathway of derivedPathways) {
+    const supportKey = getPathwayMaterializationSupportKey(plan, pathway);
+    const matchingBasePathways = supportKey ? basePathwaysByFamily.get(supportKey) ?? [] : [];
+    if (matchingBasePathways.length !== 1 || isAutoPromotedPathway(plan, pathway)) {
+      pushCanonicalPathway(pathway);
+      continue;
+    }
+
+    const basePathway = matchingBasePathways[0];
+    pushCanonicalPathway({
+      ...pathway,
+      id: basePathway.id,
+      label: normalizeTransferPlannerText(basePathway.label) || pathway.label,
+      summary: pathway.summary || basePathway.summary || "",
+    });
+  }
+
+  return canonicalOrder.map((pathwayId) => canonicalPathwaysById.get(pathwayId)!);
+}
+
+function hasDedicatedSourceBackedPathwayBlock(
+  plan: TransferPlannerMajorPlan,
+  pathway: Pick<TransferPlannerMajorPathway, "id" | "label">,
+  parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
+) {
+  const ownerId = `${plan.id}:pathway:${pathway.id}`;
+  if (AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS.has(ownerId)) {
+    return true;
+  }
+
+  return parsedSourceBlocks.some(
+    (block) =>
+      block.pathwayId === pathway.id &&
+      Boolean(
+        block.parsedUwCourseCodes?.length ||
+          block.requirementCueLines?.length ||
+          block.chooseStatements?.length ||
+          block.pathwayLabels?.length
+      )
+  );
+}
+
+function mergeDerivedAndSourceBackedBasePathways(
+  plan: TransferPlannerMajorPlan,
+  supportedBasePathways: TransferPlannerMajorPathway[],
+  derivedPathways: TransferPlannerDerivedPathwaySeed[],
+  parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
+) {
+  const materializedPathwaysById = new Map<string, TransferPlannerMajorPathway>();
+  const materializedOrder: string[] = [];
+  const representedFamilies = new Set<string>();
+  const pushMaterializedPathway = (pathway: TransferPlannerMajorPathway) => {
+    if (!materializedPathwaysById.has(pathway.id)) {
+      materializedOrder.push(pathway.id);
+    }
+
+    materializedPathwaysById.set(pathway.id, pathway);
+    const supportKey = getPathwayMaterializationSupportKey(plan, pathway);
+    if (supportKey) {
+      representedFamilies.add(supportKey);
+    }
+  };
+
+  for (const pathway of derivedPathways) {
+    pushMaterializedPathway({
+      id: pathway.id,
+      label: normalizeTransferPlannerText(pathway.label),
+      summary: pathway.summary,
+      officialLinks: plan.officialLinks,
+    });
+  }
+
+  for (const pathway of supportedBasePathways) {
+    if (
+      isSuspiciousStructuralPathwayId(pathway.id) ||
+      isSuspiciousStructuralPathwayLabel(pathway.label) ||
+      materializedPathwaysById.has(pathway.id) ||
+      !hasDedicatedSourceBackedPathwayBlock(plan, pathway, parsedSourceBlocks)
+    ) {
+      continue;
+    }
+
+    const supportKey = getPathwayMaterializationSupportKey(plan, pathway);
+    if (supportKey && representedFamilies.has(supportKey)) {
+      continue;
+    }
+
+    pushMaterializedPathway({
+      ...pathway,
+      label: normalizeTransferPlannerText(pathway.label),
+    });
+  }
+
+  return materializedOrder.map((pathwayId) => materializedPathwaysById.get(pathwayId)!);
+}
+
 export function materializeTransferPlannerPathways(
   plan: TransferPlannerMajorPlan,
   basePathways: TransferPlannerMajorPathway[],
   parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
 ): TransferPlannerMajorPathway[] {
   const canonicalBasePathways = canonicalizeBasePathwaysAgainstAutoPromotions(plan, basePathways);
-  const derivedPathways = filterDerivedPathwaysToKnownBaseFamilies(
+  const rawDerivedPathways = filterDerivedPathwaysToKnownBaseFamilies(
     plan,
     canonicalBasePathways,
     buildDerivedPathwaySeeds(plan, canonicalBasePathways, parsedSourceBlocks)
+  );
+  const preliminaryDerivedPathways = canonicalizeDerivedPathwaysAgainstSupportedBase(
+    plan,
+    canonicalBasePathways,
+    rawDerivedPathways
   );
   const supportedBasePathways = filterUnsupportedBasePathways(
     plan,
     canonicalBasePathways,
     parsedSourceBlocks,
-    derivedPathways
+    preliminaryDerivedPathways
+  );
+  const derivedPathways = canonicalizeDerivedPathwaysAgainstSupportedBase(
+    plan,
+    supportedBasePathways,
+    preliminaryDerivedPathways
   );
   if (
     supportedBasePathways.length &&
@@ -1493,12 +1670,12 @@ export function materializeTransferPlannerPathways(
   }
 
   if (derivedPathways.length) {
-    return derivedPathways.map((pathway) => ({
-      id: pathway.id,
-      label: pathway.label,
-      summary: pathway.summary,
-      officialLinks: plan.officialLinks,
-    }));
+    return mergeDerivedAndSourceBackedBasePathways(
+      plan,
+      supportedBasePathways,
+      derivedPathways,
+      parsedSourceBlocks
+    );
   }
 
   return supportedBasePathways;

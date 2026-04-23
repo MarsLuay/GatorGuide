@@ -68,6 +68,8 @@ const SOURCE_WEAK_PRIMARY_URL_PATTERN =
 const SOURCE_WEAK_PRIMARY_HEADING_PATTERN =
   /\b(timeline(?:\s*&\s*requirements)?|graduate program|graduate admissions|ms requirements?|phd requirements?|research|faculty|news)\b/i;
 const SOURCE_OVERVIEW_ONLY_PATTERN = /\boverview\b/i;
+const LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN =
+  /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
 const STOP_TOKENS = new Set([
   "route",
   "option",
@@ -629,6 +631,30 @@ function buildIdentityAcronym(tokens) {
 
 function acronymMatchesText(acronym, text) {
   return acronym.length >= 3 && text.split(" ").includes(acronym);
+}
+
+function hasSelectedUndergraduateCatalogMajorCredential(target, candidate, candidateIdentityText) {
+  if (
+    target.ownerType !== "major" ||
+    !LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN.test(candidate.url ?? "")
+  ) {
+    return false;
+  }
+
+  if (!/\bbachelor (?:of )?(?:arts|science|music)\b/.test(candidateIdentityText)) {
+    return false;
+  }
+
+  if (!/\bmajor\b/.test(candidateIdentityText)) {
+    return false;
+  }
+
+  const meaningfulMajorTokens = (target.keywordTokens ?? []).filter(
+    (token) => token.length >= 4 && !IDENTITY_STOP_TOKENS.has(token)
+  );
+  return meaningfulMajorTokens.some((token) =>
+    tokenMatchesCandidateText(token, candidateIdentityText)
+  );
 }
 
 function scoreIdentityMatch(target, candidate, combinedText) {
@@ -1386,6 +1412,11 @@ function scoreCandidate(target, candidate) {
   if (hasMatchingDegreeRoute(`${target.title} ${target.label}`, combinedText)) {
     score += 8;
     addReason(reasons, "matches the selected degree route");
+  }
+
+  if (hasSelectedUndergraduateCatalogMajorCredential(target, candidate, candidateIdentityText)) {
+    score += 16;
+    addReason(reasons, "official catalog credential names the selected undergraduate major");
   }
 
   if (target.ownerType === "major" && (target.pathwayCount ?? 0) > 1) {

@@ -6,13 +6,18 @@ Title: Bachelor of Economics - School of Business
 (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
 (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
+[Supplemental official source] Curriculum
 [Supplemental official source] Entrepreneurship Concentration
 [Supplemental official source] Management Concentration
 [Supplemental official source] Management Information Systems (MIS) Concentration
+[Supplemental official source] Prerequisites
 [Supplemental official source] Retail Management Concentration
 [Supplemental official source] Supplemental official track and option pages
 [Supplemental official source] Technology & Innovation Management (TIM) Concentration
 * A minimum grade of 2.7 in either course is required.
+**AP Statistics score not accepted
+*AP Calculus score of 3, 4, or 5 accepted
+*Higher level business statistics accepted
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 |
@@ -23,6 +28,7 @@ Title: Bachelor of Economics - School of Business
 30 Credits
 425.352.5000
 425.352.5394
+5 credits
 5 credits – Complete 1 course from this list:
 90 Credits
 A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
@@ -38,9 +44,13 @@ All UW Bothell
 Alumni
 Apply As Undergraduate
 Awards
+B MATH 144
+BA& 240
 Bachelor in Business Administration
 Bachelor in Economics
 Bachelor of Business Administration
+Bachelor of Economics
+Bachelor of Science in Economics degree
 BBUS 300 – Organizational Behavior, Ethics and Inclusivity (DIV)
 BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
 BBUS 307 – Business Writing, Writing Designated Course
@@ -85,15 +95,18 @@ Beardslee Building (UWBB)
 Become a Mentor
 Before you can register for a capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
 Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
+BIS 215 (previously BIS 315), or B BUS 215, or BMATH 21, or STMATH 341
 Bothell, WA 98011
 Bothell, Washington View our location on Google maps.
 Box 358533
 Business Consulting Course
+Calculus
 Campus Safety
 Canvas
 Capstone Courses
 Certificate in Accounting
 Close mobile menu
+COMMON TRANSFER COURSE NUMBERING
 Commuter Services
 Contact
 Contact Us
@@ -150,9 +163,14 @@ Maps & directions
 Marketing Option and Concentration
 Master of Business Administration
 Master of Science in Accounting
+MATH 112, or 124, or 125, or 126, or 134, or 145, or
+MATH 390, or Q SCI 381, or IND E 315
+MATH& 146 or
+MATH& 148 or MATH&151
 Mentors
 Mentorship EDGE
 Mentorship EDGE Mentors
+Microeconomics
 Minor in Actuarial Science
 Minor in Business Administration
 Minor in Economics
@@ -173,13 +191,18 @@ People
 PharmD-MBA Program
 Policies & Petitions
 Position themselves to work in high-technology companies in areas such as product/project management, strategic planning and technology development
+Prerequisite Course Requirements
 Prerequisite Courses
 Prerequisites
 Privacy
 Professional Coaching
 Promotion and Tenure Guidelines
+PSYCH 315, or 317, or 318
+Q METH 201, or
+Q SCI 291
 Quick Links
 Related Links
+REQUIRED COURSES
 Required Management Courses (prerequisites in parentheses)
 Required MIS Courses (prerequisites in parentheses)
 Required Retail Management Courses (prerequisites in parentheses)
@@ -197,6 +220,9 @@ Search keywords
 Seattle Campus
 Skip To Content
 Staff
+STAT 220, or 221 (221 prior to A’17), or 311, or 390, or
+Statistics
+STMATH 114, 124, 125, or 126, or
 Students in the Retail Management concentration must complete the following courses for graduation:
 Students must have completed BBUS 300 – Organizational Behavior, Ethics and Inclusivity (DIV), and BBUS 320 – Marketing Management to declare the Retail Management concentration.
 Students must have completed BBUS 300 – Organizational Behavior, Ethics and Inclusivity (DIV), BBUS 320 – Marketing Management, and BBUS 350 – Business Finance to declare the Technology and Innovation Management concentration.
@@ -210,6 +236,7 @@ Terms
 The Management Concentration offers a wide variety of courses that examine the many challenges facing modern business organizations and provide the tools to meet those challenges. Specific areas of study include entrepreneurship, leadership and decision-making, conflict resolution, human resources and managing employees. Students who graduate with a concentration in management often pursue careers in consulting or as leaders in the private or public sector.
 The Management Information Systems (MIS) Concentration provides students with technical and business skills to solve business problems in technology-based environments. Students learn to analyze and design effective information systems, successfully manage software projects and maximize online customer experiences. The concentration was developed in collaboration with Computing and Software Systems faculty and included suggestions by an industry advisory board. Students in the MIS Concentration take courses in both the Business degree program and the CSS program.
 The Retail Management Concentration provides a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge.
+There are three entry points into the B.S. in Economics major. These include students transferring from another institution, students directly admitted into the major from high school, and UWB pre-majors. Regardless of how you enter the B.S. in Economics major, the requirements are the same. The table below outlines the five prerequisite courses and their most common equivalents.
 This specialized management concentration offers an understanding of the nature of innovation, the relationship between strategic leadership and innovation, and how organizations use technology and new product development processes to successfully manage change. Students examine the intersection of technology and innovation within the context of the firm and its industry. Students have the opportunity to:
 TIM curriculum
 TIM Elective Courses (prerequisites in parentheses)
@@ -220,12 +247,14 @@ Tuition and Financial Aid
 Undergraduate
 Undergraduate Programs
 University of Washington Bothell Homepage
+UW BOTHELL
 UW Bothell Facebook
 UW Bothell Home
 UW Bothell Instagram
 UW Bothell Linkedin
 UW Bothell Twitter
 UW Bothell Youtube
+UW SEATTLE
 uwbbusiness@uw.edu
 Vision, Mission & Values
 Visitors

@@ -3390,7 +3390,7 @@ function splitGeneralEducationSourceSignalLine(value: string | null | undefined)
       .flatMap((fragment) => fragment.split(/\s*;\s*/))
       .flatMap((fragment) =>
         fragment.split(
-          /\.\s+(?=(?:\d+\s+(?:additional|credits?)|\b(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|areas?\s+of\s+(?:inquiry|knowledge))\b))/i
+          /\.\s+(?=(?:\d+\s+(?:additional|credits?)|\b(?:arts?\s+(?:and|&)\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|areas?\s+of\s+(?:inquiry|knowledge))\b))/i
         )
       )
       .map((fragment) => sanitizeGeneralEducationSourceSignalLine(fragment))
@@ -3418,7 +3418,7 @@ function detectSourceBackedGeneralEducationCategories(
     }
   };
 
-  registerMatches("ah", /\barts?\s+and\s+humanities\b/i);
+  registerMatches("ah", /\barts?\s+(?:and|&)\s+humanities\b/i);
   registerMatches("ah", /\ba&h\b/i);
   registerMatches("ssc", /\bsocial sciences?\b/i);
   registerMatches("ssc", /\bssc\b/i);
@@ -3516,23 +3516,24 @@ function buildCategorySpecificGeneralEducationFixedDescriptors(
     [
       {
         category: "ah",
-        pattern:
-          /\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b(?:\s+of)?[^.;]{0,24}\b(?:arts?\s+and\s+humanities|a&h)\b/i,
       },
       {
         category: "ssc",
-        pattern:
-          /\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b(?:\s+of)?[^.;]{0,24}\b(?:social sciences?|ssc)\b/i,
       },
       {
         category: "nsc",
-        pattern:
-          /\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b(?:\s+of)?[^.;]{0,24}\b(?:natural sciences?|nsc)\b/i,
       },
     ] as const
   )
-    .map(({ category, pattern }) => {
-      const credits = extractFirstMatchingGeneralEducationCreditValue(text, [pattern]);
+    .map(({ category }) => {
+      const categoryPatternSource = getSourceBackedGeneralEducationCategoryPatternSource(category);
+      const credits =
+        extractFirstMatchingGeneralEducationCreditValue(text, [
+          new RegExp(
+            `\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b(?:\\s+of)?[^.;]{0,24}\\b(?:${categoryPatternSource})\\b`,
+            "i"
+          ),
+        ]) ?? extractLeadingCategoryGeneralEducationFixedCredits(text, category);
       if (credits === null) {
         return null;
       }
@@ -3551,7 +3552,7 @@ function buildCategorySpecificGeneralEducationFixedDescriptors(
         descriptor !== null
     );
 
-  return descriptors.length >= 2 ? descriptors : [];
+  return descriptors;
 }
 
 function getSourceBackedGeneralEducationCategoryPatternSource(
@@ -3559,12 +3560,38 @@ function getSourceBackedGeneralEducationCategoryPatternSource(
 ) {
   switch (category) {
     case "ah":
-      return "(?:arts?\\s+and\\s+humanities|a&h)";
+      return "(?:arts?\\s+(?:and|&)\\s+humanities|a&h)";
     case "ssc":
       return "(?:social sciences?|ssc)";
     case "nsc":
       return "(?:natural sciences?|nsc)";
   }
+}
+
+function extractLeadingCategoryGeneralEducationFixedCredits(
+  text: string,
+  category: SourceBackedGeneralEducationCategoryId
+) {
+  const categoryPatternSource = getSourceBackedGeneralEducationCategoryPatternSource(category);
+  const match = text.match(
+    new RegExp(
+      `^\\s*(?:[-*]\\s*)?(?:${categoryPatternSource})\\b([^.;]{0,64}?)\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b`,
+      "i"
+    )
+  );
+  if (!match) {
+    return null;
+  }
+
+  const interveningText = match[1] ?? "";
+  const otherCategoriesBeforeCredit = detectSourceBackedGeneralEducationCategories(
+    interveningText
+  ).filter((detectedCategory) => detectedCategory !== category);
+  if (otherCategoriesBeforeCredit.length) {
+    return null;
+  }
+
+  return parseGeneralEducationCreditAmount(match[2] ?? null);
 }
 
 function buildSingleCategoryGeneralEducationFixedDescriptor(
@@ -3675,7 +3702,8 @@ function hasSameSourceBackedCategorySet(
     return false;
   }
 
-  return left.every((category, index) => category === right[index]);
+  const rightCategories = new Set(right);
+  return left.every((category) => rightCategories.has(category));
 }
 
 function buildSourceBackedGeneralEducationDescriptorsFromSegment(

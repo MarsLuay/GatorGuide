@@ -2,35 +2,70 @@ Owner: uw-bothell-business-administration
 Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
 Title: Bachelor of Business Administration - School of Business
 
+[Supplemental official source] Prerequisite Courses
+[Supplemental official source] See full Admissions Requirements
 [Supplemental official source] UW Bothell BBA curriculum hub
+**AP Statistics score not accepted
+*AP Calculus score of 3, 4, or 5 accepted
+*Higher level business statistics accepted
+*Meeting the minimum requirements does not guarantee admission.
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 |
+1. Application form
 18807 Beardslee Blvd, Suite 210
+2. Unofficial transcripts
+3. Personal statement
 425.352.5000
 425.352.5394
+5 credits
+A cumulative GPA (grade-point average) of at least a 2.0 in all college coursework.
+A minimum cumulative GPA of at least a 2.5 in all business prerequisites.
+A minimum grade of 2.0 in each business prerequisite course
+A minimum of 60 transferable quarter credits.
+A positive grade trend
 About
 Accessibility
 Accountant, auditor, or financial analyst
 Accounting
 Accounting Option
 Admissions
+Admissions - School of Business
 Admissions Snapshot
+Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade point average (GPA) of at least a 2.0 and also have a cumulative business prerequisite GPA of at least a 2.5, prior to beginning their business studies at UW Bothell. These credits must include all of the following prerequisite courses (with a minimum grade of 2.0 in each):
 Advisory boards
+All applicants for whom English is a non-native language must provide proof of English Language Proficiency by providing scores that meet the University’s minimum.
+All prerequisite coursework — the business prerequisites below must be completed prior to beginning the program. See Prerequisite Courses for a list of equivalent transferable courses.
 All UW Bothell
 Alumni
 Applicants are evaluated on GPA, prerequisite performance, and a personal statement.
+Applicants can refer to this grid of approved Prerequisite Courses .
+Applicants interested in the Accounting Option must earn a minimum 2.5 grade in all accounting prerequisites and a cumulative 3.0 average across accounting courses.
+Applicants must also complete 10 credits of English composition to meet eligibility requirements.
+Applicants must meet the following requirements in order to be considered for admission.
+Application requirements
 Apply As Undergraduate
 Apply Now
 Apply today
 Areas of Study
+Arts & Humanities: 15 credits
 Awards
+B BUS 210
+B BUS 211
+B BUS 220/BIS 200
+B BUS 221/BIS 201
+B BUS 230
+B MATH 144
+B.A. in Business Administration requirements
+BA& 240
 Bachelor in Business Administration
 Bachelor in Economics
 Bachelor of Business Administration
 Bachelor of Business Administration - School of Business
 Beardslee Building (UWBB)
+Because the Bachelor Degree in Business Administration is an upper division program, students begin the program after completing prerequisite coursework. Transfer students applying to UW Bothell as Business majors and UW Bothell students declaring a Business major must have completed the majority of following courses at the time of application. All prerequisite coursework must be completed prior to matriculation (i.e., the start of studies at UW Bothell).
 Become a Mentor
+BIS 215 (previously BIS 315), B BUS 215, BMATH 215, or STMATH 341
 Bothell, WA 98011
 Bothell, Washington View our location on Google maps.
 Box 358533
@@ -38,8 +73,12 @@ Build leadership and innovation capacity
 Build the skills to lead in a changing world
 Business consultant, project manager, or entrepreneur
 Business Consulting Course
+Business law: Fulfilled by the law prerequisite
 Business students may specialize in one of four options or choose from one of eight concentrations and a self-directed concentration.
+Calculus
+Calculus or Business Calculus
 Campus Safety
+Candidates are evaluated on the following criteria:
 Canvas
 Career Outcomes
 Career-ready skills. Build expertise in leadership, analytics, strategy, and communication that employers seek.
@@ -47,13 +86,19 @@ Carry the distinction of a University of Washington degree, respected worldwide 
 Certificate in Accounting
 Choices for your major
 Close mobile menu
+COMMON TRANSFER COURSE NUMBERING
 Commuter Services
+Competitive applications have the following qualities:
+Completion of all prerequisite courses
 Completion of prerequisite coursework is required before starting.
 Concentrations
 Connections that matter. Access internships, networking, and mentorship across greater Seattle’s dynamic business community.
 Contact
 Contact Us
 Contact us by phone at:
+COURSES
+Cumulative college GPA of 3.0
+Current Bothell students: log in with you UW email address to submit an internal application online.
 Current site
 Curriculum
 Curriculum - School of Business
@@ -66,6 +111,8 @@ Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
+Electives: to complete 90 transferable credits
+English Composition (10 credits)
 Entrepreneurship
 Entrepreneurship Concentration
 Ethics Conference
@@ -79,7 +126,11 @@ Facilities
 Faculty
 Finance
 Finance Option and Concentration
+Financial Accounting I
+Financial Accounting II (if applicable)
 First-year students may directly enter this program .
+For example, if you’re a transfer student completing the remaining prerequisites in summer quarter, you can still apply to UW Bothell in spring with the intention of starting Business classes in fall quarter, so long as you’ve completed all the prerequisites before fall quarter begins.
+Foreign language: Two years in high school or 10 credits of one foreign language at the college level
 Gain tangible skills through projects, internships, and case studies
 Get a Mentor
 Give
@@ -88,10 +139,14 @@ Graduates are prepared for diverse opportunities in private, public, and nonprof
 height="0" width="0" style="display:none;visibility:hidden">
 How to apply
 Human Resources
+In addition to the B.A. in Business Administration requirements, students must complete the general university requirements listed below prior to graduation. Some of the above courses count towards general university requirements.
 In this section
 Independent Study Projects
 Information Technology
 Internships
+Introduction to Law or Business Law
+Introduction to Statistics
+It’s important to plan the courses you will take prior to applying for admission to UW Bothell’s School of Business B.A. in Business Administration major.
 Jobs
 Leadership & Strategic Innovation (LSI)
 Leadership & Strategic Innovation Option
@@ -103,10 +158,14 @@ Learn the technical and business skills required to solve business problems in t
 Learn to develop and implement coordinated marketing programs to successfully manage a company’s relationship with its target customers in order to meet its strategic goals in a competitive environment. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures. Learn more about the Marketing concentration .
 Learn to develop and implement coordinated marketing programs to successfully manage a company’s relationship with its target customers in order to meet its strategic goals in a competitive environment. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures. Learn more about the Marketing option .
 Library
+Likelihood of success in the degree program
+Macroeconomics
+Macroeconomics: Fulfilled by the macroeconomics prerequisite
 Management
 Management Concentration
 Management Information Systems (MIS)
 Management Information Systems (MIS) Concentration
+Managerial Accounting
 Many graduates also continue into advanced study, including the UW Bothell MBA.
 Maps & directions
 Marketing
@@ -115,9 +174,18 @@ Marketing manager, brand strategist, or sales lead
 Marketing Option and Concentration
 Master of Business Administration
 Master of Science in Accounting
+MATH 112, 124, 125, 126, 134, or 145
+MATH 390, Q SCI 381, or IND E 315
+MATH& 146 or
+MATH&148 or MATH& 151
+Mathematics: Fulfilled by the calculus prerequisite
 Mentors
 Mentorship EDGE
 Mentorship EDGE Mentors
+Microeconomics
+Microeconomics: Fulfilled by the microeconomics prerequisite
+Minimum academic performance requirements*
+Minimum University requirements
 Minor in Actuarial Science
 Minor in Business Administration
 Minor in Economics
@@ -126,22 +194,39 @@ More Links
 MS Accounting Advisory Board
 MSA Faculty
 MyUW
+Natural Sciences: 15 credits and must include
 News
+Note: UW Tacoma and UW Seattle may have different admission requirements.
+One additional course (i.e., psychology, sociology, or anthropology)
 Open mobile menu
 Opportunities
 Options
+Other factors that you would like the Admissions Committee to consider (i.e., academic or personal challenges).
 Our curriculum and approach blends business fundamentals with practical, applied learning. You will:
 People
+Personal statement , demonstrating the relationship between academic opportunities and the candidate’s professional career goals
 PharmD-MBA Program
+Please submit all materials to UW Bothell’s Admissions Office. The following items should be submitted by the application deadline:
 Policies & Petitions
+Prepare a personal statement (no more than two pages double-spaced) that addresses each of the following:
 Prepare to lead, innovate, and create impact in today’s dynamic business world. In the School of Business at the University of Washington Bothell, the Bachelor of Arts in Business Administration prepares you to think strategically, act ethically, and drive results in any industry. Through small classes, close mentorship, and connections to the Puget Sound business community, you will gain the confidence, knowledge, and experience to launch a meaningful career.
 Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
 Prerequisite Courses
+Prerequisite GPA of 3.0
 Prerequisites
+Prerequisites for matriculation
+Previous academic performance (cumulative and business prerequisite GPA)
 Privacy
 Professional Coaching
 Promotion and Tenure Guidelines
+Provide one unofficial transcript from each college or university you have attended with your application.
+PSYCH 315, 317, or 318
+Q METH 201
+Q SCI 291
+Qualifying English proficiency scores (if needed) on the SAT/ACT, TOEFL/IELTS or WSA
+Questions? Contact Us
 Quick Links
+Reasoning: Fulfilled by the statistics prerequisite
 Related Links
 Retail Management
 Retail Management Concentration
@@ -156,8 +241,12 @@ See full Admissions Requirements
 Self-Directed
 Skip To Content
 Small classes, big impact. Learn in a collaborative environment where faculty know you by name.
+Social Sciences: 20 credits and must include
 Specialized study that appears on your transcript.
 Staff
+STAT 220, 221 (221 prior to A’17), 311, or 390
+Statistics
+STMATH 113 & 114, 124, 125, or 126, or
 Strengthen your ability to communicate and collaborate
 Supply Chain Management
 Supply Chain Management Option
@@ -179,18 +268,23 @@ The two-year Accounting Option prepares students for careers in private, governm
 TIM helps students understand the nature of innovation, the relationship between strategic leadership and innovation, and how organizations use technology and new product development processes to successfully manage change. After graduation, students apply their knowledge in industries such as engineering, computing, telecommunications and biotechnology. Learn more about the TIM concentration .
 Time Schedule
 Transfer students begin at the junior level.
+Transfer, International and Returning students: complete one application to both UW Bothell and the School of Business B.A. in Business Administration Major.
 Tuition & Financial Aid
 Tuition and Financial Aid
+Two additional courses (i.e., biology or chemistry)
 ugbiz@uw.edu
 Undergraduate
 Undergraduate Programs
 University of Washington Bothell Homepage
+UW BOTHELL
 UW Bothell Facebook
 UW Bothell Home
 UW Bothell Instagram
 UW Bothell Linkedin
 UW Bothell Twitter
 UW Bothell Youtube
+UW IN SEATTLE
+uwbbusiness@uw.edu
 Vision, Mission & Values
 Visit our Campus
 Visitors
@@ -198,3 +292,6 @@ What to Expect
 Why Choose Business at UW Bothell
 Why hire a business student?
 Workday Login
+Writing: 15 credits, which must include English composition and advanced composition. Students still requiring 5 additional credits upon admissions may complete this requirement with BBUS 307, Business Writing.
+Your ability to contribute to the educational experience of other students.
+Your preparation and motivation to pursue upper-division studies in business.

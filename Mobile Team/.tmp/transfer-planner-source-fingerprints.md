@@ -1,18 +1,224 @@
 # Transfer Planner Source Fingerprints
 
-Generated: 2026-04-23T06:20:53.958Z
+Generated: 2026-04-23T09:22:12.723Z
 
 - Source snapshot generated: 2026-04-22T10:43:02.340Z
-- Requirement parse report generated: 2026-04-23T06:09:13.305Z
-- Source fingerprints: 348
+- Requirement parse report generated: 2026-04-23T09:22:00.762Z
+- Source fingerprints: 347
 - Requirement-source fingerprints: 475
 - Changed source resource fingerprints: 0
-- Changed parsed requirement fingerprints: 0
+- Changed parsed requirement fingerprints: 45
 - Added source fingerprints: 0
-- Added requirement fingerprints: 0
-- Removed source fingerprints: 0
-- Removed requirement fingerprints: 1
+- Added requirement fingerprints: 4
+- Removed source fingerprints: 1
+- Removed requirement fingerprints: 4
 
 Source resource fingerprints track official URL metadata/body hashes.
 Requirement-source fingerprints track parsed requirement facts separately, so cosmetic page changes do not automatically become planner requirement changes.
+
+## Changed Parsed Requirement Facts
+
+- Arts, Media and Culture (BA) - American Cultures TRACK (uw-tacoma-arts-media-culture:pathway:american-cultures-track)
+  - source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+  - fingerprint: d23ae4f21b8036bd683d6db8e1b029254bc81d6a3e3aeb47c595a087cdc2cb47
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 4
+- Arts, Media and Culture (BA) - Comparative ARTS TRACK (uw-tacoma-arts-media-culture:pathway:comparative-arts-track)
+  - source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+  - fingerprint: 18738ef63682e901443e8d3687d473a06b56924da50230b51af445bc16c5cb3f
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 4
+- Arts, Media and Culture (BA) - Literature TRACK (uw-tacoma-arts-media-culture:pathway:literature-track)
+  - source: https://www.tacoma.uw.edu/sias/cac/arts-media-culture
+  - fingerprint: 18738ef63682e901443e8d3687d473a06b56924da50230b51af445bc16c5cb3f
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 4
+- Bioengineering - PHD Data Science Option (uw-seattle-bioengineering:pathway:phd-data-science-option)
+  - source: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
+  - fingerprint: 8f9deb1af3df3ef8a31fb04633701f58d11e18a86dccb018f7779efd9d1246f6
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Biology - option (uw-seattle-biology:pathway:option)
+  - source: https://www.washington.edu/students/gencat/program/S/Biology-112.html
+  - fingerprint: 2d1af4dc0fa85f4ebe8faf7cfe4046978470cb0c71695a28af30962f963d456e
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Business Administration: Accounting (BA) - Leadership & Strategic Innovation Option (uw-bothell-business-administration-accounting:pathway:leadership-and-strategic-innovation-option)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
+  - fingerprint: 46ece09289a7e38ac09274c7e4a7bf8906dc23e8f7ab7700af0d6d34970fe717
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 4
+- Business Administration: Accounting (BA) - Management Concentration (uw-bothell-business-administration-accounting:pathway:management-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
+  - fingerprint: ab863f872e61501c1b6ebdfe0d94b9fd839695c1d0ea68bd7ceabe363f1c0fc7
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Business Administration: Accounting (BA) - MIS Concentration (uw-bothell-business-administration-accounting:pathway:mis-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
+  - fingerprint: 88b65e5bcd94affaf5f99b97cd6b0932abc07c2b50e43822674709a34682e55f
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 7
+  - quality signals: material-source-structured-drift
+- Business Administration: Accounting (BA) - Retail Management Concentration (uw-bothell-business-administration-accounting:pathway:retail-management-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
+  - fingerprint: 156b4d559459dd0467724ff3de8fc7fa5d03672ea6044d5c0268dbbc034ccaea
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Business Administration: Leadership & Strategic Innovation (BA) - Management Concentration (uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:management-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
+  - fingerprint: 4faf0a07e84f4d5f6bbc4ae866b4d93ee4a6f7217a46c5786fcad97f8a36612a
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Business Administration: Leadership & Strategic Innovation (BA) - MIS Concentration (uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:mis-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
+  - fingerprint: 7d5fca30ff79ac0fe9dacd52d8359a3c88a5624af2232a149537a8983eee0828
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 7
+  - quality signals: material-source-structured-drift
+- Business Administration: Leadership & Strategic Innovation (BA) - Retail Management Concentration (uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:retail-management-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
+  - fingerprint: 4faf0a07e84f4d5f6bbc4ae866b4d93ee4a6f7217a46c5786fcad97f8a36612a
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Business Administration: Leadership & Strategic Innovation (BA) - Supply Chain Management Option (uw-bothell-business-administration-leadership-and-strategic-innovation:pathway:supply-chain-management-option)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
+  - fingerprint: 139cdca50c04f99f8fdd055bbc4aaef350df7f09aadcc609f29be947390dab97
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Business Administration: Marketing (BA) - Leadership & Strategic Innovation Option (uw-bothell-business-administration-marketing:pathway:leadership-and-strategic-innovation-option)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
+  - fingerprint: d3dfc2105a9a98ddaec93cd2d058b9f201759d5331b59baed7543a09e84dd4a2
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Business Administration: Marketing (BA) - Management Concentration (uw-bothell-business-administration-marketing:pathway:management-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
+  - fingerprint: 6a9d459e29d9486880fbd2410be821fd15503db68c2fdf44960c2d65eeff71b3
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 3
+- Business Administration: Marketing (BA) - MIS Concentration (uw-bothell-business-administration-marketing:pathway:mis-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
+  - fingerprint: 408820fdbe3ba34e749e39742da0f493963ba748ef68df4bc9cc6d3b66277e5a
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 3
+- Business Administration: Marketing (BA) - Retail Management Concentration (uw-bothell-business-administration-marketing:pathway:retail-management-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
+  - fingerprint: 6a9d459e29d9486880fbd2410be821fd15503db68c2fdf44960c2d65eeff71b3
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 3
+- Business Administration: Marketing (BA) - Supply Chain Management Option (uw-bothell-business-administration-marketing:pathway:supply-chain-management-option)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
+  - fingerprint: 29b36599561866c5bcd04fd51414be7fe89c883a6c0b2ed1649798363fab8e8d
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Business Administration: Marketing (BA) - TIM Concentration (uw-bothell-business-administration-marketing:pathway:tim-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing
+  - fingerprint: 408820fdbe3ba34e749e39742da0f493963ba748ef68df4bc9cc6d3b66277e5a
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 3
+- Business Administration: Supply Chain Management (BA) - Leadership & Strategic Innovation Option (uw-bothell-business-administration-supply-chain-management:pathway:leadership-and-strategic-innovation-option)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain
+  - fingerprint: 89d97a5be9d4770f5651ba603f5306000ffcfcc75cc97f12aa014d4621a9858e
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Developmental and Youth Studies (BA) - CECL Concentration (uw-bothell-developmental-and-youth-studies:pathway:cecl-concentration)
+  - source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+  - fingerprint: 07929669ed1ad757896e15a314cbfe364a35dbec84e0e8a1731ecb229fe4cb2b
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Developmental and Youth Studies (BA) - Education Studies: Elementary Education Option (uw-bothell-developmental-and-youth-studies:pathway:education-studies-elementary-education-option)
+  - source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+  - fingerprint: 2ef387f92d54db30108b6e8946cf547ce2c6ff660d5983e3757df058e955ed18
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Developmental and Youth Studies (BA) - LEDE Concentration (uw-bothell-developmental-and-youth-studies:pathway:lede-concentration)
+  - source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+  - fingerprint: 07929669ed1ad757896e15a314cbfe364a35dbec84e0e8a1731ecb229fe4cb2b
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Economics (BS) - Management Concentration (uw-bothell-economics:pathway:management-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+  - fingerprint: c9e17e8b62a8cb2d2b18bbfd4633d8a7d2cc7e997986b47cb5717f2c7d25252f
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Economics (BS) - Retail Management Concentration (uw-bothell-economics:pathway:retail-management-concentration)
+  - source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
+  - fingerprint: c9e17e8b62a8cb2d2b18bbfd4633d8a7d2cc7e997986b47cb5717f2c7d25252f
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 2
+- Economics and Policy Analysis (BA) - Global Studies Concentration (uw-tacoma-economics-and-policy-analysis:pathway:global-studies-concentration)
+  - source: https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa
+  - fingerprint: 883987f191b5eda2715b34e6ba8e9b46858b01732b2faca1cb2853c9ed3cb532
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Education (BA) - English Language Learners (ELL) DUAL Endorsement Option (uw-tacoma-education:pathway:english-language-learners-ell-dual-endorsement-option)
+  - source: https://www.tacoma.uw.edu/soe/bachelor-arts-education
+  - fingerprint: 86a77894455e834f2ac5d3ae80e580d0a565620d1f711d801a06ae237ac57a5c
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Electrical & Computer Engineering - Digital Systems Design Pathway (uw-seattle-electrical-computer-engineering:pathway:digital-systems-design-pathway)
+  - source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+  - fingerprint: d9609223281714b621bf702147daca5923500f03edf20289b56c42b6eef351a5
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Electrical & Computer Engineering - Sensing and Communication Pathway (uw-seattle-electrical-computer-engineering:pathway:sensing-and-communication-pathway)
+  - source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+  - fingerprint: c05d6f8083a29f8ee0a2b0a9fbc70fb510a900e85c0943595a80229a07476f2e
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Electrical & Computer Engineering - Sustainable Energy Systems Pathway (uw-seattle-electrical-computer-engineering:pathway:sustainable-energy-systems-pathway)
+  - source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+  - fingerprint: d9609223281714b621bf702147daca5923500f03edf20289b56c42b6eef351a5
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Environmental Sustainability (BA) - Environmental Communication option (uw-tacoma-environmental-sustainability:pathway:environmental-communication-option)
+  - source: https://www.tacoma.uw.edu/sias/sam/environmental-sustainability
+  - fingerprint: ded920cc25195c31879defad0a42cf0a875f14a4c821ecaa12242bd3ea6acdab
+  - source-only UW course codes: 32
+  - structured-only UW course codes: 1
+  - quality signals: material-source-structured-drift
+- Ethnic, Gender and Labor Studies (BA) - Global Studies Concentration (uw-tacoma-ethnic-gender-and-labor-studies:pathway:global-studies-concentration)
+  - source: https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies
+  - fingerprint: 166b91ce1792fb026a75217e5d2816b762641289736030cad27c1aad63ffb31f
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Geography - Economy and Sustainability Track (uw-seattle-geography:pathway:economy-and-sustainability-track)
+  - source: https://geography.washington.edu/ba-geography
+  - fingerprint: 39529146b7792b6b9aca5f9a8bb4e06ea433e821ee2d4ddece74be506edf5994
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Geography - Health and Development Track (uw-seattle-geography:pathway:health-and-development-track)
+  - source: https://geography.washington.edu/ba-geography
+  - fingerprint: 174aa678f6d96c2896eeca115ae00785ba1c05c7f4cced4e7d85d4d78213cb5c
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Informatics - Data Science Option (uw-seattle-informatics:pathway:data-science-option)
+  - source: https://ischool.uw.edu/academics/informatics/curriculum
+  - fingerprint: a0878c54f153167ef0bc7b1683486ef806e8564059fd9f4ad9ef8e32aeeb9d19
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 1
+- Interdisciplinary Arts and Sciences (BA) - Global Studies Concentration (uw-tacoma-interdisciplinary-arts-and-sciences:pathway:global-studies-concentration)
+  - source: https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences
+  - fingerprint: fe699826e295e116e6b6558c23e2c48ea99483ce76fc5037e455a644713ca00d
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Law and Policy (BA) - Global Studies Concentration (uw-tacoma-law-and-policy:pathway:global-studies-concentration)
+  - source: https://www.tacoma.uw.edu/sias/socs/law-and-policy
+  - fingerprint: d6e285981a582e0b78b28871b73e577a05dc335f1c080548cfbd06c4811aec82
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Political Science - International Security Option (uw-seattle-political-science:pathway:international-security-option)
+  - source: https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf
+  - fingerprint: 99bd64c831ee1148eae6417b9bd81a53535a6b18f992881bde3bad60cc8db6d2
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Politics, Philosophy and Economics (BA) - Global Studies Concentration (uw-tacoma-politics-philosophy-and-economics:pathway:global-studies-concentration)
+  - source: https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe
+  - fingerprint: d0b096354438045cca1e5f780296ae9b7c39558967ceb490e13cddb0fe040b43
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
+- Psychology (BA) - Global Studies Concentration (uw-tacoma-psychology:pathway:global-studies-concentration)
+  - source: https://www.tacoma.uw.edu/sias/socs/psychology
+  - fingerprint: 357dcf3d9a9fa7113313abb12fd8ac6e3908244b44bf8165db0dbac7e6d85484
+  - source-only UW course codes: 0
+  - structured-only UW course codes: 0
 
