@@ -39,6 +39,7 @@ Math 126 or Math 136
 Math 207 or AMath 351
 Math 208 or AMath 352
 Math 209 or AMath 353
+Math 224
 Mechanics (5)
 Mentoring Program
 Multivariate Calculus (5)
@@ -48,6 +49,13 @@ PhD Program
 Phys 121 or Phys 141
 Phys 122 or Phys 142
 Phys 123 or Phys 143
+Phys 224
+Phys 225
+Phys 226
+Phys 227
+Phys 228
+Phys 231
+Phys 294
 Physics B.S. Degree Requirements
 Physics Minor
 Professional Master's

@@ -780,6 +780,32 @@ function hasMatchingDegreeRoute(targetText, candidateText) {
   return [...candidateDegrees].every((token) => targetDegrees.has(token));
 }
 
+function getFocusedCandidateDegreeTokens(candidate) {
+  return getDegreeTokens(
+    [
+      candidate?.url,
+      candidate?.label,
+      candidate?.anchorText,
+      candidate?.pageTitle,
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+}
+
+function isSingleDegreeRouteCandidateForMultiPathwayMajor(target, candidate, candidateText) {
+  if (target.ownerType !== "major" || (target.pathwayCount ?? 0) < 1) {
+    return false;
+  }
+
+  const focusedDegreeTokens = getFocusedCandidateDegreeTokens(candidate);
+  if (focusedDegreeTokens.size === 1) {
+    return true;
+  }
+
+  return getDegreeTokens(candidateText).size === 1;
+}
+
 function buildOwnerTargetRecord({
   analysisMode = "missing-primary",
   ownerType,
@@ -1419,12 +1445,9 @@ function scoreCandidate(target, candidate) {
     addReason(reasons, "official catalog credential names the selected undergraduate major");
   }
 
-  if (target.ownerType === "major" && (target.pathwayCount ?? 0) > 1) {
-    const candidateDegrees = getDegreeTokens(combinedText);
-    if (candidateDegrees.size === 1) {
-      score -= 10;
-      addReason(reasons, "route-specific page may not cover every pathway in the selected major");
-    }
+  if (isSingleDegreeRouteCandidateForMultiPathwayMajor(target, candidate, combinedText)) {
+    score -= 10;
+    addReason(reasons, "route-specific page may not cover every pathway in the selected major");
   }
 
   if (candidate.sourceKind === "official-link") {
@@ -1761,9 +1784,11 @@ function buildReplacementDecision(target, candidates) {
     .filter(Boolean)
     .join(" \n");
   const replacementIsSingleRouteForMultiPathwayMajor =
-    target.ownerType === "major" &&
-    (target.pathwayCount ?? 0) > 1 &&
-    getDegreeTokens(replacementCombinedText).size === 1;
+    isSingleDegreeRouteCandidateForMultiPathwayMajor(
+      target,
+      bestAlternative,
+      replacementCombinedText
+    );
   const minimumReplacementScoreDelta = betterSiblingByYear
     ? MIN_STALE_YEAR_REPLACEMENT_SCORE_DELTA
     : strongerCurrentDegreePageReplacement

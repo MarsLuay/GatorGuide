@@ -96,6 +96,7 @@ Math 126 or Math 136
 Math 207 or AMath 351
 Math 208 or AMath 352
 Math 209 or AMath 353
+Math 224
 Mathematical Methods of Physics I (4)
 Mathematical Methods of Physics II (4)
 Mechanics (5)
@@ -122,6 +123,7 @@ Phys 225
 Phys 226
 Phys 227
 Phys 228
+Phys 231
 Phys 294
 Phys 321
 Phys 322

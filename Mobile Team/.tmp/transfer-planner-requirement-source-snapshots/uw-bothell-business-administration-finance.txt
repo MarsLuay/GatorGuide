@@ -2,39 +2,59 @@ Owner: uw-bothell-business-administration-finance
 Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option
 Title: Finance Option and Concentration - School of Business
 
-School of Business
+[Supplemental official source] Prerequisite Courses
+**AP Statistics score not accepted
+*AP Calculus score of 3, 4, or 5 accepted
+*Higher level business statistics accepted
 |
-Undergraduate Programs
-|
+5 credits
+Admissions
+Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade point average (GPA) of at least a 2.0 and also have a cumulative business prerequisite GPA of at least a 2.5, prior to beginning their business studies at UW Bothell. These credits must include all of the following prerequisite courses (with a minimum grade of 2.0 in each):
+B MATH 144
+BA& 240
 Bachelor of Business Administration
-|
-Finance Option and Concentration
-Finance Option and Concentration
-Why study finance?
-The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
-Requirements to declare the Option or the Concentration
-Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
-Curriculum
-Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
-Course Type
-Option Courses
-Concentration Courses
-Core Courses (prerequisites in parentheses)
 BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
 BBUS 307 – Business Writing, Writing Designated Course
 BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
 BBUS 320 – Marketing Management
 BBUS 340 – Operations & Project Management
 BBUS 350 – Business Finance (310)
-BBUS 300 – Organizational Behavior, Ethics and Inclusivity, Diversity Designated Course
-BBUS 307 – Business Writing, Writing Designated Course
-BBUS 310 – Managerial Economics (BMATH 144, STMATH 124, or MATH 112)
-BBUS 320 – Marketing Management
-BBUS 340 – Operations & Project Management
-BBUS 350 – Business Finance (310)
-Required Courses (prerequisites in parentheses)
 BBUS 451 – Financial Policy and Practice (350)
 BBUS 452 – Financial Modeling (350)
 BBUS 453 – Financial Institutions and Markets (350)
 BBUS 454 – Investments (350)
-BBUS 451 – Financial Policy and Practice (350)
+Because the Bachelor Degree in Business Administration is an upper division program, students begin the program after completing prerequisite coursework. Transfer students applying to UW Bothell as Business majors and UW Bothell students declaring a Business major must have completed the majority of following courses at the time of application. All prerequisite coursework must be completed prior to matriculation (i.e., the start of studies at UW Bothell).
+BIS 215 (previously BIS 315), B BUS 215, BMATH 215, or STMATH 341
+Calculus
+COMMON TRANSFER COURSE NUMBERING
+Concentration Courses
+Core Courses (prerequisites in parentheses)
+Course Type
+COURSES
+Curriculum
+Finance Option and Concentration
+For example, if you’re a transfer student completing the remaining prerequisites in summer quarter, you can still apply to UW Bothell in spring with the intention of starting Business classes in fall quarter, so long as you’ve completed all the prerequisites before fall quarter begins.
+MATH 112, 124, 125, 126, 134, or 145
+MATH 390, Q SCI 381, or IND E 315
+MATH& 146 or
+MATH&148 or MATH& 151
+Microeconomics
+Option Courses
+Prerequisite Courses
+Prerequisites for matriculation
+PSYCH 315, 317, or 318
+Q METH 201
+Q SCI 291
+Required Courses (prerequisites in parentheses)
+Requirements to declare the Option or the Concentration
+School of Business
+STAT 220, 221 (221 prior to A’17), 311, or 390
+Statistics
+STMATH 113 & 114, 124, 125, or 126, or
+Students in the Finance Option or Concentration must complete the courses below to be eligible for graduation.
+Students wanting to declare the Finance Option are required to have taken B BUS 350 with a minimum GPA of 3.0. Students may apply for a waiver of this minimum GPA requirement if they earn a minimum GPA of 3.0 across all other Finance Option required courses. Students must have completed BBUS 350 – Business Finance, to declare the Finance concentration.
+The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
+Undergraduate Programs
+UW BOTHELL
+UW IN SEATTLE
+Why study finance?

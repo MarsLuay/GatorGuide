@@ -28,7 +28,7 @@ const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
 ]);
 const CHECKLIST_CHOICE_PREVIEW_LIMIT = 8;
 const SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN =
-  /\b(approved list|not required for transferring|elective|replacement|course list|course lists|course evaluation|course evaluations|highly recommended|suggested general education|suggested course pathways?)\b/i;
+  /\b(approved list|not required for transferring|elective|replacement|course list|course lists|course evaluation|course evaluations|recommended|suggested|consider|suggested general education|suggested course pathways?|choose\s+(?:one|[0-9]+)|one\s+of|select(?:ed|ing)?|\d+\s+credits?\s+from|minimum\s+\d+\s+credits?[^.]{0,80}\bfrom)\b/i;
 const SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_PATTERN =
   /\bCourse (?:equivalent to|overlaps with):\s*([^.]*)/gi;
 
@@ -658,6 +658,36 @@ export function buildSourceBackedRequiredCourseCodes(
   }
 
   return orderedCourseCodes;
+}
+
+function buildSourceBackedRequiredCourseFallbackStatuses(scope: {
+  plan: TransferPlannerMajorPlan | null | undefined;
+  existingStatuses: TransferRequirementStatus[];
+  completedCourses: TranscriptCourseEntry[];
+}) {
+  const existingCourseCodes = new Set(
+    scope.existingStatuses
+      .flatMap((status) => status.explicitCourseCodes)
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+  const fallbackItems = buildSourceBackedRequiredCourseCodes(scope.plan)
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter((courseCode) => courseCode && !existingCourseCodes.has(courseCode))
+    .map<TransferPlannerChecklistItem>((courseCode) => ({
+      id: `source-backed-required-${courseCode
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")}`,
+      title: courseCode,
+      grcCourses: [courseCode],
+    }));
+
+  if (!fallbackItems.length) {
+    return [] as TransferRequirementStatus[];
+  }
+
+  return buildRequirementStatuses(fallbackItems, scope.completedCourses);
 }
 
 function buildTransferEquivalencyGuidanceSummary(
@@ -5919,6 +5949,25 @@ export function buildSuggestedQuarterPlan(input: {
   includeSummerQuarter?: boolean;
 }) {
   const includeSummerQuarter = input.includeSummerQuarter === true;
+  const applicationStatuses = input.applicationStatuses;
+  const sourceBackedRequiredCourseFallbackStatuses =
+    buildSourceBackedRequiredCourseFallbackStatuses({
+      plan: input.plan,
+      existingStatuses:
+        input.includeStayAtGrcCourses === false
+          ? [...input.applicationStatuses, ...input.beforeEnrollmentStatuses]
+          : [
+              ...input.applicationStatuses,
+              ...input.beforeEnrollmentStatuses,
+              ...input.stayAtGrcStatuses,
+            ],
+      completedCourses: input.completedCourses,
+    });
+  const beforeEnrollmentStatuses = [
+    ...input.beforeEnrollmentStatuses,
+    ...sourceBackedRequiredCourseFallbackStatuses,
+  ];
+  const stayAtGrcStatuses = input.stayAtGrcStatuses;
   const selectedCurrentCourseLabels = new Set(
     unique(
       (input.currentCourseLabels ?? [])
@@ -5929,17 +5978,17 @@ export function buildSuggestedQuarterPlan(input: {
   const completedCourseCodes = new Set(input.completedCourses.map((course) => course.code));
   const checklistCourseCodes = new Set(
     [
-      ...input.applicationStatuses,
-      ...input.beforeEnrollmentStatuses,
-      ...input.stayAtGrcStatuses,
+      ...applicationStatuses,
+      ...beforeEnrollmentStatuses,
+      ...stayAtGrcStatuses,
     ].flatMap((status) => status.explicitCourseCodes)
   );
   const trackSupplementalCoveredCourseCodes = new Set([
     ...checklistCourseCodes,
     ...[
-      ...input.applicationStatuses,
-      ...input.beforeEnrollmentStatuses,
-      ...input.stayAtGrcStatuses,
+      ...applicationStatuses,
+      ...beforeEnrollmentStatuses,
+      ...stayAtGrcStatuses,
     ]
       .filter((status) => status.matched)
       .flatMap((status) =>
@@ -5975,17 +6024,17 @@ export function buildSuggestedQuarterPlan(input: {
   const essentialRemainingCourses = buildRemainingSuggestedCourses([
     {
       bucket: "application",
-      statuses: input.applicationStatuses,
+      statuses: applicationStatuses,
     },
     {
       bucket: "beforeEnrollment",
-      statuses: input.beforeEnrollmentStatuses,
+      statuses: beforeEnrollmentStatuses,
     },
   ], prerequisiteCourseMap, corequisiteCourseMap);
   const stayAtGrcRemainingCourses = buildRemainingSuggestedCourses([
     {
       bucket: "stayAtGrc",
-      statuses: input.stayAtGrcStatuses,
+      statuses: stayAtGrcStatuses,
     },
   ], prerequisiteCourseMap, corequisiteCourseMap);
   const trackSupplementalCourses = buildTrackSupplementalSuggestedCourses({
@@ -6007,15 +6056,15 @@ export function buildSuggestedQuarterPlan(input: {
           ...buildRemainingSuggestedCourses([
             {
               bucket: "application",
-              statuses: input.applicationStatuses,
+              statuses: applicationStatuses,
             },
             {
               bucket: "beforeEnrollment",
-              statuses: input.beforeEnrollmentStatuses,
+              statuses: beforeEnrollmentStatuses,
             },
             {
               bucket: "stayAtGrc",
-              statuses: input.stayAtGrcStatuses,
+              statuses: stayAtGrcStatuses,
             },
           ], prerequisiteCourseMap, corequisiteCourseMap),
           ...trackSupplementalCourses,
@@ -6031,9 +6080,9 @@ export function buildSuggestedQuarterPlan(input: {
     campusId: input.plan?.campusId,
     plan: input.plan,
     requirementStatuses: [
-      ...input.applicationStatuses,
-      ...input.beforeEnrollmentStatuses,
-      ...input.stayAtGrcStatuses,
+      ...applicationStatuses,
+      ...beforeEnrollmentStatuses,
+      ...stayAtGrcStatuses,
     ],
   });
   const currentQuarterCourses = guidedRemainingCourses

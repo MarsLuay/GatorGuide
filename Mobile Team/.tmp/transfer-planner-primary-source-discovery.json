@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-04-23T12:21:28.158Z",
+  "generatedAt": "2026-04-23T13:49:51.687Z",
   "ownerCount": 0,
   "missingPrimaryOwnerCount": 0,
   "highConfidenceSuggestionCount": 0,
   "mediumConfidenceSuggestionCount": 0,
   "noSuggestionCount": 0,
-  "weakExistingOwnerCount": 104,
+  "weakExistingOwnerCount": 102,
   "highConfidenceReplacementCount": 6,
-  "reviewReplacementCount": 69,
-  "keepExistingPrimaryCount": 98,
+  "reviewReplacementCount": 67,
+  "keepExistingPrimaryCount": 96,
   "owners": [],
   "weakExistingOwners": [
     {
@@ -38,10 +38,6 @@
       ],
       "reevaluationSignals": [
         {
-          "code": "parser-quality-warning",
-          "reason": "Parsed source block has parser-quality warnings: material-source-structured-drift, large-structured-only-course-gap."
-        },
-        {
           "code": "primary-source-appears-year-specific",
           "reason": "Current primary looks tied to 2026 in its source URL/title/document text, so discovery should compare it against sibling official sources."
         }
@@ -51,11 +47,8 @@
         "bestTrackId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering",
         "trackRecommendationId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering",
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 20,
-        "qualityWarningCodes": [
-          "material-source-structured-drift",
-          "large-structured-only-course-gap"
-        ],
+        "parsedUwCourseCodeCount": 28,
+        "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
           2026
@@ -1739,7 +1732,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 29,
-        "parsedUwCourseCodeCount": 10,
+        "parsedUwCourseCodeCount": 15,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -2172,7 +2165,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 30,
-        "parsedUwCourseCodeCount": 66,
+        "parsedUwCourseCodeCount": 208,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -2598,7 +2591,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 59,
+        "parsedUwCourseCodeCount": 162,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -3003,7 +2996,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 30,
-        "parsedUwCourseCodeCount": 66,
+        "parsedUwCourseCodeCount": 208,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -3419,7 +3412,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 62,
+        "parsedUwCourseCodeCount": 205,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -3847,7 +3840,7 @@
         "bestTrackId": "grc-associate-stem-physics-associate-in-science-transfer-track-2-physics",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 12,
+        "parsedUwCourseCodeCount": 21,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -4198,7 +4191,7 @@
         "bestTrackId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering",
         "trackRecommendationId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering",
         "noPublicClassificationCount": 19,
-        "parsedUwCourseCodeCount": 51,
+        "parsedUwCourseCodeCount": 62,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -4649,7 +4642,7 @@
         "bestTrackId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering",
         "trackRecommendationId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering",
         "noPublicClassificationCount": 19,
-        "parsedUwCourseCodeCount": 52,
+        "parsedUwCourseCodeCount": 63,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -5071,1811 +5064,6 @@
     {
       "analysisMode": "weak-existing-primary",
       "ownerType": "major",
-      "ownerKey": "uw-seattle-bioengineering",
-      "planId": "uw-seattle-bioengineering",
-      "pathwayId": null,
-      "title": "Bioengineering",
-      "label": "Bioengineering",
-      "campusId": "uw-seattle",
-      "existingPrimaryUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "existingPrimaryLabel": "UW Bioengineering degree requirements",
-      "officialLinks": [
-        {
-          "label": "UW Bioengineering degree requirements",
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "visibility": "visible",
-          "status": "verified",
-          "sourceConfidence": "high"
-        },
-        {
-          "label": "UW Bioengineering degree requirements",
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "note": "Source used for parser-backed UW requirement extraction."
-        }
-      ],
-      "reevaluationSignals": [
-        {
-          "code": "primary-source-appears-year-specific",
-          "reason": "Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources."
-        }
-      ],
-      "reevaluationContext": {
-        "runtimeGrcCourseCount": 19,
-        "bestTrackId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
-        "trackRecommendationId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
-        "noPublicClassificationCount": 5,
-        "parsedUwCourseCodeCount": 22,
-        "qualityWarningCodes": [],
-        "hasStrongRequirementCue": true,
-        "currentSourceYears": [
-          2023
-        ],
-        "currentSourceLatestYear": 2023,
-        "yearSpecificRequirementSource": true
-      },
-      "sourcePages": [
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 146
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 146
-        },
-        {
-          "url": "https://bioe.uw.edu/",
-          "finalUrl": "https://bioe.uw.edu/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "UW Bioengineering &#8211; University of Washington Department of Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 139,
-          "sourceKind": "official-site-root"
-        }
-      ],
-      "candidateCount": 126,
-      "currentPrimary": {
-        "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "label": "UW Bioengineering degree requirements",
-        "anchorText": "Skip to content",
-        "pageTitle": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-        "pageHeadings": [
-          "ABET Accreditation",
-          "Approved Engineering Electives (9-12 credits)",
-          "Bioengineering Core (37 credits)",
-          "Bioengineering Senior Capstone (Choose one track) (10 credits)",
-          "Bioengineering Senior Elective Courses (15 credits)",
-          "Bioengineering Undergraduate Info Sessions",
-          "Connect with Academic Services",
-          "Connect with us",
-          "Engineering Fundamentals (72 credits)",
-          "General Education (37 credits)",
-          "General Elective (8 credits)",
-          "Mathematics (24 credits)",
-          "Natural Science (44 credits)",
-          "Programming &#8211; Choose one option (4 credits)",
-          "Quicklinks",
-          "TOTAL CREDITS FOR DEGREE = 180",
-          "Undergraduate Degree Requirements",
-          "VLPA and I&S (24 credits)"
-        ],
-        "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "sourceKinds": [
-          "discovered-anchor",
-          "official-link"
-        ],
-        "score": 63,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "explicit degree-requirements wording",
-          "explicitly names the selected major",
-          "matches major keyword \"bioengineering\"",
-          "stays on an official UW domain",
-          "stays on the current official department host",
-          "undergraduate path segment"
-        ],
-        "detectedYears": [],
-        "latestDetectedYear": null
-      },
-      "reviewCandidate": {
-        "url": "https://bioe.uw.edu/2026-uw-bioengineering-graduation-celebration-june-9-2026/",
-        "label": null,
-        "anchorText": "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-        "pageTitle": "2026 UW Bioengineering Graduation Celebration June 9, 2026 &#8211; UW Bioengineering",
-        "pageHeadings": [
-          "2026 UW BioE Graduation Celebration",
-          "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-          "Connect with Academic Services",
-          "Connect with us",
-          "Graduate Student Exams",
-          "Keynote Speaker: Dr. Dawn Jorgensen",
-          "Quicklinks",
-          "Resources and information",
-          "Share This Story, Choose Your Platform!",
-          "Student News"
-        ],
-        "sourcePageUrl": "https://bioe.uw.edu/",
-        "sourceKinds": [
-          "discovered-anchor"
-        ],
-        "score": 67,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "explicitly names the selected major",
-          "matches major keyword \"bioengineering\"",
-          "more current year signal than current primary (2026 vs 2023)",
-          "official source path matches the selected major",
-          "stays on an official UW domain",
-          "stays on the current official department host"
-        ],
-        "detectedYears": [
-          2026
-        ],
-        "latestDetectedYear": 2026
-      },
-      "suggestedPrimary": null,
-      "suggestedAction": "keep-existing-primary",
-      "suggestedScoreDelta": 4,
-      "topCandidates": [
-        {
-          "url": "https://bioe.uw.edu/2026-uw-bioengineering-graduation-celebration-june-9-2026/",
-          "label": null,
-          "anchorText": "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-          "pageTitle": "2026 UW Bioengineering Graduation Celebration June 9, 2026 &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "2026 UW BioE Graduation Celebration",
-            "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Graduate Student Exams",
-            "Keynote Speaker: Dr. Dawn Jorgensen",
-            "Quicklinks",
-            "Resources and information",
-            "Share This Story, Choose Your Platform!",
-            "Student News"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 67,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected major",
-            "matches major keyword \"bioengineering\"",
-            "more current year signal than current primary (2026 vs 2023)",
-            "official source path matches the selected major",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [
-            2026
-          ],
-          "latestDetectedYear": 2026
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "label": "UW Bioengineering degree requirements",
-          "anchorText": "Skip to content",
-          "pageTitle": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Approved Engineering Electives (9-12 credits)",
-            "Bioengineering Core (37 credits)",
-            "Bioengineering Senior Capstone (Choose one track) (10 credits)",
-            "Bioengineering Senior Elective Courses (15 credits)",
-            "Bioengineering Undergraduate Info Sessions",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Engineering Fundamentals (72 credits)",
-            "General Education (37 credits)",
-            "General Elective (8 credits)",
-            "Mathematics (24 credits)",
-            "Natural Science (44 credits)",
-            "Programming &#8211; Choose one option (4 credits)",
-            "Quicklinks",
-            "TOTAL CREDITS FOR DEGREE = 180",
-            "Undergraduate Degree Requirements",
-            "VLPA and I&S (24 credits)"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor",
-            "official-link"
-          ],
-          "score": 63,
-          "confidence": "high",
-          "reasons": [
-            "already stored as an official source",
-            "explicit degree-requirements wording",
-            "explicitly names the selected major",
-            "matches major keyword \"bioengineering\"",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/wp-content/uploads/Bioengineering-MAB-Handout_09.23.25.pdf",
-          "label": null,
-          "anchorText": null,
-          "pageTitle": null,
-          "pageHeadings": [],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/masters/applied-bioengineering/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 61,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected major",
-            "matches major keyword \"bioengineering\"",
-            "official source path matches the selected major",
-            "pdf degree-sheet candidate",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioengineering-with-option-in-data-science/",
-          "label": null,
-          "anchorText": "BS Bioengineering with Option in Data Science",
-          "pageTitle": "BS Bioengineering with Option in Data Science &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Bioengineering Undergraduate Info Sessions",
-            "BS Bioengineering with Option in Data Science",
-            "Connect with Academic Services",
-            "Connect with us",
-            "DIPLOMA",
-            "HOW TO DECLARE the Data Science option",
-            "Quicklinks",
-            "REQUIREMENTS"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 56,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected major",
-            "matches major keyword \"bioengineering\"",
-            "official source path matches the selected major",
-            "page title fetched successfully",
-            "route-specific page may not cover every pathway in the selected major",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/bioe-life/environment/uw-bioengineering-culture/",
-          "label": null,
-          "anchorText": "UW BioE Culture",
-          "pageTitle": "UW BioE Culture &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Connect with us",
-            "Innovation, collaboration and community",
-            "Quicklinks",
-            "Together, inventing the future of medicine",
-            "UW BioE Culture",
-            "UW Bioengineering is a joint department in the UW School of Medicine and UW College of Engineering."
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 56,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected major",
-            "matches major keyword \"bioengineering\"",
-            "official source path matches the selected major",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/about-bioengineering/",
-          "label": null,
-          "anchorText": "Is Bioengineering Right for Me?",
-          "pageTitle": "Is Bioengineering Right for Me? &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Bioengineering addresses unmet challenges that make a difference in the world",
-            "Bioengineering is richly collaborative and interdisciplinary",
-            "Bioengineering is the only degree that bridges engineering, biology and physical science",
-            "Cardiac damage and failure",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Diagnosing disease",
-            "Graduate Student Exams",
-            "Is Bioengineering Right for Me?",
-            "Quicklinks",
-            "Still interested in Bioengineering?",
-            "Student News",
-            "Technologies for neurorehabilitation",
-            "The Bioengineering approach is integrative and innovative"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 55,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected major",
-            "matches major keyword \"bioengineering\"",
-            "official source path matches the selected major",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/congratulations-to-our-bioengineering-champions/",
-          "label": null,
-          "anchorText": "Congratulations to Our Bioengineering Champions",
-          "pageTitle": "Congratulations to Our Bioengineering Champions &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Congratulations to Our Bioengineering Champions",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Graduate Student Exams",
-            "Quicklinks",
-            "Resources and information",
-            "Share This Story, Choose Your Platform!",
-            "Student News"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 55,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected major",
-            "matches major keyword \"bioengineering\"",
-            "official source path matches the selected major",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/wp-content/uploads/2013/05/bioengineering-vs-other-disciplines-alt1.png",
-          "label": null,
-          "anchorText": null,
-          "pageTitle": null,
-          "pageHeadings": [],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/about-bioengineering/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 49,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected major",
-            "matches major keyword \"bioengineering\"",
-            "official source path matches the selected major",
-            "older year signal than current primary (2013 vs 2023)",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [
-            2013
-          ],
-          "latestDetectedYear": 2013
-        }
-      ]
-    },
-    {
-      "analysisMode": "weak-existing-primary",
-      "ownerType": "pathway",
-      "ownerKey": "uw-seattle-bioengineering:pathway:data-science-option",
-      "planId": "uw-seattle-bioengineering",
-      "pathwayId": "data-science-option",
-      "title": "Bioengineering - Data Science Option",
-      "label": "Data Science Option",
-      "campusId": "uw-seattle",
-      "existingPrimaryUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "existingPrimaryLabel": "UW Bioengineering degree requirements",
-      "officialLinks": [
-        {
-          "label": "UW Bioengineering degree requirements",
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/"
-        },
-        {
-          "label": "UW Bioengineering degree requirements",
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "note": "Source used for parser-backed UW requirement extraction."
-        }
-      ],
-      "reevaluationSignals": [
-        {
-          "code": "primary-source-appears-year-specific",
-          "reason": "Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources."
-        }
-      ],
-      "reevaluationContext": {
-        "runtimeGrcCourseCount": 19,
-        "bestTrackId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
-        "trackRecommendationId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
-        "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 22,
-        "qualityWarningCodes": [],
-        "hasStrongRequirementCue": true,
-        "currentSourceYears": [
-          2023
-        ],
-        "currentSourceLatestYear": 2023,
-        "yearSpecificRequirementSource": true
-      },
-      "sourcePages": [
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 146
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 146
-        },
-        {
-          "url": "https://bioe.uw.edu/",
-          "finalUrl": "https://bioe.uw.edu/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "UW Bioengineering &#8211; University of Washington Department of Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 139,
-          "sourceKind": "official-site-root"
-        }
-      ],
-      "candidateCount": 169,
-      "currentPrimary": {
-        "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "label": "UW Bioengineering degree requirements",
-        "anchorText": "Skip to content",
-        "pageTitle": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-        "pageHeadings": [
-          "ABET Accreditation",
-          "Approved Engineering Electives (9-12 credits)",
-          "Bioengineering Core (37 credits)",
-          "Bioengineering Senior Capstone (Choose one track) (10 credits)",
-          "Bioengineering Senior Elective Courses (15 credits)",
-          "Bioengineering Undergraduate Info Sessions",
-          "Connect with Academic Services",
-          "Connect with us",
-          "Engineering Fundamentals (72 credits)",
-          "General Education (37 credits)",
-          "General Elective (8 credits)",
-          "Mathematics (24 credits)",
-          "Natural Science (44 credits)",
-          "Programming &#8211; Choose one option (4 credits)",
-          "Quicklinks",
-          "TOTAL CREDITS FOR DEGREE = 180",
-          "Undergraduate Degree Requirements",
-          "VLPA and I&S (24 credits)"
-        ],
-        "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "sourceKinds": [
-          "discovered-anchor",
-          "official-link"
-        ],
-        "score": 53,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "explicit degree-requirements wording",
-          "matches major keyword \"bioengineering\"",
-          "stays on an official UW domain",
-          "stays on the current official department host",
-          "undergraduate path segment"
-        ],
-        "detectedYears": [],
-        "latestDetectedYear": null
-      },
-      "reviewCandidate": {
-        "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioengineering-with-option-in-data-science/",
-        "label": null,
-        "anchorText": "BS Bioengineering with Option in Data Science",
-        "pageTitle": "BS Bioengineering with Option in Data Science &#8211; UW Bioengineering",
-        "pageHeadings": [
-          "ABET Accreditation",
-          "Bioengineering Undergraduate Info Sessions",
-          "BS Bioengineering with Option in Data Science",
-          "Connect with Academic Services",
-          "Connect with us",
-          "DIPLOMA",
-          "HOW TO DECLARE the Data Science option",
-          "Quicklinks",
-          "REQUIREMENTS"
-        ],
-        "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "sourceKinds": [
-          "discovered-anchor"
-        ],
-        "score": 62,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "explicitly names the selected pathway or route",
-          "matches major keyword \"bioengineering\"",
-          "matches major keyword \"data\"",
-          "matches multiple major keywords",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the current official department host",
-          "undergraduate path segment"
-        ],
-        "detectedYears": [],
-        "latestDetectedYear": null
-      },
-      "suggestedPrimary": null,
-      "suggestedAction": "keep-existing-primary",
-      "suggestedScoreDelta": 9,
-      "topCandidates": [
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioengineering-with-option-in-data-science/",
-          "label": null,
-          "anchorText": "BS Bioengineering with Option in Data Science",
-          "pageTitle": "BS Bioengineering with Option in Data Science &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Bioengineering Undergraduate Info Sessions",
-            "BS Bioengineering with Option in Data Science",
-            "Connect with Academic Services",
-            "Connect with us",
-            "DIPLOMA",
-            "HOW TO DECLARE the Data Science option",
-            "Quicklinks",
-            "REQUIREMENTS"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 62,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected pathway or route",
-            "matches major keyword \"bioengineering\"",
-            "matches major keyword \"data\"",
-            "matches multiple major keywords",
-            "official source text matches the selected pathway",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "label": "UW Bioengineering degree requirements",
-          "anchorText": "Skip to content",
-          "pageTitle": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Approved Engineering Electives (9-12 credits)",
-            "Bioengineering Core (37 credits)",
-            "Bioengineering Senior Capstone (Choose one track) (10 credits)",
-            "Bioengineering Senior Elective Courses (15 credits)",
-            "Bioengineering Undergraduate Info Sessions",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Engineering Fundamentals (72 credits)",
-            "General Education (37 credits)",
-            "General Elective (8 credits)",
-            "Mathematics (24 credits)",
-            "Natural Science (44 credits)",
-            "Programming &#8211; Choose one option (4 credits)",
-            "Quicklinks",
-            "TOTAL CREDITS FOR DEGREE = 180",
-            "Undergraduate Degree Requirements",
-            "VLPA and I&S (24 credits)"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor",
-            "official-link"
-          ],
-          "score": 53,
-          "confidence": "high",
-          "reasons": [
-            "already stored as an official source",
-            "explicit degree-requirements wording",
-            "matches major keyword \"bioengineering\"",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/phd/phd-data-science-option/",
-          "label": null,
-          "anchorText": "PHD Data Science Option",
-          "pageTitle": "PHD Data Science Option &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Big Data and Image Processing",
-            "Connect with us",
-            "Connect with Us",
-            "Data Science",
-            "Data Science Option",
-            "Data Science Option Declaration Process",
-            "Data Visualization",
-            "Graduate Student Exams",
-            "PHD Data Science Option",
-            "Quicklinks",
-            "Required Curriculum:",
-            "Resources and information",
-            "Scientific Computing",
-            "Statistics and Machine Learning"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 44,
-          "confidence": "high",
-          "reasons": [
-            "curriculum wording",
-            "discovered from an official source page",
-            "explicitly names the selected pathway or route",
-            "graduate-program wording",
-            "matches major keyword \"bioengineering\"",
-            "matches major keyword \"data\"",
-            "matches multiple major keywords",
-            "official source text matches the selected pathway",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/2026-uw-bioengineering-graduation-celebration-june-9-2026/",
-          "label": null,
-          "anchorText": "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-          "pageTitle": "2026 UW Bioengineering Graduation Celebration June 9, 2026 &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "2026 UW BioE Graduation Celebration",
-            "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Graduate Student Exams",
-            "Keynote Speaker: Dr. Dawn Jorgensen",
-            "Quicklinks",
-            "Resources and information",
-            "Share This Story, Choose Your Platform!",
-            "Student News"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 25,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "more current year signal than current primary (2026 vs 2023)",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [
-            2026
-          ],
-          "latestDetectedYear": 2026
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/",
-          "label": null,
-          "anchorText": "Real-world focused curriculum",
-          "pageTitle": "Undergraduate Program &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "A Culture of community, support and service",
-            "ABET Accreditation",
-            "Apply to UW Bioengineering&#8217;s undergraduate program",
-            "Bioengineering Undergraduate Info Sessions",
-            "Capstone Project - a cutting-edge research opportunity",
-            "Connect with Academic Services",
-            "Connect with an academic counselor",
-            "Connect with us",
-            "Individual research and design project",
-            "Learn more about our curriculum",
-            "Personal attention in small classes. A culture of collaboration. Research opportunities with renowned faculty.",
-            "Quicklinks",
-            "Real-world focused curriculum",
-            "Team-based project",
-            "Undergraduate Program",
-            "Undergraduate program at a glance",
-            "Undergraduate program features"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 25,
-          "confidence": "medium",
-          "reasons": [
-            "curriculum wording",
-            "discovered from an official source page",
-            "does not clearly mention the selected major",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioe-nme-nano-molecular-engineering/",
-          "label": null,
-          "anchorText": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)",
-          "pageTitle": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME) &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Bioengineering Undergraduate Info Sessions",
-            "BS Bioengineering with Option in Nano & Molecular Engineering (NME)",
-            "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Diploma",
-            "How to declare NME",
-            "Quicklinks",
-            "Requirements",
-            "Restrictions"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 24,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/bioe-life/about/history/",
-          "label": null,
-          "anchorText": "UW Bioengineering history",
-          "pageTitle": "UW Bioengineering history &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Connect with us",
-            "Interesting facts about UW Bioengineering&#8217;s history",
-            "Learn more about UW Bioengineering’s history",
-            "Quicklinks",
-            "Together, inventing the future of medicine",
-            "UW Bioengineering history"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/2026-uw-bioengineering-graduation-celebration-june-9-2026/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 14,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/bioe-life/environment/uw-bioengineering-culture/",
-          "label": null,
-          "anchorText": "UW BioE Culture",
-          "pageTitle": "UW BioE Culture &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Connect with us",
-            "Innovation, collaboration and community",
-            "Quicklinks",
-            "Together, inventing the future of medicine",
-            "UW BioE Culture",
-            "UW Bioengineering is a joint department in the UW School of Medicine and UW College of Engineering."
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 14,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        }
-      ]
-    },
-    {
-      "analysisMode": "weak-existing-primary",
-      "ownerType": "pathway",
-      "ownerKey": "uw-seattle-bioengineering:pathway:nano-and-molecular-engineering-nme-option",
-      "planId": "uw-seattle-bioengineering",
-      "pathwayId": "nano-and-molecular-engineering-nme-option",
-      "title": "Bioengineering - Nano & Molecular Engineering (NME) Option",
-      "label": "Nano & Molecular Engineering (NME) Option",
-      "campusId": "uw-seattle",
-      "existingPrimaryUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "existingPrimaryLabel": "UW Bioengineering degree requirements",
-      "officialLinks": [
-        {
-          "label": "UW Bioengineering degree requirements",
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/"
-        },
-        {
-          "label": "UW Bioengineering degree requirements",
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "note": "Source used for parser-backed UW requirement extraction."
-        }
-      ],
-      "reevaluationSignals": [
-        {
-          "code": "primary-source-appears-year-specific",
-          "reason": "Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources."
-        }
-      ],
-      "reevaluationContext": {
-        "runtimeGrcCourseCount": 19,
-        "bestTrackId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
-        "trackRecommendationId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
-        "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 22,
-        "qualityWarningCodes": [],
-        "hasStrongRequirementCue": true,
-        "currentSourceYears": [
-          2023
-        ],
-        "currentSourceLatestYear": 2023,
-        "yearSpecificRequirementSource": true
-      },
-      "sourcePages": [
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 146
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 146
-        },
-        {
-          "url": "https://bioe.uw.edu/",
-          "finalUrl": "https://bioe.uw.edu/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "UW Bioengineering &#8211; University of Washington Department of Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 139,
-          "sourceKind": "official-site-root"
-        }
-      ],
-      "candidateCount": 164,
-      "currentPrimary": {
-        "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "label": "UW Bioengineering degree requirements",
-        "anchorText": "Skip to content",
-        "pageTitle": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-        "pageHeadings": [
-          "ABET Accreditation",
-          "Approved Engineering Electives (9-12 credits)",
-          "Bioengineering Core (37 credits)",
-          "Bioengineering Senior Capstone (Choose one track) (10 credits)",
-          "Bioengineering Senior Elective Courses (15 credits)",
-          "Bioengineering Undergraduate Info Sessions",
-          "Connect with Academic Services",
-          "Connect with us",
-          "Engineering Fundamentals (72 credits)",
-          "General Education (37 credits)",
-          "General Elective (8 credits)",
-          "Mathematics (24 credits)",
-          "Natural Science (44 credits)",
-          "Programming &#8211; Choose one option (4 credits)",
-          "Quicklinks",
-          "TOTAL CREDITS FOR DEGREE = 180",
-          "Undergraduate Degree Requirements",
-          "VLPA and I&S (24 credits)"
-        ],
-        "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "sourceKinds": [
-          "discovered-anchor",
-          "official-link"
-        ],
-        "score": 53,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "explicit degree-requirements wording",
-          "matches major keyword \"bioengineering\"",
-          "stays on an official UW domain",
-          "stays on the current official department host",
-          "undergraduate path segment"
-        ],
-        "detectedYears": [],
-        "latestDetectedYear": null
-      },
-      "reviewCandidate": {
-        "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioe-nme-nano-molecular-engineering/",
-        "label": null,
-        "anchorText": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)",
-        "pageTitle": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME) &#8211; UW Bioengineering",
-        "pageHeadings": [
-          "ABET Accreditation",
-          "Bioengineering Undergraduate Info Sessions",
-          "BS Bioengineering with Option in Nano & Molecular Engineering (NME)",
-          "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)",
-          "Connect with Academic Services",
-          "Connect with us",
-          "Diploma",
-          "How to declare NME",
-          "Quicklinks",
-          "Requirements",
-          "Restrictions"
-        ],
-        "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "sourceKinds": [
-          "discovered-anchor"
-        ],
-        "score": 70,
-        "confidence": "high",
-        "reasons": [
-          "discovered from an official source page",
-          "matches major keyword \"bioengineering\"",
-          "matches major keyword \"engineering\"",
-          "matches major keyword \"molecular\"",
-          "matches major keyword \"nano\"",
-          "matches major keyword \"nme\"",
-          "matches multiple major keywords",
-          "official source path matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the current official department host",
-          "undergraduate path segment"
-        ],
-        "detectedYears": [],
-        "latestDetectedYear": null
-      },
-      "suggestedPrimary": null,
-      "suggestedAction": "keep-existing-primary",
-      "suggestedScoreDelta": 17,
-      "topCandidates": [
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioe-nme-nano-molecular-engineering/",
-          "label": null,
-          "anchorText": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)",
-          "pageTitle": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME) &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Bioengineering Undergraduate Info Sessions",
-            "BS Bioengineering with Option in Nano & Molecular Engineering (NME)",
-            "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Diploma",
-            "How to declare NME",
-            "Quicklinks",
-            "Requirements",
-            "Restrictions"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 70,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "matches major keyword \"engineering\"",
-            "matches major keyword \"molecular\"",
-            "matches major keyword \"nano\"",
-            "matches major keyword \"nme\"",
-            "matches multiple major keywords",
-            "official source path matches the selected pathway",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "label": "UW Bioengineering degree requirements",
-          "anchorText": "Skip to content",
-          "pageTitle": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Approved Engineering Electives (9-12 credits)",
-            "Bioengineering Core (37 credits)",
-            "Bioengineering Senior Capstone (Choose one track) (10 credits)",
-            "Bioengineering Senior Elective Courses (15 credits)",
-            "Bioengineering Undergraduate Info Sessions",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Engineering Fundamentals (72 credits)",
-            "General Education (37 credits)",
-            "General Elective (8 credits)",
-            "Mathematics (24 credits)",
-            "Natural Science (44 credits)",
-            "Programming &#8211; Choose one option (4 credits)",
-            "Quicklinks",
-            "TOTAL CREDITS FOR DEGREE = 180",
-            "Undergraduate Degree Requirements",
-            "VLPA and I&S (24 credits)"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor",
-            "official-link"
-          ],
-          "score": 53,
-          "confidence": "high",
-          "reasons": [
-            "already stored as an official source",
-            "explicit degree-requirements wording",
-            "matches major keyword \"bioengineering\"",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/2026-uw-bioengineering-graduation-celebration-june-9-2026/",
-          "label": null,
-          "anchorText": "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-          "pageTitle": "2026 UW Bioengineering Graduation Celebration June 9, 2026 &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "2026 UW BioE Graduation Celebration",
-            "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Graduate Student Exams",
-            "Keynote Speaker: Dr. Dawn Jorgensen",
-            "Quicklinks",
-            "Resources and information",
-            "Share This Story, Choose Your Platform!",
-            "Student News"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 25,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "more current year signal than current primary (2026 vs 2023)",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [
-            2026
-          ],
-          "latestDetectedYear": 2026
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/",
-          "label": null,
-          "anchorText": "Real-world focused curriculum",
-          "pageTitle": "Undergraduate Program &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "A Culture of community, support and service",
-            "ABET Accreditation",
-            "Apply to UW Bioengineering&#8217;s undergraduate program",
-            "Bioengineering Undergraduate Info Sessions",
-            "Capstone Project - a cutting-edge research opportunity",
-            "Connect with Academic Services",
-            "Connect with an academic counselor",
-            "Connect with us",
-            "Individual research and design project",
-            "Learn more about our curriculum",
-            "Personal attention in small classes. A culture of collaboration. Research opportunities with renowned faculty.",
-            "Quicklinks",
-            "Real-world focused curriculum",
-            "Team-based project",
-            "Undergraduate Program",
-            "Undergraduate program at a glance",
-            "Undergraduate program features"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 25,
-          "confidence": "medium",
-          "reasons": [
-            "curriculum wording",
-            "discovered from an official source page",
-            "does not clearly mention the selected major",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioengineering-with-option-in-data-science/",
-          "label": null,
-          "anchorText": "BS Bioengineering with Option in Data Science",
-          "pageTitle": "BS Bioengineering with Option in Data Science &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Bioengineering Undergraduate Info Sessions",
-            "BS Bioengineering with Option in Data Science",
-            "Connect with Academic Services",
-            "Connect with us",
-            "DIPLOMA",
-            "HOW TO DECLARE the Data Science option",
-            "Quicklinks",
-            "REQUIREMENTS"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 24,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/bioe-life/environment/uw-bioengineering-culture/",
-          "label": null,
-          "anchorText": "UW BioE Culture",
-          "pageTitle": "UW BioE Culture &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Connect with us",
-            "Innovation, collaboration and community",
-            "Quicklinks",
-            "Together, inventing the future of medicine",
-            "UW BioE Culture",
-            "UW Bioengineering is a joint department in the UW School of Medicine and UW College of Engineering."
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 20,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "matches major keyword \"engineering\"",
-            "matches multiple major keywords",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/index.php/academic-programs/undergraduate/abet-accreditation/",
-          "label": null,
-          "anchorText": "the bachelor&#8217;s degree program was accredited by the Accreditation Board for Engineering and Technology (ABET) in 2008 (retroactive to 2006)",
-          "pageTitle": null,
-          "pageHeadings": [],
-          "sourcePageUrl": "https://bioe.uw.edu/bioe-life/about/history/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 17,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"engineering\"",
-            "older year signal than current primary (2008 vs 2023)",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [
-            2006,
-            2008
-          ],
-          "latestDetectedYear": 2008
-        },
-        {
-          "url": "https://bioe.uw.edu/bioe-life/about/history/",
-          "label": null,
-          "anchorText": "UW Bioengineering history",
-          "pageTitle": "UW Bioengineering history &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Connect with us",
-            "Interesting facts about UW Bioengineering&#8217;s history",
-            "Learn more about UW Bioengineering’s history",
-            "Quicklinks",
-            "Together, inventing the future of medicine",
-            "UW Bioengineering history"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/2026-uw-bioengineering-graduation-celebration-june-9-2026/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 14,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        }
-      ]
-    },
-    {
-      "analysisMode": "weak-existing-primary",
-      "ownerType": "pathway",
-      "ownerKey": "uw-seattle-bioengineering:pathway:phd-data-science-option",
-      "planId": "uw-seattle-bioengineering",
-      "pathwayId": "phd-data-science-option",
-      "title": "Bioengineering - PHD Data Science Option",
-      "label": "PHD Data Science Option",
-      "campusId": "uw-seattle",
-      "existingPrimaryUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "existingPrimaryLabel": "UW Bioengineering degree requirements",
-      "officialLinks": [
-        {
-          "label": "UW Bioengineering degree requirements",
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/"
-        },
-        {
-          "label": "UW Bioengineering degree requirements",
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "note": "Source used for parser-backed UW requirement extraction."
-        }
-      ],
-      "reevaluationSignals": [
-        {
-          "code": "primary-source-appears-year-specific",
-          "reason": "Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources."
-        }
-      ],
-      "reevaluationContext": {
-        "runtimeGrcCourseCount": 19,
-        "bestTrackId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
-        "trackRecommendationId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
-        "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 22,
-        "qualityWarningCodes": [],
-        "hasStrongRequirementCue": true,
-        "currentSourceYears": [
-          2023
-        ],
-        "currentSourceLatestYear": 2023,
-        "yearSpecificRequirementSource": true
-      },
-      "sourcePages": [
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 146
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "finalUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 146
-        },
-        {
-          "url": "https://bioe.uw.edu/",
-          "finalUrl": "https://bioe.uw.edu/",
-          "ok": true,
-          "status": 200,
-          "contentType": "text/html; charset=UTF-8",
-          "title": "UW Bioengineering &#8211; University of Washington Department of Bioengineering",
-          "headingCount": 18,
-          "error": null,
-          "anchorCount": 139,
-          "sourceKind": "official-site-root"
-        }
-      ],
-      "candidateCount": 169,
-      "currentPrimary": {
-        "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "label": "UW Bioengineering degree requirements",
-        "anchorText": "Skip to content",
-        "pageTitle": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-        "pageHeadings": [
-          "ABET Accreditation",
-          "Approved Engineering Electives (9-12 credits)",
-          "Bioengineering Core (37 credits)",
-          "Bioengineering Senior Capstone (Choose one track) (10 credits)",
-          "Bioengineering Senior Elective Courses (15 credits)",
-          "Bioengineering Undergraduate Info Sessions",
-          "Connect with Academic Services",
-          "Connect with us",
-          "Engineering Fundamentals (72 credits)",
-          "General Education (37 credits)",
-          "General Elective (8 credits)",
-          "Mathematics (24 credits)",
-          "Natural Science (44 credits)",
-          "Programming &#8211; Choose one option (4 credits)",
-          "Quicklinks",
-          "TOTAL CREDITS FOR DEGREE = 180",
-          "Undergraduate Degree Requirements",
-          "VLPA and I&S (24 credits)"
-        ],
-        "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "sourceKinds": [
-          "discovered-anchor",
-          "official-link"
-        ],
-        "score": 53,
-        "confidence": "high",
-        "reasons": [
-          "already stored as an official source",
-          "explicit degree-requirements wording",
-          "matches major keyword \"bioengineering\"",
-          "stays on an official UW domain",
-          "stays on the current official department host",
-          "undergraduate path segment"
-        ],
-        "detectedYears": [],
-        "latestDetectedYear": null
-      },
-      "reviewCandidate": {
-        "url": "https://bioe.uw.edu/academic-programs/phd/phd-data-science-option/",
-        "label": null,
-        "anchorText": "PHD Data Science Option",
-        "pageTitle": "PHD Data Science Option &#8211; UW Bioengineering",
-        "pageHeadings": [
-          "Big Data and Image Processing",
-          "Connect with us",
-          "Connect with Us",
-          "Data Science",
-          "Data Science Option",
-          "Data Science Option Declaration Process",
-          "Data Visualization",
-          "Graduate Student Exams",
-          "PHD Data Science Option",
-          "Quicklinks",
-          "Required Curriculum:",
-          "Resources and information",
-          "Scientific Computing",
-          "Statistics and Machine Learning"
-        ],
-        "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-        "sourceKinds": [
-          "discovered-anchor"
-        ],
-        "score": 46,
-        "confidence": "high",
-        "reasons": [
-          "curriculum wording",
-          "discovered from an official source page",
-          "explicitly names the selected pathway or route",
-          "graduate-program wording",
-          "matches major keyword \"bioengineering\"",
-          "matches major keyword \"data\"",
-          "matches major keyword \"phd\"",
-          "matches multiple major keywords",
-          "official source text matches the selected pathway",
-          "page title fetched successfully",
-          "stays on an official UW domain",
-          "stays on the current official department host"
-        ],
-        "detectedYears": [],
-        "latestDetectedYear": null
-      },
-      "suggestedPrimary": null,
-      "suggestedAction": "keep-existing-primary",
-      "suggestedScoreDelta": -7,
-      "topCandidates": [
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "label": "UW Bioengineering degree requirements",
-          "anchorText": "Skip to content",
-          "pageTitle": "Undergraduate Degree Requirements &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Approved Engineering Electives (9-12 credits)",
-            "Bioengineering Core (37 credits)",
-            "Bioengineering Senior Capstone (Choose one track) (10 credits)",
-            "Bioengineering Senior Elective Courses (15 credits)",
-            "Bioengineering Undergraduate Info Sessions",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Engineering Fundamentals (72 credits)",
-            "General Education (37 credits)",
-            "General Elective (8 credits)",
-            "Mathematics (24 credits)",
-            "Natural Science (44 credits)",
-            "Programming &#8211; Choose one option (4 credits)",
-            "Quicklinks",
-            "TOTAL CREDITS FOR DEGREE = 180",
-            "Undergraduate Degree Requirements",
-            "VLPA and I&S (24 credits)"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor",
-            "official-link"
-          ],
-          "score": 53,
-          "confidence": "high",
-          "reasons": [
-            "already stored as an official source",
-            "explicit degree-requirements wording",
-            "matches major keyword \"bioengineering\"",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/phd/phd-data-science-option/",
-          "label": null,
-          "anchorText": "PHD Data Science Option",
-          "pageTitle": "PHD Data Science Option &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Big Data and Image Processing",
-            "Connect with us",
-            "Connect with Us",
-            "Data Science",
-            "Data Science Option",
-            "Data Science Option Declaration Process",
-            "Data Visualization",
-            "Graduate Student Exams",
-            "PHD Data Science Option",
-            "Quicklinks",
-            "Required Curriculum:",
-            "Resources and information",
-            "Scientific Computing",
-            "Statistics and Machine Learning"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 46,
-          "confidence": "high",
-          "reasons": [
-            "curriculum wording",
-            "discovered from an official source page",
-            "explicitly names the selected pathway or route",
-            "graduate-program wording",
-            "matches major keyword \"bioengineering\"",
-            "matches major keyword \"data\"",
-            "matches major keyword \"phd\"",
-            "matches multiple major keywords",
-            "official source text matches the selected pathway",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioengineering-with-option-in-data-science/",
-          "label": null,
-          "anchorText": "BS Bioengineering with Option in Data Science",
-          "pageTitle": "BS Bioengineering with Option in Data Science &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Bioengineering Undergraduate Info Sessions",
-            "BS Bioengineering with Option in Data Science",
-            "Connect with Academic Services",
-            "Connect with us",
-            "DIPLOMA",
-            "HOW TO DECLARE the Data Science option",
-            "Quicklinks",
-            "REQUIREMENTS"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 30,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "matches major keyword \"data\"",
-            "matches multiple major keywords",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/2026-uw-bioengineering-graduation-celebration-june-9-2026/",
-          "label": null,
-          "anchorText": "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-          "pageTitle": "2026 UW Bioengineering Graduation Celebration June 9, 2026 &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "2026 UW BioE Graduation Celebration",
-            "2026 UW Bioengineering Graduation Celebration June 9, 2026",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Graduate Student Exams",
-            "Keynote Speaker: Dr. Dawn Jorgensen",
-            "Quicklinks",
-            "Resources and information",
-            "Share This Story, Choose Your Platform!",
-            "Student News"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 25,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "more current year signal than current primary (2026 vs 2023)",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [
-            2026
-          ],
-          "latestDetectedYear": 2026
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/",
-          "label": null,
-          "anchorText": "Real-world focused curriculum",
-          "pageTitle": "Undergraduate Program &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "A Culture of community, support and service",
-            "ABET Accreditation",
-            "Apply to UW Bioengineering&#8217;s undergraduate program",
-            "Bioengineering Undergraduate Info Sessions",
-            "Capstone Project - a cutting-edge research opportunity",
-            "Connect with Academic Services",
-            "Connect with an academic counselor",
-            "Connect with us",
-            "Individual research and design project",
-            "Learn more about our curriculum",
-            "Personal attention in small classes. A culture of collaboration. Research opportunities with renowned faculty.",
-            "Quicklinks",
-            "Real-world focused curriculum",
-            "Team-based project",
-            "Undergraduate Program",
-            "Undergraduate program at a glance",
-            "Undergraduate program features"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 25,
-          "confidence": "medium",
-          "reasons": [
-            "curriculum wording",
-            "discovered from an official source page",
-            "does not clearly mention the selected major",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/academic-programs/undergraduate/bs-bioe-nme-nano-molecular-engineering/",
-          "label": null,
-          "anchorText": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)",
-          "pageTitle": "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME) &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "ABET Accreditation",
-            "Bioengineering Undergraduate Info Sessions",
-            "BS Bioengineering with Option in Nano & Molecular Engineering (NME)",
-            "BS Bioengineering with Option in Nano &#038; Molecular Engineering (NME)",
-            "Connect with Academic Services",
-            "Connect with us",
-            "Diploma",
-            "How to declare NME",
-            "Quicklinks",
-            "Requirements",
-            "Restrictions"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 24,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host",
-            "undergraduate path segment"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/bioe-life/about/history/",
-          "label": null,
-          "anchorText": "UW Bioengineering history",
-          "pageTitle": "UW Bioengineering history &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Connect with us",
-            "Interesting facts about UW Bioengineering&#8217;s history",
-            "Learn more about UW Bioengineering’s history",
-            "Quicklinks",
-            "Together, inventing the future of medicine",
-            "UW Bioengineering history"
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/2026-uw-bioengineering-graduation-celebration-june-9-2026/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 14,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://bioe.uw.edu/bioe-life/environment/uw-bioengineering-culture/",
-          "label": null,
-          "anchorText": "UW BioE Culture",
-          "pageTitle": "UW BioE Culture &#8211; UW Bioengineering",
-          "pageHeadings": [
-            "Connect with us",
-            "Innovation, collaboration and community",
-            "Quicklinks",
-            "Together, inventing the future of medicine",
-            "UW BioE Culture",
-            "UW Bioengineering is a joint department in the UW School of Medicine and UW College of Engineering."
-          ],
-          "sourcePageUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 14,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"bioengineering\"",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        }
-      ]
-    },
-    {
-      "analysisMode": "weak-existing-primary",
-      "ownerType": "major",
       "ownerKey": "uw-bothell-biology",
       "planId": "uw-bothell-biology",
       "pathwayId": null,
@@ -6909,7 +5097,7 @@
         "bestTrackId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "trackRecommendationId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "noPublicClassificationCount": 31,
-        "parsedUwCourseCodeCount": 26,
+        "parsedUwCourseCodeCount": 69,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -7370,6 +5558,10 @@
       ],
       "reevaluationSignals": [
         {
+          "code": "parser-quality-warning",
+          "reason": "Parsed source block has parser-quality warnings: material-source-structured-drift, large-structured-only-course-gap, high-confidence-low-course-coverage."
+        },
+        {
           "code": "primary-source-appears-year-specific",
           "reason": "Current primary looks tied to 2018 in its source URL/title/document text, so discovery should compare it against sibling official sources."
         }
@@ -7379,8 +5571,12 @@
         "bestTrackId": "grc-associate-stem-physics-associate-in-science-transfer-track-2-physics",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 19,
-        "parsedUwCourseCodeCount": 2,
-        "qualityWarningCodes": [],
+        "parsedUwCourseCodeCount": 7,
+        "qualityWarningCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap",
+          "high-confidence-low-course-coverage"
+        ],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
           2018
@@ -7448,8 +5644,7 @@
       ],
       "candidateCount": 205,
       "currentPrimary": null,
-      "reviewCandidate": null,
-      "suggestedPrimary": {
+      "reviewCandidate": {
         "url": "https://chem.washington.edu/ba-chemistry",
         "label": "UW BA in Chemistry requirements",
         "anchorText": "Skip to main content",
@@ -7479,7 +5674,7 @@
           "discovered-anchor",
           "official-link"
         ],
-        "score": 66,
+        "score": 56,
         "confidence": "high",
         "reasons": [
           "admissions wording",
@@ -7489,6 +5684,7 @@
           "matches major keyword \"chemistry\"",
           "official source path matches the selected major",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "stays on an official UW domain",
           "stays on the current official department host",
           "verified against an official source candidate"
@@ -7496,7 +5692,8 @@
         "detectedYears": [],
         "latestDetectedYear": null
       },
-      "suggestedAction": "replace-existing-primary",
+      "suggestedPrimary": null,
+      "suggestedAction": "keep-existing-primary",
       "suggestedScoreDelta": null,
       "topCandidates": [
         {
@@ -7529,7 +5726,7 @@
             "discovered-anchor",
             "official-link"
           ],
-          "score": 66,
+          "score": 56,
           "confidence": "high",
           "reasons": [
             "admissions wording",
@@ -7539,6 +5736,7 @@
             "matches major keyword \"chemistry\"",
             "official source path matches the selected major",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "stays on an official UW domain",
             "stays on the current official department host",
             "verified against an official source candidate"
@@ -7582,60 +5780,6 @@
           "url": "https://chem.washington.edu/2xx-series-organic-chemistry",
           "label": null,
           "anchorText": "2xx/3xx Series: Organic Chemistry",
-          "pageTitle": "429 Too Many Requests",
-          "pageHeadings": [
-            "Error 429 Too Many Requests",
-            "Guru Meditation:"
-          ],
-          "sourcePageUrl": "https://chem.washington.edu/ba-chemistry",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 56,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected major",
-            "matches major keyword \"chemistry\"",
-            "official source path matches the selected major",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://chem.washington.edu/bs-chemistry",
-          "label": null,
-          "anchorText": "BS in Chemistry",
-          "pageTitle": "429 Too Many Requests",
-          "pageHeadings": [
-            "Error 429 Too Many Requests",
-            "Guru Meditation:"
-          ],
-          "sourcePageUrl": "https://chem.washington.edu/ba-chemistry",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 56,
-          "confidence": "high",
-          "reasons": [
-            "discovered from an official source page",
-            "explicitly names the selected major",
-            "matches major keyword \"chemistry\"",
-            "official source path matches the selected major",
-            "page title fetched successfully",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://chem.washington.edu/bs-chemistry-acs-certified",
-          "label": null,
-          "anchorText": "BS in Chemistry - ACS Certified",
           "pageTitle": "429 Too Many Requests",
           "pageHeadings": [
             "Error 429 Too Many Requests",
@@ -7739,6 +5883,60 @@
           ],
           "detectedYears": [],
           "latestDetectedYear": null
+        },
+        {
+          "url": "https://chem.washington.edu/fields/inorganic-chemistry",
+          "label": null,
+          "anchorText": "Inorganic Chemistry",
+          "pageTitle": "429 Too Many Requests",
+          "pageHeadings": [
+            "Error 429 Too Many Requests",
+            "Guru Meditation:"
+          ],
+          "sourcePageUrl": "https://chem.washington.edu/",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 56,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "explicitly names the selected major",
+            "matches major keyword \"chemistry\"",
+            "official source path matches the selected major",
+            "page title fetched successfully",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://chem.washington.edu/fields/organic-chemistry",
+          "label": null,
+          "anchorText": "Organic Chemistry",
+          "pageTitle": "429 Too Many Requests",
+          "pageHeadings": [
+            "Error 429 Too Many Requests",
+            "Guru Meditation:"
+          ],
+          "sourcePageUrl": "https://chem.washington.edu/",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 56,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "explicitly names the selected major",
+            "matches major keyword \"chemistry\"",
+            "official source path matches the selected major",
+            "page title fetched successfully",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
         }
       ]
     },
@@ -7775,6 +5973,10 @@
       ],
       "reevaluationSignals": [
         {
+          "code": "parser-quality-warning",
+          "reason": "Parsed source block has parser-quality warnings: material-source-structured-drift, large-structured-only-course-gap."
+        },
+        {
           "code": "primary-source-appears-year-specific",
           "reason": "Current primary looks tied to 2018 in its source URL/title/document text, so discovery should compare it against sibling official sources."
         }
@@ -7784,8 +5986,11 @@
         "bestTrackId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
         "trackRecommendationId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
         "noPublicClassificationCount": 19,
-        "parsedUwCourseCodeCount": 37,
-        "qualityWarningCodes": [],
+        "parsedUwCourseCodeCount": 39,
+        "qualityWarningCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap"
+        ],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
           2018
@@ -9142,6 +7347,546 @@
     {
       "analysisMode": "weak-existing-primary",
       "ownerType": "major",
+      "ownerKey": "uw-bothell-developmental-and-youth-studies",
+      "planId": "uw-bothell-developmental-and-youth-studies",
+      "pathwayId": null,
+      "title": "Developmental and Youth Studies (BA)",
+      "label": "Developmental and Youth Studies (BA)",
+      "campusId": "uw-bothell",
+      "existingPrimaryUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+      "existingPrimaryLabel": "UW Bothell Developmental and Youth Studies degree requirements",
+      "officialLinks": [
+        {
+          "label": "UW Bothell Developmental and Youth Studies degree requirements",
+          "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "visibility": "visible",
+          "status": "verified",
+          "sourceConfidence": "high"
+        },
+        {
+          "label": "UW Bothell Developmental and Youth Studies degree requirements",
+          "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "note": "Source used for parser-backed UW requirement extraction."
+        }
+      ],
+      "reevaluationSignals": [
+        {
+          "code": "safe-intentional-empty-state",
+          "reason": "Planner runtime still lands in a safe-empty state with 15 no-public requirement classifications and no student-visible GRC course pool."
+        },
+        {
+          "code": "primary-source-appears-year-specific",
+          "reason": "Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources."
+        }
+      ],
+      "reevaluationContext": {
+        "runtimeGrcCourseCount": 0,
+        "bestTrackId": null,
+        "trackRecommendationId": null,
+        "noPublicClassificationCount": 15,
+        "parsedUwCourseCodeCount": 30,
+        "qualityWarningCodes": [],
+        "hasStrongRequirementCue": true,
+        "currentSourceYears": [
+          2023
+        ],
+        "currentSourceLatestYear": 2023,
+        "yearSpecificRequirementSource": true
+      },
+      "sourcePages": [
+        {
+          "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "finalUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "ok": true,
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "title": "Degree Requirements - School of Educational Studies",
+          "headingCount": 18,
+          "error": null,
+          "anchorCount": 295
+        },
+        {
+          "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "finalUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "ok": true,
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "title": "Degree Requirements - School of Educational Studies",
+          "headingCount": 18,
+          "error": null,
+          "anchorCount": 295
+        },
+        {
+          "url": "https://www.uwb.edu/",
+          "finalUrl": "https://www.uwb.edu/",
+          "ok": true,
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "title": "Homepage - The University of Washington Bothell",
+          "headingCount": 16,
+          "error": null,
+          "anchorCount": 137,
+          "sourceKind": "official-site-root"
+        }
+      ],
+      "candidateCount": 172,
+      "currentPrimary": {
+        "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+        "label": "UW Bothell Developmental and Youth Studies degree requirements",
+        "anchorText": "Skip To Content",
+        "pageTitle": "Degree Requirements - School of Educational Studies",
+        "pageHeadings": [
+          "10 credits &#8211; Capstone Sequence",
+          "15 credits from list &#8211; Electives",
+          "25 credits &#8211; School of Educational Studies Core Courses",
+          "35 credits &#8211; Developmental & Youth Studies Foundation Courses",
+          "Applied Experience Guidelines & Policies",
+          "B EDUC 495 Applied Experience",
+          "B EDUC 499 Capstone Project",
+          "Capstone Sequence",
+          "Contact Us",
+          "Critical reflection and applied learning",
+          "Degree Requirements",
+          "Hours Requirement",
+          "Major Learning Objectives",
+          "Major Requirements",
+          "More Links",
+          "On this page",
+          "Overview",
+          "Placement Selection Process"
+        ],
+        "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+        "sourceKinds": [
+          "discovered-anchor",
+          "official-link"
+        ],
+        "score": 108,
+        "confidence": "high",
+        "reasons": [
+          "already stored as an official source",
+          "capstone-only wording",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "matches major keyword \"developmental\"",
+          "matches major keyword \"youth\"",
+          "matches multiple major keywords",
+          "official source text matches the selected major",
+          "overview wording",
+          "page title fetched successfully",
+          "stays on an official UW domain",
+          "stays on the current official department host",
+          "undergraduate path segment",
+          "verified against an official source candidate"
+        ],
+        "detectedYears": [],
+        "latestDetectedYear": null
+      },
+      "reviewCandidate": {
+        "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies",
+        "label": null,
+        "anchorText": "Developmental & Youth Studies",
+        "pageTitle": "Developmental & Youth Studies - School of Educational Studies",
+        "pageHeadings": [
+          "Bachelor of Arts",
+          "Contact Us",
+          "Developmental & Youth Studies",
+          "Learn More",
+          "Major Description",
+          "More Links",
+          "New Degree Launching Autumn 2025",
+          "Quick Links",
+          "School of Educational Studies",
+          "Social Media",
+          "Why major in Developmental & Youth Studies?"
+        ],
+        "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+        "sourceKinds": [
+          "discovered-anchor"
+        ],
+        "score": 90,
+        "confidence": "high",
+        "reasons": [
+          "discovered from an official source page",
+          "matches major keyword \"developmental\"",
+          "matches major keyword \"youth\"",
+          "matches multiple major keywords",
+          "matches the selected degree route",
+          "more current year signal than current primary (2025 vs 2023)",
+          "official source text matches the selected major",
+          "page title fetched successfully",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the current official department host",
+          "undergraduate path segment"
+        ],
+        "detectedYears": [
+          2025
+        ],
+        "latestDetectedYear": 2025
+      },
+      "suggestedPrimary": null,
+      "suggestedAction": "keep-existing-primary",
+      "suggestedScoreDelta": -18,
+      "topCandidates": [
+        {
+          "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "label": "UW Bothell Developmental and Youth Studies degree requirements",
+          "anchorText": "Skip To Content",
+          "pageTitle": "Degree Requirements - School of Educational Studies",
+          "pageHeadings": [
+            "10 credits &#8211; Capstone Sequence",
+            "15 credits from list &#8211; Electives",
+            "25 credits &#8211; School of Educational Studies Core Courses",
+            "35 credits &#8211; Developmental & Youth Studies Foundation Courses",
+            "Applied Experience Guidelines & Policies",
+            "B EDUC 495 Applied Experience",
+            "B EDUC 499 Capstone Project",
+            "Capstone Sequence",
+            "Contact Us",
+            "Critical reflection and applied learning",
+            "Degree Requirements",
+            "Hours Requirement",
+            "Major Learning Objectives",
+            "Major Requirements",
+            "More Links",
+            "On this page",
+            "Overview",
+            "Placement Selection Process"
+          ],
+          "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "sourceKinds": [
+            "discovered-anchor",
+            "official-link"
+          ],
+          "score": 108,
+          "confidence": "high",
+          "reasons": [
+            "already stored as an official source",
+            "capstone-only wording",
+            "explicit degree-requirements wording",
+            "explicit major-requirements wording",
+            "matches major keyword \"developmental\"",
+            "matches major keyword \"youth\"",
+            "matches multiple major keywords",
+            "official source text matches the selected major",
+            "overview wording",
+            "page title fetched successfully",
+            "stays on an official UW domain",
+            "stays on the current official department host",
+            "undergraduate path segment",
+            "verified against an official source candidate"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies",
+          "label": null,
+          "anchorText": "Developmental & Youth Studies",
+          "pageTitle": "Developmental & Youth Studies - School of Educational Studies",
+          "pageHeadings": [
+            "Bachelor of Arts",
+            "Contact Us",
+            "Developmental & Youth Studies",
+            "Learn More",
+            "Major Description",
+            "More Links",
+            "New Degree Launching Autumn 2025",
+            "Quick Links",
+            "School of Educational Studies",
+            "Social Media",
+            "Why major in Developmental & Youth Studies?"
+          ],
+          "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 90,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "matches major keyword \"developmental\"",
+            "matches major keyword \"youth\"",
+            "matches multiple major keywords",
+            "matches the selected degree route",
+            "more current year signal than current primary (2025 vs 2023)",
+            "official source text matches the selected major",
+            "page title fetched successfully",
+            "specific bachelor route wording",
+            "stays on an official UW domain",
+            "stays on the current official department host",
+            "undergraduate path segment"
+          ],
+          "detectedYears": [
+            2025
+          ],
+          "latestDetectedYear": 2025
+        },
+        {
+          "url": "https://www.uwb.edu/education/undergraduate/educational-studies/degree-requirements",
+          "label": null,
+          "anchorText": "Degree Requirements",
+          "pageTitle": "Degree Requirements - School of Educational Studies",
+          "pageHeadings": [
+            "Additional Requirements",
+            "Applied Experience Guidelines & Policies",
+            "B EDUC 399 Capstone Seminar",
+            "B EDUC 495 Applied Experience",
+            "B EDUC 499 Capstone Project",
+            "Capstone Sequence",
+            "Concentration Area Electives",
+            "Contact Us",
+            "Critical reflection and applied learning",
+            "Curriculum, Instruction & Equity Concentration",
+            "Degree Requirements",
+            "Educational Leadership, Policy & Social Justice Concentration",
+            "Educational Studies (B EDUC) Electives (25 credits)",
+            "Hours Requirement",
+            "Major Requirements",
+            "More Links",
+            "On this page",
+            "Other Department Electives (25 credits)"
+          ],
+          "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 72,
+          "confidence": "high",
+          "reasons": [
+            "capstone-only wording",
+            "curriculum wording",
+            "discovered from an official source page",
+            "does not clearly mention the selected major",
+            "explicit degree-requirements wording",
+            "explicit major-requirements wording",
+            "page title fetched successfully",
+            "stays on an official UW domain",
+            "stays on the current official department host",
+            "undergraduate path segment"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/career-pathways-academic-connections",
+          "label": null,
+          "anchorText": "Career Pathways & Academic Connections",
+          "pageTitle": "Career Pathways & Academic Connections - School of Educational Studies",
+          "pageHeadings": [
+            "Applied Experience & Community-Engaged Learning & Research",
+            "Career Pathways & Academic Connections",
+            "Career Preparation & Resources",
+            "Career Services",
+            "Clinical Careers",
+            "Contact Us",
+            "Declare the Developmental & Youth Studies major to pursue:",
+            "Internships",
+            "Many minors are a great addition to the Developmental & Youth Studies major, including:",
+            "More Links",
+            "PK-12 & Higher Education Careers",
+            "Policy, Advocacy, & Community-Based Careers",
+            "Quick Links",
+            "School of Educational Studies",
+            "Study Abroad",
+            "Undergraduate Research"
+          ],
+          "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 61,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "matches major keyword \"developmental\"",
+            "matches major keyword \"youth\"",
+            "matches multiple major keywords",
+            "official source text matches the selected major",
+            "stays on an official UW domain",
+            "stays on the current official department host",
+            "undergraduate path segment"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+          "label": null,
+          "anchorText": "Degree Requirements",
+          "pageTitle": "Degree Requirements - School of Educational Studies",
+          "pageHeadings": [
+            "Academic Breadth Course Requirement Options for Transfer Students",
+            "Applied Art",
+            "Community College Courses that can be Petitioned for Academic Breadth Coursework",
+            "Contact Us",
+            "Degree Requirements",
+            "Elementary Education Academic Breadth Subject Areas & Courses",
+            "Elementary Education Endorsement Academic Breadth Requirements",
+            "Elementary Education Option Requirements",
+            "Elementary Education Option Requirements &#8211; 2025 Cohort",
+            "English Language Arts: Composition or Writing",
+            "English Language Arts: Literature",
+            "For students declaring Autumn 2025 and after",
+            "Information for International Students",
+            "Major Requirements",
+            "Math for Elementary Education",
+            "More Links",
+            "On this page",
+            "Quick Links"
+          ],
+          "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 48,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "does not clearly mention the selected major",
+            "explicit degree-requirements wording",
+            "explicit major-requirements wording",
+            "more current year signal than current primary (2025 vs 2023)",
+            "page title fetched successfully",
+            "stays on an official UW domain",
+            "stays on the current official department host",
+            "transfer-equivalency wording",
+            "undergraduate path segment"
+          ],
+          "detectedYears": [
+            2025
+          ],
+          "latestDetectedYear": 2025
+        },
+        {
+          "url": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/admissions",
+          "label": null,
+          "anchorText": "Admissions",
+          "pageTitle": "Admissions - School of Educational Studies",
+          "pageHeadings": [
+            "Admissions",
+            "Contact Us",
+            "Current UWB Students Who Plan to Double Major or Change their Major",
+            "Declaration Deadlines",
+            "Declare the Developmental & Youth Studies Major",
+            "First-Year & Transfer Students",
+            "How to Declare",
+            "Major Prerequisites",
+            "More Links",
+            "On this page",
+            "Pre-Major Students",
+            "Quick Links",
+            "Returning Students",
+            "School of Educational Studies"
+          ],
+          "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 35,
+          "confidence": "high",
+          "reasons": [
+            "admissions wording",
+            "discovered from an official source page",
+            "matches major keyword \"developmental\"",
+            "matches major keyword \"youth\"",
+            "matches multiple major keywords",
+            "official source text matches the selected major",
+            "stays on an official UW domain",
+            "stays on the current official department host",
+            "undergraduate path segment"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.uwb.edu/education/undergraduate/child-youth-development-minor",
+          "label": null,
+          "anchorText": "Child & Youth Development Minor",
+          "pageTitle": "Child & Youth Development Minor - School of Educational Studies",
+          "pageHeadings": [
+            "Academic Connections & Career Pathways",
+            "Add the Child & Youth Development Minor to pursue these careers:",
+            "Child & Youth Development Minor",
+            "Contact Us",
+            "Course Registration",
+            "Declaring the Minor",
+            "Elective Coursework &#8211; 5 credits",
+            "Minor Advising",
+            "Minor Description",
+            "Minor Requirements",
+            "More Links",
+            "Quick Links",
+            "Required Coursework &#8211; 20 credits",
+            "School of Educational Studies",
+            "SES Course Petition",
+            "SES Major-Minor Credit Overlap Policy",
+            "SES Policies & Petitions",
+            "The Child & Youth Development Minor is a great addition to any major, including:"
+          ],
+          "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 23,
+          "confidence": "medium",
+          "reasons": [
+            "discovered from an official source page",
+            "matches major keyword \"youth\"",
+            "stays on an official UW domain",
+            "stays on the current official department host",
+            "undergraduate path segment"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.uwb.edu/education/teaching-certifications/elementary-education-certification/program-requirements",
+          "label": null,
+          "anchorText": "Program Requirements",
+          "pageTitle": "Program Requirements - School of Educational Studies",
+          "pageHeadings": [
+            "14 credits &#8211; Student Teaching",
+            "15 credits &#8211; ESOL or Special Education Endorsement",
+            "18 credits &#8211; Teaching Foundations Courses",
+            "28 credits &#8211; Teaching Methods",
+            "4 credits &#8211; Theory to Practice Courses",
+            "Autumn",
+            "Contact Us",
+            "Course fees:",
+            "Coursework Requirements",
+            "Dual Endorsement Courses &#8211; Optional Additional Quarter",
+            "Elementary Education Course Fees",
+            "Information for International Students",
+            "More Links",
+            "On this page",
+            "Program Requirements",
+            "Quick Links",
+            "Sample Course Schedule",
+            "School of Educational Studies"
+          ],
+          "sourcePageUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 18,
+          "confidence": "medium",
+          "reasons": [
+            "discovered from an official source page",
+            "does not clearly mention the selected major",
+            "page title fetched successfully",
+            "program-requirements wording",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        }
+      ]
+    },
+    {
+      "analysisMode": "weak-existing-primary",
+      "ownerType": "major",
       "ownerKey": "uw-tacoma-economics-and-policy-analysis",
       "planId": "uw-tacoma-economics-and-policy-analysis",
       "pathwayId": null,
@@ -9179,7 +7924,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 20,
+        "parsedUwCourseCodeCount": 26,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -9245,7 +7990,7 @@
           "discovered-anchor",
           "official-link"
         ],
-        "score": 64,
+        "score": 54,
         "confidence": "high",
         "reasons": [
           "admissions wording",
@@ -9260,6 +8005,7 @@
           "official source text matches the selected major",
           "overview wording",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "specific bachelor route wording",
           "stays on an official UW domain",
           "stays on the current official department host",
@@ -9300,7 +8046,7 @@
       },
       "suggestedPrimary": null,
       "suggestedAction": "keep-existing-primary",
-      "suggestedScoreDelta": -10,
+      "suggestedScoreDelta": 0,
       "topCandidates": [
         {
           "url": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
@@ -9324,7 +8070,7 @@
             "discovered-anchor",
             "official-link"
           ],
-          "score": 64,
+          "score": 54,
           "confidence": "high",
           "reasons": [
             "admissions wording",
@@ -9339,6 +8085,7 @@
             "official source text matches the selected major",
             "overview wording",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host",
@@ -9487,7 +8234,7 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 24,
+          "score": 14,
           "confidence": "medium",
           "reasons": [
             "admissions wording",
@@ -9497,7 +8244,34 @@
             "matches major keyword \"policy\"",
             "matches the selected degree route",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.tacoma.uw.edu/sias/socs/law-and-policy-honors-designation-declaration-form",
+          "label": null,
+          "anchorText": "Honors",
+          "pageTitle": "Law and Policy Honors Designation Declaration Form | Department of Social Sciences | University of Washington Tacoma",
+          "pageHeadings": [
+            "Contact",
+            "Law and Policy Honors Designation Declaration Form",
+            "Main Content"
+          ],
+          "sourcePageUrl": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 14,
+          "confidence": "medium",
+          "reasons": [
+            "discovered from an official source page",
+            "matches major keyword \"policy\"",
+            "page title fetched successfully",
             "stays on an official UW domain",
             "stays on the current official department host"
           ],
@@ -9528,7 +8302,7 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 24,
+          "score": 14,
           "confidence": "medium",
           "reasons": [
             "admissions wording",
@@ -9538,33 +8312,8 @@
             "matches major keyword \"economics\"",
             "matches the selected degree route",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
-          "url": "https://www.tacoma.uw.edu/sias/socs/law-and-policy-honors-designation-declaration-form",
-          "label": null,
-          "anchorText": "Honors",
-          "pageTitle": "Law and Policy Honors Designation Declaration Form | Department of Social Sciences | University of Washington Tacoma",
-          "pageHeadings": [
-            "Contact",
-            "Law and Policy Honors Designation Declaration Form",
-            "Main Content"
-          ],
-          "sourcePageUrl": "https://www.tacoma.uw.edu/sias/socs/law-and-policy",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 14,
-          "confidence": "medium",
-          "reasons": [
-            "discovered from an official source page",
-            "matches major keyword \"policy\"",
-            "page title fetched successfully",
             "stays on an official UW domain",
             "stays on the current official department host"
           ],
@@ -10054,7 +8803,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 13,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -10387,7 +9136,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -10716,7 +9465,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -11053,7 +9802,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -11390,7 +10139,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -11727,7 +10476,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -12068,7 +10817,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -12401,7 +11150,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 9,
+        "parsedUwCourseCodeCount": 18,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -12734,7 +11483,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -13069,7 +11818,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -13396,7 +12145,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -13725,7 +12474,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -14084,7 +12833,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -14419,7 +13168,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -14756,7 +13505,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 108,
+        "parsedUwCourseCodeCount": 158,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -15561,7 +14310,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 18,
-        "parsedUwCourseCodeCount": 23,
+        "parsedUwCourseCodeCount": 33,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -16101,7 +14850,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 23,
+        "parsedUwCourseCodeCount": 33,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -16662,7 +15411,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 23,
+        "parsedUwCourseCodeCount": 33,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -17203,7 +15952,7 @@
         "bestTrackId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
         "trackRecommendationId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
         "noPublicClassificationCount": 3,
-        "parsedUwCourseCodeCount": 38,
+        "parsedUwCourseCodeCount": 39,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -18810,7 +17559,7 @@
         "bestTrackId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
         "trackRecommendationId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 46,
+        "parsedUwCourseCodeCount": 47,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -21433,6 +20182,552 @@
     {
       "analysisMode": "weak-existing-primary",
       "ownerType": "pathway",
+      "ownerKey": "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
+      "planId": "uw-seattle-electrical-computer-engineering",
+      "pathwayId": "photonics-pathway",
+      "title": "Electrical & Computer Engineering - Photonics pathway",
+      "label": "Photonics pathway",
+      "campusId": "uw-seattle",
+      "existingPrimaryUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+      "existingPrimaryLabel": "UW ECE degree requirements",
+      "officialLinks": [
+        {
+          "label": "UW ECE degree requirements",
+          "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/"
+        },
+        {
+          "label": "UW ECE degree requirements",
+          "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "note": "Source used for parser-backed UW requirement extraction."
+        }
+      ],
+      "reevaluationSignals": [
+        {
+          "code": "parser-quality-warning",
+          "reason": "Parsed source block has parser-quality warnings: material-source-structured-drift, large-structured-only-course-gap, high-confidence-low-course-coverage."
+        },
+        {
+          "code": "primary-source-appears-year-specific",
+          "reason": "Current primary looks tied to 2025 in its source URL/title/document text, so discovery should compare it against sibling official sources."
+        }
+      ],
+      "reevaluationContext": {
+        "runtimeGrcCourseCount": 12,
+        "bestTrackId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
+        "trackRecommendationId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
+        "noPublicClassificationCount": 0,
+        "parsedUwCourseCodeCount": 18,
+        "qualityWarningCodes": [
+          "material-source-structured-drift",
+          "large-structured-only-course-gap",
+          "high-confidence-low-course-coverage"
+        ],
+        "hasStrongRequirementCue": true,
+        "currentSourceYears": [
+          2025
+        ],
+        "currentSourceLatestYear": 2025,
+        "yearSpecificRequirementSource": true
+      },
+      "sourcePages": [
+        {
+          "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "ok": true,
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "title": "BSECE Degree Requirements | UW Department of Electrical & Computer Engineering",
+          "headingCount": 18,
+          "error": null,
+          "anchorCount": 331
+        },
+        {
+          "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "finalUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "ok": true,
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "title": "BSECE Degree Requirements | UW Department of Electrical & Computer Engineering",
+          "headingCount": 18,
+          "error": null,
+          "anchorCount": 331
+        },
+        {
+          "url": "https://www.ece.uw.edu/",
+          "finalUrl": "https://www.ece.uw.edu/",
+          "ok": true,
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "title": "UW Department of Electrical & Computer Engineering",
+          "headingCount": 18,
+          "error": null,
+          "anchorCount": 250,
+          "sourceKind": "official-site-root"
+        }
+      ],
+      "candidateCount": 235,
+      "currentPrimary": {
+        "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+        "label": "UW ECE degree requirements",
+        "anchorText": "Skip to main content",
+        "pageTitle": "BSECE Degree Requirements | UW Department of Electrical & Computer Engineering",
+        "pageHeadings": [
+          "1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward*",
+          "1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*",
+          "2. General Education Courses",
+          "3. Free Electives",
+          "Advanced Electrical and Computer Engineering Electives (36 credits):",
+          "Advanced Electrical and Computer Engineering Electives (39 credits):",
+          "Advanced Technical Communication (4 credits) :",
+          "Approved Additional Natural Sciences (NSc) Courses:",
+          "Areas of Inquiry (69 credits)",
+          "Bachelor of Science in Electrical and Computer Engineering (BSECE)",
+          "Be boundless",
+          "BSECE Coursework Requirements",
+          "BSECE Degree Requirements",
+          "Capstone (4 &#8211; 8 credits):",
+          "Capstone:",
+          "Computer Programming (4-5 credits):",
+          "Contact Advising",
+          "Department-Approved Lists"
+        ],
+        "sourcePageUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+        "sourceKinds": [
+          "discovered-anchor",
+          "official-link"
+        ],
+        "score": 62,
+        "confidence": "high",
+        "reasons": [
+          "advising wording",
+          "already stored as an official source",
+          "capstone-only wording",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "generic campus requirements wording",
+          "matches major keyword \"computer\"",
+          "matches major keyword \"electrical\"",
+          "matches major keyword \"engineering\"",
+          "matches multiple major keywords",
+          "page title fetched successfully",
+          "requirements path segment",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the current official department host"
+        ],
+        "detectedYears": [
+          2025
+        ],
+        "latestDetectedYear": 2025
+      },
+      "reviewCandidate": null,
+      "suggestedPrimary": {
+        "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsee/degree-requirements/",
+        "label": null,
+        "anchorText": "BSEE Degree Requirements",
+        "pageTitle": "BSEE Degree Requirements | UW Department of Electrical & Computer Engineering",
+        "pageHeadings": [
+          "1. BSEE Major Requirements and Electives (119-121 credits)",
+          "2. General Education Courses (47 credits)",
+          "3. Free Electives (12-14 credits)",
+          "Additional College of Engineering Electives",
+          "Additional College of Engineering Electives (10 credits)",
+          "Additional Writing Requirements",
+          "Admission",
+          "Admissions & Enrollment",
+          "Advanced Electronic and Photonic Devices",
+          "Approved Non-EE Electives (10 credits)",
+          "Arts & Humanities (A&H) and Social Sciences (SSc) (25 credits)",
+          "Bachelor of Science in Electrical Engineering (BSEE)",
+          "Be boundless",
+          "Biomedical Instrumentation (RETIRED WINTER 2022)",
+          "BSEE Coursework Requirements",
+          "BSEE Degree Requirements",
+          "Communications",
+          "Computer Programming (4 &#8211; 5 credits)"
+        ],
+        "sourcePageUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsee/",
+        "sourceKinds": [
+          "discovered-anchor"
+        ],
+        "score": 80,
+        "confidence": "high",
+        "reasons": [
+          "admissions wording",
+          "discovered from an official source page",
+          "explicit degree-requirements wording",
+          "explicit major-requirements wording",
+          "generic campus requirements wording",
+          "matches major keyword \"computer\"",
+          "matches major keyword \"electrical\"",
+          "matches major keyword \"engineering\"",
+          "matches major keyword \"photonics\"",
+          "matches multiple major keywords",
+          "official source text matches the selected major",
+          "older year signal than current primary (2022 vs 2025)",
+          "page title fetched successfully",
+          "requirements path segment",
+          "specific bachelor route wording",
+          "stays on an official UW domain",
+          "stays on the current official department host"
+        ],
+        "detectedYears": [
+          2022
+        ],
+        "latestDetectedYear": 2022
+      },
+      "suggestedAction": "replace-existing-primary",
+      "suggestedScoreDelta": 18,
+      "topCandidates": [
+        {
+          "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsee/degree-requirements/",
+          "label": null,
+          "anchorText": "BSEE Degree Requirements",
+          "pageTitle": "BSEE Degree Requirements | UW Department of Electrical & Computer Engineering",
+          "pageHeadings": [
+            "1. BSEE Major Requirements and Electives (119-121 credits)",
+            "2. General Education Courses (47 credits)",
+            "3. Free Electives (12-14 credits)",
+            "Additional College of Engineering Electives",
+            "Additional College of Engineering Electives (10 credits)",
+            "Additional Writing Requirements",
+            "Admission",
+            "Admissions & Enrollment",
+            "Advanced Electronic and Photonic Devices",
+            "Approved Non-EE Electives (10 credits)",
+            "Arts & Humanities (A&H) and Social Sciences (SSc) (25 credits)",
+            "Bachelor of Science in Electrical Engineering (BSEE)",
+            "Be boundless",
+            "Biomedical Instrumentation (RETIRED WINTER 2022)",
+            "BSEE Coursework Requirements",
+            "BSEE Degree Requirements",
+            "Communications",
+            "Computer Programming (4 &#8211; 5 credits)"
+          ],
+          "sourcePageUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsee/",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 80,
+          "confidence": "high",
+          "reasons": [
+            "admissions wording",
+            "discovered from an official source page",
+            "explicit degree-requirements wording",
+            "explicit major-requirements wording",
+            "generic campus requirements wording",
+            "matches major keyword \"computer\"",
+            "matches major keyword \"electrical\"",
+            "matches major keyword \"engineering\"",
+            "matches major keyword \"photonics\"",
+            "matches multiple major keywords",
+            "official source text matches the selected major",
+            "older year signal than current primary (2022 vs 2025)",
+            "page title fetched successfully",
+            "requirements path segment",
+            "specific bachelor route wording",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [
+            2022
+          ],
+          "latestDetectedYear": 2022
+        },
+        {
+          "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "label": "UW ECE degree requirements",
+          "anchorText": "Skip to main content",
+          "pageTitle": "BSECE Degree Requirements | UW Department of Electrical & Computer Engineering",
+          "pageHeadings": [
+            "1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward*",
+            "1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*",
+            "2. General Education Courses",
+            "3. Free Electives",
+            "Advanced Electrical and Computer Engineering Electives (36 credits):",
+            "Advanced Electrical and Computer Engineering Electives (39 credits):",
+            "Advanced Technical Communication (4 credits) :",
+            "Approved Additional Natural Sciences (NSc) Courses:",
+            "Areas of Inquiry (69 credits)",
+            "Bachelor of Science in Electrical and Computer Engineering (BSECE)",
+            "Be boundless",
+            "BSECE Coursework Requirements",
+            "BSECE Degree Requirements",
+            "Capstone (4 &#8211; 8 credits):",
+            "Capstone:",
+            "Computer Programming (4-5 credits):",
+            "Contact Advising",
+            "Department-Approved Lists"
+          ],
+          "sourcePageUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "sourceKinds": [
+            "discovered-anchor",
+            "official-link"
+          ],
+          "score": 62,
+          "confidence": "high",
+          "reasons": [
+            "advising wording",
+            "already stored as an official source",
+            "capstone-only wording",
+            "explicit degree-requirements wording",
+            "explicit major-requirements wording",
+            "generic campus requirements wording",
+            "matches major keyword \"computer\"",
+            "matches major keyword \"electrical\"",
+            "matches major keyword \"engineering\"",
+            "matches multiple major keywords",
+            "page title fetched successfully",
+            "requirements path segment",
+            "specific bachelor route wording",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [
+            2025
+          ],
+          "latestDetectedYear": 2025
+        },
+        {
+          "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/pathways/photonics/",
+          "label": null,
+          "anchorText": "Photonics Pathway",
+          "pageTitle": "Photonics Pathway | UW Department of Electrical & Computer Engineering",
+          "pageHeadings": [
+            "Air and Space",
+            "Areas of Impact",
+            "Be boundless",
+            "Capstone",
+            "Computing Data and Digital Technologies",
+            "Crossing Paths",
+            "Does a student need a graduate degree specializing in this area to be marketable to industry?",
+            "Does photonics touch on global impact, equity and/or quality of life?",
+            "Enriching Your Path",
+            "Environmental Sustainability and Energy",
+            "FAQs",
+            "Health and Medicine",
+            "Helpful Links",
+            "Infrastructure, Transportation, and Society",
+            "Photonics Courses",
+            "Photonics Pathway",
+            "Related Career Paths",
+            "Robotics and Manufacturing"
+          ],
+          "sourcePageUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 59,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "explicitly names the selected pathway or route",
+            "matches major keyword \"pathway\"",
+            "matches major keyword \"photonics\"",
+            "matches multiple major keywords",
+            "official source path matches the selected pathway",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.ece.uw.edu/researcharea/nanotechnology-mems-and-photonics/",
+          "label": null,
+          "anchorText": "Electronic, Photonic, and Integrated Quantum Systems (EPIQS)",
+          "pageTitle": null,
+          "pageHeadings": [],
+          "sourcePageUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 47,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "matches major keyword \"photonics\"",
+            "official source path matches the selected pathway",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsee/",
+          "label": null,
+          "anchorText": "Bachelor of Science in Electrical Engineering (BSEE)",
+          "pageTitle": "Bachelor of Science in Electrical Engineering (BSEE) | UW Department of Electrical & Computer Engineering",
+          "pageHeadings": [
+            "[NO LONGER ADMITTING]",
+            "Bachelor of Science in Electrical Engineering (BSEE)",
+            "Be boundless",
+            "Contact Advising",
+            "Curriculum",
+            "FAQs",
+            "Financial Aid",
+            "Helpful Links",
+            "How much is tuition?",
+            "Scholarships",
+            "Tuition and Fees",
+            "Tuition, Fees and Funding"
+          ],
+          "sourcePageUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 40,
+          "confidence": "high",
+          "reasons": [
+            "advising wording",
+            "curriculum wording",
+            "discovered from an official source page",
+            "matches major keyword \"computer\"",
+            "matches major keyword \"electrical\"",
+            "matches major keyword \"engineering\"",
+            "matches multiple major keywords",
+            "page title fetched successfully",
+            "specific bachelor route wording",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.ece.uw.edu/researcharea/epiqs/",
+          "label": null,
+          "anchorText": "Electronic, Photonic, and Integrated Quantum Systems (EPIQS)",
+          "pageTitle": "Electronic, Photonic, and Integrated Quantum Systems (EPIQS) | UW Department of Electrical & Computer Engineering",
+          "pageHeadings": [
+            "A smart glove with its own sense of touch",
+            "Be boundless",
+            "Electronic, Photonic, and Integrated Quantum Systems (EPIQS)",
+            "Helpful Links",
+            "Hossein Naghavi — developing high frequency electronics for imaging, sensing, and communication",
+            "Integrated CMOS Quantum Control Electronics",
+            "Integrated Photonics and Optoelectronics",
+            "Latest News",
+            "Latest Projects",
+            "Microelectromechanical Systems (MEMS)",
+            "Nanoscale Materials and Structure",
+            "Overview",
+            "Quantum Technologies",
+            "Representative Publications",
+            "Research Labs",
+            "Researchers",
+            "Sensors and Sensor Systems",
+            "The Integrator 2025–2026"
+          ],
+          "sourcePageUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 36,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "matches major keyword \"computer\"",
+            "matches major keyword \"electrical\"",
+            "matches major keyword \"engineering\"",
+            "matches major keyword \"photonics\"",
+            "matches multiple major keywords",
+            "more current year signal than current primary (2026 vs 2025)",
+            "non-degree content wording",
+            "official source text matches the selected major",
+            "overview wording",
+            "page title fetched successfully",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [
+            2025,
+            2026
+          ],
+          "latestDetectedYear": 2026
+        },
+        {
+          "url": "https://www.ece.uw.edu/spotlight/lih-yaun-lin-2025-nai-fellow/",
+          "label": null,
+          "anchorText": "UW ECE Professor Lih-Yuan Lin named National Academy of Inventors Fellow Professor Lih-Yuan Lin was recently elected to the NAI 2025 Class of Fellows. This distinction recognizes her influential contributions to nanotechnology, photonics, and optoelectronics — fields that are shaping the future of technology.",
+          "pageTitle": "UW ECE Professor Lih-Yuan Lin named National Academy of Inventors Fellow | UW Department of Electrical & Computer Engineering",
+          "pageHeadings": [
+            "Be boundless",
+            "Helpful Links",
+            "Pioneering innovations in MEMS, optoelectronics, and photonics",
+            "Turning research into real-world impact",
+            "UW ECE Professor Lih-Yuan Lin named National Academy of Inventors Fellow"
+          ],
+          "sourcePageUrl": "https://www.ece.uw.edu/",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 36,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "matches major keyword \"computer\"",
+            "matches major keyword \"electrical\"",
+            "matches major keyword \"engineering\"",
+            "matches major keyword \"photonics\"",
+            "matches multiple major keywords",
+            "non-degree content wording",
+            "official source text matches the selected major",
+            "page title fetched successfully",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [
+            2025
+          ],
+          "latestDetectedYear": 2025
+        },
+        {
+          "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/",
+          "label": null,
+          "anchorText": "Bachelor of Science in Electrical and Computer Engineering (BSECE)",
+          "pageTitle": "Bachelor of Science in Electrical and Computer Engineering (BSECE) | UW Department of Electrical & Computer Engineering",
+          "pageHeadings": [
+            "ABET Accreditation Information",
+            "Admissions",
+            "Bachelor of Science in Electrical and Computer Engineering (BSECE)",
+            "Be boundless",
+            "BSECE — Flexible, Adaptable, Versatile",
+            "Contact Advising",
+            "Curriculum",
+            "Financial Aid",
+            "Helpful Links",
+            "Information Sessions",
+            "Scholarships",
+            "Tuition and Fees",
+            "Tuition, Fees and Funding",
+            "When and Where"
+          ],
+          "sourcePageUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 31,
+          "confidence": "high",
+          "reasons": [
+            "discovered from an official source page",
+            "matches major keyword \"computer\"",
+            "matches major keyword \"electrical\"",
+            "matches major keyword \"engineering\"",
+            "matches multiple major keywords",
+            "specific bachelor route wording",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        }
+      ]
+    },
+    {
+      "analysisMode": "weak-existing-primary",
+      "ownerType": "pathway",
       "ownerKey": "uw-seattle-electrical-computer-engineering:pathway:sensing-and-communication-pathway",
       "planId": "uw-seattle-electrical-computer-engineering",
       "pathwayId": "sensing-and-communication-pathway",
@@ -21991,7 +21286,7 @@
         "bestTrackId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
         "trackRecommendationId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering",
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 46,
+        "parsedUwCourseCodeCount": 47,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -22532,7 +21827,7 @@
         "bestTrackId": "grc-associate-stem-biology-associate-in-biology-dta-mrp",
         "trackRecommendationId": "grc-associate-stem-biology-associate-in-biology-dta-mrp",
         "noPublicClassificationCount": 3,
-        "parsedUwCourseCodeCount": 39,
+        "parsedUwCourseCodeCount": 60,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -22970,7 +22265,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 2,
-        "parsedUwCourseCodeCount": 10,
+        "parsedUwCourseCodeCount": 18,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -23726,10 +23021,6 @@
           "reason": "Planner runtime still lands in a safe-empty state with 12 no-public requirement classifications and no student-visible GRC course pool."
         },
         {
-          "code": "parser-quality-warning",
-          "reason": "Parsed source block has parser-quality warnings: material-source-structured-drift."
-        },
-        {
           "code": "primary-looks-overview-only",
           "reason": "Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page."
         }
@@ -23740,9 +23031,7 @@
         "trackRecommendationId": null,
         "noPublicClassificationCount": 12,
         "parsedUwCourseCodeCount": 46,
-        "qualityWarningCodes": [
-          "material-source-structured-drift"
-        ],
+        "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
         "currentSourceLatestYear": null,
@@ -24500,7 +23789,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 11,
-        "parsedUwCourseCodeCount": 18,
+        "parsedUwCourseCodeCount": 20,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -24882,7 +24171,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 11,
-        "parsedUwCourseCodeCount": 21,
+        "parsedUwCourseCodeCount": 23,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -25273,7 +24562,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 11,
-        "parsedUwCourseCodeCount": 21,
+        "parsedUwCourseCodeCount": 23,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -25676,7 +24965,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 18,
+        "parsedUwCourseCodeCount": 20,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -26126,7 +25415,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 11,
-        "parsedUwCourseCodeCount": 21,
+        "parsedUwCourseCodeCount": 23,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -26517,11 +25806,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 8,
-        "bestTrackId": "grc-associate-healthcare-wellness-nursing-practical-nursing-aas",
-        "trackRecommendationId": "grc-associate-healthcare-wellness-nursing-practical-nursing-aas",
+        "runtimeGrcCourseCount": 12,
+        "bestTrackId": "grc-associate-stem-biology-associate-in-biology-dta-mrp",
+        "trackRecommendationId": "grc-associate-stem-biology-associate-in-biology-dta-mrp",
         "noPublicClassificationCount": 15,
-        "parsedUwCourseCodeCount": 9,
+        "parsedUwCourseCodeCount": 33,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -27173,7 +26462,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 16,
+        "parsedUwCourseCodeCount": 24,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -27604,11 +26893,16 @@
         {
           "label": "UW HCDE degree requirements",
           "url": "https://www.hcde.washington.edu/bs/requirements/2024",
-          "note": "Source used for parser-backed UW requirement extraction."
+          "note": "Alternate official source used for parser-backed UW requirement extraction."
         },
         {
           "label": "Degree requirements",
           "url": "https://www.hcde.washington.edu/bs/requirements"
+        },
+        {
+          "label": "Degree requirements",
+          "url": "https://www.hcde.washington.edu/bs/requirements",
+          "note": "Primary source used for parser-backed UW requirement extraction."
         },
         {
           "label": "UW Green River transfer equivalency guide",
@@ -27623,11 +26917,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 21,
-        "bestTrackId": "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp",
-        "trackRecommendationId": "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp",
+        "runtimeGrcCourseCount": 23,
+        "bestTrackId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering",
+        "trackRecommendationId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering",
         "noPublicClassificationCount": 10,
-        "parsedUwCourseCodeCount": 46,
+        "parsedUwCourseCodeCount": 49,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -27660,6 +26954,17 @@
           "headingCount": 18,
           "error": null,
           "anchorCount": 193
+        },
+        {
+          "url": "https://www.hcde.washington.edu/bs/requirements",
+          "finalUrl": "https://www.hcde.washington.edu/bs/requirements",
+          "ok": true,
+          "status": 200,
+          "contentType": "text/html; charset=UTF-8",
+          "title": "Degree requirements | Human Centered Design & Engineering",
+          "headingCount": 7,
+          "error": null,
+          "anchorCount": 133
         },
         {
           "url": "https://www.hcde.washington.edu/bs/requirements",
@@ -28543,7 +27848,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 21,
-        "parsedUwCourseCodeCount": 53,
+        "parsedUwCourseCodeCount": 141,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -28609,7 +27914,7 @@
           "discovered-anchor",
           "official-link"
         ],
-        "score": 56,
+        "score": 46,
         "confidence": "high",
         "reasons": [
           "admissions wording",
@@ -28621,6 +27926,7 @@
           "official source path matches the selected major",
           "overview wording",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "specific bachelor route wording",
           "stays on an official UW domain",
           "stays on the current official department host",
@@ -28673,7 +27979,7 @@
       },
       "suggestedPrimary": null,
       "suggestedAction": "keep-existing-primary",
-      "suggestedScoreDelta": -10,
+      "suggestedScoreDelta": 0,
       "topCandidates": [
         {
           "url": "https://www.tacoma.uw.edu/sias/socs/interdisciplinary-arts-and-sciences",
@@ -28697,7 +28003,7 @@
             "discovered-anchor",
             "official-link"
           ],
-          "score": 56,
+          "score": 46,
           "confidence": "high",
           "reasons": [
             "admissions wording",
@@ -28709,6 +28015,7 @@
             "official source path matches the selected major",
             "overview wording",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host",
@@ -28933,7 +28240,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 53,
+        "parsedUwCourseCodeCount": 141,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -29393,7 +28700,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 9,
-        "parsedUwCourseCodeCount": 35,
+        "parsedUwCourseCodeCount": 41,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -29545,7 +28852,7 @@
         "bestTrackId": "grc-associate-fine-arts-humanities-global-hispanic-studies-aa-dta-concentration-global-studies-hispanic-studies",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 5,
-        "parsedUwCourseCodeCount": 25,
+        "parsedUwCourseCodeCount": 92,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -29845,7 +29152,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 46,
+        "parsedUwCourseCodeCount": 62,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -29911,7 +29218,7 @@
           "discovered-anchor",
           "official-link"
         ],
-        "score": 62,
+        "score": 52,
         "confidence": "high",
         "reasons": [
           "admissions wording",
@@ -29925,6 +29232,7 @@
           "official source path matches the selected major",
           "overview wording",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "specific bachelor route wording",
           "stays on an official UW domain",
           "stays on the current official department host",
@@ -29971,7 +29279,7 @@
       },
       "suggestedPrimary": null,
       "suggestedAction": "keep-existing-primary",
-      "suggestedScoreDelta": 17,
+      "suggestedScoreDelta": 27,
       "topCandidates": [
         {
           "url": "https://www.tacoma.uw.edu/sias/socs/law-and-policy-degree-requirements-prior-summer-2024",
@@ -30031,7 +29339,7 @@
             "discovered-anchor",
             "official-link"
           ],
-          "score": 62,
+          "score": 52,
           "confidence": "high",
           "reasons": [
             "admissions wording",
@@ -30045,6 +29353,7 @@
             "official source path matches the selected major",
             "overview wording",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host",
@@ -30214,7 +29523,7 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 24,
+          "score": 14,
           "confidence": "medium",
           "reasons": [
             "admissions wording",
@@ -30224,6 +29533,7 @@
             "matches major keyword \"policy\"",
             "matches the selected degree route",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host"
@@ -30270,7 +29580,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 46,
+        "parsedUwCourseCodeCount": 62,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -30690,7 +30000,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 1,
-        "parsedUwCourseCodeCount": 55,
+        "parsedUwCourseCodeCount": 86,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -30841,7 +30151,7 @@
         "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 55,
+        "parsedUwCourseCodeCount": 86,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -31002,7 +30312,7 @@
         "bestTrackId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
         "trackRecommendationId": "grc-associate-stem-chemistry-associate-in-science-transfer-track-1-chemistry",
         "noPublicClassificationCount": 2,
-        "parsedUwCourseCodeCount": 41,
+        "parsedUwCourseCodeCount": 57,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -31829,7 +31139,7 @@
         "bestTrackId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering",
         "trackRecommendationId": "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering",
         "noPublicClassificationCount": 2,
-        "parsedUwCourseCodeCount": 19,
+        "parsedUwCourseCodeCount": 21,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -32708,7 +32018,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 1,
-        "parsedUwCourseCodeCount": 20,
+        "parsedUwCourseCodeCount": 46,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -32859,7 +32169,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 1,
-        "parsedUwCourseCodeCount": 14,
+        "parsedUwCourseCodeCount": 20,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -33283,7 +32593,7 @@
           "discovered-anchor",
           "official-link"
         ],
-        "score": 50,
+        "score": 40,
         "confidence": "high",
         "reasons": [
           "already stored as an official source",
@@ -33294,6 +32604,7 @@
           "matches the selected degree route",
           "overview wording",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "stays on an official UW domain",
           "stays on the current official department host",
           "undergraduate path segment"
@@ -33325,7 +32636,7 @@
         "sourceKinds": [
           "discovered-anchor"
         ],
-        "score": 50,
+        "score": 40,
         "confidence": "high",
         "reasons": [
           "discovered from an official source page",
@@ -33335,6 +32646,7 @@
           "matches multiple major keywords",
           "matches the selected degree route",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "specific bachelor route wording",
           "stays on an official UW domain",
           "stays on the current official department host",
@@ -33377,7 +32689,7 @@
             "discovered-anchor",
             "official-link"
           ],
-          "score": 50,
+          "score": 40,
           "confidence": "high",
           "reasons": [
             "already stored as an official source",
@@ -33388,6 +32700,7 @@
             "matches the selected degree route",
             "overview wording",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "stays on an official UW domain",
             "stays on the current official department host",
             "undergraduate path segment"
@@ -33419,7 +32732,7 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 50,
+          "score": 40,
           "confidence": "high",
           "reasons": [
             "discovered from an official source page",
@@ -33429,6 +32742,7 @@
             "matches multiple major keywords",
             "matches the selected degree route",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host",
@@ -33462,12 +32776,13 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 31,
-          "confidence": "high",
+          "score": 21,
+          "confidence": "medium",
           "reasons": [
             "discovered from an official source page",
             "matches major keyword \"bsn\"",
             "matches the selected degree route",
+            "route-specific page may not cover every pathway in the selected major",
             "stays on an official UW domain",
             "stays on the current official department host",
             "undergraduate path segment"
@@ -33497,12 +32812,13 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 31,
-          "confidence": "high",
+          "score": 21,
+          "confidence": "medium",
           "reasons": [
             "discovered from an official source page",
             "matches major keyword \"bsn\"",
             "matches the selected degree route",
+            "route-specific page may not cover every pathway in the selected major",
             "stays on an official UW domain",
             "stays on the current official department host",
             "undergraduate path segment"
@@ -33539,12 +32855,13 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 31,
-          "confidence": "high",
+          "score": 21,
+          "confidence": "medium",
           "reasons": [
             "discovered from an official source page",
             "matches major keyword \"bsn\"",
             "matches the selected degree route",
+            "route-specific page may not cover every pathway in the selected major",
             "stays on an official UW domain",
             "stays on the current official department host",
             "undergraduate path segment"
@@ -34210,7 +33527,7 @@
           "discovered-anchor",
           "official-link"
         ],
-        "score": 88,
+        "score": 78,
         "confidence": "high",
         "reasons": [
           "already stored as an official source",
@@ -34222,6 +33539,7 @@
           "official source text matches the selected major",
           "overview wording",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "stays on an official UW domain",
           "stays on the current official department host",
           "undergraduate path segment",
@@ -34254,7 +33572,7 @@
         "sourceKinds": [
           "discovered-anchor"
         ],
-        "score": 80,
+        "score": 70,
         "confidence": "high",
         "reasons": [
           "discovered from an official source page",
@@ -34264,6 +33582,7 @@
           "matches the selected degree route",
           "official source text matches the selected major",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "specific bachelor route wording",
           "stays on an official UW domain",
           "stays on the current official department host",
@@ -34306,7 +33625,7 @@
             "discovered-anchor",
             "official-link"
           ],
-          "score": 88,
+          "score": 78,
           "confidence": "high",
           "reasons": [
             "already stored as an official source",
@@ -34318,6 +33637,7 @@
             "official source text matches the selected major",
             "overview wording",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "stays on an official UW domain",
             "stays on the current official department host",
             "undergraduate path segment",
@@ -34350,7 +33670,7 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 80,
+          "score": 70,
           "confidence": "high",
           "reasons": [
             "discovered from an official source page",
@@ -34360,6 +33680,7 @@
             "matches the selected degree route",
             "official source text matches the selected major",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host",
@@ -34390,7 +33711,7 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 44,
+          "score": 34,
           "confidence": "high",
           "reasons": [
             "admissions wording",
@@ -34401,6 +33722,7 @@
             "matches the selected degree route",
             "official source text matches the selected major",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "stays on an official UW domain",
             "stays on the current official department host",
             "undergraduate path segment"
@@ -34433,8 +33755,8 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 34,
-          "confidence": "high",
+          "score": 24,
+          "confidence": "medium",
           "reasons": [
             "admissions wording",
             "discovered from an official source page",
@@ -34445,6 +33767,7 @@
             "non-degree content wording",
             "official source text matches the selected major",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host",
@@ -34482,12 +33805,13 @@
           "sourceKinds": [
             "discovered-anchor"
           ],
-          "score": 31,
-          "confidence": "high",
+          "score": 21,
+          "confidence": "medium",
           "reasons": [
             "discovered from an official source page",
             "matches major keyword \"bsn\"",
             "matches the selected degree route",
+            "route-specific page may not cover every pathway in the selected major",
             "stays on an official UW domain",
             "stays on the current official department host",
             "undergraduate path segment"
@@ -35070,11 +34394,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 8,
+        "runtimeGrcCourseCount": 10,
         "bestTrackId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "trackRecommendationId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "noPublicClassificationCount": 12,
-        "parsedUwCourseCodeCount": 17,
+        "parsedUwCourseCodeCount": 27,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -35217,11 +34541,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 8,
+        "runtimeGrcCourseCount": 10,
         "bestTrackId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "trackRecommendationId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 16,
+        "parsedUwCourseCodeCount": 26,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -35356,11 +34680,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 8,
+        "runtimeGrcCourseCount": 10,
         "bestTrackId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "trackRecommendationId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 16,
+        "parsedUwCourseCodeCount": 37,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -35498,11 +34822,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 8,
+        "runtimeGrcCourseCount": 10,
         "bestTrackId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "trackRecommendationId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 16,
+        "parsedUwCourseCodeCount": 37,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -35637,11 +34961,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 8,
+        "runtimeGrcCourseCount": 10,
         "bestTrackId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "trackRecommendationId": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 16,
+        "parsedUwCourseCodeCount": 26,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -35787,7 +35111,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 7,
-        "parsedUwCourseCodeCount": 13,
+        "parsedUwCourseCodeCount": 14,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -35856,7 +35180,7 @@
           "discovered-anchor",
           "official-link"
         ],
-        "score": 64,
+        "score": 54,
         "confidence": "high",
         "reasons": [
           "admissions wording",
@@ -35871,6 +35195,7 @@
           "official source path matches the selected major",
           "overview wording",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "specific bachelor route wording",
           "stays on an official UW domain",
           "stays on the current official department host",
@@ -35911,7 +35236,7 @@
       },
       "suggestedPrimary": null,
       "suggestedAction": "keep-existing-primary",
-      "suggestedScoreDelta": -10,
+      "suggestedScoreDelta": 0,
       "topCandidates": [
         {
           "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
@@ -35938,7 +35263,7 @@
             "discovered-anchor",
             "official-link"
           ],
-          "score": 64,
+          "score": 54,
           "confidence": "high",
           "reasons": [
             "admissions wording",
@@ -35953,6 +35278,7 @@
             "official source path matches the selected major",
             "overview wording",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host",
@@ -36048,44 +35374,6 @@
           "latestDetectedYear": null
         },
         {
-          "url": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
-          "label": null,
-          "anchorText": "Economics and Policy Analysis (EPA)",
-          "pageTitle": "Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma",
-          "pageHeadings": [
-            "ADMISSION REQUIREMENTS",
-            "ADVISOR",
-            "Bachelor of Arts",
-            "CAREER OPPORTUNITIES",
-            "Contact",
-            "DEGREE REQUIREMENTS",
-            "DEPARTMENT",
-            "Economics and Policy Analysis (EPA)",
-            "Main Content",
-            "MAJOR COORDINATOR"
-          ],
-          "sourcePageUrl": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
-          "sourceKinds": [
-            "discovered-anchor"
-          ],
-          "score": 24,
-          "confidence": "medium",
-          "reasons": [
-            "admissions wording",
-            "advising wording",
-            "discovered from an official source page",
-            "explicit degree-requirements wording",
-            "matches major keyword \"economics\"",
-            "matches the selected degree route",
-            "page title fetched successfully",
-            "specific bachelor route wording",
-            "stays on an official UW domain",
-            "stays on the current official department host"
-          ],
-          "detectedYears": [],
-          "latestDetectedYear": null
-        },
-        {
           "url": "https://www.tacoma.uw.edu/sias/socs/politics-and-philosophy-specialization",
           "label": null,
           "anchorText": "Politics and Philosophy Specialization",
@@ -36130,6 +35418,45 @@
             "matches major keyword \"philosophy\"",
             "matches major keyword \"politics\"",
             "matches multiple major keywords",
+            "stays on an official UW domain",
+            "stays on the current official department host"
+          ],
+          "detectedYears": [],
+          "latestDetectedYear": null
+        },
+        {
+          "url": "https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa",
+          "label": null,
+          "anchorText": "Economics and Policy Analysis (EPA)",
+          "pageTitle": "Economics and Policy Analysis (EPA) | Department of Social Sciences | University of Washington Tacoma",
+          "pageHeadings": [
+            "ADMISSION REQUIREMENTS",
+            "ADVISOR",
+            "Bachelor of Arts",
+            "CAREER OPPORTUNITIES",
+            "Contact",
+            "DEGREE REQUIREMENTS",
+            "DEPARTMENT",
+            "Economics and Policy Analysis (EPA)",
+            "Main Content",
+            "MAJOR COORDINATOR"
+          ],
+          "sourcePageUrl": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
+          "sourceKinds": [
+            "discovered-anchor"
+          ],
+          "score": 14,
+          "confidence": "medium",
+          "reasons": [
+            "admissions wording",
+            "advising wording",
+            "discovered from an official source page",
+            "explicit degree-requirements wording",
+            "matches major keyword \"economics\"",
+            "matches the selected degree route",
+            "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
+            "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host"
           ],
@@ -36201,7 +35528,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 31,
+        "parsedUwCourseCodeCount": 49,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -36629,7 +35956,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 8,
-        "parsedUwCourseCodeCount": 50,
+        "parsedUwCourseCodeCount": 63,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -36695,7 +36022,7 @@
           "discovered-anchor",
           "official-link"
         ],
-        "score": 66,
+        "score": 56,
         "confidence": "high",
         "reasons": [
           "admissions wording",
@@ -36706,6 +36033,7 @@
           "official source path matches the selected major",
           "overview wording",
           "page title fetched successfully",
+          "route-specific page may not cover every pathway in the selected major",
           "specific bachelor route wording",
           "stays on an official UW domain",
           "stays on the current official department host",
@@ -36738,7 +36066,7 @@
       },
       "suggestedPrimary": null,
       "suggestedAction": "keep-existing-primary",
-      "suggestedScoreDelta": -21,
+      "suggestedScoreDelta": -11,
       "topCandidates": [
         {
           "url": "https://www.tacoma.uw.edu/sias/socs/psychology",
@@ -36762,7 +36090,7 @@
             "discovered-anchor",
             "official-link"
           ],
-          "score": 66,
+          "score": 56,
           "confidence": "high",
           "reasons": [
             "admissions wording",
@@ -36773,6 +36101,7 @@
             "official source path matches the selected major",
             "overview wording",
             "page title fetched successfully",
+            "route-specific page may not cover every pathway in the selected major",
             "specific bachelor route wording",
             "stays on an official UW domain",
             "stays on the current official department host",
@@ -36981,7 +36310,7 @@
         "bestTrackId": null,
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 50,
+        "parsedUwCourseCodeCount": 63,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": false,
         "currentSourceYears": [],
@@ -38170,11 +37499,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 1,
-        "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
+        "runtimeGrcCourseCount": 2,
+        "bestTrackId": "grc-associate-education-law-social-science-sociology-aa-dta-with-emphasis-sociology",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 4,
-        "parsedUwCourseCodeCount": 20,
+        "parsedUwCourseCodeCount": 36,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -38507,11 +37836,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 1,
-        "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
+        "runtimeGrcCourseCount": 2,
+        "bestTrackId": "grc-associate-education-law-social-science-sociology-aa-dta-with-emphasis-sociology",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 20,
+        "parsedUwCourseCodeCount": 36,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -38846,11 +38175,11 @@
         }
       ],
       "reevaluationContext": {
-        "runtimeGrcCourseCount": 1,
-        "bestTrackId": "grc-associate-education-law-social-science-geography-aa-dta-with-emphasis-geography",
+        "runtimeGrcCourseCount": 2,
+        "bestTrackId": "grc-associate-education-law-social-science-sociology-aa-dta-with-emphasis-sociology",
         "trackRecommendationId": null,
         "noPublicClassificationCount": 0,
-        "parsedUwCourseCodeCount": 20,
+        "parsedUwCourseCodeCount": 36,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [
@@ -39576,7 +38905,7 @@
         "bestTrackId": "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp",
         "trackRecommendationId": "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp",
         "noPublicClassificationCount": 3,
-        "parsedUwCourseCodeCount": 69,
+        "parsedUwCourseCodeCount": 89,
         "qualityWarningCodes": [],
         "hasStrongRequirementCue": true,
         "currentSourceYears": [

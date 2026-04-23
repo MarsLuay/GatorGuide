@@ -1,6 +1,6 @@
 # Transfer Planner Primary Source Promotions
 
-Generated: 2026-04-23T12:16:51.228Z
+Generated: 2026-04-23T13:49:51.687Z
 
 - Auto-promoted high-confidence primary sources: 89
 - Skipped because they still appear in the review queue: 0
@@ -177,6 +177,14 @@ Generated: 2026-04-23T12:16:51.228Z
 - Discovery score: 54
 - Why: advising wording; already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches multiple major keywords; page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain
 
+### Electrical & Computer Engineering - Photonics pathway
+
+- Owner: uw-seattle-electrical-computer-engineering:pathway:photonics-pathway
+- Primary source: https://www.ece.uw.edu/academics/bachelor-of-science/bsee/degree-requirements/
+- Label: BSEE Degree Requirements
+- Discovery score: 80
+- Why: admissions wording; discovered from an official source page; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches major keyword "photonics"; matches multiple major keywords; official source text matches the selected major; older year signal than current primary (2022 vs 2025); page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; Replaces existing primary https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/ after weak-source re-evaluation.
+
 ### English - Language, Literature & Culture
 
 - Owner: uw-seattle-english-language-literature-and-culture
@@ -224,14 +232,6 @@ Generated: 2026-04-23T12:16:51.228Z
 - Label: UW Guitar Bachelor of Music requirements
 - Discovery score: 46
 - Why: already stored as an official source; matches major keyword "guitar"; official source path matches the selected major; page title fetched successfully; stays on an official UW domain; verified against an official source candidate
-
-### Human Centered Design & Engineering
-
-- Owner: uw-seattle-human-centered-design-engineering
-- Primary source: https://www.hcde.washington.edu/bs/requirements
-- Label: Degree requirements
-- Discovery score: 92
-- Why: discovered from an official source page; explicit degree-requirements wording; explicitly names the selected major; matches major keyword "centered"; matches major keyword "design"; matches major keyword "engineering"; matches major keyword "human"; matches multiple major keywords; official source text matches the selected major; older year signal than current primary (2024 vs 2025); page title fetched successfully; stays on an official UW domain; stays on the current official department host; Replaces existing primary https://www.hcde.washington.edu/bs/requirements/2024 after weak-source re-evaluation.
 
 ### Individualized Studies
 

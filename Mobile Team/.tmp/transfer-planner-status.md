@@ -1,23 +1,23 @@
 # Transfer Planner Status
 
-Generated at: 2026-04-23T10:26:07.117Z
+Generated at: 2026-04-23T15:31:21.985Z
 
 ## Summary
 
 | Metric | Value |
 | --- | ---: |
-| Total planner owners | 475 |
-| Visible majors/pathways | 476 |
+| Total planner owners | 466 |
+| Visible majors/pathways | 467 |
 | Visible majors | 190 |
-| Visible pathways | 286 |
-| Hidden source-gap owners | 3 |
-| Visible source-backed owners | 475 |
-| Visible source-backed rows | 476 |
-| Emitted generated rows | 476 |
-| Emitted runtime rows | 476 |
-| Rows with best-track matches | 334 |
-| Rows with best-track ids | 334 |
-| Intentionally unmatched rows | 142 |
+| Visible pathways | 277 |
+| Hidden source-gap owners | 0 |
+| Visible source-backed owners | 466 |
+| Visible source-backed rows | 467 |
+| Emitted generated rows | 467 |
+| Emitted runtime rows | 467 |
+| Rows with best-track matches | 338 |
+| Rows with best-track ids | 338 |
+| Intentionally unmatched rows | 129 |
 | Rows newly converted from intentional-unmatched to matched | 0 |
 | Unexpected null runtime rows among visible source-backed owners | 0 |
 | Rows needing attention | 0 |
@@ -26,10 +26,9 @@ Generated at: 2026-04-23T10:26:07.117Z
 
 | Bucket | Count |
 | --- | ---: |
-| complete-matched | 334 |
-| runtime row exists but no best-track match | 7 |
-| safe intentional empty state | 135 |
-| true hidden source gap | 3 |
+| complete-matched | 338 |
+| runtime row exists but no best-track match | 14 |
+| safe intentional empty state | 115 |
 
 ## Rows needing attention
 
@@ -37,24 +36,10 @@ Generated at: 2026-04-23T10:26:07.117Z
 
 ## Intentionally unmatched rows
 
-- uw-bothell-business-administration:: — safe-intentional-empty-state — Owner-audit signals: no-parsed-uw-course-codes. Intentional safe-empty state: 24 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-bothell-csse::iac-option — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
 - uw-bothell-csse-information-assurance-and-cybersecurity:: — safe-intentional-empty-state — Intentional safe-empty state: 23 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-bothell-csse-information-assurance-and-cybersecurity::information-assurance-and-cybersecurity-iac-option — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
 - uw-bothell-developmental-and-youth-studies:: — safe-intentional-empty-state — Intentional safe-empty state: 15 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
-- uw-bothell-developmental-and-youth-studies::cecl-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-developmental-and-youth-studies::education-studies-elementary-education-option — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-developmental-and-youth-studies::esol-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-developmental-and-youth-studies::lede-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-developmental-and-youth-studies::m-ed-with-educating-for-critical-race-theory-e-crit-concentration — safe-intentional-empty-state — Owner-audit signals: no-parsed-uw-course-codes. Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-economics:: — safe-intentional-empty-state — Owner-audit signals: no-parsed-uw-course-codes. Intentional safe-empty state: 24 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
-- uw-bothell-economics::accounting-option — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-economics::finance-option-and-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-economics::leadership-and-strategic-innovation-option — safe-intentional-empty-state — Owner-audit signals: no-parsed-uw-course-codes. Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-economics::marketing-option-and-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-economics::mis-concentration — safe-intentional-empty-state — Owner-audit signals: no-parsed-uw-course-codes. Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-economics::supply-chain-management-option — safe-intentional-empty-state — Owner-audit signals: no-parsed-uw-course-codes. Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-bothell-economics::tim-concentration — safe-intentional-empty-state — Owner-audit signals: no-parsed-uw-course-codes. Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
 - uw-bothell-educational-studies-elementary-education:: — safe-intentional-empty-state — Intentional safe-empty state: 18 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-bothell-educational-studies-elementary-education::elementary-education-option — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
 - uw-bothell-educational-studies-elementary-education::see-elementary-education-option — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
@@ -71,13 +56,13 @@ Generated at: 2026-04-23T10:26:07.117Z
 - uw-seattle-american-indian-studies:: — safe-intentional-empty-state — Intentional safe-empty state: 4 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-seattle-art-history::textual-studies — safe-intentional-empty-state — Owner-audit signals: no-parsed-uw-course-codes. Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
 - uw-seattle-asian-languages-and-cultures:: — safe-intentional-empty-state — Intentional safe-empty state: 6 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
-- uw-seattle-asian-studies:: — safe-intentional-empty-state — Intentional safe-empty state: 7 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
-- uw-seattle-asian-studies::china-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-seattle-asian-studies::general-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-seattle-asian-studies::japan-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-seattle-asian-studies::korea-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-seattle-asian-studies::south-asia-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-seattle-asian-studies::southeast-asia-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
+- uw-seattle-asian-studies:: — intentional-weak-signal-non-match — Intentional non-match: HIST 250 survives into the runtime course pool, but no associate track reaches a stable overlap on the full visible course list.
+- uw-seattle-asian-studies::china-concentration — intentional-weak-signal-non-match — Intentional non-match: HIST 250 survives into the runtime course pool, but no associate track reaches a stable overlap on the full visible course list.
+- uw-seattle-asian-studies::general-concentration — intentional-weak-signal-non-match — Intentional non-match: HIST 250 survives into the runtime course pool, but no associate track reaches a stable overlap on the full visible course list.
+- uw-seattle-asian-studies::japan-concentration — intentional-weak-signal-non-match — Intentional non-match: HIST 250 survives into the runtime course pool, but no associate track reaches a stable overlap on the full visible course list.
+- uw-seattle-asian-studies::korea-concentration — intentional-weak-signal-non-match — Intentional non-match: HIST 250 survives into the runtime course pool, but no associate track reaches a stable overlap on the full visible course list.
+- uw-seattle-asian-studies::south-asia-concentration — intentional-weak-signal-non-match — Intentional non-match: HIST 250 survives into the runtime course pool, but no associate track reaches a stable overlap on the full visible course list.
+- uw-seattle-asian-studies::southeast-asia-concentration — intentional-weak-signal-non-match — Intentional non-match: HIST 250 survives into the runtime course pool, but no associate track reaches a stable overlap on the full visible course list.
 - uw-seattle-chinese:: — safe-intentional-empty-state — Intentional safe-empty state: 9 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-seattle-classical-studies:: — safe-intentional-empty-state — Derived shared-source alias of uw-seattle-classics; inherits source-backed coverage from the canonical owner. Intentional safe-empty state: 6 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-seattle-classics:: — safe-intentional-empty-state — Intentional safe-empty state: 6 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
@@ -117,6 +102,7 @@ Generated at: 2026-04-23T10:26:07.117Z
 - uw-seattle-korean:: — safe-intentional-empty-state — Intentional safe-empty state: 9 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-seattle-latin:: — safe-intentional-empty-state — Intentional safe-empty state: 5 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-seattle-linguistics:: — safe-intentional-empty-state — Intentional safe-empty state: 1 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
+- uw-seattle-mathematics:: — safe-intentional-empty-state — Intentional safe-empty state: 4 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-seattle-middle-eastern-languages-and-cultures:: — safe-intentional-empty-state — Intentional safe-empty state: 29 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-seattle-middle-eastern-languages-and-cultures::biblical-and-ancient-near-eastern-studies — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
 - uw-seattle-middle-eastern-languages-and-cultures::comparative-cultures — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
@@ -170,7 +156,7 @@ Generated at: 2026-04-23T10:26:07.117Z
 - uw-tacoma-politics-philosophy-and-economics::global-studies-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
 - uw-tacoma-psychology:: — safe-intentional-empty-state — Intentional safe-empty state: 8 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-tacoma-psychology::global-studies-concentration — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
-- uw-tacoma-social-welfare:: — safe-intentional-empty-state — Owner-audit signals: no-parsed-uw-course-codes. Intentional safe-empty state: 1 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
+- uw-tacoma-social-welfare:: — safe-intentional-empty-state — Intentional safe-empty state: 1 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-tacoma-spanish-language-and-cultures:: — safe-intentional-empty-state — Intentional safe-empty state: 1 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-tacoma-sustainable-urban-development:: — safe-intentional-empty-state — Intentional safe-empty state: 13 source-backed requirement classifications still land in no-public/no-path families, so no planner-safe GRC course pool is emitted.
 - uw-tacoma-sustainable-urban-development::a-minor-or-certificate-or-explore-the-liberal-arts — safe-intentional-empty-state — Intentional safe-empty state: no planner-safe student-visible GRC course pool is emitted for this row.
@@ -186,13 +172,11 @@ Generated at: 2026-04-23T10:26:07.117Z
 
 ## Hidden source-gap rows
 
-- uw-seattle-ethnomusicology-b-a:: — hidden-source-gap — Hidden source gap: No official primary degree-requirements source candidate met the minimum discovery threshold.
-- uw-seattle-ethnomusicology-b-a::non-thesis-option — hidden-source-gap — Hidden source gap: Official source candidate found below the auto-promotion threshold; keep hidden until source discovery or a parser adapter can verify it.
-- uw-seattle-ethnomusicology-b-a::thesis-option — hidden-source-gap — Hidden source gap: Official source candidate found below the auto-promotion threshold; keep hidden until source discovery or a parser adapter can verify it.
+- None.
 
 ## Required update queue
 
-- Resolve source gaps: add stronger official source discovery/parser support until hidden source-gap owners reaches 0.
+- Clear source-pipeline invariant failures: align discovery, promotions, canonical registry, parser input, and fingerprints before rerunning owner audit.
 - Address owner-audit issues: fix missing/invalid primary sources, manifest gaps, and parser fallback warnings.
 
 ## Inventory

@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-04-23T09:35:34.739Z",
-  "totalOwners": 475,
+  "generatedAt": "2026-04-23T15:28:58.131Z",
+  "totalOwners": 466,
   "ownersWithErrorsCount": 0,
-  "ownersWithWarningsCount": 16,
-  "ownersWithSourceOnlyUwCourseCodesCount": 5,
-  "totalSourceOnlyUwCourseCodes": 148,
+  "ownersWithWarningsCount": 9,
+  "ownersWithSourceOnlyUwCourseCodesCount": 6,
+  "totalSourceOnlyUwCourseCodes": 118,
   "issueCounts": {
     "error": 0,
-    "warning": 16
+    "warning": 9
   },
   "symptomIssueCounts": {
     "error": 0,
-    "warning": 16
+    "warning": 9
   },
   "countsByIssueCode": {
-    "no-parsed-uw-course-codes": 16
+    "no-parsed-uw-course-codes": 9
   },
   "countsBySymptomCode": {
-    "no-parsed-uw-course-codes": 16
+    "no-parsed-uw-course-codes": 9
   },
   "promotedOwnerInvariantViolationCount": 0,
   "owners": [
@@ -100,28 +100,14 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
+      "rootIssues": [],
+      "symptomIssues": []
     },
     {
       "ownerId": "uw-bothell-business-administration-accounting",
@@ -1299,7 +1285,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1365,7 +1351,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 23,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1431,7 +1417,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
-      "sourceOnlyUwCourseCodeCount": 46,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1686,130 +1672,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:cecl-concentration",
-      "ownerKey": "uw-bothell-developmental-and-youth-studies::cecl-concentration",
-      "planId": "uw-bothell-developmental-and-youth-studies",
-      "pathwayId": "cecl-concentration",
-      "pathwayLabel": "CECL Concentration",
-      "title": "Developmental and Youth Studies (BA) - CECL Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:education-studies-elementary-education-option",
-      "ownerKey": "uw-bothell-developmental-and-youth-studies::education-studies-elementary-education-option",
-      "planId": "uw-bothell-developmental-and-youth-studies",
-      "pathwayId": "education-studies-elementary-education-option",
-      "pathwayLabel": "Education Studies: Elementary Education Option",
-      "title": "Developmental and Youth Studies (BA) - Education Studies: Elementary Education Option",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:esol-concentration",
-      "ownerKey": "uw-bothell-developmental-and-youth-studies::esol-concentration",
-      "planId": "uw-bothell-developmental-and-youth-studies",
-      "pathwayId": "esol-concentration",
-      "pathwayLabel": "ESOL Concentration",
-      "title": "Developmental and Youth Studies (BA) - ESOL Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:lede-concentration",
-      "ownerKey": "uw-bothell-developmental-and-youth-studies::lede-concentration",
-      "planId": "uw-bothell-developmental-and-youth-studies",
-      "pathwayId": "lede-concentration",
-      "pathwayLabel": "LEDE Concentration",
-      "title": "Developmental and Youth Studies (BA) - LEDE Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:m-ed-with-educating-for-critical-race-theory-e-crit-concentration",
-      "ownerKey": "uw-bothell-developmental-and-youth-studies::m-ed-with-educating-for-critical-race-theory-e-crit-concentration",
-      "planId": "uw-bothell-developmental-and-youth-studies",
-      "pathwayId": "m-ed-with-educating-for-critical-race-theory-e-crit-concentration",
-      "pathwayLabel": "M.Ed. with Educating for Critical Race Theory (E-Crit) Concentration",
-      "title": "Developmental and Youth Studies (BA) - M.Ed. with Educating for Critical Race Theory (E-Crit) Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
-    },
-    {
       "ownerId": "uw-bothell-earth-system-science",
       "ownerKey": "uw-bothell-earth-system-science::",
       "planId": "uw-bothell-earth-system-science",
@@ -1844,28 +1706,14 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
+      "rootIssues": [],
+      "symptomIssues": []
     },
     {
       "ownerId": "uw-bothell-economics:pathway:accounting-option",
@@ -2026,28 +1874,14 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
+      "rootIssues": [],
+      "symptomIssues": []
     },
     {
       "ownerId": "uw-bothell-economics:pathway:retail-management-concentration",
@@ -2120,28 +1954,14 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
+      "rootIssues": [],
+      "symptomIssues": []
     },
     {
       "ownerId": "uw-bothell-educational-studies-elementary-education",
@@ -3836,72 +3656,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-bioengineering:pathway:data-science-option",
-      "ownerKey": "uw-seattle-bioengineering::data-science-option",
-      "planId": "uw-seattle-bioengineering",
-      "pathwayId": "data-science-option",
-      "pathwayLabel": "Data Science Option",
-      "title": "Bioengineering - Data Science Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-bioengineering:pathway:nano-and-molecular-engineering-nme-option",
-      "ownerKey": "uw-seattle-bioengineering::nano-and-molecular-engineering-nme-option",
-      "planId": "uw-seattle-bioengineering",
-      "pathwayId": "nano-and-molecular-engineering-nme-option",
-      "pathwayLabel": "Nano & Molecular Engineering (NME) Option",
-      "title": "Bioengineering - Nano & Molecular Engineering (NME) Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-bioengineering:pathway:phd-data-science-option",
-      "ownerKey": "uw-seattle-bioengineering::phd-data-science-option",
-      "planId": "uw-seattle-bioengineering",
-      "pathwayId": "phd-data-science-option",
-      "pathwayLabel": "PHD Data Science Option",
-      "title": "Bioengineering - PHD Data Science Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-biology",
       "ownerKey": "uw-seattle-biology::",
       "planId": "uw-seattle-biology",
@@ -4241,28 +3995,6 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://chem.washington.edu/ba-chemistry",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-chemistry:pathway:bs-route",
-      "ownerKey": "uw-seattle-chemistry::bs-route",
-      "planId": "uw-seattle-chemistry",
-      "pathwayId": "bs-route",
-      "pathwayLabel": "B.S. route",
-      "title": "Chemistry - B.S. route",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://chem.washington.edu/bs-chemistry-acs-certified",
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
@@ -4904,28 +4636,14 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
+      "rootIssues": [],
+      "symptomIssues": []
     },
     {
       "ownerId": "uw-seattle-drama:pathway:design",
@@ -6337,7 +6055,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 1,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -6359,7 +6077,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 1,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -7451,7 +7169,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 1,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -7473,7 +7191,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 1,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -8419,7 +8137,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 57,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -8441,7 +8159,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 57,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -9569,7 +9287,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -9789,7 +9507,7 @@
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-      "sourceOnlyUwCourseCodeCount": 32,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -10364,28 +10082,14 @@
       "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
       "symptomIssueCounts": {
         "error": 0,
-        "warning": 1
+        "warning": 0
       },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
+      "rootIssues": [],
+      "symptomIssues": []
     },
     {
       "ownerId": "uw-tacoma-spanish-language-and-cultures",

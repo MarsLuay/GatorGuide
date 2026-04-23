@@ -101,7 +101,7 @@ const SOURCE_BACKED_TRACK_MATCH_SAFE_SKIP_REASON_PATTERN =
 const SOURCE_BACKED_SIBLING_OPTION_SKIP_REASON_PATTERN =
   /\bmatched source lines list several sibling UW options\b/i;
 const SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN =
-  /\b(suggested general education|not required for transferring|approved list|highly recommended|elective|replacement|course list|course lists|course evaluation|course evaluations|capstone course|capstone courses|suggested course pathways?)\b/i;
+  /\b(suggested general education|not required for transferring|approved list|recommended|suggested|consider|elective|replacement|course list|course lists|course evaluation|course evaluations|capstone course|capstone courses|suggested course pathways?|choose\s+(?:one|[0-9]+)|one\s+of|select(?:ed|ing)?|\d+\s+credits?\s+from|minimum\s+\d+\s+credits?[^.]{0,80}\bfrom)\b/i;
 const DEGREE_MAP_GUIDE_BLOCK_TITLE_EXCLUSION_PATTERN = /\bchoices and pathway notes\b/i;
 const MIN_SOURCE_BACKED_SIBLING_CHOICE_RECOVERY_COUNT = 3;
 const SOURCE_BACKED_MAJOR_SCOPE_CUE_PATTERN =
@@ -770,9 +770,26 @@ const SOURCE_BACKED_CLASSIFICATIONS_BY_SCOPE_AND_SOURCE_COURSE = new Map<
   string,
   TransferPlannerRequirementDiffClassificationEntry[]
 >();
+const SOURCE_BACKED_CLASSIFICATIONS_BY_PROMOTED_REQUIREMENT_ATOM_ID = new Map<
+  string,
+  TransferPlannerRequirementDiffClassificationEntry[]
+>();
 for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY) {
   const scopeKey = makePathwayPlanKey(classification.planId, classification.pathwayId);
   const normalizedSourceCourseCode = normalizeCourseCode(classification.sourceUwCourseCode);
+  const promotedRequirementAtomOverrideId = classification.promotedRequirementAtomOverrideId;
+  if (promotedRequirementAtomOverrideId) {
+    const existingEntries =
+      SOURCE_BACKED_CLASSIFICATIONS_BY_PROMOTED_REQUIREMENT_ATOM_ID.get(
+        promotedRequirementAtomOverrideId
+      ) ?? [];
+    existingEntries.push(classification);
+    SOURCE_BACKED_CLASSIFICATIONS_BY_PROMOTED_REQUIREMENT_ATOM_ID.set(
+      promotedRequirementAtomOverrideId,
+      existingEntries
+    );
+  }
+
   if (!normalizedSourceCourseCode) continue;
 
   const entryKey = buildSourceBackedScopeCourseKey(scopeKey, normalizedSourceCourseCode);
@@ -1013,6 +1030,29 @@ function applySiblingChoiceSourceBackedRecovery(
   return buildSiblingChoiceSourceBackedRecoveryCourseList(planId, pathwayId);
 }
 
+function shouldSkipDegreeMapGuideCourseForNonRequirementCue(
+  block: TransferPlannerDegreeMapBlock,
+  uwCourseCode: string
+) {
+  const normalizedUwCourseCode = normalizeCourseCode(uwCourseCode);
+  if (!normalizedUwCourseCode) {
+    return true;
+  }
+
+  const candidateLines = uniquePlannerStrings([
+    ...(block.itemLabels ?? []),
+    ...getRequirementCueLinesFromValidationNotes(block.validationNotes),
+  ]);
+
+  return candidateLines.some((line) => {
+    if (!SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN.test(String(line ?? ""))) {
+      return false;
+    }
+
+    return extractReferenceCourseCodes(line).includes(normalizedUwCourseCode);
+  });
+}
+
 const SOURCE_BACKED_TRACK_MATCH_COURSES_BY_KEY = new Map<PathwayPlanKey, string[]>();
 for (const classification of TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_REGISTRY) {
   if (!shouldIncludeTrackMatchSourceBackedClassification(classification)) {
@@ -1051,6 +1091,10 @@ for (const block of TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY) {
 
   for (const uwCourseCode of block.uwCourseCodes ?? []) {
     const normalizedUwCourseCode = normalizeCourseCode(uwCourseCode);
+    if (shouldSkipDegreeMapGuideCourseForNonRequirementCue(block, normalizedUwCourseCode)) {
+      continue;
+    }
+
     const topRule = [
       ...(GUIDE_RULES_BY_TARGET_COURSE_CODE.get(normalizedUwCourseCode) ?? []),
     ].sort(compareGuideRules)[0];
@@ -1472,7 +1516,11 @@ function getParsedRequirementAtomCandidatesForScope(planId: string, pathwayId?: 
 function getRequirementCueLinesFromClassification(
   entry: TransferPlannerRequirementDiffClassificationEntry
 ) {
-  return entry.validationNotes
+  return getRequirementCueLinesFromValidationNotes(entry.validationNotes);
+}
+
+function getRequirementCueLinesFromValidationNotes(notes: string[] | null | undefined) {
+  return (notes ?? [])
     .filter((note) => note.startsWith("Requirement cue lines:"))
     .map((note) => note.replace(/^Requirement cue lines:\s*/i, "").trim())
     .filter(Boolean);
@@ -1604,6 +1652,26 @@ function shouldIncludeStudentFacingSourceBackedClassification(
     requirementCueLines,
     allCandidateCodes: new Set([normalizeCourseCode(classification.sourceUwCourseCode)]),
   });
+}
+
+function shouldIncludeStudentFacingRuntimeRequirementAtom(
+  atom: TransferPlannerMajorRequirementAtom
+) {
+  const matchingClassifications =
+    SOURCE_BACKED_CLASSIFICATIONS_BY_PROMOTED_REQUIREMENT_ATOM_ID.get(atom.id) ?? [];
+  if (!matchingClassifications.length) {
+    return true;
+  }
+
+  return matchingClassifications.some((classification) =>
+    shouldIncludeStudentFacingSourceBackedClassification(classification)
+  );
+}
+
+function getStudentFacingRuntimeRequirementAtoms(planId: string, pathwayId?: string | null) {
+  return getRuntimeRequirementAtoms(planId, pathwayId).filter((atom) =>
+    shouldIncludeStudentFacingRuntimeRequirementAtom(atom)
+  );
 }
 
 function getSourceBackedFallbackCourseLevel(code: string) {
@@ -3587,7 +3655,7 @@ function buildAutomaticChecklistForPhase(
   const seenSignatures = new Set<string>();
   const runtimeItems: TransferPlannerChecklistItem[] = [];
 
-  for (const atom of getRuntimeRequirementAtoms(planId, pathwayId)) {
+  for (const atom of getStudentFacingRuntimeRequirementAtoms(planId, pathwayId)) {
     if (atom.displayPhase !== phase) {
       continue;
     }
@@ -3692,7 +3760,7 @@ function buildAutomaticCourseList(
   const scopeKeys = getAutomaticScopeKeys(planId, pathwayId);
   const includeRuntimeRequirementCourses = options.includeRuntimeRequirementCourses ?? true;
   const runtimeRequirementCourseCodes = includeRuntimeRequirementCourses
-    ? getRuntimeRequirementAtoms(planId, pathwayId).flatMap((atom) => [
+    ? getStudentFacingRuntimeRequirementAtoms(planId, pathwayId).flatMap((atom) => [
         ...atom.grcCourseCodes,
         ...(atom.alternativeCourseCodeSets ?? []).flat(),
       ])

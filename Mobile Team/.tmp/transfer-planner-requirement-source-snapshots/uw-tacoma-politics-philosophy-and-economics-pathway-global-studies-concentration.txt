@@ -52,7 +52,6 @@ Calendar
 CAMPUS
 Campus Safety
 Canvas
-Capstone (5 credits)
 Career Opportunities
 CAREER OPPORTUNITIES
 Chose one of the following:
@@ -70,8 +69,6 @@ Department of Social Sciences
 Department of Social Sciences (SOCS)
 Diplomacy Government
 Directory
-Economic or International Studies Specializations (10 credits; *restricted to Global Honors students)
-Economics
 Economics (20 credits)
 Economics and Policy Analysis (EPA)
 Economics Minor
@@ -101,7 +98,6 @@ Institutional Research
 Interdisciplinary Arts and Sciences
 International Focus (40 credits; at least 30 credits must be at the 300–400 level)
 International Law
-International Studies
 International Studies Specialization
 IT Help
 Jobs
@@ -141,7 +137,6 @@ Politics and Philosophy
 Politics and Philosophy (20 credits; *restricted to Global Honors students)
 Politics and Philosophy or International Studies (10 credits; *restricted to Global Honors students)
 Politics and Philosophy Specialization
-Politics and Philosophy Specialization | Department of Social Sciences | University of Washington Tacoma
 Politics Minor
 Politics, Philosophy and Economics (PP&E)
 Politics, Philosophy and Economics (PP&E) | Department of Social Sciences | University of Washington Tacoma
@@ -216,7 +211,6 @@ TECON 470 Economics of Health and Health Policy
 TECON 480 Seminar in Economic Analysis
 TEGL 201 Introduction to Indigenous Philosophy
 TEGL 340 Intersections: Race, Gender and Sexuality in a Global Perspective
-TEGL 435 Migration in the Modern World
 Terms of Use |
 TFILM 377 Spanish Film
 TFILM 386 Silent Cinema
@@ -263,12 +257,10 @@ THIST 466 Modern Korea
 THIST 467 Siberia and the Russian Far East
 THIST 474 Imperial China
 THIST 475 Great Britain in the Twentieth Century
-THIST 475 Twentieth-century Britain
 THIST 477 Reformation and Counter-Reformation Europe
 THIST 478 Revolution, Industrialization and Modernity in European Culture 1750–1870
 THIST 479 Modern European Culture
 THIST 480 Eastern Europe in Transition: 1940–2000
-THIST 484 The Pacific Wa r
 THIST 484 The Pacific War
 THIST 486 Contemporary Chinese Culture and Society
 THIST 487 Technology in the Modern World
@@ -288,10 +280,8 @@ TLAW 215 Introduction to International Organizations
 TLAW 320 American Constitutional Law: Institutional Powers and Constraints
 TLAW 361 American Constitutional Law: Rights and Liberties
 TLAW 422 International Humanitarian Law
-TLAW 423 International Law
 TLAW 424 The Politics and Law of International Human Rights
 TLAW 465 Law and Public Policy in the United States
-TLAW 496 Law and Policy Internship
 TLAX 267 Introduction to Chicano/a Literature
 TLAX 277 Latin American Literature
 TLAX 355 Migration and Transnational Family in Latino Literature and Film
@@ -340,32 +330,20 @@ TPOLS 260 America Political Theory
 TPOLS 310 Modern European Political Theory
 TPOLS 319 Theories of Political Violence
 TPOLS 321 American Foreign Policy
-TPOLS 322 War and Politics
-TPOLS 323 The Practice of War
-TPOLS 324 War, Activism and Ethics
 TPOLS 329 Making of Modern Africa
 TPOLS 340 Middle East Politics
 TPOLS 341 Conflict and Cooperation in the Middle East
-TPOLS 343 Community and Labor Organizing: A Multicultural Perspective
 TPOLS 350 Politics and Film in the Middle East
-TPOLS 355 Reproductive Rights, Law and Justice
 TPOLS 360 Genocide
-TPOLS 371 The Politics of Security
-TPOLS 382 State Government
-TPOLS 400 American Presidency
 TPOLS 410 Labor Rights and Human Rights
 TPOLS 411 Human Rights and Violence in the Third World
 TPOLS 450 Contemporary Theories of Culture
 TPOLS 451 Human Rights and the Use of Force
-TPOLS 480 Politics, Philosophy and Public Affairs Seminar
-TPOLS 496 Politics, Philosophy and Public Affairs Internship
-TPOLS 497 Political Internship in State Government
 Transfer Equivalencies
 TRELIG 210 Modern Theories of Religion
 TRELIG 321 Comparative Religion
 TRELIG 333 Buddhist Thought
 TRELIG 345 Christian Thought and Ethical Practice
-TRELIG 350 Philosophy, Religion and the Environment
 TRELIG 365 Hinduism and Buddhism
 TRELIG 366 Islam
 TRELIG 467 Philosophy of Religion
@@ -383,7 +361,6 @@ TSPAN 302 Spanish Conversation
 TSPAN 303 Spanish Stylistics and Composition
 TSPAN 351 Introduction to Hispanic Literary Studies
 TSPAN 393 Foreign Study
-TSUD 444 Green Internationalism and the City
 TURB 340 Urban Social Change
 TURB 430 Pacific Rim Cities
 TWOMN 420 Women in the Global Economy

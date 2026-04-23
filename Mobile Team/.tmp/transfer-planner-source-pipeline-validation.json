@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-23T09:31:02.475Z",
-  "outcome": "passed",
-  "passedCount": 19,
-  "failedCount": 0,
+  "generatedAt": "2026-04-23T15:30:20.503Z",
+  "outcome": "failed",
+  "passedCount": 18,
+  "failedCount": 1,
   "metrics": {
     "eligibleAutoPromotionOwnerCount": 6,
     "eligibleAutoPromotionOwnerIds": [
@@ -21,11 +21,11 @@
       "uw-seattle-electrical-computer-engineering:pathway:photonics-pathway",
       "uw-seattle-marine-biology"
     ],
-    "weakExistingOwnerCount": 110,
+    "weakExistingOwnerCount": 102,
     "highConfidenceReplacementOwnerCount": 6,
-    "reviewQueueOwnerCount": 3,
-    "sourceGapOwnerCount": 3,
-    "promotedOwnerCount": 90,
+    "reviewQueueOwnerCount": 0,
+    "sourceGapOwnerCount": 0,
+    "promotedOwnerCount": 89,
     "promotedOwnerKeys": [
       "uw-bothell-american-and-ethnic-studies",
       "uw-bothell-business-administration-accounting",
@@ -56,7 +56,6 @@
       "uw-seattle-biochemistry:pathway:ba-route",
       "uw-seattle-biochemistry:pathway:bs-route",
       "uw-seattle-chemistry:pathway:ba-route",
-      "uw-seattle-chemistry:pathway:bs-route",
       "uw-seattle-chinese",
       "uw-seattle-classics",
       "uw-seattle-comparative-literature",
@@ -118,10 +117,10 @@
       "uw-tacoma-urban-studies",
       "uw-tacoma-writing-studies"
     ],
-    "canonicalPrimaryOwnerCount": 475,
-    "parseablePrimaryOwnerCount": 475,
-    "parsedOwnerCount": 475,
-    "requirementFingerprintOwnerCount": 475
+    "canonicalPrimaryOwnerCount": 466,
+    "parseablePrimaryOwnerCount": 466,
+    "parsedOwnerCount": 466,
+    "requirementFingerprintOwnerCount": 466
   },
   "checks": [
     {
@@ -129,10 +128,10 @@
       "label": "Missing-primary discovery owners partition cleanly into eligible auto-promotions and review-queue owners",
       "status": "passed",
       "details": [
-        "Discovery owners: 3",
+        "Discovery owners: 0",
         "Eligible missing-primary auto-promotions: 0",
         "Eligible weak-existing replacements: 6",
-        "Review-queue owners: 3"
+        "Review-queue owners: 0"
       ]
     },
     {
@@ -140,7 +139,7 @@
       "label": "Generated promotion registry matches the promotion report",
       "status": "passed",
       "details": [
-        "Promoted owners: 90"
+        "Promoted owners: 89"
       ]
     },
     {
@@ -156,7 +155,7 @@
       "label": "Review queue and source-gap report point at the same unresolved owners",
       "status": "passed",
       "details": [
-        "Shared unresolved owners: 3"
+        "Shared unresolved owners: 0"
       ]
     },
     {
@@ -164,8 +163,8 @@
       "label": "Auto-promoted owners are materialized in the canonical primary-source registry",
       "status": "passed",
       "details": [
-        "Promoted owners: 90",
-        "Canonical primary owners: 475"
+        "Promoted owners: 89",
+        "Canonical primary owners: 466"
       ]
     },
     {
@@ -173,8 +172,8 @@
       "label": "Canonical parseable primary owners align with parser input and parser output",
       "status": "passed",
       "details": [
-        "Canonical parseable primary owners: 475",
-        "Parsed owners: 475"
+        "Canonical parseable primary owners: 466",
+        "Parsed owners: 466"
       ]
     },
     {
@@ -182,18 +181,15 @@
       "label": "Promoted owners appear in parser output and requirement fingerprints",
       "status": "passed",
       "details": [
-        "Promoted owners verified end-to-end: 90"
+        "Promoted owners verified end-to-end: 89"
       ]
     },
     {
       "id": "fingerprint-alignment",
       "label": "Requirement fingerprint coverage stays aligned with parsed requirement owners",
-      "status": "passed",
+      "status": "failed",
       "details": [
-        "Requirement fingerprints: 475",
-        "Parsed owners: 475",
-        "Added source fingerprints: 0",
-        "Added requirement fingerprints: 4"
+        "Detected added source fingerprints for a refresh with eligible auto-promotions, but no new requirement fingerprints were produced."
       ]
     },
     {

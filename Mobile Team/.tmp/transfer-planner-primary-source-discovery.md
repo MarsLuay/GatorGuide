@@ -1,16 +1,16 @@
 # Transfer Planner Primary Source Discovery
 
-Generated: 2026-04-23T12:21:28.158Z
+Generated: 2026-04-23T13:49:51.687Z
 
 - Owners analyzed: 0
 - Missing-primary owners analyzed: 0
 - High-confidence suggestions: 0
 - Medium-confidence suggestions: 0
 - No usable suggestion yet: 0
-- Weak existing primaries re-evaluated: 104
+- Weak existing primaries re-evaluated: 102
 - High-confidence replacements: 6
-- Replacement review candidates: 69
-- Existing primaries kept after re-evaluation: 98
+- Replacement review candidates: 67
+- Existing primaries kept after re-evaluation: 96
 
 ## Weak Existing Primaries
 
@@ -21,7 +21,7 @@ Generated: 2026-04-23T12:21:28.158Z
 - Suggested action: keep-existing-primary
 - Review candidate: https://amath.washington.edu/undergraduate-major-computational-finance-risk-management
 - Review candidate score: 56
-- Re-evaluation triggers: Parsed source block has parser-quality warnings: material-source-structured-drift, large-structured-only-course-gap.; Current primary looks tied to 2026 in its source URL/title/document text, so discovery should compare it against sibling official sources.
+- Re-evaluation triggers: Current primary looks tied to 2026 in its source URL/title/document text, so discovery should compare it against sibling official sources.
 - Current primary score: 76
 - Current primary reasons: advising wording; already stored as an official source; explicit degree-requirements wording; explicit major-requirements wording; matches major keyword "applied"; matches major keyword "mathematics"; matches multiple major keywords; page title fetched successfully; stays on an official UW domain; stays on the current official department host; undergraduate path segment
 - Official links scanned: 2
@@ -179,59 +179,6 @@ Generated: 2026-04-23T12:21:28.158Z
 - Official links scanned: 5
 - Candidate URLs inspected: 236
 
-### Bioengineering
-
-- Current primary: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-- Current primary label: UW Bioengineering degree requirements
-- Suggested action: keep-existing-primary
-- Review candidate: https://bioe.uw.edu/2026-uw-bioengineering-graduation-celebration-june-9-2026/
-- Review candidate score: 67
-- Review candidate detected year: 2026
-- Re-evaluation triggers: Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources.
-- Current primary score: 63
-- Current primary reasons: already stored as an official source; explicit degree-requirements wording; explicitly names the selected major; matches major keyword "bioengineering"; stays on an official UW domain; stays on the current official department host; undergraduate path segment
-- Official links scanned: 2
-- Candidate URLs inspected: 126
-
-### Bioengineering - Data Science Option
-
-- Current primary: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-- Current primary label: UW Bioengineering degree requirements
-- Suggested action: keep-existing-primary
-- Review candidate: https://bioe.uw.edu/academic-programs/undergraduate/bs-bioengineering-with-option-in-data-science/
-- Review candidate score: 62
-- Re-evaluation triggers: Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources.
-- Current primary score: 53
-- Current primary reasons: already stored as an official source; explicit degree-requirements wording; matches major keyword "bioengineering"; stays on an official UW domain; stays on the current official department host; undergraduate path segment
-- Official links scanned: 2
-- Candidate URLs inspected: 169
-
-### Bioengineering - Nano & Molecular Engineering (NME) Option
-
-- Current primary: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-- Current primary label: UW Bioengineering degree requirements
-- Suggested action: keep-existing-primary
-- Review candidate: https://bioe.uw.edu/academic-programs/undergraduate/bs-bioe-nme-nano-molecular-engineering/
-- Review candidate score: 70
-- Re-evaluation triggers: Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources.
-- Current primary score: 53
-- Current primary reasons: already stored as an official source; explicit degree-requirements wording; matches major keyword "bioengineering"; stays on an official UW domain; stays on the current official department host; undergraduate path segment
-- Official links scanned: 2
-- Candidate URLs inspected: 164
-
-### Bioengineering - PHD Data Science Option
-
-- Current primary: https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/
-- Current primary label: UW Bioengineering degree requirements
-- Suggested action: keep-existing-primary
-- Review candidate: https://bioe.uw.edu/academic-programs/phd/phd-data-science-option/
-- Review candidate score: 46
-- Re-evaluation triggers: Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources.
-- Current primary score: 53
-- Current primary reasons: already stored as an official source; explicit degree-requirements wording; matches major keyword "bioengineering"; stays on an official UW domain; stays on the current official department host; undergraduate path segment
-- Official links scanned: 2
-- Candidate URLs inspected: 169
-
 ### Biology (BS)
 
 - Current primary: https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum
@@ -249,11 +196,10 @@ Generated: 2026-04-23T12:21:28.158Z
 
 - Current primary: https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf
 - Current primary label: BS Chemistry Checklist - ACS Certified (PDF)
-- Suggested action: replace-existing-primary
-- Suggested replacement: https://chem.washington.edu/ba-chemistry
-- Replacement confidence: high
-- Replacement score: 66
-- Re-evaluation triggers: Current primary looks tied to 2018 in its source URL/title/document text, so discovery should compare it against sibling official sources.
+- Suggested action: keep-existing-primary
+- Review candidate: https://chem.washington.edu/ba-chemistry
+- Review candidate score: 56
+- Re-evaluation triggers: Parsed source block has parser-quality warnings: material-source-structured-drift, large-structured-only-course-gap, high-confidence-low-course-coverage.; Current primary looks tied to 2018 in its source URL/title/document text, so discovery should compare it against sibling official sources.
 - Official links scanned: 4
 - Candidate URLs inspected: 205
 
@@ -265,7 +211,7 @@ Generated: 2026-04-23T12:21:28.158Z
 - Suggested replacement: https://chem.washington.edu/ba-chemistry
 - Replacement confidence: high
 - Replacement score: 64
-- Re-evaluation triggers: Current primary looks tied to 2018 in its source URL/title/document text, so discovery should compare it against sibling official sources.
+- Re-evaluation triggers: Parsed source block has parser-quality warnings: material-source-structured-drift, large-structured-only-course-gap.; Current primary looks tied to 2018 in its source URL/title/document text, so discovery should compare it against sibling official sources.
 - Official links scanned: 4
 - Candidate URLs inspected: 205
 
@@ -297,6 +243,20 @@ Generated: 2026-04-23T12:21:28.158Z
 - Official links scanned: 2
 - Candidate URLs inspected: 205
 
+### Developmental and Youth Studies (BA)
+
+- Current primary: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+- Current primary label: UW Bothell Developmental and Youth Studies degree requirements
+- Suggested action: keep-existing-primary
+- Review candidate: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies
+- Review candidate score: 90
+- Review candidate detected year: 2025
+- Re-evaluation triggers: Planner runtime still lands in a safe-empty state with 15 no-public requirement classifications and no student-visible GRC course pool.; Current primary looks tied to 2023 in its source URL/title/document text, so discovery should compare it against sibling official sources.
+- Current primary score: 108
+- Current primary reasons: already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; matches major keyword "developmental"; matches major keyword "youth"; matches multiple major keywords; official source text matches the selected major; overview wording; page title fetched successfully; stays on an official UW domain; stays on the current official department host; undergraduate path segment; verified against an official source candidate
+- Official links scanned: 2
+- Candidate URLs inspected: 172
+
 ### Economics and Policy Analysis (BA)
 
 - Current primary: https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-epa
@@ -305,8 +265,8 @@ Generated: 2026-04-23T12:21:28.158Z
 - Review candidate: https://www.tacoma.uw.edu/sias/socs/economics-and-policy-analysis-honors-designation-declaration-form
 - Review candidate score: 54
 - Re-evaluation triggers: Planner runtime still lands in a safe-empty state with no student-visible GRC course pool.; Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page.
-- Current primary score: 64
-- Current primary reasons: admissions wording; advising wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "analysis"; matches major keyword "economics"; matches major keyword "policy"; matches multiple major keywords; matches the selected degree route; official source text matches the selected major; overview wording; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
+- Current primary score: 54
+- Current primary reasons: admissions wording; advising wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "analysis"; matches major keyword "economics"; matches major keyword "policy"; matches multiple major keywords; matches the selected degree route; official source text matches the selected major; overview wording; page title fetched successfully; route-specific page may not cover every pathway in the selected major; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
 - Official links scanned: 2
 - Candidate URLs inspected: 119
 
@@ -674,6 +634,22 @@ Generated: 2026-04-23T12:21:28.158Z
 - Official links scanned: 2
 - Candidate URLs inspected: 183
 
+### Electrical & Computer Engineering - Photonics pathway
+
+- Current primary: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+- Current primary label: UW ECE degree requirements
+- Suggested action: replace-existing-primary
+- Suggested replacement: https://www.ece.uw.edu/academics/bachelor-of-science/bsee/degree-requirements/
+- Replacement confidence: high
+- Replacement score: 80
+- Replacement detected year: 2022
+- Re-evaluation triggers: Parsed source block has parser-quality warnings: material-source-structured-drift, large-structured-only-course-gap, high-confidence-low-course-coverage.; Current primary looks tied to 2025 in its source URL/title/document text, so discovery should compare it against sibling official sources.
+- Current primary score: 62
+- Current primary detected year: 2025
+- Current primary reasons: advising wording; already stored as an official source; capstone-only wording; explicit degree-requirements wording; explicit major-requirements wording; generic campus requirements wording; matches major keyword "computer"; matches major keyword "electrical"; matches major keyword "engineering"; matches multiple major keywords; page title fetched successfully; requirements path segment; specific bachelor route wording; stays on an official UW domain; stays on the current official department host
+- Official links scanned: 2
+- Candidate URLs inspected: 235
+
 ### Electrical & Computer Engineering - Sensing and Communication Pathway
 
 - Current primary: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
@@ -749,7 +725,7 @@ Generated: 2026-04-23T12:21:28.158Z
 - Suggested action: keep-existing-primary
 - Review candidate: https://www.tacoma.uw.edu/sias/sam/environmental-communication-option
 - Review candidate score: 96
-- Re-evaluation triggers: Planner runtime still lands in a safe-empty state with 12 no-public requirement classifications and no student-visible GRC course pool.; Parsed source block has parser-quality warnings: material-source-structured-drift.; Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page.
+- Re-evaluation triggers: Planner runtime still lands in a safe-empty state with 12 no-public requirement classifications and no student-visible GRC course pool.; Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page.
 - Current primary score: 30
 - Current primary reasons: admissions wording; advising wording; discovered from an official source page; explicit degree-requirements wording; matches major keyword "environmental"; matches major keyword "sustainability"; matches multiple major keywords; matches the selected degree route; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; stays on the current official department host
 - Official links scanned: 2
@@ -883,7 +859,7 @@ Generated: 2026-04-23T12:21:28.158Z
 - Current primary score: 102
 - Current primary detected year: 2024
 - Current primary reasons: already stored as an official source; explicit degree-requirements wording; explicitly names the selected major; matches major keyword "centered"; matches major keyword "design"; matches major keyword "engineering"; matches major keyword "human"; matches multiple major keywords; official source text matches the selected major; page title fetched successfully; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
-- Official links scanned: 4
+- Official links scanned: 5
 - Candidate URLs inspected: 261
 
 ### Interactive Media Design (BA)
@@ -908,8 +884,8 @@ Generated: 2026-04-23T12:21:28.158Z
 - Review candidate: https://www.tacoma.uw.edu/sias
 - Review candidate score: 46
 - Re-evaluation triggers: Planner runtime still lands in a safe-empty state with 21 no-public requirement classifications and no student-visible GRC course pool.; Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page.
-- Current primary score: 56
-- Current primary reasons: admissions wording; advising wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "interdisciplinary"; matches the selected degree route; official source path matches the selected major; overview wording; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
+- Current primary score: 46
+- Current primary reasons: admissions wording; advising wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "interdisciplinary"; matches the selected degree route; official source path matches the selected major; overview wording; page title fetched successfully; route-specific page may not cover every pathway in the selected major; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
 - Official links scanned: 2
 - Candidate URLs inspected: 146
 
@@ -959,8 +935,8 @@ Generated: 2026-04-23T12:21:28.158Z
 - Review candidate score: 79
 - Review candidate detected year: 2024
 - Re-evaluation triggers: Planner runtime still lands in a safe-empty state with no student-visible GRC course pool.; Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page.
-- Current primary score: 62
-- Current primary reasons: admissions wording; advising wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "law"; matches major keyword "policy"; matches multiple major keywords; matches the selected degree route; official source path matches the selected major; overview wording; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
+- Current primary score: 52
+- Current primary reasons: admissions wording; advising wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "law"; matches major keyword "policy"; matches multiple major keywords; matches the selected degree route; official source path matches the selected major; overview wording; page title fetched successfully; route-specific page may not cover every pathway in the selected major; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
 - Official links scanned: 2
 - Candidate URLs inspected: 112
 
@@ -1085,10 +1061,10 @@ Generated: 2026-04-23T12:21:28.158Z
 - Current primary label: UW Bothell RN to BSN overview
 - Suggested action: keep-existing-primary
 - Review candidate: https://www.uwb.edu/nhs/undergraduate/rn-bsn
-- Review candidate score: 50
+- Review candidate score: 40
 - Re-evaluation triggers: Planner runtime still lands in a safe-empty state with 3 no-public requirement classifications and no student-visible GRC course pool.; Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page.
-- Current primary score: 50
-- Current primary reasons: already stored as an official source; curriculum wording; matches major keyword "bsn"; matches major keyword "nursing"; matches multiple major keywords; matches the selected degree route; overview wording; page title fetched successfully; stays on an official UW domain; stays on the current official department host; undergraduate path segment
+- Current primary score: 40
+- Current primary reasons: already stored as an official source; curriculum wording; matches major keyword "bsn"; matches major keyword "nursing"; matches multiple major keywords; matches the selected degree route; overview wording; page title fetched successfully; route-specific page may not cover every pathway in the selected major; stays on an official UW domain; stays on the current official department host; undergraduate path segment
 - Official links scanned: 2
 - Candidate URLs inspected: 161
 
@@ -1111,10 +1087,10 @@ Generated: 2026-04-23T12:21:28.158Z
 - Current primary label: UW Bothell RN to BSN overview
 - Suggested action: keep-existing-primary
 - Review candidate: https://www.uwb.edu/nhs/undergraduate/rn-bsn
-- Review candidate score: 80
+- Review candidate score: 70
 - Re-evaluation triggers: Planner runtime still lands in a safe-empty state with 3 no-public requirement classifications and no student-visible GRC course pool.; Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page.
-- Current primary score: 88
-- Current primary reasons: already stored as an official source; curriculum wording; matches major keyword "bsn"; matches major keyword "nursing"; matches multiple major keywords; matches the selected degree route; official source text matches the selected major; overview wording; page title fetched successfully; stays on an official UW domain; stays on the current official department host; undergraduate path segment; verified against an official source candidate
+- Current primary score: 78
+- Current primary reasons: already stored as an official source; curriculum wording; matches major keyword "bsn"; matches major keyword "nursing"; matches multiple major keywords; matches the selected degree route; official source text matches the selected major; overview wording; page title fetched successfully; route-specific page may not cover every pathway in the selected major; stays on an official UW domain; stays on the current official department host; undergraduate path segment; verified against an official source candidate
 - Official links scanned: 2
 - Candidate URLs inspected: 161
 
@@ -1199,8 +1175,8 @@ Generated: 2026-04-23T12:21:28.158Z
 - Review candidate: https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-honors-designation-declaration-form
 - Review candidate score: 54
 - Re-evaluation triggers: Planner runtime still lands in a safe-empty state with 7 no-public requirement classifications and no student-visible GRC course pool.; Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page.
-- Current primary score: 64
-- Current primary reasons: admissions wording; advising wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "economics"; matches major keyword "philosophy"; matches major keyword "politics"; matches multiple major keywords; matches the selected degree route; official source path matches the selected major; overview wording; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
+- Current primary score: 54
+- Current primary reasons: admissions wording; advising wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "economics"; matches major keyword "philosophy"; matches major keyword "politics"; matches multiple major keywords; matches the selected degree route; official source path matches the selected major; overview wording; page title fetched successfully; route-specific page may not cover every pathway in the selected major; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
 - Official links scanned: 2
 - Candidate URLs inspected: 117
 
@@ -1225,8 +1201,8 @@ Generated: 2026-04-23T12:21:28.158Z
 - Review candidate: https://www.tacoma.uw.edu/sias-new/socs-new/psychology
 - Review candidate score: 45
 - Re-evaluation triggers: Planner runtime still lands in a safe-empty state with 8 no-public requirement classifications and no student-visible GRC course pool.; Current primary looks like an overview page rather than a dedicated undergraduate degree-requirements page.
-- Current primary score: 66
-- Current primary reasons: admissions wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "psychology"; matches the selected degree route; official source path matches the selected major; overview wording; page title fetched successfully; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
+- Current primary score: 56
+- Current primary reasons: admissions wording; already stored as an official source; explicit degree-requirements wording; matches major keyword "psychology"; matches the selected degree route; official source path matches the selected major; overview wording; page title fetched successfully; route-specific page may not cover every pathway in the selected major; specific bachelor route wording; stays on an official UW domain; stays on the current official department host; verified against an official source candidate
 - Official links scanned: 2
 - Candidate URLs inspected: 106
 

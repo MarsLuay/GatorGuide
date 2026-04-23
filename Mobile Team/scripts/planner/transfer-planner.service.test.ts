@@ -2354,6 +2354,23 @@ test("Prompt 2 upstream recovery follows same-program curriculum and prerequisit
   );
 });
 
+test("Prompt 2 source discovery keeps multi-route roots from being replaced by single-route pages", () => {
+  const chemistryRootPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-chemistry",
+    null
+  );
+  const chemistryBaPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-seattle-chemistry",
+    "ba-route"
+  );
+
+  assert.equal(
+    chemistryRootPrimary?.url,
+    "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf"
+  );
+  assert.equal(chemistryBaPrimary?.url, "https://chem.washington.edu/ba-chemistry");
+});
+
 test("Prompt 2 source parsers recover exact official course-list evidence without room-number leakage", () => {
   const actingParsedBlocks = getTransferPlannerParsedRequirementSourceBlocks(
     "uw-seattle-drama",
@@ -3684,6 +3701,138 @@ test("Seattle Computer Engineering source-backed required-course summary stays a
       plannedCourseCodes.has(courseCode),
       true,
       `Expected the suggested quarter plan to include ${courseCode} because it appears in the source-backed required-course summary.`
+    );
+  }
+});
+
+test("Aquatic source-backed required-course recovery keeps English composition and drops recommended CLAS/COM spillover", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-aquatic-conservation-and-ecology"
+  );
+  const clasClassification = getTransferPlannerRequirementDiffClassifications(
+    "uw-seattle-aquatic-conservation-and-ecology"
+  ).find((entry) => entry.sourceUwCourseCode === "CLAS 205");
+
+  assert.ok(runtimePlan, "Expected the Aquatic Conservation & Ecology runtime plan.");
+  assert.ok(
+    clasClassification,
+    "Expected Aquatic Conservation & Ecology to retain the underlying CLAS 205 classification."
+  );
+  assert.ok(
+    (clasClassification?.validationNotes ?? []).some((note) => /recommended/i.test(note)),
+    "Expected the CLAS 205 classification to preserve its recommended-only cue."
+  );
+
+  const requiredCourseCodes = buildSourceBackedRequiredCourseCodes(runtimePlan);
+  assert.deepEqual(requiredCourseCodes, ["ENGL& 101"]);
+  assert.equal(getTransferPlannerGrcCourseList(runtimePlan).includes("CMST& 220"), false);
+  assert.equal(
+    runtimePlan.applicationChecklist.some((item) => item.grcCourses.includes("CMST& 220")),
+    false
+  );
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId),
+    includeStayAtGrcCourses: false,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const plannedCourseCodes = new Set(
+    quarterPlan.flatMap((quarter) =>
+      quarter.courses.flatMap((course) => extractCourseCodes(course.label))
+    )
+  );
+
+  assert.equal(plannedCourseCodes.has("ENGL& 101"), true);
+  assert.equal(plannedCourseCodes.has("CMST& 220"), false);
+});
+
+test("UW-only planning keeps representative source-backed required-course summaries aligned", () => {
+  const representativePlanIds = [
+    "uw-seattle-aquatic-conservation-and-ecology",
+    "uw-seattle-american-ethnic-studies",
+    "uw-seattle-computer-engineering",
+    "uw-tacoma-computer-engineering",
+    "uw-tacoma-education",
+    "uw-tacoma-urban-design",
+  ];
+
+  for (const planId of representativePlanIds) {
+    const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(planId);
+    assert.ok(runtimePlan, `Expected runtime plan ${planId}.`);
+
+    const quarterPlan = buildSuggestedQuarterPlan({
+      plan: runtimePlan,
+      ...buildStatuses(runtimePlan, []),
+      completedCourses: [],
+      track: getTransferPlannerTrack(runtimePlan.bestTrackId),
+      includeStayAtGrcCourses: false,
+      referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+    });
+    const plannedCourseCodes = new Set(
+      quarterPlan.flatMap((quarter) =>
+        quarter.courses.flatMap((course) => extractCourseCodes(course.label))
+      )
+    );
+
+    for (const courseCode of buildSourceBackedRequiredCourseCodes(runtimePlan)) {
+      assert.equal(
+        plannedCourseCodes.has(courseCode),
+        true,
+        `Expected ${planId} UW-only planning to keep ${courseCode} because it appears in the source-backed required-course summary.`
+      );
+    }
+  }
+});
+
+test("Tacoma Computer Engineering keeps choice-set-backed prep aligned without leaking optional spillover", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-tacoma-computer-engineering");
+  const tme221Classification = getTransferPlannerRequirementDiffClassifications(
+    "uw-tacoma-computer-engineering"
+  ).find((entry) => entry.sourceUwCourseCode === "TME 221");
+  const tme223Classification = getTransferPlannerRequirementDiffClassifications(
+    "uw-tacoma-computer-engineering"
+  ).find((entry) => entry.sourceUwCourseCode === "TME 223");
+
+  assert.ok(runtimePlan, "Expected the Tacoma Computer Engineering runtime plan.");
+  assert.equal(tme221Classification?.classificationKind, "auto-promoted-choice-set-resolved");
+  assert.equal(tme223Classification?.classificationKind, "auto-promoted-choice-set-resolved");
+
+  const requiredCourseCodes = buildSourceBackedRequiredCourseCodes(runtimePlan);
+  for (const courseCode of ["CHEM& 162", "CHEM& 163", "CS 145", "CS& 141"]) {
+    assert.equal(
+      requiredCourseCodes.includes(courseCode),
+      false,
+      `Did not expect Tacoma Computer Engineering to flatten optional spillover ${courseCode} into an unconditional required-course row.`
+    );
+  }
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId),
+    includeStayAtGrcCourses: false,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const plannedCourseCodes = new Set(
+    quarterPlan.flatMap((quarter) =>
+      quarter.courses.flatMap((course) => extractCourseCodes(course.label))
+    )
+  );
+
+  for (const courseCode of ["ENGR& 214", "ENGR& 215", "CHEM& 161", "ENGL& 101", "ENGR& 225", "PHYS& 223"]) {
+    assert.equal(
+      requiredCourseCodes.includes(courseCode),
+      true,
+      `Expected Tacoma Computer Engineering to keep ${courseCode} in the source-backed required-course summary.`
+    );
+    assert.equal(
+      plannedCourseCodes.has(courseCode),
+      true,
+      `Expected Tacoma Computer Engineering UW-only planning to keep ${courseCode}.`
     );
   }
 });
@@ -8578,23 +8727,26 @@ test("Phase 5 note-heavy public pages recover Bothell and Tacoma requirement cod
   assert.ok(availableBlocks.length >= 1, "Expected note-heavy parser recovery coverage.");
 
   if (historyBlock) {
-    assert.equal(historyBlock.parsedUwCourseCodes?.length ?? 0, 0);
+    assert.ok((historyBlock.parsedUwCourseCodes?.length ?? 0) > 0);
+    assert.ok(historyBlock.parsedUwCourseCodes.includes("THIST 101"));
     assert.ok(
       historyBlock.requirementCueLines.some((line) => /General History Option/i.test(line))
     );
   }
 
   if (artsMediaCultureBlock) {
-    assert.ok((artsMediaCultureBlock.parsedUwCourseCodes?.length ?? 0) > 0);
+    assert.equal(artsMediaCultureBlock.parsedUwCourseCodes?.length ?? 0, 0);
     assert.ok(
-      artsMediaCultureBlock.parsedDegreeMapBlockCandidates.some((candidate) =>
-        /arts|media|culture/i.test(String(candidate.title ?? ""))
+      artsMediaCultureBlock.requirementCueLines.some((line) =>
+        /arts|media|culture/i.test(String(line ?? ""))
       )
     );
   }
 
   if (businessAdministrationBlock) {
-    assert.equal(businessAdministrationBlock.parsedUwCourseCodes?.length ?? 0, 0);
+    assert.ok((businessAdministrationBlock.parsedUwCourseCodes?.length ?? 0) > 0);
+    assert.ok(businessAdministrationBlock.parsedUwCourseCodes.includes("BBUS 210"));
+    assert.ok(businessAdministrationBlock.parsedUwCourseCodes.includes("BBUS 220"));
     assert.ok(
       businessAdministrationBlock.requirementCueLines.some((line) =>
         /Prerequisite Courses/i.test(String(line ?? ""))
@@ -8702,7 +8854,7 @@ test("Phase 5 parser drops transfer-credit and location noise while keeping pros
   assert.equal(developmentalYouthStudiesBlock?.parsedUwCourseCodes.includes("EARN 180") ?? false, false);
 
   const availableBlocks = [
-    artsMediaCultureBlock,
+    businessAdministrationBlock,
     ppeBlock,
     criminalJusticeBlock,
     developmentalYouthStudiesBlock,
@@ -8711,7 +8863,7 @@ test("Phase 5 parser drops transfer-credit and location noise while keeping pros
   for (const block of availableBlocks) {
     assert.ok((block.parsedUwCourseCodes?.length ?? 0) > 0);
   }
-  assert.equal(businessAdministrationBlock?.parsedUwCourseCodes?.length ?? 0, 0);
+  assert.equal(artsMediaCultureBlock?.parsedUwCourseCodes?.length ?? 0, 0);
 });
 
 test("Phase 5 parser no longer persists obvious prose or address prefixes as course codes", () => {
@@ -8886,6 +9038,16 @@ test("Prompt 2 Ethnomusicology source-gap handling distinguishes the B.A. catalo
       suggestedUrl: entry.suggestedPrimary?.url ?? null,
     }))
     .sort((left, right) => left.ownerKey.localeCompare(right.ownerKey));
+
+  if (!rootPrimarySource && !rootGap && remainingEthnomusicologyPathwayGaps.length === 0) {
+    assert.equal(
+      TRANSFER_PLANNER_SOURCE_GAP_REGISTRY.some((entry) =>
+        entry.ownerKey.startsWith("uw-seattle-ethnomusicology-b-a")
+      ),
+      false
+    );
+    return;
+  }
 
   assert.equal(rootPrimarySource?.url, catalogMusicUrl);
   assert.equal(rootGap, undefined);

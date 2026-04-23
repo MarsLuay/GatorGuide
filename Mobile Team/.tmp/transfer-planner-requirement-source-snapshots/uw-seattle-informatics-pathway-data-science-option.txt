@@ -3,16 +3,16 @@ Source: https://ischool.uw.edu/academics/informatics/curriculum
 Title: Informatics Curriculum | Information School | University of Washington
 
 [Supplemental official source] Degree Planning
-2:00-3:30 PM
+12:00-11:59 PM
 6 Information School students honored in 2026 Husky 100
 Advising & Support
 any two courses at the INFO 35x-level.
 Apply to graduate in autumn of senior year
-Apr 22
+Apr 23
+Apr 24
 Autumn
 Begin taking major electives/degree option classes spring of junior year
 Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478.
-CALMA Round Table: Practical Perspectives on the Impact of Artificial Intelligence on Library, Archives, and Museum Careers
 Capstone (8-credits): Students complete a culminating experience.
 Capstone Projects
 Choose between CSE 123: Introduction to Computer Programming III (4 cr), CSE 143:
@@ -33,11 +33,13 @@ Design Methods (4 cr)
 Designing Information Experiences: Students learn how to envision and create new information technologies.
 Developing Information Technology: Students learn how to build and maintain computing and information technologies. This includes foundational topics in computer science.
 Development (INFO 34x, 44x courses). These courses teach foundational skills in processing and provisioning data through software, including web and app development.
+Early in her career, Elisheba Choppala worked as an intern for a consumer-packaged goods company. She worked on data analysis, and that experience made it clear how much businesses rely on clear information. The internship became a...
 Electives (12-15 credits)
 Events
 Exploring Informatics: Students take foundational skills to understand the domain of Informatics.
 Foundations (INFO 20x, 30x, 40x courses). These courses teach the foundations of data, information and knowledge, helping students understand what information is, and how we create and use it in our lives, organizations and communities.
-Growing up in a small town in Eastern Washington, Diego Licea aspired to attend college and set his sights on the University of Washington.“I'd heard it was a challenging school to get into,” he said. “If it wasn't UW, I felt like...
+Husky Giving Day
+INFO 200
 INFO 200: Intellectual Foundations of Informatics
 INFO 201
 INFO 201: Foundational Skills for Data Science
@@ -56,10 +58,10 @@ INFO 380: Product and Information Systems Management
 INFO 490: Project Capstone I and INFO 491: Project Capstone II (8 credits total)
 Informatics courses can also be understood as informing a variety of focus areas, which are lenses that frame different considerations of information in the curriculum. For example, Informatics offers courses in data science (INFO 37x/47x), cybersecurity (INFO 31x/41x), and search and retrieval (INFO 32x/42x). Most Informatics courses can be labeled as drawing on one or more focus areas; students can use these focus areas to help plan their core classes and electives. See the full list of focus areas for details.
 Informatics major requirements
-Informatics student blends history, technology and service
 Information and Organizations: Students learn to analyze the impacts and use of information technologies within organizations.
 Information and Society (8-10 credits): Students learn to analyze the impacts of information technologies on individuals and society as a whole.
 Information Ethics & Policy (5 cr)
+Leadership brings out the best in MSIM student
 Monday, April 20, 2026
 News
 one course from CSE 123: Introduction to Computer Programming III, CSE 143: Computer Programming II, or CSE 163: Intermediate Data Programming
@@ -67,7 +69,6 @@ one course from CSE 373: Data Structures and Algorithms (4 credits), INFO 442: C
 One course in computer programming; see the list of accepted courses
 One course in statistics; see the list of accepted courses
 One course in the social sciences (SSc) area of inquiry ; must be another course that is not INFO 200
-Open Scholarship Commons, Suzzallo Library
 Organizations (INFO 38x, 48x course). These courses teach key perspectives on how information is used in organizations such as businesses, communities and governments, ensuring that students’ perspectives go beyond the individual.
 Read more
 Request more information
@@ -86,8 +87,8 @@ Technical Foundations of Informatics (5 cr)
 The curriculum plans below can be used to help you plan the remainder of your time in the major. The course schedule reflected on this page is typical of the path students will follow to complete their degree, but individuals may choose to pursue their own path to degree completion.
 The Informatics major includes a core that spans the breadth of the curriculum, allowing students to learn to study, design, and develop information technology for the good of people, organizations and society. Each course provides a foundation that students use in their Capstone projects. Students further their expertise in a broad range of electives taught by iSchool faculty and invited guest faculty from industry, government and nonprofits around the Puget Sound area.
 The University of Washington honored six students from the Information School in the 2026 Husky 100. Awarded to graduate and undergraduate students making the most out of their time at the UW, the Husky 100 is celebrating its 10th...
+Thursday, April 23, 2026
 To earn a Bachelor of Science in Informatics, students must complete the following major requirements (effective Autumn 2023; see previous requirements ):
-Tuesday, April 14, 2026
 Upcoming Info Sessions
 Videos: Alumni at Work
 Watch : A breakdown of the courses you need to take to complete the Informatics major and a bachelor's degree at the University of Washington.

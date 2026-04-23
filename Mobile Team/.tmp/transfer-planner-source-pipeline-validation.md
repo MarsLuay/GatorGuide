@@ -1,30 +1,30 @@
 # Transfer Planner Source Pipeline Validation
 
-Generated: 2026-04-23T09:31:02.475Z
+Generated: 2026-04-23T15:30:20.503Z
 
-- Outcome: passed
-- Passed checks: 19
-- Failed checks: 0
+- Outcome: failed
+- Passed checks: 18
+- Failed checks: 1
 - Eligible auto-promotions from discovery: 6
-- Weak existing primaries re-evaluated: 110
+- Weak existing primaries re-evaluated: 102
 - High-confidence replacements: 6
-- Review-queue owners: 3
-- Source-gap owners: 3
-- Promoted owners in canonical registry: 90
-- Parseable primary owners: 475
-- Parsed owners: 475
-- Requirement fingerprints: 475
+- Review-queue owners: 0
+- Source-gap owners: 0
+- Promoted owners in canonical registry: 89
+- Parseable primary owners: 466
+- Parsed owners: 466
+- Requirement fingerprints: 466
 
 | Check | Status | Details |
 | --- | --- | --- |
-| Missing-primary discovery owners partition cleanly into eligible auto-promotions and review-queue owners | passed | Discovery owners: 3<br>Eligible missing-primary auto-promotions: 0<br>Eligible weak-existing replacements: 6<br>Review-queue owners: 3 |
-| Generated promotion registry matches the promotion report | passed | Promoted owners: 90 |
+| Missing-primary discovery owners partition cleanly into eligible auto-promotions and review-queue owners | passed | Discovery owners: 0<br>Eligible missing-primary auto-promotions: 0<br>Eligible weak-existing replacements: 6<br>Review-queue owners: 0 |
+| Generated promotion registry matches the promotion report | passed | Promoted owners: 89 |
 | Eligible high-confidence discoveries are promoted unless they remain in the review queue | passed | Eligible promoted owners verified: 6 |
-| Review queue and source-gap report point at the same unresolved owners | passed | Shared unresolved owners: 3 |
-| Auto-promoted owners are materialized in the canonical primary-source registry | passed | Promoted owners: 90<br>Canonical primary owners: 475 |
-| Canonical parseable primary owners align with parser input and parser output | passed | Canonical parseable primary owners: 475<br>Parsed owners: 475 |
-| Promoted owners appear in parser output and requirement fingerprints | passed | Promoted owners verified end-to-end: 90 |
-| Requirement fingerprint coverage stays aligned with parsed requirement owners | passed | Requirement fingerprints: 475<br>Parsed owners: 475<br>Added source fingerprints: 0<br>Added requirement fingerprints: 4 |
+| Review queue and source-gap report point at the same unresolved owners | passed | Shared unresolved owners: 0 |
+| Auto-promoted owners are materialized in the canonical primary-source registry | passed | Promoted owners: 89<br>Canonical primary owners: 466 |
+| Canonical parseable primary owners align with parser input and parser output | passed | Canonical parseable primary owners: 466<br>Parsed owners: 466 |
+| Promoted owners appear in parser output and requirement fingerprints | passed | Promoted owners verified end-to-end: 89 |
+| Requirement fingerprint coverage stays aligned with parsed requirement owners | failed | Detected added source fingerprints for a refresh with eligible auto-promotions, but no new requirement fingerprints were produced. |
 | Eligible auto-promotions are fully cleared from the review queue and source-gap report | passed | Eligible owners fully cleared: 6 |
 | Year-tied primary degree sheets can trigger re-evaluation even when parsing still succeeds | passed | primary-source-appears-year-specific |
 | Weak-source replacement can trigger for an owner that already has an official primary source | passed | safe-intentional-empty-state, primary-url-looks-graduate-or-timeline, page-headings-look-graduate-or-timeline-heavy, primary-looks-overview-only |
