@@ -150,6 +150,12 @@ function mergeUniqueStrings(existing, values) {
   return [...merged].sort();
 }
 
+function uniqueSorted(values) {
+  return Array.from(new Set((values ?? []).filter(Boolean))).sort((left, right) =>
+    left.localeCompare(right)
+  );
+}
+
 function readRequirementSnapshotHash(owner) {
   if (!owner.snapshotPath) {
     return null;
@@ -319,6 +325,18 @@ function compareFingerprints(previousEntries, currentEntries, keyName, hashName)
   return { added, changed, unchanged, removed };
 }
 
+function collectSourceDiffOwnerIds(entries) {
+  return uniqueSorted(
+    (entries ?? []).flatMap((entry) => entry.ownerIds ?? []).map((ownerId) => String(ownerId ?? "").trim())
+  );
+}
+
+function collectRequirementDiffOwnerIds(entries) {
+  return uniqueSorted(
+    (entries ?? []).map((entry) => String(entry.ownerId ?? "").trim())
+  );
+}
+
 function buildReport(sourceSnapshot, requirementReport, previousFingerprints) {
   const sourceFingerprints = addRequirementBackedSourceFingerprints(
     (sourceSnapshot.sources ?? []).map(buildSourceFingerprintEntry),
@@ -339,6 +357,12 @@ function buildReport(sourceSnapshot, requirementReport, previousFingerprints) {
     "ownerId",
     "requirementFingerprint"
   );
+  const addedSourceOwnerIds = collectSourceDiffOwnerIds(sourceDiff.added);
+  const changedSourceOwnerIds = collectSourceDiffOwnerIds(sourceDiff.changed);
+  const removedSourceOwnerIds = collectSourceDiffOwnerIds(sourceDiff.removed);
+  const addedRequirementOwnerIds = collectRequirementDiffOwnerIds(requirementDiff.added);
+  const changedRequirementOwnerIds = collectRequirementDiffOwnerIds(requirementDiff.changed);
+  const removedRequirementOwnerIds = collectRequirementDiffOwnerIds(requirementDiff.removed);
 
   return {
     generatedAt: new Date().toISOString(),
@@ -352,6 +376,28 @@ function buildReport(sourceSnapshot, requirementReport, previousFingerprints) {
     addedRequirementFingerprintCount: requirementDiff.added.length,
     removedSourceFingerprintCount: sourceDiff.removed.length,
     removedRequirementFingerprintCount: requirementDiff.removed.length,
+    sourceFingerprintOwnerIds: uniqueSorted(
+      sourceFingerprints.flatMap((entry) => entry.ownerIds ?? [])
+    ),
+    requirementFingerprintOwnerIds: uniqueSorted(
+      requirementSourceFingerprints.map((entry) => entry.ownerId)
+    ),
+    addedSourceOwnerIds,
+    changedSourceOwnerIds,
+    removedSourceOwnerIds,
+    touchedSourceOwnerIds: uniqueSorted([
+      ...addedSourceOwnerIds,
+      ...changedSourceOwnerIds,
+      ...removedSourceOwnerIds,
+    ]),
+    addedRequirementOwnerIds,
+    changedRequirementOwnerIds,
+    removedRequirementOwnerIds,
+    touchedRequirementOwnerIds: uniqueSorted([
+      ...addedRequirementOwnerIds,
+      ...changedRequirementOwnerIds,
+      ...removedRequirementOwnerIds,
+    ]),
     sourceDiff,
     requirementDiff,
     sourceFingerprints,
@@ -387,6 +433,8 @@ function writeMarkdown(report) {
     `- Added requirement fingerprints: ${report.addedRequirementFingerprintCount}`,
     `- Removed source fingerprints: ${report.removedSourceFingerprintCount}`,
     `- Removed requirement fingerprints: ${report.removedRequirementFingerprintCount}`,
+    `- Touched source owners: ${report.touchedSourceOwnerIds.length}`,
+    `- Touched requirement owners: ${report.touchedRequirementOwnerIds.length}`,
     "",
     "Source resource fingerprints track official URL metadata/body hashes.",
     "Requirement-source fingerprints track parsed requirement facts separately, so cosmetic page changes do not automatically become planner requirement changes.",

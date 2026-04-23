@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-04-23T15:30:20.503Z",
-  "outcome": "failed",
-  "passedCount": 18,
-  "failedCount": 1,
+  "generatedAt": "2026-04-23T22:19:47.635Z",
+  "outcome": "passed",
+  "passedCount": 19,
+  "failedCount": 0,
   "metrics": {
     "eligibleAutoPromotionOwnerCount": 6,
     "eligibleAutoPromotionOwnerIds": [
@@ -187,9 +187,12 @@
     {
       "id": "fingerprint-alignment",
       "label": "Requirement fingerprint coverage stays aligned with parsed requirement owners",
-      "status": "failed",
+      "status": "passed",
       "details": [
-        "Detected added source fingerprints for a refresh with eligible auto-promotions, but no new requirement fingerprints were produced."
+        "Requirement fingerprints: 466",
+        "Parsed owners: 466",
+        "Touched source owners: 2",
+        "Touched requirement owners: 3"
       ]
     },
     {

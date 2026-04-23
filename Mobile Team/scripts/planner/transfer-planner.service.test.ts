@@ -88,6 +88,8 @@ import {
   buildGeneralEducationRequirementTargets,
   buildGeneralEducationRequirementLayerDiagnostics,
   buildSourceBackedMajorGeneralEducationRequirementSection,
+  buildSourceBackedRequiredCourseDescriptors,
+  buildSourceBackedRequiredCourseSummaryEntries,
   buildSourceBackedRequiredCourseCodes,
   parseCompletedTranscriptCourses,
   normalizeCourseCode,
@@ -121,6 +123,12 @@ const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
 
 function escapeRegExp(value: string) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function uniqueSorted(values: string[]) {
+  return Array.from(new Set(values.filter(Boolean))).sort((left, right) =>
+    left.localeCompare(right)
+  );
 }
 
 const EXPECTED_UW_TRANSFER_ADMISSION_REQUIREMENT_LINES = [
@@ -3705,6 +3713,69 @@ test("Seattle Computer Engineering source-backed required-course summary stays a
   }
 });
 
+test("HCDE source-backed required-course summaries keep the calculus bucket structured instead of flattening fake individual rows", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-human-centered-design-engineering"
+  );
+
+  assert.ok(runtimePlan, "Expected the HCDE runtime plan.");
+
+  const descriptors = buildSourceBackedRequiredCourseDescriptors(runtimePlan);
+  const calculusDescriptor = descriptors.find((descriptor) => descriptor.id === "ten-calc-credits");
+  const uwSummaryEntries = buildSourceBackedRequiredCourseSummaryEntries(runtimePlan, {
+    mode: "uw",
+  });
+
+  assert.ok(calculusDescriptor, "Expected HCDE to keep the calculus checklist item.");
+  assert.equal(calculusDescriptor?.kind, "choice-bucket");
+  assert.equal(calculusDescriptor?.requiredCompletedCount, 2);
+  assert.deepEqual(calculusDescriptor?.explicitCourseCodes, ["MATH& 151", "MATH& 152", "MATH& 163"]);
+  assert.equal(
+    uwSummaryEntries.some((entry) => /Ten calculus credits - choose 2 from this list\./i.test(entry.text)),
+    true,
+    "Expected the HCDE summary to keep the calculus bucket structured."
+  );
+  for (const courseCode of ["MATH& 151", "MATH& 152", "MATH& 163"]) {
+    assert.equal(
+      uwSummaryEntries.some((entry) =>
+        new RegExp(`^${escapeRegExp(courseCode)}(?:\\b|\\s+-).*is required\\.`, "i").test(entry.text)
+      ),
+      false,
+      `Did not expect the HCDE summary to flatten ${courseCode} into an unconditional required-course sentence.`
+    );
+  }
+});
+
+test("Seattle Computer Engineering source-backed summaries keep approved calculus options structured", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+
+  const descriptors = buildSourceBackedRequiredCourseDescriptors(runtimePlan);
+  const calculusDescriptor = descriptors.find((descriptor) => descriptor.id === "calc123");
+  const uwSummaryEntries = buildSourceBackedRequiredCourseSummaryEntries(runtimePlan, {
+    mode: "uw",
+  });
+
+  assert.ok(calculusDescriptor, "Expected the CompE calculus sequence descriptor.");
+  assert.equal(calculusDescriptor?.kind, "choice-bucket");
+  assert.equal(calculusDescriptor?.courseLabelSets.length, 2);
+  assert.equal(
+    uwSummaryEntries.some((entry) => /Calculus I-III sequence - complete one approved option\./i.test(entry.text)),
+    true,
+    "Expected the CompE summary to keep the calculus choice structure."
+  );
+  for (const courseCode of ["MATH& 151", "MATH& 152", "MATH& 163", "MATH& 153", "MATH& 254"]) {
+    assert.equal(
+      uwSummaryEntries.some((entry) =>
+        new RegExp(`^${escapeRegExp(courseCode)}(?:\\b|\\s+-).*is required\\.`, "i").test(entry.text)
+      ),
+      false,
+      `Did not expect the CompE summary to flatten ${courseCode} into an unconditional required-course sentence.`
+    );
+  }
+});
+
 test("Aquatic source-backed required-course recovery keeps English composition and drops recommended CLAS/COM spillover", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
     "uw-seattle-aquatic-conservation-and-ecology"
@@ -4445,6 +4516,12 @@ test("Transfer planner UI keeps the UW transfer admission section separate and t
   assert.equal(uwAccordionIndex >= 0, true);
   assert.equal(generalTransferSectionIndex > uwAccordionIndex, true);
   assert.equal(majorSourceSectionIndex > generalTransferSectionIndex, true);
+});
+
+test("Transfer planner UI renders required-course summaries from structured source-backed summary entries", () => {
+  const pageSource = readFileSync("components/pages/TransferPlannerPage.tsx", "utf8");
+
+  assert.match(pageSource, /buildSourceBackedRequiredCourseSummaryEntries/);
 });
 
 test("Seattle American Ethnic Studies now keeps official transfer policy separate from major-specific and planner-guidance layers", () => {
@@ -9210,6 +9287,17 @@ test("Requirement-source fingerprint summaries match their parsed fact arrays", 
   assert.deepEqual(duplicateRequirementOwners, []);
   assert.deepEqual(countMismatches, []);
   assert.deepEqual(invalidMetadata, []);
+});
+
+test("Requirement fingerprint owner coverage stays aligned with parsed requirement owners", () => {
+  const parsedOwnerIds = uniqueSorted(
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.map((entry) => entry.ownerId)
+  );
+  const requirementFingerprintOwnerIds = uniqueSorted(
+    TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINT_REGISTRY.map((entry) => entry.ownerId)
+  );
+
+  assert.deepEqual(requirementFingerprintOwnerIds, parsedOwnerIds);
 });
 
 test.skip("Phase 3 Green River catalog ingest fills source-backed metadata for planner courses", () => {

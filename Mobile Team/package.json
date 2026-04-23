@@ -2,6 +2,7 @@
   "name": "gator-guide",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "start": "node scripts/dev/start-expo.cjs",
     "start:tunnel": "node scripts/dev/start-expo.cjs --mode=tunnel",

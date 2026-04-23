@@ -49,6 +49,25 @@ export type TransferRequirementStatus = {
   requiredCompletedCount: number;
 };
 
+export type SourceBackedRequiredCourseDescriptor = {
+  id: string;
+  kind: "single-course" | "course-sequence" | "choice-bucket";
+  title: string;
+  bucket: RequirementPriorityBucket | "source-backed-fallback";
+  courseLabelSets: string[][];
+  explicitCourseCodes: string[];
+  requiredCompletedCount: number;
+  note: string | null;
+  guidanceSummary: string | null;
+};
+
+export type SourceBackedRequiredCourseSummaryEntry = {
+  id: string;
+  descriptorId: string;
+  kind: SourceBackedRequiredCourseDescriptor["kind"];
+  text: string;
+};
+
 export type TrackUsageSummary = {
   specificCourseCount: number;
   directUseCount: number;
@@ -671,9 +690,12 @@ function buildSourceBackedRequiredCourseFallbackStatuses(scope: {
       .map((courseCode) => normalizeCourseCode(courseCode))
       .filter(Boolean)
   );
-  const fallbackItems = buildSourceBackedRequiredCourseCodes(scope.plan)
+  const fallbackItems = buildSourceBackedRequiredCourseDescriptors(scope.plan, scope.completedCourses)
+    .filter((descriptor) => descriptor.kind !== "choice-bucket")
+    .flatMap((descriptor) => descriptor.explicitCourseCodes)
     .map((courseCode) => normalizeCourseCode(courseCode))
     .filter((courseCode) => courseCode && !existingCourseCodes.has(courseCode))
+    .filter((courseCode, index, courseCodes) => courseCodes.indexOf(courseCode) === index)
     .map<TransferPlannerChecklistItem>((courseCode) => ({
       id: `source-backed-required-${courseCode
         .toLowerCase()
@@ -1445,6 +1467,327 @@ export function buildRequirementStatuses(
       requiredCompletedCount: selectedOption.requiredCompletedCount,
     };
   });
+}
+
+function buildCompletedCoursesByCode(completedCourses: TranscriptCourseEntry[]) {
+  const completedByCode = new Map<string, TranscriptCourseEntry>();
+  for (const course of completedCourses) {
+    completedByCode.set(course.code, course);
+  }
+  return completedByCode;
+}
+
+function buildSourceBackedRequiredCourseDescriptorForItem(input: {
+  item: TransferPlannerChecklistItem;
+  bucket: RequirementPriorityBucket;
+  completedByCode: Map<string, TranscriptCourseEntry>;
+}) {
+  const { item, bucket, completedByCode } = input;
+  const courseOptions = getChecklistCourseOptions(item).map((courseLabels, index) =>
+    buildRequirementCourseOption(item, courseLabels, index, completedByCode)
+  );
+  const selectedOption =
+    selectPreferredRequirementOption(courseOptions) ??
+    buildRequirementCourseOption(item, item.grcCourses, 0, completedByCode);
+  const orderedCourseLabelSets = uniqueBy(
+    [selectedOption.courseLabels, ...courseOptions.map((option) => option.courseLabels)]
+      .map((courseLabels) =>
+        courseLabels
+          .map((label) => String(label ?? "").trim())
+          .filter(Boolean)
+      )
+      .filter((courseLabels) => courseLabels.length > 0),
+    (courseLabels) => courseLabels.join("||")
+  );
+  const hasChoiceSetStructure = orderedCourseLabelSets.length > 1;
+  const hasMinimumCountStructure =
+    selectedOption.requiredCompletedCount > 0 &&
+    selectedOption.requiredCompletedCount < selectedOption.explicitCourseCodes.length;
+
+  if (!orderedCourseLabelSets.length && !selectedOption.explicitCourseCodes.length) {
+    return null;
+  }
+
+  return {
+    id: item.id,
+    kind: hasChoiceSetStructure || hasMinimumCountStructure
+      ? "choice-bucket"
+      : selectedOption.explicitCourseCodes.length > 1
+        ? "course-sequence"
+        : "single-course",
+    title: String(item.title ?? "").trim() || (selectedOption.explicitCourseCodes[0] ?? item.id),
+    bucket,
+    courseLabelSets: orderedCourseLabelSets,
+    explicitCourseCodes: selectedOption.explicitCourseCodes,
+    requiredCompletedCount: selectedOption.requiredCompletedCount,
+    note: String(item.note ?? "").trim() || null,
+    guidanceSummary: buildChecklistGuidanceSummary(bucket, item),
+  } satisfies SourceBackedRequiredCourseDescriptor;
+}
+
+function getSourceBackedRequiredCourseEquivalentUwCourseCodes(
+  courseLabels: string[],
+  campusId: TransferPlannerMajorPlan["campusId"] | null | undefined
+) {
+  return unique(
+    courseLabels.flatMap((label) =>
+      extractCourseCodes(label).flatMap((courseCode) =>
+        buildBestSingleCourseUwEquivalentCourseCodes(courseCode, campusId)
+      )
+    )
+  );
+}
+
+function buildSourceBackedRequiredCourseFallbackDescriptor(input: {
+  courseCode: string;
+}) {
+  return {
+    id: `source-backed-required-${input.courseCode.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`,
+    kind: "single-course",
+    title: input.courseCode,
+    bucket: "source-backed-fallback",
+    courseLabelSets: [[input.courseCode]],
+    explicitCourseCodes: [input.courseCode],
+    requiredCompletedCount: 1,
+    note: null,
+    guidanceSummary: null,
+  } satisfies SourceBackedRequiredCourseDescriptor;
+}
+
+export function buildSourceBackedRequiredCourseDescriptors(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  completedCourses: TranscriptCourseEntry[] = []
+) {
+  if (!plan) {
+    return [] as SourceBackedRequiredCourseDescriptor[];
+  }
+
+  const completedByCode = buildCompletedCoursesByCode(completedCourses);
+  const descriptors = [
+    ...plan.applicationChecklist
+      .map((item) =>
+        buildSourceBackedRequiredCourseDescriptorForItem({
+          item,
+          bucket: "application",
+          completedByCode,
+        })
+      )
+      .filter((descriptor) => descriptor !== null),
+    ...plan.beforeEnrollmentChecklist
+      .map((item) =>
+        buildSourceBackedRequiredCourseDescriptorForItem({
+          item,
+          bucket: "beforeEnrollment",
+          completedByCode,
+        })
+      )
+      .filter((descriptor) => descriptor !== null),
+  ] as SourceBackedRequiredCourseDescriptor[];
+
+  const requiredUwCourseCodes = getSourceBackedRequiredUwCourseCodeSet(plan);
+  if (!requiredUwCourseCodes.size) {
+    return descriptors;
+  }
+
+  const coveredRequiredUwCourseCodes = new Set<string>();
+  const markCoveredRequiredUwCourseCodes = (targetCourseCodes: string[]) => {
+    for (const targetCourseCode of targetCourseCodes) {
+      const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
+      if (!normalizedTargetCourseCode || !requiredUwCourseCodes.has(normalizedTargetCourseCode)) {
+        continue;
+      }
+
+      coveredRequiredUwCourseCodes.add(normalizedTargetCourseCode);
+    }
+  };
+  const isCoveredRequiredUwCourseCode = (targetCourseCode: string) => {
+    const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
+    if (!normalizedTargetCourseCode) {
+      return false;
+    }
+
+    if (coveredRequiredUwCourseCodes.has(normalizedTargetCourseCode)) {
+      return true;
+    }
+
+    return getSourceBackedRequiredCourseSemanticRelations(normalizedTargetCourseCode).some(
+      (relatedCourseCode) =>
+        requiredUwCourseCodes.has(relatedCourseCode) &&
+        coveredRequiredUwCourseCodes.has(relatedCourseCode)
+    );
+  };
+
+  for (const descriptor of descriptors) {
+    for (const courseLabels of descriptor.courseLabelSets) {
+      markCoveredRequiredUwCourseCodes(
+        getSourceBackedRequiredCourseEquivalentUwCourseCodes(courseLabels, plan.campusId)
+      );
+    }
+  }
+
+  const existingDescriptorCourseCodes = new Set(
+    descriptors
+      .flatMap((descriptor) => descriptor.explicitCourseCodes)
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+
+  for (const courseLabel of getTransferPlannerGrcCourseList(plan)) {
+    for (const courseCode of extractCourseCodes(courseLabel)) {
+      const normalizedCourseCode = normalizeCourseCode(courseCode);
+      if (!normalizedCourseCode || existingDescriptorCourseCodes.has(normalizedCourseCode)) {
+        continue;
+      }
+
+      const equivalentUwCourseCodes = buildBestSingleCourseUwEquivalentCourseCodes(
+        normalizedCourseCode,
+        plan.campusId
+      );
+      if (!equivalentUwCourseCodes.some((targetCourseCode) => requiredUwCourseCodes.has(targetCourseCode))) {
+        continue;
+      }
+      if (
+        equivalentUwCourseCodes.length &&
+        equivalentUwCourseCodes.every((targetCourseCode) => isCoveredRequiredUwCourseCode(targetCourseCode))
+      ) {
+        continue;
+      }
+
+      descriptors.push(
+        buildSourceBackedRequiredCourseFallbackDescriptor({ courseCode: normalizedCourseCode })
+      );
+      existingDescriptorCourseCodes.add(normalizedCourseCode);
+      markCoveredRequiredUwCourseCodes(equivalentUwCourseCodes);
+    }
+  }
+
+  return descriptors;
+}
+
+function buildSourceBackedRequiredCourseDisplayLabel(courseCodeOrLabel: string) {
+  const rawValue = String(courseCodeOrLabel ?? "").trim();
+  if (!rawValue) return "";
+  if (rawValue.includes(" - ")) return rawValue;
+
+  const extractedCourseCode = extractCourseCodes(rawValue)[0] ?? rawValue;
+  const normalizedCourseCode = normalizeCourseCode(extractedCourseCode);
+  const canonicalCourse = getTransferPlannerCanonicalCourse("grc", normalizedCourseCode);
+  if (canonicalCourse?.title) {
+    return `${normalizedCourseCode} - ${canonicalCourse.title}`;
+  }
+
+  return rawValue === normalizedCourseCode ? rawValue : normalizedCourseCode;
+}
+
+function buildSourceBackedRequiredCourseUwEquivalentLabel(
+  courseCode: string,
+  campusId: TransferPlannerMajorPlan["campusId"]
+) {
+  const equivalentUwCourseCodes = buildBestSingleCourseUwEquivalentCourseCodes(courseCode, campusId);
+  return equivalentUwCourseCodes.length ? joinPlannerLabelList(equivalentUwCourseCodes) : null;
+}
+
+function buildSourceBackedRequiredCourseSentence(input: {
+  courseCode: string;
+  campusId: TransferPlannerMajorPlan["campusId"];
+  mode: "grc" | "uw";
+}) {
+  const courseLabel = buildSourceBackedRequiredCourseDisplayLabel(input.courseCode);
+  if (input.mode !== "uw") {
+    return `${courseLabel} is required.`;
+  }
+
+  const uwEquivalentLabel = buildSourceBackedRequiredCourseUwEquivalentLabel(
+    input.courseCode,
+    input.campusId
+  );
+  if (!uwEquivalentLabel) {
+    return `${courseLabel} is required.`;
+  }
+
+  return `${courseLabel} is required. UW equivalent: ${uwEquivalentLabel}.`;
+}
+
+function buildSourceBackedChoiceRequirementSentence(
+  descriptor: SourceBackedRequiredCourseDescriptor
+) {
+  const noteParts = [descriptor.note, descriptor.guidanceSummary]
+    .map((part) => String(part ?? "").trim())
+    .filter(Boolean);
+  const noteSuffix = noteParts.length ? ` ${joinGuidanceSummaries(...noteParts)}` : "";
+
+  if (descriptor.courseLabelSets.length > 1) {
+    const optionText = descriptor.courseLabelSets
+      .map((courseLabels) =>
+        joinPlannerLabelList(
+          courseLabels.map((courseLabel) =>
+            buildSourceBackedRequiredCourseDisplayLabel(courseLabel)
+          )
+        )
+      )
+      .join("; or ");
+    return `${descriptor.title} - complete one approved option. Options: ${optionText}.${noteSuffix}`;
+  }
+
+  const choiceLabels = joinPlannerLabelList(
+    (descriptor.courseLabelSets[0] ?? descriptor.explicitCourseCodes).map((courseLabel) =>
+      buildSourceBackedRequiredCourseDisplayLabel(courseLabel)
+    )
+  );
+  return `${descriptor.title} - choose ${descriptor.requiredCompletedCount} from this list. Options: ${choiceLabels}.${noteSuffix}`;
+}
+
+export function buildSourceBackedRequiredCourseSummaryEntries(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  options: {
+    mode?: "grc" | "uw";
+    completedCourses?: TranscriptCourseEntry[];
+  } = {}
+) {
+  if (!plan) {
+    return [] as SourceBackedRequiredCourseSummaryEntry[];
+  }
+
+  const mode = options.mode ?? "grc";
+  const descriptors = buildSourceBackedRequiredCourseDescriptors(
+    plan,
+    options.completedCourses ?? []
+  );
+  const entries: SourceBackedRequiredCourseSummaryEntry[] = [];
+  const seenCourseCodes = new Set<string>();
+
+  for (const descriptor of descriptors) {
+    if (descriptor.kind === "choice-bucket") {
+      entries.push({
+        id: descriptor.id,
+        descriptorId: descriptor.id,
+        kind: descriptor.kind,
+        text: buildSourceBackedChoiceRequirementSentence(descriptor),
+      });
+      continue;
+    }
+
+    for (const courseCode of descriptor.explicitCourseCodes) {
+      const normalizedCourseCode = normalizeCourseCode(courseCode);
+      if (!normalizedCourseCode || seenCourseCodes.has(normalizedCourseCode)) {
+        continue;
+      }
+
+      seenCourseCodes.add(normalizedCourseCode);
+      entries.push({
+        id: `${descriptor.id}:${normalizedCourseCode}`,
+        descriptorId: descriptor.id,
+        kind: descriptor.kind,
+        text: buildSourceBackedRequiredCourseSentence({
+          courseCode: normalizedCourseCode,
+          campusId: plan.campusId,
+          mode,
+        }),
+      });
+    }
+  }
+
+  return entries;
 }
 
 export function countCompletedRequirements(statuses: TransferRequirementStatus[]) {

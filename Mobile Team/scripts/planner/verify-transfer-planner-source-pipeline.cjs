@@ -698,26 +698,22 @@ async function main() {
       "fingerprint-alignment",
       "Requirement fingerprint coverage stays aligned with parsed requirement owners",
       () => {
+        const fingerprintOwnerDiff = compareSets([...parsedOwnerIds], [...requirementFingerprintOwnerIds]);
         assert.equal(
           sourceFingerprintReport.totalRequirementSourceFingerprints,
           requirementParseReport.totalOwners,
           "Requirement fingerprint count should match parsed owner count."
         );
-        if (
-          eligibleAutoPromotionOwners.length > 0 &&
-          sourceFingerprintReport.addedSourceFingerprintCount > 0
-        ) {
-          assert.notEqual(
-            sourceFingerprintReport.addedRequirementFingerprintCount,
-            0,
-            "Detected added source fingerprints for a refresh with eligible auto-promotions, but no new requirement fingerprints were produced."
-          );
-        }
+        assert.deepEqual(
+          fingerprintOwnerDiff,
+          { leftOnly: [], rightOnly: [] },
+          `Requirement fingerprint owner mismatch. parsed-only=${fingerprintOwnerDiff.leftOnly.join(", ")} fingerprint-only=${fingerprintOwnerDiff.rightOnly.join(", ")}`
+        );
         return [
           `Requirement fingerprints: ${sourceFingerprintReport.totalRequirementSourceFingerprints}`,
           `Parsed owners: ${requirementParseReport.totalOwners}`,
-          `Added source fingerprints: ${sourceFingerprintReport.addedSourceFingerprintCount}`,
-          `Added requirement fingerprints: ${sourceFingerprintReport.addedRequirementFingerprintCount}`,
+          `Touched source owners: ${(sourceFingerprintReport.touchedSourceOwnerIds ?? []).length}`,
+          `Touched requirement owners: ${(sourceFingerprintReport.touchedRequirementOwnerIds ?? []).length}`,
         ];
       }
     ),

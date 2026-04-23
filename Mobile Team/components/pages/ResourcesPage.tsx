@@ -19,7 +19,7 @@ import {
 } from "@/constants/resource-catalog";
 import { ROUTES } from "@/constants/routes";
 import {
-  getTransferEquivalencyTagLabel,
+  getTransferEquivalencyTagDisplayLabel,
   TRANSFER_EQUIVALENCY_ALL_TRACKED_TAGS_PARAM,
   TRANSFER_EQUIVALENCY_TRACKED_TAGS,
 } from "@/constants/transfer-equivalency-tags";
@@ -373,7 +373,7 @@ export default function ResourcesPage() {
 
   const transferCategoryEquivalenciesResource = useMemo<ResourceItem>(() => {
     const trackedTagLabels = TRANSFER_EQUIVALENCY_TRACKED_TAGS.map((tag) =>
-      getTransferEquivalencyTagLabel(tag)
+      getTransferEquivalencyTagDisplayLabel(tag)
     );
 
     return {

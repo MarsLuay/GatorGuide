@@ -1,6 +1,6 @@
 # Transfer Planner Status
 
-Generated at: 2026-04-23T15:31:21.985Z
+Generated at: 2026-04-23T22:23:20.285Z
 
 ## Summary
 
@@ -176,7 +176,6 @@ Generated at: 2026-04-23T15:31:21.985Z
 
 ## Required update queue
 
-- Clear source-pipeline invariant failures: align discovery, promotions, canonical registry, parser input, and fingerprints before rerunning owner audit.
 - Address owner-audit issues: fix missing/invalid primary sources, manifest gaps, and parser fallback warnings.
 
 ## Inventory

@@ -1,5 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 
@@ -10,13 +10,19 @@ import {
   type SearchableSelectOption,
 } from "@/components/ui/SearchableSelect";
 import {
+  getTransferEquivalencyTagDisplayLabel,
   getTransferEquivalencyTagLabel,
+  getTransferEquivalencyTagLongLabel,
   isTransferEquivalencyTrackedTag,
   normalizeTransferEquivalencyTag,
   TRANSFER_EQUIVALENCY_TRACKED_TAGS,
   type TransferEquivalencyTrackedTag,
 } from "@/constants/transfer-equivalency-tags";
-import { TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY } from "@/constants/transfer-planner-source";
+import {
+  TRANSFER_PLANNER_CAMPUSES,
+  TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY,
+} from "@/constants/transfer-planner-source";
+import type { TransferPlannerCampusId } from "@/constants/transfer-planner-types";
 import { ROUTES } from "@/constants/routes";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import useBack from "@/hooks/use-back";
@@ -30,8 +36,37 @@ type EquivalencyEntry = {
   tags: string[];
 };
 
+const DEFAULT_TRANSFER_EQUIVALENCY_CAMPUS_ID: TransferPlannerCampusId = "uw-seattle";
+
+function isTransferEquivalencyCampusId(value: string): value is TransferPlannerCampusId {
+  return TRANSFER_PLANNER_CAMPUSES.some((campus) => campus.id === value);
+}
+
+function normalizeTransferEquivalencyCampusId(
+  value: string | string[] | undefined
+): TransferPlannerCampusId {
+  const rawCampus = Array.isArray(value) ? value[0] : value;
+  const normalized = String(rawCampus ?? DEFAULT_TRANSFER_EQUIVALENCY_CAMPUS_ID)
+    .trim()
+    .toLowerCase();
+
+  return isTransferEquivalencyCampusId(normalized)
+    ? normalized
+    : DEFAULT_TRANSFER_EQUIVALENCY_CAMPUS_ID;
+}
+
+function getEligibleTransferHeading(tag: string) {
+  const shortLabel = getTransferEquivalencyTagLabel(tag);
+  const longLabel = getTransferEquivalencyTagLongLabel(tag);
+  if (!longLabel || longLabel === shortLabel) {
+    return `${shortLabel} eligible transfers`;
+  }
+  return `${shortLabel} eligible transfers (${longLabel})`;
+}
+
 export default function TransferEquivalencyCatalogPage() {
   const goBack = useBack(ROUTES.transferPlanner);
+  const router = useRouter();
   const params = useLocalSearchParams<{
     tag?: string | string[];
     campusId?: string | string[];
@@ -48,6 +83,7 @@ export default function TransferEquivalencyCatalogPage() {
   } = styles;
   const [tagOpenState, setTagOpenState] = useState<Record<string, boolean>>({});
   const [isCollegeSelectorOpen, setIsCollegeSelectorOpen] = useState(false);
+  const [isCampusSelectorOpen, setIsCampusSelectorOpen] = useState(false);
   const backLabel = useMemo(() => {
     const translated = t("general.back");
     return translated && translated !== "general.back" ? translated : "Back";
@@ -89,13 +125,39 @@ export default function TransferEquivalencyCatalogPage() {
     "University of Washington";
 
   const selectedCampusId = useMemo(() => {
-    const rawCampus = Array.isArray(params.campusId) ? params.campusId[0] : params.campusId;
-    const normalized = String(rawCampus ?? "uw-seattle").trim().toLowerCase();
-    if (normalized === "uw-bothell" || normalized === "uw-tacoma" || normalized === "uw-seattle") {
-      return normalized;
-    }
-    return "uw-seattle";
+    return normalizeTransferEquivalencyCampusId(params.campusId);
   }, [params.campusId]);
+
+  const campusOptions = useMemo<SearchableSelectOption[]>(
+    () =>
+      TRANSFER_PLANNER_CAMPUSES.map((campus) => ({
+        id: campus.id,
+        label: campus.title,
+        description: campus.summary,
+      })),
+    []
+  );
+
+  const selectedCampus =
+    TRANSFER_PLANNER_CAMPUSES.find((campus) => campus.id === selectedCampusId) ?? null;
+  const selectedCampusLabel = selectedCampus?.title ?? "UW Seattle";
+
+  const handleCampusSelect = (nextCampusId: string) => {
+    setIsCampusSelectorOpen(false);
+    if (!isTransferEquivalencyCampusId(nextCampusId) || nextCampusId === selectedCampusId) {
+      return;
+    }
+
+    setTagOpenState({});
+    router.replace({
+      pathname: ROUTES.transferEquivalencies,
+      params: {
+        collegeId: selectedCollegeId,
+        campusId: nextCampusId,
+        ...(selectedTags.length ? { tag: selectedTags.join(",") } : {}),
+      },
+    });
+  };
 
   const equivalenciesByTag = useMemo(() => {
     const grouped = new Map<string, EquivalencyEntry[]>();
@@ -150,7 +212,14 @@ export default function TransferEquivalencyCatalogPage() {
     );
   }, [equivalenciesByTag, selectedTags]);
 
-  const campusLabel = selectedCampusId === "uw-bothell" ? "UW Bothell" : selectedCampusId === "uw-tacoma" ? "UW Tacoma" : "UW Seattle";
+  const campusLabel = selectedCampusLabel;
+  const highlightedCategoryLabels = useMemo(
+    () =>
+      ["AH", "SSC", "NSC"]
+        .map((tag) => getTransferEquivalencyTagDisplayLabel(tag))
+        .join(", "),
+    []
+  );
 
   return (
     <ScreenBackground includeTopInset includeBottomInset={false}>
@@ -160,6 +229,7 @@ export default function TransferEquivalencyCatalogPage() {
         keyboardShouldPersistTaps="handled"
         onScrollBeginDrag={() => {
           setIsCollegeSelectorOpen(false);
+          setIsCampusSelectorOpen(false);
         }}
       >
         <AnimatedIconPressable
@@ -174,7 +244,7 @@ export default function TransferEquivalencyCatalogPage() {
         <View className="mt-4">
           <Text className={`${textClass} text-2xl font-semibold`}>Transfer Category Equivalencies</Text>
           <Text className={`${secondaryTextClass} text-sm mt-2`}>
-            Eligible Green River to {campusLabel} transfer options for A&H, SSc, NSc, and related requirement categories.
+            Eligible Green River to {campusLabel} transfer options for {highlightedCategoryLabels}, and related requirement categories.
           </Text>
         </View>
 
@@ -188,6 +258,7 @@ export default function TransferEquivalencyCatalogPage() {
               value={selectedCollegeLabel}
               open={isCollegeSelectorOpen}
               onToggle={() => {
+                setIsCampusSelectorOpen(false);
                 setIsCollegeSelectorOpen((current) => !current);
               }}
               onDismiss={() => {
@@ -198,6 +269,34 @@ export default function TransferEquivalencyCatalogPage() {
                 setIsCollegeSelectorOpen(false);
               }}
               selectedOptionId={selectedCollegeId}
+              textClass={textClass}
+              secondaryTextClass={secondaryTextClass}
+              borderClass={borderClass}
+              dropdownBackgroundColor={dropdownSurfaceColor}
+              overlayStrategy="modal"
+            />
+          </View>
+        </View>
+
+        <View className="mt-5">
+          <Text className={`${textClass} text-base font-semibold`}>Campus</Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`}>
+            Choose which UW campus to browse source-backed transfer category equivalencies for.
+          </Text>
+          <View className="mt-4">
+            <SearchableSelect
+              value={selectedCampusLabel}
+              open={isCampusSelectorOpen}
+              onToggle={() => {
+                setIsCollegeSelectorOpen(false);
+                setIsCampusSelectorOpen((current) => !current);
+              }}
+              onDismiss={() => {
+                setIsCampusSelectorOpen(false);
+              }}
+              options={campusOptions}
+              onSelect={handleCampusSelect}
+              selectedOptionId={selectedCampusId}
               textClass={textClass}
               secondaryTextClass={secondaryTextClass}
               borderClass={borderClass}
@@ -232,7 +331,7 @@ export default function TransferEquivalencyCatalogPage() {
                   >
                     <View className="flex-1 min-w-0">
                       <Text className={`${textClass} font-semibold`}>
-                        {getTransferEquivalencyTagLabel(tag)} eligible transfers
+                        {getEligibleTransferHeading(tag)}
                       </Text>
                       <Text className={`${secondaryTextClass} text-xs mt-1`}>
                         {rows.length} source-backed equivalenc{rows.length === 1 ? "y" : "ies"}

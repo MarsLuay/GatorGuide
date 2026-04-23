@@ -24,6 +24,7 @@ import {
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
 import { ROUTES } from "@/constants/routes";
+import { SUPPORT_EMAIL } from "@/constants/support";
 import { StateCard } from "@/components/ui/StateCard";
 import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
@@ -52,6 +53,7 @@ import { storageService, type UploadedFile } from "@/services/storage/storage.se
 import {
   buildSourceBackedMajorGeneralEducationRequirementSection,
   buildSourceBackedGeneralEducationRequirementTargets,
+  buildSourceBackedRequiredCourseSummaryEntries,
   buildSourceBackedRequiredCourseCodes,
   buildSuggestedQuarterPlan,
   buildUwGeneralTransferRequirementSection,
@@ -891,15 +893,9 @@ function buildMajorSpecificsFallbackGrcCourseLabels(plan: TransferPlannerResolve
 
 const GRC_TRACK_NOTE_TERM_LABEL_PATTERN = /\btransferability of credits\b/i;
 
-function buildRequiredCourseSentence(courseLabel: string, uwEquivalentLabel?: string | null) {
+function buildRequiredCourseSentence(courseLabel: string) {
   const normalizedCourseLabel = String(courseLabel ?? "").replace(/\s+/g, " ").trim();
-  if (!normalizedCourseLabel) return "";
-
-  if (!uwEquivalentLabel) {
-    return `${normalizedCourseLabel} is required.`;
-  }
-
-  return `${normalizedCourseLabel} is required. UW equivalent: ${uwEquivalentLabel}.`;
+  return normalizedCourseLabel ? `${normalizedCourseLabel} is required.` : "";
 }
 
 function buildMajorSpecificsGrcRequiredMajorCourseLines(args: {
@@ -909,11 +905,13 @@ function buildMajorSpecificsGrcRequiredMajorCourseLines(args: {
 }) {
   const { plan, track, completedCourses } = args;
   if (plan) {
-    const requiredCourseCodes = buildRequiredPlannerCourseCodes(plan);
-    if (requiredCourseCodes.length) {
-      return requiredCourseCodes.map((courseCode) => ({
-        id: courseCode,
-        text: buildRequiredCourseSentence(buildCourseDisplayLabel("grc", courseCode)),
+    const summaryEntries = buildSourceBackedRequiredCourseSummaryEntries(plan, {
+      mode: "grc",
+    });
+    if (summaryEntries.length) {
+      return summaryEntries.map((entry) => ({
+        id: entry.id,
+        text: entry.text,
       }));
     }
   }
@@ -1057,43 +1055,6 @@ function getTransferGuidanceCandidateRulesForSourceCourse(
   return allCandidateRules.filter((rule) => rule.targetSchoolIds.includes("uw-seattle"));
 }
 
-function buildBestSingleCourseUwEquivalentLabel(
-  sourceCourseCode: string,
-  campusId: TransferPlannerCampusId
-) {
-  const normalizedSourceCourseCode = normalizePlannerCourseCode(sourceCourseCode);
-  const candidateRules = getTransferGuidanceCandidateRulesForSourceCourse(
-    normalizedSourceCourseCode,
-    campusId
-  )
-    .filter((rule) =>
-      (rule.sourceCourseSets ?? []).some((courseSet) => {
-        const normalizedCourseSet = courseSet.map((courseCode) =>
-          normalizePlannerCourseCode(courseCode)
-        );
-        return (
-          normalizedCourseSet.length === 1 &&
-          normalizedCourseSet[0] === normalizedSourceCourseCode
-        );
-      })
-    )
-    .sort(compareTransferGuidanceRules);
-
-  const selectedRule = candidateRules[0];
-  if (!selectedRule) return null;
-
-  const targetCourseCodes = Array.from(
-    new Set(
-      (selectedRule.targetCourseCodes ?? [])
-        .map((courseCode) => normalizePlannerCourseCode(courseCode))
-        .filter(isSpecificTransferTargetCourseCode)
-    )
-  );
-  if (!targetCourseCodes.length) return null;
-
-  return joinPlannerLabelList(targetCourseCodes);
-}
-
 function buildRequiredPlannerCourseCodes(plan: TransferPlannerResolvedMajorPlan) {
   const orderedCourseCodes = buildSourceBackedRequiredCourseCodes(plan);
 
@@ -1112,20 +1073,19 @@ function buildRequiredPlannerCourseCodes(plan: TransferPlannerResolvedMajorPlan)
 }
 
 function buildUwRequiredPathCourseEntries(plan: TransferPlannerResolvedMajorPlan) {
-  const requiredCourseCodes = buildRequiredPlannerCourseCodes(plan);
-  if (!requiredCourseCodes.length) {
+  const summaryEntries = buildSourceBackedRequiredCourseSummaryEntries(plan, {
+    mode: "uw",
+  });
+  if (!summaryEntries.length) {
     return [] as {
       id: string;
       text: string;
     }[];
   }
 
-  return requiredCourseCodes.map((courseCode) => ({
-    id: courseCode,
-    text: buildRequiredCourseSentence(
-      buildCourseDisplayLabel("grc", courseCode),
-      buildBestSingleCourseUwEquivalentLabel(courseCode, plan.campusId)
-    ),
+  return summaryEntries.map((entry) => ({
+    id: entry.id,
+    text: entry.text,
   }));
 }
 
@@ -3617,6 +3577,13 @@ export default function TransferPlannerPage() {
     const translated = t("general.back");
     return translated && translated !== "general.back" ? translated : "Back";
   }, [t]);
+  const reportBugMailtoUrl = useMemo(() => {
+    const subject = encodeURIComponent("GatorGuide Course Planner Bug Report");
+    const body = encodeURIComponent(
+      "Please describe what happened in Course Planner:\n\n"
+    );
+    return `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+  }, []);
 
   const handleGoBack = useCallback(() => {
     if (returnTo) {
@@ -3636,6 +3603,25 @@ export default function TransferPlannerPage() {
 
     router.back();
   }, [returnTo, router]);
+  const handleReportBug = useCallback(async () => {
+    try {
+      const canOpen = await Linking.canOpenURL(reportBugMailtoUrl);
+      if (!canOpen) {
+        Alert.alert(
+          "Email unavailable",
+          `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
+        );
+        return;
+      }
+
+      await Linking.openURL(reportBugMailtoUrl);
+    } catch {
+      Alert.alert(
+        "Email unavailable",
+        `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
+      );
+    }
+  }, [reportBugMailtoUrl]);
 
   useEffect(() => {
     if (!isHydrated || hydratedLastSelectionRef.current) return;
@@ -4589,6 +4575,19 @@ export default function TransferPlannerPage() {
               />
             </>
           ) : null}
+
+          <View className="items-center pb-2">
+            <AnimatedIconPressable
+              onPress={() => {
+                void handleReportBug();
+              }}
+              accessibilityRole="link"
+            >
+              <Text className={`${secondaryTextClass} text-sm underline`}>
+                Click here to report a bug
+              </Text>
+            </AnimatedIconPressable>
+          </View>
 
         </View>
       </ScrollView>

@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-04-23T15:28:58.131Z",
+  "generatedAt": "2026-04-23T22:21:19.618Z",
   "totalOwners": 466,
   "ownersWithErrorsCount": 0,
   "ownersWithWarningsCount": 9,
   "ownersWithSourceOnlyUwCourseCodesCount": 6,
-  "totalSourceOnlyUwCourseCodes": 118,
+  "totalSourceOnlyUwCourseCodes": 146,
   "issueCounts": {
     "error": 0,
     "warning": 9
@@ -8137,7 +8137,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 57,
+      "sourceOnlyUwCourseCodeCount": 71,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -8159,7 +8159,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 57,
+      "sourceOnlyUwCourseCodeCount": 71,
       "issueCounts": {
         "error": 0,
         "warning": 0

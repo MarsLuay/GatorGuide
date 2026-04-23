@@ -2,6 +2,12 @@
 
 Gator Guide is a student-focused project designed to help transfer applicants find their best-fit college. It brings together mobile product design, college data, and guidance so students can explore schools, ask questions, and get support in a way that feels personal and practical.
 
+## License
+
+This repository is source-available under the [PolyForm Strict License 1.0.0](LICENSE). It is not open source.
+
+That means others can review and use the code only for noncommercial purposes, but they may not redistribute it or publish modified versions under this license.
+
 ## What Gator Guide Does
 
 Gator Guide helps students:

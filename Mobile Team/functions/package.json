@@ -1,6 +1,7 @@
 {
   "name": "gatorguide-functions",
   "private": true,
+  "license": "SEE LICENSE IN LICENSE",
   "engines": {
     "node": "20"
   },

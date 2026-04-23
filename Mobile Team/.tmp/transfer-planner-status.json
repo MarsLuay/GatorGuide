@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T15:31:21.985Z",
+  "generatedAt": "2026-04-23T22:23:20.285Z",
   "summary": {
     "totalPlannerOwners": 466,
     "totalStudentVisibleRows": 467,
@@ -39,7 +39,7 @@
     "ownersWithErrorsCount": 0,
     "ownersWithWarningsCount": 9,
     "ownersWithSourceOnlyUwCourseCodesCount": 6,
-    "totalSourceOnlyUwCourseCodes": 118
+    "totalSourceOnlyUwCourseCodes": 146
   },
   "parseSummary": {
     "totalOwners": 466,
@@ -21249,8 +21249,12 @@
       "isDerivedSharedSourceAlias": false,
       "derivedSourcePlanId": null,
       "ownerWarningCodes": [],
-      "runtimeGrcCourseCount": 3,
+      "runtimeGrcCourseCount": 7,
       "runtimeGrcCourseList": [
+        "CJ 200",
+        "ECON& 201",
+        "ECON& 202",
+        "PHIL 206",
         "POLS& 202",
         "POLS& 203",
         "POLS& 204"
@@ -21289,8 +21293,12 @@
       "isDerivedSharedSourceAlias": false,
       "derivedSourcePlanId": null,
       "ownerWarningCodes": [],
-      "runtimeGrcCourseCount": 3,
+      "runtimeGrcCourseCount": 7,
       "runtimeGrcCourseList": [
+        "CJ 200",
+        "ECON& 201",
+        "ECON& 202",
+        "PHIL 206",
         "POLS& 202",
         "POLS& 203",
         "POLS& 204"
@@ -25623,7 +25631,6 @@
     }
   ],
   "requiredUpdateQueue": [
-    "Clear source-pipeline invariant failures: align discovery, promotions, canonical registry, parser input, and fingerprints before rerunning owner audit.",
     "Address owner-audit issues: fix missing/invalid primary sources, manifest gaps, and parser fallback warnings."
   ]
 }

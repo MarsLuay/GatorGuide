@@ -19,6 +19,26 @@ const TRACKED_TRANSFER_EQUIVALENCY_TAGS = new Set<string>(
 export const TRANSFER_EQUIVALENCY_ALL_TRACKED_TAGS_PARAM =
   TRANSFER_EQUIVALENCY_TRACKED_TAGS.join(",");
 
+const TRANSFER_EQUIVALENCY_TAG_LABELS: Record<
+  TransferEquivalencyTrackedTag,
+  { shortLabel: string; longLabel: string }
+> = {
+  SSC: { shortLabel: "SSc", longLabel: "Social Sciences" },
+  AH: { shortLabel: "A&H", longLabel: "Arts and Humanities" },
+  NSC: { shortLabel: "NSc", longLabel: "Natural Sciences" },
+  QSR: {
+    shortLabel: "QSR",
+    longLabel: "Quantitative and Symbolic Reasoning",
+  },
+  VLPA: {
+    shortLabel: "VLPA",
+    longLabel: "Visual, Literary, and Performing Arts",
+  },
+  DIV: { shortLabel: "DIV", longLabel: "Diversity" },
+  NW: { shortLabel: "NW", longLabel: "Natural World" },
+  IANDS: { shortLabel: "I&S", longLabel: "Individuals and Societies" },
+};
+
 export function normalizeTransferEquivalencyTag(
   value: string | null | undefined
 ) {
@@ -39,24 +59,32 @@ export function isTransferEquivalencyTrackedTag(
 export function getTransferEquivalencyTagLabel(
   normalizedTag: string | null | undefined
 ) {
-  switch (normalizeTransferEquivalencyTag(normalizedTag)) {
-    case "AH":
-      return "A&H";
-    case "SSC":
-      return "SSc";
-    case "NSC":
-      return "NSc";
-    case "QSR":
-      return "QSR";
-    case "VLPA":
-      return "VLPA";
-    case "DIV":
-      return "DIV";
-    case "NW":
-      return "NW";
-    case "IANDS":
-      return "I&S";
-    default:
-      return normalizeTransferEquivalencyTag(normalizedTag);
+  const normalized = normalizeTransferEquivalencyTag(normalizedTag);
+  return (
+    TRANSFER_EQUIVALENCY_TAG_LABELS[
+      normalized as TransferEquivalencyTrackedTag
+    ]?.shortLabel ?? normalized
+  );
+}
+
+export function getTransferEquivalencyTagLongLabel(
+  normalizedTag: string | null | undefined
+) {
+  const normalized = normalizeTransferEquivalencyTag(normalizedTag);
+  return (
+    TRANSFER_EQUIVALENCY_TAG_LABELS[
+      normalized as TransferEquivalencyTrackedTag
+    ]?.longLabel ?? normalized
+  );
+}
+
+export function getTransferEquivalencyTagDisplayLabel(
+  normalizedTag: string | null | undefined
+) {
+  const shortLabel = getTransferEquivalencyTagLabel(normalizedTag);
+  const longLabel = getTransferEquivalencyTagLongLabel(normalizedTag);
+  if (!longLabel || longLabel === shortLabel) {
+    return shortLabel;
   }
+  return `${shortLabel} (${longLabel})`;
 }

@@ -1,18 +1,21 @@
 #!/usr/bin/env node
 /* global __dirname */
 
+const { execFileSync } = require("node:child_process");
 const fs = require("node:fs");
 const path = require("node:path");
 const { createInterface } = require("node:readline/promises");
 const { stdin, stdout } = require("node:process");
 
 const MOBILE_TEAM_ROOT = path.resolve(__dirname, "..", "..");
+const REPO_ROOT = path.resolve(MOBILE_TEAM_ROOT, "..");
 const OPPORTUNITIES_PATH =
   process.env.GATORGUIDE_OPPORTUNITIES_PATH ||
   path.join(MOBILE_TEAM_ROOT, "data", "starter-opportunities.json");
 const RESOURCES_PATH =
   process.env.GATORGUIDE_RESOURCES_PATH ||
   path.join(MOBILE_TEAM_ROOT, "data", "resource-catalog.json");
+const RESOURCE_COMMIT_MESSAGE = "Added resources";
 
 const RESOURCE_SECTION_LABELS = {
   "resources.tools": "Tools",
@@ -408,12 +411,43 @@ function formatMoneySummary(min, max, currency = "USD") {
   return `Up to ${currency} ${max}`;
 }
 
-function printSummary(title, rows) {
+function formatSummaryValue(value) {
+  return value == null || value === "" ? "Unknown" : value;
+}
+
+function printSummary(title, rows, options = {}) {
+  const numbered = options.numbered ?? false;
   log("");
   log(title);
-  rows.forEach(([label, value]) => {
-    log(`- ${label}: ${value == null || value === "" ? "Unknown" : value}`);
+  rows.forEach((row, index) => {
+    const [label, value] = Array.isArray(row) ? row : [row.label, row.value];
+    const prefix = numbered ? `${index + 1}.` : "-";
+    log(`${prefix} ${label}: ${formatSummaryValue(value)}`);
   });
+}
+
+async function askSummaryRowNumber(rl, label, rows) {
+  while (true) {
+    log("");
+    const answer = await rl.question(`${label} `);
+    const normalized = answer.trim();
+
+    if (isBackCommand(normalized)) {
+      return BACK_SIGNAL;
+    }
+
+    const selectedIndex = Number.parseInt(normalized, 10);
+    if (
+      Number.isFinite(selectedIndex) &&
+      String(selectedIndex) === normalized &&
+      selectedIndex >= 1 &&
+      selectedIndex <= rows.length
+    ) {
+      return selectedIndex - 1;
+    }
+
+    log(`Enter a number from 1 to ${rows.length}.`);
+  }
 }
 
 function formatDateSummary(value) {
@@ -492,6 +526,24 @@ function writeJsonArray(filePath, value) {
     fs.copyFileSync(filePath, backupPath);
   }
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function toGitPath(filePath) {
+  return path.relative(REPO_ROOT, filePath).split(path.sep).join("/");
+}
+
+function runGitCapture(args) {
+  return execFileSync("git", args, {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+  });
+}
+
+function runGitDisplay(args) {
+  execFileSync("git", args, {
+    cwd: REPO_ROOT,
+    stdio: "inherit",
+  });
 }
 
 function hasDisplayTitle(item) {
@@ -925,9 +977,9 @@ async function askUrl(rl, label, options = {}) {
   }
 }
 
-async function runWizard(rl, steps, initialState = {}) {
+async function runWizard(rl, steps, initialState = {}, startIndex = 0) {
   const state = initialState;
-  let index = 0;
+  let index = Math.max(0, Number.isFinite(startIndex) ? startIndex : 0);
 
   while (index < steps.length) {
     const step = steps[index];
@@ -1023,8 +1075,7 @@ async function addOpportunity(rl, type) {
   const nowIso = new Date().toISOString();
   let answers = {};
 
-  while (true) {
-    answers = await runWizard(rl, [
+  const opportunitySteps = [
     {
       prompt: (_, state) =>
         askText(rl, "Enter the name of the new resource:", {
@@ -1356,8 +1407,11 @@ async function addOpportunity(rl, type) {
         state.showImmediately = value ?? true;
       },
     },
-  ], answers);
+  ];
 
+  answers = await runWizard(rl, opportunitySteps, answers);
+
+  while (true) {
     const title = smartTitleCase(answers.title);
     const organizationName = smartTitleCase(answers.organizationName ?? title);
     const summary = polishedSentence(answers.summary ?? defaultOpportunitySummary(title, type));
@@ -1386,68 +1440,16 @@ async function addOpportunity(rl, type) {
     const awardCurrency = normalizeWhitespace(answers.awardCurrency ?? "USD").toUpperCase();
     const amountText = polishedSentence(answers.amountText ?? null);
     const renewable = answers.renewable ?? null;
-    const collegeName = answers.tiedToCollege ? smartTitleCase(answers.collegeName ?? null) : null;
-    const collegeCity = answers.tiedToCollege ? smartTitleCase(answers.collegeCity ?? null) : null;
-    const collegeState = answers.tiedToCollege ? normalizeRegionText(answers.collegeState ?? null) : null;
-    const collegeWebsite = answers.tiedToCollege ? answers.collegeWebsite ?? null : null;
+    const tiedToCollege = answers.tiedToCollege ?? (type === "college_deadline");
+    const collegeName = tiedToCollege ? smartTitleCase(answers.collegeName ?? null) : null;
+    const collegeCity = tiedToCollege ? smartTitleCase(answers.collegeCity ?? null) : null;
+    const collegeState = tiedToCollege ? normalizeRegionText(answers.collegeState ?? null) : null;
+    const collegeWebsite = tiedToCollege ? answers.collegeWebsite ?? null : null;
     const sourceUrl = answers.sourceUrl ?? externalUrl;
     const sourceLabel = smartTitleCase(
       answers.sourceLabel ?? "Added with batch catalog tool"
     );
     const showImmediately = answers.showImmediately ?? true;
-
-    printSummary("Review this new opportunity before saving.", [
-      ["Type", type],
-      ["Title", title],
-      ["Organization", organizationName],
-      ["Summary", summary],
-      ["Official link", externalUrl ?? "Unknown"],
-      ["Deadline tracking", deadlineMode],
-      ["Deadline kind", deadlineType],
-      ["Deadline date", dueDate ?? "Unknown"],
-      ["Deadline label", deadlineLabel ?? "Unknown"],
-      ["Financial-aid tags", formatListSummary(financialAidTags)],
-      ["Relevant majors", formatListSummary(suggestedMajors)],
-      ["Must match major", formatBooleanSummary(hasToBeMajor)],
-      ["Minimum GPA", formatNumberSummary(gpaMin)],
-      ["Residency restrictions", formatListSummary(residencySelection)],
-      ["Transfer only", formatBooleanSummary(transferOnly)],
-      ["Needs recommendations", formatBooleanSummary(needsRecommendations)],
-      ["Recommendation minimum", formatNumberSummary(recommendationCountMin)],
-      ["Essay count", formatNumberSummary(essayCount)],
-      ["Award amount", formatMoneySummary(amountMin, amountMax, awardCurrency)],
-      ["Award text", amountText ?? "Unknown"],
-      ["Renewable", formatBooleanSummary(renewable)],
-      ["College name", collegeName ?? "Unknown"],
-      ["College city", collegeCity ?? "Unknown"],
-      ["College state", collegeState ?? "Unknown"],
-      ["College website", collegeWebsite ?? "Unknown"],
-      ["Source URL", sourceUrl ?? "Unknown"],
-      ["Source label", sourceLabel ?? "Unknown"],
-      ["Show right away", formatBooleanSummary(showImmediately)],
-    ]);
-
-    const reviewAction = await askChoice(
-      rl,
-      "What would you like to do with this information?",
-      [
-        { value: "save", label: "Save" },
-        { value: "edit", label: "Make changes" },
-        { value: "discard", label: "Discard" },
-      ],
-      {
-        invalidMessage: "Enter in 1, 2, or 3 for your choice.",
-      }
-    );
-
-    if (reviewAction === "discard") {
-      log("Discarded. No files were changed.");
-      return;
-    }
-
-    if (reviewAction === "edit") {
-      continue;
-    }
 
     answers = {
       ...answers,
@@ -1473,6 +1475,7 @@ async function addOpportunity(rl, type) {
       awardCurrency,
       amountText,
       renewable,
+      tiedToCollege,
       collegeName,
       collegeCity,
       collegeState,
@@ -1481,6 +1484,198 @@ async function addOpportunity(rl, type) {
       sourceLabel,
       showImmediately,
     };
+
+    const reviewRows = [
+      {
+        label: "Type",
+        value: type,
+        editStepIndex: null,
+      },
+      {
+        label: "Title",
+        value: title,
+        editStepIndex: 0,
+      },
+      {
+        label: "Organization",
+        value: organizationName,
+        editStepIndex: 1,
+      },
+      {
+        label: "Summary",
+        value: summary,
+        editStepIndex: 2,
+      },
+      {
+        label: "Official link",
+        value: externalUrl,
+        editStepIndex: 3,
+      },
+      {
+        label: "Deadline tracking",
+        value: deadlineMode,
+        editStepIndex: 4,
+      },
+      {
+        label: "Deadline kind",
+        value: deadlineType,
+        editStepIndex: deadlineMode === "rolling" ? 4 : 5,
+      },
+      {
+        label: "Deadline date",
+        value: dueDate,
+        editStepIndex: deadlineMode === "rolling" ? 4 : 6,
+      },
+      {
+        label: "Deadline label",
+        value: deadlineLabel,
+        editStepIndex: 7,
+      },
+      {
+        label: "Financial-aid tags",
+        value: formatListSummary(financialAidTags),
+        editStepIndex: 8,
+      },
+      {
+        label: "Relevant majors",
+        value: formatListSummary(suggestedMajors),
+        editStepIndex: 9,
+      },
+      {
+        label: "Must match major",
+        value: formatBooleanSummary(hasToBeMajor),
+        editStepIndex: 10,
+      },
+      {
+        label: "Minimum GPA",
+        value: formatNumberSummary(gpaMin),
+        editStepIndex: 11,
+      },
+      {
+        label: "Residency restrictions",
+        value: formatListSummary(residencySelection),
+        editStepIndex: 12,
+      },
+      {
+        label: "Transfer only",
+        value: formatBooleanSummary(transferOnly),
+        editStepIndex: 13,
+      },
+      {
+        label: "Needs recommendations",
+        value: formatBooleanSummary(needsRecommendations),
+        editStepIndex: 14,
+      },
+      {
+        label: "Recommendation minimum",
+        value: formatNumberSummary(recommendationCountMin),
+        editStepIndex: needsRecommendations ? 15 : 14,
+      },
+      {
+        label: "Essay count",
+        value: formatNumberSummary(essayCount),
+        editStepIndex: 16,
+      },
+      {
+        label: "Award amount",
+        value: formatMoneySummary(amountMin, amountMax, awardCurrency),
+        editStepIndex: 17,
+      },
+      {
+        label: "Award text",
+        value: amountText,
+        editStepIndex: 20,
+      },
+      {
+        label: "Renewable",
+        value: formatBooleanSummary(renewable),
+        editStepIndex: 21,
+      },
+      {
+        label: "College name",
+        value: collegeName,
+        editStepIndex: tiedToCollege ? 23 : 22,
+      },
+      {
+        label: "College city",
+        value: collegeCity,
+        editStepIndex: tiedToCollege ? 24 : 22,
+      },
+      {
+        label: "College state",
+        value: collegeState,
+        editStepIndex: tiedToCollege ? 25 : 22,
+      },
+      {
+        label: "College website",
+        value: collegeWebsite,
+        editStepIndex: tiedToCollege ? 26 : 22,
+      },
+      {
+        label: "Source URL",
+        value: sourceUrl,
+        editStepIndex: 27,
+      },
+      {
+        label: "Source label",
+        value: sourceLabel,
+        editStepIndex: 28,
+      },
+      {
+        label: "Show right away",
+        value: formatBooleanSummary(showImmediately),
+        editStepIndex: 29,
+      },
+    ];
+
+    printSummary("Review this new opportunity before saving.", reviewRows, {
+      numbered: true,
+    });
+
+    const reviewAction = await askChoice(
+      rl,
+      "What would you like to do with this information?",
+      [
+        { value: "save", label: "Save" },
+        { value: "edit", label: "Make changes" },
+        { value: "discard", label: "Discard" },
+      ],
+      {
+        invalidMessage: "Enter in 1, 2, or 3 for your choice.",
+      }
+    );
+
+    if (reviewAction === "discard") {
+      log("Discarded. No files were changed.");
+      return;
+    }
+
+    if (reviewAction === "edit") {
+      const selectedReviewRowIndex = await askSummaryRowNumber(
+        rl,
+        'Enter the number of the item you want to change, or type "back" to return:',
+        reviewRows
+      );
+
+      if (isBackSignal(selectedReviewRowIndex)) {
+        continue;
+      }
+
+      const selectedReviewRow = reviewRows[selectedReviewRowIndex];
+      if (selectedReviewRow.editStepIndex == null) {
+        log("Type cannot be changed from this review screen. Choose Discard and start over to change it.");
+        continue;
+      }
+
+      answers = await runWizard(
+        rl,
+        opportunitySteps,
+        answers,
+        selectedReviewRow.editStepIndex
+      );
+      continue;
+    }
+
     break;
   }
 
@@ -2164,6 +2359,55 @@ async function removeResource(rl) {
   log(`Backup written to ${RESOURCES_PATH}.bak`);
 }
 
+async function publishUpdatedResources(rl) {
+  const resourceGitPath = toGitPath(RESOURCES_PATH);
+  let statusOutput = "";
+
+  try {
+    statusOutput = runGitCapture(["status", "--porcelain", "--", resourceGitPath]);
+  } catch (error) {
+    fail(`Could not inspect the repo status. ${error instanceof Error ? error.message : String(error)}`);
+  }
+
+  if (!statusOutput.trim()) {
+    log("");
+    log("There are no updated resources to publish right now.");
+    return;
+  }
+
+  const confirmed = await confirmAction(
+    rl,
+    `Publish updated resources to repo with commit message "${RESOURCE_COMMIT_MESSAGE}"?`,
+    true
+  );
+
+  if (isBackSignal(confirmed) || !confirmed) {
+    log("Cancelled. No files were changed.");
+    return;
+  }
+
+  try {
+    log("");
+    log("Creating the resources commit...");
+    runGitDisplay([
+      "commit",
+      "--only",
+      "-m",
+      RESOURCE_COMMIT_MESSAGE,
+      "--",
+      resourceGitPath,
+    ]);
+    log("");
+    log("Pushing the new commit...");
+    runGitDisplay(["push"]);
+  } catch (error) {
+    fail(`Could not publish updated resources. ${error instanceof Error ? error.message : String(error)}`);
+  }
+
+  log("");
+  log(`Published updated resources with commit message "${RESOURCE_COMMIT_MESSAGE}".`);
+}
+
 async function main() {
   const rl = createPrompter();
 
@@ -2183,10 +2427,11 @@ async function main() {
             [
               { value: "add", label: "Add a new item" },
               { value: "remove", label: "Remove an existing item" },
+              { value: "publish", label: "Publish updated resources to repo" },
             ],
             {
               defaultValue: "add",
-              invalidMessage: "Enter in 1 or 2 for your choice.",
+              invalidMessage: "Enter in 1, 2, or 3 for your choice.",
               showDefaultLabel: false,
             }
           ),
@@ -2195,6 +2440,7 @@ async function main() {
         },
       },
       {
+        when: (state) => state.action !== "publish",
         prompt: async (state) => {
           const options = [
             { value: "scholarship", label: "Scholarship" },
@@ -2229,6 +2475,11 @@ async function main() {
 
     const action = entryFlow.action;
     const entryType = entryFlow.entryType;
+
+    if (action === "publish") {
+      await publishUpdatedResources(rl);
+      return;
+    }
 
     if (action === "remove") {
       if (entryType === "resource") {

@@ -1,10 +1,10 @@
 # Transfer Planner Source Pipeline Validation
 
-Generated: 2026-04-23T15:30:20.503Z
+Generated: 2026-04-23T22:19:47.635Z
 
-- Outcome: failed
-- Passed checks: 18
-- Failed checks: 1
+- Outcome: passed
+- Passed checks: 19
+- Failed checks: 0
 - Eligible auto-promotions from discovery: 6
 - Weak existing primaries re-evaluated: 102
 - High-confidence replacements: 6
@@ -24,7 +24,7 @@ Generated: 2026-04-23T15:30:20.503Z
 | Auto-promoted owners are materialized in the canonical primary-source registry | passed | Promoted owners: 89<br>Canonical primary owners: 466 |
 | Canonical parseable primary owners align with parser input and parser output | passed | Canonical parseable primary owners: 466<br>Parsed owners: 466 |
 | Promoted owners appear in parser output and requirement fingerprints | passed | Promoted owners verified end-to-end: 89 |
-| Requirement fingerprint coverage stays aligned with parsed requirement owners | failed | Detected added source fingerprints for a refresh with eligible auto-promotions, but no new requirement fingerprints were produced. |
+| Requirement fingerprint coverage stays aligned with parsed requirement owners | passed | Requirement fingerprints: 466<br>Parsed owners: 466<br>Touched source owners: 2<br>Touched requirement owners: 3 |
 | Eligible auto-promotions are fully cleared from the review queue and source-gap report | passed | Eligible owners fully cleared: 6 |
 | Year-tied primary degree sheets can trigger re-evaluation even when parsing still succeeds | passed | primary-source-appears-year-specific |
 | Weak-source replacement can trigger for an owner that already has an official primary source | passed | safe-intentional-empty-state, primary-url-looks-graduate-or-timeline, page-headings-look-graduate-or-timeline-heavy, primary-looks-overview-only |
