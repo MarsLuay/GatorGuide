@@ -3,6 +3,8 @@ Source: https://www.tacoma.uw.edu/swcj/basw-curriculum
 Title: BASW Curriculum | School of Social Work & Criminal Justice | University of Washington Tacoma
 
 [Supplemental official source] BA in Social Welfare
+* Ten (10) credits of approved Social Welfare electives and general electives may be taken at times other than those designated above, schedule permitting. Based upon sample plan, enrollment in 12 credits during summer is suggested.
+** Total may vary based on the number of college level credits applied toward the degree.
 &copy; 2026 University of Washington Tacoma
 <a href="https://instagram.com/uwtacoma"
 <a href="https://www.facebook.com/uwtacoma"
@@ -18,6 +20,10 @@ Title: BASW Curriculum | School of Social Work & Criminal Justice | University o
 <span
 >
 10
+12 credits
+13 credits
+14 credits
+15 credits
 180
 1900 Commerce Street, Tacoma, WA 98402-3100
 253-692-5820
@@ -67,6 +73,7 @@ BASW Brochure | Application
 BASW Deadlines
 BASW Model Program of Study
 BASW Prerequisites
+BASW Requirements Checklist | Tentative TSOCWF Time Schedule | TSOCWF Course Descriptions
 Behavioral Health Workforce Development (BHCS)
 Benchmarks
 Bothell
@@ -94,6 +101,7 @@ College-level credits: General Education, Prerequisites, and electives
 Contact
 Contact Us
 Contact us |
+Contemporary Approaches (5)
 Core courses
 Courses
 CREDITS
@@ -105,11 +113,15 @@ Criminal Justice Honor Society
 Criminal Justice League
 Criminal Justice Online Admission Requirements and How to Apply
 CSWE Accreditation
+Cultural Diversity and Social Justice (5)
+Current social welfare majors, criminal justice majors or students who have declared the minor in criminal justice are eligible to submit course substitution petitions for review. You must supply documentation as outlined on the Program Petition for Course Substitution along with the signed form, including the course syllabus. Please allow a minimum of 7 -10 days for review. Decision notifications will be sent to your UW email address. Only college-level transferable courses are eligible for course substitutions (vocational-technical course work is not eligible).
 Curriculum
 Curriculum overview
 CWTAP Application Process for BASW students
 Dean's Welcome
 Directory
+Distribution Note: Social Welfare majors who are pursuing the minor in Criminal Justice may not double count TSOCWF 300-400 level courses as approved Social Welfare electives and as electives for the minor in Criminal Justice. The TSOCWF 300-400 level course(s) may satisfy one distribution area or another, but not both.
+Electives - Attendance during summer quarter may be optional, but is likely needed. Consult with an academic advisor.
 Equity & Inclusion
 Events
 expand_more
@@ -121,6 +133,8 @@ Faculty/Staff Intranet
 FAQs
 Field Education
 Field Instructor Resources
+Field Seminar I (3)
+Field Seminar II (3)
 Financial Aid
 General electives
 GENERAL ELECTIVES
@@ -135,13 +149,18 @@ Housing
 How to apply to BASW
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_600x_/public/2025-06/basw-student-asking-question.jpg 600w"
 https://www.tacoma.uw.edu/sites/default/files/styles/responsive_980x_/public/2025-06/basw-student-asking-question.jpg 980w,
+Human Behavior & Social Environment I (5)
+If needed, TSOCWF 351 Applied Statistics may be taken here.
 Immunizations
+In addition to classroom instruction, students are required to complete 480 hours of practicum experience, known as field education, in an outside agency or organization under the supervision of a qualified social worker. In the practicum settings, BASW students gain experience in such roles as advocate, case manager, change agent, group leader and organizer. They may assist a chemically-dependent person in changing destructive behavior patterns; help a battered person find a safe, stable environment; support a person with mental illness in living independently in their community; marshal resources to enable a person with a physical disability to enter mainstream society; foster or find a safe environment for an abused child; advocate for housing for homeless people; or help a community organize itself to prevent a number of neighborhood problems.
 In addition to these three areas, students are required to complete 10 credits of upper-division Social Welfare electives.
 Independent Study
 Information Technology
 Initiatives
 Institutional Research
 Internship
+Intro to Practicum (1)
+Introduction to Social Welfare Research (5)
 IT Help
 Jobs
 Land
@@ -156,6 +175,7 @@ Master of Social Work
 Media Appearances
 Meet our Faculty & Staff
 Minor in Criminal Justice
+More Information for BASW curriculum
 more_vert
 MSW 2026-27 Field Placement
 MSW Admission FAQs
@@ -167,21 +187,30 @@ New Student Onboarding
 New Student Onboarding for Criminal Justice
 New Student Onboarding for Master of Social Work
 New Student Onboarding for Social Welfare
+NOTE: Statistics is a required course for the BASW program; if a statistics course has not been completed with a 2.0 (or C) grade or higher, students must take it prior to TSOCWF 390.
 Office Hours:
 Office Location
 Office365
 Online Learning Resources
+or General Elective** (5)
 Panopto
 Parking & transportation
 Part-Time Lecturer Resources
+Petition for course substitution
 Please note: Students with admission deficiencies or Social Welfare prerequisite deficiencies must meet with an academic advisor regarding completion of deficiencies. Also, students who have not met the minimum of at least 20 credits of Arts and Humanities (A&H), 20 credits of Natural Sciences (NSc) and 20 credits of Social Sciences (SSc) within their lower-division course work must meet with the program advisor regarding selection of appropriate courses within an elective category to complete these Areas of Inquiry (A of I) requirements.
+Practice I - Individuals & Families (5)
+Practice II - Groups (3)
 Practicum ( field education ) is a yearlong internship experience where students have the opportunity to apply classroom learning to practice with individuals, families, groups, organizations, communities, and policy makers.
+Practicum (3)
+Practicum (4)
 Practicum FAQs
+Practicum III - Organizations & Communities (5)
 Prep for Graduation
 Privacy |
 Professionalism in Social Work (2)
 Program Goals
 Program Goals & Standards
+Program petition for course substitution
 Puyallup Tribe of Indians
 Quotes from Alumni
 Reinstatement to MSW Program
@@ -198,6 +227,7 @@ Search
 sizes="(min-width: 851px) 1940px, (max-width: 851px) 600px"
 Skip to main content
 Social Welfare electives
+Social Welfare Practicum
 Social Work Honor Society
 Social Work Mission
 SPRING
@@ -218,6 +248,7 @@ Study Abroad
 style="display:none;
 SUMMER
 Support Us
+SW Elective*
 swcj@uw.edu
 Teaching and Learning Center
 Terms of Use |
@@ -239,6 +270,17 @@ Total
 Tribal Sponsor of UW Tacoma
 TSOCWF 300
 TSOCWF 301
+TSOCWF 310
+TSOCWF 311
+TSOCWF 312
+TSOCWF 320
+TSOCWF 390
+TSOCWF 402 (W)
+TSOCWF 404 (DIV)
+TSOCWF 405 (W)
+TSOCWF 406 (W)
+TSOCWF 414
+TSOCWF 415
 TSOCWF 430 Children of Incarcerated Parents (5 cr)
 TSOCWF 433 Trauma-informed Interventions with Systems-impacted People (5 cr)
 TSOCWF 436 Contemporary Social Work in Criminal Justice Settings (5 cr)
@@ -255,4 +297,5 @@ width="0"
 WINTER
 Workday
 Year 1 in BASW Program
+Year 2 in BASW Program
 Zoom

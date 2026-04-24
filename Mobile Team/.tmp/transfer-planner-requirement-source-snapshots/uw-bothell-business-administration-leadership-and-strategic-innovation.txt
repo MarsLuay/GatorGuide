@@ -2,32 +2,49 @@ Owner: uw-bothell-business-administration-leadership-and-strategic-innovation
 Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership
 Title: Leadership & Strategic Innovation Option - School of Business
 
+(formerly B CUSP 202)
 [Supplemental official source] Curriculum
 [Supplemental official source] Prerequisite Courses
 [Supplemental official source] Prerequisites
+* POLS & 201 is not standard across all community colleges.
 **AP Statistics score not accepted
 *AP Calculus score of 3, 4, or 5 accepted
+*AP Language/Literature Exam scores not accepted
+*AP Macroeconomics score of 3, 4, or 5 accepted
+*AP Microeconomics score of 3, 4, or 5 accepted
 *Higher level business statistics accepted
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 |
 10 credits – Complete 2 courses from this list:
+10 credits from the following:
 15 credits
 18807 Beardslee Blvd, Suite 210
 425.352.5000
 425.352.5394
 5 credits
+5-10 credits
 90 credits
 About
 Accessibility
 Accounting Option
+ACCTG 215
+ACCTG 225
+ACCTG& 201 and ACCTG& 202
+ACCTG& 203
 Admissions
 Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade point average (GPA) of at least a 2.0 and also have a cumulative business prerequisite GPA of at least a 2.5, prior to beginning their business studies at UW Bothell. These credits must include all of the following prerequisite courses (with a minimum grade of 2.0 in each):
+Advanced Composition
 Advisory boards
 All UW Bothell
 Alumni
 Apply As Undergraduate
 Awards
+B BUS 210
+B BUS 211
+B BUS 220/BIS 200
+B BUS 221/BIS 201
+B BUS 230
 B BUS 402 – Managing Work Teams
 B BUS 441 – Business Project Management (340)
 B BUS 443 – Entrepreneurship Seminar
@@ -44,6 +61,7 @@ B BUS 477 – Human Resource Management (300)
 B BUS 479 – Special Topics in Management (300)
 B BUS 491 – Business Consulting
 B MATH 144
+B WRIT 135* (must be designated (C) composition)
 BA& 240
 Bachelor in Business Administration
 Bachelor in Economics
@@ -66,6 +84,7 @@ BIS 215 (previously BIS 315), B BUS 215, BMATH 215, or STMATH 341
 Bothell, WA 98011
 Bothell, Washington View our location on Google maps.
 Box 358533
+BUS& 201
 Business Consulting Course
 Calculus
 Campus Safety
@@ -91,6 +110,12 @@ Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
+ECON 200
+ECON 201
+ECON& 201
+ECON& 202
+ENG& 102
+ENGL 111, 121, 131, 182, 197, 198, 199, 281, 282, 297, 298, 299, 381, or 382
 Entrepreneurship Concentration
 Ethics Conference
 Events
@@ -99,6 +124,7 @@ Expand Navigation
 Facilities
 Faculty
 Finance Option and Concentration
+Financial Accounting
 For example, if you’re a transfer student completing the remaining prerequisites in summer quarter, you can still apply to UW Bothell in spring with the intention of starting Business classes in fall quarter, so long as you’ve completed all the prerequisites before fall quarter begins.
 General Electives (any 300/400 level UW courses)
 Get a Mentor
@@ -112,14 +138,17 @@ Independent Study Projects
 Information Technology
 Internships
 Jobs
+Law
 Leadership & Strategic Innovation Option
 Leadership & Strategic Innovation Option - School of Business
 Leadership History
 Library
 LSI curriculum
 LSI Electives (prerequisites in parentheses)
+Macroeconomics
 Management Concentration
 Management Information Systems (MIS) Concentration
+Managerial Accounting
 Maps & directions
 Marketing Option and Concentration
 Master of Business Administration
@@ -131,6 +160,7 @@ MATH&148 or MATH& 151
 Mentors
 Mentorship EDGE
 Mentorship EDGE Mentors
+MGMT 200
 Microeconomics
 Minor in Actuarial Science
 Minor in Business Administration
@@ -146,6 +176,7 @@ Opportunities
 People
 PharmD-MBA Program
 Policies & Petitions
+POLS& 201*or
 Prerequisite Courses
 Prerequisites
 Prerequisites for matriculation
@@ -178,6 +209,7 @@ Supply Chain Management Option
 Tacoma Campus
 Technology & Innovation Management (TIM) Concentration
 Terms
+The comparison chart above is for students interested in applying to the UW Bothell School of Business only. It is not an approved equivalency guide for all campuses. If you have questions about the specific prerequisite courses needed for a program, please speak to an advisor.
 The Leadership & Strategic Innovation (LSI) option will engage students in a rigorous study of leadership, strategy, and innovation. You will graduate ready to lead teams, manage innovation, and inspire employees. LSI graduates can go on to become project leads, managers, consultants, business development leads, HR analysts, market analysts, sales managers, entrepreneurs, and much more.
 Time Schedule
 Total Credits

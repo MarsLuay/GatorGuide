@@ -203,10 +203,8 @@ TAMST 250 Science Fiction in American Culture
 TAMST 260 Introduction to Queer Studies
 TAMST 350 American Food Studies
 TAMST 410 Studies in U.S. Popular Culture
-TAMST 420 Drugs and U.S. Culture
 TAMST 430 Queer Performances
 TAMST 450 Monstrous Imagination
-TANTH 354 History of the Concept of Culture
 TARTS 150 Introduction to Theatre
 TARTS 151 Fundamentals of Acting
 TARTS 200 Studio Foundation I: Contemporary Art Strategies
@@ -217,10 +215,6 @@ TARTS 251 Intermediate Acting: Scene Study
 TARTS 252 Introduction to Stage Directing
 TARTS 266 The Artist as Visionary
 TARTS 280 3-D Art and Contemporary Approaches to Sculpture
-TARTS 281 Art and Culture in India
-TARTS 282 Art and Culture in China
-TARTS 283 Art and Culture in Japan
-TARTS 284 Art and Culture in the Pacific
 TARTS 311 History of Rock ‘n’ Roll
 TARTS 315 Music and Crisis
 TARTS 320 Improvisational Theater and Performance in Everyday Life
@@ -229,7 +223,6 @@ TARTS 336 Glass Arts
 TARTS 360 Women Artists from the Renaissance to the Present
 TARTS 364 Feminist Drama
 TARTS 367 Ideas Through Objects: A Conceptual Approach to Art
-TARTS 368 Human Figure in Contemporary Art
 TARTS 371 Theatre History: Ancient Drama
 TARTS 372 Theatre History: World Drama through French Neoclassicism
 TARTS 372 Theatre History: World Drama Through French Neoclassicism
@@ -263,7 +256,6 @@ TCOM 348 Nonfiction Writing for Television **
 TCOM 349 News Writing **
 TCOM 351 Video Production
 TCOM 380 Political Economy of the Media
-TCOM 430 Global Networks, Local Identities
 TCOM 440 Advertising and Consumer Culture
 TCOM 444 Gender, Ethnicity, Class and the Media
 TCOM 454 Communications Law
@@ -271,7 +263,6 @@ TCOM 461 Media and Identity in Asia
 TCOM 470 Documentary Production and Critique
 TCOM 471 Advanced Video Production **
 TCOM 480 Critical Media Industry Studies
-TCOM 481 Communication Regulations and Policy
 TCOM 486 Feature Writing for Print and Media **
 Teaching and Learning Center
 Technical Communication Minor
@@ -316,25 +307,17 @@ THIST 220 African American History 1619–1865
 THIST 221 African American History 1865–1945
 THIST 222 African American History 1945–Present
 THIST 260 World Empires
-THIST 333 Early American Music, Art, Literature and Theater
 THIST 341 African American History
-THIST 356 History of Christianity
 THIST 365 Europe in the Twentieth Century
 THIST 375 British Empire
 THIST 377 Art of the Americas
-THIST 378 American Architecture
 THIST 379 Modern Architecture
 THIST 430 Introduction to Public History
-THIST 462 History of Vietnam
-THIST 463 Premodern Japan
 THIST 464 Modern China
 THIST 465 Modern Japan
 THIST 466 Modern Korea
 THIST 470 The Material World: Art and Artifacts
-THIST 474 Imperial China
 THIST 475 Twentieth-Century Britain
-THIST 478 Revolution, Industrialization and Modernity in European Art (1780–1900)
-THIST 478 Revolution, Industrialization and Modernity in European Culture (1780–1900)
 THIST 479 Modern European Culture
 THIST 487 Technology in the Modern World
 THIST 495 The Metropolis
@@ -367,8 +350,6 @@ TLIT 240 Studies in English Literature
 TLIT 251 Ancient Literature of Western Civilization
 TLIT 252 Medieval Literature of Western Civilization
 TLIT 253 Modern Literature of Western Civilization
-TLIT 305 American Literary Movements, Genres and Historical Periods
-TLIT 306 Studies in Selected American Writers
 TLIT 311 Themes in American Literature
 TLIT 313 American Poetry
 TLIT 320 African American Literature from Slavery to the Present
@@ -378,7 +359,6 @@ TLIT 335 Middle Eastern American Literature
 TLIT 343 Shakespeare
 TLIT 351 Ancient Greek Tragedy
 TLIT 352 Medieval Quests
-TLIT 371 The World Stage
 TLIT 388 Cross Cultural Studies in Contemporary Women's Literature
 TLIT 390 Varieties of Literary Criticism
 TLIT 391 Science Fiction Literature

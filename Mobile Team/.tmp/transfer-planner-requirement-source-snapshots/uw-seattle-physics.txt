@@ -4,14 +4,29 @@ Title: Physics B.S. Degree Requirements | Department of Physics | University of 
 
 [Supplemental official source] B.S. Degree
 [Supplemental official source] Graduation
+‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
+§ Students receiving credit for physics-related research or independent project work in another department may petition the UFA to have it meet the capstone requirement by writing a paper describing how they applied physics to their independent project.
+* At most two of Astr 321, 322 and 323 may be used to satisfy this Physics requirement.
+& Analysis:
 &copy; 2026 University of Washington . All rights reserved.
+‡ Students taking other advanced labs may petition the UFA to have them substitute for Astr 480.
+1 course from:
 100-level:
+2 courses from:
 200-level:
 2025-26 Quarterly Course Offerings
 2026 Physics Department Graduation Celebration
+3 courses from:
+3 to 5 credits from any
+300-level:
+6 credits from:
 About
+Accelerated Advanced Calculus (5)
+Additional physics or cognate electives
 Adjuncts & Affiliates
 Administrative Contacts
+Advanced Laboratory (6-8 credits),
+Advanced Multivariable Calculus (3)
 Advice For Prospective Majors
 Advice for Students
 Advising & Student Services
@@ -21,8 +36,18 @@ After your Physics major advisor submits your application to the UW, you will re
 All Staff
 Alumni News
 Alumni Update
+AMath 301 *
+AMath 401
 Applied physics track
 Applied Physics Track
+Applied Physics Track (addl. 34-43 credits)
+Astr 321 *
+Astr 322 *
+Astr 323 *
+Astr 480 or Astr 481 ‡
+Astr 481
+Astronomical Data Analysis/Acquisition (5)
+Astronomical Observation (5)
 Awards
 B.S. Degree
 Baccalaureate Honors
@@ -30,15 +55,19 @@ Baccalaureate Honors are: Cum Laude, Magna Cum Laude, and Summa Cum Laude. These
 Bachelor of Science in Physics
 Bachelor of Science in Physics | Department of Physics | University of Washington
 Back to top
+Beginning Scientific Computing (4)
 Biological physics track (No longer accepting new students as of Spring 2024)
 Box 351560
 BS Degree Requirements Before Autumn 2021
 Calendar
 Capstone Options
+Capstone,
 Centers & Institutes
 Changing Your Graduation Date
+Classical Mechanics (3)
 Climate & Diversity
 College of Arts & Sciences
+combination of:
 Common requirements, all tracks
 Common Requirements, All Tracks (52 credits)
 Community Support
@@ -46,13 +75,17 @@ Complete a Graduating Senior Exit Survey
 Comprehensive & Applied Physics Track Electives
 Comprehensive Physics Track
 Comprehensive track
+Comprehensive Track (addl. 38-46 credits)
+Computers in Data Acquisition (3)
 Consider seeing a Career Coach , who can be a helpful guide in career exploration, strategies on job & internship searching, and interview advising.
 Contact Us
 Continuation Policy
+Core Physics:
 Course Exam Archive
 Course Syllabi
 Courses
 Courses Offered
+Data Acquisition
 Declaring a Physics Major
 Declaring Major
 Degrees are posted to your transcript by the UW Office of Graduation & Academic Records approximately 2-3 weeks after the end of the quarter upon verification that you have completed all degree requirements.
@@ -64,13 +97,20 @@ Diplomas and Degree Validation
 Directories
 Double degree or major students
 During this time, the Physics advisor will review your MyPlan to ensure everything is in place for a graduation within 3 quarters (or less, depending on your timeline), verify that your exit survey has been submitted, and talk about submitting the Graduation Application to the University of Washington.
+Electives,
 Electromagnetism (5)
+Electromagnetism I (4)
+Electromagnetism II (4)
+Electromagnetism III (4)
+Electronics Lab: Analog (3)
+Electronics Lab: Digital (3)
 Eligible participants to the Physics Department Graduation Celebration will have completed their degrees between autumn and summer quarters (this is different from the campus-wide ceremony of summer to summer). The Physics Department Graduation Celebration be held at 4pm in the Husky Union Building (room 211 - Ballroom). Graduation apparel is optional. We do not require tickets to attend, but we need your RSVP and a slide for our slideshow. We would recommend purchasing parking through the UW Commencement website as parking will be competitive on the day of the Graduation Ceremony.
 Emeritus Faculty
 Employment
 Events
 Events Mailing Lists
 Every Physics B.S. degree option requires completion of a selection of courses plus fulfilment of a capstone requirement involving activities outside a typical classroom. Continuation in the major requires maintaining satisfactory progress. For further information on the range of activies which may be used to satisfy the capstone requirement for each degree track, and on satisfactory progress criteria, refer to:
+Extragalactic Astronomy & Cosmology (3)
 Faculty
 Fax: (206) 685-0635
 For more information, visit the University Registrar's website for Graduation and Diplomas: https://registrar.washington.edu/students/graduation/
@@ -85,6 +125,7 @@ Handshake is UW's primary resource for job searches, recruiting, and on-campus w
 History
 Home
 Honors in Physics
+Honors Seminar (1)
 If you need to change your graduation date, contact Physics Student Services as soon as possible. This will help to ensure that your registration for the additional quarter(s) opens as quickly as possible.
 If you’re thinking about graduate school, the UW Graduate School offers a great course that can help students explore the graduate school application process, develop an understanding of the purpose of graduate education, and access helpful resources. Preparing for Graduate Education (GRDSCH 200) is offered nearly every quarter: https://grad.uw.edu/prospective-students/finding-your-path/grad-school-200-preparing-for-graduate-education/
 Important: If you are graduating in the current quarter, please reach out to Physics Student Services within the first two weeks of the quarter because there is a strict deadline.
@@ -95,12 +136,16 @@ Information for Graduating Seniors in the Physics Major | Department of Physics 
 Instagram
 Integral Calculus (5)
 International Students are highly encouraged to refer to the ISS Final Year Checklist , or check in with their International Student Services advisor, as they can provide helpful information, especially regarding any requirements and suggestions as you approach your final quarter at the UW.
+Introduction to Quantum Mechanics (3)
+Introduction to Research: Frontiers of Physics (1)
 Introductory Courses
+Introductory Experimental Physics (3)
 IT Support (PACS)
 It takes 2-3 months for diplomas to arrive in the mail. Please be sure to check your MyUW address settings to ensure that your diploma arrives at the correct address. You can also specify the name printed on your diploma if it does not match your student record name in the UW database: https://registrar.washington.edu/students/diplomas/
 Join the UW Alumni Group on LinkedIn! https://www.linkedin.com/groups/40422/
 Letters of Recommendation: How to Ask: https://careers.uw.edu/blog/2022/09/08/how-to-ask-for-a-letter-of-recommendation/
 Letters of Recommendation: Tips & Advice from the Office of Merit Scholarships, Fellowships, & Awards https://expd.uw.edu/scholarships/applying/letters-of-recommendation/
+Linear Algebra (3)
 LinkedIn
 Machine Shop
 Main menu
@@ -113,22 +158,37 @@ Math 207 or AMath 351
 Math 208 or AMath 352
 Math 209 or AMath 353
 Math 224
+Math 334 or 335 or 336
+Mathematical Methods of Physics I (4)
+Mathematical Methods of Physics II (4)
 Mechanics (5)
 Meet or email with a Physics advisor
 Mentoring Program
 Menu
+Modern Physics Lab: Atomic (3)
+Modern Physics Lab: Condensed Matter (3)
+Modern Physics Lab: Nuclear & Particle (3)
+More Math (3-5 credits),
+More Math,
+More Physics,
 Multivariate Calculus (5)
 MyPhys
 MyUW
+Neural Network Methods (3)
 News & Events
 Newsletter
 Next, submit a Graduating Senior Exit Survey . This is a survey which asks how your experience was in the Physics major. It asks questions about the courses, the textbooks, about your interactions with members of the Physics Department, and whether you would like to be contacted in the future for participation in career panels or informational interviews. The feedback we receive is considered for making improvements to benefit future Physics majors, such as the creation of this graduation website!
 Note: After a student has earned their UW degree, the "Graduation Date" on the Degree Audit will go back to "not found". This is considered normal, as the degree will have already been posted to the student's transcript, making the Degree Audit irrelevant.
 Once you apply for graduation, you are eligible for Graduating Senior Priority (GSP) registration which grants you priority Period 1 registration for your last 2 quarters. For example, a Physics student planning to graduate in spring quarter would have GSP registration for both winter and spring quarters if they complete their graduation process with Physics Student Services within the first 2-3 weeks of autumn quarter. For your specific timeline, please view Academic Calendar , select the appropriate academic year, and view when the Graduating Senior Priority application is due under ‘Application Deadlines’.
 Once you have confirmed your Graduation Application, you will receive the following notification: Thank you! We have received your confirmation. A new degree audit will also show that you have a graduation quarter listed at the top.
+Optics Lab (3)
 Order Official Transcripts: https://registrar.washington.edu/students/transcripts/
+Ordinary Differential Equations (3)
+Our Galaxy (3)
 Our Physics B.S. degree program is one of the largest in the nation, with 175 degrees awarded annually. Graduates pursue diverse paths including further studies in physics, teaching careers, and positions in the private sector. The program offers three B.S. degree tracks: Comprehensive Physics, Applied Physics, and Teaching Physics, allowing students to tailor their degree to their interests and goals. Students choose a track when declaring a major, but can change it anytime before applying to graduate.
+Partial Differential Equations (3)
 Participating in Graduation events
+Particles & Symmetries (3)
 People
 PhD Program
 PhD Students
@@ -143,6 +203,24 @@ Phys 227
 Phys 228
 Phys 231
 Phys 294
+Phys 321
+Phys 322
+Phys 323
+Phys 324
+Phys 325
+Phys 328
+Phys 329
+Phys 331
+Phys 334
+Phys 335
+Phys 417 ‖
+Phys 431
+Phys 432
+Phys 433
+Phys 434
+Phys 485 , 486 or 487
+Phys 494 , 495 or 496
+Phys 499 or Astr 499 §
 Physics B.S. Degree Requirements
 Physics Colloquium
 Physics Minor
@@ -158,6 +236,8 @@ Privacy
 Professional Master's
 Programs & Courses
 Prospective employers, graduate programs, and others who require verification that you’ve earned your degree can access this information through a UW Degree Validation website: https://registrar.washington.edu/students/enrollment-and-degree-verification/
+Quantum Mechanics I (4)
+Quantum Mechanics II (4)
 Quick links
 Quick Links
 Recipients
@@ -172,12 +252,15 @@ Research Seminars
 Resources
 Search
 Seattle, WA 98195-1560
+Senior Seminar (1)
 Share
 Site Map
 Skip to main content
 Society of Physics Students (SPS)
+Solar System (3)
 Sometimes students will find a registration hold placed on their account if they have not applied to graduate. When this happens, please contact Physics Student Services so that we can review the hold and help.
 Staff
+Statistical Physics (3)
 Student Services
 Student Shop
 Students graduating in spring or summer 2026 and planning to participate in the UW Commencement Ceremony in June 2026 must have their Graduation Application submitted by the third Friday of spring quarter 2026.
@@ -200,9 +283,11 @@ The Teaching Physics track is for those interested in teaching physics or math a
 The UW Alumni Association is a network of over 50,000 alumni Huskies, with chapters and regional groups all over the country and the world! The UWAA offers a complimentary one-year membership to its most-recent alumni, numerous opportunities to network with fellow Huskies, and alumni services such as library access and a UW alumni email account.
 The UW Commencement website has information on guest tickets to the UW ceremony, ordering announcements, graduation apparel, photos, purchasing parking permits, etc.
 The UW’s campus-wide graduation ceremony is for students who have or will graduate, between summer quarters. Example: for the 2026 June graduation, eligible students would graduate between summer 2025 and summer 2026.
+Thermal & Statistical Physics (3)
 Topics
 Transfer Credit
 Undergraduate Research
+Undergraduate Research (1-6)
 University of Washington
 Unofficial UW Transcript: https://my.uw.edu/ > UW Resources > Academics > Grades & Transcripts
 Upcoming Events
@@ -212,6 +297,7 @@ UW Alumni Association
 UW Course Catalog
 UW diplomas only list the graduate's name, the degree earned, and any applicable honors. Majors, minors, and options are not listed on UW diplomas unless they are part of the honors designation.
 UW Time Schedule
+Vector Calculus & Complex Variables (4)
 Visitor Information
 Washington
 Waves, Optics & Heat (5)

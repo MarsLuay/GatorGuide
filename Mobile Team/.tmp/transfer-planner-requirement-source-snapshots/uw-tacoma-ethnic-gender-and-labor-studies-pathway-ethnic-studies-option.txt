@@ -76,6 +76,7 @@ expand_more
 Financial Aid
 For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
 Gender and Sexuality Studies Minor
+Gender Studies Electives (10 credits)
 Gender Studies Electives (15 credits)
 Gender Studies Option
 Global Studies Concentration
@@ -151,15 +152,27 @@ TECON 370 Economics and Social Mobility
 TECON 450 Labor Economics and Policy
 TEGL 101 Introduction to Ethnic, Gender and Labor Studies
 TEGL 112 Introduction to Indigenous Studies
+TEGL 201 Introduction to Indigenous Philosophy
 TEGL 202 Introduction to Contemporary American Indian Issues
+TEGL 210 Introduction to Qualitative Methodology and Research Methods
 TEGL 210 Introduction to Qualitative Research and Ethics
 TEGL 266 Introduction to Labor Studies
+TEGL 271 American Indians in Film
 TEGL 301 Introduction to Indigenous Women and Feminism
+TEGL 302 Tribal Critical Race Theory and Critical Race Theory
+TEGL 303 Introduction to American Indian Education
+TEGL 304 Indigenous Ethnoecology
+TEGL 305 American Indian Movement
 TEGL 310 Intersectional Feminisms
 TEGL 340 Race, Gender and Sexuality in a Global Perspective
+TEGL 365 Indigenous Ethnobiology
 TEGL 380 Gender and Sexuality across Cultural and Historical Contexts
 TEGL 401 Critical and Indigenous Methodologies
+TEGL 419 African American Culture and Consciousness
 TEGL 435 Migration and the Modern World
+TEGL 435 Migration in the Modern World: Migrants, Immigrants and Refugees
+TEGL 464 Indigenous Health, Political Ethnoecology and Governance
+TEGL 498 Study Abroad: Intersections
 Terms of Use |
 TFILM 436 Feminist Perspectives in Film and Literature
 TFILM 438 Gender and Sexuality in Film
@@ -175,26 +188,53 @@ THIST 221 African American History 1865–1945
 THIST 222 African American History 1945–present
 THIST 320 Asian American History
 THIST 322 American Labor Since the Civil War
+THIST 341 African American History
+THIST 349 Minorities and Higher Education in American History
 THIST 413 Civil Rights, Civil Liberties
+THIST 416 Life and Thought: Martin Luther King Jr., Malcolm X and Angela Davis
+THIST 420 African American Religious History
 THIST 437 Doing Community History
 THIST 440 Black Labor in America
+THIST 441 Black Freedom Movement in Perspective
+THIST 457 Anti-Semitism and the Holocaust
+THIST 495 The Metropolis
 title="Follow UW Tacoma on Facebook">
 title="Follow UW Tacoma on Instagram">
 title="Follow UW Tacoma on Linkedin">
 title="Follow UW Tacoma on TikTok">
 title="Follow UW Tacoma on Youtube">
 TLAW 348 Gender and Law
+TLAW 452 Minorities in the Law
 TLAX 238 Latinos in the United States
+TLAX 250 Images of Latinos/as in the Movies
+TLAX 267 Introduction to Chicano/a Literature
 TLAX 290 Latinx Social Movements
+TLAX 333 U.S. Latino Histories
+TLAX 340 Transnationalism, Religion and Differences in Las Americas
+TLAX 355 Migration and Transnational Family in Latino Literature and Film
+TLAX 356 Latinx Urban Communities
+TLAX 360 Latinx Performance Histories
 TLAX 380 Latinx Sexualities
+TLAX 400 Afro-Hispanic Culture
 TLAX 462 Women in Latin America
+TLAX 476 Latin American Women Writers
+TLIT 230 Multi-Ethnic American Literature
 TLIT 320 African American Literature from Slavery to Present
+TLIT 320 African American Literature from Slavery to the Present
 TLIT 324 African American Women's Literature
+TLIT 324 African American Women’s Literature
+TLIT 331 Immigrant and Ethnic Literature
+TLIT 332 Asian American Literature
+TLIT 335 Middle Eastern American Literature
 TLIT 388 Cross Cultural Studies in Women's Literature
+TLIT 425 Literature of the Harlem Renaissance
 TLIT 431 Contemporary Native American Women's Literature
+TLIT 432 American Indian Literature
+TLIT 433 Native American Literature and Federal Indian Law
 TLIT 476 American Women's Lit: Nineteenth and Twentieth Century
 Tools
 TPOLS 270 Introduction to Political Economy
+TPOLS 317 The Politics of Race and Ethnicity in the United States
 TPOLS 329 Making of Modern Africa
 TPOLS 343 Community and Labor Organizing: A Multicultural Perspective
 TPOLS 410 Labor Rights and Human Rights
@@ -205,20 +245,36 @@ TPSYCH 400 Psychology of Women
 TPSYCH 403 Psychology of Black Women
 TPSYCH 431 Sexual Deviance
 TPSYCH 432 Sex Crimes and Sexual Violence
+TPSYCH 461 Asian American Psychology
 Tribal Sponsor of UW Tacoma
 TSOC 265 Race and Ethnicity in the United States
 TSOC 270 Introduction to Asian America
 TSOC 335 Social Class and Inequality
+TSOC 365 Advanced Sociological Theories of Race and Ethnicity
 TSOC 434 Women, Race and Class
 TSOC 437 Immigration Today
 TSOC 439 Fieldwork and Interviewing in Communities
+TSOC 455 Sociology of Gender
 TSOC 460 Demographic Methods: Analyzing Race, Class and Gender
 TSOC 465 Asian and Asian American Laborers in the United States: Citizenship, Immigrant Rights and the Welfare State
 TSOC 470 Qualitative Research: Inquiry and Methods
+TSOCWF 354 Sexual Orientation and Gender Identity
+TURB 312 Race and Poverty in Urban America
+TURB 314 Gender and the Urban Landscape
 TWOMN 101 Introduction to Women's Studies
+TWOMN 205 Introduction to Masculinities
+TWOMN 211 Women in Science
+TWOMN 250 Seminar in Service Learning: A Feminist Approach
+TWOMN 251 Gender and Popular Culture
+TWOMN 302 Feminist Research Methods
 TWOMN 302 Research Methods in Women Studies
 TWOMN 345 Women and Work in the United States
+TWOMN 347 History of Women in the United States
 TWOMN 420 Women and the Global Economy
+TWOMN 420 Women in the Global Economy
+TWOMN 434 Women’s Voices: Transnational Testimonials
+TWOMN 455 Contemporary Theories in Gender and Sexuality Studies
+TWRT 340 Asian American Rhetorics, Literacies and Activism
 University YMCA Student Center
 UW Gmail
 UW Seattle | UW

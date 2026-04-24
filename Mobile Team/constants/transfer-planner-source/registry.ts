@@ -11,6 +11,7 @@ import {
   getTransferPlannerEquivalentCourseCodes,
   getTransferPlannerNormalizedCourseMetadataEntry,
 } from "./course-metadata";
+import { normalizeTransferPlannerCourseCode } from "./course-code-normalization";
 import {
   TRANSFER_PLANNER_UW_GRC_ALL_EQUIVALENCY_RULES,
 } from "./equivalency-guide.generated";
@@ -163,7 +164,10 @@ const RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set([
   "AS",
   "BOTH",
   "EITHER",
+  "IN",
   "OR",
+  "PREREQ",
+  "PREREQUISITE",
 ]);
 const LEADING_LIST_MARKER_TOKENS = new Set(["I", "II", "III", "IV"]);
 const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
@@ -479,21 +483,7 @@ type MutableCourseRegistryEntry = Omit<
 };
 
 function normalizeCourseCode(value: string) {
-  const normalized = String(value ?? "")
-    .toUpperCase()
-    .replace(/\s+/g, " ")
-    .trim();
-  const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}(?:\.\d+)?[A-Z]?)$/);
-  if (!match) {
-    return normalized;
-  }
-
-  const subjectTokens = match[1].split(" ").filter(Boolean);
-  const normalizedSubject = subjectTokens.every((token) => token.length === 1)
-    ? subjectTokens.join("")
-    : subjectTokens.join(" ");
-
-  return `${normalizedSubject} ${match[2]}`;
+  return normalizeTransferPlannerCourseCode(value);
 }
 
 function parseGuideTermSortValue(label: string | null | undefined) {

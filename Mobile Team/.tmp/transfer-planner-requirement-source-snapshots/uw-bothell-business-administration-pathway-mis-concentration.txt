@@ -113,6 +113,7 @@ BBUS 457 – Advance Valuation (454)
 BBUS 459 – Special Topics in Finance (350)
 BBUS 460 – Sustainable Business
 BBUS 461 – Business, Government, & Society (300, 310)
+BBUS 462 – Negotiations & Conflict Management (BBUS/ELCBUS 320)
 BBUS 464 – New Product Marketing (320)
 BBUS 465 – Applied Finance Accounting (350)
 BBUS 470 – Business Policy & Strategic Management
@@ -120,6 +121,9 @@ BBUS 471 – Entrepreneurial Management
 BBUS 473 – Leadership & Decision Making (300)
 BBUS 475 – Managing Innovation
 BBUS 476 – New Technology & Future Markets (300, 320, 350)
+BBUS 476 – New Technology & Future Markets (300, BBUS/ELCBUS 320, 350)
+BBUS 477 – Human Resources Management (300)
+BBUS 479 – Special Topics in Management (300)
 BBUS 479 – Special Topics in Management (300) , Only counts when approved for concentration; see your advisor before registering.
 BBUS 480 – Global Environment of Business
 BBUS 489 – Digital Business Lab
@@ -135,6 +139,7 @@ BBUS 499 – Undergraduate Research. Only counts when approved for concentration
 BBUS 499 – Undergraduate Research. Only counts when approved for option; see your advisor before registering.
 Beardslee Building (UWBB)
 Become a Mentor
+Before you can register for a capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
 Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
 Bothell, WA 98011
 Bothell, Washington View our location on Google maps.

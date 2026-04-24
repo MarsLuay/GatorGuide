@@ -1,23 +1,23 @@
 {
-  "generatedAt": "2026-04-23T22:21:19.618Z",
-  "totalOwners": 466,
+  "generatedAt": "2026-04-24T10:59:35.473Z",
+  "totalOwners": 424,
   "ownersWithErrorsCount": 0,
-  "ownersWithWarningsCount": 9,
+  "ownersWithWarningsCount": 7,
   "ownersWithSourceOnlyUwCourseCodesCount": 6,
-  "totalSourceOnlyUwCourseCodes": 146,
+  "totalSourceOnlyUwCourseCodes": 245,
   "issueCounts": {
     "error": 0,
-    "warning": 9
+    "warning": 7
   },
   "symptomIssueCounts": {
     "error": 0,
-    "warning": 9
+    "warning": 7
   },
   "countsByIssueCode": {
-    "no-parsed-uw-course-codes": 9
+    "no-parsed-uw-course-codes": 7
   },
   "countsBySymptomCode": {
-    "no-parsed-uw-course-codes": 9
+    "no-parsed-uw-course-codes": 7
   },
   "promotedOwnerInvariantViolationCount": 0,
   "owners": [
@@ -229,7 +229,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 52,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -273,29 +273,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-bothell-business-administration-accounting:pathway:retail-management-concentration",
-      "ownerKey": "uw-bothell-business-administration-accounting::retail-management-concentration",
-      "planId": "uw-bothell-business-administration-accounting",
-      "pathwayId": "retail-management-concentration",
-      "pathwayLabel": "Retail Management Concentration",
-      "title": "Business Administration: Accounting (BA) - Retail Management Concentration",
-      "campusId": "uw-bothell",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 46,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -1672,6 +1650,130 @@
       "symptomIssues": []
     },
     {
+      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:cecl-concentration",
+      "ownerKey": "uw-bothell-developmental-and-youth-studies::cecl-concentration",
+      "planId": "uw-bothell-developmental-and-youth-studies",
+      "pathwayId": "cecl-concentration",
+      "pathwayLabel": "CECL Concentration",
+      "title": "Developmental and Youth Studies (BA) - CECL Concentration",
+      "campusId": "uw-bothell",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:education-studies-elementary-education-option",
+      "ownerKey": "uw-bothell-developmental-and-youth-studies::education-studies-elementary-education-option",
+      "planId": "uw-bothell-developmental-and-youth-studies",
+      "pathwayId": "education-studies-elementary-education-option",
+      "pathwayLabel": "Education Studies: Elementary Education Option",
+      "title": "Developmental and Youth Studies (BA) - Education Studies: Elementary Education Option",
+      "campusId": "uw-bothell",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:esol-concentration",
+      "ownerKey": "uw-bothell-developmental-and-youth-studies::esol-concentration",
+      "planId": "uw-bothell-developmental-and-youth-studies",
+      "pathwayId": "esol-concentration",
+      "pathwayLabel": "ESOL Concentration",
+      "title": "Developmental and Youth Studies (BA) - ESOL Concentration",
+      "campusId": "uw-bothell",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:lede-concentration",
+      "ownerKey": "uw-bothell-developmental-and-youth-studies::lede-concentration",
+      "planId": "uw-bothell-developmental-and-youth-studies",
+      "pathwayId": "lede-concentration",
+      "pathwayLabel": "LEDE Concentration",
+      "title": "Developmental and Youth Studies (BA) - LEDE Concentration",
+      "campusId": "uw-bothell",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-bothell-developmental-and-youth-studies:pathway:m-ed-with-educating-for-critical-race-theory-e-crit-concentration",
+      "ownerKey": "uw-bothell-developmental-and-youth-studies::m-ed-with-educating-for-critical-race-theory-e-crit-concentration",
+      "planId": "uw-bothell-developmental-and-youth-studies",
+      "pathwayId": "m-ed-with-educating-for-critical-race-theory-e-crit-concentration",
+      "pathwayLabel": "M.Ed. with Educating for Critical Race Theory (E-Crit) Concentration",
+      "title": "Developmental and Youth Studies (BA) - M.Ed. with Educating for Critical Race Theory (E-Crit) Concentration",
+      "campusId": "uw-bothell",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 1
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 1
+      },
+      "rootIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ],
+      "symptomIssues": [
+        {
+          "severity": "warning",
+          "code": "no-parsed-uw-course-codes",
+          "message": "Parsed requirement source block produced zero UW course codes.",
+          "details": null
+        }
+      ]
+    },
+    {
       "ownerId": "uw-bothell-earth-system-science",
       "ownerKey": "uw-bothell-earth-system-science::",
       "planId": "uw-bothell-earth-system-science",
@@ -2017,7 +2119,7 @@
       "campusId": "uw-bothell",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 33,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -2646,72 +2748,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-anthropology:pathway:anthropology-of-globalization",
-      "ownerKey": "uw-seattle-anthropology::anthropology-of-globalization",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "anthropology-of-globalization",
-      "pathwayLabel": "Anthropology of Globalization",
-      "title": "Anthropology - Anthropology of Globalization",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-anthropology:pathway:archaeological-heritage",
-      "ownerKey": "uw-seattle-anthropology::archaeological-heritage",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "archaeological-heritage",
-      "pathwayLabel": "Archaeological Heritage)",
-      "title": "Anthropology - Archaeological Heritage)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-anthropology:pathway:archaeological-sciences",
-      "ownerKey": "uw-seattle-anthropology::archaeological-sciences",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "archaeological-sciences",
-      "pathwayLabel": "Archaeological Sciences",
-      "title": "Anthropology - Archaeological Sciences",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-anthropology:pathway:archaeology",
       "ownerKey": "uw-seattle-anthropology::archaeology",
       "planId": "uw-seattle-anthropology",
@@ -2732,144 +2768,6 @@
       },
       "rootIssues": [],
       "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-anthropology:pathway:biological-anthropology",
-      "ownerKey": "uw-seattle-anthropology::biological-anthropology",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "biological-anthropology",
-      "pathwayLabel": "Biological Anthropology)",
-      "title": "Anthropology - Biological Anthropology)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
-    },
-    {
-      "ownerId": "uw-seattle-anthropology:pathway:human-evolutionary-biology",
-      "ownerKey": "uw-seattle-anthropology::human-evolutionary-biology",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "human-evolutionary-biology",
-      "pathwayLabel": "Human Evolutionary Biology",
-      "title": "Anthropology - Human Evolutionary Biology",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-anthropology:pathway:indigenous-archaeology",
-      "ownerKey": "uw-seattle-anthropology::indigenous-archaeology",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "indigenous-archaeology",
-      "pathwayLabel": "Indigenous Archaeology",
-      "title": "Anthropology - Indigenous Archaeology",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-anthropology:pathway:medical-anthropology-and-global-health",
-      "ownerKey": "uw-seattle-anthropology::medical-anthropology-and-global-health",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "medical-anthropology-and-global-health",
-      "pathwayLabel": "Medical Anthropology and Global Health",
-      "title": "Anthropology - Medical Anthropology and Global Health",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-anthropology:pathway:sociocultural-anthropology",
-      "ownerKey": "uw-seattle-anthropology::sociocultural-anthropology",
-      "planId": "uw-seattle-anthropology",
-      "pathwayId": "sociocultural-anthropology",
-      "pathwayLabel": "Sociocultural Anthropology)",
-      "title": "Anthropology - Sociocultural Anthropology)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Anthropology-102.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
     },
     {
       "ownerId": "uw-seattle-applied-and-computational-mathematical-sciences",
@@ -3436,50 +3334,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-atmospheric-and-climate-science:pathway:advanced-data-science",
-      "ownerKey": "uw-seattle-atmospheric-and-climate-science::advanced-data-science",
-      "planId": "uw-seattle-atmospheric-and-climate-science",
-      "pathwayId": "advanced-data-science",
-      "pathwayLabel": "Advanced Data Science)",
-      "title": "Atmospheric and Climate Science - Advanced Data Science)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-atmospheric-and-climate-science:pathway:atmospheric-sciences-and-astrobiology",
-      "ownerKey": "uw-seattle-atmospheric-and-climate-science::atmospheric-sciences-and-astrobiology",
-      "planId": "uw-seattle-atmospheric-and-climate-science",
-      "pathwayId": "atmospheric-sciences-and-astrobiology",
-      "pathwayLabel": "Atmospheric Sciences and Astrobiology)",
-      "title": "Atmospheric and Climate Science - Atmospheric Sciences and Astrobiology)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-atmospheric-and-climate-science:pathway:chemistry",
       "ownerKey": "uw-seattle-atmospheric-and-climate-science::chemistry",
       "planId": "uw-seattle-atmospheric-and-climate-science",
@@ -3678,72 +3532,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-biology:pathway:advanced-data-science",
-      "ownerKey": "uw-seattle-biology::advanced-data-science",
-      "planId": "uw-seattle-biology",
-      "pathwayId": "advanced-data-science",
-      "pathwayLabel": "Advanced Data Science)",
-      "title": "Biology - Advanced Data Science)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-biology:pathway:biology-and-astrobiology",
-      "ownerKey": "uw-seattle-biology::biology-and-astrobiology",
-      "planId": "uw-seattle-biology",
-      "pathwayId": "biology-and-astrobiology",
-      "pathwayLabel": "Biology and Astrobiology)",
-      "title": "Biology - Biology and Astrobiology)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-biology:pathway:data-science",
-      "ownerKey": "uw-seattle-biology::data-science",
-      "planId": "uw-seattle-biology",
-      "pathwayId": "data-science",
-      "pathwayLabel": "Data Science)",
-      "title": "Biology - Data Science)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-biology:pathway:ecology-evolution-and-conservation",
       "ownerKey": "uw-seattle-biology::ecology-evolution-and-conservation",
       "planId": "uw-seattle-biology",
@@ -3920,6 +3708,28 @@
       "symptomIssues": []
     },
     {
+      "ownerId": "uw-seattle-chemical-engineering:pathway:nanoscience-and-molecular-engineering-nme-option-program",
+      "ownerKey": "uw-seattle-chemical-engineering::nanoscience-and-molecular-engineering-nme-option-program",
+      "planId": "uw-seattle-chemical-engineering",
+      "pathwayId": "nanoscience-and-molecular-engineering-nme-option-program",
+      "pathwayLabel": "Nanoscience and Molecular Engineering (NME) Option Program",
+      "title": "Chemical Engineering - Nanoscience and Molecular Engineering (NME) Option Program",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
       "ownerId": "uw-seattle-chemical-engineering:pathway:nme-option",
       "ownerKey": "uw-seattle-chemical-engineering::nme-option",
       "planId": "uw-seattle-chemical-engineering",
@@ -3942,12 +3752,34 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-chemical-engineering:pathway:standard-option",
-      "ownerKey": "uw-seattle-chemical-engineering::standard-option",
+      "ownerId": "uw-seattle-chemical-engineering:pathway:nme-option-for-chem-e-majors",
+      "ownerKey": "uw-seattle-chemical-engineering::nme-option-for-chem-e-majors",
       "planId": "uw-seattle-chemical-engineering",
-      "pathwayId": "standard-option",
-      "pathwayLabel": "Standard Option",
-      "title": "Chemical Engineering - Standard Option",
+      "pathwayId": "nme-option-for-chem-e-majors",
+      "pathwayLabel": "NME Option for CHEM E Majors",
+      "title": "Chemical Engineering - NME Option for CHEM E Majors",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-seattle-chemical-engineering:pathway:program-option",
+      "ownerKey": "uw-seattle-chemical-engineering::program-option",
+      "planId": "uw-seattle-chemical-engineering",
+      "pathwayId": "program-option",
+      "pathwayLabel": "Program Option",
+      "title": "Chemical Engineering - Program Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
@@ -4624,28 +4456,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-drama:pathway:acting",
-      "ownerKey": "uw-seattle-drama::acting",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "acting",
-      "pathwayLabel": "Acting)",
-      "title": "Drama - Acting)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-drama:pathway:design",
       "ownerKey": "uw-seattle-drama::design",
       "planId": "uw-seattle-drama",
@@ -4668,100 +4478,12 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-drama:pathway:design-costume",
-      "ownerKey": "uw-seattle-drama::design-costume",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "design-costume",
-      "pathwayLabel": "Design - Costume)",
-      "title": "Drama - Design - Costume)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-drama:pathway:design-lighting",
-      "ownerKey": "uw-seattle-drama::design-lighting",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "design-lighting",
-      "pathwayLabel": "Design - Lighting)",
-      "title": "Drama - Design - Lighting)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-drama:pathway:design-scenery",
-      "ownerKey": "uw-seattle-drama::design-scenery",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "design-scenery",
-      "pathwayLabel": "Design - Scenery)",
-      "title": "Drama - Design - Scenery)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-drama:pathway:performance",
       "ownerKey": "uw-seattle-drama::performance",
       "planId": "uw-seattle-drama",
       "pathwayId": "performance",
       "pathwayLabel": "Performance",
       "title": "Drama - Performance",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-drama:pathway:textual-studies",
-      "ownerKey": "uw-seattle-drama::textual-studies",
-      "planId": "uw-seattle-drama",
-      "pathwayId": "textual-studies",
-      "pathwayLabel": "Textual Studies)",
-      "title": "Drama - Textual Studies)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Drama-134.html",
@@ -4822,78 +4544,12 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:applied-geosciences",
-      "ownerKey": "uw-seattle-earth-and-space-sciences::applied-geosciences",
-      "planId": "uw-seattle-earth-and-space-sciences",
-      "pathwayId": "applied-geosciences",
-      "pathwayLabel": "Applied Geosciences)",
-      "title": "Earth & Space Sciences - Applied Geosciences)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-earth-and-space-sciences:pathway:biology-option",
       "ownerKey": "uw-seattle-earth-and-space-sciences::biology-option",
       "planId": "uw-seattle-earth-and-space-sciences",
       "pathwayId": "biology-option",
       "pathwayLabel": "Biology Option",
       "title": "Earth & Space Sciences - Biology Option",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:data-science",
-      "ownerKey": "uw-seattle-earth-and-space-sciences::data-science",
-      "planId": "uw-seattle-earth-and-space-sciences",
-      "pathwayId": "data-science",
-      "pathwayLabel": "Data Science)",
-      "title": "Earth & Space Sciences - Data Science)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-earth-and-space-sciences:pathway:earth-and-space-sciences-and-astrobiology",
-      "ownerKey": "uw-seattle-earth-and-space-sciences::earth-and-space-sciences-and-astrobiology",
-      "planId": "uw-seattle-earth-and-space-sciences",
-      "pathwayId": "earth-and-space-sciences-and-astrobiology",
-      "pathwayLabel": "Earth and Space Sciences and Astrobiology)",
-      "title": "Earth & Space Sciences - Earth and Space Sciences and Astrobiology)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
@@ -5196,50 +4852,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-education-studies:pathway:culturally-sustaining-education",
-      "ownerKey": "uw-seattle-education-studies::culturally-sustaining-education",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "culturally-sustaining-education",
-      "pathwayLabel": "Culturally Sustaining Education",
-      "title": "Education Studies - Culturally Sustaining Education",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:early-childhood-special-education",
-      "ownerKey": "uw-seattle-education-studies::early-childhood-special-education",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "early-childhood-special-education",
-      "pathwayLabel": "Early Childhood Special Education",
-      "title": "Education Studies - Early Childhood Special Education",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-education-studies:pathway:early-childhood-studies",
       "ownerKey": "uw-seattle-education-studies::early-childhood-studies",
       "planId": "uw-seattle-education-studies",
@@ -5306,94 +4918,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-education-studies:pathway:high-incidence-program-in-learning-and-emotional-behavioral-disabilities",
-      "ownerKey": "uw-seattle-education-studies::high-incidence-program-in-learning-and-emotional-behavioral-disabilities",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "high-incidence-program-in-learning-and-emotional-behavioral-disabilities",
-      "pathwayLabel": "High Incidence Program in Learning and Emotional/Behavioral Disabilities",
-      "title": "Education Studies - High Incidence Program in Learning and Emotional/Behavioral Disabilities",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:higher-education",
-      "ownerKey": "uw-seattle-education-studies::higher-education",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "higher-education",
-      "pathwayLabel": "Higher Education",
-      "title": "Education Studies - Higher Education",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:language-literacy-and-culture",
-      "ownerKey": "uw-seattle-education-studies::language-literacy-and-culture",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "language-literacy-and-culture",
-      "pathwayLabel": "Language, Literacy, and Culture",
-      "title": "Education Studies - Language, Literacy, and Culture",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:mathematics-education",
-      "ownerKey": "uw-seattle-education-studies::mathematics-education",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "mathematics-education",
-      "pathwayLabel": "Mathematics Education",
-      "title": "Education Studies - Mathematics Education",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-education-studies:pathway:multilingual-language-in-education",
       "ownerKey": "uw-seattle-education-studies::multilingual-language-in-education",
       "planId": "uw-seattle-education-studies",
@@ -5416,158 +4940,12 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-education-studies:pathway:organizational-and-policy-studies",
-      "ownerKey": "uw-seattle-education-studies::organizational-and-policy-studies",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "organizational-and-policy-studies",
-      "pathwayLabel": "Organizational and Policy Studies",
-      "title": "Education Studies - Organizational and Policy Studies",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:science-education",
-      "ownerKey": "uw-seattle-education-studies::science-education",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "science-education",
-      "pathwayLabel": "Science Education",
-      "title": "Education Studies - Science Education",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:severe-disabilities",
-      "ownerKey": "uw-seattle-education-studies::severe-disabilities",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "severe-disabilities",
-      "pathwayLabel": "Severe Disabilities",
-      "title": "Education Studies - Severe Disabilities",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:social-and-cultural-foundations",
-      "ownerKey": "uw-seattle-education-studies::social-and-cultural-foundations",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "social-and-cultural-foundations",
-      "pathwayLabel": "Social and Cultural Foundations",
-      "title": "Education Studies - Social and Cultural Foundations",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:social-studies",
-      "ownerKey": "uw-seattle-education-studies::social-studies",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "social-studies",
-      "pathwayLabel": "Social Studies",
-      "title": "Education Studies - Social Studies",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 1
-      },
-      "rootIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ],
-      "symptomIssues": [
-        {
-          "severity": "warning",
-          "code": "no-parsed-uw-course-codes",
-          "message": "Parsed requirement source block produced zero UW course codes.",
-          "details": null
-        }
-      ]
-    },
-    {
       "ownerId": "uw-seattle-education-studies:pathway:sports-and-education",
       "ownerKey": "uw-seattle-education-studies::sports-and-education",
       "planId": "uw-seattle-education-studies",
       "pathwayId": "sports-and-education",
       "pathwayLabel": "Sports and Education",
       "title": "Education Studies - Sports and Education",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-education-studies:pathway:teacher-education-and-teacher-learning-for-justice",
-      "ownerKey": "uw-seattle-education-studies::teacher-education-and-teacher-learning-for-justice",
-      "planId": "uw-seattle-education-studies",
-      "pathwayId": "teacher-education-and-teacher-learning-for-justice",
-      "pathwayLabel": "Teacher Education and Teacher Learning for Justice",
-      "title": "Education Studies - Teacher Education and Teacher Learning for Justice",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
@@ -5681,7 +5059,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 70,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -5804,50 +5182,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-electrical-computer-engineering:pathway:sensing-and-communication-pathway",
-      "ownerKey": "uw-seattle-electrical-computer-engineering::sensing-and-communication-pathway",
-      "planId": "uw-seattle-electrical-computer-engineering",
-      "pathwayId": "sensing-and-communication-pathway",
-      "pathwayLabel": "Sensing and Communication Pathway",
-      "title": "Electrical & Computer Engineering - Sensing and Communication Pathway",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-electrical-computer-engineering:pathway:sustainable-energy-systems-pathway",
-      "ownerKey": "uw-seattle-electrical-computer-engineering::sustainable-energy-systems-pathway",
-      "planId": "uw-seattle-electrical-computer-engineering",
-      "pathwayId": "sustainable-energy-systems-pathway",
-      "pathwayLabel": "Sustainable Energy Systems Pathway",
-      "title": "Electrical & Computer Engineering - Sustainable Energy Systems Pathway",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-english-creative-writing",
       "ownerKey": "uw-seattle-english-creative-writing::",
       "planId": "uw-seattle-english-creative-writing",
@@ -5876,72 +5210,6 @@
       "pathwayId": "creative-writing",
       "pathwayLabel": "Creative Writing",
       "title": "English - Creative Writing - Creative Writing",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/English-136.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-english-creative-writing:pathway:of-english-to-speakers-of-other-languages",
-      "ownerKey": "uw-seattle-english-creative-writing::of-english-to-speakers-of-other-languages",
-      "planId": "uw-seattle-english-creative-writing",
-      "pathwayId": "of-english-to-speakers-of-other-languages",
-      "pathwayLabel": "Of English to Speakers of Other Languages)",
-      "title": "English - Creative Writing - Of English to Speakers of Other Languages)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/English-136.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-english-creative-writing:pathway:textual-studies",
-      "ownerKey": "uw-seattle-english-creative-writing::textual-studies",
-      "planId": "uw-seattle-english-creative-writing",
-      "pathwayId": "textual-studies",
-      "pathwayLabel": "Textual Studies)",
-      "title": "English - Creative Writing - Textual Studies)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/English-136.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-english-creative-writing:pathway:theory-and-criticism",
-      "ownerKey": "uw-seattle-english-creative-writing::theory-and-criticism",
-      "planId": "uw-seattle-english-creative-writing",
-      "pathwayId": "theory-and-criticism",
-      "pathwayLabel": "Theory and Criticism)",
-      "title": "English - Creative Writing - Theory and Criticism)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/English-136.html",
@@ -6055,7 +5323,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -6077,7 +5345,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -6162,116 +5430,6 @@
       "pathwayId": "environmental-and-forest-sciences",
       "pathwayLabel": "Environmental and Forest Sciences)",
       "title": "Environmental Science & Terrestrial Resource Management - Environmental and Forest Sciences)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/academic/sefs.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:environmental-and-forest-sciences-and-astrobiology",
-      "ownerKey": "uw-seattle-environmental-science-and-terrestrial-resource-management::environmental-and-forest-sciences-and-astrobiology",
-      "planId": "uw-seattle-environmental-science-and-terrestrial-resource-management",
-      "pathwayId": "environmental-and-forest-sciences-and-astrobiology",
-      "pathwayLabel": "Environmental and Forest Sciences and Astrobiology)",
-      "title": "Environmental Science & Terrestrial Resource Management - Environmental and Forest Sciences and Astrobiology)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/academic/sefs.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:natural-resource-and-environmental-management",
-      "ownerKey": "uw-seattle-environmental-science-and-terrestrial-resource-management::natural-resource-and-environmental-management",
-      "planId": "uw-seattle-environmental-science-and-terrestrial-resource-management",
-      "pathwayId": "natural-resource-and-environmental-management",
-      "pathwayLabel": "Natural Resource and Environmental Management",
-      "title": "Environmental Science & Terrestrial Resource Management - Natural Resource and Environmental Management",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/academic/sefs.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:restoration-ecology-and-environmental-horticulture",
-      "ownerKey": "uw-seattle-environmental-science-and-terrestrial-resource-management::restoration-ecology-and-environmental-horticulture",
-      "planId": "uw-seattle-environmental-science-and-terrestrial-resource-management",
-      "pathwayId": "restoration-ecology-and-environmental-horticulture",
-      "pathwayLabel": "Restoration Ecology and Environmental Horticulture",
-      "title": "Environmental Science & Terrestrial Resource Management - Restoration Ecology and Environmental Horticulture",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/academic/sefs.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:sustainable-forest-management",
-      "ownerKey": "uw-seattle-environmental-science-and-terrestrial-resource-management::sustainable-forest-management",
-      "planId": "uw-seattle-environmental-science-and-terrestrial-resource-management",
-      "pathwayId": "sustainable-forest-management",
-      "pathwayLabel": "Sustainable Forest Management",
-      "title": "Environmental Science & Terrestrial Resource Management - Sustainable Forest Management",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/academic/sefs.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-environmental-science-and-terrestrial-resource-management:pathway:wildlife-conservation",
-      "ownerKey": "uw-seattle-environmental-science-and-terrestrial-resource-management::wildlife-conservation",
-      "planId": "uw-seattle-environmental-science-and-terrestrial-resource-management",
-      "pathwayId": "wildlife-conservation",
-      "pathwayLabel": "Wildlife Conservation",
-      "title": "Environmental Science & Terrestrial Resource Management - Wildlife Conservation",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/academic/sefs.html",
@@ -6517,7 +5675,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://geography.washington.edu/ba-geography",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 19,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -6668,28 +5826,6 @@
       "pathwayId": null,
       "pathwayLabel": null,
       "title": "History & Philosophy of Science",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-history-and-philosophy-of-science:pathway:ancient-philosophy",
-      "ownerKey": "uw-seattle-history-and-philosophy-of-science::ancient-philosophy",
-      "planId": "uw-seattle-history-and-philosophy-of-science",
-      "pathwayId": "ancient-philosophy",
-      "pathwayLabel": "Ancient Philosophy)",
-      "title": "History & Philosophy of Science - Ancient Philosophy)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
@@ -7169,7 +6305,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -7191,7 +6327,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
-      "sourceOnlyUwCourseCodeCount": 1,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -7411,7 +6547,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://math.washington.edu/ba-mathematics-standard-major-requirements-0",
-      "sourceOnlyUwCourseCodeCount": 0,
+      "sourceOnlyUwCourseCodeCount": 25,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -7908,28 +7044,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-philosophy:pathway:ancient-philosophy",
-      "ownerKey": "uw-seattle-philosophy::ancient-philosophy",
-      "planId": "uw-seattle-philosophy",
-      "pathwayId": "ancient-philosophy",
-      "pathwayLabel": "Ancient Philosophy)",
-      "title": "Philosophy - Ancient Philosophy)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/Philosophy-221.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-philosophy:pathway:ethics",
       "ownerKey": "uw-seattle-philosophy::ethics",
       "planId": "uw-seattle-philosophy",
@@ -8137,7 +7251,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 71,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -8159,7 +7273,7 @@
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
-      "sourceOnlyUwCourseCodeCount": 71,
+      "sourceOnlyUwCourseCodeCount": 0,
       "issueCounts": {
         "error": 0,
         "warning": 0
@@ -8244,50 +7358,6 @@
       "pathwayId": null,
       "pathwayLabel": null,
       "title": "Public Service & Policy",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-public-service-and-policy:pathway:advanced-data-science",
-      "ownerKey": "uw-seattle-public-service-and-policy::advanced-data-science",
-      "planId": "uw-seattle-public-service-and-policy",
-      "pathwayId": "advanced-data-science",
-      "pathwayLabel": "Advanced Data Science)",
-      "title": "Public Service & Policy - Advanced Data Science)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-public-service-and-policy:pathway:data-science",
-      "ownerKey": "uw-seattle-public-service-and-policy::data-science",
-      "planId": "uw-seattle-public-service-and-policy",
-      "pathwayId": "data-science",
-      "pathwayLabel": "Data Science)",
-      "title": "Public Service & Policy - Data Science)",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/PublicPolicyandGovernance-770.html",
@@ -8458,72 +7528,6 @@
       "symptomIssues": []
     },
     {
-      "ownerId": "uw-seattle-speech-and-hearing-sciences:pathway:adult-track",
-      "ownerKey": "uw-seattle-speech-and-hearing-sciences::adult-track",
-      "planId": "uw-seattle-speech-and-hearing-sciences",
-      "pathwayId": "adult-track",
-      "pathwayLabel": "Adult Track",
-      "title": "Speech & Hearing Sciences - Adult Track",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-speech-and-hearing-sciences:pathway:communication-disorders-not-admitting",
-      "ownerKey": "uw-seattle-speech-and-hearing-sciences::communication-disorders-not-admitting",
-      "planId": "uw-seattle-speech-and-hearing-sciences",
-      "pathwayId": "communication-disorders-not-admitting",
-      "pathwayLabel": "Communication Disorders (Not Admitting)",
-      "title": "Speech & Hearing Sciences - Communication Disorders (Not Admitting)",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
-      "ownerId": "uw-seattle-speech-and-hearing-sciences:pathway:pediatric-track",
-      "ownerKey": "uw-seattle-speech-and-hearing-sciences::pediatric-track",
-      "planId": "uw-seattle-speech-and-hearing-sciences",
-      "pathwayId": "pediatric-track",
-      "pathwayLabel": "Pediatric Track",
-      "title": "Speech & Hearing Sciences - Pediatric Track",
-      "campusId": "uw-seattle",
-      "isAutoPromotedPrimarySource": false,
-      "primarySourceUrl": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
-      "sourceOnlyUwCourseCodeCount": 0,
-      "issueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "symptomIssueCounts": {
-        "error": 0,
-        "warning": 0
-      },
-      "rootIssues": [],
-      "symptomIssues": []
-    },
-    {
       "ownerId": "uw-seattle-speech-and-hearing-sciences:pathway:speech-language-pathology",
       "ownerKey": "uw-seattle-speech-and-hearing-sciences::speech-language-pathology",
       "planId": "uw-seattle-speech-and-hearing-sciences",
@@ -8640,6 +7644,28 @@
       "pathwayId": null,
       "pathwayLabel": null,
       "title": "Sustainable Bioresource Systems Engineering",
+      "campusId": "uw-seattle",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-seattle-sustainable-bioresource-systems-engineering:pathway:business-option",
+      "ownerKey": "uw-seattle-sustainable-bioresource-systems-engineering::business-option",
+      "planId": "uw-seattle-sustainable-bioresource-systems-engineering",
+      "pathwayId": "business-option",
+      "pathwayLabel": "Business Option",
+      "title": "Sustainable Bioresource Systems Engineering - Business Option",
       "campusId": "uw-seattle",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://sefs.uw.edu/students/undergraduate/sbse-major/requirements/",
@@ -9504,6 +8530,28 @@
       "pathwayId": "environmental-communication-option",
       "pathwayLabel": "Environmental Communication option",
       "title": "Environmental Sustainability (BA) - Environmental Communication option",
+      "campusId": "uw-tacoma",
+      "isAutoPromotedPrimarySource": false,
+      "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      "sourceOnlyUwCourseCodeCount": 0,
+      "issueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "symptomIssueCounts": {
+        "error": 0,
+        "warning": 0
+      },
+      "rootIssues": [],
+      "symptomIssues": []
+    },
+    {
+      "ownerId": "uw-tacoma-environmental-sustainability:pathway:environmental-education-option",
+      "ownerKey": "uw-tacoma-environmental-sustainability::environmental-education-option",
+      "planId": "uw-tacoma-environmental-sustainability",
+      "pathwayId": "environmental-education-option",
+      "pathwayLabel": "Environmental Education Option",
+      "title": "Environmental Sustainability (BA) - Environmental Education Option",
       "campusId": "uw-tacoma",
       "isAutoPromotedPrimarySource": false,
       "primarySourceUrl": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",

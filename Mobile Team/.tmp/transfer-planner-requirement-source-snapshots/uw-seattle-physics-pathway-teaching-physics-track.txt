@@ -3,35 +3,80 @@ Source: https://phys.washington.edu/physics-bs-degree-requirements
 Title: Physics B.S. Degree Requirements | Department of Physics | University of Washington
 
 [Supplemental official source] B.S. Degree
+‖ PHYS 417 can be used to meet the advanced laboratory requirement OR the elective requirement.
+§ Students receiving credit for physics-related research or independent project work in another department may petition the UFA to have it meet the capstone requirement by writing a paper describing how they applied physics to their independent project.
+* At most two of Astr 321, 322 and 323 may be used to satisfy this Physics requirement.
+& Analysis:
+‡ Students taking other advanced labs may petition the UFA to have them substitute for Astr 480.
+1 course from:
 100-level:
+2 courses from:
 200-level:
 2025-26 Quarterly Course Offerings
+3 courses from:
+3 to 5 credits from any
+300-level:
+6 credits from:
+Accelerated Advanced Calculus (5)
+Additional physics or cognate electives
+Advanced Laboratory (6-8 credits),
+Advanced Multivariable Calculus (3)
 Advice For Prospective Majors
 Advice for Students
+AMath 301 *
+AMath 401
 Applied physics track
 Applied Physics Track
+Applied Physics Track (addl. 34-43 credits)
+Astr 321 *
+Astr 322 *
+Astr 323 *
+Astr 480 or Astr 481 ‡
+Astr 481
+Astronomical Data Analysis/Acquisition (5)
+Astronomical Observation (5)
 B.S. Degree
 Bachelor of Science in Physics
+Beginning Scientific Computing (4)
 Biological physics track (No longer accepting new students as of Spring 2024)
 BS Degree Requirements Before Autumn 2021
 Capstone Options
+Capstone,
+Classical Mechanics (3)
+combination of:
 Common requirements, all tracks
 Common Requirements, All Tracks (52 credits)
 Comprehensive & Applied Physics Track Electives
 Comprehensive Physics Track
 Comprehensive track
+Comprehensive Track (addl. 38-46 credits)
+Computers in Data Acquisition (3)
 Continuation Policy
+Core Physics:
 Courses
+Data Acquisition
 Declaring a Physics Major
 Declaring Major
 Differential Calculus (5)
+Electives,
 Electromagnetism (5)
+Electromagnetism I (4)
+Electromagnetism II (4)
+Electromagnetism III (4)
+Electronics Lab: Analog (3)
+Electronics Lab: Digital (3)
 Every Physics B.S. degree option requires completion of a selection of courses plus fulfilment of a capstone requirement involving activities outside a typical classroom. Continuation in the major requires maintaining satisfactory progress. For further information on the range of activies which may be used to satisfy the capstone requirement for each degree track, and on satisfactory progress criteria, refer to:
+Extragalactic Astronomy & Cosmology (3)
 For students interested in biophysics or medical physics
 Graduation
 Home
 Honors in Physics
+Honors Seminar (1)
 Integral Calculus (5)
+Introduction to Quantum Mechanics (3)
+Introduction to Research: Frontiers of Physics (1)
+Introductory Experimental Physics (3)
+Linear Algebra (3)
 Maps
 Math 124 or Math 134
 Math 125 or Math 135
@@ -40,11 +85,26 @@ Math 207 or AMath 351
 Math 208 or AMath 352
 Math 209 or AMath 353
 Math 224
+Math 334 or 335 or 336
+Mathematical Methods of Physics I (4)
+Mathematical Methods of Physics II (4)
 Mechanics (5)
 Mentoring Program
+Modern Physics Lab: Atomic (3)
+Modern Physics Lab: Condensed Matter (3)
+Modern Physics Lab: Nuclear & Particle (3)
+More Math (3-5 credits),
+More Math,
+More Physics,
 Multivariate Calculus (5)
 MyUW
+Neural Network Methods (3)
+Optics Lab (3)
+Ordinary Differential Equations (3)
+Our Galaxy (3)
 Our Physics B.S. degree program is one of the largest in the nation, with 175 degrees awarded annually. Graduates pursue diverse paths including further studies in physics, teaching careers, and positions in the private sector. The program offers three B.S. degree tracks: Comprehensive Physics, Applied Physics, and Teaching Physics, allowing students to tailor their degree to their interests and goals. Students choose a track when declaring a major, but can change it anytime before applying to graduate.
+Partial Differential Equations (3)
+Particles & Symmetries (3)
 PhD Program
 Phys 121 or Phys 141
 Phys 122 or Phys 142
@@ -56,14 +116,37 @@ Phys 227
 Phys 228
 Phys 231
 Phys 294
+Phys 321
+Phys 322
+Phys 323
+Phys 324
+Phys 325
+Phys 328
+Phys 329
+Phys 331
+Phys 334
+Phys 335
+Phys 417 ‖
+Phys 431
+Phys 432
+Phys 433
+Phys 434
+Phys 485 , 486 or 487
+Phys 494 , 495 or 496
+Phys 499 or Astr 499 §
 Physics B.S. Degree Requirements
 Physics Minor
 Professional Master's
 Programs & Courses
+Quantum Mechanics I (4)
+Quantum Mechanics II (4)
 Quick Links
 Requirements
+Senior Seminar (1)
 Share
 Society of Physics Students (SPS)
+Solar System (3)
+Statistical Physics (3)
 Student Services
 Summer REU at UW
 Teaching physics track
@@ -72,8 +155,11 @@ The Applied Physics track is ideal for students pursuing technical jobs with a P
 The Comprehensive track is for students seeking a strong foundation in physics, including in-depth mathematical understanding. It is ideal for those planning to pursue a career in physics or related fields, as well as those considering graduate studies in physics or astronomy. To fully prepare for graduate school, take as many upper-division courses and research opportunities as possible.
 The course requirements for a Physics B.S. degree begin with a common set of course options, applicable to all degree tracks, followed by a selection of additional option-specific courses. Note that any single course may satisfy at most one physics-specific degree requirement.
 The Teaching Physics track is for those interested in teaching physics or math at pre-college levels, as well as for students pursuing careers in science journalism or other fields involving the communication of physics to a broader audience. The track includes the Physics by Inquiry sequence, Phys 407 / 408 / 409 , to develop conceptual understanding and communication skills without college-level math. Students in this track can benefit from and contribute to the UW's esteemed Physics Education Research Group .
+Thermal & Statistical Physics (3)
 Topics
 Transfer Credit
 Undergraduate Research
+Undergraduate Research (1-6)
+Vector Calculus & Complex Variables (4)
 Waves, Optics & Heat (5)
 You are here

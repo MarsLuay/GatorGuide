@@ -2,35 +2,291 @@ Owner: uw-seattle-materials-science-engineering
 Source: https://mse.washington.edu/current/undergrad/courses
 Title: B.S. degree requirements | UW Materials Science and Engineering
 
+(3cr)
+(OR CSE 142 Programming I OR CSE 122 Intro to Programming II)
+[Course Prereq. is AA 210]
+[pr: MATH 125] or Honors Calculus sequence
+[pr: MATH 126] or Honors Calculus sequence
+[Supplemental official source] Junior-Start Plan of Study
+[Supplemental official source] Sophomore-Start Plan of Study
+*
+* The University-required 7 additional writing credits will be met by taking MSE core courses.
+**Student completing the Nanoscience and Molecular Engineering (NME) degree option must enroll in NME 220 during Spring of sophomore or junior year.
+**Student completing the Nanoscience and Molecular Engineering (NME) degree option must enroll in NME 220 during Spring sophomore to declare before Autumn of the following academic year.
+‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
+1
+10
+12
+13
+14
+15
+15-16
+16
+17
+2
+210]
+24
+24 credits are required for graduation in these three areas of inquiry .
 24 credits in Arts and Humanities (A&H), Social Sciences (SSc), and Diversity (DIV).
-Plans of study for MSE students
-PDFs of graduation requirements and a sample 4-year course schedule are available for students:
-Sophomore-Start Plan of Study : For ENGRUD students starting in MSE in Autumn quarter sophomore year.
-Junior-Start Plan of Study : For UW and Transfer students starting in MSE in Autumn quarter junior year, and ENGRUD students starting in the major after Autumn of sophomore year.
-Nanoscience and Molecular Engineering (NME) Option
-NME Option students complete all MSE degree requirements below, except the 15 credit Technical Elective requirement. In place of the 15 credit Technical Elective require, NME Option students complete a 19 credit NME Core and Elective Requirement, which is detailed at Nanoscience & Molecular Engineering Option Requirements .
-Concentration areas
-The MSE degree offers a large number of course elective options. For advice on choosing pertinent electives to support your interests, please check out MSE Concentration Areas .
-Graduation requirements
-Expand All / Collapse All
-Mathematics requirements
 24 credits required of mathematics coursework.
+3
+31
+31 credits required of Natural Sciences coursework. Note: Elective courses chosen in this category cannot also satisfy course requirements in another degree category.
+4
+5
+7 credits in written and oral communication.
+A&H
+A&H OR SSc (4cr)
+A&H/SSc
+AA 210 - Engineering Statics (4cr) [pr: MATH 126; PHYS 121]
+AA 210 – Engineering Statics
+Advanced Linear Algebra Tools and Applications
+Advanced Multivariable Calculus I
+Algebra
+AMATH 301 - Beginning Scientific Computing (4cr) [pr:
+AMATH 301 – Sci Computing
+Approved Composition Course
+Approved UW A&H courses
+Approved UW SSc courses
+Areas of Inquiry (24cr):
+Arts & Humanities (A&H) (10cr)
+Arts & Humanities OR Social Sciences (4 additional cr.)
+Arts and Humanities (A&H), Social Sciences (SSc), and Diversity (DIV)
+Autumn Quarter
+BIOL 180
+BIOL 200
+Calculus with Analytic Geometry I, II, III
+CEE 220 - Intro to Mechanics of Materials (4cr) [pr: AA
+CEE 220 – Mechanics of Materials
+CEE 220 – Mechanics of Materials [Course Prereq. is AA 210]
+CHEM 142, 152 (or CHEM 143, 153)(or CHEM 145, 155)
+CHEM 152 - General Chemistry (5cr) or honors/accel equiv
+CHEM 152 – General Chemistry
+CHEM 162 or CHEM 153 or CHEM 155
+CHEM 165
+CHEM 223
+CHEM 224
+CHEM 237
+CHEM 238
+CHEM 312
+CHEM 317
+CHEM 335
+CHEM 336
+CHEM 452
+CHEM 455
+CHEM 456
+Chemistry
+Concentration areas
 Course #
 Course Name
+Cr
 Credits
-MATH 124, 125, 126
-Calculus with Analytic Geometry I, II, III
-15
-MATH 207 (or MATH 307)‡
-Introduction to Differential Equations (acceptable substitute AMATH 351)
-3
-MATH 208 (or MATH 308)‡
-Matrix Algebra with Applications
-One (1) Math Elective:
-IND E 315
-Probability and Statistics for Engineers (counts in this category OR in the Engineering Fundamentals elective category, NOT both)
-MATH 209 (or MATH 309)‡
-Linear Analysis
-MATH 224 (or MATH 324)‡
-‡ As of autumn 2021, MATH 307, MATH 308, MATH 309, and MATH 324 are renumbered as MATH 207, MATH 208, MATH 209, and MATH 224, respectively. Students can apply either the 200- or 300-level number for each course toward their degree requirements.
+Departmental Core (51cr)
+Departmental Core (54cr)
+Diversity-DIV (3cr) – (choose an overlap with A&H/SSc course)
+Diversity-DIV (5cr) – (choose an overlap with A&H/SSc course)
+Eight credits from the Eng. Fund Elective list at https://mse.washington.edu/current/undergrad/courses
+Eight credits from the Eng. Fund list at
+Electromagnetism
+Elementary Mathematical Physics
+Engineering Elective
+Engineering Fundamentals (24cr)
+Engineering General Education Requirements (36cr)
+English Composition
+ENGR 101 (ENGRUD only)
+Equations
+equiv
+Expand All / Collapse All
+for courses
+for list of eligible courses.
+Freshman
+General Chemistry
+Geometry I, II, III (15cr) or honors equivalents
+Graduation requirements
+Honors General Chemistry
+Honors Organic Chemistry
+https://mse.washington.edu/current/undergrad/concentratio n-areas
+https://mse.washington.edu/current/undergrad/courses
+https://mse.washington.edu/student/undergraduate Email: askmse@uw.edu
+https://mse.washington.edu/student/undergraduate/advising
+II
 IND E 250
+IND E 315
+IND E 315; STAT 390; MATH 209/309; MATH 224/324; MATH 318.
+Inorganic Chemistry (note: students who have completed CHEM 165 can have this course waived. See Advisor.)
+Inorganic Chemistry Lab
+Introduction to Differential Equations (acceptable substitute AMATH 351)
+Introduction to Quantum Mechanics
+Introductory Biology
+Junior
+Junior-Start Plan of Study : For UW and Transfer students starting in MSE in Autumn quarter junior year, and ENGRUD students starting in the major after Autumn of sophomore year.
+Key
+Lab III
+Linear Analysis
+Material Science Engineering
+Material Science Engineering Plan of Study: Junior Year Start University of Washington
+Materials Science
+Materials Science & Engineering Advising
+MATH 124, 125, 126
+MATH 125) OR CSE 142 - Computer Programming I (4cr) OR CSE 122 - Intro to Computer Programming II (4cr)
+MATH 207 (or MATH 307)‡
+MATH 207/307 - Introduction to Differential Equations (3cr)
+MATH 207/307 – Differential Equations
+MATH 208 (or MATH 308)‡
+MATH 208/308 - Matrix Algebra with Applications (3cr)
+MATH 208/308 – Matrix
+MATH 208/308 – Matrix Algebra
+MATH 209 (or MATH 309)‡
+MATH 224 (or MATH 324)‡
+MATH 318‡
+MATH Elective
+Mathematics (24cr total required)
+Mathematics requirements
+Matrix Algebra with Applications
+Mechanics
+Microstructural Evolution
+MSE
+MSE 170 – Fundamentals of
+MSE 170 – Fundamentals of Materials Science (4cr) [pr: CHEM 142]
+MSE 310 – Introduction to MSE
+MSE 310 – Introduction to MSE (3cr)
+MSE 311 – Integrated
+MSE 311 – Integrated Undergraduate Lab I
+MSE 311 – Integrated Undergraduate Lab. I (3cr)
+MSE 311, 312, and 313 as W courses (7cr)
+MSE 311, MSE 312, MSE 313 as W courses (7 cr requirement)
+MSE 312 – Integrated Undergrad Lab II
+MSE 312 – Integrated Undergraduate Lab. II (3cr)
+MSE 313 – Integrated Undergrad
+MSE 313 – Integrated Undergrad Lab III
+MSE 313 – Integrated Undergraduate Lab III (3cr)
+MSE 321 – Thermodynamics & Phase Equilibrium
+MSE 321 – Thermodynamics and Phase Equilibrium (4cr)
+MSE 322 – Kinetics &
+MSE 322 – Kinetics & Microstructural Evolution
+MSE 322 – Kinetics and Microstructural Evolution (4cr)
+MSE 331 – Crystallography &
+MSE 331 – Crystallography & Structure
+MSE 331 – Crystallography and Structure (3cr)
+MSE 333 – Materials Characterization
+MSE 333 – Materials Characterization (3cr)
+MSE 342 – Materials Processing I
+MSE 342 – Materials Processing I (3cr)
+MSE 351 – Electron
+MSE 351 – Electron Properties of Materials
+MSE 351 – Electronic Properties of Materials (3cr)
+MSE 352 – Functional Properties
+MSE 352 – Functional Properties of Materials
+MSE 352 – Functional Properties of Materials I (3cr)
+MSE 362 – Mechanical Behavior
+MSE 362 – Mechanical Behavior of Materials I
+MSE 362 – Mechanical Behavior of Materials I (3cr)
+MSE 399 – UG Research
+MSE 399 – UG Research Seminar
+MSE 399 – Undergraduate Research Seminar (1cr)
+MSE 431 – Failure Analysis [Course Prereq. is CEE 220]
+MSE 431 – Failure Analysis and Durability of Materials
+MSE 442 – Materials Processing II
+MSE 442 – Materials Processing II (3cr)
+MSE 493 – Introduction to Materials Design
+MSE 493 – Introduction to Materials Design (1cr)
+MSE 494 – Design in Materials Engineering I (2cr)
+MSE 494 – Materials Design I
+MSE 494 – Materials Design II
+MSE 495 – Design in Materials Engineering II (3cr)
+MSE 495 – Materials Design II
+MSE 495– Materials Design II
+MSE Technical Elective
+MSE Technical Electives (15cr)
+Nanoscience and Molecular Engineering (NME) Option
+Natural Science requirements
+NME Option students complete all MSE degree requirements below, except the 15 credit Technical Elective requirement. In place of the 15 credit Technical Elective require, NME Option students complete a 19 credit NME Core and Elective Requirement, which is detailed at Nanoscience & Molecular Engineering Option Requirements .
+of Materials
+of Materials I
+Office: 302A Roberts Hall, Box 352120 Seattle, WA 98195-2120
+Office: 302B Roberts Hall, Box 352120 Seattle, WA 98195-2120
+One (1) Math Elective:
+One course from the following:
+Organic Chemistry
+Organic Chemistry – Short Program
+PDFs of graduation requirements and a sample 4-year course schedule are available for students:
+Phone: (206) 616-6581
+Phone: (206) 685-4922
+PHYS 121/141
+PHYS 122 –
+PHYS 122/142
+PHYS 122/142 - Electromagnetism (5cr) [pr: MATH 125]
+PHYS 123 – Waves
+PHYS 123/143
+PHYS 123/143 - Waves (5cr) [pr: MATH 126]
+PHYS 224
+PHYS 225
+PHYS 227
+PHYS 228
+Physical Chemistry
+Physical Chemistry for Biochemists I
+Plan of Study: Sophomore Year Start University of Washington
+Plans of study for MSE students
+Probability and Statistics for Engineers (counts in this category OR in the Engineering Fundamentals elective category, NOT both)
+Probability and Statistics in Engineering &Science
+Properties of Materials
+Qtr. Total:
+Schedule an Advising Appointment:
+Schedule an Advising Appointment: https://mse.washington.edu/student/undergraduate/advising
+Science Elective
+Sciences (31cr required)
+See https://mse.washington.edu/current/undergrad/courses
+Seminar
+Senior
+Social Sciences (SSc) (10cr)
+Sophomore
+Sophomore-Start Plan of Study : For ENGRUD students starting in MSE in Autumn quarter sophomore year.
+Spring Quarter
+Spring Quarter **
+SSc
+STAT 390
+Structure
+Students who complete the honors calculus sequence will need
+The MSE degree offers a large number of course elective options. For advice on choosing pertinent electives to support your interests, please check out MSE Concentration Areas .
+Thermal Physics
+This is a sample four-year plan for ENGRUD students who start in MSE Autumn quarter of Sophomore year.
+This is a sample four-year plan for Transfer and other UW students who start in MSE Autumn quarter of Junior year, or ENGRUD students who place in MSE after Autumn quarter Sophomore year.
+to complete additional MATH/STAT/INDE courses to reach 24 credits.
+TOTAL
+Total credits required for graduation: 180 cr
+Two elective courses: From science elective list at
+Two Science Electives:
+Undergraduate Lab I
+Updated Jan. 2025
+Waves
+Winter Quarter
+Wondering what technical electives to select? Check out MSE Concentration Areas:
+Written and Oral Communication requirements
+Written and Oral Communication(12cr):
+ = Enrollment or Satisfactory Progress Requirements – to be completed before Fall quarter of Junior year
+AMATH 301 - Beginning Scientific Computing (4cr) [pr:
+AMATH 301 – Sci Computing
+MATH 207/307 - Introduction to Differential Equations (3cr)
+MATH 207/307 – Differential
+MSE 170 – Fundamentals of Materials Science
+MSE 170 – Fundamentals of Materials Science (4cr) [pr: CHEM 142]
+
+ = Admission Requirements – to be completed before applying at the end of Winter quarter Sophomore year
+ CHEM 142 - General Chemistry (5cr) or honors/accel
+ CHEM 142 – General
+ CHEM 142 – General Chemistry
+ CHEM 152 - General Chemistry (5cr) or honors/accel equiv
+ CHEM 152 – General
+ English Composition
+ English Composition (5cr)
+ MATH 124 – Calculus with Analytical Geometry I
+ MATH 124, 125, 126 - Calculus with Analytical
+ MATH 125 – Calculus with Analytical Geometry
+ MATH 125 – Calculus with Analytical Geometry II
+ MATH 126 – Calculus with Analytical Geometry III
+ PHYS 121 – Mechanics
+CHEM 142 - General Chemistry (5cr) or honors/accel
+MATH 124, 125, 126 - Calculus with Analytical
+PHYS 121/141 - Mechanics (5cr)
+PHYS 122 –
+PHYS 122/142 - Electromagnetism (5cr) [pr: MATH 125]

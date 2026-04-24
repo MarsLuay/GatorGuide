@@ -17,11 +17,15 @@ Title: Bachelor of Economics - School of Business
 * A minimum grade of 2.7 in either course is required.
 **AP Statistics score not accepted
 *AP Calculus score of 3, 4, or 5 accepted
+*AP Language/Literature Exam scores not accepted
+*AP Macroeconomics score of 3, 4, or 5 accepted
+*AP Microeconomics score of 3, 4, or 5 accepted
 *Higher level business statistics accepted
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 |
 10 credits – Complete 2 courses from this list:
+10 credits from the following:
 18807 Beardslee Blvd, Suite 210
 25 Credits
 30 credits
@@ -37,6 +41,7 @@ Accessibility
 Accounting Option
 Acquire the necessary skills to critically analyze the potential impact of upcoming technologies on various industrial sectors
 Admissions
+Advanced Composition
 Advisory boards
 After graduation, students apply their knowledge in industries such as telecommunications, computing, engineering and biotechnology.
 All Business degree program students start out in the following introductory management course, which is a prerequisite to all other courses in the concentration:
@@ -44,7 +49,10 @@ All UW Bothell
 Alumni
 Apply As Undergraduate
 Awards
+B BUS 220/BIS 200
+B BUS 221/BIS 201
 B MATH 144
+B WRIT 135* (must be designated (C) composition)
 BA& 240
 Bachelor in Business Administration
 Bachelor in Economics
@@ -129,6 +137,12 @@ Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
+ECON 200
+ECON 201
+ECON& 201
+ECON& 202
+ENG& 102
+ENGL 111, 121, 131, 182, 197, 198, 199, 281, 282, 297, 298, 299, 381, or 382
 Entrepreneurship Concentration
 Ethics Conference
 Events
@@ -152,6 +166,7 @@ Jobs
 Leadership & Strategic Innovation Option
 Leadership History
 Library
+Macroeconomics
 Make more informed investment decisions
 Management Concentration
 Management Concentration - School of Business

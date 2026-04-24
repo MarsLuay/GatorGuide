@@ -109,6 +109,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^see ["']?additional\b/i,
   /^selection of\b.*\boption\b/i,
   /^specific areas covered within\b.*\boption\b/i,
+  /^supplemental official\b/i,
   /^students?.*\bmust complete\b.*\bfor graduation\b/i,
   /^this track emphasizes\b/i,
   /^this option (?:also )?requires\b/i,
@@ -877,6 +878,14 @@ function extractDerivedPathwayCandidateFromLine(
 ) {
   let normalized = normalizeDerivedPathwayText(value);
   if (!normalized) {
+    return null;
+  }
+
+  if (/^\[?\s*supplemental official source\]?\b/i.test(normalized)) {
+    return null;
+  }
+
+  if (/^(?:Doctor|Master)\s+Of\b|^(?:Doctor|Master)\b/i.test(normalized)) {
     return null;
   }
 

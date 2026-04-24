@@ -39,6 +39,7 @@ import {
   TRANSFER_PLANNER_DERIVED_SHARED_SOURCE_PLAN_ALIASES,
   type TransferPlannerDerivedSharedSourcePlanAlias,
 } from "./derived-shared-source-plans";
+import { normalizeTransferPlannerCourseCode } from "./course-code-normalization";
 import { stripTransferPlannerPlanTitlePrefix } from "./pathway-title-normalization";
 import type {
   TransferPlannerDegreeMapBlock,
@@ -563,21 +564,7 @@ function toPlannerLink(link: TransferPlannerSourceLink): TransferPlannerLink {
 }
 
 function normalizeCourseCode(value: string) {
-  const normalized = String(value ?? "")
-    .toUpperCase()
-    .replace(/\s+/g, " ")
-    .trim();
-  const match = normalized.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}(?:\.\d+)?[A-Z]?)$/);
-  if (!match) {
-    return normalized;
-  }
-
-  const subjectTokens = match[1].split(" ").filter(Boolean);
-  const normalizedSubject = subjectTokens.every((token) => token.length === 1)
-    ? subjectTokens.join("")
-    : subjectTokens.join(" ");
-
-  return `${normalizedSubject} ${match[2]}`;
+  return normalizeTransferPlannerCourseCode(value);
 }
 
 function uniquePlannerStrings(values: string[]) {

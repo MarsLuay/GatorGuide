@@ -2,9 +2,11 @@ Owner: uw-bothell-business-administration:pathway:retail-management-concentratio
 Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail
 Title: Retail Management Concentration - School of Business
 
+(any 300/400 level UW courses)
 (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
 (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
+(formerly B CUSP 202)
 [Supplemental official source] Entrepreneurship Concentration
 [Supplemental official source] Finance Option and Concentration
 [Supplemental official source] Management Concentration
@@ -14,14 +16,21 @@ Title: Retail Management Concentration - School of Business
 [Supplemental official source] Supplemental official track and option pages
 [Supplemental official source] Technology & Innovation Management (TIM) Concentration
 * A minimum grade of 2.7 in either course is required.
+* POLS & 201 is not standard across all community colleges.
 **AP Statistics score not accepted
 *AP Calculus score of 3, 4, or 5 accepted
+*AP Language/Literature Exam scores not accepted
+*AP Macroeconomics score of 3, 4, or 5 accepted
+*AP Microeconomics score of 3, 4, or 5 accepted
 *Higher level business statistics accepted
+*If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses):
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 |
 10 credits – Complete 2 courses from this list:
 10 credits – Complete two courses from this list:
+10 credits from the following:
+15 credits
 15 credits – Complete 3 courses from this list:
 18807 Beardslee Blvd, Suite 210
 20 credits
@@ -30,15 +39,23 @@ Title: Retail Management Concentration - School of Business
 425.352.5000
 425.352.5394
 5 credits
+5 credits – Complete one course from this list:
+5 credits – Complete one Enrichment Elective from this list:
+5-10 credits
 60 Credits
 90 Credits
 A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
 About
 Accessibility
 Accounting Option
+ACCTG 215
+ACCTG 225
+ACCTG& 201 and ACCTG& 202
+ACCTG& 203
 Acquire the necessary skills to critically analyze the potential impact of upcoming technologies on various industrial sectors
 Admissions
 Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade point average (GPA) of at least a 2.0 and also have a cumulative business prerequisite GPA of at least a 2.5, prior to beginning their business studies at UW Bothell. These credits must include all of the following prerequisite courses (with a minimum grade of 2.0 in each):
+Advanced Composition
 Advisory boards
 After graduation, students apply their knowledge in industries such as telecommunications, computing, engineering and biotechnology.
 All Business degree program students start out in the following introductory management course, which is a prerequisite to all other courses in the concentration:
@@ -52,16 +69,28 @@ B BUS 220/BIS 200
 B BUS 221/BIS 201
 B BUS 230
 B BUS 361 – Intermediate Accounting I
+B BUS 362 – Intermediate Accounting II (361)
+B BUS 373 – Cost Accounting
 B BUS 402 Managing Work Teams
 B BUS 427 Entrepreneurial Marketing (320)
+B BUS 441 – Business Project Management (340)
 B BUS 443 Entrepreneurship Seminar
 B BUS 444 Product Development Lab
+B BUS 455 – Financial Risk Management (454)
+B BUS 456 – Entrepreneurial Finance (350)
 B BUS 456 Entrepreneurial Finance (350)
+B BUS 457 – Advanced Valuation (454)
+B BUS 459 – Special Topics in Finance (350)
+B BUS 463 – Advanced Financial Accounting (362)
 B BUS 464 New Product Marketing (320)
+B BUS 465 – Applied Financial Accounting (350)
+B BUS 468 – Advanced Accounting and Analytics (363)
 B BUS 471 Entrepreneurial Management
 B BUS 476 New Technology & Future Markets (300, 320, 350)
 B BUS 478 Venture Startup, Management & Growth
+B BUS 491 – Business Consulting
 B MATH 144
+B WRIT 135* (must be designated (C) composition)
 BA& 240
 Bachelor in Business Administration
 Bachelor in Economics
@@ -76,6 +105,10 @@ BBUS 330 – Information Management & Analysis
 BBUS 330 – Information Management and Analysis
 BBUS 340 – Operations & Project Management
 BBUS 350 – Business Finance (310)
+BBUS 361 – Intermediate Accounting I
+BBUS 361 – Intermediate Accounting I*
+BBUS 373 – Cost Accounting
+BBUS 373 – Cost Accounting*
 BBUS 401 – Work Motivation and Performance
 BBUS 402 – Managing Work Teams
 BBUS 421 – Consumer Marketing (320)
@@ -98,20 +131,30 @@ BBUS 451 – Financial Policy and Practice (350)
 BBUS 452 – Financial Modeling (350)
 BBUS 453 – Financial Institutions and Markets (350)
 BBUS 454 – Investments (350)
+BBUS 455 – Financial Risk Management (454)
+BBUS 456 – Entrepreneurial Finance (350)
+BBUS 457 – Advance Valuation (454)
+BBUS 459 – Special Topics in Finance (350)
 BBUS 460 – Sustainable Business
 BBUS 461 – Business, Government, & Society (300, 310)
+BBUS 462 – Negotiations & Conflict Management (BBUS/ELCBUS 320)
 BBUS 464 – New Product Marketing (320)
+BBUS 465 – Applied Finance Accounting (350)
 BBUS 470 – Business Policy & Strategic Management
 BBUS 471 – Entrepreneurial Management
 BBUS 473 – Leadership & Decision Making (300)
 BBUS 475 – Managing Innovation
 BBUS 476 – New Technology & Future Markets (300, 320, 350)
+BBUS 476 – New Technology & Future Markets (300, BBUS/ELCBUS 320, 350)
+BBUS 477 – Human Resources Management (300)
+BBUS 479 – Special Topics in Management (300)
 BBUS 479 – Special Topics in Management (300) , Only counts when approved for concentration; see your advisor before registering.
 BBUS 480 – Global Environment of Business
 BBUS 489 – Digital Business Lab
 BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your adviser before registering.
 BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your advisor before registering.
 BBUS 490 – Special Topics in Business (300, 310) , Only counts when approved for concentration; see your advisor before registering.
+BBUS 490 – Special Topics in Business (300, 310), Only counts when approved for concentration; see your advisor before registering.
 BBUS 491 – Business Consulting
 BBUS 491 – Business Consulting . Only counts when approved for concentration; see your advisor before registering.
 BBUS 491 – Business Consulting . Only counts when approved for option; see your advisor before registering.
@@ -121,11 +164,13 @@ BBUS 499 – Undergraduate Research. Only counts when approved for option; see y
 Beardslee Building (UWBB)
 Because the Bachelor Degree in Business Administration is an upper division program, students begin the program after completing prerequisite coursework. Transfer students applying to UW Bothell as Business majors and UW Bothell students declaring a Business major must have completed the majority of following courses at the time of application. All prerequisite coursework must be completed prior to matriculation (i.e., the start of studies at UW Bothell).
 Become a Mentor
+Before you can register for a capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
 Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
 BIS 215 (previously BIS 315), B BUS 215, BMATH 215, or STMATH 341
 Bothell, WA 98011
 Bothell, Washington View our location on Google maps.
 Box 358533
+BUS& 201
 Business Consulting Course
 Calculus
 Campus Safety
@@ -156,6 +201,13 @@ Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
+ECON 200
+ECON 201
+ECON& 201
+ECON& 202
+ELCBUS 463 – International Finance and Trade (350)
+ENG& 102
+ENGL 111, 121, 131, 182, 197, 198, 199, 281, 282, 297, 298, 299, 381, or 382
 Entrepreneurship Concentration
 Entrepreneurship Concentration - School of Business
 Entrepreneurship curriculum
@@ -167,7 +219,9 @@ Facilities
 Faculty
 Finance Electives (prerequisites in parentheses)
 Finance Option and Concentration
+Financial Accounting
 For example, if you’re a transfer student completing the remaining prerequisites in summer quarter, you can still apply to UW Bothell in spring with the intention of starting Business classes in fall quarter, so long as you’ve completed all the prerequisites before fall quarter begins.
+General Electives
 General Electives (any 300/400 level UW courses)
 Get a Mentor
 Give
@@ -180,14 +234,17 @@ Independent Study Projects
 Information Technology
 Internships
 Jobs
+Law
 Leadership & Strategic Innovation Option
 Leadership History
 Library
+Macroeconomics
 Make more informed investment decisions
 Management Concentration
 Management curriculum
 Management Electives (prerequisites in parentheses)
 Management Information Systems (MIS) Concentration
+Managerial Accounting
 Maps & directions
 Marketing Electives (prerequisites in parentheses)
 Marketing Option and Concentration
@@ -202,6 +259,7 @@ MATH&148 or MATH& 151
 Mentors
 Mentorship EDGE
 Mentorship EDGE Mentors
+MGMT 200
 Microeconomics
 Minor in Actuarial Science
 Minor in Business Administration
@@ -223,6 +281,7 @@ or
 People
 PharmD-MBA Program
 Policies & Petitions
+POLS& 201*or
 Position themselves to work in high-technology companies in areas such as product/project management, strategic planning and technology development
 Prerequisite Courses
 Prerequisites
@@ -274,6 +333,7 @@ Target new business opportunities
 Technology & Innovation Management (TIM) Concentration
 Technology & Innovation Management (TIM) Concentration - School of Business
 Terms
+The comparison chart above is for students interested in applying to the UW Bothell School of Business only. It is not an approved equivalency guide for all campuses. If you have questions about the specific prerequisite courses needed for a program, please speak to an advisor.
 The Entrepreneurship Concentration prepares students to start their own companies, whether they be tech startups, local shops, or professional services. Students learn by developing actual startup ideas on real startup teams. They spot new business opportunities and create value propositions, which align products or services with customer needs. And they develop strategies and business models for their startups. The concentration prepares students (if interested) to compete in UW’s Dempsey Startup Competition or to apply to the Buerk Accelerator Program .
 The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
 The Management Concentration offers a wide variety of courses that examine the many challenges facing modern business organizations and provide the tools to meet those challenges. Specific areas of study include entrepreneurship, leadership and decision-making, conflict resolution, human resources and managing employees. Students who graduate with a concentration in management often pursue careers in consulting or as leaders in the private or public sector.

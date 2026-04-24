@@ -21,19 +21,24 @@ Title: Asian Studies - Major - The Henry M. Jackson School of International Stud
 †if not taken for the Japan Concentration’s core requirement
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KMF8KQZ"
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+10
+15
 2023 Skagit Lane, Thomson Hall , Box 353650 Seattle, WA 98195-3650
 25
 2nd Asian Civilization Course
+3-400 level
 5
 A minimum of ten credits from the following list of core South Asia courses
 About
 About the Jackson School
 Academic Programs
 Academic Services
+Additional Requirements
 Admin
 Advising
 Advising Questions
 African Studies Program
+ANTH 314 Ethnography, Transnationalism, & Community in Island Southeast Asia/Asian Americans (5)
 Apply
 Arctic and International Relations
 Asian Civilization Course
@@ -66,6 +71,7 @@ Center for West European Studies
 Centers & Research
 China Studies Program
 Choose (3-400 level) to include: min. 15 cr. from Japan Social Science,and additional 10 cr. from Social Science or Japan Humanities/Arts & Literature
+Choose from approved upper-level electives
 Click here for an online checklist of course requirements
 Close Menu
 Comparative Religion
@@ -82,6 +88,7 @@ E: jsis@uw.edu
 East Asia
 East Asia Center
 East Asia Resource Center
+Electives – 25 credits from the list of approved South Asia electives, found below.
 Ellison Center for Russian, East European and Central Asian Studies
 European Union Center
 Events
@@ -101,11 +108,19 @@ Hellenic Studies Program
 History of Chinese Civilization or
 History of Korean Civilization
 History of Modern Japan
+History of Modern Korea
+History of Traditional Korea or Comparative Politics and Korea Studies
 Home
 HSTAS 201 South Asian History pre-history to 1500
 HSTAS 201, 202, 211, JSIS A 206, 212, 221
 HSTAS 211 or
 HSTAS 212
+HSTAS 401 – History of Ancient India
+HSTAS 402 – History of Medieval and Mughal India
+HSTAS 403 – History of Modern India
+HSTAS 404 – History of Twentieth-Century India
+HSTAS 481 or JSIS A 466
+HSTAS 482
 HSTAS: 201, 211, JSIS A 202, 205, 206, 212, 241, 242
 Instagram
 International Policy Institute
@@ -127,15 +142,20 @@ JSIS 203 – Rise of Asia
 JSIS 203 or
 JSIS 203 or JSIS A 207
 JSIS A / ANTH 407
+JSIS A 205 Filipino Histories (5)
 JSIS A 206 Contemporary India & Pakistan
 JSIS A 207
 JSIS A 207 – Asian Traditions
+JSIS A 221 History of Southeast Asia (5)
 JSIS A 241 or JSIS A 242
 JSIS A 254
+JSIS A 265 The Viet Nam Wars (5)
+JSIS A 315 Southeast Asia Civilization: Buddhist and Vietnamese (5)
 JSIS A 405/ANTH 449
 JSIS A 423
 JSIS A 461 – Ramayana in Comparative Perspective
 JSIS A 485 – Special Topics on South Asia
+JSIS A/ ANTH 448
 JSIS A/ GEOG 438 – Social and Political Geographies of South Asia
 JSIS A/ANTH 316 – Modern South Asia
 JSIS A/ANTH 339 – Social Movements in Contemporary India
@@ -146,25 +166,33 @@ JSIS A/HSTAS 303 – Divided Lands/Divided Lives: An Environmental History of So
 JSIS A/POL S 340 – Politics of India, Pakistan, and South Asia
 JSIS A/POL S 417 – Political Economy of India
 JSIS A/POL S 439
+JSIS B 264 Violence, Race, and Memory (5)
 JSIS Business Office
 JSIS Centers, Programs, and Initiatives
 JSIS Intranet
 jsisadv@uw.edu
 jsisoas@uw.edu
 KOREA
+Korea Electives
+Korea Electives List
+Korean Language
+Language requirement – Students must achieve proficiency in a South Asian language through 2nd year college level. Accepted languages include Bengali, Hindi, Nepali, Sanskrit, Tibetan, and Urdu. Students must earn an average GPA of 2.0 in first and second year language courses.
 Latest News
 Latin America and Caribbean Studies
 LinkedIn
 Looking for help?
 Make a Gift
+Max Lower Division Credit – No more than 5 of the 35 credits for the South Asia concentration core and electives may be at the 200-level
 Meet an Adviser
 Middle East Center
 Minimum Grade
+Minimum Grade – A minimum grade of 2.0 is required for all courses applied to major
 Minimum grade 2.0 in all courses applied to major.
 Modern Korean History through Film
 Modern Korean Society
 News & Events
 One Asian Civilization course chosen from:
+One Asian Civilization course chosen from: HSTAS 201, 202, 211, JSIS A 206, 221, 241, 242, 254, RELIG 202
 One of the following two courses, taken autumn or winter quarter (5 credits)
 One South Asia history course from the following list
 Pathways
@@ -177,7 +205,14 @@ Program on Strategy, Policy, and Diplomacy Research
 Quarter
 Quick Links
 Related Regions
+RELIG 352 – Hinduism
+RELIG 354 – Buddhism
+RELIG 356 – Buddhism & Society: The Theravada Buddhist Tradition in South & SE Asia
+RELIG 356 Buddhism and Society: The Theravada Buddhist Tradition in South and Southeast Asia (5)
+RELIG 456 – Perceptions of the Feminine Divine in Hinduism
 Research Paper
+Research Paper – Students must work with a South Asia Studies professor to write a final research paper of at least 15 pages in length. This must be written in an upper division South Asia Studies course and may need to be expanded to meet the research paper requirements. Students should coordinate with the professor prior to writing to ensure the paper will meet the requirements.
+Resident Credit – 30 credits must be taken in residence through UW (not including 1st or 2nd year language).
 Rise of Asia or
 Rise of Asia or Asian Traditions
 See a student profile of a Jackson School major’s in-depth study of contemporary Korean dramas.
@@ -187,7 +222,13 @@ Social Transformation of Modern East Asia
 SoundCloud
 South Asia Center
 South Asia includes India, Pakistan, Bangladesh, Sri Lanka, Nepal, Bhutan, Maldives, Afghanistan and Tibet. Students are expected to gain proficiency in a South Asian language (Hindi, Urdu, Bengali and Sanskrit are offered regularly at all levels) and to pursue a course of study that includes both disciplinary concentration and interdisciplinary breadth. Students have opportunities to pursue language study in India through the program’s membership in the American Institute of Indian Studies. Other organizations provide similar opportunities for study in many of the other countries of the region.
+South Asia Studies Courses
+Southeast Asia – primary electives
 Southeast Asia Core
+Southeast Asia electives
+Southeast Asia Studies Courses
+Southeast Asian Language
+Southeast Asian Language proficiency through 2nd year college level or 3rd quarter of 2nd year college level. Burmese, Indonesian, Khmer, Tagalog, Thai, Vietnamese. (For first- and second-year language courses, grades must average 2.00)
 Staff Directory
 Stroum Center for Jewish Studies
 Student Resources
@@ -207,7 +248,9 @@ The Making of the Twenty-first Century
 The Paull Shin Korea Studies Program focuses on Korea within the broader context of East Asia. While it concentrates on the history, society, and language of Korea, courses on China and Japan are also an important part of the curriculum. In addition, visiting professors in other disciplines regularly complement the resident faculty.
 The Southeast Asian Studies concentration promotes the study of Viet Nam, Laos, Cambodia, Thailand, Indonesia, Malaysia, Burma, Singapore, Brunei, Timor Loro’sae and the Philippines. Core courses introducing students to the cultures and societies of the region are offered in the Jackson School and in the Departments of Anthropology and History. Additional courses are offered by the Departments of Geography, Asian Languages and Literature, Political Science, Sociology, and in the School of Public Health. Language instruction in Burmese, Khmer, and Thai is offered within the Jackson School of International Studies. Indonesian and Vietnamese are taught by teaching professors in the department of Asian Languages & Literature, and Tagalog is offered by the department of American Ethnic Studies.
 Title
+Total Credits (not including language: 50
 Total Credits (not including language): 50
+Two of the following:
 Undergraduate Programs
 University of Washington
 UW MyPlan

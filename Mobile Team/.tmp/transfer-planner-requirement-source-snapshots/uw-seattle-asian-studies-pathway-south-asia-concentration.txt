@@ -43,9 +43,11 @@ Title: Asian Studies - Major - The Henry M. Jackson School of International Stud
 1-5
 1-5, max. 15
 10
+15
 2023 Skagit Lane, Thomson Hall , Box 353650 Seattle, WA 98195-3650
 2nd Asian Civilization Course
 3
+3-400 level
 3, max. 9
 30
 5
@@ -199,6 +201,7 @@ Chinese History: Earliest Times to 221 B.C.
 Chinese History: from Earliest Times to 1276
 Chinese Poetry
 Chinese Prose
+Choose from approved upper-level electives
 Choose min. 10 cr. – max. 20 cr. from 1 region & additional min. 10 cr. from other regions
 Cities in China: Past and Present
 Cities of East Asia: Geography and Development
@@ -228,6 +231,7 @@ Coursework Requirements
 Credits
 Critical Filipino American Histories
 Critical Studies of Post-Vietnam War Southeast Asian Americans: Not Just Refugees
+Current Quarter Courses
 Cybersecurity Initiative
 Demographic Issues in Asia
 Derivational Morphology of Hindi/Urdu
@@ -310,6 +314,7 @@ History of Pre-Modern Korea (if not taken as required Korea course)
 History of Southeast Asia (HSTAS 221)
 History of the British Empire and Commonwealth Since 1783
 History of the Japanese Empire
+History of Traditional Korea or Comparative Politics and Korea Studies
 History of Twentieth-Century India
 History of Twentieth-Century India (HSTAS 404)
 History, Memory and Justice (HSTCMP 446)
@@ -337,6 +342,7 @@ HSTAS 453
 HSTAS 462
 HSTAS 463
 HSTAS 481
+HSTAS 481 or JSIS A 466
 HSTAS 482
 HSTAS 484
 HSTAS: 201, 211, JSIS A 202, 205, 206, 212, 241, 242
@@ -468,6 +474,7 @@ JSIS A 496
 JSIS A/ ANTH 316
 JSIS A/ ANTH 339
 JSIS A/ ANTH 341
+JSIS A/ ANTH 448
 JSIS A/ GEOG 438 – Social and Political Geographies of South Asia
 JSIS A/ POL S 340
 JSIS A/ POL S 417
@@ -519,6 +526,8 @@ jsisadv@uw.edu
 jsisoas@uw.edu
 Korea
 KOREA
+Korea Electives
+Korea Electives List
 Korea in the Japanese Empire
 Korea Studies – Minor
 KOREAN 411
@@ -528,6 +537,7 @@ KOREAN 415
 KOREAN 416
 KOREAN 417
 KOREAN 435
+Korean Language
 Language requirement – Students must achieve proficiency in a South Asian language through 2nd year college level. Accepted languages include Bengali, Hindi, Nepali, Sanskrit, Tibetan, and Urdu. Students must earn an average GPA of 2.0 in first and second year language courses.
 Languages and Cultures of China
 Latest News
@@ -585,6 +595,7 @@ News & Events
 No more than 10 credits from:
 North Korean Society
 One Asian Civilization course chosen from:
+One Asian Civilization course chosen from: HSTAS 201, 202, 211, JSIS A 206, 221, 241, 242, 254, RELIG 202
 One of the following two courses, taken autumn or winter quarter (5 credits)
 One of the following:
 One South Asia history course from the following list

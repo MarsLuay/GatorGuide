@@ -19,6 +19,8 @@ Title: Supply Chain Management Option - School of Business
 [Supplemental official source] Prerequisite Courses
 [Supplemental official source] Supplemental official track and option pages
 * A minimum grade of 2.7 in either course is required.
+**Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
+*Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
 *If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses):
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
@@ -35,6 +37,7 @@ Title: Supply Chain Management Option - School of Business
 30 credits
 425.352.5000
 425.352.5394
+5 credits
 5 credits – Complete 1 course from this list:
 5 credits – Complete one course from this list:
 5 credits – Complete one Enrichment Elective from this list:
@@ -43,12 +46,14 @@ Title: Supply Chain Management Option - School of Business
 A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
 About
 Accessibility
+Accounting certification preparation
 Accounting curriculum
 Accounting Electives (prerequisites in parentheses)
 Accounting Option
 Accounting Option students must complete the following courses for graduation.
 Admissions
 Advisory boards
+After completing the two-year Accounting Option, students are eligible to take the Certified Management Accountant (CMA) exam . Students who wish to become a Certified Public Accountant (CPA) , however, should plan on spending three years in the program. To take the CPA exam, a student needs a minimum of 225 quarter hours or five years of college (a master degree is not required).
 All Business degree program students start out in the following introductory management course, which is a prerequisite to all other courses in the concentration:
 All UW Bothell
 Alumni
@@ -119,14 +124,20 @@ BBUS 444 – Product Development Laboratory
 BBUS 445 – Merchandising Acquisition (300)
 BBUS 446 – Strategic Retail Promotion (300, 320)
 BBUS 447 – Retail Operations & Supply Chain Management (300)
+BBUS 449 – Accounting Practices in Not-for-Profit Organizations (363)
 BBUS 450 – Federal Income Taxation (361)
+BBUS 451 – Financial Policy & Planning
+BBUS 451 – Financial Policy & Planning (350) **
 BBUS 451 – Financial Policy and Practice (350)
 BBUS 452 – Financial Modeling (350)
+BBUS 453 – Financial Institutions & Markets
 BBUS 453 – Financial Institutions and Markets (350)
+BBUS 454 – Investments
 BBUS 454 – Investments (350)
 BBUS 455 – Financial Risk Management (454)
 BBUS 456 – Entrepreneurial Finance (350)
 BBUS 457 – Advance Valuation (454)
+BBUS 458 – Risk Modeling
 BBUS 459 – Special Topics in Finance (350)
 BBUS 460 – Sustainable Business
 BBUS 461 – Business, Government, & Society (300, 310)
@@ -135,6 +146,10 @@ BBUS 462 – Negotiations & Conflict Management (BBUS/ELCBUS 320)
 BBUS 463 – Advanced Financial Accounting (362)
 BBUS 464 – New Product Marketing (320)
 BBUS 465 – Applied Finance Accounting (350)
+BBUS 465 – Applied Financial Accounting (350)
+BBUs 466 – Applied Managerial Accounting (350)
+BBUS 467 – Advanced Taxation (450)
+BBUS 468 – Advanced Accounting and Analytics (363)
 BBUS 470 – Business Policy & Strategic Management
 BBUS 471 – Entrepreneurial Management
 BBUS 473 – Leadership & Decision Making (300)
@@ -151,6 +166,7 @@ BBUS 483 – Global Strategic Sourcing (441, 482)
 BBUS 486 – Supply Chain Resource Planning (340)
 BBUS 487 – Management and Improving Supply Chain Processes (441, 482)
 BBUS 489 – Digital Business Lab
+BBUS 490 – Special Topics in Business (300, 310)
 BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your adviser before registering.
 BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your advisor before registering.
 BBUS 490 – Special Topics in Business (300, 310), Only counts when approved for concentration; see your advisor before registering.
@@ -221,6 +237,7 @@ Graduate
 height="0" width="0" style="display:none;visibility:hidden">
 How to apply
 Human Resources
+In addition to public accounting, the Accounting Option will thoroughly prepare students for careers in private, government and non-profit accounting. The curriculum is designed to enable graduates to fill a number of corporate positions such as internal auditor, managerial accountant and tax accountant. Graduates will also be prepared to serve in government positions such as tax examiner, budget analyst and government auditor. You can get more information from the Washington Society of Certified Public Accountants .
 In this section
 Independent Study Projects
 Information Technology

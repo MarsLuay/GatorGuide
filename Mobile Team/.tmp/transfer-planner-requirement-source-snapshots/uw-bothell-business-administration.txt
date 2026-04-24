@@ -2,23 +2,30 @@ Owner: uw-bothell-business-administration
 Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration
 Title: Bachelor of Business Administration - School of Business
 
+(formerly B CUSP 202)
 [Supplemental official source] Prerequisite Courses
 [Supplemental official source] See full Admissions Requirements
 [Supplemental official source] UW Bothell BBA curriculum hub
+* POLS & 201 is not standard across all community colleges.
 **AP Statistics score not accepted
 *AP Calculus score of 3, 4, or 5 accepted
+*AP Language/Literature Exam scores not accepted
+*AP Macroeconomics score of 3, 4, or 5 accepted
+*AP Microeconomics score of 3, 4, or 5 accepted
 *Higher level business statistics accepted
 *Meeting the minimum requirements does not guarantee admission.
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 |
 1. Application form
+10 credits from the following:
 18807 Beardslee Blvd, Suite 210
 2. Unofficial transcripts
 3. Personal statement
 425.352.5000
 425.352.5394
 5 credits
+5-10 credits
 A cumulative GPA (grade-point average) of at least a 2.0 in all college coursework.
 A minimum cumulative GPA of at least a 2.5 in all business prerequisites.
 A minimum grade of 2.0 in each business prerequisite course
@@ -29,10 +36,15 @@ Accessibility
 Accountant, auditor, or financial analyst
 Accounting
 Accounting Option
+ACCTG 215
+ACCTG 225
+ACCTG& 201 and ACCTG& 202
+ACCTG& 203
 Admissions
 Admissions - School of Business
 Admissions Snapshot
 Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade point average (GPA) of at least a 2.0 and also have a cumulative business prerequisite GPA of at least a 2.5, prior to beginning their business studies at UW Bothell. These credits must include all of the following prerequisite courses (with a minimum grade of 2.0 in each):
+Advanced Composition
 Advisory boards
 All applicants for whom English is a non-native language must provide proof of English Language Proficiency by providing scores that meet the University’s minimum.
 All prerequisite coursework — the business prerequisites below must be completed prior to beginning the program. See Prerequisite Courses for a list of equivalent transferable courses.
@@ -56,6 +68,7 @@ B BUS 220/BIS 200
 B BUS 221/BIS 201
 B BUS 230
 B MATH 144
+B WRIT 135* (must be designated (C) composition)
 B.A. in Business Administration requirements
 BA& 240
 Bachelor in Business Administration
@@ -71,6 +84,7 @@ Bothell, Washington View our location on Google maps.
 Box 358533
 Build leadership and innovation capacity
 Build the skills to lead in a changing world
+BUS& 201
 Business consultant, project manager, or entrepreneur
 Business Consulting Course
 Business law: Fulfilled by the law prerequisite
@@ -111,7 +125,13 @@ Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
+ECON 200
+ECON 201
+ECON& 201
+ECON& 202
 Electives: to complete 90 transferable credits
+ENG& 102
+ENGL 111, 121, 131, 182, 197, 198, 199, 281, 282, 297, 298, 299, 381, or 382
 English Composition (10 credits)
 Entrepreneurship
 Entrepreneurship Concentration
@@ -126,6 +146,7 @@ Facilities
 Faculty
 Finance
 Finance Option and Concentration
+Financial Accounting
 Financial Accounting I
 Financial Accounting II (if applicable)
 First-year students may directly enter this program .
@@ -148,6 +169,7 @@ Introduction to Law or Business Law
 Introduction to Statistics
 It’s important to plan the courses you will take prior to applying for admission to UW Bothell’s School of Business B.A. in Business Administration major.
 Jobs
+Law
 Leadership & Strategic Innovation (LSI)
 Leadership & Strategic Innovation Option
 Leadership and Strategic Innovation
@@ -182,6 +204,7 @@ Mathematics: Fulfilled by the calculus prerequisite
 Mentors
 Mentorship EDGE
 Mentorship EDGE Mentors
+MGMT 200
 Microeconomics
 Microeconomics: Fulfilled by the microeconomics prerequisite
 Minimum academic performance requirements*
@@ -208,6 +231,7 @@ Personal statement , demonstrating the relationship between academic opportuniti
 PharmD-MBA Program
 Please submit all materials to UW Bothell’s Admissions Office. The following items should be submitted by the application deadline:
 Policies & Petitions
+POLS& 201*or
 Prepare a personal statement (no more than two pages double-spaced) that addresses each of the following:
 Prepare to lead, innovate, and create impact in today’s dynamic business world. In the School of Business at the University of Washington Bothell, the Bachelor of Arts in Business Administration prepares you to think strategically, act ethically, and drive results in any industry. Through small classes, close mentorship, and connections to the Puget Sound business community, you will gain the confidence, knowledge, and experience to launch a meaningful career.
 Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
@@ -259,6 +283,7 @@ Technology & Innovation Management (TIM) Concentration
 Technology and Innovation Management (TIM)
 Technology manager, data analyst, or digital transformation specialist
 Terms
+The comparison chart above is for students interested in applying to the UW Bothell School of Business only. It is not an approved equivalency guide for all campuses. If you have questions about the specific prerequisite courses needed for a program, please speak to an advisor.
 The Entrepreneurship Concentration provides highly motivated students with the knowledge and practice needed to start and manage new businesses. Four exciting courses integrate research based conceptual models and tools with hands-on practical experience in the form of historical and live cases, idea competition and live business plan competitions. Learn more about the Entrepreneurship concentration .
 The Leadership and Strategic Innovation (LSI) option will engage students in a rigorous study of leadership, strategy, and innovation. You will graduate ready to lead teams, manage innovation and inspire employees. LSI graduates can go on to become project leads, managers, consultants, business development leads, HR analysts, market analysts, sales managers, entrepreneurs and much more. Learn more about the Leadership & Strategic Innovation (LSI) option .
 The Power of a UW Degree

@@ -21,6 +21,7 @@ import {
   TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA,
   type TransferPlannerNormalizedCourseMetadataEntry,
 } from "@/constants/transfer-planner-source/course-metadata";
+import { normalizeTransferPlannerCourseCode } from "@/constants/transfer-planner-source/course-code-normalization";
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
   "uw-green-river-equivalency-guide",
@@ -874,10 +875,7 @@ function sortCourseCodes(codes: string[]) {
 const LEGACY_COURSE_CODE_ALIASES = new Map<string, string>([["MATH& 254", "MATH& 264"]]);
 
 export function normalizeCourseCode(value: string) {
-  const normalized = value
-    .trim()
-    .toUpperCase()
-    .replace(/\s+/g, " ");
+  const normalized = normalizeTransferPlannerCourseCode(value);
   return LEGACY_COURSE_CODE_ALIASES.get(normalized) ?? normalized;
 }
 
@@ -2853,7 +2851,11 @@ export type GeneralEducationRequirementLayerDiagnostics = {
   hasSourceBackedTargets: boolean;
 };
 
-type SourceBackedGeneralEducationCategoryId = "ah" | "ssc" | "nsc";
+type SourceBackedGeneralEducationCategoryId = "ah" | "ssc" | "nsc" | "div";
+type SourceBackedPlanningGeneralEducationCategoryId = Exclude<
+  SourceBackedGeneralEducationCategoryId,
+  "div"
+>;
 
 type SourceBackedGeneralEducationDescriptor =
   | {
@@ -2886,6 +2888,13 @@ type SourceBackedGeneralEducationDescriptor =
       kind: "additional-flexible";
       categories: SourceBackedGeneralEducationCategoryId[];
       credits: number;
+      sourceLine: string;
+    }
+  | {
+      kind: "overlapping-category";
+      category: SourceBackedGeneralEducationCategoryId;
+      credits: number;
+      overlappingCategories: SourceBackedGeneralEducationCategoryId[];
       sourceLine: string;
     }
   | {
@@ -2929,6 +2938,7 @@ const SOURCE_BACKED_GENERAL_ED_CATEGORY_LABELS: Record<
   ah: "Arts & Humanities",
   ssc: "Social Sciences",
   nsc: "Natural Sciences",
+  div: "Diversity",
 };
 
 function getTransferableCreditCandidateRulesForSourceCourse(
@@ -3563,6 +3573,45 @@ function buildTrackGeneralEducationGuidancePlaceholders(args: {
   return normalizedPlaceholders;
 }
 
+function isPlannerGuidancePlaceholderCoveredBySourceBackedTargets(
+  placeholder: GeneralEducationPlaceholder,
+  sourceBackedTargets: GeneralEducationRequirementTargets
+) {
+  switch (placeholder.kind) {
+    case "ah":
+      return sourceBackedTargets.ahCredits !== null || sourceBackedTargets.breadthCredits !== null;
+    case "ssc":
+      return sourceBackedTargets.sscCredits !== null || sourceBackedTargets.breadthCredits !== null;
+    case "ahOrSsc":
+      return (
+        sourceBackedTargets.ahCredits !== null ||
+        sourceBackedTargets.sscCredits !== null ||
+        sourceBackedTargets.breadthCredits !== null
+      );
+    case "nsc":
+      return sourceBackedTargets.nscCredits !== null;
+    case "elective":
+      return sourceBackedTargets.electiveCredits !== null;
+  }
+}
+
+function reconcilePlannerGuidanceGeneralEducationPlaceholdersWithSourceBackedTargets(args: {
+  plannerGuidancePlaceholders: QuarterPlanningGeneralEducationPlaceholderEntry[];
+  sourceBackedTargets: GeneralEducationRequirementTargets;
+}) {
+  if (!hasGeneralEducationRequirementTargets(args.sourceBackedTargets)) {
+    return args.plannerGuidancePlaceholders;
+  }
+
+  return args.plannerGuidancePlaceholders.filter(
+    (entry) =>
+      !isPlannerGuidancePlaceholderCoveredBySourceBackedTargets(
+        entry.placeholder,
+        args.sourceBackedTargets
+      )
+  );
+}
+
 function buildGeneralEducationPlaceholders(args: {
   track: TransferPlannerTrack | null;
   completedCourses: TranscriptCourseEntry[];
@@ -3577,6 +3626,7 @@ function buildGeneralEducationPlaceholders(args: {
     placeholder,
     sourceKind: "source-backed-major",
   }));
+  const sourceBackedTargets = buildSourceBackedGeneralEducationRequirementTargets(args.plan);
 
   const plannerGuidancePlaceholders = args.includePlannerGuidancePlaceholders
     ? buildTrackGeneralEducationGuidancePlaceholders({
@@ -3590,7 +3640,13 @@ function buildGeneralEducationPlaceholders(args: {
       }))
     : [];
 
-  return [...sourceBackedMajorPlaceholders, ...plannerGuidancePlaceholders];
+  const reconciledPlannerGuidancePlaceholders =
+    reconcilePlannerGuidanceGeneralEducationPlaceholdersWithSourceBackedTargets({
+      plannerGuidancePlaceholders,
+      sourceBackedTargets,
+    });
+
+  return [...sourceBackedMajorPlaceholders, ...reconciledPlannerGuidancePlaceholders];
 }
 
 function findGeneralEducationCreditValue(text: string, patterns: RegExp[]) {
@@ -3634,6 +3690,7 @@ function countGeneralEducationAreaSignals(text: string) {
     /\ba&h\b|\barts?\s+and\s+humanities\b/.test(text),
     /\bssc\b|\bsocial sciences?\b/.test(text),
     /\bnsc\b|\bnatural sciences?\b/.test(text),
+    /\bdiv\b|\bdiversity\b/.test(text),
   ].filter(Boolean).length;
 }
 
@@ -3655,7 +3712,7 @@ function isGeneralEducationSignalLine(args: {
       normalizedSectionTitle
     );
   const startsWithGeneralEducationCategory =
-    /^(arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|additional a&h|additional arts?\s+and\s+humanities|additional areas?\s+of inquiry|english composition|written\s*&\s*oral communication|diversity)\b/.test(
+    /^(arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|div|additional a&h|additional arts?\s+and\s+humanities|additional areas?\s+of inquiry|english composition|written\s*&\s*oral communication|diversity)\b/.test(
       normalizedLine
     );
   const hasCombinedBreadthMarker =
@@ -3797,6 +3854,8 @@ function detectSourceBackedGeneralEducationCategories(
   registerMatches("ssc", /\bssc\b/i);
   registerMatches("nsc", /\bnatural sciences?\b/i);
   registerMatches("nsc", /\bnsc\b/i);
+  registerMatches("div", /\bdiversity\b/i);
+  registerMatches("div", /\bdiv\b/i);
 
   return unique(
     matches
@@ -3875,16 +3934,26 @@ function extractGeneralEducationFixedCredits(text: string) {
     return explicitCreditMatches[explicitCreditMatches.length - 1] ?? null;
   }
 
-  const parentheticalMatches = Array.from(text.matchAll(/\((\d+(?:\.\d+)?)\)/g))
+  const parentheticalMatches = Array.from(
+    text.matchAll(/\((\d+(?:\.\d+)?)\s*(?:credits?|cr)?\.?\)/gi)
+  )
     .map((match) => parseGeneralEducationCreditAmount(match[1] ?? null))
     .filter((value): value is number => value !== null);
 
   return parentheticalMatches[parentheticalMatches.length - 1] ?? null;
 }
 
+function countGeneralEducationCreditMentions(text: string) {
+  return Array.from(
+    text.matchAll(
+      /\b\d+(?:\.\d+)?\s+(?:additional\s+)?(?:credits?|cr)\b|\(\s*\d+(?:\.\d+)?\s*(?:credits?|cr)?\.?\s*\)/gi
+    )
+  ).length;
+}
+
 function buildCategorySpecificGeneralEducationFixedDescriptors(
   text: string
-): SourceBackedGeneralEducationDescriptor[] {
+): Extract<SourceBackedGeneralEducationDescriptor, { kind: "category-fixed" }>[] {
   const descriptors = (
     [
       {
@@ -3900,13 +3969,22 @@ function buildCategorySpecificGeneralEducationFixedDescriptors(
   )
     .map(({ category }) => {
       const categoryPatternSource = getSourceBackedGeneralEducationCategoryPatternSource(category);
-      const credits =
-        extractFirstMatchingGeneralEducationCreditValue(text, [
-          new RegExp(
-            `\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b(?:\\s+of)?[^.;]{0,24}\\b(?:${categoryPatternSource})\\b`,
-            "i"
-          ),
-        ]) ?? extractLeadingCategoryGeneralEducationFixedCredits(text, category);
+      const leadingCredits = extractLeadingCategoryGeneralEducationFixedCredits(text, category);
+      const trailingCredits = extractFirstMatchingGeneralEducationCreditValue(text, [
+        new RegExp(
+          `\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b(?:\\s+of)?[^.;]{0,24}\\b(?:${categoryPatternSource})\\b`,
+          "i"
+        ),
+      ]);
+      const isOnlyNonOverlappingReference =
+        leadingCredits === null &&
+        new RegExp(
+          `\\b(?:cannot|can't|may\\s+not)\\s+overlap\\s+with\\s+(?:${categoryPatternSource})\\b`,
+          "i"
+        ).test(text);
+      const credits = isOnlyNonOverlappingReference
+        ? null
+        : trailingCredits ?? leadingCredits;
       if (credits === null) {
         return null;
       }
@@ -3921,7 +3999,10 @@ function buildCategorySpecificGeneralEducationFixedDescriptors(
     .filter(
       (
         descriptor
-      ): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: "category-fixed" }> =>
+      ): descriptor is Extract<
+        SourceBackedGeneralEducationDescriptor,
+        { kind: "category-fixed" }
+      > & { category: SourceBackedPlanningGeneralEducationCategoryId } =>
         descriptor !== null
     );
 
@@ -3938,6 +4019,8 @@ function getSourceBackedGeneralEducationCategoryPatternSource(
       return "(?:social sciences?|ssc)";
     case "nsc":
       return "(?:natural sciences?|nsc)";
+    case "div":
+      return "(?:diversity|div)";
   }
 }
 
@@ -4042,10 +4125,13 @@ function buildSingleCategoryGeneralEducationRangeDescriptor(
 
 function hasDirectSourceBackedGeneralEducationLeadContext(text: string) {
   return (
-    /^(?:additional\s+)?(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|areas?\s+of\s+(?:inquiry|knowledge))\b/i.test(
+    /^(?:additional\s+)?(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|diversity|div|areas?\s+of\s+(?:inquiry|knowledge))\b/i.test(
       text
     ) ||
     /^\d+(?:\.\d+)?\s+additional\b/i.test(text) ||
+    /^\d+(?:\.\d+)?\s*(?:credits?|cr)\b[^.;]{0,64}\b(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|diversity|div)\b/i.test(
+      text
+    ) ||
     /\bgeneral education\b/i.test(text)
   );
 }
@@ -4058,10 +4144,10 @@ function hasExplicitSourceBackedGeneralEducationDescriptorContext(text: string) 
 
   return (
     /\bareas? of (?:inquiry|knowledge)\b|\bgeneral education\b/i.test(sanitizedText) ||
-    /^(?:additional\s+)?(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc)\b[^.;]{0,48}(?:\(\d+(?:\.\d+)?(?:\s*(?:credits?|cr))?(?:\s*-\s*\d+(?:\.\d+)?)?[^)]*\)|\b\d+(?:\.\d+)?\s*(?:credits?|cr)\b)/i.test(
+    /^(?:additional\s+)?(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|diversity|div)\b[^.;]{0,48}(?:\(\d+(?:\.\d+)?(?:\s*(?:credits?|cr))?(?:\s*-\s*\d+(?:\.\d+)?)?[^)]*\)|\b\d+(?:\.\d+)?\s*(?:credits?|cr)\b)/i.test(
       sanitizedText
     ) ||
-    /^\d+(?:\.\d+)?\s+(?:additional\s+)?(?:credits?|cr)\b[^.;]{0,32}\b(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc)\b/i.test(
+    /^\d+(?:\.\d+)?\s+(?:additional\s+)?(?:credits?|cr)\b[^.;]{0,64}\b(?:arts?\s+and\s+humanities|a&h|social sciences?|ssc|natural sciences?|nsc|diversity|div)\b/i.test(
       sanitizedText
     )
   );
@@ -4077,6 +4163,84 @@ function hasSameSourceBackedCategorySet(
 
   const rightCategories = new Set(right);
   return left.every((category) => rightCategories.has(category));
+}
+
+function getSourceBackedPlanningCategories(
+  categories: SourceBackedGeneralEducationCategoryId[]
+): SourceBackedPlanningGeneralEducationCategoryId[] {
+  return categories.filter(
+    (category): category is SourceBackedPlanningGeneralEducationCategoryId =>
+      category !== "div"
+  );
+}
+
+function hasSameSourceBackedPlanningCategorySet(
+  left: SourceBackedGeneralEducationCategoryId[],
+  right: SourceBackedGeneralEducationCategoryId[]
+) {
+  return hasSameSourceBackedCategorySet(getSourceBackedPlanningCategories(left), right);
+}
+
+function hasCategorySpecificFixedAllocationContext(
+  text: string,
+  descriptors: Extract<SourceBackedGeneralEducationDescriptor, { kind: "category-fixed" }>[],
+  detectedCategories: SourceBackedGeneralEducationCategoryId[]
+) {
+  if (getSourceBackedPlanningCategories(detectedCategories).length <= 1) {
+    return true;
+  }
+
+  if (
+    descriptors.length === 1 &&
+    extractLeadingCategoryGeneralEducationFixedCredits(text, descriptors[0].category) !== null
+  ) {
+    return true;
+  }
+
+  return countGeneralEducationCreditMentions(text) >= detectedCategories.length;
+}
+
+function hasFlexibleSourceBackedGeneralEducationCategoryChoice(
+  text: string,
+  categories: SourceBackedGeneralEducationCategoryId[]
+) {
+  const planningCategories = getSourceBackedPlanningCategories(categories);
+  return (
+    hasSameSourceBackedCategorySet(planningCategories, ["ah", "ssc"]) &&
+    /\b(?:or|and\/or)\b|\ba&h\s*\/\s*ssc\b|\barts?\s+and\s+humanities\s*\/\s*social sciences?\b/i.test(
+      text
+    )
+  );
+}
+
+function buildOverlappingSourceBackedGeneralEducationDescriptor(
+  text: string,
+  categories: SourceBackedGeneralEducationCategoryId[],
+  credits: number | null
+): Extract<SourceBackedGeneralEducationDescriptor, { kind: "overlapping-category" }> | null {
+  if (credits === null || !categories.includes("div")) {
+    return null;
+  }
+
+  const startsWithDiversity = /^(?:[-*]\s*)?(?:diversity|div)\b/i.test(text);
+  const hasOverlapLanguage =
+    /\boverlap(?:s|ping)?\b|\balso\s+(?:counts?|fulfills?|satisfies?)\b|\bdouble\s+counts?\b/i.test(
+      text
+    );
+  if (!startsWithDiversity || !hasOverlapLanguage) {
+    return null;
+  }
+
+  const overlappingCategories = getSourceBackedPlanningCategories(categories);
+  return {
+    kind: "overlapping-category",
+    category: "div",
+    credits,
+    overlappingCategories: overlappingCategories.length
+      ? overlappingCategories
+      : (["ah", "ssc"] as SourceBackedGeneralEducationCategoryId[]),
+    sourceLine: text,
+  };
 }
 
 function buildSourceBackedGeneralEducationDescriptorsFromSegment(
@@ -4109,6 +4273,11 @@ function buildSourceBackedGeneralEducationDescriptorsFromSegment(
     );
   const categorySpecificFixedDescriptors =
     buildCategorySpecificGeneralEducationFixedDescriptors(sanitizedSegment);
+  const overlappingCategoryDescriptor = buildOverlappingSourceBackedGeneralEducationDescriptor(
+    sanitizedSegment,
+    categories,
+    fixedCredits
+  );
 
   if (hasMathematicsAndNaturalSciencesCombo) {
     return [];
@@ -4118,7 +4287,18 @@ function buildSourceBackedGeneralEducationDescriptorsFromSegment(
     return [];
   }
 
-  if (categorySpecificFixedDescriptors.length) {
+  if (overlappingCategoryDescriptor) {
+    return [overlappingCategoryDescriptor];
+  }
+
+  if (
+    categorySpecificFixedDescriptors.length &&
+    hasCategorySpecificFixedAllocationContext(
+      sanitizedSegment,
+      categorySpecificFixedDescriptors,
+      categories
+    )
+  ) {
     return categorySpecificFixedDescriptors;
   }
 
@@ -4130,6 +4310,10 @@ function buildSourceBackedGeneralEducationDescriptorsFromSegment(
     if (directRangeDescriptor) {
       return [directRangeDescriptor];
     }
+  }
+
+  if (categories.length === 1 && categories[0] === "div") {
+    return [];
   }
 
   if (categories.length === 1 && fixedCredits !== null) {
@@ -4174,11 +4358,16 @@ function buildSourceBackedGeneralEducationDescriptorsFromSegment(
     ];
   }
 
-  if (categories.length >= 2 && hasAdditional && fixedCredits !== null) {
+  if (
+    categories.length >= 2 &&
+    (hasAdditional ||
+      hasFlexibleSourceBackedGeneralEducationCategoryChoice(sanitizedSegment, categories)) &&
+    fixedCredits !== null
+  ) {
     return [
       {
         kind: "additional-flexible",
-        categories,
+        categories: getSourceBackedPlanningCategories(categories),
         credits: fixedCredits,
         sourceLine: sanitizedSegment,
       },
@@ -4192,7 +4381,10 @@ function buildSourceBackedGeneralEducationDescriptorsFromSegment(
         categories,
         totalCredits: fixedCredits,
         minimumPerCategoryCredits,
-        scope: hasAreasOfInquiryScope ? "areas-of-inquiry" : "categories",
+        scope:
+          hasAreasOfInquiryScope || categories.includes("div")
+            ? "areas-of-inquiry"
+            : "categories",
         sourceLine: sanitizedSegment,
       },
     ];
@@ -4239,6 +4431,8 @@ function getSourceBackedGeneralEducationDescriptorKey(
       return `${descriptor.kind}:${descriptor.totalCredits}`;
     case "additional-flexible":
       return `${descriptor.kind}:${descriptor.categories.join("-")}:${descriptor.credits}`;
+    case "overlapping-category":
+      return `${descriptor.kind}:${descriptor.category}:${descriptor.credits}:${descriptor.overlappingCategories.join("-")}`;
     case "elective":
       return `${descriptor.kind}:${descriptor.credits}`;
   }
@@ -4265,9 +4459,10 @@ function buildParsedSourceBackedGeneralEducationStructure(
   const parsedRequirementSourceLines = parsedRequirementSourceBlocks.flatMap(
     (block) => block.requirementCueLines ?? []
   );
+  const planSignalLines = getGeneralEducationRequirementSignalLines(sourcePlan, []);
   const rawSignalLines = parsedRequirementSourceLines.length
-    ? parsedRequirementSourceLines
-    : getGeneralEducationRequirementSignalLines(sourcePlan, []);
+    ? unique([...parsedRequirementSourceLines, ...planSignalLines])
+    : planSignalLines;
   const signalSegments = unique(
     rawSignalLines
       .filter((line) =>
@@ -4312,6 +4507,9 @@ function buildParsedSourceBackedGeneralEducationStructure(
 
   for (const descriptor of descriptors) {
     if (descriptor.kind === "category-fixed") {
+      if (descriptor.category === "div") {
+        continue;
+      }
       const existing = fixedCreditsByCategory.get(descriptor.category) ?? new Set<number>();
       existing.add(descriptor.credits);
       fixedCreditsByCategory.set(descriptor.category, existing);
@@ -4319,6 +4517,9 @@ function buildParsedSourceBackedGeneralEducationStructure(
     }
 
     if (descriptor.kind === "category-range") {
+      if (descriptor.category === "div") {
+        continue;
+      }
       const existing = rangeCreditsByCategory.get(descriptor.category) ?? new Set<string>();
       existing.add(`${descriptor.minimumCredits}:${descriptor.maximumCredits}`);
       rangeCreditsByCategory.set(descriptor.category, existing);
@@ -4336,7 +4537,7 @@ function buildParsedSourceBackedGeneralEducationStructure(
     }
 
     if (descriptor.kind === "additional-flexible") {
-      const categoryKey = descriptor.categories.join("-");
+      const categoryKey = getSourceBackedPlanningCategories(descriptor.categories).join("-");
       const existing = additionalFlexibleByCategoryKey.get(categoryKey) ?? new Set<number>();
       existing.add(descriptor.credits);
       additionalFlexibleByCategoryKey.set(categoryKey, existing);
@@ -4375,8 +4576,10 @@ function buildParsedSourceBackedGeneralEducationStructure(
     const leftBucket = sharedBuckets[index];
     for (let compareIndex = index + 1; compareIndex < sharedBuckets.length; compareIndex += 1) {
       const rightBucket = sharedBuckets[compareIndex];
-      const overlappingCategories = leftBucket.categories.some((category) =>
-        rightBucket.categories.includes(category)
+      const leftPlanningCategories = getSourceBackedPlanningCategories(leftBucket.categories);
+      const rightPlanningCategories = getSourceBackedPlanningCategories(rightBucket.categories);
+      const overlappingCategories = leftPlanningCategories.some((category) =>
+        rightPlanningCategories.includes(category)
       );
       if (!overlappingCategories) {
         continue;
@@ -4395,16 +4598,17 @@ function buildParsedSourceBackedGeneralEducationStructure(
   }
 
   if (!hasConflict) {
-    const additionalAhOrSscCredits =
-      additionalFlexibleByCategoryKey.get("ah-ssc")?.values().next().value ?? null;
     for (const bucket of sharedBuckets) {
-      const overlappingFixedCredits = bucket.categories
+      const bucketPlanningCategories = getSourceBackedPlanningCategories(bucket.categories);
+      const overlappingFixedCredits = bucketPlanningCategories
         .map((category) => ({
           category,
           credits: fixedCreditsByCategory.get(category)?.values().next().value ?? null,
         }))
         .filter(
-          (entry): entry is { category: SourceBackedGeneralEducationCategoryId; credits: number } =>
+          (
+            entry
+          ): entry is { category: SourceBackedPlanningGeneralEducationCategoryId; credits: number } =>
             entry.credits !== null
         );
       if (!overlappingFixedCredits.length) {
@@ -4416,8 +4620,17 @@ function buildParsedSourceBackedGeneralEducationStructure(
         0
       );
       const hasAllBucketCategoriesFixed =
-        overlappingFixedCredits.length === bucket.categories.length;
-      const isAhOrSscBucket = hasSameSourceBackedCategorySet(bucket.categories, ["ah", "ssc"]);
+        overlappingFixedCredits.length === bucketPlanningCategories.length;
+      const isAhOrSscBucket = hasSameSourceBackedCategorySet(bucketPlanningCategories, ["ah", "ssc"]);
+      const additionalFlexibleCreditsForBucket =
+        additionalFlexibleByCategoryKey.get(bucketPlanningCategories.join("-"))?.values().next()
+          .value ?? null;
+      const isPartiallyExpandedSharedBucket =
+        !hasAllBucketCategoriesFixed &&
+        isAhOrSscBucket &&
+        overlappingFixedCredits.length === bucketPlanningCategories.length - 1 &&
+        additionalFlexibleCreditsForBucket !== null &&
+        fixedCreditTotal + additionalFlexibleCreditsForBucket < bucket.totalCredits;
       const isFixedMinimumExpansion =
         bucket.minimumPerCategoryCredits !== null &&
         hasAllBucketCategoriesFixed &&
@@ -4426,15 +4639,20 @@ function buildParsedSourceBackedGeneralEducationStructure(
         );
       const isFullyExpandedSharedBucket =
         hasAllBucketCategoriesFixed &&
-        additionalAhOrSscCredits !== null &&
+        additionalFlexibleCreditsForBucket !== null &&
         isAhOrSscBucket &&
-        fixedCreditTotal + additionalAhOrSscCredits === bucket.totalCredits;
+        fixedCreditTotal + additionalFlexibleCreditsForBucket === bucket.totalCredits;
       const isFullyAllocatedFixedBucket =
         hasAllBucketCategoriesFixed &&
-        additionalAhOrSscCredits === null &&
+        additionalFlexibleCreditsForBucket === null &&
         fixedCreditTotal === bucket.totalCredits;
 
-      if (!isFixedMinimumExpansion && !isFullyExpandedSharedBucket && !isFullyAllocatedFixedBucket) {
+      if (
+        !isFixedMinimumExpansion &&
+        !isFullyExpandedSharedBucket &&
+        !isFullyAllocatedFixedBucket &&
+        !isPartiallyExpandedSharedBucket
+      ) {
         hasConflict = true;
         break;
       }
@@ -4501,7 +4719,7 @@ function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
     }
 
     if (descriptor.kind === "shared-bucket") {
-      return !hasSameSourceBackedCategorySet(descriptor.categories, ["ah", "ssc"]);
+      return !hasSameSourceBackedPlanningCategorySet(descriptor.categories, ["ah", "ssc"]);
     }
 
     if (descriptor.kind === "area-total") {
@@ -4509,7 +4727,7 @@ function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
     }
 
     if (descriptor.kind === "additional-flexible") {
-      return !hasSameSourceBackedCategorySet(descriptor.categories, ["ah", "ssc"]);
+      return !hasSameSourceBackedPlanningCategorySet(descriptor.categories, ["ah", "ssc"]);
     }
 
     return false;
@@ -4520,15 +4738,28 @@ function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
 
   const targets = createEmptyGeneralEducationRequirementTargets();
   const fixedCreditsByCategory = new Map<SourceBackedGeneralEducationCategoryId, number>();
+  const additionalFlexibleCreditsByCategoryKey = new Map<string, number>();
+  for (const descriptor of structure.descriptors) {
+    if (descriptor.kind === "category-fixed" && descriptor.category !== "div") {
+      fixedCreditsByCategory.set(descriptor.category, descriptor.credits);
+      continue;
+    }
+
+    if (descriptor.kind === "additional-flexible") {
+      additionalFlexibleCreditsByCategoryKey.set(
+        getSourceBackedPlanningCategories(descriptor.categories).join("-"),
+        descriptor.credits
+      );
+    }
+  }
 
   for (const descriptor of structure.descriptors) {
     if (descriptor.kind === "category-fixed") {
-      fixedCreditsByCategory.set(descriptor.category, descriptor.credits);
       if (descriptor.category === "ah") {
         targets.ahCredits = descriptor.credits;
       } else if (descriptor.category === "ssc") {
         targets.sscCredits = descriptor.credits;
-      } else {
+      } else if (descriptor.category === "nsc") {
         targets.nscCredits = descriptor.credits;
       }
       continue;
@@ -4548,6 +4779,9 @@ function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
       continue;
     }
 
+    const bucketPlanningCategories = getSourceBackedPlanningCategories(descriptor.categories);
+    const additionalFlexibleCreditsForBucket =
+      additionalFlexibleCreditsByCategoryKey.get(bucketPlanningCategories.join("-")) ?? null;
     const fixedAhCredits = fixedCreditsByCategory.get("ah") ?? null;
     const fixedSscCredits = fixedCreditsByCategory.get("ssc") ?? null;
 
@@ -4564,6 +4798,28 @@ function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
       targets.breadthCredits =
         targets.breadthCredits ??
         Math.max(0, descriptor.totalCredits - fixedAhCredits - fixedSscCredits);
+      continue;
+    }
+
+    if (
+      hasSameSourceBackedCategorySet(bucketPlanningCategories, ["ah", "ssc"]) &&
+      additionalFlexibleCreditsForBucket !== null &&
+      ((fixedAhCredits !== null && fixedSscCredits === null) ||
+        (fixedAhCredits === null && fixedSscCredits !== null))
+    ) {
+      const knownFixedCredits = fixedAhCredits ?? fixedSscCredits ?? 0;
+      const inferredMissingCredits =
+        descriptor.totalCredits - knownFixedCredits - additionalFlexibleCreditsForBucket;
+      if (inferredMissingCredits <= 0) {
+        return createEmptyGeneralEducationRequirementTargets();
+      }
+
+      if (fixedAhCredits !== null) {
+        targets.sscCredits = targets.sscCredits ?? inferredMissingCredits;
+      } else {
+        targets.ahCredits = targets.ahCredits ?? inferredMissingCredits;
+      }
+      targets.breadthCredits = targets.breadthCredits ?? additionalFlexibleCreditsForBucket;
       continue;
     }
 
@@ -4613,7 +4869,12 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
   }
 
   const fixedCreditsByCategory = new Map<SourceBackedGeneralEducationCategoryId, number>();
+  const explicitFixedCategories = new Set<SourceBackedGeneralEducationCategoryId>();
   const additionalFlexibleByCategoryKey = new Map<string, number>();
+  const overlappingCategoryDescriptorsByCategory = new Map<
+    SourceBackedGeneralEducationCategoryId,
+    Extract<SourceBackedGeneralEducationDescriptor, { kind: "overlapping-category" }>
+  >();
   const areaTotalCredits = structure.descriptors
     .filter((descriptor): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: "area-total" }> =>
       descriptor.kind === "area-total"
@@ -4622,12 +4883,60 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
 
   for (const descriptor of structure.descriptors) {
     if (descriptor.kind === "category-fixed") {
+      if (descriptor.category === "div") {
+        continue;
+      }
       fixedCreditsByCategory.set(descriptor.category, descriptor.credits);
+      explicitFixedCategories.add(descriptor.category);
       continue;
     }
 
     if (descriptor.kind === "additional-flexible") {
-      additionalFlexibleByCategoryKey.set(descriptor.categories.join("-"), descriptor.credits);
+      additionalFlexibleByCategoryKey.set(
+        getSourceBackedPlanningCategories(descriptor.categories).join("-"),
+        descriptor.credits
+      );
+      continue;
+    }
+
+    if (descriptor.kind === "overlapping-category") {
+      const existing = overlappingCategoryDescriptorsByCategory.get(descriptor.category);
+      if (!existing || descriptor.credits > existing.credits) {
+        overlappingCategoryDescriptorsByCategory.set(descriptor.category, descriptor);
+      }
+    }
+  }
+
+  for (const descriptor of structure.descriptors) {
+    if (descriptor.kind !== "shared-bucket") {
+      continue;
+    }
+
+    const planningCategories = getSourceBackedPlanningCategories(descriptor.categories);
+    if (!hasSameSourceBackedCategorySet(planningCategories, ["ah", "ssc"])) {
+      continue;
+    }
+
+    const additionalFlexibleCredits =
+      additionalFlexibleByCategoryKey.get(planningCategories.join("-")) ?? null;
+    if (additionalFlexibleCredits === null) {
+      continue;
+    }
+
+    const fixedAhCredits = fixedCreditsByCategory.get("ah") ?? null;
+    const fixedSscCredits = fixedCreditsByCategory.get("ssc") ?? null;
+    if (
+      (fixedAhCredits !== null && fixedSscCredits === null) ||
+      (fixedAhCredits === null && fixedSscCredits !== null)
+    ) {
+      const inferredMissingCredits =
+        descriptor.totalCredits - (fixedAhCredits ?? fixedSscCredits ?? 0) - additionalFlexibleCredits;
+      if (inferredMissingCredits > 0) {
+        fixedCreditsByCategory.set(
+          fixedAhCredits !== null ? "ssc" : "ah",
+          inferredMissingCredits
+        );
+      }
     }
   }
 
@@ -4647,14 +4956,25 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
         const hasRangeDescriptor = structure.descriptors.some(
           (entry) => entry.kind === "category-range"
         );
+        const hasMatchingSharedBucket = structure.descriptors.some(
+          (entry) =>
+            entry.kind === "shared-bucket" &&
+            entry.scope === "areas-of-inquiry" &&
+            entry.totalCredits === descriptor.totalCredits
+        );
+        if (hasMatchingSharedBucket) {
+          continue;
+        }
         const hasUnreducedSharedBucket = structure.descriptors.some(
           (entry) =>
             entry.kind === "shared-bucket" &&
             !(
-              hasSameSourceBackedCategorySet(entry.categories, ["ah", "ssc"]) &&
+              hasSameSourceBackedPlanningCategorySet(entry.categories, ["ah", "ssc"]) &&
               fixedCreditsByCategory.get("ah") !== undefined &&
               fixedCreditsByCategory.get("ssc") !== undefined &&
-              (additionalFlexibleByCategoryKey.get("ah-ssc") ?? 0) +
+              (additionalFlexibleByCategoryKey.get(
+                getSourceBackedPlanningCategories(entry.categories).join("-")
+              ) ?? 0) +
                 (fixedCreditsByCategory.get("ah") ?? 0) +
                 (fixedCreditsByCategory.get("ssc") ?? 0) ===
                 entry.totalCredits
@@ -4714,6 +5034,10 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
       continue;
     }
 
+    if (descriptor.kind === "overlapping-category") {
+      continue;
+    }
+
     if (descriptor.kind === "elective") {
       pushItem({
         id: "additional-areas-of-inquiry",
@@ -4724,14 +5048,18 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
       continue;
     }
 
-    const fixedCreditTotal = descriptor.categories.reduce(
+    const descriptorPlanningCategories = getSourceBackedPlanningCategories(
+      descriptor.categories
+    );
+    const fixedCreditTotal = descriptorPlanningCategories.reduce(
       (totalCredits, category) => totalCredits + (fixedCreditsByCategory.get(category) ?? 0),
       0
     );
     const additionalFlexibleCredits =
-      additionalFlexibleByCategoryKey.get(descriptor.categories.join("-")) ?? 0;
+      additionalFlexibleByCategoryKey.get(descriptorPlanningCategories.join("-")) ?? 0;
     const isFullyExpandedAhOrSscBucket =
-      hasSameSourceBackedCategorySet(descriptor.categories, ["ah", "ssc"]) &&
+      hasSameSourceBackedCategorySet(descriptorPlanningCategories, ["ah", "ssc"]) &&
+      descriptor.categories.length === descriptorPlanningCategories.length &&
       fixedCreditTotal + additionalFlexibleCredits === descriptor.totalCredits;
     if (isFullyExpandedAhOrSscBucket) {
       continue;
@@ -4758,6 +5086,34 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
         descriptor.scope === "areas-of-inquiry" ? "Areas of Inquiry" : sharedCategoryLabel,
       valueText: `${formatSourceBackedGeneralEducationCreditCount(descriptor.totalCredits)} shared`,
       note: noteParts.join(" ").trim() || undefined,
+      sourceKind: "source-backed-major",
+    });
+  }
+
+  for (const descriptor of overlappingCategoryDescriptorsByCategory.values()) {
+    pushItem({
+      id: `overlapping-${descriptor.category}`,
+      label: SOURCE_BACKED_GENERAL_ED_CATEGORY_LABELS[descriptor.category],
+      valueText: formatSourceBackedGeneralEducationCreditCount(descriptor.credits),
+      note: descriptor.overlappingCategories.length
+        ? `Overlaps with ${joinSourceBackedGeneralEducationCategoryLabels(
+            descriptor.overlappingCategories,
+            "slash"
+          )}.`
+        : "Overlaps with the Areas of Inquiry courses.",
+      sourceKind: "source-backed-major",
+    });
+  }
+
+  for (const [category, credits] of fixedCreditsByCategory) {
+    if (explicitFixedCategories.has(category)) {
+      continue;
+    }
+
+    pushItem({
+      id: category,
+      label: SOURCE_BACKED_GENERAL_ED_CATEGORY_LABELS[category],
+      valueText: formatSourceBackedGeneralEducationCreditCount(credits),
       sourceKind: "source-backed-major",
     });
   }
@@ -6434,9 +6790,20 @@ export function buildSuggestedQuarterPlan(input: {
       ...course,
       status: "current",
     }));
+  const currentQuarterPlanCourses = currentQuarterCourses.map<SuggestedQuarterCourse>(
+    ({ label, type, status, guidanceSummary }) => ({
+      label,
+      type,
+      status,
+      guidanceSummary,
+      availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(label),
+    })
+  );
   const currentQuarterSlot = currentQuarterCourses.length
     ? getCurrentOrNextQuarterSlot(input.referenceDate, includeSummerQuarter)
     : null;
+  const futurePlanningSatisfiedCourseCodes = new Set(completedCourseCodes);
+  recordPlannedQuarterCourseCodes(currentQuarterPlanCourses, futurePlanningSatisfiedCourseCodes);
   const guidedCoursesStillToPlan = guidedRemainingCourses.filter(
     (course) => !selectedCurrentCourseLabels.has(course.label)
   );
@@ -6543,17 +6910,7 @@ export function buildSuggestedQuarterPlan(input: {
     ? {
         label: currentQuarterSlot?.label ?? "Current / In progress",
         phase: "current" as const,
-        courses: allocateQuarterCourses({
-          seedCourses: currentQuarterCourses,
-          essentialCorePool,
-          essentialElectivePool,
-          optionalCorePool,
-          optionalElectivePool,
-          fillerPool,
-          completedCourseCodes,
-          preferredQuarterKind: currentQuarterSlot?.kind ?? null,
-          includeSummerQuarter,
-        }),
+        courses: currentQuarterPlanCourses,
       }
     : null;
 
@@ -6567,7 +6924,7 @@ export function buildSuggestedQuarterPlan(input: {
   const hasPendingFutureCourses = hasPendingQuarterPlanCourses(planningPools);
   const futureQuarterPlans: SuggestedQuarterPlan[] = [];
   const shouldShowEmptyPlanningShell =
-    !hasPendingFutureCourses && !completedQuarterPlans.length && !currentQuarterCourses.length;
+    !hasPendingFutureCourses && !completedQuarterPlans.length && !currentQuarterPlanCourses.length;
   if (hasPendingFutureCourses || shouldShowEmptyPlanningShell) {
     const [firstFutureQuarterSlot] = currentQuarterSlot
       ? buildQuarterSlotsAfterCurrent(input.referenceDate, includeSummerQuarter)
@@ -6590,7 +6947,7 @@ export function buildSuggestedQuarterPlan(input: {
         optionalCorePool,
         optionalElectivePool,
         fillerPool,
-        completedCourseCodes,
+        completedCourseCodes: futurePlanningSatisfiedCourseCodes,
         preferredQuarterKind: slot.kind,
         includeSummerQuarter,
       });
@@ -6603,7 +6960,7 @@ export function buildSuggestedQuarterPlan(input: {
           phase: "planned",
           courses,
         });
-        recordPlannedQuarterCourseCodes(courses, completedCourseCodes);
+        recordPlannedQuarterCourseCodes(courses, futurePlanningSatisfiedCourseCodes);
         consecutiveEmptyQuarterCount = 0;
       } else {
         consecutiveEmptyQuarterCount += 1;

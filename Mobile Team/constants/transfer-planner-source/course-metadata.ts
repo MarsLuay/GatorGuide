@@ -3,6 +3,7 @@ import type {
   TransferPlannerSourceLink,
   TransferPlannerSourceSchoolId,
 } from "./schema";
+import { normalizeTransferPlannerCourseCode } from "./course-code-normalization";
 import { TRANSFER_PLANNER_GENERATED_COURSE_METADATA } from "./course-metadata.generated";
 
 export type TransferPlannerNormalizedCourseMetadataEntry = {
@@ -77,10 +78,7 @@ const METADATA_GAP_FIELDS: TransferPlannerCourseMetadataField[] = [
 ];
 
 function normalizeCourseMetadataLookupCode(value: string | null | undefined) {
-  return String(value ?? "")
-    .trim()
-    .toUpperCase()
-    .replace(/\s+/g, " ");
+  return normalizeTransferPlannerCourseCode(String(value ?? ""));
 }
 
 const GRC_EQUIVALENT_COURSE_CODES_BY_CODE = GRC_EQUIVALENT_COURSE_CODE_SETS.reduce(

@@ -1,6 +1,6 @@
 # Transfer Planner Source Pipeline Validation
 
-Generated: 2026-04-23T22:19:47.635Z
+Generated: 2026-04-24T10:58:18.651Z
 
 - Outcome: passed
 - Passed checks: 19
@@ -11,9 +11,9 @@ Generated: 2026-04-23T22:19:47.635Z
 - Review-queue owners: 0
 - Source-gap owners: 0
 - Promoted owners in canonical registry: 89
-- Parseable primary owners: 466
-- Parsed owners: 466
-- Requirement fingerprints: 466
+- Parseable primary owners: 424
+- Parsed owners: 424
+- Requirement fingerprints: 424
 
 | Check | Status | Details |
 | --- | --- | --- |
@@ -21,10 +21,10 @@ Generated: 2026-04-23T22:19:47.635Z
 | Generated promotion registry matches the promotion report | passed | Promoted owners: 89 |
 | Eligible high-confidence discoveries are promoted unless they remain in the review queue | passed | Eligible promoted owners verified: 6 |
 | Review queue and source-gap report point at the same unresolved owners | passed | Shared unresolved owners: 0 |
-| Auto-promoted owners are materialized in the canonical primary-source registry | passed | Promoted owners: 89<br>Canonical primary owners: 466 |
-| Canonical parseable primary owners align with parser input and parser output | passed | Canonical parseable primary owners: 466<br>Parsed owners: 466 |
+| Auto-promoted owners are materialized in the canonical primary-source registry | passed | Promoted owners: 89<br>Canonical primary owners: 424 |
+| Canonical parseable primary owners align with parser input and parser output | passed | Canonical parseable primary owners: 424<br>Parsed owners: 424 |
 | Promoted owners appear in parser output and requirement fingerprints | passed | Promoted owners verified end-to-end: 89 |
-| Requirement fingerprint coverage stays aligned with parsed requirement owners | passed | Requirement fingerprints: 466<br>Parsed owners: 466<br>Touched source owners: 2<br>Touched requirement owners: 3 |
+| Requirement fingerprint coverage stays aligned with parsed requirement owners | passed | Requirement fingerprints: 424<br>Parsed owners: 424<br>Touched source owners: 0<br>Touched requirement owners: 19 |
 | Eligible auto-promotions are fully cleared from the review queue and source-gap report | passed | Eligible owners fully cleared: 6 |
 | Year-tied primary degree sheets can trigger re-evaluation even when parsing still succeeds | passed | primary-source-appears-year-specific |
 | Weak-source replacement can trigger for an owner that already has an official primary source | passed | safe-intentional-empty-state, primary-url-looks-graduate-or-timeline, page-headings-look-graduate-or-timeline-heavy, primary-looks-overview-only |

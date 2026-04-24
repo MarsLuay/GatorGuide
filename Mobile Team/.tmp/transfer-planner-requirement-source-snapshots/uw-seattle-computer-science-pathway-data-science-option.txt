@@ -2,40 +2,169 @@ Owner: uw-seattle-computer-science:pathway:data-science-option
 Source: https://www.cs.washington.edu/academics/undergraduate/degree-requirements/
 Title: Degree Planning & Requirements - Paul G. Allen School of Computer Science & Engineering
 
+(*requires application and admission in summer)
+(See our page on Graduate School .)
+(UW course descriptions)
+[Supplemental official source] Capstones
 [Supplemental official source] Non-CSE Majors
 [Supplemental official source] Non-Major Options
+[Supplemental official source] Preparing for Industry: Suggested Computing Specializations
+[Supplemental official source] prerequisites
 * Data Science Options A growing number of departments and majors offer a multi-course specialization in data science (called a degree option), coordinated by the campus-wide eScience Education Working Group.
 * Electrical and Computer Engineering The Bachelor of Science in Electrical Engineering offered by the Department of Electrical & Computer Engineering (ECE) prepares students to design and build hardware and software for a variety of devices that use electricity, electromagnetics, photonics and quantum phenomena, such as robots, smartphones, lasers, electric power, vehicle control, medical devices and more. While all Electrical Engineering students take courses that cover the full breadth of the discipline, it is possible to do an emphasis in computer architecture and hardware design. ECE admits the majority of students from the Direct to College Engineering placement process.
 * Human Centered Design & Engineering Students in Human Centered Design & Engineering (HCDE) practice research, design, and engineering by focusing on the needs of people in their various contexts. HCDE’s undergraduate and graduate degrees prepare students for leadership roles in user experience research and design, user interface design, human-computer interaction, computer-supported cooperative work, and related specializations. Beyond taking traditional classroom courses, students join directed research groups to work closely with faculty to enhance the knowledge base of this dynamic field.HCDE admits the majority of their students from the Direct to College Engineering placement process.
 * Informatics The Information School, also known as the Information School, offers a Bachelor of Science in Informatics that prepares students to analyze, design, and develop information technologies for the good of people, organizations, and society. The degree is a balance between technical skills in building information systems, and social, ethical, design, and organizational perspectives on the role of technology in people’s lives.Most Informatics students seek careers as software developers, data scientists, web developers, user experience designers, project manager, cybersecurity analysts or product managers.
 * Masters in Clinical Informatics and Patient Centered Technologies Offered through the Evening Degree program, learn to manage and evaluate the use of information technology and informatics applications to improve patient care processes and outcomes. Explore IT tools used in clinical and community settings, and study how to design and test systems that enhance care.
 * Visual Communications Design and Interaction Design The School of Art’s Division of Design educates and trains designers to create and develop concepts that optimize the function, value, and appearance of communications, products and systems for the benefit of both industry and society. Within the Division of Design, there are three majors: Visual Communication Design, Industrial Design and Interaction Design.
+&copy; 2026 Paul G. Allen School of Computer Science & Engineering, University of Washington, Seattle WA
+<input id="uw-search-bar" type="search"
+164
+168
+178
 180 is designed for all undergraduates. No previous exposure to programming or statistics is expected. Many important decisions made by individuals and society at large are or should be data driven. Therefore, understanding the fundamentals of data science is essential for functioning as an informed citizen.
+185 E Stevens Way NE
+19
+20 min in-person or virtual 1:1 Peer Adviser Appointments
+2023 Statistics
+2024 Statistics
+23
+24%
+244
+259
+26%
+289
+30%
+311 Foundations I
+312 Foundations II
+33
+33%
+331 Software Design & Implementation
+332 Data Structures & Parallelism
+333 Systems Programming
+340 Interaction Programming
+341 Programming Languages
+344 Data Management
+351 Hardware/Software Interface
+36%
+37%
+3800 E Stevens Way NE
+42%
+481 C: Robotics Capstone
+5 credits
+5 Credits
+54
+58
+62
+69
+76
+90
+92
+A good essay conveys important information clearly, but is still concise. Expect that writing your personal statement will take time: start thinking about your essay and writing drafts well before the application deadline. Plan to have your essay reviewed by a mentor/teacher, parent or friend.
+A minimum grade of 2.0 in CSE 123 or 143
+A minimum grade of 2.0 in CSE 123 or 143; a minimum grade of 2.0 in MATH 126 or 135
+A presentation for you to view that provides best practices and suggestions for how to write a strong personal statement for your application.
+Academic Programs
+Academic Satisfactory Progress Petition
+Academics
+Academics Overview
+Acceptance Rate
+Accessibility
 Accessible Accordion
+Additional Questions & Support
+Adjunct Faculty
+Admission Decisions Released: Mid February
+Admissions
+Admissions Decisions Released: Early August
+Advice & FAQs
+Advice on applying to graduate school could fill a book, so it is best to talk specifically with a faculty member, preferably your research advisor, well before you apply. Applications are typically due in December, so it is best to start planning by the end of junior year. Some students work for a few years before applying to graduate school; this added experience can be quite helpful. We should note, however, that it is more common for students to apply to graduate school in their senior year. It is also possible to apply to graduate school as a senior, and then to defer for a year to work in industry.
+Advisory Board
+Affiliate Faculty
+After completing the minimum academic requirements , submit the Allen School departmental application by the appropriate deadline for the quarter you plan to apply.
 After CSE 122, students can take any combination of CSE 123, CSE 154, and CSE 163, three complementary courses described below.
 After CSE 123, students can take various upper-division computing courses. A good next step for students who enjoyed CSE 123 would be CSE 373 Data Structures, a more advanced course designed for non-majors. CSE 154 and CSE 163 complement CSE 123. Completion of CSE 123 satisfies the prerequisites for students to apply for admission to the Computer Science or Computer Engineering majors.
 After CSE 143, students can take various upper-division computing courses. A good next step for students who enjoyed CSE 143 would be CSE 373 Data Structures and Algorithms, a more advanced course designed for non-majors. Other 100-level courses, such as CSE 154 and CSE 163, are also options (the exception is CSE , which cannot be taken after CSE 143). Completion of CSE 143 satisfies the prerequisites for students to apply for admission to the CS or CE major.
+After speaking with their assigned adviser, students may complete this form to request approval to extend beyond 210 credits AND 12 quarters at the UW. If a student receives approval from the Allen School, they will also need to petition the University. The Allen School Advising Team will assist students with that process if their Allen School petition is approved. Departmental approval alone does not guarantee University approval for a graduation extension.
+AI Education in the Allen School
+All applications are reviewed by the Allen School Undergraduate Admission Committee, comprised of faculty and advisers. We use an evaluative , rather than a quantitative , process in our admission review. This means our decisions are based on more than simply which applicants have the highest grades. We do not tally up points; rather, we form an overall evaluation based on academic background and other factors, such as outside interests and activities, evidence of leadership and a sense of direction, and life experience. We do not expect all students to excel across the board, but achievement in relevant academic areas or evidence of overcoming hardships can strengthen an application.
+All current UW applicants to the Allen School are required to complete the Allen School prerequisite courses (shown above) by the departmental application deadline for the quarter that they are applying. Prerequisite coursework is essential to ensure that applicants are prepared for upper division coursework upon entering our program so that they are able to graduate on time. Similarly, prerequisite coursework is necessary to ensure that our academic application review is fair to all applicants. We are able to consider requests for Prerequisite Substitutions from applicants who have completed sufficiently advanced coursework that demonstrates knowledge of the material from incomplete prerequisite course(s) on a case-by-case basis. Substitutions are rare, and we do not advise applicants to intentionally skip prerequisite coursework . Applicants must have a grade of 2.0 or better in their advanced course(s) to be considered for a Prerequisite Substitution. Successful completion of a more advanced course does not guarantee that an exception will be made. The Prerequisite Substitution Request Form is now open for applicants who will be applying for the spring or autumn 2026 current UW admissions cycles! To request a prerequisite substitution, please ensure that you have submitted the Prerequisite Substitution Request Form by 5:00 pm PT on the date the departmental application closes for the quarter you intend to apply (January 15 for spring applicants; July 1 for autumn applicants). You will not be able to submit your application without an approved substitution. If you are filling-out this form close to the departmental application deadline, please complete all other sections and questions in your application by the 5:00 pm PT application deadline. Someone from the Undergraduate Student Services Team (USST) will submit your application on your behalf if your request is approved.
+All the UW
+Allen School Alumni
+Allen School Ambassadors
+Allen School Application Deadline: July 1 at 5:00 pm PT
+Allen School applications are reviewed by a committee of Allen School faculty and staff. We have a rubric that our faculty and staff are trained to follow to ensure that we are reviewing all applications consistently. Generally speaking, we evaluate two pieces of an application: the academic record (grades in prerequisite subject areas and overall grade trends) and the answers to the essay questions. While the rubric provides general guidelines for reviewers, we do have a method for flagging applications that don’t fit the rubric or have other information that needs to be captured during our discussion.
+Allen School Blog ↗
+Allen School Departmental Application Closes: January 15 at 5:00 pm PT
+Allen School Departmental Application Opens: Early January
+Allen School Departmental Application Opens: Mid-June
+Allen School Events Calendar
+Allen School Faculty
 Allen School Petitions Process – Guidelines for Students
+Almost all students entering CS Ph.D. research programs will have some research experience before entering graduate school. Research experience can be gained in a number of ways. Independent study with a faculty member or graduate student is the most common. However, it is not a requirement that you complete an honors thesis in order to apply to graduate school. Other paths include capstone projects and work experience. For example, capstone projects often involve independent study and creative problem solving. Working at an early stage startup is another good way to practice research skills — basically any environment where the problem is poorly specified, the solution is unknown, and success in uncertain — in other words, the opposite of a typical undergraduate class! It can take years for research ideas to make their way into practice, if at all, so the ability to sustain motivation and progress in the absence of deadlines is essential.
+Also see appropriate courses in the other UW departments noted above. Generally, the CSE courses will have a greater concentration on the technical aspects of HCI; the HCDE courses will focus on user experience and user testing; the Interaction Design program takes a design (art) perspective; while the Information School courses on the relationships among information, technology, and people. So, CSE440 will include some basics of doing a usability study, but for a more complete treatment, see for example HCDE417, Survey of Usability Research Techniques.
+Am I a current UW applicant?
+An increasing number of areas, not just traditional areas like physics, need high-performance computing that typically involves solving large numerical problems using large-scale parallel processing. People in this area benefit from expertise in applied mathematics as well as computer systems and software development. Despite increasing overlap with data mining and other areas, high-performance computing remains a distinct community.
+An option for every student to consider is further study in CSE after graduation. This can be any combination of self-directed study, a masters degree program, and/or a Ph.D. program. It is not possible for us to fit everything worth learning about CSE in the scant number of credits available in the undergraduate degree program. Instead, our aim at the undergraduate level is to provide a foundation for students to be able to learn more, either on their own or as part of a graduate degree program. The field of CSE moves ahead quickly! It is crucial to stay current with new technologies to stay productive.
 Any student who is new to programming, and is interested in learning Java and general programming skills while working on entertaining assignments, would benefit from taking CSE 142.
+Applicants Admitted to Computer Science or Computer Engineering
+Applications to the Allen School
 Applied and Computational Mathematical Sciences . ACMS is an inter-departmental program that combines higher math, computer science, probability and statistics, modeling, and applied math. Mathematics is used in a fundamental way in most fields of science and engineering, and its use is rapidly expanding in the social sciences and humanities, as well. Recent increases in computing power have made mathematical modeling, computer simulation, and statistical analysis more important than ever. This degree offers several pathways, combining higher math courses with courses in computer science, probability and statistics, modeling, and/or applied math.
 Applied Computational Mathematical Science: Note: starting in spring 2024, no double majors/degrees with Computer Science or Computer Engineering
 Approximately 100 students per quarter.
+Art in the Allen School
+Artificial Intelligence
+Ask for feedback on your personal statement. You might ask friends or family if it captures the most interesting and important details of who you are. Be open to making changes. Also, address what has changed since your first application. Spend time proofreading. Remember that it is more important for us to hear what you are doing presently and hope to accomplish in the future, rather than details about the first time you sat in front of a computer or played your first video game.
+At UW, UI and HCI related courses are found in CSE as well as in the Information School , Human Centered Design and Engineering , and the Interaction Design program in the School of Art . There is also a cross-campus alliance of HCI faculty and students called dub — dub is more oriented toward faculty and grad students, but the dub website is an excellent place to check out the range of HCI activities at UW.
+Autumn 2024
+Autumn Admissions
+Award Papers
 Back to top
+Before applying for Allen School current UW student admissions, applicants must complete a minimum of 30 graded credits & the Allen School prerequisite courses.
 Bellevue College – Bachelor of Science in Computer Science
 Below are specific suggestions of related major areas at the UW campuses in Seattle, Bothell, and Tacoma and at other Washington state colleges and universities.
 Below we articulate a few known exceptions or common responses regarding requests to petition. Please review this list in its entirety before requesting an exception.
+Bill & Melinda Gates Center
+Box 352350
+Box 352355
+Brain-computer interfacing involves using signals from the brain to directly control external devices.
+Building Directory
 Business at University of Washington in Seattle and Business at UW Tacoma . The Business programs at the University of Washington in Seattle and UW Tacoma offer concentrations in Information Systems that address the use of information technologies in business and organizational environments. The programs focus on the use and design of information systems to meet an organization’s tactical and strategic needs. The curriculum includes programming and database management, information system analysis and design.
 Capacity
+Capstones 2023-2024
+Capstones 2024-2025
 Cascadia College – Bachelors of Applied Science in Mobile Application Development
+Catering Requests
+Centers and Initiatives
 Central Washington University
+Co-requisite(s)
+Common Errors in English
+Community Engagement
+Completing a minimum of 30 graded credits prior to applying
+Completing at least 12 credits as a matriculated student at the Seattle campus of the University of Washington
+Completing the Allen School prerequisite requirements
+Computational neuroscience seeks to understand how the brain works through computational models and simulation.
 Computer Engineering [PDF]
+Computer Engineering degree program accredited by ABET
+Computer Science
 Computer Science – Data Science Option [PDF]
 Computer Science [PDF]
 Computer Science Principles (CSE 110)
+Computer security training can also be a valuable complement to anyone working in computer science, since — unfortunately — computer security issues arise all too frequently with deployed computer systems.
+Computer-security issues span almost all of computer science. Computer-security practitioners work at the hardware level, with embedded systems, with software, and with improving the usability of computer security systems.
+Computing + Biology
 Computing-Related Majors
+Connect with the Allen School
+Consider general requirements needed to graduate instead of just courses needed to apply. For example, finish your math and science courses, work towards a minor or another major, and complete your general education requirements.
+Contact & Location Info
+Contact Us
+Course
+Courses
+Courses in Computer Science & Engineering
+Credit by exam (such as AP or IB), while transferrable, is not considered graded credit and cannot count toward this requirement.
+CS Lab & Technical Support
 CSE 110 (which had number CSE 120 until 2022) introduces students to the fundamental principles of computer science and to basic programming concepts as a means to develop their computational thinking. Students explore the creative aspects of computing, including abstraction, problem-solving and managing complexity, and have the opportunity to consider the social, ethical and legal ramifications of various computing technologies. CSE 110 is related to the Advance Placement course in Computer Science Principles.
 CSE 120 was renumbered CSE 110 just to emphasize that it is not part of the CSE 121, CSE 122, CSE 123 sequence. It did not change otherwise.
 CSE 122, CSE 123, or CSE 143
+CSE 123 (or CSE 143)
 CSE 123 or 143
 CSE 131 offers students the opportunity to express their creativity while exploring the technical aspects of digital photography, including photographic composition, the science of optics and digital imaging, and the future of internet-enabled photography. Students practice using a variety of software tools and techniques for incorporating design elements such as line, color, texture and light, culminating in a final project organized around a theme. View examples of past student projects curated by course instructors here and here.
 CSE 131 was offered once per year with room for approximately 200 students through 2021, but the instructor and course creator has retired and we do not have plans at this time to offer the course.
@@ -43,79 +172,423 @@ CSE 142 is an entry-level course that introduces students to essential computing
 CSE 143 builds on the material in CSE 142 to develop more advanced programming skills, essential for writing more complex programs over larger and more interesting data. The format is similar to CSE 142, with two small weekly recitation sections.
 CSE 143 is designed as a follow-on course to CSE 142. While students who already know the material covered in CSE 142 are allowed to take CSE 143 without formal approval, doing so is often not advised because the two courses are designed together. CSE 143 is a great choice for any student wanting to learn more after CSE 142, and CSE 123 or CSE 143 is generally required for entry to the CS or CE major. CSE 123 or CSE 143 also may be required for other majors on campus.
 CSE 163 provides students who have taken CSE 122, CSE 142, or CSE with a programming course about how to write programs that (a) manipulate different types of data (images, text, tables, etc.), (b) leverage the growing ecosystem of tools and libraries for data programming, (c) are both efficient and elegant, and (d) are medium-scale in size (100 to 200 lines). The course complements CSE 123, which focuses more deeply on fundamental programming concepts and the internals of data structures. In contrast, CSE163 emphasizes the efficient use of those concepts for data programming. CSE 163 uses the Python programming language.
+CSE 190: Security
+CSE 190M: Web Development
+CSE 300-Level Courses & their Prerequisites
 CSE 311 Petitions
 CSE 331 Petitions
+CSE 331: Systems Development, Software Engineering
+CSE 333: Embedded Systems, Systems Development, Software Engineering
+CSE 341: Biology/Bioengineering/Medicine/Genomics, Systems Development, Software Engineering, Web Development
+CSE 344: Databases, ICTD, Biology/Bioengineering/Medicine/Genomics, Web Development
+CSE 369: Embedded Systems, Hardware Design/Engineering, Systems Development
+CSE 401: Embedded Systems, Hardware Design/Engineering, ICTD, Systems Development, Software Engineering
+CSE 403: Databases, Embedded Systems, Graphics/Vision/Games/Animation, Security, Systems Development, Software Engineering, User Interface & Human-Computer Interaction, Web Development
+CSE 417: ICTD
+CSE 418: ICTD
+CSE 419: ICTD
+CSE 421: Data Mining, Graphics/Vision/Games/Animation, Hardware Design/Engineering, Biology/Bioengineering/Medicine/Genomics, Mathematical Foundations, MS/PhD in CSE, Robotics & Control Systems, Scientific Computing, Security, Software Engineering
+CSE 427: Biology/Bioengineering/Medicine/Genomics
+CSE 428: Biology/Bioengineering/Medicine/Genomics
+CSE 428: Computational Biology Capstone
+CSE 431: Mathematical Foundations
+CSE 440: Databases, Embedded Systems, ICTD, Security, Software Engineering, User Interface & Human-Computer Interaction
+CSE 441: User Interface & Human-Computer Interaction
+CSE 444: Databases, Data Mining, Biology/Bioengineering/Medicine/Genomics, Security, Systems Development, Software Engineering
+CSE 446: Databases, Data Mining, Graphics/Vision/Games/Animation, Hardware Design/Engineering, Biology/Bioengineering/Medicine/Genomics, Robotics & Control Systems, Security, User Interface & Human-Computer Interaction, Web Development
+CSE 451: Databases, Embedded Systems, Hardware Design/Engineering, MS/PhD in CSE, Scientific Computing, Security, Systems Development, Software EngineeringUser Interface & Human-Computer Interaction
+CSE 455: Vision, Robotics & Control Systems
+CSE 456: Animation Production
+CSE 457: Graphics, Games, User Interface & Human-Computer Interaction
+CSE 458: Graphics, Animation Production
+CSE 459: Animation Production
+CSE 460: Animation Capstone
+CSE 460: Animation Production
+CSE 461: Embedded Systems, Hardware Design/Engineering, ICTD, Scientific Computing, Security, Systems Development, Software Engineering
+CSE 467: Embedded Systems, Hardware Design/Engineering
+CSE 471: Scientific Computing, Security, Systems Development
+CSE 473: Data Mining, Biology/Bioengineering/Medicine/Genomics, Robotics & Control Systems
+CSE 473: Vision
+CSE 474: Embedded Systems, Hardware Design/Engineering, ICTD, Robotics & Control Systems, Security, Systems Development
+CSE 475: Embedded Systems Capstone
+CSE 476: Embedded Systems, ICTD
+CSE 477: Embedded Systems, Hardware Design/Engineering, ICTD
+CSE 481 A OS Capstone
+CSE 481 C: Robotics Capstone
+CSE 481 D: Games Capstone
+CSE 481 M: ML Capstone
+CSE 481 M: NLP Capstone
+CSE 481 P: Social Computing Capstone
+CSE 481 S: Security Capstone
+CSE 481: Data Science Capstone
+CSE 481: Embedded Systems, ICTD, Systems Development
+CSE 481: Human-AI Interaction Capstone
+CSE 481: Networks and Mobile AI Capstone
+CSE 481D: Games
+CSE 481V Virtual and Augmented Reality Capstone
+CSE 482 A: Accessibility Capstone
+CSE 484: Databases, Embedded Systems, Security, Systems Development, Software Engineering, User Interface & Human-Computer Interaction, Web Development
+CSE 486: Biology/Bioengineering/Medicine/Genomics
+CSE 487: Biology/Bioengineering/Medicine/Genomics
+CSE 488: Biology/Bioengineering/Medicine/Genomics
+CSE 490D: Embedded Systems, ICTD
+CSE 498/496: MS/PhD in CSE
 CSE 500 Level Course Petitions
+CSE 500-level courses, including 590-level seminars, require permission of the instructor. Email is usually sufficient. Department colloquia are open to the public.
+CSE 5XX: MS/PhD in CSE
 CSE offers a firm grounding in computer programming to any student, and no previous programming experience is assumed. Although it is aimed at those who are new to programming, students who have taken CSE 121, CSE 122, or CSE 142 (but not CSE 123 or CSE 143) can enroll in this course, but also see CSE 163, which is designed to follow CSE 122 or CSE 160.
+Current site
+Current UW Admissions
+Current UW Admissions - Paul G. Allen School of Computer Science & Engineering
+Current UW Admissions Statistics
+Current UW Application Process
+Current UW Student Admissions
+Data
+Data Mining, ICTD, User Interface & Human-Computer Interaction
+Dates for information sessions are posted on our information sessions webpage .
 Degree Requirements
 Degree Requirements Petition
+Description: Accessibility is quickly emerging as a leading consideration for product design and engineering. Disability is part of the human condition – almost everyone will be temporarily or permanently impaired at some point in life, and those who survive to old age will experience increasing difficulties. Disability is complex and heterogeneous, and the technological interventions to accommodate different abilities are wide ranging and vary with context. Many familiar technologies like voice recognition, text-to-speech, and gaze detection were initially engineered to assist people with disabilities gain more access and increase participation in daily life. Students will work in interdisciplinary project teams to apply design and engineering skills to create technology solutions that increase independence and improve quality of life for people of all abilities.
+Description: Apply the knowledge gained in previous animation courses to produce a short animated film. Topics include scene planning, digital cinematography, creature and hard surface modeling, animatics and basics of character animation, and rendering techniques.
+Description: Capstone design experience. Prototype a substantial project mixing hardware, software, and communications. Focuses on embedded processors, programmable logic devices, and emerging platforms for the development of digital systems. Provides a comprehensive experience in specification, design, and management of contemporary embedded systems.
+Description: Designs and implements a software tool or software analysis for an important problem in computational molecular biology.
+Description: In this capstone course, students will work in groups to apply software engineering and system design skills they have learned over their four years in computer science towards building a novel social computing system to address a social challenge. We will follow a human-centered design process for groups to ideate, prototype, test, implement, and showcase their novel system. Along the way, students will gain a broad understanding of the current major pressing issues and state of the art of knowledge in social computing, while taking a critical lens toward social computing systems they use every day. Along with the capstone project, we will have readings, group discussions, reflections, and guest speakers working in social computing.
+Description: Student teams will be tasked with creating a computer security themed product. The work will progress from product conception to requirements to design to implementation to evaluation. Along the way, students will incorporate key computer security tools and practices, including threat modeling, penetration testing, and bug fixing. Examples include password managers, censorship resistance systems, and mobile payment systems.
+Description: Students will work in small groups (~3 people) to complete an independent machine learning research project in a domain of their choice (e.g., natural language processing; computer vision; medical data; machine learning theory; etc.). The focus will be on honing students’ research skills: formulating problems, picking up relevant technical knowledge, building research codebases, performing experiments and analysis, and writing up their results.
+Description: TBA
+Description: The “Networks and Mobile AI Capstone” course is designed to empower students to innovate at the intersection of mobile computing, wearables, on-device artificial intelligence, and networking. This course provides an opportunity to design and implement AI applications optimized for mobile devices, addressing challenges such as computational efficiency, real-time processing, and energy consumption. We will explore interesting applications like speech translation, mobile LLMs and multi-modal LLMs in the context of mobile and wearable devices and systems.
+Description: The main goal of this course is to open up new career options in robotics for computer science and engineering students. To that end, the course will teach you the basics of robotics and give you implementation experience. You will learn to use libraries and tools within the most popular robot programming framework ROS (Robot Operating System). We will touch on robot motion, navigation, perception, planning, and interaction through mini-lectures, labs, and assignments, eventually integrating these components to create autonomous or semi-autonomous robotic functionalities. The project will give you team-work experience with large scale software integration and it will get you thinking about opportunities for using robots to address societal challenges.
+Description: This class will provide students with an intensive 10-week experience in successfully completing a challenging, well-scoped research project.
+Description: This course is intended to give students a thorough understanding of design and implementation issues for modern operating systems. We will cover key design issues in implementing an operating system, such as memory management, inter-core synchronization, scheduling, protection, inter-process communication, device drivers, and file systems, paying particular attention to system designs that differ from the traditional monolithic arrangements of Unix/Linux and Windows.
+Description: This Data Science Capstone focuses on the complete end-to-end process of data analysis performed with code: the iterative, and often exploratory, steps that analysts go through to turn data into results. Our focus is not limited to statistical modeling or machine learning, but rather the complete process, including transformation, exploration, modeling, and evaluation choices. Students will work in groups of four on a single project that will tie together and apply previous experiences from CSE 312, 332, 446, 442, 344, and other classes. Students are expected to already possess knowledge of appropriate machine learning, visualization and database methods, and will focus on independently applying those methods in the context of your project. There will therefore be limited lecture material in this course. Course staff will instead work closely with students to critique and advise on their group project. Students will experience the end-to-end data analysis process from transformation and exploration of data to modeling and evaluation. Your group will brainstorm on a project during the first week, before collaboratively exploring the data and implementing a complete data analysis workflow. This capstone course gives hands-on experience with selecting a data science question, and with crafting and evaluating a data science process to answer that question.
+Description: This Data Science Capstone focuses on the complete end-to-end process of data analysis performed with code: the iterative, and often exploratory, steps that analysts go through to turn data into results. Our focus is not limited to statistical modeling or machine learning, but rather the complete process, including transformation, exploration, modeling, and evaluation choices. Students will work in groups of four on a single project that will tie together and apply previous experiences from CSE 312, 332, 446, 442, 344, and other classes. Students are expected to already possess knowledge of appropriate machine learning, visualization and database methods, and will focus on independently applying those methods in the context of your project. There will therefore be limited lecture material in this course. Course staff will instead work closely with students to critique and advise on their group project. Students will experience the end-to-end data analysis process from transformation and exploration of data to modeling and evaluation. Your group will brainstorm on a project during the first week, before collaboratively exploring the data and implementing a complete data analysis workflow. This capstone course gives hands-on experience with selecting a data science question, and with crafting and evaluating a data science process to answer that question. question.
+Description: Virtual and Augmented reality are promising technologies that are certain to make an impact on the future of business and entertainment. In this capstone, students will work in small project teams to build applications and prototype systems using state of the art Virtual Reality (VR) and Augmented Reality (AR) technology. Seattle is a nexus of VR tech, with Oculus Research, Valve, Microsoft (hololens), Google (cardboard, jump), and teams in the area. We will be developing on the latest VR/AR headsets and platforms, and will bring in leading VR experts for lectures and to supervise student projects. Students will experience the end-to-end product cycle from design to deployment, and learn about VR/AR technology and applications. The capstone culminates in a highly anticipated demo day where the students demonstrate their creations to other students, faculty and industry luminaries. (See Video)
+Direct to Major (First-Year) Admissions
+Distinguished Lecture Series
+Domestic Non-Residents
 Double Majors
 Due to relatively low demand, we have not been offering this course every year. We hope to relaunch it at some point.
 DXARTS (Minor). The Digital Arts and Experimental Media program creates opportunities for artists to pursue lines of inquiry within the scientific, technical and creative realms while discovering and documenting new areas of knowledge and practice in this emerging field. This inherently interdisciplinary curriculum requires all students to diversify their artistic practice across four major content areas (sound, video, 3D, and sensing and control systems) as well as compliment their study with relevant upper-division coursework selected from related fields (computer science, music, drama, dance, art, engineering, architecture, cinema studies, etc.). Students are positioned to pursue original creative and technical research.
 Eastern Washington University
 ECE Course Petitions:
+Emeritus Faculty
+Employment Opportunities
 Engineering: While double majors are not allowed between Computer Engineering and any other Engineering degree, occasionally, on rare exceptions, a student may pursue a Computer Science degree along with another Engineering degree. Please note however, there are no double degrees with any Allen School major and the Electrical and Computer Engineering degree.
+English
 Enrollment in CSE 142 has increased dramatically, and the course has been particularly successful at engaging more women in computer science and engineering. CSE 190A, a seminar linked to a section of CSE 142, enables students to explore the role of women in the field through group discussions, hands-on activities, and guest speakers. Watch our video exploring the growing popularity of CSE 142 and its follow-on course, CSE 143, and how these courses contribute to greater diversity in computing.
+Enter search text
+Events Calendar
 Evergreen State College
 Every student, no matter what his/her chosen field, should be familiar with the concepts and technologies that underpin computing and its role in our society. Anyone who seeks to acquire a basic understanding of computer science and to gain insights beyond what they know as mere consumers of technology would benefit from taking this course.
+Faculty Honors & Awards
+Faculty Leadership
+Faculty/Staff Directories
+Fall 2023
+Five credits of English composition
+Follow the Allen School
 For example, any engineering, science, or technical major integrates computing since computers are powerful tools for computation, design, modeling, and data manipulation. Any major plus some computer coursework can satisfy a computing interest. For example, the Allen School offers a series of non-major courses.
+For graduate applications, various factors are considered. In rough priority order: recommendations from faculty who worked directly with you on a research project; recommendations from faculty who taught you in a class or two, or for whom you have TA’ed; verbal/math GRE score; GPA; personal statement. In particular, the GPA is not particularly correlated with success in graduate school, except in one respect: most graduate courses run at two to three times the speed of a typical undergraduate course, so graduate schools do consider whether you would be able to keep up. Some schools are now conducting phone interviews of some candidates; for this it helps to attend research seminars (590) in your area of research, and to practice by talking to graduate students about their work and your work. Finally, to complete a Ph.D. literally requires you to write a book, and so there is a huge advantage to becoming an accomplished writer before entering graduate school.
+For some students who are denied admission to the Allen School on their first application, applying a second time may make sense. Reapplying does not automatically improve your chance of admission, and we do not consider previous applications when reviewing a students application for the current admissions round. You must identify what specifically kept you from being competitive the first time, and resolve these issues. Note, however, that the primary reason most students are denied is that space is limited; the Allen School denies many very strong applicants and sometimes there is no specific issue.
+For students who decide to reapply, here are some things to consider:
+Friends & Supporters
+from the Spring 2023 & Autumn 2023 Application Cycles
+from the Spring 2024 & Autumn 2024 Application Cycles
+from the Spring 2025 & Autumn 2025 Application Cycles
+Future Students
 Generally speaking, most students should plan to take the 400 level courses in the Allen School. There are exceptions however for students who have advanced understanding to occasionally take CSE 500 level courses. Typically a PhD Breadth 500 level course where a student has not previously taken the undergraduate version of the course can be allowed to count as a Core course. Note that this is only for PhD breadth courses. If a course is listed on our breadth requirements for PhD students they are often (not always) allowed as a Core Course substitution. Sometimes there are restrictions however on whether or not a student has taken the 400 level version of the course. An example would be that you are allowed to take 421 and 521 because they differ enough to both count. However there are other courses where you are NOT allowed to receive credit for both, i.e. 446 and 546 for example. It’s best to check with an adviser about your long term plans before requesting an exception. We hope to have an explicit list in the future, but for now, you should check with an adviser.
 Generally speaking, students who plan to major in computer science or computer engineering should complete CSE 142 and CSE 143 (or CSE 143X), as they are prerequisites for admission. Students may also need to complete CSE 142 and/or CSE 143 to satisfy requirements for majors from other departments.
 Geographic Information Systems The Geography department at the UW offers a Geography degree with a concentration in Geographic Information Systems (GIS). A GIS degree gives its majors an understanding of the development, sources, and uses of geographic information. The GIS curriculum focuses on geographic system analysis, map sources and map error, urban transportation GIs analysis, and natural resources and environmental analysis.
+Get Directions
+GitLab
+Given the breadth of the agenda above, no one curriculum will suit every student, so be flexible, talk to advisers and faculty, and consider the following courses:
 Gonzaga University
+Good math skills and the desire to build complex systems that interact with the world are important preconditions for success in robotics.
+grad-advising at cs.washington.edu
+Graduate (Ph.D.) Advising:
+Graduate Education
+Grand Challenges
 Green River College – Bachelor of Applied Science in Software Development
+Helpful advice, information, and answers to our most frequently asked questions.
+Helpful Information
+Here are some points to keep in mind about the Allen School admission process:
+Here are some resources to consult to ensure you submit a statement of the highest quality.
+Highly Recommended Courses: CSE 154, 403, 440, 451, 461, 484
+Highly Recommended Courses: CSE 190M, 403, 444
+Highly Recommended Courses: CSE 331, 333, 451, 461, 484, distributed systems, software capstone (CSE 481)
+Highly Recommended Courses: CSE 331, 403, software capstone
+Highly Recommended Courses: CSE 421, 431
+Highly Recommended Courses: CSE 421, 461, 471
+Highly Recommended Courses: CSE 427/428 (Computational Biology, 486/487/488 (Synthetic Biology)
+Highly Recommended Courses: CSE 440, 441; also any capstone courses in related areas, such as computing for the developing world or computer support for people with disabilities
+Highly Recommended Courses: CSE 446, 455, 473 & STAT 391
+Highly Recommended Courses: CSE 498/496 (research), 400-level courses in area of interest
+Home
+How are applications to the Allen School evaluated?
+How is the personal statement evaluated, and what should I discuss in my personal statement?
+How to Apply
+Human-Centered Computing
+i f Computer Science major (choose one): PHYS 121, BIOL 180, or CHEM 142 or a course from the approved list
+If a student completes EE 215 that can use that to replace EE 205, however EE 205 is strongly encouraged for our CE majors
+If a student completes EE 271, they can use that to replace CSE 369
+if Computer Engineering major: PHYS 121
 If you are a senior, file for graduation to get Graduating Senior Priority during your registration. After filing, you will get two quarters of priority registration which will allow you to register before anyone else (including other seniors who have not yet filed for graduation).
 If you have MATH 300 completed, you can take CSE 311 and CSE 332 at the same time. Your Allen School adviser can help you register since you won’t have CSE 311 pre-req credit yet.
 If you have trouble registering due to prerequisites, contact an adviser for assistance.
+If you have trouble taking tests or organizing your time, consider talking to a counselor at the Counseling Center about test-anxiety, test-taking tips, or time management.
 If you think you will not be able to graduate due to scheduling issues, contact an adviser.
+If you would like to discuss course planning or have other admission questions, please book an appointment to meet with a Peer Adviser , or attend Quick Questions to chat with an Allen School Academic Adviser (held Monday-Friday), see the Advising Calendar ). Additionally, all prospective students are highly encouraged to attend a current UW student information session , held on the second Tuesday of each month via Zoom. Please reach out to peer-adviser@cs.washington.edu if you have any questions.
+If you would like to schedule a 1:1 review appointment (in-person or virtual) All in-person appointments will be held in the Bill & Melinda Gates Center building (CSE2), in the undergraduate student services suite on the first floor. Please note our new appointment policy ( found on this page ) which was made in an attempt to equitably support as many prospective and current Allen School students as we can. Students may only schedule a maximum of three peer advising appointments per quarter and no more than one appointment in any 14 day period (2 week period).
+If you would like to speak to an adviser, you can check out the Undergraduate Academic Affairs Advising in Mary Gates Hall.
+If your grades in a key area (math, science, English, or CSE) are below the range that is typically competitive for the Allen School, you might improve your application by taking more-advanced classes in the same area. If you have not maintained consistently strong grades across multiple quarters, evaluate the options you have to create stability and work hard at maintaining strong grades. If you tend to pay attention only to the courses that interest you at the expense of everything else, focus on taking a more balanced approach to your coursework.
+Image Credits
 In addition to our 100-level courses, we offer a selection of 300- and 400-level courses in which students can explore in some depth specific areas of computing in a format suited to non-majors. Topics include algorithms, intermediate programming, artificial intelligence and database systems. See our overview of UW CSE’s non-major courses above to learn about options for additional study.
+In an effort to support prospective current UW students who are applying to the Allen School, we are excited to offer the following resources:
+In evaluating transcripts, we look not only at your grades , but at how many courses you have taken each quarter; circumstances (such as employment or activities) that may limit the number and types of courses taken, and the difficulty of each quarter as a whole (insofar as we have access to that information). For example, do you take balanced yet challenging course loads? Are you pursuing honors courses? Negative elements might include a pattern of repeating classes, multiple dropped, withdrawn, or S/NS courses, or selecting schedules with overlapping content.
 In general students should plan to take the required degree requirements. In some cases, a student may petition to take a different course in place of a stated degree requirement. This usually requires either a conversation with your assigned adviser in the Allen School, or sometimes it requires further approval with an official petition that would then be reviewed by the Director of Student Services and the Faculty Undergraduate Program Chair.
+In Memoriam
+In-person or virtual 1:1 personal statement review appointments (RSVP required, space is limited)
+In-person personal statement group workshops offered in January (RSVP required, space is limited)
+In-Person Personal Statement Workshops
+Industry Affiliates
 Informatics Minor If you love your major but want to know more about how to apply data, information and technology to solve problems in your chosen field, then the Informatics minor might be for you. The Informatics minor includes required components in data, design, policy and ethics, and code.
+Information Sessions
+Interaction with the Physical World
+Interdisciplinary Offerings
+Internal Resources
+Internal Web
+International Students
 Introduction to Data Science (STAT/INFO/CSE 180)
+It is important to note that the admissions rubric is reviewed and updated each year. In the past, we would post the rubric at the conclusion of all academic cycles, but we have decided to try a different path for the 2026 admissions cycles. Although we post the rubric publicly, please note that we do not conduct any pre-evaluations of a student’s application. As in the past, the best way to prepare for an upcoming application is to (1) address all the essay questions thoughtfully, carefully, and substantively and (2) do your best academically in all of your courses. We also highly recommend that all prospective students attend an information session to learn more about the Allen School and our evaluation process. These information sessions are free and open to the public. While we have somewhat changed how we calculate application scores the general structure remains the same. Academically, we consider the full transcript with particular attention given to more recent coursework and courses in prerequisite subject areas. Outside of academics, students can show strength in their Writing and Work History/Activities sections.
+K-12 Outreach
+Key Dates & Deadlines
 Lake Washington Institute of Technology – Bachelor of Applied Science in Software Development
+Latest News
+Learn about Minimum Academic Requirements
+List of Writing Centers at UW
+Main Administrative Offices
+Main Tel: (206) 543-1695
 Majors with an asterisk (*) are capacity-constrained: Students must complete all minimum requirements to apply and must then compete with the entire applicant pool for a limited number of spaces. These majors often have application forms and application deadlines; some of them require standardized tests, recommendations, and/or interviews.
+Make A Gift ♥
+Make sure to use the “help” tool on the right-hand side of the application if you have any questions about filling-out the application. If you are still having trouble, please reach out to the Allen School Undergraduate Advising Team at ugrad-adviser@cs.washington.edu.
+Many companies need talented web developers. Some are large companies that do web software as their bread and butter, like Google, Amazon, and Yahoo. Others are traditional software houses that have particular web products and services, like Microsoft or Cisco. Still others are regular non-software businesses that need to hire web hackers to create dynamic web sites for the company.
+Many graduate schools are extremely competitive. For example, UW CSE receives over 1000 applications for new Ph.D. students per year. On the other hand, several UW CSE undergrads enter Ph.D. programs each year, and probably an equal number beyond that would be able to be admitted to a competitive grad school but choose to go directly to industry. The CSE faculty are very knowledgeable as to which schools have strong programs in your area of interest, so make sure to consult them before applying. This type of information is very difficult to unearth on your own.
+Many of the other specializations (such as systems developer, web developer, etc.) overlap significantly with what software engineers do: indeed, these others are in some sense specialized software engineers. This suggests that, along with the basics, you should take courses about the kind of software you may be interested in engineering.
 Many students enter the UW with an interest in computers. There are a variety of ways you can gain an understanding of how computers work, and several majors other than Computer Science and Computer Engineering can prepare you for employment in a field where computers are used.
+masters at cs.washington.edu
+Masters degree programs largely fall into two flavors: primarily coursework, or a mixture of coursework and independent research. Graduate coursework generally focuses on bringing students to the state of the art in a particular sub-area of CSE, while independent research targets the creation of new knowledge in the construction of leading edge computer products and services. Clearly, to do research in an area, a student needs to understand the current state of knowledge in that area. At UW, the Professional Master’s Program (PMP) is primarily coursework; students in the UW CSE fifth year masters program can pursue either path; and students admitted in the Ph.D. program focus on research while completing several courses early in their graduate career.
+Math
+MATH 124, 125, & 126
 Math 126 or Math 136; Phys 122 or 142
 MATH 134, 135 and 136: honors math track students have two options:
 MATH 336: For students who complete MATH 336, they may petition to request to take CSE 431 in place of taking CSE 311. This waiver is contingent on the strength of the grade in MATH 336.
+Mathematical Foundations
+Media Inquiries: media at cs.washington.edu
+Menu
+Message from the Director
+Minimum Academic Requirements
+Most students planning for a second application will take additional challenging courses in math, science, English, or computer science. Keep in mind that although it may seem appealing to take a non-major Allen School course , these classes do not count toward Allen School major requirements. Applicants should speak with an Allen School adviser before taking a non-major Allen School class.
 Most students should take CSE 122 or CSE 123 instead of CSE 143. We will offer CSE 143 during the 2022-2023 academic year for students who already completed CSE 142 or a corresponding course at another institution.
+MyCSE
+name="s"
+Natural Science
+Neural engineering utilizes techniques from engineering to both understand the brain and build systems that interface with the brain such as neural prosthetics and implants. It encompasses areas such as computational neuroscience and brain-computer interfacing.
+News & Events
+Non-Major Options
+None
 North Seattle College – Applied Bachelor’s in Application Development
+Note: This course has a DIV designation and fulfills the diversity requirement
 OLD: Computer Programming I (CSE 142)
 OLD: Computer Programming II (CSE 143)
 OLD: Science and Art of Digital Photography (CSE 131)
+Other pages of interest: Undergraduate Admissions and Allen School Degree Requirements .
 Other Programs in Washington State
+Other Recommended Courses: 500-level courses in area of interest, CSE department colloquia, 590-level seminars in areas of interest, CSE 421/451, TA experience, writing experience
+Other Recommended Courses: CSE 341, 344, 444, 421, 446, 473 & STAT 391 & MEBI 498 (an undergraduate topics course on Biomedical Informatics)
+Other Recommended Courses: CSE 341, 344, 444, 484 & INFO 343, 344
+Other Recommended Courses: CSE 341, 401, 403, 444, 474, 471
+Other Recommended Courses: CSE 341/401, 333/451/461, 333/444, 440, 484, 421
+Other Recommended Courses: CSE 403, 446, 457, 484
+Other Recommended Courses: CSE 421, 444, 446, 474, 490’s
+Other Recommended Courses: CSE 421, 474 & EE 215
+Other Recommended Courses: CSE 451, STAT 391, and numerical analysis courses in the MATH or AMATH departments. See, in particular, the numerical analysis sequence MATH 464/465/466 or the optimization sequence MATH 407/408/409
+Other Recommended Courses: STAT 391
+Our Courses
+Our current UW student admissions pathway welcomes applicants who are already studying at the University of Washington’s Seattle campus and have completed the minimum academic requirements.
+Our evaluations for all parts of the application are holistic, we consider the whole person, which comes out in the essay, versus just considering grades. The departmental application essay prompt is available online at any time (look at the Computer Science & Engineering dropdown). Please note, we do not provide specific feedback on an applicant’s personal statement.
+Our goal is to have as complete a picture as we can of your activities, experiences, and academic performance .
+Outgoing Ph.D.s & Postdocs
+outreach at cs.washington.edu
 Pacific Lutheran University
+Paradigm Online Writing Assistant
+Participants will work in small groups (approximately 3 people in each group) to hone their technical skills to quickly absorb and adapt new technical knowledge, gain experience in complex programming, perform thorough experiments and analysis, and learn how to find a path when faced with negative results.
+Past Years’ Admissions Statistics
+Paul G. Allen Center
+Paul G. Allen School of Computer Science & Engineering
 Paul G. Allen School of Computer Science & Engineering: There are no double majors/double degrees between Computer Science and Computer Engineering
+People
+Personal Statement Review Resources
+Ph.D. Dissertation Talks
+Ph.D. in CSE
+Ph.D. programs in CSE are primarily designed for those interested in research careers. Although most Ph.D. programs involve coursework, the main focus is on pushing beyond the state of what is already known. Creativity, insight, teamwork, self-motivation, leadership, presentation and writing skills are all highly valuable to researchers, and in fact, the technical leadership of most companies excel at many of these same qualities. There is often a blurry line between academic research and new product development. Startups in particular value students who are able to solve technical problems where the solutions are not well-understood in advance. There is no textbook that says how to design an iPhone. It is not an accident that the CEO of Google has a Ph.D. in computer science; half of all Google hires from UW have advanced degrees. Thus, research experience is valuable, even if you do not pursue an academic career.
+Ph.D. Student Recognition
+Please refer to the Allen School Continuation Policy for information about minimum course load, dropping required courses, and other academic policies and procedures.
+Popular Links
+PostBac Students
+Postdoctoral Program
+Postdoctoral Scholars
+Preparing to Apply
+Prerequisite Substitutions
+Prerequisite(s)
+Prerequisites
+Prerequisites: 446 or 447 strongly recommended but not required
+Prerequisites: CSE 312; CSE 331; CSE 332
+Prerequisites: CSE 332 and CSE 312, and at least one of CSE 446, CSE 442, or CSE 344.
+Prerequisites: CSE 332, and at least one CSE 400 level course recommended
+Prerequisites: CSE 340 or CSE 440 or HCDE 318 or INFO 360
+Prerequisites: CSE 351, 332 and ideally one 400-level course
+Prerequisites: CSE 351, CSE 332, and ideally one 400-level CSE course
+Prerequisites: CSE 446/546 and one of CSE 493 S (Advanced Machine Learning), CSE 493G (Deep Learning), CSE 447, CSE 455, CSE 478, or CSE 427.
+Prerequisites: CSE 451
+Prerequisites: CSE 458; CSE 459
+Prerequisites: CSE 484
+Prerequisites: Either CSE 331 or CSE 340 AND either CSE 440 or CSE 493E: Accessibility. CSE 332 and 351 not required, contact advising to register without the pre-requisite.
+Prerequisites: Either EE 271 or CSE 369; either CSE 466, EE 472, or CSE 474/EE 474
+Prerequisites: Networks or ML course recommended but not required.
+Prerequisites: None, but CSE 440 is strongly suggested
+Prerequisites: Senior standing in CSE or permission of the instructor
+Privacy
+Professional Master's Program Advising:
 Renton Technical College – Bachelor of Applied Science in Application Development
+Research
+Research & Innovation
+Research Colloquia
+Research Overview
+Returning students who have completed coursework elsewhere since attending the UW’s Seattle campus are eligible to apply as current UW students. Students who are enrolled at UW Bothell or UW Tacoma should apply through our transfer admissions pathway. Unfortunately, because demand exceeds capacity, current UW student admissions pathway is competitive and the Allen School is not able to offer admissions to all current UW applicants.
+Robotics & Control Systems
+Robotics is about developing systems that can operate effectively in the real world. Robotics engineers develop algorithms that can handle noisy sensor data, learn models of the environment, and make decisions in real time. Modern robotics encompasses areas such as optimal control, probabilistic reasoning, state estimation, machine learning, and artificial intelligence. Robotics tools are applicable to a wide range of problem spaces beyond robotics, including speech recognition, machine vision, analysis of noisy data streams, interactive computer gaming, and brain-machine interfacing.
+Room Reservations
 Saint Martin’s University
+School History
+Schoolwide Policies
+Scientific Computing
+Search scope
 Seattle Pacific University
 Seattle University
+Seattle, WA 98195-2350
+Seattle, WA 98195-2355
+Security
+Sitemap
+Skip to content
+Software & Hardware Systems
+Software Engineering
+Software engineers design, build and evolve software in a broad variety of domains. Although many focus on specific aspects of the software lifecycle — requirements engineering, architecture and design, testing and analysis, etc. — software engineers collectively address software systems from “womb” to “tomb.” Software engineers need to understand the needs of users, design approaches to manage software complexity and to ease change over time, ways to assess the properties that the software product does or does not have, algorithmic and implementation techniques to build efficient software, and more. Making effective trade-offs about issues ranging from performance to reliability to availability to ease of change (and more!) is part-and-parcel of a software engineer’s job.
 Some students choose to pursue a double major or double degree. There are a few known substitutions that we’ll list here:
+Some students may need to petition the university for additional credits or quarters to complete their degree due to extenuating circumstances. Students must have a conversation with their academic adviser if they feel their situation warrants an extension of the University’s academic satisfactory progress policy, which requires students to complete their undergraduate degree program within 30 credits beyond the minimum required for their degree.
 Sometimes a student will enter the Allen School with a significant number of MATH and STAT courses completed. If this is the case, you may try petitioning to waive CSE 311 via a substitution from a math course. Generally asking for just MATH 300 or just MATH/STAT 394 is not enough for a substitution. If you have not taken a significant number of MATH or STAT courses that cover this material, then generally you should plan to take CSE 311. A few known exceptions to this outcome follow:
+Specializations Listed By Department and Course Number
+Spring 2024
+Spring 2025
+Spring 2026 Personal Statement Workshop Presentation
+Spring Admissions
 Stat/CSE Double Majors: STAT 435 can count as a CSE core-course in place of CSE 446 (no credit for both toward the CSE degree) In the Data Science option, STAT 303 can replace SOC 225
 STAT/INFO/CSE 180, Introduction to Data Science (IDS), is a course offered every quarter. It is a survey course introducing the essential elements of data science: data integrity including the ethics and social context of data; data methods including using tables, graphs, and other visualizations; and data analysis, including statistics methods and machine learning. It is not a programming course: rather than programming, students gain hands-on experience with other software tools and methods.
+Student Recruitment Representatives
+Student Services
+Students applying to the Allen School should consider alternative degree options as well. UW offers many other excellent computing-related majors that are far more than “back-up” plans. Choose a major you enjoy and that will help further your personal, academic, and professional goals. Students in any major may take non-major Allen School courses to build technical skills.
 Students can take CSE 123 after CSE 122 self-place into CSE 123 if they have substantial prior experience such that they are already familiar with the CSE 122 material. See our guided self-placement. The course content is designed for students aiming toward academic and career plans where software implementation is a major component
 Students have a number of options for further study. Three complementary courses are specifically designed to follow CSE 142: (1) CSE 143 is the continuation course for those who want to develop more advanced programming skills in Java and is the next step toward most upper-division CSE courses, (2) CSE 154 is a web programming course covering many technologies used to implement web pages, and (3) CSE 163 is a programming course focused on data analysis with a variety of data-science programming tools.
 Students have multiple options for building on what they learn in CSE 110. A natural next step may be to follow principle with practice by enrolling in one of our introductory programming courses, CSE 121 or CSE 160. While CSE 110 offers a great introduction to computer science concepts, it is not a necessary prerequisite for enrollment in those programming courses.
 Students sometimes decide to delay taking CSE 331 until the end of their time in the Allen School with the intention to waive the course based on prior internship/industry experience. These petition requests are always denied. If you are petitioning a waiver for any course, you typically need to prove how you have acquired the academic knowledge covered in the course. Simply having internship experience has been determined to not be a viable substitute for this course. Ideally students would complete 331 early in their academic career and before embarking on a software internship to get the most benefit from the course.
+Students will also have opportunities to delve into networking technologies, exploring how connected systems and distributed AI can enable groundbreaking applications, from edge computing to real-time collaboration between devices. Students will learn to navigate the constraints of mobile hardware and deploy sophisticated machine learning models that enhance user experiences in dynamic, networked environments. By the end of the course, students will have not only gained technical skills in on-device AI and networking but also gained invaluable experience in project management, cross-disciplinary collaboration, and communicating technical solutions. This capstone prepares students for careers at the forefront of on-device AI and network-driven innovation, ready to redefine how intelligent systems connect and operate.
+Subject Area
+Systems developers create and manage the software environment for application development and execution. A systems developer may write operating systems (e.g., for a cell phone, desktop, or data-center server), data-center infrastructure (distributed file systems, web-server software, networking stacks), databases, compilers, networking and security.
+Systems Development
+Systems Development, Web Development
+TA Tools
+Taught by: Alisa Liu and Orevaoghene Ahia
+Taught by: Amy Zhang
+Taught by: Barbara Mones
+Taught by: Basia Radka
+Taught by: ECE
+Taught by: Franzi Roesner
+Taught by: Ira Kemelmacher-Shlizerman
+Taught by: James Fogarty
+Taught by: Jennifer Mankoff
+Taught by: Maya Cakmak
+Taught by: Pang Wei Koh
+Taught by: Sheng Wang
+Taught by: Shwetak N. Patel
+Taught by: Shyam Gollakota
+Taught by: Simon Peter
+Taught by: Tim Althoff
+Taught by: Yoshi Kohno
+Taught by: Zoran Popovic
+Teaching Assistants
+Terms
+The Allen School accepts applications for students to start in either spring or autumn quarter, we do not accept applications for winter or summer quarters.
+The Allen School departmental application is typically open for about two weeks before the application deadline. Interested in starting early? The departmental application essay prompt is available online at any time (look at the Computer Science & Engineering dropdown).
+The Allen School Peer Adviser team typically hosts two to three in-person personal statement workshops where students will receive information about the best practices for personal statement writing, and then will have open unstructured time to work on their personal statement. Peer Advisers will be present to answer questions – please note that Allen School Academic Advisers do not provide feedback on personal statements. Each session does have a capacity limit to ensure attendees will have opportunities to ask questions within the workshop time. Participants are limited to attending a maximum of one group workshop. To attend a workshop, you must first reserve a spot .
+The courses below provide a core foundation in computer security. 484 is the keystone course. However, one tenet of computer security is that it is much harder to defend systems than attack systems. That is because an attacker needs to find only one way to succeed, whereas a defender needs to protect against all possible attacks. Computer-security issues can also affect all parts of a system, from the hardware to the user interface. Therefore, a computer-security practitioner should have as broad of a working knowledge in computer science as possible.
 The CS and CE programs each require you to take 180 total credits to graduate. You will need to fulfill a General Education component, a Mathematics and Science component, and a Computer (Science or Engineering) component that consists of required classes and senior electives. For those students who are considering a double major, see below for an explanation of exceptions to our standard degree requirements.
+The curriculum for a software engineer is heavily, but not solely, experiential. 331 and 403 are essential courses, as is one or more software capstone courses (and, when possible, internships or coops). Understanding the context for software from top-to-bottom is valuable for any software engineer, making courses like 341 and 401, 333 and 451 and 461 , 440, 344 and 444, 484, and 421 worthy of serious consideration. Students should also consider taking Business or Communication courses as possible general education courses.
+The Elements of Style
+The information below is meant to help you understand the CSE 300-level courses and their prerequisites. Click here for a visual representation of the information .
 The last offering of CSE 142 will be Summer 2022 as we transition to CSE 121, CSE 122, and CSE 123 in place of CSE 142 and CSE 143. We retain the information below as reference for students who took CSE 142 or corresponding courses at other institutions.
+The most salient characteristic of systems software is the need for reliability. If your operating system breaks, the user typically can’t get anything else done, and it might even corrupt their data permanently. The flaw might even provide an opportunity for a hacker to gain control over the user’s computer. The need for reliability is equally true for data-center software, the network, the compiler, and so forth. Making this even more challenging, systems software is often inherently complex; for example, the back-end software for a data center must deal with concurrency, recovery from node failures, resource overload conditions, and attacks from miscreants.
+The motivation for many of the courses above will be self-evident, but to amplify a little, the scale and nature of the data make databases, statistical approaches, and algorithms very relevant, and common use of a wide variety of languages, e.g., Perl, Python, R, Matlab, motivates 341. There also are many relevant courses in Chem/Biochem/Biology/Genetics/Bio Engineering/etc. Unfortunately, most have significant prerequisites, but if they fit your schedule, go for it! As just one of many examples, BIOL 180/200 (Intro Biology) -> GENOME 371 (Intro Genetics) -> GENOME 372 (Genomics and Proteomics) -> GENOME 373 (Genomic Informatics) would be a great series for anyone with an interest in computational biology.
+Theory & Models of Computation
+There are a host of other jointly listed courses between ECE and CSE
+There are always more qualified applicants than space available in our programs. Therefore, our process is competitive, and we must deny admission to some students with good academic records. We typically have space for approximately 25-35% of all students who apply however this number changes depending on increases in funding. It’s also important to note that we do not admit differently between Computer Science and Computer Engineering, we consider all applications together and admit without taking specific major into account. The admit rate in 2020 was 28% (113 admitted/402 applied), in 2021 it was 30% (165 admitted/554 applied), in 2022 it was 30% (134 admitted /444 applied), in 2023 it was 33% (165 admitted /495 applied), and in 2024 it was 32% (168 admitted/522 applied)
 There are similar programs in the area which take transfer students, and we highly recommend that you apply to multiple programs if you’re sure you want to study Computer Science or Computer Engineering. You should consider:
+These courses must be completed and numerically graded (with a minimum grade of a 2.0) prior to the departmental application deadline.
 This course is a joint project of Statistics, the Information School, and the Allen School, synthesizing the perspectives and expertise of the units. It was jointly developed, and each department/school leads one quarter’s offering each year. The offerings cover the same material.
+Thus, central to the curriculum for a systems developer is systems construction experience (via project oriented systems classes like 333 and 451, as well as internships and software capstones), breadth of knowledge of how systems work and how they break (461 and 484), principles of software engineering practice (331 and 403), technology trends, and specialized courses depending on time and interest (e.g., for compiler construction, one would want 341, 401).
+Time Schedules
+To be considered for the current UW student admissions pathway, applicants must be currently (or previously) enrolled at the University of Washington’s Seattle campus with at least 12 completed credits at UW-Seattle. Most often, these students would be ‘interest changers’ – students who came to UW with another interest in mind and later developed a passion for Computer Science or Computer Engineering.
+Transfer Admissions
+Transfer Applicant FAQ
+ugrad-adviser at cs.washington.edu
+Undergraduate Advising:
+Undergraduate Education
+Undergraduate Outreach & Recruitment:
+Undergraduate Teaching Awards
 University of Washington Bothell
 University of Washington in Seattle
 University of Washington Tacoma
 Upper-Level Courses
+User Interface & Human-Computer Interaction
+User interface design or user interface engineering is the design of computers, appliances, machines, mobile communication devices, software applications, and websites with the focus on the user’s experience and interaction. The goal of user interface design is to make the user’s interaction as simple, efficient, satisfying, (and possibly) fun as possible, in terms of accomplishing user goals—what is often called user-centered design. Good user interface design facilitates finishing the task at hand without drawing unnecessary attention to itself (unless it is a game!). Graphic design may be utilized to support its usability. The design process must balance technical functionality and visual elements (e.g., mental model) to create a system that is not only operational but also usable and adaptable to changing user needs. Interface design is involved in a wide range of projects from computer systems, to phones, to cars, to commercial planes; all of these projects involve much of the same basic human interactions yet also require some unique skills and knowledge. As a result, designers tend to specialize in certain types of projects and have skills centered around their expertise, whether that be software design, user research, web design, or industrial design. (Adapted from Wikipedia .)
 UW Bothell & Tacoma Campuses
 UW Bothell offers a Bachelor’s of Science degree in Computing and Software Systems , Computer Engineering , as well as a BA in Applied Computing and a Bachelor of Arts in Interactive Media Design . Bothell also offers a Graduate Certificate in Software Developement .
 UW Computing & Communications offers training courses in computing areas, including HTML, Word Processing, Spreadsheets, Databases, Desktop Publishing, etc.
 UW CSE offers honors sections connected to CSE 142 and 143 in which students take part in readings and discussions exploring a variety of computer science topics, including the nature of computation, the mathematical underpinnings of computer science, social issues related to computing, and current trends in the field. Participating students earn one additional credit for the seminar; in addition, the Honors Program grants students who complete CSE 142 or 143 in conjunction with the seminar credit for one 5-unit math or science course in the core.
 UW Extension offers certificate programs in many computer-related areas as well as evening courses for credit and noncredit.
 UW Tacoma offers a Bachelor’s of Science degree in Computing and Software Systems , Information Technology and Computer Engineering .
+UW Writing Resources for Undergraduates
+value="" autocomplete="off" placeholder="Search" />
+View all calendar events &raquo;
+Visiting Researchers
+WA Residents
 We aim to offer CSE 143X in Fall or both Fall and Winter.
+We know that students are curious about how we evaluate applications. For the 2026 undergraduate admissions cycles, we are posting the updated version of the rubric online preemptively.
+We look for breadth in prerequisite coursework as well as in general education classes . For instance, courses in English and Speech Communication can be important to our majors. Many of our upper-division courses demand presentation skills and an ability to communicate among team members. Also, your choice of courses gives us a glimpse of what interests you.
+We offer different types of information sessions to support prospective students applying through the current UW student admissions pathway.
+Web developers need to know about many different programming languages and technologies such as HTML, CSS, JavaScript, XML, databases/SQL, PHP/Java/Ruby/.NET, etc. It’s impossible to be an expert at all of these things, but exposure to many of them and ability to self-teach are important for many web dev jobs. It’s very helpful to know more about the overall process of software engineering, such as gathering requirements, design, and testing (403), since in some cases you’ll be building the site or web application by yourself or as part of a small team. Experience with user interface design and HCI (440, 441) are useful for creating effective, usable web sites. The ability to manage and manipulate data, whether in traditional data structures (332) or databases (344, 444) is very valuable since most business web sites/apps manage the business’s data.
+Web Development
+Webmaster: support at cs.washington.edu
+Website
+Webster’s Dictionary
+What are my chances of admission?
+What are some resources I can use to help me write a strong personal statement?
+What factors are considered in the review process?
 What is it?
 What next?
+What should I do if I am not admitted?
 While the course is not a direct prerequisite for other courses, students are likely to be motivated to follow-up with additional courses in computer science, informatics, and statistics. See CSE 121 and CSE for programming-focused courses. In particular, the programming aspects of 180 are not sufficient by themselves to skip 121/160.
 Who should take it?
+Who We Are
+Winter 2024
+Winter 2025
 You can take CSE 311 and CSE 332 at the same time AFTER completing MATH 136. Note that you will need help from an adviser when registering for CSE 332 as it generally requires CSE 311 to be completed. Your Allen School adviser can help you get registered for both courses.
 You can take MATH 136 and CSE 311 at the same time (typically in the Spring) as the CSE 311 prereq is MATH 126 or MATH 135.
+Your personal statement is an opportunity for the committee to learn more about what is important to you and why computer science/engineering is of interest.

@@ -212,7 +212,10 @@ const RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set([
   "AS",
   "BOTH",
   "EITHER",
+  "IN",
   "OR",
+  "PREREQ",
+  "PREREQUISITE",
 ]);
 const LEADING_LIST_MARKER_TOKENS = new Set(["I", "II", "III", "IV"]);
 const EXTRACTED_COURSE_SUBJECT_ALIASES = {
@@ -247,9 +250,9 @@ const HTML_LINK_PATTERN = /<a\b[^>]*href=(?:"([^"]+)"|'([^']+)')[^>]*>([\s\S]*?)
 const HTML_TAG_PATTERN = /<[^>]+>/g;
 const PDF_LINK_PATTERN = /href=(?:"([^"]+\.pdf(?:\?[^"]*)?)"|'([^']+\.pdf(?:\?[^']*)?)')/gi;
 const SUPPLEMENTAL_HTML_LINK_PATTERN =
-  /\b(curriculum|requirements?|degree requirements?|major requirements?|prerequisites?|prereq|worksheet|checklist|track|option|concentration|specialization|route|pathway|b\.?\s*a\.?|b\.?\s*s\.?|bachelor(?:'s)?|major(?: in)?|undergraduate studies?)\b/i;
+  /\b(curriculum|requirements?|degree requirements?|major requirements?|prerequisites?|prereq|worksheet|checklist|plan of study|program of study|study plan|sample plan|track|option|concentration|specialization|route|pathway|b\.?\s*a\.?|b\.?\s*s\.?|bachelor(?:'s)?|major(?: in)?|undergraduate studies?)\b/i;
 const HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN =
-  /\b(curriculum|requirements?|degree requirements?|major requirements?|prerequisites?|prereq|worksheet|checklist)\b/i;
+  /\b(curriculum|requirements?|degree requirements?|major requirements?|prerequisites?|prereq|worksheet|checklist|plan of study|program of study|study plan|sample plan)\b/i;
 const SPECIALIZATION_SUPPLEMENTAL_HTML_LINK_PATTERN =
   /\b(track|option|concentration|specialization|route|pathway)\b/i;
 const LOW_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN =
@@ -293,6 +296,7 @@ const HOST_REQUEST_CHAINS = new Map();
 const HOST_NEXT_ALLOWED_AT = new Map();
 const SOURCE_DOWNLOAD_CACHE = new Map();
 const HTML_SOURCE_CACHE = new Map();
+const DOCX_SOURCE_CACHE = new Map();
 const PDF_PAGE_BLOCK_CACHE = new Map();
 const execFileAsync = promisify(execFile);
 const REQUIREMENT_SOURCE_ADAPTERS = [
@@ -454,7 +458,24 @@ function normalizeCourseCode(rawValue) {
     return LEGACY_GRC_CODE_ALIASES.get(normalized) ?? normalized;
   }
 
-  const subjectTokens = match[1].split(" ").filter(Boolean);
+  let subjectTokens = match[1].split(" ").filter(Boolean);
+  while (
+    subjectTokens.length > 1 &&
+    RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS.has(subjectTokens[0])
+  ) {
+    const candidateTokens = subjectTokens.slice(1);
+    const candidateSpacedSubject = candidateTokens.join(" ");
+    const candidateCollapsedSubject = candidateTokens.join("");
+    if (
+      KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(candidateSpacedSubject) ||
+      KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(candidateCollapsedSubject)
+    ) {
+      subjectTokens = candidateTokens;
+      continue;
+    }
+    break;
+  }
+
   const normalizedSubject = subjectTokens.every((token) => token.length === 1)
     ? subjectTokens.join("")
     : subjectTokens.join(" ");
@@ -555,7 +576,10 @@ function getStructuredUwCourseCodes(manifestEntry) {
         block.planId === manifestEntry.planId &&
         ((manifestEntry.pathwayId && block.pathwayId === manifestEntry.pathwayId) ||
           (!manifestEntry.pathwayId && !block.pathwayId))
-    ).flatMap((block) => block.uwCourseCodes ?? [])
+    )
+      .flatMap((block) => block.uwCourseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
   );
 }
 
@@ -1397,9 +1421,72 @@ function scopeHtmlLines(entry, title, headings, lines) {
   const startIndex = ownerSectionRange
     ? ownerSectionRange.startIndex
     : Math.max(0, Math.min(...matchingIndexes) - 6);
-  const endIndex = ownerSectionRange
+  const initialEndIndex = ownerSectionRange
     ? ownerSectionRange.endIndex
     : Math.min(lines.length - 1, Math.max(...matchingIndexes) + 24);
+  const scopedTableTailText = normalizeMatcherText(
+    lines.slice(Math.max(startIndex, initialEndIndex - 16), initialEndIndex + 1).join(" ")
+  );
+  let endIndex = initialEndIndex;
+
+  if (
+    !ownerSectionRange &&
+    /\b(course #|course name|credits?|electives?|offered|prereq|prerequisite)\b/.test(
+      scopedTableTailText
+    )
+  ) {
+    const continuationTail = lines.slice(
+      initialEndIndex + 1,
+      Math.min(lines.length, initialEndIndex + 121)
+    );
+    let continuationCourseCount = 0;
+    let quietLineCount = 0;
+
+    for (let offset = 0; offset < continuationTail.length; offset += 1) {
+      const line = normalizeWhitespace(continuationTail[offset]);
+      if (!line) {
+        continue;
+      }
+
+      const lineCourseCodes = extractCourseCodesFromLine(line);
+      const hasTableSignal = /\b(course #|course name|credits?|electives?|offered|prereq|prerequisite)\b/i.test(
+        line
+      );
+
+      if (
+        continuationCourseCount >= 4 &&
+        HTML_SECTION_BOUNDARY_LINE_PATTERN.test(line) &&
+        !hasTableSignal
+      ) {
+        break;
+      }
+
+      if (lineCourseCodes.length > 0 || hasTableSignal) {
+        continuationCourseCount += lineCourseCodes.length;
+        quietLineCount = 0;
+        endIndex = initialEndIndex + offset + 1;
+        continue;
+      }
+
+      if (continuationCourseCount === 0) {
+        if (offset >= 2) {
+          break;
+        }
+        continue;
+      }
+
+      quietLineCount += 1;
+      endIndex = initialEndIndex + offset + 1;
+      if (quietLineCount >= 8) {
+        break;
+      }
+    }
+
+    if (continuationCourseCount < 4) {
+      endIndex = initialEndIndex;
+    }
+  }
+
   const scopedLines = lines.slice(startIndex, endIndex + 1);
 
   if (scopedLines.length < 12 && title) {
@@ -1827,6 +1914,70 @@ async function getHtmlSourceArtifacts(url, timeoutMs) {
   }
 }
 
+function isDocxSourceUrl(url) {
+  return /\.docx(?:$|[?#])/i.test(String(url ?? ""));
+}
+
+function buildDocxLines(documentXml) {
+  return String(documentXml ?? "")
+    .replace(/<w:tab\b[^>]*\/>/gi, " ")
+    .replace(/<w:(?:br|cr)\b[^>]*\/>/gi, "\n")
+    .replace(/<\/w:(?:p|tr|tbl|sectPr|tc)>\s*/gi, "\n")
+    .replace(/<w:noBreakHyphen\b[^>]*\/>/gi, "-")
+    .replace(/<w:softHyphen\b[^>]*\/>/gi, "")
+    .replace(/<w:sym\b[^>]*>/gi, " ")
+    .replace(/<[^>]+>/g, "")
+    .split(/\r?\n/)
+    .map((line) => normalizeWhitespace(decodeTransferPlannerHtmlEntities(line)))
+    .filter(Boolean);
+}
+
+async function extractDocxDocumentXml(docxBuffer, timeoutMs) {
+  const tempDir = fs.mkdtempSync(path.join(TMP_DIR, "transfer-planner-docx-"));
+  const archivePath = path.join(tempDir, "source.docx");
+  fs.writeFileSync(archivePath, docxBuffer);
+
+  try {
+    const { stdout } = await execFileAsync("tar", ["-xOf", archivePath, "word/document.xml"], {
+      encoding: "utf8",
+      maxBuffer: CURL_MAX_BUFFER_BYTES,
+      timeout: timeoutMs,
+      windowsHide: true,
+    });
+
+    return String(stdout ?? "");
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+}
+
+async function getDocxSourceArtifacts(url, timeoutMs) {
+  const cacheKey = String(url ?? "");
+  const cached = DOCX_SOURCE_CACHE.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
+  const docxPromise = (async () => {
+    const { body } = await downloadSource(url, timeoutMs, { binary: true });
+    const documentXml = await extractDocxDocumentXml(body, timeoutMs);
+    const lines = buildDocxLines(documentXml);
+    return {
+      title: lines[0] ?? null,
+      lines,
+    };
+  })();
+
+  DOCX_SOURCE_CACHE.set(cacheKey, docxPromise);
+
+  try {
+    return await docxPromise;
+  } catch (error) {
+    DOCX_SOURCE_CACHE.delete(cacheKey);
+    throw error;
+  }
+}
+
 async function getPdfPageBlocks(url, timeoutMs) {
   const cacheKey = String(url ?? "");
   const cached = PDF_PAGE_BLOCK_CACHE.get(cacheKey);
@@ -2009,8 +2160,11 @@ function extractPathwayLabels(entry, lines, headings) {
       return false;
     }
     if (
-      /^(?:\[supplemental official source\]|learn more|about|apply)\b/i.test(normalized) ||
+      /^(?:\[?\s*supplemental official source\b|learn more|about|apply)\b/i.test(normalized) ||
       /^(?:download|click here to join|joining the)\b/i.test(normalized) ||
+      /\b(?:admissions?\s+pathway|current uw student admissions pathway)\b/i.test(normalized) ||
+      /\bto be considered\b/i.test(normalized) ||
+      /\bapplicants?\b/i.test(normalized) ||
       /\b(?:double major|double degree)\b/i.test(normalized) ||
       /\b(?:elective courses?|course lists?|courses by track)\b/i.test(normalized) ||
       /^(?:[†*§◊]+)?\s*(?:if|for)\b/i.test(normalized) ||
@@ -2212,6 +2366,15 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
   if (/\.pdf(?:$|[?#])/i.test(entry.url)) {
     return parsePdfSource(entry, timeoutMs);
   }
+  if (isDocxSourceUrl(entry.url)) {
+    return parseDocxSource(
+      {
+        ...entry,
+        parserType: "pdf-degree-sheet",
+      },
+      timeoutMs
+    );
+  }
 
   const { html, title, headings, lines } = await getHtmlSourceArtifacts(entry.url, timeoutMs);
   const scopedLines = scopeHtmlLines(entry, title, headings, lines);
@@ -2318,6 +2481,32 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
   return mergedHtmlParsed;
 }
 
+async function parseDocxSource(entry, timeoutMs) {
+  const { title, lines } = await getDocxSourceArtifacts(entry.url, timeoutMs);
+  const requirementCueLines = extractRequirementCueLines(lines);
+  const chooseStatements = extractChooseStatements(lines);
+  const pathwayLabels = extractPathwayLabels(entry, lines, []);
+  const courseCodes = filterParsedCourseCodesByHints(
+    entry,
+    lines,
+    extractCourseCodesFromLines(lines, [], entry)
+  );
+
+  return {
+    title,
+    headings: [],
+    requirementCueLines,
+    chooseStatements,
+    pathwayLabels,
+    courseCodes,
+    snapshotLines: lines.slice(0, 1200),
+    parseConfidence: buildParseConfidence(courseCodes, requirementCueLines, "pdf-degree-sheet"),
+    resolvedSourceUrl: entry.url,
+    resolvedSourceLabel: entry.label,
+    resolvedParserType: "pdf-degree-sheet",
+  };
+}
+
 async function parsePdfSource(entry, timeoutMs) {
   const pageBlocks = await getPdfPageBlocks(entry.url, timeoutMs);
   const scopedPageLines = scopePdfPageBlocks(entry, pageBlocks).flatMap((block) =>
@@ -2417,6 +2606,7 @@ function buildSharedSpecializationSupplementalSource(baseParsed, supplementalSou
 
   return [
     {
+      kind: "specialized-shared",
       entry: {
         label: "Supplemental official track and option pages",
       },
@@ -2467,7 +2657,9 @@ function mergeParsedSources(baseParsed, supplementalSources, parserType) {
     ]).slice(0, 24),
     pathwayLabels: uniqueSorted([
       ...(baseParsed.pathwayLabels ?? []),
-      ...supplementalSources.flatMap((supplemental) => supplemental.parsed?.pathwayLabels ?? []),
+      ...supplementalSources.flatMap((supplemental) =>
+        supplemental.kind === "general" ? [] : supplemental.parsed?.pathwayLabels ?? []
+      ),
     ]).slice(0, 24),
     courseCodes,
     snapshotLines: buildMergedSnapshotLines(baseParsed.snapshotLines, supplementalSources),
@@ -2527,7 +2719,7 @@ function getSameProgramPathPrefix(url) {
   }
 }
 
-function isSameProgramRequirementHtmlLink(baseUrl, resolvedUrl, linkText, highSignal) {
+function isSameProgramRequirementLink(baseUrl, resolvedUrl, linkText, highSignal) {
   if (!highSignal) {
     return false;
   }
@@ -2548,6 +2740,29 @@ function isSameProgramRequirementHtmlLink(baseUrl, resolvedUrl, linkText, highSi
     return (
       resolvedPath.startsWith(`${basePrefix}/`) &&
       HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText)
+    );
+  } catch {
+    return false;
+  }
+}
+
+function isSameOriginHighSignalRequirementDocumentLink(baseUrl, resolvedUrl, linkText) {
+  if (
+    !isDocxSourceUrl(resolvedUrl) ||
+    !/\b(plan of study|program of study|study plan|sample plan)\b/i.test(linkText)
+  ) {
+    return false;
+  }
+
+  try {
+    const base = new URL(baseUrl);
+    const resolved = new URL(resolvedUrl);
+    if (base.origin !== resolved.origin) {
+      return false;
+    }
+
+    return /(?:^|\/)(?:sites\/default\/files|files|docs?|documents?)(?:\/|$)/i.test(
+      resolved.pathname
     );
   } catch {
     return false;
@@ -2593,28 +2808,38 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
     }
 
     const linkText = `${label} ${resolvedUrl}`;
+    const highSignal = HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
     const normalizedLinkText = normalizeMatcherText(linkText);
     const exactTitleMatch = Boolean(exactTitle && normalizedLinkText.includes(exactTitle));
     const titleTokenOverlapCount = titleTokens.filter((token) =>
       normalizedLinkText.includes(token)
     ).length;
+    const sameOriginHighSignalRequirementDocumentLink =
+      isSameOriginHighSignalRequirementDocumentLink(baseUrl, resolvedUrl, linkText);
+    const sameProgramRequirementLink =
+      isSameProgramRequirementLink(
+        baseUrl,
+        resolvedUrl,
+        linkText,
+        highSignal
+      ) ||
+      sameOriginHighSignalRequirementDocumentLink;
 
-    if (titleTokens.length > 0 && !exactTitleMatch && titleTokenOverlapCount < 1) {
+    if (
+      titleTokens.length > 0 &&
+      !exactTitleMatch &&
+      titleTokenOverlapCount < 1 &&
+      !sameProgramRequirementLink &&
+      !sameOriginHighSignalRequirementDocumentLink
+    ) {
       continue;
     }
 
     if (GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(linkText)) {
       continue;
     }
-    const highSignal = HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
     const specializationSignal = SPECIALIZATION_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
     const degreeProgramSignal = LOW_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
-    const sameProgramRequirementLink = isSameProgramRequirementHtmlLink(
-      baseUrl,
-      resolvedUrl,
-      linkText,
-      highSignal
-    );
     const type = highSignal
       ? "general"
       : specializationSignal
@@ -2651,6 +2876,9 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
       score += 6;
     }
     if (sameProgramRequirementLink) {
+      score += 12;
+    }
+    if (sameOriginHighSignalRequirementDocumentLink) {
       score += 12;
     }
     if (
@@ -2730,8 +2958,16 @@ function extractSupplementalPdfLinkCandidates(entry, html) {
     const titleTokenOverlapCount = titleTokens.filter((token) =>
       normalizedLinkText.includes(token)
     ).length;
+    const sameProgramRequirementLink = isSameProgramRequirementLink(
+      baseUrl,
+      resolvedUrl,
+      `${label} ${resolvedUrl}`,
+      /\b(requirements?|degree|curriculum|worksheet|checklist|plan of study|program of study|study plan|sample plan)\b/i.test(
+        `${label} ${href}`
+      )
+    );
 
-    if (!exactTitleMatch && titleTokenOverlapCount < 2) {
+    if (!exactTitleMatch && titleTokenOverlapCount < 2 && !sameProgramRequirementLink) {
       continue;
     }
 
@@ -2747,6 +2983,9 @@ function extractSupplementalPdfLinkCandidates(entry, html) {
     if (/\/wp-content\/uploads\//i.test(resolvedUrl)) {
       score += 6;
     }
+    if (sameProgramRequirementLink) {
+      score += 12;
+    }
     if (historical) {
       score -= 30;
     }
@@ -2755,12 +2994,13 @@ function extractSupplementalPdfLinkCandidates(entry, html) {
     if (!existing || score > existing.score || (score === existing.score && linkIndex < existing.linkIndex)) {
       candidatesByUrl.set(resolvedUrl, {
         url: resolvedUrl,
-        label,
-        score,
-        exactTitleMatch,
-        historical,
-        linkIndex,
-      });
+          label,
+          score,
+          exactTitleMatch,
+          sameProgramRequirementLink,
+          historical,
+          linkIndex,
+        });
     }
   }
 
@@ -2829,6 +3069,7 @@ async function parseSupplementalHtmlSources(entry, html, timeoutMs, visitedUrls)
       }
 
       const supplementalSource = {
+        kind: candidate.type,
         entry: {
           label: candidate.label,
           url: candidate.url,

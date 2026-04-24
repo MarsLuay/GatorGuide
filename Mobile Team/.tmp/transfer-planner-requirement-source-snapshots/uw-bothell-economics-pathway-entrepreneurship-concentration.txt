@@ -9,26 +9,35 @@ Title: Bachelor of Economics - School of Business
 [Supplemental official source] Supplemental official track and option pages
 **AP Statistics score not accepted
 *AP Calculus score of 3, 4, or 5 accepted
+*AP Language/Literature Exam scores not accepted
+*AP Macroeconomics score of 3, 4, or 5 accepted
+*AP Microeconomics score of 3, 4, or 5 accepted
 *Higher level business statistics accepted
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 |
 10 credits – Complete 2 courses from this list:
+10 credits from the following:
 18807 Beardslee Blvd, Suite 210
+30 credits
 425.352.5000
 425.352.5394
 5 credits
 60 Credits
+90 Credits
 About
 Accessibility
 Accounting Option
 Admissions
+Advanced Composition
 Advisory boards
 All Business degree program students start out in the following introductory management course, which is a prerequisite to all other courses in the concentration:
 All UW Bothell
 Alumni
 Apply As Undergraduate
 Awards
+B BUS 220/BIS 200
+B BUS 221/BIS 201
 B BUS 402 Managing Work Teams
 B BUS 427 Entrepreneurial Marketing (320)
 B BUS 443 Entrepreneurship Seminar
@@ -39,6 +48,7 @@ B BUS 471 Entrepreneurial Management
 B BUS 476 New Technology & Future Markets (300, 320, 350)
 B BUS 478 Venture Startup, Management & Growth
 B MATH 144
+B WRIT 135* (must be designated (C) composition)
 BA& 240
 Bachelor in Business Administration
 Bachelor in Economics
@@ -61,11 +71,20 @@ BBUS 443 – Entrepreneurship Seminar
 BBUS 444 – Product Development Laboratory
 BBUS 460 – Sustainable Business
 BBUS 461 – Business, Government, & Society (300, 310)
+BBUS 462 – Negotiations & Conflict Management (BBUS/ELCBUS 320)
 BBUS 470 – Business Policy & Strategic Management
+BBUS 471 – Entrepreneurial Management
 BBUS 473 – Leadership & Decision Making (300)
+BBUS 475 – Managing Innovation
+BBUS 476 – New Technology & Future Markets (300, BBUS/ELCBUS 320, 350)
+BBUS 477 – Human Resources Management (300)
+BBUS 479 – Special Topics in Management (300)
 BBUS 480 – Global Environment of Business
+BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your adviser before registering.
+BBUS 491 – Business Consulting
 Beardslee Building (UWBB)
 Become a Mentor
+Before you can register for a capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
 Before you can register for the capstone courses, you must complete all core courses and meet with your advisor to file a graduation application .
 BIS 215 (previously BIS 315), or B BUS 215, or BMATH 21, or STMATH 341
 Bothell, WA 98011
@@ -75,6 +94,7 @@ Business Consulting Course
 Calculus
 Campus Safety
 Canvas
+Capstone Courses
 Certificate in Accounting
 Choose two courses (10 credits) from the following:
 Close mobile menu
@@ -94,6 +114,12 @@ Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
+ECON 200
+ECON 201
+ECON& 201
+ECON& 202
+ENG& 102
+ENGL 111, 121, 131, 182, 197, 198, 199, 281, 282, 297, 298, 299, 381, or 382
 Entrepreneurship Concentration
 Entrepreneurship Concentration - School of Business
 Entrepreneurship curriculum
@@ -104,6 +130,7 @@ Expand Navigation
 Facilities
 Faculty
 Finance Option and Concentration
+General Electives (any 300/400 level UW courses)
 Get a Mentor
 Give
 Graduate
@@ -118,6 +145,7 @@ Jobs
 Leadership & Strategic Innovation Option
 Leadership History
 Library
+Macroeconomics
 Management Concentration
 Management curriculum
 Management Electives (prerequisites in parentheses)

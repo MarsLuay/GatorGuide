@@ -119,7 +119,7 @@ export default function ProfilePage() {
   const { theme, setTheme, isDark, isGreen, isLight } = useAppTheme();
   const { t, language } = useAppLanguage();
   const { isHydrated, state, updateUser, setQuestionnaireAnswers, restoreData } = useAppData();
-  const { getScrollContentPadding, tabBarContentClearance } = useResponsiveLayout();
+  const { getScrollContentPadding } = useResponsiveLayout();
   const insets = useSafeAreaInsets();
   const { width: viewportWidth, height: viewportHeight } = useWindowDimensions();
 
@@ -376,9 +376,6 @@ export default function ProfilePage() {
   const sidebarWidth = isDesktopLayout ? 360 : 300;
   const avatarSize = isDesktopLayout ? 88 : isWideLayout ? 76 : 56;
   const avatarFallbackSize = isDesktopLayout ? 38 : isWideLayout ? 32 : 26;
-  const desktopViewportHeight = useDesktopFitLayout
-    ? Math.max(660, viewportHeight - insets.top - tabBarContentClearance - 20)
-    : undefined;
   const desktopPanelGap = 16;
   const desktopSidebarWidth = Math.min(392, Math.max(344, sidebarWidth));
   const scrollContentPadding = getScrollContentPadding({
@@ -1544,7 +1541,7 @@ export default function ProfilePage() {
     );
   }
 
-  if (useDesktopFitLayout && desktopViewportHeight) {
+  if (useDesktopFitLayout) {
     return (
       <>
         <ScreenBackground>
@@ -1553,16 +1550,25 @@ export default function ProfilePage() {
             behavior={Platform.OS === "ios" ? "padding" : Platform.OS === "android" ? "height" : undefined}
             keyboardVerticalOffset={Platform.OS === "ios" ? insets.top : 0}
           >
-            <View
-              style={{
-                width: "100%",
-                maxWidth: pageMaxWidth,
-                height: desktopViewportHeight,
-                alignSelf: "center",
-                paddingHorizontal: 24,
-                paddingTop: 16,
+            <ScrollView
+              className="flex-1"
+              contentContainerStyle={{
+                flexGrow: 1,
+                ...scrollContentPadding,
               }}
+              contentInsetAdjustmentBehavior="automatic"
+              keyboardShouldPersistTaps="handled"
+              nestedScrollEnabled
+              onScrollBeginDrag={Keyboard.dismiss}
             >
+              <View
+                style={{
+                  width: "100%",
+                  maxWidth: pageMaxWidth,
+                  alignSelf: "center",
+                  paddingHorizontal: 24,
+                }}
+              >
               {user?.isGuest && showGuestProfile ? (
                 <View className={`${cardBgClass} border-2 border-emerald-500/20 rounded-2xl p-4 mb-4`}>
                   <View className="flex-row items-center justify-between gap-4">
@@ -1608,16 +1614,11 @@ export default function ProfilePage() {
                 <View style={{ flex: 1, minWidth: 0, gap: desktopPanelGap }}>
                   <View
                     className={`${cardBgClass} border rounded-2xl ${hasOpenSelectorOverlay ? "" : "overflow-hidden"}`}
-                    style={{ ...profileCardOverlayStyle, flex: 1, minHeight: 0 }}
+                    style={profileCardOverlayStyle}
                   >
                     {renderProfileHero()}
-                    <ScrollView
-                      nestedScrollEnabled
-                      keyboardShouldPersistTaps="handled"
-                      style={{ flex: 1, minHeight: 0 }}
-                      contentContainerStyle={{
-                        flexGrow: 1,
-                        justifyContent: "space-between",
+                    <View
+                      style={{
                         paddingHorizontal: 24,
                         paddingVertical: 24,
                         paddingBottom: 28,
@@ -1625,7 +1626,7 @@ export default function ProfilePage() {
                     >
                       {renderProfileFields()}
                       {renderDocumentFields()}
-                    </ScrollView>
+                    </View>
                   </View>
                 </View>
 
@@ -1639,13 +1640,13 @@ export default function ProfilePage() {
                 >
                   <View
                     className={`${cardBgClass} border rounded-2xl p-5`}
-                    style={{ flex: 1, minHeight: 0 }}
                   >
-                    {renderMetadataCards({ compact: true, fillHeight: true })}
+                    {renderMetadataCards({ compact: true })}
                   </View>
                 </View>
               </View>
-            </View>
+              </View>
+            </ScrollView>
           </KeyboardAvoidingView>
         </ScreenBackground>
         {isConfettiPlaying && (

@@ -1,43 +1,42 @@
 # Transfer Planner Requirement Source Parse Report
 
-Generated: 2026-04-23T21:54:49.122Z
+Generated: 2026-04-24T10:56:08.655Z
 
-- Primary degree sources parsed: 466
-- Parsed successfully: 466
+- Primary degree sources parsed: 424
+- Parsed successfully: 424
 - Parse failures: 0
-- Parsed requirement source adapter blocks: 466
-- Parsed requirement atom candidates: 23659
-- Parsed degree-map block candidates: 1375
+- Parsed requirement source adapter blocks: 424
+- Parsed requirement atom candidates: 26544
+- Parsed degree-map block candidates: 873
 - Parsed from cached snapshots after live-source failures: 0
-- Parsed from alternate official source URLs: 5
-- Owners with parsed UW course codes: 457
+- Parsed from alternate official source URLs: 3
+- Owners with parsed UW course codes: 417
 - Owners with source-only UW course codes not currently in structured degree-map blocks: 6
-- Owners with no parsed UW course codes: 9
-- Owners with parser-quality warnings: 11
-- Owners with parser-quality notes: 5
+- Owners with no parsed UW course codes: 7
+- Owners with parser-quality warnings: 13
+- Owners with parser-quality notes: 3
 
 ## Parser Adapters
 
-- generic-official-html-page: 41
+- generic-official-html-page: 39
 - generic-official-pdf-degree-sheet: 16
-- uw-bothell-html-degree-page: 108
+- uw-bothell-html-degree-page: 114
 - uw-bothell-pdf-worksheet: 3
-- uw-seattle-catalog-page: 89
-- uw-seattle-html-degree-page: 142
+- uw-seattle-catalog-page: 66
+- uw-seattle-html-degree-page: 118
 - uw-tacoma-catalog-page: 13
-- uw-tacoma-html-degree-page: 54
+- uw-tacoma-html-degree-page: 55
 
 ## Resolution Strategies
 
-- alternate-official-source: 5
-- primary-source: 461
+- alternate-official-source: 3
+- primary-source: 421
 
 ## Parser Quality Signals
 
-- alternate-official-source-used: 5
-- high-confidence-low-course-coverage: 2
-- large-structured-only-course-gap: 10
-- material-source-structured-drift: 11
+- alternate-official-source-used: 3
+- large-structured-only-course-gap: 6
+- material-source-structured-drift: 13
 
 ## uw-seattle
 
@@ -49,13 +48,19 @@ Generated: 2026-04-23T21:54:49.122Z
 - Parse confidence: medium
 - Quality warnings: material-source-structured-drift (parsed=5; source-only=0; structured-only=7)
 
-#### History & Philosophy of Science
+#### Electrical & Computer Engineering - Digital Systems Design Pathway
 
-- Source: https://www.washington.edu/students/gencat/program/S/Philosophy-221.html
+- Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=80; source-only=0; structured-only=23) | large-structured-only-course-gap (structured-only=23; parsed=80; structured-coverage=103)
+- Quality warnings: material-source-structured-drift (parsed=70; source-only=70; structured-only=0)
 
-#### History & Philosophy of Science - Ancient Philosophy)
+#### Geography - Health and Development Track
+
+- Source: https://geography.washington.edu/ba-geography
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=19; source-only=19; structured-only=0)
+
+#### History & Philosophy of Science
 
 - Source: https://www.washington.edu/students/gencat/program/S/Philosophy-221.html
 - Parse confidence: high
@@ -83,7 +88,7 @@ Generated: 2026-04-23T21:54:49.122Z
 
 - Source: https://math.washington.edu/ba-mathematics-standard-major-requirements-0
 - Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=25; source-only=0; structured-only=11) | large-structured-only-course-gap (structured-only=11; parsed=25; structured-coverage=36)
+- Quality warnings: material-source-structured-drift (parsed=25; source-only=25; structured-only=0)
 
 #### Philosophy
 
@@ -97,113 +102,46 @@ Generated: 2026-04-23T21:54:49.122Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=80; source-only=0; structured-only=23) | large-structured-only-course-gap (structured-only=23; parsed=80; structured-coverage=103)
 
-#### Political Science - International Security Option
-
-- Source: https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=84; source-only=71; structured-only=56) | large-structured-only-course-gap (structured-only=56; parsed=84; structured-coverage=69) | high-confidence-low-course-coverage (parsed=84; structured-coverage=69; structured-only=56)
-- Primary source: https://www.polisci.washington.edu/political-science-major-declaration-and-requirements
-
-#### Political Science - Political Economy option
-
-- Source: https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf
-- Parse confidence: high
-- Quality warnings: material-source-structured-drift (parsed=84; source-only=71; structured-only=56) | large-structured-only-course-gap (structured-only=56; parsed=84; structured-coverage=69) | high-confidence-low-course-coverage (parsed=84; structured-coverage=69; structured-only=56)
-- Primary source: https://www.polisci.washington.edu/political-science-major-declaration-and-requirements
-
 ### Possible source-vs-structured drift
 
-#### Environmental Design & Sustainability
+#### Electrical & Computer Engineering - Digital Systems Design Pathway
 
-- Source: https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html
-- Parser type: catalog-page
-- Parser adapter: uw-seattle-catalog-page
+- Source: https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/
+- Parser type: html-degree-page
+- Parser adapter: uw-seattle-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: B E 405
-- Structured-only UW course codes not seen in the parsed source: BE 405
-- Requirement cues: Admission Requirements | All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website. | Completion Requirements
-- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-environmental-design-and-sustainability.txt
+- Source-only UW course codes: AMATH 351, AMATH 352, BIOL 161, BIOL 162, CHEM 142, CHEM 143, CHEM 145, CHEM 152, CHEM 153, CHEM 155, CHEM 220, CSE 121, CSE 122, CSE 123, CSE 142, CSE 143, CSE 373, CSE 374, CSE 410, CSE 413, EE 233, EE 331, EE 332, EE 371, EE 393, EE 397, EE 398, EE 406, EE 418, EE 419, EE 437, EE 447, EE 449, EE 461, EE 469, EE 470, EE 473, EE 474, EE 475, EE 476, EE 477, EE 478, EE 490, EE 491, EE 492, EE 497, EE 498, EE 499, ENGL 131, ENGR 101, ENGR 321, ENGR 333, INDE 315, MATH 124, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 207, MATH 208, MATH 224, PHYS 121, PHYS 122, PHYS 141, PHYS 142, STAT 390, TAKEN CSE 123, TAKEN CSE 143, UNLESS MATH 135
+- Requirement cues: (Only EE course credits may apply except where specifically noted) | 1.A. BSECE Major Requirements and Electives (73-80 credits) *For Students Admitted to Start in ECE in Autumn 2025 and Onward* | 1.B. BSECE Major Requirements and Electives (66-69 credits) *For Students Admitted Prior to Autumn 2025*
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-electrical-computer-engineering-pathway-digital-systems-design-pathway.txt
 
-#### Environmental Design & Sustainability - Project Option
+#### Geography - Health and Development Track
 
-- Source: https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html
-- Parser type: catalog-page
-- Parser adapter: uw-seattle-catalog-page
+- Source: https://geography.washington.edu/ba-geography
+- Parser type: html-degree-page
+- Parser adapter: uw-seattle-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: B E 405
-- Structured-only UW course codes not seen in the parsed source: BE 405
-- Requirement cues: Admission Requirements | All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website. | Completion Requirements
-- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-environmental-design-and-sustainability-pathway-project-option.txt
+- Source-only UW course codes: AMONG GEOG 317, AMONG GEOG 326, AMONG GEOG 425, AMONG GEOG 426, GEOG 123, GEOG 230, GEOG 245, GEOG 258, GEOG 280, GEOG 315, GEOG 360, GEOG 381, GEOG 458, GEOG 461, GEOG 465, GEOG 469, GEOG 482, GEOG 496, GEOG 499
+- Requirement cues: A combined total of 5 credits of Internship (GEOG 496) and Independent Study (GEOG 499) may be counted towards the required 60 geography credits. | B.A. in Geography: Data Science Option | B.A. in Geography: Data Science Option Sample Course Plan
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-geography-pathway-health-and-development-track.txt
 
-#### Landscape Architecture
+#### Mathematics - Major Option Electives
 
-- Source: https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html
-- Parser type: catalog-page
-- Parser adapter: uw-seattle-catalog-page
+- Source: https://math.washington.edu/ba-mathematics-standard-major-requirements-0
+- Parser type: html-overview-page
+- Parser adapter: uw-seattle-html-degree-page
 - Resolution strategy: primary-source
 - Parse confidence: high
-- Source-only UW course codes: B E 405
-- Structured-only UW course codes not seen in the parsed source: BE 405
-- Requirement cues: Admission Requirements | All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website. | Completion Requirements
-- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-landscape-architecture.txt
-
-#### Landscape Architecture - Project Option
-
-- Source: https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html
-- Parser type: catalog-page
-- Parser adapter: uw-seattle-catalog-page
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: B E 405
-- Structured-only UW course codes not seen in the parsed source: BE 405
-- Requirement cues: Admission Requirements | All students must make satisfactory academic progress in the major. Failure to do so results in major-level academic notification, major-level warning, and major-level alerts, which can lead to dismissal from the major and being precluded from subsequently declaring the major in a future quarter. For the complete continuation policy, contact the departmental adviser or refer to the department website. | Completion Requirements
-- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-landscape-architecture-pathway-project-option.txt
-
-#### Political Science - International Security Option
-
-- Source: https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf
-- Primary source: https://www.polisci.washington.edu/political-science-major-declaration-and-requirements
-- Parser type: pdf-degree-sheet
-- Parser adapter: generic-official-pdf-degree-sheet
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: AFRAM 246, COM 305, COM 306, COM 321, COM 322, COM 407, COM 411, COM 414, COM 420, COM 440, CONFLICT A 401, CR 110, CR 120, CR 498, ECON 200, ECON 201, ECON 409, ECON 452, ENVIR 384, ENVIR 385, GWSS 206, HSTCMP 249, JSISA 213, JSISA 321, JSISA 322, JSISA 342, JSISA 343, JSISA 408, JSISA 415, JSISA 417, JSISA 435, JSISA 437, JSISA 439, JSISA 466, JSISA 487, JSISA 490, JSISB 120, JSISB 310, JSISB 336, JSISB 370, JSISB 371, JSISB 419, JSISB 451, JSISB 469, JSISB 472, LSJ 327, LSJ 331, LSJ 347, LSJ 360, LSJ 361, LSJ 363, LSJ 367, LSJ 370, LSJ 428, LSJ 456, PHIL 206, PHIL 207, POLICY C 384, POLICY D 473, POLS 101, POLS 201, POLS 202, POLS 204, POLS 270, POLS 497, POLS 499, RIGHTS D 451, SCAND 326, SOC 266, STATES D 474, VARIABLE 496
-- Structured-only UW course codes not seen in the parsed source: ANTH 497, AS 211, AS 212, AS 213, AS 431, AS 432, AS 433, GH 415, HSTAA 202, HSTAA 212, HSTAFM 268, HSTAFM 314, HSTAFM 463, HSTAM 205, HSTCMP 215, HSTCMP 269, HSTCMP 345, HSTCMP 346, HSTEU 234, HSTEU 376, HSTEU 435, JSISA 244, JSISA 254, JSISA 265, JSISA 323, JSISA 416, JSISA 420, JSISA 430, JSISA 464, JSISA 468, JSISA 493, JSISB 301, JSISB 311, JSISB 340, JSISB 355, JSISB 375, JSISB 423, JSISB 424, JSISB 427, JSISB 429, JSISB 441, LSJ 425, LSJ 431, POLS 325, POLS 328, POLS 331, POLS 349, POLS 368, POLS 419, POLS 420, POLS 425, POLS 428, POLS 430, POLS 431, POLS 432, SOC 306
-- Requirement cues: [Page 2] Autumn Semester, Spring Semester, Summer Quarter. This 15 credit Washington, D.C., program finds | [Page 2] See the website for Honors Program information, eligibility and requirements. Applications are due in early | [Page 2] Students in this one-year 15-credit program assist with faculty research and to also develop their own research
-- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-political-science-pathway-international-security-option.txt
-
-#### Political Science - Political Economy option
-
-- Source: https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf
-- Primary source: https://www.polisci.washington.edu/political-science-major-declaration-and-requirements
-- Parser type: pdf-degree-sheet
-- Parser adapter: generic-official-pdf-degree-sheet
-- Resolution strategy: primary-source
-- Parse confidence: high
-- Source-only UW course codes: AFRAM 246, COM 305, COM 306, COM 321, COM 322, COM 407, COM 411, COM 414, COM 420, COM 440, CONFLICT A 401, CR 110, CR 120, CR 498, ECON 200, ECON 201, ECON 409, ECON 452, ENVIR 384, ENVIR 385, GWSS 206, HSTCMP 249, JSISA 213, JSISA 321, JSISA 322, JSISA 342, JSISA 343, JSISA 408, JSISA 415, JSISA 417, JSISA 435, JSISA 437, JSISA 439, JSISA 466, JSISA 487, JSISA 490, JSISB 120, JSISB 310, JSISB 336, JSISB 370, JSISB 371, JSISB 419, JSISB 451, JSISB 469, JSISB 472, LSJ 327, LSJ 331, LSJ 347, LSJ 360, LSJ 361, LSJ 363, LSJ 367, LSJ 370, LSJ 428, LSJ 456, PHIL 206, PHIL 207, POLICY C 384, POLICY D 473, POLS 101, POLS 201, POLS 202, POLS 204, POLS 270, POLS 497, POLS 499, RIGHTS D 451, SCAND 326, SOC 266, STATES D 474, VARIABLE 496
-- Structured-only UW course codes not seen in the parsed source: ANTH 497, AS 211, AS 212, AS 213, AS 431, AS 432, AS 433, GH 415, HSTAA 202, HSTAA 212, HSTAFM 268, HSTAFM 314, HSTAFM 463, HSTAM 205, HSTCMP 215, HSTCMP 269, HSTCMP 345, HSTCMP 346, HSTEU 234, HSTEU 376, HSTEU 435, JSISA 244, JSISA 254, JSISA 265, JSISA 323, JSISA 416, JSISA 420, JSISA 430, JSISA 464, JSISA 468, JSISA 493, JSISB 301, JSISB 311, JSISB 340, JSISB 355, JSISB 375, JSISB 423, JSISB 424, JSISB 427, JSISB 429, JSISB 441, LSJ 425, LSJ 431, POLS 325, POLS 328, POLS 331, POLS 349, POLS 368, POLS 419, POLS 420, POLS 425, POLS 428, POLS 430, POLS 431, POLS 432, SOC 306
-- Requirement cues: [Page 2] Autumn Semester, Spring Semester, Summer Quarter. This 15 credit Washington, D.C., program finds | [Page 2] See the website for Honors Program information, eligibility and requirements. Applications are due in early | [Page 2] Students in this one-year 15-credit program assist with faculty research and to also develop their own research
-- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-political-science-pathway-political-economy-option.txt
+- Source-only UW course codes: APPLIED AS 300, EXCLUDE MATH 300, EXCLUDE MATH 382, EXCLUDE MATH 397, EXCLUDE MATH 398, EXCLUDE MATH 399, EXCLUDE MATH 497, EXCLUDE MATH 498, EXCLUDE MATH 499, EXCLUDES MATH 420, MATH 124, MATH 125, MATH 126, MATH 134, MATH 135, MATH 136, MATH 200, MATH 207, MATH 208, MATH 224, MATH 300, MATH 402, MATH 403, MATH 411, MATH 412
+- Requirement cues: B.A. Mathematics - Standard Major Requirements | Department of Mathematics | University of Washington | Transfer Credit Evaluations | B.A. Mathematics - Standard Major Requirements
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-mathematics-pathway-major-option-electives.txt
 
 ### Parsed but no UW course codes found
 
-- Anthropology - Biological Anthropology)
-  - Source: https://www.washington.edu/students/gencat/program/S/Anthropology-102.html
-  - Parser type: catalog-page
-  - Requirement cues found: 1
-- Anthropology - Sociocultural Anthropology)
-  - Source: https://www.washington.edu/students/gencat/program/S/Anthropology-102.html
-  - Parser type: catalog-page
-  - Requirement cues found: 1
 - Art History - Textual Studies)
   - Source: https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html
   - Parser type: catalog-page
-  - Requirement cues found: 0
-- Education Studies - Social Studies
-  - Source: https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html
-  - Parser type: html-degree-page
   - Requirement cues found: 0
 - Italian
   - Source: https://frenchitalian.washington.edu/undergraduate-studies-italian
@@ -212,8 +150,67 @@ Generated: 2026-04-23T21:54:49.122Z
 
 ## uw-bothell
 
+### Parser-quality warnings
+
+#### Business Administration: Accounting (BA) - Management Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=52; source-only=52; structured-only=0)
+
+#### Business Administration: Accounting (BA) - MIS Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=46; source-only=46; structured-only=0)
+
+#### Educational Studies: Elementary Education (BA) - See Elementary Education Option
+
+- Source: https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=33; source-only=33; structured-only=0)
+
+### Possible source-vs-structured drift
+
+#### Business Administration: Accounting (BA) - Management Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
+- Parser type: html-overview-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: B CUSP 202, BBUS 210, BBUS 211, BBUS 215, BBUS 220, BBUS 221, BBUS 230, BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 330, BBUS 340, BBUS 350, BBUS 361, BBUS 373, BBUS 441, BBUS 443, BBUS 444, BBUS 451, BBUS 453, BBUS 454, BBUS 470, BBUS 471, BBUS 476, BBUS 480, BBUS 490, BBUS 491, BIS 200, BIS 201, BIS 215, BMATH 144, BMATH 215, BWRIT 135, INDE 315, MATH 112, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 113, STMATH 124, STMATH 125, STMATH 126, STMATH 341
+- Requirement cues: * A minimum grade of 2.7 in either course is required. | **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives: | *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-accounting-pathway-management-concentration.txt
+
+#### Business Administration: Accounting (BA) - MIS Concentration
+
+- Source: https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting
+- Parser type: html-overview-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: B CUSP 202, BBUS 210, BBUS 211, BBUS 215, BBUS 220, BBUS 221, BBUS 230, BBUS 300, BBUS 307, BBUS 310, BBUS 320, BBUS 340, BBUS 350, BBUS 361, BBUS 373, BBUS 451, BBUS 453, BBUS 454, BBUS 470, BBUS 480, BBUS 490, BBUS 491, BIS 200, BIS 201, BIS 215, BMATH 144, BMATH 215, BWRIT 135, INDE 315, MATH 112, MATH 390, PSYCH 315, PSYCH 317, PSYCH 318, QMETH 201, QSCI 291, QSCI 381, STAT 220, STAT 221, STAT 311, STAT 390, STMATH 113, STMATH 124, STMATH 125, STMATH 126, STMATH 341
+- Requirement cues: * A minimum grade of 2.7 in either course is required. | **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives: | *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-business-administration-accounting-pathway-mis-concentration.txt
+
+#### Educational Studies: Elementary Education (BA) - See Elementary Education Option
+
+- Source: https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements
+- Parser type: html-degree-page
+- Parser adapter: uw-bothell-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: BEDUC 170, BEDUC 205, BEDUC 210, BEDUC 240, BEDUC 241, BEDUC 242, BEDUC 250, BEDUC 340, BIS 164, BIS 175, BIS 180, BIS 200, BIS 203, BIS 206, BIS 218, BIS 242, BIS 280, BIS 301, BIS 361, BIS 370, BIS 371, BIS 377, BIS 379, BIS 387, BIS 388, BIS 389, BIS 407, BIS 455, BIS 481, BIS 486, BIS 487, BWRIT 133, BWRIT 134
+- Requirement cues: Students will receive support and guidance on all certification requirements from academic advisors, field placement coordinators, and field instructors. | The Elementary Education Option requires that students complete a student teaching practicum, along with a practicum in an English to Speakers of Other Languages (ESOL) classroom OR a practicum in a Special Education classroom. International students with a visa, other than F-1 visa holders, should consult an immigration attorney to determine their eligibility for completing these required practica. F-1 visa holders will need to plan and apply for Curricular Practical Training (CPT) prior to beginning these required practica. If you have any questions, please contact the International Student Services (ISS) office. | Elementary Education Endorsement Academic Breadth Requirements
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-bothell-educational-studies-elementary-education-pathway-see-elementary-education-option.txt
+
 ### Parsed but no UW course codes found
 
+- Developmental and Youth Studies (BA) - M.Ed. with Educating for Critical Race Theory (E-Crit) Concentration
+  - Source: https://www.uwb.edu/education/undergraduate/developmental-and-youth-studies/degree-requirements
+  - Parser type: html-degree-page
+  - Requirement cues found: 5
 - Economics (BS) - Leadership & Strategic Innovation Option
   - Source: https://www.uwb.edu/business/undergraduate/bachelor-of-economics
   - Parser type: html-overview-page

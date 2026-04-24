@@ -4,31 +4,44 @@ Title: Accounting Option - School of Business
 
 (*Note: Students in the process of completing a course will not be considered for the Accounting Option until the course has been completed.)
 (330; CSS 173 or CSS 143 and corequisite CSSSKL 143; CSS 360)
+(any 300/400 level UW courses)
 (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
 (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
+(formerly B CUSP 202)
 [Supplemental official source] Finance Option and Concentration
 [Supplemental official source] Management Concentration
 [Supplemental official source] Management Information Systems (MIS) Concentration
 [Supplemental official source] Prerequisite Courses
 [Supplemental official source] Supplemental official track and option pages
 * A minimum grade of 2.7 in either course is required.
+* POLS & 201 is not standard across all community colleges.
 **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 **AP Statistics score not accepted
 *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
 *AP Calculus score of 3, 4, or 5 accepted
+*AP Language/Literature Exam scores not accepted
+*AP Macroeconomics score of 3, 4, or 5 accepted
+*AP Microeconomics score of 3, 4, or 5 accepted
 *Higher level business statistics accepted
+*If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses):
 &copy; 2026 University of Washington Bothell
 <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDKPCQ"
 |
 10 credits – Complete 2 courses from this list:
 10 credits – Complete two courses from this list:
+10 credits from the following:
+15 credits
 18807 Beardslee Blvd, Suite 210
+25 Credits
 30 credits
 425.352.5000
 425.352.5394
 5 credits
 5 credits – Complete 1 course from this list:
+5 credits – Complete one course from this list:
+5 credits – Complete one Enrichment Elective from this list:
+5-10 credits
 90 Credits
 A lower-division college programming course or equivalent is a prerequisite for CSS 173 or CSS 143 and CSS 360.
 About
@@ -39,8 +52,13 @@ Accounting Electives (prerequisites in parentheses)
 Accounting Option
 Accounting Option - School of Business
 Accounting Option students must complete the following courses for graduation.
+ACCTG 215
+ACCTG 225
+ACCTG& 201 and ACCTG& 202
+ACCTG& 203
 Admissions
 Admitted students must complete a minimum of 60 transferable quarter credits (80 preferred), with a cumulative grade point average (GPA) of at least a 2.0 and also have a cumulative business prerequisite GPA of at least a 2.5, prior to beginning their business studies at UW Bothell. These credits must include all of the following prerequisite courses (with a minimum grade of 2.0 in each):
+Advanced Composition
 Advisory boards
 After completing the two-year Accounting Option, students are eligible to take the Certified Management Accountant (CMA) exam . Students who wish to become a Certified Public Accountant (CPA) , however, should plan on spending three years in the program. To take the CPA exam, a student needs a minimum of 225 quarter hours or five years of college (a master degree is not required).
 All Business degree program students start out in the following introductory management course, which is a prerequisite to all other courses in the concentration:
@@ -48,8 +66,25 @@ All UW Bothell
 Alumni
 Apply As Undergraduate
 Awards
+B BUS 210
+B BUS 211
+B BUS 220/BIS 200
+B BUS 221/BIS 201
+B BUS 230
 B BUS 361 – Intermediate Accounting I
+B BUS 362 – Intermediate Accounting II (361)
+B BUS 373 – Cost Accounting
+B BUS 441 – Business Project Management (340)
+B BUS 455 – Financial Risk Management (454)
+B BUS 456 – Entrepreneurial Finance (350)
+B BUS 457 – Advanced Valuation (454)
+B BUS 459 – Special Topics in Finance (350)
+B BUS 463 – Advanced Financial Accounting (362)
+B BUS 465 – Applied Financial Accounting (350)
+B BUS 468 – Advanced Accounting and Analytics (363)
+B BUS 491 – Business Consulting
 B MATH 144
+B WRIT 135* (must be designated (C) composition)
 BA& 240
 Bachelor in Business Administration
 Bachelor in Economics
@@ -66,6 +101,7 @@ BBUS 340 – Operations & Project Management (310)
 BBUS 350 – Business Finance (310)
 BBUS 361 – Intermediate Accounting 1*
 BBUS 361 – Intermediate Accounting I
+BBUS 361 – Intermediate Accounting I*
 BBUS 362 – Intermediate Accounting 2 (361)
 BBUS 363 – Intermediate Accounting 3 (362)
 BBUS 373 – Cost Accounting
@@ -90,11 +126,16 @@ BBUS 453 – Financial Institutions & Markets
 BBUS 453 – Financial Institutions and Markets (350)
 BBUS 454 – Investments
 BBUS 454 – Investments (350)
+BBUS 455 – Financial Risk Management (454)
+BBUS 456 – Entrepreneurial Finance (350)
+BBUS 457 – Advance Valuation (454)
 BBUS 458 – Risk Modeling
+BBUS 459 – Special Topics in Finance (350)
 BBUS 460 – Sustainable Business
 BBUS 461 – Business, Government, & Society (300, 310)
 BBUS 462 – Negotiations & Conflict Management (BBUS/ELCBUS 320)
 BBUS 463 – Advanced Financial Accounting (362)
+BBUS 465 – Applied Finance Accounting (350)
 BBUS 465 – Applied Financial Accounting (350)
 BBUs 466 – Applied Managerial Accounting (350)
 BBUS 467 – Advanced Taxation (450)
@@ -111,6 +152,7 @@ BBUS 480 – Global Environment of Business
 BBUS 489 – Digital Business Lab
 BBUS 490 – Special Topics in Business (300, 310)
 BBUS 490 – Special Topics in Business (300, 310) , BBUS 490 may or may not count depending on course topic; see your adviser before registering.
+BBUS 490 – Special Topics in Business (300, 310), Only counts when approved for concentration; see your advisor before registering.
 BBUS 491 – Business Consulting
 Beardslee Building (UWBB)
 Because the Bachelor Degree in Business Administration is an upper division program, students begin the program after completing prerequisite coursework. Transfer students applying to UW Bothell as Business majors and UW Bothell students declaring a Business major must have completed the majority of following courses at the time of application. All prerequisite coursework must be completed prior to matriculation (i.e., the start of studies at UW Bothell).
@@ -121,6 +163,7 @@ BIS 215 (previously BIS 315), B BUS 215, BMATH 215, or STMATH 341
 Bothell, WA 98011
 Bothell, Washington View our location on Google maps.
 Box 358533
+BUS& 201
 Business Consulting Course
 Calculus
 Campus Safety
@@ -142,6 +185,9 @@ CSS 143 – Computer Programming II and corequisite CSSSKL 143 – Computer Prog
 CSS 173 – Fundamentals of Programming Theory and Applications
 CSS 360 – Software Engineering
 CSS 371 – Business of Technology
+CSS 475 – Database Systems (CSS 360 or B IMD 351)
+CSS 478 – Usability & User-Centered Design (CSS 360 or B IMD 351)
+CSS 480 – Principles of Human Computer Interaction (CSS 360)
 Current site
 Curriculum
 Dean’s Advisory Board
@@ -150,6 +196,13 @@ Directions & Maps
 Directory
 Don Whitney Scholarship for Graduate Students
 Donor Excellence Scholarship
+ECON 200
+ECON 201
+ECON& 201
+ECON& 202
+ELCBUS 463 – International Finance and Trade (350)
+ENG& 102
+ENGL 111, 121, 131, 182, 197, 198, 199, 281, 282, 297, 298, 299, 381, or 382
 Entrepreneurship Concentration
 Ethics Conference
 Events
@@ -159,7 +212,9 @@ Facilities
 Faculty
 Finance Electives (prerequisites in parentheses)
 Finance Option and Concentration
+Financial Accounting
 For example, if you’re a transfer student completing the remaining prerequisites in summer quarter, you can still apply to UW Bothell in spring with the intention of starting Business classes in fall quarter, so long as you’ve completed all the prerequisites before fall quarter begins.
+General Electives
 General Electives (any 300/400 level UW course)
 General Electives (any 300/400 level UW courses)
 Get a Mentor
@@ -174,13 +229,16 @@ Independent Study Projects
 Information Technology
 Internships
 Jobs
+Law
 Leadership & Strategic Innovation Option
 Leadership History
 Library
+Macroeconomics
 Management Concentration
 Management curriculum
 Management Electives (prerequisites in parentheses)
 Management Information Systems (MIS) Concentration
+Managerial Accounting
 Maps & directions
 Marketing Option and Concentration
 Master of Business Administration
@@ -192,6 +250,7 @@ MATH&148 or MATH& 151
 Mentors
 Mentorship EDGE
 Mentorship EDGE Mentors
+MGMT 200
 Microeconomics
 Minor in Actuarial Science
 Minor in Business Administration
@@ -211,9 +270,11 @@ Open mobile menu
 Opportunities
 Option Courses
 or
+Other electives. may also be selected depending on appropriateness and availability.
 People
 PharmD-MBA Program
 Policies & Petitions
+POLS& 201*or
 Prerequisite Courses
 Prerequisites
 Prerequisites for matriculation
@@ -254,6 +315,7 @@ Tacoma Campus
 Technology & Innovation Management (TIM) Concentration
 Terms
 The Accounting Option prepares students for careers in private, government, non-profit and public accounting. Demand for accountants is extremely high as businesses work to plan, manage and control their operations. Graduates can serve as internal auditors, managerial accountants, tax examiners, budget analysts or government auditors. After completing this option, students are eligible to take the Certified Management Accounting (CMA) exam. If you want to be a Certified Public Accountant (CPA), a minimum of 225 quarter hours or five years of college is required.
+The comparison chart above is for students interested in applying to the UW Bothell School of Business only. It is not an approved equivalency guide for all campuses. If you have questions about the specific prerequisite courses needed for a program, please speak to an advisor.
 The Finance Option allows students acquire knowledge about how firms make financial decisions and how these decisions affect individual organizations and society as a whole. Students also learn how firms acquire and allocate funds; how financial markets operate and the role these markets play in economic welfare. The study of finance includes the use of models to develop analytical approaches to problems. Students are trained to take positions in financial institutions such as commercial and investment banks, in finance departments of major corporations or with consulting firms.
 The Management Concentration offers a wide variety of courses that examine the many challenges facing modern business organizations and provide the tools to meet those challenges. Specific areas of study include entrepreneurship, leadership and decision-making, conflict resolution, human resources and managing employees. Students who graduate with a concentration in management often pursue careers in consulting or as leaders in the private or public sector.
 The Management Information Systems (MIS) Concentration provides students with technical and business skills to solve business problems in technology-based environments. Students learn to analyze and design effective information systems, successfully manage software projects and maximize online customer experiences. The concentration was developed in collaboration with Computing and Software Systems faculty and included suggestions by an industry advisory board. Students in the MIS Concentration take courses in both the Business degree program and the CSS program.

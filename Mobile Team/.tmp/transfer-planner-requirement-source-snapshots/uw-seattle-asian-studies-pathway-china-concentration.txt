@@ -47,6 +47,7 @@ Title: Asian Studies - Major - The Henry M. Jackson School of International Stud
 10 additional cr. China Studies courses
 10 additional cr. in one area: Modern, Pre-modern or Arts & Literature
 2023 Skagit Lane, Thomson Hall , Box 353650 Seattle, WA 98195-3650
+25
 2nd Asian Civilization Course
 3
 3-400 level
@@ -70,6 +71,7 @@ About
 About the Jackson School
 Academic Programs
 Academic Services
+Additional Requirements
 Admin
 Advanced Bengali
 Advanced Hindi
@@ -87,6 +89,7 @@ Advising Questions
 African Studies – Minor
 African Studies Program
 Ancient Indian Civilization**[if not already counted toward civilization req. above]
+ANTH 314 Ethnography, Transnationalism, & Community in Island Southeast Asia/Asian Americans (5)
 ANTH 317
 ANTH 352/
 ANTH 352/ RELIG 356
@@ -258,6 +261,7 @@ East Asia Resource Center
 ECON 494
 Economic and Social History of Japan to 1900
 Economy of Japan
+Electives – 25 credits from the list of approved South Asia electives, found below.
 Ellison Center for Russian, East European and Central Asian Studies
 Emergence of Postwar Japan
 Environmental Degradation in the Tropics
@@ -335,9 +339,13 @@ HSTAS 211 or
 HSTAS 212
 HSTAS 303
 HSTAS 401
+HSTAS 401 – History of Ancient India
 HSTAS 402
+HSTAS 402 – History of Medieval and Mughal India
 HSTAS 403
+HSTAS 403 – History of Modern India
 HSTAS 404
+HSTAS 404 – History of Twentieth-Century India
 HSTAS 408
 HSTAS 421
 HSTAS 441
@@ -425,19 +433,23 @@ JSIS 486
 JSIS A / ANTH 407
 JSIS A 202
 JSIS A 205
+JSIS A 205 Filipino Histories (5)
 JSIS A 206
 JSIS A 206 Contemporary India & Pakistan
 JSIS A 207
 JSIS A 207 – Asian Traditions
 JSIS A 221
+JSIS A 221 History of Southeast Asia (5)
 JSIS A 241 or JSIS A 242
 JSIS A 244
 JSIS A 245
 JSIS A 254
 JSIS A 265
+JSIS A 265 The Viet Nam Wars (5)
 JSIS A 303
 JSIS A 305
 JSIS A 315
+JSIS A 315 Southeast Asia Civilization: Buddhist and Vietnamese (5)
 JSIS A 343
 JSIS A 367
 JSIS A 403/ANTH 444
@@ -471,6 +483,7 @@ JSIS A 475
 JSIS A 477
 JSIS A 478 / I BUS 462
 JSIS A 484
+JSIS A 485 – Special Topics on South Asia
 JSIS A 487/POL S 418
 JSIS A 496
 JSIS A/ ANTH 316
@@ -505,6 +518,7 @@ JSIS A/POL S 436/POL S 429
 JSIS A/POL S 439
 JSIS A/SOC 464
 JSIS B 264
+JSIS B 264 Violence, Race, and Memory (5)
 JSIS B 310
 JSIS B 320
 JSIS B 324
@@ -536,6 +550,7 @@ KOREAN 415
 KOREAN 416
 KOREAN 417
 KOREAN 435
+Language requirement – Students must achieve proficiency in a South Asian language through 2nd year college level. Accepted languages include Bengali, Hindi, Nepali, Sanskrit, Tibetan, and Urdu. Students must earn an average GPA of 2.0 in first and second year language courses.
 Languages and Cultures of China
 Latest News
 Latin America and Caribbean Studies
@@ -560,11 +575,13 @@ Looking for help?
 Major
 Major in Asian Studies (General)
 Make a Gift
+Max Lower Division Credit – No more than 5 of the 35 credits for the South Asia concentration core and electives may be at the 200-level
 Meet an Adviser
 Middle East Center
 Middle East Studies – Minor
 Migration and development in China
 Minimum Grade
+Minimum Grade – A minimum grade of 2.0 is required for all courses applied to major
 Minimum grade 2.0 in all courses applied to major.
 Minority Peoples of China
 Modern and Contemporary Art in India
@@ -638,14 +655,21 @@ Related Regions
 RELIG 202
 RELIG 211
 RELIG 352
+RELIG 352 – Hinduism
 RELIG 354
+RELIG 354 – Buddhism
 RELIG 356
+RELIG 356 – Buddhism & Society: The Theravada Buddhist Tradition in South & SE Asia
 RELIG 356 /ANTH 352
+RELIG 356 Buddhism and Society: The Theravada Buddhist Tradition in South and Southeast Asia (5)
 RELIG 356/ ANTH 352
 RELIG 456
+RELIG 456 – Perceptions of the Feminine Divine in Hinduism
 RELIG 459
 Religion in China
 Research Paper
+Research Paper – Students must work with a South Asia Studies professor to write a final research paper of at least 15 pages in length. This must be written in an upper division South Asia Studies course and may need to be expanded to meet the research paper requirements. Students should coordinate with the professor prior to writing to ensure the paper will meet the requirements.
+Resident Credit – 30 credits must be taken in residence through UW (not including 1st or 2nd year language).
 Rise of Asia or
 Rise of Asia or Asian Traditions
 Russia, East Europe and Central Asia Studies – Minor
@@ -673,16 +697,23 @@ South Asia Center
 South Asia Electives
 South Asia includes India, Pakistan, Bangladesh, Sri Lanka, Nepal, Bhutan, Maldives, Afghanistan and Tibet. Students are expected to gain proficiency in a South Asian language (Hindi, Urdu, Bengali and Sanskrit are offered regularly at all levels) and to pursue a course of study that includes both disciplinary concentration and interdisciplinary breadth. Students have opportunities to pursue language study in India through the program’s membership in the American Institute of Indian Studies. Other organizations provide similar opportunities for study in many of the other countries of the region.
 South Asia Studies – Minor
+South Asia Studies Courses
 South Asian Social Structure
 Southeast Asia
 SOUTHEAST ASIA
+Southeast Asia – primary electives
+Southeast Asia Core
 Southeast Asia Elective Courses (for major concentration)
+Southeast Asia electives
 Southeast Asia Studies – Minor
+Southeast Asia Studies Courses
 Southeast Asian Activism and Social Engagement (HSTCMP 367)
 Southeast Asian Civilization: Buddhist and Vietnamese (ANTH 315)
 Southeast Asian History from 1800 to present
 Southeast Asian History to 1800
 Southeast Asian Knowledge and the Politics of Information
+Southeast Asian Language
+Southeast Asian Language proficiency through 2nd year college level or 3rd quarter of 2nd year college level. Burmese, Indonesian, Khmer, Tagalog, Thai, Vietnamese. (For first- and second-year language courses, grades must average 2.00)
 Special Studies in Chinese (depending on theme)
 Special Topics East Asia ( when topic is Japan )
 Special Topics East Asia (depending on theme)
@@ -734,9 +765,11 @@ Topics in Japanese Culture
 Topics in South Asian Art
 Topics in Southeast Asian History and Society
 Topics in the Buddhism of Tibet
+Total Credits (not including language: 50
 Total Credits (not including language)
 Total Credits (not including language) 50
 Two Asian Civilization courses chosen from:HSTAS 201, 202, 211; JSIS A 202, 205, 206, 212, 221, 235, 241, 242, 254
+Two of the following:
 Undergraduate Minors
 Undergraduate Programs
 United States-China Relations

@@ -2,6 +2,54 @@ Owner: uw-tacoma-environmental-sustainability:pathway:environmental-communicatio
 Source: https://www.tacoma.uw.edu/sias/sam/environmental-sustainability
 Title: Environmental Sustainability | Department of Sciences and Mathematics | University of Washington Tacoma
 
+Environmental Sustainability | Department of Sciences and Mathematics | University of Washington Tacoma
+<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PMVD9WN"
+height="0"
+width="0"
+style="display:none;
+visibility:hidden">
+Skip to main content
+Apply
+Canvas
+Map
+Calendar
+Library
+Directory
+MyUW
+more_vert
+more_vert
+Close Search
+<img
+src="/sites/default/files/sites/uwtd8main/W.svg"
+alt="Block W - Link to UW Tacoma homepage"/>
+<img class="mobile-hide desktop-show"
+src="/sites/default/files/sites/uwtd8main/wordmark-full.svg"
+alt="University of Washington Tacoma"/>
+<img class="mobile-show desktop-hide"
+src="/sites/default/files/sites/uwtd8main/Wordmark-Tacoma.svg"
+alt="University of Washington Tacoma"/>
+Tools
+25Live
+Canvas
+Directory
+IT Help
+Library
+Map
+MyUW
+Office365
+Panopto
+Scout
+UW Gmail
+Workday
+Zoom
+Search
+<a
+href=" https://www.tacoma.uw.edu/sias ">School of Interdisciplinary Arts & Sciences
+Department of Sciences and Mathematics
+<span
+class="path2">
+Make a Gift
+Department of Sciences and Mathematics
 ACCESS in STEM
 Advising Resources
 Majors
@@ -100,3 +148,93 @@ TWRT 388 Writing for Social Change
 TWRT 389 Nature Writing
 TWRT 391 Advanced Technical Communication
 Business/Nonprofit Environmental Sustainability Option (20 credits)
+Choose four or more courses from the following list to total at least 20 credits:
+TBGEN 212 Introduction to Corporate Responsibility
+TBUS 300 Managing Organizations
+TMGMT 420 Managing Corporate Responsibility
+TMGMT 452 The Dynamics of Leadership
+TMGMT 457 Negotiation and Conflict Management
+TMGMT 465 Board Governance I (If not taken as capstone experience.)
+TMGMT 466 Board Governance II (If not taken as capstone experience.)
+Environmental Education Option (20 credits)
+Complete the following three courses:
+TEDUC 290 Introduction to Teaching
+TEDUC 471 Diversity and Equity in Schools and Curriculum
+TEDUC 482 Foundations of Education: Policy, Ethics, and Philosophy
+Choose one course from the following list:
+TPSYCH 220 Lifespan Development
+TPSYCH 320 The Race, Class and Gender Context of Child Development
+TPSYCH 321 Adolescent Psychology
+ADVISOR
+Ryan Branchini
+Connect with Advising
+Academic Planning Resources
+MAJOR COORDINATOR
+Professor Tom Koontz
+DEPARTMENT
+Department of Sciences and Mathematics (SAM)
+CAREER OPPORTUNITIES
+Corporate Sustainability
+Environmental Policy
+Environmental Consulting
+Government
+Nonprofit Organizations
+Post-graduate Studies
+ADMISSION REQUIREMENTS
+A minimum of 45 lower-division credits is required before declaring the major. To declare the Environmental Sustainability major, students should reach out to the major academic advisor .
+DEGREE REQUIREMENTS
+For a BA in Environmental Sustainability, students must complete 100 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+Course Repeats
+Contact
+Department of Sciences and Mathematics
+ACADEMICS
+Academic advising
+Academic calendar
+Canvas
+Library
+Schools and programs
+Study Abroad
+Teaching and Learning Center
+CAMPUS
+Campus Safety
+Equity & Inclusion
+Financial Aid
+Housing
+Information Technology
+Student Life
+University YMCA Student Center
+ABOUT UW TACOMA
+Administration
+Admissions
+Institutional Research
+Jobs
+Parking & transportation
+Research
+UWNetID login
+<a href="https://www.tacoma.uw.edu/"
+aria-label="University of Washington Tacoma Homepage">
+<a href="https://www.facebook.com/uwtacoma"
+title="Follow UW Tacoma on Facebook">
+<a href="https://instagram.com/uwtacoma"
+title="Follow UW Tacoma on Instagram">
+<a href="https://www.tiktok.com/@uwtacoma"
+title="Follow UW Tacoma on TikTok">
+<a href="https://www.youtube.com/channel/UC5yP5pgHK5hPnPwfxMykQFw"
+title="Follow UW Tacoma on Youtube">
+<a href="https://www.linkedin.com/school/university-of-washington-tacoma"
+title="Follow UW Tacoma on Linkedin">
+Puyallup Tribe of Indians
+Tribal Sponsor of UW Tacoma
+Learn More >
+Land
+Acknowledgement
+>
+UW Seattle | UW
+Bothell
+&copy; 2026 University of Washington Tacoma
+1900 Commerce Street, Tacoma, WA 98402-3100
+Contact us |
+Terms of Use |
+Privacy |
+Accessibility |
+Rules Docket

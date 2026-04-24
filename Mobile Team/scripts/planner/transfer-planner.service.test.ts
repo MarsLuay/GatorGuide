@@ -3713,6 +3713,98 @@ test("Seattle Computer Engineering source-backed required-course summary stays a
   }
 });
 
+test("Manual current-course selections stay per-course while still unlocking future planner sequencing", () => {
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: null,
+    applicationStatuses: buildRequirementStatuses(
+      [buildChecklistItem("programming-2", "Programming II", ["CS 122"])],
+      []
+    ),
+    beforeEnrollmentStatuses: buildRequirementStatuses(
+      [
+        buildChecklistItem("programming-1", "Programming I", ["CS 121"]),
+        buildChecklistItem("english-comp", "English composition", ["ENGL& 101"]),
+      ],
+      []
+    ),
+    stayAtGrcStatuses: [],
+    completedCourses: [],
+    currentCourseLabels: ["CS 121"],
+    track: null,
+    includeStayAtGrcCourses: false,
+    referenceDate: new Date("2026-04-23T12:00:00.000Z"),
+  });
+  const currentQuarter = quarterPlan.find((quarter) => quarter.phase === "current");
+  const fall2026Quarter = quarterPlan.find(
+    (quarter) => quarter.phase === "planned" && quarter.label === "Fall 2026"
+  );
+
+  assert.deepEqual(
+    currentQuarter?.courses.map((course) => `${course.label}:${course.status}`),
+    ["CS 121:current"]
+  );
+  assert.deepEqual(
+    fall2026Quarter?.courses.map((course) => `${course.label}:${course.status}`),
+    ["CS 122:planned", "ENGL& 101:planned"]
+  );
+});
+
+test("Seattle Computer Engineering manual current CS 121 selection does not rebucket sibling courses", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    currentCourseLabels: ["CS 121"],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId),
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-04-23T12:00:00.000Z"),
+  });
+  const currentQuarter = quarterPlan.find((quarter) => quarter.phase === "current");
+  const fall2026Quarter = quarterPlan.find(
+    (quarter) => quarter.phase === "planned" && quarter.label === "Fall 2026"
+  );
+
+  assert.deepEqual(
+    currentQuarter?.courses.map((course) => `${course.label}:${course.status}`),
+    ["CS 121:current"]
+  );
+  assert.deepEqual(
+    fall2026Quarter?.courses.map((course) => `${course.label}:${course.status}`),
+    ["CS 122:planned", "ENGL& 101:planned", "MATH& 141:planned"]
+  );
+});
+
+test("Seattle Computer Engineering manual current MATH& 141 selection does not rebucket sibling courses", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    currentCourseLabels: ["MATH& 141"],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId),
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-04-23T12:00:00.000Z"),
+  });
+  const currentQuarter = quarterPlan.find((quarter) => quarter.phase === "current");
+  const fall2026Quarter = quarterPlan.find(
+    (quarter) => quarter.phase === "planned" && quarter.label === "Fall 2026"
+  );
+
+  assert.deepEqual(
+    currentQuarter?.courses.map((course) => `${course.label}:${course.status}`),
+    ["MATH& 141:current"]
+  );
+  assert.deepEqual(
+    fall2026Quarter?.courses.map((course) => `${course.label}:${course.status}`),
+    ["CS 121:planned", "ENGL& 101:planned", "MATH& 142:planned"]
+  );
+});
+
 test("HCDE source-backed required-course summaries keep the calculus bucket structured instead of flattening fake individual rows", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
     "uw-seattle-human-centered-design-engineering"
@@ -4260,7 +4352,7 @@ test("HCDE shared-bucket gen-ed targets now promote into source-backed major sum
   assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
     ahCredits: 10,
     sscCredits: 10,
-    nscCredits: 50,
+    nscCredits: null,
     breadthCredits: 10,
     electiveCredits: null,
   });
@@ -4287,15 +4379,200 @@ test("HCDE shared-bucket gen-ed targets now promote into source-backed major sum
     ),
     true
   );
+  assert.equal(diagnostics.hasSourceBackedTargets, true);
+  assert.ok(diagnostics.sourceBackedSummarySection);
+});
+
+test("Materials NME breadth renders the shared A&H/SSc/DIV bucket without inventing A&H 24", () => {
+  const sourcePlan = getRequiredPlan("uw-seattle-materials-science-engineering");
+  const nmePlan = resolveTransferPlannerMajorPlan(sourcePlan, "nme-option");
+  assert.ok(nmePlan, "Expected the Materials NME source plan.");
+
+  const section = buildSourceBackedMajorGeneralEducationRequirementSection(nmePlan);
+  assert.ok(section, "Expected Materials NME source-backed gen-ed summary items.");
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(nmePlan), {
+    ahCredits: 10,
+    sscCredits: 10,
+    nscCredits: 31,
+    breadthCredits: 4,
+    electiveCredits: null,
+  });
   assert.equal(
     section?.items.some(
+      (entry) => entry.label === "Arts & Humanities" && entry.valueText === "24 credits"
+    ),
+    false
+  );
+  assert.ok(
+    section?.items.some(
       (entry) =>
-        entry.label === "Natural Sciences" && entry.valueText === "50 credits"
+        entry.label === "Areas of Inquiry" &&
+        entry.valueText === "24 credits shared" &&
+        /Arts & Humanities, Social Sciences, and Diversity/i.test(entry.note ?? "")
+    )
+  );
+  assert.ok(
+    section?.items.some(
+      (entry) => entry.label === "Arts & Humanities" && entry.valueText === "10 credits"
+    )
+  );
+  assert.ok(
+    section?.items.some(
+      (entry) => entry.label === "Social Sciences" && entry.valueText === "10 credits"
+    )
+  );
+  assert.ok(
+    section?.items.some(
+      (entry) =>
+        entry.label === "Additional Arts & Humanities / Social Sciences" &&
+        entry.valueText === "4 credits"
+    )
+  );
+  assert.ok(
+    section?.items.some(
+      (entry) =>
+        entry.label === "Diversity" &&
+        entry.valueText === "5 credits" &&
+        /Overlaps with Arts & Humanities \/ Social Sciences/i.test(entry.note ?? "")
+    )
+  );
+});
+
+test("Materials NME planning does not duplicate official breadth with matched-track A&H/SSc placeholders", () => {
+  const sourcePlan = getRequiredPlan("uw-seattle-materials-science-engineering");
+  const nmePlan = resolveTransferPlannerMajorPlan(sourcePlan, "nme-option");
+  assert.ok(nmePlan, "Expected the Materials NME source plan.");
+
+  const track = getTransferPlannerTrack(nmePlan.bestTrackId ?? null);
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: nmePlan,
+    ...buildStatuses(nmePlan, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const transferOnlyQuarterPlan = buildSuggestedQuarterPlan({
+    plan: nmePlan,
+    ...buildStatuses(nmePlan, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: false,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const plannedCourses = quarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const transferOnlyPlannedCourses = transferOnlyQuarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const ahSscPlaceholderCourses = plannedCourses.filter((course) =>
+    ["5 credits of Humanities", "5 credits of Social Science", "5 credits of A&H or SSc"].includes(
+      course.label
+    )
+  );
+
+  assert.deepEqual(
+    ahSscPlaceholderCourses.map((course) => course.label),
+    [
+      "5 credits of Humanities",
+      "5 credits of Social Science",
+      "5 credits of A&H or SSc",
+      "5 credits of Humanities",
+      "5 credits of Social Science",
+    ]
+  );
+  assert.equal(
+    ahSscPlaceholderCourses.some((course) =>
+      /matched Green River associate pathway/i.test(course.guidanceSummary ?? "")
+    ),
+    false
+  );
+  assert.ok(
+    ahSscPlaceholderCourses.every((course) =>
+      /major-specific breadth requirements in Materials Science & Engineering \(NME Option\)/i.test(
+        course.guidanceSummary ?? ""
+      )
+    )
+  );
+  assert.equal(
+    plannedCourses.some((course) => /24\/24 A&H credits/i.test(course.guidanceSummary ?? "")),
+    false
+  );
+  assert.equal(
+    plannedCourses.some((course) => /15\/15.*matched Green River associate pathway/i.test(course.guidanceSummary ?? "")),
+    false
+  );
+  assert.equal(
+    transferOnlyPlannedCourses.some((course) =>
+      /matched Green River associate pathway/i.test(course.guidanceSummary ?? "")
+    ),
+    false
+  );
+  assert.equal(
+    transferOnlyPlannedCourses.some((course) =>
+      /major-specific breadth requirements in Materials Science & Engineering \(NME Option\)/i.test(
+        course.guidanceSummary ?? ""
+      )
     ),
     true
   );
-  assert.equal(diagnostics.hasSourceBackedTargets, true);
-  assert.ok(diagnostics.sourceBackedSummarySection);
+});
+
+test("Matched-track gen-ed guidance yields to official UW breadth targets for another shared-bucket major", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-human-centered-design-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the HCDE runtime plan.");
+  const track = {
+    id: "test-hcde-duplicate-general-education-placeholders",
+    code: "TEST-HCDE",
+    title: "HCDE duplicate placeholder track",
+    summary: "Synthetic HCDE placeholder-only track for planner tests.",
+    bestFor: ["testing"],
+    terms: [
+      {
+        label: "Year 1 Fall",
+        courses: ["Humanities", "Social Science", "Humanities or Social Science"],
+      },
+    ],
+    notes: [],
+  };
+
+  const plannedCourses = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  })
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const matchedTrackGenEds = plannedCourses.filter((course) =>
+    /matched Green River associate pathway/i.test(course.guidanceSummary ?? "")
+  );
+
+  assert.equal(
+    matchedTrackGenEds.some((course) =>
+      ["5 credits of Humanities", "5 credits of Social Science", "5 credits of A&H or SSc"].includes(
+        course.label
+      )
+    ),
+    false
+  );
+  assert.ok(
+    plannedCourses.some(
+      (course) =>
+        ["5 credits of Humanities", "5 credits of Social Science", "5 credits of A&H or SSc"].includes(
+          course.label
+        ) &&
+        /major-specific breadth requirements in Human Centered Design & Engineering/i.test(
+          course.guidanceSummary ?? ""
+        )
+    )
+  );
 });
 
 test("Bothell Applied Computing category-first breadth lines recover separate A&H and SSc targets", () => {
@@ -4314,7 +4591,7 @@ test("Bothell Applied Computing category-first breadth lines recover separate A&
   assert.ok(section, "Expected Applied Computing source-backed gen-ed summary items.");
   assert.deepEqual(
     section?.items.map((entry) => `${entry.label}: ${entry.valueText}`),
-    ["Arts & Humanities: 15 credits", "Social Sciences: 15 credits"]
+    ["Arts & Humanities: 15 credits", "Social Sciences: 15 credits", "Diversity: 5 credits"]
   );
   assert.equal(
     section?.items.some((entry) => /Arts & Humanities \/ Social Sciences/i.test(entry.label)),
@@ -8262,6 +8539,40 @@ test("Course-code extraction keeps spaced UW subject forms code-extractable", ()
   assert.ok(extracted.includes("AMATH 301"));
 });
 
+test("Spaced UW subject aliases normalize and resolve through canonical registry metadata", () => {
+  const representativeAliases = [
+    ["IND E 250", "INDE 250"],
+    ["IND E 315", "INDE 315"],
+    ["E E 486", "EE 486"],
+    ["CHEM E 490", "CHEME 490"],
+    ["MOL ENG 520", "MOLENG 520"],
+    ["IN NME 220", "NME 220"],
+  ] as const;
+
+  for (const [aliasCode, canonicalCode] of representativeAliases) {
+    assert.equal(
+      normalizeCourseCode(aliasCode),
+      canonicalCode,
+      `Expected ${aliasCode} to normalize to ${canonicalCode}.`
+    );
+    assert.equal(
+      normalizeCourseCode(canonicalCode),
+      canonicalCode,
+      `Expected ${canonicalCode} to remain stable after normalization.`
+    );
+    assert.equal(
+      getTransferPlannerCanonicalCourse("uw-seattle", aliasCode)?.code,
+      canonicalCode,
+      `Expected canonical UW registry lookup for ${aliasCode} to resolve to ${canonicalCode}.`
+    );
+    assert.equal(
+      getTransferPlannerNormalizedCourseMetadataEntry("uw-seattle", aliasCode)?.code,
+      canonicalCode,
+      `Expected normalized metadata lookup for ${aliasCode} to resolve to ${canonicalCode}.`
+    );
+  }
+});
+
 test("Transcript parsing deduplicates legacy and canonical course-code variants", () => {
   const parsed = parseCompletedTranscriptCourses([
     "MATH& 254",
@@ -10672,6 +10983,98 @@ test("Materials Science & Engineering only exposes the real NME Option pathway",
   assert.deepEqual(
     collectSuspiciousStructuralPathways(getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)),
     []
+  );
+});
+
+test("Materials source parse retains normalized lower-division and core MSE requirements", () => {
+  const [baseBlock] = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-materials-science-engineering"
+  );
+  const [nmeBlock] = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-materials-science-engineering",
+    "nme-option"
+  );
+
+  assert.ok(baseBlock, "Expected the base MSE parsed source block.");
+  assert.ok(nmeBlock, "Expected the MSE NME parsed source block.");
+
+  for (const courseCode of ["MSE 170", "MSE 310", "MSE 311", "MSE 321", "INDE 250"]) {
+    assert.equal(
+      baseBlock?.parsedUwCourseCodes.includes(courseCode),
+      true,
+      `Expected the base MSE parsed source to include ${courseCode}.`
+    );
+  }
+
+  for (const courseCode of ["EE 486", "CHEM 597", "MOLENG 520", "MSE 484", "MSE 486"]) {
+    assert.equal(
+      nmeBlock?.parsedUwCourseCodes.includes(courseCode),
+      true,
+      `Expected the MSE NME parsed source to include ${courseCode}.`
+    );
+  }
+
+  assert.equal(
+    baseBlock?.parsedUwCourseCodes.includes("IND E 250"),
+    false,
+    "Expected the base MSE parsed source to keep IND E 250 normalized as INDE 250."
+  );
+  assert.equal(
+    new Set(baseBlock?.parsedUwCourseCodes ?? []).size,
+    (baseBlock?.parsedUwCourseCodes ?? []).length,
+    "Expected the base MSE parsed source to stay deduplicated after normalization."
+  );
+  assert.equal(
+    baseBlock?.parsedUwCourseCodes.includes("IN NME 220"),
+    false,
+    "Expected prose like 'enroll in NME 220' not to leak as malformed IN NME 220."
+  );
+  assert.equal(
+    nmeBlock?.parsedUwCourseCodes.includes("NME 220"),
+    true,
+    "Expected the NME option source parse to retain the normalized NME 220 code."
+  );
+});
+
+test("Materials planner-visible source-backed output keeps lower-division prep but not upper-division coursework", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-materials-science-engineering");
+
+  assert.ok(runtimePlan, "Expected the MSE runtime plan.");
+
+  const summaryText = buildSourceBackedRequiredCourseSummaryEntries(runtimePlan, { mode: "uw" })
+    .map((entry) => entry.text)
+    .join("\n");
+
+  assert.match(
+    summaryText,
+    /UW equivalent:\s*MSE 170\b/,
+    "Expected planner-visible MSE source-backed output to keep the MSE 170 lower-division UW equivalent."
+  );
+
+  for (const courseCode of ["MSE 310", "MSE 311", "MSE 321", "EE 486", "CHEM 597", "MOLENG 520"]) {
+    assert.doesNotMatch(
+      summaryText,
+      new RegExp(`\\b${courseCode.replace(/\s+/g, "\\s+")}\\b`),
+      `Did not expect planner-visible source-backed output to materialize upper-division-only ${courseCode}.`
+    );
+  }
+});
+
+test("Industrial & Systems Engineering benefits from the same spaced-subject normalization", () => {
+  const [iseBlock] = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-industrial-systems-engineering"
+  );
+
+  assert.ok(iseBlock, "Expected the Seattle ISE parsed source block.");
+  assert.equal(
+    iseBlock?.parsedUwCourseCodes.includes("INDE 315"),
+    true,
+    "Expected the Seattle ISE parsed source to include INDE 315."
+  );
+  assert.equal(
+    getTransferPlannerCanonicalCourse("uw-seattle", "IND E 315")?.code,
+    "INDE 315",
+    "Expected IND E 315 to resolve to the same canonical registry entry as INDE 315."
   );
 });
 
