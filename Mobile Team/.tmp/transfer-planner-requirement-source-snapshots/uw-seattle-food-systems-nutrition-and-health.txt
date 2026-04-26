@@ -79,7 +79,6 @@ Chemistry
 Choosing a major and choosing a career are often distinct processes, and most UW majors can prepare you for a wide variety of career paths. You can learn about some of those possible paths on our Careers page ; however, it’s important to remember that the job titles listed on that page are only examples, and our students go in many different directions after graduation.
 Cities, Health, and Well-Being (3)
 Climate and Climate Change (5)
-Climate Governance: How Individuals, Communities, NGOs, Firms, and Governments Can Solve the Climate Crisis (5)
 Climate-Friendly Dining at the University of Washington
 Climate, Justice, and Energy Solutions (5)
 Clinical
@@ -88,7 +87,6 @@ COM 220
 COM 234
 COM 289
 Committees
-Communicating about Health: Current Issues and Perspectives (3)
 Communication, Power, and Difference (5)
 Complete the online application and upload transcripts for non-UW courses. The application to declare the major is always available and admissions are made on a rolling basis.
 Completing MPH with RDN
@@ -96,7 +94,6 @@ Completing MS with RDN
 Composition or writing
 Computer Programming I (4)
 Computer Programming II (5)
-Computer Programming II* (5)
 Connect with us:
 Contact
 Contact Us
@@ -118,7 +115,6 @@ Declare the Major | Food Systems, Nutrition, and Health
 Demonstrate effective project management, teamwork, analysis, and communication skills necessary to carry out interdisciplinary work in food systems.
 Describe and compare food systems across diverse contexts and scales, including their key components, challenges, and interconnections.
 Diet in Health and Disease (3)
-Disaster Management, Risk Reduction and Health (5)
 Do my community college credits count?
 Do you accept post-baccalaureate students?
 Doctor of Philosophy
@@ -147,7 +143,6 @@ ENVIR 240
 ENVIR 280
 Environmental Ethics (5)
 Environmental Justice (5)
-EPI 221
 EPI 320
 Equity & Inclusion
 Eric Liu
@@ -163,7 +158,6 @@ Expand All
 Experiential Learning
 Experiential Learning . You’ll complete a capstone, which is an opportunity to explore solutions to real-world issues in partnership with a community-based organization.
 Exploration of Multisensory Dining (3)
-Exploration of Multisensory Dining* (3)
 Explore
 Explore Food at UW
 Exploring Environment and Health Connections (3)
@@ -203,24 +197,15 @@ Food Systems, Nutrition, and Health Undergraduate Study Nutrition Minor Nutritio
 Food Systems: Harvest to Health (5)
 Food Systems: Individual to Population Health (5)
 G H 101
-G H 101/JSIS B/GEOG 180
 G H 220
-G H/ENV H 220
 General Chemistry (5)
-GEOG 123
-GEOG 208
 GEOG 271
-GEOG 272
-GEOG 280
 GEOG 371
 GEOG 380
 Geographical Patterns of Health and Disease (5)
-Geographies of Environmental Justice (5)
 Geography of Food and Eating (5)
-Geography of the World Economy: Regional Fortunes and the Rise of Global Markets (5)
 Giving
 Global Environmental Change and Public Health (3)
-Global Health Histories: Colonial Medicine, Public Health, and International Health in the Global South (5)
 Global Nutrition
 Global Nutrition: Challenges and Opportunities (3)
 Global Warming: Understanding the Issues (5)
@@ -239,10 +224,6 @@ How can I prepare for this major?
 How do I register for NUTR 441 (Food and Culinary Science)?
 How might my grades impact my admission to the major?
 HSERV 100
-HSERV 204
-HSTAA 231
-HSTAA/ENVIR 221
-HSTCMP 247
 I would like to register for an NUTR course, but I am not a Food Systems major, and the course notes indicate that the class is “FSNH only” during Period 1. What does this mean?
 Identities, Cultures, and Power Across American Ethnic Groups (5)
 In rare cases, an NUTR class may be coded as Food Systems majors only during all registration periods. If that is the case, then the course is only open to our majors, and students who are not declared Food Systems majors are not eligible to register.
@@ -267,19 +248,13 @@ Introduction to Environmental Studies (5)
 Introduction to Epidemiology (4)
 Introduction to Food and the Environment (5)
 Introduction to Foods (5)
-Introduction to Geology & Societal Impacts (5)
 Introduction to Geology and Societal Impacts (5)
 Introduction to Global Health: Disparities, Determinants, Policies, and Outcomes (5)
-Introduction to Globalization (5)
-Introduction to Labor Studies (5)
 Introduction to Macroeconomics (5)
-Introduction to Macroeconomics* (5)
 Introduction to Medical Anthropology and Global Health (5)
 Introduction to Microeconomics (5)
 Introduction to Public Policy and Governance (5)
 Introduction to Public Speaking (5)
-Introduction to Racial and Ethnic Health Disparities in the United States (5)
-Introduction to the Geography of Health and Healthcare (5)
 Introductory Biology (5)
 Introductory Soils (5)
 Is it possible to declare a double major or double degree with Food Systems and another major?
@@ -295,7 +270,6 @@ Master of Public Health
 Master of Science
 Master’s Capstone
 Master’s Thesis
-Maternal and Child Health-a Population Health Approach (5)
 Meetings & Events – Spaces and Planning Resources
 Menu
 Minimum cumulative 2.0 GPA is needed for courses applied toward the minor.
@@ -316,9 +290,6 @@ Natural History of the Puget Sound Region (5)
 News
 News & Events
 Nikki Zielinski
-NMETH
-NURS 211
-NURS 215
 NUTR 141
 NUTR 200
 NUTR 200 Nutrition for Today or equivalent
@@ -368,13 +339,9 @@ Personal and Public Health (3)
 PH Concentration Projects
 PhD Dissertation
 PHIL 243
-PHIL/ENVIR 243
-PHIL/ETHICS/POL S 207
 Physical Activity in Health and Disease (3)
 POL S 202
 POL S 204
-POL S/HSTCMP 249/SOC 266
-Power, Oppression, and Social Justice in Health and Healthcare (5)
 Practice Experience
 Practicum
 Preparing
@@ -403,7 +370,6 @@ Prospective transfer students interested in learning more about the Food Systems
 Public Debate (5)
 Public Health Concentration Projects
 PUBPOL 201
-Race And American History (5)
 RDN Training
 Recent Capstone Projects
 Registration
@@ -418,17 +384,12 @@ Rules Docket
 School of Public Health
 School of Public Health | University of Washington
 Science Literacy - 10 credits
-Science, Evidence and Health: Mastering Health Information and Personal Health Technologies (4/5)
 Search for:
 See a sample course plan .
 Seminar
 Skip to main content
-SMEA/ENVIR 201
-SMEA/ENVIR/JSIS B 103
 SOC 110
-SOC 230
 Social Determinants of Health
-Society and the Oceans (5)
 Special Topics in Nutritional Sciences (1-5)
 SPH Soulcatcher
 Sports Nutrition (3)
@@ -452,7 +413,6 @@ Support Us
 Survey of Physiology (5, preferred)
 Survey of Sociology (5)
 Sustainability: Personal Choices, Broad Impacts (3-5)
-Sustainability: Personal Choices, Broad Impacts (5)
 Sustainable Food Systems in Italy (5)
 Terms
 The Bachelor of Arts with a major in Food Systems, Nutrition, and Health explores the complex intersections and relationships among food, culture, economics, the environment, justice, labor, policy, and population health. Many of the world’s widespread health challenges are consequences of broken food systems. You’ll study these systems and their impacts on nutrition and health outcomes.
@@ -480,7 +440,6 @@ University of Washington
 University of Washington -->
 University of Washington Food Systems Working Group: Support for the Sustainability Action Plan
 Upon satisfactory completion of the BA in Food Systems, Nutrition, and Health, graduates will be able to:
-US Environmental History: Ecology, Culture, Justice (5)
 UW Admissions offers Transfer Thursdays sessions on applying for admission to the university. Advisers from across the School of Public Health also offer drop-in advising as part of Transfer Thursdays. The UW Transfer Equivalency Guide can be used to determine how courses taken at a Washington community college will transfer to UW.
 UW Food Systems Network
 VALUES 207

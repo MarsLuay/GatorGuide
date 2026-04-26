@@ -269,12 +269,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "H 3 - Humanities/Fine Arts/English",
           "N 3 - Natural Science List A or List B"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -460,7 +454,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 127",
           "ENGL 128",
           "ENGL& 235",
-          "Elective or General Education",
           "(offered summer/winter)",
           "(offered fall/spring)"
         ]
@@ -528,8 +521,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ENGL 127",
           "H 1 - Humanities/Fine Arts/English",
-          "N 1 - Natural Science List A (Lab)",
-          "If you haven't taken a language class in high school and are interested in transferring to University of Washington, consider a year of foreign language required for transfer."
+          "N 1 - Natural Science List A (Lab)"
         ]
       },
       {
@@ -560,12 +552,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "Additional credits-Recommended to take additional American Ethnic Studies courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -633,7 +619,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 3 - Natural Science List A or List B",
           "S 2 - Social Science",
           "Humanities or Social Science",
-          "Natural Science",
           "ANTH& 205"
         ]
       },
@@ -642,7 +627,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ANTH& 206",
           "H 3 - Humanities/Fine Arts/English",
-          "Humanities or Social Science",
           "Natural Science"
         ]
       },
@@ -650,12 +634,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -970,12 +948,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PSYC 240",
           "Any criminal justice (CJ/CJ&) course (not already required in degree)",
           "Any physics (PHYS/PHYS&) course"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -1295,12 +1267,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "S 2 - Social Science"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -1393,12 +1359,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "HIST 228",
           "HIST 233",
           "HIST& 214"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -1562,12 +1522,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "POLS& 203"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -1616,8 +1570,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 2 - Humanities/Fine Arts/English",
           "N 1 - Natural Science List A (Lab)",
-          "Psychology course from list below",
-          "Consider course from Diversity Course List ."
+          "Psychology course from list below"
         ]
       },
       {
@@ -1625,7 +1578,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "S 1 - Social Science",
           "N 2 - Natural Science List A",
-          "Consider courses from the Diversity Course List (any subject other than psychology)",
           "Elective or General Education"
         ]
       },
@@ -1654,12 +1606,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PSYC& 220",
           "PSYC 225",
           "PSYC 240"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -1709,8 +1655,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "SOC& 201",
           "H 1 - Humanities/Fine Arts/English",
-          "N 2 - Natural Science List A",
-          "If you haven't taken a language class in high school and are interested in transferring to University of Washington, consider a year of foreign language required for transfer."
+          "N 2 - Natural Science List A"
         ]
       },
       {
@@ -1728,7 +1673,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "H 3 - Humanities/Fine Arts/English",
           "S 2 - Social Science",
           "avoid sociology and make sure you are also taking a class from the Diversity Course List",
-          "Humanities or Social Science",
           "Natural Science"
         ]
       },
@@ -1736,12 +1680,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "Additional credits-Recommended to take additional Sociology courses . Electives All courses numbered 100 or higher may be taken as electives, except Basic Skills and no more than 3 credits Physical Education. Courses should include preparation for a major and/or general interest/leisure-time activity."
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -1829,12 +1767,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ART 114",
           "PHOTO 101",
           "PHOTO 111"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -2286,8 +2218,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ART 240",
           "N 3 - Natural Science List A or List B",
-          "Humanities or Social Science",
-          "Natural Science"
+          "Humanities or Social Science"
         ]
       },
       {
@@ -2554,7 +2485,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 163",
           "N 1 - Natural Science List A (Lab)",
           "Humanities or Social Science",
-          "Natural Science",
           "Elective or General Education"
         ]
       },
@@ -2573,7 +2503,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 248",
           "N 3 - Natural Science List A or List B",
           "Humanities or Social Science",
-          "Natural Science",
           "Elective or General Education"
         ]
       },
@@ -2582,20 +2511,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ENGL 127",
           "S 1 - Social Science",
-          "Social Science",
-          "AMES 100",
-          "AMES 103",
-          "AMES 105",
-          "AMES 214",
-          "ANTH& 206",
-          "HIST 228",
-          "HIST 230",
-          "HIST& 128",
-          "HIST& 215",
-          "POLS& 204",
-          "SCI 160",
-          "SOC 214",
-          "SOC 220",
           "Humanities or Social Science",
           "Natural Science",
           "Elective or General Education"
@@ -2604,15 +2519,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Quarter 6 (15 credits)",
         "courses": [
-          "S 2 - Social Science",
-          "PSYC& 100",
-          "HIST& 214"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
+          "S 2 - Social Science"
         ]
       }
     ],
@@ -2698,12 +2605,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST 245",
           "CMST 265",
           "CMST 266"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -2874,12 +2775,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CS 109",
           "EDUC& 240"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -2922,8 +2817,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL& 235",
           "H 1 - Humanities/Fine Arts/English",
           "N 1 - Natural Science List A (Lab)",
-          "Recommend: Studying a language other than English strengthens your grasp of mechanics and vocabulary. It can also help build toward a career in publishing and editing work in translation (a growing and in-demand field). Most graduate English programs have a foreign language requirement as well, so completing coursework as a undergraduate can help you test out of these requirements. Foreign languages you can find here are Chinese , Japanese , Arabic , Spanish , French , and German .",
-          "Natural Science"
+          "Recommend: Studying a language other than English strengthens your grasp of mechanics and vocabulary. It can also help build toward a career in publishing and editing work in translation (a growing and in-demand field). Most graduate English programs have a foreign language requirement as well, so completing coursework as a undergraduate can help you test out of these requirements. Foreign languages you can find here are Chinese , Japanese , Arabic , Spanish , French , and German ."
         ]
       },
       {
@@ -2951,8 +2845,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "SOC 220",
           "DRMA& 101",
           "CMST 215",
-          "MUSC& 105",
-          "Elective or General Education"
+          "MUSC& 105"
         ]
       },
       {
@@ -2977,12 +2870,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ART 109",
           "ART 120",
           "Generally Transferable Courses (see below) :"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -3014,8 +2901,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL& 101",
           "MATH& 107",
           "S 1 - Social Science",
-          "depends on placement",
-          "Social Science"
+          "depends on placement"
         ]
       },
       {
@@ -3032,8 +2918,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "S 1 - Social Science",
           "N 2 - Natural Science List A",
-          "English List (see below)",
-          "Social Science"
+          "English List (see below)"
         ]
       },
       {
@@ -3055,8 +2940,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "S 3 - Social Science",
-          "Elective or General Education",
-          "Social Science"
+          "Elective or General Education"
         ]
       },
       {
@@ -3146,12 +3030,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "SOC 252",
           "SOC 271"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -3209,7 +3087,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "H 3 - Humanities/Fine Arts/English",
           "S 2 - Social Science",
           "ANTH& 206",
-          "Humanities or Social Science",
           "Natural Science",
           "Elective or General Education"
         ]
@@ -3219,10 +3096,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "S 3 - Social Science",
           "N 1 - Natural Science List A (Lab)",
-          "ASTR& 101",
-          "BIOL 103",
           "Humanities or Social Science",
-          "Natural Science",
           "Elective or General Education"
         ]
       },
@@ -3231,14 +3105,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "N 3 - Natural Science List A or List B",
           "Humanities or Social Science",
-          "Natural Science",
           "Elective or General Education"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -3313,12 +3180,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "FILM 122"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -3378,7 +3239,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "H 3 - Humanities/Fine Arts/English",
           "N 3 - Natural Science List A or List B",
           "In addition to list of recommendations below, check with transfer institution to see if foreign language is required.",
-          "Humanities or Social Science",
           "Elective or General Education"
         ]
       },
@@ -3420,12 +3280,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PSYC& 180",
           "SOC 220",
           "(Diversity course)"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -3501,12 +3355,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "SPAN& 223",
           "ANTH& 206",
           "CMST 117"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -3642,12 +3490,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "Humanities",
           "Social Science"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -3740,12 +3582,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "SPAN 291",
           "SPAN 292"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -3832,12 +3668,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "JOURN 140",
           "JOURN 157",
           "Elective or General Education"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -3958,12 +3788,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MUSC 298",
           "MUSC 299"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -4058,12 +3882,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PHIL 240",
           "PHIL 243",
           "PHIL 244"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -4351,7 +4169,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
   },
   {
     "id": "grc-associate-healthcare-wellness-nursing-associate-in-pre-nursing-apren-dta-mrp",
-    "code": "AA-DTA",
+    "code": "APreN-DTA/MRP",
     "title": "Associate in Pre-Nursing",
     "summary": "Associate in Pre-Nursing, APreN-DTA/MRP curriculum map.",
     "bestFor": [
@@ -4387,8 +4205,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "BIOL& 242",
           "CHEM& 131",
-          "H 1 - Humanities/Fine Arts/English",
-          "Humanities"
+          "H 1 - Humanities/Fine Arts/English"
         ]
       },
       {
@@ -4422,15 +4239,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "SOC 205",
           "SOC 214",
           "SOC 220",
-          "Humanities",
-          "Humanities or Social Science",
           "Natural Science"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -5065,7 +4874,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BIOL& 211",
           "H 2 - Humanities/Fine Arts/English",
           "S 1 - Social Science",
-          "Humanities or Social Science",
           "The biology department recommends students take other classes (EG: Humanities, and Social Sciences) that they find interesting and relevant to their goals and curiosities. Biology's foundation is interdisciplinary, and the field thrives upon a diversity of perspectives, experiences, and expertise."
         ]
       },
@@ -5084,12 +4892,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BIOL& 213",
           "S 3 - Social Science",
           "(only offered spring quarter)"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -5148,7 +4950,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BIOL& 211",
           "S 1 - Social Science",
           "N 3 - Natural Science List A or List B",
-          "Natural Science",
           "Seek consultation with science advisor for additional Natural Sciences"
         ]
       },
@@ -5246,12 +5047,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PHYS& 223",
           "Humanities or Social Science"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -5333,12 +5128,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "Humanities or Social Science",
           "Elective or General Education"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -5659,12 +5448,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PHYS& 223",
           "2 C - Humanities/Fine Arts/English or Social Science"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -5729,8 +5512,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Summer 1 (10 credits)",
         "courses": [
           "H 1 - Humanities/Fine Arts/English",
-          "S 1 - Social Science",
-          "Humanities or Social Science"
+          "S 1 - Social Science"
         ]
       },
       {
@@ -5779,12 +5561,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGR& 204",
           "ENGR& 224",
           "ENGR 250"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -5881,12 +5657,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGR& 204",
           "PHYS& 223"
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -5906,7 +5676,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
   },
   {
     "id": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-math-emphasis",
-    "code": "AA-DTA",
+    "code": "AM-DTA",
     "title": "Math Education",
     "summary": "Math Education, AM-DTA (Mathematics) curriculum map.",
     "bestFor": [
@@ -5918,8 +5688,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH& 151",
           "ENGL& 101",
-          "S 1 - Social Science",
-          "Social Science"
+          "S 1 - Social Science"
         ]
       },
       {
@@ -5936,8 +5705,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL 128",
           "ENGL& 235",
           "MATH& 163",
-          "(for pure math majors)",
-          "(for applied math majors)",
           "Computer Science (CS) or Engineering (ENGR)"
         ]
       },
@@ -5946,8 +5713,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "MATH& 254",
           "PHYS& 221",
-          "H 3 - Humanities/Fine Arts/English",
-          "For best transferability take all the classes in the series at the same college."
+          "H 3 - Humanities/Fine Arts/English"
         ]
       },
       {
@@ -5964,18 +5730,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH 240",
           "PHYS& 223",
           "S 3 - Social Science"
-        ]
-      },
-      {
-        "label": "Notes:",
-        "courses": [
-          "Elective or General Education"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -5996,7 +5750,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
   },
   {
     "id": "grc-associate-stem-mathematics-math-curriculum-map-aa-dta-statistics",
-    "code": "AA-DTA",
+    "code": "AM-DTA",
     "title": "Math Education",
     "summary": "Math Education, AM-DTA (Statistics) curriculum map.",
     "bestFor": [
@@ -6064,12 +5818,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PHIL 240",
           "Recommend: A business or political science course-lots of statistics opportunities in these fields."
         ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
-        ]
       }
     ],
     "notes": [
@@ -6088,7 +5836,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
   },
   {
     "id": "grc-associate-stem-mathematics-math-curriculum-map-am-dta-mrp",
-    "code": "AA-DTA",
+    "code": "AM-DTA/MRP",
     "title": "Math Education",
     "summary": "Math Education, AM-DTA/MRP curriculum map.",
     "bestFor": [
@@ -6140,7 +5888,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "AMES 100",
           "ANTH& 206",
           "N 3 - Natural Science List A or List B",
-          "Natural Science",
           "Any class from Natural Science List A or B that isn't already being used to fulfill one of the other requirements. We recommend whatever you find interesting. You can also continue the lab class sequence you used to fulfill the lab requirement above, if you want to.",
           "Social Science",
           "These will meet both a Social Science requirement and Diversity."
@@ -6152,12 +5899,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST& 220",
           "H 2 - Humanities/Fine Arts/English",
           "S 1 - Social Science"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -6241,12 +5982,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH 240",
           "CHEM& 161",
           "CHEM& 140"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -7775,9 +7510,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 3 (15 credits)",
         "courses": [
           "H 1 - Humanities/Fine Arts/English",
-          "N 2 - Natural Science List A",
-          "Humanities or Social Science",
-          "Natural Science"
+          "N 2 - Natural Science List A"
         ]
       },
       {
@@ -7785,8 +7518,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "N 3 - Natural Science List A or List B",
           "S 2 - Social Science",
-          "Humanities or Social Science",
-          "Natural Science"
+          "Humanities or Social Science"
         ]
       },
       {
@@ -7794,7 +7526,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "H 2 - Humanities/Fine Arts/English",
           "S 3 - Social Science",
-          "Humanities or Social Science",
           "Natural Science"
         ]
       },
@@ -7819,12 +7550,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "EDUC& 205",
           "EDUC 210",
           "NATRS 100"
-        ]
-      },
-      {
-        "label": "Transferability of Credits",
-        "courses": [
-          "Green River College is fully accredited. Academic courses will usually be accepted by other institutions offering the same (or similar) courses. However, each institution has its own transfer policies and each student is responsible for knowing the transfer and admission requirements of the receiving institution. Students are urged to consult with their advisor and a representative from the college they plan to attend after Green River."
         ]
       }
     ],
@@ -7898,8 +7623,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ECON& 202",
           "N 1 - Natural Science List A (Lab)",
-          "Humanities or Social Science",
-          "Natural Science"
+          "Humanities or Social Science"
         ]
       }
     ],
@@ -8087,9 +7811,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH 256",
           "H 1 - Humanities/Fine Arts/English",
           "S 1 - Social Science",
-          "Completion of an associate degree or higher from a regionally accredited college or university.",
-          "Humanities or Social Science",
-          "Natural Science"
+          "Completion of an associate degree or higher from a regionally accredited college or university."
         ]
       },
       {
@@ -8386,8 +8108,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "S 2 - Social Science",
           "N 1 - Natural Science List A (Lab)",
           "N 3 - Natural Science List A or List B",
-          "Humanities or Social Science",
-          "Natural Science",
           "Elective or General Education"
         ]
       },
@@ -8835,7 +8555,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "AVIA 420",
           "AVIA 440",
           "Humanities or Social Science",
-          "Natural Science",
           "Elective or General Education"
         ]
       }
@@ -9068,19 +8787,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BTAC 100",
           "BTAC 110",
           "*"
-        ]
-      },
-      {
-        "label": "Core Requirements > Notes",
-        "courses": [
-          "ACCT& 201",
-          "ACCT 110"
-        ]
-      },
-      {
-        "label": "Core Requirements > Notes > Last Revised",
-        "courses": [
-          "7/1/2014"
         ]
       }
     ],
@@ -9868,12 +9574,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "HEALTH 102",
           "HEALTH 104",
           "CARDIO 105"
-        ]
-      },
-      {
-        "label": "Notes > Last Updated",
-        "courses": [
-          "9/1/2024"
         ]
       }
     ],
@@ -11057,7 +10757,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
 ];
 
 export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; officialSupportedProgramCount: number; connectedAssociateTrackCount: number; connectedSupportedProgramCount: number; generatedTrackCount: number; } = {
-  "generatedAt": "2026-04-22T19:02:43.539Z",
+  "generatedAt": "2026-04-25T17:40:04.799Z",
   "currentCatalogId": 11,
   "currentCatalogName": "2025-2026 Catalog",
   "programMapPageCount": 147,

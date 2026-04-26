@@ -15,6 +15,14 @@ const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
   "transfer-planner-requirement-source-parse-report.json"
 );
 const TS_NODE_COMPILER_OPTIONS = JSON.stringify({ module: "CommonJS" });
+const TS_NODE_TEST_COMPILER_OPTIONS = JSON.stringify({
+  module: "Node16",
+  moduleResolution: "node16",
+  baseUrl: ".",
+  paths: {
+    "@/*": ["./*"],
+  },
+});
 const NPX_BIN = process.platform === "win32" ? "npx.cmd" : "npx";
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
@@ -324,6 +332,20 @@ function runTsNode(scriptPath) {
   );
 }
 
+function runTsNodeTest(scriptPath) {
+  runCommand(
+    "node",
+    ["--test", "-r", "ts-node/register", "-r", "tsconfig-paths/register", scriptPath],
+    {
+      env: {
+        TS_NODE_TRANSPILE_ONLY: "true",
+        TS_NODE_COMPILER_OPTIONS: TS_NODE_TEST_COMPILER_OPTIONS,
+        TS_NODE_BASEURL: ".",
+      },
+    }
+  );
+}
+
 function buildTargetPlanArgs(targetPlanId) {
   return targetPlanId ? ["--target-plan-id", targetPlanId] : [];
 }
@@ -352,7 +374,7 @@ function runVerification(runStepFn = runStep, options = {}) {
   );
   runStepFn("Run TypeScript typecheck", () => runCommand(NPX_BIN, ["tsc", "--noEmit"]));
   runStepFn("Run transfer planner tests", () =>
-    runTsNode("scripts/planner/transfer-planner.service.test.ts")
+    runTsNodeTest("scripts/planner/transfer-planner.service.test.ts")
   );
 }
 

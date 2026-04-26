@@ -34,17 +34,8 @@ Title: Degree Planning & Requirements - Paul G. Allen School of Computer Science
 26%
 289
 30%
-311 Foundations I
-312 Foundations II
 33
 33%
-331 Software Design & Implementation
-332 Data Structures & Parallelism
-333 Systems Programming
-340 Interaction Programming
-341 Programming Languages
-344 Data Management
-351 Hardware/Software Interface
 36%
 37%
 3800 E Stevens Way NE
@@ -64,7 +55,6 @@ A minimum grade of 2.0 in CSE 123 or 143
 A minimum grade of 2.0 in CSE 123 or 143; a minimum grade of 2.0 in MATH 126 or 135
 A presentation for you to view that provides best practices and suggestions for how to write a strong personal statement for your application.
 Academic Programs
-Academic Satisfactory Progress Petition
 Academics
 Academics Overview
 Acceptance Rate
@@ -80,10 +70,7 @@ Advice on applying to graduate school could fill a book, so it is best to talk s
 Advisory Board
 Affiliate Faculty
 After completing the minimum academic requirements , submit the Allen School departmental application by the appropriate deadline for the quarter you plan to apply.
-After CSE 122, students can take any combination of CSE 123, CSE 154, and CSE 163, three complementary courses described below.
-After CSE 123, students can take various upper-division computing courses. A good next step for students who enjoyed CSE 123 would be CSE 373 Data Structures, a more advanced course designed for non-majors. CSE 154 and CSE 163 complement CSE 123. Completion of CSE 123 satisfies the prerequisites for students to apply for admission to the Computer Science or Computer Engineering majors.
 After CSE 143, students can take various upper-division computing courses. A good next step for students who enjoyed CSE 143 would be CSE 373 Data Structures and Algorithms, a more advanced course designed for non-majors. Other 100-level courses, such as CSE 154 and CSE 163, are also options (the exception is CSE , which cannot be taken after CSE 143). Completion of CSE 143 satisfies the prerequisites for students to apply for admission to the CS or CE major.
-After speaking with their assigned adviser, students may complete this form to request approval to extend beyond 210 credits AND 12 quarters at the UW. If a student receives approval from the Allen School, they will also need to petition the University. The Allen School Advising Team will assist students with that process if their Allen School petition is approved. Departmental approval alone does not guarantee University approval for a graduation extension.
 AI Education in the Allen School
 All applications are reviewed by the Allen School Undergraduate Admission Committee, comprised of faculty and advisers. We use an evaluative , rather than a quantitative , process in our admission review. This means our decisions are based on more than simply which applicants have the highest grades. We do not tally up points; rather, we form an overall evaluation based on academic background and other factors, such as outside interests and activities, evidence of leadership and a sense of direction, and life experience. We do not expect all students to excel across the board, but achievement in relevant academic areas or evidence of overcoming hardships can strengthen an application.
 All current UW applicants to the Allen School are required to complete the Allen School prerequisite courses (shown above) by the departmental application deadline for the quarter that they are applying. Prerequisite coursework is essential to ensure that applicants are prepared for upper division coursework upon entering our program so that they are able to graduate on time. Similarly, prerequisite coursework is necessary to ensure that our academic application review is fair to all applicants. We are able to consider requests for Prerequisite Substitutions from applicants who have completed sufficiently advanced coursework that demonstrates knowledge of the material from incomplete prerequisite course(s) on a case-by-case basis. Substitutions are rare, and we do not advise applicants to intentionally skip prerequisite coursework . Applicants must have a grade of 2.0 or better in their advanced course(s) to be considered for a Prerequisite Substitution. Successful completion of a more advanced course does not guarantee that an exception will be made. The Prerequisite Substitution Request Form is now open for applicants who will be applying for the spring or autumn 2026 current UW admissions cycles! To request a prerequisite substitution, please ensure that you have submitted the Prerequisite Substitution Request Form by 5:00 pm PT on the date the departmental application closes for the quarter you intend to apply (January 15 for spring applicants; July 1 for autumn applicants). You will not be able to submit your application without an approved substitution. If you are filling-out this form close to the departmental application deadline, please complete all other sections and questions in your application by the 5:00 pm PT application deadline. Someone from the Undergraduate Student Services Team (USST) will submit your application on your behalf if your request is approved.
@@ -135,7 +122,6 @@ Cascadia College – Bachelors of Applied Science in Mobile Application Developm
 Catering Requests
 Centers and Initiatives
 Central Washington University
-Co-requisite(s)
 Common Errors in English
 Community Engagement
 Completing a minimum of 30 graded credits prior to applying
@@ -156,7 +142,6 @@ Connect with the Allen School
 Consider general requirements needed to graduate instead of just courses needed to apply. For example, finish your math and science courses, work towards a minor or another major, and complete your general education requirements.
 Contact & Location Info
 Contact Us
-Course
 Courses
 Courses in Computer Science & Engineering
 Credit by exam (such as AP or IB), while transferrable, is not considered graded credit and cannot count toward this requirement.
@@ -174,7 +159,6 @@ CSE 143 is designed as a follow-on course to CSE 142. While students who already
 CSE 163 provides students who have taken CSE 122, CSE 142, or CSE with a programming course about how to write programs that (a) manipulate different types of data (images, text, tables, etc.), (b) leverage the growing ecosystem of tools and libraries for data programming, (c) are both efficient and elegant, and (d) are medium-scale in size (100 to 200 lines). The course complements CSE 123, which focuses more deeply on fundamental programming concepts and the internals of data structures. In contrast, CSE163 emphasizes the efficient use of those concepts for data programming. CSE 163 uses the Python programming language.
 CSE 190: Security
 CSE 190M: Web Development
-CSE 300-Level Courses & their Prerequisites
 CSE 311 Petitions
 CSE 331 Petitions
 CSE 331: Systems Development, Software Engineering
@@ -236,7 +220,6 @@ CSE 498/496: MS/PhD in CSE
 CSE 500 Level Course Petitions
 CSE 500-level courses, including 590-level seminars, require permission of the instructor. Email is usually sufficient. Department colloquia are open to the public.
 CSE 5XX: MS/PhD in CSE
-CSE offers a firm grounding in computer programming to any student, and no previous programming experience is assumed. Although it is aimed at those who are new to programming, students who have taken CSE 121, CSE 122, or CSE 142 (but not CSE 123 or CSE 143) can enroll in this course, but also see CSE 163, which is designed to follow CSE 122 or CSE 160.
 Current site
 Current UW Admissions
 Current UW Admissions - Paul G. Allen School of Computer Science & Engineering
@@ -328,8 +311,6 @@ How is the personal statement evaluated, and what should I discuss in my persona
 How to Apply
 Human-Centered Computing
 i f Computer Science major (choose one): PHYS 121, BIOL 180, or CHEM 142 or a course from the approved list
-If a student completes EE 215 that can use that to replace EE 205, however EE 205 is strongly encouraged for our CE majors
-If a student completes EE 271, they can use that to replace CSE 369
 if Computer Engineering major: PHYS 121
 If you are a senior, file for graduation to get Graduating Senior Priority during your registration. After filing, you will get two quarters of priority registration which will allow you to register before anyone else (including other seniors who have not yet filed for graduation).
 If you have MATH 300 completed, you can take CSE 311 and CSE 332 at the same time. Your Allen School adviser can help you register since you won’t have CSE 311 pre-req credit yet.
@@ -394,7 +375,6 @@ Natural Science
 Neural engineering utilizes techniques from engineering to both understand the brain and build systems that interface with the brain such as neural prosthetics and implants. It encompasses areas such as computational neuroscience and brain-computer interfacing.
 News & Events
 Non-Major Options
-None
 North Seattle College – Applied Bachelor’s in Application Development
 Note: This course has a DIV designation and fulfills the diversity requirement
 OLD: Computer Programming I (CSE 142)
@@ -431,14 +411,12 @@ Ph.D. Dissertation Talks
 Ph.D. in CSE
 Ph.D. programs in CSE are primarily designed for those interested in research careers. Although most Ph.D. programs involve coursework, the main focus is on pushing beyond the state of what is already known. Creativity, insight, teamwork, self-motivation, leadership, presentation and writing skills are all highly valuable to researchers, and in fact, the technical leadership of most companies excel at many of these same qualities. There is often a blurry line between academic research and new product development. Startups in particular value students who are able to solve technical problems where the solutions are not well-understood in advance. There is no textbook that says how to design an iPhone. It is not an accident that the CEO of Google has a Ph.D. in computer science; half of all Google hires from UW have advanced degrees. Thus, research experience is valuable, even if you do not pursue an academic career.
 Ph.D. Student Recognition
-Please refer to the Allen School Continuation Policy for information about minimum course load, dropping required courses, and other academic policies and procedures.
 Popular Links
 PostBac Students
 Postdoctoral Program
 Postdoctoral Scholars
 Preparing to Apply
 Prerequisite Substitutions
-Prerequisite(s)
 Prerequisites
 Prerequisites: 446 or 447 strongly recommended but not required
 Prerequisites: CSE 312; CSE 331; CSE 332
@@ -483,7 +461,6 @@ Software & Hardware Systems
 Software Engineering
 Software engineers design, build and evolve software in a broad variety of domains. Although many focus on specific aspects of the software lifecycle — requirements engineering, architecture and design, testing and analysis, etc. — software engineers collectively address software systems from “womb” to “tomb.” Software engineers need to understand the needs of users, design approaches to manage software complexity and to ease change over time, ways to assess the properties that the software product does or does not have, algorithmic and implementation techniques to build efficient software, and more. Making effective trade-offs about issues ranging from performance to reliability to availability to ease of change (and more!) is part-and-parcel of a software engineer’s job.
 Some students choose to pursue a double major or double degree. There are a few known substitutions that we’ll list here:
-Some students may need to petition the university for additional credits or quarters to complete their degree due to extenuating circumstances. Students must have a conversation with their academic adviser if they feel their situation warrants an extension of the University’s academic satisfactory progress policy, which requires students to complete their undergraduate degree program within 30 credits beyond the minimum required for their degree.
 Sometimes a student will enter the Allen School with a significant number of MATH and STAT courses completed. If this is the case, you may try petitioning to waive CSE 311 via a substitution from a math course. Generally asking for just MATH 300 or just MATH/STAT 394 is not enough for a substitution. If you have not taken a significant number of MATH or STAT courses that cover this material, then generally you should plan to take CSE 311. A few known exceptions to this outcome follow:
 Specializations Listed By Department and Course Number
 Spring 2024
@@ -495,7 +472,6 @@ STAT/INFO/CSE 180, Introduction to Data Science (IDS), is a course offered every
 Student Recruitment Representatives
 Student Services
 Students applying to the Allen School should consider alternative degree options as well. UW offers many other excellent computing-related majors that are far more than “back-up” plans. Choose a major you enjoy and that will help further your personal, academic, and professional goals. Students in any major may take non-major Allen School courses to build technical skills.
-Students can take CSE 123 after CSE 122 self-place into CSE 123 if they have substantial prior experience such that they are already familiar with the CSE 122 material. See our guided self-placement. The course content is designed for students aiming toward academic and career plans where software implementation is a major component
 Students have a number of options for further study. Three complementary courses are specifically designed to follow CSE 142: (1) CSE 143 is the continuation course for those who want to develop more advanced programming skills in Java and is the next step toward most upper-division CSE courses, (2) CSE 154 is a web programming course covering many technologies used to implement web pages, and (3) CSE 163 is a programming course focused on data analysis with a variety of data-science programming tools.
 Students have multiple options for building on what they learn in CSE 110. A natural next step may be to follow principle with practice by enrolling in one of our introductory programming courses, CSE 121 or CSE 160. While CSE 110 offers a great introduction to computer science concepts, it is not a necessary prerequisite for enrollment in those programming courses.
 Students sometimes decide to delay taking CSE 331 until the end of their time in the Allen School with the intention to waive the course based on prior internship/industry experience. These petition requests are always denied. If you are petitioning a waiver for any course, you typically need to prove how you have acquired the academic knowledge covered in the course. Simply having internship experience has been determined to not be a viable substitute for this course. Ideally students would complete 331 early in their academic career and before embarking on a software internship to get the most benefit from the course.
@@ -532,12 +508,10 @@ The courses below provide a core foundation in computer security. 484 is the key
 The CS and CE programs each require you to take 180 total credits to graduate. You will need to fulfill a General Education component, a Mathematics and Science component, and a Computer (Science or Engineering) component that consists of required classes and senior electives. For those students who are considering a double major, see below for an explanation of exceptions to our standard degree requirements.
 The curriculum for a software engineer is heavily, but not solely, experiential. 331 and 403 are essential courses, as is one or more software capstone courses (and, when possible, internships or coops). Understanding the context for software from top-to-bottom is valuable for any software engineer, making courses like 341 and 401, 333 and 451 and 461 , 440, 344 and 444, 484, and 421 worthy of serious consideration. Students should also consider taking Business or Communication courses as possible general education courses.
 The Elements of Style
-The information below is meant to help you understand the CSE 300-level courses and their prerequisites. Click here for a visual representation of the information .
 The last offering of CSE 142 will be Summer 2022 as we transition to CSE 121, CSE 122, and CSE 123 in place of CSE 142 and CSE 143. We retain the information below as reference for students who took CSE 142 or corresponding courses at other institutions.
 The most salient characteristic of systems software is the need for reliability. If your operating system breaks, the user typically can’t get anything else done, and it might even corrupt their data permanently. The flaw might even provide an opportunity for a hacker to gain control over the user’s computer. The need for reliability is equally true for data-center software, the network, the compiler, and so forth. Making this even more challenging, systems software is often inherently complex; for example, the back-end software for a data center must deal with concurrency, recovery from node failures, resource overload conditions, and attacks from miscreants.
 The motivation for many of the courses above will be self-evident, but to amplify a little, the scale and nature of the data make databases, statistical approaches, and algorithms very relevant, and common use of a wide variety of languages, e.g., Perl, Python, R, Matlab, motivates 341. There also are many relevant courses in Chem/Biochem/Biology/Genetics/Bio Engineering/etc. Unfortunately, most have significant prerequisites, but if they fit your schedule, go for it! As just one of many examples, BIOL 180/200 (Intro Biology) -> GENOME 371 (Intro Genetics) -> GENOME 372 (Genomics and Proteomics) -> GENOME 373 (Genomic Informatics) would be a great series for anyone with an interest in computational biology.
 Theory & Models of Computation
-There are a host of other jointly listed courses between ECE and CSE
 There are always more qualified applicants than space available in our programs. Therefore, our process is competitive, and we must deny admission to some students with good academic records. We typically have space for approximately 25-35% of all students who apply however this number changes depending on increases in funding. It’s also important to note that we do not admit differently between Computer Science and Computer Engineering, we consider all applications together and admit without taking specific major into account. The admit rate in 2020 was 28% (113 admitted/402 applied), in 2021 it was 30% (165 admitted/554 applied), in 2022 it was 30% (134 admitted /444 applied), in 2023 it was 33% (165 admitted /495 applied), and in 2024 it was 32% (168 admitted/522 applied)
 There are similar programs in the area which take transfer students, and we highly recommend that you apply to multiple programs if you’re sure you want to study Computer Science or Computer Engineering. You should consider:
 These courses must be completed and numerically graded (with a minimum grade of a 2.0) prior to the departmental application deadline.
@@ -569,7 +543,6 @@ value="" autocomplete="off" placeholder="Search" />
 View all calendar events &raquo;
 Visiting Researchers
 WA Residents
-We aim to offer CSE 143X in Fall or both Fall and Winter.
 We know that students are curious about how we evaluate applications. For the 2026 undergraduate admissions cycles, we are posting the updated version of the rubric online preemptively.
 We look for breadth in prerequisite coursework as well as in general education classes . For instance, courses in English and Speech Communication can be important to our majors. Many of our upper-division courses demand presentation skills and an ability to communicate among team members. Also, your choice of courses gives us a glimpse of what interests you.
 We offer different types of information sessions to support prospective students applying through the current UW student admissions pathway.

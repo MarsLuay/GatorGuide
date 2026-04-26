@@ -317,14 +317,14 @@ export default function TransferEquivalencyCatalogPage() {
           <View className="mt-5 gap-4">
             {visibleTags.map((tag) => {
               const rows = equivalenciesByTag.get(tag) ?? [];
-              const isOpen = tagOpenState[tag] ?? false;
+              const isOpen = tagOpenState[tag] ?? (selectedTags.length > 0);
               return (
                 <View key={tag} className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4`}>
                   <AnimatedIconPressable
                     onPress={() =>
                       setTagOpenState((current) => ({
                         ...current,
-                        [tag]: !(current[tag] ?? false),
+                        [tag]: !(current[tag] ?? (selectedTags.length > 0)),
                       }))
                     }
                     className="flex-row items-start justify-between"

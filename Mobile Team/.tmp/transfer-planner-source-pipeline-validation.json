@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T10:58:18.651Z",
+  "generatedAt": "2026-04-25T21:04:21.039Z",
   "outcome": "passed",
   "passedCount": 19,
   "failedCount": 0,
@@ -117,10 +117,10 @@
       "uw-tacoma-urban-studies",
       "uw-tacoma-writing-studies"
     ],
-    "canonicalPrimaryOwnerCount": 424,
-    "parseablePrimaryOwnerCount": 424,
-    "parsedOwnerCount": 424,
-    "requirementFingerprintOwnerCount": 424
+    "canonicalPrimaryOwnerCount": 420,
+    "parseablePrimaryOwnerCount": 420,
+    "parsedOwnerCount": 420,
+    "requirementFingerprintOwnerCount": 420
   },
   "checks": [
     {
@@ -164,7 +164,7 @@
       "status": "passed",
       "details": [
         "Promoted owners: 89",
-        "Canonical primary owners: 424"
+        "Canonical primary owners: 420"
       ]
     },
     {
@@ -172,8 +172,8 @@
       "label": "Canonical parseable primary owners align with parser input and parser output",
       "status": "passed",
       "details": [
-        "Canonical parseable primary owners: 424",
-        "Parsed owners: 424"
+        "Canonical parseable primary owners: 420",
+        "Parsed owners: 420"
       ]
     },
     {
@@ -189,10 +189,10 @@
       "label": "Requirement fingerprint coverage stays aligned with parsed requirement owners",
       "status": "passed",
       "details": [
-        "Requirement fingerprints: 424",
-        "Parsed owners: 424",
+        "Requirement fingerprints: 420",
+        "Parsed owners: 420",
         "Touched source owners: 0",
-        "Touched requirement owners: 19"
+        "Touched requirement owners: 0"
       ]
     },
     {

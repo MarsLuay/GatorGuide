@@ -4,15 +4,17 @@ Title: Informatics Curriculum | Information School | University of Washington
 
 [Supplemental official source] Degree Planning
 12:00-11:59 PM
+4:00-7:15 PM
 6 Information School students honored in 2026 Husky 100
 Advising & Support
 any two courses at the INFO 35x-level.
 Apply to graduate in autumn of senior year
-Apr 23
 Apr 24
+Apr 25
 Autumn
 Begin taking major electives/degree option classes spring of junior year
 Biomedical and Health Informatics Option: BIME 300, BIME 435, INFO 468, INFO 478.
+Bloedel Wayfinding Design Competition
 Capstone (8-credits): Students complete a culminating experience.
 Capstone Projects
 Choose between CSE 123: Introduction to Computer Programming III (4 cr), CSE 143:
@@ -38,7 +40,6 @@ Electives (12-15 credits)
 Events
 Exploring Informatics: Students take foundational skills to understand the domain of Informatics.
 Foundations (INFO 20x, 30x, 40x courses). These courses teach the foundations of data, information and knowledge, helping students understand what information is, and how we create and use it in our lives, organizations and communities.
-Husky Giving Day
 INFO 200
 INFO 200: Intellectual Foundations of Informatics
 INFO 201

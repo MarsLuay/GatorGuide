@@ -55,6 +55,7 @@ import {
   buildSourceBackedGeneralEducationRequirementTargets,
   buildSourceBackedRequiredCourseSummaryEntries,
   buildSourceBackedRequiredCourseCodes,
+  buildSourceBackedUwCourseConsideredSummaryEntries,
   buildSuggestedQuarterPlan,
   buildUwGeneralTransferRequirementSection,
   buildRequirementStatuses,
@@ -617,6 +618,10 @@ function inferMajorSpecificsGeneralEducationCreditsFromTrackLabel(courseLabel: s
     }
   }
 
+  if (/^\d+\s+[A-Z]\s*[-:]/i.test(normalizedLabel)) {
+    return 5;
+  }
+
   const repeatedCourseCountMatch = normalizedLabel.match(/^(\d+)\s+[A-Z]\b/i);
   if (repeatedCourseCountMatch) {
     const parsedCourseCount = Number.parseInt(repeatedCourseCountMatch[1] ?? "", 10);
@@ -1084,6 +1089,13 @@ function buildUwRequiredPathCourseEntries(plan: TransferPlannerResolvedMajorPlan
   }
 
   return summaryEntries.map((entry) => ({
+    id: entry.id,
+    text: entry.text,
+  }));
+}
+
+function buildUwCoursesConsideredEntries(plan: TransferPlannerResolvedMajorPlan) {
+  return buildSourceBackedUwCourseConsideredSummaryEntries(plan).map((entry) => ({
     id: entry.id,
     text: entry.text,
   }));
@@ -2670,7 +2682,7 @@ function SuggestedScheduleCard({
   const scheduleDescription =
     collegeId === "grc"
       ? `This is your Green River plan for finishing the ${degreeTitle} ${grcTrackRequirementNoun} at ${getScheduleCampusLabel(collegeId, campusLabel)}. Completed transcript classes stay marked as done, and the planner fills in the remaining GRC ${grcTrackRequirementNoun} courses still ahead.`
-      : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Press the Classes for UW transfer only button to hide optional Green River track classes and focus on UW-required classes, official UW transfer admission guidance when applicable, major-specific breadth requirements, and prerequisite dependencies.`;
+      : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Press the Classes for UW transfer only button to hide optional Green River track classes and focus on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies.`;
 
   return (
     <View className={`${cardClass} border rounded-[28px] p-5`}>
@@ -2690,7 +2702,7 @@ function SuggestedScheduleCard({
                 accessibilityRole="checkbox"
                 accessibilityState={{ checked: onlyUwEssentialClasses }}
                 accessibilityLabel="Only show classes that transfer into UW on this track"
-                accessibilityHint="Hides nonessential Green River track classes while keeping prerequisite classes, official UW transfer admission guidance when applicable, and major-specific breadth requirements that still unlock UW-required work."
+                accessibilityHint="Hides nonessential Green River track classes while keeping prerequisite classes, official UW transfer admission guidance when applicable, and Gen-Eds that still unlock UW-required work."
                 className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
                 hitSlop={8}
               >
@@ -3119,6 +3131,7 @@ function MajorSpecificsSection({
     [hasTranscriptDerivedCreditSource, plan, transcriptDerivedCompletedCourses]
   );
   const uwRequiredPathCourseEntries = useMemo(() => buildUwRequiredPathCourseEntries(plan), [plan]);
+  const uwCoursesConsideredEntries = useMemo(() => buildUwCoursesConsideredEntries(plan), [plan]);
   const primaryDegreeSource = getTransferPlannerPrimaryDegreeRequirementsSource(
     plan.id,
     plan.selectedPathwayId
@@ -3293,12 +3306,12 @@ function MajorSpecificsSection({
                 <View className="flex-row items-start justify-between gap-3">
                   <View className="flex-1 min-w-0">
                     <Text className={`${textClass} text-base font-semibold`}>
-                      {`UW ${plan.title} Required Classes`}
+                      {`UW ${plan.title} Degree Classes`}
                     </Text>
                     <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                      {uwRequiredPathCourseEntries.length
-                        ? "Open this dropdown for source-backed major requirements and Green River classes that count toward the UW-required path for this major."
-                        : "Open this dropdown for source-backed major requirements and mapped Green River equivalents as they become available."}
+                      {uwCoursesConsideredEntries.length
+                        ? "Open this dropdown for major requirements, Gen-Eds, Green River equivalents, and UW courses considered from the official degree source."
+                        : "Open this dropdown for major requirements and Green River equivalents as they become available."}
                     </Text>
                   </View>
                   <Ionicons
@@ -3366,6 +3379,23 @@ function MajorSpecificsSection({
                     ) : (
                       <Text className={`${secondaryTextClass} text-sm mt-2`}>
                         No source-backed UW-required major-course path is available for this major yet.
+                      </Text>
+                    )}
+                  </View>
+
+                  <View>
+                    <Text className={`${textClass} text-sm font-semibold`}>UW Courses Considered</Text>
+                    {uwCoursesConsideredEntries.length ? (
+                      <View className="mt-2 gap-2">
+                        {uwCoursesConsideredEntries.map((entry) => (
+                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                            {entry.text}
+                          </Text>
+                        ))}
+                      </View>
+                    ) : (
+                      <Text className={`${secondaryTextClass} text-sm mt-2`}>
+                        No source-backed UW course list is available for this major yet.
                       </Text>
                     )}
                   </View>

@@ -405,28 +405,28 @@ function inferTrackCode(page) {
     return "Certificate";
   }
 
-  if (/associate in arts-dta|arts-dta|direct transfer agreement/i.test(text)) {
-    return "AA-DTA";
-  }
-
   const orderedPatterns = [
-    /\bAB-DTA\/MRP\b/i,
-    /\bACS-DTA\/MRP\b/i,
-    /\bAPreN-DTA\/MRP\b/i,
-    /\bAM-DTA\/MRP\b/i,
-    /\bAM-DTA\b/i,
-    /\bAA-DTA\b/i,
-    /\bAAS-T\b/i,
-    /\bAAA\b/i,
-    /\bAAS\b/i,
-    /\bAFA\b/i,
+    { pattern: /\bAB-DTA\/MRP\b/i, code: "AB-DTA/MRP" },
+    { pattern: /\bACS-DTA\/MRP\b/i, code: "ACS-DTA/MRP" },
+    { pattern: /\bAPreN-DTA\/MRP\b/i, code: "APreN-DTA/MRP" },
+    { pattern: /\bAM-DTA\/MRP\b/i, code: "AM-DTA/MRP" },
+    { pattern: /\bAM-DTA\b/i, code: "AM-DTA" },
+    { pattern: /\bAA-DTA\b/i, code: "AA-DTA" },
+    { pattern: /\bAAS-T\b/i, code: "AAS-T" },
+    { pattern: /\bAAA\b/i, code: "AAA" },
+    { pattern: /\bAAS\b/i, code: "AAS" },
+    { pattern: /\bAFA\b/i, code: "AFA" },
   ];
 
-  for (const pattern of orderedPatterns) {
+  for (const { pattern, code } of orderedPatterns) {
     const match = text.match(pattern);
     if (match) {
-      return match[0].toUpperCase();
+      return code;
     }
+  }
+
+  if (/associate in arts-dta|arts-dta|direct transfer agreement/i.test(text)) {
+    return "AA-DTA";
   }
 
   if (/transfer track 2/i.test(text)) {
@@ -467,7 +467,7 @@ function normalizeTrackNote(value) {
 }
 
 const TRACK_GUIDANCE_NON_EXPLICIT_PATTERN =
-  /\b(?:recommended|recommendation|suggest(?:ed|ion|ions)?|select one|choose one|of the following|distribution|elective|general education|of your choice|fun and useful|see quarter)\b/i;
+  /\b(?:recommended|recommendation|suggest(?:ed|ion|ions)?|consider|discuss|students are responsible|best transferability|for (?:pure|applied) math majors|select one|choose one|of the following|distribution|elective|general education|of your choice|fun and useful|see quarter)\b/i;
 const TRACK_HUMANITIES_PATTERN =
   /\b(?:arts?\s*(?:&|and)\s*humanities|humanities|fine arts|english distribution|humanities\/fine arts\/english distribution|a&h)\b/i;
 const TRACK_SOCIAL_SCIENCE_PATTERN = /\b(?:social science|social sciences|ssc)\b/i;
@@ -514,6 +514,77 @@ function shouldTreatTrackTextCourseCodesAsExplicit(value) {
   return !TRACK_GUIDANCE_NON_EXPLICIT_PATTERN.test(normalized);
 }
 
+function isSourceLabeledDistributionPlaceholder(value) {
+  const normalized = normalizeTrackNote(value);
+  if (!normalized) {
+    return false;
+  }
+
+  return /^(?:H|S|N)\s*\d+\s*[-:]\s*(?:humanities|fine arts|english|social sciences?|natural sciences?)/i.test(
+    normalized
+  );
+}
+
+function sourceDistributionPlaceholderKind(value) {
+  const normalized = normalizeTrackNote(value).toLowerCase();
+  if (/^h\s*\d+\s*[-:]/i.test(normalized)) {
+    return "humanities";
+  }
+  if (/^s\s*\d+\s*[-:]/i.test(normalized)) {
+    return "social-science";
+  }
+  if (/^n\s*\d+\s*[-:]/i.test(normalized)) {
+    return "natural-science";
+  }
+  return null;
+}
+
+function guidanceLabelKind(value) {
+  const normalized = normalizeTrackNote(value).toLowerCase();
+  if (/humanities|a&h/.test(normalized)) {
+    return "humanities";
+  }
+  if (/social science|ssc/.test(normalized)) {
+    return "social-science";
+  }
+  if (/natural science|nsc/.test(normalized)) {
+    return "natural-science";
+  }
+  return null;
+}
+
+function filterGuidanceLabelsAlreadyCoveredBySourcePlaceholders(guidanceLabels, existingLabels) {
+  const coveredKinds = new Set(
+    existingLabels.map(sourceDistributionPlaceholderKind).filter(Boolean)
+  );
+
+  return guidanceLabels.filter((label) => {
+    const kind = guidanceLabelKind(label);
+    return !kind || !coveredKinds.has(kind);
+  });
+}
+
+function shouldPromoteTrackGuidanceLabels(value) {
+  const normalized = normalizeTrackNote(value);
+  if (!normalized) {
+    return false;
+  }
+
+  if (/\b(?:humanities|fine arts|english|social science|natural science)[^.;:]{0,80}\bdistribution\b/i.test(normalized)) {
+    return true;
+  }
+
+  if (
+    /\b(?:recommended|recommendation|suggest(?:ed|ion|ions)?|consider|discuss|students are responsible|best transferability)\b/i.test(
+      normalized
+    )
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
 function collectCoreCourseLabels(core) {
   const labels = [];
 
@@ -529,7 +600,15 @@ function collectCoreCourseLabels(core) {
       continue;
     }
 
-    labels.push(...extractTrackGuidanceLabels(note));
+    const isSourcePlaceholder = isSourceLabeledDistributionPlaceholder(note);
+    if (!isSourcePlaceholder && shouldPromoteTrackGuidanceLabels(note)) {
+      labels.push(
+        ...filterGuidanceLabelsAlreadyCoveredBySourcePlaceholders(
+          extractTrackGuidanceLabels(note),
+          labels
+        )
+      );
+    }
 
     const extractedCodes = shouldTreatTrackTextCourseCodesAsExplicit(note)
       ? extractCourseCodes(note)
@@ -541,7 +620,7 @@ function collectCoreCourseLabels(core) {
 
     if (
       shouldTreatTrackTextCourseCodesAsExplicit(note) &&
-      !/^(classes to become calculus ready|minimum [0-9]+ credits|elective|humanities|social science)/i.test(
+      !/^(classes to become calculus ready|for .+ majors|minimum [0-9]+ credits|elective|humanities|social science)/i.test(
         note
       )
     ) {
@@ -549,7 +628,12 @@ function collectCoreCourseLabels(core) {
     }
   }
 
-  labels.push(...extractTrackGuidanceLabels(core.description));
+  labels.push(
+    ...filterGuidanceLabelsAlreadyCoveredBySourcePlaceholders(
+      extractTrackGuidanceLabels(core.description),
+      labels
+    )
+  );
 
   const descriptionCodes = shouldTreatTrackTextCourseCodesAsExplicit(core.description)
     ? extractCourseCodes(core.description)
@@ -561,6 +645,25 @@ function collectCoreCourseLabels(core) {
   return uniqueStrings(labels);
 }
 
+function isNonPlannableGeneratedTrackCoreLabel(label) {
+  const segments = String(label ?? "")
+    .split(">")
+    .map((segment) =>
+      segment
+        .replace(/[:.]\s*$/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase()
+    )
+    .filter(Boolean);
+
+  return segments.some((segment) =>
+    /^(?:notes?|program notes?|important notes?|transferability of credits|advising notes?)$/.test(
+      segment
+    )
+  );
+}
+
 function flattenProgramCores(cores, prefix = []) {
   const flattened = [];
 
@@ -570,12 +673,14 @@ function flattenProgramCores(cores, prefix = []) {
     const labelParts = [...prefix, String(core?.name ?? "").trim()].filter(Boolean);
     const label = labelParts.join(" > ");
     const courses = collectCoreCourseLabels(core);
+    const plannerEligible = !isNonPlannableGeneratedTrackCoreLabel(label);
 
     if (label || courses.length) {
       flattened.push({
         label: label || "Requirement block",
         courses,
         description: normalizeTrackNote(core.description),
+        plannerEligible,
       });
     }
 
@@ -617,10 +722,12 @@ function buildTrackFromProgramPage(page, program) {
   const coreTerms = flattenProgramCores(program.cores ?? []).filter(
     (term) => term.courses.length || term.description
   );
-  const terms = coreTerms.map((term) => ({
-    label: term.label,
-    courses: term.courses.length ? term.courses : [term.description],
-  }));
+  const terms = coreTerms
+    .filter((term) => term.plannerEligible !== false)
+    .map((term) => ({
+      label: term.label,
+      courses: term.courses.length ? term.courses : [term.description],
+    }));
 
   if (!terms.length) {
     throw new Error(`No curriculum-map terms were extracted for ${page.h1}.`);

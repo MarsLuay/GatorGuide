@@ -54,6 +54,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^complete the requirements\b/i,
   /^clinical requirements?\b/i,
   /^concentration course numbers?\b/i,
+  /^concentration electives?\b/i,
   /^concentration area courses?\b/i,
   /^concentration projects?\b/i,
   /^concentration\s+[ivxlcdm]+\b(?:\s+courses?)?(?:\s*[:.]?)?$/i,
@@ -62,6 +63,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^course lists?\b/i,
   /^course[- ]only option\b/i,
   /^create your own pathway as a separate option\b/i,
+  /^.{2,80}\bcurriculum option\b/i,
   /^curriculum and instruction\):/i,
   /^(?:examples of\s+)?coursework pathways?\b/i,
   /^degree options?\b/i,
@@ -78,12 +80,18 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^electives for\b.*\boption\b/i,
   /^formal options?\b/i,
   /^followed by\b.*\boption\b/i,
+  /^funding grad school\b/i,
   /\bfee[- ]based\b/i,
+  /^gis resources at uw\b/i,
+  /^graduation\b/i,
+  /^home\b/i,
   /^how to declare(?: the)?\b/i,
+  /^including\b.*\boption\b/i,
   /^joining the\b/i,
   /^me option courses?\b/i,
   /^master(?:\s+of)?\b/i,
   /^marketing management to declare\b.*\bconcentration\b/i,
+  /^may benefit from completing\b.*\btrack\b/i,
   /^minimum \d/i,
   /^listed below are .*coursework pathways?\b/i,
   /^non-me courses as me option\b/i,
@@ -91,6 +99,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^\d{1,3}(?:-\d{1,3})?\s*credits?\b/i,
   /^\d{1,3}(?:-\d{1,3})?\s+credits?\s+depending on option\b/i,
   /^option and concentration curriculum\b/i,
+  /^.{2,80}\boption:\s+.*electives?\b/i,
   /^option course numbers?\b/i,
   /^option courses?\b/i,
   /^option \d+\b/i,
@@ -100,6 +109,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^page \d+\b/i,
   /^\(?\d+\)?\s*plan a pathway toward\b/i,
   /^please see\b.*\b(?:option page|courses? by track)\b/i,
+  /^please check out\b/i,
   /^possible coursework pathways?\b/i,
   /^option[- ]specific\b/i,
   /^pathway[- ]specific\b/i,
@@ -107,6 +117,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^requirements? to declare\b/i,
   /^required\b.*\boption courses?\b/i,
   /^see ["']?additional\b/i,
+  /^see\b.*\b(?:option|track|concentration|pathway)\b/i,
   /^selection of\b.*\boption\b/i,
   /^specific areas covered within\b.*\boption\b/i,
   /^supplemental official\b/i,
@@ -136,6 +147,10 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^students declare\b/i,
   /^the curriculum consists\b/i,
   /^why choose\b/i,
+  /^who should choose\b/i,
+  /^which is detailed at\b/i,
+  /^senior electives?\b/i,
+  /^to be considered\b.*\bpathway\b/i,
   /\bdouble major\b/i,
   /\bdouble degree\b/i,
   /\b(?:clinical|didactic) coursework\b/i,
@@ -174,6 +189,7 @@ const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /(?:^|[-:])declaring-the(?:$|[-:])/i,
   /(?:^|[-:])how-to-declare(?:$|[-:])/i,
   /(?:^|[-:])declaration-process(?:$|[-:])/i,
+  /(?:^|[-:])concentration-electives?(?:$|[-:])/i,
   /(?:^|[-:])core-courses?(?:$|[-:])/i,
   /(?:^|[-:])program-requirements?(?:$|[-:])/i,
   /(?:^|[-:])requirements-to-declare(?:$|[-:])/i,
@@ -181,9 +197,20 @@ const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /(?:^|[-:])depending-on(?:$|[-:])/i,
   /(?:^|[-:])varies-by(?:$|[-:])/i,
   /(?:^|[-:])minimum-\d/i,
+  /^may-benefit-from-completing-.*-track$/i,
   /^\d{1,3}(?:-\d{1,3})?-credits/i,
+  /(?:^|[-:])option-.*electives?(?:$|[-:])/i,
+  /^see-.*-(?:option|track|concentration|pathway)$/i,
   /^choose-thesis-project-or-course-only-option/i,
   /^transfer-students-apply-for-admission-under-this-pathway/i,
+  /^funding-grad-school-track$/i,
+  /^gis-resources-at-uw-track$/i,
+  /^graduation-track$/i,
+  /^home-track$/i,
+  /^including-.*-option$/i,
+  /^senior-electives-pathway$/i,
+  /^to-be-considered-.*-pathway$/i,
+  /^who-should-choose-.*-option$/i,
   /^route-menu-active-trails(?:$|[-:])/i,
   /^route-name-is-layout-builder-ui(?:$|[-:])/i,
 ];
@@ -1273,6 +1300,76 @@ function buildPathwayEvidenceFamiliesForBlock(
   return families;
 }
 
+function buildPathwayContentEvidenceFamiliesForBlock(
+  plan: TransferPlannerMajorPlan,
+  block: TransferPlannerParsedRequirementSourceBlock
+) {
+  const defaultKind = inferDerivedPathwayKind(plan.id, [block]);
+  const families = new Set<string>();
+  const sourceLines = [
+    ...(block.pathwayLabels ?? []),
+    ...(block.requirementCueLines ?? []),
+    ...(block.chooseStatements ?? []),
+  ];
+
+  for (const statement of block.chooseStatements ?? []) {
+    for (const candidate of extractDerivedPathwayCandidatesFromChoiceStatement(
+      plan.id,
+      plan.title,
+      statement,
+      defaultKind
+    )) {
+      const similarityKey = getDerivedPathwaySimilarityKey(candidate.label, plan.title);
+      if (similarityKey) {
+        families.add(similarityKey);
+      }
+    }
+  }
+
+  for (const line of sourceLines) {
+    const candidate = extractDerivedPathwayCandidateFromLine(plan.id, plan.title, line, defaultKind);
+    const similarityKey = candidate
+      ? getDerivedPathwaySimilarityKey(candidate.label, plan.title)
+      : "";
+    if (similarityKey) {
+      families.add(similarityKey);
+    }
+  }
+
+  return families;
+}
+
+function sourceLineContainsPathwayFamily(
+  plan: TransferPlannerMajorPlan,
+  pathway: Pick<TransferPlannerMajorPathway, "id" | "label">,
+  line: string | null | undefined
+) {
+  const pathwayFamily = getPathwayMaterializationSupportKey(plan, pathway);
+  if (!pathwayFamily) {
+    return false;
+  }
+
+  const familyTokens = pathwayFamily.split("|").filter((token) => token.length >= 3);
+  if (familyTokens.length < 2) {
+    return false;
+  }
+
+  const lineTokens = new Set(
+    normalizeDerivedPathwayText(line)
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, " ")
+      .split(/\s+/)
+      .map((token) => normalizeDerivedPathwaySimilarityToken(token))
+      .filter((token) => token.length >= 3 && !DERIVED_PATHWAY_SMALL_WORDS.has(token))
+  );
+
+  const matchedTokenCount = familyTokens.filter((token) => lineTokens.has(token)).length;
+  const requiredTokenCount =
+    familyTokens.length <= 2 ? familyTokens.length : Math.max(2, familyTokens.length - 1);
+
+  return matchedTokenCount >= requiredTokenCount;
+}
+
 function filterUnsupportedBasePathways(
   plan: TransferPlannerMajorPlan,
   basePathways: TransferPlannerMajorPathway[],
@@ -1283,17 +1380,26 @@ function filterUnsupportedBasePathways(
   if (!planLevelBlocks.length) {
     return basePathways;
   }
-  const hasPlanLevelForeignMajorPathwayEvidence = planLevelBlocks.some((block) =>
-    [
-      ...(block.pathwayLabels ?? []),
-      ...(block.requirementCueLines ?? []),
-      ...(block.chooseStatements ?? []),
-    ].some(
-      (line) =>
-        sourceLineMentionsDifferentMajor(plan.id, plan.title, line) &&
-        /(?:\s[-\u2013\u2014:]\s|\|)/.test(normalizeDerivedPathwayText(line)) &&
-        DERIVED_PATHWAY_LABEL_PATTERN.test(normalizeDerivedPathwayText(line))
-    )
+  const planLevelLines = planLevelBlocks.flatMap((block) => [
+    ...(block.pathwayLabels ?? []),
+    ...(block.requirementCueLines ?? []),
+    ...(block.chooseStatements ?? []),
+  ]);
+  const nonHonorsDerivedPathwayCount = derivedPathways.filter(
+    (pathway) => !/\bhonou?rs?\s+thesis\b/i.test(normalizeDerivedPathwayText(pathway.label))
+  ).length;
+  const hasPlanLevelChoicePathwayEvidence =
+    nonHonorsDerivedPathwayCount >= 2 &&
+    planLevelLines.some((line) =>
+      /\b(?:choose|select)\s+one\s+of\b.*\b(?:concentrations?|tracks?|options?|routes?|pathways?)\b/i.test(
+        normalizeDerivedPathwayText(line)
+      )
+    );
+  const hasPlanLevelForeignMajorPathwayEvidence = planLevelLines.some(
+    (line) =>
+      sourceLineMentionsDifferentMajor(plan.id, plan.title, line) &&
+      /(?:\s[-\u2013\u2014:]\s|\|)/.test(normalizeDerivedPathwayText(line)) &&
+      DERIVED_PATHWAY_LABEL_PATTERN.test(normalizeDerivedPathwayText(line))
   );
 
   const derivedFamilies = new Set(
@@ -1309,13 +1415,27 @@ function filterUnsupportedBasePathways(
       return true;
     }
 
+    if (
+      hasPlanLevelChoicePathwayEvidence &&
+      /\bhonou?rs?\s+thesis\b/i.test(
+        normalizeDerivedPathwayText(`${pathway.id} ${pathway.label}`)
+      )
+    ) {
+      return false;
+    }
+
     const pathwayFamily = getPathwayMaterializationSupportKey(plan, pathway);
     if (!pathwayFamily || derivedFamilies.has(pathwayFamily)) {
       return true;
     }
     const pathwayBlocks = parsedSourceBlocks.filter((block) => block.pathwayId === pathway.id);
     if (!pathwayBlocks.length) {
-      return false;
+      return (
+        basePathways.length === 1 &&
+        !isSuspiciousStructuralPathwayId(pathway.id) &&
+        !isSuspiciousStructuralPathwayLabel(pathway.label) &&
+        planLevelLines.some((line) => sourceLineContainsPathwayFamily(plan, pathway, line))
+      );
     }
 
     const hasSupportingPathwayBlock = pathwayBlocks.some((block) =>
@@ -1330,10 +1450,6 @@ function filterUnsupportedBasePathways(
       return false;
     }
 
-    if (!hasPlanLevelDerivedFamilies && !hasPlanLevelForeignMajorPathwayEvidence) {
-      return true;
-    }
-
     const planLevelSourceUrls = new Set(
       planLevelBlocks
         .map((block) => normalizeTransferPlannerText(block.sourceUrl))
@@ -1343,8 +1459,27 @@ function filterUnsupportedBasePathways(
       const normalizedSourceUrl = normalizeTransferPlannerText(block.sourceUrl);
       return normalizedSourceUrl && !planLevelSourceUrls.has(normalizedSourceUrl);
     });
+    if (
+      !hasDedicatedPathwaySource &&
+      (isSuspiciousStructuralPathwayId(pathway.id) ||
+        isSuspiciousStructuralPathwayLabel(pathway.label))
+    ) {
+      return false;
+    }
 
-    return hasDedicatedPathwaySource || hasDedicatedParsedPathwayBlock;
+    const hasDedicatedPathwayContentEvidence = pathwayBlocks.some((block) => {
+      const contentFamilies = buildPathwayContentEvidenceFamiliesForBlock(plan, block);
+      return (
+        contentFamilies.has(pathwayFamily) ||
+        [
+          ...(block.pathwayLabels ?? []),
+          ...(block.requirementCueLines ?? []),
+          ...(block.chooseStatements ?? []),
+        ].some((line) => sourceLineContainsPathwayFamily(plan, pathway, line))
+      );
+    });
+
+    return hasDedicatedPathwaySource || hasDedicatedPathwayContentEvidence;
   });
 }
 
@@ -1402,6 +1537,11 @@ function shouldPreferDerivedPathways(
     semanticDerivedPathways.length > semanticBaseFamilyCount &&
     semanticBaseFamilies.length > 0 &&
     semanticBaseFamilies.every((family) => semanticDerivedFamilySet.has(family));
+  const hasAcronymCanonicalDerivedPathway = semanticDerivedPathways.some((derivedPathway) =>
+    semanticBasePathways.some((basePathway) =>
+      shouldKeepDerivedAcronymPathway(basePathway, derivedPathway)
+    )
+  );
   const shouldCollapseToSingleSemanticDerivedPathway =
     semanticDerivedPathways.length === 1 &&
     basePathways.length > 1 &&
@@ -1412,6 +1552,10 @@ function shouldPreferDerivedPathways(
       return family === derivedFamily;
     }) &&
     (suspiciousBasePathways.length > 0 || hasDuplicateSemanticBaseFamilies || hasHtmlEntityLeak);
+
+  if (hasAcronymCanonicalDerivedPathway) {
+    return true;
+  }
 
   if (semanticDerivedPathways.length < 2) {
     return shouldCollapseToSingleSemanticDerivedPathway;
@@ -1488,6 +1632,25 @@ function filterDerivedPathwaysToKnownBaseFamilies(
   return matchingDerivedPathways;
 }
 
+function shouldKeepDerivedAcronymPathway(
+  basePathway: Pick<TransferPlannerMajorPathway, "label">,
+  derivedPathway: Pick<TransferPlannerDerivedPathwaySeed, "label">
+) {
+  const acronymMatch = normalizeDerivedPathwayText(basePathway.label).match(
+    /\(([A-Z0-9]{2,8})\)\s+(option|track|route|pathway|certificate|concentration)\b/i
+  );
+  if (!acronymMatch) {
+    return false;
+  }
+
+  if (/^concentration$/i.test(acronymMatch[2])) {
+    return false;
+  }
+
+  const expectedLabel = normalizeDerivedPathwayText(`${acronymMatch[1]} ${acronymMatch[2]}`);
+  return normalizeDerivedPathwayText(derivedPathway.label).toLowerCase() === expectedLabel.toLowerCase();
+}
+
 function canonicalizeDerivedPathwaysAgainstSupportedBase(
   plan: TransferPlannerMajorPlan,
   supportedBasePathways: TransferPlannerMajorPathway[],
@@ -1543,6 +1706,11 @@ function canonicalizeDerivedPathwaysAgainstSupportedBase(
     }
 
     const basePathway = matchingBasePathways[0];
+    if (shouldKeepDerivedAcronymPathway(basePathway, pathway)) {
+      pushCanonicalPathway(pathway);
+      continue;
+    }
+
     pushCanonicalPathway({
       ...pathway,
       id: basePathway.id,

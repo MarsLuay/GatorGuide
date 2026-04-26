@@ -23,6 +23,10 @@ import {
 } from "@/constants/transfer-planner-source/course-metadata";
 import { normalizeTransferPlannerCourseCode } from "@/constants/transfer-planner-source/course-code-normalization";
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
+const SOURCE_BACKED_UW_COURSE_WITH_CONTINUATION_PATTERN =
+  /\b([A-Z]{2,6}&?)\s*(\d{3}(?:\.\d+)?[A-Z]?)\b/g;
+const SOURCE_BACKED_UW_COURSE_NUMBER_CONTINUATION_PATTERN =
+  /(?:^|[,(;/]\s*|\b(?:or|and)\s+)(\d{3}(?:\.\d+)?[A-Z]?)(?=$|[\s,);/]|(?:\s*(?:or|and)\b))/gi;
 const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
   "uw-green-river-equivalency-guide",
   "uw-green-river-equivalency-guide-derived",
@@ -69,6 +73,12 @@ export type SourceBackedRequiredCourseSummaryEntry = {
   text: string;
 };
 
+export type SourceBackedUwCourseConsideredSummaryEntry = {
+  id: string;
+  courseCode: string;
+  text: string;
+};
+
 export type TrackUsageSummary = {
   specificCourseCount: number;
   directUseCount: number;
@@ -100,12 +110,20 @@ export type HistoricalGrcTrackComparison = {
   notes: string[];
 };
 
+export type SuggestedQuarterCourseSourceKind =
+  | "completed-transcript"
+  | "uw-major-requirement"
+  | "official-grc-track"
+  | "uw-major-breadth"
+  | "official-grc-track-breadth";
+
 export type SuggestedQuarterCourse = {
   label: string;
   type: "core" | "elective";
   status: "completed" | "current" | "planned";
   guidanceSummary?: string | null;
   availabilitySummary?: string | null;
+  sourceKind?: SuggestedQuarterCourseSourceKind;
 };
 
 export type SuggestedQuarterPlan = {
@@ -559,6 +577,26 @@ function shouldIncludeSourceBackedParsedRequiredCourseCandidate(candidate: {
   );
 }
 
+function getSourceBackedRequirementSourceBlocksForPlan(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan) {
+    return [];
+  }
+
+  const selectedPathwayId =
+    (plan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
+  return uniqueBy(
+    [
+      ...(selectedPathwayId
+        ? getTransferPlannerParsedRequirementSourceBlocks(plan.id, null)
+        : []),
+      ...getTransferPlannerParsedRequirementSourceBlocks(plan.id, selectedPathwayId),
+    ],
+    (block) => block.id
+  );
+}
+
 function getSourceBackedRequiredUwCourseCodeSet(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
@@ -567,10 +605,7 @@ function getSourceBackedRequiredUwCourseCodeSet(
     return requiredUwCourseCodes;
   }
 
-  const selectedPathwayId =
-    (plan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
-
-  for (const block of getTransferPlannerParsedRequirementSourceBlocks(plan.id, selectedPathwayId)) {
+  for (const block of getSourceBackedRequirementSourceBlocksForPlan(plan)) {
     for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
       if (!shouldIncludeSourceBackedParsedRequiredCourseCandidate(candidate)) {
         continue;
@@ -899,6 +934,47 @@ export function extractCourseCodes(value: string) {
       ...extractTransferPlannerCourseCodes(String(value ?? "")),
     ].map((match) => normalizeCourseCode(match))
   );
+}
+
+function extractSourceBackedUwCourseCodesFromRequirementText(value: string) {
+  const normalizedValue = String(value ?? "").replace(/\s+/g, " ").trim();
+  if (!normalizedValue) {
+    return [] as string[];
+  }
+
+  const courseCodes: string[] = [];
+  const explicitMatches = [...normalizedValue.matchAll(SOURCE_BACKED_UW_COURSE_WITH_CONTINUATION_PATTERN)];
+
+  for (let index = 0; index < explicitMatches.length; index += 1) {
+    const match = explicitMatches[index];
+    const explicitCourseCode = normalizeCourseCode(`${match[1] ?? ""} ${match[2] ?? ""}`);
+    const subject = explicitCourseCode.replace(
+      /\s+\d{3}(?:\.\d+)?[A-Z]?$/i,
+      ""
+    );
+    if (!subject) {
+      continue;
+    }
+
+    courseCodes.push(explicitCourseCode);
+    const currentMatchEnd = (match.index ?? 0) + match[0].length;
+    const nextMatchStart =
+      index + 1 < explicitMatches.length
+        ? explicitMatches[index + 1]?.index ?? normalizedValue.length
+        : normalizedValue.length;
+    const trailingSegment = normalizedValue.slice(currentMatchEnd, nextMatchStart);
+
+    for (const numberMatch of trailingSegment.matchAll(
+      SOURCE_BACKED_UW_COURSE_NUMBER_CONTINUATION_PATTERN
+    )) {
+      const courseCode = normalizeCourseCode(`${subject} ${numberMatch[1] ?? ""}`);
+      if (courseCode) {
+        courseCodes.push(courseCode);
+      }
+    }
+  }
+
+  return unique(courseCodes);
 }
 
 export function parseCompletedTranscriptCourses(rawValue: unknown): TranscriptCourseEntry[] {
@@ -1683,6 +1759,104 @@ function buildSourceBackedRequiredCourseUwEquivalentLabel(
 ) {
   const equivalentUwCourseCodes = buildBestSingleCourseUwEquivalentCourseCodes(courseCode, campusId);
   return equivalentUwCourseCodes.length ? joinPlannerLabelList(equivalentUwCourseCodes) : null;
+}
+
+function getSourceBackedUwCourseCanonicalTitle(
+  courseCode: string,
+  campusId: TransferPlannerMajorPlan["campusId"]
+) {
+  const campusEntry = getTransferPlannerCanonicalCourse(campusId, courseCode);
+  if (campusEntry?.title) {
+    return campusEntry.title;
+  }
+
+  for (const fallbackCampusId of ["uw-seattle", "uw-bothell", "uw-tacoma"] as const) {
+    const fallbackEntry = getTransferPlannerCanonicalCourse(fallbackCampusId, courseCode);
+    if (fallbackEntry?.title) {
+      return fallbackEntry.title;
+    }
+  }
+
+  return null;
+}
+
+function buildSourceBackedUwCourseConsideredDisplayLabel(input: {
+  courseCode: string;
+  campusId: TransferPlannerMajorPlan["campusId"];
+  sourceTitle?: string | null;
+}) {
+  const normalizedCourseCode = normalizeCourseCode(input.courseCode);
+  const canonicalTitle = getSourceBackedUwCourseCanonicalTitle(
+    normalizedCourseCode,
+    input.campusId
+  );
+  if (canonicalTitle) {
+    return `${normalizedCourseCode} - ${canonicalTitle}`;
+  }
+
+  const sourceTitle = String(input.sourceTitle ?? "").replace(/\s+/g, " ").trim();
+  if (sourceTitle && normalizeCourseCode(sourceTitle) !== normalizedCourseCode) {
+    return `${normalizedCourseCode} - ${sourceTitle}`;
+  }
+
+  return normalizedCourseCode;
+}
+
+function shouldIncludeSourceBackedUwCourseConsideredCode(courseCode: string) {
+  const level = getCourseLevel(courseCode);
+  return level !== null && level < 500;
+}
+
+export function buildSourceBackedUwCourseConsideredSummaryEntries(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!plan) {
+    return [] as SourceBackedUwCourseConsideredSummaryEntry[];
+  }
+
+  const entries: SourceBackedUwCourseConsideredSummaryEntry[] = [];
+  const seenCourseCodes = new Set<string>();
+  const addCourseCode = (courseCode: string, sourceTitle?: string | null) => {
+    const normalizedCourseCode = normalizeCourseCode(courseCode);
+    if (
+      !normalizedCourseCode ||
+      seenCourseCodes.has(normalizedCourseCode) ||
+      !shouldIncludeSourceBackedUwCourseConsideredCode(normalizedCourseCode)
+    ) {
+      return;
+    }
+
+    seenCourseCodes.add(normalizedCourseCode);
+    entries.push({
+      id: normalizedCourseCode.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""),
+      courseCode: normalizedCourseCode,
+      text: buildSourceBackedUwCourseConsideredDisplayLabel({
+        courseCode: normalizedCourseCode,
+        campusId: plan.campusId,
+        sourceTitle,
+      }),
+    });
+  };
+
+  for (const block of getSourceBackedRequirementSourceBlocksForPlan(plan)) {
+    for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
+      addCourseCode(candidate.uwCourseCode, candidate.title);
+    }
+
+    for (const blockCandidate of block.parsedDegreeMapBlockCandidates ?? []) {
+      for (const courseCode of blockCandidate.uwCourseCodes ?? []) {
+        addCourseCode(courseCode, blockCandidate.title);
+      }
+    }
+
+    for (const sourceLine of block.requirementCueLines ?? []) {
+      for (const courseCode of extractSourceBackedUwCourseCodesFromRequirementText(sourceLine)) {
+        addCourseCode(courseCode);
+      }
+    }
+  }
+
+  return entries;
 }
 
 function buildSourceBackedRequiredCourseSentence(input: {
@@ -2677,6 +2851,7 @@ function buildCompletedQuarterPlans(
         label: course.label,
         type: isCoreCourseLabel(course.code) ? "core" : "elective",
         status: "completed",
+        sourceKind: "completed-transcript",
         guidanceSummary: joinGuidanceSummaries(
           prerequisiteGuidanceSummary,
           transferGuidanceSummary,
@@ -2761,13 +2936,8 @@ function getResolvedTrackSupplementalCourseLabels(input: {
   return supplementalCourseLabels;
 }
 
-function buildTrackSupplementalGuidanceSummary(track: TransferPlannerTrack | null | undefined) {
-  const trackCode = String(track?.code ?? "").trim();
-  if (!trackCode) {
-    return "Part of the recommended Green River associate track for this major.";
-  }
-
-  return `Part of the recommended ${trackCode} Green River associate track.`;
+function buildTrackSupplementalGuidanceSummary() {
+  return null;
 }
 
 function buildTrackSupplementalSuggestedCourses(input: {
@@ -2784,7 +2954,8 @@ function buildTrackSupplementalSuggestedCourses(input: {
       label,
       type: isCoreCourseLabel(label) ? "core" : "elective",
       status: "planned",
-      guidanceSummary: buildTrackSupplementalGuidanceSummary(input.track),
+      sourceKind: "official-grc-track",
+      guidanceSummary: buildTrackSupplementalGuidanceSummary(),
       sequenceGroup: null,
       priorityRank: REQUIREMENT_PRIORITY_RANK.stayAtGrc,
       sourceOrder: input.sourceOrderStart + index,
@@ -3207,6 +3378,33 @@ function getSharedBreadthCreditsForPlaceholders(
   }).length * GENERAL_ED_PLACEHOLDER_CREDITS;
 }
 
+function getCompletedFlexibleBreadthCredits(
+  completedCreditProgress: CompletedGeneralEducationCreditProgress,
+  requirementTargets: GeneralEducationRequirementTargets
+) {
+  if (requirementTargets.breadthCredits === null) {
+    return 0;
+  }
+
+  if (isCombinedOnlyBreadthRequirementTarget(requirementTargets)) {
+    return completedCreditProgress.breadthCredits;
+  }
+
+  const fixedAhCredits =
+    requirementTargets.ahCredits === null
+      ? 0
+      : Math.min(completedCreditProgress.ahCredits, requirementTargets.ahCredits);
+  const fixedSscCredits =
+    requirementTargets.sscCredits === null
+      ? 0
+      : Math.min(completedCreditProgress.sscCredits, requirementTargets.sscCredits);
+
+  return Math.max(
+    0,
+    completedCreditProgress.breadthCredits - fixedAhCredits - fixedSscCredits
+  );
+}
+
 function rebalanceSharedBreadthPlaceholders(
   placeholders: GeneralEducationPlaceholder[],
   requirementTargets: GeneralEducationRequirementTargets
@@ -3322,7 +3520,10 @@ function filterGeneralEducationPlaceholdersByRemainingNeed(args: {
   let ahCredits = completedCreditProgress.ahCredits;
   let sscCredits = completedCreditProgress.sscCredits;
   let nscCredits = completedCreditProgress.nscCredits;
-  let breadthCredits = completedCreditProgress.breadthCredits;
+  let breadthCredits = getCompletedFlexibleBreadthCredits(
+    completedCreditProgress,
+    requirementTargets
+  );
   let electiveCredits = 0;
 
   for (const placeholder of placeholders) {
@@ -3474,7 +3675,10 @@ function buildSourceBackedMajorGeneralEducationPlaceholders(args: {
     campusId: plan?.campusId,
     requirementTag: "NSC",
   });
-  const sourceBackedBreadthCredits = completedCreditProgress.breadthCredits;
+  const sourceBackedBreadthCredits = getCompletedFlexibleBreadthCredits(
+    completedCreditProgress,
+    requirementTargets
+  );
 
   const getAhCredits = () =>
     sourceBackedAhCredits +
@@ -3881,6 +4085,10 @@ function extractFirstMatchingGeneralEducationCreditValue(
     }
   }
 
+  return null;
+}
+
+function buildUwMajorRequirementGuidanceSummary() {
   return null;
 }
 
@@ -4706,11 +4914,81 @@ function canReduceAreaTotalDescriptor(
   );
 }
 
+function buildRangeBasedGeneralEducationRequirementTargets(
+  structure: ParsedSourceBackedGeneralEducationStructure
+): GeneralEducationRequirementTargets | null {
+  const rangeDescriptors = structure.descriptors.filter(
+    (descriptor): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: "category-range" }> =>
+      descriptor.kind === "category-range"
+  );
+  if (!rangeDescriptors.length) {
+    return null;
+  }
+
+  const hasUnsupportedCompanionDescriptor = structure.descriptors.some(
+    (descriptor) => descriptor.kind !== "category-range" && descriptor.kind !== "area-total"
+  );
+  if (hasUnsupportedCompanionDescriptor) {
+    return null;
+  }
+
+  const planningRangeDescriptors = rangeDescriptors.filter(
+    (descriptor) => descriptor.category === "ah" || descriptor.category === "ssc"
+  );
+  if (
+    planningRangeDescriptors.length !== rangeDescriptors.length ||
+    planningRangeDescriptors.length !== 2
+  ) {
+    return null;
+  }
+
+  const rangeByCategory = new Map(
+    planningRangeDescriptors.map((descriptor) => [descriptor.category, descriptor])
+  );
+  const ahRange = rangeByCategory.get("ah") ?? null;
+  const sscRange = rangeByCategory.get("ssc") ?? null;
+  const areaTotalCredits = unique(
+    structure.descriptors
+      .filter(
+        (descriptor): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: "area-total" }> =>
+          descriptor.kind === "area-total"
+      )
+      .map((descriptor) => descriptor.totalCredits)
+  );
+  if (!ahRange || !sscRange || areaTotalCredits.length !== 1) {
+    return null;
+  }
+
+  const areaTotalCreditValue = areaTotalCredits[0];
+  const minimumCreditTotal = ahRange.minimumCredits + sscRange.minimumCredits;
+  const maximumCreditTotal = ahRange.maximumCredits + sscRange.maximumCredits;
+  if (
+    areaTotalCreditValue < minimumCreditTotal ||
+    areaTotalCreditValue > maximumCreditTotal
+  ) {
+    return null;
+  }
+
+  const additionalBreadthCredits = Math.max(0, areaTotalCreditValue - minimumCreditTotal);
+  return {
+    ahCredits: ahRange.minimumCredits,
+    sscCredits: sscRange.minimumCredits,
+    nscCredits: null,
+    breadthCredits: additionalBreadthCredits > 0 ? additionalBreadthCredits : null,
+    electiveCredits: null,
+  };
+}
+
 function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
   structure: ParsedSourceBackedGeneralEducationStructure
 ): GeneralEducationRequirementTargets {
   if (!structure.descriptors.length || structure.hasConflict) {
     return createEmptyGeneralEducationRequirementTargets();
+  }
+
+  const rangeBasedTargets = buildRangeBasedGeneralEducationRequirementTargets(structure);
+  if (rangeBasedTargets) {
+    return rangeBasedTargets;
   }
 
   const hasUnsupportedDescriptor = structure.descriptors.some((descriptor) => {
@@ -5065,12 +5343,42 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
       continue;
     }
 
+    const overlappingDescriptors = descriptor.categories
+      .map((category) => overlappingCategoryDescriptorsByCategory.get(category))
+      .filter(
+        (
+          entry
+        ): entry is Extract<
+          SourceBackedGeneralEducationDescriptor,
+          { kind: "overlapping-category" }
+        > => Boolean(entry)
+      )
+      .filter((entry) =>
+        entry.overlappingCategories.every((category) =>
+          descriptor.categories.includes(category)
+        )
+      );
+    const overlappingCategoryIds = new Set(
+      overlappingDescriptors.map((entry) => entry.category)
+    );
+    const sharedCategories = descriptor.categories.filter(
+      (category) => !overlappingCategoryIds.has(category)
+    );
     const sharedCategoryLabel = joinSourceBackedGeneralEducationCategoryLabels(
-      descriptor.categories
+      sharedCategories.length ? sharedCategories : descriptor.categories
     );
     const noteParts: string[] = [];
     if (descriptor.scope === "areas-of-inquiry" && descriptor.categories.length) {
       noteParts.push(`Shared across ${sharedCategoryLabel}.`);
+    }
+    for (const overlappingDescriptor of overlappingDescriptors) {
+      noteParts.push(
+        `${formatSourceBackedGeneralEducationCreditCount(
+          overlappingDescriptor.credits
+        )} must also satisfy ${
+          SOURCE_BACKED_GENERAL_ED_CATEGORY_LABELS[overlappingDescriptor.category]
+        }.`
+      );
     }
     if (descriptor.minimumPerCategoryCredits !== null) {
       noteParts.push(
@@ -5084,7 +5392,10 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
       id: `shared-${descriptor.categories.join("-")}-${descriptor.totalCredits}`,
       label:
         descriptor.scope === "areas-of-inquiry" ? "Areas of Inquiry" : sharedCategoryLabel,
-      valueText: `${formatSourceBackedGeneralEducationCreditCount(descriptor.totalCredits)} shared`,
+      valueText:
+        descriptor.scope === "areas-of-inquiry"
+          ? `${formatSourceBackedGeneralEducationCreditCount(descriptor.totalCredits)} total`
+          : `${formatSourceBackedGeneralEducationCreditCount(descriptor.totalCredits)} shared`,
       note: noteParts.join(" ").trim() || undefined,
       sourceKind: "source-backed-major",
     });
@@ -5332,13 +5643,13 @@ function getGeneralEducationPlanTitle(plan: TransferPlannerMajorPlan | null | un
 function getSourceBackedMajorGeneralEducationRequirementRelationText(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
-  return `needed for the major-specific breadth requirements in ${getGeneralEducationPlanTitle(plan)}`;
+  return `needed for ${getGeneralEducationPlanTitle(plan)}`;
 }
 
 function getTrackGeneralEducationPlannerGuidanceRelationText(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
-  return `planned for the matched Green River associate pathway in ${getGeneralEducationPlanTitle(plan)}`;
+  return `from the official matched Green River associate pathway map for ${getGeneralEducationPlanTitle(plan)}`;
 }
 
 function buildGeneralEducationPlaceholderProgressSummary(args: {
@@ -5405,7 +5716,10 @@ function buildGeneralEducationPlaceholderProgressSummary(args: {
         : "A&H/SSc";
     if (requirementTargets.breadthCredits !== null) {
       totalCredits = requirementTargets.breadthCredits;
-      baselineCredits = completedCreditProgress.breadthCredits;
+      baselineCredits = getCompletedFlexibleBreadthCredits(
+        completedCreditProgress,
+        requirementTargets
+      );
     } else {
       totalCredits = slotTotals.breadthCredits;
     }
@@ -5468,7 +5782,7 @@ function buildTrackGeneralEducationPlaceholderGuidanceSummary(args: {
     requirementTargets,
     relationText: getTrackGeneralEducationPlannerGuidanceRelationText(args.plan),
     additionalGuidanceText:
-      "This is planner guidance from the matched Green River associate pathway, not an official UW transfer admission requirement.",
+      "This is an official Green River track slot, not an official UW transfer admission requirement.",
   });
 }
 
@@ -6201,11 +6515,12 @@ function allocateQuarterCourses({
     getTermLimitedRequiredUrgencyPriorityBoost(course);
 
   if (courses.length >= quarterCourseCap) {
-    return courses.map<SuggestedQuarterCourse>(({ label, type, status, guidanceSummary }) => ({
+    return courses.map<SuggestedQuarterCourse>(({ label, type, status, guidanceSummary, sourceKind }) => ({
       label,
       type,
       status,
       guidanceSummary,
+      sourceKind,
       availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(label),
     }));
   }
@@ -6338,11 +6653,12 @@ function allocateQuarterCourses({
     courses.push(nextRemainingFiller);
   }
 
-  return courses.map<SuggestedQuarterCourse>(({ label, type, status, guidanceSummary }) => ({
+  return courses.map<SuggestedQuarterCourse>(({ label, type, status, guidanceSummary, sourceKind }) => ({
     label,
     type,
     status,
     guidanceSummary,
+    sourceKind,
     availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(label),
   }));
 }
@@ -6372,6 +6688,7 @@ function buildRemainingSuggestedCourses(
 ) {
   const remainingByLabel = new Map<string, PendingSuggestedCourse>();
   let sourceOrder = 0;
+  const majorRequirementGuidanceSummary = buildUwMajorRequirementGuidanceSummary();
 
   for (const section of sections) {
     for (const status of section.statuses.filter((entry) => !entry.matched)) {
@@ -6394,7 +6711,10 @@ function buildRemainingSuggestedCourses(
       const shouldScheduleAsChoiceBucket =
         status.requiredCompletedCount > 0 &&
         status.requiredCompletedCount < status.explicitCourseCodes.length;
-      const guidanceSummary = buildChecklistGuidanceSummary(section.bucket, status.item);
+      const guidanceSummary = joinGuidanceSummaries(
+        majorRequirementGuidanceSummary,
+        buildChecklistGuidanceSummary(section.bucket, status.item)
+      );
 
       const labelsForPlanner = shouldScheduleAsChoiceBucket
         ? [
@@ -6417,6 +6737,7 @@ function buildRemainingSuggestedCourses(
             ? "core"
             : "elective",
           status: "planned",
+          sourceKind: "uw-major-requirement",
           guidanceSummary: shouldScheduleAsChoiceBucket
             ? buildChecklistChoiceGuidanceSummary(
                 status.item,
@@ -6720,22 +7041,30 @@ export function buildSuggestedQuarterPlan(input: {
     "corequisiteCourseSetsByCourseCode"
   );
 
-  const essentialRemainingCourses = buildRemainingSuggestedCourses([
-    {
-      bucket: "application",
-      statuses: applicationStatuses,
-    },
-    {
-      bucket: "beforeEnrollment",
-      statuses: beforeEnrollmentStatuses,
-    },
-  ], prerequisiteCourseMap, corequisiteCourseMap);
-  const stayAtGrcRemainingCourses = buildRemainingSuggestedCourses([
-    {
-      bucket: "stayAtGrc",
-      statuses: stayAtGrcStatuses,
-    },
-  ], prerequisiteCourseMap, corequisiteCourseMap);
+  const essentialRemainingCourses = buildRemainingSuggestedCourses(
+    [
+      {
+        bucket: "application",
+        statuses: applicationStatuses,
+      },
+      {
+        bucket: "beforeEnrollment",
+        statuses: beforeEnrollmentStatuses,
+      },
+    ],
+    prerequisiteCourseMap,
+    corequisiteCourseMap
+  );
+  const stayAtGrcRemainingCourses = buildRemainingSuggestedCourses(
+    [
+      {
+        bucket: "stayAtGrc",
+        statuses: stayAtGrcStatuses,
+      },
+    ],
+    prerequisiteCourseMap,
+    corequisiteCourseMap
+  );
   const trackSupplementalCourses = buildTrackSupplementalSuggestedCourses({
     track: input.track,
     courseLabels: resolvedTrackSupplementalCourseLabels,
@@ -6752,20 +7081,24 @@ export function buildSuggestedQuarterPlan(input: {
     input.includeStayAtGrcCourses === false
       ? [...essentialRemainingCourses, ...essentialDependencyCourses]
       : [
-          ...buildRemainingSuggestedCourses([
-            {
-              bucket: "application",
-              statuses: applicationStatuses,
-            },
-            {
-              bucket: "beforeEnrollment",
-              statuses: beforeEnrollmentStatuses,
-            },
-            {
-              bucket: "stayAtGrc",
-              statuses: stayAtGrcStatuses,
-            },
-          ], prerequisiteCourseMap, corequisiteCourseMap),
+          ...buildRemainingSuggestedCourses(
+            [
+              {
+                bucket: "application",
+                statuses: applicationStatuses,
+              },
+              {
+                bucket: "beforeEnrollment",
+                statuses: beforeEnrollmentStatuses,
+              },
+              {
+                bucket: "stayAtGrc",
+                statuses: stayAtGrcStatuses,
+              },
+            ],
+            prerequisiteCourseMap,
+            corequisiteCourseMap
+          ),
           ...trackSupplementalCourses,
         ];
   const guidedRemainingCourses = attachAutomaticPrerequisiteGuidance(
@@ -6791,11 +7124,12 @@ export function buildSuggestedQuarterPlan(input: {
       status: "current",
     }));
   const currentQuarterPlanCourses = currentQuarterCourses.map<SuggestedQuarterCourse>(
-    ({ label, type, status, guidanceSummary }) => ({
+    ({ label, type, status, guidanceSummary, sourceKind }) => ({
       label,
       type,
       status,
       guidanceSummary,
+      sourceKind,
       availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(label),
     })
   );
@@ -6896,6 +7230,10 @@ export function buildSuggestedQuarterPlan(input: {
               label: placeholderEntry.placeholder.label,
               type: "elective",
               status: "planned",
+              sourceKind:
+                placeholderEntry.sourceKind === "planner-guidance"
+                  ? "official-grc-track-breadth"
+                  : "uw-major-breadth",
               guidanceSummary,
               sequenceGroup: null,
               priorityRank: REQUIREMENT_PRIORITY_RANK.stayAtGrc + 1,

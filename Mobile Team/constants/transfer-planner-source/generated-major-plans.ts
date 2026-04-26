@@ -67,8 +67,32 @@ const QUARTER_LABELS: Record<string, string> = {
 };
 const AUTO_TRACK_MATCH_EXAMPLE_LIMIT = 4;
 const MIN_AUTO_TRACK_MATCH_COUNT = 3;
+const MIN_RELAXED_AUTO_TRACK_MATCH_COUNT = 2;
+const MIN_RELAXED_AUTO_TRACK_PLAN_COVERAGE = 0.5;
+const AUTO_TRACK_SUBJECT_AFFINITY_WEIGHT = 0.75;
 const AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN =
   /\b(transferability of credits|generally transferable courses|section [a-z])\b/i;
+const AUTO_TRACK_GENERIC_SUBJECT_PREFIXES = new Set(["ENGL"]);
+const AUTO_TRACK_CONTEXTUAL_SUBJECT_PREFIXES = new Set(["MATH"]);
+const AUTO_TRACK_SUBJECT_AFFINITY_RULES: Array<{
+  prefixes: string[];
+  pattern: RegExp;
+}> = [
+  { prefixes: ["AMES"], pattern: /\b(?:american ethnic|ethnic studies)\b/i },
+  { prefixes: ["ANTH"], pattern: /\banthropology\b/i },
+  { prefixes: ["ART"], pattern: /\b(?:art history|fine arts?|arts?)\b/i },
+  { prefixes: ["BIOL"], pattern: /\b(?:biology|bioengineering)\b/i },
+  { prefixes: ["CHEM"], pattern: /\bchem/i },
+  { prefixes: ["CS", "CSE"], pattern: /\b(?:acs|computer science|software development)\b/i },
+  { prefixes: ["ECON"], pattern: /\beconomics?\b/i },
+  { prefixes: ["ENGR"], pattern: /\bengineering\b/i },
+  { prefixes: ["GEOG"], pattern: /\bgeography\b/i },
+  { prefixes: ["MATH"], pattern: /\b(?:math|mathematics)\b/i },
+  { prefixes: ["PHYS"], pattern: /\bphysics\b/i },
+  { prefixes: ["POLS"], pattern: /\bpolitical science\b/i },
+  { prefixes: ["PSYC"], pattern: /\bpsychology\b/i },
+  { prefixes: ["SOC"], pattern: /\bsociology\b/i },
+];
 const REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE =
   "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
 const AUTO_SOURCE_BACKED_UW_PREP_TARGET_PREFIX = "UW prep target:";
@@ -2602,6 +2626,86 @@ function shouldUseTrackTermForAutoMatch(termLabel: string) {
   return !AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN.test(String(termLabel ?? "").trim());
 }
 
+function normalizeAutoTrackSubjectPrefix(prefix: string) {
+  return String(prefix ?? "").replace(/&/g, "").trim().toUpperCase();
+}
+
+function getAutoTrackSubjectPrefix(courseCode: string) {
+  return normalizeAutoTrackSubjectPrefix(getReferenceCourseSubjectPrefix(courseCode));
+}
+
+function buildAutoTrackSubjectAffinityCounts(planCourseCodes: string[]) {
+  const subjectCounts = new Map<string, number>();
+
+  for (const courseCode of planCourseCodes) {
+    const subjectPrefix = getAutoTrackSubjectPrefix(courseCode);
+    if (!subjectPrefix || AUTO_TRACK_GENERIC_SUBJECT_PREFIXES.has(subjectPrefix)) {
+      continue;
+    }
+
+    subjectCounts.set(subjectPrefix, (subjectCounts.get(subjectPrefix) ?? 0) + 1);
+  }
+
+  const strongSubjectCounts = [...subjectCounts.entries()].filter(
+    ([subjectPrefix, count]) =>
+      count >= MIN_RELAXED_AUTO_TRACK_MATCH_COUNT &&
+      !AUTO_TRACK_CONTEXTUAL_SUBJECT_PREFIXES.has(subjectPrefix)
+  );
+
+  if (strongSubjectCounts.length) {
+    return new Map(strongSubjectCounts);
+  }
+
+  const contextualSubjectCounts = [...subjectCounts.entries()].filter(
+    ([, count]) => count >= MIN_RELAXED_AUTO_TRACK_MATCH_COUNT
+  );
+
+  if (contextualSubjectCounts.length) {
+    return new Map(contextualSubjectCounts);
+  }
+
+  if (planCourseCodes.length <= MIN_AUTO_TRACK_MATCH_COUNT) {
+    return new Map(
+      [...subjectCounts.entries()].filter(
+        ([subjectPrefix]) => !AUTO_TRACK_CONTEXTUAL_SUBJECT_PREFIXES.has(subjectPrefix)
+      )
+    );
+  }
+
+  return new Map<string, number>();
+}
+
+function getTrackSubjectAffinityScore(
+  track: TransferPlannerTrack,
+  subjectCounts: Map<string, number>
+) {
+  if (!subjectCounts.size) {
+    return 0;
+  }
+
+  const trackSearchText = [
+    track.code,
+    track.title,
+    track.id,
+    ...(track.bestFor ?? []),
+  ].join(" ");
+
+  return AUTO_TRACK_SUBJECT_AFFINITY_RULES.reduce((score, rule) => {
+    if (!rule.pattern.test(trackSearchText)) {
+      return score;
+    }
+
+    return (
+      score +
+      rule.prefixes.reduce(
+        (prefixScore, prefix) =>
+          prefixScore + (subjectCounts.get(normalizeAutoTrackSubjectPrefix(prefix)) ?? 0),
+        0
+      )
+    );
+  }, 0);
+}
+
 function buildTrackReferenceCourseCodes(
   track: TransferPlannerTrack,
   options: {
@@ -2684,9 +2788,11 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
 
   const planCourseCodeSet = new Set(planCourseCodes);
   const labelByCode = buildReferenceLabelByCode(normalizedCourseLabels);
+  const subjectAffinityCounts = buildAutoTrackSubjectAffinityCounts(planCourseCodes);
   const scoredTrackCandidates = TRANSFER_PLANNER_BOOTSTRAP_TRACKS.map((track) => {
     const trackCourseCodes = TRACK_REFERENCE_CODES_BY_ID.get(track.id) ?? [];
     const matchedCourseCodes = trackCourseCodes.filter((code) => planCourseCodeSet.has(code));
+    const subjectAffinityScore = getTrackSubjectAffinityScore(track, subjectAffinityCounts);
     return {
       track,
       trackCourseCodes,
@@ -2697,6 +2803,9 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
       matchCount: matchedCourseCodes.length,
       planCoverage: matchedCourseCodes.length / planCourseCodes.length,
       trackCoverage: matchedCourseCodes.length / Math.max(trackCourseCodes.length, 1),
+      subjectAffinityScore,
+      rankingScore:
+        matchedCourseCodes.length + subjectAffinityScore * AUTO_TRACK_SUBJECT_AFFINITY_WEIGHT,
       preferred: track.id === preferredTrackId,
     };
   });
@@ -2707,9 +2816,13 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
   );
 
   // For plans without a curated preferred track, keep a best-effort auto-match even
-  // when only 1-2 source-backed course overlaps are currently available.
+  // when a small but non-trivial source-backed course overlap is currently available.
   if (!scoredTracks.length && !preferredTrackId) {
-    scoredTracks = scoredTrackCandidates.filter((entry) => entry.matchCount >= 1);
+    scoredTracks = scoredTrackCandidates.filter(
+      (entry) =>
+        entry.matchCount >= MIN_RELAXED_AUTO_TRACK_MATCH_COUNT &&
+        entry.planCoverage >= MIN_RELAXED_AUTO_TRACK_PLAN_COVERAGE
+    );
   }
 
   if (!scoredTracks.length) {
@@ -2717,6 +2830,9 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
   }
 
   scoredTracks.sort((left, right) => {
+    if (right.rankingScore !== left.rankingScore) {
+      return right.rankingScore - left.rankingScore;
+    }
     if (right.matchCount !== left.matchCount) {
       return right.matchCount - left.matchCount;
     }
@@ -2767,14 +2883,21 @@ function applyAutoTrackRecommendation<T extends {
   scope: T,
   options?: {
     trackMatchCourseList?: string[];
+    fallbackTrackMatchCourseList?: string[];
   }
 ): T {
+  const primaryTrackMatchCourseList = options?.trackMatchCourseList?.length
+    ? uniqueReferenceCourseLabels(options.trackMatchCourseList)
+    : collectPlannerCourseLabels(scope);
   const autoTrack = getTransferPlannerAutoMatchedTrackRecommendation(
-    options?.trackMatchCourseList?.length
-      ? uniqueReferenceCourseLabels(options.trackMatchCourseList)
-      : collectPlannerCourseLabels(scope),
+    primaryTrackMatchCourseList,
     scope.bestTrackId ?? null
-  );
+  ) ?? (options?.fallbackTrackMatchCourseList?.length
+    ? getTransferPlannerAutoMatchedTrackRecommendation(
+        uniqueReferenceCourseLabels(options.fallbackTrackMatchCourseList),
+        scope.bestTrackId ?? null
+      )
+    : null);
 
   if (!autoTrack || scope.bestTrackId === autoTrack.trackId) {
     return scope;
@@ -2786,6 +2909,38 @@ function applyAutoTrackRecommendation<T extends {
     recommendedTrackSummary: autoTrack.recommendedTrackSummary,
     whyThisTrack: [...autoTrack.whyThisTrack],
   };
+}
+
+function applyAutoTrackRecommendationFromStudentVisibleList<T extends {
+  bestTrackId: string | null | undefined;
+  recommendedTrackSummary?: string;
+  whyThisTrack?: string[];
+  grcCourseList?: string[];
+  applicationChecklist?: TransferPlannerChecklistItem[];
+  beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
+  stayAtGrcChecklist?: TransferPlannerChecklistItem[];
+}>(
+  scope: T,
+  options: {
+    trackMatchCourseList?: string[];
+    studentVisibleCourseList?: string[];
+  } = {}
+): T {
+  const visibleCourseList = options.studentVisibleCourseList?.length
+    ? uniqueReferenceCourseLabels(options.studentVisibleCourseList)
+    : uniqueReferenceCourseLabels([
+        ...(scope.grcCourseList ?? []),
+        ...getChecklistReferenceCoursesFromItems([
+          ...(scope.applicationChecklist ?? []),
+          ...(scope.beforeEnrollmentChecklist ?? []),
+          ...(scope.stayAtGrcChecklist ?? []),
+        ]),
+      ]);
+
+  return applyAutoTrackRecommendation(scope, {
+    trackMatchCourseList: options.trackMatchCourseList,
+    fallbackTrackMatchCourseList: visibleCourseList,
+  });
 }
 
 function buildDegreeMapSection(block: TransferPlannerDegreeMapBlock): TransferPlannerDegreeMapSection {
@@ -3485,6 +3640,22 @@ function buildPathway(
     basePathway.applicationChecklist ?? [],
     basePathway.id
   );
+  const inheritedBestTrackId =
+    policy?.bestTrackId === undefined
+      ? basePathway.bestTrackId ?? basePlan.bestTrackId
+      : policy.bestTrackId;
+  const inheritedRecommendedTrackSummary =
+    policy?.recommendedTrackSummary ??
+    basePathway.recommendedTrackSummary ??
+    (inheritedBestTrackId === basePlan.bestTrackId ? basePlan.recommendedTrackSummary : undefined);
+  const inheritedWhyThisTrack =
+    policy?.whyThisTrack.length
+      ? [...policy.whyThisTrack]
+      : basePathway.whyThisTrack?.length
+        ? [...basePathway.whyThisTrack]
+        : inheritedBestTrackId === basePlan.bestTrackId
+          ? [...(basePlan.whyThisTrack ?? [])]
+          : [];
   const pathway = {
     id: registryPathway?.pathwayId ?? basePathway.id,
     label: resolveStructuredPathwayLabel(
@@ -3537,17 +3708,12 @@ function buildPathway(
       policy?.grcCourseListGuidance ?? basePathway.grcCourseListGuidance
     ),
     plannerNote: sanitizePlannerOwnedText(policy?.plannerNote ?? basePathway.plannerNote),
-    bestTrackId:
-      policy?.bestTrackId === undefined ? basePathway.bestTrackId : policy.bestTrackId,
-    recommendedTrackSummary: sanitizePlannerOwnedText(
-      policy?.recommendedTrackSummary ?? basePathway.recommendedTrackSummary
-    ),
-    whyThisTrack: sanitizePlannerOwnedStrings(
-      policy?.whyThisTrack.length ? [...policy.whyThisTrack] : [...(basePathway.whyThisTrack ?? [])]
-    ),
+    bestTrackId: inheritedBestTrackId,
+    recommendedTrackSummary: sanitizePlannerOwnedText(inheritedRecommendedTrackSummary),
+    whyThisTrack: sanitizePlannerOwnedStrings(inheritedWhyThisTrack),
   } satisfies TransferPlannerMajorPathway;
 
-  return applyAutoTrackRecommendation(pathway, {
+  return applyAutoTrackRecommendationFromStudentVisibleList(pathway, {
     trackMatchCourseList: buildTrackMatchCourseList(pathway, basePlan.id, basePathway.id),
   });
 }
@@ -3620,7 +3786,7 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
 
   const promotedSourceGeneratedPlan = promoteStructuredCoverage(sourceGeneratedWithFallback);
 
-  return applyAutoTrackRecommendation(promotedSourceGeneratedPlan, {
+  return applyAutoTrackRecommendationFromStudentVisibleList(promotedSourceGeneratedPlan, {
     trackMatchCourseList: buildTrackMatchCourseList(promotedSourceGeneratedPlan, basePlan.id),
   });
 }
@@ -4013,7 +4179,7 @@ function buildStudentRuntimePathway(
   });
 
   const runtimePathway = applyStrictSourceBackedFallback(
-    applyAutoTrackRecommendation({
+    applyAutoTrackRecommendationFromStudentVisibleList({
         ...basePathway,
         id: basePathway.id,
         label: resolveStructuredPathwayLabel(
@@ -4043,6 +4209,7 @@ function buildStudentRuntimePathway(
         whyThisTrack: sanitizePlannerOwnedStrings(trackMetadata.whyThisTrack),
     } satisfies TransferPlannerMajorPathway, {
       trackMatchCourseList: studentVisibleTrackMatchCourseList,
+      studentVisibleCourseList,
     }),
     basePathway.id
   );
@@ -4152,7 +4319,7 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
   });
 
   const runtimePlan = applyStrictSourceBackedFallback(
-    applyAutoTrackRecommendation({
+    applyAutoTrackRecommendationFromStudentVisibleList({
         ...basePlan,
         coverage: promoteStructuredCoverage(
           {
@@ -4183,6 +4350,7 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
         ),
     }, {
       trackMatchCourseList: studentVisibleTrackMatchCourseList,
+      studentVisibleCourseList,
     }),
     null
   );

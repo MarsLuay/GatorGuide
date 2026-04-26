@@ -122,6 +122,7 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "BUT",
   "BY",
   "CALL",
+  "CLASSES",
   "COURSES",
   "COURSE",
   "CORE",
@@ -136,9 +137,12 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "EARNED",
   "EITHER",
   "ENGLISH",
+  "EXCEPT",
   "FAX",
   "FORTUNE",
   "FOR",
+  "FOREIGN",
+  "FORMERLY",
   "HALL",
   "FROM",
   "GRADED",
@@ -152,6 +156,8 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "INTO",
   "IS",
   "JUST",
+  "LANG",
+  "LANGUAGE",
   "LEVEL",
   "LEAST",
   "LIKE",
@@ -172,6 +178,7 @@ const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "PLUS",
   "REACH",
   "REQUIRE",
+  "REQUIREMENTS",
   "RECOMMENDED",
   "REQUIRES",
   "REQUIRED",
@@ -238,7 +245,7 @@ const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
 const REQUIREMENT_CUE_PATTERN =
   /\b(required|requirements|prereq|prerequisite|complete|credits|credit|elective|select|choose|one of the following|two of the following|option|track|route|pathway|concentration)\b/i;
 const GENERAL_ED_REQUIREMENT_CUE_PATTERN =
-  /\b(areas of inquiry|arts?\s+and\s+humanities|social sciences?|natural sciences?|a&h|ssc|nsc|diversity|additional a&h|additional areas? of inquiry|additional coursework)\b/i;
+  /\b(areas of inquiry|arts?\s+(?:and|&)\s+humanities|social sciences?|natural sciences?|a&h|ssc|nsc|diversity|additional a&h|additional areas? of inquiry|additional coursework)\b/i;
 const STRUCTURAL_REQUIREMENT_PATTERN =
   /\b(admission requirements|degree requirements|major requirements|completion requirements|required courses|elective courses|core courses|core requirements|curriculum|prerequisite courses|shared set of core courses|specialization|track|option|route|pathway|concentration|checklist|foundation|distribution requirement)\b/i;
 const COURSE_CLUSTER_REQUIREMENT_CONTEXT_PATTERN =
@@ -271,6 +278,8 @@ const HTML_SECTION_BOUNDARY_LINE_PATTERN =
   /^(?:Program of Study:|Bachelor\b|Minor\b|Master\b|Doctor\b|Undergraduate Programs\b|Graduate Programs\b|Back to Top\b)/i;
 const REQUIREMENT_FRIENDLY_HINT_PATTERN =
   /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|credits?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence|prior to the start of|before the start of|continuation requirements?)\b/i;
+const DIRECT_REQUIREMENT_COURSE_SEQUENCE_HINT_PATTERN =
+  /\*?[A-Z&]+(?:\s+[A-Z&]+)?\s+\d{3}[A-Za-z]?\s*,\s*\d{3}[A-Za-z]?\s*,\s*\d{3}[A-Za-z]?(?:\s+(?:or|and)\s+\d{3}[A-Za-z]?\s*,\s*\d{3}[A-Za-z]?\s*,\s*\d{3}[A-Za-z]?)?\s*\(\s*\d+\s*\)/i;
 const CROSS_MAJOR_SCOPE_PATTERN =
   /\b(?:if|for|required for)\s+([a-z][a-z&/,\- ]+?)\s+major\b/i;
 const PATHWAY_LABEL_CUE_PATTERN =
@@ -281,6 +290,23 @@ const PATHWAY_LABEL_INLINE_PATTERN =
   /^([^:]{1,120}\b(?:track|option|route|pathway|concentration)\b(?:\s*\([^)]{1,40}\))?)\s*:/i;
 const PATHWAY_LABEL_APPLY_PATTERN =
   /\bstudents apply(?: directly)?(?:\s+for|\s+to)?(?: the)?\s+(.{2,100}?)\s+(option|track|route|pathway|concentration)\b/i;
+const PATHWAY_SECTION_CONTEXT_PATTERN =
+  /\b(?:concentration|track|option|route|pathway)s?\b.*\b(?:area courses?|courses?|listed below|choose|select|customize|approved area)\b|\b(?:choose|select)\s+one\s+of\b.*\b(?:concentration|track|option|route|pathway)s?\b/i;
+const PATHWAY_SECTION_BOUNDARY_PATTERN =
+  /^(?:admissions?|advising|student resources?|degree requirements?|core courses?|honou?rs?\b|recommended courses?|language courses?|share|support us|contact us|privacy|terms|site map)\b/i;
+const PATHWAY_SECTION_SUBCATEGORY_PATTERN = /^\[[^\]]+\]/;
+const HONORS_THESIS_PATHWAY_LABEL_PATTERN = /\bhonou?rs?\s+thesis\s+option\b/i;
+const PATHWAY_CHOICE_COUNT_BY_WORD = new Map([
+  ["two", 2],
+  ["three", 3],
+  ["four", 4],
+  ["five", 5],
+  ["six", 6],
+  ["seven", 7],
+  ["eight", 8],
+  ["nine", 9],
+  ["ten", 10],
+]);
 const CAMPUS_ORDER = ["uw-seattle", "uw-bothell", "uw-tacoma"];
 const PARSEABLE_PARSER_TYPES = new Set([
   "html-degree-page",
@@ -617,11 +643,13 @@ function normalizeExtractedCourseSubject(rawValue) {
   const subject = subjectTokens.join(" ");
   const collapsedSubject = subjectTokens.join("");
   const hasDanglingAmpersandToken = subjectTokens.some((token) => token === "&" || token.endsWith("&"));
+  const subjectIsKnown = KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(subject);
+  const collapsedSubjectIsKnown = KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(collapsedSubject);
 
   if (
     subjectTokens.length > 1 &&
-    KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(collapsedSubject) &&
-    !KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(subject)
+    collapsedSubjectIsKnown &&
+    !subjectIsKnown
   ) {
     return collapsedSubject;
   }
@@ -634,9 +662,10 @@ function normalizeExtractedCourseSubject(rawValue) {
     subjectTokens.some((token) => token.length > 8 || !/^[A-Z&]+$/.test(token)) ||
     INVALID_EXTRACTED_COURSE_SUBJECTS.has(subject) ||
     subjectTokens.some((token) => INVALID_EXTRACTED_COURSE_SUBJECTS.has(token)) ||
+    (!subjectIsKnown && !collapsedSubjectIsKnown) ||
     ((/SKL$/i.test(subject) || /SKL$/i.test(collapsedSubject)) &&
-      !KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(subject) &&
-      !KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.has(collapsedSubject))
+      !subjectIsKnown &&
+      !collapsedSubjectIsKnown)
   ) {
     return null;
   }
@@ -882,6 +911,14 @@ function buildSourceLineHint(courseCode, line) {
     );
   }
 
+  if (
+    courseCode &&
+    extractCourseCodesFromLine(normalizedLine).includes(courseCode) &&
+    !normalizedLine.toUpperCase().includes(courseCode)
+  ) {
+    return `${normalizedLine} (${courseCode})`;
+  }
+
   return normalizedLine;
 }
 
@@ -959,7 +996,8 @@ function isUnsafeRequirementCourseHint(entry, courseCode, hint, lines = []) {
   const extractedCourseCodes = extractCourseCodesFromLine(normalizedHint);
   if (
     extractedCourseCodes.length >= 6 &&
-    !REQUIREMENT_FRIENDLY_HINT_PATTERN.test(normalizedHint)
+    !REQUIREMENT_FRIENDLY_HINT_PATTERN.test(normalizedHint) &&
+    !DIRECT_REQUIREMENT_COURSE_SEQUENCE_HINT_PATTERN.test(normalizedHint)
   ) {
     return true;
   }
@@ -2075,12 +2113,30 @@ function extractHeadings(html) {
 }
 
 function extractRequirementCueLines(lines) {
-  return lines
-    .filter(
-      (line) =>
-        REQUIREMENT_CUE_PATTERN.test(line) || GENERAL_ED_REQUIREMENT_CUE_PATTERN.test(line)
-    )
-    .slice(0, 40);
+  const cueLines = [];
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = normalizeWhitespace(lines[index]);
+    if (
+      !line ||
+      NOISY_SOURCE_LINE_PATTERN.test(line) ||
+      TRANSFER_CREDIT_NOISE_PATTERN.test(line)
+    ) {
+      continue;
+    }
+
+    const hasDirectCue =
+      REQUIREMENT_CUE_PATTERN.test(line) || GENERAL_ED_REQUIREMENT_CUE_PATTERN.test(line);
+    const hasContextualCourseListCue =
+      extractCourseCodesFromLine(line).length > 0 &&
+      hasRequirementContextNearLine(lines, index, 8);
+
+    if (hasDirectCue || hasContextualCourseListCue) {
+      cueLines.push(line);
+    }
+  }
+
+  return uniqueInOrder(cueLines).slice(0, 80);
 }
 
 function extractChooseStatements(lines) {
@@ -2148,6 +2204,131 @@ function normalizeCanonicalExtractedPathwayLabel(entry, line) {
   return normalized || normalizeTransferPlannerText(line);
 }
 
+function lineHasNearbyCourseList(lines, index) {
+  const lookaheadLines = lines.slice(index + 1, index + 5);
+  return lookaheadLines.some((line) => extractCourseCodesFromLine(line).length > 0);
+}
+
+function normalizeSectionPathwayCandidate(entry, rawLine, pathwayKind) {
+  const normalizedLine = normalizeTransferPlannerText(rawLine);
+  if (!normalizedLine || pathwayLabelMentionsDifferentMajor(entry, normalizedLine)) {
+    return "";
+  }
+
+  if (
+    normalizedLine.length > 90 ||
+    normalizedLine.split(/\s+/).length > 9 ||
+    extractCourseCodesFromLine(normalizedLine).length > 0 ||
+    PATHWAY_SECTION_SUBCATEGORY_PATTERN.test(normalizedLine) ||
+    PATHWAY_SECTION_CONTEXT_PATTERN.test(normalizedLine) ||
+    PATHWAY_SECTION_BOUNDARY_PATTERN.test(normalizedLine) ||
+    HONORS_THESIS_PATHWAY_LABEL_PATTERN.test(normalizedLine) ||
+    /\b(?:credits?|courses?|requirements?|offered|minimum|area other than|outside of|approved area)\b/i.test(
+      normalizedLine
+    ) ||
+    /[.;:]$/.test(normalizedLine)
+  ) {
+    return "";
+  }
+
+  const labelWithKind = PATHWAY_LABEL_CUE_PATTERN.test(normalizedLine)
+    ? normalizedLine
+    : `${normalizedLine} ${pathwayKind}`;
+  return normalizeCanonicalExtractedPathwayLabel(entry, labelWithKind);
+}
+
+function getDeclaredPathwayChoice(lines) {
+  for (const line of lines) {
+    const normalized = normalizeTransferPlannerText(line);
+    const match = normalized.match(
+      /\b(?:choose|select)\s+one\s+of\s+(?:(\d+)|([a-z]+))\s+(concentration|track|option|route|pathway)s?\b/i
+    );
+    if (!match) {
+      continue;
+    }
+
+    const numericCount = match[1] ? Number(match[1]) : null;
+    const wordCount = PATHWAY_CHOICE_COUNT_BY_WORD.get(String(match[2] ?? "").toLowerCase()) ?? null;
+    const count = numericCount ?? wordCount;
+    if (!Number.isFinite(count) || count < 2 || count > 10) {
+      continue;
+    }
+
+    return {
+      count,
+      kind: String(match[3] ?? "pathway").toLowerCase(),
+    };
+  }
+
+  return null;
+}
+
+function isDeclaredPathwaySectionContextLine(line, pathwayKind) {
+  const normalized = normalizeTransferPlannerText(line);
+  if (!normalized) {
+    return false;
+  }
+
+  if (pathwayKind === "concentration") {
+    return (
+      /\bconcentration area courses?\b/i.test(normalized) ||
+      /\bcourses? that can be applied\b.*\bconcentration\b.*\blisted below\b/i.test(
+        normalized
+      )
+    );
+  }
+
+  return new RegExp(
+    `\\b${pathwayKind}s?\\b.*\\b(?:courses?|requirements?|listed below)\\b`,
+    "i"
+  ).test(normalized);
+}
+
+function extractPathwaySectionLabels(entry, lines) {
+  const declaredPathwayChoice = getDeclaredPathwayChoice(lines);
+  if (!declaredPathwayChoice) {
+    return [];
+  }
+
+  const labels = [];
+  let activePathwayKind = null;
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = normalizeTransferPlannerText(lines[index]);
+    if (!line) {
+      continue;
+    }
+
+    if (isDeclaredPathwaySectionContextLine(line, declaredPathwayChoice.kind)) {
+      activePathwayKind = declaredPathwayChoice.kind;
+      continue;
+    }
+
+    if (!activePathwayKind) {
+      continue;
+    }
+
+    if (PATHWAY_SECTION_BOUNDARY_PATTERN.test(line)) {
+      activePathwayKind = null;
+      continue;
+    }
+
+    if (!lineHasNearbyCourseList(lines, index)) {
+      continue;
+    }
+
+    const label = normalizeSectionPathwayCandidate(entry, line, activePathwayKind);
+    if (label) {
+      labels.push(label);
+      if (labels.length >= declaredPathwayChoice.count) {
+        break;
+      }
+    }
+  }
+
+  return uniqueInOrder(labels);
+}
+
 function extractPathwayLabels(entry, lines, headings) {
   const isPathwayLabelCandidate = (rawLine, normalizedLine) => {
     if (pathwayLabelMentionsDifferentMajor(entry, rawLine)) {
@@ -2163,10 +2344,18 @@ function extractPathwayLabels(entry, lines, headings) {
       /^(?:\[?\s*supplemental official source\b|learn more|about|apply)\b/i.test(normalized) ||
       /^(?:download|click here to join|joining the)\b/i.test(normalized) ||
       /\b(?:admissions?\s+pathway|current uw student admissions pathway)\b/i.test(normalized) ||
+      /\b(?:please check out|which is detailed at)\b/i.test(normalized) ||
       /\bto be considered\b/i.test(normalized) ||
       /\bapplicants?\b/i.test(normalized) ||
       /\b(?:double major|double degree)\b/i.test(normalized) ||
+      HONORS_THESIS_PATHWAY_LABEL_PATTERN.test(normalized) ||
       /\b(?:elective courses?|course lists?|courses by track)\b/i.test(normalized) ||
+      /^(?:\d+(?:\.\d+)?\s+credits?\b.*\b)?(?:student[â€™'`s]*\s+)?concentration area courses?$/i.test(
+        normalized
+      ) ||
+      /\bbeyond the \d+(?:\.\d+)? credits required in the concentration area\b/i.test(
+        normalized
+      ) ||
       /^(?:[†*§◊]+)?\s*(?:if|for)\b/i.test(normalized) ||
       /^concentration\s+[ivxlcdm]+\b.*\b(?:credits?|courses?)\b/i.test(normalized) ||
       pathwayLabelMentionsDifferentMajor(entry, normalized)
@@ -2189,7 +2378,7 @@ function extractPathwayLabels(entry, lines, headings) {
   };
 
   return uniqueSorted(
-    [...headings, ...lines]
+    [...extractPathwaySectionLabels(entry, lines), ...headings, ...lines]
       .map((line) => ({
         raw: line,
         normalized: normalizeCanonicalExtractedPathwayLabel(entry, line),
@@ -3777,56 +3966,59 @@ function buildParseReport(owners, options = {}) {
     owners,
     options.targetPlanId ?? null
   );
+  const fullOwners = mergedOwners;
   const scopedOwners = options.targetPlanId
-    ? mergedOwners.filter((owner) => owner.planId === options.targetPlanId)
-    : mergedOwners;
+    ? fullOwners.filter((owner) => owner.planId === options.targetPlanId)
+    : fullOwners;
 
   return {
     generatedAt: new Date().toISOString(),
-    totalOwners: scopedOwners.length,
-    okCount: scopedOwners.filter((owner) => owner.ok).length,
-    failedCount: scopedOwners.filter((owner) => !owner.ok).length,
-    parsedRequirementSourceBlockCount: scopedOwners.length,
-    parsedRequirementAtomCandidateCount: scopedOwners.reduce(
+    totalOwners: fullOwners.length,
+    okCount: fullOwners.filter((owner) => owner.ok).length,
+    failedCount: fullOwners.filter((owner) => !owner.ok).length,
+    parsedRequirementSourceBlockCount: fullOwners.length,
+    parsedRequirementAtomCandidateCount: fullOwners.reduce(
       (count, owner) => count + owner.parsedRequirementAtomCandidates.length,
       0
     ),
-    parsedDegreeMapBlockCandidateCount: scopedOwners.reduce(
+    parsedDegreeMapBlockCandidateCount: fullOwners.reduce(
       (count, owner) => count + owner.parsedDegreeMapBlockCandidates.length,
       0
     ),
-    snapshotFallbackCount: scopedOwners.filter((owner) => owner.usedSnapshotFallback).length,
-    countsByAdapterId: countBy(scopedOwners, (owner) => owner.adapterId),
-    countsByAdapterFamily: countBy(scopedOwners, (owner) => owner.adapterFamily),
-    countsByCampus: countBy(scopedOwners, (owner) => owner.campusId),
-    countsByResolutionStrategy: countBy(scopedOwners, (owner) => owner.resolutionStrategy),
-    withParsedCourseCodesCount: scopedOwners.filter((owner) => owner.parsedUwCourseCodes.length > 0).length,
-    withSourceOnlyCourseCodesCount: scopedOwners.filter(
+    snapshotFallbackCount: fullOwners.filter((owner) => owner.usedSnapshotFallback).length,
+    countsByAdapterId: countBy(fullOwners, (owner) => owner.adapterId),
+    countsByAdapterFamily: countBy(fullOwners, (owner) => owner.adapterFamily),
+    countsByCampus: countBy(fullOwners, (owner) => owner.campusId),
+    countsByResolutionStrategy: countBy(fullOwners, (owner) => owner.resolutionStrategy),
+    withParsedCourseCodesCount: fullOwners.filter((owner) => owner.parsedUwCourseCodes.length > 0).length,
+    withSourceOnlyCourseCodesCount: fullOwners.filter(
       (owner) => owner.sourceOnlyUwCourseCodes.length > 0
     ).length,
-    withNoParsedCourseCodesCount: scopedOwners.filter(
+    withNoParsedCourseCodesCount: fullOwners.filter(
       (owner) => owner.ok && owner.parsedUwCourseCodes.length === 0
     ).length,
-    ownersWithQualityWarningsCount: scopedOwners.filter((owner) =>
+    ownersWithQualityWarningsCount: fullOwners.filter((owner) =>
       owner.qualitySignals.some((signal) => signal.severity === "warning")
     ).length,
-    ownersWithQualityNotesCount: scopedOwners.filter((owner) =>
+    ownersWithQualityNotesCount: fullOwners.filter((owner) =>
       owner.qualitySignals.some((signal) => signal.severity === "note")
     ).length,
-    qualityWarningCount: scopedOwners.reduce(
+    qualityWarningCount: fullOwners.reduce(
       (count, owner) =>
         count + owner.qualitySignals.filter((signal) => signal.severity === "warning").length,
       0
     ),
-    qualityNoteCount: scopedOwners.reduce(
+    qualityNoteCount: fullOwners.reduce(
       (count, owner) =>
         count + owner.qualitySignals.filter((signal) => signal.severity === "note").length,
       0
     ),
     countsByQualitySignalCode: countBy(
-      scopedOwners.flatMap((owner) => owner.qualitySignals),
+      fullOwners.flatMap((owner) => owner.qualitySignals),
       (signal) => signal.code
     ),
+    targetPlanId: options.targetPlanId ?? null,
+    targetOwnerCount: scopedOwners.length,
     owners: mergedOwners,
   };
 }

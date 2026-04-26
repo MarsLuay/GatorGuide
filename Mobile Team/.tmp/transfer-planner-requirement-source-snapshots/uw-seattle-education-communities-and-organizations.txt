@@ -161,7 +161,6 @@ Title: BA in Education, Communities and Organizations
 * user.permissions
 * user.roles:anonymous
 * user.roles:authenticated
-* uw_boundless_barrio_shibbolethloginblock
 * views_block__program_list_for_degree_pages_block_1
 * webform:marketing_request
 © 2026 University of Washington, College of Education, Seattle, WA

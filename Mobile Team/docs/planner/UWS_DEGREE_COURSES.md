@@ -1965,6 +1965,7 @@ Source-generated from parsed UW requirement-source registries.
 - \[Page 1\] Note: These credits may overlap with other requirements.  CSE/EE 371 Design of Digital Circuits &amp; Systems (5)
 - \[Page 1\] Areas of Inquiry (30 credits) Core and Electives (40 credits)
 - \[Page 1\] Select at least 40 additional CE credits, including at least:
+- \[Page 1\] Arts &amp; Humanities (10-20)
 - \[Page 1\]  Social Sciences (10-20)
 
 ##### Computer Engineering parsed official requirement cues
@@ -1978,6 +1979,7 @@ Source-generated from parsed UW requirement-source registries.
 - \[Page 1\] Note: These credits may overlap with other requirements.  CSE/EE 371 Design of Digital Circuits &amp; Systems (5)
 - \[Page 1\] Areas of Inquiry (30 credits) Core and Electives (40 credits)
 - \[Page 1\] Select at least 40 additional CE credits, including at least:
+- \[Page 1\] Arts &amp; Humanities (10-20)
 - \[Page 1\]  Social Sciences (10-20)
 
 ##### Computer Engineering parsed choices and pathway notes

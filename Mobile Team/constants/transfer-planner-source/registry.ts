@@ -386,6 +386,10 @@ const SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES: SupplementalParserOnlyPathwaySou
         label: "UW Tacoma Environmental Communication option",
         url: "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
       },
+      {
+        label: "UW Tacoma Environmental Sustainability overview",
+        url: "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
+      },
     ],
     validationNotes: [
       "Supplemental parser-backed pathway metadata retained until pathway source blocks are emitted canonically.",
@@ -2942,6 +2946,21 @@ function getPlanMaterializationParsedRequirementSourceBlocks(planId: string) {
   );
 }
 
+function buildSummaryRegistryBackedBasePathways(plan: TransferPlannerMajorPlan) {
+  const bootstrapPathways = plan.pathways ?? [];
+  const bootstrapPathwayIds = new Set(bootstrapPathways.map((pathway) => pathway.id));
+  const supplementalRegistryPathways = TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.filter(
+    (pathway) => pathway.planId === plan.id && !bootstrapPathwayIds.has(pathway.pathwayId)
+  ).map((pathway) => ({
+    id: pathway.pathwayId,
+    label: pathway.label,
+    summary: normalizeTransferPlannerText(pathway.summary),
+    officialLinks: [],
+  } satisfies TransferPlannerMajorPathway));
+
+  return [...bootstrapPathways, ...supplementalRegistryPathways];
+}
+
 function countMaterializedPathwaysForPlan(
   plan: TransferPlannerMajorPlan,
   options: {
@@ -2953,7 +2972,7 @@ function countMaterializedPathwaysForPlan(
   const hiddenGapPlanId = options.hiddenGapPlanId ?? plan.id;
   const materializedPathways = materializeTransferPlannerPathways(
     plan,
-    plan.pathways ?? [],
+    buildSummaryRegistryBackedBasePathways(plan),
     getPlanMaterializationParsedRequirementSourceBlocks(plan.id)
   );
   if (includeHiddenSourceGaps) {
