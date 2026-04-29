@@ -3254,18 +3254,43 @@ export function isTransferPlannerEquivalencyRuleEffectiveForTerm(
   );
 }
 
+let transferPlannerEquivalencyRulesBySourceCourse:
+  | Map<string, TransferPlannerEquivalencyRule[]>
+  | null = null;
+
+function getTransferPlannerEquivalencyRulesBySourceCourse() {
+  if (transferPlannerEquivalencyRulesBySourceCourse) {
+    return transferPlannerEquivalencyRulesBySourceCourse;
+  }
+
+  const rulesBySourceCourse = new Map<string, TransferPlannerEquivalencyRule[]>();
+  for (const rule of TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY) {
+    const ruleSourceCourses = new Set(
+      (rule.sourceCourseSets ?? [])
+        .flatMap((courseSet) => courseSet)
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    );
+
+    for (const sourceCourseCode of ruleSourceCourses) {
+      const matchingRules = rulesBySourceCourse.get(sourceCourseCode) ?? [];
+      matchingRules.push(rule);
+      rulesBySourceCourse.set(sourceCourseCode, matchingRules);
+    }
+  }
+
+  transferPlannerEquivalencyRulesBySourceCourse = rulesBySourceCourse;
+  return transferPlannerEquivalencyRulesBySourceCourse;
+}
+
 export function getTransferPlannerEquivalencyRulesForSourceCourse(
   sourceCourseCode: string,
   effectiveTermLabel?: string | null
 ) {
   const normalizedCode = normalizeCourseCode(sourceCourseCode);
-  return TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY.filter((entry) => {
-    const hasSourceCourse = (entry.sourceCourseSets ?? []).some((courseSet) =>
-      courseSet.includes(normalizedCode)
-    );
-    if (!hasSourceCourse) {
-      return false;
-    }
+  const matchingRules =
+    getTransferPlannerEquivalencyRulesBySourceCourse().get(normalizedCode) ?? [];
+  return matchingRules.filter((entry) => {
     if (!effectiveTermLabel) {
       return true;
     }

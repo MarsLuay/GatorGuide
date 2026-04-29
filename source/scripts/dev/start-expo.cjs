@@ -12,7 +12,7 @@ const {
 const OUTPUT_BRIDGE_ENV = "GATORGUIDE_EXPO_OUTPUT_BRIDGE";
 const OUTPUT_BRIDGE_FILE_ENV = "GATORGUIDE_EXPO_OUTPUT_FILE";
 const VALID_MODES = ["tunnel", "lan", "offline"];
-const DEFAULT_MODE_ORDER = ["tunnel", "lan", "offline"];
+const DEFAULT_MODE_ORDER = ["lan", "offline"];
 const MODE_TIMEOUTS_MS = {
   tunnel: 35000,
   lan: 20000,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, InteractionManager, Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 
 type TransferPlannerPageComponent = React.ComponentType;
 
@@ -35,17 +35,14 @@ export default function ResourcesTransferPlanner() {
 
   useEffect(() => {
     let cancelled = false;
-    const task = InteractionManager.runAfterInteractions(() => {
-      void import("@/components/pages/TransferPlannerPage").then((module) => {
-        if (!cancelled) {
-          setTransferPlannerPage(() => module.default);
-        }
-      });
+    void import("@/components/pages/TransferPlannerPage").then((module) => {
+      if (!cancelled) {
+        setTransferPlannerPage(() => module.default);
+      }
     });
 
     return () => {
       cancelled = true;
-      task.cancel?.();
     };
   }, []);
 

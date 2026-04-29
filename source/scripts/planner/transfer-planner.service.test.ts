@@ -6744,6 +6744,7 @@ test("Phase 10 refresh pipeline is the single rebuild and verification entry poi
     "scripts/planner/ingest-uw-catalog.cjs",
     "scripts/planner/generate-transfer-planner-course-metadata.cjs",
     "scripts/planner/generate-transfer-planner-grc-availability.cjs",
+    "scripts/planner/generate-transfer-planner-student-runtime.cjs",
     "scripts/planner/generate-transfer-planner-docs.ts",
     "scripts/planner/transfer-planner.service.test.ts",
   ];

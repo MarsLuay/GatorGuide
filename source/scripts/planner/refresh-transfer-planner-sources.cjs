@@ -114,6 +114,7 @@ const REFRESH_SECTION_DEFINITIONS = [
       { label: "Ingest UW course catalogs" },
       { label: "Generate merged course metadata" },
       { label: "Generate Green River availability registry" },
+      { label: "Generate student runtime planner bundle" },
       { label: "Generate planner docs" },
     ],
   },
@@ -675,6 +676,9 @@ async function main() {
         );
         runTrackedStep("Generate Green River availability registry", () =>
           runCommand("node", ["scripts/planner/generate-transfer-planner-grc-availability.cjs"])
+        );
+        runTrackedStep("Generate student runtime planner bundle", () =>
+          runCommand("node", ["scripts/planner/generate-transfer-planner-student-runtime.cjs"])
         );
         runTrackedStep("Generate planner docs", () =>
           runTsNode("scripts/planner/generate-transfer-planner-docs.ts")

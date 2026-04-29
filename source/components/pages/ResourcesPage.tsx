@@ -165,6 +165,14 @@ function parseInternalAppUrl(url: string): InternalToolTarget | null {
   };
 }
 
+function isTransferPlannerResourceUrl(url: string) {
+  return parseInternalAppUrl(url)?.pathname === ROUTES.transferPlanner;
+}
+
+function preloadTransferPlannerPage() {
+  void import("@/components/pages/TransferPlannerPage");
+}
+
 function insertResourceItemAfterUrl(
   items: ResourceItem[],
   itemToInsert: ResourceItem,
@@ -788,6 +796,8 @@ export default function ResourcesPage() {
     items.map((item, index) => (
       <AnimatedCardPressable
         key={`${keyPrefix}-${item.title}`}
+        onHoverIn={isTransferPlannerResourceUrl(item.url) ? preloadTransferPlannerPage : undefined}
+        onPressIn={isTransferPlannerResourceUrl(item.url) ? preloadTransferPlannerPage : undefined}
         onPress={() => {
           void openLink(item.url);
         }}

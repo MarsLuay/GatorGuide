@@ -24,6 +24,7 @@
     "planner:ingest-grc-catalog": "node scripts/planner/ingest-grc-catalog.cjs",
     "planner:ingest-uw-catalog": "node scripts/planner/ingest-uw-catalog.cjs",
     "planner:build-course-metadata": "node scripts/planner/ingest-grc-catalog.cjs && node scripts/planner/ingest-uw-catalog.cjs && node scripts/planner/generate-transfer-planner-course-metadata.cjs",
+    "planner:generate-student-runtime": "node scripts/planner/generate-transfer-planner-student-runtime.cjs",
     "planner:audit:owners": "node scripts/planner/verify-transfer-planner-owner-audit.cjs",
     "planner:refresh": "node scripts/planner/refresh-transfer-planner-sources.cjs",
     "planner:verify": "node scripts/planner/refresh-transfer-planner-sources.cjs --verify-only",

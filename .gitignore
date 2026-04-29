@@ -17,5 +17,6 @@ source/dist/
 source/.tmp/transfer-planner-catalog-snapshots/
 source/.tmp/transfer-planner-equivalency-guide-snapshots/
 source/.tmp/scholarship-exports/
+# Resource catalog Excel exports
 /resource-catalog-export.*
 source/data/resource-catalog-export.*

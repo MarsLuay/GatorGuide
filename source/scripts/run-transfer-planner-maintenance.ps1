@@ -368,7 +368,7 @@ function Get-MaintenanceSectionCatalog {
       [pscustomobject]@{
         Id = "catalog-and-generation"
         Title = "Refresh: catalog ingest and generated outputs"
-        Description = "Regenerate bootstrap, equivalencies, catalog ingests, metadata, availability, and docs."
+        Description = "Regenerate bootstrap, equivalencies, catalog ingests, metadata, availability, runtime bundle, and docs."
         Kind = "refresh"
         StepLabel = "Planner refresh"
       },
@@ -471,6 +471,7 @@ function Get-SectionArtifacts {
         (Join-Path $projectRoot "constants\transfer-planner-source\course-metadata.generated.ts"),
         (Join-Path $projectRoot "constants\transfer-planner-source\equivalency-guide.generated.ts"),
         (Join-Path $projectRoot "constants\transfer-planner-source\grc-associate-tracks.generated.ts"),
+        (Join-Path $projectRoot "constants\transfer-planner-source\student-runtime.generated.ts"),
         (Join-Path $projectRoot "constants\transfer-planner-source\grc-course-availability.generated.ts")
       )
     }

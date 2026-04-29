@@ -100,3 +100,11 @@ To add new scholarships, internships, or helpful resource links, there's a neat 
 Just double-click it, answer the prompts, and it will walk you through adding the item. It asks for the important information, including things like title, link, deadline style, yearly recurrence, essays, recommendations, and any other details it can collect.
 
 After it saves your changes, commit and push them so the new scholarship, internship, or resource is added to the repo.
+
+## Updating Planner
+
+### Bat File
+
+To update all course information in course planner, double click the 'Course-Planner-Updator.bat'.
+
+There will be a few options that will walk you through on what to update and how it should do it. After waiting around 20 minutes (hopefully), you are free to commit and push the updates so the new information is added to the repo.

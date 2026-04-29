@@ -18,7 +18,7 @@ const RESOURCES_PATH =
   path.join(MOBILE_TEAM_ROOT, "data", "resource-catalog.json");
 const RESOURCE_EXCEL_EXPORT_PATH =
   process.env.GATORGUIDE_RESOURCE_EXCEL_EXPORT_PATH ||
-  path.join(MOBILE_TEAM_ROOT, "data", "resource-catalog-export.xlsx");
+  path.join(REPO_ROOT, "resource-catalog-export.xlsx");
 const RESOURCE_TRANSLATIONS_PATH = path.join(
   MOBILE_TEAM_ROOT,
   "services",
@@ -871,6 +871,87 @@ const RESOURCE_EXCEL_HEADER_ALIASES = {
   tags: ["tags", "TAGS"],
 };
 
+const OPPORTUNITY_EXCEL_EXPORT_COLUMNS = [
+  { key: "link", label: "LINK", width: 44.5 },
+  { key: "name", label: "NAME", width: 31.13 },
+  { key: "type", label: "TYPE", width: 18.75 },
+  { key: "organization", label: "ORGANIZATION", width: 28 },
+  { key: "description", label: "DESCRIPTION", width: 56.88 },
+  { key: "deadline", label: "DEADLINE", width: 18.75 },
+  { key: "award", label: "AWARD", width: 24 },
+  { key: "sourceLabel", label: "SOURCE", width: 31.13 },
+  { key: "sourceKind", label: "SOURCE KIND", width: 16 },
+  { key: "tags", label: "TAGS", width: 35.25 },
+  { key: "status", label: "STATUS", width: 14 },
+  { key: "opportunityId", label: "OPPORTUNITY ID", width: 35.25, hidden: true },
+];
+
+const SCHOLARSHIP_EXCEL_EXPORT_COLUMNS = [
+  { key: "link", label: "LINK", width: 44.5 },
+  { key: "name", label: "NAME", width: 31.13 },
+  { key: "amount", label: "AMOUNT", width: 24 },
+  { key: "awardCadence", label: "One time or continuous", width: 21 },
+  { key: "description", label: "DESCRIPTION", width: 56.88 },
+  { key: "deadline", label: "DEADLINE", width: 18.75 },
+  { key: "prereq", label: "PREREQ", width: 35.25 },
+  { key: "institutionSpecific", label: "Institution-specific?", width: 22 },
+  { key: "disciplineSpecific", label: "Discipline-specific?", width: 21 },
+  { key: "fullTimeRequired", label: "Full-time required?", width: 20 },
+  { key: "gpaRequirement", label: "GPA requirement", width: 17 },
+  { key: "materialsRequired", label: "MATERIALS REQUIRED", width: 35.25 },
+  { key: "essayRequired", label: "Essay required?", width: 17 },
+  { key: "submissionForm", label: "Submission Form", width: 19 },
+  { key: "essayCount", label: "How many Essays?", width: 18 },
+  {
+    key: "recommendationCount",
+    label: "How many recommendations required?",
+    width: 31.13,
+  },
+  { key: "sourceKind", label: "SOURCE KIND", width: 16, hidden: true },
+  { key: "status", label: "STATUS", width: 14, hidden: true },
+  { key: "opportunityId", label: "OPPORTUNITY ID", width: 35.25, hidden: true },
+];
+
+const LEGACY_EXCEL_EXPORT_COLUMNS = [
+  { key: "link", label: "LINK", width: 44.5 },
+  { key: "name", label: "NAME", width: 31.13 },
+  { key: "type", label: "TYPE", width: 18.75 },
+  { key: "organization", label: "ORGANIZATION", width: 28 },
+  { key: "amount", label: "AMOUNT", width: 24 },
+  { key: "awardCadence", label: "One time or continuous", width: 21 },
+  { key: "description", label: "DESCRIPTION", width: 56.88 },
+  { key: "deadline", label: "DEADLINE", width: 18.75 },
+  { key: "prereq", label: "PREREQ", width: 35.25 },
+  { key: "institutionSpecific", label: "Institution-specific?", width: 22 },
+  { key: "disciplineSpecific", label: "Discipline-specific?", width: 21 },
+  { key: "fullTimeRequired", label: "Full-time required?", width: 20 },
+  { key: "gpaRequirement", label: "GPA requirement", width: 17 },
+  { key: "materialsRequired", label: "MATERIALS REQUIRED", width: 35.25 },
+  { key: "essayRequired", label: "Essay required?", width: 17 },
+  { key: "submissionForm", label: "Submission Form", width: 19 },
+  { key: "essayCount", label: "How many Essays?", width: 18 },
+  {
+    key: "recommendationCount",
+    label: "How many recommendations required?",
+    width: 31.13,
+  },
+  { key: "sourceLabel", label: "SOURCE", width: 31.13 },
+  { key: "tags", label: "TAGS", width: 35.25 },
+  { key: "sourceKind", label: "SOURCE KIND", width: 16, hidden: true },
+  { key: "status", label: "STATUS", width: 14, hidden: true },
+  { key: "opportunityId", label: "OPPORTUNITY ID", width: 35.25, hidden: true },
+];
+
+const OPPORTUNITY_TYPE_LABELS = {
+  scholarship: "Scholarship",
+  internship: "Internship",
+  general_deadline: "General deadline",
+  college_deadline: "College deadline",
+};
+
+const WORKBOOK_OPTION_SHEET_NAME = "Options";
+const WORKBOOK_VALIDATION_MAX_ROW = 1000;
+
 function normalizeSpreadsheetHeader(value) {
   return String(value ?? "")
     .trim()
@@ -956,6 +1037,567 @@ function resourceCatalogToCsv(resourceCatalog) {
   return resourceCatalogToSpreadsheetRows(resourceCatalog)
     .map((row) => formatCsvRow(row))
     .join("\n");
+}
+
+function uniqueSpreadsheetOptions(values) {
+  const seen = new Set();
+  const options = [];
+
+  for (const value of values ?? []) {
+    const text = formatSpreadsheetCell(value);
+    if (!text) continue;
+    const key = text.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    options.push(text);
+  }
+
+  return options;
+}
+
+function buildOptionSheet(optionLists) {
+  const options = optionLists
+    .map((list) => ({
+      key: list.key,
+      label: list.label,
+      values: uniqueSpreadsheetOptions(list.values),
+    }))
+    .filter((list) => list.values.length > 0);
+  const refs = {};
+
+  if (!options.length) {
+    return { refs, sheet: null };
+  }
+
+  const maxRowCount = Math.max(...options.map((list) => list.values.length)) + 1;
+  const rows = [];
+
+  for (let rowIndex = 0; rowIndex < maxRowCount; rowIndex += 1) {
+    rows.push(
+      options.map((list) => (rowIndex === 0 ? list.label : list.values[rowIndex - 1] ?? ""))
+    );
+  }
+
+  options.forEach((list, index) => {
+    const column = columnName(index);
+    refs[list.key] = `${WORKBOOK_OPTION_SHEET_NAME}!$${column}$2:$${column}$${
+      list.values.length + 1
+    }`;
+  });
+
+  return {
+    refs,
+    sheet: {
+      name: WORKBOOK_OPTION_SHEET_NAME,
+      hidden: true,
+      columns: options.map((list) => ({
+        key: list.key,
+        label: list.label,
+        width: Math.max(16, Math.min(40, list.label.length + 6)),
+      })),
+      rows,
+      validations: [],
+      count: 0,
+    },
+  };
+}
+
+function createListValidation(columns, key, formula, config = {}) {
+  if (!formula) return null;
+  const columnIndex = columns.findIndex((column) => column.key === key);
+  if (columnIndex < 0) return null;
+
+  const column = columnName(columnIndex);
+  const firstRow = config.firstRow ?? 2;
+  const lastRow = config.lastRow ?? WORKBOOK_VALIDATION_MAX_ROW;
+  return {
+    type: "list",
+    allowBlank: config.allowBlank ?? true,
+    showErrorMessage: config.showErrorMessage ?? true,
+    sqref: `${column}${firstRow}:${column}${lastRow}`,
+    formula1: formula,
+  };
+}
+
+function createListValidations(columns, configs) {
+  return configs
+    .map((config) => createListValidation(columns, config.key, config.formula, config))
+    .filter(Boolean);
+}
+
+function dedupeOpportunities(opportunities) {
+  const byId = new Map();
+  for (const opportunity of opportunities ?? []) {
+    const id = String(opportunity?.opportunityId ?? "").trim();
+    if (!id) continue;
+    byId.set(id, opportunity);
+  }
+  return Array.from(byId.values());
+}
+
+function parseOpportunityDueDate(value) {
+  if (!value) return null;
+  const parsed = new Date(value);
+  return Number.isNaN(parsed.getTime()) ? null : parsed;
+}
+
+function isExpiredOneTimeOpportunity(opportunity, now = new Date()) {
+  const dueDate = parseOpportunityDueDate(opportunity?.dueAt);
+  if (!dueDate) return false;
+  return dueDate.getTime() < now.getTime() && !opportunity?.recurrence?.isYearly;
+}
+
+function formatOpportunityExportDate(value) {
+  const parsed = parseOpportunityDueDate(value);
+  if (!parsed) return "";
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(parsed);
+}
+
+function formatOpportunityExportDeadline(opportunity) {
+  if (opportunity?.deadline?.type === "rolling") return "Rolling";
+
+  const dueAt = formatOpportunityExportDate(opportunity?.dueAt);
+  if (dueAt) return dueAt;
+
+  const month = Number(opportunity?.recurrence?.month);
+  const day = Number(opportunity?.recurrence?.day);
+  if (Number.isFinite(month) && Number.isFinite(day) && month >= 1 && month <= 12) {
+    const recurringDate = new Date(2026, month - 1, day);
+    const monthName = recurringDate.toLocaleString("en-US", { month: "long" });
+    return `${monthName} ${day}`;
+  }
+
+  return opportunity?.deadline?.label ?? "";
+}
+
+function formatOpportunityExportCurrency(value, currency) {
+  if (currency === "USD") {
+    return `$${value.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+  }
+  return `${value.toLocaleString("en-US", { maximumFractionDigits: 0 })} ${currency}`;
+}
+
+function formatOpportunityExportAward(opportunity) {
+  const award = opportunity?.award ?? {};
+  if (award.amountText) return award.amountText;
+
+  const currency = award.currency || "USD";
+  const minimum = award.amountMin;
+  const maximum = award.amountMax;
+  if (minimum != null && maximum != null) {
+    if (minimum === maximum) return formatOpportunityExportCurrency(minimum, currency);
+    return `${formatOpportunityExportCurrency(minimum, currency)} - ${formatOpportunityExportCurrency(maximum, currency)}`;
+  }
+  if (maximum != null) return `Up to ${formatOpportunityExportCurrency(maximum, currency)}`;
+  if (minimum != null) return `${formatOpportunityExportCurrency(minimum, currency)}+`;
+  return "";
+}
+
+function formatOpportunityAwardCadence(opportunity) {
+  const renewable = opportunity?.award?.renewable;
+  if (renewable == null) return "";
+  return renewable ? "continuous" : "one time";
+}
+
+function asList(value) {
+  if (Array.isArray(value)) return value;
+  if (value == null || value === "") return [];
+  return [value];
+}
+
+function getOpportunityExportTags(opportunity) {
+  return [
+    ...asList(opportunity?.matching?.financialAidTags),
+    ...asList(opportunity?.matching?.suggestedMajors),
+    ...asList(opportunity?.eligibility?.residencyTypes),
+  ].filter(Boolean);
+}
+
+function getOpportunityExportLink(opportunity) {
+  return opportunity?.externalUrl || opportunity?.source?.sourceUrl || opportunity?.college?.website || "";
+}
+
+function formatScholarshipExportPrereq(opportunity) {
+  const prereqs = [];
+  if (opportunity?.eligibility?.transferOnly) prereqs.push("Transfer student");
+  const residencyTypes = asList(opportunity?.eligibility?.residencyTypes);
+  if (residencyTypes.length) {
+    prereqs.push(`Residency: ${residencyTypes.join(", ")}`);
+  }
+  const suggestedMajors = asList(opportunity?.matching?.suggestedMajors);
+  if (opportunity?.matching?.hasToBeMajor && suggestedMajors.length) {
+    prereqs.push(`Major: ${suggestedMajors.join(", ")}`);
+  }
+  return prereqs.join("; ");
+}
+
+function formatScholarshipInstitutionSpecific(opportunity) {
+  return opportunity?.college?.collegeName || "No";
+}
+
+function formatYesNo(value) {
+  return value ? "Yes" : "No";
+}
+
+function formatScholarshipDisciplineSpecific(opportunity) {
+  const suggestedMajors = asList(opportunity?.matching?.suggestedMajors);
+  return formatYesNo(Boolean(opportunity?.matching?.hasToBeMajor || suggestedMajors.length));
+}
+
+function formatScholarshipMaterials(opportunity) {
+  const materials = [];
+  const essayCount = Number(opportunity?.requirements?.essayCount ?? 0);
+  const recommendationCount = Number(opportunity?.requirements?.recommendationCountMin ?? 0);
+
+  if (essayCount > 0) materials.push("Essay");
+  if (recommendationCount > 0) {
+    materials.push(
+      recommendationCount === 1
+        ? "Recommendation"
+        : `${recommendationCount} recommendations`
+    );
+  }
+  if (opportunity?.externalUrl) materials.push("Application");
+  return materials.join(", ");
+}
+
+function formatPositiveCount(value) {
+  const count = Number(value ?? 0);
+  return Number.isFinite(count) && count > 0 ? String(count) : "";
+}
+
+function getScholarshipLinkExportRows(opportunities, predicate) {
+  return dedupeOpportunities(opportunities)
+    .filter((opportunity) => opportunity && predicate(opportunity))
+    .map((opportunity) => ({
+      link: getOpportunityExportLink(opportunity),
+      name: opportunity.title,
+      amount: formatOpportunityExportAward(opportunity),
+      awardCadence: formatOpportunityAwardCadence(opportunity),
+      description: opportunity.summary,
+      deadline: formatOpportunityExportDeadline(opportunity),
+      prereq: formatScholarshipExportPrereq(opportunity),
+      institutionSpecific: formatScholarshipInstitutionSpecific(opportunity),
+      disciplineSpecific: formatScholarshipDisciplineSpecific(opportunity),
+      fullTimeRequired: "",
+      gpaRequirement:
+        opportunity.eligibility?.gpaMin == null ? "" : String(opportunity.eligibility.gpaMin),
+      materialsRequired: formatScholarshipMaterials(opportunity),
+      essayRequired: formatYesNo(Number(opportunity.requirements?.essayCount ?? 0) > 0),
+      submissionForm: opportunity.externalUrl ? "Online" : "",
+      essayCount: formatPositiveCount(opportunity.requirements?.essayCount),
+      recommendationCount: formatPositiveCount(opportunity.requirements?.recommendationCountMin),
+      sourceKind: opportunity.source?.kind ?? "",
+      status: opportunity.status,
+      opportunityId: opportunity.opportunityId,
+    }));
+}
+
+function getOpportunityLinkExportRows(opportunities, predicate) {
+  return dedupeOpportunities(opportunities)
+    .filter((opportunity) => opportunity && predicate(opportunity))
+    .map((opportunity) => ({
+      link: getOpportunityExportLink(opportunity),
+      name: opportunity.title,
+      type: OPPORTUNITY_TYPE_LABELS[opportunity.type] ?? opportunity.type,
+      organization: opportunity.organizationName,
+      description: opportunity.summary,
+      deadline: formatOpportunityExportDeadline(opportunity),
+      award: formatOpportunityExportAward(opportunity),
+      sourceLabel: opportunity.source?.sourceLabel ?? "",
+      sourceKind: opportunity.source?.kind ?? "",
+      tags: getOpportunityExportTags(opportunity),
+      status: opportunity.status,
+      opportunityId: opportunity.opportunityId,
+    }));
+}
+
+function buildLegacyOpportunityExportRow(opportunity) {
+  const isScholarship = opportunity.type === "scholarship";
+  return {
+    link: getOpportunityExportLink(opportunity),
+    name: opportunity.title,
+    type: OPPORTUNITY_TYPE_LABELS[opportunity.type] ?? opportunity.type,
+    organization: opportunity.organizationName,
+    amount: formatOpportunityExportAward(opportunity),
+    awardCadence: isScholarship ? formatOpportunityAwardCadence(opportunity) : "",
+    description: opportunity.summary,
+    deadline: formatOpportunityExportDeadline(opportunity),
+    prereq: isScholarship ? formatScholarshipExportPrereq(opportunity) : "",
+    institutionSpecific: isScholarship ? formatScholarshipInstitutionSpecific(opportunity) : "",
+    disciplineSpecific: isScholarship ? formatScholarshipDisciplineSpecific(opportunity) : "",
+    fullTimeRequired: "",
+    gpaRequirement:
+      isScholarship && opportunity.eligibility?.gpaMin != null
+        ? String(opportunity.eligibility.gpaMin)
+        : "",
+    materialsRequired: isScholarship ? formatScholarshipMaterials(opportunity) : "",
+    essayRequired: isScholarship
+      ? formatYesNo(Number(opportunity.requirements?.essayCount ?? 0) > 0)
+      : "",
+    submissionForm: isScholarship && opportunity.externalUrl ? "Online" : "",
+    essayCount: isScholarship ? formatPositiveCount(opportunity.requirements?.essayCount) : "",
+    recommendationCount: isScholarship
+      ? formatPositiveCount(opportunity.requirements?.recommendationCountMin)
+      : "",
+    sourceLabel: opportunity.source?.sourceLabel ?? "",
+    tags: getOpportunityExportTags(opportunity),
+    sourceKind: opportunity.source?.kind ?? "",
+    status: opportunity.status,
+    opportunityId: opportunity.opportunityId,
+  };
+}
+
+function getLegacyOpportunityExportRows(opportunities, predicate) {
+  return dedupeOpportunities(opportunities)
+    .filter((opportunity) => opportunity && predicate(opportunity))
+    .map(buildLegacyOpportunityExportRow);
+}
+
+function scholarshipRowsToSpreadsheetRows(rows) {
+  return [
+    SCHOLARSHIP_EXCEL_EXPORT_COLUMNS.map((column) => column.label),
+    ...rows.map((row) =>
+      SCHOLARSHIP_EXCEL_EXPORT_COLUMNS.map((column) => formatSpreadsheetCell(row[column.key]))
+    ),
+  ];
+}
+
+function legacyRowsToSpreadsheetRows(rows) {
+  return [
+    LEGACY_EXCEL_EXPORT_COLUMNS.map((column) => column.label),
+    ...rows.map((row) =>
+      LEGACY_EXCEL_EXPORT_COLUMNS.map((column) => formatSpreadsheetCell(row[column.key]))
+    ),
+  ];
+}
+
+function opportunityRowsToSpreadsheetRows(rows) {
+  return [
+    OPPORTUNITY_EXCEL_EXPORT_COLUMNS.map((column) => column.label),
+    ...rows.map((row) =>
+      OPPORTUNITY_EXCEL_EXPORT_COLUMNS.map((column) => formatSpreadsheetCell(row[column.key]))
+    ),
+  ];
+}
+
+function buildScholarshipExportSheetFromRows(name, rows, validations = []) {
+  return {
+    name,
+    columns: SCHOLARSHIP_EXCEL_EXPORT_COLUMNS,
+    rows: scholarshipRowsToSpreadsheetRows(rows),
+    validations,
+    count: rows.length,
+  };
+}
+
+function buildLegacyExportSheetFromRows(name, rows, validations = []) {
+  return {
+    name,
+    columns: LEGACY_EXCEL_EXPORT_COLUMNS,
+    rows: legacyRowsToSpreadsheetRows(rows),
+    validations,
+    count: rows.length,
+  };
+}
+
+function buildOpportunityExportSheetFromRows(name, rows, validations = []) {
+  return {
+    name,
+    columns: OPPORTUNITY_EXCEL_EXPORT_COLUMNS,
+    rows: opportunityRowsToSpreadsheetRows(rows),
+    validations,
+    count: rows.length,
+  };
+}
+
+function buildOpportunityExportSheet(name, opportunities, predicate) {
+  const rows = getOpportunityLinkExportRows(opportunities, predicate);
+  return buildOpportunityExportSheetFromRows(name, rows);
+}
+
+function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
+  const resourceRows = getResourceExportRows(resourceCatalog);
+  const allOpportunities = dedupeOpportunities(opportunities);
+  const isDeadlineOpportunity = (opportunity) =>
+    opportunity.type === "general_deadline" || opportunity.type === "college_deadline";
+  const belongsInLegacy = (opportunity) => isExpiredOneTimeOpportunity(opportunity);
+  const scholarshipRows = getScholarshipLinkExportRows(
+    allOpportunities,
+    (opportunity) => opportunity.type === "scholarship" && !belongsInLegacy(opportunity)
+  );
+  const internshipRows = getOpportunityLinkExportRows(
+    allOpportunities,
+    (opportunity) => opportunity.type === "internship" && !belongsInLegacy(opportunity)
+  );
+  const deadlineRows = getOpportunityLinkExportRows(
+    allOpportunities,
+    (opportunity) => isDeadlineOpportunity(opportunity) && !belongsInLegacy(opportunity)
+  );
+  const legacyRows = getLegacyOpportunityExportRows(allOpportunities, belongsInLegacy);
+  const allScholarshipRows = [
+    ...scholarshipRows,
+    ...getScholarshipLinkExportRows(
+      allOpportunities,
+      (opportunity) => opportunity.type === "scholarship" && belongsInLegacy(opportunity)
+    ),
+  ];
+  const optionSourceKinds = uniqueSpreadsheetOptions([
+    "manual",
+    "seed",
+    "ai_college_deadline",
+    "legacy",
+    ...allOpportunities.map((opportunity) => opportunity.source?.kind),
+  ]);
+  const optionStatuses = uniqueSpreadsheetOptions([
+    "active",
+    "draft",
+    "archived",
+    ...allOpportunities.map((opportunity) => opportunity.status),
+  ]);
+  const { refs: optionRefs, sheet: optionSheet } = buildOptionSheet([
+    {
+      key: "resourceSectionTitles",
+      label: "Resource sections",
+      values: resourceCatalog.map(
+        (section) => resolveCatalogExportText(section, "title") || safeDisplayLabel(section)
+      ),
+    },
+    {
+      key: "resourceSubsectionTitles",
+      label: "Resource subsections",
+      values: resourceCatalog.flatMap((section) =>
+        (section.subsections ?? []).map(
+          (subsection) =>
+            resolveCatalogExportText(subsection, "title") || safeSubsectionLabel(subsection)
+        )
+      ),
+    },
+    {
+      key: "resourceSectionIds",
+      label: "Resource section ids",
+      values: resourceCatalog.map((section) => section.id),
+    },
+    {
+      key: "resourceSubsectionIds",
+      label: "Resource subsection ids",
+      values: resourceCatalog.flatMap((section) =>
+        (section.subsections ?? []).map((subsection) => subsection.id)
+      ),
+    },
+    {
+      key: "resourceIcons",
+      label: "Resource icons",
+      values: resourceCatalog.map((section) => section.icon),
+    },
+    {
+      key: "opportunityTypes",
+      label: "Opportunity types",
+      values: Object.values(OPPORTUNITY_TYPE_LABELS),
+    },
+    {
+      key: "sourceKinds",
+      label: "Source kinds",
+      values: optionSourceKinds,
+    },
+    {
+      key: "statuses",
+      label: "Statuses",
+      values: optionStatuses,
+    },
+    {
+      key: "awardCadences",
+      label: "Award cadences",
+      values: ["one time", "continuous", ...allScholarshipRows.map((row) => row.awardCadence)],
+    },
+    {
+      key: "scholarshipPrereqs",
+      label: "Scholarship prereqs",
+      values: allScholarshipRows.map((row) => row.prereq),
+    },
+    {
+      key: "institutions",
+      label: "Institutions",
+      values: ["No", ...allScholarshipRows.map((row) => row.institutionSpecific)],
+    },
+    {
+      key: "yesNo",
+      label: "Yes/No",
+      values: ["No", "Yes"],
+    },
+    {
+      key: "submissionForms",
+      label: "Submission forms",
+      values: [
+        "Online",
+        "Email",
+        "Mail",
+        "In Person",
+        ...allScholarshipRows.flatMap((row) =>
+          String(row.submissionForm ?? "")
+            .split(",")
+            .map((item) => item.trim())
+        ),
+      ],
+    },
+  ]);
+  const resourceValidations = createListValidations(RESOURCE_EXCEL_EXPORT_COLUMNS, [
+    { key: "sectionTitle", formula: optionRefs.resourceSectionTitles },
+    { key: "subsectionTitle", formula: optionRefs.resourceSubsectionTitles },
+    { key: "sectionId", formula: optionRefs.resourceSectionIds },
+    { key: "subsectionId", formula: optionRefs.resourceSubsectionIds },
+    { key: "sectionIcon", formula: optionRefs.resourceIcons },
+  ]);
+  const scholarshipValidations = createListValidations(SCHOLARSHIP_EXCEL_EXPORT_COLUMNS, [
+    { key: "awardCadence", formula: optionRefs.awardCadences },
+    { key: "prereq", formula: optionRefs.scholarshipPrereqs },
+    { key: "institutionSpecific", formula: optionRefs.institutions },
+    { key: "disciplineSpecific", formula: optionRefs.yesNo },
+    { key: "fullTimeRequired", formula: optionRefs.yesNo },
+    { key: "essayRequired", formula: optionRefs.yesNo },
+    { key: "submissionForm", formula: optionRefs.submissionForms },
+    { key: "sourceKind", formula: optionRefs.sourceKinds },
+    { key: "status", formula: optionRefs.statuses },
+  ]);
+  const opportunityValidations = createListValidations(OPPORTUNITY_EXCEL_EXPORT_COLUMNS, [
+    { key: "type", formula: optionRefs.opportunityTypes },
+    { key: "sourceKind", formula: optionRefs.sourceKinds },
+    { key: "status", formula: optionRefs.statuses },
+  ]);
+  const legacyValidations = createListValidations(LEGACY_EXCEL_EXPORT_COLUMNS, [
+    { key: "type", formula: optionRefs.opportunityTypes },
+    { key: "awardCadence", formula: optionRefs.awardCadences },
+    { key: "prereq", formula: optionRefs.scholarshipPrereqs },
+    { key: "institutionSpecific", formula: optionRefs.institutions },
+    { key: "disciplineSpecific", formula: optionRefs.yesNo },
+    { key: "fullTimeRequired", formula: optionRefs.yesNo },
+    { key: "essayRequired", formula: optionRefs.yesNo },
+    { key: "submissionForm", formula: optionRefs.submissionForms },
+    { key: "sourceKind", formula: optionRefs.sourceKinds },
+    { key: "status", formula: optionRefs.statuses },
+  ]);
+
+  const sheets = [
+    {
+      name: "Resources",
+      columns: RESOURCE_EXCEL_EXPORT_COLUMNS,
+      rows: resourceCatalogToSpreadsheetRows(resourceCatalog),
+      validations: resourceValidations,
+      count: resourceRows.length,
+    },
+    buildScholarshipExportSheetFromRows("Scholarships", scholarshipRows, scholarshipValidations),
+    buildOpportunityExportSheetFromRows("Internships", internshipRows, opportunityValidations),
+    buildOpportunityExportSheetFromRows("Deadlines", deadlineRows, opportunityValidations),
+    buildLegacyExportSheetFromRows("Legacy", legacyRows, legacyValidations),
+  ];
+
+  if (optionSheet) sheets.push(optionSheet);
+
+  return sheets;
 }
 
 function parseResourceCatalogRows(rows) {
@@ -1167,7 +1809,13 @@ function createWorkbookStylesXml() {
 </styleSheet>`;
 }
 
-function createWorksheetXml(rows, stringIndexes, columns = RESOURCE_EXCEL_EXPORT_COLUMNS, hyperlinks = []) {
+function createWorksheetXml(
+  rows,
+  stringIndexes,
+  columns = RESOURCE_EXCEL_EXPORT_COLUMNS,
+  hyperlinks = [],
+  validations = []
+) {
   const lastColumn = columnName(Math.max(0, (rows[0]?.length ?? columns.length) - 1));
   const rowCount = Math.max(1, rows.length);
   const cols = columns.map((column, index) => {
@@ -1199,6 +1847,15 @@ function createWorksheetXml(rows, stringIndexes, columns = RESOURCE_EXCEL_EXPORT
         .map((link) => `<hyperlink ref="${link.ref}" r:id="${link.id}"/>`)
         .join("")}</hyperlinks>`
     : "";
+  const validationsXml = validations.length
+    ? `<dataValidations count="${validations.length}">${validations
+        .map((validation) => {
+          const allowBlank = validation.allowBlank ? ' allowBlank="1"' : "";
+          const showErrorMessage = validation.showErrorMessage ? ' showErrorMessage="1"' : "";
+          return `<dataValidation type="${validation.type}"${allowBlank}${showErrorMessage} sqref="${escapeXml(validation.sqref)}"><formula1>${escapeXml(validation.formula1)}</formula1></dataValidation>`;
+        })
+        .join("")}</dataValidations>`
+    : "";
 
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
@@ -1207,40 +1864,102 @@ function createWorksheetXml(rows, stringIndexes, columns = RESOURCE_EXCEL_EXPORT
   <sheetFormatPr defaultRowHeight="18"/>
   <cols>${cols}</cols>
   <sheetData>${sheetRows}</sheetData>
-  ${hyperlinksXml}
   <autoFilter ref="A1:${lastColumn}${rowCount}"/>
+  ${validationsXml}
+  ${hyperlinksXml}
 </worksheet>`;
 }
 
-function createXlsxBuffer(rows) {
+function sanitizeWorksheetName(value, index, usedNames) {
+  const fallback = `Sheet ${index + 1}`;
+  const base =
+    String(value ?? fallback)
+      .replace(/[:\\/?*\[\]]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+      .slice(0, 31) || fallback;
+  let name = base;
+  let suffix = 2;
+
+  while (usedNames.has(name.toLowerCase())) {
+    const suffixText = ` ${suffix}`;
+    name = `${base.slice(0, 31 - suffixText.length)}${suffixText}`;
+    suffix += 1;
+  }
+
+  usedNames.add(name.toLowerCase());
+  return name;
+}
+
+function normalizeWorkbookSheets(rowsOrSheets) {
+  if (
+    Array.isArray(rowsOrSheets) &&
+    rowsOrSheets.length > 0 &&
+    !Array.isArray(rowsOrSheets[0]) &&
+    Array.isArray(rowsOrSheets[0]?.rows)
+  ) {
+    return rowsOrSheets;
+  }
+
+  return [
+    {
+      name: "Resources",
+      rows: rowsOrSheets,
+      columns: RESOURCE_EXCEL_EXPORT_COLUMNS,
+    },
+  ];
+}
+
+function createXlsxBuffer(rowsOrSheets) {
+  const usedSheetNames = new Set();
+  const sheets = normalizeWorkbookSheets(rowsOrSheets).map((sheet, index) => ({
+    name: sanitizeWorksheetName(sheet.name, index, usedSheetNames),
+    rows: Array.isArray(sheet.rows) && sheet.rows.length ? sheet.rows : [[]],
+    columns: sheet.columns ?? RESOURCE_EXCEL_EXPORT_COLUMNS,
+    hidden: Boolean(sheet.hidden),
+    validations: Array.isArray(sheet.validations) ? sheet.validations : [],
+  }));
   const sharedStrings = [];
   const stringIndexes = new Map();
   let sharedStringCount = 0;
 
-  for (const row of rows) {
-    for (const value of row) {
-      const text = formatSpreadsheetCell(value);
-      if (!text) continue;
-      sharedStringCount += 1;
-      if (!stringIndexes.has(text)) {
-        stringIndexes.set(text, sharedStrings.length);
-        sharedStrings.push(text);
+  for (const sheet of sheets) {
+    for (const row of sheet.rows) {
+      for (const value of row) {
+        const text = formatSpreadsheetCell(value);
+        if (!text) continue;
+        sharedStringCount += 1;
+        if (!stringIndexes.has(text)) {
+          stringIndexes.set(text, sharedStrings.length);
+          sharedStrings.push(text);
+        }
       }
     }
   }
 
-  const hyperlinks = getWorksheetHyperlinks(rows);
-  const worksheetXml = createWorksheetXml(
-    rows,
-    stringIndexes,
-    RESOURCE_EXCEL_EXPORT_COLUMNS,
-    hyperlinks
-  );
+  const worksheetEntries = sheets.map((sheet, index) => {
+    const hyperlinks = getWorksheetHyperlinks(sheet.rows);
+    return {
+      sheet,
+      index,
+      hyperlinks,
+      worksheetXml: createWorksheetXml(
+        sheet.rows,
+        stringIndexes,
+        sheet.columns,
+        hyperlinks,
+        sheet.validations
+      ),
+    };
+  });
+
   const sharedStringsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="${sharedStringCount}" uniqueCount="${sharedStrings.length}">
   ${sharedStrings.map(createSharedStringXml).join("")}
 </sst>`;
 
+  const sharedStringsRelationshipId = `rId${sheets.length + 1}`;
+  const stylesRelationshipId = `rId${sheets.length + 2}`;
   const entries = [
     {
       name: "[Content_Types].xml",
@@ -1249,7 +1968,12 @@ function createXlsxBuffer(rows) {
   <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
   <Default Extension="xml" ContentType="application/xml"/>
   <Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>
-  <Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
+  ${worksheetEntries
+    .map(
+      ({ index }) =>
+        `<Override PartName="/xl/worksheets/sheet${index + 1}.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>`
+    )
+    .join("\n  ")}
   <Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>
   <Override PartName="/xl/sharedStrings.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml"/>
 </Types>`,
@@ -1266,7 +1990,14 @@ function createXlsxBuffer(rows) {
       data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
   <sheets>
-    <sheet name="Resources" sheetId="1" r:id="rId1"/>
+    ${worksheetEntries
+      .map(
+        ({ sheet, index }) => {
+          const state = sheet.hidden ? ' state="hidden"' : "";
+          return `<sheet name="${escapeXml(sheet.name)}" sheetId="${index + 1}"${state} r:id="rId${index + 1}"/>`;
+        }
+      )
+      .join("\n    ")}
   </sheets>
 </workbook>`,
     },
@@ -1274,15 +2005,20 @@ function createXlsxBuffer(rows) {
       name: "xl/_rels/workbook.xml.rels",
       data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>
-  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings" Target="sharedStrings.xml"/>
-  <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+  ${worksheetEntries
+    .map(
+      ({ index }) =>
+        `<Relationship Id="rId${index + 1}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet${index + 1}.xml"/>`
+    )
+    .join("\n  ")}
+  <Relationship Id="${sharedStringsRelationshipId}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings" Target="sharedStrings.xml"/>
+  <Relationship Id="${stylesRelationshipId}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
 </Relationships>`,
     },
-    {
-      name: "xl/worksheets/sheet1.xml",
+    ...worksheetEntries.map(({ index, worksheetXml }) => ({
+      name: `xl/worksheets/sheet${index + 1}.xml`,
       data: worksheetXml,
-    },
+    })),
     {
       name: "xl/styles.xml",
       data: createWorkbookStylesXml(),
@@ -1293,9 +2029,10 @@ function createXlsxBuffer(rows) {
     },
   ];
 
-  if (hyperlinks.length) {
+  for (const { index, hyperlinks } of worksheetEntries) {
+    if (!hyperlinks.length) continue;
     entries.push({
-      name: "xl/worksheets/_rels/sheet1.xml.rels",
+      name: `xl/worksheets/_rels/sheet${index + 1}.xml.rels`,
       data: createWorksheetRelationshipsXml(hyperlinks),
     });
   }
@@ -3435,6 +4172,7 @@ async function exportResourcesAsExcelFile() {
       ? requestedOutputPath
       : ensureXlsxFilePath(requestedOutputPath);
   const resourceCatalog = loadJsonArray(RESOURCES_PATH);
+  const opportunities = loadJsonArray(OPPORTUNITIES_PATH);
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 
@@ -3447,11 +4185,15 @@ async function exportResourcesAsExcelFile() {
     return;
   }
 
-  const workbook = createXlsxBuffer(resourceCatalogToSpreadsheetRows(resourceCatalog));
+  const workbookSheets = buildResourceExportWorkbookSheets(resourceCatalog, opportunities);
+  const workbook = createXlsxBuffer(workbookSheets);
   fs.writeFileSync(outputPath, workbook);
   log(`Saved Excel workbook to ${outputPath}`);
-  log(`Exported ${getResourceExportRows(resourceCatalog).length} resources.`);
-  log("You can open this XLSX in Excel, edit it, and import it back through this same menu.");
+  log(`Exported ${workbookSheets[0].count} resource links.`);
+  log(
+    `Included ${workbookSheets[1].count} scholarships, ${workbookSheets[2].count} internships, ${workbookSheets[3].count} deadlines, and ${workbookSheets[4].count} legacy links.`
+  );
+  log("The Resources sheet can be edited and imported back through this same menu; the other sheets are export-only references.");
 }
 
 async function importResourcesAsExcelFile(rl) {

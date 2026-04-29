@@ -8,6 +8,7 @@ import {
   getTransferPlannerMajorPlan,
   getTransferPlannerParsedRequirementSourceBlocks,
   getTransferPlannerPrimaryDegreeRequirementsSource,
+  normalizeTransferPlannerCourseCode,
   resolveTransferPlannerMajorPlan,
   TRANSFER_PLANNER_SOURCE_GAP_REGISTRY,
   TransferPlannerChecklistItem,
@@ -18,12 +19,7 @@ import {
   TransferPlannerRequirementType,
   TransferPlannerStudentCourseEvaluation,
   TransferPlannerTrack,
-} from "@/constants/transfer-planner-source";
-import {
-  TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA,
-  type TransferPlannerNormalizedCourseMetadataEntry,
-} from "@/constants/transfer-planner-source/course-metadata";
-import { normalizeTransferPlannerCourseCode } from "@/constants/transfer-planner-source/course-code-normalization";
+} from "@/constants/transfer-planner-source/student-runtime";
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const SOURCE_BACKED_UW_COURSE_WITH_CONTINUATION_PATTERN =
   /\b([A-Z]{2,6}&?)\s*(\d{3}(?:\.\d+)?[A-Z]?)\b/g;
@@ -601,7 +597,7 @@ function getSourceBackedRequiredCourseSemanticRelations(courseCode: string) {
     return cached;
   }
 
-  const metadata = NORMALIZED_COURSE_METADATA_BY_CODE.get(normalizedCourseCode);
+  const metadata = getTransferPlannerCanonicalCourse("grc", normalizedCourseCode);
   const subject = getCourseSubject(normalizedCourseCode);
   const relatedCourseCodes = unique(
     Array.from(
@@ -1170,17 +1166,6 @@ export function normalizeCourseCode(value: string) {
   return LEGACY_COURSE_CODE_ALIASES.get(normalized) ?? normalized;
 }
 
-const NORMALIZED_COURSE_METADATA_BY_CODE = new Map<
-  string,
-  TransferPlannerNormalizedCourseMetadataEntry
->(
-  TRANSFER_PLANNER_NORMALIZED_COURSE_METADATA.map(
-    (entry): [string, TransferPlannerNormalizedCourseMetadataEntry] => [
-      normalizeCourseCode(entry.code),
-      entry,
-    ]
-  ).filter((entry) => entry[0])
-);
 const SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_CACHE = new Map<string, string[]>();
 
 export function extractCourseCodes(value: string) {

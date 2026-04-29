@@ -45,7 +45,7 @@ import {
   type TransferPlannerResolvedMajorPlan,
   type TransferPlannerStudentCourseEvaluation,
   type TransferPlannerTrack,
-} from "@/constants/transfer-planner-source";
+} from "@/constants/transfer-planner-source/student-runtime";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import useBack from "@/hooks/use-back";
