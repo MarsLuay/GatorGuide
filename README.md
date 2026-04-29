@@ -1,6 +1,6 @@
 # Welcome to Gator Guide!
 
-Gator Guide is a student-focused project designed to help transfer applicants find their best-fit college. It brings together mobile product design, college data, and guidance so students can explore schools, ask questions, and get support in a way that feels personal and practical.
+Gator Guide is a student-focused project designed to help transfer applicants find their best-fit college. It consolidates scholarship/internship links, provides useful tools, and gives direct schedule guidance so students can explore schools and get support in a way that feels personal and practical.
 
 ## License
 
@@ -13,9 +13,8 @@ That means others can review and use the code only for noncommercial purposes, b
 Gator Guide helps students:
 
 - Discover colleges that fit their academic profile and goals.
-- Explore school information in a more personalized way.
-- Get AI-powered guidance for transfer planning, applications, and next steps.
-- Keep important profile details, transcripts, and interests in one place.
+- Explore personalized schedule information.
+- Get reminders for applications and due dates.
 
 ## Repo Layout
 
@@ -93,7 +92,7 @@ git push origin main
 
 ## Adding new resources
 
-### Bat File
+### How to add new resources
 
 To add new scholarships, internships, or helpful resource links, there's a neat little script called `add-or-remove-resources.bat`.
 
@@ -101,10 +100,14 @@ Just double-click it, answer the prompts, and it will walk you through adding th
 
 After it saves your changes, commit and push them so the new scholarship, internship, or resource is added to the repo.
 
+### Viewing Resources
+
+You can also view all of these resources and easily edit them by using the export/import to excel sheet option. Export and then run it through Google Sheets and you'll have an easy time editing things. The exported file will be found as `resource-catalog-export.xlsx` in the root (not in any folders).
+
 ## Updating Planner
 
-### Bat File
+### How to update the planner
 
-To update all course information in course planner, double click the 'Course-Planner-Updator.bat'.
+To update all course information in course planner, double click the `Course-Planner-Updator.bat`.
 
 There will be a few options that will walk you through on what to update and how it should do it. After waiting around 20 minutes (hopefully), you are free to commit and push the updates so the new information is added to the repo.

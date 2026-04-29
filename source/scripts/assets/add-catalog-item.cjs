@@ -26,6 +26,8 @@ const RESOURCE_TRANSLATIONS_PATH = path.join(
   "translations.ts"
 );
 const RESOURCE_COMMIT_MESSAGE = "Added resources";
+const GOOGLE_SHEETS_EXPORT_URL =
+  process.env.GATORGUIDE_GOOGLE_SHEETS_EXPORT_URL || "https://sheets.new";
 
 const RESOURCE_SECTION_LABELS = {
   "resources.tools": "Tools",
@@ -874,10 +876,10 @@ const RESOURCE_EXCEL_HEADER_ALIASES = {
 const OPPORTUNITY_EXCEL_EXPORT_COLUMNS = [
   { key: "link", label: "LINK", width: 44.5 },
   { key: "name", label: "NAME", width: 31.13 },
+  { key: "deadline", label: "DEADLINE", width: 18.75 },
   { key: "type", label: "TYPE", width: 18.75 },
   { key: "organization", label: "ORGANIZATION", width: 28 },
   { key: "description", label: "DESCRIPTION", width: 56.88 },
-  { key: "deadline", label: "DEADLINE", width: 18.75 },
   { key: "award", label: "AWARD", width: 24 },
   { key: "sourceLabel", label: "SOURCE", width: 31.13 },
   { key: "sourceKind", label: "SOURCE KIND", width: 16 },
@@ -889,10 +891,10 @@ const OPPORTUNITY_EXCEL_EXPORT_COLUMNS = [
 const SCHOLARSHIP_EXCEL_EXPORT_COLUMNS = [
   { key: "link", label: "LINK", width: 44.5 },
   { key: "name", label: "NAME", width: 31.13 },
+  { key: "deadline", label: "DEADLINE", width: 18.75 },
   { key: "amount", label: "AMOUNT", width: 24 },
   { key: "awardCadence", label: "One time or continuous", width: 21 },
   { key: "description", label: "DESCRIPTION", width: 56.88 },
-  { key: "deadline", label: "DEADLINE", width: 18.75 },
   { key: "prereq", label: "PREREQ", width: 35.25 },
   { key: "institutionSpecific", label: "Institution-specific?", width: 22 },
   { key: "disciplineSpecific", label: "Discipline-specific?", width: 21 },
@@ -915,12 +917,12 @@ const SCHOLARSHIP_EXCEL_EXPORT_COLUMNS = [
 const LEGACY_EXCEL_EXPORT_COLUMNS = [
   { key: "link", label: "LINK", width: 44.5 },
   { key: "name", label: "NAME", width: 31.13 },
+  { key: "deadline", label: "DEADLINE", width: 18.75 },
   { key: "type", label: "TYPE", width: 18.75 },
   { key: "organization", label: "ORGANIZATION", width: 28 },
   { key: "amount", label: "AMOUNT", width: 24 },
   { key: "awardCadence", label: "One time or continuous", width: 21 },
   { key: "description", label: "DESCRIPTION", width: 56.88 },
-  { key: "deadline", label: "DEADLINE", width: 18.75 },
   { key: "prereq", label: "PREREQ", width: 35.25 },
   { key: "institutionSpecific", label: "Institution-specific?", width: 22 },
   { key: "disciplineSpecific", label: "Discipline-specific?", width: 21 },
@@ -951,6 +953,18 @@ const OPPORTUNITY_TYPE_LABELS = {
 
 const WORKBOOK_OPTION_SHEET_NAME = "Options";
 const WORKBOOK_VALIDATION_MAX_ROW = 1000;
+const DEFAULT_SCHOLARSHIP_PREREQ_OPTIONS = [
+  "High School Senior",
+  "Newly Accepted at new school",
+  "Graduate Student",
+  "First Year or Transfer",
+  "CC to Uni transfer",
+  "Transfer student",
+];
+const DEFAULT_INSTITUTION_OPTIONS = ["No", "UW"];
+const DEFAULT_YES_NO_OPTIONS = ["No", "Yes"];
+const DEFAULT_SUBMISSION_FORM_OPTIONS = ["Mail", "Email", "In Person", "Online"];
+const DEFAULT_AWARD_CADENCE_OPTIONS = ["one time", "continuous"];
 
 function normalizeSpreadsheetHeader(value) {
   return String(value ?? "")
@@ -1125,6 +1139,16 @@ function createListValidations(columns, configs) {
     .filter(Boolean);
 }
 
+function createInlineListFormula(values) {
+  const options = uniqueSpreadsheetOptions(values).filter(
+    (value) => value && !String(value).includes(",")
+  );
+  if (!options.length) return null;
+
+  const formula = `"${options.join(",").replace(/"/g, '""')}"`;
+  return formula.length <= 255 ? formula : null;
+}
+
 function dedupeOpportunities(opportunities) {
   const byId = new Map();
   for (const opportunity of opportunities ?? []) {
@@ -1141,10 +1165,94 @@ function parseOpportunityDueDate(value) {
   return Number.isNaN(parsed.getTime()) ? null : parsed;
 }
 
+function isRecurringExportOpportunity(opportunity) {
+  return Boolean(
+    opportunity?.recurrence?.isYearly || opportunity?.award?.renewable === true
+  );
+}
+
 function isExpiredOneTimeOpportunity(opportunity, now = new Date()) {
   const dueDate = parseOpportunityDueDate(opportunity?.dueAt);
   if (!dueDate) return false;
-  return dueDate.getTime() < now.getTime() && !opportunity?.recurrence?.isYearly;
+  return dueDate.getTime() < now.getTime() && !isRecurringExportOpportunity(opportunity);
+}
+
+function getNextRecurringDeadlineDate(opportunity, now = new Date()) {
+  if (!isRecurringExportOpportunity(opportunity)) return null;
+
+  const dueDate = parseOpportunityDueDate(opportunity?.dueAt);
+  const recurringMonth = Number(opportunity?.recurrence?.month);
+  const recurringDay = Number(opportunity?.recurrence?.day);
+  const hasRecurringMonth =
+    Number.isFinite(recurringMonth) && recurringMonth >= 1 && recurringMonth <= 12;
+  const hasRecurringDay =
+    Number.isFinite(recurringDay) && recurringDay >= 1 && recurringDay <= 31;
+  const month = hasRecurringMonth
+    ? recurringMonth
+    : (dueDate?.getMonth() ?? -1) + 1;
+  const day = hasRecurringDay
+    ? recurringDay
+    : dueDate?.getDate();
+  if (
+    !Number.isFinite(month) ||
+    !Number.isFinite(day) ||
+    month < 1 ||
+    month > 12 ||
+    day < 1 ||
+    day > 31
+  ) {
+    return null;
+  }
+
+  let year = now.getFullYear();
+  let candidate = new Date(year, month - 1, day, 23, 59, 59, 999);
+  if (candidate.getTime() < now.getTime()) {
+    candidate = new Date(year + 1, month - 1, day, 23, 59, 59, 999);
+  }
+
+  return Number.isNaN(candidate.getTime()) ? null : candidate;
+}
+
+function getOpportunityExportSortDate(opportunity, now = new Date()) {
+  if (opportunity?.deadline?.type === "rolling") return null;
+
+  const dueDate = parseOpportunityDueDate(opportunity?.dueAt);
+  if (!dueDate) return getNextRecurringDeadlineDate(opportunity, now);
+
+  if (isRecurringExportOpportunity(opportunity) && dueDate.getTime() < now.getTime()) {
+    return getNextRecurringDeadlineDate(opportunity, now) ?? dueDate;
+  }
+
+  return dueDate;
+}
+
+function sortOpportunitiesForExport(opportunities, now = new Date()) {
+  return (opportunities ?? [])
+    .map((opportunity, index) => ({
+      opportunity,
+      index,
+      deadline: getOpportunityExportSortDate(opportunity, now),
+    }))
+    .sort((left, right) => {
+      const leftTime = left.deadline?.getTime();
+      const rightTime = right.deadline?.getTime();
+      const leftHasDeadline = Number.isFinite(leftTime);
+      const rightHasDeadline = Number.isFinite(rightTime);
+
+      if (leftHasDeadline && rightHasDeadline && leftTime !== rightTime) {
+        return leftTime - rightTime;
+      }
+      if (leftHasDeadline !== rightHasDeadline) {
+        return leftHasDeadline ? -1 : 1;
+      }
+
+      const leftTitle = normalizeWhitespace(left.opportunity?.title).toLowerCase();
+      const rightTitle = normalizeWhitespace(right.opportunity?.title).toLowerCase();
+      if (leftTitle !== rightTitle) return leftTitle.localeCompare(rightTitle);
+
+      return left.index - right.index;
+    })
+    .map((item) => item.opportunity);
 }
 
 function formatOpportunityExportDate(value) {
@@ -1160,16 +1268,8 @@ function formatOpportunityExportDate(value) {
 function formatOpportunityExportDeadline(opportunity) {
   if (opportunity?.deadline?.type === "rolling") return "Rolling";
 
-  const dueAt = formatOpportunityExportDate(opportunity?.dueAt);
+  const dueAt = formatOpportunityExportDate(getOpportunityExportSortDate(opportunity));
   if (dueAt) return dueAt;
-
-  const month = Number(opportunity?.recurrence?.month);
-  const day = Number(opportunity?.recurrence?.day);
-  if (Number.isFinite(month) && Number.isFinite(day) && month >= 1 && month <= 12) {
-    const recurringDate = new Date(2026, month - 1, day);
-    const monthName = recurringDate.toLocaleString("en-US", { month: "long" });
-    return `${monthName} ${day}`;
-  }
 
   return opportunity?.deadline?.label ?? "";
 }
@@ -1271,8 +1371,11 @@ function formatPositiveCount(value) {
 }
 
 function getScholarshipLinkExportRows(opportunities, predicate) {
-  return dedupeOpportunities(opportunities)
-    .filter((opportunity) => opportunity && predicate(opportunity))
+  return sortOpportunitiesForExport(
+    dedupeOpportunities(opportunities).filter(
+      (opportunity) => opportunity && predicate(opportunity)
+    )
+  )
     .map((opportunity) => ({
       link: getOpportunityExportLink(opportunity),
       name: opportunity.title,
@@ -1298,8 +1401,11 @@ function getScholarshipLinkExportRows(opportunities, predicate) {
 }
 
 function getOpportunityLinkExportRows(opportunities, predicate) {
-  return dedupeOpportunities(opportunities)
-    .filter((opportunity) => opportunity && predicate(opportunity))
+  return sortOpportunitiesForExport(
+    dedupeOpportunities(opportunities).filter(
+      (opportunity) => opportunity && predicate(opportunity)
+    )
+  )
     .map((opportunity) => ({
       link: getOpportunityExportLink(opportunity),
       name: opportunity.title,
@@ -1353,8 +1459,11 @@ function buildLegacyOpportunityExportRow(opportunity) {
 }
 
 function getLegacyOpportunityExportRows(opportunities, predicate) {
-  return dedupeOpportunities(opportunities)
-    .filter((opportunity) => opportunity && predicate(opportunity))
+  return sortOpportunitiesForExport(
+    dedupeOpportunities(opportunities).filter(
+      (opportunity) => opportunity && predicate(opportunity)
+    )
+  )
     .map(buildLegacyOpportunityExportRow);
 }
 
@@ -1517,12 +1626,18 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
     {
       key: "scholarshipPrereqs",
       label: "Scholarship prereqs",
-      values: allScholarshipRows.map((row) => row.prereq),
+      values: [
+        ...DEFAULT_SCHOLARSHIP_PREREQ_OPTIONS,
+        ...allScholarshipRows.map((row) => row.prereq),
+      ],
     },
     {
       key: "institutions",
       label: "Institutions",
-      values: ["No", ...allScholarshipRows.map((row) => row.institutionSpecific)],
+      values: [
+        ...DEFAULT_INSTITUTION_OPTIONS,
+        ...allScholarshipRows.map((row) => row.institutionSpecific),
+      ],
     },
     {
       key: "yesNo",
@@ -1545,6 +1660,19 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
       ],
     },
   ]);
+  const inlineFormulas = {
+    awardCadences: createInlineListFormula(DEFAULT_AWARD_CADENCE_OPTIONS),
+    opportunityTypes: createInlineListFormula(Object.values(OPPORTUNITY_TYPE_LABELS)),
+    sourceKinds: createInlineListFormula(optionSourceKinds),
+    statuses: createInlineListFormula(optionStatuses),
+    scholarshipPrereqs: createInlineListFormula(DEFAULT_SCHOLARSHIP_PREREQ_OPTIONS),
+    institutions: createInlineListFormula([
+      ...DEFAULT_INSTITUTION_OPTIONS,
+      ...allScholarshipRows.map((row) => row.institutionSpecific),
+    ]),
+    yesNo: createInlineListFormula(DEFAULT_YES_NO_OPTIONS),
+    submissionForms: createInlineListFormula(DEFAULT_SUBMISSION_FORM_OPTIONS),
+  };
   const resourceValidations = createListValidations(RESOURCE_EXCEL_EXPORT_COLUMNS, [
     { key: "sectionTitle", formula: optionRefs.resourceSectionTitles },
     { key: "subsectionTitle", formula: optionRefs.resourceSubsectionTitles },
@@ -1553,35 +1681,38 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
     { key: "sectionIcon", formula: optionRefs.resourceIcons },
   ]);
   const scholarshipValidations = createListValidations(SCHOLARSHIP_EXCEL_EXPORT_COLUMNS, [
-    { key: "awardCadence", formula: optionRefs.awardCadences },
-    { key: "prereq", formula: optionRefs.scholarshipPrereqs },
-    { key: "institutionSpecific", formula: optionRefs.institutions },
-    { key: "disciplineSpecific", formula: optionRefs.yesNo },
-    { key: "fullTimeRequired", formula: optionRefs.yesNo },
-    { key: "essayRequired", formula: optionRefs.yesNo },
-    { key: "submissionForm", formula: optionRefs.submissionForms },
-    { key: "sourceKind", formula: optionRefs.sourceKinds },
-    { key: "status", formula: optionRefs.statuses },
+    { key: "awardCadence", formula: inlineFormulas.awardCadences ?? optionRefs.awardCadences },
+    { key: "prereq", formula: inlineFormulas.scholarshipPrereqs ?? optionRefs.scholarshipPrereqs },
+    { key: "institutionSpecific", formula: inlineFormulas.institutions ?? optionRefs.institutions },
+    { key: "disciplineSpecific", formula: inlineFormulas.yesNo ?? optionRefs.yesNo },
+    { key: "fullTimeRequired", formula: inlineFormulas.yesNo ?? optionRefs.yesNo },
+    { key: "essayRequired", formula: inlineFormulas.yesNo ?? optionRefs.yesNo },
+    { key: "submissionForm", formula: inlineFormulas.submissionForms ?? optionRefs.submissionForms },
+    { key: "sourceKind", formula: inlineFormulas.sourceKinds ?? optionRefs.sourceKinds },
+    { key: "status", formula: inlineFormulas.statuses ?? optionRefs.statuses },
   ]);
   const opportunityValidations = createListValidations(OPPORTUNITY_EXCEL_EXPORT_COLUMNS, [
-    { key: "type", formula: optionRefs.opportunityTypes },
-    { key: "sourceKind", formula: optionRefs.sourceKinds },
-    { key: "status", formula: optionRefs.statuses },
+    { key: "type", formula: inlineFormulas.opportunityTypes ?? optionRefs.opportunityTypes },
+    { key: "sourceKind", formula: inlineFormulas.sourceKinds ?? optionRefs.sourceKinds },
+    { key: "status", formula: inlineFormulas.statuses ?? optionRefs.statuses },
   ]);
   const legacyValidations = createListValidations(LEGACY_EXCEL_EXPORT_COLUMNS, [
-    { key: "type", formula: optionRefs.opportunityTypes },
-    { key: "awardCadence", formula: optionRefs.awardCadences },
-    { key: "prereq", formula: optionRefs.scholarshipPrereqs },
-    { key: "institutionSpecific", formula: optionRefs.institutions },
-    { key: "disciplineSpecific", formula: optionRefs.yesNo },
-    { key: "fullTimeRequired", formula: optionRefs.yesNo },
-    { key: "essayRequired", formula: optionRefs.yesNo },
-    { key: "submissionForm", formula: optionRefs.submissionForms },
-    { key: "sourceKind", formula: optionRefs.sourceKinds },
-    { key: "status", formula: optionRefs.statuses },
+    { key: "type", formula: inlineFormulas.opportunityTypes ?? optionRefs.opportunityTypes },
+    { key: "awardCadence", formula: inlineFormulas.awardCadences ?? optionRefs.awardCadences },
+    { key: "prereq", formula: inlineFormulas.scholarshipPrereqs ?? optionRefs.scholarshipPrereqs },
+    { key: "institutionSpecific", formula: inlineFormulas.institutions ?? optionRefs.institutions },
+    { key: "disciplineSpecific", formula: inlineFormulas.yesNo ?? optionRefs.yesNo },
+    { key: "fullTimeRequired", formula: inlineFormulas.yesNo ?? optionRefs.yesNo },
+    { key: "essayRequired", formula: inlineFormulas.yesNo ?? optionRefs.yesNo },
+    { key: "submissionForm", formula: inlineFormulas.submissionForms ?? optionRefs.submissionForms },
+    { key: "sourceKind", formula: inlineFormulas.sourceKinds ?? optionRefs.sourceKinds },
+    { key: "status", formula: inlineFormulas.statuses ?? optionRefs.statuses },
   ]);
 
   const sheets = [
+    buildScholarshipExportSheetFromRows("Scholarships", scholarshipRows, scholarshipValidations),
+    buildOpportunityExportSheetFromRows("Internships", internshipRows, opportunityValidations),
+    buildOpportunityExportSheetFromRows("Deadlines", deadlineRows, opportunityValidations),
     {
       name: "Resources",
       columns: RESOURCE_EXCEL_EXPORT_COLUMNS,
@@ -1589,9 +1720,6 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
       validations: resourceValidations,
       count: resourceRows.length,
     },
-    buildScholarshipExportSheetFromRows("Scholarships", scholarshipRows, scholarshipValidations),
-    buildOpportunityExportSheetFromRows("Internships", internshipRows, opportunityValidations),
-    buildOpportunityExportSheetFromRows("Deadlines", deadlineRows, opportunityValidations),
     buildLegacyExportSheetFromRows("Legacy", legacyRows, legacyValidations),
   ];
 
@@ -2246,6 +2374,44 @@ function parseWorksheetRows(xml, sharedStrings) {
   return rows.filter((row) => row.some((item) => String(item ?? "").trim()));
 }
 
+function getWorkbookWorksheetEntry(entries, requestedSheetName) {
+  const workbookEntry = entries.get("xl/workbook.xml");
+  const relationshipEntry = entries.get("xl/_rels/workbook.xml.rels");
+  if (!workbookEntry || !relationshipEntry) return null;
+
+  const relationships = new Map();
+  const relationshipRegex = /<Relationship\b([^>]*?)\/>/g;
+  let relationshipMatch;
+  while ((relationshipMatch = relationshipRegex.exec(relationshipEntry.toString("utf8"))) !== null) {
+    const attributes = relationshipMatch[1];
+    const id = getXmlAttribute(attributes, "Id");
+    const target = getXmlAttribute(attributes, "Target");
+    if (!id || !target) continue;
+
+    const normalizedTarget = target.startsWith("/")
+      ? target.replace(/^\/+/, "")
+      : target.startsWith("xl/")
+        ? target
+        : `xl/${target}`;
+    relationships.set(id, normalizedTarget);
+  }
+
+  const requested = String(requestedSheetName ?? "").trim().toLowerCase();
+  const sheetRegex = /<sheet\b([^>]*?)\/>/g;
+  let sheetMatch;
+  while ((sheetMatch = sheetRegex.exec(workbookEntry.toString("utf8"))) !== null) {
+    const attributes = sheetMatch[1];
+    const name = getXmlAttribute(attributes, "name");
+    if (String(name ?? "").trim().toLowerCase() !== requested) continue;
+
+    const relationshipId = getXmlAttribute(attributes, "r:id");
+    const target = relationships.get(relationshipId);
+    if (target && entries.has(target)) return entries.get(target);
+  }
+
+  return null;
+}
+
 function parseResourceCatalogXlsx(filePath) {
   const entries = readZipEntries(fs.readFileSync(filePath));
   const sharedStringsEntry = entries.get("xl/sharedStrings.xml");
@@ -2253,6 +2419,7 @@ function parseResourceCatalogXlsx(filePath) {
     ? parseSharedStringsXml(sharedStringsEntry.toString("utf8"))
     : [];
   const worksheetEntry =
+    getWorkbookWorksheetEntry(entries, "Resources") ??
     entries.get("xl/worksheets/sheet1.xml") ??
     Array.from(entries.entries()).find(([name]) =>
       /^xl\/worksheets\/sheet\d+\.xml$/i.test(name)
@@ -2287,6 +2454,38 @@ function ensureXlsxFilePath(filePath) {
 
 function toGitPath(filePath) {
   return path.relative(REPO_ROOT, filePath).split(path.sep).join("/");
+}
+
+function openUrlInDefaultBrowser(url) {
+  if (process.platform === "win32") {
+    execFileSync("cmd", ["/c", "start", "", url], {
+      stdio: "ignore",
+      windowsHide: true,
+    });
+    return;
+  }
+
+  if (process.platform === "darwin") {
+    execFileSync("open", [url], { stdio: "ignore" });
+    return;
+  }
+
+  execFileSync("xdg-open", [url], { stdio: "ignore" });
+}
+
+function openGoogleSheetsAfterExport() {
+  if (process.env.GATORGUIDE_OPEN_GOOGLE_SHEETS_AFTER_EXPORT === "0") {
+    return;
+  }
+
+  try {
+    log(`Opening Google Sheets in your default browser: ${GOOGLE_SHEETS_EXPORT_URL}`);
+    openUrlInDefaultBrowser(GOOGLE_SHEETS_EXPORT_URL);
+  } catch (error) {
+    log(
+      `Could not open Google Sheets automatically. Open ${GOOGLE_SHEETS_EXPORT_URL} manually.`
+    );
+  }
 }
 
 function runGitCapture(args) {
@@ -4182,18 +4381,23 @@ async function exportResourcesAsExcelFile() {
     log(`Saved Excel-compatible CSV to ${outputPath}`);
     log(`Exported ${getResourceExportRows(resourceCatalog).length} resources.`);
     log("Set GATORGUIDE_RESOURCE_EXCEL_EXPORT_PATH to an .xlsx path for the default workbook export.");
+    openGoogleSheetsAfterExport();
     return;
   }
 
   const workbookSheets = buildResourceExportWorkbookSheets(resourceCatalog, opportunities);
   const workbook = createXlsxBuffer(workbookSheets);
+  const sheetCounts = Object.fromEntries(
+    workbookSheets.map((sheet) => [sheet.name, sheet.count ?? 0])
+  );
   fs.writeFileSync(outputPath, workbook);
   log(`Saved Excel workbook to ${outputPath}`);
-  log(`Exported ${workbookSheets[0].count} resource links.`);
+  log(`Exported ${sheetCounts.Resources ?? 0} resource links.`);
   log(
-    `Included ${workbookSheets[1].count} scholarships, ${workbookSheets[2].count} internships, ${workbookSheets[3].count} deadlines, and ${workbookSheets[4].count} legacy links.`
+    `Included ${sheetCounts.Scholarships ?? 0} scholarships, ${sheetCounts.Internships ?? 0} internships, ${sheetCounts.Deadlines ?? 0} deadlines, and ${sheetCounts.Legacy ?? 0} legacy links.`
   );
   log("The Resources sheet can be edited and imported back through this same menu; the other sheets are export-only references.");
+  openGoogleSheetsAfterExport();
 }
 
 async function importResourcesAsExcelFile(rl) {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { View, Text, ScrollView, useWindowDimensions, Linking, Image, type DimensionValue } from "react-native";
+import { View, Text, ScrollView, useWindowDimensions, Linking, Image, Pressable, type DimensionValue } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -68,12 +68,20 @@ function formatGpaDisplay(value: string | null | undefined) {
   return truncated.toFixed(2).replace(/\.0+$|0+$/g, '');
 }
 
+function getDeadlineOpportunityId(entry: DeadlineCalendarEntry) {
+  if (entry.target.type === "resources") return entry.target.opportunityId;
+  const opportunityPrefix = "opportunity:";
+  return entry.id.startsWith(opportunityPrefix)
+    ? entry.id.slice(opportunityPrefix.length)
+    : null;
+}
+
 export default function HomePage() {
   const router = useRouter();
   const { isDark, isGreen, isLight } = useAppTheme();
   const { t } = useAppLanguage();
   const { isHydrated, state, setOnboardingSeen } = useAppData();
-  const { matchedOpportunities } = useOpportunities();
+  const { matchedOpportunities, setOpportunityDone } = useOpportunities();
   const { getScrollContentPadding } = useResponsiveLayout();
   const insets = useSafeAreaInsets();
   const { width: screenWidth, height: screenHeight, fontScale = 1 } = useWindowDimensions();
@@ -86,6 +94,7 @@ export default function HomePage() {
     [matchedOpportunities]
   );
   const [desktopRoadmap, setDesktopRoadmap] = useState<UserRoadmapDocument | null>(null);
+  const [pendingDeadlineIds, setPendingDeadlineIds] = useState<Set<string>>(() => new Set());
   const [tourStepIndex, setTourStepIndex] = useState(0);
 
   const capitalizedName = user?.name 
@@ -358,6 +367,57 @@ export default function HomePage() {
     }
   }, [openCalendar, router]);
 
+  const handleToggleDeadlineEntry = useCallback(async (item: DeadlineCalendarEntry) => {
+    setPendingDeadlineIds((current) => new Set(current).add(item.id));
+
+    try {
+      if (item.target.type === "roadmap") {
+        if (!desktopRoadmap) return;
+
+        const nextRoadmap = roadmapService.setTaskCompletion(
+          desktopRoadmap,
+          item.target.sectionId,
+          item.target.taskId,
+          !item.isDone
+        );
+        setDesktopRoadmap(nextRoadmap);
+
+        const roadmapUserId = user?.uid ?? nextRoadmap.userId;
+        if (roadmapUserId) {
+          const savedRoadmap = await roadmapService.saveUserRoadmap(roadmapUserId, nextRoadmap);
+          setDesktopRoadmap(savedRoadmap);
+        }
+        return;
+      }
+
+      const opportunityId = getDeadlineOpportunityId(item);
+      if (opportunityId) {
+        await setOpportunityDone(opportunityId, !item.isDone);
+      }
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "app",
+        operation: "toggle-home-deadline-entry",
+        severity: "warn",
+        handled: true,
+        source: "HomePage",
+        screen: "HomePage",
+        route: "/",
+        metadata: {
+          entryId: item.id,
+          entryKind: item.kind,
+          targetType: item.target.type,
+        },
+      });
+    } finally {
+      setPendingDeadlineIds((current) => {
+        const next = new Set(current);
+        next.delete(item.id);
+        return next;
+      });
+    }
+  }, [desktopRoadmap, setOpportunityDone, user?.uid]);
+
   const shouldShowTour = Boolean(user && !user.isGuest && user.hasSeenOnboarding !== true);
   const tourCardWidth = Math.min(448, Math.max(280, screenWidth - 32));
   const tourCardLeft = (screenWidth - tourCardWidth) / 2;
@@ -431,6 +491,36 @@ export default function HomePage() {
     setTourStepIndex((prev) => prev + 1);
   };
 
+  const renderDeadlineCheckbox = (entry: DeadlineCalendarEntry) => {
+    const isPending = pendingDeadlineIds.has(entry.id);
+    const isChecked = entry.isDone;
+
+    return (
+      <Pressable
+        onPress={(event) => {
+          event.stopPropagation();
+          void handleToggleDeadlineEntry(entry);
+        }}
+        disabled={isPending}
+        accessibilityRole="checkbox"
+        accessibilityState={{ checked: isChecked, disabled: isPending }}
+        accessibilityLabel={`${isChecked ? "Mark deadline unfinished" : "Mark deadline done"}: ${entry.title}`}
+        className={`w-11 h-11 rounded-xl border items-center justify-center ${
+          isChecked
+            ? "bg-emerald-500 border-emerald-500"
+            : "bg-emerald-500/10 border-emerald-500/30"
+        }`}
+        style={isPending ? { opacity: 0.55 } : undefined}
+      >
+        <Ionicons
+          name={isChecked ? "checkbox" : "square-outline"}
+          size={22}
+          color={isChecked ? "#FFFFFF" : "#008f4e"}
+        />
+      </Pressable>
+    );
+  };
+
   const renderDeadlinePanel = (
     entries: DeadlineCalendarEntry[]
   ) => (
@@ -480,10 +570,13 @@ export default function HomePage() {
                     <Text className="text-emerald-500 text-xs font-semibold">{t("home.openAction")}</Text>
                   </View>
                 </View>
-                <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
-                  <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
-                    {formatImportantDate(entry.dueAt)}
-                  </Text>
+                <View className="items-end gap-3">
+                  {renderDeadlineCheckbox(entry)}
+                  <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
+                    <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
+                      {formatImportantDate(entry.dueAt)}
+                    </Text>
+                  </View>
                 </View>
               </View>
             </AnimatedCardPressable>
@@ -498,6 +591,37 @@ export default function HomePage() {
         </View>
       )}
     </View>
+  );
+
+  const renderNextDeadlineCard = (entry: DeadlineCalendarEntry) => (
+    <AnimatedCardPressable
+      onPress={() => {
+        void handleOpenDeadlineEntry(entry);
+      }}
+      className={`border rounded-3xl p-4 ${dashboardItemClass}`}
+    >
+      <View className="flex-row items-start">
+        <View className="flex-1 min-w-0 pr-3">
+          <Text className={`${textClass} font-semibold`} numberOfLines={2}>
+            {entry.title}
+          </Text>
+          <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={2}>
+            {entry.subtitle}
+          </Text>
+          <Text className="text-emerald-500 text-xs font-semibold mt-3">
+            {t("home.openAction")}
+          </Text>
+        </View>
+        <View className="items-end gap-3">
+          {renderDeadlineCheckbox(entry)}
+          <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
+            <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
+              {formatImportantDate(entry.dueAt)}
+            </Text>
+          </View>
+        </View>
+      </View>
+    </AnimatedCardPressable>
   );
 
   const renderCurrentCoursesDashboardPanel = ({ fullWidth = false }: { fullWidth?: boolean } = {}) => {
@@ -724,31 +848,7 @@ export default function HomePage() {
           </View>
 
           {desktopNextDeadlineEntry ? (
-            <AnimatedCardPressable
-              onPress={() => {
-                void handleOpenDeadlineEntry(desktopNextDeadlineEntry);
-              }}
-              className={`border rounded-3xl p-4 ${dashboardItemClass}`}
-            >
-              <View className="flex-row items-start">
-                <View className="flex-1 min-w-0 pr-3">
-                  <Text className={`${textClass} font-semibold`} numberOfLines={2}>
-                    {desktopNextDeadlineEntry.title}
-                  </Text>
-                  <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={2}>
-                    {desktopNextDeadlineEntry.subtitle}
-                  </Text>
-                  <Text className="text-emerald-500 text-xs font-semibold mt-3">
-                    {t("home.openAction")}
-                  </Text>
-                </View>
-                <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
-                  <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
-                    {formatImportantDate(desktopNextDeadlineEntry.dueAt)}
-                  </Text>
-                </View>
-              </View>
-            </AnimatedCardPressable>
+            renderNextDeadlineCard(desktopNextDeadlineEntry)
           ) : (
             <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
               <Text className={`${textClass} font-semibold`}>No deadlines yet</Text>

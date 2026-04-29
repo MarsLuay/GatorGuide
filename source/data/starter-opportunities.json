@@ -199,9 +199,9 @@
     "externalUrl": "https://www.granco.org/scholarship2026.html",
     "dueAt": "2026-03-28T06:59:00.000Z",
     "recurrence": {
-      "isYearly": false,
-      "month": null,
-      "day": null,
+      "isYearly": true,
+      "month": 3,
+      "day": 27,
       "timezone": "America/Los_Angeles"
     },
     "deadline": {
@@ -240,7 +240,7 @@
       "website": null
     },
     "source": {
-      "kind": "legacy",
+      "kind": "manual",
       "sourceUrl": "https://www.granco.org/scholarship2026.html",
       "sourceLabel": "GRANCO Federal Credit Union 2026 scholarship page",
       "model": null,
@@ -1240,6 +1240,1382 @@
       "kind": "manual",
       "sourceUrl": "https://internships.si.edu/opportunities",
       "sourceLabel": "Smithsonian Office of Academic Appointments and Internships opportunities page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "wsos-baccalaureate-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "WSOS Baccalaureate Scholarship",
+    "organizationName": "Washington State Opportunity Scholarship",
+    "summary": "Washington State Opportunity Scholarship pathway for Washington residents pursuing an eligible STEM or health care bachelor's degree at an eligible Washington college or university. Good fit for community college students planning to transfer or complete an eligible bachelor’s degree at a community college. The 2026 cycle closed February 26, 2026 at 9 p.m. PST.",
+    "externalUrl": "https://waopportunityscholarship.org/applicants/baccalaureate/",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Next cycle expected January-February 2027"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required",
+        "merit"
+      ],
+      "suggestedMajors": [
+        "stem",
+        "healthcare",
+        "urban planning",
+        "information technology"
+      ],
+      "hasToBeMajor": true
+    },
+    "eligibility": {
+      "gpaMin": 2.75,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 1
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 22500,
+      "currency": "USD",
+      "amountText": "Up to $22,500 total over up to 6 years",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://waopportunityscholarship.org/applicants/baccalaureate/",
+      "sourceLabel": "Washington State Opportunity Scholarship page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "washington-college-grant-wa-grant",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Washington College Grant (WA Grant)",
+    "organizationName": "Washington Student Achievement Council",
+    "summary": "Need-based Washington state grant for eligible Washington residents pursuing education beyond high school at an eligible college, program, or approved apprenticeship sponsor. Apply by completing the FAFSA or WASFA. Useful for community and technical college students because eligibility is tied to state residency, income, and eligible enrollment rather than a single school.",
+    "externalUrl": "https://wsac.wa.gov/wcg-awards",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Rolling through FAFSA/WASFA"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Varies by income, family size, and school/program cost; can cover full public tuition for eligible low-income students",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://wsac.wa.gov/wcg-awards",
+      "sourceLabel": "Washington Student Achievement Council page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "becu-foundation-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "BECU Foundation Scholarship",
+    "organizationName": "BECU Foundation",
+    "summary": "Renewable scholarship for BECU members who are graduating high school seniors or current undergraduates enrolled in a credit-bearing accredited nonprofit technical, two-year, or four-year college or university. Applicants need a minimum 2.5 GPA through fall 2025 and must plan to attend full time in the academic year following the award.",
+    "externalUrl": "https://www.collegesuccessfoundation.org/scholarship/becu-foundation-scholarship/",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Next cycle expected December-January"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": 2.5,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": true,
+      "recommendationCountMin": 1,
+      "essayCount": 1
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 5000,
+      "currency": "USD",
+      "amountText": "$2,500 per year for up to 2 years; up to $5,000 total",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.collegesuccessfoundation.org/scholarship/becu-foundation-scholarship/",
+      "sourceLabel": "BECU Foundation page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "wsecu-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "WSECU Scholarship",
+    "organizationName": "WSECU",
+    "summary": "Annual scholarship program for WSECU members of all ages pursuing higher education, including two-year college, vocational school, four-year undergraduate, and graduate programs. WSECU states it awards over $100,000 each year.",
+    "externalUrl": "https://wsecu.org/scholarships",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Applications accepted December-February each year"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": 2000,
+      "amountMax": 3000,
+      "currency": "USD",
+      "amountText": "$2,000 for two-year colleges and vocational schools; $3,000 for four-year undergraduate and graduate programs",
+      "renewable": false
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://wsecu.org/scholarships",
+      "sourceLabel": "WSECU page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "seattle-foundation-scholarship-opportunities",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Seattle Foundation Scholarship Opportunities",
+    "organizationName": "Seattle Foundation",
+    "summary": "Regional scholarship portal hosted by Seattle Foundation and Scholarship America. Eligibility, deadlines, award amounts, and school limits vary by fund. Some scholarships support Washington students attending community colleges, technical schools, public universities, or other undergraduate programs.",
+    "externalUrl": "https://www.seattlefoundation.org/current-scholarship-opportunities",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Varies by scholarship"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Varies by scholarship",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.seattlefoundation.org/current-scholarship-opportunities",
+      "sourceLabel": "Seattle Foundation Scholarship Opportunities page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "lambeth-family-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Lambeth Family Scholarship",
+    "organizationName": "Seattle Foundation",
+    "summary": "Seattle Foundation scholarship for Washington high school seniors pursuing engineering, natural sciences, mathematics, computer science, or business. Eligible school pathways include public university, community college, or technical school.",
+    "externalUrl": "https://www.seattlefoundation.org/current-scholarship-opportunities",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Next cycle expected late 2026-February 2027"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "engineering",
+        "science",
+        "mathematics",
+        "computer science",
+        "business",
+        "information technology"
+      ],
+      "hasToBeMajor": true
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 3000,
+      "currency": "USD",
+      "amountText": "$1,000-$3,000; renewable up to 4 years",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.seattlefoundation.org/current-scholarship-opportunities",
+      "sourceLabel": "Seattle Foundation page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "pride-foundation-scholarships",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Pride Foundation Scholarships",
+    "organizationName": "Pride Foundation",
+    "summary": "One application for 60+ scholarships supporting LGBTQ+ and questioning students across Alaska, Idaho, Montana, Oregon, and Washington. Eligible education pathways include community college, certificate, vocational, technical, trade, undergraduate, graduate, and professional programs. Pride Foundation does not check citizenship status when reviewing applications.",
+    "externalUrl": "https://pridefoundation.org/find-funding/scholarships/",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Next cycle expected October 2026-January 2027"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": true,
+      "recommendationCountMin": 0,
+      "essayCount": 3
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Varies by scholarship fund",
+      "renewable": false
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://pridefoundation.org/find-funding/scholarships/",
+      "sourceLabel": "Pride Foundation page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "washington-nasa-space-grant-scholarships",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Washington NASA Space Grant Scholarships",
+    "organizationName": "Washington NASA Space Grant Consortium",
+    "summary": "Washington NASA Space Grant Consortium scholarship and research opportunity listing for students planning to study science, technology, engineering, or mathematics. UW's scholarship database lists opportunities for freshman, sophomore, junior, senior, and graduate students. Specific eligibility and deadlines vary by program.",
+    "externalUrl": "https://new.expo.uw.edu/expo/scholarships/wsgc",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "February deadline; exact deadline varies by opportunity"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "merit"
+      ],
+      "suggestedMajors": [
+        "stem",
+        "engineering",
+        "science",
+        "mathematics",
+        "urban planning",
+        "information technology",
+        "research"
+      ],
+      "hasToBeMajor": true
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 5000,
+      "currency": "USD",
+      "amountText": "Varies; UW undergraduate scholarship has offered up to $5,000",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "University of Washington",
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://new.expo.uw.edu/expo/scholarships/wsgc",
+      "sourceLabel": "Washington NASA Space Grant Consortium page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "seattle-colleges-foundation-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Seattle Colleges Foundation Scholarship",
+    "organizationName": "Seattle Colleges Foundation",
+    "summary": "One-application scholarship program for current and incoming students at North Seattle College, Seattle Central College, and South Seattle College. Part-time and full-time students, international students, DACA/undocumented students, BAS students, Seattle Promise students, and Running Start students are eligible and encouraged to apply.",
+    "externalUrl": "https://foundation.seattlecolleges.edu/scholarships",
+    "dueAt": "2026-03-19T06:59:00.000Z",
+    "recurrence": {
+      "isYearly": true,
+      "month": 3,
+      "day": 18,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Annual scholarship deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": 2,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 2
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 5000,
+      "currency": "USD",
+      "amountText": "Up to $5,000",
+      "renewable": false
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Seattle Colleges",
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://foundation.seattlecolleges.edu/scholarships",
+      "sourceLabel": "Seattle Colleges Foundation page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "doe-community-college-internships-cci",
+    "type": "internship",
+    "status": "active",
+    "title": "DOE Community College Internships (CCI)",
+    "organizationName": "U.S. Department of Energy Office of Science / DOE National Laboratories",
+    "summary": "Paid technical training internship for community college or accredited two-year college students interested in STEM careers. Students work onsite at one of the participating DOE laboratories, including possible Washington placement at PNNL depending on lab selection and availability. Applicants must be enrolled full-time or part-time at a community college/two-year college, have completed at least one semester, have at least 12 total credits and 6 STEM credits by the deadline, be 18+, and be a U.S. citizen or lawful permanent resident.",
+    "externalUrl": "https://science.osti.gov/wdts/cci",
+    "dueAt": "2026-05-20T21:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Fall 2026 application deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "stem",
+        "engineering",
+        "science",
+        "information technology",
+        "research"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "$650 weekly stipend; travel reimbursement and housing support may be available; typically 10 consecutive weeks, with some fall/spring flex-schedule options",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://science.osti.gov/wdts/cci",
+      "sourceLabel": "DOE Office of Science CCI pages",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "wa-doh-pathway-paid-summer-internships",
+    "type": "internship",
+    "status": "active",
+    "title": "WA DOH Pathway Paid Summer Internships",
+    "organizationName": "Washington State Department of Health",
+    "summary": "About 10-week paid summer internship for students enrolled at a Washington college and working toward an associate, undergraduate, or graduate degree. Students must be 18+ and not graduating before or during the internship. Work may be remote/virtual anywhere in Washington and matched to student experience, education, interests, and skills.",
+    "externalUrl": "https://doh.wa.gov/about-us/workhealth/workforce-pathways-program/pathway-paid-summer-internships",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Expected February 2027"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "public health",
+        "public service",
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Around $20/hour; up to 35 hours/week for about 10 weeks",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://doh.wa.gov/about-us/workhealth/workforce-pathways-program/pathway-paid-summer-internships",
+      "sourceLabel": "WA Department of Health Pathway Paid Summer Internships page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "dshs-internship-program",
+    "type": "internship",
+    "status": "active",
+    "title": "DSHS Internship Program",
+    "organizationName": "Washington State Department of Social and Health Services",
+    "summary": "Washington DSHS offers multiple internship pathways, including unpaid credit-eligible internships, volunteer internships, MSW/BASW practicums, service member programs, and paid internships when available. Official DSHS pages currently show a conflict: the main internship page describes paid summer recruitment in January-March, while the unpaid internships page says the paid summer program is paused because of a hiring freeze. Use the unpaid/credit pathway as reliable and verify paid postings on careers.wa.gov each year.",
+    "externalUrl": "https://www.dshs.wa.gov/office-of-the-secretary/welcome-our-internship-program",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Rolling for unpaid/credit internships"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [
+        "human services",
+        "public service",
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Unpaid/credit eligible roles; paid opportunities may appear when funding/hiring status allows",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.dshs.wa.gov/office-of-the-secretary/welcome-our-internship-program",
+      "sourceLabel": "DSHS internship pages",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "washington-state-legislative-internship-program",
+    "type": "internship",
+    "status": "active",
+    "title": "Washington State Legislative Internship Program",
+    "organizationName": "Washington State Legislature",
+    "summary": "Legislative session internship in Olympia. Not a direct early-community-college option unless the student has junior/senior standing and can receive undergraduate academic credit toward a four-year degree. Students who transfer from community college often become eligible after reaching junior standing at a four-year school; BAS students at a community college may be eligible if they meet the credit and academic-credit requirements.",
+    "externalUrl": "https://leg.wa.gov/learn-and-participate/civic-education-programs/internship-program/",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Applications open September 1, 2026 for the 2027 cohort"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "public policy",
+        "public service",
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "$2,400/month stipend for 2027 session; January 5-April 25, 2027",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": "Olympia",
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://leg.wa.gov/learn-and-participate/civic-education-programs/internship-program/",
+      "sourceLabel": "Washington State Legislature Internship Program pages",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "port-of-seattle-college-and-graduate-internship-program",
+    "type": "internship",
+    "status": "active",
+    "title": "Port of Seattle College and Graduate Internship Program",
+    "organizationName": "Port of Seattle",
+    "summary": "Paid internships for undergraduate, graduate, recent graduate, and some technical certificate students in fields relevant to Port business objectives. Departments can include airport operations, engineering, environment and sustainability, IT, maritime operations, finance, communications, project management, and more.",
+    "externalUrl": "https://www.portseattle.org/programs/college-and-graduate-internship-program",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Summer postings generally late February-early May"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "engineering",
+        "business",
+        "environmental science",
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "100% paid internships; amount varies by posting",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.portseattle.org/programs/college-and-graduate-internship-program",
+      "sourceLabel": "Port of Seattle College and Graduate Internship Program page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "port-of-tacoma-internships",
+    "type": "internship",
+    "status": "active",
+    "title": "Port of Tacoma Internships",
+    "organizationName": "Port of Tacoma",
+    "summary": "Paid internship opportunities across Port of Tacoma departments. Most positions are full-time during the summer, with occasional part-time academic-year roles. Applicants must be enrolled in an accredited school, college, or university and meet field-of-study qualifications for the specific role.",
+    "externalUrl": "https://www.portoftacoma.com/employment",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Posted each spring for summer employment"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "$20/hour for undergraduate students; $25/hour for postgraduate students",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.portoftacoma.com/employment",
+      "sourceLabel": "Port of Tacoma Employment page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "wsdot-internships",
+    "type": "internship",
+    "status": "active",
+    "title": "WSDOT Internships",
+    "organizationName": "Washington State Department of Transportation",
+    "summary": "Internship opportunities for college students or recent graduates in engineering, planning, communications, environmental work, and more. WSDOT also lists a wetlands ecology and monitoring techniques internship through The Evergreen State College for summer positions in Olympia.",
+    "externalUrl": "https://wsdot.wa.gov/about/employment/internships",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Varies by posting"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [
+        "engineering",
+        "science",
+        "public service",
+        "transportation",
+        "urban planning",
+        "environmental science",
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Paid or unpaid depends on posting",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": "Olympia",
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://wsdot.wa.gov/about/employment/internships",
+      "sourceLabel": "WSDOT Internships page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "city-of-seattle-internships",
+    "type": "internship",
+    "status": "active",
+    "title": "City of Seattle Internships",
+    "organizationName": "City of Seattle",
+    "summary": "Paid public-sector internships for students currently enrolled in an accredited certificate, two-year, four-year, or graduate program. Roles vary throughout the year and can include data and technology, urban planning, public health, community engagement, communications, HR, environmental science, and more.",
+    "externalUrl": "https://www.seattle.gov/human-resources/working-at-the-city/internships",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Varies by posting"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "science",
+        "public health",
+        "urban planning",
+        "environmental science",
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Competitive hourly pay; benefits may include ORCA pass and paid sick/safe leave after 90 days",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.seattle.gov/human-resources/working-at-the-city/internships",
+      "sourceLabel": "City of Seattle Internships page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "seattle-city-light-college-internships",
+    "type": "internship",
+    "status": "active",
+    "title": "Seattle City Light College Internships",
+    "organizationName": "Seattle City Light",
+    "summary": "Paid college internships with Seattle City Light in areas such as engineering, business, environmental studies, public administration, arts and sciences, communications, finance, accounting, HR, and environmental affairs. Students must be enrolled in accredited coursework leading to a graduate, baccalaureate, associate, or two-year certificate degree relevant to the internship.",
+    "externalUrl": "https://www.seattle.gov/city-light/about-us/careers/internships/college-internships",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Summer postings typically January"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "engineering",
+        "science",
+        "business",
+        "environmental science",
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Paid; summer roles typically full time for about 3 months; school-year roles usually part time for 3-12 months",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.seattle.gov/city-light/about-us/careers/internships/college-internships",
+      "sourceLabel": "Seattle City Light College Internships page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "sound-transit-internships",
+    "type": "internship",
+    "status": "active",
+    "title": "Sound Transit Internships",
+    "organizationName": "Sound Transit",
+    "summary": "Paid internships in engineering, information technology, government and community outreach, business and labor compliance, planning and innovation, operations and public safety, and related fields. Applicants must be full-time or recently graduated students with a Washington State address.",
+    "externalUrl": "https://www.soundtransit.org/get-to-know-us/jobs/internships",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Varies by posting"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "engineering",
+        "business",
+        "public service",
+        "transportation",
+        "urban planning",
+        "information technology"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Paid; full-time interns receive an ORCA card; exact pay varies by role",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.soundtransit.org/get-to-know-us/jobs/internships",
+      "sourceLabel": "Sound Transit Internships page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "washington-nasa-space-grant-surp",
+    "type": "internship",
+    "status": "active",
+    "title": "Washington NASA Space Grant Summer Undergraduate Research Program (SURP)",
+    "organizationName": "Washington NASA Space Grant Consortium / University of Washington-led programs",
+    "summary": "STEM summer undergraduate research program run through Washington NASA Space Grant. The 2026 program dates were June 22-August 21, 2026. Eligibility listed by WASG includes being 18+, enrolled in a WASG institution, U.S. citizen or permanent resident, demonstrated financial need via FAFSA/WASFA, STEM major, and availability for the full program. Good future target after confirming your institution is eligible.",
+    "externalUrl": "https://www.waspacegrant.org/info/about/student-faqs/",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Check back for next annual cycle"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [
+        "stem",
+        "information technology",
+        "research"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Research experience; award/support varies by annual posting",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.waspacegrant.org/info/about/student-faqs/",
+      "sourceLabel": "Washington NASA Space Grant UW-led Programs page",
       "model": null,
       "fetchedAt": "2026-04-29T00:00:00.000Z",
       "verifiedAt": "2026-04-29T00:00:00.000Z"
