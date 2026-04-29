@@ -43,6 +43,8 @@ export type DeadlineCalendarEntry = {
   sourceLabel: string;
   isDone: boolean;
   target: DeadlineCalendarEntryTarget;
+  hideFromHomeUpcoming?: boolean;
+  revealInCalendarOnlyWhenSelected?: boolean;
 };
 
 export type DeadlineCalendarGroup = {
@@ -61,6 +63,8 @@ const ROADMAP_SECTION_LABELS: Record<RoadmapSectionId, string> = {
 };
 
 const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
+const UW_SEATTLE_TRANSFER_APPLICATION_DEADLINE_PATTERN =
+  /^uw-seattle-transfer-application-deadline-/;
 
 function toDate(value: unknown): Date | null {
   const raw = String(value ?? "").trim();
@@ -105,6 +109,16 @@ function buildRoadmapTarget(
     type: "roadmap",
     sectionId,
     taskId,
+  };
+}
+
+function getOpportunityDeadlineVisibility(opportunity: MatchedOpportunity) {
+  const isUwTransferApplicationDeadline =
+    UW_SEATTLE_TRANSFER_APPLICATION_DEADLINE_PATTERN.test(opportunity.opportunityId);
+
+  return {
+    hideFromHomeUpcoming: isUwTransferApplicationDeadline,
+    revealInCalendarOnlyWhenSelected: isUwTransferApplicationDeadline,
   };
 }
 
@@ -205,6 +219,7 @@ class DeadlineCalendarService {
               : "Opportunity",
         isDone: opportunity.isDone,
         target,
+        ...getOpportunityDeadlineVisibility(opportunity),
       });
     }
 

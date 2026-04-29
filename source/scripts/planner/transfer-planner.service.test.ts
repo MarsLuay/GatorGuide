@@ -4690,6 +4690,56 @@ test("Materials NME planning separates UW-major rows from official AST-2 track r
   assert.doesNotMatch(biol211?.guidanceSummary ?? "", /Official Green River AST-2/i);
 });
 
+test("Materials NME planning can skip placement-dependent STEM prep classes", () => {
+  const sourcePlan = getRequiredPlan("uw-seattle-materials-science-engineering");
+  const nmePlan = resolveTransferPlannerMajorPlan(sourcePlan, "nme-option");
+  assert.ok(nmePlan, "Expected the Materials NME source plan.");
+
+  const track = getTransferPlannerTrack(nmePlan.bestTrackId ?? null);
+  const defaultPlannedCourses = buildSuggestedQuarterPlan({
+    plan: nmePlan,
+    ...buildStatuses(nmePlan, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  })
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const noPrepPlannedCourses = buildSuggestedQuarterPlan({
+    plan: nmePlan,
+    ...buildStatuses(nmePlan, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    includeStemPrepCourses: false,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  })
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+
+  const defaultLabels = new Set(defaultPlannedCourses.map((course) => course.label));
+  const noPrepLabels = new Set(noPrepPlannedCourses.map((course) => course.label));
+
+  assert.ok(defaultLabels.has("MATH& 141"));
+  assert.ok(defaultLabels.has("MATH& 142"));
+  assert.ok(defaultLabels.has("PHYS& 114"));
+  assert.equal(
+    defaultPlannedCourses.find((course) => course.label === "MATH& 141")?.creditAmount,
+    5
+  );
+  assert.equal(
+    defaultPlannedCourses.find((course) => course.label === "5 credits of Humanities")
+      ?.creditAmount,
+    5
+  );
+  assert.equal(noPrepLabels.has("MATH& 141"), false);
+  assert.equal(noPrepLabels.has("MATH& 142"), false);
+  assert.equal(noPrepLabels.has("PHYS& 114"), false);
+  assert.ok(noPrepLabels.has("CS 122"));
+  assert.ok(noPrepLabels.has("BIOL& 211"));
+});
+
 test("Materials NME filler placeholders are not labeled as official AST-2 track content", () => {
   const sourcePlan = getRequiredPlan("uw-seattle-materials-science-engineering");
   const nmePlan = resolveTransferPlannerMajorPlan(sourcePlan, "nme-option");

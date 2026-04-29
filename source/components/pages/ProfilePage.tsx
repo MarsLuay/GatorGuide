@@ -60,7 +60,10 @@ import {
 } from "@/services/documents/document-reader.service";
 import { transcriptPdfService } from "@/services/documents/transcript-pdf.service";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
-import { buildTransferPlannerTranscriptCachePatch } from "@/services/planning/transfer-planner-cache.service";
+import {
+  buildTransferPlannerTranscriptCachePatch,
+  estimateTransferPlannerTranscriptCurrentCredits,
+} from "@/services/planning/transfer-planner-cache.service";
 import type { UploadedFile } from "@/services/storage/storage.service";
 
 type UploadedDocumentMeta = {
@@ -598,6 +601,10 @@ export default function ProfilePage() {
     return truncated.toFixed(2).replace(/\.0+$|0+$/g, '');
   }
 
+  function formatCreditDisplayValue(value: number) {
+    return Number.isInteger(value) ? String(value) : value.toFixed(1).replace(/\.0$/, "");
+  }
+
   const transcriptDisplayName = (path: string | undefined) =>
     getReadableDocumentFileName({
       name:
@@ -643,6 +650,15 @@ export default function ProfilePage() {
     : user?.residencyType
       ? residencyLabels[user.residencyType] ?? user.residencyType
       : t("general.notSpecified");
+  const transcriptCreditEstimate = useMemo(
+    () => estimateTransferPlannerTranscriptCurrentCredits(state.questionnaireAnswers),
+    [state.questionnaireAnswers]
+  );
+  const currentCredits = transcriptCreditEstimate
+    ? `${transcriptCreditEstimate.usedProjection ? "~" : ""}${formatCreditDisplayValue(
+        transcriptCreditEstimate.estimatedCurrentCreditsTotal
+      )} credits`
+    : t("general.notSpecified");
   const openQuestionnairePage = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     router.push({
@@ -656,6 +672,7 @@ export default function ProfilePage() {
     { key: "gpa", icon: "description" as const, label: t("profile.gpa"), value: currentGpa },
     { key: "gender", icon: "wc" as const, label: t("profile.gender"), value: currentGender },
     { key: "residency", icon: "home" as const, label: t("profile.residencyType"), value: currentResidency },
+    { key: "credits", icon: "library-books" as const, label: t("profile.estimatedCredits"), value: currentCredits },
     { key: "questionnaire", icon: "assignment" as const, label: t("profile.questionnaire"), value: questionnaireCompletionLabel },
   ];
 
@@ -865,7 +882,8 @@ export default function ProfilePage() {
           ...currentAnswers,
           ...buildTransferPlannerTranscriptCachePatch(
             uploaded,
-            parsedTranscript.completedCourses
+            parsedTranscript.completedCourses,
+            parsedTranscript.earnedCreditsTotal
           ),
         }));
       }

@@ -319,6 +319,7 @@ export default function HomePage() {
             opportunities: unfinishedRecommendedOpportunities,
           })
         )
+        .filter((entry) => !entry.hideFromHomeUpcoming)
         .slice(0, 5),
     [desktopRoadmap, unfinishedRecommendedOpportunities]
   );

@@ -181,6 +181,24 @@ function findUpcomingGroup(groups: DeadlineCalendarGroup[]) {
   return groups.find((group) => new Date(group.dueAt).getTime() >= Date.now()) ?? groups[0] ?? null;
 }
 
+function filterCalendarGroupsForAgenda(
+  groups: DeadlineCalendarGroup[],
+  includeCalendarRevealOnlyItems: boolean
+) {
+  if (includeCalendarRevealOnlyItems) return groups;
+
+  return groups
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => !item.revealInCalendarOnlyWhenSelected),
+    }))
+    .filter((group) => group.items.length > 0);
+}
+
+function countCalendarGroupItems(groups: DeadlineCalendarGroup[]) {
+  return groups.reduce((total, group) => total + group.items.length, 0);
+}
+
 function formatKindLabel(
   item: DeadlineCalendarEntry,
   t: (key: string, params?: Record<string, string | number>) => string
@@ -313,9 +331,14 @@ export default function DeadlineCalendarPage() {
       groups,
       UPCOMING_DEADLINE_WINDOW_DAYS
     );
+    const visibleUpcomingWindowGroups = filterCalendarGroupsForAgenda(
+      upcomingWindowGroups,
+      false
+    );
     setVisibleMonth((current) => {
-      const target = upcomingWindowGroups[0]
-        ? getMonthStart(new Date(upcomingWindowGroups[0].dueAt))
+      const targetGroup = visibleUpcomingWindowGroups[0] ?? upcomingWindowGroups[0] ?? null;
+      const target = targetGroup
+        ? getMonthStart(new Date(targetGroup.dueAt))
         : getMonthStart(new Date());
       if (
         current.getFullYear() === target.getFullYear() &&
@@ -345,29 +368,44 @@ export default function DeadlineCalendarPage() {
     [groups, visibleMonth]
   );
 
+  const monthAgendaGroups = useMemo(
+    () => filterCalendarGroupsForAgenda(monthGroups, false),
+    [monthGroups]
+  );
+
   const fallbackUpcomingGroups = useMemo(
     () =>
-      deadlineCalendarService
-        .filterUpcomingGroups(groups, UPCOMING_DEADLINE_WINDOW_DAYS)
+      filterCalendarGroupsForAgenda(
+        deadlineCalendarService.filterUpcomingGroups(
+          groups,
+          UPCOMING_DEADLINE_WINDOW_DAYS
+        ),
+        false
+      )
         .slice(0, 8),
     [groups]
   );
 
   const monthItemCount = useMemo(
-    () => monthGroups.reduce((total, group) => total + group.items.length, 0),
+    () => countCalendarGroupItems(monthGroups),
     [monthGroups]
+  );
+
+  const monthAgendaItemCount = useMemo(
+    () => countCalendarGroupItems(monthAgendaGroups),
+    [monthAgendaGroups]
   );
 
   const displayedGroups = useMemo(() => {
     if (selectedDateKey) {
       return groups.filter((group) => group.dateKey === selectedDateKey);
     }
-    if (monthGroups.length) return monthGroups;
+    if (monthGroups.length) return monthAgendaGroups;
     return fallbackUpcomingGroups;
-  }, [fallbackUpcomingGroups, groups, monthGroups, selectedDateKey]);
+  }, [fallbackUpcomingGroups, groups, monthAgendaGroups, monthGroups.length, selectedDateKey]);
 
   const displayedItemCount = useMemo(
-    () => displayedGroups.reduce((total, group) => total + group.items.length, 0),
+    () => countCalendarGroupItems(displayedGroups),
     [displayedGroups]
   );
 
@@ -451,7 +489,10 @@ export default function DeadlineCalendarPage() {
   }, []);
 
   const selectedGroup = selectedDateKey ? displayedGroups[0] ?? null : null;
-  const monthFocusGroup = useMemo(() => findUpcomingGroup(monthGroups), [monthGroups]);
+  const monthFocusGroup = useMemo(
+    () => findUpcomingGroup(monthAgendaGroups),
+    [monthAgendaGroups]
+  );
   const focusGroup = selectedGroup ?? monthFocusGroup ?? fallbackUpcomingGroups[0] ?? null;
 
   const layout = useMemo(() => {
@@ -554,8 +595,12 @@ export default function DeadlineCalendarPage() {
     monthItemCount === 1
       ? t("deadlineCalendar.itemSingular")
       : t("deadlineCalendar.itemPlural");
-  const monthDateLabel =
-    monthGroups.length === 1
+  const monthAgendaItemLabel =
+    monthAgendaItemCount === 1
+      ? t("deadlineCalendar.itemSingular")
+      : t("deadlineCalendar.itemPlural");
+  const monthAgendaDateLabel =
+    monthAgendaGroups.length === 1
       ? t("deadlineCalendar.dateSingular")
       : t("deadlineCalendar.datePlural");
 
@@ -564,13 +609,15 @@ export default function DeadlineCalendarPage() {
         count: displayedItemCount,
         itemLabel: selectedItemLabel,
       })
-    : monthGroups.length
+    : monthAgendaGroups.length
       ? t("deadlineCalendar.monthSummary", {
-          itemCount: monthItemCount,
-          itemLabel: monthItemLabel,
-          dateCount: monthGroups.length,
-          dateLabel: monthDateLabel,
+          itemCount: monthAgendaItemCount,
+          itemLabel: monthAgendaItemLabel,
+          dateCount: monthAgendaGroups.length,
+          dateLabel: monthAgendaDateLabel,
         })
+      : monthGroups.length
+        ? t("deadlineCalendar.selectDateToRevealMessage")
       : fallbackUpcomingGroups.length
         ? t("deadlineCalendar.nextAvailableSummary")
         : t("deadlineCalendar.noDatedItemsMessage");
@@ -583,13 +630,15 @@ export default function DeadlineCalendarPage() {
           count: displayedItemCount,
           itemLabel: selectedItemLabel,
         })
-      : monthGroups.length
+      : monthAgendaGroups.length
         ? t("deadlineCalendar.monthSummary", {
-            itemCount: monthItemCount,
-            itemLabel: monthItemLabel,
-            dateCount: monthGroups.length,
-            dateLabel: monthDateLabel,
+            itemCount: monthAgendaItemCount,
+            itemLabel: monthAgendaItemLabel,
+            dateCount: monthAgendaGroups.length,
+            dateLabel: monthAgendaDateLabel,
           })
+        : monthGroups.length
+          ? t("deadlineCalendar.selectDateToRevealMessage")
         : fallbackUpcomingGroups.length
           ? t("deadlineCalendar.nextAvailableSummary")
           : t("deadlineCalendar.noDatedItemsMessage")
@@ -1118,6 +1167,17 @@ export default function DeadlineCalendarPage() {
                     variant="info"
                     title={t("deadlineCalendar.noItemsThisMonthTitle")}
                     message={t("deadlineCalendar.noItemsThisMonthMessage")}
+                    compact
+                    centered={false}
+                    className="mb-3"
+                  />
+                ) : null}
+
+                {monthGroups.length > 0 && displayedGroups.length === 0 && !selectedDateKey ? (
+                  <StateCard
+                    variant="info"
+                    title={t("deadlineCalendar.selectDateToRevealTitle")}
+                    message={t("deadlineCalendar.selectDateToRevealMessage")}
                     compact
                     centered={false}
                     className="mb-3"

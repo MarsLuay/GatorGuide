@@ -87,6 +87,7 @@ const rawTranslations = {
     "profile.name": "Name",
     "profile.major": "Major",
     "profile.gpa": "GPA (0.0 - 4.0)",
+    "profile.estimatedCredits": "Estimated credits",
     "profile.email": "Email",
     "profile.resume": "Documents",
     "profile.transcript": "Unofficial Transcript",
@@ -266,6 +267,8 @@ const rawTranslations = {
     "deadlineCalendar.noDatedItemsMessage": "Save colleges or add more opportunities to start building your deadline calendar.",
     "deadlineCalendar.noItemsThisMonthTitle": "No items in this month",
     "deadlineCalendar.noItemsThisMonthMessage": "The list below is showing the next available dated deadlines instead.",
+    "deadlineCalendar.selectDateToRevealTitle": "Select a highlighted date",
+    "deadlineCalendar.selectDateToRevealMessage": "Some application deadlines stay tucked into their calendar date. Tap a highlighted day to view the details.",
     "deadlineCalendar.done": "Done",
 
     // College Search Tool
@@ -6888,4 +6891,3 @@ function normalizeTranslations(source: Record<string, unknown>): Record<Language
 }
 
 export const translations = normalizeTranslations(rawTranslations as Record<string, unknown>);
-

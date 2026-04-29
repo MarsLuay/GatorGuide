@@ -6,6 +6,7 @@ export type ParsedTranscriptCourse = {
   code: string;
   title: string;
   label: string;
+  credits: number | null;
   termLabel: string | null;
   termStartDate: string | null;
   termEndDate: string | null;
@@ -14,6 +15,7 @@ export type ParsedTranscriptCourse = {
 
 export type ParsedTranscriptData = {
   completedCourses: ParsedTranscriptCourse[];
+  earnedCreditsTotal: number | null;
   gpa: string | null;
 };
 
@@ -218,6 +220,8 @@ function buildPageLines(items: PdfTextItem[]) {
 function parseTranscriptCourseLines(lines: string[]) {
   const parsed: ParsedTranscriptCourse[] = [];
   const seen = new Set<string>();
+  let earnedCreditsTotal = 0;
+  let hasEarnedCredits = false;
   let currentTermLabel: string | null = null;
   let currentTermStartDate: string | null = null;
   let currentTermEndDate: string | null = null;
@@ -243,12 +247,16 @@ function parseTranscriptCourseLines(lines: string[]) {
       continue;
     }
 
-    if (Number.parseFloat(earned) <= 0) continue;
+    const earnedCredits = Number.parseFloat(earned);
+    if (earnedCredits <= 0) continue;
 
     const title = normalizeWhitespace(rawTitle);
     if (!title || title.toLowerCase().startsWith("description ")) {
       continue;
     }
+
+    earnedCreditsTotal += earnedCredits;
+    hasEarnedCredits = true;
 
     const code = normalizeCourseCode(subject, number);
     if (seen.has(code)) {
@@ -260,6 +268,7 @@ function parseTranscriptCourseLines(lines: string[]) {
       code,
       title,
       label: `${code} ${title}`.trim(),
+      credits: earnedCredits,
       termLabel: currentTermLabel,
       termStartDate: currentTermStartDate,
       termEndDate: currentTermEndDate,
@@ -270,7 +279,12 @@ function parseTranscriptCourseLines(lines: string[]) {
     });
   }
 
-  return parsed;
+  return {
+    completedCourses: parsed,
+    earnedCreditsTotal: hasEarnedCredits
+      ? Math.round(earnedCreditsTotal * 1000) / 1000
+      : null,
+  };
 }
 
 export function extractCumulativeGpaFromTranscriptLines(lines: string[]) {
@@ -469,8 +483,11 @@ class TranscriptPdfService {
       throw new Error("No readable transcript text found in PDF.");
     }
 
+    const parsedCourseData = parseTranscriptCourseLines(allLines);
+
     return {
-      completedCourses: parseTranscriptCourseLines(allLines),
+      completedCourses: parsedCourseData.completedCourses,
+      earnedCreditsTotal: parsedCourseData.earnedCreditsTotal,
       gpa: extractCumulativeGpaFromTranscriptLines(allLines),
     };
   }

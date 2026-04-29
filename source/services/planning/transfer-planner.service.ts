@@ -38,6 +38,7 @@ const SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_PATTERN =
 export type TranscriptCourseEntry = {
   code: string;
   label: string;
+  credits?: number | null;
   termLabel?: string | null;
   termStartDate?: string | null;
   termEndDate?: string | null;
@@ -231,6 +232,7 @@ export type SuggestedQuarterCourse = {
   label: string;
   type: "core" | "elective";
   status: "completed" | "current" | "planned";
+  creditAmount?: number | null;
   guidanceSummary?: string | null;
   availabilitySummary?: string | null;
   sourceKind?: SuggestedQuarterCourseSourceKind;
@@ -1221,6 +1223,10 @@ function extractSourceBackedUwCourseCodesFromRequirementText(value: string) {
 export function parseCompletedTranscriptCourses(rawValue: unknown): TranscriptCourseEntry[] {
   const seen = new Set<string>();
   const parsed: TranscriptCourseEntry[] = [];
+  const parseCredits = (value: unknown) => {
+    const credits = Number(value);
+    return Number.isFinite(credits) && credits > 0 ? credits : null;
+  };
   const pushEntry = (entry: TranscriptCourseEntry) => {
     if (seen.has(entry.code)) return;
     seen.add(entry.code);
@@ -1243,11 +1249,15 @@ export function parseCompletedTranscriptCourses(rawValue: unknown): TranscriptCo
           String(record.termStartDate ?? "").replace(/\s+/g, " ").trim() || null;
         const termEndDate =
           String(record.termEndDate ?? "").replace(/\s+/g, " ").trim() || null;
+        const credits = parseCredits(
+          record.credits ?? record.earnedCredits ?? record.credit
+        );
 
         for (const code of extractCourseCodes(String(record.code ?? cleaned))) {
           pushEntry({
             code,
             label: cleaned,
+            credits,
             termLabel,
             termStartDate,
             termEndDate,
@@ -1505,6 +1515,12 @@ export function getResolvedTrackTermsForRequirementDisplay(
 const PREPARATORY_TRACK_TERM_LABEL_PATTERN = /\bquarter 0\b/i;
 const PREPARATORY_TRACK_NOTE_PATTERN =
   /\bonly required if\b|\bdepending on placement\b|\bprogram prerequisite\b/i;
+const STEM_PREP_COURSE_CODE_FALLBACKS = [
+  "MATH& 141",
+  "MATH& 142",
+  "PHYS& 114",
+  "PHYS& 115",
+];
 
 function getNormalizedCourseSubjectKey(courseCode: string) {
   const match = normalizeCourseCode(courseCode).match(/^([A-Z&]+(?: [A-Z&]+)*)\s+\d/);
@@ -1552,6 +1568,49 @@ export function getPreparatoryTrackCourseCodeSet(
   track: TransferPlannerTrack | null | undefined
 ) {
   return buildPreparatoryTrackCourseCodeSet(track);
+}
+
+function getStemPrepCourseCodeSet(track: TransferPlannerTrack | null | undefined) {
+  return new Set(
+    [
+      ...buildPreparatoryTrackCourseCodeSet(track),
+      ...STEM_PREP_COURSE_CODE_FALLBACKS,
+    ]
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
+function isOnlyStemPrepSuggestedCourse(
+  course: PendingSuggestedCourse,
+  stemPrepCourseCodes: Set<string>
+) {
+  if (!stemPrepCourseCodes.size || !course.explicitCourseCodes.length) {
+    return false;
+  }
+
+  const normalizedCourseCodes = course.explicitCourseCodes
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean);
+
+  return (
+    normalizedCourseCodes.length > 0 &&
+    normalizedCourseCodes.every((courseCode) => stemPrepCourseCodes.has(courseCode))
+  );
+}
+
+function filterStemPrepSuggestedCourses(
+  courses: PendingSuggestedCourse[],
+  stemPrepCourseCodes: Set<string>,
+  includeStemPrepCourses: boolean
+) {
+  if (includeStemPrepCourses) {
+    return courses;
+  }
+
+  return courses.filter(
+    (course) => !isOnlyStemPrepSuggestedCourse(course, stemPrepCourseCodes)
+  );
 }
 
 function courseDependsOnTargetCourseCode(
@@ -4096,12 +4155,55 @@ const MAX_AUTOMATIC_PLANNED_QUARTERS = 18;
 const MAX_AUTOMATIC_PLANNED_QUARTERS_WITH_GEN_ED_EXTENSION = 80;
 const PLANNING_NO_PROGRESS_QUARTER_LIMIT = 3;
 
-function toSuggestedQuarterCourse(course: SuggestedQuarterCourse): SuggestedQuarterCourse {
+function getPositiveCreditAmount(value: unknown) {
+  const credits = Number(value);
+  return Number.isFinite(credits) && credits > 0 ? credits : null;
+}
+
+function inferSuggestedCourseCreditAmount(
+  label: string,
+  explicitCourseCodes: string[] = []
+) {
+  const explicitCreditMatch = String(label ?? "").match(/\b(\d+(?:\.\d+)?)\s+credits?\b/i);
+  const explicitCreditAmount = getPositiveCreditAmount(explicitCreditMatch?.[1]);
+  if (explicitCreditAmount !== null) {
+    return explicitCreditAmount;
+  }
+
+  const normalizedExplicitCodes = unique(
+    explicitCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  const courseCodes = normalizedExplicitCodes.length
+    ? normalizedExplicitCodes
+    : extractCourseCodes(label);
+  if (!courseCodes.length || (!normalizedExplicitCodes.length && courseCodes.length > 1)) {
+    return null;
+  }
+
+  let totalCredits = 0;
+  for (const courseCode of courseCodes) {
+    const creditAmount = getPositiveCreditAmount(
+      getTransferPlannerCanonicalCourse("grc", courseCode)?.creditValue
+    );
+    if (creditAmount === null) {
+      return null;
+    }
+
+    totalCredits += creditAmount;
+  }
+
+  return totalCredits > 0 ? totalCredits : null;
+}
+
+function toSuggestedQuarterCourse(course: PendingSuggestedCourse): SuggestedQuarterCourse {
   return {
     instanceKey: course.instanceKey,
     label: course.label,
     type: course.type,
     status: course.status,
+    creditAmount:
+      course.creditAmount ??
+      inferSuggestedCourseCreditAmount(course.label, course.explicitCourseCodes),
     guidanceSummary: course.guidanceSummary,
     sourceKind: course.sourceKind,
     availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(course.label),
@@ -4244,6 +4346,9 @@ function buildCompletedQuarterPlans(
         label: course.label,
         type: isCoreCourseLabel(course.code) ? "core" : "elective",
         status: "completed",
+        creditAmount:
+          course.credits ??
+          inferSuggestedCourseCreditAmount(course.label, [normalizedCourseCode]),
         sourceKind: "completed-transcript",
         guidanceSummary: joinGuidanceSummaries(
           prerequisiteGuidanceSummary,
@@ -4480,7 +4585,7 @@ export type CompletedTransferableQuarterCreditSummary = {
 };
 
 const GENERAL_ED_PLACEHOLDER_CREDITS = 5;
-const UW_TRANSFER_ADMISSION_CADR_EXEMPTION_QUARTER_CREDITS = 40;
+export const UW_TRANSFER_ADMISSION_CADR_EXEMPTION_QUARTER_CREDITS = 40;
 const EMPTY_GENERAL_ED_REQUIREMENT_TARGETS: GeneralEducationRequirementTargets = {
   ahCredits: null,
   sscCredits: null,
@@ -8573,8 +8678,11 @@ export function buildSuggestedQuarterPlan(input: {
   referenceDate?: Date;
   includeStayAtGrcCourses?: boolean;
   includeSummerQuarter?: boolean;
+  includeStemPrepCourses?: boolean;
 }) {
   const includeSummerQuarter = input.includeSummerQuarter === true;
+  const includeStemPrepCourses = input.includeStemPrepCourses !== false;
+  const stemPrepCourseCodes = getStemPrepCourseCodeSet(input.track);
   const applicationStatuses = input.applicationStatuses;
   const sourceBackedRequiredCourseFallbackStatuses =
     buildSourceBackedRequiredCourseFallbackStatuses({
@@ -8690,7 +8798,7 @@ export function buildSuggestedQuarterPlan(input: {
     [...stayAtGrcRemainingCourses, ...trackSupplementalCourses],
     completedCourseCodes
   );
-  const remainingCourses =
+  const remainingCoursesWithStemPrep =
     input.includeStayAtGrcCourses === false
       ? [...essentialRemainingCourses, ...essentialDependencyCourses]
       : [
@@ -8714,6 +8822,11 @@ export function buildSuggestedQuarterPlan(input: {
           ),
           ...trackSupplementalCourses,
         ];
+  const remainingCourses = filterStemPrepSuggestedCourses(
+    remainingCoursesWithStemPrep,
+    stemPrepCourseCodes,
+    includeStemPrepCourses
+  );
   const guidedRemainingCourses = assignSuggestedCourseInstanceKeys(
     attachAutomaticPrerequisiteGuidance(
       attachAutomaticTransferEquivalencyGuidance(

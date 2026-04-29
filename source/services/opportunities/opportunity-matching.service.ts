@@ -4,7 +4,6 @@ import {
   type UserOpportunityStatus,
   type OpportunityFinancialAidTag,
   type OpportunityProgressState,
-  isCompletedOpportunityProgress,
   isOpportunityDoneForCurrentCycle,
   normalizeMajorTag,
   normalizeResidencyTag,
@@ -16,6 +15,9 @@ import {
   resolveOpportunityDueDate,
 } from "@/constants/opportunities";
 import { QUESTIONNAIRE_FIELD_IDS } from "@/constants/schema";
+import {
+  estimateTransferPlannerTranscriptCurrentCredits,
+} from "@/services/planning/transfer-planner-cache.service";
 
 export type MatchedOpportunity = Opportunity & {
   computedDueAt: string | null;
@@ -31,8 +33,58 @@ type MatchInput = {
   statusById: Record<string, UserOpportunityStatus | undefined>;
 };
 
+type GreenRiverEnrollmentCreditBucket = "90plus" | "60-89" | "30-59" | "0-29";
+
+const GREEN_RIVER_CURRENT_RETURNING_ENROLLMENT_PATTERN =
+  /^green-river-current-returning-enrollment-(90plus|60-89|30-59|0-29)-credits-for-/;
+
+const GREEN_RIVER_ENROLLMENT_CREDIT_BUCKET_LABELS: Record<
+  GreenRiverEnrollmentCreditBucket,
+  string
+> = {
+  "90plus": "90+ credits",
+  "60-89": "60-89 credits",
+  "30-59": "30-59 credits",
+  "0-29": "0-29 credits",
+};
+
 function uniqueStrings(values: string[]) {
   return Array.from(new Set(values.filter(Boolean)));
+}
+
+function getGreenRiverEnrollmentCreditBucket(
+  earnedCreditsTotal: number
+): GreenRiverEnrollmentCreditBucket {
+  if (earnedCreditsTotal >= 90) return "90plus";
+  if (earnedCreditsTotal >= 60) return "60-89";
+  if (earnedCreditsTotal >= 30) return "30-59";
+  return "0-29";
+}
+
+function getOpportunityGreenRiverEnrollmentCreditBucket(
+  opportunity: Opportunity
+): GreenRiverEnrollmentCreditBucket | null {
+  const match = String(opportunity.opportunityId ?? "").match(
+    GREEN_RIVER_CURRENT_RETURNING_ENROLLMENT_PATTERN
+  );
+  return (match?.[1] as GreenRiverEnrollmentCreditBucket | undefined) ?? null;
+}
+
+function formatCreditAmount(value: number) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(1).replace(/\.0$/, "");
+}
+
+function getGreenRiverEnrollmentCreditEstimate(
+  opportunity: Opportunity,
+  input: MatchInput,
+  dueDate: Date | null
+) {
+  const opportunityBucket = getOpportunityGreenRiverEnrollmentCreditBucket(opportunity);
+  if (!opportunityBucket) return null;
+
+  return estimateTransferPlannerTranscriptCurrentCredits(input.questionnaireAnswers, {
+    asOf: dueDate ?? new Date(),
+  });
 }
 
 function formatRequirementCountLabel(
@@ -107,6 +159,22 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
   const userResidency = getUserResidency(input);
   const suggestedMajors = opportunity.matching.suggestedMajors.map(normalizeMajorTag);
   const dueDate = resolveOpportunityDueDate(opportunity);
+  const greenRiverEnrollmentBucket =
+    getOpportunityGreenRiverEnrollmentCreditBucket(opportunity);
+  const transcriptCreditEstimate = getGreenRiverEnrollmentCreditEstimate(
+    opportunity,
+    input,
+    dueDate
+  );
+  if (
+    greenRiverEnrollmentBucket &&
+    transcriptCreditEstimate &&
+    getGreenRiverEnrollmentCreditBucket(
+      transcriptCreditEstimate.estimatedCurrentCreditsTotal
+    ) !== greenRiverEnrollmentBucket
+  ) {
+    return null;
+  }
   const dueAt = dueDate ? dueDate.toISOString() : null;
 
   if (isDone) {
@@ -218,6 +286,25 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
     opportunity.type === "general_deadline"
   ) {
     score += 10;
+  }
+
+  if (greenRiverEnrollmentBucket && transcriptCreditEstimate) {
+    score += 12;
+    if (transcriptCreditEstimate.usedProjection) {
+      matchReasons.push(
+        `Estimated credits by enrollment date: ${formatCreditAmount(
+          transcriptCreditEstimate.estimatedCurrentCreditsTotal
+        )} (${formatCreditAmount(
+          transcriptCreditEstimate.earnedCreditsTotal
+        )} transcript + ${formatCreditAmount(
+          transcriptCreditEstimate.estimatedAdditionalCredits
+        )} projected)`
+      );
+    } else {
+      matchReasons.push(
+        `Transcript bucket: ${GREEN_RIVER_ENROLLMENT_CREDIT_BUCKET_LABELS[greenRiverEnrollmentBucket]}`
+      );
+    }
   }
 
   return {

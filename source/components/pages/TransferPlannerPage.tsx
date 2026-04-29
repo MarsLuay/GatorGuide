@@ -72,6 +72,7 @@ import {
   getPreparatoryTrackCourseCodeSet,
   getResolvedTrackTermsForRequirementDisplay,
   parseCompletedTranscriptCourses,
+  UW_TRANSFER_ADMISSION_CADR_EXEMPTION_QUARTER_CREDITS,
   type SuggestedQuarterPlan,
   type TransferPlannerStudentEvaluationReport,
   type TransferRequirementStatus,
@@ -80,6 +81,7 @@ import {
 import {
   buildTransferPlannerTranscriptCachePatch,
   TRANSCRIPT_COURSES_FIELD,
+  TRANSCRIPT_EARNED_CREDITS_FIELD,
   TRANSCRIPT_PARSER_VERSION,
   TRANSCRIPT_PARSER_VERSION_FIELD,
   TRANSCRIPT_SOURCE_FIELD,
@@ -392,6 +394,7 @@ function buildCoursePlannerBugReportLog(input: {
   currentPlannedCourseLabels: string[];
   onlyUwEssentialClasses: boolean;
   allowSummerClasses: boolean;
+  allowStemPrepClasses: boolean;
   isHydrated: boolean;
   isPlannerComputationReady: boolean;
   isPlannerComputationLoading: boolean;
@@ -438,6 +441,7 @@ function buildCoursePlannerBugReportLog(input: {
     `- Has no direct major equivalencies: ${input.hasNoDirectMajorEquivalencies ? "yes" : "no"}`,
     `- Only UW essential classes: ${input.onlyUwEssentialClasses ? "yes" : "no"}`,
     `- Allow summer classes: ${input.allowSummerClasses ? "yes" : "no"}`,
+    `- Allow STEM prep classes: ${input.allowStemPrepClasses ? "yes" : "no"}`,
     "",
     "Selected Current Courses",
     formatPlannerReportList(input.currentPlannedCourseLabels),
@@ -718,6 +722,135 @@ function getGrcTrackCredentialKind(
 
 function getGrcTrackRequirementNoun(track: TransferPlannerTrack | null | undefined) {
   return getGrcTrackCredentialKind(track) === "associate" ? "degree" : "program";
+}
+
+function formatSuggestedScheduleCreditCount(creditAmount: number) {
+  const roundedCreditAmount = Number.isInteger(creditAmount)
+    ? String(creditAmount)
+    : creditAmount.toFixed(1).replace(/\.0$/, "");
+  return `${roundedCreditAmount} ${creditAmount === 1 ? "credit" : "credits"}`;
+}
+
+function getSuggestedScheduleCredentialLabel(
+  degreeTitle: string,
+  grcTrackRequirementNoun: string
+) {
+  const trimmedDegreeTitle = String(degreeTitle ?? "").trim() || "selected";
+  if (/\b(degree|program|certificate)\b$/i.test(trimmedDegreeTitle)) {
+    return trimmedDegreeTitle;
+  }
+
+  const credentialNoun =
+    grcTrackRequirementNoun === "degree" ? "Degree" : "Program";
+  return `${trimmedDegreeTitle} ${credentialNoun}`;
+}
+
+type SuggestedScheduleQuarterSeason = "Winter" | "Spring" | "Summer" | "Fall";
+
+type SuggestedScheduleQuarterParts = {
+  season: SuggestedScheduleQuarterSeason;
+  year: number;
+};
+
+const UW_TRANSFER_DEADLINE_MONTH_LABELS: Record<number, string> = {
+  2: "February",
+  9: "September",
+};
+
+function getSuggestedCourseCreditAmount(
+  course: SuggestedQuarterPlan["courses"][number]
+) {
+  const creditAmount = Number(course.creditAmount);
+  return Number.isFinite(creditAmount) && creditAmount > 0 ? creditAmount : 0;
+}
+
+function getSuggestedQuarterCreditTotal(quarter: SuggestedQuarterPlan) {
+  return quarter.courses.reduce(
+    (totalCredits, course) => totalCredits + getSuggestedCourseCreditAmount(course),
+    0
+  );
+}
+
+function parseSuggestedScheduleQuarterLabel(
+  label: string | null | undefined
+): SuggestedScheduleQuarterParts | null {
+  const match = String(label ?? "").match(/\b(Winter|Spring|Summer|Fall|Autumn)\s+(\d{4})\b/i);
+  if (!match) return null;
+
+  const parsedYear = Number.parseInt(match[2] ?? "", 10);
+  if (!Number.isFinite(parsedYear)) return null;
+
+  const rawSeason = String(match[1] ?? "").toLowerCase();
+  const season: SuggestedScheduleQuarterSeason =
+    rawSeason === "winter"
+      ? "Winter"
+      : rawSeason === "spring"
+        ? "Spring"
+        : rawSeason === "summer"
+          ? "Summer"
+          : "Fall";
+
+  return {
+    season,
+    year: parsedYear,
+  };
+}
+
+function formatUwTransferDeadlineDate(month: number, day: number, year: number) {
+  return `${UW_TRANSFER_DEADLINE_MONTH_LABELS[month] ?? `Month ${month}`} ${day}, ${year}`;
+}
+
+function getUwTransferApplicationCycleForQuarter(
+  quarter: SuggestedScheduleQuarterParts
+) {
+  if (quarter.season === "Winter") {
+    return {
+      deadlineText: formatUwTransferDeadlineDate(2, 15, quarter.year),
+      admissionTerm: `Autumn/Summer ${quarter.year}`,
+    };
+  }
+
+  if (quarter.season === "Spring" || quarter.season === "Summer") {
+    return {
+      deadlineText: formatUwTransferDeadlineDate(9, 1, quarter.year),
+      admissionTerm: `Winter ${quarter.year + 1}`,
+    };
+  }
+
+  return {
+    deadlineText: formatUwTransferDeadlineDate(2, 15, quarter.year + 1),
+    admissionTerm: `Autumn/Summer ${quarter.year + 1}`,
+  };
+}
+
+function buildUwTransferMinimumRequirementSummary(quarters: SuggestedQuarterPlan[]) {
+  const completedCredits = quarters
+    .filter((quarter) => quarter.phase === "completed")
+    .reduce(
+      (totalCredits, quarter) => totalCredits + getSuggestedQuarterCreditTotal(quarter),
+      0
+    );
+  let cumulativeCredits = completedCredits;
+  const upcomingQuarters = quarters.filter((quarter) => quarter.phase !== "completed");
+
+  for (const quarter of upcomingQuarters) {
+    const quarterParts = parseSuggestedScheduleQuarterLabel(quarter.label);
+    if (!quarterParts) {
+      cumulativeCredits += getSuggestedQuarterCreditTotal(quarter);
+      continue;
+    }
+
+    if (cumulativeCredits < UW_TRANSFER_ADMISSION_CADR_EXEMPTION_QUARTER_CREDITS) {
+      cumulativeCredits += getSuggestedQuarterCreditTotal(quarter);
+    }
+
+    if (cumulativeCredits >= UW_TRANSFER_ADMISSION_CADR_EXEMPTION_QUARTER_CREDITS) {
+      const applicationCycle = getUwTransferApplicationCycleForQuarter(quarterParts);
+      return `${quarter.label} - Minimum transfer requirements are met. Apply by ${applicationCycle.deadlineText} to be considered for ${applicationCycle.admissionTerm} admission at UW.`;
+    }
+  }
+
+  return null;
 }
 
 function getGrcTrackSpecificsTitle(track: TransferPlannerTrack | null | undefined) {
@@ -2548,6 +2681,8 @@ function SuggestedScheduleCard({
   onToggleOnlyUwEssentialClasses,
   allowSummerClasses,
   onToggleAllowSummerClasses,
+  allowStemPrepClasses,
+  onToggleAllowStemPrepClasses,
   currentCourseSelections,
   onToggleCurrentCourse,
   textClass,
@@ -2566,6 +2701,8 @@ function SuggestedScheduleCard({
   onToggleOnlyUwEssentialClasses: () => void;
   allowSummerClasses: boolean;
   onToggleAllowSummerClasses: () => void;
+  allowStemPrepClasses: boolean;
+  onToggleAllowStemPrepClasses: () => void;
   currentCourseSelections: Set<string>;
   onToggleCurrentCourse: (courseKey: string, fallbackCourseLabel?: string) => void;
   textClass: string;
@@ -2591,12 +2728,30 @@ function SuggestedScheduleCard({
         ? "GRC Degree Plan"
         : "GRC Program Plan"
       : "GRC Quarter Plan";
+  const remainingCreditTotal = quarters
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.status !== "completed")
+    .reduce((totalCredits, course) => {
+      const creditAmount = Number(course.creditAmount);
+      return Number.isFinite(creditAmount) && creditAmount > 0
+        ? totalCredits + creditAmount
+        : totalCredits;
+    }, 0);
+  const remainingCreditText = formatSuggestedScheduleCreditCount(remainingCreditTotal);
+  const remainingCreditCredentialLabel = getSuggestedScheduleCredentialLabel(
+    degreeTitle,
+    collegeId === "grc" ? grcTrackRequirementNoun : "degree"
+  );
+  const uwTransferMinimumRequirementSummary =
+    collegeId === "grc" ? null : buildUwTransferMinimumRequirementSummary(quarters);
+  const stemPrepToggleGuidance =
+    "Turn off 'Allow STEM prep classes' to skip unnecessary placement-dependent prep classes like Precalculus I/II or general physics when you are ready to start with Calculus I and Engineering Physics I.";
   const scheduleDescription =
     collegeId === "grc"
       ? `This is your Green River plan for finishing the ${degreeTitle} ${grcTrackRequirementNoun} at ${getScheduleCampusLabel(collegeId, campusLabel)}. Completed transcript classes stay marked as done, and the planner fills in the remaining GRC ${grcTrackRequirementNoun} courses still ahead.`
       : onlyUwEssentialClasses
-        ? `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. It starts focused on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies. Turn off Classes for UW transfer only to include optional Green River track classes.`
-        : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Turn on Classes for UW transfer only to hide optional Green River track classes and focus on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies.`;
+        ? `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. It starts focused on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies. Turn off Classes for UW transfer only to include optional Green River track classes. ${stemPrepToggleGuidance}`
+        : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Turn on Classes for UW transfer only to hide optional Green River track classes and focus on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies. ${stemPrepToggleGuidance}`;
 
   return (
     <View className={`${cardClass} border rounded-[28px] p-5`}>
@@ -2631,6 +2786,24 @@ function SuggestedScheduleCard({
               </Pressable>
             ) : null}
             <Pressable
+              onPress={onToggleAllowStemPrepClasses}
+              accessibilityRole="checkbox"
+              accessibilityState={{ checked: allowStemPrepClasses }}
+              accessibilityLabel="Allow STEM prep classes in quarter planning"
+              accessibilityHint="Includes placement-dependent prep classes such as Precalculus I/II and general physics before Calculus I or Engineering Physics I."
+              className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
+              hitSlop={8}
+            >
+              <Text className={`${secondaryTextClass} text-xs font-medium`}>
+                Allow STEM prep classes
+              </Text>
+              <Ionicons
+                name={allowStemPrepClasses ? "checkbox" : "square-outline"}
+                size={20}
+                color={allowStemPrepClasses ? "#008f4e" : "#9CA3AF"}
+              />
+            </Pressable>
+            <Pressable
               onPress={onToggleAllowSummerClasses}
               accessibilityRole="checkbox"
               accessibilityState={{ checked: allowSummerClasses }}
@@ -2651,6 +2824,23 @@ function SuggestedScheduleCard({
           </View>
         ) : null}
       </View>
+
+      {collegeId !== "grc" ? (
+        <View className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-4">
+          <Text className={`${textClass} text-base font-semibold`}>
+            You have{" "}
+            <Text className="text-emerald-600" style={{ fontVariant: ["tabular-nums"] }}>
+              {remainingCreditText}
+            </Text>{" "}
+            left in order to finish the {remainingCreditCredentialLabel}
+          </Text>
+          {uwTransferMinimumRequirementSummary ? (
+            <Text className={`${secondaryTextClass} text-sm mt-2`}>
+              {uwTransferMinimumRequirementSummary}
+            </Text>
+          ) : null}
+        </View>
+      ) : null}
 
       <View className="gap-4 mt-4">
         {visibleQuarters.map((quarter, quarterIndex) => (
@@ -3407,6 +3597,7 @@ export default function TransferPlannerPage() {
   const [transcriptError, setTranscriptError] = useState<string | null>(null);
   const [onlyUwEssentialClasses, setOnlyUwEssentialClasses] = useState(true);
   const [allowSummerClasses, setAllowSummerClasses] = useState(false);
+  const [allowStemPrepClasses, setAllowStemPrepClasses] = useState(true);
 
   const transcriptAnalysisAttemptsRef = useRef<Set<string>>(new Set());
   const transcriptAnalysisGenerationRef = useRef(0);
@@ -3435,6 +3626,22 @@ export default function TransferPlannerPage() {
       ),
     [storedDetailedTranscriptCourses]
   );
+  const hasDetailedCompletedCourseCredits = useMemo(
+    () =>
+      Array.isArray(storedDetailedTranscriptCourses) &&
+      storedDetailedTranscriptCourses.some((entry: unknown) => {
+        if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+          return false;
+        }
+
+        const record = entry as Record<string, unknown>;
+        const credits = Number(
+          record.credits ?? record.earnedCredits ?? record.credit
+        );
+        return Number.isFinite(credits) && credits > 0;
+      }),
+    [storedDetailedTranscriptCourses]
+  );
   const storedTranscriptSource = String(
     state.questionnaireAnswers?.[TRANSCRIPT_SOURCE_FIELD] ?? ""
   ).trim();
@@ -3456,6 +3663,12 @@ export default function TransferPlannerPage() {
   const shouldUseDetailedCompletedCourses =
     hasDetailedCompletedCourses &&
     storedTranscriptParserVersion === TRANSCRIPT_PARSER_VERSION;
+  const storedTranscriptEarnedCredits = useMemo(() => {
+    const parsed = Number(
+      state.questionnaireAnswers?.[TRANSCRIPT_EARNED_CREDITS_FIELD]
+    );
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+  }, [state.questionnaireAnswers]);
   const cachedTranscriptDocument = useMemo<TranscriptDocument | null>(() => {
     if (!shouldUseDetailedCompletedCourses) return null;
 
@@ -3490,9 +3703,15 @@ export default function TransferPlannerPage() {
         : [],
     [shouldUseDetailedCompletedCourses, storedDetailedTranscriptCourses]
   );
+  const needsTranscriptCreditReparse =
+    shouldUseDetailedCompletedCourses &&
+    storedTranscriptEarnedCredits == null &&
+    !hasDetailedCompletedCourseCredits &&
+    !!activeTranscriptDocument;
   const needsTranscriptReparse =
     hasDetailedCompletedCourses &&
-    storedTranscriptParserVersion !== TRANSCRIPT_PARSER_VERSION;
+    (storedTranscriptParserVersion !== TRANSCRIPT_PARSER_VERSION ||
+      needsTranscriptCreditReparse);
 
   const isUwPlanner = selectedCollegeId === "uw";
   const selectedUwCampusId = useMemo<TransferPlannerCampusId>(
@@ -3640,8 +3859,10 @@ export default function TransferPlannerPage() {
         currentPlannedCourseLabels.join("|"),
         onlyUwEssentialClasses ? "uw-only" : "full",
         allowSummerClasses ? "summer" : "no-summer",
+        allowStemPrepClasses ? "stem-prep" : "no-stem-prep",
       ].join("||"),
     [
+      allowStemPrepClasses,
       allowSummerClasses,
       completedCoursesKey,
       currentPlannedCourseLabels,
@@ -3883,9 +4104,10 @@ export default function TransferPlannerPage() {
         const { transcriptPdfService } = await import(
           "@/services/documents/transcript-pdf.service"
         );
-        const parsedCourses = await transcriptPdfService.extractCompletedCoursesFromPdf(
+        const parsedTranscript = await transcriptPdfService.extractTranscriptDataFromPdf(
           document.url
         );
+        const parsedCourses = parsedTranscript.completedCourses;
 
         if (!parsedCourses.length) throw new Error("No completed courses extracted.");
         if (analysisGeneration !== transcriptAnalysisGenerationRef.current) return;
@@ -3906,7 +4128,11 @@ export default function TransferPlannerPage() {
 
         await setQuestionnaireAnswers((currentAnswers) => ({
           ...currentAnswers,
-          ...buildTransferPlannerTranscriptCachePatch(document, parsedCourses),
+          ...buildTransferPlannerTranscriptCachePatch(
+            document,
+            parsedCourses,
+            parsedTranscript.earnedCreditsTotal
+          ),
         }));
       } catch (error) {
         if (analysisGeneration !== transcriptAnalysisGenerationRef.current) return;
@@ -3953,7 +4179,8 @@ export default function TransferPlannerPage() {
     if (
       completedCourses.length &&
       storedTranscriptSource === activeTranscriptDocument.url &&
-      shouldUseDetailedCompletedCourses
+      shouldUseDetailedCompletedCourses &&
+      !needsTranscriptCreditReparse
     ) {
       return;
     }
@@ -3969,6 +4196,7 @@ export default function TransferPlannerPage() {
     completedCourses.length,
     storedTranscriptSource,
     shouldUseDetailedCompletedCourses,
+    needsTranscriptCreditReparse,
   ]);
 
   const handlePickTranscript = useCallback(async () => {
@@ -4136,9 +4364,11 @@ export default function TransferPlannerPage() {
             track,
             includeStayAtGrcCourses: isUwPlanner ? !onlyUwEssentialClasses : true,
             includeSummerQuarter: allowSummerClasses,
+            includeStemPrepCourses: allowStemPrepClasses,
           })
         : [],
     [
+      allowStemPrepClasses,
       applicationStatuses,
       beforeEnrollmentStatuses,
       completedCourses,
@@ -4385,6 +4615,7 @@ export default function TransferPlannerPage() {
       currentPlannedCourseLabels,
       onlyUwEssentialClasses,
       allowSummerClasses,
+      allowStemPrepClasses,
       isHydrated,
       isPlannerComputationReady,
       isPlannerComputationLoading,
@@ -4476,6 +4707,7 @@ export default function TransferPlannerPage() {
     }
   }, [
     activeDegreeTitle,
+    allowStemPrepClasses,
     allowSummerClasses,
     applicationStatuses,
     beforeEnrollmentStatuses,
@@ -4788,6 +5020,10 @@ export default function TransferPlannerPage() {
                   allowSummerClasses={allowSummerClasses}
                   onToggleAllowSummerClasses={() =>
                     setAllowSummerClasses((current) => !current)
+                  }
+                  allowStemPrepClasses={allowStemPrepClasses}
+                  onToggleAllowStemPrepClasses={() =>
+                    setAllowStemPrepClasses((current) => !current)
                   }
                   currentCourseSelections={currentPlannedCourseSet}
                   onToggleCurrentCourse={handleToggleCurrentCourse}
