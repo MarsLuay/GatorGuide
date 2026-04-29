@@ -1,3 +1,4 @@
+import * as Clipboard from "expo-clipboard";
 import * as DocumentPicker from "expo-document-picker";
 import { useRouter } from "expo-router";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
@@ -82,6 +83,7 @@ import {
   TRANSCRIPT_PARSER_VERSION,
   TRANSCRIPT_PARSER_VERSION_FIELD,
   TRANSCRIPT_SOURCE_FIELD,
+  TRANSCRIPT_UPLOADED_AT_FIELD,
 } from "@/services/planning/transfer-planner-cache.service";
 import { resetTranscriptState } from "@/services/planning/transcript-reset.service";
 
@@ -105,6 +107,100 @@ type TranscriptDocument = UploadedFile;
 
 function buildFriendlyTranscriptError() {
   return "We couldn't read past classes from this unofficial transcript yet. Upload the PDF directly from ctcLink using the link below.";
+}
+
+function buildCoursePlannerReportFileName(createdAt: string) {
+  return `course-planner-bug-report-${createdAt.replace(/[:.]/g, "-")}.txt`;
+}
+
+function buildCoursePlannerBugReportMailtoUrl(subject: string, body: string) {
+  return `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function canDownloadCoursePlannerReportLogOnWeb() {
+  return (
+    Platform.OS === "web" &&
+    typeof document !== "undefined" &&
+    typeof document.createElement === "function" &&
+    !!document.body &&
+    typeof Blob !== "undefined" &&
+    typeof URL !== "undefined" &&
+    typeof URL.createObjectURL === "function"
+  );
+}
+
+function downloadCoursePlannerReportLogOnWeb(reportLog: string) {
+  if (!canDownloadCoursePlannerReportLogOnWeb()) return false;
+
+  let url = "";
+  let link: HTMLAnchorElement | null = null;
+  try {
+    const savedAt = new Date().toISOString();
+    const blob = new Blob([reportLog], { type: "text/plain;charset=utf-8" });
+    url = URL.createObjectURL(blob);
+    link = document.createElement("a");
+    link.href = url;
+    link.download = buildCoursePlannerReportFileName(savedAt);
+    document.body.appendChild(link);
+    link.click();
+    return true;
+  } catch {
+    return false;
+  } finally {
+    if (link?.parentNode) {
+      link.parentNode.removeChild(link);
+    }
+    if (url) {
+      URL.revokeObjectURL(url);
+    }
+  }
+}
+
+async function copyCoursePlannerReportLogOnWeb(reportLog: string) {
+  if (Platform.OS !== "web") return false;
+
+  try {
+    await Clipboard.setStringAsync(reportLog);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function openMailtoUrlOnWeb(mailtoUrl: string) {
+  if (Platform.OS !== "web" || typeof window === "undefined") return false;
+
+  try {
+    window.location.href = mailtoUrl;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function buildWebCoursePlannerBugReportBody(input: {
+  copiedReportLog: boolean;
+  downloadedReportLog: boolean;
+}) {
+  const deliveryNotes: string[] = [];
+
+  if (input.downloadedReportLog) {
+    deliveryNotes.push(
+      "A current Course Planner log was downloaded as a text file. Please attach it if possible."
+    );
+  }
+
+  if (input.copiedReportLog) {
+    deliveryNotes.push("The same log was copied to your clipboard so you can paste it below.");
+  }
+
+  if (!deliveryNotes.length) {
+    deliveryNotes.push(
+      "The automatic Course Planner log could not be attached in this browser, so please include any details you can."
+    );
+  }
+
+  return `Please describe what happened in Course Planner:\n\n\n${deliveryNotes.join("\n")}`;
 }
 
 function getReadableTranscriptFileName(document: TranscriptDocument | null) {
@@ -2656,7 +2752,10 @@ function SuggestedScheduleCard({
                                   onPress={() =>
                                     router.push({
                                       pathname: ROUTES.transferEquivalencies,
-                                      params,
+                                      params: {
+                                        ...params,
+                                        returnTo: ROUTES.transferPlanner,
+                                      },
                                     })
                                   }
                                 >
@@ -2858,13 +2957,14 @@ function TranscriptEvaluationReportCard({
                       <Text
                         className="text-emerald-500 underline"
                         onPress={() =>
-                          router.push({
-                            pathname: ROUTES.transferEquivalencies,
-                            params: {
-                              tag: requirementCreditMessage.normalizedTag,
-                              campusId: requirementCreditMessage.campusId,
-                            },
-                          })
+                            router.push({
+                              pathname: ROUTES.transferEquivalencies,
+                              params: {
+                                tag: requirementCreditMessage.normalizedTag,
+                                campusId: requirementCreditMessage.campusId,
+                                returnTo: ROUTES.transferPlanner,
+                              },
+                            })
                         }
                       >
                         {requirementCreditMessage.clickableLabel}
@@ -3338,6 +3438,15 @@ export default function TransferPlannerPage() {
   const storedTranscriptSource = String(
     state.questionnaireAnswers?.[TRANSCRIPT_SOURCE_FIELD] ?? ""
   ).trim();
+  const storedTranscriptUploadedAt = useMemo(() => {
+    const raw = String(
+      state.questionnaireAnswers?.[TRANSCRIPT_UPLOADED_AT_FIELD] ?? ""
+    ).trim();
+    if (!raw) return "";
+
+    const parsed = new Date(raw);
+    return Number.isNaN(parsed.getTime()) ? raw : parsed.toISOString();
+  }, [state.questionnaireAnswers]);
   const storedTranscriptParserVersion = useMemo(() => {
     const raw = state.questionnaireAnswers?.[TRANSCRIPT_PARSER_VERSION_FIELD];
     const parsed =
@@ -3347,6 +3456,26 @@ export default function TransferPlannerPage() {
   const shouldUseDetailedCompletedCourses =
     hasDetailedCompletedCourses &&
     storedTranscriptParserVersion === TRANSCRIPT_PARSER_VERSION;
+  const cachedTranscriptDocument = useMemo<TranscriptDocument | null>(() => {
+    if (!shouldUseDetailedCompletedCourses) return null;
+
+    const url = storedTranscriptSource || String(user?.transcript ?? "").trim();
+    if (!url) return null;
+
+    return {
+      name: "unofficial-transcript.pdf",
+      url,
+      uploadedAt: storedTranscriptUploadedAt,
+      mimeType: "application/pdf",
+      sizeBytes: null,
+    };
+  }, [
+    shouldUseDetailedCompletedCourses,
+    storedTranscriptSource,
+    storedTranscriptUploadedAt,
+    user?.transcript,
+  ]);
+  const activeTranscriptDocument = transcriptDocument ?? cachedTranscriptDocument;
   const rawCompletedCourses = shouldUseDetailedCompletedCourses
     ? storedDetailedTranscriptCourses
     : state.questionnaireAnswers?.completedCourses;
@@ -3466,8 +3595,8 @@ export default function TransferPlannerPage() {
     () => new Set(currentPlannedCourseLabels),
     [currentPlannedCourseLabels]
   );
-  const transcriptSourceKey = transcriptDocument
-    ? `${transcriptDocument.url}|${transcriptDocument.uploadedAt}`
+  const transcriptSourceKey = activeTranscriptDocument
+    ? `${activeTranscriptDocument.url}|${activeTranscriptDocument.uploadedAt}`
     : "";
   const transcriptAnalysisKey = transcriptSourceKey
     ? `${transcriptSourceKey}|v${TRANSCRIPT_PARSER_VERSION}`
@@ -3481,11 +3610,10 @@ export default function TransferPlannerPage() {
   const reportBugEmailSubject = "GatorGuide Course Planner Bug Report";
   const reportBugEmailBody =
     "Please describe what happened in Course Planner:\n\n\nA current Course Planner log is attached when your email app supports attachments.";
-  const reportBugMailtoUrl = useMemo(() => {
-    const subject = encodeURIComponent(reportBugEmailSubject);
-    const body = encodeURIComponent(reportBugEmailBody);
-    return `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
-  }, [reportBugEmailBody]);
+  const reportBugMailtoUrl = useMemo(
+    () => buildCoursePlannerBugReportMailtoUrl(reportBugEmailSubject, reportBugEmailBody),
+    [reportBugEmailBody, reportBugEmailSubject]
+  );
   const completedCoursesKey = useMemo(
     () =>
       completedCourses
@@ -3719,7 +3847,7 @@ export default function TransferPlannerPage() {
     return () => {
       active = false;
     };
-  }, [user?.uid]);
+  }, [user?.uid, user?.transcript]);
 
   const analyzeTranscript = useCallback(
     async (document: TranscriptDocument) => {
@@ -3821,10 +3949,10 @@ export default function TransferPlannerPage() {
   );
 
   useEffect(() => {
-    if (!transcriptDocument) return;
+    if (!activeTranscriptDocument) return;
     if (
       completedCourses.length &&
-      storedTranscriptSource === transcriptDocument.url &&
+      storedTranscriptSource === activeTranscriptDocument.url &&
       shouldUseDetailedCompletedCourses
     ) {
       return;
@@ -3833,14 +3961,14 @@ export default function TransferPlannerPage() {
     if (transcriptAnalysisAttemptsRef.current.has(transcriptAnalysisKey)) return;
 
     transcriptAnalysisAttemptsRef.current.add(transcriptAnalysisKey);
-    void analyzeTranscript(transcriptDocument);
+    void analyzeTranscript(activeTranscriptDocument);
   }, [
+    activeTranscriptDocument,
     analyzeTranscript,
     transcriptAnalysisKey,
     completedCourses.length,
     storedTranscriptSource,
     shouldUseDetailedCompletedCourses,
-    transcriptDocument,
   ]);
 
   const handlePickTranscript = useCallback(async () => {
@@ -4245,7 +4373,7 @@ export default function TransferPlannerPage() {
       activeDegreeTitle,
       plan,
       track,
-      transcriptDocument,
+      transcriptDocument: activeTranscriptDocument,
       transcriptError,
       parserVersion: TRANSCRIPT_PARSER_VERSION,
       storedParserVersion: storedTranscriptParserVersion,
@@ -4294,14 +4422,34 @@ export default function TransferPlannerPage() {
       });
     }
 
+    if (Platform.OS === "web") {
+      const downloadedReportLog = downloadCoursePlannerReportLogOnWeb(reportLog);
+      const copiedReportLog = await copyCoursePlannerReportLogOnWeb(reportLog);
+      const webMailtoUrl = buildCoursePlannerBugReportMailtoUrl(
+        reportBugEmailSubject,
+        buildWebCoursePlannerBugReportBody({ copiedReportLog, downloadedReportLog })
+      );
+
+      if (openMailtoUrlOnWeb(webMailtoUrl)) {
+        return;
+      }
+
+      Alert.alert(
+        "Email unavailable",
+        `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
+      );
+      return;
+    }
+
     const fallbackLog =
       reportLog.length > 7000
         ? `${reportLog.slice(0, 7000)}\n\n[Course Planner log truncated because this email app does not support attachments here.]`
         : reportLog;
     const fallbackBody = `${reportBugEmailBody}\n\nCourse Planner log:\n${fallbackLog}`;
-    const fallbackMailtoUrl = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(
-      reportBugEmailSubject
-    )}&body=${encodeURIComponent(fallbackBody)}`;
+    const fallbackMailtoUrl = buildCoursePlannerBugReportMailtoUrl(
+      reportBugEmailSubject,
+      fallbackBody
+    );
 
     try {
       const canOpen = await Linking.canOpenURL(fallbackMailtoUrl);
@@ -4360,7 +4508,7 @@ export default function TransferPlannerPage() {
     suggestedQuarterPlan,
     track,
     transcriptDerivedCompletedCourses,
-    transcriptDocument,
+    activeTranscriptDocument,
     transcriptError,
     user,
   ]);
@@ -4481,7 +4629,7 @@ export default function TransferPlannerPage() {
 
           <TranscriptSummaryCard
             collegeId={selectedCollegeId}
-            transcriptDocument={transcriptDocument}
+            transcriptDocument={activeTranscriptDocument}
             isAnalyzing={isAnalyzingTranscript || needsTranscriptReparse}
             errorMessage={transcriptError}
             studentEvaluationReport={studentEvaluationReport}
@@ -4660,8 +4808,7 @@ export default function TransferPlannerPage() {
               accessibilityRole="link"
               className="flex-row items-center justify-center rounded-2xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3"
             >
-              <MaterialIcons name="bug-report" size={18} color="#008f4e" />
-              <Text className="ml-2 text-sm font-semibold text-emerald-600 underline">
+              <Text className="text-sm font-semibold text-emerald-600 underline">
                 Click here to report a bug in Course Planner
               </Text>
             </AnimatedIconPressable>

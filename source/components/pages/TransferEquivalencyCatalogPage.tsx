@@ -79,6 +79,7 @@ export default function TransferEquivalencyCatalogPage() {
     tag?: string | string[];
     campusId?: string | string[];
     collegeId?: string | string[];
+    returnTo?: string | string[];
   }>();
   const styles = useThemeStyles();
   const { t } = useAppLanguage();
@@ -120,6 +121,11 @@ export default function TransferEquivalencyCatalogPage() {
     const rawCollege = Array.isArray(params.collegeId) ? params.collegeId[0] : params.collegeId;
     return String(rawCollege ?? "uw").trim().toLowerCase() === "uw" ? "uw" : "uw";
   }, [params.collegeId]);
+  const returnToParam = useMemo(() => {
+    const rawReturnTo = Array.isArray(params.returnTo) ? params.returnTo[0] : params.returnTo;
+    const normalized = String(rawReturnTo ?? "").trim();
+    return normalized.startsWith("/") ? normalized : "";
+  }, [params.returnTo]);
 
   const collegeOptions = useMemo<SearchableSelectOption[]>(
     () => [
@@ -167,6 +173,7 @@ export default function TransferEquivalencyCatalogPage() {
         collegeId: selectedCollegeId,
         campusId: nextCampusId,
         ...(selectedTags.length ? { tag: selectedTags.join(",") } : {}),
+        ...(returnToParam ? { returnTo: returnToParam } : {}),
       },
     });
   };

@@ -173,7 +173,13 @@ export default function SavedCollegesPage() {
                 return (
                   <AnimatedCardPressable
                     key={college.id}
-                    onPress={() => router.push(ROUTES.collegeDetail(String(college.id)))}
+                    onPress={() =>
+                      router.push(
+                        ROUTES.collegeDetail(String(college.id), {
+                          returnTo: ROUTES.savedColleges,
+                        })
+                      )
+                    }
                     className={`${cardBgClass} border rounded-2xl p-4 mb-4`}
                     containerStyle={{ width: columns === 1 ? "100%" : "48.7%" }}
                   >

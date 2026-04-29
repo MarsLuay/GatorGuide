@@ -263,7 +263,12 @@ export default function CollegeSearchToolPage() {
 
         {!hasCompletedQuestionnaire ? (
           <AnimatedCardPressable
-            onPress={() => router.push(ROUTES.questionnaire)}
+            onPress={() =>
+              router.push({
+                pathname: ROUTES.questionnaire,
+                params: { returnTo: ROUTES.collegeSearch },
+              } as never)
+            }
             className="mt-4 rounded-2xl p-4 flex-row items-center bg-emerald-500"
           >
             <View className="mr-3 p-2 rounded-xl bg-emerald-900/10">
@@ -355,7 +360,13 @@ export default function CollegeSearchToolPage() {
                 <AnimatedCardPressable
                   key={college.id}
                   className={`${nestedPanelClass} p-4`}
-                  onPress={() => router.push(ROUTES.collegeDetail(String(college.id)))}
+                  onPress={() =>
+                    router.push(
+                      ROUTES.collegeDetail(String(college.id), {
+                        returnTo: ROUTES.collegeSearch,
+                      })
+                    )
+                  }
                 >
                   <View className="flex-row items-start justify-between gap-3">
                     <View className="flex-1 min-w-0">

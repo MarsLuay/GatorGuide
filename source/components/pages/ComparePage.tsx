@@ -422,7 +422,13 @@ export default function ComparePage() {
                         className={`px-4 py-4 flex-row items-center gap-3 border-b last:border-b-0 ${borderClass}`}
                       >
                         <AnimatedCardPressable
-                          onPress={() => router.push(ROUTES.collegeDetail(collegeId))}
+                          onPress={() =>
+                            router.push(
+                              ROUTES.collegeDetail(collegeId, {
+                                returnTo: ROUTES.compare,
+                              })
+                            )
+                          }
                           style={{ flex: 1 }}
                         >
                           <Text className={`${textClass} font-semibold`} numberOfLines={1}>
@@ -523,7 +529,11 @@ export default function ComparePage() {
                           <View className="flex-row items-center justify-between">
                             <AnimatedIconPressable
                               onPress={() =>
-                                router.push(ROUTES.collegeDetail(collegeId))
+                                router.push(
+                                  ROUTES.collegeDetail(collegeId, {
+                                    returnTo: ROUTES.compare,
+                                  })
+                                )
                               }
                             >
                               <Text className="text-emerald-500 font-medium">{t("compare.openDetails")}</Text>

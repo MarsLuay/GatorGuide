@@ -492,6 +492,16 @@ export default function SettingsPage() {
     }
   };
 
+  const openSettingsSubpage = useCallback(
+    (pathname: string) => {
+      router.push({
+        pathname: pathname as never,
+        params: { returnTo: ROUTES.tabsSettings },
+      } as never);
+    },
+    [router]
+  );
+
   const sections = useMemo(
     () => [
       {
@@ -532,7 +542,7 @@ export default function SettingsPage() {
             label: t("settings.language"),
             type: "nav",
             value: language,
-            onPress: () => router.push(ROUTES.language),
+            onPress: () => openSettingsSubpage(ROUTES.language),
           },
         ] as SettingsItem[],
       },
@@ -566,14 +576,29 @@ export default function SettingsPage() {
               setShowSupportComposer(true);
             },
           },
-          { icon: "information-circle-outline", label: t("settings.about"), type: "nav", onPress: () => router.push(ROUTES.about) },
-          { icon: "shield-checkmark-outline", label: t("settings.privacyPolicy"), type: "nav", onPress: () => router.push(ROUTES.privacy) },
-          { icon: "document-text-outline", label: t("settings.termsOfService"), type: "nav", onPress: () => router.push(ROUTES.terms) },
+          {
+            icon: "information-circle-outline",
+            label: t("settings.about"),
+            type: "nav",
+            onPress: () => openSettingsSubpage(ROUTES.about),
+          },
+          {
+            icon: "shield-checkmark-outline",
+            label: t("settings.privacyPolicy"),
+            type: "nav",
+            onPress: () => openSettingsSubpage(ROUTES.privacy),
+          },
+          {
+            icon: "document-text-outline",
+            label: t("settings.termsOfService"),
+            type: "nav",
+            onPress: () => openSettingsSubpage(ROUTES.terms),
+          },
           { icon: "pricetag-outline", label: t("about.version"), type: "display", value: APP_VERSION },
         ] as SettingsItem[],
       },
     ],
-    [currentThemeLabel, theme, notificationsEnabled, notificationPreferenceSummary, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, router, t]
+    [currentThemeLabel, theme, notificationsEnabled, notificationPreferenceSummary, language, setTheme, handleToggleNotifications, handleExportData, handleImportData, openSettingsSubpage, t]
   );
 
   const [settingsSection, , aboutSection] = sections;

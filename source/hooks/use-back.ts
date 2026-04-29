@@ -15,6 +15,11 @@ export default function useBack(fallback: ReplaceArg = ROUTES.root) {
     : "";
 
   return useCallback(() => {
+    if (normalizedReturnTo) {
+      router.replace(normalizedReturnTo as ReplaceArg);
+      return;
+    }
+
     const routerWithHistory = router as typeof router & { canGoBack?: () => boolean };
 
     if (typeof routerWithHistory.canGoBack === "function" && routerWithHistory.canGoBack()) {
@@ -24,11 +29,6 @@ export default function useBack(fallback: ReplaceArg = ROUTES.root) {
 
     if (navigation.canGoBack && navigation.canGoBack()) {
       navigation.goBack();
-      return;
-    }
-
-    if (normalizedReturnTo) {
-      router.replace(normalizedReturnTo as ReplaceArg);
       return;
     }
 

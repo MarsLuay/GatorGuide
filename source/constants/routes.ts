@@ -23,10 +23,19 @@ export const ROUTES = {
   privacy: "/privacy" as const,
   terms: "/terms" as const,
   forgotPassword: "/forgot-password" as const,
-  collegeDetail(collegeId: string): Href {
+  collegeDetail(
+    collegeId: string,
+    params?: Record<string, string | number | boolean | null | undefined>
+  ): Href {
+    const normalizedParams = Object.fromEntries(
+      Object.entries(params ?? {})
+        .map(([key, value]) => [key, String(value ?? "").trim()])
+        .filter(([, value]) => value)
+    );
+
     return {
       pathname: "/college/[collegeId]",
-      params: { collegeId },
+      params: { collegeId, ...normalizedParams },
     };
   },
   loginWithQuery(query: string): Href {

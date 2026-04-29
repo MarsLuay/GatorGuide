@@ -421,7 +421,11 @@ export default function DeadlineCalendarPage() {
   const handleOpenEntry = async (item: DeadlineCalendarEntry) => {
     try {
       if (item.target.type === "college") {
-        router.push(ROUTES.collegeDetail(item.target.collegeId));
+        router.push(
+          ROUTES.collegeDetail(item.target.collegeId, {
+            returnTo: String(ROUTES.calendar),
+          })
+        );
         return;
       }
 

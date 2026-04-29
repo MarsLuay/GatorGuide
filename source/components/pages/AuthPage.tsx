@@ -930,7 +930,15 @@ export default function AuthPage() {
 
           {!isSignUp && (
             <View className="items-end">
-              <AnimatedIconPressable onPress={() => router.push(ROUTES.forgotPassword)} disabled={!isHydrated}>
+              <AnimatedIconPressable
+                onPress={() =>
+                  router.push({
+                    pathname: ROUTES.forgotPassword,
+                    params: { returnTo: ROUTES.login },
+                  } as never)
+                }
+                disabled={!isHydrated}
+              >
                 <Text className="text-sm text-emerald-500">{t("auth.forgotPassword")}</Text>
               </AnimatedIconPressable>
             </View>

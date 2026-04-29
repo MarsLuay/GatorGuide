@@ -330,7 +330,11 @@ export default function HomePage() {
   const handleOpenDeadlineEntry = useCallback(async (item: DeadlineCalendarEntry) => {
     try {
       if (item.target.type === "college") {
-        router.push(ROUTES.collegeDetail(item.target.collegeId));
+        router.push(
+          ROUTES.collegeDetail(item.target.collegeId, {
+            returnTo: ROUTES.root,
+          })
+        );
         return;
       }
 

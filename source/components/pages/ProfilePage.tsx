@@ -645,7 +645,10 @@ export default function ProfilePage() {
       : t("general.notSpecified");
   const openQuestionnairePage = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    router.push(ROUTES.questionnaire);
+    router.push({
+      pathname: ROUTES.questionnaire,
+      params: { returnTo: ROUTES.profile },
+    } as never);
   };
 
   const profileSummaryCards = [
