@@ -346,7 +346,7 @@ const rawTranslations = {
     "settings.language": "Language",
     "settings.notifications": "Notifications",
     "settings.automaticNotifications": "Automatic notifications",
-    "settings.automaticNotificationsSubtitle": "Choose which reminders GatorGuide schedules for you.",
+    "settings.automaticNotificationsSubtitle": "Choose which reminders GatorGuide notifies you for.",
     "settings.notificationTypeTransferDeadlines": "Transfer deadlines",
     "settings.notificationTypeCollegeDeadlines": "College deadlines",
     "settings.notificationTypeScholarships": "Scholarships",
