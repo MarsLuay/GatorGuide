@@ -16,6 +16,10 @@ import type {
   TransferPlannerLink,
   TransferPlannerMajorPathway,
   TransferPlannerMajorPlan,
+  TransferPlannerRequirementGroup,
+  TransferPlannerRequirementOption,
+  TransferPlannerRequirementReplacement,
+  TransferPlannerRequirementType,
   TransferPlannerResolvedMajorPlan,
   TransferPlannerTrack,
 } from "../transfer-planner-types";
@@ -70,6 +74,8 @@ const MIN_AUTO_TRACK_MATCH_COUNT = 3;
 const MIN_RELAXED_AUTO_TRACK_MATCH_COUNT = 2;
 const MIN_RELAXED_AUTO_TRACK_PLAN_COVERAGE = 0.5;
 const AUTO_TRACK_SUBJECT_AFFINITY_WEIGHT = 0.75;
+const AUTO_TRACK_ENGINEERING_DISCIPLINE_AFFINITY_WEIGHT = 4;
+const AUTO_TRACK_ENGINEERING_DISCIPLINE_MISMATCH_PENALTY = 2;
 const AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN =
   /\b(transferability of credits|generally transferable courses|section [a-z])\b/i;
 const AUTO_TRACK_GENERIC_SUBJECT_PREFIXES = new Set(["ENGL"]);
@@ -92,6 +98,42 @@ const AUTO_TRACK_SUBJECT_AFFINITY_RULES: Array<{
   { prefixes: ["POLS"], pattern: /\bpolitical science\b/i },
   { prefixes: ["PSYC"], pattern: /\bpsychology\b/i },
   { prefixes: ["SOC"], pattern: /\bsociology\b/i },
+];
+const AUTO_TRACK_ENGINEERING_DISCIPLINE_RULES: Array<{
+  id: string;
+  label: string;
+  pattern: RegExp;
+}> = [
+  {
+    id: "bioengineering",
+    label: "Bioengineering",
+    pattern: /\bbio\s*engineering\b|\bbioengineering\b/i,
+  },
+  {
+    id: "chemical",
+    label: "Chemical Engineering",
+    pattern: /\bchemical\b/i,
+  },
+  {
+    id: "civil",
+    label: "Civil Engineering",
+    pattern: /\bcivil\b/i,
+  },
+  {
+    id: "computer",
+    label: "Computer Engineering",
+    pattern: /\bcomputer\b/i,
+  },
+  {
+    id: "electrical",
+    label: "Electrical Engineering",
+    pattern: /\belectrical\b/i,
+  },
+  {
+    id: "mechanical",
+    label: "Mechanical Engineering",
+    pattern: /\bmechanical\b/i,
+  },
 ];
 const REQUIRED_FOR_DEGREE_EITHER_WAY_NOTE =
   "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.";
@@ -1923,6 +1965,1342 @@ function getPreferredGuideRuleWithSourceSets(targetCourseCode: string) {
     ) ?? null;
 }
 
+function getCourseCatalogNumber(courseCode: string) {
+  return normalizeCourseCode(courseCode).match(/\b(\d{3}(?:\.\d+)?[A-Z]?)$/)?.[1] ?? null;
+}
+
+function scoreGuideSourceCourseSetForRequirementOption(input: {
+  sourceCourseSet: string[];
+  targetCourseCodes: string[];
+  rule: (typeof TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY)[number];
+}) {
+  const sourceCourseSet = uniqueReferenceCourseLabels(input.sourceCourseSet);
+  const sourceNumbers = new Set(sourceCourseSet.map(getCourseCatalogNumber).filter(Boolean));
+  const targetNumbers = new Set(input.targetCourseCodes.map(getCourseCatalogNumber).filter(Boolean));
+  const hasMatchingCourseNumber = [...targetNumbers].some((number) => sourceNumbers.has(number));
+  const dependencyCount = uniquePlannerStrings(
+    sourceCourseSet.flatMap((courseCode) => [
+      ...getTransitiveGrcDependencyCourseCodes(courseCode),
+    ])
+  ).length;
+  const acceptanceRank =
+    input.rule.acceptanceCategory === "preferred"
+      ? 0
+      : input.rule.acceptanceCategory === "accepted"
+        ? 1
+        : input.rule.acceptanceCategory === "accepted-with-warning"
+          ? 2
+          : input.rule.acceptanceCategory === "legacy-accepted"
+            ? 3
+            : 4;
+
+  return (
+    sourceCourseSet.length * 100 +
+    dependencyCount * 10 +
+    (hasMatchingCourseNumber ? 0 : 25) +
+    acceptanceRank
+  );
+}
+
+function getBestGuideSourceCourseSetForTarget(targetCourseCode: string) {
+  const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
+  return [
+    ...(GUIDE_RULES_BY_TARGET_COURSE_CODE.get(normalizedTargetCourseCode) ?? []),
+  ]
+    .flatMap((rule) =>
+      (rule.sourceCourseSets ?? [])
+        .map((sourceCourseSet) => uniqueReferenceCourseLabels(sourceCourseSet ?? []))
+        .filter((sourceCourseSet) => sourceCourseSet.length > 0)
+        .map((sourceCourseSet) => ({
+          rule,
+          sourceCourseSet,
+          score: scoreGuideSourceCourseSetForRequirementOption({
+            sourceCourseSet,
+            targetCourseCodes: [normalizedTargetCourseCode],
+            rule,
+          }),
+        }))
+    )
+    .sort((left, right) => {
+      const scoreDelta = left.score - right.score;
+      if (scoreDelta !== 0) return scoreDelta;
+
+      const ruleDelta = compareGuideRules(left.rule, right.rule);
+      if (ruleDelta !== 0) return ruleDelta;
+
+      return left.sourceCourseSet.join("|").localeCompare(right.sourceCourseSet.join("|"));
+    })[0]?.sourceCourseSet ?? [];
+}
+
+function buildRequirementOption(input: {
+  id?: string;
+  displayCourseCodes?: string[];
+  uwCourses: string[];
+  equivalentUwCourseCodes?: string[];
+  credits?: number | null;
+  creditMin?: number | null;
+  creditMax?: number | null;
+  creditText?: string | null;
+  maxCredits?: number | null;
+  title?: string | null;
+  department?: string | null;
+  category?: string | null;
+  sourceHeading?: string | null;
+  sourceCategory?: string | null;
+  grcMatches?: string[];
+  constraints?: string[];
+  notes?: string[];
+  label: string;
+}): TransferPlannerRequirementOption {
+  const uwCourses = uniquePlannerStrings(
+    input.uwCourses.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  const equivalentUwCourseCodes = uniquePlannerStrings(
+    (input.equivalentUwCourseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter((courseCode) => courseCode && !uwCourses.includes(courseCode))
+  );
+
+  return {
+    id: input.id,
+    displayCourseCodes: uniquePlannerStrings(
+      (input.displayCourseCodes ?? input.uwCourses ?? [])
+        .map((courseCode) => sanitizePlannerOwnedText(courseCode))
+        .filter(Boolean)
+    ),
+    uwCourses,
+    equivalentUwCourseCodes,
+    credits: input.credits ?? null,
+    creditMin: input.creditMin ?? input.credits ?? null,
+    creditMax: input.creditMax ?? input.credits ?? null,
+    creditText: sanitizePlannerOwnedText(input.creditText ?? "") || (input.credits != null ? String(input.credits) : null),
+    maxCredits: input.maxCredits ?? null,
+    title: sanitizePlannerOwnedText(input.title ?? "") || null,
+    department: sanitizePlannerOwnedText(input.department ?? "") || null,
+    category: sanitizePlannerOwnedText(input.category ?? "") || null,
+    sourceHeading: sanitizePlannerOwnedText(input.sourceHeading ?? "") || null,
+    sourceCategory: sanitizePlannerOwnedText(input.sourceCategory ?? "") || null,
+    grcMatches: uniqueReferenceCourseLabels(input.grcMatches ?? []),
+    constraints: uniquePlannerStrings(
+      (input.constraints ?? []).map((constraint) => sanitizePlannerOwnedText(constraint)).filter(Boolean)
+    ),
+    notes: uniquePlannerStrings(
+      (input.notes ?? []).map((note) => sanitizePlannerOwnedText(note)).filter(Boolean)
+    ),
+    label: sanitizePlannerOwnedText(input.label) || uwCourses.join(" / "),
+  };
+}
+
+function buildRequirementGroup(input: {
+  id: string;
+  label: string;
+  category: string;
+  subcategory?: string | null;
+  requirementType: TransferPlannerRequirementType;
+  minCourses?: number | null;
+  maxCourses?: number | null;
+  minCredits?: number | null;
+  maxCredits?: number | null;
+  sourceHeading?: string | null;
+  notes?: string[];
+  options: TransferPlannerRequirementOption[];
+}): TransferPlannerRequirementGroup {
+  const label = sanitizePlannerOwnedText(input.label);
+  const category = sanitizePlannerOwnedText(input.category);
+  const sourceHeading = sanitizePlannerOwnedText(input.sourceHeading ?? "") || label;
+  return {
+    id: input.id,
+    label,
+    category,
+    subcategory: sanitizePlannerOwnedText(input.subcategory ?? "") || null,
+    requirementType: input.requirementType,
+    minCourses: input.minCourses ?? null,
+    maxCourses: input.maxCourses ?? null,
+    minCredits: input.minCredits ?? null,
+    maxCredits: input.maxCredits ?? null,
+    sourceHeading,
+    notes: uniquePlannerStrings(
+      (input.notes ?? []).map((note) => sanitizePlannerOwnedText(note)).filter(Boolean)
+    ),
+    options: input.options
+      .map((option) =>
+        buildRequirementOption({
+          sourceHeading,
+          sourceCategory: category,
+          ...option,
+        })
+      )
+      .filter(
+        (option) =>
+          option.uwCourses.length > 0 ||
+          (option.equivalentUwCourseCodes ?? []).length > 0 ||
+          option.grcMatches.length > 0
+      ),
+  };
+}
+
+const UW_MSE_NME_OPTION_SOURCE_URL =
+  "https://mse.washington.edu/current/undergrad/nmeoption";
+const UW_MSE_NME_REPLACEMENT_REASON =
+  "NME Option students complete 19 credits of NME Core and Elective Requirements instead of the standard 15-credit MSE Technical Elective requirement.";
+
+function buildMaterialsScienceNmeRequirementReplacement(
+  planId: string
+): TransferPlannerRequirementReplacement {
+  return {
+    baseRequirementId: `${planId}:requirement-group:mse-technical-electives-15-credits`,
+    replacedByRequirementId: `${planId}:requirement-group:mse-nme-core-elective-19-credits`,
+    appliesWhen: 'selectedOption === "NME"',
+    replacementReason: UW_MSE_NME_REPLACEMENT_REASON,
+    sourceUrl: UW_MSE_NME_OPTION_SOURCE_URL,
+    sourceHeading: "NME Option requirements",
+  };
+}
+
+function buildMaterialsScienceNmeOptionGroup(planId: string): TransferPlannerRequirementGroup {
+  const sourceHeading = "NME Option Core/Elective Requirement: 19 credits";
+  const nmeOption = (option: TransferPlannerRequirementOption) =>
+    buildRequirementOption({
+      sourceHeading,
+      sourceCategory:
+        option.category === "nme_core_required"
+          ? "NME core (4 credits)"
+          : "NME electives (15 credits required)",
+      ...option,
+    });
+  const nmeOptions = [
+    nmeOption({
+      displayCourseCodes: ["NME 220"],
+      uwCourses: ["NME 220"],
+      credits: 4,
+      title: "Introduction to Molecular and Nanoscale Principles",
+      department: "NME",
+      category: "nme_core_required",
+      label: "NME 220",
+      notes: ["NME 220 must be taken in the spring of the sophomore or junior year."],
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["BIOEN 423"],
+      uwCourses: ["BIOEN 423"],
+      credits: 3,
+      title: "Introduction to Synthetic Biology",
+      department: "BIOEN",
+      category: "nme_elective_option",
+      label: "BIOEN 423",
+      notes: ["Prerequisite: MATH 207 or MATH 307 and MATH 208 or MATH 308."],
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["BIOEN 490"],
+      uwCourses: ["BIOEN 490"],
+      equivalentUwCourseCodes: ["CHEME 490"],
+      credits: 3,
+      title: "Engineering Materials for Biomedical Applications",
+      department: "BIOEN",
+      category: "nme_elective_option",
+      label: "BIOEN/CHEM E 490",
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["BIOEN 491"],
+      uwCourses: ["BIOEN 491"],
+      equivalentUwCourseCodes: ["CHEME 491"],
+      credits: 3,
+      title: "Controlled-Release Systems",
+      department: "BIOEN",
+      category: "nme_elective_option",
+      label: "BIOEN/CHEM E 491",
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["BIOEN 492"],
+      uwCourses: ["BIOEN 492"],
+      equivalentUwCourseCodes: ["CHEME 458"],
+      credits: 3,
+      title: "Surface Analysis",
+      department: "BIOEN",
+      category: "nme_elective_option",
+      label: "BIOEN 492/CHEM E 458",
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["CHEM E 523"],
+      uwCourses: ["CHEME 523"],
+      credits: 1,
+      title: "Seminar in Chemical Engineering",
+      department: "CHEME",
+      category: "nme_restricted_option",
+      label: "CHEM E 523",
+      notes: ["Seminar credit listed on the NME option source page."],
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["EE 485"],
+      uwCourses: ["EE 485"],
+      credits: 4,
+      title: "Introduction to Phototonics",
+      department: "EE",
+      category: "nme_elective_option",
+      label: "EE 485",
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["ENGR 321"],
+      uwCourses: ["ENGR 321"],
+      credits: 2,
+      creditMin: 1,
+      creditMax: 2,
+      creditText: "1-2",
+      maxCredits: 4,
+      title: "Internship Class",
+      department: "ENGR",
+      category: "nme_restricted_option",
+      label: "ENGR 321",
+      constraints: ["max_degree_counting_credits:4"],
+      notes: ["ENGR 321 can count a maximum of 4 credits toward the degree."],
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["M E 410"],
+      uwCourses: ["ME 410"],
+      credits: 3,
+      title: "Nanodevices: Design and Manufacture",
+      department: "ME",
+      category: "nme_elective_option",
+      label: "M E 410",
+      notes: ["Open to non-ME majors during Period 2 registration."],
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MOLENG 520"],
+      uwCourses: ["MOLENG 520"],
+      equivalentUwCourseCodes: ["CHEM 597"],
+      credits: 1,
+      title: "Seminar in Molecular Engineering",
+      department: "MOLENG",
+      category: "nme_restricted_option",
+      label: "MOLENG 520/CHEM 597",
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MOLENG 535"],
+      uwCourses: ["MOLENG 535"],
+      credits: 1,
+      creditMin: 1,
+      creditMax: 10,
+      creditText: "1-10",
+      title: "Seminar in Clean Energy",
+      department: "MOLENG",
+      category: "nme_restricted_option",
+      label: "MOLENG 535",
+      grcMatches: [],
+    }),
+    ...[
+      ["MSE 452", "Functional Properties of Materials II", 3],
+      ["MSE 462", "Mechanical Behavior of Materials II", 3],
+      ["MSE 471", "Introduction to Polymer Science and Engineering", 3],
+      ["MSE 473", "Noncrystalline State", 3],
+      ["MSE 474", "Nanocomposite Materials", 3],
+      ["MSE 475", "Intro to Composite Materials", 3],
+      ["MSE 476", "Introduction to Optoelectronic Materials", 3],
+      ["MSE 481", "Science and Technology of Nanostructures", 3],
+      ["MSE 482", "Biomaterials and Nanomaterials in Tissue Engineering", 3],
+      ["MSE 483", "Nanomedicine", 3],
+    ].map(([courseCode, title, credits]) =>
+      nmeOption({
+        displayCourseCodes: [String(courseCode)],
+        uwCourses: [String(courseCode)],
+        credits: Number(credits),
+        title: String(title),
+        department: "MSE",
+        category: "nme_elective_option",
+        label: String(courseCode),
+        grcMatches: [],
+      })
+    ),
+    nmeOption({
+      displayCourseCodes: ["MSE 484"],
+      uwCourses: ["MSE 484"],
+      equivalentUwCourseCodes: ["CHEM 484"],
+      credits: 3,
+      title: "Electronic and Optoelectronic Polymers",
+      department: "MSE",
+      category: "nme_elective_option",
+      label: "MSE 484/CHEM 484",
+      notes: ["Prerequisite: CHEM 455."],
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 486"],
+      uwCourses: ["MSE 486"],
+      equivalentUwCourseCodes: ["EE 486"],
+      credits: 3,
+      title: "Fundamentals of Integrated Circuit Technology",
+      department: "MSE",
+      category: "nme_elective_option",
+      label: "MSE 486/EE 486",
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 498"],
+      uwCourses: ["MSE 498"],
+      credits: 3,
+      creditMin: 3,
+      creditMax: 4,
+      creditText: "3-4",
+      title: "MSE Special Topics",
+      department: "MSE",
+      category: "nme_restricted_option",
+      label: "MSE 498 - selected ones",
+      notes: ["Only selected MSE 498 topics count, as announced by the adviser."],
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["NME 498"],
+      uwCourses: ["NME 498"],
+      credits: 3,
+      creditMin: 3,
+      creditMax: 4,
+      creditText: "3-4",
+      title: "Selected NME Special Topics",
+      department: "NME",
+      category: "nme_elective_option",
+      label: "NME 498",
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 502"],
+      uwCourses: ["MSE 502"],
+      credits: 3,
+      title: "Sol-Gel Processing",
+      department: "MSE",
+      category: "nme_elective_option",
+      label: "MSE 502",
+      notes: ["Offered autumn quarter in odd years."],
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 520"],
+      uwCourses: ["MSE 520"],
+      credits: 1,
+      title: "Seminar in Materials Science & Engineering",
+      department: "MSE",
+      category: "nme_restricted_option",
+      label: "MSE 520",
+      grcMatches: [],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 560"],
+      uwCourses: ["MSE 560"],
+      credits: 3,
+      title: "Organic Electronic and Photonic Materials/Polymers",
+      department: "MSE",
+      category: "nme_elective_option",
+      label: "MSE 560",
+      grcMatches: [],
+    }),
+  ].map((option) => ({
+    ...option,
+    id: `${planId}:requirement-option:nme-${[
+      ...(option.uwCourses ?? []),
+      ...(option.equivalentUwCourseCodes ?? []),
+    ]
+      .join("-")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")}`,
+  }));
+
+  return buildRequirementGroup({
+    id: `${planId}:requirement-group:mse-nme-core-elective-19-credits`,
+    label: "NME Option Core/Elective Requirement: 19 credits",
+    category: "nme_core_elective",
+    subcategory: "nme_core_elective_19_credits",
+    requirementType: "choose_credits",
+    minCredits: 19,
+    sourceHeading,
+    notes: [
+      UW_MSE_NME_REPLACEMENT_REASON,
+      "This replaces the standard 15-credit MSE technical elective requirement.",
+      "Normal MSE technical elective rules are not the active requirement for this option unless the NME source explicitly permits overlap.",
+      "NME core: NME 220 is required and must be taken in spring of sophomore or junior year.",
+      "NME electives: choose 15 credits from approved NME elective courses.",
+      "Quarter offerings listed in the UW source are subject to change.",
+    ],
+    options: nmeOptions,
+  });
+}
+
+function buildKnownMaterialsScienceRequirementGroups(
+  planId: string,
+  parsedUwCourseCodes: string[],
+  pathwayId?: string | null
+) {
+  if (planId !== "uw-seattle-materials-science-engineering") {
+    return [] as TransferPlannerRequirementGroup[];
+  }
+
+  const parsedCourseCodeSet = new Set(
+    parsedUwCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  const groups: TransferPlannerRequirementGroup[] = [];
+  const addGroup = (group: TransferPlannerRequirementGroup) => {
+    if (group.options.length > 0) {
+      groups.push(group);
+    }
+  };
+
+  if (["AMATH 301", "CSE 142", "CSE 122"].every((courseCode) => parsedCourseCodeSet.has(courseCode))) {
+    addGroup(
+      buildRequirementGroup({
+        id: `${planId}:requirement-group:scientific-computing`,
+        label: "Scientific computing",
+        category: "engineering-fundamentals",
+        requirementType: "choose_one",
+        minCourses: 1,
+        maxCourses: 1,
+        options: [
+          buildRequirementOption({
+            id: `${planId}:requirement-option:amath-301`,
+            uwCourses: ["AMATH 301"],
+            credits: 4,
+            label: "AMATH 301 - Beginning Scientific Computing",
+          }),
+          buildRequirementOption({
+            id: `${planId}:requirement-option:cse-142`,
+            uwCourses: ["CSE 142"],
+            credits: 4,
+            label: "CSE 142 - Computer Programming I",
+          }),
+          buildRequirementOption({
+            id: `${planId}:requirement-option:cse-122`,
+            uwCourses: ["CSE 122"],
+            credits: 4,
+            label: "CSE 122 - Intro to Computer Programming II",
+          }),
+        ],
+      })
+    );
+  }
+
+  if (parsedCourseCodeSet.has("MATH 207") || parsedCourseCodeSet.has("MATH 307")) {
+    addGroup(
+      buildRequirementGroup({
+        id: `${planId}:requirement-group:math-207`,
+        label: "MATH 207 Differential Equations",
+        category: "mathematics",
+        requirementType: "all_required",
+        minCourses: 1,
+        maxCourses: 1,
+        options: [
+          buildRequirementOption({
+            id: `${planId}:requirement-option:math-207`,
+            uwCourses: ["MATH 207"],
+            equivalentUwCourseCodes: ["MATH 307"],
+            credits: 3,
+            label: "MATH 207 (or MATH 307)",
+          }),
+        ],
+      })
+    );
+  }
+
+  if (parsedCourseCodeSet.has("MATH 208") || parsedCourseCodeSet.has("MATH 308")) {
+    addGroup(
+      buildRequirementGroup({
+        id: `${planId}:requirement-group:math-208`,
+        label: "MATH 208 Matrix Algebra",
+        category: "mathematics",
+        requirementType: "all_required",
+        minCourses: 1,
+        maxCourses: 1,
+        options: [
+          buildRequirementOption({
+            id: `${planId}:requirement-option:math-208`,
+            uwCourses: ["MATH 208"],
+            equivalentUwCourseCodes: ["MATH 308"],
+            credits: 3,
+            label: "MATH 208 (or MATH 308)",
+          }),
+        ],
+      })
+    );
+  }
+
+  const mathElectiveOptions = [
+    buildRequirementOption({ uwCourses: ["INDE 315"], credits: 3, label: "INDE 315" }),
+    buildRequirementOption({
+      uwCourses: ["MATH 209"],
+      equivalentUwCourseCodes: ["MATH 309"],
+      credits: 3,
+      label: "MATH 209 (or MATH 309)",
+    }),
+    buildRequirementOption({
+      uwCourses: ["MATH 224"],
+      equivalentUwCourseCodes: ["MATH 324"],
+      credits: 3,
+      label: "MATH 224 (or MATH 324)",
+    }),
+    buildRequirementOption({ uwCourses: ["MATH 318"], credits: 3, label: "MATH 318" }),
+    buildRequirementOption({ uwCourses: ["STAT 390"], credits: 3, label: "STAT 390" }),
+  ];
+  if (mathElectiveOptions.length) {
+    addGroup(
+      buildRequirementGroup({
+        id: `${planId}:requirement-group:math-elective`,
+        label: "One (1) Math Elective",
+        category: "math-elective",
+        requirementType: "choose_n",
+        minCourses: 1,
+        maxCourses: 1,
+        options: mathElectiveOptions.map((option, index) => ({
+          ...option,
+          id: `${planId}:requirement-option:math-elective-${index + 1}`,
+        })),
+      })
+    );
+  }
+
+  const scienceElectiveOptions = [
+    buildRequirementOption({ uwCourses: ["BIOL 180"], credits: 5, label: "BIOL 180" }),
+    buildRequirementOption({ uwCourses: ["BIOL 200"], credits: 5, label: "BIOL 200" }),
+    buildRequirementOption({
+      uwCourses: ["CHEM 162"],
+      equivalentUwCourseCodes: ["CHEM 153", "CHEM 155"],
+      credits: 5,
+      label: "CHEM 162 (or CHEM 153 or CHEM 155)",
+    }),
+    buildRequirementOption({ uwCourses: ["CHEM 165"], credits: 5, label: "CHEM 165" }),
+    buildRequirementOption({ uwCourses: ["CHEM 223"], credits: 4, label: "CHEM 223" }),
+    buildRequirementOption({ uwCourses: ["CHEM 224"], credits: 4, label: "CHEM 224" }),
+    buildRequirementOption({ uwCourses: ["CHEM 237"], credits: 4, label: "CHEM 237" }),
+    buildRequirementOption({ uwCourses: ["CHEM 238"], credits: 4, label: "CHEM 238" }),
+    buildRequirementOption({ uwCourses: ["CHEM 312"], credits: 3, label: "CHEM 312" }),
+    buildRequirementOption({ uwCourses: ["CHEM 317"], credits: 3, label: "CHEM 317" }),
+    buildRequirementOption({ uwCourses: ["CHEM 335"], credits: 4, label: "CHEM 335" }),
+    buildRequirementOption({ uwCourses: ["CHEM 336"], credits: 4, label: "CHEM 336" }),
+    buildRequirementOption({ uwCourses: ["CHEM 452"], credits: 3, label: "CHEM 452" }),
+    buildRequirementOption({ uwCourses: ["CHEM 455"], credits: 3, label: "CHEM 455" }),
+    buildRequirementOption({ uwCourses: ["CHEM 456"], credits: 3, label: "CHEM 456" }),
+    buildRequirementOption({ uwCourses: ["PHYS 224"], credits: 3, label: "PHYS 224" }),
+    buildRequirementOption({ uwCourses: ["PHYS 225"], credits: 3, label: "PHYS 225" }),
+    buildRequirementOption({ uwCourses: ["PHYS 227"], credits: 3, label: "PHYS 227" }),
+    buildRequirementOption({ uwCourses: ["PHYS 228"], credits: 3, label: "PHYS 228" }),
+  ].map((option) => ({
+    ...option,
+    id: `${planId}:requirement-option:science-elective-${[
+      ...(option.uwCourses ?? []),
+      ...(option.equivalentUwCourseCodes ?? []),
+    ]
+      .join("-")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")}`,
+  }));
+  if (scienceElectiveOptions.length) {
+    addGroup(
+      buildRequirementGroup({
+        id: `${planId}:requirement-group:science-electives`,
+        label: "Two Science Electives",
+        category: "science-elective",
+        requirementType: "choose_n",
+        minCourses: 2,
+        maxCourses: 2,
+        options: scienceElectiveOptions,
+      })
+    );
+  }
+
+  const engineeringFundamentalOptions = [
+    buildRequirementOption({ uwCourses: ["AA 260"], credits: 4, department: "AA", label: "AA 260" }),
+    buildRequirementOption({ uwCourses: ["BIOEN 215"], credits: 3, department: "BIOEN", label: "BIOEN 215" }),
+    buildRequirementOption({ uwCourses: ["BSE 201"], credits: 5, department: "BSE", label: "BSE 201" }),
+    buildRequirementOption({ uwCourses: ["CHEME 355"], credits: 3, department: "CHEME", label: "CHEM E 355" }),
+    buildRequirementOption({ uwCourses: ["CSE 123"], credits: 4, department: "CSE", label: "CSE 123" }),
+    buildRequirementOption({ uwCourses: ["CSE 143"], credits: 5, department: "CSE", label: "CSE 143" }),
+    buildRequirementOption({ uwCourses: ["CSE 160"], credits: 4, department: "CSE", label: "CSE 160" }),
+    buildRequirementOption({ uwCourses: ["CSE 164"], credits: 4, department: "CSE", label: "CSE 164" }),
+    buildRequirementOption({ uwCourses: ["CSE 180"], credits: 4, department: "CSE", label: "CSE 180" }),
+    buildRequirementOption({ uwCourses: ["EE 215"], credits: 4, department: "EE", label: "E E 215" }),
+    buildRequirementOption({ uwCourses: ["ENGR 101"], credits: 1, department: "ENGR", label: "ENGR 101" }),
+    buildRequirementOption({ uwCourses: ["ENGR 333"], credits: 3, department: "ENGR", label: "ENGR 333" }),
+    buildRequirementOption({ uwCourses: ["ENGR 490"], credits: 3, department: "ENGR", label: "ENGR 490" }),
+    buildRequirementOption({ uwCourses: ["INDE 250"], credits: 4, department: "INDE", label: "IND E 250" }),
+    buildRequirementOption({
+      uwCourses: ["INDE 315"],
+      credits: 3,
+      department: "INDE",
+      label: "IND E 315",
+      constraints: ["no_double_count:math_elective_or_engineering_fundamentals"],
+      notes: ["IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both."],
+    }),
+    buildRequirementOption({ uwCourses: ["ME 123"], credits: 4, department: "ME", label: "M E 123" }),
+    buildRequirementOption({ uwCourses: ["ME 230"], credits: 4, department: "ME", label: "M E 230" }),
+    buildRequirementOption({
+      uwCourses: ["NME 220"],
+      credits: 3,
+      department: "NME",
+      label: "NME 220",
+      constraints: ["not_eligible_for_nme_option"],
+      notes: ["NME 220 is not eligible as an Engineering Fundamentals elective for NME Option students."],
+    }),
+  ];
+  if (engineeringFundamentalOptions.length) {
+    addGroup(
+      buildRequirementGroup({
+        id: `${planId}:requirement-group:engineering-fundamentals-electives`,
+        label: "8 Credits of Engineering Fundamentals Electives",
+        category: "engineering_fundamentals",
+        subcategory: "engineering_fundamentals_electives",
+        requirementType: "choose_credits",
+        minCredits: 8,
+        sourceHeading: "8 Credits of Engineering Fundamentals Electives selected from the following list",
+        notes: [
+          "IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both.",
+          "NME 220 is not eligible as an Engineering Fundamentals elective for NME Option students.",
+        ],
+        options: engineeringFundamentalOptions,
+      })
+    );
+  }
+
+  const mseTechnicalElectiveOptions = [
+    "MSE 450",
+    "MSE 452",
+    "MSE 462",
+    "MSE 463",
+    "MSE 466",
+    "MSE 471",
+    "MSE 473",
+    "MSE 474",
+    "MSE 475",
+    "MSE 476",
+    "MSE 477",
+    "MSE 478",
+    "MSE 479",
+    "MSE 481",
+    "MSE 482",
+    "MSE 483",
+    "MSE 484",
+    "MSE 486",
+    "MSE 487",
+    "MSE 488",
+    "MSE 489",
+    "MSE 490",
+    "MSE 498",
+    "MSE 499",
+  ].map((courseCode) =>
+    buildRequirementOption({
+      uwCourses: [courseCode],
+      credits: 3,
+      department: "MSE",
+      label: courseCode,
+    })
+  );
+  if (mseTechnicalElectiveOptions.length) {
+    addGroup(
+      buildRequirementGroup({
+        id: `${planId}:requirement-group:mse-400-level-technical-electives`,
+        label: "MSE 400-level Technical Electives",
+        category: "technical_electives",
+        subcategory: "mse_400_level",
+        requirementType: "choose_credits",
+        minCredits: 6,
+        sourceHeading: "A minimum of 6 credits in MSE 400-level courses listed below are required",
+        notes: ["MSE 500-level courses, except seminar, may satisfy the MSE technical elective minimum."],
+        options: mseTechnicalElectiveOptions.map((option) => ({
+          ...option,
+          id: `${planId}:requirement-option:mse-technical-elective-${(option.uwCourses[0] ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+        })),
+      })
+    );
+  }
+
+  const outsideMseTechnicalElectiveOptions = [
+    buildRequirementOption({ uwCourses: ["AMATH 352"], credits: 3, department: "AMATH", label: "AMATH 352" }),
+    buildRequirementOption({ uwCourses: ["AMATH 353"], credits: 3, department: "AMATH", label: "AMATH 353" }),
+    buildRequirementOption({ uwCourses: ["AMATH 383"], credits: 3, department: "AMATH", label: "AMATH 383" }),
+    buildRequirementOption({ uwCourses: ["AMATH 401"], credits: 3, department: "AMATH", label: "AMATH 401" }),
+    buildRequirementOption({ uwCourses: ["AMATH 403"], credits: 3, department: "AMATH", label: "AMATH 403" }),
+    buildRequirementOption({ uwCourses: ["BIOC 405"], credits: 3, department: "BIOC", label: "BIOC 405" }),
+    buildRequirementOption({ uwCourses: ["BIOC 406"], credits: 3, department: "BIOC", label: "BIOC 406" }),
+    buildRequirementOption({ uwCourses: ["CHEM 312"], credits: 3, department: "CHEM", label: "CHEM 312" }),
+    buildRequirementOption({ uwCourses: ["CHEM 455"], credits: 3, department: "CHEM", label: "CHEM 455" }),
+    buildRequirementOption({ uwCourses: ["CHEM 456"], credits: 3, department: "CHEM", label: "CHEM 456" }),
+    buildRequirementOption({ uwCourses: ["CHEM 457"], credits: 3, department: "CHEM", label: "CHEM 457" }),
+    buildRequirementOption({ uwCourses: ["CHEME 341"], credits: 3, department: "CHEME", label: "CHEM E 341" }),
+    buildRequirementOption({
+      uwCourses: ["ENGR 321"],
+      credits: 4,
+      maxCredits: 4,
+      department: "ENGR",
+      label: "ENGR 321",
+      constraints: ["max_degree_counting_credits:4"],
+      notes: ["ENGR 321 can count a maximum of 4 credits toward the degree."],
+    }),
+    buildRequirementOption({ uwCourses: ["ENVIR 480"], credits: 3, department: "ENVIR", label: "ENVIR 480" }),
+    buildRequirementOption({ uwCourses: ["PHYS 321"], credits: 3, department: "PHYS", label: "PHYS 321" }),
+    buildRequirementOption({ uwCourses: ["PHYS 324"], credits: 3, department: "PHYS", label: "PHYS 324" }),
+    buildRequirementOption({ uwCourses: ["PHYS 325"], credits: 3, department: "PHYS", label: "PHYS 325" }),
+    buildRequirementOption({ uwCourses: ["PHYS 334"], credits: 3, department: "PHYS", label: "PHYS 334" }),
+    buildRequirementOption({ uwCourses: ["PHYS 335"], credits: 3, department: "PHYS", label: "PHYS 335" }),
+    buildRequirementOption({ uwCourses: ["PHYS 434"], credits: 3, department: "PHYS", label: "PHYS 434" }),
+    buildRequirementOption({ uwCourses: ["PHYS 441"], credits: 3, department: "PHYS", label: "PHYS 441" }),
+    buildRequirementOption({ uwCourses: ["ENTRE 370"], credits: 4, department: "ENTRE", label: "ENTRE 370" }),
+    buildRequirementOption({ uwCourses: ["ENTRE 440"], credits: 4, department: "ENTRE", label: "ENTRE 440" }),
+  ];
+  if (outsideMseTechnicalElectiveOptions.length) {
+    addGroup(
+      buildRequirementGroup({
+        id: `${planId}:requirement-group:outside-mse-technical-electives`,
+        label: "Outside-MSE Technical Electives",
+        category: "technical_electives",
+        subcategory: "outside_mse_approved",
+        requirementType: "choose_credits",
+        maxCredits: 9,
+        sourceHeading: "A maximum of 9 credits in 400-level courses in the following departments will satisfy the technical electives requirement",
+        notes: [
+          "A maximum of 9 credits in approved outside-MSE courses may satisfy the technical electives requirement.",
+          "500-level courses from approved outside departments may satisfy the outside technical elective requirement, but require adviser or manual audit update.",
+          "Any outside course not listed requires a Course Substitution Petition Form.",
+        ],
+        options: outsideMseTechnicalElectiveOptions.map((option) => ({
+          ...option,
+          id: `${planId}:requirement-option:outside-mse-technical-elective-${(option.uwCourses[0] ?? "").toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+        })),
+      })
+    );
+  }
+
+  if (pathwayId === "nme-option" && parsedCourseCodeSet.has("NME 220")) {
+    addGroup(buildMaterialsScienceNmeOptionGroup(planId));
+  }
+
+  return groups;
+}
+
+function hydrateRequirementOption(
+  option: TransferPlannerRequirementOption
+): TransferPlannerRequirementOption {
+  const targetCodes = uniquePlannerStrings([
+    ...(option.uwCourses ?? []),
+    ...(option.equivalentUwCourseCodes ?? []),
+  ].map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean));
+  const guideMatches = targetCodes.flatMap((targetCode) =>
+    getBestGuideSourceCourseSetForTarget(targetCode)
+  );
+
+  return {
+    ...option,
+    uwCourses: uniquePlannerStrings(
+      (option.uwCourses ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+    ),
+    equivalentUwCourseCodes: uniquePlannerStrings(
+      (option.equivalentUwCourseCodes ?? [])
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    ),
+    grcMatches: uniqueReferenceCourseLabels([...(option.grcMatches ?? []), ...guideMatches]),
+  };
+}
+
+function hydrateRequirementGroup(
+  group: TransferPlannerRequirementGroup
+): TransferPlannerRequirementGroup {
+  return {
+    ...buildRequirementGroup(group),
+    options: (group.options ?? []).map(hydrateRequirementOption),
+  };
+}
+
+function getParsedRequirementGroupsFromBlock(
+  block: (typeof TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY)[number]
+) {
+  const knownMaterialsScienceGroups = buildKnownMaterialsScienceRequirementGroups(
+    block.planId,
+    block.parsedUwCourseCodes ?? [],
+    block.pathwayId
+  );
+  const knownMaterialsScienceGroupIds = new Set(
+    knownMaterialsScienceGroups.map((group) => group.id)
+  );
+  const parsedRequirementGroups = (block as {
+    parsedRequirementGroups?: TransferPlannerRequirementGroup[];
+  }).parsedRequirementGroups;
+  const rawGroups =
+    block.planId === "uw-seattle-materials-science-engineering"
+      ? parsedRequirementGroups && parsedRequirementGroups.length
+        ? parsedRequirementGroups.filter((group) => knownMaterialsScienceGroupIds.has(group.id))
+        : knownMaterialsScienceGroups
+      : parsedRequirementGroups && parsedRequirementGroups.length
+        ? parsedRequirementGroups
+        : knownMaterialsScienceGroups;
+
+  return rawGroups.map(hydrateRequirementGroup).filter((group) => group.options.length > 0);
+}
+
+function applyRequirementGroupPathwayRestrictions(
+  group: TransferPlannerRequirementGroup,
+  pathwayId?: string | null
+) {
+  if (pathwayId !== "nme-option") {
+    return group;
+  }
+
+  if (
+    group.id.endsWith(":mse-400-level-technical-electives") ||
+    group.id.endsWith(":outside-mse-technical-electives")
+  ) {
+    return {
+      ...group,
+      category: "replaced_normal_mse_technical_elective",
+      notes: uniquePlannerStrings([
+        ...(group.notes ?? []),
+        UW_MSE_NME_REPLACEMENT_REASON,
+        "This normal MSE technical elective bucket is replaced by the NME Option Core/Elective Requirement for NME Option students.",
+      ]),
+      options: [],
+    };
+  }
+
+  if (!group.id.endsWith(":engineering-fundamentals-electives")) {
+    return group;
+  }
+
+  return {
+    ...group,
+    notes: uniquePlannerStrings([
+      ...(group.notes ?? []),
+      "NME 220 is not eligible as an Engineering Fundamentals elective for NME Option students.",
+    ]),
+    options: (group.options ?? []).filter(
+      (option) => !(option.constraints ?? []).includes("not_eligible_for_nme_option")
+    ),
+  };
+}
+
+function getRequirementGroupsForScope(planId: string, pathwayId?: string | null) {
+  return uniqueById(
+    getAutomaticScopeKeys(planId, pathwayId)
+      .flatMap((scopeKey) => {
+        const [scopePlanId, scopePathwayId = ""] = scopeKey.split("::");
+        return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+          (entry) =>
+            entry.planId === scopePlanId &&
+            (scopePathwayId ? entry.pathwayId === scopePathwayId : !entry.pathwayId)
+        );
+      })
+      .flatMap(getParsedRequirementGroupsFromBlock)
+      .map((group) => applyRequirementGroupPathwayRestrictions(group, pathwayId))
+      .filter((group) => group.options.length > 0)
+  );
+}
+
+function getRequirementReplacementsForScope(
+  planId: string,
+  pathwayId?: string | null
+): TransferPlannerRequirementReplacement[] {
+  if (planId !== "uw-seattle-materials-science-engineering" || pathwayId !== "nme-option") {
+    return [];
+  }
+
+  const parsedReplacements = getAutomaticScopeKeys(planId, pathwayId)
+    .flatMap((scopeKey) => {
+      const [scopePlanId, scopePathwayId = ""] = scopeKey.split("::");
+      return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.filter(
+        (entry) =>
+          entry.planId === scopePlanId &&
+          (scopePathwayId ? entry.pathwayId === scopePathwayId : !entry.pathwayId)
+      );
+    })
+    .flatMap(
+      (block) =>
+        ((block as {
+          parsedRequirementReplacements?: TransferPlannerRequirementReplacement[];
+        }).parsedRequirementReplacements ?? [])
+    );
+
+  return uniqueRequirementReplacements([
+    ...parsedReplacements,
+    buildMaterialsScienceNmeRequirementReplacement(planId),
+  ]);
+}
+
+function uniqueRequirementReplacements(
+  replacements: TransferPlannerRequirementReplacement[]
+) {
+  const seen = new Set<string>();
+  const uniqueReplacements: TransferPlannerRequirementReplacement[] = [];
+
+  for (const replacement of replacements) {
+    const key = `${replacement.baseRequirementId}::${replacement.replacedByRequirementId}::${replacement.appliesWhen}`;
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    uniqueReplacements.push(replacement);
+  }
+
+  return uniqueReplacements;
+}
+
+export function buildMaterialsScienceNmeSourceIncompleteWarnings(
+  planId: string,
+  pathwayId: string | null | undefined,
+  requirementGroups: TransferPlannerRequirementGroup[]
+) {
+  if (planId !== "uw-seattle-materials-science-engineering" || pathwayId !== "nme-option") {
+    return [];
+  }
+
+  const hasNmeCoreElectiveGroup = requirementGroups.some((group) =>
+    group.id.endsWith(":mse-nme-core-elective-19-credits")
+  );
+  return hasNmeCoreElectiveGroup
+    ? []
+    : [
+        "NME Option requirements require the linked NME page. The planner parsed the base MSE page but could not verify the 19-credit NME Core/Elective requirement.",
+      ];
+}
+
+function shouldAutoSelectRequirementGroupOption(group: TransferPlannerRequirementGroup) {
+  if (group.requirementType !== "choose_one") {
+    return false;
+  }
+
+  return !/\belective\b/i.test(`${group.category} ${group.label}`);
+}
+
+function scoreRequirementOption(option: TransferPlannerRequirementOption) {
+  const grcMatches = uniqueReferenceCourseLabels(option.grcMatches ?? []);
+  if (!grcMatches.length) {
+    return Number.MAX_SAFE_INTEGER;
+  }
+
+  const dependencyCount = uniquePlannerStrings(
+    grcMatches.flatMap((courseCode) => [...getTransitiveGrcDependencyCourseCodes(courseCode)])
+  ).length;
+  const sourceNumbers = new Set(grcMatches.map(getCourseCatalogNumber).filter(Boolean));
+  const targetNumbers = new Set(
+    (option.uwCourses ?? []).map(getCourseCatalogNumber).filter(Boolean)
+  );
+  const hasMatchingCourseNumber = [...targetNumbers].some((number) => sourceNumbers.has(number));
+
+  return grcMatches.length * 100 + dependencyCount * 10 + (hasMatchingCourseNumber ? 0 : 25);
+}
+
+function getRequirementOptionCreditValue(option: TransferPlannerRequirementOption) {
+  const credits = option.credits ?? 0;
+  if (!Number.isFinite(credits) || credits <= 0) {
+    return 0;
+  }
+
+  const maxCredits = option.maxCredits ?? null;
+  if (maxCredits != null && Number.isFinite(maxCredits) && maxCredits > 0) {
+    return Math.min(credits, maxCredits);
+  }
+
+  return credits;
+}
+
+function selectBestRequirementOption(
+  group: TransferPlannerRequirementGroup
+): TransferPlannerRequirementOption | null {
+  return [...(group.options ?? [])]
+    .map((option, index) => ({
+      option,
+      index,
+      score: scoreRequirementOption(option),
+    }))
+    .filter((entry) => entry.option.grcMatches.length > 0)
+    .sort((left, right) => {
+      const scoreDelta = left.score - right.score;
+      if (scoreDelta !== 0) return scoreDelta;
+      return left.index - right.index;
+    })[0]?.option ?? null;
+}
+
+function selectBestRequirementOptions(
+  group: TransferPlannerRequirementGroup,
+  count: number
+): TransferPlannerRequirementOption[] {
+  if (count <= 0) {
+    return [];
+  }
+
+  return [...(group.options ?? [])]
+    .map((option, index) => ({
+      option,
+      index,
+      score: scoreRequirementOption(option),
+    }))
+    .sort((left, right) => {
+      const scoreDelta = left.score - right.score;
+      if (scoreDelta !== 0) return scoreDelta;
+      return left.index - right.index;
+    })
+    .slice(0, count)
+    .map((entry) => entry.option);
+}
+
+function selectBestRequirementCreditOptions(
+  group: TransferPlannerRequirementGroup,
+  minCredits: number
+): TransferPlannerRequirementOption[] {
+  if (minCredits <= 0) {
+    return [];
+  }
+
+  const candidates = [...(group.options ?? [])]
+    .map((option, index) => ({
+      option,
+      index,
+      credits: getRequirementOptionCreditValue(option),
+      score: scoreRequirementOption(option),
+    }))
+    .filter((entry) => entry.credits > 0)
+    .sort((left, right) => {
+      const scoreDelta = left.score - right.score;
+      if (scoreDelta !== 0) return scoreDelta;
+      return left.index - right.index;
+    });
+  const selected: TransferPlannerRequirementOption[] = [];
+  let selectedCredits = 0;
+
+  while (selectedCredits < minCredits && candidates.length > 0) {
+    const remainingCredits = minCredits - selectedCredits;
+    const nextIndex = candidates.findIndex((entry) => entry.credits <= remainingCredits);
+    const [nextEntry] = candidates.splice(nextIndex >= 0 ? nextIndex : 0, 1);
+    if (!nextEntry) {
+      break;
+    }
+
+    selected.push(nextEntry.option);
+    selectedCredits += nextEntry.credits;
+  }
+
+  return selected;
+}
+
+function getSelectedRequirementGroupOptions(group: TransferPlannerRequirementGroup) {
+  if (group.requirementType === "all_required" || group.requirementType === "sequence_choice") {
+    return group.options ?? [];
+  }
+
+  if (group.requirementType === "choose_credits") {
+    return group.minCredits != null && group.minCredits > 0
+      ? selectBestRequirementCreditOptions(group, group.minCredits)
+      : [];
+  }
+
+  if (group.requirementType === "choose_n" && group.minCourses != null && group.minCourses > 0) {
+    return selectBestRequirementOptions(group, group.minCourses);
+  }
+
+  if (shouldAutoSelectRequirementGroupOption(group)) {
+    const selectedOption = selectBestRequirementOption(group);
+    return selectedOption ? [selectedOption] : [];
+  }
+
+  return [];
+}
+
+function getRequirementGroupOptionGrcMatches(group: TransferPlannerRequirementGroup) {
+  return uniqueReferenceCourseLabels((group.options ?? []).flatMap((option) => option.grcMatches));
+}
+
+function getRequirementOptionCourseLabels(option: TransferPlannerRequirementOption) {
+  const grcMatches = uniqueReferenceCourseLabels(option.grcMatches ?? []);
+  if (grcMatches.length) {
+    return grcMatches;
+  }
+
+  return uniqueReferenceCourseLabels([
+    ...(option.uwCourses ?? []),
+    ...(option.equivalentUwCourseCodes ?? []),
+  ]);
+}
+
+function getRequirementGroupOptionCourseLabels(group: TransferPlannerRequirementGroup) {
+  return uniqueReferenceCourseLabels(
+    (group.options ?? []).flatMap((option) => getRequirementOptionCourseLabels(option))
+  );
+}
+
+function applyChecklistItemPathwayRestrictions(
+  item: TransferPlannerChecklistItem,
+  pathwayId?: string | null
+) {
+  if (!item.requirementGroup) {
+    return item;
+  }
+
+  const restrictedGroup = applyRequirementGroupPathwayRestrictions(item.requirementGroup, pathwayId);
+  if (restrictedGroup === item.requirementGroup) {
+    return item;
+  }
+
+  if (!(restrictedGroup.options ?? []).length) {
+    return null;
+  }
+
+  const retainedOptionIds = new Set(
+    (restrictedGroup.options ?? []).map((option) => option.id).filter(Boolean)
+  );
+  const retainedCourseLabels = new Set(getRequirementGroupOptionCourseLabels(restrictedGroup));
+
+  return sanitizeChecklistItem({
+    ...item,
+    requirementGroup: restrictedGroup,
+    grcCourses: (item.grcCourses ?? []).filter((courseLabel) => retainedCourseLabels.has(courseLabel)),
+    selectedRequirementOptionIds: (item.selectedRequirementOptionIds ?? []).filter((optionId) =>
+      retainedOptionIds.has(optionId)
+    ),
+    unselectedRequirementOptionIds: (item.unselectedRequirementOptionIds ?? []).filter((optionId) =>
+      retainedOptionIds.has(optionId)
+    ),
+  });
+}
+
+function getSelectedRequirementGroupGrcMatches(group: TransferPlannerRequirementGroup) {
+  return uniqueReferenceCourseLabels(
+    getSelectedRequirementGroupOptions(group).flatMap((option) => option.grcMatches)
+  );
+}
+
+function getSelectedRequirementGroupCourseLabels(group: TransferPlannerRequirementGroup) {
+  return uniqueReferenceCourseLabels(
+    getSelectedRequirementGroupOptions(group).flatMap((option) => getRequirementOptionCourseLabels(option))
+  );
+}
+
+function getRequirementGroupMinCompletedCount(group: TransferPlannerRequirementGroup) {
+  if (group.minCourses != null && group.minCourses > 0) {
+    return group.minCourses;
+  }
+
+  return group.requirementType === "choose_one" ? 1 : undefined;
+}
+
+function buildRequirementGroupChecklistItem(
+  group: TransferPlannerRequirementGroup
+): TransferPlannerChecklistItem | null {
+  const allOptionMatches = getRequirementGroupOptionGrcMatches(group);
+  const allOptionLabels = allOptionMatches.length
+    ? allOptionMatches
+    : getRequirementGroupOptionCourseLabels(group);
+  const selectedOptions = getSelectedRequirementGroupOptions(group);
+  const selectedMatches = uniqueReferenceCourseLabels(
+    selectedOptions.flatMap((option) => option.grcMatches)
+  );
+  const selectedLabels = selectedMatches.length
+    ? selectedMatches
+    : getSelectedRequirementGroupCourseLabels(group);
+  const selectedRequirementOptionIds = selectedOptions
+    .map((option) => option.id)
+    .filter((optionId): optionId is string => Boolean(optionId));
+  const selectedRequirementOptionIdSet = new Set(selectedRequirementOptionIds);
+  const unselectedRequirementOptionIds = (group.options ?? [])
+    .map((option) => option.id)
+    .filter((optionId): optionId is string => Boolean(optionId && !selectedRequirementOptionIdSet.has(optionId)));
+  const minCompletedCount = getRequirementGroupMinCompletedCount(group);
+  let grcCourses: string[] = [];
+  let alternatives: string[][] | undefined;
+
+  if (group.requirementType === "choose_one") {
+    if (shouldAutoSelectRequirementGroupOption(group) && selectedLabels.length > 0) {
+      grcCourses = selectedLabels;
+      alternatives = (group.options ?? [])
+        .filter((option) => !selectedOptions.some((selectedOption) => selectedOption.id === option.id))
+        .map((option) => uniqueReferenceCourseLabels(getRequirementOptionCourseLabels(option)))
+        .filter((optionMatches) => optionMatches.length > 0);
+    } else {
+      grcCourses = allOptionLabels;
+    }
+  } else if (group.requirementType === "all_required" || group.requirementType === "sequence_choice") {
+    grcCourses = selectedLabels.length ? selectedLabels : allOptionLabels;
+  } else {
+    grcCourses = allOptionLabels;
+  }
+
+  if (!grcCourses.length && !(alternatives ?? []).length) {
+    return null;
+  }
+
+  return sanitizeChecklistItem({
+    id: group.id.split(":").pop() ?? group.id,
+    title: group.label,
+    grcCourses,
+    alternatives: alternatives?.length ? alternatives : undefined,
+    note: group.notes?.length ? group.notes.join(" ") : undefined,
+    minCompletedCount,
+    minCredits: group.minCredits ?? undefined,
+    maxCredits: group.maxCredits ?? undefined,
+    requirementGroup: group,
+    selectedRequirementOptionIds: selectedRequirementOptionIds.length
+      ? selectedRequirementOptionIds
+      : undefined,
+    unselectedRequirementOptionIds: unselectedRequirementOptionIds.length
+      ? unselectedRequirementOptionIds
+      : undefined,
+  });
+}
+
+function getRequirementGroupChecklistItemsForPhase(
+  planId: string,
+  phase: TransferPlannerRequirementPhase,
+  pathwayId?: string | null
+) {
+  if (phase !== "before-enrollment") {
+    return [] as TransferPlannerChecklistItem[];
+  }
+
+  return getRequirementGroupsForScope(planId, pathwayId)
+    .map(buildRequirementGroupChecklistItem)
+    .filter((item): item is TransferPlannerChecklistItem => Boolean(item));
+}
+
+function buildRequirementGroupChecklistItemsByPhase(
+  planId: string,
+  pathwayId?: string | null
+) {
+  return {
+    beforeApplication: [],
+    beforeEnrollment: getRequirementGroupChecklistItemsForPhase(
+      planId,
+      "before-enrollment",
+      pathwayId
+    ),
+    stayAtGrc: [],
+  } satisfies ChecklistItemsByPhase;
+}
+
+function applyRequirementGroupSelectionsToCourseList(
+  courseList: string[],
+  planId: string,
+  pathwayId?: string | null
+) {
+  const groups = getRequirementGroupsForScope(planId, pathwayId);
+  if (!groups.length) {
+    return courseList;
+  }
+
+  const optionCourseCodes = new Set(
+    groups.flatMap(getRequirementGroupOptionGrcMatches).map((courseCode) => normalizeCourseCode(courseCode))
+  );
+  const selectedCourseCodes = new Set(
+    groups.flatMap(getSelectedRequirementGroupGrcMatches).map((courseCode) => normalizeCourseCode(courseCode))
+  );
+
+  if (!optionCourseCodes.size) {
+    return courseList;
+  }
+
+  return courseList.filter((courseCode) => {
+    const normalizedCourseCode = normalizeCourseCode(courseCode);
+    return !optionCourseCodes.has(normalizedCourseCode) || selectedCourseCodes.has(normalizedCourseCode);
+  });
+}
+
 function buildComputingSequenceChecklistTitle(targetCourseCodes: string[]) {
   const normalizedCodes = uniquePlannerStrings(
     targetCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
@@ -2706,6 +4084,65 @@ function getTrackSubjectAffinityScore(
   }, 0);
 }
 
+function isEngineeringDisciplineText(text: string) {
+  return /\bengineering\b|\bbioengineering\b/i.test(text);
+}
+
+function getEngineeringDisciplineMatches(text: string) {
+  const normalizedText = String(text ?? "").trim();
+  if (!normalizedText || !isEngineeringDisciplineText(normalizedText)) {
+    return [] as typeof AUTO_TRACK_ENGINEERING_DISCIPLINE_RULES;
+  }
+
+  return AUTO_TRACK_ENGINEERING_DISCIPLINE_RULES.filter((rule) =>
+    rule.pattern.test(normalizedText)
+  );
+}
+
+function getTrackEngineeringDisciplineAffinity(
+  track: TransferPlannerTrack,
+  majorTitle?: string | null
+) {
+  const majorMatches = getEngineeringDisciplineMatches(majorTitle ?? "");
+  if (!majorMatches.length) {
+    return {
+      score: 0,
+      matchedLabels: [] as string[],
+    };
+  }
+
+  const trackSearchText = [
+    track.code,
+    track.title,
+    track.id,
+    ...(track.bestFor ?? []),
+  ].join(" ");
+  const trackMatches = getEngineeringDisciplineMatches(trackSearchText);
+  if (!trackMatches.length) {
+    return {
+      score: 0,
+      matchedLabels: [] as string[],
+    };
+  }
+
+  const trackMatchIds = new Set(trackMatches.map((rule) => rule.id));
+  const matchedLabels = majorMatches
+    .filter((rule) => trackMatchIds.has(rule.id))
+    .map((rule) => rule.label);
+
+  if (matchedLabels.length) {
+    return {
+      score: matchedLabels.length * AUTO_TRACK_ENGINEERING_DISCIPLINE_AFFINITY_WEIGHT,
+      matchedLabels,
+    };
+  }
+
+  return {
+    score: -AUTO_TRACK_ENGINEERING_DISCIPLINE_MISMATCH_PENALTY,
+    matchedLabels,
+  };
+}
+
 function buildTrackReferenceCourseCodes(
   track: TransferPlannerTrack,
   options: {
@@ -2741,6 +4178,7 @@ type TransferPlannerAutoMatchedTrackRecommendation = {
   matchCount: number;
   matchedCourseCodes: string[];
   matchedCourseLabels: string[];
+  disciplineMatchedLabels: string[];
   totalPlanCourseCount: number;
   totalTrackCourseCount: number;
 };
@@ -2756,6 +4194,7 @@ function buildAutoTrackRecommendationSummary(scope: {
 function buildAutoTrackWhyThisTrack(scope: {
   track: TransferPlannerTrack;
   matchedCourseLabels: string[];
+  disciplineMatchedLabels?: string[];
   matchCount: number;
   totalTrackCourseCount: number;
 }) {
@@ -2766,8 +4205,17 @@ function buildAutoTrackWhyThisTrack(scope: {
     ? `, including ${examplesLabel}${remainingCount > 0 ? `, plus ${remainingCount} more` : ""}`
     : "";
 
+  const disciplineNote = scope.disciplineMatchedLabels?.length
+    ? [
+        `The matched track title also aligns with ${scope.disciplineMatchedLabels.join(
+          ", "
+        )}.`,
+      ]
+    : [];
+
   return [
     `${scope.track.code} has the strongest direct overlap with the current degree-specific Green River class list${examplesNote}.`,
+    ...disciplineNote,
     `This auto-match compares every hardcoded course in the current Green River transfer tracks against the major's tracked Green River classes and keeps the track with the highest concrete course overlap.`,
     `Use the remaining major-specific checklist items to add the classes that ${scope.track.code} does not cover by itself.`,
   ];
@@ -2775,7 +4223,10 @@ function buildAutoTrackWhyThisTrack(scope: {
 
 export function getTransferPlannerAutoMatchedTrackRecommendation(
   grcCourseList: string[],
-  preferredTrackId: string | null = null
+  preferredTrackId: string | null = null,
+  options: {
+    majorTitle?: string | null;
+  } = {}
 ): TransferPlannerAutoMatchedTrackRecommendation | null {
   const normalizedCourseLabels = uniqueReferenceCourseLabels(grcCourseList);
   const planCourseCodes = uniqueReferenceCourseLabels(
@@ -2793,6 +4244,10 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
     const trackCourseCodes = TRACK_REFERENCE_CODES_BY_ID.get(track.id) ?? [];
     const matchedCourseCodes = trackCourseCodes.filter((code) => planCourseCodeSet.has(code));
     const subjectAffinityScore = getTrackSubjectAffinityScore(track, subjectAffinityCounts);
+    const engineeringDisciplineAffinity = getTrackEngineeringDisciplineAffinity(
+      track,
+      options.majorTitle
+    );
     return {
       track,
       trackCourseCodes,
@@ -2804,8 +4259,12 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
       planCoverage: matchedCourseCodes.length / planCourseCodes.length,
       trackCoverage: matchedCourseCodes.length / Math.max(trackCourseCodes.length, 1),
       subjectAffinityScore,
+      engineeringDisciplineAffinityScore: engineeringDisciplineAffinity.score,
+      engineeringDisciplineMatchedLabels: engineeringDisciplineAffinity.matchedLabels,
       rankingScore:
-        matchedCourseCodes.length + subjectAffinityScore * AUTO_TRACK_SUBJECT_AFFINITY_WEIGHT,
+        matchedCourseCodes.length +
+        subjectAffinityScore * AUTO_TRACK_SUBJECT_AFFINITY_WEIGHT +
+        engineeringDisciplineAffinity.score,
       preferred: track.id === preferredTrackId,
     };
   });
@@ -2860,18 +4319,22 @@ export function getTransferPlannerAutoMatchedTrackRecommendation(
     whyThisTrack: buildAutoTrackWhyThisTrack({
       track: winner.track,
       matchedCourseLabels: winner.matchedCourseLabels,
+      disciplineMatchedLabels: winner.engineeringDisciplineMatchedLabels,
       matchCount: winner.matchCount,
       totalTrackCourseCount: winner.trackCourseCodes.length,
     }),
     matchCount: winner.matchCount,
     matchedCourseCodes: [...winner.matchedCourseCodes],
     matchedCourseLabels: [...winner.matchedCourseLabels],
+    disciplineMatchedLabels: [...winner.engineeringDisciplineMatchedLabels],
     totalPlanCourseCount: planCourseCodes.length,
     totalTrackCourseCount: winner.trackCourseCodes.length,
   };
 }
 
 function applyAutoTrackRecommendation<T extends {
+  title?: string;
+  label?: string;
   bestTrackId: string | null | undefined;
   recommendedTrackSummary?: string;
   whyThisTrack?: string[];
@@ -2884,6 +4347,7 @@ function applyAutoTrackRecommendation<T extends {
   options?: {
     trackMatchCourseList?: string[];
     fallbackTrackMatchCourseList?: string[];
+    majorTitle?: string | null;
   }
 ): T {
   const primaryTrackMatchCourseList = options?.trackMatchCourseList?.length
@@ -2891,11 +4355,17 @@ function applyAutoTrackRecommendation<T extends {
     : collectPlannerCourseLabels(scope);
   const autoTrack = getTransferPlannerAutoMatchedTrackRecommendation(
     primaryTrackMatchCourseList,
-    scope.bestTrackId ?? null
+    scope.bestTrackId ?? null,
+    {
+      majorTitle: options?.majorTitle ?? scope.title ?? scope.label ?? null,
+    }
   ) ?? (options?.fallbackTrackMatchCourseList?.length
     ? getTransferPlannerAutoMatchedTrackRecommendation(
         uniqueReferenceCourseLabels(options.fallbackTrackMatchCourseList),
-        scope.bestTrackId ?? null
+        scope.bestTrackId ?? null,
+        {
+          majorTitle: options?.majorTitle ?? scope.title ?? scope.label ?? null,
+        }
       )
     : null);
 
@@ -2912,6 +4382,8 @@ function applyAutoTrackRecommendation<T extends {
 }
 
 function applyAutoTrackRecommendationFromStudentVisibleList<T extends {
+  title?: string;
+  label?: string;
   bestTrackId: string | null | undefined;
   recommendedTrackSummary?: string;
   whyThisTrack?: string[];
@@ -2924,6 +4396,7 @@ function applyAutoTrackRecommendationFromStudentVisibleList<T extends {
   options: {
     trackMatchCourseList?: string[];
     studentVisibleCourseList?: string[];
+    majorTitle?: string | null;
   } = {}
 ): T {
   const visibleCourseList = options.studentVisibleCourseList?.length
@@ -2940,6 +4413,7 @@ function applyAutoTrackRecommendationFromStudentVisibleList<T extends {
   return applyAutoTrackRecommendation(scope, {
     trackMatchCourseList: options.trackMatchCourseList,
     fallbackTrackMatchCourseList: visibleCourseList,
+    majorTitle: options.majorTitle ?? scope.title ?? scope.label ?? null,
   });
 }
 
@@ -3506,7 +4980,11 @@ function getStructuredCourseCodesForPlan(
     baseCourseOrder
   );
 
-  return applySiblingChoiceSourceBackedRecovery(structuredCourseCodes, planId, pathwayId);
+  return applyRequirementGroupSelectionsToCourseList(
+    applySiblingChoiceSourceBackedRecovery(structuredCourseCodes, planId, pathwayId),
+    planId,
+    pathwayId
+  );
 }
 
 function collectStructuredLinks(
@@ -3711,6 +5189,8 @@ function buildPathway(
     bestTrackId: inheritedBestTrackId,
     recommendedTrackSummary: sanitizePlannerOwnedText(inheritedRecommendedTrackSummary),
     whyThisTrack: sanitizePlannerOwnedStrings(inheritedWhyThisTrack),
+    requirementGroups: getRequirementGroupsForScope(basePlan.id, basePathway.id),
+    requirementReplacements: getRequirementReplacementsForScope(basePlan.id, basePathway.id),
   } satisfies TransferPlannerMajorPathway;
 
   return applyAutoTrackRecommendationFromStudentVisibleList(pathway, {
@@ -3773,6 +5253,8 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
     ),
     plannerNote: sanitizePlannerOwnedText(policy?.plannerNote ?? basePlan.plannerNote),
     pathways: structuredPathways,
+    requirementGroups: getRequirementGroupsForScope(basePlan.id),
+    requirementReplacements: getRequirementReplacementsForScope(basePlan.id),
   };
 
   const sourceGeneratedWithCompatibility = applyChecklistItemsByPhase(
@@ -3783,8 +5265,12 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
     sourceGeneratedWithCompatibility,
     buildSourceGeneratedFallbackChecklistItems(sourceGeneratedWithCompatibility)
   );
+  const sourceGeneratedWithRequirementGroups = applyChecklistItemsByPhase(
+    sourceGeneratedWithFallback,
+    buildRequirementGroupChecklistItemsByPhase(basePlan.id)
+  );
 
-  const promotedSourceGeneratedPlan = promoteStructuredCoverage(sourceGeneratedWithFallback);
+  const promotedSourceGeneratedPlan = promoteStructuredCoverage(sourceGeneratedWithRequirementGroups);
 
   return applyAutoTrackRecommendationFromStudentVisibleList(promotedSourceGeneratedPlan, {
     trackMatchCourseList: buildTrackMatchCourseList(promotedSourceGeneratedPlan, basePlan.id),
@@ -3807,6 +5293,16 @@ function buildAutomaticChecklistForPhase(
   );
   const seenSignatures = new Set<string>();
   const runtimeItems: TransferPlannerChecklistItem[] = [];
+
+  for (const item of getRequirementGroupChecklistItemsForPhase(planId, phase, pathwayId)) {
+    const signature = buildChecklistItemSignature(item);
+    if (seenSignatures.has(signature)) {
+      continue;
+    }
+
+    seenSignatures.add(signature);
+    runtimeItems.push(item);
+  }
 
   for (const atom of getStudentFacingRuntimeRequirementAtoms(planId, pathwayId)) {
     if (atom.displayPhase !== phase) {
@@ -3935,7 +5431,11 @@ function buildAutomaticCourseList(
     []
   );
 
-  return applySiblingChoiceSourceBackedRecovery(automaticCourseList, planId, pathwayId);
+  return applyRequirementGroupSelectionsToCourseList(
+    applySiblingChoiceSourceBackedRecovery(automaticCourseList, planId, pathwayId),
+    planId,
+    pathwayId
+  );
 }
 
 function buildStudentVisibleAutomaticCourseList(scope: {
@@ -3969,8 +5469,12 @@ function buildAutomaticTrackMatchCourseList(planId: string, pathwayId?: string |
     []
   );
 
-  return applySiblingChoiceSourceBackedRecovery(
-    automaticTrackMatchCourseList,
+  return applyRequirementGroupSelectionsToCourseList(
+    applySiblingChoiceSourceBackedRecovery(
+      automaticTrackMatchCourseList,
+      planId,
+      pathwayId
+    ),
     planId,
     pathwayId
   );
@@ -4207,9 +5711,12 @@ function buildStudentRuntimePathway(
           trackMetadata.recommendedTrackSummary
         ),
         whyThisTrack: sanitizePlannerOwnedStrings(trackMetadata.whyThisTrack),
+        requirementGroups: getRequirementGroupsForScope(basePlan.id, basePathway.id),
+        requirementReplacements: getRequirementReplacementsForScope(basePlan.id, basePathway.id),
     } satisfies TransferPlannerMajorPathway, {
       trackMatchCourseList: studentVisibleTrackMatchCourseList,
       studentVisibleCourseList,
+      majorTitle: basePlan.title,
     }),
     basePathway.id
   );
@@ -4348,6 +5855,8 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
           materializedBasePathways.map((pathway) => buildStudentRuntimePathway(basePlan, pathway)),
           materializedBasePathways.map((pathway) => pathway.id)
         ),
+        requirementGroups: getRequirementGroupsForScope(basePlan.id),
+        requirementReplacements: getRequirementReplacementsForScope(basePlan.id),
     }, {
       trackMatchCourseList: studentVisibleTrackMatchCourseList,
       studentVisibleCourseList,
@@ -4379,6 +5888,7 @@ function materializePlannerPathway(pathway: TransferPlannerMajorPathway): Transf
     validationNotes: sanitizePlannerOwnedStrings(pathway.validationNotes ?? []),
     grcCourseListGuidance: sanitizePlannerOwnedText(pathway.grcCourseListGuidance) || undefined,
     whyThisTrack: sanitizePlannerOwnedStrings(pathway.whyThisTrack ?? []),
+    requirementReplacements: uniqueRequirementReplacements(pathway.requirementReplacements ?? []),
   };
 }
 
@@ -4421,23 +5931,41 @@ function mergePlannerPathwayWithPlan(
   visiblePathways = materializePlanPathways(plan)
 ): TransferPlannerResolvedMajorPlan {
   const trackMetadata = getPathwayScopedTrackMetadata(plan, pathway);
+  const mergedRequirementGroups = uniqueById([
+    ...(plan.requirementGroups ?? []).map((group) =>
+      applyRequirementGroupPathwayRestrictions(group, pathway.id)
+    ).filter((group) => group.options.length > 0),
+    ...(pathway.requirementGroups ?? []),
+  ]);
+  const nmeSourceIncompleteWarnings = buildMaterialsScienceNmeSourceIncompleteWarnings(
+    plan.id,
+    pathway.id,
+    mergedRequirementGroups
+  );
   const mergedPlan = materializePlanReferenceCourses({
     ...plan,
     applicationChecklist: appendUniqueChecklistItems(
       plan.applicationChecklist ?? [],
       pathway.applicationChecklist ?? []
-    ),
+    )
+      .map((item) => applyChecklistItemPathwayRestrictions(item, pathway.id))
+      .filter((item): item is TransferPlannerChecklistItem => Boolean(item)),
     beforeEnrollmentChecklist: appendUniqueChecklistItems(
       plan.beforeEnrollmentChecklist ?? [],
       pathway.beforeEnrollmentChecklist ?? []
-    ),
+    )
+      .map((item) => applyChecklistItemPathwayRestrictions(item, pathway.id))
+      .filter((item): item is TransferPlannerChecklistItem => Boolean(item)),
     stayAtGrcChecklist: appendUniqueChecklistItems(
       plan.stayAtGrcChecklist ?? [],
       pathway.stayAtGrcChecklist ?? []
-    ),
+    )
+      .map((item) => applyChecklistItemPathwayRestrictions(item, pathway.id))
+      .filter((item): item is TransferPlannerChecklistItem => Boolean(item)),
     advisorFlags: sanitizePlannerOwnedStrings([
       ...(plan.advisorFlags ?? []),
       ...(pathway.advisorFlags ?? []),
+      ...nmeSourceIncompleteWarnings,
     ]),
     officialLinks: uniquePlannerLinks([...(plan.officialLinks ?? []), ...(pathway.officialLinks ?? [])]),
     degreeMapSections: (pathway.degreeMapSections ?? plan.degreeMapSections)?.map((section) =>
@@ -4446,6 +5974,7 @@ function mergePlannerPathwayWithPlan(
     validationNotes: sanitizePlannerOwnedStrings([
       ...(plan.validationNotes ?? []),
       ...(pathway.validationNotes ?? []),
+      ...nmeSourceIncompleteWarnings,
     ]),
     grcCourseListGuidance: sanitizePlannerOwnedText(
       pathway.grcCourseListGuidance ?? plan.grcCourseListGuidance
@@ -4460,6 +5989,12 @@ function mergePlannerPathwayWithPlan(
       trackMetadata.recommendedTrackSummary
     ),
     whyThisTrack: sanitizePlannerOwnedStrings(trackMetadata.whyThisTrack),
+    requirementGroups: mergedRequirementGroups,
+    requirementReplacements: uniqueRequirementReplacements([
+      ...(plan.requirementReplacements ?? []),
+      ...(pathway.requirementReplacements ?? []),
+      ...getRequirementReplacementsForScope(plan.id, pathway.id),
+    ]),
   });
 
   return {
@@ -4777,6 +6312,9 @@ export type {
   TransferPlannerGeneralRequirementSourceKind,
   TransferPlannerMajorPathway,
   TransferPlannerMajorPlan,
+  TransferPlannerRequirementGroup,
+  TransferPlannerRequirementOption,
+  TransferPlannerRequirementType,
   TransferPlannerResolvedMajorPlan,
   TransferPlannerCourseAvailability,
   TransferPlannerTrack,

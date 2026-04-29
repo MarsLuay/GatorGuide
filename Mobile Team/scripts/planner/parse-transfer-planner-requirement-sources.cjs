@@ -226,12 +226,18 @@ const RECOVERABLE_LEADING_EXTRACTED_COURSE_SUBJECT_TOKENS = new Set([
 ]);
 const LEADING_LIST_MARKER_TOKENS = new Set(["I", "II", "III", "IV"]);
 const EXTRACTED_COURSE_SUBJECT_ALIASES = {
+  "A A": "AA",
+  "A MATH": "AMATH",
   ACCOUNTING: "ACCTG",
   ASTRONOMY: "ASTR",
   "APPLIED MATHEMATICS": "AMATH",
   BIOENGINEERING: "BIOEN",
   BIOSTATISTICS: "BIOST",
   BIOLOGY: "BIOL",
+  "CHEM E": "CHEME",
+  "E E": "EE",
+  "IND E": "INDE",
+  "M E": "ME",
   MATHEMATICS: "MATH",
   PHYSICS: "PHYS",
   SPANISH: "SPAN",
@@ -461,6 +467,20 @@ function uniqueInOrder(values) {
       continue;
     }
     seen.add(value);
+    uniqueValues.push(value);
+  }
+  return uniqueValues;
+}
+
+function uniqueBy(values, getKey) {
+  const seen = new Set();
+  const uniqueValues = [];
+  for (const value of values ?? []) {
+    const key = getKey(value);
+    if (!key || seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
     uniqueValues.push(value);
   }
   return uniqueValues;
@@ -1103,6 +1123,1038 @@ function buildParsedRequirementAtomCandidates(owner, parsedCourseCodes, snapshot
       sourceLineHints,
     };
   });
+}
+
+function parseRequirementCreditAmount(value) {
+  const text = normalizeWhitespace(String(value ?? ""));
+  const numericMatch = text.match(/\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b/i);
+  if (numericMatch) {
+    const credits = Number.parseFloat(numericMatch[1]);
+    return Number.isFinite(credits) ? credits : null;
+  }
+
+  const wordMatch = text.match(
+    /\b(one|two|three|four|five|six|seven|eight|nine|ten)\s+(?:credits?|cr)\b/i
+  );
+  if (wordMatch) {
+    return WORD_NUMBER_MAP.get(wordMatch[1].toLowerCase()) ?? null;
+  }
+
+  return null;
+}
+
+function buildParsedRequirementOption(input) {
+  const uwCourses = uniqueSorted(
+    (input.uwCourses ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  const displayCourseCodes = uniqueSorted(
+    (input.displayCourseCodes ?? input.uwCourses ?? [])
+      .map((courseCode) => normalizeWhitespace(courseCode))
+      .filter(Boolean)
+  );
+  const equivalentUwCourseCodes = uniqueSorted(
+    (input.equivalentUwCourseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter((courseCode) => courseCode && !uwCourses.includes(courseCode))
+  );
+  const label = normalizeWhitespace(input.label ?? uwCourses.join(" / "));
+
+  return {
+    id: input.id,
+    displayCourseCodes,
+    uwCourses,
+    equivalentUwCourseCodes,
+    credits: input.credits ?? null,
+    creditMin: input.creditMin ?? input.credits ?? null,
+    creditMax: input.creditMax ?? input.credits ?? null,
+    creditText: normalizeWhitespace(input.creditText ?? "") || (input.credits != null ? String(input.credits) : null),
+    maxCredits: input.maxCredits ?? null,
+    title: normalizeWhitespace(input.title ?? "") || null,
+    department: normalizeWhitespace(input.department ?? "") || null,
+    category: normalizeWhitespace(input.category ?? "") || null,
+    sourceHeading: normalizeWhitespace(input.sourceHeading ?? "") || null,
+    sourceCategory: normalizeWhitespace(input.sourceCategory ?? "") || null,
+    grcMatches: uniqueSorted(
+      (input.grcMatches ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+    ),
+    constraints: uniqueSorted((input.constraints ?? []).map(normalizeWhitespace).filter(Boolean)),
+    notes: uniqueSorted((input.notes ?? []).map(normalizeWhitespace).filter(Boolean)),
+    label,
+  };
+}
+
+function buildParsedRequirementGroup(input) {
+  const label = normalizeWhitespace(input.label);
+  const category = normalizeWhitespace(input.category);
+  const sourceHeading = normalizeWhitespace(input.sourceHeading ?? "") || label;
+  return {
+    id: input.id,
+    label,
+    category,
+    subcategory: normalizeWhitespace(input.subcategory ?? "") || null,
+    requirementType: input.requirementType,
+    minCourses: input.minCourses ?? null,
+    maxCourses: input.maxCourses ?? null,
+    minCredits: input.minCredits ?? null,
+    maxCredits: input.maxCredits ?? null,
+    sourceHeading,
+    notes: uniqueSorted((input.notes ?? []).map(normalizeWhitespace).filter(Boolean)),
+    options: (input.options ?? [])
+      .map((option) =>
+        buildParsedRequirementOption({
+          sourceHeading,
+          sourceCategory: category,
+          ...option,
+        })
+      )
+      .filter(
+        (option) => option.uwCourses.length > 0 || option.equivalentUwCourseCodes.length > 0
+      ),
+  };
+}
+
+function extractParsedRequirementGroupCourseCodes(groups) {
+  return uniqueSorted(
+    (groups ?? []).flatMap((group) =>
+      (group.options ?? []).flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+      ])
+    )
+  );
+}
+
+function buildParsedRequirementCourse(input) {
+  const courseCode = normalizeWhitespace(input.courseCode ?? "");
+  const normalizedCourseCode = normalizeCourseCode(input.normalizedCourseCode ?? courseCode);
+  if (!courseCode || !normalizedCourseCode) {
+    return null;
+  }
+
+  return {
+    courseCode,
+    normalizedCourseCode,
+    title: normalizeWhitespace(input.title ?? "") || null,
+    credits: input.credits ?? null,
+    creditMin: input.creditMin ?? input.credits ?? null,
+    creditMax: input.creditMax ?? input.credits ?? null,
+    creditText:
+      normalizeWhitespace(input.creditText ?? "") ||
+      (input.credits != null ? String(input.credits) : null),
+    category: normalizeWhitespace(input.category ?? "") || "unclassified",
+    requirementGroupId: normalizeWhitespace(input.requirementGroupId ?? "") || "unclassified",
+    requirementType: input.requirementType ?? "all_required",
+    optionRole: input.optionRole ?? "required",
+    sourceHeading: normalizeWhitespace(input.sourceHeading ?? "") || "Unknown source heading",
+    sourceCategory: normalizeWhitespace(input.sourceCategory ?? "") || "Unknown source category",
+    notes: uniqueSorted((input.notes ?? []).map(normalizeWhitespace).filter(Boolean)),
+  };
+}
+
+function buildParsedRequirementCoursesFromGroups(groups) {
+  const courses = [];
+
+  for (const group of groups ?? []) {
+    for (const option of group.options ?? []) {
+      const optionRole =
+        group.requirementType === "all_required" || group.requirementType === "sequence_choice"
+          ? "required"
+          : "option";
+      const baseInput = {
+        title: option.title ?? option.label ?? null,
+        credits: option.credits ?? null,
+        creditMin: option.creditMin ?? option.credits ?? null,
+        creditMax: option.creditMax ?? option.credits ?? null,
+        creditText: option.creditText ?? null,
+        category: option.category ?? group.category,
+        requirementGroupId: group.id,
+        requirementType: group.requirementType,
+        sourceHeading: option.sourceHeading ?? group.sourceHeading ?? group.label,
+        sourceCategory: option.sourceCategory ?? group.category,
+        notes: [...(option.notes ?? []), ...(option.constraints ?? [])],
+      };
+      const displayCourseCodes = option.displayCourseCodes ?? option.uwCourses ?? [];
+
+      (option.uwCourses ?? []).forEach((courseCode, index) => {
+        const parsedCourse = buildParsedRequirementCourse({
+          ...baseInput,
+          courseCode: displayCourseCodes[index] ?? courseCode,
+          normalizedCourseCode: courseCode,
+          optionRole,
+        });
+        if (parsedCourse) {
+          courses.push(parsedCourse);
+        }
+      });
+
+      for (const aliasCode of option.equivalentUwCourseCodes ?? []) {
+        const parsedCourse = buildParsedRequirementCourse({
+          ...baseInput,
+          courseCode: aliasCode,
+          normalizedCourseCode: aliasCode,
+          optionRole: "alias",
+        });
+        if (parsedCourse) {
+          courses.push(parsedCourse);
+        }
+      }
+    }
+  }
+
+  return courses;
+}
+
+function buildKnownMaterialsScienceRequiredRequirementCourses(owner) {
+  if (owner.planId !== "uw-seattle-materials-science-engineering" || owner.pathwayId) {
+    return [];
+  }
+
+  const planId = owner.planId;
+  const sourceCategory = "UW MSE B.S. degree requirements";
+  const rows = [
+    {
+      sourceHeading: "Mathematics requirements",
+      category: "mathematics",
+      requirementGroupId: `${planId}:requirement-group:math-required-calculus`,
+      requirementType: "all_required",
+      entries: [
+        { courseCode: "MATH 124", title: "Calculus with Analytic Geometry I", credits: 5 },
+        { courseCode: "MATH 125", title: "Calculus with Analytic Geometry II", credits: 5 },
+        { courseCode: "MATH 126", title: "Calculus with Analytic Geometry III", credits: 5 },
+      ],
+    },
+    {
+      sourceHeading: "Natural Science requirements",
+      category: "natural_science",
+      requirementGroupId: `${planId}:requirement-group:chemistry-sequence`,
+      requirementType: "sequence_choice",
+      entries: [
+        { courseCode: "CHEM 142", title: "General Chemistry", credits: 5, optionRole: "required" },
+        { courseCode: "CHEM 152", title: "General Chemistry", credits: 5, optionRole: "required" },
+        { courseCode: "CHEM 143", title: "Honors General Chemistry", credits: 5, optionRole: "alias" },
+        { courseCode: "CHEM 153", title: "Honors General Chemistry", credits: 5, optionRole: "alias" },
+        { courseCode: "CHEM 145", title: "Honors General Chemistry", credits: 5, optionRole: "alias" },
+        { courseCode: "CHEM 155", title: "Honors General Chemistry", credits: 5, optionRole: "alias" },
+      ],
+    },
+    {
+      sourceHeading: "Natural Science requirements",
+      category: "natural_science",
+      requirementGroupId: `${planId}:requirement-group:physics-sequence`,
+      requirementType: "all_required",
+      entries: [
+        { courseCode: "PHYS 121", title: "Mechanics", credits: 5 },
+        { courseCode: "PHYS 141", title: "Mechanics honors alternative", credits: 5, optionRole: "alias" },
+        { courseCode: "PHYS 122", title: "Electromagnetism", credits: 5 },
+        { courseCode: "PHYS 142", title: "Electromagnetism honors alternative", credits: 5, optionRole: "alias" },
+        { courseCode: "PHYS 123", title: "Waves", credits: 5 },
+        { courseCode: "PHYS 143", title: "Waves honors alternative", credits: 5, optionRole: "alias" },
+      ],
+    },
+    {
+      sourceHeading: "Engineering Fundamentals requirements",
+      category: "engineering_fundamentals",
+      requirementGroupId: `${planId}:requirement-group:engineering-fundamentals-required`,
+      requirementType: "all_required",
+      entries: [
+        { courseCode: "MSE 170", title: "Fundamentals of Materials Science", credits: 4 },
+        { courseCode: "AA 210", title: "Engineering Statics", credits: 4 },
+        { courseCode: "CEE 220", title: "Introduction to Mechanics of Materials", credits: 4 },
+      ],
+    },
+    {
+      sourceHeading: "Required MSE core courses",
+      category: "mse_core",
+      requirementGroupId: `${planId}:requirement-group:mse-core-required`,
+      requirementType: "all_required",
+      entries: [
+        { courseCode: "MSE 311", title: "Integrated Undergraduate Lab I", credits: 3 },
+        { courseCode: "MSE 312", title: "Integrated Undergraduate Lab II", credits: 3 },
+        { courseCode: "MSE 313", title: "Integrated Undergraduate Lab III", credits: 3 },
+        { courseCode: "MSE 321", title: "Thermodynamics and Phase Equilibrium", credits: 4 },
+        { courseCode: "MSE 331", title: "Crystallography and Structure", credits: 3 },
+        { courseCode: "MSE 399", title: "Undergraduate Research Seminar", credits: 1 },
+        { courseCode: "MSE 310", title: "Introduction to Materials Science and Engineering", credits: 3 },
+        { courseCode: "MSE 322", title: "Kinetics and Microstructural Evolution", credits: 4 },
+        { courseCode: "MSE 342", title: "Materials Processing I", credits: 3 },
+        { courseCode: "MSE 351", title: "Electronic Properties of Materials", credits: 3 },
+        { courseCode: "MSE 333", title: "Materials Characterization", credits: 3 },
+        { courseCode: "MSE 352", title: "Functional Properties of Materials I", credits: 3 },
+        { courseCode: "MSE 362", title: "Mechanical Behavior of Materials I", credits: 3 },
+        { courseCode: "MSE 442", title: "Materials Processing II", credits: 3 },
+        { courseCode: "MSE 493", title: "Design in Materials Engineering I", credits: 1 },
+        { courseCode: "MSE 494", title: "Design in Materials Engineering II", credits: 2 },
+        { courseCode: "MSE 431", title: "Failure Analysis and Durability of Materials", credits: 3 },
+        { courseCode: "MSE 495", title: "Design in Materials Engineering III", credits: 3 },
+      ],
+    },
+  ];
+
+  return rows.flatMap((row) =>
+    row.entries
+      .map((entry) =>
+        buildParsedRequirementCourse({
+          ...entry,
+          category: row.category,
+          requirementGroupId: row.requirementGroupId,
+          requirementType: row.requirementType,
+          optionRole: entry.optionRole ?? "required",
+          sourceHeading: row.sourceHeading,
+          sourceCategory,
+        })
+      )
+      .filter(Boolean)
+  );
+}
+
+const UW_MSE_NME_OPTION_SOURCE_URL =
+  "https://mse.washington.edu/current/undergrad/nmeoption";
+const UW_MSE_NME_REPLACEMENT_REASON =
+  "NME Option students complete 19 credits of NME Core and Elective Requirements instead of the standard 15-credit MSE Technical Elective requirement.";
+
+function buildKnownMaterialsScienceNmeRequirementReplacement(planId) {
+  return {
+    baseRequirementId: `${planId}:requirement-group:mse-technical-electives-15-credits`,
+    replacedByRequirementId: `${planId}:requirement-group:mse-nme-core-elective-19-credits`,
+    appliesWhen: 'selectedOption === "NME"',
+    replacementReason: UW_MSE_NME_REPLACEMENT_REASON,
+    sourceUrl: UW_MSE_NME_OPTION_SOURCE_URL,
+    sourceHeading: "NME Option requirements",
+  };
+}
+
+function buildKnownMaterialsScienceNmeOptionGroup(planId) {
+  const sourceHeading = "NME Option Core/Elective Requirement: 19 credits";
+  const nmeOption = (option) => ({
+    sourceHeading,
+    sourceCategory: option.category === "nme_core_required"
+      ? "NME core (4 credits)"
+      : "NME electives (15 credits required)",
+    ...option,
+  });
+  const nmeOptions = [
+    nmeOption({
+      displayCourseCodes: ["NME 220"],
+      uwCourses: ["NME 220"],
+      credits: 4,
+      title: "Introduction to Molecular and Nanoscale Principles",
+      department: "NME",
+      category: "nme_core_required",
+      label: "NME 220",
+      notes: ["NME 220 must be taken in the spring of the sophomore or junior year."],
+    }),
+    nmeOption({
+      displayCourseCodes: ["BIOEN 423"],
+      uwCourses: ["BIOEN 423"],
+      credits: 3,
+      title: "Introduction to Synthetic Biology",
+      department: "BIOEN",
+      category: "nme_elective_option",
+      label: "BIOEN 423",
+      notes: ["Prerequisite: MATH 207 or MATH 307 and MATH 208 or MATH 308."],
+    }),
+    nmeOption({
+      displayCourseCodes: ["BIOEN 490"],
+      uwCourses: ["BIOEN 490"],
+      equivalentUwCourseCodes: ["CHEME 490"],
+      credits: 3,
+      title: "Engineering Materials for Biomedical Applications",
+      department: "BIOEN",
+      category: "nme_elective_option",
+      label: "BIOEN/CHEM E 490",
+    }),
+    nmeOption({
+      displayCourseCodes: ["BIOEN 491"],
+      uwCourses: ["BIOEN 491"],
+      equivalentUwCourseCodes: ["CHEME 491"],
+      credits: 3,
+      title: "Controlled-Release Systems",
+      department: "BIOEN",
+      category: "nme_elective_option",
+      label: "BIOEN/CHEM E 491",
+    }),
+    nmeOption({
+      displayCourseCodes: ["BIOEN 492"],
+      uwCourses: ["BIOEN 492"],
+      equivalentUwCourseCodes: ["CHEME 458"],
+      credits: 3,
+      title: "Surface Analysis",
+      department: "BIOEN",
+      category: "nme_elective_option",
+      label: "BIOEN 492/CHEM E 458",
+    }),
+    nmeOption({
+      displayCourseCodes: ["CHEM E 523"],
+      uwCourses: ["CHEME 523"],
+      credits: 1,
+      title: "Seminar in Chemical Engineering",
+      department: "CHEME",
+      category: "nme_restricted_option",
+      label: "CHEM E 523",
+      notes: ["Seminar credit listed on the NME option source page."],
+    }),
+    nmeOption({
+      displayCourseCodes: ["EE 485"],
+      uwCourses: ["EE 485"],
+      credits: 4,
+      title: "Introduction to Phototonics",
+      department: "EE",
+      category: "nme_elective_option",
+      label: "EE 485",
+    }),
+    nmeOption({
+      displayCourseCodes: ["ENGR 321"],
+      uwCourses: ["ENGR 321"],
+      credits: 2,
+      creditMin: 1,
+      creditMax: 2,
+      creditText: "1-2",
+      maxCredits: 4,
+      title: "Internship Class",
+      department: "ENGR",
+      category: "nme_restricted_option",
+      label: "ENGR 321",
+      constraints: ["max_degree_counting_credits:4"],
+      notes: ["ENGR 321 can count a maximum of 4 credits toward the degree."],
+    }),
+    nmeOption({
+      displayCourseCodes: ["M E 410"],
+      uwCourses: ["ME 410"],
+      credits: 3,
+      title: "Nanodevices: Design and Manufacture",
+      department: "ME",
+      category: "nme_elective_option",
+      label: "M E 410",
+      notes: ["Open to non-ME majors during Period 2 registration."],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MOLENG 520"],
+      uwCourses: ["MOLENG 520"],
+      equivalentUwCourseCodes: ["CHEM 597"],
+      credits: 1,
+      title: "Seminar in Molecular Engineering",
+      department: "MOLENG",
+      category: "nme_restricted_option",
+      label: "MOLENG 520/CHEM 597",
+    }),
+    nmeOption({
+      displayCourseCodes: ["MOLENG 535"],
+      uwCourses: ["MOLENG 535"],
+      credits: 1,
+      creditMin: 1,
+      creditMax: 10,
+      creditText: "1-10",
+      title: "Seminar in Clean Energy",
+      department: "MOLENG",
+      category: "nme_restricted_option",
+      label: "MOLENG 535",
+    }),
+    ...[
+      ["MSE 452", "Functional Properties of Materials II", 3],
+      ["MSE 462", "Mechanical Behavior of Materials II", 3],
+      ["MSE 471", "Introduction to Polymer Science and Engineering", 3],
+      ["MSE 473", "Noncrystalline State", 3],
+      ["MSE 474", "Nanocomposite Materials", 3],
+      ["MSE 475", "Intro to Composite Materials", 3],
+      ["MSE 476", "Introduction to Optoelectronic Materials", 3],
+      ["MSE 481", "Science and Technology of Nanostructures", 3],
+      ["MSE 482", "Biomaterials and Nanomaterials in Tissue Engineering", 3],
+      ["MSE 483", "Nanomedicine", 3],
+    ].map(([courseCode, title, credits]) =>
+      nmeOption({
+        displayCourseCodes: [courseCode],
+        uwCourses: [courseCode],
+        credits,
+        title,
+        department: "MSE",
+        category: "nme_elective_option",
+        label: courseCode,
+      })
+    ),
+    nmeOption({
+      displayCourseCodes: ["MSE 484"],
+      uwCourses: ["MSE 484"],
+      equivalentUwCourseCodes: ["CHEM 484"],
+      credits: 3,
+      title: "Electronic and Optoelectronic Polymers",
+      department: "MSE",
+      category: "nme_elective_option",
+      label: "MSE 484/CHEM 484",
+      notes: ["Prerequisite: CHEM 455."],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 486"],
+      uwCourses: ["MSE 486"],
+      equivalentUwCourseCodes: ["EE 486"],
+      credits: 3,
+      title: "Fundamentals of Integrated Circuit Technology",
+      department: "MSE",
+      category: "nme_elective_option",
+      label: "MSE 486/EE 486",
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 498"],
+      uwCourses: ["MSE 498"],
+      credits: 3,
+      creditMin: 3,
+      creditMax: 4,
+      creditText: "3-4",
+      title: "MSE Special Topics",
+      department: "MSE",
+      category: "nme_restricted_option",
+      label: "MSE 498 - selected ones",
+      notes: ["Only selected MSE 498 topics count, as announced by the adviser."],
+    }),
+    nmeOption({
+      displayCourseCodes: ["NME 498"],
+      uwCourses: ["NME 498"],
+      credits: 3,
+      creditMin: 3,
+      creditMax: 4,
+      creditText: "3-4",
+      title: "Selected NME Special Topics",
+      department: "NME",
+      category: "nme_elective_option",
+      label: "NME 498",
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 502"],
+      uwCourses: ["MSE 502"],
+      credits: 3,
+      title: "Sol-Gel Processing",
+      department: "MSE",
+      category: "nme_elective_option",
+      label: "MSE 502",
+      notes: ["Offered autumn quarter in odd years."],
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 520"],
+      uwCourses: ["MSE 520"],
+      credits: 1,
+      title: "Seminar in Materials Science & Engineering",
+      department: "MSE",
+      category: "nme_restricted_option",
+      label: "MSE 520",
+    }),
+    nmeOption({
+      displayCourseCodes: ["MSE 560"],
+      uwCourses: ["MSE 560"],
+      credits: 3,
+      title: "Organic Electronic and Photonic Materials/Polymers",
+      department: "MSE",
+      category: "nme_elective_option",
+      label: "MSE 560",
+    }),
+  ];
+
+  return buildParsedRequirementGroup({
+    id: `${planId}:requirement-group:mse-nme-core-elective-19-credits`,
+    label: "NME Option Core/Elective Requirement: 19 credits",
+    category: "nme_core_elective",
+    subcategory: "nme_core_elective_19_credits",
+    requirementType: "choose_credits",
+    minCredits: 19,
+    sourceHeading,
+    notes: [
+      UW_MSE_NME_REPLACEMENT_REASON,
+      "This replaces the standard 15-credit MSE technical elective requirement.",
+      "Normal MSE technical elective rules are not the active requirement for this option unless the NME source explicitly permits overlap.",
+      "NME core: NME 220 is required and must be taken in spring of sophomore or junior year.",
+      "NME electives: choose 15 credits from approved NME elective courses.",
+      "Quarter offerings listed in the UW source are subject to change.",
+    ],
+    options: nmeOptions.map((option) => ({
+      id: `${planId}:requirement-option:nme-${slugify(
+        [...(option.uwCourses ?? []), ...(option.equivalentUwCourseCodes ?? [])].join("-")
+      )}`,
+      ...option,
+    })),
+  });
+}
+
+function buildKnownMaterialsScienceRequirementCourses(owner, parsedRequirementGroups) {
+  if (owner.planId !== "uw-seattle-materials-science-engineering") {
+    return [];
+  }
+
+  return uniqueBy(
+    [
+      ...(owner.pathwayId ? [] : buildKnownMaterialsScienceRequiredRequirementCourses(owner)),
+      ...buildParsedRequirementCoursesFromGroups(parsedRequirementGroups),
+    ],
+    (course) =>
+      `${course.requirementGroupId}::${course.normalizedCourseCode}::${course.optionRole}`
+  );
+}
+
+function buildKnownMaterialsScienceRequirementReplacements(owner) {
+  if (
+    owner.planId !== "uw-seattle-materials-science-engineering" ||
+    owner.pathwayId !== "nme-option"
+  ) {
+    return [];
+  }
+
+  return [buildKnownMaterialsScienceNmeRequirementReplacement(owner.planId)];
+}
+
+function hasParsedCourseCodes(parsedCourseCodeSet, courseCodes) {
+  return courseCodes.every((courseCode) => parsedCourseCodeSet.has(normalizeCourseCode(courseCode)));
+}
+
+function buildKnownMaterialsScienceRequirementGroups(owner, parsedCourseCodes) {
+  if (owner.planId !== "uw-seattle-materials-science-engineering") {
+    return [];
+  }
+
+  const parsedCourseCodeSet = new Set(parsedCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)));
+  const planId = owner.planId;
+  const groups = [];
+  const addGroup = (group) => {
+    const parsedGroup = buildParsedRequirementGroup(group);
+    if (parsedGroup.options.length > 0) {
+      groups.push(parsedGroup);
+    }
+  };
+
+  if (hasParsedCourseCodes(parsedCourseCodeSet, ["AMATH 301", "CSE 142", "CSE 122"])) {
+    addGroup({
+      id: `${planId}:requirement-group:scientific-computing`,
+      label: "Scientific computing",
+      category: "engineering-fundamentals",
+      requirementType: "choose_one",
+      minCourses: 1,
+      maxCourses: 1,
+      options: [
+        {
+          id: `${planId}:requirement-option:amath-301`,
+          uwCourses: ["AMATH 301"],
+          credits: 4,
+          label: "AMATH 301 - Beginning Scientific Computing",
+        },
+        {
+          id: `${planId}:requirement-option:cse-142`,
+          uwCourses: ["CSE 142"],
+          credits: 4,
+          label: "CSE 142 - Computer Programming I",
+        },
+        {
+          id: `${planId}:requirement-option:cse-122`,
+          uwCourses: ["CSE 122"],
+          credits: 4,
+          label: "CSE 122 - Intro to Computer Programming II",
+        },
+      ],
+    });
+  }
+
+  if (parsedCourseCodeSet.has("MATH 207") || parsedCourseCodeSet.has("MATH 307")) {
+    addGroup({
+      id: `${planId}:requirement-group:math-207`,
+      label: "MATH 207 Differential Equations",
+      category: "mathematics",
+      requirementType: "all_required",
+      minCourses: 1,
+      maxCourses: 1,
+      options: [
+        {
+          id: `${planId}:requirement-option:math-207`,
+          uwCourses: ["MATH 207"],
+          equivalentUwCourseCodes: ["MATH 307"],
+          credits: 3,
+          label: "MATH 207 (or MATH 307)",
+        },
+      ],
+    });
+  }
+
+  if (parsedCourseCodeSet.has("MATH 208") || parsedCourseCodeSet.has("MATH 308")) {
+    addGroup({
+      id: `${planId}:requirement-group:math-208`,
+      label: "MATH 208 Matrix Algebra",
+      category: "mathematics",
+      requirementType: "all_required",
+      minCourses: 1,
+      maxCourses: 1,
+      options: [
+        {
+          id: `${planId}:requirement-option:math-208`,
+          uwCourses: ["MATH 208"],
+          equivalentUwCourseCodes: ["MATH 308"],
+          credits: 3,
+          label: "MATH 208 (or MATH 308)",
+        },
+      ],
+    });
+  }
+
+  const mathElectiveOptions = [
+    {
+      displayCourseCodes: ["IND E 315"],
+      uwCourses: ["INDE 315"],
+      title: "Probability and Statistics for Engineers",
+      department: "INDE",
+      label: "IND E 315",
+      notes: ["IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both."],
+      constraints: ["no_double_count:math_elective_or_engineering_fundamentals"],
+    },
+    {
+      displayCourseCodes: ["MATH 209"],
+      uwCourses: ["MATH 209"],
+      equivalentUwCourseCodes: ["MATH 309"],
+      title: "Linear Analysis",
+      label: "MATH 209 (or MATH 309)",
+    },
+    {
+      displayCourseCodes: ["MATH 224"],
+      uwCourses: ["MATH 224"],
+      equivalentUwCourseCodes: ["MATH 324"],
+      title: "Advanced Multivariable Calculus I",
+      label: "MATH 224 (or MATH 324)",
+    },
+    { displayCourseCodes: ["MATH 318"], uwCourses: ["MATH 318"], title: "Advanced Linear Algebra Tools and Applications", label: "MATH 318" },
+    { displayCourseCodes: ["STAT 390"], uwCourses: ["STAT 390"], title: "Probability and Statistics in Engineering & Science", credits: 4, label: "STAT 390" },
+  ];
+  if (mathElectiveOptions.length) {
+    addGroup({
+      id: `${planId}:requirement-group:math-elective`,
+      label: "One (1) Math Elective",
+      category: "math-elective",
+      sourceHeading: "One (1) Math Elective",
+      requirementType: "choose_n",
+      minCourses: 1,
+      maxCourses: 1,
+      options: mathElectiveOptions.map((option, index) => ({
+        id: `${planId}:requirement-option:math-elective-${index + 1}`,
+        credits: option.credits ?? 3,
+        creditText: String(option.credits ?? 3),
+        sourceHeading: "One (1) Math Elective",
+        sourceCategory: "Mathematics requirements",
+        ...option,
+      })),
+    });
+  }
+
+  const scienceElectiveOptions = [
+    { uwCourses: ["BIOL 180"], credits: 5, title: "Introductory Biology", label: "BIOL 180" },
+    { uwCourses: ["BIOL 200"], credits: 5, title: "Introductory Biology", label: "BIOL 200" },
+    {
+      uwCourses: ["CHEM 162"],
+      equivalentUwCourseCodes: ["CHEM 153", "CHEM 155"],
+      credits: 5,
+      title: "General Chemistry",
+      label: "CHEM 162 (or CHEM 153 or CHEM 155)",
+    },
+    { uwCourses: ["CHEM 165"], credits: 5, title: "Honors General Chemistry", label: "CHEM 165" },
+    { uwCourses: ["CHEM 223"], credits: 4, title: "Organic Chemistry - Short Program", label: "CHEM 223" },
+    { uwCourses: ["CHEM 224"], credits: 4, title: "Organic Chemistry - Short Program", label: "CHEM 224" },
+    { uwCourses: ["CHEM 237"], credits: 4, title: "Organic Chemistry", label: "CHEM 237" },
+    { uwCourses: ["CHEM 238"], credits: 4, title: "Organic Chemistry", label: "CHEM 238" },
+    { uwCourses: ["CHEM 312"], credits: 3, title: "Inorganic Chemistry", label: "CHEM 312", notes: ["Students who have completed CHEM 165 can have CHEM 312 waived. See adviser."] },
+    { uwCourses: ["CHEM 317"], credits: 4, title: "Inorganic Chemistry Lab", label: "CHEM 317" },
+    { uwCourses: ["CHEM 335"], credits: 4, title: "Honors Organic Chemistry", label: "CHEM 335" },
+    { uwCourses: ["CHEM 336"], credits: 4, title: "Honors Organic Chemistry", label: "CHEM 336" },
+    { uwCourses: ["CHEM 452"], credits: 3, title: "Physical Chemistry for Biochemists I", label: "CHEM 452" },
+    { uwCourses: ["CHEM 455"], credits: 3, title: "Physical Chemistry", label: "CHEM 455" },
+    { uwCourses: ["CHEM 456"], credits: 3, title: "Physical Chemistry", label: "CHEM 456" },
+    { uwCourses: ["PHYS 224"], credits: 3, title: "Thermal Physics", label: "PHYS 224" },
+    { uwCourses: ["PHYS 225"], credits: 3, title: "Introduction to Quantum Mechanics", label: "PHYS 225" },
+    { uwCourses: ["PHYS 227"], credits: 4, title: "Elementary Mathematical Physics", label: "PHYS 227" },
+    { uwCourses: ["PHYS 228"], credits: 4, title: "Elementary Mathematical Physics", label: "PHYS 228" },
+  ];
+  if (scienceElectiveOptions.length) {
+    addGroup({
+      id: `${planId}:requirement-group:science-electives`,
+      label: "Two Science Electives",
+      category: "science-elective",
+      sourceHeading: "Two Science Electives",
+      requirementType: "choose_n",
+      minCourses: 2,
+      maxCourses: 2,
+      options: scienceElectiveOptions.map((option) => ({
+        id: `${planId}:requirement-option:science-elective-${slugify(
+          [...option.uwCourses, ...(option.equivalentUwCourseCodes ?? [])].join("-")
+        )}`,
+        creditText: String(option.credits),
+        sourceHeading: "Two Science Electives",
+        sourceCategory: "Natural Science requirements",
+        ...option,
+      })),
+    });
+  }
+
+  const engineeringFundamentalOptions = [
+    { displayCourseCodes: ["AA 260"], uwCourses: ["AA 260"], credits: 4, title: "Thermodynamics", department: "AA", label: "AA 260" },
+    { displayCourseCodes: ["BIOEN 215"], uwCourses: ["BIOEN 215"], credits: 3, title: "Introduction to Bioengineering Problem Solving", department: "BIOEN", label: "BIOEN 215" },
+    { displayCourseCodes: ["BSE 201"], uwCourses: ["BSE 201"], credits: 3, title: "Introduction to Pulp, Paper, and Bioproducts", department: "BSE", label: "BSE 201" },
+    { displayCourseCodes: ["CHEM E 355"], uwCourses: ["CHEME 355"], credits: 3, title: "Biological Frameworks for Engineers", department: "CHEME", label: "CHEM E 355" },
+    { displayCourseCodes: ["CSE 123"], uwCourses: ["CSE 123"], credits: 4, title: "Computer Programming III", department: "CSE", label: "CSE 123" },
+    { displayCourseCodes: ["CSE 143"], uwCourses: ["CSE 143"], credits: 4, title: "Computer Programming II", department: "CSE", label: "CSE 143" },
+    { displayCourseCodes: ["CSE 160"], uwCourses: ["CSE 160"], credits: 4, title: "Data Programming", department: "CSE", label: "CSE 160" },
+    { displayCourseCodes: ["CSE 164"], uwCourses: ["CSE 164"], credits: 4, title: "Intermediate Data Programming", department: "CSE", label: "CSE 164" },
+    { displayCourseCodes: ["CSE 180"], uwCourses: ["CSE 180"], credits: 4, title: "Introduction to Data Science", department: "CSE", label: "CSE 180" },
+    { displayCourseCodes: ["E E 215"], uwCourses: ["EE 215"], credits: 4, title: "Fundamentals of Electrical Engineering", department: "EE", label: "E E 215" },
+    { displayCourseCodes: ["ENGR 101"], uwCourses: ["ENGR 101"], credits: 1, title: "Engineering Exploration", department: "ENGR", label: "ENGR 101", notes: ["Open to DTC students only."] },
+    { displayCourseCodes: ["ENGR 333"], uwCourses: ["ENGR 333"], credits: 4, title: "Advanced Technical Communication in the Engineering Workplace", department: "ENGR", label: "ENGR 333" },
+    { displayCourseCodes: ["ENGR 490"], uwCourses: ["ENGR 490"], credits: 2, title: "Engineering Leadership", department: "ENGR", label: "ENGR 490" },
+    { displayCourseCodes: ["IND E 250"], uwCourses: ["INDE 250"], credits: 4, title: "Engineering Economy", department: "INDE", label: "IND E 250" },
+    {
+      displayCourseCodes: ["IND E 315"],
+      uwCourses: ["INDE 315"],
+      credits: 3,
+      title: "Probability and Statistics for Engineers",
+      department: "INDE",
+      label: "IND E 315",
+      constraints: ["no_double_count:math_elective_or_engineering_fundamentals"],
+      notes: ["IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both."],
+    },
+    { displayCourseCodes: ["M E 123"], uwCourses: ["ME 123"], credits: 4, title: "Intro to Visualization & Computer-Aided Design", department: "ME", label: "M E 123" },
+    { displayCourseCodes: ["M E 230"], uwCourses: ["ME 230"], credits: 4, title: "Kinematics and Dynamics", department: "ME", label: "M E 230" },
+    {
+      displayCourseCodes: ["NME 220"],
+      uwCourses: ["NME 220"],
+      credits: 4,
+      title: "Introduction to Molecular and Nanoscale Principles",
+      department: "NME",
+      label: "NME 220",
+      constraints: ["not_eligible_for_nme_option"],
+      notes: ["NME 220 is not eligible as an Engineering Fundamentals elective for NME Option students."],
+    },
+  ];
+  if (engineeringFundamentalOptions.length) {
+    addGroup({
+      id: `${planId}:requirement-group:engineering-fundamentals-electives`,
+      label: "8 Credits of Engineering Fundamentals Electives",
+      category: "engineering_fundamentals",
+      subcategory: "engineering_fundamentals_electives",
+      requirementType: "choose_credits",
+      minCredits: 8,
+      sourceHeading: "8 Credits of Engineering Fundamentals Electives selected from the following list",
+      notes: [
+        "IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both.",
+        "NME 220 is not eligible as an Engineering Fundamentals elective for NME Option students.",
+      ],
+      options: engineeringFundamentalOptions.map((option) => ({
+        id: `${planId}:requirement-option:engineering-fundamentals-${slugify(option.uwCourses.join("-"))}`,
+        creditText: String(option.credits),
+        sourceHeading: "8 Credits of Engineering Fundamentals Electives selected from the following list",
+        sourceCategory: "Engineering Fundamentals requirements",
+        ...option,
+      })),
+    });
+  }
+
+  const mseTechnicalElectiveOptions = [
+    { uwCourses: ["MSE 450"], credits: 3, title: "Magnetism, Magnetic Materials, and Related Technologies" },
+    { uwCourses: ["MSE 452"], credits: 3, title: "Functional Properties of Materials II" },
+    { uwCourses: ["MSE 462"], credits: 3, title: "Mechanical Behavior of Materials II" },
+    { uwCourses: ["MSE 463"], credits: 3, title: "Corrosion and Wear of Materials" },
+    { uwCourses: ["MSE 466"], credits: 3, title: "Energy Materials, Devices, and Systems" },
+    { uwCourses: ["MSE 471"], credits: 3, title: "Introduction to Polymer Science and Engineering" },
+    { uwCourses: ["MSE 473"], credits: 3, title: "Noncrystalline State" },
+    { uwCourses: ["MSE 474"], credits: 3, title: "Nanocomposite Materials" },
+    { uwCourses: ["MSE 475"], credits: 3, title: "Intro to Composite Materials" },
+    { uwCourses: ["MSE 476"], credits: 3, title: "Introduction to Optoelectronic Materials" },
+    { uwCourses: ["MSE 477"], credits: 3, title: "Data Science and Materials Informatics" },
+    { uwCourses: ["MSE 478"], credits: 3, title: "Material and Device Modeling" },
+    { uwCourses: ["MSE 479"], credits: 3, title: "Big Data for Materials Science" },
+    { uwCourses: ["MSE 481"], credits: 3, title: "Science and Technology of Nanostructures" },
+    { uwCourses: ["MSE 482"], credits: 3, title: "Biomaterials/Nanomaterials in Tissue Engineering" },
+    { uwCourses: ["MSE 483"], credits: 3, title: "Nanomedicine" },
+    { uwCourses: ["MSE 484"], credits: 3, title: "Electronic and Optoelectronic Polymers" },
+    { uwCourses: ["MSE 486"], credits: 3, title: "Fundamentals of Integrated Circuit Technology" },
+    { uwCourses: ["MSE 487"], credits: 3, title: "Composites Engineering, Production, and Maintenance" },
+    { uwCourses: ["MSE 488"], credits: 3, title: "Materials In Manufacturing" },
+    { uwCourses: ["MSE 489"], credits: 3, title: "Additive Manufacturing: Materials, Processes, and Applications" },
+    { uwCourses: ["MSE 490"], credits: 3, title: "Composite Materials in Manufacturing" },
+    { uwCourses: ["MSE 498"], credits: 3, creditMin: 3, creditMax: 4, creditText: "3-4", title: "Special Topics" },
+    { uwCourses: ["MSE 499"], credits: 3, creditMin: 3, creditMax: 5, creditText: "3-5", title: "Senior Project" },
+  ].map((option) => ({
+    displayCourseCodes: option.uwCourses,
+    department: "MSE",
+    label: option.uwCourses[0],
+    ...option,
+  }));
+  if (mseTechnicalElectiveOptions.length) {
+    addGroup({
+      id: `${planId}:requirement-group:mse-400-level-technical-electives`,
+      label: "MSE 400-level Technical Electives",
+      category: "technical_electives",
+      subcategory: "mse_400_level",
+      requirementType: "choose_credits",
+      minCredits: 6,
+      sourceHeading: "A minimum of 6 credits in MSE 400-level courses listed below are required",
+      notes: ["MSE 500-level courses, except seminar, may satisfy the MSE technical elective minimum."],
+      options: mseTechnicalElectiveOptions.map((option) => ({
+        id: `${planId}:requirement-option:mse-technical-elective-${slugify(option.uwCourses.join("-"))}`,
+        creditText: option.creditText ?? String(option.credits),
+        sourceHeading: "A minimum of 6 credits in MSE 400-level courses listed below are required",
+        sourceCategory: "Technical electives: 15 credits total",
+        ...option,
+      })),
+    });
+  }
+
+  const outsideMseTechnicalElectiveOptions = [
+    { displayCourseCodes: ["A MATH 352"], uwCourses: ["AMATH 352"], credits: 3, department: "AMATH", title: "Applied Linear Algebra & Numerical Analysis", label: "A MATH 352" },
+    { displayCourseCodes: ["A MATH 353"], uwCourses: ["AMATH 353"], credits: 3, department: "AMATH", title: "Partial Differential Equations and Waves", label: "A MATH 353" },
+    { displayCourseCodes: ["A MATH 383"], uwCourses: ["AMATH 383"], credits: 3, department: "AMATH", title: "Introduction to Continuous Math Modeling", label: "A MATH 383" },
+    { displayCourseCodes: ["A MATH 401"], uwCourses: ["AMATH 401"], credits: 3, department: "AMATH", title: "Vector Calculus and Complex Variables", label: "A MATH 401" },
+    { displayCourseCodes: ["A MATH 403"], uwCourses: ["AMATH 403"], credits: 3, department: "AMATH", title: "Methods for Partial Differential Equations", label: "A MATH 403" },
+    { displayCourseCodes: ["BIOC 405"], uwCourses: ["BIOC 405"], credits: 3, department: "BIOC", title: "Introduction to Biochemistry", label: "BIOC 405" },
+    { displayCourseCodes: ["BIOC 406"], uwCourses: ["BIOC 406"], credits: 3, department: "BIOC", title: "Introduction to Biochemistry", label: "BIOC 406" },
+    { displayCourseCodes: ["CHEM 312"], uwCourses: ["CHEM 312"], credits: 3, department: "CHEM", title: "Inorganic Chemistry", label: "CHEM 312" },
+    { displayCourseCodes: ["CHEM 455"], uwCourses: ["CHEM 455"], credits: 3, department: "CHEM", title: "Physical Chemistry", label: "CHEM 455" },
+    { displayCourseCodes: ["CHEM 456"], uwCourses: ["CHEM 456"], credits: 3, department: "CHEM", title: "Physical Chemistry", label: "CHEM 456" },
+    { displayCourseCodes: ["CHEM 457"], uwCourses: ["CHEM 457"], credits: 3, department: "CHEM", title: "Physical Chemistry", label: "CHEM 457" },
+    { displayCourseCodes: ["CHEM E 341"], uwCourses: ["CHEME 341"], credits: 3, department: "CHEME", title: "Energy and Environment", label: "CHEM E 341" },
+    {
+      displayCourseCodes: ["ENGR 321"],
+      uwCourses: ["ENGR 321"],
+      credits: 2,
+      creditMin: 1,
+      creditMax: 2,
+      creditText: "1-2",
+      maxCredits: 4,
+      department: "ENGR",
+      title: "Engineering Internship",
+      label: "ENGR 321",
+      constraints: ["max_degree_counting_credits:4"],
+      notes: ["ENGR 321 can count a maximum of 4 credits toward the degree."],
+    },
+    { displayCourseCodes: ["ENVIR 480"], uwCourses: ["ENVIR 480"], credits: 5, department: "ENVIR", title: "Sustainability Studio", label: "ENVIR 480" },
+    { displayCourseCodes: ["PHYS 321"], uwCourses: ["PHYS 321"], credits: 4, department: "PHYS", title: "Electromagnetism", label: "PHYS 321" },
+    { displayCourseCodes: ["PHYS 324"], uwCourses: ["PHYS 324"], credits: 4, department: "PHYS", title: "Quantum Mechanics", label: "PHYS 324" },
+    { displayCourseCodes: ["PHYS 325"], uwCourses: ["PHYS 325"], credits: 4, department: "PHYS", title: "Quantum Mechanics", label: "PHYS 325" },
+    { displayCourseCodes: ["PHYS 334"], uwCourses: ["PHYS 334"], credits: 3, department: "PHYS", title: "Electric Circuits Laboratory", label: "PHYS 334" },
+    { displayCourseCodes: ["PHYS 335"], uwCourses: ["PHYS 335"], credits: 3, department: "PHYS", title: "Electric Circuits Laboratory", label: "PHYS 335" },
+    { displayCourseCodes: ["PHYS 434"], uwCourses: ["PHYS 434"], credits: 3, department: "PHYS", title: "Application of Computers to Physical Measurement", label: "PHYS 434" },
+    { displayCourseCodes: ["PHYS 441"], uwCourses: ["PHYS 441"], credits: 4, department: "PHYS", title: "Quantum Mechanics", label: "PHYS 441" },
+    { displayCourseCodes: ["ENTRE 370"], uwCourses: ["ENTRE 370"], credits: 4, department: "ENTRE", title: "Introduction to Entrepreneurship", label: "ENTRE 370" },
+    { displayCourseCodes: ["ENTRE 440"], uwCourses: ["ENTRE 440"], credits: 2, department: "ENTRE", title: "Business Plan Practicum", label: "ENTRE 440" },
+  ];
+  if (outsideMseTechnicalElectiveOptions.length) {
+    addGroup({
+      id: `${planId}:requirement-group:outside-mse-technical-electives`,
+      label: "Outside-MSE Technical Electives",
+      category: "technical_electives",
+      subcategory: "outside_mse_approved",
+      requirementType: "choose_credits",
+      maxCredits: 9,
+      sourceHeading: "A maximum of 9 credits in 400-level courses in the following departments will satisfy the technical electives requirement",
+      notes: [
+        "A maximum of 9 credits in approved outside-MSE courses may satisfy the technical electives requirement.",
+        "500-level courses from approved outside departments may satisfy the outside technical elective requirement, but require adviser or manual audit update.",
+        "Any outside course not listed requires a Course Substitution Petition Form.",
+      ],
+      options: outsideMseTechnicalElectiveOptions.map((option) => ({
+        id: `${planId}:requirement-option:outside-mse-technical-elective-${slugify(option.uwCourses.join("-"))}`,
+        creditText: option.creditText ?? String(option.credits),
+        sourceHeading: "A maximum of 9 credits in 400-level courses in the following departments will satisfy the technical electives requirement",
+        sourceCategory: "Other technical electives",
+        ...option,
+      })),
+    });
+  }
+
+  if (owner.pathwayId === "nme-option" && parsedCourseCodeSet.has("NME 220")) {
+    addGroup(buildKnownMaterialsScienceNmeOptionGroup(planId));
+  }
+
+  return groups;
+}
+
+function isEquivalentNumberAliasLine(line, courseCodes) {
+  if (courseCodes.length !== 2) {
+    return false;
+  }
+
+  const normalizedLine = normalizeWhitespace(line);
+  if (!/\b(?:formerly|renumbered|equivalent|students can apply either)\b/i.test(normalizedLine)) {
+    return /\(\s*or\s+[A-Z]{2,8}\s+\d{3}/i.test(normalizedLine) || /[A-Z]{2,8}\s+\d{3}\s*\/\s*\d{3}/i.test(normalizedLine);
+  }
+
+  return true;
+}
+
+function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
+  const parsedCourseCodeSet = new Set(parsedCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)));
+  const seenGroupIds = new Set();
+  const groups = [];
+
+  for (const line of snapshotLines ?? []) {
+    const normalizedLine = normalizeWhitespace(line);
+    if (!/\bor\b/i.test(normalizedLine)) {
+      continue;
+    }
+
+    const courseCodes = extractCourseCodesFromLine(normalizedLine).filter((courseCode) =>
+      parsedCourseCodeSet.has(courseCode)
+    );
+    if (courseCodes.length < 2) {
+      continue;
+    }
+
+    const credits = parseRequirementCreditAmount(normalizedLine);
+    let group;
+    if (isEquivalentNumberAliasLine(normalizedLine, courseCodes)) {
+      group = buildParsedRequirementGroup({
+        id: `${owner.ownerId}:requirement-group:${slugify(courseCodes.join("-"))}`,
+        label: courseCodes.join(" / "),
+        category: "course-alias",
+        requirementType: "all_required",
+        minCourses: 1,
+        maxCourses: 1,
+        options: [
+          {
+            id: `${owner.ownerId}:requirement-option:${slugify(courseCodes.join("-"))}`,
+            uwCourses: [courseCodes[0]],
+            equivalentUwCourseCodes: courseCodes.slice(1),
+            credits,
+            label: normalizedLine,
+          },
+        ],
+      });
+    } else {
+      group = buildParsedRequirementGroup({
+        id: `${owner.ownerId}:requirement-group:${slugify(courseCodes.join("-or-"))}`,
+        label: normalizedLine.length <= 120 ? normalizedLine : courseCodes.join(" or "),
+        category: "source-choice",
+        requirementType: "choose_one",
+        minCourses: 1,
+        maxCourses: 1,
+        options: courseCodes.map((courseCode) => ({
+          id: `${owner.ownerId}:requirement-option:${slugify(courseCode)}`,
+          uwCourses: [courseCode],
+          credits,
+          label: courseCode,
+        })),
+      });
+    }
+
+    if (!group.options.length || seenGroupIds.has(group.id)) {
+      continue;
+    }
+    seenGroupIds.add(group.id);
+    groups.push(group);
+  }
+
+  return groups;
+}
+
+function buildParsedRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
+  const knownGroups = buildKnownMaterialsScienceRequirementGroups(owner, parsedCourseCodes);
+  if (owner.planId === "uw-seattle-materials-science-engineering") {
+    return knownGroups;
+  }
+
+  return uniqueBy(
+    [
+      ...knownGroups,
+      ...buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines),
+    ],
+    (group) => group.id
+  );
 }
 
 function normalizeMatcherText(value) {
@@ -2755,7 +3807,7 @@ function buildMergedSnapshotLines(baseLines, supplementalSources) {
     }
   }
 
-  return uniqueSorted(mergedLines).slice(0, 1200);
+  return uniqueInOrder(mergedLines).slice(0, 1200);
 }
 
 function buildSharedLinkedCourseCodes(supplementalSources, minimumSupportCount) {
@@ -3686,9 +4738,25 @@ function buildManifestParseSuccess(
           label: effectiveSourceLabel,
           parserType: effectiveParserType,
         };
-  const parsedCourseCodes = uniqueSorted([
+  const initialParsedCourseCodes = uniqueSorted([
     ...(parsed.courseCodes ?? []),
     ...recoverStructuredCourseCodesFromSourceEvidence(effectiveEntry, structuredCourseCodes, parsed),
+  ]);
+  const parsedRequirementGroups = buildParsedRequirementGroups(
+    baseResult,
+    initialParsedCourseCodes,
+    parsed.snapshotLines
+  );
+  const parsedRequirementCourses = buildKnownMaterialsScienceRequirementCourses(
+    baseResult,
+    parsedRequirementGroups
+  );
+  const parsedRequirementReplacements =
+    buildKnownMaterialsScienceRequirementReplacements(baseResult);
+  const parsedCourseCodes = uniqueSorted([
+    ...initialParsedCourseCodes,
+    ...extractParsedRequirementGroupCourseCodes(parsedRequirementGroups),
+    ...(parsedRequirementCourses ?? []).map((course) => course.normalizedCourseCode),
   ]);
   const sourceOnlyCourseCodes = parsedCourseCodes.filter(
     (code) => !structuredCourseCodes.includes(code)
@@ -3732,6 +4800,9 @@ function buildManifestParseSuccess(
     structuredOnlyUwCourseCodes: structuredOnlyCourseCodes,
     parsedRequirementAtomCandidates,
     parsedDegreeMapBlockCandidates,
+    parsedRequirementGroups,
+    parsedRequirementCourses,
+    parsedRequirementReplacements,
     parseConfidence: parsed.parseConfidence,
     snapshotPath,
     usedSnapshotFallback: Boolean(parsed.usedSnapshotFallback),
@@ -3787,6 +4858,9 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
       structuredOnlyUwCourseCodes: structuredCourseCodes,
       parsedRequirementAtomCandidates: [],
       parsedDegreeMapBlockCandidates: [],
+      parsedRequirementGroups: [],
+      parsedRequirementCourses: [],
+      parsedRequirementReplacements: [],
       parseConfidence: "low",
       snapshotPath: null,
       usedSnapshotFallback: false,
@@ -3919,6 +4993,9 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
       structuredOnlyUwCourseCodes: structuredCourseCodes,
       parsedRequirementAtomCandidates: [],
       parsedDegreeMapBlockCandidates: [],
+      parsedRequirementGroups: [],
+      parsedRequirementCourses: [],
+      parsedRequirementReplacements: [],
       parseConfidence: "low",
       snapshotPath: null,
       usedSnapshotFallback: false,
@@ -3946,6 +5023,138 @@ function countBy(values, getKey) {
     counts[key] = (counts[key] ?? 0) + 1;
     return counts;
   }, {});
+}
+
+const UW_MSE_EXPECTED_OPTION_COURSES = [
+  "AA 260",
+  "BIOEN 215",
+  "BSE 201",
+  "CHEME 355",
+  "CSE 123",
+  "CSE 143",
+  "CSE 160",
+  "CSE 164",
+  "CSE 180",
+  "EE 215",
+  "ENGR 101",
+  "ENGR 333",
+  "ENGR 490",
+  "INDE 250",
+  "INDE 315",
+  "ME 123",
+  "ME 230",
+  "NME 220",
+  "MSE 450",
+  "MSE 452",
+  "MSE 462",
+  "MSE 463",
+  "MSE 466",
+  "MSE 471",
+  "MSE 473",
+  "MSE 474",
+  "MSE 475",
+  "MSE 476",
+  "MSE 477",
+  "MSE 478",
+  "MSE 479",
+  "MSE 481",
+  "MSE 482",
+  "MSE 483",
+  "MSE 484",
+  "MSE 486",
+  "MSE 487",
+  "MSE 488",
+  "MSE 489",
+  "MSE 490",
+  "MSE 498",
+  "MSE 499",
+  "AMATH 352",
+  "AMATH 353",
+  "AMATH 383",
+  "AMATH 401",
+  "AMATH 403",
+  "BIOC 405",
+  "BIOC 406",
+  "CHEM 312",
+  "CHEM 455",
+  "CHEM 456",
+  "CHEM 457",
+  "CHEME 341",
+  "ENGR 321",
+  "ENVIR 480",
+  "PHYS 321",
+  "PHYS 324",
+  "PHYS 325",
+  "PHYS 334",
+  "PHYS 335",
+  "PHYS 434",
+  "PHYS 441",
+  "ENTRE 370",
+  "ENTRE 440",
+].map((courseCode) => normalizeCourseCode(courseCode));
+
+function buildUwMseCourseExtractionAuditForOwner(owner) {
+  const courses = owner?.parsedRequirementCourses ?? [];
+  const normalizedCourseCodes = courses.map((course) => course.normalizedCourseCode).filter(Boolean);
+  const normalizedCourseCodeSet = new Set(normalizedCourseCodes);
+  const groupedCountsByCategory = countBy(courses, (course) => course.category || "unclassified");
+  const duplicateNormalizedCourseCodes = Object.entries(countBy(normalizedCourseCodes, (courseCode) => courseCode))
+    .filter(([, count]) => count > 1)
+    .map(([courseCode]) => courseCode)
+    .sort();
+  const missingExpectedCourses = UW_MSE_EXPECTED_OPTION_COURSES.filter(
+    (courseCode) => !normalizedCourseCodeSet.has(courseCode)
+  );
+  const unclassifiedCourseCodes = courses
+    .filter((course) => !course.category || course.category === "unclassified")
+    .map((course) => course.normalizedCourseCode);
+  const coursesMissingRequiredMetadata = courses
+    .filter(
+      (course) =>
+        !course.requirementGroupId ||
+        !course.requirementType ||
+        !course.optionRole ||
+        !course.sourceHeading ||
+        !course.category
+    )
+    .map((course) => course.normalizedCourseCode);
+  const noteOrRestrictionEntries = courses.filter((course) => (course.notes ?? []).length > 0);
+  const countsByOptionRole = countBy(courses, (course) => course.optionRole || "unclassified");
+
+  return {
+    ownerId: owner?.ownerId ?? null,
+    totalParsedOfficialEntries: courses.length,
+    groupedCountsByCategory,
+    missingExpectedCourses,
+    duplicateNormalizedCourseCodes,
+    unclassifiedCourseCodes,
+    coursesMissingRequiredMetadata,
+    noteOrRestrictionEntries: noteOrRestrictionEntries.map((course) => ({
+      courseCode: course.courseCode,
+      normalizedCourseCode: course.normalizedCourseCode,
+      requirementGroupId: course.requirementGroupId,
+      optionRole: course.optionRole,
+      notes: course.notes ?? [],
+    })),
+    requiredVsOptionCounts: {
+      required: countsByOptionRole.required ?? 0,
+      option: countsByOptionRole.option ?? 0,
+      alias: countsByOptionRole.alias ?? 0,
+      noteOnly: countsByOptionRole.note_only ?? 0,
+    },
+  };
+}
+
+function buildUwMseCourseExtractionAudit(owners) {
+  const owner = (owners ?? []).find(
+    (entry) =>
+      entry.planId === "uw-seattle-materials-science-engineering" && !entry.pathwayId
+  );
+  if (!owner) {
+    return null;
+  }
+
+  return buildUwMseCourseExtractionAuditForOwner(owner);
 }
 
 function mergeParsedOwners(previousOwners, nextOwners, targetPlanId) {
@@ -3985,6 +5194,10 @@ function buildParseReport(owners, options = {}) {
       (count, owner) => count + owner.parsedDegreeMapBlockCandidates.length,
       0
     ),
+    parsedRequirementCourseCount: fullOwners.reduce(
+      (count, owner) => count + (owner.parsedRequirementCourses ?? []).length,
+      0
+    ),
     snapshotFallbackCount: fullOwners.filter((owner) => owner.usedSnapshotFallback).length,
     countsByAdapterId: countBy(fullOwners, (owner) => owner.adapterId),
     countsByAdapterFamily: countBy(fullOwners, (owner) => owner.adapterFamily),
@@ -4019,6 +5232,7 @@ function buildParseReport(owners, options = {}) {
     ),
     targetPlanId: options.targetPlanId ?? null,
     targetOwnerCount: scopedOwners.length,
+    uwMseCourseExtractionAudit: buildUwMseCourseExtractionAudit(mergedOwners),
     owners: mergedOwners,
   };
 }
@@ -4102,6 +5316,28 @@ function buildParseQualitySignals(owner) {
     );
   }
 
+  if (owner.planId === "uw-seattle-materials-science-engineering" && !owner.pathwayId) {
+    const audit = buildUwMseCourseExtractionAuditForOwner(owner);
+    if (audit.missingExpectedCourses.length > 0) {
+      addQualitySignal(
+        signals,
+        "warning",
+        "uw-mse-expected-course-option-missing",
+        "UW MSE parsed requirement course coverage is missing expected official option courses.",
+        audit.missingExpectedCourses.join(", ")
+      );
+    }
+    if (audit.coursesMissingRequiredMetadata.length > 0) {
+      addQualitySignal(
+        signals,
+        "warning",
+        "uw-mse-requirement-course-metadata-missing",
+        "UW MSE parsed requirement courses are missing group/type/source metadata.",
+        audit.coursesMissingRequiredMetadata.join(", ")
+      );
+    }
+  }
+
   return signals;
 }
 
@@ -4140,6 +5376,15 @@ function writeGeneratedRequirementSourceAdapters(report) {
     qualitySignals: owner.qualitySignals,
     parsedRequirementAtomCandidates: owner.parsedRequirementAtomCandidates,
     parsedDegreeMapBlockCandidates: owner.parsedDegreeMapBlockCandidates,
+    parsedRequirementGroups: (owner.parsedRequirementGroups ?? []).length
+      ? owner.parsedRequirementGroups
+      : undefined,
+    parsedRequirementCourses: (owner.parsedRequirementCourses ?? []).length
+      ? owner.parsedRequirementCourses
+      : undefined,
+    parsedRequirementReplacements: (owner.parsedRequirementReplacements ?? []).length
+      ? owner.parsedRequirementReplacements
+      : undefined,
     snapshotPath: owner.snapshotPath
       ? path.relative(REPO_ROOT, owner.snapshotPath).replace(/\\/g, "/")
       : null,
@@ -4166,6 +5411,14 @@ function writeGeneratedRequirementSourceAdapters(report) {
     ),
     parsedDegreeMapBlockCandidateCount: blocks.reduce(
       (count, block) => count + block.parsedDegreeMapBlockCandidates.length,
+      0
+    ),
+    parsedRequirementGroupCount: blocks.reduce(
+      (count, block) => count + (block.parsedRequirementGroups ?? []).length,
+      0
+    ),
+    parsedRequirementCourseCount: blocks.reduce(
+      (count, block) => count + (block.parsedRequirementCourses ?? []).length,
       0
     ),
     snapshotFallbackCount: fullOwners.filter((owner) => owner.usedSnapshotFallback).length,
@@ -4245,6 +5498,7 @@ function buildMarkdownReport(report) {
     `- Parsed requirement source adapter blocks: ${report.parsedRequirementSourceBlockCount}`,
     `- Parsed requirement atom candidates: ${report.parsedRequirementAtomCandidateCount}`,
     `- Parsed degree-map block candidates: ${report.parsedDegreeMapBlockCandidateCount}`,
+    `- Parsed structured requirement course entries: ${report.parsedRequirementCourseCount}`,
     `- Parsed from cached snapshots after live-source failures: ${report.snapshotFallbackCount}`,
     `- Parsed from alternate official source URLs: ${report.countsByResolutionStrategy["alternate-official-source"] ?? 0}`,
     `- Owners with parsed UW course codes: ${report.withParsedCourseCodesCount}`,
@@ -4272,6 +5526,42 @@ function buildMarkdownReport(report) {
       .map(([code, count]) => `- ${code}: ${count}`),
     "",
   ];
+
+  if (report.uwMseCourseExtractionAudit) {
+    const audit = report.uwMseCourseExtractionAudit;
+    lines.push("## UW MSE Course Extraction Audit", "");
+    lines.push(`- Total parsed official entries: ${audit.totalParsedOfficialEntries}`);
+    lines.push(
+      `- Required / option / alias / note-only counts: ${audit.requiredVsOptionCounts.required} / ${audit.requiredVsOptionCounts.option} / ${audit.requiredVsOptionCounts.alias} / ${audit.requiredVsOptionCounts.noteOnly}`
+    );
+    lines.push(
+      `- Missing expected courses: ${audit.missingExpectedCourses.length ? audit.missingExpectedCourses.join(", ") : "none"}`
+    );
+    lines.push(
+      `- Duplicate normalized course codes: ${audit.duplicateNormalizedCourseCodes.length ? audit.duplicateNormalizedCourseCodes.join(", ") : "none"}`
+    );
+    lines.push(
+      `- Unclassified course codes: ${audit.unclassifiedCourseCodes.length ? audit.unclassifiedCourseCodes.join(", ") : "none"}`
+    );
+    lines.push(
+      `- Courses missing group/type/source metadata: ${audit.coursesMissingRequiredMetadata.length ? audit.coursesMissingRequiredMetadata.join(", ") : "none"}`
+    );
+    lines.push("- Grouped counts by category:");
+    for (const [category, count] of Object.entries(audit.groupedCountsByCategory).sort(([left], [right]) =>
+      left.localeCompare(right)
+    )) {
+      lines.push(`  - ${category}: ${count}`);
+    }
+    if (audit.noteOrRestrictionEntries.length) {
+      lines.push("- Courses with notes or restrictions:");
+      for (const entry of audit.noteOrRestrictionEntries.slice(0, 25)) {
+        lines.push(
+          `  - ${entry.normalizedCourseCode}: ${(entry.notes ?? []).join(" | ")}`
+        );
+      }
+    }
+    lines.push("");
+  }
 
   for (const campusId of CAMPUS_ORDER) {
     const campusOwners = report.owners.filter((owner) => owner.campusId === campusId);

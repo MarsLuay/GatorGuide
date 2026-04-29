@@ -21,7 +21,10 @@ import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
-import { normalizeQuestionnaireAnswers } from "@/services/app/questionnaire.enums";
+import {
+  normalizeQuestionnaireAnswers,
+  US_STATE_OPTIONS,
+} from "@/services/app/questionnaire.enums";
 import { useAppData } from "@/hooks/use-app-data";
 import {
   AnimatedCardPressable,
@@ -68,6 +71,106 @@ type EditableProfileSnapshot = {
   englishTestType: string;
   englishTestValue: string;
 };
+
+const PROFILE_STATE_ABBREVIATIONS_BY_NAME: Record<string, string> = {
+  Alabama: "AL",
+  Alaska: "AK",
+  Arizona: "AZ",
+  Arkansas: "AR",
+  California: "CA",
+  Colorado: "CO",
+  Connecticut: "CT",
+  Delaware: "DE",
+  Florida: "FL",
+  Georgia: "GA",
+  Hawaii: "HI",
+  Idaho: "ID",
+  Illinois: "IL",
+  Indiana: "IN",
+  Iowa: "IA",
+  Kansas: "KS",
+  Kentucky: "KY",
+  Louisiana: "LA",
+  Maine: "ME",
+  Maryland: "MD",
+  Massachusetts: "MA",
+  Michigan: "MI",
+  Minnesota: "MN",
+  Mississippi: "MS",
+  Missouri: "MO",
+  Montana: "MT",
+  Nebraska: "NE",
+  Nevada: "NV",
+  "New Hampshire": "NH",
+  "New Jersey": "NJ",
+  "New Mexico": "NM",
+  "New York": "NY",
+  "North Carolina": "NC",
+  "North Dakota": "ND",
+  Ohio: "OH",
+  Oklahoma: "OK",
+  Oregon: "OR",
+  Pennsylvania: "PA",
+  "Rhode Island": "RI",
+  "South Carolina": "SC",
+  "South Dakota": "SD",
+  Tennessee: "TN",
+  Texas: "TX",
+  Utah: "UT",
+  Vermont: "VT",
+  Virginia: "VA",
+  Washington: "WA",
+  "West Virginia": "WV",
+  Wisconsin: "WI",
+  Wyoming: "WY",
+  "District of Columbia": "DC",
+};
+
+const PROFILE_STATE_NAMES_BY_ABBREVIATION = new Map(
+  Object.entries(PROFILE_STATE_ABBREVIATIONS_BY_NAME).map(([name, abbreviation]) => [
+    abbreviation,
+    name,
+  ])
+);
+
+function normalizeProfileStateSearchValue(value: string | undefined | null) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function resolveProfileStateName(value: string | undefined | null) {
+  const trimmedValue = String(value ?? "").trim();
+  if (!trimmedValue) return null;
+
+  const abbreviationMatch = PROFILE_STATE_NAMES_BY_ABBREVIATION.get(trimmedValue.toUpperCase());
+  if (abbreviationMatch) {
+    return abbreviationMatch;
+  }
+
+  const normalizedValue = normalizeProfileStateSearchValue(trimmedValue);
+  return (
+    US_STATE_OPTIONS.find(
+      (stateName) => normalizeProfileStateSearchValue(stateName) === normalizedValue
+    ) ?? null
+  );
+}
+
+function formatProfileStateDisplayValue(value: string | undefined | null) {
+  const resolvedStateName = resolveProfileStateName(value);
+  if (resolvedStateName) {
+    return resolvedStateName;
+  }
+
+  const trimmedValue = String(value ?? "").trim();
+  if (!trimmedValue) return "";
+
+  return trimmedValue
+    .toLowerCase()
+    .replace(/\b[a-z]/g, (letter) => letter.toUpperCase());
+}
 
 function looksLikeEncodedFileName(value: string | undefined | null) {
   const raw = String(value ?? "").trim();
@@ -146,6 +249,7 @@ export default function ProfilePage() {
   const [confettiCooldown, setConfettiCooldown] = useState(false);
   const [showGuestProfile, setShowGuestProfile] = useState(false);
   const [isMajorDropdownOpen, setIsMajorDropdownOpen] = useState(false);
+  const [isStateDropdownOpen, setIsStateDropdownOpen] = useState(false);
   const [uploadedDocumentMeta, setUploadedDocumentMeta] = useState<
     Partial<Record<"transcript", UploadedDocumentMeta>>
   >({});
@@ -345,7 +449,7 @@ export default function ProfilePage() {
   const guestCtaTextClass = isLight ? "text-emerald-900" : "text-white";
   const guestCtaBodyClass = isLight ? "text-emerald-800" : "text-emerald-100";
   const guestCtaIconColor = isLight ? "#1f8a5d" : isDark ? "#8cd19e" : "#FFFFFF";
-  const hasOpenSelectorOverlay = isMajorDropdownOpen;
+  const hasOpenSelectorOverlay = isMajorDropdownOpen || isStateDropdownOpen;
   const profileCardOverlayStyle = hasOpenSelectorOverlay
     ? {
         position: "relative" as const,
@@ -357,17 +461,21 @@ export default function ProfilePage() {
         position: "relative" as const,
         overflow: "visible" as const,
       };
-  const majorFieldOverlayStyle = hasOpenSelectorOverlay
-    ? {
-        position: "relative" as const,
-        overflow: "visible" as const,
-        zIndex: 90,
-        elevation: 90,
-      }
-    : {
-        position: "relative" as const,
-        overflow: "visible" as const,
-      };
+  const selectorFieldBaseOverlayStyle = {
+    position: "relative" as const,
+    overflow: "visible" as const,
+  };
+  const selectorFieldOpenOverlayStyle = {
+    ...selectorFieldBaseOverlayStyle,
+    zIndex: 90,
+    elevation: 90,
+  };
+  const majorFieldOverlayStyle = isMajorDropdownOpen
+    ? selectorFieldOpenOverlayStyle
+    : selectorFieldBaseOverlayStyle;
+  const stateFieldOverlayStyle = isStateDropdownOpen
+    ? selectorFieldOpenOverlayStyle
+    : selectorFieldBaseOverlayStyle;
   const isWideLayout = viewportWidth >= 820;
   const isDesktopLayout = viewportWidth >= 1200;
   const useDesktopFitLayout = Platform.OS === "web" && isDesktopLayout;
@@ -439,6 +547,21 @@ export default function ProfilePage() {
         };
       });
   }, []);
+
+  const profileStateOptions = useMemo<SearchableSelectOption[]>(
+    () =>
+      US_STATE_OPTIONS.map((stateName) => {
+        const abbreviation = PROFILE_STATE_ABBREVIATIONS_BY_NAME[stateName];
+
+        return {
+          id: stateName,
+          label: stateName,
+          description: abbreviation,
+          searchText: `${stateName} ${abbreviation ?? ""}`,
+        };
+      }),
+    []
+  );
 
   const greenRiverMajorLookup = useMemo(
     () =>
@@ -574,7 +697,7 @@ export default function ProfilePage() {
 
     return {
       name: editData.name,
-      state: editData.state,
+      state: resolveProfileStateName(editData.state) ?? String(editData.state ?? "").trim(),
       major: resolvedMajor,
       gender: editData.gender,
       gpa: formatGpaDisplay(editData.gpa),
@@ -607,7 +730,7 @@ export default function ProfilePage() {
 
     return {
       name: String(user?.name ?? ""),
-      state: String(user?.state ?? ""),
+      state: resolveProfileStateName(user?.state) ?? String(user?.state ?? "").trim(),
       major: resolvedMajor,
       gender: String(user?.gender ?? ""),
       gpa: formatGpaDisplay(user?.gpa),
@@ -1126,7 +1249,10 @@ export default function ProfilePage() {
           options={greenRiverMajorOptions}
           onSelect={(value) => setEditData((prev) => ({ ...prev, major: value }))}
           selectOpen={isMajorDropdownOpen}
-          onSelectOpenChange={setIsMajorDropdownOpen}
+          onSelectOpenChange={(open) => {
+            setIsMajorDropdownOpen(open);
+            if (open) setIsStateDropdownOpen(false);
+          }}
           searchPlaceholder="Search Green River majors"
           placeholderColor={placeholderColor}
           dropdownBackgroundColor={dropdownSurfaceColor}
@@ -1137,28 +1263,33 @@ export default function ProfilePage() {
         />
       </View>
 
-      <ProfileField
-        {...responsiveFieldSectionSpacingProps}
-        type="text"
-        icon="place"
-        label={t("profile.state")}
-        value={String(user?.state ?? "").toUpperCase()}
-        isEditing={isEditing}
-        editValue={editData.state}
-        onChangeText={(value) =>
-          setEditData((prev) => ({
-            ...prev,
-            state: value.toUpperCase().replace(/[^A-Z\s]/g, "").slice(0, 20),
-          }))
-        }
-        placeholder={t("profile.statePlaceholder")}
-        placeholderColor={placeholderColor}
-        inputBgClass={inputBgClass}
-        inputClass={inputClass}
-        textClass={textClass}
-        secondaryTextClass={secondaryTextClass}
-        borderClass={borderClass}
-      />
+      <View style={stateFieldOverlayStyle}>
+        <ProfileField
+          {...responsiveFieldSectionSpacingProps}
+          type="select"
+          icon="place"
+          label={t("profile.state")}
+          value={formatProfileStateDisplayValue(user?.state)}
+          isEditing={isEditing}
+          editValue={editData.state}
+          displayEditValue={formatProfileStateDisplayValue(editData.state)}
+          selectedOptionId={resolveProfileStateName(editData.state)}
+          options={profileStateOptions}
+          onSelect={(value) => setEditData((prev) => ({ ...prev, state: value }))}
+          selectOpen={isStateDropdownOpen}
+          onSelectOpenChange={(open) => {
+            setIsStateDropdownOpen(open);
+            if (open) setIsMajorDropdownOpen(false);
+          }}
+          searchPlaceholder="Search states"
+          placeholderColor={placeholderColor}
+          dropdownBackgroundColor={dropdownSurfaceColor}
+          overlayStrategy="inline-isolated"
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          borderClass={borderClass}
+        />
+      </View>
 
       <ProfileField
         {...responsiveFieldSectionSpacingProps}

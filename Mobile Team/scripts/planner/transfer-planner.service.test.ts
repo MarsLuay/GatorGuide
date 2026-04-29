@@ -65,6 +65,7 @@ import {
   getTransferPlannerStudentVisibleMajorsForCampus,
   getTransferPlannerStudentVisiblePathwaysForPlan,
   getTransferPlannerStudentVisibleSourceGeneratedMajorsForCampus,
+  buildMaterialsScienceNmeSourceIncompleteWarnings,
   isTransferPlannerStudentHiddenSourceGap,
   resolveTransferPlannerMajorPlan,
   resolveTransferPlannerStudentRuntimeMajorPlan,
@@ -101,6 +102,8 @@ import {
   buildTransferPlannerCoursePlanningGraph,
   buildTransferPlannerStudentCourseEvaluations,
   buildTransferPlannerStudentEvaluationReport,
+  buildMajorSpecificsCourseSections,
+  buildMajorSpecificsRenderingAudit,
   buildUwGeneralTransferRequirementSection,
   getCurrentTransferPlannerGrcCatalogYearLabel,
   inferTransferPlannerGrcCatalogYearLabel,
@@ -3293,6 +3296,82 @@ test("UW-transfer-only planning keeps required Computer Engineering Areas-of-Inq
   );
 });
 
+test("Manual current-course selections move one duplicate Gen-Ed placeholder by instance key", () => {
+  const plan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+  assert.ok(plan, "Expected the Seattle Computer Engineering runtime plan.");
+  const track = {
+    id: "test-duplicate-ssc-current-placeholders",
+    code: "TEST",
+    title: "Test duplicate SSc placeholders",
+    summary: "Synthetic placeholder-only track for duplicate current-selection tests.",
+    bestFor: ["testing"],
+    terms: [
+      {
+        label: "Year 1 Fall",
+        courses: ["Humanities", "Social Science", "Humanities or Social Science"],
+      },
+    ],
+    notes: [],
+  };
+  const buildPlan = (currentCourseKeys: string[] = []) =>
+    buildSuggestedQuarterPlan({
+      plan,
+      ...buildStatuses(plan, []),
+      completedCourses: [],
+      track,
+      currentCourseKeys,
+      includeStayAtGrcCourses: false,
+      referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+    });
+
+  const baseQuarterPlan = buildPlan();
+  const baseSocialSciencePlaceholders = baseQuarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.label === "5 credits of Social Science");
+  const [selectedSocialSciencePlaceholder, remainingSocialSciencePlaceholder] =
+    baseSocialSciencePlaceholders;
+
+  assert.equal(baseSocialSciencePlaceholders.length, 2);
+  assert.ok(selectedSocialSciencePlaceholder?.instanceKey);
+  assert.ok(remainingSocialSciencePlaceholder?.instanceKey);
+  assert.notEqual(
+    selectedSocialSciencePlaceholder.instanceKey,
+    remainingSocialSciencePlaceholder.instanceKey
+  );
+
+  const selectedKey = selectedSocialSciencePlaceholder.instanceKey;
+  const currentQuarterPlan = buildPlan([selectedKey]);
+  const currentSocialSciencePlaceholders = currentQuarterPlan
+    .filter((quarter) => quarter.phase === "current")
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.label === "5 credits of Social Science");
+  const futureSocialSciencePlaceholders = currentQuarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.label === "5 credits of Social Science");
+
+  assert.deepEqual(
+    currentSocialSciencePlaceholders.map((course) => ({
+      label: course.label,
+      status: course.status,
+      instanceKey: course.instanceKey,
+    })),
+    [
+      {
+        label: "5 credits of Social Science",
+        status: "current",
+        instanceKey: selectedKey,
+      },
+    ]
+  );
+  assert.equal(futureSocialSciencePlaceholders.length, 1);
+  assert.equal(
+    futureSocialSciencePlaceholders[0]?.instanceKey,
+    remainingSocialSciencePlaceholder.instanceKey
+  );
+});
+
 test.skip("Planner keeps extending future quarters until late elective filler reaches full progress", () => {
   const plan = getRequiredPlan("uw-seattle-computer-science");
   const track = {
@@ -4775,6 +4854,7 @@ test("Computer Engineering Areas-of-Inquiry range targets surface as summary ite
   assert.deepEqual(
     section?.items.map((entry) => `${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`),
     [
+      "Diversity: 5 credits",
       "Areas of Inquiry: 30 credits total",
       "Arts & Humanities: 10-20 credits (Within the 30 credits Areas of Inquiry total.)",
       "Social Sciences: 10-20 credits (Within the 30 credits Areas of Inquiry total.)",
@@ -4782,6 +4862,147 @@ test("Computer Engineering Areas-of-Inquiry range targets surface as summary ite
   );
   assert.equal(diagnostics.hasSourceBackedTargets, true);
   assert.ok(diagnostics.sourceBackedSummarySection);
+});
+
+test("Major Specifics summarizes source-backed Gen-Ed targets without echoing planned placeholder rows", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+  assert.ok(runtimePlan, "Expected the Computer Engineering runtime plan.");
+
+  const track = getTransferPlannerTrack(runtimePlan.bestTrackId ?? null);
+  const sections = buildMajorSpecificsCourseSections({
+    plan: runtimePlan,
+    track,
+    completedCourses: [],
+  });
+  const genEdSection = sections.find(
+    (section) => section.id === "gen-ed-breadth-requirements"
+  );
+
+  assert.ok(genEdSection, "Expected Computer Engineering Gen-Ed Requirements section.");
+  assert.deepEqual(
+    genEdSection?.rows.map((entry) => entry.text),
+    [
+      "Arts & Humanities: 10-20 credits (Within the 30 credits Areas of Inquiry total.)",
+      "Social Sciences: 10-20 credits (Within the 30 credits Areas of Inquiry total.)",
+      "Diversity: 5 credits",
+      "Areas of Inquiry: 30 credits total",
+    ]
+  );
+  assert.equal(
+    genEdSection?.rows.some((entry) => /^5 credits of /i.test(entry.text)),
+    false
+  );
+  assert.equal(
+    genEdSection?.rows.every((entry) => entry.requirementRole === "informational"),
+    true
+  );
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    applicationStatuses: buildRequirementStatuses(runtimePlan.applicationChecklist, []),
+    beforeEnrollmentStatuses: buildRequirementStatuses(runtimePlan.beforeEnrollmentChecklist, []),
+    stayAtGrcStatuses: buildRequirementStatuses(runtimePlan.stayAtGrcChecklist, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const plannedPlaceholderLabels = quarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.sourceKind === "uw-major-breadth")
+    .map((course) => course.label);
+
+  assert.equal(
+    plannedPlaceholderLabels.filter((label) => label === "5 credits of Humanities").length,
+    2
+  );
+  assert.equal(
+    plannedPlaceholderLabels.filter((label) => label === "5 credits of Social Science").length,
+    2
+  );
+  assert.equal(
+    plannedPlaceholderLabels.filter((label) => label === "5 credits of A&H or SSc").length,
+    2
+  );
+});
+
+test("Major Specifics suppresses matched-track Gen-Ed placeholders when source-backed breadth summaries exist", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-electrical-computer-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the Electrical & Computer Engineering runtime plan.");
+
+  const embeddedPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    runtimePlan,
+    "embedded-systems-pathway"
+  );
+  assert.ok(embeddedPlan, "Expected the ECE Embedded Systems pathway.");
+
+  const track = getTransferPlannerTrack(embeddedPlan.bestTrackId ?? null);
+  const sections = buildMajorSpecificsCourseSections({
+    plan: embeddedPlan,
+    track,
+    completedCourses: [],
+  });
+  const genEdSection = sections.find(
+    (section) => section.id === "gen-ed-breadth-requirements"
+  );
+
+  assert.ok(genEdSection, "Expected an ECE Gen-Ed Requirements section.");
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(embeddedPlan), {
+    ahCredits: 10,
+    sscCredits: 10,
+    nscCredits: null,
+    breadthCredits: 4,
+    electiveCredits: null,
+  });
+  assert.equal(
+    genEdSection?.rows.some(
+      (entry) =>
+        /^5 credits of /i.test(entry.text) &&
+        /official matched Green River associate pathway map/i.test(entry.text)
+    ),
+    false
+  );
+  assert.deepEqual(
+    genEdSection?.rows.map((entry) => entry.text),
+    [
+      "Arts & Humanities: 10 credits",
+      "Social Sciences: 10 credits",
+      "Additional Arts & Humanities / Social Sciences: 4 credits",
+      "Diversity: 5 credits (Overlaps with Arts & Humanities / Social Sciences.)",
+    ]
+  );
+  assert.equal(
+    genEdSection?.rows.some((entry) => /Areas of Inquiry: 69 credits total/i.test(entry.text)),
+    false
+  );
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: embeddedPlan,
+    applicationStatuses: buildRequirementStatuses(embeddedPlan.applicationChecklist, []),
+    beforeEnrollmentStatuses: buildRequirementStatuses(embeddedPlan.beforeEnrollmentChecklist, []),
+    stayAtGrcStatuses: buildRequirementStatuses(embeddedPlan.stayAtGrcChecklist, []),
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  assert.equal(
+    quarterPlan
+      .flatMap((quarter) => quarter.courses)
+      .some((course) => course.sourceKind === "official-grc-track-breadth"),
+    false,
+    "Expected source-backed ECE breadth targets to replace matched Green River breadth placeholders."
+  );
+  assert.equal(
+    quarterPlan
+      .flatMap((quarter) => quarter.courses)
+      .some((course) => course.sourceKind === "uw-major-breadth"),
+    true,
+    "Expected source-backed ECE breadth placeholders to remain in the quarter plan."
+  );
 });
 
 test("Seattle Education Studies keeps mixed conflicting catalog gen-ed structures unsupported until a single coherent major-specific target is isolated", () => {
@@ -4934,17 +5155,17 @@ test("Transfer planner UI keeps the UW transfer admission section separate and t
   const generalTransferSectionIndex = pageSource.indexOf(
     "uwGeneralTransferRequirementSection.title"
   );
-  const majorSourceSectionIndex = pageSource.indexOf("Major Required Gen-Eds", uwAccordionIndex);
-  const requiredMajorCoursesIndex = pageSource.indexOf(
-    "Required Major Courses",
-    majorSourceSectionIndex
+  const categorizedMajorSpecificsIndex = pageSource.indexOf(
+    "majorSpecificsCourseSections.length",
+    generalTransferSectionIndex
   );
-  const uwCoursesConsideredIndex = pageSource.indexOf(
-    "UW Courses Considered",
-    requiredMajorCoursesIndex
+  const fallbackRequiredCoursesIndex = pageSource.indexOf(
+    "Official UW Required Courses",
+    categorizedMajorSpecificsIndex
   );
 
   assert.match(pageSource, /buildUwGeneralTransferRequirementSection/);
+  assert.match(pageSource, /buildMajorSpecificsCourseSections/);
   assert.match(
     pageSource,
     /No source-backed major-specific general education targets are currently published for this major\./
@@ -4957,13 +5178,12 @@ test("Transfer planner UI keeps the UW transfer admission section separate and t
   assert.match(pageSource, /hasTranscriptDerivedCreditSource/);
   assert.match(pageSource, /shouldUseDetailedCompletedCourses/);
   assert.match(pageSource, /entry\.valueText/);
-  assert.match(pageSource, /uwRequiredPathCourseEntries/);
-  assert.match(pageSource, /uwCoursesConsideredEntries/);
+  assert.match(pageSource, /majorSpecificsCourseSections/);
+  assert.match(pageSource, /sourceBackedUwGeneralEducationSection/);
   assert.equal(uwAccordionIndex >= 0, true);
   assert.equal(generalTransferSectionIndex > uwAccordionIndex, true);
-  assert.equal(majorSourceSectionIndex > generalTransferSectionIndex, true);
-  assert.equal(requiredMajorCoursesIndex > majorSourceSectionIndex, true);
-  assert.equal(uwCoursesConsideredIndex > requiredMajorCoursesIndex, true);
+  assert.equal(categorizedMajorSpecificsIndex > generalTransferSectionIndex, true);
+  assert.equal(fallbackRequiredCoursesIndex > categorizedMajorSpecificsIndex, true);
 });
 
 test("Transfer planner UI renders UW courses considered from source-backed UW summary entries", () => {
@@ -10849,6 +11069,33 @@ test("Pathway options round-trip current structured labels for multi-pathway and
   );
 });
 
+test("Chemical Engineering collapses NME source-page aliases into one clean pathway option", () => {
+  const runtimeChemicalPlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-chemical-engineering"
+  );
+  assert.ok(runtimeChemicalPlan, "Expected runtime Seattle Chemical Engineering plan.");
+
+  assert.deepEqual(
+    getTransferPlannerPathwaysForPlan(chemEPlan).map((pathway) => [pathway.id, pathway.label]),
+    [["nme-option", "NME option"]]
+  );
+  assert.deepEqual(
+    getTransferPlannerStudentRuntimePathwaysForPlan(runtimeChemicalPlan).map((pathway) => [
+      pathway.id,
+      pathway.label,
+    ]),
+    [["nme-option", "NME option"]]
+  );
+  assert.match(
+    getTransferPlannerTrack(runtimeChemicalPlan.bestTrackId ?? null)?.title ?? "",
+    /Bioengineering and Chemical Engineering/i
+  );
+  assert.ok(
+    getTransferPlannerGrcCourseList(runtimeChemicalPlan).includes("CHEM& 261"),
+    "Expected the base Chemical Engineering pathway to keep organic chemistry in the planner."
+  );
+});
+
 test("ACMS pathway promotion uses the official semantic option names instead of structural headings", () => {
   const acmsPlan = getRequiredPlan("uw-seattle-applied-and-computational-mathematical-sciences");
   const acmsRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan(acmsPlan.id);
@@ -11388,6 +11635,952 @@ test("Materials source parse retains normalized lower-division and core MSE requ
   );
 });
 
+test("Materials parser and planner preserve choose-one and elective requirement groups", () => {
+  const [baseBlock] = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-materials-science-engineering"
+  );
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-materials-science-engineering"
+  );
+
+  assert.ok(baseBlock, "Expected the base MSE parsed source block.");
+  assert.ok(runtimePlan, "Expected the MSE runtime plan.");
+  const collectGroupCourseCodes = (group: { options?: { uwCourses?: string[]; equivalentUwCourseCodes?: string[] }[] } | null | undefined) =>
+    new Set(
+      (group?.options ?? []).flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+      ])
+    );
+  const expectedEngineeringFundamentals = [
+    "AA 260",
+    "BIOEN 215",
+    "BSE 201",
+    "CHEME 355",
+    "CSE 123",
+    "CSE 143",
+    "CSE 160",
+    "CSE 164",
+    "CSE 180",
+    "EE 215",
+    "ENGR 101",
+    "ENGR 333",
+    "ENGR 490",
+    "INDE 250",
+    "INDE 315",
+    "ME 123",
+    "ME 230",
+    "NME 220",
+  ];
+  const expectedMseTechnicalElectives = [
+    "MSE 450",
+    "MSE 452",
+    "MSE 462",
+    "MSE 463",
+    "MSE 466",
+    "MSE 471",
+    "MSE 473",
+    "MSE 474",
+    "MSE 475",
+    "MSE 476",
+    "MSE 477",
+    "MSE 478",
+    "MSE 479",
+    "MSE 481",
+    "MSE 482",
+    "MSE 483",
+    "MSE 484",
+    "MSE 486",
+    "MSE 487",
+    "MSE 488",
+    "MSE 489",
+    "MSE 490",
+    "MSE 498",
+    "MSE 499",
+  ];
+  const expectedOutsideTechnicalElectives = [
+    "AMATH 352",
+    "AMATH 353",
+    "AMATH 383",
+    "AMATH 401",
+    "AMATH 403",
+    "BIOC 405",
+    "BIOC 406",
+    "CHEM 312",
+    "CHEM 455",
+    "CHEM 456",
+    "CHEM 457",
+    "CHEME 341",
+    "ENGR 321",
+    "ENVIR 480",
+    "PHYS 321",
+    "PHYS 324",
+    "PHYS 325",
+    "PHYS 334",
+    "PHYS 335",
+    "PHYS 434",
+    "PHYS 441",
+    "ENTRE 370",
+    "ENTRE 440",
+  ];
+
+  const parsedScientificComputingGroup = baseBlock?.parsedRequirementGroups?.find(
+    (group) => group.id.endsWith(":scientific-computing")
+  );
+  assert.ok(
+    parsedScientificComputingGroup,
+    "Expected AMATH/CSE scientific computing to parse as one requirement group."
+  );
+  assert.equal(parsedScientificComputingGroup?.requirementType, "choose_one");
+  assert.deepEqual(
+    parsedScientificComputingGroup?.options.map((option) => option.uwCourses),
+    [["AMATH 301"], ["CSE 142"], ["CSE 122"]]
+  );
+  const parsedRequirementCourses = baseBlock?.parsedRequirementCourses ?? [];
+  const parsedRequirementCourseCodes = new Set(
+    parsedRequirementCourses.map((course) => course.normalizedCourseCode)
+  );
+  const findParsedRequirementCourse = (courseCode: string, groupIdPart?: string) =>
+    parsedRequirementCourses.find(
+      (course) =>
+        course.normalizedCourseCode === courseCode &&
+        (!groupIdPart || course.requirementGroupId.includes(groupIdPart))
+    );
+
+  assert.ok(
+    parsedRequirementCourses.length > 0,
+    "Expected UW MSE to emit structured parsedRequirementCourses."
+  );
+  assert.ok(
+    parsedRequirementCourses.every(
+      (course) =>
+        course.requirementGroupId &&
+        course.requirementType &&
+        course.optionRole &&
+        course.sourceHeading &&
+        course.category
+    ),
+    "Expected every UW MSE parsed requirement course to carry group/type/role/source metadata."
+  );
+  for (const courseCode of [
+    "MATH 124",
+    "MATH 125",
+    "MATH 126",
+    "PHYS 121",
+    "PHYS 122",
+    "PHYS 123",
+    "MSE 170",
+    "MSE 310",
+    "MSE 311",
+    "MSE 321",
+  ]) {
+    assert.equal(
+      parsedRequirementCourseCodes.has(courseCode),
+      true,
+      `Expected parsedRequirementCourses to include required ${courseCode}.`
+    );
+  }
+  const parsedMathElectiveGroup = baseBlock?.parsedRequirementGroups?.find(
+    (group) => group.id.endsWith(":math-elective")
+  );
+  const parsedScienceElectivesGroup = baseBlock?.parsedRequirementGroups?.find(
+    (group) => group.id.endsWith(":science-electives")
+  );
+  const parsedEngineeringFundamentalsGroup = baseBlock?.parsedRequirementGroups?.find((group) =>
+    group.id.endsWith(":engineering-fundamentals-electives")
+  );
+  const parsedMseTechnicalElectivesGroup = baseBlock?.parsedRequirementGroups?.find((group) =>
+    group.id.endsWith(":mse-400-level-technical-electives")
+  );
+  const parsedOutsideTechnicalElectivesGroup = baseBlock?.parsedRequirementGroups?.find((group) =>
+    group.id.endsWith(":outside-mse-technical-electives")
+  );
+  assert.equal(parsedMathElectiveGroup?.requirementType, "choose_n");
+  assert.equal(parsedMathElectiveGroup?.minCourses, 1);
+  assert.equal(parsedMathElectiveGroup?.maxCourses, 1);
+  assert.equal(parsedScienceElectivesGroup?.requirementType, "choose_n");
+  assert.equal(parsedScienceElectivesGroup?.minCourses, 2);
+  assert.equal(parsedScienceElectivesGroup?.maxCourses, 2);
+  assert.deepEqual(
+    parsedMathElectiveGroup?.options.find((option) => option.uwCourses.includes("MATH 209"))
+      ?.equivalentUwCourseCodes,
+    ["MATH 309"]
+  );
+  assert.deepEqual(
+    parsedMathElectiveGroup?.options.find((option) => option.uwCourses.includes("MATH 224"))
+      ?.equivalentUwCourseCodes,
+    ["MATH 324"]
+  );
+  assert.equal(
+    findParsedRequirementCourse("MATH 309", "math-elective")?.optionRole,
+    "alias",
+    "Expected MATH 209/309 to keep MATH 309 as an alias in the math elective option."
+  );
+  assert.equal(
+    findParsedRequirementCourse("MATH 324", "math-elective")?.optionRole,
+    "alias",
+    "Expected MATH 224/324 to keep MATH 324 as an alias in the math elective option."
+  );
+  assert.deepEqual(
+    parsedScienceElectivesGroup?.options.find((option) => option.uwCourses.includes("CHEM 162"))
+      ?.equivalentUwCourseCodes,
+    ["CHEM 153", "CHEM 155"]
+  );
+  assert.equal(
+    findParsedRequirementCourse("CHEM 153", "science-electives")?.optionRole,
+    "alias",
+    "Expected CHEM 162/153/155 to stay grouped as one science elective option."
+  );
+  assert.equal(parsedEngineeringFundamentalsGroup?.requirementType, "choose_credits");
+  assert.equal(parsedEngineeringFundamentalsGroup?.minCredits, 8);
+  assert.equal(parsedEngineeringFundamentalsGroup?.category, "engineering_fundamentals");
+  for (const courseCode of expectedEngineeringFundamentals) {
+    assert.equal(
+      collectGroupCourseCodes(parsedEngineeringFundamentalsGroup).has(courseCode),
+      true,
+      `Expected ${courseCode} to parse as an Engineering Fundamentals elective option.`
+    );
+    assert.equal(
+      parsedRequirementCourseCodes.has(courseCode),
+      true,
+      `Expected parsedRequirementCourses to include Engineering Fundamentals option ${courseCode}.`
+    );
+  }
+  assert.deepEqual(
+    parsedEngineeringFundamentalsGroup?.options.find((option) =>
+      option.uwCourses.includes("CHEME 355")
+    )?.displayCourseCodes,
+    ["CHEM E 355"]
+  );
+  assert.deepEqual(
+    parsedEngineeringFundamentalsGroup?.options.find((option) =>
+      option.uwCourses.includes("EE 215")
+    )?.displayCourseCodes,
+    ["E E 215"]
+  );
+  assert.deepEqual(
+    parsedEngineeringFundamentalsGroup?.options.find((option) =>
+      option.uwCourses.includes("INDE 315")
+    )?.displayCourseCodes,
+    ["IND E 315"]
+  );
+  assert.deepEqual(
+    parsedEngineeringFundamentalsGroup?.options.find((option) =>
+      option.uwCourses.includes("ME 230")
+    )?.displayCourseCodes,
+    ["M E 230"]
+  );
+  assert.equal(parsedMseTechnicalElectivesGroup?.requirementType, "choose_credits");
+  assert.equal(parsedMseTechnicalElectivesGroup?.minCredits, 6);
+  assert.equal(parsedMseTechnicalElectivesGroup?.subcategory, "mse_400_level");
+  for (const courseCode of expectedMseTechnicalElectives) {
+    assert.equal(
+      collectGroupCourseCodes(parsedMseTechnicalElectivesGroup).has(courseCode),
+      true,
+      `Expected ${courseCode} to parse as an MSE 400-level technical elective option.`
+    );
+    assert.equal(
+      parsedRequirementCourseCodes.has(courseCode),
+      true,
+      `Expected parsedRequirementCourses to include MSE technical elective option ${courseCode}.`
+    );
+  }
+  assert.equal(
+    parsedMseTechnicalElectivesGroup?.options.find((option) => option.uwCourses.includes("MSE 498"))
+      ?.creditText,
+    "3-4"
+  );
+  assert.equal(
+    parsedMseTechnicalElectivesGroup?.options.find((option) => option.uwCourses.includes("MSE 499"))
+      ?.creditText,
+    "3-5"
+  );
+  assert.equal(parsedOutsideTechnicalElectivesGroup?.requirementType, "choose_credits");
+  assert.equal(parsedOutsideTechnicalElectivesGroup?.maxCredits, 9);
+  assert.equal(parsedOutsideTechnicalElectivesGroup?.subcategory, "outside_mse_approved");
+  for (const courseCode of expectedOutsideTechnicalElectives) {
+    assert.equal(
+      collectGroupCourseCodes(parsedOutsideTechnicalElectivesGroup).has(courseCode),
+      true,
+      `Expected ${courseCode} to parse as an outside-MSE technical elective option.`
+    );
+    assert.equal(
+      parsedRequirementCourseCodes.has(courseCode),
+      true,
+      `Expected parsedRequirementCourses to include outside-MSE technical elective option ${courseCode}.`
+    );
+  }
+  assert.deepEqual(
+    parsedOutsideTechnicalElectivesGroup?.options.find((option) =>
+      option.uwCourses.includes("AMATH 352")
+    )?.displayCourseCodes,
+    ["A MATH 352"]
+  );
+  assert.equal(
+    findParsedRequirementCourse("BIOC 405", "outside-mse-technical-electives")?.optionRole,
+    "option"
+  );
+  assert.equal(
+    findParsedRequirementCourse("BIOC 406", "outside-mse-technical-electives")?.optionRole,
+    "option"
+  );
+  assert.equal(
+    findParsedRequirementCourse("CHEM 455", "outside-mse-technical-electives")?.optionRole,
+    "option"
+  );
+  assert.equal(
+    findParsedRequirementCourse("CHEM 456", "outside-mse-technical-electives")?.optionRole,
+    "option"
+  );
+  assert.equal(
+    findParsedRequirementCourse("CHEM 457", "outside-mse-technical-electives")?.optionRole,
+    "option"
+  );
+  assert.equal(
+    parsedOutsideTechnicalElectivesGroup?.options.find((option) =>
+      option.uwCourses.includes("ENGR 321")
+    )?.maxCredits,
+    4
+  );
+
+  const runtimeGroups = runtimePlan.requirementGroups ?? [];
+  const runtimeScientificComputingGroup = runtimeGroups.find((group) =>
+    group.id.endsWith(":scientific-computing")
+  );
+  const mathElectiveGroup = runtimeGroups.find((group) => group.id.endsWith(":math-elective"));
+  const scienceElectivesGroup = runtimeGroups.find((group) =>
+    group.id.endsWith(":science-electives")
+  );
+  const engineeringFundamentalsGroup = runtimeGroups.find((group) =>
+    group.id.endsWith(":engineering-fundamentals-electives")
+  );
+  const mseTechnicalElectivesGroup = runtimeGroups.find((group) =>
+    group.id.endsWith(":mse-400-level-technical-electives")
+  );
+  const outsideTechnicalElectivesGroup = runtimeGroups.find((group) =>
+    group.id.endsWith(":outside-mse-technical-electives")
+  );
+
+  assert.equal(runtimeScientificComputingGroup?.requirementType, "choose_one");
+  assert.deepEqual(
+    runtimeScientificComputingGroup?.options.map((option) => option.uwCourses),
+    [["AMATH 301"], ["CSE 142"], ["CSE 122"]]
+  );
+  assert.equal(mathElectiveGroup?.requirementType, "choose_n");
+  assert.equal(mathElectiveGroup?.minCourses, 1);
+  assert.equal(mathElectiveGroup?.maxCourses, 1);
+  assert.equal(
+    mathElectiveGroup?.options.some((option) => option.uwCourses.includes("MATH 224")),
+    true,
+    "Expected MATH 224 to remain available as a math elective option."
+  );
+  assert.equal(scienceElectivesGroup?.requirementType, "choose_n");
+  assert.equal(scienceElectivesGroup?.minCourses, 2);
+  assert.equal(scienceElectivesGroup?.maxCourses, 2);
+  for (const courseCode of [
+    "BIOL 180",
+    "BIOL 200",
+    "CHEM 162",
+    "CHEM 165",
+    "CHEM 223",
+    "CHEM 224",
+    "CHEM 237",
+    "CHEM 238",
+    "CHEM 312",
+    "CHEM 317",
+    "CHEM 335",
+    "CHEM 336",
+    "CHEM 452",
+    "CHEM 455",
+    "CHEM 456",
+    "PHYS 224",
+    "PHYS 225",
+    "PHYS 227",
+    "PHYS 228",
+  ]) {
+    assert.equal(
+      scienceElectivesGroup?.options.some((option) => option.uwCourses.includes(courseCode)),
+      true,
+      `Expected ${courseCode} to remain available as a science elective option.`
+    );
+  }
+  assert.equal(engineeringFundamentalsGroup?.requirementType, "choose_credits");
+  assert.equal(engineeringFundamentalsGroup?.minCredits, 8);
+  for (const courseCode of expectedEngineeringFundamentals) {
+    assert.equal(
+      collectGroupCourseCodes(engineeringFundamentalsGroup).has(courseCode),
+      true,
+      `Expected ${courseCode} to remain available as an Engineering Fundamentals option.`
+    );
+  }
+  assert.equal(mseTechnicalElectivesGroup?.requirementType, "choose_credits");
+  assert.equal(mseTechnicalElectivesGroup?.minCredits, 6);
+  for (const courseCode of expectedMseTechnicalElectives) {
+    assert.equal(
+      collectGroupCourseCodes(mseTechnicalElectivesGroup).has(courseCode),
+      true,
+      `Expected ${courseCode} to remain available as an MSE technical elective option.`
+    );
+  }
+  assert.equal(outsideTechnicalElectivesGroup?.requirementType, "choose_credits");
+  assert.equal(outsideTechnicalElectivesGroup?.maxCredits, 9);
+  assert.equal(
+    outsideTechnicalElectivesGroup?.options.find((option) => option.uwCourses.includes("ENGR 321"))
+      ?.maxCredits,
+    4
+  );
+
+  const nmeRuntimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(runtimePlan, "nme-option");
+  const nmeEngineeringFundamentalsGroup = nmeRuntimePlan?.requirementGroups?.find((group) =>
+    group.id.endsWith(":engineering-fundamentals-electives")
+  );
+  assert.equal(
+    nmeEngineeringFundamentalsGroup?.options.some((option) => option.uwCourses.includes("NME 220")),
+    false,
+    "Expected NME 220 to be excluded from the active Engineering Fundamentals options for NME Option students."
+  );
+
+  const requiredCourseCodes = buildSourceBackedRequiredCourseCodes(runtimePlan);
+  for (const courseCode of ["MATH& 264", "CHEM& 261", "CHEM& 262", "PHYS 225"]) {
+    assert.equal(
+      requiredCourseCodes.includes(courseCode),
+      false,
+      `Did not expect ${courseCode} to be treated as required just because it is an option.`
+    );
+  }
+
+  const requiredSummaryEntries = buildSourceBackedRequiredCourseSummaryEntries(runtimePlan, {
+    mode: "uw",
+  });
+  const requiredSummaryText = requiredSummaryEntries
+    .filter((entry) => entry.kind !== "choice-bucket")
+    .map((entry) => entry.text)
+    .join("\n");
+  for (const courseCode of [
+    "AMATH 301",
+    "CSE 142",
+    "CSE 122",
+    "MATH 224",
+    "INDE 315",
+    "CHEM 237",
+    "CHEM 238",
+    "PHYS 225",
+    "AA 260",
+    "BIOEN 215",
+    "CSE 123",
+    "EE 215",
+    "ME 230",
+    "NME 220",
+    "MSE 450",
+    "MSE 452",
+    "ENGR 321",
+  ]) {
+    assert.doesNotMatch(
+      requiredSummaryText,
+      new RegExp(`\\b${courseCode.replace(/\s+/g, "\\s+")}\\b`),
+      `Did not expect ${courseCode} to render as an individually required course.`
+    );
+  }
+
+  const choiceSummaryText = requiredSummaryEntries
+    .filter((entry) => entry.kind === "choice-bucket")
+    .map((entry) => entry.text)
+    .join("\n");
+  assert.match(choiceSummaryText, /Scientific computing - Choose one\./);
+  assert.match(choiceSummaryText, /Choose 1 Math Elective\./);
+  assert.match(choiceSummaryText, /Choose 2 Science Electives\./);
+  assert.match(choiceSummaryText, /Choose at least 8 credits from Engineering Fundamentals electives\./);
+  assert.match(choiceSummaryText, /Choose at least 6 credits from MSE 400-level technical electives\./);
+  assert.match(choiceSummaryText, /Up to 9 credits may count from approved outside-MSE technical electives\./);
+  assert.match(choiceSummaryText, /Selected options?:/);
+  assert.match(choiceSummaryText, /Other valid options:/);
+  assert.match(choiceSummaryText, /Selected for this credit requirement:/);
+  assert.match(choiceSummaryText, /Other approved options:/);
+
+  const consideredCourseCodes = buildSourceBackedUwCourseConsideredSummaryEntries(runtimePlan).map(
+    (entry) => entry.courseCode
+  );
+  const consideredEntries = buildSourceBackedUwCourseConsideredSummaryEntries(runtimePlan);
+  for (const courseCode of [
+    ...expectedEngineeringFundamentals,
+    ...expectedMseTechnicalElectives,
+    ...expectedOutsideTechnicalElectives,
+  ]) {
+    assert.equal(
+      consideredCourseCodes.includes(courseCode),
+      true,
+      `Expected UW Courses Considered to include official option ${courseCode}.`
+    );
+  }
+  assert.equal(
+    consideredEntries.find((entry) => entry.courseCode === "AA 260")?.optionRole,
+    "option"
+  );
+  assert.equal(
+    consideredEntries.find((entry) => entry.courseCode === "AA 260")?.requirementType,
+    "choose_credits"
+  );
+  assert.equal(
+    consideredEntries.find((entry) => entry.courseCode === "MATH 124")?.optionRole,
+    "required"
+  );
+
+  const emptyStatuses = buildRequirementStatuses(runtimePlan.beforeEnrollmentChecklist, []);
+  const engineeringCreditStatus = emptyStatuses.find((status) =>
+    status.item.requirementGroup?.id.endsWith(":engineering-fundamentals-electives")
+  );
+  const mseTechnicalCreditStatus = emptyStatuses.find((status) =>
+    status.item.requirementGroup?.id.endsWith(":mse-400-level-technical-electives")
+  );
+  const outsideCreditStatus = emptyStatuses.find((status) =>
+    status.item.requirementGroup?.id.endsWith(":outside-mse-technical-electives")
+  );
+  assert.equal(engineeringCreditStatus?.completedCredits, 0);
+  assert.equal(engineeringCreditStatus?.matched, false);
+  assert.equal(engineeringCreditStatus?.creditProgressLabel, "0/8 credits completed");
+  assert.equal(mseTechnicalCreditStatus?.completedCredits, 0);
+  assert.equal(mseTechnicalCreditStatus?.matched, false);
+  assert.equal(mseTechnicalCreditStatus?.creditProgressLabel, "0/6 credits completed");
+  assert.equal(outsideCreditStatus?.completedCredits, 0);
+  assert.equal(outsideCreditStatus?.maxCreditCount, 9);
+
+  const partialEngineeringStatus = buildRequirementStatuses(runtimePlan.beforeEnrollmentChecklist, [
+    { code: "ENGR& 224", label: "ENGR& 224" },
+  ]).find((status) =>
+    status.item.requirementGroup?.id.endsWith(":engineering-fundamentals-electives")
+  );
+  assert.equal(partialEngineeringStatus?.completedCredits, 4);
+  assert.equal(partialEngineeringStatus?.matched, false);
+  assert.equal(partialEngineeringStatus?.creditProgressLabel, "4/8 credits completed");
+});
+
+test("Materials NME Option replaces standard technical electives with the NME core/elective bucket", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-materials-science-engineering"
+  );
+  const [nmeBlock] = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-seattle-materials-science-engineering",
+    "nme-option"
+  );
+
+  assert.ok(runtimePlan, "Expected the MSE runtime plan.");
+  assert.ok(nmeBlock, "Expected the MSE NME parsed source block.");
+
+  const normalMseTechnicalGroup = runtimePlan.requirementGroups?.find((group) =>
+    group.id.endsWith(":mse-400-level-technical-electives")
+  );
+  const normalOutsideTechnicalGroup = runtimePlan.requirementGroups?.find((group) =>
+    group.id.endsWith(":outside-mse-technical-electives")
+  );
+  assert.equal(normalMseTechnicalGroup?.requirementType, "choose_credits");
+  assert.equal(normalMseTechnicalGroup?.minCredits, 6);
+  assert.equal(normalOutsideTechnicalGroup?.requirementType, "choose_credits");
+  assert.equal(normalOutsideTechnicalGroup?.maxCredits, 9);
+
+  const normalSummaryText = buildSourceBackedRequiredCourseSummaryEntries(runtimePlan, {
+    mode: "uw",
+  })
+    .map((entry) => entry.text)
+    .join("\n");
+  assert.match(normalSummaryText, /Choose at least 6 credits from MSE 400-level technical electives\./);
+  assert.match(normalSummaryText, /Up to 9 credits may count from approved outside-MSE technical electives\./);
+
+  const parsedNmeGroup = nmeBlock.parsedRequirementGroups?.find((group) =>
+    group.id.endsWith(":mse-nme-core-elective-19-credits")
+  );
+  assert.equal(parsedNmeGroup?.requirementType, "choose_credits");
+  assert.equal(parsedNmeGroup?.minCredits, 19);
+  assert.equal(parsedNmeGroup?.category, "nme_core_elective");
+
+  const parsedNmeCourses = (nmeBlock.parsedRequirementCourses ?? []).filter((course) =>
+    course.requirementGroupId.endsWith(":mse-nme-core-elective-19-credits")
+  );
+  const findParsedNmeCourse = (courseCode: string) =>
+    parsedNmeCourses.find((course) => course.normalizedCourseCode === courseCode);
+  for (const courseCode of ["NME 220", "BIOEN 423", "MSE 452", "ENGR 321", "CHEME 523", "NME 498"]) {
+    const course = findParsedNmeCourse(courseCode);
+    assert.ok(course, `Expected ${courseCode} to be captured from the NME option source.`);
+    assert.equal(course?.requirementGroupId, parsedNmeGroup?.id);
+    assert.equal(course?.requirementType, "choose_credits");
+    assert.ok(course?.category, `Expected ${courseCode} to carry NME category metadata.`);
+  }
+  assert.equal(findParsedNmeCourse("NME 220")?.category, "nme_core_required");
+  assert.equal(findParsedNmeCourse("ENGR 321")?.category, "nme_restricted_option");
+  assert.equal(
+    parsedNmeCourses.every((course) => course.requirementGroupId && course.category),
+    true,
+    "Expected every parsed NME course to carry requirementGroupId and category metadata."
+  );
+
+  const nmeRuntimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(runtimePlan, "nme-option");
+  assert.ok(nmeRuntimePlan, "Expected the selected NME runtime plan.");
+
+  const replacement = nmeRuntimePlan.requirementReplacements?.find((entry) =>
+    entry.replacedByRequirementId.endsWith(":mse-nme-core-elective-19-credits")
+  );
+  assert.equal(
+    replacement?.baseRequirementId,
+    "uw-seattle-materials-science-engineering:requirement-group:mse-technical-electives-15-credits"
+  );
+  assert.equal(replacement?.appliesWhen, 'selectedOption === "NME"');
+  assert.equal(replacement?.sourceUrl, "https://mse.washington.edu/current/undergrad/nmeoption");
+
+  const activeNmeGroup = nmeRuntimePlan.requirementGroups?.find((group) =>
+    group.id.endsWith(":mse-nme-core-elective-19-credits")
+  );
+  assert.equal(activeNmeGroup?.requirementType, "choose_credits");
+  assert.equal(activeNmeGroup?.minCredits, 19);
+  assert.equal(activeNmeGroup?.category, "nme_core_elective");
+
+  const activeNmeCourseCodes = new Set(
+    (activeNmeGroup?.options ?? []).flatMap((option) => [
+      ...(option.uwCourses ?? []),
+      ...(option.equivalentUwCourseCodes ?? []),
+    ])
+  );
+  for (const courseCode of ["NME 220", "BIOEN 423", "MSE 452", "ENGR 321", "NME 498"]) {
+    assert.equal(
+      activeNmeCourseCodes.has(courseCode),
+      true,
+      `Expected ${courseCode} to remain available in the active NME requirement.`
+    );
+  }
+  assert.equal(
+    activeNmeGroup?.options.find((option) => option.uwCourses.includes("NME 220"))?.category,
+    "nme_core_required"
+  );
+  assert.equal(
+    activeNmeGroup?.options.find((option) => option.uwCourses.includes("MSE 452"))?.category,
+    "nme_elective_option"
+  );
+  assert.equal(
+    activeNmeGroup?.options.find((option) => option.uwCourses.includes("ENGR 321"))?.category,
+    "nme_restricted_option"
+  );
+
+  assert.equal(
+    nmeRuntimePlan.requirementGroups?.some((group) =>
+      group.id.endsWith(":mse-400-level-technical-electives")
+    ),
+    false,
+    "Expected the normal MSE 400-level technical elective group to be inactive for NME."
+  );
+  assert.equal(
+    nmeRuntimePlan.requirementGroups?.some((group) =>
+      group.id.endsWith(":outside-mse-technical-electives")
+    ),
+    false,
+    "Expected the normal outside-MSE technical elective group to be inactive for NME."
+  );
+  assert.equal(
+    [
+      ...nmeRuntimePlan.applicationChecklist,
+      ...nmeRuntimePlan.beforeEnrollmentChecklist,
+      ...nmeRuntimePlan.stayAtGrcChecklist,
+    ].some((item) =>
+      /:mse-400-level-technical-electives$|:outside-mse-technical-electives$/.test(
+        item.requirementGroup?.id ?? ""
+      )
+    ),
+    false,
+    "Expected normal MSE technical elective checklist rows not to remain active for NME."
+  );
+
+  const nmeEngineeringFundamentalsGroup = nmeRuntimePlan.requirementGroups?.find((group) =>
+    group.id.endsWith(":engineering-fundamentals-electives")
+  );
+  assert.equal(
+    nmeEngineeringFundamentalsGroup?.options.some((option) =>
+      option.uwCourses.includes("NME 220")
+    ),
+    false,
+    "Expected NME 220 not to satisfy Engineering Fundamentals for NME Option students."
+  );
+
+  const nme220Statuses = buildRequirementStatuses(nmeRuntimePlan.beforeEnrollmentChecklist, [
+    { code: "NME 220", label: "NME 220" },
+  ]);
+  const engineeringStatus = nme220Statuses.find((status) =>
+    status.item.requirementGroup?.id.endsWith(":engineering-fundamentals-electives")
+  );
+  const nmeCoreStatus = nme220Statuses.find((status) =>
+    status.item.requirementGroup?.id.endsWith(":mse-nme-core-elective-19-credits")
+  );
+  assert.equal(engineeringStatus?.completedCredits, 0);
+  assert.equal(engineeringStatus?.matched, false);
+  assert.equal(nmeCoreStatus?.completedCredits, 4);
+  assert.equal(nmeCoreStatus?.creditProgressLabel, "4/19 credits completed");
+
+  const nmeSummaryText = buildSourceBackedRequiredCourseSummaryEntries(nmeRuntimePlan, {
+    mode: "uw",
+  })
+    .map((entry) => entry.text)
+    .join("\n");
+  assert.match(nmeSummaryText, /NME Option Core\/Elective Requirement: 19 credits\./);
+  assert.match(nmeSummaryText, /This replaces the standard 15-credit MSE technical elective requirement\./);
+  assert.doesNotMatch(
+    nmeSummaryText,
+    /Choose at least 6 credits from MSE 400-level technical electives\./
+  );
+  assert.doesNotMatch(
+    nmeSummaryText,
+    /Up to 9 credits may count from approved outside-MSE technical electives\./
+  );
+
+  const nmeConsideredEntries = buildSourceBackedUwCourseConsideredSummaryEntries(nmeRuntimePlan);
+  assert.equal(
+    nmeConsideredEntries.find((entry) => entry.courseCode === "NME 220")?.category,
+    "nme_core_required"
+  );
+  assert.match(
+    nmeConsideredEntries.find((entry) => entry.courseCode === "NME 220")?.requirementGroupId ?? "",
+    /:mse-nme-core-elective-19-credits$/
+  );
+  assert.equal(
+    nmeConsideredEntries.find((entry) => entry.courseCode === "MSE 452")?.category,
+    "nme_elective_option"
+  );
+  assert.equal(
+    nmeConsideredEntries.find((entry) => entry.courseCode === "ENGR 321")?.category,
+    "nme_restricted_option"
+  );
+
+  assert.deepEqual(
+    buildMaterialsScienceNmeSourceIncompleteWarnings(
+      "uw-seattle-materials-science-engineering",
+      "nme-option",
+      []
+    ),
+    [
+      "NME Option requirements require the linked NME page. The planner parsed the base MSE page but could not verify the 19-credit NME Core/Elective requirement.",
+    ]
+  );
+  assert.deepEqual(
+    buildMaterialsScienceNmeSourceIncompleteWarnings(
+      "uw-seattle-materials-science-engineering",
+      "nme-option",
+      activeNmeGroup ? [activeNmeGroup] : []
+    ),
+    []
+  );
+});
+
+test("Major Specifics dropdown categorizes UW MSE rows and adds concise option alternatives", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-materials-science-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the MSE runtime plan.");
+
+  const track = getTransferPlannerTrack(runtimePlan.bestTrackId ?? null);
+  const sections = buildMajorSpecificsCourseSections({
+    plan: runtimePlan,
+    track,
+    completedCourses: [],
+  });
+  const sectionById = new Map(sections.map((section) => [section.id, section] as const));
+  const audit = buildMajorSpecificsRenderingAudit(sections);
+
+  assert.ok(sections.length > 0, "Expected Major Specifics rows.");
+  assert.equal(
+    audit.every(
+      (entry) => entry.category && entry.sourceType && entry.requirementRole && !entry.flags.length
+    ),
+    true,
+    `Expected categorized Major Specifics rows without audit flags: ${JSON.stringify(
+      audit.filter((entry) => entry.flags.length),
+      null,
+      2
+    )}`
+  );
+
+  const requiredSection = sectionById.get("official-uw-required-courses");
+  const selectedSection = sectionById.get("selected-uw-requirement-options");
+  const otherSection = sectionById.get("other-valid-uw-options");
+  const matchedTrackSection = sectionById.get("matched-green-river-track-courses");
+  const genEdSection = sectionById.get("gen-ed-breadth-requirements");
+  const allRows = sections.flatMap((section) => section.rows);
+
+  assert.ok(requiredSection, "Expected Official UW Required Courses section.");
+  assert.ok(selectedSection, "Expected Selected UW Requirement Options section.");
+  assert.ok(otherSection, "Expected Other Valid UW Options section.");
+  assert.equal(
+    sectionById.has("green-river-prerequisites"),
+    false,
+    "Expected prerequisite-only rows to stay out of the UW Degree Classes dropdown."
+  );
+  assert.equal(
+    allRows.some((entry) => entry.requirementRole === "prerequisite_only"),
+    false,
+    "Expected no prerequisite-only rows in Major Specifics."
+  );
+  assert.ok(matchedTrackSection, "Expected Matched Green River Track Courses section.");
+  assert.ok(genEdSection, "Expected Gen-Ed Requirements section.");
+  assert.equal(genEdSection?.label, "Gen-Ed Requirements");
+  assert.ok(
+    sections.findIndex((section) => section.id === "gen-ed-breadth-requirements") <
+      sections.findIndex((section) => section.id === "official-uw-required-courses"),
+    "Expected Gen-Ed Requirements to appear above Official UW Required Courses."
+  );
+
+  const requiredRows = requiredSection?.rows ?? [];
+
+  for (const uwCourseCode of ["MATH 124", "MATH 125", "MATH 126"]) {
+    const requiredRow = requiredRows.find((entry) => entry.text.includes(uwCourseCode));
+    assert.ok(requiredRow, `Expected ${uwCourseCode} to appear under official required courses.`);
+    assert.equal(requiredRow?.sourceType, "official_uw_requirement");
+    assert.equal(requiredRow?.requirementRole, "required");
+    assert.match(requiredRow?.text ?? "", /is required\. UW equivalent:/);
+    assert.equal(requiredRow?.alternativeOptionsText ?? null, null);
+  }
+
+  const computingSelectedRow = selectedSection?.rows.find((entry) =>
+    entry.requirementGroupId?.endsWith(":scientific-computing")
+  );
+  assert.ok(computingSelectedRow, "Expected a selected scientific-computing option.");
+  assert.equal(computingSelectedRow?.requirementType, "choose_one");
+  assert.equal(computingSelectedRow?.selectedForRequirement, true);
+  assert.match(computingSelectedRow?.alternativeOptionsText ?? "", /^Instead of taking /);
+  assert.match(computingSelectedRow?.alternativeOptionsText ?? "", /AMATH 301/);
+  assert.match(computingSelectedRow?.alternativeOptionsText ?? "", /CSE 142/);
+
+  const computingAlternativeCodes = new Set(
+    otherSection?.rows
+      .filter((entry) => entry.requirementGroupId?.endsWith(":scientific-computing"))
+      .map((entry) => entry.normalizedCourseCode)
+  );
+  assert.deepEqual([...computingAlternativeCodes].sort(), ["AMATH 301", "CSE 142"]);
+  assert.equal(
+    otherSection?.rows
+      .filter((entry) => entry.requirementGroupId?.endsWith(":scientific-computing"))
+      .every((entry) => !/\bis required\b/i.test(entry.text)),
+    true
+  );
+
+  const requiredCodes = new Set(requiredSection?.rows.map((entry) => entry.normalizedCourseCode));
+  assert.equal(requiredCodes.has("MATH 224"), false);
+  assert.equal(requiredCodes.has("INDE 315"), false);
+  assert.equal(requiredCodes.has("CHEM 237"), false);
+  assert.equal(requiredCodes.has("CHEM 238"), false);
+  assert.equal(requiredCodes.has("PHYS 225"), false);
+
+  const mathSelectedRow = selectedSection?.rows.find((entry) =>
+    entry.requirementGroupId?.endsWith(":math-elective")
+  );
+  assert.equal(mathSelectedRow?.normalizedCourseCode, "MATH 224");
+  assert.match(mathSelectedRow?.alternativeOptionsText ?? "", /MATH& 264 \/ MATH 224/);
+  assert.match(mathSelectedRow?.alternativeOptionsText ?? "", /MATH 209 \/ MATH 309/);
+  assert.match(mathSelectedRow?.alternativeOptionsText ?? "", /STAT 390/);
+
+  const scienceRows = [
+    ...(selectedSection?.rows ?? []),
+    ...(otherSection?.rows ?? []),
+  ].filter((entry) => entry.requirementGroupId?.endsWith(":science-electives"));
+  for (const courseCode of ["CHEM 237", "CHEM 238", "PHYS 225"]) {
+    assert.equal(
+      scienceRows.some((entry) => entry.normalizedCourseCode === courseCode),
+      true,
+      `Expected ${courseCode} to remain visible as a science elective option.`
+    );
+  }
+  assert.equal(
+    scienceRows.every((entry) => entry.requirementRole !== "required"),
+    true,
+    "Expected science elective options not to be marked required."
+  );
+  assert.equal(
+    selectedSection?.rows
+      .filter((entry) => entry.requirementGroupId?.endsWith(":science-electives"))
+      .every((entry) => /^Instead of taking /.test(entry.alternativeOptionsText ?? "")),
+    true
+  );
+
+  assert.equal(
+    (matchedTrackSection?.rows ?? []).some((entry) =>
+      ["ENGR 100", "ENGR 106"].includes(entry.normalizedCourseCode)
+    ),
+    true,
+    "Expected ENGR 100 or ENGR 106 to remain visible as matched-track support."
+  );
+  assert.equal(
+    matchedTrackSection?.rows.some((entry) => entry.normalizedCourseCode === "ENGR 100"),
+    true,
+    "Expected ENGR 100 to remain visible as matched Green River track support."
+  );
+  assert.equal(
+    genEdSection?.rows.some((entry) => /A&H|Social Science|Diversity|Areas of Inquiry/i.test(entry.text)),
+    true,
+    "Expected Gen-Ed / Breadth rows to remain visible."
+  );
+});
+
+test("Major Specifics dropdown marks NME restricted and replaced requirements separately", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-materials-science-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the MSE runtime plan.");
+
+  const nmePlan = resolveTransferPlannerStudentRuntimeMajorPlan(runtimePlan, "nme-option");
+  assert.ok(nmePlan, "Expected the selected NME runtime plan.");
+
+  const track = getTransferPlannerTrack(nmePlan.bestTrackId ?? null);
+  const sections = buildMajorSpecificsCourseSections({
+    plan: nmePlan,
+    track,
+    completedCourses: [],
+  });
+  const audit = buildMajorSpecificsRenderingAudit(sections);
+  const restrictedSection = sections.find(
+    (section) => section.id === "restricted-or-replaced-requirements"
+  );
+
+  assert.equal(
+    audit.every((entry) => !entry.flags.length),
+    true,
+    `Expected no Major Specifics audit flags for NME: ${JSON.stringify(
+      audit.filter((entry) => entry.flags.length),
+      null,
+      2
+    )}`
+  );
+  assert.ok(restrictedSection, "Expected Restricted or Replaced Requirements section.");
+
+  const nme220RestrictedRow = restrictedSection?.rows.find(
+    (entry) => entry.normalizedCourseCode === "NME 220"
+  );
+  assert.equal(nme220RestrictedRow?.sourceType, "restricted_option");
+  assert.equal(nme220RestrictedRow?.requirementRole, "restricted");
+  assert.equal(nme220RestrictedRow?.restrictionStatus, "not_eligible_for_nme_option");
+  assert.equal(nme220RestrictedRow?.countsTowardUwRequirement, false);
+  assert.match(nme220RestrictedRow?.text ?? "", /not eligible.*NME Option students/);
+
+  const replacedTechnicalElectiveRow = restrictedSection?.rows.find((entry) =>
+    entry.requirementGroupId?.endsWith(":mse-technical-electives-15-credits")
+  );
+  assert.equal(replacedTechnicalElectiveRow?.sourceType, "replaced_requirement");
+  assert.equal(replacedTechnicalElectiveRow?.requirementRole, "replaced");
+  assert.equal(replacedTechnicalElectiveRow?.countsTowardUwRequirement, false);
+  assert.match(
+    replacedTechnicalElectiveRow?.text ?? "",
+    /replaced by NME Option Core\/Elective Requirement: 19 credits/
+  );
+
+  const selectedNmeRows = sections
+    .find((section) => section.id === "selected-uw-requirement-options")
+    ?.rows.filter((entry) =>
+      entry.requirementGroupId?.endsWith(":mse-nme-core-elective-19-credits")
+    );
+  assert.ok(selectedNmeRows?.length, "Expected active NME option rows to remain selected.");
+  assert.equal(
+    selectedNmeRows?.every((entry) => entry.sourceType === "nme_option_requirement"),
+    true
+  );
+  assert.equal(
+    selectedNmeRows?.some((entry) => entry.normalizedCourseCode === "NME 220"),
+    true,
+    "Expected NME 220 to remain selected inside the NME core/elective requirement."
+  );
+});
+
 test("Materials planner-visible source-backed output keeps lower-division prep but not upper-division coursework", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-materials-science-engineering");
 
@@ -11896,6 +13089,40 @@ test("Auto track matcher preserves custom track copy when the computed winner al
   assert.ok(typeof autoRecommendation?.trackId === "string");
   assert.ok(csPlan.bestTrackId, "Expected Seattle CS to keep a parser-first auto-matched best track id.");
   assert.equal(typeof csPlan.recommendedTrackSummary, "string");
+});
+
+test("Engineering auto track matcher uses major discipline when shared STEM overlap is ambiguous", () => {
+  const runtimeChemicalPlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-chemical-engineering"
+  );
+  const runtimeMechanicalPlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-mechanical-engineering"
+  );
+  assert.ok(runtimeChemicalPlan, "Expected runtime Seattle Chemical Engineering plan.");
+  assert.ok(runtimeMechanicalPlan, "Expected runtime Seattle Mechanical Engineering plan.");
+
+  const chemicalTrack = getTransferPlannerTrack(runtimeChemicalPlan.bestTrackId ?? null);
+  const mechanicalTrack = getTransferPlannerTrack(runtimeMechanicalPlan.bestTrackId ?? null);
+
+  assert.match(chemicalTrack?.title ?? "", /Bioengineering and Chemical Engineering/i);
+  assert.match(mechanicalTrack?.title ?? "", /Civil and Mechanical Engineering/i);
+
+  const chemicalRecommendation = getTransferPlannerAutoMatchedTrackRecommendation(
+    getTransferPlannerGrcCourseList(runtimeChemicalPlan),
+    null,
+    { majorTitle: runtimeChemicalPlan.title }
+  );
+  const mechanicalRecommendation = getTransferPlannerAutoMatchedTrackRecommendation(
+    getTransferPlannerGrcCourseList(runtimeMechanicalPlan),
+    null,
+    { majorTitle: runtimeMechanicalPlan.title }
+  );
+
+  assert.equal(chemicalRecommendation?.trackId, runtimeChemicalPlan.bestTrackId);
+  assert.equal(mechanicalRecommendation?.trackId, runtimeMechanicalPlan.bestTrackId);
+  assert.deepEqual(mechanicalRecommendation?.disciplineMatchedLabels, [
+    "Mechanical Engineering",
+  ]);
 });
 
 test.skip("Auto track matcher can diverge between the broad base course list and the narrowed source-generated checklist set", () => {

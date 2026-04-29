@@ -5,13 +5,13 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import {
   ActivityIndicator,
   Alert,
+  InteractionManager,
   Linking,
   Modal,
   Platform,
   Pressable,
   ScrollView,
   Text,
-  TextInput,
   View,
   useWindowDimensions,
 } from "react-native";
@@ -23,6 +23,10 @@ import {
   AnimatedChipPressable,
   AnimatedIconPressable,
 } from "@/components/ui/AnimatedPressables";
+import {
+  SearchableSelect,
+  type SelectorOverlayStrategy,
+} from "@/components/ui/SearchableSelect";
 import { ROUTES } from "@/constants/routes";
 import { SUPPORT_EMAIL } from "@/constants/support";
 import { StateCard } from "@/components/ui/StateCard";
@@ -53,6 +57,7 @@ import { storageService, type UploadedFile } from "@/services/storage/storage.se
 import {
   buildSourceBackedMajorGeneralEducationRequirementSection,
   buildSourceBackedGeneralEducationRequirementTargets,
+  buildMajorSpecificsCourseSections,
   buildSourceBackedRequiredCourseSummaryEntries,
   buildSourceBackedRequiredCourseCodes,
   buildSourceBackedUwCourseConsideredSummaryEntries,
@@ -70,7 +75,6 @@ import {
   type TranscriptCourseEntry,
 } from "@/services/planning/transfer-planner.service";
 import { resetTranscriptState } from "@/services/planning/transcript-reset.service";
-import { transcriptPdfService } from "@/services/documents/transcript-pdf.service";
 
 const CTCLINK_UNOFFICIAL_TRANSCRIPT_URL =
   "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL";
@@ -93,8 +97,6 @@ const GENERATED_PROGRAM_MAP_SUMMARY_SENTENCE = [
 type PlannerCollegeId = "uw" | "grc";
 type PlannerCampusSelectionId = TransferPlannerCampusId | typeof GRC_PLANNER_CAMPUS_ID;
 type PlannerSelectorKey = "college" | "campus" | "major" | null;
-type SelectorOverlayStrategy = "inline" | "inline-isolated" | "modal";
-
 type TranscriptDocument = UploadedFile;
 
 function buildFriendlyTranscriptError() {
@@ -1396,14 +1398,6 @@ function getAutoTrackSummaryText(trackSummary: string) {
   return stripGeneratedProgramMapSummarySentence(trackSummary);
 }
 
-function normalizeSelectorSearchValue(value: string) {
-  return String(value ?? "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
 function SelectorField({
   label,
   value,
@@ -1443,371 +1437,30 @@ function SelectorField({
   onTouchStartInside?: () => void;
   overlayStrategy?: SelectorOverlayStrategy;
 }) {
-  const [searchQuery, setSearchQuery] = useState("");
-  const searchInputRef = useRef<TextInput | null>(null);
-  const selectorFieldRef = useRef<View | null>(null);
-  const [modalAnchor, setModalAnchor] = useState<{
-    left: number;
-    top: number;
-    width: number;
-    height: number;
-  } | null>(null);
-  const { width: windowWidth, height: windowHeight } = useWindowDimensions();
-  const markTouchInside = useCallback(() => {
-    onTouchStartInside?.();
-  }, [onTouchStartInside]);
-  const dismissDropdown = useCallback(() => {
-    if (onDismiss) {
-      onDismiss();
-      return;
-    }
-    onToggle();
-  }, [onDismiss, onToggle]);
-  const measureModalAnchor = useCallback(() => {
-    if (!selectorFieldRef.current) {
-      return;
-    }
-
-    selectorFieldRef.current.measureInWindow((x, y, width, height) => {
-      if (
-        !Number.isFinite(x) ||
-        !Number.isFinite(y) ||
-        !Number.isFinite(width) ||
-        !Number.isFinite(height)
-      ) {
-        return;
-      }
-
-      setModalAnchor({
-        left: x,
-        top: y,
-        width,
-        height,
-      });
-    });
-  }, []);
-  const shouldUseInlineIsolation = overlayStrategy === "inline-isolated";
-
-  useEffect(() => {
-    if (!open) {
-      searchInputRef.current?.blur();
-      setSearchQuery("");
-      setModalAnchor(null);
-    }
-  }, [open]);
-
-  useEffect(() => {
-    if (!open || !searchable) return;
-
-    const focusTimer = setTimeout(() => {
-      searchInputRef.current?.focus();
-    }, 0);
-
-    return () => {
-      clearTimeout(focusTimer);
-    };
-  }, [open, searchable]);
-
-  useEffect(() => {
-    if (!open || overlayStrategy !== "modal") {
-      return;
-    }
-
-    const frame = requestAnimationFrame(() => {
-      measureModalAnchor();
-    });
-
-    return () => {
-      cancelAnimationFrame(frame);
-    };
-  }, [measureModalAnchor, open, overlayStrategy, options.length, value]);
-
-  const normalizedQuery = normalizeSelectorSearchValue(searchQuery);
-  const normalizedSelectedValue = normalizeSelectorSearchValue(value);
-  const effectiveQuery =
-    searchable && open && normalizedQuery === normalizedSelectedValue
-      ? ""
-      : normalizedQuery;
-  const filteredOptions = useMemo(() => {
-    const visibleOptions =
-      hideSelectedOptionWhenOpen && open && selectedOptionId
-        ? options.filter((option) => option.id !== selectedOptionId)
-        : options;
-
-    if (!searchable || !effectiveQuery) {
-      return visibleOptions;
-    }
-
-    const startsWithMatches: { id: string; label: string; description?: string }[] = [];
-    const includesMatches: { id: string; label: string; description?: string }[] = [];
-
-    for (const option of visibleOptions) {
-      const normalizedLabel = normalizeSelectorSearchValue(option.label);
-      if (normalizedLabel.startsWith(effectiveQuery)) {
-        startsWithMatches.push(option);
-        continue;
-      }
-      if (normalizedLabel.includes(effectiveQuery)) {
-        includesMatches.push(option);
-      }
-    }
-
-    return [...startsWithMatches, ...includesMatches];
-  }, [
-    effectiveQuery,
-    hideSelectedOptionWhenOpen,
-    open,
-    options,
-    searchable,
-    selectedOptionId,
-  ]);
-  const modalDropdownLayout = useMemo(() => {
-    if (!modalAnchor) {
-      return null;
-    }
-
-    const sideMargin = 16;
-    const verticalGap = 12;
-    const viewportPadding = 24;
-    const availableBelow = Math.max(
-      windowHeight - (modalAnchor.top + modalAnchor.height + verticalGap) - viewportPadding,
-      0
-    );
-    const availableAbove = Math.max(modalAnchor.top - verticalGap - viewportPadding, 0);
-    const shouldOpenUpward = availableBelow < 220 && availableAbove > availableBelow;
-    const maxHeight = Math.max(
-      160,
-      Math.min(320, shouldOpenUpward ? availableAbove : availableBelow)
-    );
-    const width = Math.min(modalAnchor.width, Math.max(windowWidth - sideMargin * 2, 0));
-    const left = Math.min(
-      Math.max(modalAnchor.left, sideMargin),
-      Math.max(sideMargin, windowWidth - width - sideMargin)
-    );
-    const top = shouldOpenUpward
-      ? Math.max(viewportPadding, modalAnchor.top - verticalGap - maxHeight)
-      : modalAnchor.top + modalAnchor.height + verticalGap;
-
-    return {
-      left,
-      top,
-      width,
-      maxHeight,
-    };
-  }, [modalAnchor, windowHeight, windowWidth]);
-  const dropdownMaxHeight = modalDropdownLayout?.maxHeight ?? 320;
-  const scrollAreaMaxHeight = Math.max(
-    120,
-    dropdownMaxHeight - (searchable && !effectiveQuery ? 72 : 28)
-  );
-  const dropdownContent = (
-    <View
-      className={`border ${borderClass} rounded-2xl p-3`}
-      onTouchStart={markTouchInside}
-      renderToHardwareTextureAndroid={shouldUseInlineIsolation}
-      needsOffscreenAlphaCompositing={shouldUseInlineIsolation}
-      style={{
-        maxHeight: dropdownMaxHeight,
-        backgroundColor: dropdownBackgroundColor,
-        overflow: "hidden",
-        opacity: 1,
-        ...(shouldUseInlineIsolation
-          ? {
-              shadowColor: "#000000",
-              shadowOpacity: 0.18,
-              shadowRadius: 18,
-              shadowOffset: { width: 0, height: 10 },
-            }
-          : null),
-      }}
-    >
-      {shouldUseInlineIsolation ? (
-        <View
-          pointerEvents="none"
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-            backgroundColor: dropdownBackgroundColor,
-            opacity: 1,
-          }}
-        />
-      ) : null}
-
-      {searchable && !effectiveQuery ? (
-        <Text className={`${secondaryTextClass} text-xs mb-2`}>
-          Scroll to browse all options, or type to filter.
-        </Text>
-      ) : null}
-
-      <ScrollView
-        nestedScrollEnabled
-        showsVerticalScrollIndicator
-        keyboardShouldPersistTaps="always"
-        onTouchStart={markTouchInside}
-        style={{ maxHeight: scrollAreaMaxHeight, backgroundColor: dropdownBackgroundColor }}
-        contentContainerStyle={{ gap: 12, paddingBottom: 4 }}
-      >
-        {filteredOptions.map((option) => (
-          <AnimatedCardPressable
-            key={option.id}
-            onPressIn={markTouchInside}
-            onPress={() => {
-              searchInputRef.current?.blur();
-              setSearchQuery("");
-              onSelect(option.id);
-            }}
-            className={`border ${borderClass} rounded-2xl px-4 py-4`}
-            style={{ backgroundColor: dropdownBackgroundColor, opacity: 1 }}
-          >
-            <Text className={`${textClass} font-semibold`}>{option.label}</Text>
-            {option.description ? (
-              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {option.description}
-              </Text>
-            ) : null}
-          </AnimatedCardPressable>
-        ))}
-
-        {searchable && effectiveQuery && !filteredOptions.length ? (
-          <Text className={`${secondaryTextClass} text-sm`}>
-            No options match that search yet.
-          </Text>
-        ) : null}
-      </ScrollView>
-    </View>
-  );
-
   return (
-    <View
-      ref={selectorFieldRef}
-      className="relative"
-      style={
-        open
-          ? shouldUseInlineIsolation
-            ? { zIndex: 120, elevation: 120 }
-            : { zIndex: 30 }
-          : undefined
-      }
-      onTouchStart={markTouchInside}
-      onLayout={() => {
-        if (open && overlayStrategy === "modal") {
-          measureModalAnchor();
-        }
-      }}
-      renderToHardwareTextureAndroid={open && shouldUseInlineIsolation}
-      needsOffscreenAlphaCompositing={open && shouldUseInlineIsolation}
-    >
+    <View className="relative" onTouchStart={onTouchStartInside}>
       <Text className={`${textClass} text-base font-semibold`}>{label}</Text>
       <Text className={`${secondaryTextClass} text-sm mt-1`}>{helper}</Text>
-
-      {searchable ? (
-        <View
-          className={`mt-4 border ${borderClass} rounded-2xl px-4 py-2 flex-row items-center`}
-          onTouchStart={markTouchInside}
-        >
-          <TextInput
-            ref={searchInputRef}
-            value={open ? searchQuery : value}
-            onTouchStart={markTouchInside}
-            onChangeText={(nextValue) => {
-              if (!open) {
-                onToggle();
-              }
-              setSearchQuery(nextValue);
-            }}
-            onFocus={() => {
-              if (!open) {
-                setSearchQuery(value);
-                onToggle();
-              } else if (!searchQuery) {
-                setSearchQuery(value);
-              }
-            }}
-            placeholder={searchPlaceholder ?? `Search ${label.toLowerCase()}`}
-            placeholderTextColor="#9CA3AF"
-            autoCapitalize="none"
-            autoCorrect={false}
-            selectTextOnFocus
-            className={`${textClass} text-sm flex-1 min-w-0`}
-          />
-          <AnimatedIconPressable
-            onPress={onToggle}
-            onPressIn={markTouchInside}
-            className="ml-3"
-            hitSlop={8}
-          >
-            <MaterialIcons
-              name={open ? "keyboard-arrow-up" : "keyboard-arrow-down"}
-              size={22}
-              color="#008f4e"
-            />
-          </AnimatedIconPressable>
-        </View>
-      ) : (
-        <AnimatedCardPressable
-          onPress={onToggle}
-          onPressIn={markTouchInside}
-          className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4 flex-row items-center justify-between`}
-        >
-          <View className="flex-1 min-w-0 pr-3">
-            <Text className={`${textClass} font-semibold`} numberOfLines={1}>
-              {value}
-            </Text>
-          </View>
-          <MaterialIcons
-            name={open ? "keyboard-arrow-up" : "keyboard-arrow-down"}
-            size={22}
-            color="#008f4e"
-          />
-        </AnimatedCardPressable>
-      )}
-
-      {open && overlayStrategy !== "modal" ? (
-        <View
-          className="absolute left-0 right-0 mt-3"
-          style={{
-            top: "100%",
-            zIndex: shouldUseInlineIsolation ? 125 : 35,
-            elevation: shouldUseInlineIsolation ? 125 : 16,
-          }}
-        >
-          {dropdownContent}
-        </View>
-      ) : null}
-
-      {open && overlayStrategy === "modal" && modalDropdownLayout ? (
-        <Modal transparent visible animationType="none" onRequestClose={dismissDropdown}>
-          <View style={{ flex: 1 }}>
-            <Pressable
-              onPress={dismissDropdown}
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-              }}
-            />
-            <View pointerEvents="box-none" style={{ flex: 1 }}>
-              <View
-                style={{
-                  position: "absolute",
-                  left: modalDropdownLayout.left,
-                  top: modalDropdownLayout.top,
-                  width: modalDropdownLayout.width,
-                  zIndex: 200,
-                  elevation: 200,
-                }}
-              >
-                {dropdownContent}
-              </View>
-            </View>
-          </View>
-        </Modal>
-      ) : null}
+      <View className="mt-4">
+        <SearchableSelect
+          value={value}
+          open={open}
+          onToggle={onToggle}
+          onDismiss={onDismiss}
+          options={options}
+          onSelect={onSelect}
+          selectedOptionId={selectedOptionId}
+          hideSelectedOptionWhenOpen={hideSelectedOptionWhenOpen}
+          searchable={searchable}
+          searchPlaceholder={searchPlaceholder ?? `Search ${label.toLowerCase()}`}
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          borderClass={borderClass}
+          dropdownBackgroundColor={dropdownBackgroundColor}
+          onTouchStartInside={onTouchStartInside}
+          overlayStrategy={overlayStrategy}
+        />
+      </View>
     </View>
   );
 }
@@ -2037,12 +1690,26 @@ function GrcDegreeSpecificsSection({
   const [isReferenceOpen, setIsReferenceOpen] = useState(false);
   const [isGrcClassesOpen, setIsGrcClassesOpen] = useState(false);
   const grcGeneralEducationCreditLines = useMemo(
-    () => buildMajorSpecificsGrcGeneralEducationCreditLines({ plan: null, track, completedCourses }),
-    [completedCourses, track]
+    () =>
+      isReferenceOpen && isGrcClassesOpen
+        ? buildMajorSpecificsGrcGeneralEducationCreditLines({
+            plan: null,
+            track,
+            completedCourses,
+          })
+        : [],
+    [completedCourses, isGrcClassesOpen, isReferenceOpen, track]
   );
   const grcRequiredMajorCourseLines = useMemo(
-    () => buildMajorSpecificsGrcRequiredMajorCourseLines({ plan: null, track, completedCourses }),
-    [completedCourses, track]
+    () =>
+      isReferenceOpen && isGrcClassesOpen
+        ? buildMajorSpecificsGrcRequiredMajorCourseLines({
+            plan: null,
+            track,
+            completedCourses,
+          })
+        : [],
+    [completedCourses, isGrcClassesOpen, isReferenceOpen, track]
   );
   const grcTrackRequirementNoun = getGrcTrackRequirementNoun(track);
   const grcSpecificsTitle = getGrcTrackSpecificsTitle(track);
@@ -2636,7 +2303,7 @@ function SuggestedScheduleCard({
   onToggleOnlyUwEssentialClasses,
   allowSummerClasses,
   onToggleAllowSummerClasses,
-  currentCourseLabels,
+  currentCourseSelections,
   onToggleCurrentCourse,
   textClass,
   secondaryTextClass,
@@ -2654,8 +2321,8 @@ function SuggestedScheduleCard({
   onToggleOnlyUwEssentialClasses: () => void;
   allowSummerClasses: boolean;
   onToggleAllowSummerClasses: () => void;
-  currentCourseLabels: Set<string>;
-  onToggleCurrentCourse: (courseLabel: string) => void;
+  currentCourseSelections: Set<string>;
+  onToggleCurrentCourse: (courseKey: string, fallbackCourseLabel?: string) => void;
   textClass: string;
   secondaryTextClass: string;
   cardClass: string;
@@ -2776,10 +2443,14 @@ function SuggestedScheduleCard({
               {quarter.courses.length ? (
                 quarter.courses.map((course, courseIndex) => {
                   const courseDisplayLabel = getSuggestedScheduleCourseDisplayLabel(course.label);
+                  const courseSelectionKey = String(course.instanceKey ?? course.label).trim();
+                  const isCurrentCourseSelected =
+                    currentCourseSelections.has(courseSelectionKey) ||
+                    currentCourseSelections.has(course.label);
 
                   return (
                     <View
-                      key={`${quarter.label}-${course.label}-${courseIndex}`}
+                      key={`${quarter.label}-${courseSelectionKey || course.label}-${courseIndex}`}
                       className={`px-3 py-3 rounded-2xl ${
                         course.status === "completed"
                           ? "bg-emerald-500/10 border border-emerald-500/20"
@@ -2851,20 +2522,20 @@ function SuggestedScheduleCard({
                         </View>
                         {course.status !== "completed" ? (
                           <Pressable
-                            onPress={() => onToggleCurrentCourse(course.label)}
+                            onPress={() => onToggleCurrentCourse(courseSelectionKey, course.label)}
                             hitSlop={8}
                             accessibilityRole="checkbox"
-                            accessibilityState={{ checked: currentCourseLabels.has(course.label) }}
+                            accessibilityState={{ checked: isCurrentCourseSelected }}
                             className="self-start"
                           >
                             <Ionicons
                               name={
-                                currentCourseLabels.has(course.label)
+                                isCurrentCourseSelected
                                   ? "checkbox"
                                   : "square-outline"
                               }
                               size={20}
-                              color={currentCourseLabels.has(course.label) ? "#008f4e" : "#9CA3AF"}
+                              color={isCurrentCourseSelected ? "#008f4e" : "#9CA3AF"}
                             />
                           </Pressable>
                         ) : null}
@@ -2932,7 +2603,11 @@ function TranscriptEvaluationReportCard({
 
     return totals;
   }, [studentFacingEvaluations]);
-  const activeBuckets = report.buckets.filter((bucket) => bucket.count > 0);
+  const remainingGrcClassCount = report.nextPlannedCourseLabels.length;
+  const remainingGrcClassNoun = remainingGrcClassCount === 1 ? "class" : "classes";
+  const campusPossessiveLabel = report.campusLabel.endsWith("s")
+    ? `${report.campusLabel}'`
+    : `${report.campusLabel}'s`;
   const [isEvaluationOpen, setIsEvaluationOpen] = useState(false);
 
   if (!report.completedCourseCount) {
@@ -2974,29 +2649,9 @@ function TranscriptEvaluationReportCard({
 
       {isEvaluationOpen ? (
         <>
-          <View className="flex-row flex-wrap gap-2 mt-4">
-            {activeBuckets.map((bucket) => (
-              <View key={bucket.id} className={`border ${borderClass} rounded-2xl px-3 py-2`}>
-                <Text className={`${textClass} text-xs font-semibold`}>{bucket.label}</Text>
-                <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                  {bucket.count} course{bucket.count === 1 ? "" : "s"}
-                </Text>
-              </View>
-            ))}
-          </View>
-
           <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-            <Text className={`${textClass} font-semibold`}>Source-backed summary</Text>
-            <View className="gap-2 mt-3">
-              {report.reportSummaryLines.map((line) => (
-                <View key={line} className="flex-row items-start gap-2">
-                  <Text className={`${secondaryTextClass} text-sm`}>{"-"}</Text>
-                  <Text className={`${secondaryTextClass} text-sm flex-1`}>{line}</Text>
-                </View>
-              ))}
-            </View>
-            <Text className={`${secondaryTextClass} text-xs mt-3`}>
-              {`${report.sourceLinkCount} official source link${report.sourceLinkCount === 1 ? "" : "s"} attached to the evaluated rules.`}
+            <Text className={`${textClass} text-base font-semibold`}>
+              {`${remainingGrcClassCount} more ${remainingGrcClassNoun} before Green River College is tapped out for ${campusPossessiveLabel} ${report.majorTitle} degree.`}
             </Text>
           </View>
 
@@ -3109,29 +2764,74 @@ function MajorSpecificsSection({
   secondaryTextClass: string;
   borderClass: string;
 }) {
+  const [isReferenceOpen, setIsReferenceOpen] = useState(false);
+  const [isGrcClassesOpen, setIsGrcClassesOpen] = useState(false);
+  const [isUwClassesOpen, setIsUwClassesOpen] = useState(false);
+  const [isUwCoursesConsideredOpen, setIsUwCoursesConsideredOpen] = useState(false);
   const degreeMapSections = plan.degreeMapSections ?? [];
   const grcGeneralEducationCreditLines = useMemo(
-    () => buildMajorSpecificsGrcGeneralEducationCreditLines({ plan, track, completedCourses }),
-    [completedCourses, plan, track]
+    () =>
+      isReferenceOpen && isGrcClassesOpen
+        ? buildMajorSpecificsGrcGeneralEducationCreditLines({
+            plan,
+            track,
+            completedCourses,
+          })
+        : [],
+    [completedCourses, isGrcClassesOpen, isReferenceOpen, plan, track]
   );
   const grcRequiredMajorCourseLines = useMemo(
-    () => buildMajorSpecificsGrcRequiredMajorCourseLines({ plan, track, completedCourses }),
-    [completedCourses, plan, track]
+    () =>
+      isReferenceOpen && isGrcClassesOpen
+        ? buildMajorSpecificsGrcRequiredMajorCourseLines({
+            plan,
+            track,
+            completedCourses,
+          })
+        : [],
+    [completedCourses, isGrcClassesOpen, isReferenceOpen, plan, track]
   );
   const sourceBackedUwGeneralEducationSection = useMemo(
-    () => buildMajorSpecificsSourceBackedUwGeneralEducationSection(plan),
-    [plan]
+    () =>
+      isReferenceOpen && isUwClassesOpen
+        ? buildMajorSpecificsSourceBackedUwGeneralEducationSection(plan)
+        : null,
+    [isReferenceOpen, isUwClassesOpen, plan]
   );
   const uwGeneralTransferRequirementSection = useMemo(
     () =>
-      buildUwGeneralTransferRequirementSection(plan, {
-        completedCourses: transcriptDerivedCompletedCourses,
-        hasTranscriptDerivedCreditSource,
-      }),
-    [hasTranscriptDerivedCreditSource, plan, transcriptDerivedCompletedCourses]
+      isReferenceOpen && isUwClassesOpen
+        ? buildUwGeneralTransferRequirementSection(plan, {
+            completedCourses: transcriptDerivedCompletedCourses,
+            hasTranscriptDerivedCreditSource,
+          })
+        : null,
+    [
+      hasTranscriptDerivedCreditSource,
+      isReferenceOpen,
+      isUwClassesOpen,
+      plan,
+      transcriptDerivedCompletedCourses,
+    ]
   );
-  const uwRequiredPathCourseEntries = useMemo(() => buildUwRequiredPathCourseEntries(plan), [plan]);
-  const uwCoursesConsideredEntries = useMemo(() => buildUwCoursesConsideredEntries(plan), [plan]);
+  const majorSpecificsCourseSections = useMemo(
+    () =>
+      isReferenceOpen && isUwClassesOpen
+        ? buildMajorSpecificsCourseSections({ plan, track, completedCourses })
+        : [],
+    [completedCourses, isReferenceOpen, isUwClassesOpen, plan, track]
+  );
+  const majorSpecificsCourseRowCount = majorSpecificsCourseSections.reduce(
+    (total, section) => total + section.rows.length,
+    0
+  );
+  const uwCoursesConsideredEntries = useMemo(
+    () =>
+      isReferenceOpen && isUwClassesOpen && isUwCoursesConsideredOpen
+        ? buildUwCoursesConsideredEntries(plan)
+        : [],
+    [isReferenceOpen, isUwClassesOpen, isUwCoursesConsideredOpen, plan]
+  );
   const primaryDegreeSource = getTransferPlannerPrimaryDegreeRequirementsSource(
     plan.id,
     plan.selectedPathwayId
@@ -3149,9 +2849,6 @@ function MajorSpecificsSection({
     : degreeMapSections.length
       ? "Open this dropdown for degree-specific requirement sections for your selected major."
       : "Open this dropdown for major details as they become available.";
-  const [isReferenceOpen, setIsReferenceOpen] = useState(false);
-  const [isGrcClassesOpen, setIsGrcClassesOpen] = useState(false);
-  const [isUwClassesOpen, setIsUwClassesOpen] = useState(false);
   const grcTrackTitle = String(track?.title ?? "").trim() || plan.title;
   const grcTrackDescription = track
     ? `Open this dropdown for all classes needed to complete the ${grcTrackTitle} transfer track at GRC.`
@@ -3309,8 +3006,8 @@ function MajorSpecificsSection({
                       {`UW ${plan.title} Degree Classes`}
                     </Text>
                     <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                      {uwCoursesConsideredEntries.length
-                        ? "Open this dropdown for major requirements, Gen-Eds, Green River equivalents, and UW courses considered from the official degree source."
+                      {majorSpecificsCourseRowCount
+                        ? "Open this dropdown for categorized major requirements, Gen-Eds, Green River equivalents, and UW options from the official degree source."
                         : "Open this dropdown for major requirements and Green River equivalents as they become available."}
                     </Text>
                   </View>
@@ -3347,57 +3044,86 @@ function MajorSpecificsSection({
                     </View>
                   ) : null}
 
-                  <View>
-                    <Text className={`${textClass} text-sm font-semibold`}>
-                      Major Required Gen-Eds
+                  {!sourceBackedUwGeneralEducationSection ? (
+                    <Text className={`${secondaryTextClass} text-sm`}>
+                      No source-backed major-specific general education targets are currently published for this major.
                     </Text>
-                    {sourceBackedUwGeneralEducationSection?.items.length ? (
-                      <View className="mt-2 gap-2">
-                        {sourceBackedUwGeneralEducationSection.items.map((entry) => (
-                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                            {`${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`}
-                          </Text>
-                        ))}
-                      </View>
-                    ) : (
-                      <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                        No source-backed major-specific general education targets are currently published for this major.
-                      </Text>
-                    )}
-                  </View>
+                  ) : null}
 
-                  <View>
-                    <Text className={`${textClass} text-sm font-semibold`}>Required Major Courses</Text>
-                    {uwRequiredPathCourseEntries.length ? (
-                      <View className="mt-2 gap-2">
-                        {uwRequiredPathCourseEntries.map((entry) => (
-                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                            {entry.text}
-                          </Text>
-                        ))}
+                  {majorSpecificsCourseSections.length ? (
+                    majorSpecificsCourseSections.map((section) => (
+                      <View key={section.id}>
+                        <Text className={`${textClass} text-sm font-semibold`}>
+                          {section.label}
+                        </Text>
+                        <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                          {section.description}
+                        </Text>
+                        <View className="mt-2 gap-3">
+                          {section.rows.map((entry) => (
+                            <View key={entry.id}>
+                              <Text className={`${secondaryTextClass} text-sm`}>
+                                {entry.text}
+                              </Text>
+                              {entry.alternativeOptionsText ? (
+                                <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                  {entry.alternativeOptionsText}
+                                </Text>
+                              ) : null}
+                            </View>
+                          ))}
+                        </View>
                       </View>
-                    ) : (
+                    ))
+                  ) : (
+                    <View>
+                      <Text className={`${textClass} text-sm font-semibold`}>Official UW Required Courses</Text>
                       <Text className={`${secondaryTextClass} text-sm mt-2`}>
                         No source-backed UW-required major-course path is available for this major yet.
                       </Text>
-                    )}
-                  </View>
+                    </View>
+                  )}
 
-                  <View>
-                    <Text className={`${textClass} text-sm font-semibold`}>UW Courses Considered</Text>
-                    {uwCoursesConsideredEntries.length ? (
-                      <View className="mt-2 gap-2">
-                        {uwCoursesConsideredEntries.map((entry) => (
-                          <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                            {entry.text}
+                  <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
+                    <AnimatedCardPressable
+                      onPress={() =>
+                        setIsUwCoursesConsideredOpen((currentValue) => !currentValue)
+                      }
+                      accessibilityRole="button"
+                      accessibilityState={{ expanded: isUwCoursesConsideredOpen }}
+                    >
+                      <View className="flex-row items-start justify-between gap-3">
+                        <View className="flex-1 min-w-0">
+                          <Text className={`${textClass} text-sm font-semibold`}>
+                            UW Courses Considered
                           </Text>
-                        ))}
+                          <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                            All UW courses parsed from the official degree source for this major.
+                          </Text>
+                        </View>
+                        <Ionicons
+                          name={isUwCoursesConsideredOpen ? "chevron-up" : "chevron-down"}
+                          size={18}
+                          color="#9CA3AF"
+                        />
                       </View>
-                    ) : (
-                      <Text className={`${secondaryTextClass} text-sm mt-2`}>
-                        No source-backed UW course list is available for this major yet.
-                      </Text>
-                    )}
+                    </AnimatedCardPressable>
+
+                    {isUwCoursesConsideredOpen ? (
+                      <View className="mt-3 gap-2">
+                        {uwCoursesConsideredEntries.length ? (
+                          uwCoursesConsideredEntries.map((entry) => (
+                            <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
+                              {entry.text}
+                            </Text>
+                          ))
+                        ) : (
+                          <Text className={`${secondaryTextClass} text-sm`}>
+                            No parsed UW course list is available for this major yet.
+                          </Text>
+                        )}
+                      </View>
+                    ) : null}
                   </View>
                 </View>
               ) : null}
@@ -3614,6 +3340,78 @@ export default function TransferPlannerPage() {
     );
     return `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
   }, []);
+  const completedCoursesKey = useMemo(
+    () =>
+      completedCourses
+        .map((course) =>
+          [
+            course.code,
+            course.label,
+            course.termLabel ?? "",
+            course.catalogYearLabel ?? "",
+          ].join(":")
+        )
+        .join("|"),
+    [completedCourses]
+  );
+  const plannerComputationKey = useMemo(
+    () =>
+      [
+        selectedCollegeId,
+        effectiveSelectedCampusId,
+        plan?.id ?? "",
+        plan?.selectedPathwayId ?? selectedPathwayId ?? "",
+        track?.id ?? "",
+        completedCoursesKey,
+        currentPlannedCourseLabels.join("|"),
+        onlyUwEssentialClasses ? "uw-only" : "full",
+        allowSummerClasses ? "summer" : "no-summer",
+      ].join("||"),
+    [
+      allowSummerClasses,
+      completedCoursesKey,
+      currentPlannedCourseLabels,
+      effectiveSelectedCampusId,
+      onlyUwEssentialClasses,
+      plan?.id,
+      plan?.selectedPathwayId,
+      selectedCollegeId,
+      selectedPathwayId,
+      track?.id,
+    ]
+  );
+  const [isPlannerComputationReady, setIsPlannerComputationReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    let cancelScheduledFrame = () => {};
+    setIsPlannerComputationReady(false);
+
+    const task = InteractionManager.runAfterInteractions(() => {
+      if (typeof requestAnimationFrame === "function") {
+        const frame = requestAnimationFrame(() => {
+          if (!cancelled) {
+            setIsPlannerComputationReady(true);
+          }
+        });
+        cancelScheduledFrame = () => cancelAnimationFrame(frame);
+        return;
+      }
+
+      const timeout = setTimeout(() => {
+        if (!cancelled) {
+          setIsPlannerComputationReady(true);
+        }
+      }, 0);
+      cancelScheduledFrame = () => clearTimeout(timeout);
+    });
+
+    return () => {
+      cancelled = true;
+      cancelScheduledFrame();
+      task.cancel?.();
+    };
+  }, [plannerComputationKey]);
 
   const handleGoBack = useCallback(() => {
     if (returnTo) {
@@ -3846,6 +3644,9 @@ export default function TransferPlannerPage() {
       );
 
       try {
+        const { transcriptPdfService } = await import(
+          "@/services/documents/transcript-pdf.service"
+        );
         const parsedCourses = await transcriptPdfService.extractCompletedCoursesFromPdf(
           document.url
         );
@@ -4061,48 +3862,29 @@ export default function TransferPlannerPage() {
   }, [patchUserLocally, setQuestionnaireAnswers, updateUser, user?.uid]);
 
   const handleRemoveTranscript = useCallback(() => {
-    if (!user?.uid) return;
-
-    const title = "Remove transcript";
-    const message = "Are you sure you want to remove your uploaded unofficial transcript?";
-
-    if (Platform.OS === "web" && typeof window !== "undefined" && typeof window.confirm === "function") {
-      if (window.confirm(`${title}\n\n${message}`)) {
-        void removeTranscriptNow();
-      }
-      return;
-    }
-
-    Alert.alert(
-      title,
-      message,
-      [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "Remove",
-          style: "destructive",
-          onPress: () => {
-            void removeTranscriptNow();
-          },
-        },
-      ]
-    );
-  }, [removeTranscriptNow, user?.uid]);
+    void removeTranscriptNow();
+  }, [removeTranscriptNow]);
 
   const applicationStatuses = useMemo(
     () =>
-      isUwPlanner && plan ? buildRequirementStatuses(plan.applicationChecklist, completedCourses) : [],
-    [completedCourses, isUwPlanner, plan]
+      isPlannerComputationReady && isUwPlanner && plan
+        ? buildRequirementStatuses(plan.applicationChecklist, completedCourses)
+        : [],
+    [completedCourses, isPlannerComputationReady, isUwPlanner, plan]
   );
   const beforeEnrollmentStatuses = useMemo(
     () =>
-      isUwPlanner && plan ? buildRequirementStatuses(plan.beforeEnrollmentChecklist, completedCourses) : [],
-    [completedCourses, isUwPlanner, plan]
+      isPlannerComputationReady && isUwPlanner && plan
+        ? buildRequirementStatuses(plan.beforeEnrollmentChecklist, completedCourses)
+        : [],
+    [completedCourses, isPlannerComputationReady, isUwPlanner, plan]
   );
   const stayAtGrcStatuses = useMemo(
     () =>
-      isUwPlanner && plan ? buildRequirementStatuses(plan.stayAtGrcChecklist, completedCourses) : [],
-    [completedCourses, isUwPlanner, plan]
+      isPlannerComputationReady && isUwPlanner && plan
+        ? buildRequirementStatuses(plan.stayAtGrcChecklist, completedCourses)
+        : [],
+    [completedCourses, isPlannerComputationReady, isUwPlanner, plan]
   );
   const hasOptionalStayAtGrcChecklist = plan?.stayAtGrcChecklist.length
     ? plan.stayAtGrcChecklist.some((item) => item.grcCourses.length > 0)
@@ -4111,22 +3893,26 @@ export default function TransferPlannerPage() {
     isUwPlanner && (Boolean(track) || hasOptionalStayAtGrcChecklist);
   const suggestedQuarterPlan = useMemo(
     () =>
-      buildSuggestedQuarterPlan({
-        plan: isUwPlanner ? plan : null,
-        applicationStatuses,
-        beforeEnrollmentStatuses,
-        stayAtGrcStatuses,
-        completedCourses,
-        currentCourseLabels: currentPlannedCourseLabels,
-        track,
-        includeStayAtGrcCourses: isUwPlanner ? !onlyUwEssentialClasses : true,
-        includeSummerQuarter: allowSummerClasses,
-      }),
+      isPlannerComputationReady
+        ? buildSuggestedQuarterPlan({
+            plan: isUwPlanner ? plan : null,
+            applicationStatuses,
+            beforeEnrollmentStatuses,
+            stayAtGrcStatuses,
+            completedCourses,
+            currentCourseKeys: currentPlannedCourseLabels,
+            currentCourseLabels: currentPlannedCourseLabels,
+            track,
+            includeStayAtGrcCourses: isUwPlanner ? !onlyUwEssentialClasses : true,
+            includeSummerQuarter: allowSummerClasses,
+          })
+        : [],
     [
       applicationStatuses,
       beforeEnrollmentStatuses,
       completedCourses,
       currentPlannedCourseLabels,
+      isPlannerComputationReady,
       isUwPlanner,
       allowSummerClasses,
       onlyUwEssentialClasses,
@@ -4137,7 +3923,7 @@ export default function TransferPlannerPage() {
   );
   const studentCourseEvaluations = useMemo(
     () =>
-      isUwPlanner && plan
+      isPlannerComputationReady && isUwPlanner && plan
         ? buildTransferPlannerStudentCourseEvaluations({
             plan,
             completedCourses,
@@ -4150,6 +3936,7 @@ export default function TransferPlannerPage() {
       applicationStatuses,
       beforeEnrollmentStatuses,
       completedCourses,
+      isPlannerComputationReady,
       isUwPlanner,
       plan,
       stayAtGrcStatuses,
@@ -4157,7 +3944,7 @@ export default function TransferPlannerPage() {
   );
   const studentEvaluationReport = useMemo(
     () =>
-      isUwPlanner && plan
+      isPlannerComputationReady && isUwPlanner && plan
         ? buildTransferPlannerStudentEvaluationReport({
             plan,
             campusLabel: campus?.title ?? getCollegeOptionLabel(selectedCollegeId),
@@ -4169,6 +3956,7 @@ export default function TransferPlannerPage() {
     [
       campus?.title,
       completedCourses,
+      isPlannerComputationReady,
       isUwPlanner,
       plan,
       selectedCollegeId,
@@ -4188,14 +3976,19 @@ export default function TransferPlannerPage() {
         : Boolean(track),
     [isUwPlanner, plan, track]
   );
+  const isPlannerComputationLoading =
+    hasStructuredPlannerData && !isPlannerComputationReady;
   const handleToggleCurrentCourse = useCallback(
-    async (courseLabel: string) => {
-      const normalizedLabel = String(courseLabel ?? "").trim();
-      if (!normalizedLabel) return;
+    async (courseKey: string, fallbackCourseLabel?: string) => {
+      const normalizedKey = String(courseKey ?? "").trim();
+      const normalizedFallbackLabel = String(fallbackCourseLabel ?? "").trim();
+      if (!normalizedKey) return;
 
-      const nextPathLabels = currentPlannedCourseSet.has(normalizedLabel)
-        ? currentPlannedCourseLabels.filter((label) => label !== normalizedLabel)
-        : [...currentPlannedCourseLabels, normalizedLabel];
+      const nextPathLabels = currentPlannedCourseSet.has(normalizedKey)
+        ? currentPlannedCourseLabels.filter((label) => label !== normalizedKey)
+        : normalizedFallbackLabel && currentPlannedCourseSet.has(normalizedFallbackLabel)
+          ? currentPlannedCourseLabels.filter((label) => label !== normalizedFallbackLabel)
+          : [...currentPlannedCourseLabels, normalizedKey];
       const nextSelectionMap = {
         ...currentCourseSelectionsByPath,
         [plannerPathKey]: nextPathLabels,
@@ -4579,30 +4372,46 @@ export default function TransferPlannerPage() {
 
           {hasStructuredPlannerData ? (
             <>
-              <SuggestedScheduleCard
-                key={plannerPathKey}
-                quarters={suggestedQuarterPlan}
-                collegeId={selectedCollegeId}
-                degreeTitle={activeDegreeTitle}
-                grcTrack={track}
-                campusLabel={selectedCampusLabel}
-                selectedCampusId={isUwPlanner ? plan?.campusId ?? null : null}
-                onlyUwEssentialClasses={onlyUwEssentialClasses}
-                showOnlyUwEssentialClassesToggle={shouldShowUwOnlyToggle}
-                onToggleOnlyUwEssentialClasses={() =>
-                  setOnlyUwEssentialClasses((current) => !current)
-                }
-                allowSummerClasses={allowSummerClasses}
-                onToggleAllowSummerClasses={() =>
-                  setAllowSummerClasses((current) => !current)
-                }
-                currentCourseLabels={currentPlannedCourseSet}
-                onToggleCurrentCourse={handleToggleCurrentCourse}
-                textClass={textClass}
-                secondaryTextClass={secondaryTextClass}
-                cardClass={cardBgClass}
-                borderClass={borderClass}
-              />
+              {isPlannerComputationLoading ? (
+                <View className={`${cardBgClass} border rounded-[28px] p-5`}>
+                  <View className="flex-row items-center">
+                    <ActivityIndicator color="#008f4e" />
+                    <View className="ml-3 flex-1">
+                      <Text className={`${textClass} text-lg font-semibold`}>
+                        Building your planner
+                      </Text>
+                      <Text className={`${secondaryTextClass} text-sm mt-1`}>
+                        Loading the selected requirements, matching Green River courses, and then building the quarter plan.
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              ) : (
+                <SuggestedScheduleCard
+                  key={plannerPathKey}
+                  quarters={suggestedQuarterPlan}
+                  collegeId={selectedCollegeId}
+                  degreeTitle={activeDegreeTitle}
+                  grcTrack={track}
+                  campusLabel={selectedCampusLabel}
+                  selectedCampusId={isUwPlanner ? plan?.campusId ?? null : null}
+                  onlyUwEssentialClasses={onlyUwEssentialClasses}
+                  showOnlyUwEssentialClassesToggle={shouldShowUwOnlyToggle}
+                  onToggleOnlyUwEssentialClasses={() =>
+                    setOnlyUwEssentialClasses((current) => !current)
+                  }
+                  allowSummerClasses={allowSummerClasses}
+                  onToggleAllowSummerClasses={() =>
+                    setAllowSummerClasses((current) => !current)
+                  }
+                  currentCourseSelections={currentPlannedCourseSet}
+                  onToggleCurrentCourse={handleToggleCurrentCourse}
+                  textClass={textClass}
+                  secondaryTextClass={secondaryTextClass}
+                  cardClass={cardBgClass}
+                  borderClass={borderClass}
+                />
+              )}
             </>
           ) : null}
 

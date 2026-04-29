@@ -143,6 +143,7 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^option breadth\b/i,
   /^option[- ]specific\b/i,
   /^program requirements?\b/i,
+  /^program option$/i,
   /^plus\b/i,
   /^students declare\b/i,
   /^the curriculum consists\b/i,
@@ -765,7 +766,15 @@ function normalizeDerivedPathwayCandidate(planTitle: string, value: string) {
         /^(.+?)\s+\(([A-Z0-9]{2,8})\)\s+(option|track|route|pathway|certificate|concentration)$/i,
         "$2 $3"
       )
+      .replace(
+        /^(.+?)\s+\(([A-Z0-9]{2,8})\)\s+(option|track|route|pathway|certificate|concentration)\s+program$/i,
+        "$2 $3"
+      )
       .replace(DERIVED_PATHWAY_WITH_OPTION_IN_PATTERN, "$1 Option")
+      .replace(
+        /\s+for\s+(?:[A-Z]{2,8}(?:\s+[A-Z]{1,8})?|[A-Z][A-Za-z&.\s]{1,80})\s+majors?$/i,
+        ""
+      )
       .replace(DERIVED_PATHWAY_TRAILING_SITE_SUFFIX_PATTERN, "")
       .replace(DERIVED_PATHWAY_DOCUMENT_TITLE_SUFFIX_PATTERN, "")
       .replace(DERIVED_PATHWAY_DOCUMENT_SUFFIX_PATTERN, "")

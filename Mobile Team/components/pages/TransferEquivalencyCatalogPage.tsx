@@ -1,7 +1,7 @@
 import { MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { ScrollView, Text, TextInput, View } from "react-native";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
@@ -64,6 +64,16 @@ function getEligibleTransferHeading(tag: string) {
   return `${shortLabel} eligible transfers (${longLabel})`;
 }
 
+function normalizeEquivalencySearchValue(value: string) {
+  return String(value ?? "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export default function TransferEquivalencyCatalogPage() {
   const goBack = useBack(ROUTES.transferPlanner);
   const router = useRouter();
@@ -84,6 +94,7 @@ export default function TransferEquivalencyCatalogPage() {
   const [tagOpenState, setTagOpenState] = useState<Record<string, boolean>>({});
   const [isCollegeSelectorOpen, setIsCollegeSelectorOpen] = useState(false);
   const [isCampusSelectorOpen, setIsCampusSelectorOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const backLabel = useMemo(() => {
     const translated = t("general.back");
     return translated && translated !== "general.back" ? translated : "Back";
@@ -211,6 +222,58 @@ export default function TransferEquivalencyCatalogPage() {
       (tag) => (equivalenciesByTag.get(tag)?.length ?? 0) > 0
     );
   }, [equivalenciesByTag, selectedTags]);
+  const normalizedSearchQuery = normalizeEquivalencySearchValue(searchQuery);
+  const isSearching = normalizedSearchQuery.length > 0;
+  const filteredEquivalenciesByTag = useMemo(() => {
+    if (!normalizedSearchQuery) {
+      return equivalenciesByTag;
+    }
+
+    const filtered = new Map<string, EquivalencyEntry[]>();
+
+    for (const tag of visibleTags) {
+      const rows = equivalenciesByTag.get(tag) ?? [];
+      const tagSearchText = normalizeEquivalencySearchValue(
+        [
+          tag,
+          getEligibleTransferHeading(tag),
+          getTransferEquivalencyTagLabel(tag),
+          getTransferEquivalencyTagLongLabel(tag),
+        ]
+          .filter(Boolean)
+          .join(" ")
+      );
+
+      if (tagSearchText.includes(normalizedSearchQuery)) {
+        filtered.set(tag, rows);
+        continue;
+      }
+
+      const matchingRows = rows.filter((row) =>
+        normalizeEquivalencySearchValue(
+          [
+            row.sourceCourseLabel,
+            row.sourceCourseTitle ?? "",
+            row.targetOutcome,
+            ...row.tags,
+          ].join(" ")
+        ).includes(normalizedSearchQuery)
+      );
+
+      if (matchingRows.length) {
+        filtered.set(tag, matchingRows);
+      }
+    }
+
+    return filtered;
+  }, [equivalenciesByTag, normalizedSearchQuery, visibleTags]);
+  const displayedTags = useMemo(
+    () =>
+      visibleTags.filter(
+        (tag) => (filteredEquivalenciesByTag.get(tag)?.length ?? 0) > 0
+      ),
+    [filteredEquivalenciesByTag, visibleTags]
+  );
 
   const campusLabel = selectedCampusLabel;
   const highlightedCategoryLabels = useMemo(
@@ -248,61 +311,98 @@ export default function TransferEquivalencyCatalogPage() {
           </Text>
         </View>
 
-        <View className="mt-5">
-          <Text className={`${textClass} text-base font-semibold`}>College</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            Pick the college whose transfer category equivalencies you want to browse. University of Washington is the only supported option right now.
-          </Text>
-          <View className="mt-4">
-            <SearchableSelect
-              value={selectedCollegeLabel}
-              open={isCollegeSelectorOpen}
-              onToggle={() => {
-                setIsCampusSelectorOpen(false);
-                setIsCollegeSelectorOpen((current) => !current);
-              }}
-              onDismiss={() => {
-                setIsCollegeSelectorOpen(false);
-              }}
-              options={collegeOptions}
-              onSelect={() => {
-                setIsCollegeSelectorOpen(false);
-              }}
-              selectedOptionId={selectedCollegeId}
-              textClass={textClass}
-              secondaryTextClass={secondaryTextClass}
-              borderClass={borderClass}
-              dropdownBackgroundColor={dropdownSurfaceColor}
-              overlayStrategy="modal"
-            />
+        <View className="mt-5 gap-4">
+          <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4`}>
+            <Text className={`${textClass} font-semibold`}>College</Text>
+            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+              Pick the college whose transfer category equivalencies you want to browse. University of Washington is the only supported option right now.
+            </Text>
+            <View className="mt-3">
+              <SearchableSelect
+                value={selectedCollegeLabel}
+                open={isCollegeSelectorOpen}
+                onToggle={() => {
+                  setIsCampusSelectorOpen(false);
+                  setIsCollegeSelectorOpen((current) => !current);
+                }}
+                onDismiss={() => {
+                  setIsCollegeSelectorOpen(false);
+                }}
+                options={collegeOptions}
+                onSelect={() => {
+                  setIsCollegeSelectorOpen(false);
+                }}
+                selectedOptionId={selectedCollegeId}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                borderClass={borderClass}
+                dropdownBackgroundColor={dropdownSurfaceColor}
+                overlayStrategy="modal"
+              />
+            </View>
+          </View>
+
+          <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4`}>
+            <Text className={`${textClass} font-semibold`}>Campus</Text>
+            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+              Choose which UW campus to browse source-backed transfer category equivalencies for.
+            </Text>
+            <View className="mt-3">
+              <SearchableSelect
+                value={selectedCampusLabel}
+                open={isCampusSelectorOpen}
+                onToggle={() => {
+                  setIsCollegeSelectorOpen(false);
+                  setIsCampusSelectorOpen((current) => !current);
+                }}
+                onDismiss={() => {
+                  setIsCampusSelectorOpen(false);
+                }}
+                options={campusOptions}
+                onSelect={handleCampusSelect}
+                selectedOptionId={selectedCampusId}
+                textClass={textClass}
+                secondaryTextClass={secondaryTextClass}
+                borderClass={borderClass}
+                dropdownBackgroundColor={dropdownSurfaceColor}
+                overlayStrategy="modal"
+              />
+            </View>
           </View>
         </View>
 
-        <View className="mt-5">
-          <Text className={`${textClass} text-base font-semibold`}>Campus</Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`}>
-            Choose which UW campus to browse source-backed transfer category equivalencies for.
+        <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4 mt-5`}>
+          <Text className={`${textClass} font-semibold`}>Search equivalencies</Text>
+          <Text className={`${secondaryTextClass} text-xs mt-1`}>
+            Search by Green River course, UW outcome, title, or category.
           </Text>
-          <View className="mt-4">
-            <SearchableSelect
-              value={selectedCampusLabel}
-              open={isCampusSelectorOpen}
-              onToggle={() => {
+          <View className={`mt-3 border ${borderClass} rounded-2xl px-4 py-3 flex-row items-center`}>
+            <MaterialIcons name="search" size={20} color="#9CA3AF" />
+            <TextInput
+              value={searchQuery}
+              onChangeText={setSearchQuery}
+              onFocus={() => {
                 setIsCollegeSelectorOpen(false);
-                setIsCampusSelectorOpen((current) => !current);
-              }}
-              onDismiss={() => {
                 setIsCampusSelectorOpen(false);
               }}
-              options={campusOptions}
-              onSelect={handleCampusSelect}
-              selectedOptionId={selectedCampusId}
-              textClass={textClass}
-              secondaryTextClass={secondaryTextClass}
-              borderClass={borderClass}
-              dropdownBackgroundColor={dropdownSurfaceColor}
-              overlayStrategy="modal"
+              placeholder="Search courses or categories"
+              placeholderTextColor="#9CA3AF"
+              autoCapitalize="none"
+              autoCorrect={false}
+              returnKeyType="search"
+              className={`${textClass} text-sm flex-1 min-w-0 ml-3`}
             />
+            {searchQuery ? (
+              <AnimatedIconPressable
+                onPress={() => setSearchQuery("")}
+                className="ml-2"
+                hitSlop={8}
+                accessibilityRole="button"
+                accessibilityLabel="Clear equivalency search"
+              >
+                <MaterialIcons name="close" size={18} color="#9CA3AF" />
+              </AnimatedIconPressable>
+            ) : null}
           </View>
         </View>
 
@@ -313,11 +413,20 @@ export default function TransferEquivalencyCatalogPage() {
               This campus currently has no source-backed category-tagged transfer rows for the selected filter.
             </Text>
           </View>
+        ) : !displayedTags.length ? (
+          <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4 mt-5`}>
+            <Text className={`${textClass} font-semibold`}>No matching equivalencies</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-2`}>
+              Try a different course code, title, UW outcome, or category.
+            </Text>
+          </View>
         ) : (
           <View className="mt-5 gap-4">
-            {visibleTags.map((tag) => {
-              const rows = equivalenciesByTag.get(tag) ?? [];
-              const isOpen = tagOpenState[tag] ?? (selectedTags.length > 0);
+            {displayedTags.map((tag) => {
+              const rows = filteredEquivalenciesByTag.get(tag) ?? [];
+              const sourceRowCount = equivalenciesByTag.get(tag)?.length ?? rows.length;
+              const isOpen =
+                isSearching || (tagOpenState[tag] ?? (selectedTags.length > 0));
               return (
                 <View key={tag} className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4`}>
                   <AnimatedIconPressable
@@ -334,7 +443,9 @@ export default function TransferEquivalencyCatalogPage() {
                         {getEligibleTransferHeading(tag)}
                       </Text>
                       <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                        {rows.length} source-backed equivalenc{rows.length === 1 ? "y" : "ies"}
+                        {isSearching && rows.length !== sourceRowCount
+                          ? `${rows.length} of ${sourceRowCount} source-backed equivalenc${sourceRowCount === 1 ? "y" : "ies"}`
+                          : `${rows.length} source-backed equivalenc${rows.length === 1 ? "y" : "ies"}`}
                       </Text>
                     </View>
                     <MaterialIcons

@@ -7,6 +7,7 @@ import {
   getTransferPlannerEquivalencyRulesForSourceCourse,
   getTransferPlannerMajorPlan,
   getTransferPlannerParsedRequirementSourceBlocks,
+  getTransferPlannerPrimaryDegreeRequirementsSource,
   resolveTransferPlannerMajorPlan,
   TRANSFER_PLANNER_SOURCE_GAP_REGISTRY,
   TransferPlannerChecklistItem,
@@ -14,6 +15,7 @@ import {
   TransferPlannerGeneralRequirementSourceKind,
   TransferPlannerEquivalencyRule,
   TransferPlannerMajorPlan,
+  TransferPlannerRequirementType,
   TransferPlannerStudentCourseEvaluation,
   TransferPlannerTrack,
 } from "@/constants/transfer-planner-source";
@@ -52,6 +54,10 @@ export type TransferRequirementStatus = {
   matchedCourses: TranscriptCourseEntry[];
   explicitCourseCodes: string[];
   requiredCompletedCount: number;
+  completedCredits?: number;
+  requiredCreditCount?: number | null;
+  maxCreditCount?: number | null;
+  creditProgressLabel?: string | null;
 };
 
 export type SourceBackedRequiredCourseDescriptor = {
@@ -62,6 +68,15 @@ export type SourceBackedRequiredCourseDescriptor = {
   courseLabelSets: string[][];
   explicitCourseCodes: string[];
   requiredCompletedCount: number;
+  requiredCreditCount: number | null;
+  maxCreditCount: number | null;
+  completedCredits: number | null;
+  creditProgressLabel: string | null;
+  requirementType: TransferPlannerRequirementType | null;
+  requirementGroupId: string | null;
+  requirementGroupLabel: string | null;
+  selectedOptionLabels: string[];
+  otherOptionLabels: string[];
   note: string | null;
   guidanceSummary: string | null;
 };
@@ -76,7 +91,105 @@ export type SourceBackedRequiredCourseSummaryEntry = {
 export type SourceBackedUwCourseConsideredSummaryEntry = {
   id: string;
   courseCode: string;
+  normalizedCourseCode?: string;
   text: string;
+  title?: string | null;
+  credits?: number | null;
+  creditMin?: number | null;
+  creditMax?: number | null;
+  creditText?: string | null;
+  category?: string | null;
+  requirementGroupId?: string | null;
+  requirementType?: TransferPlannerRequirementType | null;
+  optionRole?: string | null;
+  sourceHeading?: string | null;
+  sourceCategory?: string | null;
+  notes?: string[];
+};
+
+export type MajorSpecificsCourseSectionId =
+  | "official-uw-required-courses"
+  | "selected-uw-requirement-options"
+  | "other-valid-uw-options"
+  | "green-river-prerequisites"
+  | "matched-green-river-track-courses"
+  | "gen-ed-breadth-requirements"
+  | "restricted-or-replaced-requirements";
+
+export type MajorSpecificsCourseSourceType =
+  | "official_uw_requirement"
+  | "official_uw_option"
+  | "selected_uw_option"
+  | "grc_prerequisite"
+  | "grc_matched_track"
+  | "grc_equivalency_match"
+  | "gen_ed_bucket"
+  | "nme_option_requirement"
+  | "replaced_requirement"
+  | "restricted_option";
+
+export type MajorSpecificsRequirementRole =
+  | "required"
+  | "selected_option"
+  | "alternative_option"
+  | "prerequisite_only"
+  | "matched_track_course"
+  | "gen_ed_placeholder"
+  | "replaced"
+  | "restricted"
+  | "informational";
+
+export type MajorSpecificsCourseRow = {
+  id: string;
+  categoryId: MajorSpecificsCourseSectionId;
+  categoryLabel: string;
+  categoryDescription: string;
+  displayCourseCode: string;
+  normalizedCourseCode: string;
+  title: string | null;
+  credits: number | null;
+  text: string;
+  alternativeOptionsText?: string | null;
+  alternativeOptionsShown: string[];
+  sourceType: MajorSpecificsCourseSourceType;
+  requirementRole: MajorSpecificsRequirementRole;
+  requirementGroupId: string | null;
+  requirementGroupLabel: string | null;
+  requirementType: TransferPlannerRequirementType | null;
+  selectedForRequirement: boolean;
+  satisfiesRequirement: boolean;
+  countsTowardUwRequirement: boolean;
+  countsTowardGrcTrack: boolean;
+  countsTowardPrerequisiteChain: boolean;
+  countsTowardGenEd: boolean;
+  restrictionStatus: string | null;
+  explanation: string | null;
+  sourceUrl?: string | null;
+  sourceLabel?: string | null;
+};
+
+export type MajorSpecificsCourseSection = {
+  id: MajorSpecificsCourseSectionId;
+  label: string;
+  description: string;
+  rows: MajorSpecificsCourseRow[];
+};
+
+export type MajorSpecificsRenderingAuditEntry = {
+  courseCode: string;
+  category: string | null;
+  sourceType: MajorSpecificsCourseSourceType | null;
+  requirementRole: MajorSpecificsRequirementRole | null;
+  requirementType: TransferPlannerRequirementType | null;
+  requirementGroupId: string | null;
+  selectedForRequirement: boolean;
+  countsTowardUwRequirement: boolean;
+  countsTowardGrcTrack: boolean;
+  countsTowardPrerequisiteChain: boolean;
+  countsTowardGenEd: boolean;
+  restrictionStatus: string | null;
+  alternativeOptionsShown: string[];
+  flags: string[];
 };
 
 export type TrackUsageSummary = {
@@ -118,6 +231,7 @@ export type SuggestedQuarterCourseSourceKind =
   | "official-grc-track-breadth";
 
 export type SuggestedQuarterCourse = {
+  instanceKey?: string;
   label: string;
   type: "core" | "elective";
   status: "completed" | "current" | "planned";
@@ -588,10 +702,10 @@ function getSourceBackedRequirementSourceBlocksForPlan(
     (plan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
   return uniqueBy(
     [
+      ...getTransferPlannerParsedRequirementSourceBlocks(plan.id, selectedPathwayId),
       ...(selectedPathwayId
         ? getTransferPlannerParsedRequirementSourceBlocks(plan.id, null)
         : []),
-      ...getTransferPlannerParsedRequirementSourceBlocks(plan.id, selectedPathwayId),
     ],
     (block) => block.id
   );
@@ -623,6 +737,56 @@ function getSourceBackedRequiredUwCourseCodeSet(
   return requiredUwCourseCodes;
 }
 
+function isElectiveRequirementGroup(item: TransferPlannerChecklistItem) {
+  const group = item.requirementGroup;
+  return Boolean(group && /\belective\b/i.test(`${group.category} ${group.label}`));
+}
+
+function shouldTreatChecklistItemPrimaryCoursesAsRequired(item: TransferPlannerChecklistItem) {
+  const requirementType = item.requirementGroup?.requirementType;
+  if (requirementType === "choose_n" || requirementType === "choose_credits") {
+    return false;
+  }
+
+  if (requirementType === "choose_one" && isElectiveRequirementGroup(item)) {
+    return false;
+  }
+
+  return true;
+}
+
+function getRequiredChecklistCourseLabels(item: TransferPlannerChecklistItem) {
+  return shouldTreatChecklistItemPrimaryCoursesAsRequired(item) ? item.grcCourses ?? [] : [];
+}
+
+function getChoiceOnlyChecklistCourseCodeSet(plan: TransferPlannerMajorPlan | null | undefined) {
+  const courseCodes = new Set<string>();
+  if (!plan) {
+    return courseCodes;
+  }
+
+  for (const item of [
+    ...(plan.applicationChecklist ?? []),
+    ...(plan.beforeEnrollmentChecklist ?? []),
+    ...(plan.stayAtGrcChecklist ?? []),
+  ]) {
+    const choiceLabels = [
+      ...(shouldTreatChecklistItemPrimaryCoursesAsRequired(item) ? [] : item.grcCourses ?? []),
+      ...(item.alternatives ?? []).flat(),
+    ];
+    for (const label of choiceLabels) {
+      for (const courseCode of extractCourseCodes(label)) {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        if (normalizedCourseCode) {
+          courseCodes.add(normalizedCourseCode);
+        }
+      }
+    }
+  }
+
+  return courseCodes;
+}
+
 export function buildSourceBackedRequiredCourseCodes(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
@@ -634,6 +798,7 @@ export function buildSourceBackedRequiredCourseCodes(
   const seenCourseCodes = new Set<string>();
   const coveredRequiredUwCourseCodes = new Set<string>();
   const requiredUwCourseCodes = getSourceBackedRequiredUwCourseCodeSet(plan);
+  const choiceOnlyCourseCodes = getChoiceOnlyChecklistCourseCodeSet(plan);
   const isCoveredRequiredUwCourseCode = (targetCourseCode: string) => {
     const normalizedTargetCourseCode = normalizeCourseCode(targetCourseCode);
     if (!normalizedTargetCourseCode) {
@@ -678,7 +843,7 @@ export function buildSourceBackedRequiredCourseCodes(
   };
 
   for (const item of [...(plan.applicationChecklist ?? []), ...(plan.beforeEnrollmentChecklist ?? [])]) {
-    addCourseCodes(item.grcCourses ?? []);
+    addCourseCodes(getRequiredChecklistCourseLabels(item));
   }
 
   if (!requiredUwCourseCodes.size) {
@@ -688,7 +853,11 @@ export function buildSourceBackedRequiredCourseCodes(
   for (const courseLabel of getTransferPlannerGrcCourseList(plan)) {
     for (const courseCode of extractCourseCodes(courseLabel)) {
       const normalizedCourseCode = normalizeCourseCode(courseCode);
-      if (!normalizedCourseCode || seenCourseCodes.has(normalizedCourseCode)) {
+      if (
+        !normalizedCourseCode ||
+        seenCourseCodes.has(normalizedCourseCode) ||
+        choiceOnlyCourseCodes.has(normalizedCourseCode)
+      ) {
         continue;
       }
 
@@ -859,12 +1028,92 @@ function getChecklistChoiceLabels(item: TransferPlannerChecklistItem) {
   );
 }
 
+function getRequirementOptionCourseLabels(
+  option: NonNullable<TransferPlannerChecklistItem["requirementGroup"]>["options"][number]
+) {
+  const grcMatches = (option.grcMatches ?? [])
+    .map((label) => String(label ?? "").trim())
+    .filter(Boolean);
+  if (grcMatches.length) {
+    return unique(grcMatches);
+  }
+
+  return unique(
+    [...(option.uwCourses ?? []), ...(option.equivalentUwCourseCodes ?? [])]
+      .map((label) => String(label ?? "").trim())
+      .filter(Boolean)
+  );
+}
+
+function getRequirementOptionLabelsByIds(
+  item: TransferPlannerChecklistItem,
+  optionIds: string[] | null | undefined
+) {
+  const optionIdSet = new Set((optionIds ?? []).map((optionId) => String(optionId ?? "").trim()).filter(Boolean));
+  if (!item.requirementGroup || !optionIdSet.size) {
+    return [];
+  }
+
+  return unique(
+    (item.requirementGroup.options ?? [])
+      .filter((option) => option.id && optionIdSet.has(option.id))
+      .flatMap((option) => getRequirementOptionCourseLabels(option))
+  );
+}
+
+function buildChooseNRequirementLabel(item: TransferPlannerChecklistItem, chooseCount: number) {
+  const cleanedTitle = String(item.title ?? "")
+    .replace(/^One\s*(?:\(\s*1\s*\))?\s*/i, "")
+    .replace(/^Two\s+/i, "")
+    .trim();
+  return `Choose ${chooseCount} ${cleanedTitle || "options"}`;
+}
+
+function buildChooseCreditsRequirementLabel(item: TransferPlannerChecklistItem) {
+  const minCredits = item.minCredits ?? item.requirementGroup?.minCredits ?? null;
+  const maxCredits = item.maxCredits ?? item.requirementGroup?.maxCredits ?? null;
+  const labelContext = `${item.requirementGroup?.id ?? ""} ${item.requirementGroup?.subcategory ?? ""} ${item.title ?? ""}`;
+
+  if (minCredits != null && minCredits > 0) {
+    if (/mse-nme-core-elective|nme_core_elective/i.test(labelContext)) {
+      return `NME Option Core/Elective Requirement: ${minCredits} credits`;
+    }
+    if (/engineering-fundamentals/i.test(labelContext)) {
+      return `Choose at least ${minCredits} credits from Engineering Fundamentals electives`;
+    }
+    if (/mse-400-level|mse_400_level/i.test(labelContext)) {
+      return `Choose at least ${minCredits} credits from MSE 400-level technical electives`;
+    }
+    return `Choose at least ${minCredits} credits from ${String(item.title ?? "approved options").trim()}`;
+  }
+
+  if (maxCredits != null && maxCredits > 0) {
+    if (/outside-mse|outside_mse/i.test(labelContext)) {
+      return `Up to ${maxCredits} credits may count from approved outside-MSE technical electives`;
+    }
+    return `Up to ${maxCredits} credits may count from ${String(item.title ?? "approved options").trim()}`;
+  }
+
+  return `${String(item.title ?? "Approved options").trim()} - choose approved credits`;
+}
+
 function buildChecklistChoiceLabel(
   item: TransferPlannerChecklistItem,
   remainingNeeded: number,
   matchedCount: number
 ) {
-  const chooseLabel = `choose ${remainingNeeded}${matchedCount > 0 ? " more" : ""} from this list`;
+  if (item.requirementGroup?.requirementType === "choose_n") {
+    return buildChooseNRequirementLabel(item, remainingNeeded);
+  }
+
+  if (item.requirementGroup?.requirementType === "choose_credits") {
+    return buildChooseCreditsRequirementLabel(item);
+  }
+
+  const chooseLabel =
+    `Choose ${remainingNeeded === 1 ? "one" : remainingNeeded}${
+      matchedCount > 0 ? " more" : ""
+    } from this list`;
   return `${item.title} - ${chooseLabel}`;
 }
 
@@ -877,7 +1126,14 @@ function buildChecklistChoiceGuidanceSummary(
   const choiceLabels = getChecklistChoiceLabels(item);
   const previewLabels = choiceLabels.slice(0, CHECKLIST_CHOICE_PREVIEW_LIMIT);
   const hiddenCount = Math.max(choiceLabels.length - previewLabels.length, 0);
-  const chooseLabel = `Choose ${remainingNeeded}${matchedCount > 0 ? " more" : ""} from this list`;
+  const chooseLabel =
+    item.requirementGroup?.requirementType === "choose_n"
+      ? buildChooseNRequirementLabel(item, remainingNeeded)
+      : item.requirementGroup?.requirementType === "choose_credits"
+      ? buildChooseCreditsRequirementLabel(item)
+      : `Choose ${
+          remainingNeeded === 1 ? "one" : remainingNeeded
+        }${matchedCount > 0 ? " more" : ""} from this list`;
   const choicesSummary = previewLabels.length
     ? `${chooseLabel}: ${previewLabels.join(", ")}${hiddenCount > 0 ? `, plus ${hiddenCount} more` : ""}.`
     : `${chooseLabel}.`;
@@ -1451,6 +1707,32 @@ type RequirementCourseOption = {
   index: number;
 };
 
+function isChoiceRequirementStatus(status: TransferRequirementStatus) {
+  const requirementType = status.item.requirementGroup?.requirementType ?? null;
+  return (
+    requirementType === "choose_one" ||
+    requirementType === "choose_n" ||
+    requirementType === "choose_credits" ||
+    requirementType === "sequence_choice"
+  );
+}
+
+function getRequirementOptionCreditValue(
+  option: NonNullable<TransferPlannerChecklistItem["requirementGroup"]>["options"][number]
+) {
+  const credits = option.credits ?? 0;
+  if (!Number.isFinite(credits) || credits <= 0) {
+    return 0;
+  }
+
+  const maxCredits = option.maxCredits ?? null;
+  if (maxCredits != null && Number.isFinite(maxCredits) && maxCredits > 0) {
+    return Math.min(credits, maxCredits);
+  }
+
+  return credits;
+}
+
 function getChecklistCourseOptions(item: TransferPlannerChecklistItem) {
   return [item.grcCourses, ...(item.alternatives ?? [])]
     .map((courseLabels) =>
@@ -1497,6 +1779,73 @@ function buildRequirementCourseOption(
   };
 }
 
+function buildChooseCreditsRequirementStatus(
+  item: TransferPlannerChecklistItem,
+  completedByCode: Map<string, TranscriptCourseEntry>
+): TransferRequirementStatus | null {
+  const group = item.requirementGroup;
+  if (!group || group.requirementType !== "choose_credits") {
+    return null;
+  }
+
+  const explicitCourseCodes = unique(
+    (group.options ?? []).flatMap((option) =>
+      getRequirementOptionCourseLabels(option).flatMap((label) => extractCourseCodes(label))
+    )
+  );
+  const matchedCourses: TranscriptCourseEntry[] = [];
+  const usedCompletedCourseCodes = new Set<string>();
+  let completedCredits = 0;
+
+  for (const option of group.options ?? []) {
+    const optionCourseCodes = unique(
+      getRequirementOptionCourseLabels(option).flatMap((label) => extractCourseCodes(label))
+    );
+    const matchedCourse = optionCourseCodes
+      .map((courseCode) => completedByCode.get(courseCode) ?? null)
+      .find((course): course is TranscriptCourseEntry =>
+        Boolean(course && !usedCompletedCourseCodes.has(course.code))
+      );
+
+    if (!matchedCourse) {
+      continue;
+    }
+
+    usedCompletedCourseCodes.add(matchedCourse.code);
+    matchedCourses.push(matchedCourse);
+    completedCredits += getRequirementOptionCreditValue(option);
+  }
+
+  const requiredCreditCount = item.minCredits ?? group.minCredits ?? null;
+  const maxCreditCount = item.maxCredits ?? group.maxCredits ?? null;
+  const cappedCompletedCredits =
+    maxCreditCount != null && maxCreditCount > 0
+      ? Math.min(completedCredits, maxCreditCount)
+      : completedCredits;
+  const matched =
+    requiredCreditCount != null && requiredCreditCount > 0
+      ? cappedCompletedCredits >= requiredCreditCount
+      : true;
+  const creditProgressLabel =
+    requiredCreditCount != null && requiredCreditCount > 0
+      ? `${cappedCompletedCredits}/${requiredCreditCount} credits completed`
+      : maxCreditCount != null && maxCreditCount > 0
+        ? `${cappedCompletedCredits}/${maxCreditCount} credits counted`
+        : null;
+
+  return {
+    item,
+    matched,
+    matchedCourses,
+    explicitCourseCodes,
+    requiredCompletedCount: requiredCreditCount != null && requiredCreditCount > 0 ? 1 : 0,
+    completedCredits: cappedCompletedCredits,
+    requiredCreditCount,
+    maxCreditCount,
+    creditProgressLabel,
+  };
+}
+
 function selectPreferredRequirementOption(options: RequirementCourseOption[]) {
   return [...options].sort((left, right) => {
     const matchedStatusDelta = Number(right.matched) - Number(left.matched);
@@ -1525,6 +1874,11 @@ export function buildRequirementStatuses(
   }
 
   return items.map<TransferRequirementStatus>((item) => {
+    const creditStatus = buildChooseCreditsRequirementStatus(item, completedByCode);
+    if (creditStatus) {
+      return creditStatus;
+    }
+
     const selectedOption =
       selectPreferredRequirementOption(
         getChecklistCourseOptions(item).map((courseLabels, index) =>
@@ -1563,6 +1917,7 @@ function buildSourceBackedRequiredCourseDescriptorForItem(input: {
   const selectedOption =
     selectPreferredRequirementOption(courseOptions) ??
     buildRequirementCourseOption(item, item.grcCourses, 0, completedByCode);
+  const creditStatus = buildChooseCreditsRequirementStatus(item, completedByCode);
   const orderedCourseLabelSets = uniqueBy(
     [selectedOption.courseLabels, ...courseOptions.map((option) => option.courseLabels)]
       .map((courseLabels) =>
@@ -1577,6 +1932,12 @@ function buildSourceBackedRequiredCourseDescriptorForItem(input: {
   const hasMinimumCountStructure =
     selectedOption.requiredCompletedCount > 0 &&
     selectedOption.requiredCompletedCount < selectedOption.explicitCourseCodes.length;
+  const hasRequirementGroupChoiceStructure = Boolean(
+    item.requirementGroup &&
+      ["choose_one", "choose_n", "choose_credits", "sequence_choice"].includes(
+        item.requirementGroup.requirementType
+      )
+  );
 
   if (!orderedCourseLabelSets.length && !selectedOption.explicitCourseCodes.length) {
     return null;
@@ -1584,7 +1945,7 @@ function buildSourceBackedRequiredCourseDescriptorForItem(input: {
 
   return {
     id: item.id,
-    kind: hasChoiceSetStructure || hasMinimumCountStructure
+    kind: hasChoiceSetStructure || hasMinimumCountStructure || hasRequirementGroupChoiceStructure
       ? "choice-bucket"
       : selectedOption.explicitCourseCodes.length > 1
         ? "course-sequence"
@@ -1593,7 +1954,24 @@ function buildSourceBackedRequiredCourseDescriptorForItem(input: {
     bucket,
     courseLabelSets: orderedCourseLabelSets,
     explicitCourseCodes: selectedOption.explicitCourseCodes,
-    requiredCompletedCount: selectedOption.requiredCompletedCount,
+    requiredCompletedCount: creditStatus?.requiredCompletedCount ?? selectedOption.requiredCompletedCount,
+    requiredCreditCount:
+      creditStatus?.requiredCreditCount ?? item.minCredits ?? item.requirementGroup?.minCredits ?? null,
+    maxCreditCount:
+      creditStatus?.maxCreditCount ?? item.maxCredits ?? item.requirementGroup?.maxCredits ?? null,
+    completedCredits: creditStatus?.completedCredits ?? null,
+    creditProgressLabel: creditStatus?.creditProgressLabel ?? null,
+    requirementType: item.requirementGroup?.requirementType ?? null,
+    requirementGroupId: item.requirementGroup?.id ?? null,
+    requirementGroupLabel: item.requirementGroup?.label ?? null,
+    selectedOptionLabels: getRequirementOptionLabelsByIds(
+      item,
+      item.selectedRequirementOptionIds
+    ),
+    otherOptionLabels: getRequirementOptionLabelsByIds(
+      item,
+      item.unselectedRequirementOptionIds
+    ),
     note: String(item.note ?? "").trim() || null,
     guidanceSummary: buildChecklistGuidanceSummary(bucket, item),
   } satisfies SourceBackedRequiredCourseDescriptor;
@@ -1623,6 +2001,15 @@ function buildSourceBackedRequiredCourseFallbackDescriptor(input: {
     courseLabelSets: [[input.courseCode]],
     explicitCourseCodes: [input.courseCode],
     requiredCompletedCount: 1,
+    requiredCreditCount: null,
+    maxCreditCount: null,
+    completedCredits: null,
+    creditProgressLabel: null,
+    requirementType: null,
+    requirementGroupId: null,
+    requirementGroupLabel: null,
+    selectedOptionLabels: [],
+    otherOptionLabels: [],
     note: null,
     guidanceSummary: null,
   } satisfies SourceBackedRequiredCourseDescriptor;
@@ -1637,6 +2024,7 @@ export function buildSourceBackedRequiredCourseDescriptors(
   }
 
   const completedByCode = buildCompletedCoursesByCode(completedCourses);
+  const choiceOnlyCourseCodes = getChoiceOnlyChecklistCourseCodeSet(plan);
   const descriptors = [
     ...plan.applicationChecklist
       .map((item) =>
@@ -1709,7 +2097,11 @@ export function buildSourceBackedRequiredCourseDescriptors(
   for (const courseLabel of getTransferPlannerGrcCourseList(plan)) {
     for (const courseCode of extractCourseCodes(courseLabel)) {
       const normalizedCourseCode = normalizeCourseCode(courseCode);
-      if (!normalizedCourseCode || existingDescriptorCourseCodes.has(normalizedCourseCode)) {
+      if (
+        !normalizedCourseCode ||
+        existingDescriptorCourseCodes.has(normalizedCourseCode) ||
+        choiceOnlyCourseCodes.has(normalizedCourseCode)
+      ) {
         continue;
       }
 
@@ -1807,6 +2199,34 @@ function shouldIncludeSourceBackedUwCourseConsideredCode(courseCode: string) {
   return level !== null && level < 500;
 }
 
+function getParsedRequirementCourseDisplayRank(input: {
+  plan: TransferPlannerMajorPlan;
+  requirementGroupId?: string | null;
+}) {
+  const selectedPathwayId =
+    (input.plan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ??
+    null;
+  if (
+    input.plan.id !== "uw-seattle-materials-science-engineering" ||
+    selectedPathwayId !== "nme-option"
+  ) {
+    return 1;
+  }
+
+  const requirementGroupId = String(input.requirementGroupId ?? "");
+  if (requirementGroupId.endsWith(":mse-nme-core-elective-19-credits")) {
+    return 0;
+  }
+  if (
+    requirementGroupId.endsWith(":mse-400-level-technical-electives") ||
+    requirementGroupId.endsWith(":outside-mse-technical-electives")
+  ) {
+    return 2;
+  }
+
+  return 1;
+}
+
 export function buildSourceBackedUwCourseConsideredSummaryEntries(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
@@ -1816,7 +2236,11 @@ export function buildSourceBackedUwCourseConsideredSummaryEntries(
 
   const entries: SourceBackedUwCourseConsideredSummaryEntry[] = [];
   const seenCourseCodes = new Set<string>();
-  const addCourseCode = (courseCode: string, sourceTitle?: string | null) => {
+  const addCourseCode = (
+    courseCode: string,
+    sourceTitle?: string | null,
+    metadata: Partial<SourceBackedUwCourseConsideredSummaryEntry> = {}
+  ) => {
     const normalizedCourseCode = normalizeCourseCode(courseCode);
     if (
       !normalizedCourseCode ||
@@ -1830,15 +2254,48 @@ export function buildSourceBackedUwCourseConsideredSummaryEntries(
     entries.push({
       id: normalizedCourseCode.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, ""),
       courseCode: normalizedCourseCode,
+      normalizedCourseCode,
       text: buildSourceBackedUwCourseConsideredDisplayLabel({
         courseCode: normalizedCourseCode,
         campusId: plan.campusId,
         sourceTitle,
       }),
+      ...metadata,
     });
   };
 
   for (const block of getSourceBackedRequirementSourceBlocksForPlan(plan)) {
+    if ((block.parsedRequirementCourses ?? []).length) {
+      const parsedRequirementCourses = [...(block.parsedRequirementCourses ?? [])].sort(
+        (left, right) =>
+          getParsedRequirementCourseDisplayRank({
+            plan,
+            requirementGroupId: left.requirementGroupId,
+          }) -
+          getParsedRequirementCourseDisplayRank({
+            plan,
+            requirementGroupId: right.requirementGroupId,
+          })
+      );
+      for (const course of parsedRequirementCourses) {
+        addCourseCode(course.normalizedCourseCode, course.title, {
+          title: course.title ?? null,
+          credits: course.credits ?? null,
+          creditMin: course.creditMin ?? null,
+          creditMax: course.creditMax ?? null,
+          creditText: course.creditText ?? null,
+          category: course.category ?? null,
+          requirementGroupId: course.requirementGroupId ?? null,
+          requirementType: course.requirementType ?? null,
+          optionRole: course.optionRole ?? null,
+          sourceHeading: course.sourceHeading ?? null,
+          sourceCategory: course.sourceCategory ?? null,
+          notes: course.notes ?? [],
+        });
+      }
+      continue;
+    }
+
     for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
       addCourseCode(candidate.uwCourseCode, candidate.title);
     }
@@ -1846,6 +2303,18 @@ export function buildSourceBackedUwCourseConsideredSummaryEntries(
     for (const blockCandidate of block.parsedDegreeMapBlockCandidates ?? []) {
       for (const courseCode of blockCandidate.uwCourseCodes ?? []) {
         addCourseCode(courseCode, blockCandidate.title);
+      }
+    }
+
+    for (const group of block.parsedRequirementGroups ?? []) {
+      for (const option of group.options ?? []) {
+        const sourceTitle = option.title ?? option.label ?? group.label;
+        for (const courseCode of [
+          ...(option.uwCourses ?? []),
+          ...(option.equivalentUwCourseCodes ?? []),
+        ]) {
+          addCourseCode(courseCode, sourceTitle);
+        }
       }
     }
 
@@ -1887,6 +2356,62 @@ function buildSourceBackedChoiceRequirementSentence(
     .map((part) => String(part ?? "").trim())
     .filter(Boolean);
   const noteSuffix = noteParts.length ? ` ${joinGuidanceSummaries(...noteParts)}` : "";
+  const buildOptionText = (labels: string[], limit = CHECKLIST_CHOICE_PREVIEW_LIMIT) => {
+    const previewLabels = labels.slice(0, limit);
+    const hiddenCount = Math.max(labels.length - previewLabels.length, 0);
+    const optionText = joinPlannerLabelList(
+      previewLabels.map((courseLabel) => buildSourceBackedRequiredCourseDisplayLabel(courseLabel))
+    );
+    return hiddenCount > 0 ? `${optionText}, plus ${hiddenCount} more` : optionText;
+  };
+
+  if (descriptor.requirementType === "choose_credits") {
+    const labelContext = descriptor.title;
+    const chooseLabel =
+      descriptor.requiredCreditCount != null && descriptor.requiredCreditCount > 0
+        ? /nme option core\/elective|nme core elective/i.test(labelContext)
+          ? `NME Option Core/Elective Requirement: ${descriptor.requiredCreditCount} credits`
+          : /engineering fundamentals/i.test(labelContext)
+          ? `Choose at least ${descriptor.requiredCreditCount} credits from Engineering Fundamentals electives`
+          : /mse 400-level/i.test(labelContext)
+            ? `Choose at least ${descriptor.requiredCreditCount} credits from MSE 400-level technical electives`
+            : `Choose at least ${descriptor.requiredCreditCount} credits from ${descriptor.title}`
+        : descriptor.maxCreditCount != null && descriptor.maxCreditCount > 0
+          ? /outside-mse/i.test(labelContext)
+            ? `Up to ${descriptor.maxCreditCount} credits may count from approved outside-MSE technical electives`
+            : `Up to ${descriptor.maxCreditCount} credits may count from ${descriptor.title}`
+          : `${descriptor.title} - Choose approved credits`;
+    const progressText = descriptor.creditProgressLabel
+      ? ` ${descriptor.creditProgressLabel}.`
+      : "";
+    const selectedOptionText = descriptor.selectedOptionLabels.length
+      ? ` Selected for this credit requirement: ${buildOptionText(descriptor.selectedOptionLabels)}.`
+      : "";
+    const otherOptionText = descriptor.otherOptionLabels.length
+      ? ` Other approved options: ${buildOptionText(descriptor.otherOptionLabels)}.`
+      : "";
+
+    return `${chooseLabel}.${progressText}${selectedOptionText}${otherOptionText}${noteSuffix}`;
+  }
+
+  if (descriptor.requirementType === "choose_n") {
+    const chooseLabel = descriptor.title
+      .replace(/^One\s*(?:\(\s*1\s*\))?\s*/i, "")
+      .replace(/^Two\s+/i, "")
+      .trim();
+    const selectedOptionText = descriptor.selectedOptionLabels.length
+      ? ` Selected option${descriptor.selectedOptionLabels.length === 1 ? "" : "s"}: ${buildOptionText(
+          descriptor.selectedOptionLabels
+        )}.`
+      : "";
+    const otherOptionText = descriptor.otherOptionLabels.length
+      ? ` Other valid options: ${buildOptionText(descriptor.otherOptionLabels)}.`
+      : "";
+
+    return `Choose ${descriptor.requiredCompletedCount} ${
+      chooseLabel || descriptor.title
+    }.${selectedOptionText}${otherOptionText}${noteSuffix}`;
+  }
 
   if (descriptor.courseLabelSets.length > 1) {
     const optionText = descriptor.courseLabelSets
@@ -1898,7 +2423,7 @@ function buildSourceBackedChoiceRequirementSentence(
         )
       )
       .join("; or ");
-    return `${descriptor.title} - complete one approved option. Options: ${optionText}.${noteSuffix}`;
+    return `${descriptor.title} - Choose one. Options: ${optionText}.${noteSuffix}`;
   }
 
   const choiceLabels = joinPlannerLabelList(
@@ -1906,7 +2431,13 @@ function buildSourceBackedChoiceRequirementSentence(
       buildSourceBackedRequiredCourseDisplayLabel(courseLabel)
     )
   );
-  return `${descriptor.title} - choose ${descriptor.requiredCompletedCount} from this list. Options: ${choiceLabels}.${noteSuffix}`;
+  if (descriptor.requiredCreditCount) {
+    return `${descriptor.title} - Choose ${descriptor.requiredCreditCount} credits from this list. Options: ${choiceLabels}.${noteSuffix}`;
+  }
+
+  const chooseCount =
+    descriptor.requiredCompletedCount === 1 ? "one" : String(descriptor.requiredCompletedCount);
+  return `${descriptor.title} - Choose ${chooseCount} from this list. Options: ${choiceLabels}.${noteSuffix}`;
 }
 
 export function buildSourceBackedRequiredCourseSummaryEntries(
@@ -1927,6 +2458,7 @@ export function buildSourceBackedRequiredCourseSummaryEntries(
   );
   const entries: SourceBackedRequiredCourseSummaryEntry[] = [];
   const seenCourseCodes = new Set<string>();
+  const choiceOnlyCourseCodes = getChoiceOnlyChecklistCourseCodeSet(plan);
 
   for (const descriptor of descriptors) {
     if (descriptor.kind === "choice-bucket") {
@@ -1941,7 +2473,11 @@ export function buildSourceBackedRequiredCourseSummaryEntries(
 
     for (const courseCode of descriptor.explicitCourseCodes) {
       const normalizedCourseCode = normalizeCourseCode(courseCode);
-      if (!normalizedCourseCode || seenCourseCodes.has(normalizedCourseCode)) {
+      if (
+        !normalizedCourseCode ||
+        seenCourseCodes.has(normalizedCourseCode) ||
+        choiceOnlyCourseCodes.has(normalizedCourseCode)
+      ) {
         continue;
       }
 
@@ -1960,6 +2496,829 @@ export function buildSourceBackedRequiredCourseSummaryEntries(
   }
 
   return entries;
+}
+
+const MAJOR_SPECIFICS_COURSE_SECTIONS: {
+  id: MajorSpecificsCourseSectionId;
+  label: string;
+  description: string;
+}[] = [
+  {
+    id: "gen-ed-breadth-requirements",
+    label: "Gen-Ed Requirements",
+    description: "These satisfy UW Areas of Inquiry, Diversity, or related breadth categories.",
+  },
+  {
+    id: "official-uw-required-courses",
+    label: "Official UW Required Courses",
+    description: "These are directly required by the UW degree page.",
+  },
+  {
+    id: "selected-uw-requirement-options",
+    label: "Selected UW Requirement Options",
+    description: "These are chosen from UW-approved option groups.",
+  },
+  {
+    id: "other-valid-uw-options",
+    label: "Other Valid UW Options",
+    description: "These are approved alternatives, but they are not currently selected in this plan.",
+  },
+  {
+    id: "green-river-prerequisites",
+    label: "Green River Prerequisites",
+    description: "These help unlock later Green River courses in the planned sequence.",
+  },
+  {
+    id: "matched-green-river-track-courses",
+    label: "Matched Green River Track Courses",
+    description: "These come from the closest matching Green River associate pathway.",
+  },
+  {
+    id: "restricted-or-replaced-requirements",
+    label: "Restricted or Replaced Requirements",
+    description: "These are not active for the selected option, or have special restrictions.",
+  },
+];
+
+const MAJOR_SPECIFICS_COURSE_SECTION_BY_ID = new Map(
+  MAJOR_SPECIFICS_COURSE_SECTIONS.map((section) => [section.id, section] as const)
+);
+
+type RequirementGroupOption =
+  NonNullable<TransferPlannerChecklistItem["requirementGroup"]>["options"][number];
+
+function getSelectedPathwayId(plan: TransferPlannerMajorPlan | null | undefined) {
+  return (plan as { selectedPathwayId?: string | null } | null | undefined)?.selectedPathwayId ?? null;
+}
+
+function getMajorSpecificsPrimarySource(plan: TransferPlannerMajorPlan) {
+  const selectedPathwayId = getSelectedPathwayId(plan);
+  const primarySource = getTransferPlannerPrimaryDegreeRequirementsSource(
+    plan.id,
+    selectedPathwayId
+  );
+  const fallbackLink = plan.officialLinks[0] ?? null;
+
+  return {
+    sourceUrl: primarySource?.url ?? fallbackLink?.url ?? null,
+    sourceLabel: primarySource?.label ?? fallbackLink?.label ?? null,
+  };
+}
+
+function getMajorSpecificsSectionMetadata(categoryId: MajorSpecificsCourseSectionId) {
+  return (
+    MAJOR_SPECIFICS_COURSE_SECTION_BY_ID.get(categoryId) ??
+    MAJOR_SPECIFICS_COURSE_SECTIONS[0]
+  );
+}
+
+function getMajorSpecificsRowKey(row: MajorSpecificsCourseRow) {
+  return [
+    row.categoryId,
+    row.normalizedCourseCode || row.displayCourseCode,
+    row.requirementGroupId ?? "",
+    row.requirementRole,
+  ].join("||");
+}
+
+function makeMajorSpecificsCourseRow(
+  input: Omit<MajorSpecificsCourseRow, "categoryLabel" | "categoryDescription">
+): MajorSpecificsCourseRow {
+  const section = getMajorSpecificsSectionMetadata(input.categoryId);
+  return {
+    ...input,
+    categoryLabel: section.label,
+    categoryDescription: section.description,
+  };
+}
+
+function getCourseCodeForMajorSpecificsLabel(label: string) {
+  return normalizeCourseCode(extractCourseCodes(label)[0] ?? label);
+}
+
+function getRequirementOptionUwCourseCodes(option: RequirementGroupOption) {
+  return unique(
+    [...(option.uwCourses ?? []), ...(option.equivalentUwCourseCodes ?? [])]
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
+function getRequirementOptionDisplayCourseCode(option: RequirementGroupOption) {
+  return (
+    option.displayCourseCodes?.[0] ??
+    option.uwCourses?.[0] ??
+    option.equivalentUwCourseCodes?.[0] ??
+    option.grcMatches?.[0] ??
+    option.label ??
+    ""
+  );
+}
+
+function getRequirementOptionNormalizedCourseCode(option: RequirementGroupOption) {
+  return normalizeCourseCode(
+    option.uwCourses?.[0] ??
+      option.equivalentUwCourseCodes?.[0] ??
+      option.grcMatches?.[0] ??
+      getRequirementOptionDisplayCourseCode(option)
+  );
+}
+
+function getRequirementOptionUwLabel(option: RequirementGroupOption) {
+  return getRequirementOptionUwCourseCodes(option).join(" / ");
+}
+
+function getRequirementOptionCourseCodeLabel(labels: string[]) {
+  return unique(
+    labels
+      .map((label) => extractCourseCodes(label)[0] ?? label)
+      .map((label) => String(label ?? "").replace(/\s+/g, " ").trim())
+      .filter(Boolean)
+  ).join(" / ");
+}
+
+function getRequirementOptionDisplayLabel(option: RequirementGroupOption) {
+  const grcCourseCodes = getRequirementOptionCourseCodeLabel(option.grcMatches ?? []);
+  if (grcCourseCodes) {
+    const firstGrcMatch = option.grcMatches?.[0] ?? grcCourseCodes;
+    const displayLabel = buildSourceBackedRequiredCourseDisplayLabel(firstGrcMatch);
+    return grcCourseCodes.includes(" / ") ? grcCourseCodes : displayLabel;
+  }
+
+  return getRequirementOptionUwLabel(option) || option.label || getRequirementOptionDisplayCourseCode(option);
+}
+
+function getRequirementOptionAlternativePairLabel(option: RequirementGroupOption) {
+  const grcCourseCodes = getRequirementOptionCourseCodeLabel(option.grcMatches ?? []);
+  const uwCourseCodes = grcCourseCodes
+    ? unique((option.uwCourses ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)).join(" / ")
+    : getRequirementOptionUwLabel(option);
+  if (grcCourseCodes && uwCourseCodes) {
+    return `${grcCourseCodes} / ${uwCourseCodes}`;
+  }
+  return uwCourseCodes || grcCourseCodes || option.label || "";
+}
+
+function joinPlannerAlternativeLabelList(labels: string[]) {
+  if (labels.length <= 1) return labels[0] ?? "";
+  if (labels.length === 2) return `${labels[0]} or ${labels[1]}`;
+  return `${labels.slice(0, -1).join(", ")}, or ${labels[labels.length - 1]}`;
+}
+
+function buildSelectedRequirementOptionAlternativeText(input: {
+  selectedOption: RequirementGroupOption;
+  alternativeOptions: RequirementGroupOption[];
+}) {
+  const selectedLabel = getRequirementOptionAlternativePairLabel(input.selectedOption);
+  const alternativeLabels = unique(
+    input.alternativeOptions
+      .map((option) => getRequirementOptionAlternativePairLabel(option))
+      .filter(Boolean)
+  );
+
+  if (!selectedLabel || !alternativeLabels.length) {
+    return null;
+  }
+
+  const previewLabels = alternativeLabels.slice(0, 6);
+  const hiddenCount = Math.max(alternativeLabels.length - previewLabels.length, 0);
+  const optionsText = hiddenCount > 0
+    ? `${previewLabels.join(", ")}, or other approved options`
+    : joinPlannerAlternativeLabelList(previewLabels);
+
+  return `Instead of taking ${selectedLabel}, you can take ${optionsText}.`;
+}
+
+function isNmeRequirementGroup(group: NonNullable<TransferPlannerChecklistItem["requirementGroup"]>) {
+  return (
+    group.id.endsWith(":mse-nme-core-elective-19-credits") ||
+    group.category === "nme_core_elective"
+  );
+}
+
+function getSelectedRequirementOptionsForItem(item: TransferPlannerChecklistItem) {
+  const group = item.requirementGroup;
+  if (!group) return [] as RequirementGroupOption[];
+
+  const selectedIds = new Set(
+    (item.selectedRequirementOptionIds ?? [])
+      .map((optionId) => String(optionId ?? "").trim())
+      .filter(Boolean)
+  );
+  if (selectedIds.size) {
+    return group.options.filter((option) => option.id && selectedIds.has(option.id));
+  }
+
+  const selectionCount = Math.max(
+    1,
+    item.minCompletedCount ?? group.minCourses ?? (group.requirementType === "choose_one" ? 1 : 0)
+  );
+  if (group.requirementType === "choose_credits") {
+    if (!group.minCredits || group.minCredits <= 0) {
+      return [];
+    }
+    let selectedCredits = 0;
+    const selectedOptions: RequirementGroupOption[] = [];
+    for (const option of group.options) {
+      selectedOptions.push(option);
+      selectedCredits += getRequirementOptionCreditValue(option);
+      if (group.minCredits && selectedCredits >= group.minCredits) {
+        break;
+      }
+    }
+    return selectedOptions;
+  }
+
+  return group.options.slice(0, selectionCount);
+}
+
+function getAlternativeRequirementOptionsForItem(
+  item: TransferPlannerChecklistItem,
+  selectedOption: RequirementGroupOption
+) {
+  const group = item.requirementGroup;
+  if (!group) return [] as RequirementGroupOption[];
+
+  return group.options.filter((option) => option.id !== selectedOption.id);
+}
+
+function buildSelectedRequirementOptionSentence(input: {
+  item: TransferPlannerChecklistItem;
+  option: RequirementGroupOption;
+}) {
+  const displayLabel = getRequirementOptionDisplayLabel(input.option);
+  const uwLabel = getRequirementOptionUwLabel(input.option);
+  const requirementLabel =
+    input.item.requirementGroup?.requirementType === "choose_credits"
+      ? "this credit requirement"
+      : "this requirement";
+
+  if (input.option.grcMatches?.length && uwLabel) {
+    return `${displayLabel} is selected for ${requirementLabel}. UW equivalent: ${uwLabel}.`;
+  }
+
+  return `${displayLabel} is selected for ${requirementLabel}.`;
+}
+
+function buildAlternativeRequirementOptionSentence(input: {
+  item: TransferPlannerChecklistItem;
+  option: RequirementGroupOption;
+}) {
+  const displayLabel =
+    getRequirementOptionUwLabel(input.option) ||
+    getRequirementOptionDisplayLabel(input.option);
+  const groupLabel = input.item.requirementGroup?.label ?? input.item.title;
+  return `${displayLabel} is an approved alternative for ${groupLabel}.`;
+}
+
+function buildMajorSpecificsOptionRows(input: {
+  plan: TransferPlannerMajorPlan;
+  item: TransferPlannerChecklistItem;
+}) {
+  const group = input.item.requirementGroup;
+  if (!group || !["choose_one", "choose_n", "choose_credits", "sequence_choice"].includes(group.requirementType)) {
+    return [] as MajorSpecificsCourseRow[];
+  }
+
+  const rows: MajorSpecificsCourseRow[] = [];
+  const source = getMajorSpecificsPrimarySource(input.plan);
+  const selectedOptions = getSelectedRequirementOptionsForItem(input.item);
+  const selectedIds = new Set(
+    selectedOptions.map((option) => option.id).filter((optionId): optionId is string => Boolean(optionId))
+  );
+  const sourceType: MajorSpecificsCourseSourceType = isNmeRequirementGroup(group)
+    ? "nme_option_requirement"
+    : "selected_uw_option";
+
+  for (const option of selectedOptions) {
+    const alternativeOptions = getAlternativeRequirementOptionsForItem(input.item, option);
+    const alternativeOptionsText = buildSelectedRequirementOptionAlternativeText({
+      selectedOption: option,
+      alternativeOptions,
+    });
+    const alternativeOptionsShown = alternativeOptionsText
+      ? alternativeOptions
+          .map((alternativeOption) => getRequirementOptionAlternativePairLabel(alternativeOption))
+          .filter(Boolean)
+          .slice(0, 6)
+      : [];
+
+    rows.push(
+      makeMajorSpecificsCourseRow({
+        id: `${input.item.id}:selected:${option.id ?? getRequirementOptionNormalizedCourseCode(option)}`,
+        categoryId: "selected-uw-requirement-options",
+        displayCourseCode: getRequirementOptionDisplayCourseCode(option),
+        normalizedCourseCode: getRequirementOptionNormalizedCourseCode(option),
+        title: option.title ?? option.label ?? null,
+        credits: option.credits ?? option.creditMin ?? null,
+        text: buildSelectedRequirementOptionSentence({ item: input.item, option }),
+        alternativeOptionsText,
+        alternativeOptionsShown,
+        sourceType,
+        requirementRole: "selected_option",
+        requirementGroupId: group.id,
+        requirementGroupLabel: group.label,
+        requirementType: group.requirementType,
+        selectedForRequirement: true,
+        satisfiesRequirement: true,
+        countsTowardUwRequirement: true,
+        countsTowardGrcTrack: false,
+        countsTowardPrerequisiteChain: false,
+        countsTowardGenEd: false,
+        restrictionStatus: null,
+        explanation: `Selected option for ${group.label}.`,
+        ...source,
+      })
+    );
+  }
+
+  for (const option of group.options) {
+    if (option.id && selectedIds.has(option.id)) {
+      continue;
+    }
+
+    rows.push(
+      makeMajorSpecificsCourseRow({
+        id: `${input.item.id}:alternative:${option.id ?? getRequirementOptionNormalizedCourseCode(option)}`,
+        categoryId: "other-valid-uw-options",
+        displayCourseCode: getRequirementOptionDisplayCourseCode(option),
+        normalizedCourseCode: getRequirementOptionNormalizedCourseCode(option),
+        title: option.title ?? option.label ?? null,
+        credits: option.credits ?? option.creditMin ?? null,
+        text: buildAlternativeRequirementOptionSentence({ item: input.item, option }),
+        alternativeOptionsText: null,
+        alternativeOptionsShown: [],
+        sourceType: isNmeRequirementGroup(group) ? "nme_option_requirement" : "official_uw_option",
+        requirementRole: "alternative_option",
+        requirementGroupId: group.id,
+        requirementGroupLabel: group.label,
+        requirementType: group.requirementType,
+        selectedForRequirement: false,
+        satisfiesRequirement: false,
+        countsTowardUwRequirement: false,
+        countsTowardGrcTrack: false,
+        countsTowardPrerequisiteChain: false,
+        countsTowardGenEd: false,
+        restrictionStatus: null,
+        explanation: `Approved alternative for ${group.label}.`,
+        ...source,
+      })
+    );
+  }
+
+  return rows;
+}
+
+function buildMajorSpecificsRequiredRows(input: {
+  plan: TransferPlannerMajorPlan;
+  completedCourses: TranscriptCourseEntry[];
+}) {
+  const source = getMajorSpecificsPrimarySource(input.plan);
+  return buildSourceBackedRequiredCourseDescriptors(input.plan, input.completedCourses)
+    .filter((descriptor) => descriptor.kind !== "choice-bucket")
+    .flatMap((descriptor) =>
+      descriptor.explicitCourseCodes.map((courseCode) => {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        return makeMajorSpecificsCourseRow({
+          id: `${descriptor.id}:required:${normalizedCourseCode}`,
+          categoryId: "official-uw-required-courses",
+          displayCourseCode: normalizedCourseCode,
+          normalizedCourseCode,
+          title: null,
+          credits: null,
+          text: buildSourceBackedRequiredCourseSentence({
+            courseCode: normalizedCourseCode,
+            campusId: input.plan.campusId,
+            mode: "uw",
+          }),
+          alternativeOptionsText: null,
+          alternativeOptionsShown: [],
+          sourceType: "official_uw_requirement",
+          requirementRole: "required",
+          requirementGroupId: descriptor.requirementGroupId,
+          requirementGroupLabel: descriptor.requirementGroupLabel,
+          requirementType: descriptor.requirementType ?? "all_required",
+          selectedForRequirement: true,
+          satisfiesRequirement: true,
+          countsTowardUwRequirement: true,
+          countsTowardGrcTrack: false,
+          countsTowardPrerequisiteChain: false,
+          countsTowardGenEd: false,
+          restrictionStatus: null,
+          explanation: "Directly required by the UW degree page.",
+          ...source,
+        });
+      })
+    );
+}
+
+function buildMajorSpecificsChoiceRows(input: {
+  plan: TransferPlannerMajorPlan;
+}) {
+  const checklistItems = [
+    ...input.plan.applicationChecklist,
+    ...input.plan.beforeEnrollmentChecklist,
+    ...input.plan.stayAtGrcChecklist,
+  ];
+  return checklistItems.flatMap((item) => buildMajorSpecificsOptionRows({ plan: input.plan, item }));
+}
+
+function getSelectedRequirementOptionGrcCourseCodes(plan: TransferPlannerMajorPlan) {
+  return unique(
+    [
+      ...plan.applicationChecklist,
+      ...plan.beforeEnrollmentChecklist,
+      ...plan.stayAtGrcChecklist,
+    ].flatMap((item) =>
+      getSelectedRequirementOptionsForItem(item)
+        .flatMap((option) => option.grcMatches ?? [])
+        .flatMap((label) => extractCourseCodes(label))
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    )
+  );
+}
+
+function buildMajorSpecificsSuggestedPlanRows(input: {
+  plan: TransferPlannerMajorPlan;
+  track?: TransferPlannerTrack | null;
+  completedCourses: TranscriptCourseEntry[];
+}) {
+  const track = input.track ?? null;
+  const applicationStatuses = buildRequirementStatuses(
+    input.plan.applicationChecklist,
+    input.completedCourses
+  );
+  const beforeEnrollmentStatuses = buildRequirementStatuses(
+    input.plan.beforeEnrollmentChecklist,
+    input.completedCourses
+  );
+  const stayAtGrcStatuses = buildRequirementStatuses(
+    input.plan.stayAtGrcChecklist,
+    input.completedCourses
+  );
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: input.plan,
+    applicationStatuses,
+    beforeEnrollmentStatuses,
+    stayAtGrcStatuses,
+    completedCourses: input.completedCourses,
+    track,
+    includeStayAtGrcCourses: true,
+  });
+  const requiredOrSelectedCodes = new Set(
+    [
+      ...buildMajorSpecificsRequiredRows({
+        plan: input.plan,
+        completedCourses: input.completedCourses,
+      }),
+      ...buildMajorSpecificsChoiceRows({ plan: input.plan }),
+    ]
+      .filter((row) => row.countsTowardUwRequirement)
+      .map((row) => normalizeCourseCode(row.normalizedCourseCode))
+      .filter(Boolean)
+      .concat(getSelectedRequirementOptionGrcCourseCodes(input.plan))
+  );
+  const trackSource = {
+    sourceUrl: track?.officialLinks?.[0]?.url ?? null,
+    sourceLabel: track?.title ?? null,
+  };
+  const sourceBackedGeneralEducationSummary =
+    buildSourceBackedMajorGeneralEducationRequirementSection(input.plan);
+
+  const rows: MajorSpecificsCourseRow[] = [];
+  const seen = new Set<string>();
+  const addRow = (row: MajorSpecificsCourseRow) => {
+    const key = getMajorSpecificsRowKey(row);
+    if (seen.has(key)) return;
+    seen.add(key);
+    rows.push(row);
+  };
+
+  for (const course of suggestedPlan.flatMap((quarter) => quarter.courses)) {
+    const label = String(course.label ?? "").trim();
+    if (!label) continue;
+
+    const normalizedCourseCode = getCourseCodeForMajorSpecificsLabel(label);
+    const isPrerequisite = /\bprerequisite\b/i.test(course.guidanceSummary ?? "");
+    const isTrackCourse = course.sourceKind === "official-grc-track";
+    const isBreadth =
+      course.sourceKind === "uw-major-breadth" ||
+      course.sourceKind === "official-grc-track-breadth";
+
+    if (normalizedCourseCode && requiredOrSelectedCodes.has(normalizedCourseCode)) {
+      continue;
+    }
+
+    if (isBreadth) {
+      if (sourceBackedGeneralEducationSummary?.items.length) {
+        continue;
+      }
+
+      addRow(
+        makeMajorSpecificsCourseRow({
+          id: `major-specifics:gen-ed:${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+          categoryId: "gen-ed-breadth-requirements",
+          displayCourseCode: label,
+          normalizedCourseCode: normalizedCourseCode || label,
+          title: label,
+          credits: null,
+          text: course.guidanceSummary ? `${label}. ${course.guidanceSummary}` : label,
+          alternativeOptionsText: null,
+          alternativeOptionsShown: [],
+          sourceType: "gen_ed_bucket",
+          requirementRole: "gen_ed_placeholder",
+          requirementGroupId: null,
+          requirementGroupLabel: null,
+          requirementType: null,
+          selectedForRequirement: false,
+          satisfiesRequirement: false,
+          countsTowardUwRequirement: false,
+          countsTowardGrcTrack: course.sourceKind === "official-grc-track-breadth",
+          countsTowardPrerequisiteChain: false,
+          countsTowardGenEd: true,
+          restrictionStatus: null,
+          explanation: "Gen-ed or breadth placeholder in the planner path.",
+          ...(course.sourceKind === "official-grc-track-breadth" ? trackSource : getMajorSpecificsPrimarySource(input.plan)),
+        })
+      );
+      continue;
+    }
+
+    if (isPrerequisite && !isTrackCourse) {
+      continue;
+    }
+
+    if (isTrackCourse) {
+      const categoryId: MajorSpecificsCourseSectionId = "matched-green-river-track-courses";
+      addRow(
+        makeMajorSpecificsCourseRow({
+          id: `major-specifics:${categoryId}:${normalizedCourseCode || label}`,
+          categoryId,
+          displayCourseCode: normalizedCourseCode || label,
+          normalizedCourseCode: normalizedCourseCode || label,
+          title: null,
+          credits: null,
+          text: course.guidanceSummary ? `${label}. ${course.guidanceSummary}` : label,
+          alternativeOptionsText: null,
+          alternativeOptionsShown: [],
+          sourceType: "grc_matched_track",
+          requirementRole: "matched_track_course",
+          requirementGroupId: null,
+          requirementGroupLabel: null,
+          requirementType: null,
+          selectedForRequirement: false,
+          satisfiesRequirement: false,
+          countsTowardUwRequirement: false,
+          countsTowardGrcTrack: true,
+          countsTowardPrerequisiteChain: isPrerequisite,
+          countsTowardGenEd: false,
+          restrictionStatus: null,
+          explanation: isPrerequisite
+            ? "Included by the matched Green River associate pathway and useful for prerequisite sequencing."
+            : "Included by the matched Green River associate pathway.",
+          ...trackSource,
+        })
+      );
+    }
+  }
+
+  return rows;
+}
+
+function formatRequirementReplacementLabel(requirementId: string) {
+  if (requirementId.endsWith(":mse-technical-electives-15-credits")) {
+    return "Technical Electives: 15 credits";
+  }
+  if (requirementId.endsWith(":mse-nme-core-elective-19-credits")) {
+    return "NME Option Core/Elective Requirement: 19 credits";
+  }
+  return requirementId.split(":").at(-1)?.replace(/-/g, " ") ?? requirementId;
+}
+
+function buildMajorSpecificsRestrictedRows(input: {
+  plan: TransferPlannerMajorPlan;
+}) {
+  const source = getMajorSpecificsPrimarySource(input.plan);
+  const rows: MajorSpecificsCourseRow[] = [];
+
+  for (const replacement of input.plan.requirementReplacements ?? []) {
+    const baseLabel = formatRequirementReplacementLabel(replacement.baseRequirementId);
+    const replacementLabel = formatRequirementReplacementLabel(replacement.replacedByRequirementId);
+    rows.push(
+      makeMajorSpecificsCourseRow({
+        id: `major-specifics:replacement:${replacement.baseRequirementId}`,
+        categoryId: "restricted-or-replaced-requirements",
+        displayCourseCode: baseLabel,
+        normalizedCourseCode: baseLabel,
+        title: baseLabel,
+        credits: null,
+        text: `${baseLabel} is replaced by ${replacementLabel} for this selected option.`,
+        alternativeOptionsText: null,
+        alternativeOptionsShown: [],
+        sourceType: "replaced_requirement",
+        requirementRole: "replaced",
+        requirementGroupId: replacement.baseRequirementId,
+        requirementGroupLabel: baseLabel,
+        requirementType: "choose_credits",
+        selectedForRequirement: false,
+        satisfiesRequirement: false,
+        countsTowardUwRequirement: false,
+        countsTowardGrcTrack: false,
+        countsTowardPrerequisiteChain: false,
+        countsTowardGenEd: false,
+        restrictionStatus: "replaced",
+        explanation: replacement.replacementReason,
+        sourceUrl: replacement.sourceUrl || source.sourceUrl,
+        sourceLabel: replacement.sourceHeading || source.sourceLabel,
+      })
+    );
+  }
+
+  if (
+    input.plan.id === "uw-seattle-materials-science-engineering" &&
+    getSelectedPathwayId(input.plan) === "nme-option"
+  ) {
+    rows.push(
+      makeMajorSpecificsCourseRow({
+        id: "major-specifics:restricted:nme-220-engineering-fundamentals",
+        categoryId: "restricted-or-replaced-requirements",
+        displayCourseCode: "NME 220",
+        normalizedCourseCode: "NME 220",
+        title: "Introduction to Molecular and Nanoscale Principles",
+        credits: 4,
+        text: "NME 220 is not eligible as an Engineering Fundamentals elective for NME Option students.",
+        alternativeOptionsText: null,
+        alternativeOptionsShown: [],
+        sourceType: "restricted_option",
+        requirementRole: "restricted",
+        requirementGroupId:
+          "uw-seattle-materials-science-engineering:requirement-group:engineering-fundamentals-electives",
+        requirementGroupLabel: "Engineering Fundamentals Electives",
+        requirementType: "choose_credits",
+        selectedForRequirement: false,
+        satisfiesRequirement: false,
+        countsTowardUwRequirement: false,
+        countsTowardGrcTrack: false,
+        countsTowardPrerequisiteChain: false,
+        countsTowardGenEd: false,
+        restrictionStatus: "not_eligible_for_nme_option",
+        explanation: "NME 220 is blocked from the Engineering Fundamentals elective bucket for NME Option students.",
+        ...source,
+      })
+    );
+  }
+
+  return rows;
+}
+
+function buildMajorSpecificsGeneralEducationRows(plan: TransferPlannerMajorPlan) {
+  const sourceBackedSection = buildSourceBackedMajorGeneralEducationRequirementSection(plan);
+  if (!sourceBackedSection?.items.length) {
+    return [] as MajorSpecificsCourseRow[];
+  }
+
+  const source = getMajorSpecificsPrimarySource(plan);
+  const itemDisplayRank = (item: TransferPlannerGeneralRequirementSection["items"][number]) => {
+    if (item.id === "ah" || item.id === "ah-range") {
+      return 10;
+    }
+    if (item.id === "ssc" || item.id === "ssc-range") {
+      return 20;
+    }
+    if (item.id.startsWith("additional-ah-ssc")) {
+      return 30;
+    }
+    if (item.id === "div" || item.id === "overlapping-div") {
+      return 40;
+    }
+    if (item.id === "areas-of-inquiry-total") {
+      return 50;
+    }
+    return 60;
+  };
+  const displayItems = [...sourceBackedSection.items].sort(
+    (left, right) => itemDisplayRank(left) - itemDisplayRank(right)
+  );
+
+  return displayItems.map((item) =>
+    makeMajorSpecificsCourseRow({
+      id: `major-specifics:source-gen-ed:${item.id}`,
+      categoryId: "gen-ed-breadth-requirements",
+      displayCourseCode: item.label,
+      normalizedCourseCode: item.id,
+      title: item.label,
+      credits: null,
+      text: `${item.label}: ${item.valueText}${item.note ? ` (${item.note})` : ""}`,
+      alternativeOptionsText: null,
+      alternativeOptionsShown: [],
+      sourceType: "gen_ed_bucket",
+      requirementRole: "informational",
+      requirementGroupId: null,
+      requirementGroupLabel: sourceBackedSection.title,
+      requirementType: null,
+      selectedForRequirement: false,
+      satisfiesRequirement: false,
+      countsTowardUwRequirement: false,
+      countsTowardGrcTrack: false,
+      countsTowardPrerequisiteChain: false,
+      countsTowardGenEd: true,
+      restrictionStatus: null,
+      explanation: sourceBackedSection.summary,
+      ...source,
+    })
+  );
+}
+
+export function buildMajorSpecificsCourseSections(input: {
+  plan: TransferPlannerMajorPlan | null | undefined;
+  track?: TransferPlannerTrack | null;
+  completedCourses?: TranscriptCourseEntry[];
+}) {
+  if (!input.plan) {
+    return [] as MajorSpecificsCourseSection[];
+  }
+
+  const completedCourses = input.completedCourses ?? [];
+  const rows = [
+    ...buildMajorSpecificsRequiredRows({ plan: input.plan, completedCourses }),
+    ...buildMajorSpecificsChoiceRows({ plan: input.plan }),
+    ...buildMajorSpecificsSuggestedPlanRows({
+      plan: input.plan,
+      track: input.track ?? null,
+      completedCourses,
+    }),
+    ...buildMajorSpecificsGeneralEducationRows(input.plan),
+    ...buildMajorSpecificsRestrictedRows({ plan: input.plan }),
+  ];
+  const rowsBySection = new Map<MajorSpecificsCourseSectionId, MajorSpecificsCourseRow[]>();
+  const seenRows = new Set<string>();
+
+  for (const row of rows) {
+    const key = getMajorSpecificsRowKey(row);
+    if (seenRows.has(key)) continue;
+    seenRows.add(key);
+    rowsBySection.set(row.categoryId, [...(rowsBySection.get(row.categoryId) ?? []), row]);
+  }
+
+  return MAJOR_SPECIFICS_COURSE_SECTIONS.map((section) => ({
+    ...section,
+    rows: rowsBySection.get(section.id) ?? [],
+  })).filter((section) => section.rows.length > 0);
+}
+
+export function buildMajorSpecificsRenderingAudit(
+  sections: MajorSpecificsCourseSection[]
+) {
+  return sections.flatMap((section) =>
+    section.rows.map<MajorSpecificsRenderingAuditEntry>((row) => {
+      const flags: string[] = [];
+      const hasChoiceAlternatives =
+        row.requirementRole === "selected_option" &&
+        row.requirementType != null &&
+        ["choose_one", "choose_n", "choose_credits", "sequence_choice"].includes(row.requirementType) &&
+        row.alternativeOptionsShown.length > 0;
+
+      if (!section.label) flags.push("missing-category");
+      if (!row.sourceType) flags.push("missing-source-type");
+      if (!row.requirementRole) flags.push("missing-requirement-role");
+      if (
+        row.requirementRole === "alternative_option" &&
+        /\bis required\b/i.test(row.text)
+      ) {
+        flags.push("option-shown-as-required-without-selection");
+      }
+      if (row.requirementRole === "prerequisite_only" && row.countsTowardUwRequirement) {
+        flags.push("prerequisite-only-counted-as-uw-requirement");
+      }
+      if (row.requirementRole === "restricted" && row.countsTowardUwRequirement) {
+        flags.push("restricted-course-counted-toward-progress");
+      }
+      if (row.requirementRole === "replaced" && row.countsTowardUwRequirement) {
+        flags.push("replaced-requirement-counted-as-active");
+      }
+      if (hasChoiceAlternatives && !row.alternativeOptionsText) {
+        flags.push("selected-option-missing-alternative-text");
+      }
+
+      return {
+        courseCode: row.displayCourseCode,
+        category: section.label,
+        sourceType: row.sourceType,
+        requirementRole: row.requirementRole,
+        requirementType: row.requirementType,
+        requirementGroupId: row.requirementGroupId,
+        selectedForRequirement: row.selectedForRequirement,
+        countsTowardUwRequirement: row.countsTowardUwRequirement,
+        countsTowardGrcTrack: row.countsTowardGrcTrack,
+        countsTowardPrerequisiteChain: row.countsTowardPrerequisiteChain,
+        countsTowardGenEd: row.countsTowardGenEd,
+        restrictionStatus: row.restrictionStatus,
+        alternativeOptionsShown: row.alternativeOptionsShown,
+        flags,
+      };
+    })
+  );
 }
 
 export function countCompletedRequirements(statuses: TransferRequirementStatus[]) {
@@ -2751,6 +4110,55 @@ function buildQuarterSlotsAfterCurrent(referenceDate = new Date(), includeSummer
 const MAX_AUTOMATIC_PLANNED_QUARTERS = 18;
 const MAX_AUTOMATIC_PLANNED_QUARTERS_WITH_GEN_ED_EXTENSION = 80;
 const PLANNING_NO_PROGRESS_QUARTER_LIMIT = 3;
+
+function toSuggestedQuarterCourse(course: SuggestedQuarterCourse): SuggestedQuarterCourse {
+  return {
+    instanceKey: course.instanceKey,
+    label: course.label,
+    type: course.type,
+    status: course.status,
+    guidanceSummary: course.guidanceSummary,
+    sourceKind: course.sourceKind,
+    availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(course.label),
+  };
+}
+
+function buildSuggestedCourseInstanceBaseKey(
+  course: PendingSuggestedCourse,
+  sourceGroup: string
+) {
+  return [
+    sourceGroup,
+    course.sourceKind ?? "unknown",
+    course.label,
+    course.sequenceGroup ?? "",
+    String(course.priorityRank),
+    String(course.sourceOrder),
+    course.explicitCourseCodes.join("+") || "placeholder",
+  ].join("|");
+}
+
+function assignSuggestedCourseInstanceKeys<TCourse extends PendingSuggestedCourse>(
+  courses: TCourse[],
+  sourceGroup: string
+): TCourse[] {
+  const occurrenceByBaseKey = new Map<string, number>();
+
+  return courses.map((course) => {
+    if (course.instanceKey) {
+      return course;
+    }
+
+    const baseKey = buildSuggestedCourseInstanceBaseKey(course, sourceGroup);
+    const occurrenceIndex = occurrenceByBaseKey.get(baseKey) ?? 0;
+    occurrenceByBaseKey.set(baseKey, occurrenceIndex + 1);
+
+    return {
+      ...course,
+      instanceKey: `${baseKey}|${occurrenceIndex}`,
+    };
+  });
+}
 
 function buildCompletedQuarterPlans(
   completedCourses: TranscriptCourseEntry[],
@@ -4151,6 +5559,32 @@ function extractGeneralEducationFixedCredits(text: string) {
   return parentheticalMatches[parentheticalMatches.length - 1] ?? null;
 }
 
+function getCurrentGeneralEducationRequirementText(text: string) {
+  return (
+    text.split(
+      /\b(?:of special note|special note|was only|prior to|before)\b/i
+    )[0] ?? text
+  ).trim();
+}
+
+function extractCurrentDiversityGeneralEducationCredits(text: string) {
+  const currentText = getCurrentGeneralEducationRequirementText(text);
+  const currentCredits = extractFirstMatchingGeneralEducationCreditValue(currentText, [
+    /\b(?:minimum of|at least|required|complete|must(?:\s+complete)?)\s+(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b[^.;]{0,64}\b(?:diversity|div)\b/i,
+    /\b(?:diversity|div)\b[^0-9.;]{0,64}(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b/i,
+    /\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b[^.;]{0,64}\b(?:diversity|div)\b/i,
+  ]);
+  if (currentCredits !== null) {
+    return currentCredits;
+  }
+
+  return extractFirstMatchingGeneralEducationCreditValue(text, [
+    /\b(?:minimum of|at least|required|complete|must(?:\s+complete)?)\s+(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b[^.;]{0,64}\b(?:diversity|div)\b/i,
+    /\b(?:diversity|div)\b[^0-9.;]{0,64}(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b/i,
+    /\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b[^.;]{0,64}\b(?:diversity|div)\b/i,
+  ]);
+}
+
 function countGeneralEducationCreditMentions(text: string) {
   return Array.from(
     text.matchAll(
@@ -4172,6 +5606,9 @@ function buildCategorySpecificGeneralEducationFixedDescriptors(
       },
       {
         category: "nsc",
+      },
+      {
+        category: "div",
       },
     ] as const
   )
@@ -4263,21 +5700,24 @@ function buildSingleCategoryGeneralEducationFixedDescriptor(
   category: SourceBackedGeneralEducationCategoryId
 ): Extract<SourceBackedGeneralEducationDescriptor, { kind: "category-fixed" }> | null {
   const categoryPatternSource = getSourceBackedGeneralEducationCategoryPatternSource(category);
-  const credits = extractFirstMatchingGeneralEducationCreditValue(text, [
-    new RegExp(`^\\s*(?:${categoryPatternSource})\\b[^.;]{0,32}\\((\\d+(?:\\.\\d+)?)\\)`, "i"),
-    new RegExp(
-      `\\b(?:${categoryPatternSource})\\b[^.;]{0,32}\\((\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b[^)]*\\)`,
-      "i"
-    ),
-    new RegExp(
-      `\\b(?:${categoryPatternSource})\\b[^.;]{0,32}\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b`,
-      "i"
-    ),
-    new RegExp(
-      `\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b(?:\\s+of)?[^.;]{0,24}\\b(?:${categoryPatternSource})\\b`,
-      "i"
-    ),
-  ]);
+  const credits =
+    category === "div"
+      ? extractCurrentDiversityGeneralEducationCredits(text)
+      : extractFirstMatchingGeneralEducationCreditValue(text, [
+          new RegExp(`^\\s*(?:${categoryPatternSource})\\b[^.;]{0,32}\\((\\d+(?:\\.\\d+)?)\\)`, "i"),
+          new RegExp(
+            `\\b(?:${categoryPatternSource})\\b[^.;]{0,32}\\((\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b[^)]*\\)`,
+            "i"
+          ),
+          new RegExp(
+            `\\b(?:${categoryPatternSource})\\b[^.;]{0,32}\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b`,
+            "i"
+          ),
+          new RegExp(
+            `\\b(\\d+(?:\\.\\d+)?)\\s*(?:credits?|cr)\\b(?:\\s+of)?[^.;]{0,24}\\b(?:${categoryPatternSource})\\b`,
+            "i"
+          ),
+        ]);
   if (credits === null) {
     return null;
   }
@@ -4426,16 +5866,28 @@ function buildOverlappingSourceBackedGeneralEducationDescriptor(
   categories: SourceBackedGeneralEducationCategoryId[],
   credits: number | null
 ): Extract<SourceBackedGeneralEducationDescriptor, { kind: "overlapping-category" }> | null {
-  if (credits === null || !categories.includes("div")) {
+  if (!categories.includes("div")) {
+    return null;
+  }
+
+  const diversityCredits = extractCurrentDiversityGeneralEducationCredits(text) ?? credits;
+  if (diversityCredits === null) {
     return null;
   }
 
   const startsWithDiversity = /^(?:[-*]\s*)?(?:diversity|div)\b/i.test(text);
+  const hasDiversityRequirementLanguage =
+    /\b(?:minimum of|at least|required|coursework|credits?)\b[^.;]{0,80}\b(?:diversity|div)\b/i.test(
+      text
+    ) ||
+    /\b(?:diversity|div)\b[^.;]{0,80}\b(?:minimum|at least|required|coursework|credits?)\b/i.test(
+      text
+    );
   const hasOverlapLanguage =
     /\boverlap(?:s|ping)?\b|\balso\s+(?:counts?|fulfills?|satisfies?)\b|\bdouble\s+counts?\b/i.test(
       text
     );
-  if (!startsWithDiversity || !hasOverlapLanguage) {
+  if (!(startsWithDiversity || hasDiversityRequirementLanguage) || !hasOverlapLanguage) {
     return null;
   }
 
@@ -4443,7 +5895,7 @@ function buildOverlappingSourceBackedGeneralEducationDescriptor(
   return {
     kind: "overlapping-category",
     category: "div",
-    credits,
+    credits: diversityCredits,
     overlappingCategories: overlappingCategories.length
       ? overlappingCategories
       : (["ah", "ssc"] as SourceBackedGeneralEducationCategoryId[]),
@@ -4854,12 +6306,20 @@ function buildParsedSourceBackedGeneralEducationStructure(
         hasAllBucketCategoriesFixed &&
         additionalFlexibleCreditsForBucket === null &&
         fixedCreditTotal === bucket.totalCredits;
+      const isSymmetricMissingCategoryExpansion =
+        !hasAllBucketCategoriesFixed &&
+        isAhOrSscBucket &&
+        overlappingFixedCredits.length === 1 &&
+        additionalFlexibleCreditsForBucket === null &&
+        bucket.totalCredits - fixedCreditTotal * 2 >= 0 &&
+        bucket.totalCredits - fixedCreditTotal * 2 <= fixedCreditTotal;
 
       if (
         !isFixedMinimumExpansion &&
         !isFullyExpandedSharedBucket &&
         !isFullyAllocatedFixedBucket &&
-        !isPartiallyExpandedSharedBucket
+        !isPartiallyExpandedSharedBucket &&
+        !isSymmetricMissingCategoryExpansion
       ) {
         hasConflict = true;
         break;
@@ -4880,6 +6340,108 @@ function hasSameSourceBackedGeneralEducationDescriptorType<
   kind: K
 ): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: K }> {
   return descriptor.kind === kind;
+}
+
+function isAhSscSourceBackedGeneralEducationSharedBucket(
+  descriptor: SourceBackedGeneralEducationDescriptor
+): descriptor is Extract<SourceBackedGeneralEducationDescriptor, { kind: "shared-bucket" }> {
+  return (
+    descriptor.kind === "shared-bucket" &&
+    hasSameSourceBackedCategorySet(
+      getSourceBackedPlanningCategories(descriptor.categories),
+      ["ah", "ssc"]
+    )
+  );
+}
+
+function getInferredAdditionalAhSscCreditsForSharedBucket(
+  descriptor: Extract<SourceBackedGeneralEducationDescriptor, { kind: "shared-bucket" }>,
+  fixedCreditsByCategory: Map<SourceBackedGeneralEducationCategoryId, number>
+) {
+  return inferAhSscSharedBucketAllocation(descriptor, fixedCreditsByCategory)
+    ?.additionalCredits ?? null;
+}
+
+function inferAhSscSharedBucketAllocation(
+  descriptor: Extract<SourceBackedGeneralEducationDescriptor, { kind: "shared-bucket" }>,
+  fixedCreditsByCategory: Map<SourceBackedGeneralEducationCategoryId, number>
+) {
+  if (!isAhSscSourceBackedGeneralEducationSharedBucket(descriptor)) {
+    return null;
+  }
+
+  const fixedAhCredits = fixedCreditsByCategory.get("ah") ?? null;
+  const fixedSscCredits = fixedCreditsByCategory.get("ssc") ?? null;
+  if (fixedAhCredits !== null && fixedSscCredits !== null) {
+    const additionalCredits = descriptor.totalCredits - fixedAhCredits - fixedSscCredits;
+    return additionalCredits >= 0
+      ? {
+          ahCredits: fixedAhCredits,
+          sscCredits: fixedSscCredits,
+          additionalCredits,
+          inferredCategory: null as SourceBackedPlanningGeneralEducationCategoryId | null,
+        }
+      : null;
+  }
+
+  const knownCategory =
+    fixedAhCredits !== null ? "ah" : fixedSscCredits !== null ? "ssc" : null;
+  const knownCredits = fixedAhCredits ?? fixedSscCredits ?? null;
+  if (knownCategory === null || knownCredits === null || knownCredits <= 0) {
+    return null;
+  }
+
+  const additionalCredits = descriptor.totalCredits - knownCredits * 2;
+  if (additionalCredits < 0 || additionalCredits > knownCredits) {
+    return null;
+  }
+
+  return {
+    ahCredits: fixedAhCredits ?? knownCredits,
+    sscCredits: fixedSscCredits ?? knownCredits,
+    additionalCredits,
+    inferredCategory: (knownCategory === "ah" ? "ssc" : "ah") as
+      | SourceBackedPlanningGeneralEducationCategoryId
+      | null,
+  };
+}
+
+function hasReducibleAhSscSourceBackedGeneralEducationSharedBucket(
+  structure: ParsedSourceBackedGeneralEducationStructure
+) {
+  const fixedCreditsByCategory = new Map<SourceBackedGeneralEducationCategoryId, number>();
+  for (const descriptor of structure.descriptors) {
+    if (descriptor.kind === "category-fixed" && descriptor.category !== "div") {
+      fixedCreditsByCategory.set(descriptor.category, descriptor.credits);
+    }
+  }
+
+  return structure.descriptors.some((descriptor) => {
+    if (!isAhSscSourceBackedGeneralEducationSharedBucket(descriptor)) {
+      return false;
+    }
+
+    if (descriptor.minimumPerCategoryCredits !== null) {
+      return true;
+    }
+
+    return inferAhSscSharedBucketAllocation(descriptor, fixedCreditsByCategory) !== null;
+  });
+}
+
+function isAggregateAreaTotalCoveredByFlexibleBucket(
+  descriptor: Extract<SourceBackedGeneralEducationDescriptor, { kind: "area-total" }>,
+  structure: ParsedSourceBackedGeneralEducationStructure
+) {
+  if (!hasReducibleAhSscSourceBackedGeneralEducationSharedBucket(structure)) {
+    return false;
+  }
+
+  return structure.descriptors.some(
+    (entry) =>
+      isAhSscSourceBackedGeneralEducationSharedBucket(entry) &&
+      descriptor.totalCredits > entry.totalCredits
+  );
 }
 
 function canReduceAreaTotalDescriptor(
@@ -4926,7 +6488,11 @@ function buildRangeBasedGeneralEducationRequirementTargets(
   }
 
   const hasUnsupportedCompanionDescriptor = structure.descriptors.some(
-    (descriptor) => descriptor.kind !== "category-range" && descriptor.kind !== "area-total"
+    (descriptor) =>
+      descriptor.kind !== "category-range" &&
+      descriptor.kind !== "area-total" &&
+      !(descriptor.kind === "category-fixed" && descriptor.category === "div") &&
+      !(descriptor.kind === "overlapping-category" && descriptor.category === "div")
   );
   if (hasUnsupportedCompanionDescriptor) {
     return null;
@@ -5001,7 +6567,10 @@ function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
     }
 
     if (descriptor.kind === "area-total") {
-      return !canReduceAreaTotalDescriptor(descriptor, structure);
+      return (
+        !canReduceAreaTotalDescriptor(descriptor, structure) &&
+        !isAggregateAreaTotalCoveredByFlexibleBucket(descriptor, structure)
+      );
     }
 
     if (descriptor.kind === "additional-flexible") {
@@ -5029,6 +6598,24 @@ function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
         descriptor.credits
       );
     }
+  }
+
+  for (const descriptor of structure.descriptors) {
+    if (!isAhSscSourceBackedGeneralEducationSharedBucket(descriptor)) {
+      continue;
+    }
+
+    const allocation = inferAhSscSharedBucketAllocation(descriptor, fixedCreditsByCategory);
+    if (!allocation) {
+      continue;
+    }
+
+    fixedCreditsByCategory.set("ah", allocation.ahCredits);
+    fixedCreditsByCategory.set("ssc", allocation.sscCredits);
+    additionalFlexibleCreditsByCategoryKey.set(
+      getSourceBackedPlanningCategories(descriptor.categories).join("-"),
+      allocation.additionalCredits
+    );
   }
 
   for (const descriptor of structure.descriptors) {
@@ -5062,6 +6649,13 @@ function buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
       additionalFlexibleCreditsByCategoryKey.get(bucketPlanningCategories.join("-")) ?? null;
     const fixedAhCredits = fixedCreditsByCategory.get("ah") ?? null;
     const fixedSscCredits = fixedCreditsByCategory.get("ssc") ?? null;
+
+    if (fixedAhCredits !== null) {
+      targets.ahCredits = targets.ahCredits ?? fixedAhCredits;
+    }
+    if (fixedSscCredits !== null) {
+      targets.sscCredits = targets.sscCredits ?? fixedSscCredits;
+    }
 
     if (descriptor.minimumPerCategoryCredits !== null) {
       targets.ahCredits = targets.ahCredits ?? descriptor.minimumPerCategoryCredits;
@@ -5195,6 +6789,20 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
       continue;
     }
 
+    const inferredAllocation = inferAhSscSharedBucketAllocation(
+      descriptor,
+      fixedCreditsByCategory
+    );
+    if (inferredAllocation) {
+      fixedCreditsByCategory.set("ah", inferredAllocation.ahCredits);
+      fixedCreditsByCategory.set("ssc", inferredAllocation.sscCredits);
+      additionalFlexibleByCategoryKey.set(
+        planningCategories.join("-"),
+        inferredAllocation.additionalCredits
+      );
+      continue;
+    }
+
     const additionalFlexibleCredits =
       additionalFlexibleByCategoryKey.get(planningCategories.join("-")) ?? null;
     if (additionalFlexibleCredits === null) {
@@ -5230,6 +6838,10 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
 
   for (const descriptor of structure.descriptors) {
     if (descriptor.kind === "area-total") {
+      if (isAggregateAreaTotalCoveredByFlexibleBucket(descriptor, structure)) {
+        continue;
+      }
+
       if (canReduceAreaTotalDescriptor(descriptor, structure)) {
         const hasRangeDescriptor = structure.descriptors.some(
           (entry) => entry.kind === "category-range"
@@ -5329,6 +6941,28 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
     const descriptorPlanningCategories = getSourceBackedPlanningCategories(
       descriptor.categories
     );
+    const inferredAdditionalAhSscCredits =
+      getInferredAdditionalAhSscCreditsForSharedBucket(descriptor, fixedCreditsByCategory);
+    if (
+      inferredAdditionalAhSscCredits !== null &&
+      hasSameSourceBackedCategorySet(descriptorPlanningCategories, ["ah", "ssc"])
+    ) {
+      if (inferredAdditionalAhSscCredits > 0) {
+        pushItem({
+          id: `additional-${descriptorPlanningCategories.join("-")}`,
+          label: `Additional ${joinSourceBackedGeneralEducationCategoryLabels(
+            descriptorPlanningCategories,
+            "slash"
+          )}`,
+          valueText: formatSourceBackedGeneralEducationCreditCount(
+            inferredAdditionalAhSscCredits
+          ),
+          sourceKind: "source-backed-major",
+        });
+      }
+      continue;
+    }
+
     const fixedCreditTotal = descriptorPlanningCategories.reduce(
       (totalCredits, category) => totalCredits + (fixedCreditsByCategory.get(category) ?? 0),
       0
@@ -6515,14 +8149,7 @@ function allocateQuarterCourses({
     getTermLimitedRequiredUrgencyPriorityBoost(course);
 
   if (courses.length >= quarterCourseCap) {
-    return courses.map<SuggestedQuarterCourse>(({ label, type, status, guidanceSummary, sourceKind }) => ({
-      label,
-      type,
-      status,
-      guidanceSummary,
-      sourceKind,
-      availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(label),
-    }));
+    return courses.map(toSuggestedQuarterCourse);
   }
 
   const hasCoreCourse = courses.some((course) => course.type === "core");
@@ -6653,14 +8280,7 @@ function allocateQuarterCourses({
     courses.push(nextRemainingFiller);
   }
 
-  return courses.map<SuggestedQuarterCourse>(({ label, type, status, guidanceSummary, sourceKind }) => ({
-    label,
-    type,
-    status,
-    guidanceSummary,
-    sourceKind,
-    availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(label),
-  }));
+  return courses.map(toSuggestedQuarterCourse);
 }
 
 function hasPendingQuarterPlanCourses(pools: PendingSuggestedCourse[][]) {
@@ -6963,6 +8583,7 @@ export function buildSuggestedQuarterPlan(input: {
   stayAtGrcStatuses: TransferRequirementStatus[];
   completedCourses: TranscriptCourseEntry[];
   track: TransferPlannerTrack | null;
+  currentCourseKeys?: string[];
   currentCourseLabels?: string[];
   referenceDate?: Date;
   includeStayAtGrcCourses?: boolean;
@@ -6995,6 +8616,16 @@ export function buildSuggestedQuarterPlan(input: {
         .filter(Boolean)
     )
   );
+  const selectedCurrentCourseKeys = new Set(
+    unique(
+      (input.currentCourseKeys ?? [])
+        .map((key) => String(key ?? "").trim())
+        .filter(Boolean)
+    )
+  );
+  const isSelectedCurrentCourse = (course: SuggestedQuarterCourse) =>
+    (!!course.instanceKey && selectedCurrentCourseKeys.has(course.instanceKey)) ||
+    selectedCurrentCourseLabels.has(course.label);
   const completedCourseCodes = new Set(input.completedCourses.map((course) => course.code));
   const checklistCourseCodes = new Set(
     [
@@ -7004,18 +8635,15 @@ export function buildSuggestedQuarterPlan(input: {
     ].flatMap((status) => status.explicitCourseCodes)
   );
   const trackSupplementalCoveredCourseCodes = new Set([
-    ...checklistCourseCodes,
     ...[
       ...applicationStatuses,
       ...beforeEnrollmentStatuses,
       ...stayAtGrcStatuses,
-    ]
-      .filter((status) => status.matched)
-      .flatMap((status) =>
-        getChecklistCourseOptions(status.item).flatMap((courseLabels) =>
-          courseLabels.flatMap((label) => extractCourseCodes(label))
-        )
-      ),
+    ].flatMap((status) =>
+      isChoiceRequirementStatus(status)
+        ? status.matchedCourses.map((course) => course.code)
+        : status.explicitCourseCodes
+    ),
   ]);
   const resolvedTrackSupplementalCourseLabels = getResolvedTrackSupplementalCourseLabels({
     track: input.track,
@@ -7101,12 +8729,15 @@ export function buildSuggestedQuarterPlan(input: {
           ),
           ...trackSupplementalCourses,
         ];
-  const guidedRemainingCourses = attachAutomaticPrerequisiteGuidance(
-    attachAutomaticTransferEquivalencyGuidance(
-      remainingCourses,
-      input.plan?.campusId,
-      completedCourseCodes
-    )
+  const guidedRemainingCourses = assignSuggestedCourseInstanceKeys(
+    attachAutomaticPrerequisiteGuidance(
+      attachAutomaticTransferEquivalencyGuidance(
+        remainingCourses,
+        input.plan?.campusId,
+        completedCourseCodes
+      )
+    ),
+    "requirement"
   );
   const completedQuarterPlans = buildCompletedQuarterPlans(input.completedCourses, {
     campusId: input.plan?.campusId,
@@ -7117,29 +8748,8 @@ export function buildSuggestedQuarterPlan(input: {
       ...stayAtGrcStatuses,
     ],
   });
-  const currentQuarterCourses = guidedRemainingCourses
-    .filter((course) => selectedCurrentCourseLabels.has(course.label))
-    .map<PendingSuggestedCourse>((course) => ({
-      ...course,
-      status: "current",
-    }));
-  const currentQuarterPlanCourses = currentQuarterCourses.map<SuggestedQuarterCourse>(
-    ({ label, type, status, guidanceSummary, sourceKind }) => ({
-      label,
-      type,
-      status,
-      guidanceSummary,
-      sourceKind,
-      availabilitySummary: getTransferPlannerGrcCourseAvailabilitySummary(label),
-    })
-  );
-  const currentQuarterSlot = currentQuarterCourses.length
-    ? getCurrentOrNextQuarterSlot(input.referenceDate, includeSummerQuarter)
-    : null;
-  const futurePlanningSatisfiedCourseCodes = new Set(completedCourseCodes);
-  recordPlannedQuarterCourseCodes(currentQuarterPlanCourses, futurePlanningSatisfiedCourseCodes);
   const guidedCoursesStillToPlan = guidedRemainingCourses.filter(
-    (course) => !selectedCurrentCourseLabels.has(course.label)
+    (course) => !isSelectedCurrentCourse(course)
   );
 
   const essentialCorePool = guidedCoursesStillToPlan
@@ -7192,11 +8802,11 @@ export function buildSuggestedQuarterPlan(input: {
     !!input.plan &&
     !hasExplicitRemainingPlannerCourses &&
     getTransferPlannerGrcCourseList(input.plan).length === 0;
-  const fillerPool =
+  const allFillerPool =
     (input.includeStayAtGrcCourses === false && !input.plan) ||
     shouldSuppressGeneralEducationOnlyFiller
       ? []
-      : fillerPlaceholderEntries.map<PendingSuggestedCourse>(
+      : assignSuggestedCourseInstanceKeys(fillerPlaceholderEntries.map<PendingSuggestedCourse>(
           (placeholderEntry, placeholderIndex, placeholderEntries) => {
             const scopedPlaceholderEntries = placeholderEntries.filter(
               (candidate) => candidate.sourceKind === placeholderEntry.sourceKind
@@ -7243,7 +8853,23 @@ export function buildSuggestedQuarterPlan(input: {
               corequisiteCourseSets: [],
             };
           }
-        );
+        ), "gen-ed");
+  const currentQuarterCourses = [
+    ...guidedRemainingCourses,
+    ...allFillerPool,
+  ]
+    .filter(isSelectedCurrentCourse)
+    .map<PendingSuggestedCourse>((course) => ({
+      ...course,
+      status: "current",
+    }));
+  const currentQuarterPlanCourses = currentQuarterCourses.map(toSuggestedQuarterCourse);
+  const currentQuarterSlot = currentQuarterCourses.length
+    ? getCurrentOrNextQuarterSlot(input.referenceDate, includeSummerQuarter)
+    : null;
+  const futurePlanningSatisfiedCourseCodes = new Set(completedCourseCodes);
+  recordPlannedQuarterCourseCodes(currentQuarterPlanCourses, futurePlanningSatisfiedCourseCodes);
+  const fillerPool = allFillerPool.filter((course) => !isSelectedCurrentCourse(course));
   const currentQuarterPlan = currentQuarterCourses.length
     ? {
         label: currentQuarterSlot?.label ?? "Current / In progress",

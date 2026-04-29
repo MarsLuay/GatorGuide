@@ -1,20 +1,21 @@
 # Transfer Planner Requirement Source Parse Report
 
-Generated: 2026-04-25T17:19:54.459Z
+Generated: 2026-04-28T19:17:13.876Z
 
 - Primary degree sources parsed: 420
 - Parsed successfully: 420
 - Parse failures: 0
 - Parsed requirement source adapter blocks: 420
-- Parsed requirement atom candidates: 25873
+- Parsed requirement atom candidates: 25992
 - Parsed degree-map block candidates: 1209
-- Parsed from cached snapshots after live-source failures: 405
+- Parsed structured requirement course entries: 270
+- Parsed from cached snapshots after live-source failures: 403
 - Parsed from alternate official source URLs: 0
 - Owners with parsed UW course codes: 413
-- Owners with source-only UW course codes not currently in structured degree-map blocks: 4
+- Owners with source-only UW course codes not currently in structured degree-map blocks: 5
 - Owners with no parsed UW course codes: 7
-- Owners with parser-quality warnings: 18
-- Owners with parser-quality notes: 405
+- Owners with parser-quality warnings: 19
+- Owners with parser-quality notes: 403
 
 ## Parser Adapters
 
@@ -29,15 +30,40 @@ Generated: 2026-04-25T17:19:54.459Z
 
 ## Resolution Strategies
 
-- cached-snapshot: 405
-- primary-source: 15
+- cached-snapshot: 403
+- primary-source: 17
 
 ## Parser Quality Signals
 
 - high-confidence-low-course-coverage: 4
 - large-structured-only-course-gap: 13
-- material-source-structured-drift: 18
-- snapshot-fallback-used: 405
+- material-source-structured-drift: 19
+- snapshot-fallback-used: 403
+
+## UW MSE Course Extraction Audit
+
+- Total parsed official entries: 136
+- Required / option / alias / note-only counts: 31 / 92 / 13 / 0
+- Missing expected courses: none
+- Duplicate normalized course codes: CHEM 153, CHEM 155, CHEM 312, CHEM 455, CHEM 456, INDE 315
+- Unclassified course codes: none
+- Courses missing group/type/source metadata: none
+- Grouped counts by category:
+  - engineering_fundamentals: 21
+  - engineering-fundamentals: 3
+  - math-elective: 7
+  - mathematics: 7
+  - mse_core: 18
+  - natural_science: 12
+  - science-elective: 21
+  - technical_electives: 47
+- Courses with notes or restrictions:
+  - INDE 315: IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both. | no_double_count:math_elective_or_engineering_fundamentals
+  - CHEM 312: Students who have completed CHEM 165 can have CHEM 312 waived. See adviser.
+  - ENGR 101: Open to DTC students only.
+  - INDE 315: IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both. | no_double_count:math_elective_or_engineering_fundamentals
+  - NME 220: NME 220 is not eligible as an Engineering Fundamentals elective for NME Option students. | not_eligible_for_nme_option
+  - ENGR 321: ENGR 321 can count a maximum of 4 credits toward the degree. | max_degree_counting_credits:4
 
 ## uw-seattle
 
@@ -97,6 +123,12 @@ Generated: 2026-04-25T17:19:54.459Z
 - Parse confidence: high
 - Quality warnings: material-source-structured-drift (parsed=68; source-only=0; structured-only=35) | large-structured-only-course-gap (structured-only=35; parsed=68; structured-coverage=103)
 
+#### Materials Science & Engineering - NME Option
+
+- Source: https://mse.washington.edu/current/undergrad/courses
+- Parse confidence: high
+- Quality warnings: material-source-structured-drift (parsed=148; source-only=10; structured-only=0)
+
 #### Mathematics
 
 - Source: https://math.washington.edu/ba-mathematics-standard-major-requirements-0
@@ -152,6 +184,17 @@ Generated: 2026-04-25T17:19:54.459Z
 - Quality warnings: material-source-structured-drift (parsed=21; source-only=21; structured-only=0)
 
 ### Possible source-vs-structured drift
+
+#### Materials Science & Engineering - NME Option
+
+- Source: https://mse.washington.edu/current/undergrad/courses
+- Parser type: html-degree-page
+- Parser adapter: uw-seattle-html-degree-page
+- Resolution strategy: primary-source
+- Parse confidence: high
+- Source-only UW course codes: BIOEN 490, BIOEN 491, CHEME 523, EE 485, ME 410, MOLENG 535, MSE 502, MSE 520, MSE 560, NME 498
+- Requirement cues: (OR CSE 142 Programming I OR CSE 122 Intro to Programming II) | [Course Prereq. is AA 210] | [pr: MATH 125] or Honors Calculus sequence
+- Snapshot: C:\Users\marwa\GatorGuide\Mobile Team\.tmp\transfer-planner-requirement-source-snapshots\uw-seattle-materials-science-engineering-pathway-nme-option.txt
 
 #### Statistics - Applied Statistics track
 

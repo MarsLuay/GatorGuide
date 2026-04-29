@@ -221,6 +221,81 @@ export type TransferPlannerParsedDegreeMapBlockCandidate = {
   sourceLineHints: string[];
 };
 
+export type TransferPlannerParsedRequirementType =
+  | "all_required"
+  | "choose_one"
+  | "choose_n"
+  | "choose_credits"
+  | "sequence_choice";
+
+export type TransferPlannerParsedRequirementOption = {
+  id?: string;
+  displayCourseCodes?: string[];
+  uwCourses: string[];
+  equivalentUwCourseCodes?: string[];
+  credits?: number | null;
+  creditMin?: number | null;
+  creditMax?: number | null;
+  creditText?: string | null;
+  maxCredits?: number | null;
+  title?: string | null;
+  department?: string | null;
+  category?: string | null;
+  sourceHeading?: string | null;
+  sourceCategory?: string | null;
+  grcMatches: string[];
+  constraints?: string[];
+  notes?: string[];
+  label: string;
+};
+
+export type TransferPlannerParsedRequirementGroup = {
+  id: string;
+  label: string;
+  category: string;
+  subcategory?: string | null;
+  requirementType: TransferPlannerParsedRequirementType;
+  minCourses?: number | null;
+  maxCourses?: number | null;
+  minCredits?: number | null;
+  maxCredits?: number | null;
+  sourceHeading?: string | null;
+  notes?: string[];
+  options: TransferPlannerParsedRequirementOption[];
+};
+
+export type TransferPlannerParsedRequirementCourseOptionRole =
+  | "required"
+  | "option"
+  | "alias"
+  | "note_only";
+
+export type TransferPlannerParsedRequirementCourse = {
+  courseCode: string;
+  normalizedCourseCode: string;
+  title?: string | null;
+  credits?: number | null;
+  creditMin?: number | null;
+  creditMax?: number | null;
+  creditText?: string | null;
+  category: string;
+  requirementGroupId: string;
+  requirementType: TransferPlannerParsedRequirementType;
+  optionRole: TransferPlannerParsedRequirementCourseOptionRole;
+  sourceHeading: string;
+  sourceCategory: string;
+  notes?: string[];
+};
+
+export type TransferPlannerParsedRequirementReplacement = {
+  baseRequirementId: string;
+  replacedByRequirementId: string;
+  appliesWhen: string;
+  replacementReason: string;
+  sourceUrl: string;
+  sourceHeading: string;
+};
+
 export type TransferPlannerParsedRequirementSourceBlock = {
   id: string;
   ownerId: string;
@@ -248,6 +323,9 @@ export type TransferPlannerParsedRequirementSourceBlock = {
   qualitySignals: TransferPlannerRequirementParseQualitySignal[];
   parsedRequirementAtomCandidates: TransferPlannerParsedRequirementAtomCandidate[];
   parsedDegreeMapBlockCandidates: TransferPlannerParsedDegreeMapBlockCandidate[];
+  parsedRequirementGroups?: TransferPlannerParsedRequirementGroup[];
+  parsedRequirementCourses?: TransferPlannerParsedRequirementCourse[];
+  parsedRequirementReplacements?: TransferPlannerParsedRequirementReplacement[];
   snapshotPath: string | null;
   usedSnapshotFallback: boolean;
   snapshotFallbackReason: string | null;
@@ -262,6 +340,8 @@ export type TransferPlannerRequirementSourceAdapterSummary = {
   parsedRequirementSourceBlockCount: number;
   parsedRequirementAtomCandidateCount: number;
   parsedDegreeMapBlockCandidateCount: number;
+  parsedRequirementGroupCount?: number;
+  parsedRequirementCourseCount?: number;
   snapshotFallbackCount: number;
   countsByAdapterId: Record<string, number>;
   countsByAdapterFamily: Record<string, number>;

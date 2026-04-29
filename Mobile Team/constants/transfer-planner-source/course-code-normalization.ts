@@ -8,6 +8,15 @@ const KNOWN_TRANSFER_PLANNER_SUBJECT_CODES = new Set(
     .filter((subjectCode): subjectCode is string => Boolean(subjectCode))
 );
 
+const EXPLICIT_SPACED_SUBJECT_ALIASES = new Map<string, string>([
+  ["A A", "AA"],
+  ["A MATH", "AMATH"],
+  ["CHEM E", "CHEME"],
+  ["E E", "EE"],
+  ["IND E", "INDE"],
+  ["M E", "ME"],
+]);
+
 const RECOVERABLE_LEADING_SUBJECT_TOKENS = new Set([
   "AND",
   "AS",
@@ -48,6 +57,11 @@ export function normalizeTransferPlannerCourseCode(value: string) {
   }
 
   const spacedSubject = subjectTokens.join(" ");
+  const explicitAlias = EXPLICIT_SPACED_SUBJECT_ALIASES.get(spacedSubject);
+  if (explicitAlias) {
+    return `${explicitAlias} ${match[2]}`;
+  }
+
   const collapsedSubject = subjectTokens.join("");
   const normalizedSubject =
     subjectTokens.every((token) => token.length === 1) ||

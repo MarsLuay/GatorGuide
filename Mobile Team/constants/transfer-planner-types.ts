@@ -19,6 +19,81 @@ export type TransferPlannerLink = {
   sourceConfidence?: "high" | "medium" | "low";
 };
 
+export type TransferPlannerRequirementType =
+  | "all_required"
+  | "choose_one"
+  | "choose_n"
+  | "choose_credits"
+  | "sequence_choice";
+
+export type TransferPlannerRequirementOption = {
+  id?: string;
+  displayCourseCodes?: string[];
+  uwCourses: string[];
+  equivalentUwCourseCodes?: string[];
+  credits?: number | null;
+  creditMin?: number | null;
+  creditMax?: number | null;
+  creditText?: string | null;
+  maxCredits?: number | null;
+  title?: string | null;
+  department?: string | null;
+  category?: string | null;
+  sourceHeading?: string | null;
+  sourceCategory?: string | null;
+  grcMatches: string[];
+  constraints?: string[];
+  notes?: string[];
+  label: string;
+};
+
+export type TransferPlannerRequirementGroup = {
+  id: string;
+  label: string;
+  category: string;
+  subcategory?: string | null;
+  requirementType: TransferPlannerRequirementType;
+  minCourses?: number | null;
+  maxCourses?: number | null;
+  minCredits?: number | null;
+  maxCredits?: number | null;
+  sourceHeading?: string | null;
+  notes?: string[];
+  options: TransferPlannerRequirementOption[];
+};
+
+export type TransferPlannerRequirementReplacement = {
+  baseRequirementId: string;
+  replacedByRequirementId: string;
+  appliesWhen: string;
+  replacementReason: string;
+  sourceUrl: string;
+  sourceHeading: string;
+};
+
+export type TransferPlannerRequirementCourseOptionRole =
+  | "required"
+  | "option"
+  | "alias"
+  | "note_only";
+
+export type TransferPlannerParsedRequirementCourse = {
+  courseCode: string;
+  normalizedCourseCode: string;
+  title?: string | null;
+  credits?: number | null;
+  creditMin?: number | null;
+  creditMax?: number | null;
+  creditText?: string | null;
+  category: string;
+  requirementGroupId: string;
+  requirementType: TransferPlannerRequirementType;
+  optionRole: TransferPlannerRequirementCourseOptionRole;
+  sourceHeading: string;
+  sourceCategory: string;
+  notes?: string[];
+};
+
 export type TransferPlannerChecklistItem = {
   id: string;
   title: string;
@@ -26,6 +101,11 @@ export type TransferPlannerChecklistItem = {
   alternatives?: string[][];
   note?: string;
   minCompletedCount?: number;
+  minCredits?: number;
+  maxCredits?: number;
+  requirementGroup?: TransferPlannerRequirementGroup;
+  selectedRequirementOptionIds?: string[];
+  unselectedRequirementOptionIds?: string[];
 };
 
 export type TransferPlannerGeneralRequirementCategoryId =
@@ -96,6 +176,8 @@ export type TransferPlannerMajorPathway = {
   bestTrackId?: string | null;
   recommendedTrackSummary?: string;
   whyThisTrack?: string[];
+  requirementGroups?: TransferPlannerRequirementGroup[];
+  requirementReplacements?: TransferPlannerRequirementReplacement[];
 };
 
 export type TransferPlannerTrackTerm = {
@@ -166,6 +248,8 @@ export type TransferPlannerMajorPlan = {
   plannerNote?: string;
   sourceType?: TransferPlannerSourceType;
   pathways?: TransferPlannerMajorPathway[];
+  requirementGroups?: TransferPlannerRequirementGroup[];
+  requirementReplacements?: TransferPlannerRequirementReplacement[];
 };
 
 export type TransferPlannerResolvedMajorPlan = TransferPlannerMajorPlan & {
