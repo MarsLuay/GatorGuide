@@ -2,7 +2,7 @@
 setlocal EnableExtensions EnableDelayedExpansion
 
 set "ROOT_DIR=%~dp0"
-set "APP_DIR=%ROOT_DIR%Mobile Team"
+set "APP_DIR=%ROOT_DIR%source"
 set "REPO_DIR_NAME=GatorGuide"
 set "REPO_URL=https://github.com/MarsLuay/GatorGuide.git"
 set "EXPO_PORT=8081"
@@ -50,9 +50,9 @@ if exist "%APP_DIR%\package.json" (
 )
 
 set "CLONE_ROOT=%ROOT_DIR%%REPO_DIR_NAME%"
-if exist "%CLONE_ROOT%\Mobile Team\package.json" (
+if exist "%CLONE_ROOT%\source\package.json" (
   set "ROOT_DIR=%CLONE_ROOT%\"
-  set "APP_DIR=%ROOT_DIR%Mobile Team"
+  set "APP_DIR=%ROOT_DIR%source"
   echo Found Gator Guide in "%ROOT_DIR%".
   exit /b 0
 )
@@ -69,7 +69,7 @@ if errorlevel 1 (
 )
 
 set "ROOT_DIR=%CLONE_ROOT%\"
-set "APP_DIR=%ROOT_DIR%Mobile Team"
+set "APP_DIR=%ROOT_DIR%source"
 if not exist "%APP_DIR%\package.json" (
   echo The repo finished cloning, but "%APP_DIR%\package.json" is still missing.
   exit /b 1
@@ -178,7 +178,7 @@ if errorlevel 1 (
   exit /b 1
 )
 
-echo Created Mobile Team\.env from env.example.
+echo Created source\.env from env.example.
 exit /b 0
 
 :ensure_app_dependencies

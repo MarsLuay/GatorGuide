@@ -11,9 +11,14 @@ expo-env.d.ts
 /inspirations/
 
 .expo/
+.tmp/
 .tmp_pydeps/
 .vscode/
 process.env
 *.env
-Mobile Team/.tmp/transfer-planner-catalog-snapshots/
-Mobile Team/.tmp/transfer-planner-equivalency-guide-snapshots/
+source/.tmp/
+source/dist/
+source/.tmp/transfer-planner-catalog-snapshots/
+source/.tmp/transfer-planner-equivalency-guide-snapshots/
+source/.tmp/scholarship-exports/
+/resource-catalog-export.csv

@@ -3,7 +3,7 @@ setlocal EnableExtensions
 
 title GatorGuide Course Planner Updater
 set "REPO_ROOT=%~dp0"
-set "APP_ROOT=%REPO_ROOT%Mobile Team"
+set "APP_ROOT=%REPO_ROOT%source"
 set "SCRIPT_ROOT=%APP_ROOT%\scripts"
 set "BACK_EXIT_CODE=86"
 set "INTERACTIVE_MENU=0"

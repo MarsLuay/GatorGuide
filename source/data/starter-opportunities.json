@@ -1,0 +1,1250 @@
+[
+  {
+    "schemaVersion": 1,
+    "opportunityId": "2026-27-fafsa-federal-deadline",
+    "type": "general_deadline",
+    "status": "active",
+    "title": "2026-27 FAFSA Federal Deadline",
+    "organizationName": "Federal Student Aid",
+    "summary": "June 30, 2027 is the federal deadline to submit the 2026-27 FAFSA. School and state priority deadlines may be earlier, so Green River students should still follow Green River's financial aid processing dates.",
+    "externalUrl": "https://studentaid.gov/articles/3-fafsa-deadlines/",
+    "dueAt": "2027-06-30T09:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Federal deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://studentaid.gov/articles/3-fafsa-deadlines/",
+      "sourceLabel": "Federal Student Aid FAFSA deadlines article",
+      "model": null,
+      "fetchedAt": "2026-04-17T21:01:33.089Z",
+      "verifiedAt": "2026-04-17T21:01:33.089Z"
+    },
+    "createdAt": "2026-04-17T21:01:33.089Z",
+    "updatedAt": "2026-04-17T21:01:33.089Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-foundation-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Green River College Foundation Scholarship",
+    "organizationName": "Green River College Foundation",
+    "summary": "Annual Green River College Foundation application for 300+ scholarships that can be used for tuition, fees, books, and required supplies at GRC. The 2026-2027 application closes April 30.",
+    "externalUrl": "https://grcfoundation.awardspring.com/",
+    "dueAt": "2026-04-30T16:00:00.000Z",
+    "recurrence": {
+      "isYearly": true,
+      "month": 4,
+      "day": 30,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Annual scholarship deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "merit"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 3
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Average award is about $2,000; amount varies by scholarship",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "seed",
+      "sourceUrl": "https://www.greenrivercollegefoundation.org/applynow",
+      "sourceLabel": "Green River College Foundation scholarships apply page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-03-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "immigrants-rising-scholarship-database",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Immigrants Rising Scholarship Database",
+    "organizationName": "Immigrants Rising",
+    "summary": "Database of scholarships and fellowships that do not require proof of U.S. citizenship, with filterable eligibility details and links to apply.",
+    "externalUrl": "https://immigrantsrising.org/resource/list-of-scholarships-and-fellowships/",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Database updates with upcoming deadlines"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit",
+        "need_based"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Varies",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "legacy",
+      "sourceUrl": "https://immigrantsrising.org/resource/list-of-scholarships-and-fellowships/",
+      "sourceLabel": "Immigrants Rising scholarships and fellowships list",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "granco-federal-credit-union-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "GRANCO Federal Credit Union Scholarship",
+    "organizationName": "GRANCO Federal Credit Union",
+    "summary": "One-time GRANCO Federal Credit Union scholarship for graduating high school seniors or current students accepted into a college, community college, technical college, or other educational institution. The 2026 application window ran January 5 through March 27.",
+    "externalUrl": "https://www.granco.org/scholarship2026.html",
+    "dueAt": "2026-03-28T06:59:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Application packet received or postmarked by March 27"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 1
+    },
+    "award": {
+      "amountMin": 500,
+      "amountMax": 500,
+      "currency": "USD",
+      "amountText": "$500",
+      "renewable": false
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "legacy",
+      "sourceUrl": "https://www.granco.org/scholarship2026.html",
+      "sourceLabel": "GRANCO Federal Credit Union 2026 scholarship page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "uw-scholarships-database",
+    "type": "scholarship",
+    "status": "active",
+    "title": "UW Scholarships Database",
+    "organizationName": "University of Washington Office of Admissions",
+    "summary": "University of Washington scholarship information covering first-year, transfer, departmental, and financial aid scholarship pathways.",
+    "externalUrl": "https://admit.washington.edu/costs/scholarships/",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Deadlines vary by scholarship"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit",
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Varies",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "University of Washington",
+      "city": "Seattle",
+      "state": "WA",
+      "website": "https://www.washington.edu/"
+    },
+    "source": {
+      "kind": "legacy",
+      "sourceUrl": "https://admit.washington.edu/costs/scholarships/",
+      "sourceLabel": "UW Office of Admissions scholarships page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "silme-domingo-gene-viernes-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Silme Domingo & Gene Viernes Scholarship in Labor Studies",
+    "organizationName": "Harry Bridges Center for Labor Studies",
+    "summary": "University of Washington labor studies scholarship for graduate students and entering first-year or transfer students who show commitment to justice and equality, demonstrate financial need, and enroll for Autumn Quarter.",
+    "externalUrl": "https://labor.washington.edu/silme-domingo-gene-viernes-scholarship-labor-studies",
+    "dueAt": "2026-05-05T06:59:00.000Z",
+    "recurrence": {
+      "isYearly": true,
+      "month": 5,
+      "day": 4,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Labor Studies scholarship application deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [
+        "labor studies",
+        "social justice"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": true,
+      "recommendationCountMin": 1,
+      "essayCount": 3
+    },
+    "award": {
+      "amountMin": 6000,
+      "amountMax": 6000,
+      "currency": "USD",
+      "amountText": "$6,000 total over two years",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "University of Washington",
+      "city": "Seattle",
+      "state": "WA",
+      "website": "https://www.washington.edu/"
+    },
+    "source": {
+      "kind": "legacy",
+      "sourceUrl": "https://labor.washington.edu/silme-domingo-gene-viernes-scholarship-labor-studies",
+      "sourceLabel": "Harry Bridges Center scholarship page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "washington-society-professional-engineers-educational-foundation-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Washington Society of Professional Engineers Educational Foundation Engineering Scholarship Program",
+    "organizationName": "Washington Society of Professional Engineers Educational Foundation",
+    "summary": "One-time scholarship for Washington community college students transferring into ABET-accredited baccalaureate engineering programs at Washington universities and colleges.",
+    "externalUrl": "https://washingtonengineer.org/engineering-scholarship-opportunity/",
+    "dueAt": "2026-05-02T06:59:00.000Z",
+    "recurrence": {
+      "isYearly": true,
+      "month": 5,
+      "day": 1,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Application deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "engineering"
+      ],
+      "hasToBeMajor": true
+    },
+    "eligibility": {
+      "gpaMin": 2.5,
+      "residencyTypes": [],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": true,
+      "recommendationCountMin": 1,
+      "essayCount": 1
+    },
+    "award": {
+      "amountMin": 3000,
+      "amountMax": 3000,
+      "currency": "USD",
+      "amountText": "$3,000",
+      "renewable": false
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "legacy",
+      "sourceUrl": "https://washingtonengineer.org/engineering-scholarship-opportunity/",
+      "sourceLabel": "WSPE engineering scholarship page and application PDF",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-commencement-application-deadline-2026",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Green River Commencement Application Deadline 2026",
+    "organizationName": "Green River College",
+    "summary": "Submit the commencement application by this date. Green River notes that students must already have submitted an Intent to Graduate form to be added to the commencement registration system.",
+    "externalUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/commencement/for-the-graduate.html",
+    "dueAt": "2026-04-22T09:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Commencement application deadline"
+    },
+    "matching": {
+      "financialAidTags": [],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.greenriver.edu/students/academics/office-of-the-registrar/commencement/for-the-graduate.html",
+      "sourceLabel": "Green River commencement for graduates page",
+      "model": null,
+      "fetchedAt": "2026-04-17T21:01:33.270Z",
+      "verifiedAt": "2026-04-17T21:01:33.270Z"
+    },
+    "createdAt": "2026-04-17T21:01:33.270Z",
+    "updatedAt": "2026-04-17T21:01:33.270Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-fafsa-wasfa-priority-deadline-for-spring-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Green River FAFSA/WASFA Priority Deadline for Spring 2027",
+    "organizationName": "Green River College Financial Aid Office",
+    "summary": "Complete your FAFSA or WASFA and submit all required Green River financial aid documents by this date to receive priority processing for Spring Quarter 2027. Meeting the deadline can help keep your classes from being dropped for non-payment while aid is being processed.",
+    "externalUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/financial-aid-deadlines.html",
+    "dueAt": "2027-01-31T09:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "priority",
+      "label": "Priority processing deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/financial-aid-deadlines.html",
+      "sourceLabel": "Green River financial aid deadlines page",
+      "model": null,
+      "fetchedAt": "2026-04-17T21:01:32.863Z",
+      "verifiedAt": "2026-04-17T21:01:32.863Z"
+    },
+    "createdAt": "2026-04-17T21:01:32.863Z",
+    "updatedAt": "2026-04-17T21:01:32.863Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-fafsa-wasfa-priority-deadline-for-summer-and-fall-2026",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Green River FAFSA/WASFA Priority Deadline for Summer and Fall 2026",
+    "organizationName": "Green River College Financial Aid Office",
+    "summary": "Complete your FAFSA or WASFA and submit all required Green River financial aid documents by this date to receive priority processing for Summer Quarter 2026 and Fall Quarter 2026. Meeting the deadline can help keep your classes from being dropped for non-payment while aid is being processed.",
+    "externalUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/financial-aid-deadlines.html",
+    "dueAt": "2026-04-30T09:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "priority",
+      "label": "Priority processing deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/financial-aid-deadlines.html",
+      "sourceLabel": "Green River financial aid deadlines page",
+      "model": null,
+      "fetchedAt": "2026-04-17T21:00:57.934Z",
+      "verifiedAt": "2026-04-17T21:00:57.934Z"
+    },
+    "createdAt": "2026-04-17T21:00:57.934Z",
+    "updatedAt": "2026-04-17T21:00:57.934Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-fafsa-wasfa-priority-deadline-for-winter-2027",
+    "type": "college_deadline",
+    "status": "active",
+    "title": "Green River FAFSA/WASFA Priority Deadline for Winter 2027",
+    "organizationName": "Green River College Financial Aid Office",
+    "summary": "Complete your FAFSA or WASFA and submit all required Green River financial aid documents by this date to receive priority processing for Winter Quarter 2027. Meeting the deadline can help keep your classes from being dropped for non-payment while aid is being processed.",
+    "externalUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/financial-aid-deadlines.html",
+    "dueAt": "2026-10-31T09:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "priority",
+      "label": "Priority processing deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/financial-aid-deadlines.html",
+      "sourceLabel": "Green River financial aid deadlines page",
+      "model": null,
+      "fetchedAt": "2026-04-17T21:01:32.697Z",
+      "verifiedAt": "2026-04-17T21:01:32.697Z"
+    },
+    "createdAt": "2026-04-17T21:01:32.697Z",
+    "updatedAt": "2026-04-17T21:01:32.697Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "green-river-student-employment",
+    "type": "internship",
+    "status": "active",
+    "title": "Green River Student Employment & Work Study",
+    "organizationName": "Green River College",
+    "summary": "On-campus student employment and work study openings for eligible Green River students. Good first step for building experience while enrolled.",
+    "externalUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/index.html",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Open while positions remain available"
+    },
+    "matching": {
+      "financialAidTags": [
+        "work_study",
+        "need_based"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": null,
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "seed",
+      "sourceUrl": "https://www.greenriver.edu/students/pay-for-college/financial-aid/student-employment/index.html",
+      "sourceLabel": "Green River student employment page",
+      "model": null,
+      "fetchedAt": "2026-03-29T00:00:00.000Z",
+      "verifiedAt": "2026-03-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-03-29T00:00:00.000Z",
+    "updatedAt": "2026-03-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "wsos-career-technical-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "WSOS Career & Technical Scholarship",
+    "organizationName": "Washington State Opportunity Scholarship",
+    "summary": "Need-based scholarship for Washington residents in eligible STEM, health care, trades, and apprenticeship programs. The fall 2026 application window is closed; WSOS says the winter-spring application cycle opens September 29 and closes October 15, 2026 at 9 p.m.",
+    "externalUrl": "https://waopportunityscholarship.org/applicants/career-technical/",
+    "dueAt": "2026-10-16T04:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Winter-spring application deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [
+        "apprenticeship",
+        "computer science",
+        "engineering",
+        "nursing",
+        "information technology",
+        "healthcare",
+        "stem",
+        "trades",
+        "manufacturing",
+        "welding"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 1
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 1500,
+      "currency": "USD",
+      "amountText": "Up to $1,500 per quarter for the duration of your program",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "Green River College",
+      "city": "Auburn",
+      "state": "WA",
+      "website": "https://www.greenriver.edu/"
+    },
+    "source": {
+      "kind": "seed",
+      "sourceUrl": "https://waopportunityscholarship.org/applicants/career-technical/",
+      "sourceLabel": "WSOS CTS applicant page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-03-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "wwin-star-scholars",
+    "type": "scholarship",
+    "status": "active",
+    "title": "WWIN Star Scholars",
+    "organizationName": "WWIN",
+    "summary": "Scholarship for women living in Washington state who are pursuing a postsecondary credential up to a first bachelor's degree. Applicants must be 18 or older by September 1 of the award year, have a 2.0+ cumulative GPA, complete FAFSA or WASFA, and demonstrate unmet financial need. The 2026-27 cycle closed April 16, 2026; WWIN says the next cycle opens in January 2027.",
+    "externalUrl": "https://wwin.org/star-scholars/",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Next application cycle opens January 2027"
+    },
+    "matching": {
+      "financialAidTags": [
+        "need_based",
+        "fafsa_required"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": 2,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 5000,
+      "currency": "USD",
+      "amountText": "Up to $5,000 per academic year; renewable up to $20,000",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": "WA",
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://wwin.org/star-scholars/",
+      "sourceLabel": "WWIN Star Scholars page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "martin-achievement-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Martin Achievement Scholarship",
+    "organizationName": "Martin Family Foundation",
+    "summary": "Scholarship for Washington community college students planning ahead to transfer specifically to UW Seattle. Students apply over a year before transfer, with the 2026 cycle serving students planning to transfer in summer 2027, fall 2027, or winter 2028.",
+    "externalUrl": "https://new.expo.uw.edu/expo/scholarships/martinachievement",
+    "dueAt": "2026-04-07T09:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Application deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": true,
+      "recommendationCountMin": 1,
+      "essayCount": 4
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 12000,
+      "currency": "USD",
+      "amountText": "$5,000 for final community college year; $12,000/year up to 3 years at UW Seattle",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "University of Washington Seattle",
+      "city": "Seattle",
+      "state": "WA",
+      "website": "https://www.washington.edu/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://new.expo.uw.edu/expo/scholarships/martinachievement",
+      "sourceLabel": "UW OMSFA Martin Achievement Scholarship database page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "martin-family-foundation-honors-scholarship",
+    "type": "scholarship",
+    "status": "active",
+    "title": "Martin Family Foundation Honors Scholarship",
+    "organizationName": "Martin Family Foundation",
+    "summary": "Scholarship for Washington community college students transferring to UW Seattle in the summer, fall, or winter immediately after the July 1 deadline. The application is open May 1 through July 1 each year, and students may apply before receiving their UW admission decision.",
+    "externalUrl": "https://new.expo.uw.edu/expo/scholarships/martinfamily",
+    "dueAt": "2026-07-01T09:00:00.000Z",
+    "recurrence": {
+      "isYearly": true,
+      "month": 7,
+      "day": 1,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Application deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [
+        "instate",
+        "in state",
+        "washington"
+      ],
+      "transferOnly": true
+    },
+    "requirements": {
+      "needsRecommendations": true,
+      "recommendationCountMin": 1,
+      "essayCount": 5
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": 12000,
+      "currency": "USD",
+      "amountText": "Up to $12,000 per year; renewable up to 3 years",
+      "renewable": true
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "University of Washington Seattle",
+      "city": "Seattle",
+      "state": "WA",
+      "website": "https://www.washington.edu/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://new.expo.uw.edu/expo/scholarships/martinfamily",
+      "sourceLabel": "UW OMSFA Martin Honors Scholarship database page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "nelson-mendenhall-summer-scholars-program",
+    "type": "internship",
+    "status": "active",
+    "title": "Nelson-Mendenhall Summer Scholars Program",
+    "organizationName": "University of Washington School of Pharmacy",
+    "summary": "Funded 10-week summer research program for undergraduate students from two- and four-year colleges and universities to conduct hands-on pharmaceutical sciences research with UW School of Pharmacy faculty. The 2026 program runs June 22 through August 28 in Seattle.",
+    "externalUrl": "https://sop.washington.edu/phd-ms/other-programs/summerscholars/",
+    "dueAt": "2026-04-06T09:00:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "2026 application deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "pharmacy",
+        "pharmaceutical sciences",
+        "chemistry",
+        "biology",
+        "biomedical sciences",
+        "health sciences",
+        "stem"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 1
+    },
+    "award": {
+      "amountMin": 7500,
+      "amountMax": 7500,
+      "currency": "USD",
+      "amountText": "$7,500 stipend",
+      "renewable": false
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": "University of Washington",
+      "city": "Seattle",
+      "state": "WA",
+      "website": "https://www.washington.edu/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://sop.washington.edu/phd-ms/other-programs/summerscholars/",
+      "sourceLabel": "UW School of Pharmacy Nelson-Mendenhall Summer Scholars page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "nsf-research-experiences-for-undergraduates-directory",
+    "type": "internship",
+    "status": "active",
+    "title": "NSF Research Experiences for Undergraduates (REU) Sites Directory",
+    "organizationName": "U.S. National Science Foundation",
+    "summary": "Continuously updated directory of NSF-funded undergraduate research experiences across the United States and abroad. Students apply directly to individual REU Sites, which set their own deadlines and often provide stipends plus housing, meals, or travel support.",
+    "externalUrl": "https://www.nsf.gov/funding/initiatives/reu",
+    "dueAt": null,
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "rolling",
+      "label": "Directory updates with site-specific deadlines"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "biology",
+        "chemistry",
+        "computer science",
+        "earth science",
+        "engineering",
+        "environmental science",
+        "mathematics",
+        "physics",
+        "social science",
+        "stem"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Stipends and support vary by REU site",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": null,
+      "state": null,
+      "website": null
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://www.nsf.gov/funding/initiatives/reu",
+      "sourceLabel": "NSF Research Experiences for Undergraduates page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  },
+  {
+    "schemaVersion": 1,
+    "opportunityId": "smithsonian-research-analysis-internship-opportunities",
+    "type": "internship",
+    "status": "active",
+    "title": "Smithsonian Research & Analysis Internship Opportunities",
+    "organizationName": "Smithsonian Office of Academic Appointments and Internships",
+    "summary": "Smithsonian internship listings for museum, research, science writing, and research and analysis roles across Smithsonian museums and research centers. Current 2026 listings include multiple summer opportunities with a February 15 deadline; students should check the live listings for the latest units and project openings.",
+    "externalUrl": "https://internships.si.edu/opportunities",
+    "dueAt": "2026-02-16T04:59:00.000Z",
+    "recurrence": {
+      "isYearly": false,
+      "month": null,
+      "day": null,
+      "timezone": "America/Los_Angeles"
+    },
+    "deadline": {
+      "type": "final",
+      "label": "Listed 2026 summer application deadline"
+    },
+    "matching": {
+      "financialAidTags": [
+        "merit"
+      ],
+      "suggestedMajors": [
+        "anthropology",
+        "art history",
+        "communication",
+        "history",
+        "museum studies",
+        "natural history",
+        "research",
+        "science writing",
+        "stem"
+      ],
+      "hasToBeMajor": false
+    },
+    "eligibility": {
+      "gpaMin": null,
+      "residencyTypes": [],
+      "transferOnly": false
+    },
+    "requirements": {
+      "needsRecommendations": false,
+      "recommendationCountMin": 0,
+      "essayCount": 0
+    },
+    "award": {
+      "amountMin": null,
+      "amountMax": null,
+      "currency": "USD",
+      "amountText": "Paid and unpaid options vary by Smithsonian opportunity",
+      "renewable": null
+    },
+    "college": {
+      "collegeId": null,
+      "collegeName": null,
+      "city": "Washington",
+      "state": "DC",
+      "website": "https://www.si.edu/"
+    },
+    "source": {
+      "kind": "manual",
+      "sourceUrl": "https://internships.si.edu/opportunities",
+      "sourceLabel": "Smithsonian Office of Academic Appointments and Internships opportunities page",
+      "model": null,
+      "fetchedAt": "2026-04-29T00:00:00.000Z",
+      "verifiedAt": "2026-04-29T00:00:00.000Z"
+    },
+    "createdAt": "2026-04-29T00:00:00.000Z",
+    "updatedAt": "2026-04-29T00:00:00.000Z"
+  }
+]

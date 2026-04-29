@@ -11,7 +11,7 @@ LOG_PREFIX="[Start-to-run]"
 SCRIPT_SOURCE="${BASH_SOURCE[0]:-$0}"
 SCRIPT_DIR="$(cd -- "$(dirname -- "$SCRIPT_SOURCE")" && pwd)"
 ROOT_DIR="$SCRIPT_DIR"
-APP_DIR="$ROOT_DIR/Mobile Team"
+APP_DIR="$ROOT_DIR/source"
 
 log() {
   printf '%s %s\n' "$LOG_PREFIX" "$*"
@@ -139,9 +139,9 @@ locate_or_clone_repo() {
   fi
 
   local clone_root="$ROOT_DIR/$REPO_DIR_NAME"
-  if [ -f "$clone_root/Mobile Team/package.json" ]; then
+  if [ -f "$clone_root/source/package.json" ]; then
     ROOT_DIR="$clone_root"
-    APP_DIR="$ROOT_DIR/Mobile Team"
+    APP_DIR="$ROOT_DIR/source"
     log "Found Gator Guide in \"$ROOT_DIR\"."
     return
   fi
@@ -157,7 +157,7 @@ locate_or_clone_repo() {
   git clone "$REPO_URL" "$clone_root"
 
   ROOT_DIR="$clone_root"
-  APP_DIR="$ROOT_DIR/Mobile Team"
+  APP_DIR="$ROOT_DIR/source"
   [ -f "$APP_DIR/package.json" ] || fail "The repo finished cloning, but \"$APP_DIR/package.json\" is still missing."
   log "Repo cloned successfully."
 }
@@ -191,7 +191,7 @@ ensure_env_file() {
   fi
 
   cp "$APP_DIR/env.example" "$APP_DIR/.env"
-  log "Created Mobile Team/.env from env.example."
+  log "Created source/.env from env.example."
 }
 
 ensure_app_dependencies() {

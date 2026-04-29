@@ -1,10 +1,16 @@
 ---
 exclude_paths:
   - ".tmp/**"
-  - "Mobile Team/.tmp/**"
-  - "Mobile Team/dist/**"
+  - "source/.tmp/**"
+  - "source/dist/**"
 engines:
+  csslint:
+    exclude_paths:
+      - "source/global.css"
+  jshint:
+    exclude_paths:
+      - "source/functions/**"
   psscriptanalyzer:
     exclude_paths:
-      - "Mobile Team/scripts/run-transfer-planner-maintenance.ps1"
-      - "Mobile Team/scripts/run-transfer-planner-refresh.ps1"
+      - "source/scripts/run-transfer-planner-maintenance.ps1"
+      - "source/scripts/run-transfer-planner-refresh.ps1"

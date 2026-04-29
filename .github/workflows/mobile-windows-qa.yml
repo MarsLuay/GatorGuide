@@ -3,7 +3,7 @@ name: Mobile Windows QA
 on:
   pull_request:
     paths:
-      - "Mobile Team/**"
+      - "source/**"
       - "Start-to-run.bat"
       - "Start-to-run.sh"
       - ".github/workflows/mobile-windows-qa.yml"
@@ -11,7 +11,7 @@ on:
     branches:
       - main
     paths:
-      - "Mobile Team/**"
+      - "source/**"
       - "Start-to-run.bat"
       - "Start-to-run.sh"
       - ".github/workflows/mobile-windows-qa.yml"
@@ -25,7 +25,7 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        working-directory: Mobile Team
+        working-directory: source
 
     steps:
       - name: Check out repo
@@ -36,7 +36,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: Mobile Team/package-lock.json
+          cache-dependency-path: source/package-lock.json
 
       - name: Ensure local env file exists
         shell: pwsh
@@ -66,7 +66,7 @@ jobs:
         with:
           name: mobile-windows-qa
           path: |
-            Mobile Team/.tools/qa-results/**
-            Mobile Team/.tools/qa-results-*/**
-            Mobile Team/.tools/qa-web/**
+            source/.tools/qa-results/**
+            source/.tools/qa-results-*/**
+            source/.tools/qa-web/**
           if-no-files-found: warn

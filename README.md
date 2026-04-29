@@ -19,7 +19,7 @@ Gator Guide helps students:
 
 ## Repo Layout
 
-- [Mobile Team](Mobile%20Team/README.md): Contains the bulk of the code: Expo/React Native app, UI, app services, planner tooling, and platform setup.
+- [source](source/README.md): Contains the bulk of the code: Expo/React Native app, UI, app services, planner tooling, and platform setup.
 
 ## Setup: Download and Run
 
@@ -47,8 +47,8 @@ cd $env:USERPROFILE
 git clone https://github.com/MarsLuay/GatorGuide.git
 cd GatorGuide
 
-# the mobile app lives in the "Mobile Team" folder
-cd "Mobile Team"
+# the mobile app lives in the "source" folder
+cd source
 
 # install dependencies and start Expo
 npm install
