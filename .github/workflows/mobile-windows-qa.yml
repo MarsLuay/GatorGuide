@@ -6,6 +6,8 @@ on:
       - "source/**"
       - "Start-to-run.bat"
       - "Start-to-run.sh"
+      - "Start-to-run.command"
+      - "Start-to-run.desktop"
       - ".github/workflows/mobile-windows-qa.yml"
   push:
     branches:
@@ -14,6 +16,8 @@ on:
       - "source/**"
       - "Start-to-run.bat"
       - "Start-to-run.sh"
+      - "Start-to-run.command"
+      - "Start-to-run.desktop"
       - ".github/workflows/mobile-windows-qa.yml"
   workflow_dispatch:
 

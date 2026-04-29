@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { View, Text, TextInput, ScrollView, useWindowDimensions } from "react-native";
-import { router } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
@@ -11,6 +10,7 @@ import { StateCard } from "@/components/ui/StateCard";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
+import useBack from "@/hooks/use-back";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import {
   QUESTIONNAIRE_FIELD_IDS,
@@ -76,6 +76,7 @@ export default function QuestionnairePage() {
   const { t, language } = useAppLanguage();
   const { width, height } = useWindowDimensions();
   const { getScrollContentPadding } = useResponsiveLayout();
+  const back = useBack(ROUTES.tabs);
   const questionnaireScrollRef = useRef<ScrollView>(null);
 
   // Questionnaire is translation-driven so prompts/options update when language changes.
@@ -319,7 +320,7 @@ export default function QuestionnairePage() {
               title={t("general.error")}
               message={t("profile.prepareDataError")}
               actionLabel={t("general.close")}
-              onAction={() => router.back()}
+              onAction={back}
               className="w-full"
             />
           </View>
@@ -378,7 +379,7 @@ export default function QuestionnairePage() {
       setIsActionLocked(false);
     }
 
-    router.back(); 
+    back();
   };
 
   const handlePreviousQuestion = () => {
@@ -408,7 +409,7 @@ export default function QuestionnairePage() {
       setIsActionLocked(false);
     }
 
-    router.back();
+    back();
   };
 
   const handleSaveAndExit = async () => {
@@ -433,7 +434,7 @@ export default function QuestionnairePage() {
       setIsActionLocked(false);
     }
 
-    router.back();
+    back();
   };
 
   return (

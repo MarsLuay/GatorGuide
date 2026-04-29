@@ -12,6 +12,11 @@ export type ParsedTranscriptCourse = {
   catalogYearLabel: string | null;
 };
 
+export type ParsedTranscriptData = {
+  completedCourses: ParsedTranscriptCourse[];
+  gpa: string | null;
+};
+
 const CREDIT_PATTERN = /^\d+\.\d{3}$/;
 const BASE64_CHARS =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -50,6 +55,21 @@ function normalizeTranscriptTermLabel(term: string, year: string) {
 
 function formatGrcCatalogYearLabel(startYear: number) {
   return `${startYear}-${startYear + 1}`;
+}
+
+function formatExtractedGpa(value: unknown) {
+  const raw = String(value ?? "").trim();
+  if (!raw) return null;
+
+  const match = raw.match(/-?\d+(?:\.\d+)?/);
+  if (!match) return null;
+
+  const num = Number.parseFloat(match[0]);
+  if (!Number.isFinite(num)) return null;
+
+  const clamped = Math.max(0, Math.min(num, 4.0));
+  const truncated = Math.floor(clamped * 100) / 100;
+  return truncated.toFixed(2).replace(/\.0+$|0+$/g, "");
 }
 
 export function inferGrcCatalogYearLabelFromTranscriptTerm(
@@ -253,6 +273,25 @@ function parseTranscriptCourseLines(lines: string[]) {
   return parsed;
 }
 
+export function extractCumulativeGpaFromTranscriptLines(lines: string[]) {
+  const patterns = [
+    /\bCum(?:ulative)?\s+GPA\b\s*[:\-]?\s*(\d(?:\.\d{1,4})?)/i,
+    /\bOverall\s+GPA\b\s*[:\-]?\s*(\d(?:\.\d{1,4})?)/i,
+    /\b(?:Cumulative|Overall)\s+Grade\s+Point\s+Average\b\s*[:\-]?\s*(\d(?:\.\d{1,4})?)/i,
+  ];
+
+  for (let index = lines.length - 1; index >= 0; index -= 1) {
+    const line = lines[index] ?? "";
+    for (const pattern of patterns) {
+      const match = line.match(pattern);
+      const formatted = formatExtractedGpa(match?.[1]);
+      if (formatted) return formatted;
+    }
+  }
+
+  return null;
+}
+
 function extractFlateStreams(data: Uint8Array) {
   const binary = uint8ArrayToBinaryString(data);
   const streams: Uint8Array[] = [];
@@ -422,7 +461,7 @@ function extractTranscriptLinesFromPdf(data: Uint8Array) {
 }
 
 class TranscriptPdfService {
-  async extractCompletedCoursesFromPdf(fileUri: string): Promise<ParsedTranscriptCourse[]> {
+  async extractTranscriptDataFromPdf(fileUri: string): Promise<ParsedTranscriptData> {
     const data = await readPdfBytes(fileUri);
     const allLines = extractTranscriptLinesFromPdf(data);
 
@@ -430,7 +469,18 @@ class TranscriptPdfService {
       throw new Error("No readable transcript text found in PDF.");
     }
 
-    return parseTranscriptCourseLines(allLines);
+    return {
+      completedCourses: parseTranscriptCourseLines(allLines),
+      gpa: extractCumulativeGpaFromTranscriptLines(allLines),
+    };
+  }
+
+  async extractCompletedCoursesFromPdf(fileUri: string): Promise<ParsedTranscriptCourse[]> {
+    return (await this.extractTranscriptDataFromPdf(fileUri)).completedCourses;
+  }
+
+  async extractGpaFromPdf(fileUri: string): Promise<string | null> {
+    return (await this.extractTranscriptDataFromPdf(fileUri)).gpa;
   }
 }
 

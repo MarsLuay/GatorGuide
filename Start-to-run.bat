@@ -21,6 +21,9 @@ if errorlevel 1 exit /b 1
 call :ensure_app_dependencies
 if errorlevel 1 exit /b 1
 
+call :sync_expo_packages
+if errorlevel 1 exit /b 1
+
 echo Starting Expo...
 echo The Expo page will open in your default browser when it is ready.
 call :open_browser_when_expo_ready
@@ -214,4 +217,30 @@ if not "!NPM_EXIT!"=="0" (
 )
 
 echo App dependencies installed successfully.
+exit /b 0
+
+:sync_expo_packages
+echo Checking Expo package compatibility...
+pushd "%APP_DIR%" >nul
+call npx expo install --check >nul 2>&1
+set "EXPO_CHECK_EXIT=!ERRORLEVEL!"
+if "!EXPO_CHECK_EXIT!"=="0" (
+  popd >nul
+  echo Expo packages are already compatible with this SDK.
+  exit /b 0
+)
+
+echo Updating Expo-managed packages for this SDK...
+call npx expo install --fix --npm
+set "EXPO_FIX_EXIT=!ERRORLEVEL!"
+popd >nul
+
+if not "!EXPO_FIX_EXIT!"=="0" (
+  echo Expo package update failed.
+  echo Run `npx expo install --fix --npm` manually from:
+  echo %APP_DIR%
+  exit /b 1
+)
+
+echo Expo packages updated successfully.
 exit /b 0

@@ -61,6 +61,34 @@ const SUPPORT_MESSAGE_WEBHOOK =
   process.env.EXPO_PUBLIC_SUPPORT_MESSAGE_WEBHOOK ||
   "https://us-central1-gatorguide.cloudfunctions.net/sendSupportMessage";
 
+function buildSupportMailtoUrl(message: string, userEmail?: string | null) {
+  const subject = encodeURIComponent("GatorGuide Support Request");
+  const userLine = userEmail ? `User: ${userEmail}\n` : "";
+  const body = encodeURIComponent(`${userLine}\n${message}`);
+  return `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+}
+
+function openMailtoUrlOnWeb(mailtoUrl: string) {
+  if (Platform.OS !== "web" || typeof window === "undefined") return false;
+
+  try {
+    window.location.href = mailtoUrl;
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function openExternalMailtoUrl(mailtoUrl: string) {
+  if (openMailtoUrlOnWeb(mailtoUrl)) return true;
+
+  const canOpen = await Linking.canOpenURL(mailtoUrl);
+  if (!canOpen) return false;
+
+  await Linking.openURL(mailtoUrl);
+  return true;
+}
+
 export default function SettingsPage() {
   const router = useRouter();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -377,6 +405,21 @@ export default function SettingsPage() {
     }
   }, [patchUserLocally, setQuestionnaireAnswers, updateUser, user]);
 
+  const openSupportEmail = async (mailtoUrl = SUPPORT_MAILTO) => {
+    try {
+      const opened = await openExternalMailtoUrl(mailtoUrl);
+      if (!opened) {
+        Alert.alert(t("settings.support"), t("settings.supportEmailAppUnavailable"));
+        return false;
+      }
+
+      return true;
+    } catch {
+      Alert.alert(t("settings.support"), t("settings.supportEmailAppUnavailable"));
+      return false;
+    }
+  };
+
   const sendSupportMessage = async () => {
     const message = supportMessage.trim();
     if (!message) {
@@ -384,28 +427,23 @@ export default function SettingsPage() {
       return;
     }
 
+    const mailtoUrl = buildSupportMailtoUrl(message, user?.email);
     const fallbackToMailto = async () => {
-      const subject = encodeURIComponent("GatorGuide Support Request");
-      const userLine = user?.email ? `User: ${user.email}\n` : "";
-      const body = encodeURIComponent(`${userLine}\n${message}`);
-      const mailtoUrl = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
-
-      try {
-        const canOpen = await Linking.canOpenURL(mailtoUrl);
-        if (!canOpen) {
-          Alert.alert(t("settings.support"), t("settings.supportEmailAppUnavailable"));
-          return;
-        }
-        await Linking.openURL(mailtoUrl);
+      const opened = await openSupportEmail(mailtoUrl);
+      if (opened) {
         setSupportStatus("sent");
         setSupportStatusText(t("settings.supportOpenedEmailApp"));
-      } catch {
-        Alert.alert(t("settings.support"), t("settings.supportEmailAppUnavailable"));
       }
     };
 
     setSupportStatus("");
     setSupportStatusText("");
+
+    if (Platform.OS === "web") {
+      await fallbackToMailto();
+      return;
+    }
+
     setIsSendingSupport(true);
     let timer: ReturnType<typeof setTimeout> | null = null;
     try {
@@ -783,29 +821,35 @@ export default function SettingsPage() {
           behavior={Platform.OS === "ios" ? "padding" : Platform.OS === "android" ? "height" : undefined}
           keyboardVerticalOffset={Platform.OS === "ios" ? insets.top : 0}
         >
-          <View style={{ flex: 1 }}>
-            <Pressable
-              className="absolute inset-0 bg-black/55"
-              onPress={allowBackdropDismiss ? onRequestClose : undefined}
-            />
-
+          <View className="bg-black/55" style={{ flex: 1 }}>
             <ScrollView
               className="flex-1"
               contentContainerStyle={{
                 flexGrow: 1,
-                justifyContent: "center",
-                paddingHorizontal: dialogHorizontalPadding,
-                paddingTop: modalTopPadding,
-                paddingBottom: modalBottomPadding,
               }}
               keyboardShouldPersistTaps="handled"
             >
-              <View
-                className={`w-full self-center ${cardBgClass} border rounded-3xl`}
-                style={{ maxWidth: dialogMaxWidth, padding: dialogPadding }}
+              <Pressable
+                accessible={false}
+                disabled={!allowBackdropDismiss}
+                onPress={onRequestClose}
+                style={{
+                  flexGrow: 1,
+                  justifyContent: "center",
+                  paddingHorizontal: dialogHorizontalPadding,
+                  paddingTop: modalTopPadding,
+                  paddingBottom: modalBottomPadding,
+                }}
               >
-                {content}
-              </View>
+                <Pressable
+                  accessible={false}
+                  onPress={(event) => event.stopPropagation()}
+                  className={`w-full self-center ${cardBgClass} border rounded-3xl`}
+                  style={{ maxWidth: dialogMaxWidth, padding: dialogPadding }}
+                >
+                  {content}
+                </Pressable>
+              </Pressable>
             </ScrollView>
           </View>
         </KeyboardAvoidingView>
@@ -1100,7 +1144,12 @@ export default function SettingsPage() {
               <View className="mt-4 mb-2">
                 <View className={`${flexDirection} justify-center items-center`} style={{ flexWrap: "wrap" }}>
                   <Text className={`text-center text-sm ${secondaryTextClass} ${isRTL ? "ml-2" : "mr-2"}`}>{t("general.needHelpQuestion") ?? "Need Help?"}</Text>
-                  <AnimatedIconPressable onPress={() => Linking.openURL(SUPPORT_MAILTO)} accessibilityRole="link">
+                  <AnimatedIconPressable
+                    onPress={() => {
+                      void openSupportEmail();
+                    }}
+                    accessibilityRole="link"
+                  >
                     <Text className={`text-sm ${isDark ? "text-emerald-200" : isGreen ? "text-emerald-100" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
                   </AnimatedIconPressable>
                 </View>

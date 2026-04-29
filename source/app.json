@@ -51,7 +51,9 @@
           }
         }
       ],
-      "expo-localization"
+      "expo-localization",
+      "expo-mail-composer",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,

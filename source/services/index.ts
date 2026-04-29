@@ -22,3 +22,4 @@ export * from "./storage/cache-manager.service";
 export * from "./colleges/saved-colleges.service";
 export * from "./dev/dev-console-log.service";
 export * from "./dev/transcript-planner-debug.service";
+export * from "./dev/course-planner-report.service";

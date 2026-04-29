@@ -26,7 +26,8 @@ Gator Guide helps students:
 ### Quick start
 
 - On Windows, double-click `Start-to-run.bat`
-- On macOS or Linux, run `Start-to-run.sh`
+- On macOS, double-click `Start-to-run.command`
+- On Linux, double-click `Start-to-run.desktop`
 - After the server comes online, it opens `<http://127.0.0.1:8081>` in your default browser automatically.
 
 ### Manual Start

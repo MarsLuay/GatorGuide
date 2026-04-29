@@ -1,11 +1,12 @@
 #!/usr/bin/env node
-/* global __dirname */
+/* global __dirname, Buffer */
 
 const { execFileSync } = require("node:child_process");
 const fs = require("node:fs");
 const path = require("node:path");
 const { createInterface } = require("node:readline/promises");
 const { stdin, stdout } = require("node:process");
+const zlib = require("node:zlib");
 
 const MOBILE_TEAM_ROOT = path.resolve(__dirname, "..", "..");
 const REPO_ROOT = path.resolve(MOBILE_TEAM_ROOT, "..");
@@ -17,7 +18,13 @@ const RESOURCES_PATH =
   path.join(MOBILE_TEAM_ROOT, "data", "resource-catalog.json");
 const RESOURCE_EXCEL_EXPORT_PATH =
   process.env.GATORGUIDE_RESOURCE_EXCEL_EXPORT_PATH ||
-  path.join(REPO_ROOT, "resource-catalog-export.csv");
+  path.join(MOBILE_TEAM_ROOT, "data", "resource-catalog-export.xlsx");
+const RESOURCE_TRANSLATIONS_PATH = path.join(
+  MOBILE_TEAM_ROOT,
+  "services",
+  "app",
+  "translations.ts"
+);
 const RESOURCE_COMMIT_MESSAGE = "Added resources";
 
 const RESOURCE_SECTION_LABELS = {
@@ -248,6 +255,74 @@ function formatSectionPath(section, subsection = null) {
   const sectionLabel = safeDisplayLabel(section);
   if (!subsection) return sectionLabel;
   return `${sectionLabel} > ${safeSubsectionLabel(subsection)}`;
+}
+
+let englishResourceTranslations = null;
+
+function parseTsStringLiteral(value) {
+  try {
+    return JSON.parse(`"${String(value ?? "")}"`);
+  } catch {
+    return String(value ?? "");
+  }
+}
+
+function loadEnglishResourceTranslations() {
+  if (englishResourceTranslations) return englishResourceTranslations;
+
+  englishResourceTranslations = new Map();
+
+  if (!fs.existsSync(RESOURCE_TRANSLATIONS_PATH)) {
+    return englishResourceTranslations;
+  }
+
+  const source = fs.readFileSync(RESOURCE_TRANSLATIONS_PATH, "utf8");
+  const englishBlock =
+    source.match(/English:\s*\{([\s\S]*?)\n\s*\},\n\s*"?(?:Spanish|Chinese)/)?.[1] ??
+    source;
+  const resourceStringRegex = /"(resources\.[^"]+)":\s*"((?:\\.|[^"\\])*)"/g;
+  let match;
+
+  while ((match = resourceStringRegex.exec(englishBlock)) !== null) {
+    englishResourceTranslations.set(match[1], parseTsStringLiteral(match[2]));
+  }
+
+  return englishResourceTranslations;
+}
+
+function translateResourceKey(key) {
+  const normalizedKey = String(key ?? "").trim();
+  if (!normalizedKey) return "";
+  return loadEnglishResourceTranslations().get(normalizedKey) ?? normalizedKey;
+}
+
+function resolveCatalogExportText(entry, kind) {
+  const value = normalizeWhitespace(kind === "title" ? entry?.title : entry?.description);
+  if (value) return value;
+
+  const key = normalizeWhitespace(kind === "title" ? entry?.titleKey : entry?.descriptionKey);
+  return key ? translateResourceKey(key) : "";
+}
+
+function assignCatalogText(target, kind, value, key) {
+  const cleanValue = normalizeWhitespace(value);
+  const cleanKey = normalizeWhitespace(key);
+  const translatedKey = cleanKey ? normalizeWhitespace(translateResourceKey(cleanKey)) : "";
+  const targetKeyName = `${kind}Key`;
+
+  if (cleanKey && (!cleanValue || cleanValue === cleanKey || cleanValue === translatedKey)) {
+    target[targetKeyName] = cleanKey;
+    return;
+  }
+
+  if (cleanValue) {
+    target[kind] = cleanValue;
+    return;
+  }
+
+  if (cleanKey) {
+    target[targetKeyName] = cleanKey;
+  }
 }
 
 function findTargetResourceLocation(resourceCatalog, resourceKind) {
@@ -602,6 +677,84 @@ function parseCsv(text) {
   return rows.filter((items) => items.some((item) => String(item ?? "").trim()));
 }
 
+function formatSpreadsheetCell(value) {
+  if (Array.isArray(value)) {
+    return value.filter((item) => item != null && item !== "").join("; ");
+  }
+  return value == null ? "" : String(value);
+}
+
+function escapeXml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function unescapeXml(value) {
+  return String(value ?? "")
+    .replace(/&apos;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&gt;/g, ">")
+    .replace(/&lt;/g, "<")
+    .replace(/&amp;/g, "&");
+}
+
+function getXmlAttribute(attributes, name) {
+  const match = String(attributes ?? "").match(
+    new RegExp(`(?:^|\\s)${name}="([^"]*)"`)
+  );
+  return match ? unescapeXml(match[1]) : null;
+}
+
+function extractTagText(xml, tagName) {
+  const match = String(xml ?? "").match(
+    new RegExp(`<${tagName}\\b[^>]*>([\\s\\S]*?)</${tagName}>`)
+  );
+  return match ? unescapeXml(match[1]) : "";
+}
+
+function extractTextRuns(xml) {
+  const text = String(xml ?? "");
+  const runs = [];
+  const textRegex = /<t\b[^>]*>([\s\S]*?)<\/t>/g;
+  let match;
+
+  while ((match = textRegex.exec(text)) !== null) {
+    runs.push(unescapeXml(match[1]));
+  }
+
+  if (runs.length) return runs.join("");
+  return unescapeXml(text.replace(/<[^>]*>/g, ""));
+}
+
+function columnName(columnIndex) {
+  let index = columnIndex + 1;
+  let name = "";
+
+  while (index > 0) {
+    const remainder = (index - 1) % 26;
+    name = String.fromCharCode(65 + remainder) + name;
+    index = Math.floor((index - 1) / 26);
+  }
+
+  return name;
+}
+
+function columnNameToIndex(name) {
+  let index = 0;
+  const normalized = String(name ?? "").toUpperCase();
+
+  for (const char of normalized) {
+    if (char < "A" || char > "Z") continue;
+    index = index * 26 + (char.charCodeAt(0) - 64);
+  }
+
+  return Math.max(0, index - 1);
+}
+
 function getResourceRows(resourceCatalog) {
   const rows = [];
 
@@ -683,38 +836,166 @@ const RESOURCE_EXCEL_HEADERS = [
   "tags",
 ];
 
-function resourceCatalogToCsv(resourceCatalog) {
-  const rows = getResourceRows(resourceCatalog);
-  return [
-    formatCsvRow(RESOURCE_EXCEL_HEADERS),
-    ...rows.map((row) =>
-      formatCsvRow(RESOURCE_EXCEL_HEADERS.map((header) => row[header] ?? ""))
-    ),
-  ].join("\n");
+const RESOURCE_EXCEL_EXPORT_COLUMNS = [
+  { key: "url", label: "LINK", width: 44.5 },
+  { key: "itemTitle", label: "NAME", width: 31.13 },
+  { key: "itemDescription", label: "DESCRIPTION", width: 56.88 },
+  { key: "sectionTitle", label: "SECTION", width: 25.63 },
+  { key: "subsectionTitle", label: "SUBSECTION", width: 25.63 },
+  { key: "tags", label: "TAGS", width: 35.25 },
+  { key: "expiresAt", label: "EXPIRES AT", width: 14.88 },
+  { key: "sectionId", label: "SECTION ID", width: 18.75, hidden: true },
+  { key: "subsectionId", label: "SUBSECTION ID", width: 18.75, hidden: true },
+  { key: "sectionIcon", label: "ICON", width: 14.88, hidden: true },
+  { key: "itemTitleKey", label: "NAME KEY", width: 31.13, hidden: true },
+  { key: "itemDescriptionKey", label: "DESCRIPTION KEY", width: 35.25, hidden: true },
+  { key: "sectionTitleKey", label: "SECTION KEY", width: 31.13, hidden: true },
+  { key: "subsectionTitleKey", label: "SUBSECTION KEY", width: 31.13, hidden: true },
+];
+
+const RESOURCE_EXCEL_HEADER_ALIASES = {
+  rowType: ["rowType", "ROW TYPE", "TYPE"],
+  sectionId: ["sectionId", "SECTION ID"],
+  sectionTitle: ["sectionTitle", "SECTION"],
+  sectionTitleKey: ["sectionTitleKey", "SECTION KEY"],
+  sectionIcon: ["sectionIcon", "ICON"],
+  subsectionId: ["subsectionId", "SUBSECTION ID"],
+  subsectionTitle: ["subsectionTitle", "SUBSECTION"],
+  subsectionTitleKey: ["subsectionTitleKey", "SUBSECTION KEY"],
+  itemTitle: ["itemTitle", "NAME", "TITLE"],
+  itemTitleKey: ["itemTitleKey", "NAME KEY", "TITLE KEY"],
+  itemDescription: ["itemDescription", "DESCRIPTION"],
+  itemDescriptionKey: ["itemDescriptionKey", "DESCRIPTION KEY"],
+  url: ["url", "LINK", "URL"],
+  expiresAt: ["expiresAt", "EXPIRES AT", "EXPIRES"],
+  tags: ["tags", "TAGS"],
+};
+
+function normalizeSpreadsheetHeader(value) {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "");
 }
 
-function parseResourceCatalogCsv(text) {
-  const [headerRow, ...dataRows] = parseCsv(text);
+function buildResourceHeaderIndexes(headers) {
+  const normalizedIndexes = new Map();
+
+  headers.forEach((header, index) => {
+    const normalized = normalizeSpreadsheetHeader(header);
+    if (normalized && !normalizedIndexes.has(normalized)) {
+      normalizedIndexes.set(normalized, index);
+    }
+  });
+
+  const indexes = new Map();
+  for (const header of RESOURCE_EXCEL_HEADERS) {
+    const aliases = RESOURCE_EXCEL_HEADER_ALIASES[header] ?? [header];
+    const aliasIndex = aliases
+      .map((alias) => normalizedIndexes.get(normalizeSpreadsheetHeader(alias)))
+      .find((index) => index != null);
+
+    if (aliasIndex != null) {
+      indexes.set(header, aliasIndex);
+    }
+  }
+
+  return indexes;
+}
+
+function getResourceExportRows(resourceCatalog) {
+  const rows = [];
+
+  const addItem = (section, subsection, item) => {
+    rows.push({
+      sectionId: section.id,
+      sectionTitle: resolveCatalogExportText(section, "title") || safeDisplayLabel(section),
+      sectionTitleKey: section.titleKey,
+      sectionIcon: section.icon,
+      subsectionId: subsection?.id,
+      subsectionTitle: subsection
+        ? resolveCatalogExportText(subsection, "title") || safeSubsectionLabel(subsection)
+        : "",
+      subsectionTitleKey: subsection?.titleKey,
+      itemTitle: resolveCatalogExportText(item, "title"),
+      itemTitleKey: item.titleKey,
+      itemDescription: resolveCatalogExportText(item, "description"),
+      itemDescriptionKey: item.descriptionKey,
+      url: item.url,
+      expiresAt: item.expiresAt,
+      tags: item.tags,
+    });
+  };
+
+  for (const section of resourceCatalog) {
+    for (const item of section.items ?? []) {
+      addItem(section, null, item);
+    }
+
+    for (const subsection of section.subsections ?? []) {
+      for (const item of subsection.items ?? []) {
+        addItem(section, subsection, item);
+      }
+    }
+  }
+
+  return rows;
+}
+
+function resourceCatalogToSpreadsheetRows(resourceCatalog) {
+  const rows = getResourceExportRows(resourceCatalog);
+  return [
+    RESOURCE_EXCEL_EXPORT_COLUMNS.map((column) => column.label),
+    ...rows.map((row) =>
+      RESOURCE_EXCEL_EXPORT_COLUMNS.map((column) => formatSpreadsheetCell(row[column.key]))
+    ),
+  ];
+}
+
+function resourceCatalogToCsv(resourceCatalog) {
+  return resourceCatalogToSpreadsheetRows(resourceCatalog)
+    .map((row) => formatCsvRow(row))
+    .join("\n");
+}
+
+function parseResourceCatalogRows(rows) {
+  const [headerRow, ...dataRows] = rows;
   if (!headerRow?.length) {
     fail("The import file is empty.");
   }
 
   const headers = headerRow.map((header) => String(header ?? "").trim());
-  const missingHeaders = RESOURCE_EXCEL_HEADERS.filter(
-    (header) => !headers.includes(header)
-  );
-  if (missingHeaders.length) {
-    fail(`The import file is missing columns: ${missingHeaders.join(", ")}`);
+  const headerIndexes = buildResourceHeaderIndexes(headers);
+  const missingRequiredHeaders = [];
+
+  if (!headerIndexes.has("url")) missingRequiredHeaders.push("LINK");
+  if (!headerIndexes.has("itemTitle") && !headerIndexes.has("itemTitleKey")) {
+    missingRequiredHeaders.push("NAME");
+  }
+  if (!headerIndexes.has("sectionTitle") && !headerIndexes.has("sectionTitleKey")) {
+    missingRequiredHeaders.push("SECTION");
+  }
+
+  if (missingRequiredHeaders.length) {
+    fail(`The import file is missing columns: ${missingRequiredHeaders.join(", ")}`);
   }
 
   const sections = [];
   const sectionById = new Map();
 
-  const getCell = (row, name) => String(row[headers.indexOf(name)] ?? "").trim();
+  const getCell = (row, name) => {
+    const index = headerIndexes.get(name);
+    if (index == null) return "";
+    return String(row[index] ?? "").trim();
+  };
   const getSection = (row, rowNumber) => {
     const sectionId =
       getCell(row, "sectionId") ||
-      slugify(getCell(row, "sectionTitle") || getCell(row, "sectionTitleKey")) ||
+      slugify(
+        getCell(row, "sectionTitle") ||
+          translateResourceKey(getCell(row, "sectionTitleKey")) ||
+          getCell(row, "sectionTitleKey")
+      ) ||
       `section-${rowNumber}`;
 
     if (sectionById.has(sectionId)) return sectionById.get(sectionId);
@@ -726,8 +1007,7 @@ function parseResourceCatalogCsv(text) {
     };
     const sectionTitle = getCell(row, "sectionTitle");
     const sectionTitleKey = getCell(row, "sectionTitleKey");
-    if (sectionTitle) section.title = sectionTitle;
-    if (sectionTitleKey) section.titleKey = sectionTitleKey;
+    assignCatalogText(section, "title", sectionTitle, sectionTitleKey);
 
     sections.push(section);
     sectionById.set(sectionId, section);
@@ -735,7 +1015,13 @@ function parseResourceCatalogCsv(text) {
   };
 
   const getSubsection = (section, row, rowNumber) => {
-    const subsectionId = getCell(row, "subsectionId");
+    const subsectionId =
+      getCell(row, "subsectionId") ||
+      slugify(
+        getCell(row, "subsectionTitle") ||
+          translateResourceKey(getCell(row, "subsectionTitleKey")) ||
+          getCell(row, "subsectionTitleKey")
+      );
     if (!subsectionId) return null;
 
     if (!Array.isArray(section.subsections)) {
@@ -751,8 +1037,7 @@ function parseResourceCatalogCsv(text) {
     };
     const subsectionTitle = getCell(row, "subsectionTitle");
     const subsectionTitleKey = getCell(row, "subsectionTitleKey");
-    if (subsectionTitle) subsection.title = subsectionTitle;
-    if (subsectionTitleKey) subsection.titleKey = subsectionTitleKey;
+    assignCatalogText(subsection, "title", subsectionTitle, subsectionTitleKey);
 
     section.subsections.push(subsection);
     return subsection;
@@ -794,10 +1079,8 @@ function parseResourceCatalogCsv(text) {
     const expiresAt = getCell(row, "expiresAt");
     const tags = normalizeTags(getCell(row, "tags"));
 
-    if (itemTitle) item.title = itemTitle;
-    if (itemTitleKey) item.titleKey = itemTitleKey;
-    if (itemDescription) item.description = itemDescription;
-    if (itemDescriptionKey) item.descriptionKey = itemDescriptionKey;
+    assignCatalogText(item, "title", itemTitle, itemTitleKey);
+    assignCatalogText(item, "description", itemDescription, itemDescriptionKey);
     if (expiresAt) item.expiresAt = expiresAt;
     if (tags.length) item.tags = tags;
 
@@ -806,6 +1089,463 @@ function parseResourceCatalogCsv(text) {
   }
 
   return sections;
+}
+
+function parseResourceCatalogCsv(text) {
+  return parseResourceCatalogRows(parseCsv(text));
+}
+
+function createSharedStringXml(value) {
+  const preserveSpace = /^\s|\s$/.test(value) ? ' xml:space="preserve"' : "";
+  return `<si><t${preserveSpace}>${escapeXml(value)}</t></si>`;
+}
+
+function isSpreadsheetHyperlink(value) {
+  return /^[a-z][a-z0-9+.-]*:/i.test(String(value ?? "").trim());
+}
+
+function getWorksheetHyperlinks(rows) {
+  return rows
+    .slice(1)
+    .map((row, index) => ({
+      id: `rId${index + 1}`,
+      ref: `A${index + 2}`,
+      target: formatSpreadsheetCell(row[0]).trim(),
+    }))
+    .filter((link) => isSpreadsheetHyperlink(link.target));
+}
+
+function createWorksheetRelationshipsXml(hyperlinks) {
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  ${hyperlinks
+    .map(
+      (link) =>
+        `<Relationship Id="${link.id}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="${escapeXml(link.target)}" TargetMode="External"/>`
+    )
+    .join("")}
+</Relationships>`;
+}
+
+function createWorkbookStylesXml() {
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+  <fonts count="3">
+    <font><sz val="10"/><color rgb="FF000000"/><name val="Arial"/><family val="2"/></font>
+    <font><b/><sz val="10"/><color rgb="FF000000"/><name val="Arial"/><family val="2"/></font>
+    <font><u/><sz val="10"/><color rgb="FF0000FF"/><name val="Arial"/><family val="2"/></font>
+  </fonts>
+  <fills count="3">
+    <fill><patternFill patternType="none"/></fill>
+    <fill><patternFill patternType="gray125"/></fill>
+    <fill><patternFill patternType="solid"><fgColor rgb="FF9FC5E8"/><bgColor rgb="FF9FC5E8"/></patternFill></fill>
+  </fills>
+  <borders count="2">
+    <border/>
+    <border>
+      <left style="thin"><color rgb="FFD9E2F3"/></left>
+      <right style="thin"><color rgb="FFD9E2F3"/></right>
+      <top style="thin"><color rgb="FFD9E2F3"/></top>
+      <bottom style="thin"><color rgb="FFD9E2F3"/></bottom>
+      <diagonal/>
+    </border>
+  </borders>
+  <cellStyleXfs count="1">
+    <xf numFmtId="0" fontId="0" fillId="0" borderId="0"/>
+  </cellStyleXfs>
+  <cellXfs count="4">
+    <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf>
+    <xf numFmtId="0" fontId="1" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center" wrapText="1"/></xf>
+    <xf numFmtId="0" fontId="2" fillId="0" borderId="1" xfId="0" applyFont="1" applyBorder="1" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf>
+    <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf>
+  </cellXfs>
+  <cellStyles count="1">
+    <cellStyle name="Normal" xfId="0" builtinId="0"/>
+  </cellStyles>
+  <dxfs count="0"/>
+  <tableStyles count="0" defaultTableStyle="TableStyleMedium2" defaultPivotStyle="PivotStyleLight16"/>
+</styleSheet>`;
+}
+
+function createWorksheetXml(rows, stringIndexes, columns = RESOURCE_EXCEL_EXPORT_COLUMNS, hyperlinks = []) {
+  const lastColumn = columnName(Math.max(0, (rows[0]?.length ?? columns.length) - 1));
+  const rowCount = Math.max(1, rows.length);
+  const cols = columns.map((column, index) => {
+    const width = column.width ?? Math.max(12, Math.min(44, String(column.label).length + 6));
+    const hidden = column.hidden ? ' hidden="1"' : "";
+    return `<col min="${index + 1}" max="${index + 1}" width="${width}" customWidth="1"${hidden}/>`;
+  }).join("");
+  const hyperlinkIdByRef = new Map(hyperlinks.map((link) => [link.ref, link.id]));
+
+  const sheetRows = rows
+    .map((row, rowIndex) => {
+      const rowNumber = rowIndex + 1;
+      const isHeader = rowIndex === 0;
+      const cells = row
+        .map((cellValue, columnIndex) => {
+          const text = formatSpreadsheetCell(cellValue);
+          const cellRef = `${columnName(columnIndex)}${rowNumber}`;
+          const styleIndex = isHeader ? 1 : hyperlinkIdByRef.has(cellRef) ? 2 : 3;
+          if (!text) return `<c r="${cellRef}" s="${styleIndex}"/>`;
+          return `<c r="${cellRef}" s="${styleIndex}" t="s"><v>${stringIndexes.get(text)}</v></c>`;
+        })
+        .join("");
+      const rowHeight = isHeader ? ' ht="18.75" customHeight="1"' : "";
+      return `<row r="${rowNumber}"${rowHeight}>${cells}</row>`;
+    })
+    .join("");
+  const hyperlinksXml = hyperlinks.length
+    ? `<hyperlinks>${hyperlinks
+        .map((link) => `<hyperlink ref="${link.ref}" r:id="${link.id}"/>`)
+        .join("")}</hyperlinks>`
+    : "";
+
+  return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+  <dimension ref="A1:${lastColumn}${rowCount}"/>
+  <sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/><selection pane="bottomLeft"/></sheetView></sheetViews>
+  <sheetFormatPr defaultRowHeight="18"/>
+  <cols>${cols}</cols>
+  <sheetData>${sheetRows}</sheetData>
+  ${hyperlinksXml}
+  <autoFilter ref="A1:${lastColumn}${rowCount}"/>
+</worksheet>`;
+}
+
+function createXlsxBuffer(rows) {
+  const sharedStrings = [];
+  const stringIndexes = new Map();
+  let sharedStringCount = 0;
+
+  for (const row of rows) {
+    for (const value of row) {
+      const text = formatSpreadsheetCell(value);
+      if (!text) continue;
+      sharedStringCount += 1;
+      if (!stringIndexes.has(text)) {
+        stringIndexes.set(text, sharedStrings.length);
+        sharedStrings.push(text);
+      }
+    }
+  }
+
+  const hyperlinks = getWorksheetHyperlinks(rows);
+  const worksheetXml = createWorksheetXml(
+    rows,
+    stringIndexes,
+    RESOURCE_EXCEL_EXPORT_COLUMNS,
+    hyperlinks
+  );
+  const sharedStringsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<sst xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" count="${sharedStringCount}" uniqueCount="${sharedStrings.length}">
+  ${sharedStrings.map(createSharedStringXml).join("")}
+</sst>`;
+
+  const entries = [
+    {
+      name: "[Content_Types].xml",
+      data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  <Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>
+  <Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
+  <Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>
+  <Override PartName="/xl/sharedStrings.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml"/>
+</Types>`,
+    },
+    {
+      name: "_rels/.rels",
+      data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>
+</Relationships>`,
+    },
+    {
+      name: "xl/workbook.xml",
+      data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+  <sheets>
+    <sheet name="Resources" sheetId="1" r:id="rId1"/>
+  </sheets>
+</workbook>`,
+    },
+    {
+      name: "xl/_rels/workbook.xml.rels",
+      data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>
+  <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/sharedStrings" Target="sharedStrings.xml"/>
+  <Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
+</Relationships>`,
+    },
+    {
+      name: "xl/worksheets/sheet1.xml",
+      data: worksheetXml,
+    },
+    {
+      name: "xl/styles.xml",
+      data: createWorkbookStylesXml(),
+    },
+    {
+      name: "xl/sharedStrings.xml",
+      data: sharedStringsXml,
+    },
+  ];
+
+  if (hyperlinks.length) {
+    entries.push({
+      name: "xl/worksheets/_rels/sheet1.xml.rels",
+      data: createWorksheetRelationshipsXml(hyperlinks),
+    });
+  }
+
+  return createZipBuffer(entries);
+}
+
+function createCrc32Table() {
+  const table = new Uint32Array(256);
+  for (let index = 0; index < 256; index += 1) {
+    let value = index;
+    for (let bit = 0; bit < 8; bit += 1) {
+      value = value & 1 ? 0xedb88320 ^ (value >>> 1) : value >>> 1;
+    }
+    table[index] = value >>> 0;
+  }
+  return table;
+}
+
+const CRC32_TABLE = createCrc32Table();
+
+function crc32(buffer) {
+  let crc = 0xffffffff;
+  for (const byte of buffer) {
+    crc = CRC32_TABLE[(crc ^ byte) & 0xff] ^ (crc >>> 8);
+  }
+  return (crc ^ 0xffffffff) >>> 0;
+}
+
+function createZipBuffer(entries) {
+  const localParts = [];
+  const centralParts = [];
+  let offset = 0;
+  const dosTime = 0;
+  const dosDate = 0x21;
+
+  for (const entry of entries) {
+    const nameBuffer = Buffer.from(entry.name, "utf8");
+    const dataBuffer = Buffer.isBuffer(entry.data)
+      ? entry.data
+      : Buffer.from(entry.data, "utf8");
+    const checksum = crc32(dataBuffer);
+
+    const localHeader = Buffer.alloc(30);
+    localHeader.writeUInt32LE(0x04034b50, 0);
+    localHeader.writeUInt16LE(20, 4);
+    localHeader.writeUInt16LE(0, 6);
+    localHeader.writeUInt16LE(0, 8);
+    localHeader.writeUInt16LE(dosTime, 10);
+    localHeader.writeUInt16LE(dosDate, 12);
+    localHeader.writeUInt32LE(checksum, 14);
+    localHeader.writeUInt32LE(dataBuffer.length, 18);
+    localHeader.writeUInt32LE(dataBuffer.length, 22);
+    localHeader.writeUInt16LE(nameBuffer.length, 26);
+    localHeader.writeUInt16LE(0, 28);
+
+    localParts.push(localHeader, nameBuffer, dataBuffer);
+
+    const centralHeader = Buffer.alloc(46);
+    centralHeader.writeUInt32LE(0x02014b50, 0);
+    centralHeader.writeUInt16LE(20, 4);
+    centralHeader.writeUInt16LE(20, 6);
+    centralHeader.writeUInt16LE(0, 8);
+    centralHeader.writeUInt16LE(0, 10);
+    centralHeader.writeUInt16LE(dosTime, 12);
+    centralHeader.writeUInt16LE(dosDate, 14);
+    centralHeader.writeUInt32LE(checksum, 16);
+    centralHeader.writeUInt32LE(dataBuffer.length, 20);
+    centralHeader.writeUInt32LE(dataBuffer.length, 24);
+    centralHeader.writeUInt16LE(nameBuffer.length, 28);
+    centralHeader.writeUInt16LE(0, 30);
+    centralHeader.writeUInt16LE(0, 32);
+    centralHeader.writeUInt16LE(0, 34);
+    centralHeader.writeUInt16LE(0, 36);
+    centralHeader.writeUInt32LE(0, 38);
+    centralHeader.writeUInt32LE(offset, 42);
+
+    centralParts.push(centralHeader, nameBuffer);
+    offset += localHeader.length + nameBuffer.length + dataBuffer.length;
+  }
+
+  const centralDirectoryOffset = offset;
+  const centralDirectory = Buffer.concat(centralParts);
+  const endRecord = Buffer.alloc(22);
+  endRecord.writeUInt32LE(0x06054b50, 0);
+  endRecord.writeUInt16LE(0, 4);
+  endRecord.writeUInt16LE(0, 6);
+  endRecord.writeUInt16LE(entries.length, 8);
+  endRecord.writeUInt16LE(entries.length, 10);
+  endRecord.writeUInt32LE(centralDirectory.length, 12);
+  endRecord.writeUInt32LE(centralDirectoryOffset, 16);
+  endRecord.writeUInt16LE(0, 20);
+
+  return Buffer.concat([...localParts, centralDirectory, endRecord]);
+}
+
+function readZipEntries(zipBuffer) {
+  let endRecordOffset = -1;
+  const minOffset = Math.max(0, zipBuffer.length - 65557);
+
+  for (let offset = zipBuffer.length - 22; offset >= minOffset; offset -= 1) {
+    if (zipBuffer.readUInt32LE(offset) === 0x06054b50) {
+      endRecordOffset = offset;
+      break;
+    }
+  }
+
+  if (endRecordOffset < 0) {
+    fail("The XLSX file is missing a ZIP end record.");
+  }
+
+  const entryCount = zipBuffer.readUInt16LE(endRecordOffset + 10);
+  const centralDirectoryOffset = zipBuffer.readUInt32LE(endRecordOffset + 16);
+  const entries = new Map();
+  let cursor = centralDirectoryOffset;
+
+  for (let index = 0; index < entryCount; index += 1) {
+    if (zipBuffer.readUInt32LE(cursor) !== 0x02014b50) {
+      fail("The XLSX file has an invalid ZIP central directory.");
+    }
+
+    const compressionMethod = zipBuffer.readUInt16LE(cursor + 10);
+    const compressedSize = zipBuffer.readUInt32LE(cursor + 20);
+    const fileNameLength = zipBuffer.readUInt16LE(cursor + 28);
+    const extraLength = zipBuffer.readUInt16LE(cursor + 30);
+    const commentLength = zipBuffer.readUInt16LE(cursor + 32);
+    const localHeaderOffset = zipBuffer.readUInt32LE(cursor + 42);
+    const name = zipBuffer
+      .subarray(cursor + 46, cursor + 46 + fileNameLength)
+      .toString("utf8");
+
+    if (zipBuffer.readUInt32LE(localHeaderOffset) !== 0x04034b50) {
+      fail(`The XLSX entry "${name}" has an invalid local header.`);
+    }
+
+    const localNameLength = zipBuffer.readUInt16LE(localHeaderOffset + 26);
+    const localExtraLength = zipBuffer.readUInt16LE(localHeaderOffset + 28);
+    const dataOffset = localHeaderOffset + 30 + localNameLength + localExtraLength;
+    const compressedData = zipBuffer.subarray(dataOffset, dataOffset + compressedSize);
+    let data;
+
+    if (compressionMethod === 0) {
+      data = compressedData;
+    } else if (compressionMethod === 8) {
+      data = zlib.inflateRawSync(compressedData);
+    } else {
+      fail(`The XLSX entry "${name}" uses unsupported ZIP compression method ${compressionMethod}.`);
+    }
+
+    entries.set(name, data);
+    cursor += 46 + fileNameLength + extraLength + commentLength;
+  }
+
+  return entries;
+}
+
+function parseSharedStringsXml(xml) {
+  const sharedStrings = [];
+  const itemRegex = /<si\b[^>]*>([\s\S]*?)<\/si>/g;
+  let match;
+
+  while ((match = itemRegex.exec(xml)) !== null) {
+    sharedStrings.push(extractTextRuns(match[1]));
+  }
+
+  return sharedStrings;
+}
+
+function parseWorksheetRows(xml, sharedStrings) {
+  const rows = [];
+  const rowRegex = /<row\b([^>]*)>([\s\S]*?)<\/row>/g;
+  let rowMatch;
+
+  while ((rowMatch = rowRegex.exec(xml)) !== null) {
+    const row = [];
+    const cellRegex = /<c\b([^>]*?)(?:\/>|>([\s\S]*?)<\/c>)/g;
+    let cellMatch;
+    let nextColumnIndex = 0;
+
+    while ((cellMatch = cellRegex.exec(rowMatch[2])) !== null) {
+      const attributes = cellMatch[1];
+      const cellXml = cellMatch[2] ?? "";
+      const cellRef = getXmlAttribute(attributes, "r");
+      const type = getXmlAttribute(attributes, "t");
+      const columnMatch = cellRef ? cellRef.match(/[A-Z]+/i) : null;
+      const columnIndex = columnMatch
+        ? columnNameToIndex(columnMatch[0])
+        : nextColumnIndex;
+      nextColumnIndex = columnIndex + 1;
+
+      let value = "";
+      if (type === "s") {
+        const sharedIndex = Number.parseInt(extractTagText(cellXml, "v"), 10);
+        value = sharedStrings[sharedIndex] ?? "";
+      } else if (type === "inlineStr") {
+        value = extractTextRuns(cellXml);
+      } else {
+        value = extractTagText(cellXml, "v");
+      }
+
+      row[columnIndex] = value;
+    }
+
+    while (row.length && row[row.length - 1] == null) {
+      row.pop();
+    }
+
+    rows.push(row.map((value) => value ?? ""));
+  }
+
+  return rows.filter((row) => row.some((item) => String(item ?? "").trim()));
+}
+
+function parseResourceCatalogXlsx(filePath) {
+  const entries = readZipEntries(fs.readFileSync(filePath));
+  const sharedStringsEntry = entries.get("xl/sharedStrings.xml");
+  const sharedStrings = sharedStringsEntry
+    ? parseSharedStringsXml(sharedStringsEntry.toString("utf8"))
+    : [];
+  const worksheetEntry =
+    entries.get("xl/worksheets/sheet1.xml") ??
+    Array.from(entries.entries()).find(([name]) =>
+      /^xl\/worksheets\/sheet\d+\.xml$/i.test(name)
+    )?.[1];
+
+  if (!worksheetEntry) {
+    fail("The XLSX file does not contain a worksheet.");
+  }
+
+  return parseResourceCatalogRows(
+    parseWorksheetRows(worksheetEntry.toString("utf8"), sharedStrings)
+  );
+}
+
+function parseResourceCatalogSpreadsheet(filePath) {
+  const extension = path.extname(filePath).toLowerCase();
+  const firstBytes = fs.readFileSync(filePath).subarray(0, 4).toString("binary");
+
+  if (extension === ".xlsx" || firstBytes === "PK\u0003\u0004") {
+    return parseResourceCatalogXlsx(filePath);
+  }
+
+  return parseResourceCatalogCsv(fs.readFileSync(filePath, "utf8"));
+}
+
+function ensureXlsxFilePath(filePath) {
+  const extension = path.extname(filePath);
+  if (extension.toLowerCase() === ".xlsx") return filePath;
+  if (!extension) return `${filePath}.xlsx`;
+  return `${filePath.slice(0, -extension.length)}.xlsx`;
 }
 
 function toGitPath(filePath) {
@@ -2689,23 +3429,35 @@ async function publishUpdatedResources(rl) {
 }
 
 async function exportResourcesAsExcelFile() {
-  const outputPath = RESOURCE_EXCEL_EXPORT_PATH;
+  const requestedOutputPath = RESOURCE_EXCEL_EXPORT_PATH;
+  const outputPath =
+    path.extname(requestedOutputPath).toLowerCase() === ".csv"
+      ? requestedOutputPath
+      : ensureXlsxFilePath(requestedOutputPath);
   const resourceCatalog = loadJsonArray(RESOURCES_PATH);
-  const csv = resourceCatalogToCsv(resourceCatalog);
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, `${csv}\n`, "utf8");
 
   log("");
-  log(`Saved Excel-compatible CSV to ${outputPath}`);
-  log(`Exported ${getResourceRows(resourceCatalog).length} spreadsheet rows.`);
-  log("You can open this CSV in Excel, edit it, and import it back through this same menu.");
+  if (path.extname(outputPath).toLowerCase() === ".csv") {
+    fs.writeFileSync(outputPath, `${resourceCatalogToCsv(resourceCatalog)}\n`, "utf8");
+    log(`Saved Excel-compatible CSV to ${outputPath}`);
+    log(`Exported ${getResourceExportRows(resourceCatalog).length} resources.`);
+    log("Set GATORGUIDE_RESOURCE_EXCEL_EXPORT_PATH to an .xlsx path for the default workbook export.");
+    return;
+  }
+
+  const workbook = createXlsxBuffer(resourceCatalogToSpreadsheetRows(resourceCatalog));
+  fs.writeFileSync(outputPath, workbook);
+  log(`Saved Excel workbook to ${outputPath}`);
+  log(`Exported ${getResourceExportRows(resourceCatalog).length} resources.`);
+  log("You can open this XLSX in Excel, edit it, and import it back through this same menu.");
 }
 
 async function importResourcesAsExcelFile(rl) {
-  const inputPathInput = await askText(rl, "Which Excel/CSV file should be imported?", {
+  const inputPathInput = await askText(rl, "Which XLSX or CSV file should be imported?", {
     defaultValue: RESOURCE_EXCEL_EXPORT_PATH,
-    hint: "Use a CSV exported from this tool.",
+    hint: "Use an XLSX exported from this tool. CSV imports are still supported.",
   });
   if (isBackSignal(inputPathInput)) return;
 
@@ -2714,8 +3466,7 @@ async function importResourcesAsExcelFile(rl) {
     fail(`Could not find import file: ${inputPath}`);
   }
 
-  const csv = fs.readFileSync(inputPath, "utf8");
-  const nextCatalog = parseResourceCatalogCsv(csv);
+  const nextCatalog = parseResourceCatalogSpreadsheet(inputPath);
   const itemCount = nextCatalog.reduce(
     (sum, section) =>
       sum +
@@ -2754,7 +3505,7 @@ async function importResourcesAsExcelFile(rl) {
 async function importExportResourcesAsExcelFile(rl) {
   const choice = await askChoice(
     rl,
-    "Import/Export resources as excel file",
+    "Import/export resources as Excel workbook",
     [
       { value: "export", label: "Export resources to Excel file" },
       { value: "import", label: "Import resources from Excel file" },

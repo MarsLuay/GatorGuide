@@ -58,7 +58,10 @@ import {
   documentReaderService,
   type DocumentExtractionReview,
 } from "@/services/documents/document-reader.service";
+import { transcriptPdfService } from "@/services/documents/transcript-pdf.service";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
+import { buildTransferPlannerTranscriptCachePatch } from "@/services/planning/transfer-planner-cache.service";
+import type { UploadedFile } from "@/services/storage/storage.service";
 
 type UploadedDocumentMeta = {
   name: string;
@@ -236,6 +239,22 @@ function omitProfileReviewField(
     userPatch,
     items: review.items.filter(
       (item) => !(item.target === "profile" && item.id === fieldId)
+    ),
+  };
+}
+
+function omitQuestionnaireReviewField(
+  review: DocumentExtractionReview,
+  fieldId: string
+): DocumentExtractionReview {
+  const questionnairePatch = { ...review.questionnairePatch };
+  delete questionnairePatch[fieldId];
+
+  return {
+    ...review,
+    questionnairePatch,
+    items: review.items.filter(
+      (item) => !(item.target === "questionnaire" && item.id === fieldId)
     ),
   };
 }
@@ -800,12 +819,80 @@ export default function ProfilePage() {
     }
   };
 
+  const autoApplyTranscriptGpa = async (
+    rawGpa: string | null | undefined,
+    operation: string
+  ) => {
+    const transcriptGpa = formatGpaDisplay(rawGpa);
+    if (!transcriptGpa || hasProfileGpaValue(latestProfileGpaRef.current)) {
+      return false;
+    }
+
+    const previousGpa = latestProfileGpaRef.current;
+    try {
+      latestProfileGpaRef.current = transcriptGpa;
+      await updateUser({ gpa: transcriptGpa });
+      setEditData((prev) =>
+        hasProfileGpaValue(prev.gpa) ? prev : { ...prev, gpa: transcriptGpa }
+      );
+      return true;
+    } catch (error) {
+      latestProfileGpaRef.current = previousGpa || editData.gpa || user?.gpa || "";
+      void errorLoggingService.captureException(error, {
+        category: "firestore",
+        operation,
+        severity: "warn",
+        handled: true,
+        source: "profile-page",
+        screen: "profile",
+        route: ROUTES.profile,
+      });
+      return false;
+    }
+  };
+
+  const syncUploadedTranscriptToPlanner = async (uploaded: UploadedFile) => {
+    try {
+      const parsedTranscript = await transcriptPdfService.extractTranscriptDataFromPdf(
+        uploaded.url
+      );
+
+      if (parsedTranscript.completedCourses.length) {
+        await setQuestionnaireAnswers((currentAnswers) => ({
+          ...currentAnswers,
+          ...buildTransferPlannerTranscriptCachePatch(
+            uploaded,
+            parsedTranscript.completedCourses
+          ),
+        }));
+      }
+
+      await autoApplyTranscriptGpa(
+        parsedTranscript.gpa,
+        "auto-apply-transcript-pdf-gpa"
+      );
+
+      return parsedTranscript.completedCourses.length;
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "upload",
+        operation: "sync-profile-transcript-to-planner",
+        severity: "warn",
+        handled: true,
+        source: "profile-page",
+        screen: "profile",
+        route: ROUTES.profile,
+      });
+      return 0;
+    }
+  };
+
   const analyzeUploadedDocument = async (asset: {
     uri: string;
     name?: string | null;
     mimeType?: string | null;
     size?: number | null;
-  }) => {
+  }, options?: { omitCompletedCoursesReview?: boolean }) => {
     setActiveDocumentAnalysis("transcript");
     try {
       const review = await documentReaderService.extractDocumentReview({
@@ -821,41 +908,22 @@ export default function ProfilePage() {
         questionnaireAnswers: state.questionnaireAnswers,
       });
       const transcriptGpa = review.userPatch.gpa;
-      let nextReview = review;
-      let didAutoApplyTranscriptGpa = false;
+      let nextReview = options?.omitCompletedCoursesReview
+        ? omitQuestionnaireReviewField(review, "completedCourses")
+        : review;
 
       if (transcriptGpa) {
-        if (!hasProfileGpaValue(latestProfileGpaRef.current)) {
-          try {
-            latestProfileGpaRef.current = transcriptGpa;
-            await updateUser({ gpa: transcriptGpa });
-            setEditData((prev) =>
-              hasProfileGpaValue(prev.gpa) ? prev : { ...prev, gpa: transcriptGpa }
-            );
-            nextReview = omitProfileReviewField(review, "gpa");
-            didAutoApplyTranscriptGpa = true;
-          } catch (error) {
-            latestProfileGpaRef.current = editData.gpa || user?.gpa || "";
-            void errorLoggingService.captureException(error, {
-              category: "firestore",
-              operation: "auto-apply-transcript-gpa",
-              severity: "warn",
-              handled: true,
-              source: "profile-page",
-              screen: "profile",
-              route: ROUTES.profile,
-            });
-          }
-        } else {
-          nextReview = omitProfileReviewField(review, "gpa");
+        const didAutoApplyTranscriptGpa = await autoApplyTranscriptGpa(
+          transcriptGpa,
+          "auto-apply-transcript-gpa"
+        );
+
+        if (didAutoApplyTranscriptGpa || hasProfileGpaValue(latestProfileGpaRef.current)) {
+          nextReview = omitProfileReviewField(nextReview, "gpa");
         }
       }
 
-      setDocumentReviews(
-        didAutoApplyTranscriptGpa && !nextReview.items.length
-          ? {}
-          : { transcript: nextReview }
-      );
+      setDocumentReviews(nextReview.items.length ? { transcript: nextReview } : {});
     } catch (error) {
       Alert.alert(
         t("profile.documentReaderUnavailableTitle"),
@@ -957,7 +1025,10 @@ export default function ProfilePage() {
         ...current,
         transcript: { name: uploaded.name, url: uploaded.url },
       }));
-      await analyzeUploadedDocument(asset);
+      const syncedCompletedCourseCount = await syncUploadedTranscriptToPlanner(uploaded);
+      await analyzeUploadedDocument(asset, {
+        omitCompletedCoursesReview: syncedCompletedCourseCount > 0,
+      });
     } catch (err) {
       void errorLoggingService.captureException(err, {
         category: "upload",

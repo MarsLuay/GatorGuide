@@ -1,5 +1,5 @@
 import * as DocumentPicker from "expo-document-picker";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -48,9 +48,11 @@ import {
 } from "@/constants/transfer-planner-source";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import useBack from "@/hooks/use-back";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { transcriptPlannerDebugService } from "@/services/dev/transcript-planner-debug.service";
+import { coursePlannerReportService } from "@/services/dev/course-planner-report.service";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { storageService, type UploadedFile } from "@/services/storage/storage.service";
 import {
@@ -71,21 +73,24 @@ import {
   parseCompletedTranscriptCourses,
   type SuggestedQuarterPlan,
   type TransferPlannerStudentEvaluationReport,
+  type TransferRequirementStatus,
   type TranscriptCourseEntry,
 } from "@/services/planning/transfer-planner.service";
+import {
+  buildTransferPlannerTranscriptCachePatch,
+  TRANSCRIPT_COURSES_FIELD,
+  TRANSCRIPT_PARSER_VERSION,
+  TRANSCRIPT_PARSER_VERSION_FIELD,
+  TRANSCRIPT_SOURCE_FIELD,
+} from "@/services/planning/transfer-planner-cache.service";
 import { resetTranscriptState } from "@/services/planning/transcript-reset.service";
 
 const CTCLINK_UNOFFICIAL_TRANSCRIPT_URL =
   "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL";
 
-const TRANSCRIPT_COURSES_FIELD = "transferPlannerCompletedCourses";
-const TRANSCRIPT_SOURCE_FIELD = "transferPlannerTranscriptSource";
-const TRANSCRIPT_UPLOADED_AT_FIELD = "transferPlannerTranscriptUploadedAt";
-const TRANSCRIPT_PARSER_VERSION_FIELD = "transferPlannerTranscriptParserVersion";
 const CURRENT_PLANNED_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
 const SELECTED_PATHWAY_FIELD = "transferPlannerSelectedPathwayByPlan";
 const LAST_SELECTED_PLAN_FIELD = "transferPlannerLastSelectedPlan";
-const TRANSCRIPT_PARSER_VERSION = 2;
 const GRC_PLANNER_CAMPUS_ID = "grc";
 const GENERATED_PROGRAM_MAP_SUMMARY_SENTENCE = [
   "Generated automatically",
@@ -143,6 +148,264 @@ function getTranscriptUrlKind(url: string | null | undefined) {
   if (/^[A-Za-z]:[\\/]/.test(raw)) return "windows-local-path";
   if (raw.startsWith("/")) return "local-path";
   return "other";
+}
+
+function stringifyPlannerLogValue(value: unknown) {
+  try {
+    return JSON.stringify(
+      value,
+      (key, nestedValue) => {
+        const lowerKey = key.toLowerCase();
+        if (
+          typeof nestedValue === "string" &&
+          (/transcriptsource|sourcekey/i.test(key) ||
+            lowerKey === "url" ||
+            lowerKey.endsWith("url"))
+        ) {
+          return nestedValue
+            ? `[redacted ${getTranscriptUrlKind(nestedValue)} length=${nestedValue.length}]`
+            : nestedValue;
+        }
+
+        return nestedValue;
+      },
+      2
+    );
+  } catch {
+    return String(value ?? "");
+  }
+}
+
+function formatPlannerReportList(values: string[], emptyLabel = "None") {
+  const normalizedValues = values
+    .map((value) => String(value ?? "").trim())
+    .filter(Boolean);
+
+  if (!normalizedValues.length) return emptyLabel;
+  return normalizedValues.map((value) => `- ${value}`).join("\n");
+}
+
+function formatCoursePreview(courses: TranscriptCourseEntry[], limit = 30) {
+  if (!courses.length) return "None";
+
+  const rows = courses.slice(0, limit).map((course) => {
+    const details = [course.termLabel, course.catalogYearLabel].filter(Boolean).join("; ");
+    return `- ${course.code} | ${course.label}${details ? ` (${details})` : ""}`;
+  });
+  const remainingCount = courses.length - rows.length;
+  if (remainingCount > 0) {
+    rows.push(`- ...and ${remainingCount} more`);
+  }
+
+  return rows.join("\n");
+}
+
+function formatRequirementStatusSummary(label: string, statuses: TransferRequirementStatus[]) {
+  const matchedCount = statuses.filter((status) => status.matched).length;
+  const pending = statuses
+    .filter((status) => !status.matched)
+    .slice(0, 12)
+    .map((status) => {
+      const courseCodes = status.explicitCourseCodes.length
+        ? ` [${status.explicitCourseCodes.join(", ")}]`
+        : "";
+      const progress = status.creditProgressLabel ? ` (${status.creditProgressLabel})` : "";
+      return `${status.item.title}${courseCodes}${progress}`;
+    });
+
+  return [
+    `${label}: ${matchedCount}/${statuses.length} matched`,
+    pending.length ? formatPlannerReportList(pending, "") : "- No pending items in preview",
+  ].join("\n");
+}
+
+function formatSuggestedQuarterPlanLog(quarters: SuggestedQuarterPlan[]) {
+  if (!quarters.length) return "No suggested quarter plan is currently built.";
+
+  return quarters
+    .map((quarter) => {
+      const courses = quarter.courses.length
+        ? quarter.courses
+            .map((course) => `  - ${course.label} (${course.status}; ${course.type})`)
+            .join("\n")
+        : "  - No courses";
+      return `${quarter.label} [${quarter.phase}]\n${courses}`;
+    })
+    .join("\n\n");
+}
+
+function formatStudentEvaluationReportLog(report: TransferPlannerStudentEvaluationReport | null) {
+  if (!report) return "No student evaluation report is currently built.";
+
+  const buckets = report.buckets.length
+    ? report.buckets
+        .map((bucket) => `- ${bucket.label}: ${bucket.count} (${bucket.courseCodes.join(", ") || "none"})`)
+        .join("\n")
+    : "- No buckets";
+
+  return [
+    `Plan ID: ${report.planId ?? "none"}`,
+    `Pathway ID: ${report.pathwayId ?? "none"}`,
+    `Major: ${report.majorTitle}`,
+    `Campus: ${report.campusLabel}`,
+    `Completed courses: ${report.completedCourseCount}`,
+    `Student-facing evaluations: ${report.studentFacingEvaluationCount}`,
+    `Hidden evaluations: ${report.hiddenEvaluationCount}`,
+    `Source links counted: ${report.sourceLinkCount}`,
+    "",
+    "Buckets:",
+    buckets,
+    "",
+    "Warning course codes:",
+    formatPlannerReportList(report.warningCourseCodes),
+    "",
+    "Missing sequence course codes:",
+    formatPlannerReportList(report.missingSequenceCourseCodes),
+    "",
+    "Next planned courses:",
+    formatPlannerReportList(report.nextPlannedCourseLabels),
+    "",
+    "Summary lines:",
+    formatPlannerReportList(report.reportSummaryLines),
+  ].join("\n");
+}
+
+function buildCoursePlannerBugReportLog(input: {
+  user: { uid?: string | null; email?: string | null; isGuest?: boolean | null } | null | undefined;
+  selectedCollegeLabel: string;
+  selectedCampusLabel: string;
+  selectedMajorLabel: string;
+  selectedCollegeId: PlannerCollegeId;
+  selectedCampusId: PlannerCampusSelectionId;
+  selectedMajorId: string;
+  plannerPathKey: string;
+  selectedPathwayId: string | null;
+  selectedPathwayLabel: string | null;
+  activeDegreeTitle: string;
+  plan: TransferPlannerResolvedMajorPlan | null;
+  track: TransferPlannerTrack | null;
+  transcriptDocument: TranscriptDocument | null;
+  transcriptError: string | null;
+  parserVersion: number;
+  storedParserVersion: number | null;
+  storedTranscriptSource: string;
+  shouldUseDetailedCompletedCourses: boolean;
+  needsTranscriptReparse: boolean;
+  completedCourses: TranscriptCourseEntry[];
+  transcriptDerivedCompletedCourses: TranscriptCourseEntry[];
+  currentPlannedCourseLabels: string[];
+  onlyUwEssentialClasses: boolean;
+  allowSummerClasses: boolean;
+  isHydrated: boolean;
+  isPlannerComputationReady: boolean;
+  isPlannerComputationLoading: boolean;
+  hasStructuredPlannerData: boolean;
+  hasNoDirectMajorEquivalencies: boolean;
+  applicationStatuses: TransferRequirementStatus[];
+  beforeEnrollmentStatuses: TransferRequirementStatus[];
+  stayAtGrcStatuses: TransferRequirementStatus[];
+  suggestedQuarterPlan: SuggestedQuarterPlan[];
+  studentEvaluationReport: TransferPlannerStudentEvaluationReport | null;
+  lastTranscriptDebug: unknown;
+}) {
+  const userLabel = input.user?.isGuest
+    ? "Guest"
+    : input.user?.email
+      ? input.user.email
+      : input.user?.uid
+        ? `Signed-in user (${input.user.uid})`
+        : "Unknown";
+  const transcriptName = input.transcriptDocument
+    ? getReadableTranscriptFileName(input.transcriptDocument)
+    : "None";
+
+  return [
+    "GatorGuide Course Planner Bug Report Log",
+    `Generated at: ${new Date().toISOString()}`,
+    `Platform: ${Platform.OS}`,
+    `Route: ${ROUTES.transferPlanner}`,
+    `User: ${userLabel}`,
+    "",
+    "Selection",
+    `- College: ${input.selectedCollegeLabel} (${input.selectedCollegeId})`,
+    `- Campus: ${input.selectedCampusLabel} (${input.selectedCampusId})`,
+    `- Major/program: ${input.selectedMajorLabel} (${input.selectedMajorId})`,
+    `- Pathway: ${input.selectedPathwayLabel ?? "none"} (${input.selectedPathwayId ?? "none"})`,
+    `- Active degree title: ${input.activeDegreeTitle}`,
+    `- Planner path key: ${input.plannerPathKey}`,
+    "",
+    "Planner State",
+    `- Hydrated: ${input.isHydrated ? "yes" : "no"}`,
+    `- Computation ready: ${input.isPlannerComputationReady ? "yes" : "no"}`,
+    `- Computation loading: ${input.isPlannerComputationLoading ? "yes" : "no"}`,
+    `- Has structured planner data: ${input.hasStructuredPlannerData ? "yes" : "no"}`,
+    `- Has no direct major equivalencies: ${input.hasNoDirectMajorEquivalencies ? "yes" : "no"}`,
+    `- Only UW essential classes: ${input.onlyUwEssentialClasses ? "yes" : "no"}`,
+    `- Allow summer classes: ${input.allowSummerClasses ? "yes" : "no"}`,
+    "",
+    "Selected Current Courses",
+    formatPlannerReportList(input.currentPlannedCourseLabels),
+    "",
+    "Transcript State",
+    `- Transcript file: ${transcriptName}`,
+    `- Transcript URL kind: ${getTranscriptUrlKind(input.transcriptDocument?.url)}`,
+    `- Transcript MIME type: ${input.transcriptDocument?.mimeType ?? "unknown"}`,
+    `- Transcript size bytes: ${input.transcriptDocument?.sizeBytes ?? "unknown"}`,
+    `- Transcript uploaded at: ${input.transcriptDocument?.uploadedAt ?? "unknown"}`,
+    `- Transcript parser version: ${input.parserVersion}`,
+    `- Stored parser version: ${input.storedParserVersion ?? "none"}`,
+    `- Stored transcript source kind: ${getTranscriptUrlKind(input.storedTranscriptSource)}`,
+    `- Uses detailed transcript courses: ${input.shouldUseDetailedCompletedCourses ? "yes" : "no"}`,
+    `- Needs transcript reparse: ${input.needsTranscriptReparse ? "yes" : "no"}`,
+    `- Transcript error: ${input.transcriptError ?? "none"}`,
+    `- Completed courses count: ${input.completedCourses.length}`,
+    `- Transcript-derived completed courses count: ${input.transcriptDerivedCompletedCourses.length}`,
+    "",
+    "Completed Course Preview",
+    formatCoursePreview(input.completedCourses),
+    "",
+    "Plan And Track",
+    stringifyPlannerLogValue({
+      plan: input.plan
+        ? {
+            id: input.plan.id,
+            campusId: input.plan.campusId,
+            title: input.plan.title,
+            selectedPathwayId: input.plan.selectedPathwayId ?? null,
+            selectedPathwayLabel: input.plan.selectedPathwayLabel ?? null,
+            bestTrackId: input.plan.bestTrackId ?? null,
+            applicationChecklistCount: input.plan.applicationChecklist.length,
+            beforeEnrollmentChecklistCount: input.plan.beforeEnrollmentChecklist.length,
+            stayAtGrcChecklistCount: input.plan.stayAtGrcChecklist.length,
+          }
+        : null,
+      track: input.track
+        ? {
+            id: input.track.id,
+            code: input.track.code,
+            title: input.track.title,
+            summary: input.track.summary,
+          }
+        : null,
+    }),
+    "",
+    "Requirement Statuses",
+    formatRequirementStatusSummary("Application", input.applicationStatuses),
+    "",
+    formatRequirementStatusSummary("Before enrollment", input.beforeEnrollmentStatuses),
+    "",
+    formatRequirementStatusSummary("Stay at GRC", input.stayAtGrcStatuses),
+    "",
+    "Suggested Quarter Plan",
+    formatSuggestedQuarterPlanLog(input.suggestedQuarterPlan),
+    "",
+    "Student Evaluation Report",
+    formatStudentEvaluationReportLog(input.studentEvaluationReport),
+    "",
+    "Last Transcript Parser Debug Snapshot",
+    stringifyPlannerLogValue(input.lastTranscriptDebug ?? "No transcript parser debug snapshot is available."),
+    "",
+  ].join("\n");
 }
 
 function buildParsedCourseAssignmentsPreview(courses: TranscriptCourseEntry[]) {
@@ -2235,7 +2498,9 @@ function SuggestedScheduleCard({
   const scheduleDescription =
     collegeId === "grc"
       ? `This is your Green River plan for finishing the ${degreeTitle} ${grcTrackRequirementNoun} at ${getScheduleCampusLabel(collegeId, campusLabel)}. Completed transcript classes stay marked as done, and the planner fills in the remaining GRC ${grcTrackRequirementNoun} courses still ahead.`
-      : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Press the Classes for UW transfer only button to hide optional Green River track classes and focus on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies.`;
+      : onlyUwEssentialClasses
+        ? `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. It starts focused on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies. Turn off Classes for UW transfer only to include optional Green River track classes.`
+        : `This is your transfer plan for finishing the ${degreeTitle} degree at ${getScheduleCampusLabel(collegeId, campusLabel)}. Turn on Classes for UW transfer only to hide optional Green River track classes and focus on UW-required classes, official UW transfer admission guidance when applicable, Gen-Eds, and prerequisite dependencies.`;
 
   return (
     <View className={`${cardClass} border rounded-[28px] p-5`}>
@@ -3022,8 +3287,7 @@ function MajorSpecificsSection({
 }
 
 export default function TransferPlannerPage() {
-  const router = useRouter();
-  const params = useLocalSearchParams<{ returnTo?: string | string[] }>();
+  const handleGoBack = useBack(ROUTES.tabsResources);
   const { t } = useTranslation();
   const styles = useThemeStyles();
   const { width } = useWindowDimensions();
@@ -3041,7 +3305,7 @@ export default function TransferPlannerPage() {
   const [transcriptDocument, setTranscriptDocument] = useState<TranscriptDocument | null>(null);
   const [isAnalyzingTranscript, setIsAnalyzingTranscript] = useState(false);
   const [transcriptError, setTranscriptError] = useState<string | null>(null);
-  const [onlyUwEssentialClasses, setOnlyUwEssentialClasses] = useState(false);
+  const [onlyUwEssentialClasses, setOnlyUwEssentialClasses] = useState(true);
   const [allowSummerClasses, setAllowSummerClasses] = useState(false);
 
   const transcriptAnalysisAttemptsRef = useRef<Set<string>>(new Set());
@@ -3210,22 +3474,18 @@ export default function TransferPlannerPage() {
     : "";
   const autoMajorSelectionRef = useRef(false);
   const hydratedLastSelectionRef = useRef(false);
-  const returnTo = useMemo(() => {
-    const raw = Array.isArray(params.returnTo) ? params.returnTo[0] : params.returnTo;
-    const normalized = String(raw ?? "").trim();
-    return normalized.startsWith("/") ? normalized : null;
-  }, [params.returnTo]);
   const backLabel = useMemo(() => {
     const translated = t("general.back");
     return translated && translated !== "general.back" ? translated : "Back";
   }, [t]);
+  const reportBugEmailSubject = "GatorGuide Course Planner Bug Report";
+  const reportBugEmailBody =
+    "Please describe what happened in Course Planner:\n\n\nA current Course Planner log is attached when your email app supports attachments.";
   const reportBugMailtoUrl = useMemo(() => {
-    const subject = encodeURIComponent("GatorGuide Course Planner Bug Report");
-    const body = encodeURIComponent(
-      "Please describe what happened in Course Planner:\n\n"
-    );
+    const subject = encodeURIComponent(reportBugEmailSubject);
+    const body = encodeURIComponent(reportBugEmailBody);
     return `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
-  }, []);
+  }, [reportBugEmailBody]);
   const completedCoursesKey = useMemo(
     () =>
       completedCourses
@@ -3298,44 +3558,6 @@ export default function TransferPlannerPage() {
       task.cancel?.();
     };
   }, [plannerComputationKey]);
-
-  const handleGoBack = useCallback(() => {
-    if (returnTo) {
-      router.replace(returnTo as never);
-      return;
-    }
-
-    if (typeof window !== "undefined") {
-      if (window.history.length > 1) {
-        router.back();
-        return;
-      }
-
-      router.replace(ROUTES.tabsResources);
-      return;
-    }
-
-    router.back();
-  }, [returnTo, router]);
-  const handleReportBug = useCallback(async () => {
-    try {
-      const canOpen = await Linking.canOpenURL(reportBugMailtoUrl);
-      if (!canOpen) {
-        Alert.alert(
-          "Email unavailable",
-          `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
-        );
-        return;
-      }
-
-      await Linking.openURL(reportBugMailtoUrl);
-    } catch {
-      Alert.alert(
-        "Email unavailable",
-        `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
-      );
-    }
-  }, [reportBugMailtoUrl]);
 
   useEffect(() => {
     if (!isHydrated || hydratedLastSelectionRef.current) return;
@@ -3556,12 +3778,7 @@ export default function TransferPlannerPage() {
 
         await setQuestionnaireAnswers((currentAnswers) => ({
           ...currentAnswers,
-          [TRANSCRIPT_COURSES_FIELD]: parsedCourses,
-          completedCourses: parsedCourses.map((course) => course.label),
-          [TRANSCRIPT_SOURCE_FIELD]: document.url,
-          [TRANSCRIPT_PARSER_VERSION_FIELD]: TRANSCRIPT_PARSER_VERSION,
-          [TRANSCRIPT_UPLOADED_AT_FIELD]:
-            document.uploadedAt || new Date().toISOString(),
+          ...buildTransferPlannerTranscriptCachePatch(document, parsedCourses),
         }));
       } catch (error) {
         if (analysisGeneration !== transcriptAnalysisGenerationRef.current) return;
@@ -4013,6 +4230,140 @@ export default function TransferPlannerPage() {
     () => isUwPlanner && !!plan && !hasAnyDirectMajorEquivalencies(plan),
     [isUwPlanner, plan]
   );
+  const handleReportBug = useCallback(async () => {
+    const reportLog = buildCoursePlannerBugReportLog({
+      user,
+      selectedCollegeLabel,
+      selectedCampusLabel,
+      selectedMajorLabel,
+      selectedCollegeId,
+      selectedCampusId: effectiveSelectedCampusId,
+      selectedMajorId: effectiveSelectedMajorId,
+      plannerPathKey,
+      selectedPathwayId,
+      selectedPathwayLabel: plan?.selectedPathwayLabel ?? null,
+      activeDegreeTitle,
+      plan,
+      track,
+      transcriptDocument,
+      transcriptError,
+      parserVersion: TRANSCRIPT_PARSER_VERSION,
+      storedParserVersion: storedTranscriptParserVersion,
+      storedTranscriptSource,
+      shouldUseDetailedCompletedCourses,
+      needsTranscriptReparse,
+      completedCourses,
+      transcriptDerivedCompletedCourses,
+      currentPlannedCourseLabels,
+      onlyUwEssentialClasses,
+      allowSummerClasses,
+      isHydrated,
+      isPlannerComputationReady,
+      isPlannerComputationLoading,
+      hasStructuredPlannerData,
+      hasNoDirectMajorEquivalencies,
+      applicationStatuses,
+      beforeEnrollmentStatuses,
+      stayAtGrcStatuses,
+      suggestedQuarterPlan,
+      studentEvaluationReport,
+      lastTranscriptDebug: transcriptPlannerDebugService.getLastTranscriptPlannerDebug(),
+    });
+
+    try {
+      const composed = await coursePlannerReportService.composeBugReportEmail({
+        recipient: SUPPORT_EMAIL,
+        subject: reportBugEmailSubject,
+        body: reportBugEmailBody,
+        reportText: reportLog,
+      });
+
+      if (composed.status === "composed") {
+        return;
+      }
+    } catch (error) {
+      void errorLoggingService.captureException(error, {
+        category: "app",
+        operation: "compose-course-planner-bug-report",
+        severity: "warn",
+        handled: true,
+        source: "TransferPlannerPage",
+        screen: "TransferPlannerPage",
+        route: ROUTES.transferPlanner,
+        tags: ["transfer-planner", "bug-report", "email"],
+      });
+    }
+
+    const fallbackLog =
+      reportLog.length > 7000
+        ? `${reportLog.slice(0, 7000)}\n\n[Course Planner log truncated because this email app does not support attachments here.]`
+        : reportLog;
+    const fallbackBody = `${reportBugEmailBody}\n\nCourse Planner log:\n${fallbackLog}`;
+    const fallbackMailtoUrl = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(
+      reportBugEmailSubject
+    )}&body=${encodeURIComponent(fallbackBody)}`;
+
+    try {
+      const canOpen = await Linking.canOpenURL(fallbackMailtoUrl);
+      if (!canOpen) {
+        const canOpenPlainMailto = await Linking.canOpenURL(reportBugMailtoUrl).catch(() => false);
+        if (canOpenPlainMailto) {
+          await Linking.openURL(reportBugMailtoUrl);
+          return;
+        }
+
+        Alert.alert(
+          "Email unavailable",
+          `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
+        );
+        return;
+      }
+
+      await Linking.openURL(fallbackMailtoUrl);
+    } catch {
+      Alert.alert(
+        "Email unavailable",
+        `We couldn't open your email app. Please email ${SUPPORT_EMAIL} to report the bug.`
+      );
+    }
+  }, [
+    activeDegreeTitle,
+    allowSummerClasses,
+    applicationStatuses,
+    beforeEnrollmentStatuses,
+    completedCourses,
+    currentPlannedCourseLabels,
+    effectiveSelectedCampusId,
+    effectiveSelectedMajorId,
+    hasNoDirectMajorEquivalencies,
+    hasStructuredPlannerData,
+    isHydrated,
+    isPlannerComputationLoading,
+    isPlannerComputationReady,
+    needsTranscriptReparse,
+    onlyUwEssentialClasses,
+    plan,
+    plannerPathKey,
+    reportBugEmailBody,
+    reportBugEmailSubject,
+    reportBugMailtoUrl,
+    selectedCampusLabel,
+    selectedCollegeId,
+    selectedCollegeLabel,
+    selectedMajorLabel,
+    selectedPathwayId,
+    shouldUseDetailedCompletedCourses,
+    stayAtGrcStatuses,
+    storedTranscriptParserVersion,
+    storedTranscriptSource,
+    studentEvaluationReport,
+    suggestedQuarterPlan,
+    track,
+    transcriptDerivedCompletedCourses,
+    transcriptDocument,
+    transcriptError,
+    user,
+  ]);
 
   if (!user) {
     return (
@@ -4307,9 +4658,11 @@ export default function TransferPlannerPage() {
                 void handleReportBug();
               }}
               accessibilityRole="link"
+              className="flex-row items-center justify-center rounded-2xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3"
             >
-              <Text className={`${secondaryTextClass} text-sm underline`}>
-                Click here to report a bug
+              <MaterialIcons name="bug-report" size={18} color="#008f4e" />
+              <Text className="ml-2 text-sm font-semibold text-emerald-600 underline">
+                Click here to report a bug in Course Planner
               </Text>
             </AnimatedIconPressable>
           </View>

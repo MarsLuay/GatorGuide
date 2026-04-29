@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Alert, Linking, ScrollView, Text, TextInput, View, useWindowDimensions } from "react-native";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { MatchScoreBadge } from "@/components/ui/MatchScoreBadge";
 import { StateCard } from "@/components/ui/StateCard";
@@ -13,6 +14,7 @@ import {
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import useBack from "@/hooks/use-back";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { type College, collegeService } from "@/services/colleges/college.service";
@@ -37,7 +39,7 @@ export default function CollegeDetailsPage() {
   const params = useLocalSearchParams<{ collegeId?: string | string[] }>();
   const rawId = params?.collegeId;
   const collegeId = Array.isArray(rawId) ? rawId[0] : rawId;
-  const router = useRouter();
+  const back = useBack(ROUTES.tabsResources);
   const { getScrollContentPadding } = useResponsiveLayout();
   const { width } = useWindowDimensions();
   const { t, language } = useAppLanguage();
@@ -660,7 +662,7 @@ export default function CollegeDetailsPage() {
               <View style={{ flex: 1, minWidth: 0 }}>
                 <View className="flex-row items-center justify-between mb-4">
                   <AnimatedIconPressable
-                    onPress={() => router.back()}
+                    onPress={back}
                     className={`flex-row items-center self-start rounded-2xl border px-3 py-2 ${inputBgClass}`}
                   >
                     <Ionicons name="chevron-back" size={18} color={placeholderColor} />

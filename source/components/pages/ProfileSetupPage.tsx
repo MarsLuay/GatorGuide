@@ -17,6 +17,7 @@ import { useAppData } from "@/hooks/use-app-data";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import useBack from "@/hooks/use-back";
 import { FormInput } from "@/components/ui/FormInput";
 import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { GlassButton } from "@/components/ui/GlassButton";
@@ -58,6 +59,7 @@ function omitProfileReviewField(
 
 export default function ProfileSetupPage() {
   const router = useRouter();
+  const back = useBack(ROUTES.tabs);
   const { updateUser, setQuestionnaireAnswers, state } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
@@ -200,7 +202,7 @@ export default function ProfileSetupPage() {
 
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
-    else router.replace(ROUTES.tabs);
+    else back();
   };
 
   const handleGpaChange = (value: string) => {

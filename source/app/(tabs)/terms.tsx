@@ -7,20 +7,21 @@ import {
   useWindowDimensions,
   type ViewStyle,
 } from "react-native";
-import { useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
+import { ROUTES } from "@/constants/routes";
 import { SUPPORT_EMAIL } from "@/constants/support";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppTheme } from "@/hooks/use-app-theme";
+import useBack from "@/hooks/use-back";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
 
 export default function TermsOfServicePage() {
   const { isDark } = useAppTheme();
   const { t } = useAppLanguage();
-  const router = useRouter();
+  const back = useBack(ROUTES.tabsSettings);
   const { getScrollContentPadding } = useResponsiveLayout();
   const { width } = useWindowDimensions();
 
@@ -157,7 +158,7 @@ export default function TermsOfServicePage() {
         >
           <View className="pb-6">
             <AnimatedIconPressable
-              onPress={() => router.back()}
+              onPress={back}
               containerClassName="mb-4 self-start"
               className="flex-row items-center"
             >
