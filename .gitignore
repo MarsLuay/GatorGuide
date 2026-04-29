@@ -6,10 +6,6 @@ node_modules/
 expo-env.d.ts
 # @end expo-cli
 
-/.Inspirations/
-/Inspirations/
-/inspirations/
-
 .expo/
 .tmp/
 .tmp_pydeps/
