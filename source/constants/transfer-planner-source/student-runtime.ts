@@ -14,9 +14,6 @@ import {
 import type {
   TransferPlannerCampus,
   TransferPlannerCampusId,
-  TransferPlannerChecklistItem,
-  TransferPlannerGeneralRequirementSection,
-  TransferPlannerGeneralRequirementSourceKind,
   TransferPlannerMajorPlan,
   TransferPlannerMajorPathway,
   TransferPlannerResolvedMajorPlan,
@@ -493,13 +490,22 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
     pathwayId && pathways.some((pathway) => pathway.id === pathwayId)
       ? pathwayId
       : pathways[0]?.id ?? null;
-  return (
+  const resolvedPlan =
     TRANSFER_PLANNER_RUNTIME_RESOLVED_MAJOR_PLANS_BY_KEY[
       getPlannerPathwayKey(plan.id, selectedPathwayId)
     ] ??
     TRANSFER_PLANNER_RUNTIME_RESOLVED_MAJOR_PLANS_BY_KEY[getPlannerPathwayKey(plan.id, null)] ??
-    ({ ...plan, selectedPathwayId: null, selectedPathwayLabel: null, selectedPathwaySummary: null } satisfies TransferPlannerResolvedMajorPlan)
-  );
+    null;
+
+  return resolvedPlan
+    ? { ...resolvedPlan, pathways }
+    : ({
+        ...plan,
+        pathways,
+        selectedPathwayId: null,
+        selectedPathwayLabel: null,
+        selectedPathwaySummary: null,
+      } satisfies TransferPlannerResolvedMajorPlan);
 }
 
 export function getTransferPlannerMajorPlan(planId: string) {

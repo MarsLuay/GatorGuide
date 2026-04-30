@@ -33,7 +33,10 @@ import {
   TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
   TRANSFER_PLANNER_SOURCE_FINGERPRINTS,
 } from "./source-fingerprints.generated";
-import { materializeTransferPlannerPathways } from "./pathway-materialization";
+import {
+  materializeTransferPlannerPathways,
+  normalizeMaterializedTransferPlannerPathwayLabel,
+} from "./pathway-materialization";
 import {
   normalizeTransferPlannerText,
   stripTransferPlannerPlanTitlePrefix,
@@ -1059,7 +1062,7 @@ const PATHWAY_LABEL_ALIGNMENT_STOPWORDS = new Set([
 ]);
 
 function normalizePathwayLabel(value: string | null | undefined) {
-  return normalizeTransferPlannerText(value);
+  return normalizeMaterializedTransferPlannerPathwayLabel(value);
 }
 
 function stripPathwayTitleSuffix(value: string) {

@@ -93,6 +93,7 @@ const CTCLINK_UNOFFICIAL_TRANSCRIPT_URL =
   "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL";
 
 const CURRENT_PLANNED_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
+const SELECTED_PLANNER_OPTIONS_FIELD = "transferPlannerSelectedOptionsByPath";
 const SELECTED_PATHWAY_FIELD = "transferPlannerSelectedPathwayByPlan";
 const LAST_SELECTED_PLAN_FIELD = "transferPlannerLastSelectedPlan";
 const GRC_PLANNER_CAMPUS_ID = "grc";
@@ -107,55 +108,22 @@ type PlannerCampusSelectionId = TransferPlannerCampusId | typeof GRC_PLANNER_CAM
 type PlannerSelectorKey = "college" | "campus" | "major" | null;
 type TranscriptDocument = UploadedFile;
 
+function getTranscriptDocumentIdentity(document: TranscriptDocument | null | undefined) {
+  if (!document?.url) return "";
+  return `${document.url}|${document.uploadedAt ?? ""}`;
+}
+
+function getTranscriptAnalysisAttemptKey(document: TranscriptDocument | null | undefined) {
+  const documentIdentity = getTranscriptDocumentIdentity(document);
+  return documentIdentity ? `${documentIdentity}|v${TRANSCRIPT_PARSER_VERSION}` : "";
+}
+
 function buildFriendlyTranscriptError() {
   return "We couldn't read past classes from this unofficial transcript yet. Upload the PDF directly from ctcLink using the link below.";
 }
 
-function buildCoursePlannerReportFileName(createdAt: string) {
-  return `course-planner-bug-report-${createdAt.replace(/[:.]/g, "-")}.txt`;
-}
-
 function buildCoursePlannerBugReportMailtoUrl(subject: string, body: string) {
   return `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-function canDownloadCoursePlannerReportLogOnWeb() {
-  return (
-    Platform.OS === "web" &&
-    typeof document !== "undefined" &&
-    typeof document.createElement === "function" &&
-    !!document.body &&
-    typeof Blob !== "undefined" &&
-    typeof URL !== "undefined" &&
-    typeof URL.createObjectURL === "function"
-  );
-}
-
-function downloadCoursePlannerReportLogOnWeb(reportLog: string) {
-  if (!canDownloadCoursePlannerReportLogOnWeb()) return false;
-
-  let url = "";
-  let link: HTMLAnchorElement | null = null;
-  try {
-    const savedAt = new Date().toISOString();
-    const blob = new Blob([reportLog], { type: "text/plain;charset=utf-8" });
-    url = URL.createObjectURL(blob);
-    link = document.createElement("a");
-    link.href = url;
-    link.download = buildCoursePlannerReportFileName(savedAt);
-    document.body.appendChild(link);
-    link.click();
-    return true;
-  } catch {
-    return false;
-  } finally {
-    if (link?.parentNode) {
-      link.parentNode.removeChild(link);
-    }
-    if (url) {
-      URL.revokeObjectURL(url);
-    }
-  }
 }
 
 async function copyCoursePlannerReportLogOnWeb(reportLog: string) {
@@ -182,23 +150,18 @@ function openMailtoUrlOnWeb(mailtoUrl: string) {
 
 function buildWebCoursePlannerBugReportBody(input: {
   copiedReportLog: boolean;
-  downloadedReportLog: boolean;
 }) {
   const deliveryNotes: string[] = [];
 
-  if (input.downloadedReportLog) {
-    deliveryNotes.push(
-      "A current Course Planner log was downloaded as a text file. Please attach it if possible."
-    );
-  }
-
   if (input.copiedReportLog) {
-    deliveryNotes.push("The same log was copied to your clipboard so you can paste it below.");
+    deliveryNotes.push(
+      "A current Course Planner log was copied to your clipboard so you can paste it below."
+    );
   }
 
   if (!deliveryNotes.length) {
     deliveryNotes.push(
-      "The automatic Course Planner log could not be attached in this browser, so please include any details you can."
+      "The automatic Course Planner log could not be copied in this browser, so please include any details you can."
     );
   }
 
@@ -246,6 +209,28 @@ function getTranscriptUrlKind(url: string | null | undefined) {
   if (/^[A-Za-z]:[\\/]/.test(raw)) return "windows-local-path";
   if (raw.startsWith("/")) return "local-path";
   return "other";
+}
+
+function getDebugNowMs() {
+  return typeof performance !== "undefined" && typeof performance.now === "function"
+    ? performance.now()
+    : Date.now();
+}
+
+function getDebugElapsedMs(startMs: number) {
+  return Math.round((getDebugNowMs() - startMs) * 10) / 10;
+}
+
+function appendTranscriptDebugEvent(
+  label: string,
+  startedAtMs: number,
+  metadata?: Record<string, unknown>
+) {
+  transcriptPlannerDebugService.appendTranscriptPlannerEvent({
+    label,
+    elapsedMs: getDebugElapsedMs(startedAtMs),
+    metadata,
+  });
 }
 
 function stringifyPlannerLogValue(value: unknown) {
@@ -406,6 +391,7 @@ function buildCoursePlannerBugReportLog(input: {
   suggestedQuarterPlan: SuggestedQuarterPlan[];
   studentEvaluationReport: TransferPlannerStudentEvaluationReport | null;
   lastTranscriptDebug: unknown;
+  recentTranscriptDebugEvents: unknown;
 }) {
   const userLabel = input.user?.isGuest
     ? "Guest"
@@ -505,6 +491,9 @@ function buildCoursePlannerBugReportLog(input: {
     "Last Transcript Parser Debug Snapshot",
     stringifyPlannerLogValue(input.lastTranscriptDebug ?? "No transcript parser debug snapshot is available."),
     "",
+    "Recent Transcript Debug Events",
+    stringifyPlannerLogValue(input.recentTranscriptDebugEvents ?? []),
+    "",
   ].join("\n");
 }
 
@@ -580,6 +569,47 @@ function normalizePlannerCurrentCourseMap(rawValue: unknown) {
     );
     if (nextValues.length) {
       normalized[pathKey] = nextValues;
+    }
+  }
+
+  return normalized;
+}
+
+function normalizePlannerSelectedOptionsMap(rawValue: unknown) {
+  if (!rawValue || typeof rawValue !== "object" || Array.isArray(rawValue)) {
+    return {} as Record<string, Record<string, string[]>>;
+  }
+
+  const normalized: Record<string, Record<string, string[]>> = {};
+
+  for (const [pathKey, pathValue] of Object.entries(rawValue)) {
+    if (!pathValue || typeof pathValue !== "object" || Array.isArray(pathValue)) {
+      continue;
+    }
+
+    const selections: Record<string, string[]> = {};
+    for (const [groupId, rawSelectionValue] of Object.entries(pathValue)) {
+      const normalizedGroupId = String(groupId ?? "").trim();
+      const rawSelectionValues = Array.isArray(rawSelectionValue)
+        ? rawSelectionValue
+        : rawSelectionValue == null
+          ? []
+          : [rawSelectionValue];
+      const optionIds = Array.from(
+        new Set(
+          rawSelectionValues
+            .map((entry) => String(entry ?? "").trim())
+            .filter(Boolean)
+        )
+      );
+
+      if (normalizedGroupId && optionIds.length) {
+        selections[normalizedGroupId] = optionIds;
+      }
+    }
+
+    if (Object.keys(selections).length) {
+      normalized[pathKey] = selections;
     }
   }
 
@@ -731,6 +761,25 @@ function formatSuggestedScheduleCreditCount(creditAmount: number) {
   return `${roundedCreditAmount} ${creditAmount === 1 ? "credit" : "credits"}`;
 }
 
+function formatSuggestedScheduleCreditNumber(creditAmount: number) {
+  return Number.isInteger(creditAmount)
+    ? String(creditAmount)
+    : creditAmount.toFixed(1).replace(/\.0$/, "");
+}
+
+function formatSuggestedScheduleCreditRange(input: {
+  creditMin: number;
+  creditMax: number;
+}) {
+  if (input.creditMin === input.creditMax) {
+    return formatSuggestedScheduleCreditCount(input.creditMin);
+  }
+
+  return `${formatSuggestedScheduleCreditNumber(input.creditMin)}-${formatSuggestedScheduleCreditNumber(
+    input.creditMax
+  )} credits`;
+}
+
 function getSuggestedScheduleCredentialLabel(
   degreeTitle: string,
   grcTrackRequirementNoun: string
@@ -764,9 +813,28 @@ function getSuggestedCourseCreditAmount(
   return Number.isFinite(creditAmount) && creditAmount > 0 ? creditAmount : 0;
 }
 
+function getSuggestedCourseCreditRange(
+  course: SuggestedQuarterPlan["courses"][number]
+) {
+  const exactCreditAmount = getSuggestedCourseCreditAmount(course) || null;
+  const creditMin = Number(course.creditMin);
+  const creditMax = Number(course.creditMax);
+  const minimumCreditAmount =
+    Number.isFinite(creditMin) && creditMin > 0 ? creditMin : exactCreditAmount;
+  const maximumCreditAmount =
+    Number.isFinite(creditMax) && creditMax > 0
+      ? creditMax
+      : exactCreditAmount ?? minimumCreditAmount;
+
+  return {
+    creditMin: minimumCreditAmount ?? 0,
+    creditMax: maximumCreditAmount ?? minimumCreditAmount ?? 0,
+  };
+}
+
 function getSuggestedQuarterCreditTotal(quarter: SuggestedQuarterPlan) {
   return quarter.courses.reduce(
-    (totalCredits, course) => totalCredits + getSuggestedCourseCreditAmount(course),
+    (totalCredits, course) => totalCredits + getSuggestedCourseCreditRange(course).creditMin,
     0
   );
 }
@@ -1475,6 +1543,10 @@ function buildRequiredPlannerCourseCodes(plan: TransferPlannerResolvedMajorPlan)
 }
 
 function buildUwCoursesConsideredEntries(plan: TransferPlannerResolvedMajorPlan) {
+  return buildUwRequiredPathCourseEntries(plan);
+}
+
+function buildUwRequiredPathCourseEntries(plan: TransferPlannerResolvedMajorPlan) {
   return buildSourceBackedUwCourseConsideredSummaryEntries(plan).map((entry) => ({
     id: entry.id,
     text: entry.text,
@@ -1611,13 +1683,32 @@ function isOpenAdmissionMajor(plan: TransferPlannerResolvedMajorPlan) {
 function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
   const normalized = String(courseLabel ?? "").trim();
   if (!normalized) return null;
-  if (!/\bcredits?\s+of\b/i.test(normalized)) return null;
+  const explicitCourseCodes = extractCourseCodes(normalized);
+  const hasCreditPlaceholder = /\bcredits?\s+of\b/i.test(normalized);
+  const hasGrcDistributionPlaceholder =
+    explicitCourseCodes.length === 0 &&
+    (/\b[HSN]\s*\d\b/i.test(normalized) ||
+      /\b(?:humanities?|fine arts|arts and humanities|social sciences?|natural sciences?|natural science list)\b/i.test(
+        normalized
+      ));
+  const hasGeneralPlaceholder =
+    explicitCourseCodes.length === 0 &&
+    /\b(?:electives?|general education|gen ed)\b/i.test(normalized);
+  if (!hasCreditPlaceholder && !hasGrcDistributionPlaceholder && !hasGeneralPlaceholder) {
+    return null;
+  }
 
   const lower = normalized.toLowerCase();
   const hasHumanities =
-    lower.includes("humanit") || lower.includes("a&h") || lower.includes("arts and humanities");
-  const hasSocialScience = lower.includes("social science") || /\bssc\b/i.test(lower);
-  const hasNaturalScience = lower.includes("natural science") || /\bnsc\b/i.test(lower);
+    lower.includes("humanit") ||
+    lower.includes("fine arts") ||
+    lower.includes("a&h") ||
+    lower.includes("arts and humanities") ||
+    /\bh\s*\d\b/i.test(normalized);
+  const hasSocialScience =
+    lower.includes("social science") || /\bssc\b/i.test(lower) || /\bs\s*\d\b/i.test(normalized);
+  const hasNaturalScience =
+    lower.includes("natural science") || /\bnsc\b/i.test(lower) || /\bn\s*\d\b/i.test(normalized);
 
   if (hasHumanities && hasSocialScience) {
     return { tags: ["AH", "SSC"] as const };
@@ -1678,6 +1769,29 @@ function getSuggestedScheduleCourseDisplayLabel(courseLabel: string) {
   return `${rawLeadingCourseCode} - ${canonicalCourseTitle}`;
 }
 
+function removeGuidanceSummaryPrefixes(
+  summary: string | null | undefined,
+  prefixes: (string | null | undefined)[]
+) {
+  let remainingSummary = String(summary ?? "").trim();
+  if (!remainingSummary) return null;
+
+  for (const prefix of prefixes) {
+    const normalizedPrefix = String(prefix ?? "").trim();
+    if (!normalizedPrefix) continue;
+
+    if (remainingSummary === normalizedPrefix) {
+      return null;
+    }
+
+    if (remainingSummary.startsWith(`${normalizedPrefix} `)) {
+      remainingSummary = remainingSummary.slice(normalizedPrefix.length).trim();
+    }
+  }
+
+  return remainingSummary || null;
+}
+
 function buildTranscriptDebugSnapshot({
   phase,
   document,
@@ -1691,6 +1805,8 @@ function buildTranscriptDebugSnapshot({
   parsedCourseCodesPreview,
   parsedCourseAssignmentsPreview,
   parsedQuarterBuckets,
+  timings,
+  parserDiagnostics,
   error,
 }: {
   phase: "analysis-start" | "analysis-success" | "analysis-failure" | "upload-failure";
@@ -1714,6 +1830,8 @@ function buildTranscriptDebugSnapshot({
     termStartDate: string | null;
     courseCodes: string[];
   }[];
+  timings?: Record<string, number>;
+  parserDiagnostics?: unknown;
   error: unknown;
 }) {
   const normalizedError =
@@ -1753,6 +1871,8 @@ function buildTranscriptDebugSnapshot({
     parsedCourseCodesPreview,
     parsedCourseAssignmentsPreview: parsedCourseAssignmentsPreview ?? [],
     parsedQuarterBuckets: parsedQuarterBuckets ?? [],
+    timings: timings ?? {},
+    parserDiagnostics: parserDiagnostics ?? null,
     error: normalizedError,
   };
 }
@@ -2676,6 +2796,8 @@ function SuggestedScheduleCard({
   grcTrack,
   campusLabel,
   selectedCampusId,
+  selectedMajorId,
+  selectedPathwayId,
   onlyUwEssentialClasses,
   showOnlyUwEssentialClassesToggle,
   onToggleOnlyUwEssentialClasses,
@@ -2685,6 +2807,7 @@ function SuggestedScheduleCard({
   onToggleAllowStemPrepClasses,
   currentCourseSelections,
   onToggleCurrentCourse,
+  onSelectRequirementOption,
   textClass,
   secondaryTextClass,
   cardClass,
@@ -2696,6 +2819,8 @@ function SuggestedScheduleCard({
   grcTrack: TransferPlannerTrack | null;
   campusLabel: string;
   selectedCampusId: TransferPlannerCampusId | null;
+  selectedMajorId: string | null;
+  selectedPathwayId: string | null;
   onlyUwEssentialClasses: boolean;
   showOnlyUwEssentialClassesToggle: boolean;
   onToggleOnlyUwEssentialClasses: () => void;
@@ -2705,6 +2830,7 @@ function SuggestedScheduleCard({
   onToggleAllowStemPrepClasses: () => void;
   currentCourseSelections: Set<string>;
   onToggleCurrentCourse: (courseKey: string, fallbackCourseLabel?: string) => void;
+  onSelectRequirementOption: (groupId: string, optionId: string, selectionCount: number) => void;
   textClass: string;
   secondaryTextClass: string;
   cardClass: string;
@@ -2721,6 +2847,20 @@ function SuggestedScheduleCard({
   const plannedCourseContainerClass = isLight
     ? `bg-white border ${borderClass}`
     : "bg-white/5 border border-white/10";
+  const [openRequirementOptionGroups, setOpenRequirementOptionGroups] = useState<Set<string>>(
+    () => new Set()
+  );
+  const toggleRequirementOptionGroup = useCallback((groupId: string) => {
+    setOpenRequirementOptionGroups((currentGroups) => {
+      const nextGroups = new Set(currentGroups);
+      if (nextGroups.has(groupId)) {
+        nextGroups.delete(groupId);
+      } else {
+        nextGroups.add(groupId);
+      }
+      return nextGroups;
+    });
+  }, []);
   const grcTrackRequirementNoun = getGrcTrackRequirementNoun(grcTrack);
   const scheduleTitle =
     collegeId === "grc"
@@ -2728,16 +2868,20 @@ function SuggestedScheduleCard({
         ? "GRC Degree Plan"
         : "GRC Program Plan"
       : "GRC Quarter Plan";
-  const remainingCreditTotal = quarters
+  const remainingCreditRange = quarters
     .flatMap((quarter) => quarter.courses)
     .filter((course) => course.status !== "completed")
-    .reduce((totalCredits, course) => {
-      const creditAmount = Number(course.creditAmount);
-      return Number.isFinite(creditAmount) && creditAmount > 0
-        ? totalCredits + creditAmount
-        : totalCredits;
-    }, 0);
-  const remainingCreditText = formatSuggestedScheduleCreditCount(remainingCreditTotal);
+    .reduce(
+      (totalCredits, course) => {
+        const courseCreditRange = getSuggestedCourseCreditRange(course);
+        return {
+          creditMin: totalCredits.creditMin + courseCreditRange.creditMin,
+          creditMax: totalCredits.creditMax + courseCreditRange.creditMax,
+        };
+      },
+      { creditMin: 0, creditMax: 0 }
+    );
+  const remainingCreditText = formatSuggestedScheduleCreditRange(remainingCreditRange);
   const remainingCreditCredentialLabel = getSuggestedScheduleCredentialLabel(
     degreeTitle,
     collegeId === "grc" ? grcTrackRequirementNoun : "degree"
@@ -2832,7 +2976,7 @@ function SuggestedScheduleCard({
             <Text className="text-emerald-600" style={{ fontVariant: ["tabular-nums"] }}>
               {remainingCreditText}
             </Text>{" "}
-            left in order to finish the {remainingCreditCredentialLabel}
+            left in order to finish what you can for the {remainingCreditCredentialLabel}
           </Text>
           {uwTransferMinimumRequirementSummary ? (
             <Text className={`${secondaryTextClass} text-sm mt-2`}>
@@ -2884,6 +3028,12 @@ function SuggestedScheduleCard({
                   const isCurrentCourseSelected =
                     currentCourseSelections.has(courseSelectionKey) ||
                     currentCourseSelections.has(course.label);
+                  const optionGroup = course.optionGroup ?? null;
+                  const isOptionGroupOpen = optionGroup
+                    ? openRequirementOptionGroups.has(optionGroup.id)
+                    : false;
+                  const shouldShowCurrentCourseCheckbox =
+                    course.status !== "completed" && !optionGroup?.isSelectionPrompt;
 
                   return (
                     <View
@@ -2919,9 +3069,151 @@ function SuggestedScheduleCard({
                                       ? "text-emerald-500"
                                       : textClass
                               }`;
-                              const linkData = getSchedulePlaceholderRequirementLinkData(course.label);
+                              if (optionGroup) {
+                                const selectedOptionIdSet = new Set(optionGroup.selectedOptionIds);
+                                const selectedOptions = optionGroup.options.filter((option) =>
+                                  selectedOptionIdSet.has(option.id)
+                                );
+                                const selectedOptionLabels = selectedOptions.map((option) => {
+                                  const selectedLabel =
+                                    String(option.selectedLabel ?? "").trim() ||
+                                    option.courseLabels.join(" / ") ||
+                                    option.label;
+                                  return option.guidanceSummary
+                                    ? `${selectedLabel}. ${option.guidanceSummary}`
+                                    : selectedLabel;
+                                });
+                                const optionGroupGuidanceSummary = removeGuidanceSummaryPrefixes(
+                                  course.guidanceSummary,
+                                  selectedOptions.map((option) => option.guidanceSummary)
+                                );
 
-                              if (!linkData || !selectedCampusId) {
+                                return (
+                                  <View className="gap-2">
+                                    <Pressable
+                                      onPress={() => toggleRequirementOptionGroup(optionGroup.id)}
+                                      accessibilityRole="button"
+                                      accessibilityState={{ expanded: isOptionGroupOpen }}
+                                      accessibilityLabel={`Show options for ${optionGroup.title}`}
+                                      className="flex-row items-start justify-between gap-2"
+                                      hitSlop={8}
+                                    >
+                                      <View className="flex-1 min-w-0">
+                                        <Text className={courseTextClass}>
+                                          {courseDisplayLabel}
+                                        </Text>
+                                        {selectedOptionLabels.length ? (
+                                          <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                            Selected: {selectedOptionLabels.join("; ")}
+                                          </Text>
+                                        ) : null}
+                                      </View>
+                                      <Ionicons
+                                        name={isOptionGroupOpen ? "chevron-up" : "chevron-down"}
+                                        size={18}
+                                        color="#9CA3AF"
+                                      />
+                                    </Pressable>
+
+                                    {optionGroupGuidanceSummary ? (
+                                      <Text className={`${secondaryTextClass} text-xs`}>
+                                        {optionGroupGuidanceSummary}
+                                      </Text>
+                                    ) : null}
+
+                                    {isOptionGroupOpen ? (
+                                      <View className="gap-2">
+                                        {optionGroup.options.map((option) => {
+                                          const isSelected = selectedOptionIdSet.has(option.id);
+                                          const optionCreditRange = {
+                                            creditMin:
+                                              Number(option.creditMin ?? option.creditAmount) || 0,
+                                            creditMax:
+                                              Number(
+                                                option.creditMax ??
+                                                  option.creditAmount ??
+                                                  option.creditMin
+                                              ) || 0,
+                                          };
+                                          const hasCreditRange =
+                                            optionCreditRange.creditMin > 0 &&
+                                            optionCreditRange.creditMax > 0;
+
+                                          return (
+                                            <Pressable
+                                              key={option.id}
+                                              onPress={() =>
+                                                onSelectRequirementOption(
+                                                  optionGroup.id,
+                                                  option.id,
+                                                  optionGroup.selectionCount
+                                                )
+                                              }
+                                              accessibilityRole={
+                                                optionGroup.selectionCount === 1
+                                                  ? "radio"
+                                                  : "checkbox"
+                                              }
+                                              accessibilityState={{ checked: isSelected }}
+                                              className={`rounded-xl border px-3 py-2 flex-row items-start gap-2 ${
+                                                isSelected
+                                                  ? "border-emerald-500/30 bg-emerald-500/10"
+                                                  : isLight
+                                                    ? `bg-slate-50 ${borderClass}`
+                                                    : "bg-white/5 border-white/10"
+                                              }`}
+                                            >
+                                              <Ionicons
+                                                name={
+                                                  isSelected
+                                                    ? optionGroup.selectionCount === 1
+                                                      ? "radio-button-on"
+                                                      : "checkbox"
+                                                    : optionGroup.selectionCount === 1
+                                                      ? "radio-button-off"
+                                                      : "square-outline"
+                                                }
+                                                size={18}
+                                                color={isSelected ? "#008f4e" : "#9CA3AF"}
+                                                style={{ marginTop: 1 }}
+                                              />
+                                              <View className="flex-1 min-w-0">
+                                                <Text className={`${textClass} text-sm font-medium`}>
+                                                  {option.label}
+                                                </Text>
+                                                {option.courseLabels.length &&
+                                                option.courseLabels.join(", ") !== option.label ? (
+                                                  <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                                    {option.courseLabels.join(", ")}
+                                                  </Text>
+                                                ) : null}
+                                                {option.guidanceSummary ? (
+                                                  <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                                    {option.guidanceSummary}
+                                                  </Text>
+                                                ) : null}
+                                              </View>
+                                              {hasCreditRange ? (
+                                                <Text
+                                                  className={`${secondaryTextClass} text-xs font-medium`}
+                                                  style={{ fontVariant: ["tabular-nums"] }}
+                                                >
+                                                  {formatSuggestedScheduleCreditRange(optionCreditRange)}
+                                                </Text>
+                                              ) : null}
+                                            </Pressable>
+                                          );
+                                        })}
+                                      </View>
+                                    ) : null}
+                                  </View>
+                                );
+                              }
+                              const linkData = getSchedulePlaceholderRequirementLinkData(course.label);
+                              const linkCampusId =
+                                selectedCampusId ?? (collegeId === "grc" ? "uw-seattle" : null);
+
+                              if (!linkData || !linkCampusId) {
                                 return (
                                   <Text className={courseTextClass}>
                                     {courseDisplayLabel}
@@ -2930,10 +3222,17 @@ function SuggestedScheduleCard({
                               }
 
                               const params: Record<string, string> = {
-                                campusId: selectedCampusId,
+                                collegeId,
+                                campusId: linkCampusId,
                               };
                               if (linkData.tags.length) {
                                 params.tag = linkData.tags.join(",");
+                              }
+                              if (selectedMajorId) {
+                                params.majorId = selectedMajorId;
+                              }
+                              if (selectedPathwayId) {
+                                params.pathwayId = selectedPathwayId;
                               }
 
                               return (
@@ -2953,14 +3252,14 @@ function SuggestedScheduleCard({
                                 </Text>
                               );
                             })()}
-                            {course.guidanceSummary ? (
+                            {!optionGroup && course.guidanceSummary ? (
                               <Text className={`${secondaryTextClass} text-xs mt-1`}>
                                 {course.guidanceSummary}
                               </Text>
                             ) : null}
                           </View>
                         </View>
-                        {course.status !== "completed" ? (
+                        {shouldShowCurrentCourseCheckbox ? (
                           <Pressable
                             onPress={() => onToggleCurrentCourse(courseSelectionKey, course.label)}
                             hitSlop={8}
@@ -3152,6 +3451,10 @@ function TranscriptEvaluationReportCard({
                               params: {
                                 tag: requirementCreditMessage.normalizedTag,
                                 campusId: requirementCreditMessage.campusId,
+                                majorId: plan.id,
+                                ...(plan.selectedPathwayId
+                                  ? { pathwayId: plan.selectedPathwayId }
+                                  : {}),
                                 returnTo: ROUTES.transferPlanner,
                               },
                             })
@@ -3308,7 +3611,7 @@ function MajorSpecificsSection({
               Major Specifics
             </Text>
             <Text className={`${secondaryTextClass} text-sm mt-1`}>
-              {majorSpecificsSummaryText}
+              {`Source-backed summary. ${majorSpecificsSummaryText}`}
             </Text>
           </View>
           <Ionicons
@@ -3806,6 +4109,13 @@ export default function TransferPlannerPage() {
       ),
     [state.questionnaireAnswers]
   );
+  const selectedOptionsByPath = useMemo(
+    () =>
+      normalizePlannerSelectedOptionsMap(
+        state.questionnaireAnswers?.[SELECTED_PLANNER_OPTIONS_FIELD]
+      ),
+    [state.questionnaireAnswers]
+  );
   const currentPlannedCourseLabels = useMemo(
     () => currentCourseSelectionsByPath[plannerPathKey] ?? [],
     [currentCourseSelectionsByPath, plannerPathKey]
@@ -3814,9 +4124,11 @@ export default function TransferPlannerPage() {
     () => new Set(currentPlannedCourseLabels),
     [currentPlannedCourseLabels]
   );
-  const transcriptSourceKey = activeTranscriptDocument
-    ? `${activeTranscriptDocument.url}|${activeTranscriptDocument.uploadedAt}`
-    : "";
+  const selectedRequirementOptionIdsByGroup = useMemo(
+    () => selectedOptionsByPath[plannerPathKey] ?? {},
+    [plannerPathKey, selectedOptionsByPath]
+  );
+  const transcriptSourceKey = getTranscriptDocumentIdentity(activeTranscriptDocument);
   const transcriptAnalysisKey = transcriptSourceKey
     ? `${transcriptSourceKey}|v${TRANSCRIPT_PARSER_VERSION}`
     : "";
@@ -3847,7 +4159,7 @@ export default function TransferPlannerPage() {
         .join("|"),
     [completedCourses]
   );
-  const plannerComputationKey = useMemo(
+  const plannerStructureComputationKey = useMemo(
     () =>
       [
         selectedCollegeId,
@@ -3856,18 +4168,10 @@ export default function TransferPlannerPage() {
         plan?.selectedPathwayId ?? selectedPathwayId ?? "",
         track?.id ?? "",
         completedCoursesKey,
-        currentPlannedCourseLabels.join("|"),
-        onlyUwEssentialClasses ? "uw-only" : "full",
-        allowSummerClasses ? "summer" : "no-summer",
-        allowStemPrepClasses ? "stem-prep" : "no-stem-prep",
       ].join("||"),
     [
-      allowStemPrepClasses,
-      allowSummerClasses,
       completedCoursesKey,
-      currentPlannedCourseLabels,
       effectiveSelectedCampusId,
-      onlyUwEssentialClasses,
       plan?.id,
       plan?.selectedPathwayId,
       selectedCollegeId,
@@ -3906,7 +4210,7 @@ export default function TransferPlannerPage() {
       cancelScheduledFrame();
       task.cancel?.();
     };
-  }, [plannerComputationKey]);
+  }, [plannerStructureComputationKey]);
 
   useEffect(() => {
     if (!isHydrated || hydratedLastSelectionRef.current) return;
@@ -4051,8 +4355,11 @@ export default function TransferPlannerPage() {
     let active = true;
 
     if (!user?.uid) {
-      transcriptAnalysisGenerationRef.current += 1;
-      setTranscriptDocument(null);
+      setTranscriptDocument((currentDocument) => {
+        if (!currentDocument) return currentDocument;
+        transcriptAnalysisGenerationRef.current += 1;
+        return null;
+      });
       return () => {
         active = false;
       };
@@ -4061,8 +4368,18 @@ export default function TransferPlannerPage() {
     void (async () => {
       const stored = await storageService.getTranscript(user.uid).catch(() => null);
       if (!active) return;
-      transcriptAnalysisGenerationRef.current += 1;
-      setTranscriptDocument(stored && stored.url ? stored : null);
+      const nextDocument = stored && stored.url ? stored : null;
+      setTranscriptDocument((currentDocument) => {
+        if (
+          getTranscriptDocumentIdentity(currentDocument) ===
+          getTranscriptDocumentIdentity(nextDocument)
+        ) {
+          return currentDocument;
+        }
+
+        transcriptAnalysisGenerationRef.current += 1;
+        return nextDocument;
+      });
     })();
 
     return () => {
@@ -4072,15 +4389,31 @@ export default function TransferPlannerPage() {
 
   const analyzeTranscript = useCallback(
     async (document: TranscriptDocument) => {
+      const analysisStartedAt = getDebugNowMs();
+      let importMs = 0;
+      let parserRunMs = 0;
+      let cachePatchMs = 0;
+      let parserDiagnostics: unknown = null;
+      const analysisAttemptKey = getTranscriptAnalysisAttemptKey(document);
       const analysisGeneration = transcriptAnalysisGenerationRef.current;
+      if (analysisAttemptKey) {
+        transcriptAnalysisAttemptsRef.current.add(analysisAttemptKey);
+      }
       setIsAnalyzingTranscript(true);
       setTranscriptError(null);
+      appendTranscriptDebugEvent("transcript-analysis-start", analysisStartedAt, {
+        documentName: getReadableTranscriptFileName(document),
+        urlKind: getTranscriptUrlKind(document.url),
+        urlLength: String(document.url ?? "").length,
+        sizeBytes: document.sizeBytes ?? null,
+        storedParserVersion: storedTranscriptParserVersion,
+        parserVersion: TRANSCRIPT_PARSER_VERSION,
+      });
       const debugBase = {
         document,
         parserVersion: TRANSCRIPT_PARSER_VERSION,
         storedParserVersion: storedTranscriptParserVersion,
-        transcriptSourceKey:
-          document.url || document.uploadedAt ? `${document.url}|${document.uploadedAt}` : "",
+        transcriptSourceKey: getTranscriptDocumentIdentity(document),
         storedTranscriptSource,
         completedCoursesBeforeCount: completedCourses.length,
         questionnaireCompletedCourseCount: Array.isArray(state.questionnaireAnswers?.completedCourses)
@@ -4096,21 +4429,56 @@ export default function TransferPlannerPage() {
           parsedCourseCodesPreview: [],
           parsedCourseAssignmentsPreview: [],
           parsedQuarterBuckets: [],
+          timings: {
+            analysisElapsedMs: 0,
+          },
+          parserDiagnostics: null,
           error: null,
         })
       );
 
       try {
+        const importStartedAt = getDebugNowMs();
         const { transcriptPdfService } = await import(
           "@/services/documents/transcript-pdf.service"
         );
+        importMs = getDebugElapsedMs(importStartedAt);
+        appendTranscriptDebugEvent("transcript-parser-module-imported", analysisStartedAt, {
+          importMs,
+        });
+
+        const parserStartedAt = getDebugNowMs();
         const parsedTranscript = await transcriptPdfService.extractTranscriptDataFromPdf(
           document.url
         );
+        parserRunMs = getDebugElapsedMs(parserStartedAt);
+        parserDiagnostics = parsedTranscript.diagnostics ?? null;
+        appendTranscriptDebugEvent("transcript-parser-complete", analysisStartedAt, {
+          parserRunMs,
+          parserDiagnostics,
+          parsedCourseCount: parsedTranscript.completedCourses.length,
+          earnedCreditsTotal: parsedTranscript.earnedCreditsTotal,
+          gpa: parsedTranscript.gpa,
+        });
         const parsedCourses = parsedTranscript.completedCourses;
 
         if (!parsedCourses.length) throw new Error("No completed courses extracted.");
         if (analysisGeneration !== transcriptAnalysisGenerationRef.current) return;
+
+        const cachePatchStartedAt = getDebugNowMs();
+        await setQuestionnaireAnswers((currentAnswers) => ({
+          ...currentAnswers,
+          ...buildTransferPlannerTranscriptCachePatch(
+            document,
+            parsedCourses,
+            parsedTranscript.earnedCreditsTotal
+          ),
+        }));
+        cachePatchMs = getDebugElapsedMs(cachePatchStartedAt);
+        appendTranscriptDebugEvent("transcript-cache-patch-applied", analysisStartedAt, {
+          cachePatchMs,
+          parsedCourseCount: parsedCourses.length,
+        });
 
         transcriptPlannerDebugService.setLastTranscriptPlannerDebug(
           buildTranscriptDebugSnapshot({
@@ -4122,20 +4490,25 @@ export default function TransferPlannerPage() {
               .map((course) => course.code),
             parsedCourseAssignmentsPreview: buildParsedCourseAssignmentsPreview(parsedCourses),
             parsedQuarterBuckets: buildParsedQuarterBuckets(parsedCourses),
+            timings: {
+              analysisElapsedMs: getDebugElapsedMs(analysisStartedAt),
+              importMs,
+              parserRunMs,
+              cachePatchMs,
+            },
+            parserDiagnostics,
             error: null,
           })
         );
-
-        await setQuestionnaireAnswers((currentAnswers) => ({
-          ...currentAnswers,
-          ...buildTransferPlannerTranscriptCachePatch(
-            document,
-            parsedCourses,
-            parsedTranscript.earnedCreditsTotal
-          ),
-        }));
       } catch (error) {
         if (analysisGeneration !== transcriptAnalysisGenerationRef.current) return;
+        appendTranscriptDebugEvent("transcript-analysis-failure", analysisStartedAt, {
+          analysisElapsedMs: getDebugElapsedMs(analysisStartedAt),
+          importMs,
+          parserRunMs,
+          cachePatchMs,
+          message: error instanceof Error ? error.message : String(error),
+        });
         const failureSnapshot = buildTranscriptDebugSnapshot({
           ...debugBase,
           phase: "analysis-failure",
@@ -4143,6 +4516,13 @@ export default function TransferPlannerPage() {
           parsedCourseCodesPreview: [],
           parsedCourseAssignmentsPreview: [],
           parsedQuarterBuckets: [],
+          timings: {
+            analysisElapsedMs: getDebugElapsedMs(analysisStartedAt),
+            importMs,
+            parserRunMs,
+            cachePatchMs,
+          },
+          parserDiagnostics,
           error,
         });
 
@@ -4161,6 +4541,12 @@ export default function TransferPlannerPage() {
         setTranscriptError(buildFriendlyTranscriptError());
       } finally {
         if (analysisGeneration === transcriptAnalysisGenerationRef.current) {
+          appendTranscriptDebugEvent("transcript-analysis-finished", analysisStartedAt, {
+            analysisElapsedMs: getDebugElapsedMs(analysisStartedAt),
+            importMs,
+            parserRunMs,
+            cachePatchMs,
+          });
           setIsAnalyzingTranscript(false);
         }
       }
@@ -4176,26 +4562,50 @@ export default function TransferPlannerPage() {
 
   useEffect(() => {
     if (!activeTranscriptDocument) return;
+    const autoAnalysisStartedAt = getDebugNowMs();
     if (
       completedCourses.length &&
       storedTranscriptSource === activeTranscriptDocument.url &&
       shouldUseDetailedCompletedCourses &&
       !needsTranscriptCreditReparse
     ) {
+      appendTranscriptDebugEvent("transcript-auto-analysis-skipped-cache-fresh", autoAnalysisStartedAt, {
+        completedCoursesCount: completedCourses.length,
+        storedParserVersion: storedTranscriptParserVersion,
+        parserVersion: TRANSCRIPT_PARSER_VERSION,
+      });
       return;
     }
     if (!transcriptAnalysisKey) return;
-    if (transcriptAnalysisAttemptsRef.current.has(transcriptAnalysisKey)) return;
+    if (transcriptAnalysisAttemptsRef.current.has(transcriptAnalysisKey)) {
+      appendTranscriptDebugEvent("transcript-auto-analysis-skipped-duplicate-key", autoAnalysisStartedAt, {
+        transcriptAnalysisKeyLength: transcriptAnalysisKey.length,
+        needsTranscriptReparse,
+        needsTranscriptCreditReparse,
+        isAnalyzingTranscript,
+      });
+      return;
+    }
 
     transcriptAnalysisAttemptsRef.current.add(transcriptAnalysisKey);
+    appendTranscriptDebugEvent("transcript-auto-analysis-dispatched", autoAnalysisStartedAt, {
+      transcriptAnalysisKeyLength: transcriptAnalysisKey.length,
+      urlKind: getTranscriptUrlKind(activeTranscriptDocument.url),
+      urlLength: String(activeTranscriptDocument.url ?? "").length,
+      needsTranscriptReparse,
+      needsTranscriptCreditReparse,
+    });
     void analyzeTranscript(activeTranscriptDocument);
   }, [
     activeTranscriptDocument,
     analyzeTranscript,
     transcriptAnalysisKey,
     completedCourses.length,
+    isAnalyzingTranscript,
     storedTranscriptSource,
+    storedTranscriptParserVersion,
     shouldUseDetailedCompletedCourses,
+    needsTranscriptReparse,
     needsTranscriptCreditReparse,
   ]);
 
@@ -4205,27 +4615,71 @@ export default function TransferPlannerPage() {
       return;
     }
 
+    const uploadFlowStartedAt = getDebugNowMs();
+    transcriptPlannerDebugService.clearTranscriptPlannerEvents();
+    appendTranscriptDebugEvent("transcript-upload-flow-start", uploadFlowStartedAt, {
+      userId: user.uid,
+      platform: Platform.OS,
+    });
+
     try {
+      const pickerStartedAt = getDebugNowMs();
       const result = await DocumentPicker.getDocumentAsync({
         type: ["application/pdf"],
         copyToCacheDirectory: true,
       });
-      if (result.canceled || !result.assets?.[0]?.uri) return;
+      appendTranscriptDebugEvent("transcript-document-picker-complete", uploadFlowStartedAt, {
+        pickerMs: getDebugElapsedMs(pickerStartedAt),
+        canceled: result.canceled,
+        assetCount: result.assets?.length ?? 0,
+      });
+
+      if (result.canceled || !result.assets?.[0]?.uri) {
+        appendTranscriptDebugEvent("transcript-upload-flow-canceled", uploadFlowStartedAt);
+        return;
+      }
 
       const asset = result.assets[0];
+      appendTranscriptDebugEvent("transcript-document-selected", uploadFlowStartedAt, {
+        fileName: asset.name ?? null,
+        uriKind: getTranscriptUrlKind(asset.uri),
+        uriLength: String(asset.uri ?? "").length,
+        mimeType: asset.mimeType ?? null,
+        sizeBytes: asset.size ?? null,
+      });
+
+      const localPersistStartedAt = getDebugNowMs();
       const uploaded = await storageService.uploadTranscript(user.uid, asset.uri, {
         fileName: asset.name,
         mimeType: asset.mimeType,
         sizeBytes: asset.size,
       });
+      appendTranscriptDebugEvent("transcript-local-persist-complete", uploadFlowStartedAt, {
+        localPersistMs: getDebugElapsedMs(localPersistStartedAt),
+        persistedUrlKind: getTranscriptUrlKind(uploaded.url),
+        persistedUrlLength: String(uploaded.url ?? "").length,
+        uploadedAt: uploaded.uploadedAt,
+      });
+
+      const updateUserStartedAt = getDebugNowMs();
       await updateUser({ transcript: uploaded.url });
+      appendTranscriptDebugEvent("transcript-user-state-update-complete", uploadFlowStartedAt, {
+        updateUserMs: getDebugElapsedMs(updateUserStartedAt),
+      });
+
       transcriptAnalysisGenerationRef.current += 1;
+      transcriptAnalysisAttemptsRef.current.add(getTranscriptAnalysisAttemptKey(uploaded));
       setTranscriptDocument(uploaded);
-      transcriptAnalysisAttemptsRef.current.delete(
-        `${uploaded.url}|${uploaded.uploadedAt}|v${TRANSCRIPT_PARSER_VERSION}`
-      );
+      appendTranscriptDebugEvent("transcript-analysis-dispatched-after-upload", uploadFlowStartedAt);
       await analyzeTranscript(uploaded);
+      appendTranscriptDebugEvent("transcript-upload-flow-finished", uploadFlowStartedAt, {
+        totalUploadFlowMs: getDebugElapsedMs(uploadFlowStartedAt),
+      });
     } catch (error) {
+      appendTranscriptDebugEvent("transcript-upload-flow-failure", uploadFlowStartedAt, {
+        totalUploadFlowMs: getDebugElapsedMs(uploadFlowStartedAt),
+        message: error instanceof Error ? error.message : String(error),
+      });
       transcriptPlannerDebugService.setLastTranscriptPlannerDebug(
         buildTranscriptDebugSnapshot({
           phase: "upload-failure",
@@ -4248,6 +4702,10 @@ export default function TransferPlannerPage() {
           parsedCourseCodesPreview: [],
           parsedCourseAssignmentsPreview: [],
           parsedQuarterBuckets: [],
+          timings: {
+            totalUploadFlowMs: getDebugElapsedMs(uploadFlowStartedAt),
+          },
+          parserDiagnostics: null,
           error,
         })
       );
@@ -4365,6 +4823,7 @@ export default function TransferPlannerPage() {
             includeStayAtGrcCourses: isUwPlanner ? !onlyUwEssentialClasses : true,
             includeSummerQuarter: allowSummerClasses,
             includeStemPrepCourses: allowStemPrepClasses,
+            selectedRequirementOptionIdsByGroup,
           })
         : [],
     [
@@ -4378,6 +4837,7 @@ export default function TransferPlannerPage() {
       allowSummerClasses,
       onlyUwEssentialClasses,
       plan,
+      selectedRequirementOptionIdsByGroup,
       stayAtGrcStatuses,
       track,
     ]
@@ -4469,6 +4929,53 @@ export default function TransferPlannerPage() {
       currentPlannedCourseLabels,
       currentPlannedCourseSet,
       plannerPathKey,
+      setQuestionnaireAnswers,
+    ]
+  );
+  const handleSelectRequirementOption = useCallback(
+    async (groupId: string, optionId: string, selectionCount: number) => {
+      const normalizedGroupId = String(groupId ?? "").trim();
+      const normalizedOptionId = String(optionId ?? "").trim();
+      if (!normalizedGroupId || !normalizedOptionId) return;
+
+      const currentPathSelections = selectedOptionsByPath[plannerPathKey] ?? {};
+      const currentGroupSelections = currentPathSelections[normalizedGroupId] ?? [];
+      const normalizedSelectionCount =
+        Number.isFinite(selectionCount) && selectionCount > 1
+          ? Math.floor(selectionCount)
+          : 1;
+      const nextGroupSelections =
+        normalizedSelectionCount === 1
+          ? [normalizedOptionId]
+          : currentGroupSelections.includes(normalizedOptionId)
+            ? currentGroupSelections.filter((entry) => entry !== normalizedOptionId)
+            : [...currentGroupSelections, normalizedOptionId].slice(-normalizedSelectionCount);
+      const nextPathSelections = {
+        ...currentPathSelections,
+        [normalizedGroupId]: nextGroupSelections,
+      };
+
+      if (!nextGroupSelections.length) {
+        delete nextPathSelections[normalizedGroupId];
+      }
+
+      const nextSelectionMap = {
+        ...selectedOptionsByPath,
+        [plannerPathKey]: nextPathSelections,
+      };
+
+      if (!Object.keys(nextPathSelections).length) {
+        delete nextSelectionMap[plannerPathKey];
+      }
+
+      await setQuestionnaireAnswers((currentAnswers) => ({
+        ...currentAnswers,
+        [SELECTED_PLANNER_OPTIONS_FIELD]: nextSelectionMap,
+      }));
+    },
+    [
+      plannerPathKey,
+      selectedOptionsByPath,
       setQuestionnaireAnswers,
     ]
   );
@@ -4627,6 +5134,7 @@ export default function TransferPlannerPage() {
       suggestedQuarterPlan,
       studentEvaluationReport,
       lastTranscriptDebug: transcriptPlannerDebugService.getLastTranscriptPlannerDebug(),
+      recentTranscriptDebugEvents: transcriptPlannerDebugService.getRecentTranscriptPlannerEvents(),
     });
 
     try {
@@ -4654,11 +5162,10 @@ export default function TransferPlannerPage() {
     }
 
     if (Platform.OS === "web") {
-      const downloadedReportLog = downloadCoursePlannerReportLogOnWeb(reportLog);
       const copiedReportLog = await copyCoursePlannerReportLogOnWeb(reportLog);
       const webMailtoUrl = buildCoursePlannerBugReportMailtoUrl(
         reportBugEmailSubject,
-        buildWebCoursePlannerBugReportBody({ copiedReportLog, downloadedReportLog })
+        buildWebCoursePlannerBugReportBody({ copiedReportLog })
       );
 
       if (openMailtoUrlOnWeb(webMailtoUrl)) {
@@ -4862,7 +5369,7 @@ export default function TransferPlannerPage() {
           <TranscriptSummaryCard
             collegeId={selectedCollegeId}
             transcriptDocument={activeTranscriptDocument}
-            isAnalyzing={isAnalyzingTranscript || needsTranscriptReparse}
+            isAnalyzing={isAnalyzingTranscript}
             errorMessage={transcriptError}
             studentEvaluationReport={studentEvaluationReport}
             studentCourseEvaluations={studentCourseEvaluations}
@@ -5012,6 +5519,8 @@ export default function TransferPlannerPage() {
                   grcTrack={track}
                   campusLabel={selectedCampusLabel}
                   selectedCampusId={isUwPlanner ? plan?.campusId ?? null : null}
+                  selectedMajorId={isUwPlanner ? plan?.id ?? null : null}
+                  selectedPathwayId={isUwPlanner ? plan?.selectedPathwayId ?? null : null}
                   onlyUwEssentialClasses={onlyUwEssentialClasses}
                   showOnlyUwEssentialClassesToggle={shouldShowUwOnlyToggle}
                   onToggleOnlyUwEssentialClasses={() =>
@@ -5027,6 +5536,7 @@ export default function TransferPlannerPage() {
                   }
                   currentCourseSelections={currentPlannedCourseSet}
                   onToggleCurrentCourse={handleToggleCurrentCourse}
+                  onSelectRequirementOption={handleSelectRequirementOption}
                   textClass={textClass}
                   secondaryTextClass={secondaryTextClass}
                   cardClass={cardBgClass}

@@ -33,6 +33,8 @@ export type TranscriptPlannerDebugSnapshot = {
     termStartDate: string | null;
     courseCodes: string[];
   }[];
+  timings?: Record<string, number>;
+  parserDiagnostics?: unknown;
   error:
     | {
         name: string | null;
@@ -42,15 +44,41 @@ export type TranscriptPlannerDebugSnapshot = {
     | null;
 };
 
+export type TranscriptPlannerDebugEvent = {
+  timestamp: string;
+  label: string;
+  elapsedMs?: number | null;
+  metadata?: Record<string, unknown>;
+};
+
 class TranscriptPlannerDebugService {
   private lastTranscriptPlannerDebug: TranscriptPlannerDebugSnapshot | null = null;
+  private recentTranscriptPlannerEvents: TranscriptPlannerDebugEvent[] = [];
 
   getLastTranscriptPlannerDebug() {
     return this.lastTranscriptPlannerDebug;
   }
 
+  getRecentTranscriptPlannerEvents() {
+    return this.recentTranscriptPlannerEvents;
+  }
+
   setLastTranscriptPlannerDebug(snapshot: TranscriptPlannerDebugSnapshot | null) {
     this.lastTranscriptPlannerDebug = snapshot;
+  }
+
+  appendTranscriptPlannerEvent(event: Omit<TranscriptPlannerDebugEvent, "timestamp">) {
+    this.recentTranscriptPlannerEvents = [
+      ...this.recentTranscriptPlannerEvents.slice(-79),
+      {
+        timestamp: new Date().toISOString(),
+        ...event,
+      },
+    ];
+  }
+
+  clearTranscriptPlannerEvents() {
+    this.recentTranscriptPlannerEvents = [];
   }
 }
 

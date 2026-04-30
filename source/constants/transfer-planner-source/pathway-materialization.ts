@@ -38,8 +38,42 @@ const DERIVED_PATHWAY_SMALL_WORDS = new Set([
   "to",
   "with",
 ]);
-const DERIVED_PATHWAY_ACRONYMS = new Set(["GIS", "MIS", "TIM", "UW"]);
+const DERIVED_PATHWAY_ACRONYMS = new Set([
+  "CECL",
+  "BA",
+  "BS",
+  "ELL",
+  "ESOL",
+  "GIS",
+  "IAC",
+  "LEDE",
+  "MA",
+  "MIS",
+  "MS",
+  "NME",
+  "PIA",
+  "TIM",
+  "UW",
+]);
 const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
+  /^(?:option|track|route|pathway|certificate|concentration)$/i,
+  /^students?\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^the\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:provides|emphasizes|requires)\b/i,
+  /^the\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:is|prepares)\b/i,
+  /^if you enrolled\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^and\b.*\b(?:option|track|route|pathway|certificate|concentration)\b.*\b(?:is|prepares)\b/i,
+  /^\d+\s+of\s+the\s+\d+\s+credits?\s+required\s+for\s+the\s+(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^\(?\d+\)?\s+second\b.*\blanguage\b.*\bconcentration\b/i,
+  /^courses by track$/i,
+  /\bchoose from the following\b/i,
+  /^doctor(?:\s+of)?\b/i,
+  /\bnot admitting\b/i,
+  /^a minor\b.*\bexplore the liberal arts\b/i,
+  /^department must approve\b.*\boption\b/i,
+  /^m\.?\s*ed\.?\b/i,
+  /^teaching track$/i,
+  /^with the option to\b/i,
+  /^and\b.*\b(?:option|track|route|pathway|certificate|concentration)$/i,
   /^according to the option chosen\b/i,
   /^additional (?:admission|completion )?requirements?\b/i,
   /^advanced data science option specific requirements?\b/i,
@@ -177,6 +211,23 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /\blayout[_-]?builder[_-]?ui\b/i,
 ];
 const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
+  /^(?:option|track|route|pathway|certificate|concentration)$/i,
+  /^students?-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^if-you-enrolled-.*-option\b/i,
+  /^the-.*-(?:option|track|route|pathway|certificate|concentration)-.*-(?:is|prepares)\b/i,
+  /^and-.*-(?:option|track|route|pathway|certificate|concentration)-.*-(?:is|prepares)\b/i,
+  /^\d+-of-the-\d+-credits-required-for-the-concentration$/i,
+  /^\d+-second-.*-language-.*-concentration$/i,
+  /^courses-by-track$/i,
+  /(?:^|[-:])choose-from-the-following(?:$|[-:])/i,
+  /^doctor(?:-|$)/i,
+  /(?:^|[-:])not-admitting(?:$|[-:])/i,
+  /^a-minor-.*explore-the-liberal-arts$/i,
+  /^department-must-approve.*option$/i,
+  /^m-ed\b/i,
+  /^teaching-track$/i,
+  /^with-the-option-to\b/i,
+  /^and-.*-(?:option|track|route|pathway|certificate|concentration)$/i,
   /^\d+-.*choose-one-option\b/i,
   /^option-\d+\b/i,
   /^page-\d+\b/i,
@@ -227,6 +278,8 @@ const DERIVED_PATHWAY_GUIDANCE_SOURCE_LINE_PATTERNS = [
 ];
 const DERIVED_PATHWAY_DEGREE_TITLE_PATTERN =
   /^(?:(?:Bachelor|Master|Doctor|Minor|Associate)(?: of [^:]{1,120})?|(?:B\.?\s*A\.?|B\.?\s*S\.?|M\.?\s*A\.?|M\.?\s*S\.?)(?: degree)?(?: with a major in [^:]{1,120})?)\s*:\s+(.{2,120})$/i;
+const DERIVED_PATHWAY_UNDERGRAD_MAJOR_CREDENTIAL_PATTERN =
+  /^(?:The\s+)?(Bachelor of Arts|Bachelor of Science|B\.?\s*A\.?|B\.?\s*S\.?)\s+(?:degree\s+)?(?:(?:with\s+a\s+major\s+)?in\s+|with\s+a\s+major\s+)(.{2,180}?)(?:\s*:\s+(.{2,120}))?$/i;
 const DERIVED_PATHWAY_DEGREE_PARENTHESES_PATTERN =
   /^(?:(?:The\s+)?(?:Bachelor|Master|Doctor|Minor|Associate|B\.?\s*A\.?|B\.?\s*S\.?|M\.?\s*A\.?|M\.?\s*S\.?)[^()]{0,120})\((.{2,100}\b(?:track|option|route|pathway|certificate|concentration))\)\s*$/i;
 const DERIVED_PATHWAY_APPLY_DIRECTLY_PATTERN =
@@ -256,6 +309,41 @@ const DERIVED_PATHWAY_DEFAULT_KIND_BY_PLAN: Partial<Record<string, "option" | "t
 const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
   Record<string, Array<{ pattern: RegExp; id: string; label: string }>>
 > = {
+  "uw-seattle-english-creative-writing": [
+    {
+      pattern: /^creative writing$/i,
+      id: "ba-option-family:creative-writing",
+      label: "B.A. Creative Writing option",
+    },
+  ],
+  "uw-seattle-german": [
+    {
+      pattern: /^b\.?\s*a\.?\s+cultural studies option$/i,
+      id: "ba-option-family:cultural-studies",
+      label: "B.A. Cultural Studies option",
+    },
+  ],
+  "uw-seattle-history-and-philosophy-of-science": [
+    {
+      pattern: /^ethics$/i,
+      id: "ba-option-family:ethics",
+      label: "B.A. Ethics option",
+    },
+  ],
+  "uw-seattle-philosophy": [
+    {
+      pattern: /^ethics$/i,
+      id: "ba-option-family:ethics",
+      label: "B.A. Ethics option",
+    },
+  ],
+  "uw-tacoma-history": [
+    {
+      pattern: /^general history option$/i,
+      id: "global-history-option",
+      label: "Global History option",
+    },
+  ],
   "uw-tacoma-sustainable-urban-development": [
     {
       pattern: /^(?:community engagement)(?: option)?$/i,
@@ -281,6 +369,19 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       id: "gis-option",
       label: "GIS option",
     },
+  ],
+};
+const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, RegExp[]>> = {
+  "uw-bothell-economics": [
+    /^(?:accounting|entrepreneurship|finance|leadership\s*&\s*strategic innovation|lsi|management|marketing|management information systems(?:\s*\(mis\))?|mis|retail management|supply chain management|technology\s*&\s*innovation management(?:\s*\(tim\))?|tim)(?:\s+option(?:\s+and\s+concentration)?|\s+concentration)$/i,
+  ],
+  "uw-bothell-educational-studies-elementary-education": [/^elementary education option$/i],
+  "uw-tacoma-arts-media-culture": [/^B\.?\s*A\.?\s+route$/i],
+  "uw-tacoma-bachelor-of-arts-in-business-administration": [/^B\.?\s*A\.?\s+route$/i],
+  "uw-tacoma-history": [/^global studies concentration$/i],
+  "uw-seattle-speech-and-hearing-sciences": [
+    /^(?:adult|pediatric) track$/i,
+    /^speech language pathology$/i,
   ],
 };
 const PRIMARY_MAJOR_TITLES_BY_PLAN_ID = new Map(
@@ -406,15 +507,16 @@ function canonicalizeBasePathwayAgainstAutoPromotions(
   pathway: TransferPlannerMajorPathway
 ) {
   const canonicalEntry = resolveAutoPromotedPathwaySupportEntry(plan, pathway);
-  if (!canonicalEntry || canonicalEntry.pathwayId === pathway.id) {
-    return pathway;
-  }
+  const autoPromotedPathway =
+    !canonicalEntry || canonicalEntry.pathwayId === pathway.id
+      ? pathway
+      : ({
+          ...pathway,
+          id: canonicalEntry.pathwayId,
+          label: canonicalEntry.label || pathway.label,
+        } satisfies TransferPlannerMajorPathway);
 
-  return {
-    ...pathway,
-    id: canonicalEntry.pathwayId,
-    label: canonicalEntry.label || pathway.label,
-  } satisfies TransferPlannerMajorPathway;
+  return canonicalizeBasePathwayDerivedIdentity(plan.id, autoPromotedPathway);
 }
 
 function canonicalizeBasePathwaysAgainstAutoPromotions(
@@ -628,6 +730,10 @@ export function isSuspiciousStructuralPathwayLabel(value: string | null | undefi
     return true;
   }
 
+  if (/^>/.test(normalized) || hasUnmatchedTrailingParenthesis(normalized)) {
+    return true;
+  }
+
   if (
     /\b(option|track|route|pathway|certificate|concentration)\b.*\brequirements?\b/i.test(
       normalized
@@ -672,7 +778,15 @@ function sourceLineMentionsDifferentMajor(
 }
 
 function toDerivedPathwayId(value: string) {
-  return normalizeDerivedPathwayText(value)
+  const normalized = normalizeDerivedPathwayText(value);
+  if (/^b\.?\s*a\.?\s+route$/i.test(normalized)) {
+    return "ba-route";
+  }
+  if (/^b\.?\s*s\.?\s+route$/i.test(normalized)) {
+    return "bs-route";
+  }
+
+  return normalized
     .toLowerCase()
     .replace(/&/g, " and ")
     .replace(/[^a-z0-9]+/g, "-")
@@ -685,9 +799,19 @@ function toDerivedPathwayLabel(value: string) {
     return normalized;
   }
 
+  if (/^b\s*s\s+to\s+m\s*s\s+pathway$/i.test(normalized)) {
+    return "B.S. to M.S. pathway";
+  }
+  if (/^b\.?\s*a\.?\s+route$/i.test(normalized)) {
+    return "B.A. route";
+  }
+  if (/^b\.?\s*s\.?\s+route$/i.test(normalized)) {
+    return "B.S. route";
+  }
+
   const label = normalized.replace(/\b([A-Za-z][A-Za-z']*)\b/g, (match, word, offset) => {
     const upper = word.toUpperCase();
-    if (DERIVED_PATHWAY_ACRONYMS.has(upper) || (word === upper && /^[A-Z0-9]{2,6}$/.test(word))) {
+    if (DERIVED_PATHWAY_ACRONYMS.has(upper)) {
       return upper;
     }
 
@@ -710,6 +834,207 @@ function toDerivedPathwayLabel(value: string) {
   }
 
   return label;
+}
+
+function stripDerivedCredentialSentenceTail(value: string) {
+  return normalizeDerivedPathwayText(value)
+    .replace(
+      /\s+\b(?:is|are|enables?|prepares?|provides?|requires?|offers?|allows?|includes?|leads?|helps?|gives?|focuses?|emphasizes?|designed|intended)\b.*$/i,
+      ""
+    )
+    .replace(/\s+[.;:]\s*$/, "")
+    .trim();
+}
+
+function getDerivedCredentialDegreePrefix(value: string) {
+  const normalized = normalizeDerivedPathwayText(value).toLowerCase().replace(/[^a-z]/g, "");
+  if (normalized === "bs" || normalized.includes("science")) {
+    return "bs" as const;
+  }
+  if (normalized === "ba" || normalized.includes("arts")) {
+    return "ba" as const;
+  }
+  return null;
+}
+
+function getDerivedCredentialDegreeLabel(value: string) {
+  const prefix = getDerivedCredentialDegreePrefix(value);
+  if (prefix === "bs") {
+    return "B.S.";
+  }
+  if (prefix === "ba") {
+    return "B.A.";
+  }
+  return "";
+}
+
+function getDerivedCredentialMajorTokens(value: string) {
+  return Array.from(
+    new Set(
+      normalizeDerivedPathwayText(value)
+        .replace(/\([^)]*\)/g, "")
+        .replace(/&/g, " and ")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .split(/\s+/)
+        .map((token) => normalizeDerivedPathwaySimilarityToken(token))
+        .filter(
+          (token) =>
+            token.length >= 3 &&
+            !DERIVED_PATHWAY_SMALL_WORDS.has(token) &&
+            !["bachelor", "degree", "major", "science", "arts"].includes(token)
+        )
+    )
+  );
+}
+
+function derivedCredentialMajorMatchesPlan(planTitle: string, credentialMajorTitle: string) {
+  const planTokens = getDerivedCredentialMajorTokens(planTitle);
+  const credentialTokens = getDerivedCredentialMajorTokens(credentialMajorTitle);
+  if (!planTokens.length || !credentialTokens.length) {
+    return false;
+  }
+
+  const credentialTokenSet = new Set(credentialTokens);
+  const matchedTokenCount = planTokens.filter((token) => credentialTokenSet.has(token)).length;
+  const requiredTokenCount =
+    planTokens.length <= 1 || credentialTokens.length <= 1
+      ? 1
+      : Math.min(2, planTokens.length, credentialTokens.length);
+
+  return matchedTokenCount >= requiredTokenCount;
+}
+
+function stripDerivedCredentialPathwayKind(value: string) {
+  return normalizeDerivedPathwayCandidate("", value)
+    .replace(/\s+\((?:not\s+admitting|fee[- ]based|online|campus|day|evening)[^)]*\)\s*$/i, "")
+    .replace(/\s+(?:option|track|route|pathway|certificate|concentration)\s*$/i, "")
+    .trim();
+}
+
+function expandDerivedCredentialGeneralSuffix(planTitle: string, value: string) {
+  const normalized = normalizeDerivedPathwayText(value);
+  const normalizedPlanTitle = normalizeDerivedPathwayCandidate("", planTitle)
+    .replace(/\([^)]*\)/g, "")
+    .trim();
+
+  if (/^biology$/i.test(normalizedPlanTitle)) {
+    if (/^plant$/i.test(normalized)) {
+      return "Plant Biology";
+    }
+    if (/^molecular, cellular, and development$/i.test(normalized)) {
+      return "Molecular, Cellular, and Developmental Biology";
+    }
+  }
+
+  if (!/^general$/i.test(normalized)) {
+    return normalized;
+  }
+
+  return normalizedPlanTitle ? `General ${normalizedPlanTitle}` : normalized;
+}
+
+function buildDerivedCredentialPathwayCandidate(
+  planTitle: string,
+  credential: string,
+  credentialMajorTitle: string,
+  suffix: string | null | undefined
+) {
+  const degreePrefix = getDerivedCredentialDegreePrefix(credential);
+  const degreeLabel = getDerivedCredentialDegreeLabel(credential);
+  if (!degreePrefix || !degreeLabel) {
+    return null;
+  }
+
+  if (
+    DERIVED_PATHWAY_LABEL_PATTERN.test(credentialMajorTitle) ||
+    /\b(?:choose|select|options?|tracks?|routes?|pathways?|concentrations?)\b/i.test(
+      credentialMajorTitle
+    )
+  ) {
+    return null;
+  }
+
+  if (!derivedCredentialMajorMatchesPlan(planTitle, credentialMajorTitle)) {
+    return null;
+  }
+
+  if (/\(\s*not\s+admitting\b/i.test(String(suffix ?? ""))) {
+    return null;
+  }
+
+  const normalizedSuffix = stripDerivedCredentialPathwayKind(String(suffix ?? ""));
+  if (!normalizedSuffix) {
+    if (degreePrefix !== "ba") {
+      return null;
+    }
+
+    return {
+      id: `${degreePrefix}-route`,
+      label: `${degreeLabel} route`,
+    };
+  }
+
+  const expandedSuffix = expandDerivedCredentialGeneralSuffix(planTitle, normalizedSuffix);
+  const labelSuffix = toDerivedPathwayLabel(expandedSuffix);
+  const suffixId = toDerivedPathwayId(expandedSuffix);
+  if (!labelSuffix || !suffixId) {
+    return null;
+  }
+
+  return {
+    id: `${degreePrefix}-option-family:${suffixId}`,
+    label: `${degreeLabel} ${labelSuffix} option`,
+  };
+}
+
+function extractSingleDerivedCredentialPathwayCandidateFromLine(
+  planTitle: string,
+  value: string | null | undefined
+) {
+  const normalized = stripDerivedCredentialSentenceTail(String(value ?? ""));
+  const credentialMatch = normalized.match(DERIVED_PATHWAY_UNDERGRAD_MAJOR_CREDENTIAL_PATTERN);
+  if (!credentialMatch) {
+    return null;
+  }
+
+  return buildDerivedCredentialPathwayCandidate(
+    planTitle,
+    credentialMatch[1],
+    credentialMatch[2],
+    credentialMatch[3]
+  );
+}
+
+function extractDerivedCredentialPathwayCandidatesFromLine(
+  planTitle: string,
+  value: string | null | undefined
+) {
+  const normalized = normalizeDerivedPathwayText(value);
+  if (!normalized) {
+    return [] as Array<{ id: string; label: string }>;
+  }
+
+  const fragments = normalized.match(
+    /(?:The\s+)?(?:Bachelor of Arts|Bachelor of Science|B\.?\s*A\.?|B\.?\s*S\.?)[^.]{2,220}/gi
+  ) ?? [normalized];
+  const candidateById = new Map<string, { id: string; label: string }>();
+
+  for (const fragment of fragments) {
+    const candidate = extractSingleDerivedCredentialPathwayCandidateFromLine(planTitle, fragment);
+    if (candidate) {
+      candidateById.set(candidate.id, candidate);
+    }
+  }
+
+  return [...candidateById.values()];
+}
+
+function extractDerivedCredentialPathwayCandidateFromLine(
+  planTitle: string,
+  value: string | null | undefined
+) {
+  return extractDerivedCredentialPathwayCandidatesFromLine(planTitle, value)[0] ?? null;
 }
 
 function inferDerivedPathwayKind(
@@ -747,9 +1072,10 @@ function inferDerivedPathwayKind(
 }
 
 function normalizeDerivedPathwayCandidate(planTitle: string, value: string) {
-  return normalizeTransferPlannerSemanticPathwayLabel(
+  const normalized = normalizeTransferPlannerSemanticPathwayLabel(
     planTitle,
     selectDerivedPathwayKindSegment(normalizeDerivedPathwayText(value))
+      .replace(/^[>\s]+/, "")
       .replace(/^[A-Z]\.\s+/i, "")
       .replace(/^\d+\)\s+/i, "")
       .replace(/^option\s+\d+\s*:\s*/i, "")
@@ -785,11 +1111,17 @@ function normalizeDerivedPathwayCandidate(planTitle: string, value: string) {
       .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-–—]\s+.*$/i, "$1")
       .replace(/\s+[-–]\s+UW\b.*$/i, "")
       .replace(/\b(option|track|route|pathway|certificate|concentration)\b\s+[-\u2013\u2014]\s+.*$/i, "$1")
+      .replace(
+        /\s+\(\d+(?:-\d+)?\s+credits?\)\s*:\s*choose from the following:?$/i,
+        ""
+      )
       .replace(/\s+\((?:\d+(?:-\d+)?\s+credits?)\)\s*$/i, "")
       .replace(/\s+-\s+please see website\.?$/i, "")
       .replace(/\s+\|\s+.*$/, "")
       .replace(/\s+[.;:]\s*$/, "")
   );
+
+  return stripUnmatchedTrailingParenthesis(normalized);
 }
 
 function extractDerivedPathwaySemanticPrefix(
@@ -829,6 +1161,145 @@ function applyDerivedPathwayAlias(planId: string, value: string) {
   return null;
 }
 
+function isPlanExcludedDerivedPathwayCandidate(planId: string, value: string | null | undefined) {
+  const normalized = normalizeDerivedPathwayText(value);
+  if (!normalized) {
+    return false;
+  }
+
+  return (DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN[planId] ?? []).some((pattern) =>
+    pattern.test(normalized)
+  );
+}
+
+function isPlanExcludedDerivedPathway(
+  planId: string,
+  pathway: Pick<TransferPlannerMajorPathway, "id" | "label">
+) {
+  return (
+    isPlanExcludedDerivedPathwayCandidate(planId, pathway.label) ||
+    isPlanExcludedDerivedPathwayCandidate(
+      planId,
+      normalizeTransferPlannerText(pathway.id).replace(/-/g, " ")
+    )
+  );
+}
+
+function isBachelorsRouteCandidate(value: string | null | undefined, credential: "a" | "s") {
+  const normalized = normalizeDerivedPathwayText(value);
+  if (!normalized) {
+    return false;
+  }
+
+  return new RegExp(`^b\\.?\\s*${credential}\\.?\\s+route$`, "i").test(normalized);
+}
+
+function canonicalizeBasePathwayDerivedIdentity(
+  planId: string,
+  pathway: TransferPlannerMajorPathway
+) {
+  const labelText = normalizeDerivedPathwayText(pathway.label);
+  const idText = normalizeTransferPlannerText(pathway.id).replace(/-/g, " ");
+  const aliased = applyDerivedPathwayAlias(planId, labelText) ?? applyDerivedPathwayAlias(planId, idText);
+  const basePathway = aliased
+    ? ({
+        ...pathway,
+        id: aliased.id,
+        label: aliased.label,
+      } satisfies TransferPlannerMajorPathway)
+    : ({
+        ...pathway,
+        label: normalizeMaterializedTransferPlannerPathwayLabel(pathway.label),
+      } satisfies TransferPlannerMajorPathway);
+
+  const canonicalLabelText = normalizeDerivedPathwayText(basePathway.label);
+  const canonicalIdText = normalizeTransferPlannerText(basePathway.id).replace(/-/g, " ");
+  if (
+    isBachelorsRouteCandidate(canonicalLabelText, "a") ||
+    isBachelorsRouteCandidate(canonicalIdText, "a")
+  ) {
+    return {
+      ...basePathway,
+      id: "ba-route",
+      label: "B.A. route",
+    } satisfies TransferPlannerMajorPathway;
+  }
+
+  if (
+    isBachelorsRouteCandidate(canonicalLabelText, "s") ||
+    isBachelorsRouteCandidate(canonicalIdText, "s")
+  ) {
+    return {
+      ...basePathway,
+      id: "bs-route",
+      label: "B.S. route",
+    } satisfies TransferPlannerMajorPathway;
+  }
+
+  return basePathway;
+}
+
+function stripUnmatchedTrailingParenthesis(value: string) {
+  if (!hasUnmatchedTrailingParenthesis(value)) {
+    return value;
+  }
+
+  return value.replace(/\)+\s*$/, "").trim();
+}
+
+function hasUnmatchedTrailingParenthesis(value: string | null | undefined) {
+  const normalized = normalizeDerivedPathwayText(value);
+  if (!normalized.endsWith(")")) {
+    return false;
+  }
+
+  const openCount = normalized.match(/\(/g)?.length ?? 0;
+  const closeCount = normalized.match(/\)/g)?.length ?? 0;
+  return closeCount > openCount;
+}
+
+function hasUnrecognizedAllCapsPathwayToken(value: string | null | undefined) {
+  const tokens = normalizeDerivedPathwayText(value).match(/\b[A-Z][A-Z0-9]{2,}\b/g) ?? [];
+  return tokens.some((token) => !DERIVED_PATHWAY_ACRONYMS.has(token));
+}
+
+function shouldKeepDerivedCleanerPathwayLabel(
+  basePathway: Pick<TransferPlannerMajorPathway, "label">,
+  derivedPathway: Pick<TransferPlannerDerivedPathwaySeed, "label">
+) {
+  if (
+    normalizeDerivedPathwayText(basePathway.label).toLowerCase() !==
+    normalizeDerivedPathwayText(derivedPathway.label).toLowerCase()
+  ) {
+    return false;
+  }
+
+  if (hasUnrecognizedAllCapsPathwayToken(basePathway.label)) {
+    return true;
+  }
+
+  return [...DERIVED_PATHWAY_ACRONYMS].some((acronym) => {
+    const acronymPattern = new RegExp(`\\b${acronym}\\b`);
+    return acronymPattern.test(derivedPathway.label) && !acronymPattern.test(basePathway.label);
+  });
+}
+
+export function normalizeMaterializedTransferPlannerPathwayLabel(
+  value: string | null | undefined
+) {
+  const normalized = normalizeTransferPlannerText(value)
+    .replace(/^[>\s]+/, "")
+    .replace(/\bIac\b/g, "IAC")
+    .replace(/\boption\s+and\s+concentration\b/gi, "Option and Concentration");
+  if (/^b\s*s\s+to\s+m\s*s\s+pathway$/i.test(normalized)) {
+    return "B.S. to M.S. pathway";
+  }
+  if (hasUnrecognizedAllCapsPathwayToken(normalized)) {
+    return toDerivedPathwayLabel(normalized);
+  }
+  return normalized;
+}
+
 function canonicalizeDerivedPathwayCandidate(
   planId: string,
   planTitle: string,
@@ -849,6 +1320,10 @@ function canonicalizeDerivedPathwayCandidate(
   }
 
   if (DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS.some((pattern) => pattern.test(normalized))) {
+    return null;
+  }
+
+  if (isPlanExcludedDerivedPathwayCandidate(planId, normalized)) {
     return null;
   }
 
@@ -923,6 +1398,14 @@ function extractDerivedPathwayCandidateFromLine(
 
   if (/^(?:Doctor|Master)\s+Of\b|^(?:Doctor|Master)\b/i.test(normalized)) {
     return null;
+  }
+
+  const credentialPathwayCandidate = extractDerivedCredentialPathwayCandidateFromLine(
+    planTitle,
+    normalized
+  );
+  if (credentialPathwayCandidate) {
+    return credentialPathwayCandidate;
   }
 
   if (
@@ -1103,6 +1586,17 @@ function buildDerivedPathwaySeeds(
       ...(block.requirementCueLines ?? []),
       ...(block.chooseStatements ?? []),
     ]);
+    const credentialSupportedPathwayFamilies = new Set(
+      sourceBlocks
+        .flatMap((block) => block.pathwayLabels ?? [])
+        .map((line) => extractDerivedCredentialPathwayCandidateFromLine(plan.title, line))
+        .map((candidate) =>
+          candidate ? getDerivedPathwaySimilarityKey(candidate.label, plan.title) : ""
+        )
+        .filter(Boolean)
+    );
+    const shouldLimitChoiceSeedsToCredentialFamilies =
+      credentialSupportedPathwayFamilies.size >= 2;
     const supportedRawCandidateFamilies = new Set<string>();
 
     for (const statement of choiceStatements) {
@@ -1135,6 +1629,11 @@ function buildDerivedPathwaySeeds(
         /(?:\s[-\u2013\u2014:]\s|\|)/.test(normalizeDerivedPathwayText(line)) &&
         DERIVED_PATHWAY_LABEL_PATTERN.test(normalizeDerivedPathwayText(line))
     );
+    const credentialPathwayLabelLines = sourceBlocks.flatMap((block) =>
+      (block.pathwayLabels ?? []).filter(
+        (line) => extractDerivedCredentialPathwayCandidatesFromLine(plan.title, line).length > 0
+      )
+    );
     const supportedPathwayLabelLines = sourceBlocks.flatMap((block) =>
       (block.pathwayLabels ?? []).filter((line) => {
         const candidate = extractDerivedPathwayCandidateFromLine(plan.id, plan.title, line, defaultKind);
@@ -1158,7 +1657,9 @@ function buildDerivedPathwaySeeds(
         return supportedRawCandidateFamilies.has(similarityKey);
       })
     );
-    const orderedSourceLines = [...supportedPathwayLabelLines, ...rawSourceLines];
+    const orderedSourceLines = [
+      ...new Set([...credentialPathwayLabelLines, ...supportedPathwayLabelLines, ...rawSourceLines]),
+    ];
     const seedById = new Map<string, TransferPlannerDerivedPathwaySeed>();
     const seedIdsByNormalizedBase = new Map<string, string>();
     const seedIdsBySimilarityKey = new Map<string, string>();
@@ -1167,7 +1668,11 @@ function buildDerivedPathwaySeeds(
       candidate: { id: string; label: string } | null,
       options: { preserveOrder?: boolean } = {}
     ) {
-      if (!candidate || isSuspiciousStructuralPathwayId(candidate.id)) {
+      if (
+        !candidate ||
+        isSuspiciousStructuralPathwayId(candidate.id) ||
+        isPlanExcludedDerivedPathway(plan.id, candidate)
+      ) {
         return;
       }
 
@@ -1191,7 +1696,12 @@ function buildDerivedPathwaySeeds(
       const existingSeedForSimilarity = existingIdForSimilarity
         ? seedById.get(existingIdForSimilarity) ?? null
         : null;
-      if (existingSeedForSimilarity && !options.preserveOrder) {
+      const candidateIsCredentialScoped = isCredentialScopedDerivedPathway(candidate);
+      if (
+        existingSeedForSimilarity &&
+        !options.preserveOrder &&
+        !(candidateIsCredentialScoped && isCredentialScopedDerivedPathway(existingSeedForSimilarity))
+      ) {
         return;
       }
 
@@ -1226,15 +1736,32 @@ function buildDerivedPathwaySeeds(
         statement,
         defaultKind
       )) {
+        if (shouldLimitChoiceSeedsToCredentialFamilies) {
+          continue;
+        }
+
         pushSeed(candidate);
       }
     }
 
     for (const line of orderedSourceLines) {
+      const credentialCandidates = extractDerivedCredentialPathwayCandidatesFromLine(
+        plan.title,
+        line
+      );
+      if (credentialCandidates.length) {
+        credentialCandidates.forEach((candidate) => pushSeed(candidate));
+        continue;
+      }
+
       pushSeed(extractDerivedPathwayCandidateFromLine(plan.id, plan.title, line, defaultKind));
     }
 
-    const seeds = [...seedById.values()].filter((seed) => !isSuspiciousStructuralPathwayLabel(seed.label));
+    const seeds = [...seedById.values()].filter(
+      (seed) =>
+        !isSuspiciousStructuralPathwayLabel(seed.label) &&
+        !isPlanExcludedDerivedPathway(plan.id, seed)
+    );
     const blockHasNestedHonorsContext = sourceBlocks.some((block) =>
       [...(block.requirementCueLines ?? []), ...(block.chooseStatements ?? [])].some((line) =>
         /\bdepartmental honors?\b|\bhonors program\b/i.test(normalizeDerivedPathwayText(line))
@@ -1551,6 +2078,14 @@ function shouldPreferDerivedPathways(
       shouldKeepDerivedAcronymPathway(basePathway, derivedPathway)
     )
   );
+  const hasCleanerCanonicalDerivedPathway = semanticDerivedPathways.some((derivedPathway) =>
+    semanticBasePathways.some(
+      (basePathway) =>
+        getPathwayMaterializationSupportKey(plan, basePathway) ===
+          getPathwayMaterializationSupportKey(plan, derivedPathway) &&
+        shouldKeepDerivedCleanerPathwayLabel(basePathway, derivedPathway)
+    )
+  );
   const shouldCollapseToSingleSemanticDerivedPathway =
     semanticDerivedPathways.length === 1 &&
     basePathways.length > 1 &&
@@ -1566,6 +2101,14 @@ function shouldPreferDerivedPathways(
     return true;
   }
 
+  if (hasCleanerCanonicalDerivedPathway) {
+    return true;
+  }
+
+  if (suspiciousBasePathways.length === basePathways.length) {
+    return true;
+  }
+
   if (semanticDerivedPathways.length < 2) {
     return shouldCollapseToSingleSemanticDerivedPathway;
   }
@@ -1575,10 +2118,6 @@ function shouldPreferDerivedPathways(
   }
 
   if (hasSupportedDerivedExpansion) {
-    return true;
-  }
-
-  if (suspiciousBasePathways.length === basePathways.length) {
     return true;
   }
 
@@ -1660,6 +2199,10 @@ function shouldKeepDerivedAcronymPathway(
   return normalizeDerivedPathwayText(derivedPathway.label).toLowerCase() === expectedLabel.toLowerCase();
 }
 
+function isCredentialScopedDerivedPathway(pathway: Pick<TransferPlannerDerivedPathwaySeed, "id">) {
+  return /^(?:ba|bs)-(?:route|option-family(?::|$))/i.test(pathway.id);
+}
+
 function canonicalizeDerivedPathwaysAgainstSupportedBase(
   plan: TransferPlannerMajorPlan,
   supportedBasePathways: TransferPlannerMajorPathway[],
@@ -1709,7 +2252,11 @@ function canonicalizeDerivedPathwaysAgainstSupportedBase(
   for (const pathway of derivedPathways) {
     const supportKey = getPathwayMaterializationSupportKey(plan, pathway);
     const matchingBasePathways = supportKey ? basePathwaysByFamily.get(supportKey) ?? [] : [];
-    if (matchingBasePathways.length !== 1 || isAutoPromotedPathway(plan, pathway)) {
+    if (
+      matchingBasePathways.length !== 1 ||
+      isAutoPromotedPathway(plan, pathway) ||
+      isCredentialScopedDerivedPathway(pathway)
+    ) {
       pushCanonicalPathway(pathway);
       continue;
     }
@@ -1720,10 +2267,19 @@ function canonicalizeDerivedPathwaysAgainstSupportedBase(
       continue;
     }
 
+    if (shouldKeepDerivedCleanerPathwayLabel(basePathway, pathway)) {
+      pushCanonicalPathway({
+        ...pathway,
+        id: basePathway.id,
+        summary: pathway.summary || basePathway.summary || "",
+      });
+      continue;
+    }
+
     pushCanonicalPathway({
       ...pathway,
       id: basePathway.id,
-      label: normalizeTransferPlannerText(basePathway.label) || pathway.label,
+      label: normalizeMaterializedTransferPlannerPathwayLabel(basePathway.label) || pathway.label,
       summary: pathway.summary || basePathway.summary || "",
     });
   }
@@ -1777,7 +2333,7 @@ function mergeDerivedAndSourceBackedBasePathways(
   for (const pathway of derivedPathways) {
     pushMaterializedPathway({
       id: pathway.id,
-      label: normalizeTransferPlannerText(pathway.label),
+      label: normalizeMaterializedTransferPlannerPathwayLabel(pathway.label),
       summary: pathway.summary,
       officialLinks: plan.officialLinks,
     });
@@ -1787,6 +2343,7 @@ function mergeDerivedAndSourceBackedBasePathways(
     if (
       isSuspiciousStructuralPathwayId(pathway.id) ||
       isSuspiciousStructuralPathwayLabel(pathway.label) ||
+      isPlanExcludedDerivedPathway(plan.id, pathway) ||
       materializedPathwaysById.has(pathway.id) ||
       !hasDedicatedSourceBackedPathwayBlock(plan, pathway, parsedSourceBlocks)
     ) {
@@ -1800,7 +2357,7 @@ function mergeDerivedAndSourceBackedBasePathways(
 
     pushMaterializedPathway({
       ...pathway,
-      label: normalizeTransferPlannerText(pathway.label),
+      label: normalizeMaterializedTransferPlannerPathwayLabel(pathway.label),
     });
   }
 
@@ -1812,7 +2369,9 @@ export function materializeTransferPlannerPathways(
   basePathways: TransferPlannerMajorPathway[],
   parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
 ): TransferPlannerMajorPathway[] {
-  const canonicalBasePathways = canonicalizeBasePathwaysAgainstAutoPromotions(plan, basePathways);
+  const canonicalBasePathways = canonicalizeBasePathwaysAgainstAutoPromotions(plan, basePathways).filter(
+    (pathway) => !isPlanExcludedDerivedPathway(plan.id, pathway)
+  );
   const rawDerivedPathways = filterDerivedPathwaysToKnownBaseFamilies(
     plan,
     canonicalBasePathways,
@@ -1851,7 +2410,7 @@ export function materializeTransferPlannerPathways(
 
     return supportedBasePathways.map((pathway) => ({
       ...pathway,
-      label: normalizeTransferPlannerText(pathway.label),
+      label: normalizeMaterializedTransferPlannerPathwayLabel(pathway.label),
     }));
   }
 

@@ -17,6 +17,33 @@ export type ParsedTranscriptData = {
   completedCourses: ParsedTranscriptCourse[];
   earnedCreditsTotal: number | null;
   gpa: string | null;
+  diagnostics?: TranscriptPdfParseDiagnostics;
+};
+
+export type TranscriptPdfParseDiagnostics = {
+  uriKind: string;
+  uriLength: number;
+  byteLength: number;
+  readBytesMs: number;
+  extractLinesMs: number;
+  parseCourseLinesMs: number;
+  extractGpaMs: number;
+  totalMs: number;
+  totalStreamCount: number;
+  flateStreamCount: number;
+  skippedNonContentStreamCount: number;
+  extractedFlateStreamCount: number;
+  inflatedStreamCount: number;
+  inflateFailureCount: number;
+  skippedNoTextOperatorCount: number;
+  textCandidateStreamCount: number;
+  textItemCount: number;
+  lineCount: number;
+  binaryStringMs: number;
+  streamInflateMs: number;
+  textItemExtractionMs: number;
+  lineBuildMs: number;
+  maxInflatedStreamChars: number;
 };
 
 const CREDIT_PATTERN = /^\d+\.\d{3}$/;
@@ -33,6 +60,64 @@ type PdfTextItem = {
   y?: number;
   transform?: number[];
 };
+
+type PdfFlateStream = {
+  data: Uint8Array;
+  dictionary: string;
+};
+
+type FlateStreamExtractionResult = {
+  streams: PdfFlateStream[];
+  totalStreamCount: number;
+  flateStreamCount: number;
+  skippedNonContentStreamCount: number;
+  binaryStringMs: number;
+};
+
+type TranscriptLineExtractionResult = {
+  lines: string[];
+  diagnostics: Pick<
+    TranscriptPdfParseDiagnostics,
+    | "extractLinesMs"
+    | "totalStreamCount"
+    | "flateStreamCount"
+    | "skippedNonContentStreamCount"
+    | "extractedFlateStreamCount"
+    | "inflatedStreamCount"
+    | "inflateFailureCount"
+    | "skippedNoTextOperatorCount"
+    | "textCandidateStreamCount"
+    | "textItemCount"
+    | "lineCount"
+    | "binaryStringMs"
+    | "streamInflateMs"
+    | "textItemExtractionMs"
+    | "lineBuildMs"
+    | "maxInflatedStreamChars"
+  >;
+};
+
+function nowMs() {
+  return typeof performance !== "undefined" && typeof performance.now === "function"
+    ? performance.now()
+    : Date.now();
+}
+
+function roundMs(value: number) {
+  return Math.round(value * 10) / 10;
+}
+
+function getTranscriptUriKind(value: string) {
+  const raw = String(value ?? "").trim();
+  if (!raw) return "missing";
+  if (raw.startsWith("data:")) return "data-url";
+  if (raw.startsWith("blob:")) return "blob-url";
+  if (raw.startsWith("http://") || raw.startsWith("https://")) return "remote-url";
+  if (raw.startsWith("file://")) return "file-url";
+  if (/^[A-Za-z]:[\\/]/.test(raw)) return "windows-local-path";
+  if (raw.startsWith("/")) return "local-path";
+  return "other";
+}
 
 function normalizeWhitespace(value: string) {
   return String(value ?? "").replace(/\s+/g, " ").trim();
@@ -165,6 +250,20 @@ async function readPdfBytes(fileUri: string) {
     throw new Error("Transcript file URL is missing.");
   }
 
+  if (
+    normalizedUri.startsWith("data:") &&
+    Platform.OS === "web" &&
+    typeof fetch === "function"
+  ) {
+    try {
+      const response = await fetch(normalizedUri);
+      const arrayBuffer = await response.arrayBuffer();
+      return new Uint8Array(arrayBuffer);
+    } catch {
+      // Fall back to the JS decoder below if a browser rejects data URL fetches.
+    }
+  }
+
   if (normalizedUri.startsWith("data:")) {
     return decodeDataUrlToBytes(normalizedUri);
   }
@@ -247,8 +346,8 @@ function parseTranscriptCourseLines(lines: string[]) {
       continue;
     }
 
+    if (Number.parseFloat(earned) <= 0) continue;
     const earnedCredits = Number.parseFloat(earned);
-    if (earnedCredits <= 0) continue;
 
     const title = normalizeWhitespace(rawTitle);
     if (!title || title.toLowerCase().startsWith("description ")) {
@@ -306,14 +405,28 @@ export function extractCumulativeGpaFromTranscriptLines(lines: string[]) {
   return null;
 }
 
-function extractFlateStreams(data: Uint8Array) {
+function shouldSkipFlateStreamDictionary(dictionary: string) {
+  return (
+    /\/Subtype\s*\/Image\b/.test(dictionary) ||
+    /\/Type\s*\/XRef\b/.test(dictionary) ||
+    /\/Type\s*\/ObjStm\b/.test(dictionary)
+  );
+}
+
+function extractFlateStreams(data: Uint8Array): FlateStreamExtractionResult {
+  const binaryStart = nowMs();
   const binary = uint8ArrayToBinaryString(data);
-  const streams: Uint8Array[] = [];
+  const binaryStringMs = roundMs(nowMs() - binaryStart);
+  const streams: PdfFlateStream[] = [];
   let searchIndex = 0;
+  let totalStreamCount = 0;
+  let flateStreamCount = 0;
+  let skippedNonContentStreamCount = 0;
 
   while (searchIndex < binary.length) {
     const streamIndex = binary.indexOf("stream", searchIndex);
     if (streamIndex < 0) break;
+    totalStreamCount += 1;
 
     const dictionaryStart = binary.lastIndexOf("<<", streamIndex);
     const dictionaryEnd = binary.lastIndexOf(">>", streamIndex);
@@ -340,13 +453,28 @@ function extractFlateStreams(data: Uint8Array) {
     }
 
     if (/\/FlateDecode\b/.test(dictionary) && dataEnd > dataStart) {
-      streams.push(binaryStringToUint8Array(binary.slice(dataStart, dataEnd)));
+      flateStreamCount += 1;
+
+      if (shouldSkipFlateStreamDictionary(dictionary)) {
+        skippedNonContentStreamCount += 1;
+      } else {
+        streams.push({
+          data: binaryStringToUint8Array(binary.slice(dataStart, dataEnd)),
+          dictionary,
+        });
+      }
     }
 
     searchIndex = endstreamIndex + "endstream".length;
   }
 
-  return streams;
+  return {
+    streams,
+    totalStreamCount,
+    flateStreamCount,
+    skippedNonContentStreamCount,
+    binaryStringMs,
+  };
 }
 
 function decodePdfString(value: string) {
@@ -448,47 +576,112 @@ function extractTextItemsFromStreamContent(content: string) {
   return items;
 }
 
-function extractTranscriptLinesFromPdf(data: Uint8Array) {
+function extractTranscriptLinesFromPdf(data: Uint8Array): TranscriptLineExtractionResult {
+  const extractionStart = nowMs();
+  const streamExtraction = extractFlateStreams(data);
   const allLines: string[] = [];
+  let inflatedStreamCount = 0;
+  let inflateFailureCount = 0;
+  let skippedNoTextOperatorCount = 0;
+  let textCandidateStreamCount = 0;
+  let textItemCount = 0;
+  let streamInflateMs = 0;
+  let textItemExtractionMs = 0;
+  let lineBuildMs = 0;
+  let maxInflatedStreamChars = 0;
 
-  for (const stream of extractFlateStreams(data)) {
+  for (const stream of streamExtraction.streams) {
     try {
-      const content = inflate(stream, { to: "string" });
+      const inflateStart = nowMs();
+      const content = inflate(stream.data, { to: "string" });
+      streamInflateMs += nowMs() - inflateStart;
+      inflatedStreamCount += 1;
+      maxInflatedStreamChars = Math.max(maxInflatedStreamChars, content.length);
+
       if (!content.includes("Tj") && !content.includes("TJ")) {
+        skippedNoTextOperatorCount += 1;
         continue;
       }
 
+      textCandidateStreamCount += 1;
+      const textItemStart = nowMs();
       const streamItems = extractTextItemsFromStreamContent(content);
+      textItemExtractionMs += nowMs() - textItemStart;
+      textItemCount += streamItems.length;
+
       if (!streamItems.length) {
         continue;
       }
 
       // Keep each PDF text stream isolated so page-local Y positions do not
       // collide across multiple transcript pages.
+      const lineBuildStart = nowMs();
       allLines.push(...buildPageLines(streamItems));
+      lineBuildMs += nowMs() - lineBuildStart;
     } catch {
+      inflateFailureCount += 1;
       continue;
     }
   }
 
-  return allLines;
+  return {
+    lines: allLines,
+    diagnostics: {
+      extractLinesMs: roundMs(nowMs() - extractionStart),
+      totalStreamCount: streamExtraction.totalStreamCount,
+      flateStreamCount: streamExtraction.flateStreamCount,
+      skippedNonContentStreamCount: streamExtraction.skippedNonContentStreamCount,
+      extractedFlateStreamCount: streamExtraction.streams.length,
+      inflatedStreamCount,
+      inflateFailureCount,
+      skippedNoTextOperatorCount,
+      textCandidateStreamCount,
+      textItemCount,
+      lineCount: allLines.length,
+      binaryStringMs: streamExtraction.binaryStringMs,
+      streamInflateMs: roundMs(streamInflateMs),
+      textItemExtractionMs: roundMs(textItemExtractionMs),
+      lineBuildMs: roundMs(lineBuildMs),
+      maxInflatedStreamChars,
+    },
+  };
 }
 
 class TranscriptPdfService {
   async extractTranscriptDataFromPdf(fileUri: string): Promise<ParsedTranscriptData> {
+    const totalStart = nowMs();
+    const normalizedUri = String(fileUri ?? "").trim();
+    const readStart = nowMs();
     const data = await readPdfBytes(fileUri);
-    const allLines = extractTranscriptLinesFromPdf(data);
+    const readBytesMs = roundMs(nowMs() - readStart);
+    const extracted = extractTranscriptLinesFromPdf(data);
+    const allLines = extracted.lines;
 
     if (!allLines.length) {
       throw new Error("No readable transcript text found in PDF.");
     }
 
+    const parseCourseLinesStart = nowMs();
     const parsedCourseData = parseTranscriptCourseLines(allLines);
+    const parseCourseLinesMs = roundMs(nowMs() - parseCourseLinesStart);
+    const extractGpaStart = nowMs();
+    const gpa = extractCumulativeGpaFromTranscriptLines(allLines);
+    const extractGpaMs = roundMs(nowMs() - extractGpaStart);
 
     return {
       completedCourses: parsedCourseData.completedCourses,
       earnedCreditsTotal: parsedCourseData.earnedCreditsTotal,
-      gpa: extractCumulativeGpaFromTranscriptLines(allLines),
+      gpa,
+      diagnostics: {
+        uriKind: getTranscriptUriKind(normalizedUri),
+        uriLength: normalizedUri.length,
+        byteLength: data.byteLength,
+        readBytesMs,
+        parseCourseLinesMs,
+        extractGpaMs,
+        totalMs: roundMs(nowMs() - totalStart),
+        ...extracted.diagnostics,
+      },
     };
   }
 

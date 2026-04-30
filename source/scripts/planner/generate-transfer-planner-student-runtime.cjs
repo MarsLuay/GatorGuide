@@ -1,3 +1,5 @@
+/* global __dirname */
+
 const fs = require("fs");
 const path = require("path");
 
@@ -127,6 +129,11 @@ const runtimeMajorPlans = uniqueBy(
   (plan) => plan.id
 );
 
+function omitPlanPathways(plan) {
+  const { pathways, ...planWithoutPathways } = plan;
+  return planWithoutPathways;
+}
+
 const runtimePathwaysByPlanId = Object.fromEntries(
   runtimeMajorPlans.map((plan) => [
     plan.id,
@@ -141,7 +148,7 @@ const runtimeResolvedMajorPlansByKey = Object.fromEntries(
 
     return pathwayIds.map((pathwayId) => [
       `${plan.id}::${pathwayId ?? ""}`,
-      resolveTransferPlannerStudentRuntimeMajorPlan(plan, pathwayId) ?? plan,
+      omitPlanPathways(resolveTransferPlannerStudentRuntimeMajorPlan(plan, pathwayId) ?? plan),
     ]);
   })
 );
@@ -232,7 +239,7 @@ ${serializeExport(
 ${serializeExport(
   "TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS",
   "TransferPlannerMajorPlan[]",
-  runtimeMajorPlans
+  runtimeMajorPlans.map(omitPlanPathways)
 )}
 ${serializeExport(
   "TRANSFER_PLANNER_RUNTIME_PATHWAYS_BY_PLAN_ID",

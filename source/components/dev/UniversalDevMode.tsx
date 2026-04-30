@@ -97,20 +97,20 @@ type DevSnapshot = {
           iconFonts: {
             status: string | null;
             totalFontFaces: number | null;
-            checks: Array<{
+            checks: {
               family: string;
               available: boolean | null;
-            }>;
-            matchingFaces: Array<{
+            }[];
+            matchingFaces: {
               family: string | null;
               status: string | null;
               style: string | null;
               weight: string | null;
-            }>;
+            }[];
           };
           resourceDiagnostics: {
             relevantEntryCount: number;
-            relevantEntries: Array<{
+            relevantEntries: {
               name: string | null;
               initiatorType: string | null;
               durationMs: number | null;
@@ -119,14 +119,14 @@ type DevSnapshot = {
               decodedBodySize: number | null;
               startTimeMs: number | null;
               responseEndMs: number | null;
-            }>;
-            recentLoadErrors: Array<{
+            }[];
+            recentLoadErrors: {
               timestamp: string;
               tagName: string | null;
               url: string | null;
               rel: string | null;
               as: string | null;
-            }>;
+            }[];
           };
           navigationTiming:
             | {
@@ -249,6 +249,7 @@ type DevSnapshot = {
     completedCourseCount: number;
     completedCoursePreview: string[];
     lastPlannerDebug: unknown;
+    recentPlannerEvents: unknown;
   };
   opportunities: {
     isHydrated: boolean;
@@ -434,12 +435,12 @@ function getWebIconFontDiagnostics() {
       status: null,
       totalFontFaces: null,
       checks: ICON_FONT_FAMILIES.map((family) => ({ family, available: null })),
-      matchingFaces: [] as Array<{
+      matchingFaces: [] as {
         family: string | null;
         status: string | null;
         style: string | null;
         weight: string | null;
-      }>,
+      }[],
     };
   }
 
@@ -493,7 +494,7 @@ function getWebResourceDiagnostics() {
   if (typeof performance === "undefined" || typeof performance.getEntriesByType !== "function") {
     return {
       relevantEntryCount: 0,
-      relevantEntries: [] as Array<{
+      relevantEntries: [] as {
         name: string | null;
         initiatorType: string | null;
         durationMs: number | null;
@@ -502,7 +503,7 @@ function getWebResourceDiagnostics() {
         decodedBodySize: number | null;
         startTimeMs: number | null;
         responseEndMs: number | null;
-      }>,
+      }[],
       recentLoadErrors: [...recentWebLoadErrors],
     };
   }
@@ -877,6 +878,7 @@ export function UniversalDevMode() {
           state.questionnaireAnswers?.completedCourses
         ),
         lastPlannerDebug: transcriptPlannerDebugService.getLastTranscriptPlannerDebug(),
+        recentPlannerEvents: transcriptPlannerDebugService.getRecentTranscriptPlannerEvents(),
       },
       opportunities: {
         isHydrated: areOpportunitiesHydrated,

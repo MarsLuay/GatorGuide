@@ -778,3 +778,4 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "Welding Technology Certificates Certificate"
   }
 ];
+

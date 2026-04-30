@@ -2812,6 +2812,26 @@ function hydrateRequirementGroup(
   };
 }
 
+function shouldMaterializeParsedRequirementGroup(
+  block: (typeof TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY)[number],
+  group: TransferPlannerRequirementGroup
+) {
+  const label = sanitizePlannerOwnedText(group.label);
+  if (!label) {
+    return false;
+  }
+
+  if (block.planId === "uw-seattle-computer-engineering") {
+    return false;
+  }
+
+  if (/^first year students:/i.test(label)) {
+    return false;
+  }
+
+  return true;
+}
+
 function getParsedRequirementGroupsFromBlock(
   block: (typeof TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY)[number]
 ) {
@@ -2835,7 +2855,10 @@ function getParsedRequirementGroupsFromBlock(
         ? parsedRequirementGroups
         : knownMaterialsScienceGroups;
 
-  return rawGroups.map(hydrateRequirementGroup).filter((group) => group.options.length > 0);
+  return rawGroups
+    .filter((group) => shouldMaterializeParsedRequirementGroup(block, group))
+    .map(hydrateRequirementGroup)
+    .filter((group) => group.options.length > 0);
 }
 
 function applyRequirementGroupPathwayRestrictions(
