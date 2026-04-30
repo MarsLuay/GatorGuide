@@ -83,6 +83,14 @@ function toDateKey(date: Date) {
   return `${year}-${month}-${day}`;
 }
 
+function getLocalDateStartTime(date: Date) {
+  return new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate()
+  ).getTime();
+}
+
 function compareEntries(left: DeadlineCalendarEntry, right: DeadlineCalendarEntry) {
   if (left.dueAt !== right.dueAt) return left.dueAt.localeCompare(right.dueAt);
   return left.title.localeCompare(right.title);
@@ -96,9 +104,10 @@ function isUpcomingDueWithinDays(
   const parsed = toDate(value);
   if (!parsed) return false;
 
-  const dueAt = parsed.getTime();
-  const windowEnd = now + Math.max(0, days) * MILLISECONDS_PER_DAY;
-  return dueAt >= now && dueAt <= windowEnd;
+  const today = getLocalDateStartTime(new Date(now));
+  const dueAt = getLocalDateStartTime(parsed);
+  const windowEnd = today + Math.max(0, days) * MILLISECONDS_PER_DAY;
+  return dueAt >= today && dueAt <= windowEnd;
 }
 
 function buildRoadmapTarget(
@@ -119,6 +128,57 @@ function getOpportunityDeadlineVisibility(opportunity: MatchedOpportunity) {
   return {
     hideFromHomeUpcoming: isUwTransferApplicationDeadline,
     revealInCalendarOnlyWhenSelected: isUwTransferApplicationDeadline,
+  };
+}
+
+function buildOpportunityEntry(
+  opportunity: MatchedOpportunity,
+  dueDate: Date,
+  idSuffix = ""
+): DeadlineCalendarEntry {
+  let target: DeadlineCalendarEntryTarget = {
+    type: "resources",
+    opportunityId: opportunity.opportunityId,
+  };
+
+  if (
+    opportunity.type === "college_deadline" &&
+    opportunity.college.collegeId
+  ) {
+    target = {
+      type: "college",
+      collegeId: opportunity.college.collegeId,
+      externalUrl: opportunity.externalUrl,
+    };
+  } else if (opportunity.externalUrl) {
+    target = {
+      type: "external",
+      url: opportunity.externalUrl,
+    };
+  }
+
+  return {
+    id: `opportunity:${opportunity.opportunityId}${idSuffix}`,
+    dateKey: toDateKey(dueDate),
+    dueAt: dueDate.toISOString(),
+    title: opportunity.title,
+    subtitle:
+      opportunity.type === "college_deadline"
+        ? opportunity.college.collegeName || opportunity.organizationName || "College deadline"
+        : opportunity.type === "general_deadline"
+          ? opportunity.organizationName || "General deadline"
+          : opportunity.organizationName || "Opportunity",
+    description: opportunity.summary,
+    kind: opportunity.type,
+    sourceLabel:
+      opportunity.type === "college_deadline"
+        ? "College deadline"
+        : opportunity.type === "general_deadline"
+          ? "General deadline"
+          : "Opportunity",
+    isDone: opportunity.isDone,
+    target,
+    ...getOpportunityDeadlineVisibility(opportunity),
   };
 }
 
@@ -172,55 +232,28 @@ class DeadlineCalendarService {
     const entries: DeadlineCalendarEntry[] = [];
 
     for (const opportunity of opportunities ?? []) {
-      if (!opportunity.computedDueAt) continue;
+      const computedDueDate = toDate(opportunity.computedDueAt);
+      const originalDueDate = toDate(opportunity.dueAt);
 
-      const parsed = toDate(opportunity.computedDueAt);
-      if (!parsed) continue;
-
-      let target: DeadlineCalendarEntryTarget = {
-        type: "resources",
-        opportunityId: opportunity.opportunityId,
-      };
-
-      if (
-        opportunity.type === "college_deadline" &&
-        opportunity.college.collegeId
-      ) {
-        target = {
-          type: "college",
-          collegeId: opportunity.college.collegeId,
-          externalUrl: opportunity.externalUrl,
-        };
-      } else if (opportunity.externalUrl) {
-        target = {
-          type: "external",
-          url: opportunity.externalUrl,
-        };
+      if (originalDueDate) {
+        entries.push(
+          buildOpportunityEntry(
+            opportunity,
+            originalDueDate,
+            computedDueDate &&
+              toDateKey(computedDueDate) !== toDateKey(originalDueDate)
+              ? `:${toDateKey(originalDueDate)}`
+              : ""
+          )
+        );
       }
 
-      entries.push({
-        id: `opportunity:${opportunity.opportunityId}`,
-        dateKey: toDateKey(parsed),
-        dueAt: parsed.toISOString(),
-        title: opportunity.title,
-        subtitle:
-          opportunity.type === "college_deadline"
-            ? opportunity.college.collegeName || opportunity.organizationName || "College deadline"
-            : opportunity.type === "general_deadline"
-              ? opportunity.organizationName || "General deadline"
-            : opportunity.organizationName || "Opportunity",
-        description: opportunity.summary,
-        kind: opportunity.type,
-        sourceLabel:
-          opportunity.type === "college_deadline"
-            ? "College deadline"
-            : opportunity.type === "general_deadline"
-              ? "General deadline"
-              : "Opportunity",
-        isDone: opportunity.isDone,
-        target,
-        ...getOpportunityDeadlineVisibility(opportunity),
-      });
+      if (
+        computedDueDate &&
+        (!originalDueDate || toDateKey(computedDueDate) !== toDateKey(originalDueDate))
+      ) {
+        entries.push(buildOpportunityEntry(opportunity, computedDueDate));
+      }
     }
 
     return entries.sort(compareEntries);

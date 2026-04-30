@@ -271,6 +271,18 @@ function buildRecurrenceDate(
   return parsed;
 }
 
+function getLocalDateStartTime(value: Date) {
+  return new Date(
+    value.getFullYear(),
+    value.getMonth(),
+    value.getDate()
+  ).getTime();
+}
+
+function isBeforeLocalToday(value: Date, now: Date) {
+  return getLocalDateStartTime(value) < getLocalDateStartTime(now);
+}
+
 export function resolveOpportunityDueDate(
   opportunity: Pick<Opportunity, "dueAt" | "recurrence">,
   now: Date = new Date()
@@ -279,7 +291,7 @@ export function resolveOpportunityDueDate(
     const recurrence = normalizeOpportunityRecurrence(opportunity.recurrence);
     const currentYear = now.getFullYear();
     const thisYear = buildRecurrenceDate(currentYear, recurrence);
-    if (thisYear && thisYear.getTime() > now.getTime()) {
+    if (thisYear && !isBeforeLocalToday(thisYear, now)) {
       return thisYear;
     }
 
@@ -329,7 +341,7 @@ function shouldAutoExpireOpportunity(
   if (!dueAt) return false;
   const parsed = new Date(dueAt);
   if (Number.isNaN(parsed.getTime())) return false;
-  return parsed.getTime() < now.getTime();
+  return isBeforeLocalToday(parsed, now);
 }
 
 export function resolveOpportunityProgress(

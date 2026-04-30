@@ -83,6 +83,10 @@ function isDateKeyInMonth(dateKey: string, month: Date) {
   return year === month.getFullYear() && monthValue === month.getMonth() + 1;
 }
 
+function getLocalDateKey(date: Date = new Date()) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
 function formatMonthTitle(value: Date, locale: string) {
   try {
     return new Intl.DateTimeFormat(locale, {
@@ -178,7 +182,8 @@ function buildWeekdayLabels(locale: string, wide: boolean) {
 }
 
 function findUpcomingGroup(groups: DeadlineCalendarGroup[]) {
-  return groups.find((group) => new Date(group.dueAt).getTime() >= Date.now()) ?? groups[0] ?? null;
+  const todayDateKey = getLocalDateKey();
+  return groups.find((group) => group.dateKey >= todayDateKey) ?? groups[0] ?? null;
 }
 
 function filterCalendarGroupsForAgenda(
@@ -250,6 +255,7 @@ export default function DeadlineCalendarPage() {
   const [roadmapLoadError, setRoadmapLoadError] = useState<string | null>(null);
   const [roadmapLoadAttempt, setRoadmapLoadAttempt] = useState(0);
   const [selectedDateKey, setSelectedDateKey] = useState<string | null>(null);
+  const todayDateKey = useMemo(() => getLocalDateKey(), []);
 
   const roadmapSeed = useMemo(
     () =>
@@ -335,8 +341,17 @@ export default function DeadlineCalendarPage() {
       upcomingWindowGroups,
       false
     );
+    const visibleHistoricalGroups = filterCalendarGroupsForAgenda(
+      groups.filter((group) => group.dateKey < todayDateKey),
+      false
+    );
     setVisibleMonth((current) => {
-      const targetGroup = visibleUpcomingWindowGroups[0] ?? upcomingWindowGroups[0] ?? null;
+      const targetGroup =
+        visibleUpcomingWindowGroups[0] ??
+        upcomingWindowGroups[0] ??
+        visibleHistoricalGroups[visibleHistoricalGroups.length - 1] ??
+        groups[groups.length - 1] ??
+        null;
       const target = targetGroup
         ? getMonthStart(new Date(targetGroup.dueAt))
         : getMonthStart(new Date());
@@ -348,7 +363,7 @@ export default function DeadlineCalendarPage() {
       }
       return target;
     });
-  }, [groups]);
+  }, [groups, todayDateKey]);
 
   useEffect(() => {
     if (!selectedDateKey) return;
@@ -386,6 +401,21 @@ export default function DeadlineCalendarPage() {
     [groups]
   );
 
+  const fallbackHistoricalGroups = useMemo(
+    () =>
+      filterCalendarGroupsForAgenda(
+        groups.filter((group) => group.dateKey < todayDateKey),
+        false
+      )
+        .slice(-8)
+        .reverse(),
+    [groups, todayDateKey]
+  );
+
+  const fallbackAgendaGroups = fallbackUpcomingGroups.length
+    ? fallbackUpcomingGroups
+    : fallbackHistoricalGroups;
+
   const monthItemCount = useMemo(
     () => countCalendarGroupItems(monthGroups),
     [monthGroups]
@@ -401,8 +431,8 @@ export default function DeadlineCalendarPage() {
       return groups.filter((group) => group.dateKey === selectedDateKey);
     }
     if (monthGroups.length) return monthAgendaGroups;
-    return fallbackUpcomingGroups;
-  }, [fallbackUpcomingGroups, groups, monthAgendaGroups, monthGroups.length, selectedDateKey]);
+    return fallbackAgendaGroups;
+  }, [fallbackAgendaGroups, groups, monthAgendaGroups, monthGroups.length, selectedDateKey]);
 
   const displayedItemCount = useMemo(
     () => countCalendarGroupItems(displayedGroups),
@@ -483,17 +513,12 @@ export default function DeadlineCalendarPage() {
     }
   };
 
-  const todayDateKey = useMemo(() => {
-    const today = new Date();
-    return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-  }, []);
-
   const selectedGroup = selectedDateKey ? displayedGroups[0] ?? null : null;
   const monthFocusGroup = useMemo(
     () => findUpcomingGroup(monthAgendaGroups),
     [monthAgendaGroups]
   );
-  const focusGroup = selectedGroup ?? monthFocusGroup ?? fallbackUpcomingGroups[0] ?? null;
+  const focusGroup = selectedGroup ?? monthFocusGroup ?? fallbackAgendaGroups[0] ?? null;
 
   const layout = useMemo(() => {
     const isTablet = width >= 768;
@@ -585,7 +610,11 @@ export default function DeadlineCalendarPage() {
       ? t("deadlineCalendar.agendaForMonth", {
           month: formatMonthTitle(visibleMonth, locale),
         })
-      : t("deadlineCalendar.upcomingDeadlines");
+      : fallbackUpcomingGroups.length
+        ? t("deadlineCalendar.upcomingDeadlines")
+        : fallbackHistoricalGroups.length
+          ? "Past deadlines"
+          : t("deadlineCalendar.upcomingDeadlines");
 
   const selectedItemLabel =
     displayedItemCount === 1
@@ -620,6 +649,8 @@ export default function DeadlineCalendarPage() {
         ? t("deadlineCalendar.selectDateToRevealMessage")
       : fallbackUpcomingGroups.length
         ? t("deadlineCalendar.nextAvailableSummary")
+        : fallbackHistoricalGroups.length
+          ? `${displayedItemCount} ${selectedItemLabel} from recent past dates`
         : t("deadlineCalendar.noDatedItemsMessage");
 
   const focusPreviewItems = focusGroup?.items.slice(0, layout.focusPreviewCount) ?? [];
@@ -641,6 +672,8 @@ export default function DeadlineCalendarPage() {
           ? t("deadlineCalendar.selectDateToRevealMessage")
         : fallbackUpcomingGroups.length
           ? t("deadlineCalendar.nextAvailableSummary")
+          : fallbackHistoricalGroups.length
+            ? `${displayedItemCount} ${selectedItemLabel} from recent past dates`
           : t("deadlineCalendar.noDatedItemsMessage")
     : t("deadlineCalendar.noDatedItemsMessage");
 

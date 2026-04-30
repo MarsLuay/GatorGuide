@@ -3,11 +3,17 @@ import test from "node:test";
 
 import {
   normalizeOpportunity,
+  OPPORTUNITY_PROGRESS_STATES,
+  resolveOpportunityDueDate,
+  resolveOpportunityProgress,
   type Opportunity,
 } from "@/constants/opportunities";
 import { STARTER_OPPORTUNITIES } from "@/constants/starter-opportunities";
 import { deadlineCalendarService } from "@/services/deadlines/deadline-calendar.service";
-import { opportunityMatchingService } from "@/services/opportunities/opportunity-matching.service";
+import {
+  opportunityMatchingService,
+  type MatchedOpportunity,
+} from "@/services/opportunities/opportunity-matching.service";
 import {
   estimateTransferPlannerTranscriptCurrentCredits,
   TRANSCRIPT_COURSES_FIELD,
@@ -73,6 +79,76 @@ function buildGreenRiverEnrollmentOpportunity(bucket: string): Opportunity {
   });
 }
 
+function buildDeadlineBoundaryOpportunity(
+  input: {
+    dueAt?: string | null;
+    recurrence?: Partial<Opportunity["recurrence"]>;
+    opportunityId?: string;
+  } = {}
+): Opportunity {
+  return normalizeOpportunity({
+    opportunityId: input.opportunityId ?? "deadline-boundary-scholarship",
+    type: "scholarship",
+    status: "active",
+    title: "Deadline Boundary Scholarship",
+    organizationName: "Boundary Test",
+    summary: "Checks that today remains visible until tomorrow.",
+    dueAt: input.dueAt ?? new Date(2099, 4, 1, 9).toISOString(),
+    recurrence: {
+      isYearly: false,
+      month: null,
+      day: null,
+      timezone: "America/Los_Angeles",
+      ...(input.recurrence ?? {}),
+    },
+    deadline: {
+      type: "final",
+      label: "Deadline",
+    },
+    matching: {
+      financialAidTags: [],
+      suggestedMajors: [],
+      hasToBeMajor: false,
+    },
+    eligibility: {
+      gpaMin: null,
+      residencyTypes: [],
+      transferOnly: false,
+    },
+    requirements: {
+      needsRecommendations: false,
+      recommendationCountMin: 0,
+      essayCount: 0,
+    },
+    award: {
+      amountMin: null,
+      amountMax: null,
+      currency: "USD",
+      amountText: null,
+      renewable: null,
+    },
+    college: {
+      collegeId: null,
+      collegeName: null,
+      city: null,
+      state: null,
+      website: null,
+    },
+    source: {
+      kind: "manual",
+      sourceUrl: null,
+      sourceLabel: null,
+      model: null,
+      fetchedAt: null,
+      verifiedAt: null,
+    },
+  });
+}
+
+function toLocalDateKey(date: Date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+
 const staleTranscriptAnswers = {
   [TRANSCRIPT_EARNED_CREDITS_FIELD]: 45,
   [TRANSCRIPT_COURSES_FIELD]: [
@@ -86,6 +162,108 @@ const staleTranscriptAnswers = {
     },
   ],
 };
+
+test("One-time opportunities stay open through their local due date", () => {
+  const dueAt = new Date(2099, 4, 1, 9).toISOString();
+  const opportunity = buildDeadlineBoundaryOpportunity({ dueAt });
+
+  assert.equal(
+    resolveOpportunityProgress(opportunity, null, new Date(2099, 4, 1, 23, 59)),
+    null
+  );
+  assert.equal(
+    resolveOpportunityProgress(opportunity, null, new Date(2099, 4, 2, 0, 1)),
+    OPPORTUNITY_PROGRESS_STATES.expired
+  );
+});
+
+test("Yearly opportunities keep the current cycle through their local due date", () => {
+  const opportunity = buildDeadlineBoundaryOpportunity({
+    dueAt: null,
+    recurrence: {
+      isYearly: true,
+      month: 5,
+      day: 1,
+    },
+  });
+
+  const dueToday = resolveOpportunityDueDate(
+    opportunity,
+    new Date(2099, 4, 1, 23, 59)
+  );
+  const dueTomorrow = resolveOpportunityDueDate(
+    opportunity,
+    new Date(2099, 4, 2, 0, 1)
+  );
+
+  assert.equal(dueToday?.getFullYear(), 2099);
+  assert.equal(dueToday?.getMonth(), 4);
+  assert.equal(dueToday?.getDate(), 1);
+  assert.equal(dueTomorrow?.getFullYear(), 2100);
+});
+
+test("Upcoming deadline filters include deadlines due earlier today until tomorrow", () => {
+  const dueDate = new Date(2099, 4, 1, 9);
+  const entry = {
+    id: "opportunity:deadline-boundary-scholarship",
+    dateKey: toLocalDateKey(dueDate),
+    dueAt: dueDate.toISOString(),
+    title: "Deadline Boundary Scholarship",
+    subtitle: "Boundary Test",
+    description: "Checks that today remains visible until tomorrow.",
+    kind: "scholarship" as const,
+    sourceLabel: "Opportunity",
+    isDone: false,
+    target: {
+      type: "external" as const,
+      url: "https://example.com",
+    },
+  };
+  const originalDateNow = Date.now;
+
+  try {
+    Date.now = () => new Date(2099, 4, 1, 23, 59).getTime();
+    assert.deepEqual(
+      deadlineCalendarService
+        .filterUpcomingEntries([entry])
+        .map((item) => item.id),
+      [entry.id]
+    );
+
+    Date.now = () => new Date(2099, 4, 2, 0, 1).getTime();
+    assert.deepEqual(deadlineCalendarService.filterUpcomingEntries([entry]), []);
+  } finally {
+    Date.now = originalDateNow;
+  }
+});
+
+test("Deadline calendar keeps the stored occurrence when a recurring opportunity rolls forward", () => {
+  const originalDueDate = new Date(2099, 4, 1, 9);
+  const nextDueDate = new Date(2100, 4, 1, 9);
+  const opportunity: MatchedOpportunity = {
+    ...buildDeadlineBoundaryOpportunity({
+      dueAt: originalDueDate.toISOString(),
+      recurrence: {
+        isYearly: true,
+        month: 5,
+        day: 1,
+      },
+    }),
+    computedDueAt: nextDueDate.toISOString(),
+    progress: null,
+    isDone: false,
+    matchScore: 0,
+    matchReasons: [],
+  };
+
+  const entries = deadlineCalendarService.buildOpportunityEntries([opportunity]);
+
+  assert.deepEqual(
+    entries.map((entry) => entry.dateKey),
+    [toLocalDateKey(originalDueDate), toLocalDateKey(nextDueDate)]
+  );
+  assert.equal(new Set(entries.map((entry) => entry.id)).size, 2);
+});
 
 test("Transcript credit estimate adds 15 credits for completed fall, winter, and spring terms after stale transcript data", () => {
   const estimate = estimateTransferPlannerTranscriptCurrentCredits(
