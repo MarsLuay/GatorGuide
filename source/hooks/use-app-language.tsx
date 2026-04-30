@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Language, translations } from "@/services/app/translations";
 
@@ -66,7 +66,8 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
           setLanguageState(mapped);
           AsyncStorage.setItem(STORAGE_KEY, mapped).catch(() => {});
         } else {
-          // Default to English on first launch; user can change in Settings
+          // Intentionally do not read the device locale. Fresh installs,
+          // new users, and guests always start in English.
           setLanguageState(DEFAULT_LANGUAGE);
           AsyncStorage.setItem(STORAGE_KEY, DEFAULT_LANGUAGE).catch(() => {});
         }
@@ -80,13 +81,13 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
     };
   }, []);
 
-  const setLanguage = (value: Language) => {
+  const setLanguage = useCallback((value: Language) => {
     const mapped = normalizeLang(String(value));
     setLanguageState(mapped);
     AsyncStorage.setItem(STORAGE_KEY, mapped).catch(() => {});
-  };
+  }, []);
 
-  const t = (key: string, params?: Record<string, string | number>): string => {
+  const t = useCallback((key: string, params?: Record<string, string | number>): string => {
     const bundle = translations as Record<Language, Record<string, string>>;
     const langBundle = bundle[language] ?? {};
     const enBundle = bundle[DEFAULT_LANGUAGE] ?? {};
@@ -111,7 +112,7 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
     }
 
     return str;
-  };
+  }, [language]);
 
   const value = useMemo<AppLanguageContextValue>(
     () => ({
@@ -120,7 +121,7 @@ export function AppLanguageProvider({ children }: { children: React.ReactNode })
       t,
       hydrated,
     }),
-    [language, hydrated]
+    [language, setLanguage, t, hydrated]
   );
 
   return <AppLanguageContext.Provider value={value}>{children}</AppLanguageContext.Provider>;

@@ -51,7 +51,6 @@
           }
         }
       ],
-      "expo-localization",
       "expo-mail-composer",
       "expo-web-browser"
     ],
