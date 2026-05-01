@@ -10,22 +10,29 @@ type GatorGuideMarkProps = {
   size?: number;
   darkMode?: boolean;
   withBackground?: boolean;
+  fullCircle?: boolean;
 };
 
 export function GatorGuideMark({
   size = 112,
   darkMode = false,
   withBackground = false,
+  fullCircle = false,
 }: GatorGuideMarkProps) {
   const backgroundFill = darkMode ? "#001f0f" : "#FFFFFF";
   const circleFill = darkMode ? "#2DCC6D" : "#29C766";
   const hatFill = "#050505";
+  const circleRadius = fullCircle ? 512 : 330;
+  const iconScale = 512 / 330;
+  const iconTransform = fullCircle
+    ? `translate(512 512) scale(${iconScale}) translate(-512 -512) translate(0 62)`
+    : "translate(0 62)";
 
   return (
     <Svg width={size} height={size} viewBox="0 0 1024 1024" fill="none">
       {withBackground ? <Rect width={1024} height={1024} fill={backgroundFill} /> : null}
-      <Circle cx="512" cy="512" r="330" fill={circleFill} />
-      <G transform="translate(0 62)">
+      <Circle cx="512" cy="512" r={circleRadius} fill={circleFill} />
+      <G transform={iconTransform}>
         <Path
           d="M484 282Q512 268 540 282L748 364Q776 378 748 392L540 474Q512 488 484 474L276 392Q248 378 276 364L484 282Z"
           fill={hatFill}

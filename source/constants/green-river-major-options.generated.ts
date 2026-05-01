@@ -82,16 +82,22 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "AA-DTA with Emphasis in Professional & Technical Communication AA-DTA"
   },
   {
-    "id": "Accounting",
-    "label": "Accounting",
-    "description": "AAA | Certificate",
-    "searchText": "Accounting AAA Certificate"
+    "id": "Accounting Certificate",
+    "label": "Accounting Certificate",
+    "description": "Certificate",
+    "searchText": "Accounting Certificate Certificate"
   },
   {
     "id": "Accounting Clerk",
     "label": "Accounting Clerk",
     "description": "Certificate",
     "searchText": "Accounting Clerk Certificate"
+  },
+  {
+    "id": "Accounting, AAA",
+    "label": "Accounting, AAA",
+    "description": "AAA",
+    "searchText": "Accounting, AAA AAA"
   },
   {
     "id": "Accounting, BAS w/Accounting AAA",
@@ -112,10 +118,16 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "Accounting, BAS w/Business Management AAA BAS"
   },
   {
-    "id": "Administrative Assistant",
-    "label": "Administrative Assistant",
-    "description": "AAA | Certificate",
-    "searchText": "Administrative Assistant AAA Certificate"
+    "id": "Administrative Assistant Certificate",
+    "label": "Administrative Assistant Certificate",
+    "description": "Certificate",
+    "searchText": "Administrative Assistant Certificate Certificate"
+  },
+  {
+    "id": "Administrative Assistant, AAA",
+    "label": "Administrative Assistant, AAA",
+    "description": "AAA",
+    "searchText": "Administrative Assistant, AAA AAA"
   },
   {
     "id": "Advanced Network Administration and Security",
@@ -334,16 +346,22 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "Aviation Technology: Air Traffic Controller Certificate"
   },
   {
-    "id": "Business Applications Specialist",
-    "label": "Business Applications Specialist",
-    "description": "AAA | Certificate",
-    "searchText": "Business Applications Specialist AAA Certificate"
+    "id": "Business Applications Specialist Certificate",
+    "label": "Business Applications Specialist Certificate",
+    "description": "Certificate",
+    "searchText": "Business Applications Specialist Certificate Certificate"
   },
   {
     "id": "Business Applications Specialist for Small Business",
     "label": "Business Applications Specialist for Small Business",
     "description": "Certificate",
     "searchText": "Business Applications Specialist for Small Business Certificate"
+  },
+  {
+    "id": "Business Applications Specialist, AAA",
+    "label": "Business Applications Specialist, AAA",
+    "description": "AAA",
+    "searchText": "Business Applications Specialist, AAA AAA"
   },
   {
     "id": "Business Management",
@@ -418,10 +436,16 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "Criminal Justice - Law Enforcement Certificate"
   },
   {
-    "id": "Cybersecurity and Networking",
-    "label": "Cybersecurity and Networking",
-    "description": "AAS-T | BAS",
-    "searchText": "Cybersecurity and Networking AAS-T BAS"
+    "id": "Cybersecurity and Networking, AAS-T",
+    "label": "Cybersecurity and Networking, AAS-T",
+    "description": "AAS-T",
+    "searchText": "Cybersecurity and Networking, AAS-T AAS-T"
+  },
+  {
+    "id": "Cybersecurity and Networking, BAS",
+    "label": "Cybersecurity and Networking, BAS",
+    "description": "BAS",
+    "searchText": "Cybersecurity and Networking, BAS BAS"
   },
   {
     "id": "Data Analytics and Software Development, AAS-T Business Management Track",
@@ -544,10 +568,16 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "Legal Administrative Assistant AAA"
   },
   {
-    "id": "Machining and Manufacturing Technology",
-    "label": "Machining and Manufacturing Technology",
-    "description": "AAS | Certificate",
-    "searchText": "Machining and Manufacturing Technology AAS Certificate"
+    "id": "Machining and Manufacturing Technology Certificate",
+    "label": "Machining and Manufacturing Technology Certificate",
+    "description": "Certificate",
+    "searchText": "Machining and Manufacturing Technology Certificate Certificate"
+  },
+  {
+    "id": "Machining and Manufacturing Technology, AAS",
+    "label": "Machining and Manufacturing Technology, AAS",
+    "description": "AAS",
+    "searchText": "Machining and Manufacturing Technology, AAS AAS"
   },
   {
     "id": "Marketing & Entrepreneurship",
@@ -556,10 +586,16 @@ export const GREEN_RIVER_MAJOR_OPTIONS: GreenRiverMajorOption[] = [
     "searchText": "Marketing & Entrepreneurship BAS"
   },
   {
-    "id": "Math Education",
-    "label": "Math Education",
-    "description": "AM-DTA | AM-DTA/MRP",
-    "searchText": "Math Education AM-DTA AM-DTA/MRP"
+    "id": "Math Education, AM-DTA",
+    "label": "Math Education, AM-DTA",
+    "description": "AM-DTA",
+    "searchText": "Math Education, AM-DTA AM-DTA"
+  },
+  {
+    "id": "Math Education, AM-DTA/MRP",
+    "label": "Math Education, AM-DTA/MRP",
+    "description": "AM-DTA/MRP",
+    "searchText": "Math Education, AM-DTA/MRP AM-DTA/MRP"
   },
   {
     "id": "Mechatronics Technician",

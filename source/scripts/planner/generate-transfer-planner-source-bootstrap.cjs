@@ -1125,19 +1125,44 @@ function serializeExport(name, typeName, value) {
 }
 
 function buildGreenRiverMajorOptions(tracks) {
-  const groupedTrackCodes = new Map();
+  const tracksByTitle = new Map();
 
   for (const track of tracks) {
     const title = String(track?.title ?? "").trim();
     if (!title) continue;
 
-    if (!groupedTrackCodes.has(title)) {
-      groupedTrackCodes.set(title, new Set());
+    if (!tracksByTitle.has(title)) {
+      tracksByTitle.set(title, []);
     }
 
-    const code = String(track?.code ?? "").trim();
-    if (code) {
-      groupedTrackCodes.get(title).add(code);
+    tracksByTitle.get(title).push(track);
+  }
+
+  const groupedTrackCodes = new Map();
+
+  for (const [title, titleTracks] of tracksByTitle.entries()) {
+    const distinctCodes = new Set(
+      titleTracks
+        .map((track) => String(track?.code ?? "").trim())
+        .filter(Boolean)
+    );
+    const hasCredentialCollision = distinctCodes.size > 1;
+
+    for (const track of titleTracks) {
+      const code = String(track?.code ?? "").trim();
+      const optionTitle = hasCredentialCollision && code
+        ? code === "Certificate"
+          ? `${title} Certificate`
+          : `${title}, ${code}`
+        : title;
+
+      if (!groupedTrackCodes.has(optionTitle)) {
+        groupedTrackCodes.set(optionTitle, new Set());
+      }
+
+      if (code) {
+        groupedTrackCodes.get(optionTitle).add(code);
+      }
     }
   }
 

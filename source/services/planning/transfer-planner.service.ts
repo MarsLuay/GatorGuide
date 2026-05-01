@@ -4877,7 +4877,9 @@ function toSuggestedQuarterCourse(course: PendingSuggestedCourse): SuggestedQuar
   return {
     instanceKey: course.instanceKey,
     label: course.label,
-    type: course.type,
+    type:
+      (course.type ?? (String(course.sourceKind ?? "").startsWith("official-grc") ? "core" : "elective")) as
+      "core" | "elective",
     status: course.status,
     creditAmount:
       course.creditAmount ??

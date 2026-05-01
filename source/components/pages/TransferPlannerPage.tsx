@@ -2292,9 +2292,12 @@ function GrcDegreeSpecificsSection({
                   {grcRequiredMajorCourseLines.length ? (
                     <View className="mt-2 gap-2">
                       {grcRequiredMajorCourseLines.map((entry) => (
-                        <Text key={entry.id} className={`${secondaryTextClass} text-sm`}>
-                          {entry.text}
-                        </Text>
+                        <View
+                          key={entry.id}
+                          className="px-3 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20"
+                        >
+                          <Text className="text-emerald-500 text-sm">{entry.text}</Text>
+                        </View>
                       ))}
                     </View>
                   ) : (
@@ -2969,22 +2972,20 @@ function SuggestedScheduleCard({
         ) : null}
       </View>
 
-      {collegeId !== "grc" ? (
-        <View className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-4">
-          <Text className={`${textClass} text-base font-semibold`}>
-            You have{" "}
-            <Text className="text-emerald-600" style={{ fontVariant: ["tabular-nums"] }}>
-              {remainingCreditText}
-            </Text>{" "}
-            left in order to finish what you can for the {remainingCreditCredentialLabel}
+      <View className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-4">
+        <Text className={`${textClass} text-base font-semibold`}>
+          You have{" "}
+          <Text className="text-emerald-600" style={{ fontVariant: ["tabular-nums"] }}>
+            {remainingCreditText}
+          </Text>{" "}
+          left in order to finish what you can for the {remainingCreditCredentialLabel}
+        </Text>
+        {uwTransferMinimumRequirementSummary ? (
+          <Text className={`${secondaryTextClass} text-sm mt-2`}>
+            {uwTransferMinimumRequirementSummary}
           </Text>
-          {uwTransferMinimumRequirementSummary ? (
-            <Text className={`${secondaryTextClass} text-sm mt-2`}>
-              {uwTransferMinimumRequirementSummary}
-            </Text>
-          ) : null}
-        </View>
-      ) : null}
+        ) : null}
+      </View>
 
       <View className="gap-4 mt-4">
         {visibleQuarters.map((quarter, quarterIndex) => (
@@ -3035,6 +3036,11 @@ function SuggestedScheduleCard({
                   const shouldShowCurrentCourseCheckbox =
                     course.status !== "completed" && !optionGroup?.isSelectionPrompt;
 
+                  // treat official GRC track courses as core visually
+                  const isCoreVisual =
+                    course.type === "core" ||
+                    (collegeId === "grc" && String(course.sourceKind ?? "").startsWith("official-grc"));
+
                   return (
                     <View
                       key={`${quarter.label}-${courseSelectionKey || course.label}-${courseIndex}`}
@@ -3043,7 +3049,7 @@ function SuggestedScheduleCard({
                           ? "bg-emerald-500/10 border border-emerald-500/20"
                           : course.status === "current"
                             ? "bg-sky-500/10 border border-sky-500/20"
-                            : course.type === "core"
+                            : isCoreVisual
                               ? "bg-emerald-500/10 border border-emerald-500/20"
                               : plannedCourseContainerClass
                       }`}
@@ -3065,7 +3071,7 @@ function SuggestedScheduleCard({
                                   ? "text-emerald-500"
                                   : course.status === "current"
                                     ? "text-sky-400"
-                                    : course.type === "core"
+                                    : isCoreVisual
                                       ? "text-emerald-500"
                                       : textClass
                               }`;

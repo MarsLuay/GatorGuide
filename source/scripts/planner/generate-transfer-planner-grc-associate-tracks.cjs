@@ -459,6 +459,10 @@ function normalizeTrackNote(value) {
     return "";
   }
 
+  if (/^[*#\u2020+\-\s]+$/.test(normalized)) {
+    return "";
+  }
+
   if (/^(or|and)$/i.test(normalized)) {
     return "";
   }
@@ -467,12 +471,218 @@ function normalizeTrackNote(value) {
 }
 
 const TRACK_GUIDANCE_NON_EXPLICIT_PATTERN =
-  /\b(?:recommended|recommendation|suggest(?:ed|ion|ions)?|consider|discuss|students are responsible|best transferability|for (?:pure|applied) math majors|select one|choose one|of the following|distribution|elective|general education|of your choice|fun and useful|see quarter)\b/i;
+  /\b(?:recommended|recommendation|suggest(?:ed|ion|ions)?|consider|discuss|students are responsible|best transferability|for (?:pure|applied) math majors|select one|choose one|of the following|distribution|elective|general education|of your choice|fun and useful|offered|see quarter)\b/i;
 const TRACK_HUMANITIES_PATTERN =
   /\b(?:arts?\s*(?:&|and)\s*humanities|humanities|fine arts|english distribution|humanities\/fine arts\/english distribution|a&h)\b/i;
 const TRACK_SOCIAL_SCIENCE_PATTERN = /\b(?:social science|social sciences|ssc)\b/i;
 const TRACK_NATURAL_SCIENCE_PATTERN = /\b(?:natural science|natural sciences|nsc)\b/i;
 const TRACK_ELECTIVE_PATTERN = /\b(?:elective|general education)\b/i;
+
+function normalizeAdhocTrackText(adhoc) {
+  return normalizeTrackNote(adhoc?.display || adhoc?.content || adhoc?.name);
+}
+
+function getAdhocCourseId(adhoc) {
+  const rawCourseId = adhoc?.["course-id"] ?? adhoc?.course_id ?? adhoc?.courseId;
+  const courseId = Number(rawCourseId);
+  return Number.isFinite(courseId) ? courseId : null;
+}
+
+function normalizeStructuralTrackNote(value) {
+  return decodeHtmlEntities(String(value ?? ""))
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi, " ")
+    .replace(/<br\s*\/?>/gi, "; ")
+    .replace(/<\/p>\s*<p\b[^>]*>/gi, "; ")
+    .replace(/<\/li>\s*<li\b[^>]*>/gi, "; ")
+    .replace(/<\/p>/gi, " ")
+    .replace(/<\/li>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/\s*;\s*/g, "; ")
+    .replace(/(?:;\s*){2,}/g, "; ")
+    .replace(/\s+([,.;:])/g, "$1")
+    .trim();
+}
+
+function getAdhocStructuralText(adhoc) {
+  return normalizeStructuralTrackNote(adhoc?.display || adhoc?.content || adhoc?.name);
+}
+
+function getCourseOptionDisplayLabel(label) {
+  const codes = extractCourseCodes(label);
+  if (codes.length) {
+    return codes.join(" / ");
+  }
+
+  return String(label ?? "").replace(/\s+/g, " ").trim();
+}
+
+function isSelectionAdhoc(adhoc) {
+  const text = getAdhocStructuralText(adhoc);
+  const name = String(adhoc?.name ?? "").trim();
+  const signal = `${name} ${text}`;
+
+  return /\b(?:select|choose|choice)\b/i.test(signal) &&
+    /\b(?:one|following|credits?|elective|course|courses|list)\b/i.test(signal);
+}
+
+function isOrAdhoc(adhoc) {
+  const text = getAdhocStructuralText(adhoc);
+  return /^or(?:\b|$)/i.test(text) && !isSelectionAdhoc(adhoc);
+}
+
+function buildCourseEntries(core) {
+  return [...(core.courses ?? [])]
+    .sort((left, right) => Number(left?.sort_order ?? 0) - Number(right?.sort_order ?? 0))
+    .map((course, index) => ({
+      id: Number(course?.id ?? 0),
+      index,
+      label: normalizeCourseTitleLabel(course.title),
+    }));
+}
+
+function getSelectionStartIndex(adhoc, courseIndexById, courseCount) {
+  const anchorCourseId = getAdhocCourseId(adhoc);
+  const anchorIndex =
+    anchorCourseId === null ? null : courseIndexById.get(anchorCourseId) ?? null;
+
+  if (anchorIndex === null) {
+    return 0;
+  }
+
+  const placement = String(adhoc?.placement ?? "").trim().toLowerCase();
+  const startIndex = placement === "after" ? anchorIndex + 1 : anchorIndex;
+  return Math.max(0, Math.min(courseCount, startIndex));
+}
+
+function buildSelectionMarkers(core, courseEntries) {
+  const courseIndexById = new Map(courseEntries.map((course) => [course.id, course.index]));
+  const rawMarkers = (core.adhocs ?? [])
+    .filter((adhoc) => isSelectionAdhoc(adhoc))
+    .map((adhoc) => ({
+      adhoc,
+      startIndex: getSelectionStartIndex(adhoc, courseIndexById, courseEntries.length),
+      cue: getAdhocStructuralText(adhoc),
+    }))
+    .filter((marker) => marker.startIndex < courseEntries.length)
+    .sort((left, right) => left.startIndex - right.startIndex);
+
+  return rawMarkers.map((marker, index) => ({
+    ...marker,
+    endIndex:
+      rawMarkers[index + 1]?.startIndex !== undefined
+        ? rawMarkers[index + 1].startIndex
+        : courseEntries.length,
+  }));
+}
+
+function summarizeSelectionCue(cueText) {
+  const cue = String(cueText ?? "")
+    .replace(/\s+/g, " ")
+    .replace(/\s*:\s*$/g, "")
+    .replace(/^;\s*/g, "")
+    .trim();
+
+  if (/\bprogram elective\b/i.test(cue)) {
+    return "Program elective - choose one";
+  }
+
+  const creditMatch = cue.match(/\bselect\s+(\d+(?:\.\d+)?)\s+credits?\b/i);
+  if (creditMatch) {
+    return `Elective - select ${creditMatch[1]} credits`;
+  }
+
+  if (/\b(?:select|choose|recommended)\s+one\b|\bone\s+of\s+the\s+following\b/i.test(cue)) {
+    return "Select one";
+  }
+
+  if (/^select\b/i.test(cue)) {
+    return "Select from approved options";
+  }
+
+  return cue || "Select from approved options";
+}
+
+function extractSelectionCueDetail(cueText) {
+  const cue = String(cueText ?? "")
+    .replace(/\s+/g, " ")
+    .replace(/\s*:\s*$/g, "")
+    .replace(/^;\s*/g, "")
+    .trim();
+  const detail = cue
+    .replace(/^program elective:\s*recommended one of the following\s*[:;]?\s*/i, "")
+    .replace(/^recommended one of the following\s*[:;]?\s*/i, "")
+    .replace(/^select one of the following\s*[:;]?\s*/i, "")
+    .replace(/^choose one from the following\s*[:;]?\s*/i, "")
+    .replace(/^select\s+\d+(?:\.\d+)?\s+credits?\s+from\s+the\s+list\s+below\s*[:;]?\s*/i, "")
+    .replace(/^select from the following(?: list of)? courses?(?: to [^:;]+)?\s*[:;]?\s*/i, "")
+    .trim();
+
+  return detail && detail !== cue ? detail : "";
+}
+
+function buildSelectionCourseLabel(cueText, optionLabels) {
+  const summary = summarizeSelectionCue(cueText);
+  const optionSummary = uniqueStrings(optionLabels.map((label) => getCourseOptionDisplayLabel(label)))
+    .filter(Boolean)
+    .join(", ");
+  const detail = extractSelectionCueDetail(cueText);
+  const baseLabel = optionSummary ? `${summary}: ${optionSummary}` : summary;
+
+  if (!detail || baseLabel.toLowerCase().includes(detail.toLowerCase())) {
+    return baseLabel;
+  }
+
+  return `${baseLabel}. ${detail}`;
+}
+
+function getStructuralAdhocForCourse(core, courseId, predicate) {
+  return (core.adhocs ?? [])
+    .filter((adhoc) => getAdhocCourseId(adhoc) === courseId)
+    .filter((adhoc) => predicate(adhoc))
+    .sort((left, right) =>
+      String(left?.placement ?? "").localeCompare(String(right?.placement ?? ""))
+    )[0] ?? null;
+}
+
+function collectLooseAdhocCourseLabels(core, handledAdhocIds) {
+  const labels = [];
+
+  for (const adhoc of core.adhocs ?? []) {
+    if (handledAdhocIds.has(adhoc?.id)) {
+      continue;
+    }
+
+    const note = normalizeAdhocTrackText(adhoc);
+    if (!note) {
+      continue;
+    }
+
+    labels.push(...extractTrackGuidanceLabels(note));
+
+    const extractedCodes = shouldTreatTrackTextCourseCodesAsExplicit(note)
+      ? extractCourseCodes(note)
+      : [];
+    if (extractedCodes.length) {
+      labels.push(...extractedCodes);
+      continue;
+    }
+
+    const isCourseAttached = getAdhocCourseId(adhoc) !== null;
+    if (
+      !isCourseAttached &&
+      shouldTreatTrackTextCourseCodesAsExplicit(note) &&
+      !/^(classes to become calculus ready|for .+ majors|minimum [0-9]+ credits|elective|humanities|social science)/i.test(
+        note
+      )
+    ) {
+      labels.push(note);
+    }
+  }
+
+  return labels;
+}
 
 function extractTrackGuidanceLabels(value) {
   const normalized = normalizeTrackNote(value);
@@ -587,46 +797,75 @@ function shouldPromoteTrackGuidanceLabels(value) {
 
 function collectCoreCourseLabels(core) {
   const labels = [];
+  const courseEntries = buildCourseEntries(core);
+  const selectionMarkers = buildSelectionMarkers(core, courseEntries);
+  const selectionByStartIndex = new Map(
+    selectionMarkers.map((marker) => [marker.startIndex, marker])
+  );
+  const selectionCoveredIndexes = new Set();
+  const skippedCourseIndexes = new Set();
+  const handledAdhocIds = new Set();
 
-  for (const course of [...(core.courses ?? [])].sort(
-    (left, right) => Number(left?.sort_order ?? 0) - Number(right?.sort_order ?? 0)
-  )) {
-    labels.push(normalizeCourseTitleLabel(course.title));
+  for (const marker of selectionMarkers) {
+    if (marker.adhoc?.id !== undefined) {
+      handledAdhocIds.add(marker.adhoc.id);
+    }
+    for (let index = marker.startIndex; index < marker.endIndex; index += 1) {
+      selectionCoveredIndexes.add(index);
+    }
   }
 
-  for (const adhoc of core.adhocs ?? []) {
-    const note = normalizeTrackNote(adhoc.display || adhoc.content);
-    if (!note) {
+  for (const course of courseEntries) {
+    if (skippedCourseIndexes.has(course.index)) {
       continue;
     }
 
-    const isSourcePlaceholder = isSourceLabeledDistributionPlaceholder(note);
-    if (!isSourcePlaceholder && shouldPromoteTrackGuidanceLabels(note)) {
-      labels.push(
-        ...filterGuidanceLabelsAlreadyCoveredBySourcePlaceholders(
-          extractTrackGuidanceLabels(note),
-          labels
-        )
-      );
-    }
-
-    const extractedCodes = shouldTreatTrackTextCourseCodesAsExplicit(note)
-      ? extractCourseCodes(note)
-      : [];
-    if (extractedCodes.length) {
-      labels.push(...extractedCodes);
+    const selectionMarker = selectionByStartIndex.get(course.index);
+    if (selectionMarker) {
+      const optionLabels = courseEntries
+        .slice(selectionMarker.startIndex, selectionMarker.endIndex)
+        .map((entry) => entry.label)
+        .filter(Boolean);
+      labels.push(buildSelectionCourseLabel(selectionMarker.cue, optionLabels));
+      skippedCourseIndexes.add(course.index);
+      for (
+        let index = selectionMarker.startIndex + 1;
+        index < selectionMarker.endIndex;
+        index += 1
+      ) {
+        skippedCourseIndexes.add(index);
+      }
       continue;
     }
 
-    if (
-      shouldTreatTrackTextCourseCodesAsExplicit(note) &&
-      !/^(classes to become calculus ready|for .+ majors|minimum [0-9]+ credits|elective|humanities|social science)/i.test(
-        note
-      )
-    ) {
-      labels.push(note);
+    if (selectionCoveredIndexes.has(course.index)) {
+      continue;
     }
+
+    const orAdhoc = getStructuralAdhocForCourse(core, course.id, isOrAdhoc);
+    if (orAdhoc?.id !== undefined) {
+      handledAdhocIds.add(orAdhoc.id);
+    }
+
+    const orText = orAdhoc ? getAdhocStructuralText(orAdhoc) : "";
+    if (/^or$/i.test(orText)) {
+      const nextCourse = courseEntries[course.index + 1] ?? null;
+      if (nextCourse && !selectionCoveredIndexes.has(nextCourse.index)) {
+        labels.push(`${course.label} or ${nextCourse.label}`);
+        skippedCourseIndexes.add(nextCourse.index);
+        continue;
+      }
+    }
+
+    if (/^or\b/i.test(orText)) {
+      labels.push(`${course.label} ${orText}`);
+      continue;
+    }
+
+    labels.push(course.label);
   }
+
+  labels.push(...collectLooseAdhocCourseLabels(core, handledAdhocIds));
 
   labels.push(
     ...filterGuidanceLabelsAlreadyCoveredBySourcePlaceholders(
@@ -664,6 +903,30 @@ function isNonPlannableGeneratedTrackCoreLabel(label) {
   );
 }
 
+function getGeneratedTrackCoreElectivePlaceholder(label) {
+  const segments = String(label ?? "")
+    .split(">")
+    .map((segment) =>
+      segment
+        .replace(/[:.]\s*$/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase()
+    )
+    .filter(Boolean);
+
+  if (
+    segments.some((segment) =>
+      /^(?:program\s+)?electives?$/.test(segment) ||
+      /^select\b.*\bcourses?\b.*\b(?:credits?|90)\b/.test(segment)
+    )
+  ) {
+    return "Program elective";
+  }
+
+  return null;
+}
+
 function flattenProgramCores(cores, prefix = []) {
   const flattened = [];
 
@@ -672,7 +935,8 @@ function flattenProgramCores(cores, prefix = []) {
   )) {
     const labelParts = [...prefix, String(core?.name ?? "").trim()].filter(Boolean);
     const label = labelParts.join(" > ");
-    const courses = collectCoreCourseLabels(core);
+    const electivePlaceholder = getGeneratedTrackCoreElectivePlaceholder(label);
+    const courses = electivePlaceholder ? [electivePlaceholder] : collectCoreCourseLabels(core);
     const plannerEligible = !isNonPlannableGeneratedTrackCoreLabel(label);
 
     if (label || courses.length) {

@@ -468,12 +468,12 @@ export default function AuthPage() {
 
   const isWeb = Platform.OS === 'web';
   const isCompactWidth = width < 390;
-  const useHorizontalHero = width >= 460;
+  const useDetachedDesktopHeroMark = isWeb && width >= 460;
+  const useHorizontalHero = width >= 460 && !useDetachedDesktopHeroMark;
   const stackProviderButtons = width < 460;
   const cardPadding = isCompactWidth ? 18 : 24;
   const heroPadding = isCompactWidth ? 18 : 22;
   const heroBadgeSize = isCompactWidth ? 80 : 96;
-  const heroMarkSize = isCompactWidth ? 56 : 68;
   const authCardMaxWidth = isWeb ? 560 : 500;
   const actionButtonContentStyle = {
     minHeight: isCompactWidth ? 52 : 56,
@@ -490,11 +490,6 @@ export default function AuthPage() {
     : isGreen
       ? "rgba(6, 78, 59, 0.52)"
       : "rgba(255, 255, 255, 0.72)";
-  const flatBadgeBackgroundColor = isDark
-    ? "rgba(16, 185, 129, 0.16)"
-    : isGreen
-      ? "rgba(16, 185, 129, 0.18)"
-      : "rgba(16, 185, 129, 0.10)";
   const dividerColor = isDark || isGreen ? "rgba(148, 163, 184, 0.34)" : "rgba(16, 185, 129, 0.24)";
   const authCardClass = `${styles.cardBgClass} border rounded-[28px] ${isWeb ? "shadow-lg" : ""}`;
   const primaryButtonBackgroundColor = isDark || isGreen ? "#10b981" : "#059669";
@@ -511,61 +506,73 @@ export default function AuthPage() {
   const containerClass = isWeb 
     ? "flex-1 items-center justify-center px-4 py-12 min-h-screen"
     : "flex-1 items-center justify-center px-6";
+  const renderHeroMark = () => (
+    <View
+      style={{
+        width: heroBadgeSize,
+        height: heroBadgeSize,
+        flexShrink: 0,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: heroBadgeSize / 2,
+      }}
+    >
+      <GatorGuideMark size={heroBadgeSize} darkMode={isDark} fullCircle />
+    </View>
+  );
 
   const authContent = (
     <View style={{ width: "100%", maxWidth: authCardMaxWidth }}>
       <View className={authCardClass}>
         <View style={{ padding: cardPadding }}>
-          <View
-            style={{
-              marginBottom: 24,
-              padding: heroPadding,
-              gap: 16,
-              flexDirection: useHorizontalHero ? "row" : "column",
-              alignItems: useHorizontalHero ? "center" : "center",
-              borderRadius: 24,
-              borderWidth: 1,
-              borderColor: flatPanelBorderColor,
-              backgroundColor: flatPanelBackgroundColor,
-            }}
-          >
+          <View style={{ marginBottom: 24, alignItems: "center" }}>
+            {useDetachedDesktopHeroMark ? (
+              <View style={{ marginBottom: 14 }}>{renderHeroMark()}</View>
+            ) : null}
+
             <View
               style={{
-                width: heroBadgeSize,
-                height: heroBadgeSize,
-                flexShrink: 0,
+                width: "100%",
+                padding: heroPadding,
+                gap: 16,
+                flexDirection: useHorizontalHero ? "row" : "column",
                 alignItems: "center",
-                justifyContent: "center",
-                borderRadius: heroBadgeSize / 2,
+                borderRadius: 24,
                 borderWidth: 1,
                 borderColor: flatPanelBorderColor,
-                backgroundColor: flatBadgeBackgroundColor,
+                backgroundColor: flatPanelBackgroundColor,
               }}
             >
-              <GatorGuideMark size={heroMarkSize} darkMode={isDark} />
-            </View>
+              {!useDetachedDesktopHeroMark ? renderHeroMark() : null}
 
-            <View style={{ flex: 1, minWidth: 0, alignItems: useHorizontalHero ? "flex-start" : "center" }}>
-              <Text
-                className={`${styles.textClass} font-semibold`}
+              <View
                 style={{
-                  fontSize: isCompactWidth ? 28 : 32,
-                  lineHeight: isCompactWidth ? 34 : 38,
-                  textAlign: useHorizontalHero ? "left" : "center",
+                  flex: useHorizontalHero ? 1 : undefined,
+                  minWidth: 0,
+                  alignItems: useHorizontalHero ? "flex-start" : "center",
                 }}
               >
-                {t("auth.gatorguide")}
-              </Text>
-              <Text
-                className={`${styles.secondaryTextClass} mt-2`}
-                style={{
-                  fontSize: isCompactWidth ? 14 : 15,
-                  lineHeight: isCompactWidth ? 21 : 22,
-                  textAlign: useHorizontalHero ? "left" : "center",
-                }}
-              >
-                {t("auth.findCollege")}
-              </Text>
+                <Text
+                  className={`${styles.textClass} font-semibold`}
+                  style={{
+                    fontSize: isCompactWidth ? 28 : 32,
+                    lineHeight: isCompactWidth ? 34 : 38,
+                    textAlign: useHorizontalHero ? "left" : "center",
+                  }}
+                >
+                  {t("auth.gatorguide")}
+                </Text>
+                <Text
+                  className={`${styles.secondaryTextClass} mt-2`}
+                  style={{
+                    fontSize: isCompactWidth ? 14 : 15,
+                    lineHeight: isCompactWidth ? 21 : 22,
+                    textAlign: useHorizontalHero ? "left" : "center",
+                  }}
+                >
+                  {t("auth.findCollege")}
+                </Text>
+              </View>
             </View>
           </View>
         {__DEV__ && onboardingDebugEnabled ? (
