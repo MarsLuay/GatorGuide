@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect, useCallback } from "react";
 import { View, Text, Pressable, Alert, Keyboard, TouchableWithoutFeedback, Platform, ScrollView, Linking, useWindowDimensions } from "react-native";
-import { router, useLocalSearchParams } from "expo-router";
+import { router } from "expo-router";
 import { FontAwesome5 } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import * as WebBrowser from "expo-web-browser";
@@ -17,9 +17,8 @@ import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
 import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
-import { authService, EMAIL_LINK_STORAGE_KEY } from "@/services/auth/auth.service";
+import { authService } from "@/services/auth/auth.service";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
-import { PENDING_LINK_STORAGE_KEY } from "@/components/AuthEmailLinkHandler";
 import { API_CONFIG } from "@/services/app/config";
 import { SUPPORT_MAILTO } from "@/constants/support";
 
@@ -30,7 +29,6 @@ const PENDING_DELETE_ACCOUNT_KEY = STORAGE_KEYS.pendingDeleteAccount;
 const ONBOARDING_DEBUG_LOG_KEY = STORAGE_KEYS.onboardingDebugLog;
 
 export default function AuthPage() {
-  const params = useLocalSearchParams<{ emailVerified?: string | string[] }>();
   const { isHydrated, signIn, signInWithAuthUser, signInAsGuest, updateUser, setQuestionnaireAnswers, deleteAccount } = useAppData();
   const { t } = useAppLanguage();
   const styles = useThemeStyles();
@@ -41,18 +39,11 @@ export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(true);
-  const [verificationPendingEmail, setVerificationPendingEmail] = useState<string | null>(null);
-  const [emailLinkSentTo, setEmailLinkSentTo] = useState<string | null>(null);
-  const [sendingEmailLink, setSendingEmailLink] = useState(false);
-  const [pendingLinkUrl, setPendingLinkUrl] = useState<string | null>(null);
-  const [completingLink, setCompletingLink] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [resendingVerification, setResendingVerification] = useState(false);
   const [onboardingDebugEnabled, setOnboardingDebugEnabled] = useState(false);
   const [showOnboardingDebugConsole, setShowOnboardingDebugConsole] = useState(false);
   const [onboardingDebugLogs, setOnboardingDebugLogs] = useState<string[]>([]);
   const [onboardingCopyStatus, setOnboardingCopyStatus] = useState<"" | "copied" | "failed">("");
-  const emailVerifiedFlag = Array.isArray(params.emailVerified) ? params.emailVerified[0] : params.emailVerified;
 
   const appendOnboardingDebugLog = useCallback(async (message: string) => {
     const line = `${new Date().toISOString()} | ${message}`;
@@ -94,7 +85,7 @@ export default function AuthPage() {
     (
       error: unknown,
       context: {
-        flow?: "sign-in" | "email-link" | "provider" | "account-delete";
+        flow?: "sign-in" | "provider" | "account-delete";
         provider?: "google" | "microsoft";
       } = {}
     ): string | null => {
@@ -139,21 +130,13 @@ export default function AuthPage() {
         case "auth/user-disabled":
           return t("auth.accountDisabled");
         case "auth/operation-not-allowed":
-          return context.flow === "email-link"
-            ? t("auth.presentation.emailLinkUnavailable")
-            : t("auth.presentation.signInMethodUnavailable");
-        case "auth/verification-email-failed":
-          return t("auth.verificationEmailFailed");
-        case "auth/email-not-verified":
-          return t("auth.emailNotVerified");
+          return t("auth.presentation.signInMethodUnavailable");
         case "auth/unauthorized-continue-uri":
         case "auth/invalid-continue-uri":
-          return context.flow === "email-link"
-            ? t("auth.presentation.emailLinkFallback")
-            : t("auth.presentation.oauthFallback");
+          return t("auth.presentation.oauthFallback");
         case "auth/invalid-action-code":
         case "auth/expired-action-code":
-          return t("auth.emailActionLinkFailed");
+          return t("auth.loginFailed");
         case "auth/requires-recent-login":
           return t("auth.presentation.deleteRetryLogin");
         default:
@@ -225,41 +208,6 @@ export default function AuthPage() {
       })
       .catch(() => {});
   }, []);
-
-  useEffect(() => {
-    let mounted = true;
-
-    (async () => {
-      const storedPendingLink =
-        Platform.OS === "web" && typeof window !== "undefined"
-          ? window.sessionStorage.getItem(PENDING_LINK_STORAGE_KEY)
-          : await AsyncStorage.getItem(PENDING_LINK_STORAGE_KEY);
-
-      if (mounted) {
-        setPendingLinkUrl(storedPendingLink);
-      }
-    })().catch(() => {});
-
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  useEffect(() => {
-    if (emailVerifiedFlag !== "1") return;
-
-    setVerificationPendingEmail(null);
-    Alert.alert(t("auth.emailVerifiedTitle"), t("auth.emailVerifiedSuccess"));
-
-    if (Platform.OS === "web" && typeof window !== "undefined") {
-      const url = new URL(window.location.href);
-      url.searchParams.delete("emailVerified");
-      window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
-      return;
-    }
-
-    router.replace(ROUTES.login);
-  }, [emailVerifiedFlag, t]);
 
   useEffect(() => {
     if (!__DEV__ || Platform.OS !== "web") return;
@@ -385,13 +333,6 @@ export default function AuthPage() {
       });
       await appendOnboardingDebugLog(`signIn() rejected. code=${String(err?.code ?? "none")} message=${String(err?.message ?? "unknown")}`);
 
-      if (err?.code === 'auth/email-verification-required' || err?.code === 'auth/email-not-verified') {
-        await appendOnboardingDebugLog("Signup requires email verification. Awaiting user verification login.");
-        setVerificationPendingEmail(err?.email ?? e);
-        setIsSignUp(false);
-        return;
-      }
-
       const friendly = getFriendlyAuthMessage(err, { flow: "sign-in" });
       if (friendly) {
         Alert.alert(t('general.error'), friendly);
@@ -401,86 +342,6 @@ export default function AuthPage() {
       }
     } finally {
       setIsSubmitting(false);
-    }
-  };
-
-  const handleCompleteEmailLink = async () => {
-    const e = email.trim();
-    if (!pendingLinkUrl || !isEmailValid(e)) return;
-    if (Platform.OS !== "web") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    setCompletingLink(true);
-    try {
-      const authUser = await authService.signInWithEmailLink(e, pendingLinkUrl);
-      if (Platform.OS === "web" && typeof window !== "undefined") {
-        window.sessionStorage.removeItem(PENDING_LINK_STORAGE_KEY);
-      } else {
-        await AsyncStorage.removeItem(PENDING_LINK_STORAGE_KEY);
-      }
-      await signInWithAuthUser(authUser);
-      setPendingLinkUrl(null);
-      await handlePostAuthRoute();
-    } catch (err: unknown) {
-      void errorLoggingService.captureException(err, {
-        category: "auth",
-        operation: "complete-email-link-sign-in",
-        severity: "error",
-        handled: true,
-        source: "auth-page",
-        screen: "auth",
-        route: ROUTES.login,
-      });
-      const friendly = getFriendlyAuthMessage(err, { flow: "email-link" });
-      if (friendly) {
-        Alert.alert(t("general.error"), friendly);
-      }
-    } finally {
-      setCompletingLink(false);
-    }
-  };
-
-  const handleSendEmailLink = async () => {
-    const e = email.trim();
-    if (!isEmailValid(e)) {
-      Alert.alert(t("general.error"), t("auth.emailInvalid"));
-      return;
-    }
-    if (Platform.OS !== "web") await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    setSendingEmailLink(true);
-    try {
-      await authService.sendSignInLinkToEmail(e);
-      if (Platform.OS === "web" && typeof window !== "undefined") {
-        window.localStorage.setItem(EMAIL_LINK_STORAGE_KEY, e);
-      } else {
-        await AsyncStorage.setItem(EMAIL_LINK_STORAGE_KEY, e);
-      }
-      setEmailLinkSentTo(e);
-      setVerificationPendingEmail(null);
-    } catch (err: unknown) {
-      const code = (err as { code?: string })?.code;
-      void errorLoggingService.captureException(err, {
-        category: "auth",
-        operation: "send-email-link-sign-in",
-        severity: "error",
-        handled: true,
-        source: "auth-page",
-        screen: "auth",
-        route: ROUTES.login,
-        metadata: {
-          code: code ?? null,
-        },
-      });
-      const friendly = getFriendlyAuthMessage(err, { flow: "email-link" });
-      let msg = friendly ?? t("auth.loginFailed");
-      if (false && friendly) {
-        msg = t("auth.emailLinkNotEnabled") || "Please enable Email link (passwordless sign-in) in Firebase Console → Authentication → Sign-in method.";
-      } else if (code === "auth/invalid-email") {
-        msg = t("auth.emailInvalid");
-      } else if (false && (code === "auth/unauthorized-continue-uri" || code === "auth/invalid-continue-uri")) {
-        msg = t("auth.localhostAuthorizedDomainHint");
-      }
-      Alert.alert(t("general.error"), msg);
-    } finally {
-      setSendingEmailLink(false);
     }
   };
 
@@ -738,74 +599,6 @@ export default function AuthPage() {
           </View>
         ) : null}
 
-        {verificationPendingEmail && (
-          <View className="bg-emerald-500/20 border border-emerald-500 rounded-lg p-4 mb-4">
-            <Text className={`${styles.textClass} font-semibold mb-1`}>{t("auth.checkYourEmail")}</Text>
-            <Text className={styles.secondaryTextClass}>
-              {t("auth.verificationEmailSent")}
-            </Text>
-            <Text className={`${styles.secondaryTextClass} mt-1`}>{t("auth.verificationRequiredHint")}</Text>
-            <Text className={`${styles.secondaryTextClass} mt-2 font-medium`}>{verificationPendingEmail}</Text>
-            <AnimatedChipPressable
-              onPress={async () => {
-                const e = verificationPendingEmail;
-                if (!e || !password || password.length < 6) {
-                  Alert.alert(t("general.error"), t("auth.enterPasswordToResend"));
-                  return;
-                }
-                setResendingVerification(true);
-                try {
-                  await authService.resendVerificationEmail(e, password);
-                  Alert.alert(t("auth.checkYourEmail"), t("auth.verificationEmailResent"));
-                } catch (err: unknown) {
-                  const friendly = getFriendlyAuthMessage(err, { flow: "sign-in" });
-                  if (friendly) {
-                    Alert.alert(t("general.error"), friendly);
-                  }
-                } finally {
-                  setResendingVerification(false);
-                }
-              }}
-              disabled={resendingVerification || !password || password.length < 6}
-              className="py-2 rounded-lg items-center border border-emerald-500"
-              containerStyle={{ marginTop: 12 }}
-            >
-              <Text className={`${resendingVerification || !password || password.length < 6 ? "opacity-60" : ""} ${styles.textClass}`}>
-                {resendingVerification ? t("general.pleaseWait") : t("auth.resendVerificationEmail")}
-              </Text>
-            </AnimatedChipPressable>
-          </View>
-        )}
-
-        {emailLinkSentTo && (
-          <View className="bg-emerald-500/20 border border-emerald-500 rounded-lg p-4 mb-4">
-            <Text className={`${styles.textClass} font-semibold mb-1`}>{t("auth.checkYourEmail")}</Text>
-            <Text className={styles.secondaryTextClass}>
-              {t("auth.emailLinkSent")}
-            </Text>
-            <Text className={`${styles.secondaryTextClass} mt-2 font-medium`}>{emailLinkSentTo}</Text>
-          </View>
-        )}
-
-        {pendingLinkUrl && (
-          <View className="bg-amber-500/20 border border-amber-500 rounded-lg p-4 mb-4">
-            <Text className={`${styles.textClass} font-semibold mb-1`}>{t("auth.emailLinkDifferentDevice")}</Text>
-            <Text className={styles.secondaryTextClass + " mb-3"}>
-              {t("auth.enterEmailToComplete")}
-            </Text>
-            <AnimatedChipPressable
-              onPress={handleCompleteEmailLink}
-              disabled={!isEmailValid(email.trim()) || completingLink}
-              className="bg-amber-500 rounded-lg py-2 items-center"
-              containerStyle={{ marginTop: 8 }}
-            >
-              <Text className={`${isDark ? 'text-white' : 'text-emerald-900'} font-semibold`}>
-                {completingLink ? t("general.pleaseWait") : t("auth.completeSignIn")}
-              </Text>
-            </AnimatedChipPressable>
-          </View>
-        )}
-
         <View
           style={{
             flexDirection: "row",
@@ -821,8 +614,6 @@ export default function AuthPage() {
             <AnimatedChipPressable
               onPress={() => {
                 if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                setVerificationPendingEmail(null);
-                setEmailLinkSentTo(null);
                 setIsSignUp(true);
               }}
               className="rounded-2xl"
@@ -852,7 +643,6 @@ export default function AuthPage() {
             <AnimatedChipPressable
               onPress={() => {
                 if (Platform.OS !== "web") Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                setEmailLinkSentTo(null);
                 setIsSignUp(false);
               }}
               className="rounded-2xl"
@@ -928,76 +718,12 @@ export default function AuthPage() {
             returnKeyType="done"
           />
 
-          {!isSignUp && (
-            <View className="items-end">
-              <AnimatedIconPressable
-                onPress={() =>
-                  router.push({
-                    pathname: ROUTES.forgotPassword,
-                    params: { returnTo: ROUTES.login },
-                  } as never)
-                }
-                disabled={!isHydrated}
-              >
-                <Text className="text-sm text-emerald-500">{t("auth.forgotPassword")}</Text>
-              </AnimatedIconPressable>
-            </View>
-          )}
-
-          <View className={`flex-row items-center gap-2 my-3 ${styles.secondaryTextClass}`}>
-            <View className="flex-1 h-px" style={{ backgroundColor: dividerColor }} />
-            <Text className="text-xs">{t("auth.or")}</Text>
-            <View className="flex-1 h-px" style={{ backgroundColor: dividerColor }} />
-          </View>
-
-          {isWeb && (
-            <Text className={`${styles.secondaryTextClass} text-xs text-center mb-2`}>
-              {t("auth.presentation.oauthFallback")}
-            </Text>
-          )}
-
-          {!isSignUp && (
-            <AnimatedChipPressable
-              onPress={handleSendEmailLink}
-              disabled={!isHydrated || !isEmailValid(email.trim()) || sendingEmailLink}
-              className="rounded-2xl"
-              containerStyle={{
-                width: "100%",
-              }}
-              style={{
-                ...secondaryActionButtonContentStyle,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                borderWidth: 1,
-                borderColor: secondaryButtonBorderColor,
-                backgroundColor: secondaryButtonBackgroundColor,
-              }}
-            >
-              <View style={{ marginRight: 8 }}>
-                <FontAwesome5 name="envelope" size={16} color={buttonIconColor} />
-              </View>
-              <Text
-                style={{
-                  color: secondaryButtonTextColor,
-                  fontSize: 15,
-                  fontWeight: "600",
-                  textAlign: "center",
-                  flexShrink: 1,
-                }}
-              >
-                {sendingEmailLink ? t("general.pleaseWait") : t("auth.signInWithEmailLink")}
-              </Text>
-            </AnimatedChipPressable>
-          )}
-
           <AnimatedChipPressable
             onPress={handleSubmit}
             disabled={!isHydrated || !canSubmit || isSubmitting}
             className="rounded-2xl"
             containerStyle={{
               width: "100%",
-              marginTop: 8,
             }}
             style={{
               ...actionButtonContentStyle,
@@ -1016,10 +742,39 @@ export default function AuthPage() {
                 textAlign: "center",
               }}
             >
-              {isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccountByEmailVerification") : t("auth.logIn")}
+              {isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccount") : t("auth.logIn")}
             </Text>
           </AnimatedChipPressable>
 
+          {!isSignUp && (
+            <View className="items-end">
+              <AnimatedIconPressable
+                onPress={() =>
+                  router.push({
+                    pathname: ROUTES.forgotPassword,
+                    params: { returnTo: ROUTES.login },
+                  } as never)
+                }
+                disabled={!isHydrated}
+              >
+                <Text className="text-sm text-emerald-500">{t("auth.forgotPassword")}</Text>
+              </AnimatedIconPressable>
+            </View>
+          )}
+
+          <View className={`flex-row items-center gap-2 my-3 ${styles.secondaryTextClass}`}>
+            <View className="flex-1 h-px" style={{ backgroundColor: dividerColor }} />
+            <Text
+              className="text-xs"
+              style={{
+                color: isDark || isGreen ? "#6ee7b7" : "#047857",
+                fontWeight: "700",
+              }}
+            >
+              {t("auth.or")}
+            </Text>
+            <View className="flex-1 h-px" style={{ backgroundColor: dividerColor }} />
+          </View>
 
           <View
             style={{

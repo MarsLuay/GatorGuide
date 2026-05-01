@@ -1,15 +1,8 @@
 import {
-  ActionCodeURL,
-  applyActionCode,
   createUserWithEmailAndPassword,
   getRedirectResult,
-  reload,
-  sendEmailVerification,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
-  signInWithEmailLink,
-  isSignInWithEmailLink,
-  sendSignInLinkToEmail,
   signInWithCredential,
   signOut as firebaseSignOut,
   updateProfile,
@@ -18,20 +11,15 @@ import {
   GoogleAuthProvider,
   OAuthProvider,
   User as FirebaseUser,
-  type ActionCodeSettings,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { Platform } from "react-native";
-import { ROUTES } from "@/constants/routes";
-import { FIRESTORE_COLLECTIONS, STORAGE_KEYS } from "@/constants/schema";
+import { FIRESTORE_COLLECTIONS } from "@/constants/schema";
 import { DEFAULT_USER_STATE } from "@/constants/profile-defaults";
 import { isStubMode } from "@/services/app/config";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { db, firebaseAuth } from "@/services/firebase/firebase";
 import { deleteAllUserData } from "./userData.service";
-
-/** Storage key for email when sending sign-in link (same-device completion) */
-export const EMAIL_LINK_STORAGE_KEY = STORAGE_KEYS.emailForSignIn;
 
 function firebaseUserToAuthUser(u: FirebaseUser): AuthUser {
   return {
@@ -56,51 +44,7 @@ export type SignInCredentials = {
   isSignUp: boolean;
 };
 
-type EmailActionType = "verify-email" | "email-link-sign-in";
-
 class AuthService {
-  private buildEmailActionUrl(action: EmailActionType): string {
-    const query = new URLSearchParams({ authFlow: action }).toString();
-    const loginPath = ROUTES.login.replace(/^\//, "");
-
-    if (Platform.OS === "web" && typeof window !== "undefined") {
-      return `${window.location.origin}${ROUTES.login}?${query}`;
-    }
-
-    return `gatorguide://${loginPath}?${query}`;
-  }
-
-  private getEmailActionSettings(action: EmailActionType, handleCodeInApp = true): ActionCodeSettings {
-    return {
-      url: this.buildEmailActionUrl(action),
-      handleCodeInApp,
-      iOS: {
-        bundleId: "com.mobiledevelopment.gatorguide",
-      },
-      android: {
-        packageName: "com.mobiledevelopment.gatorguide",
-        installApp: false,
-        minimumVersion: "1",
-      },
-    };
-  }
-
-  private buildVerificationRequiredError(email: string): Error & { code?: string; email?: string } {
-    const err = new Error("Email verification required") as Error & { code?: string; email?: string };
-    err.code = "auth/email-not-verified";
-    err.email = email;
-    return err;
-  }
-
-  private parseEmailActionLink(url: string): ActionCodeURL | null {
-    if (!url) return null;
-    try {
-      return ActionCodeURL.parseLink(url);
-    } catch {
-      return null;
-    }
-  }
-
   async signIn(credentials: SignInCredentials): Promise<AuthUser> {
     if (isStubMode()) {
       await new Promise((resolve) => setTimeout(resolve, 500));
@@ -126,8 +70,6 @@ class AuthService {
         await updateProfile(userCredential.user, { displayName: credentials.name.trim() });
       }
 
-      // 注册必须邮箱验证：发送验证邮件后登出，用户验证后才能登录
-      // Enforce verification at signup time before allowing a normal login session.
       if (db) {
         await setDoc(
           doc(db, FIRESTORE_COLLECTIONS.users, userCredential.user.uid),
@@ -152,12 +94,7 @@ class AuthService {
         });
       }
 
-      await sendEmailVerification(
-        userCredential.user,
-        this.getEmailActionSettings("verify-email")
-      );
-      await firebaseSignOut(firebaseAuth);
-      throw this.buildVerificationRequiredError(credentials.email);
+      return firebaseUserToAuthUser(userCredential.user);
     }
 
     const userCredential = await signInWithEmailAndPassword(
@@ -166,17 +103,7 @@ class AuthService {
       credentials.password
     );
 
-    await reload(userCredential.user);
-    if (!userCredential.user.emailVerified) {
-      await firebaseSignOut(firebaseAuth);
-      throw this.buildVerificationRequiredError(credentials.email);
-    }
-
-    return {
-      uid: userCredential.user.uid,
-      email: userCredential.user.email ?? credentials.email,
-      name: userCredential.user.displayName ?? credentials.name,
-    };
+    return firebaseUserToAuthUser(userCredential.user);
   }
 
   async sendPasswordReset(email: string): Promise<void> {
@@ -191,109 +118,6 @@ class AuthService {
     }
 
     await sendPasswordResetEmail(firebaseAuth, email);
-  }
-
-  /**
-   * Resend verification email. User must sign in with password first.
-   */
-  async resendVerificationEmail(email: string, password: string): Promise<void> {
-    if (isStubMode()) {
-      await new Promise((r) => setTimeout(r, 500));
-      console.log(`[STUB] Verification email resent to ${email}`);
-      return;
-    }
-
-    if (!firebaseAuth) {
-      throw new Error("Firebase Auth not configured yet");
-    }
-
-    const userCredential = await signInWithEmailAndPassword(firebaseAuth, email, password);
-    try {
-      await sendEmailVerification(
-        userCredential.user,
-        this.getEmailActionSettings("verify-email")
-      );
-    } finally {
-      await firebaseSignOut(firebaseAuth);
-    }
-  }
-
-  /**
-   * Send sign-in link to email (passwordless). User clicks link to sign in.
-   * Requires Firebase Console: Authentication → Sign-in method → Enable "Email link (passwordless sign-in)".
-   */
-  async sendSignInLinkToEmail(email: string): Promise<void> {
-    if (isStubMode()) {
-      await new Promise((r) => setTimeout(r, 500));
-      console.log(`[STUB] Sign-in link sent to ${email}`);
-      return;
-    }
-
-    if (!firebaseAuth) {
-      throw new Error("Firebase Auth not configured yet");
-    }
-
-    const actionCodeSettings = this.getEmailActionSettings("email-link-sign-in");
-
-    await sendSignInLinkToEmail(firebaseAuth, email, actionCodeSettings);
-  }
-
-  /**
-   * Check if the given URL is a sign-in with email link.
-   */
-  isSignInWithEmailLink(url: string): boolean {
-    if (isStubMode()) return false;
-    if (!firebaseAuth) return false;
-    return isSignInWithEmailLink(firebaseAuth, url);
-  }
-
-  isEmailVerificationLink(url: string): boolean {
-    if (isStubMode() || !firebaseAuth) return false;
-    const actionLink = this.parseEmailActionLink(url);
-    return actionLink?.operation === "VERIFY_EMAIL" && !!actionLink.code;
-  }
-
-  async completeEmailVerification(url: string): Promise<void> {
-    if (isStubMode()) return;
-    if (!firebaseAuth) {
-      throw new Error("Firebase Auth not configured yet");
-    }
-
-    const actionLink = this.parseEmailActionLink(url);
-    if (!actionLink || actionLink.operation !== "VERIFY_EMAIL" || !actionLink.code) {
-      throw new Error("Invalid email verification link");
-    }
-
-    await applyActionCode(firebaseAuth, actionLink.code);
-    if (firebaseAuth.currentUser) {
-      await reload(firebaseAuth.currentUser).catch((error) => {
-        void errorLoggingService.captureException(error, {
-          category: "auth",
-          operation: "reload-after-email-verification",
-          severity: "warn",
-          handled: true,
-          source: "auth.service",
-        });
-      });
-    }
-  }
-
-  /**
-   * Complete sign-in with email link. Call after isSignInWithEmailLink returns true.
-   * Email can be from storage (same device) or user input (different device).
-   */
-  async signInWithEmailLink(email: string, url: string): Promise<AuthUser> {
-    if (isStubMode()) {
-      await new Promise((r) => setTimeout(r, 500));
-      return { uid: `stub-link-${Date.now()}`, email, name: email.split("@")[0] ?? "User" };
-    }
-
-    if (!firebaseAuth) {
-      throw new Error("Firebase Auth not configured yet");
-    }
-
-    const result = await signInWithEmailLink(firebaseAuth, email, url);
-    return firebaseUserToAuthUser(result.user);
   }
 
   /**

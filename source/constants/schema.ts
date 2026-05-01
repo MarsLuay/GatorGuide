@@ -24,8 +24,6 @@ export const STORAGE_KEYS = {
   pendingAccountData: "gatorguide:pending-account-data",
   guestProfileShow: "gatorguide:guestProfile:show",
   guestRoadmapShow: "gatorguide:guestRoadmap:show",
-  emailForSignIn: "gatorguide:emailForSignIn",
-  pendingEmailLinkUrl: "gatorguide:pendingEmailLinkUrl",
   pendingDeleteAccount: "gatorguide:pending-delete-account",
   onboardingDebugLog: "gatorguide:onboarding-debug-log:v1",
   notificationsManaged: "gatorguide:notifications:managed:v1",

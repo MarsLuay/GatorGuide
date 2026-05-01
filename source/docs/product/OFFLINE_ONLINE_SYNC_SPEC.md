@@ -53,8 +53,6 @@ These keys are local-only and are not part of cross-device sync:
 - `gatorguide:pending-account-data`
 - `gatorguide:guestProfile:show`
 - `gatorguide:guestRoadmap:show`
-- `gatorguide:emailForSignIn`
-- `gatorguide:pendingEmailLinkUrl`
 - `gatorguide:onboarding-debug-log:v1`
 
 ### Local file copies

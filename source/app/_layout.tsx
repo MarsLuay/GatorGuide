@@ -11,7 +11,7 @@ import { AppThemeProvider, useAppTheme } from "@/hooks/use-app-theme";
 import { AppLanguageProvider } from "@/hooks/use-app-language";
 import { AppDataProvider } from "@/hooks/use-app-data";
 import { OpportunitiesProvider } from "@/hooks/use-opportunities";
-import { AuthEmailLinkHandler } from "@/components/AuthEmailLinkHandler";
+import { AuthRedirectHandler } from "@/components/AuthRedirectHandler";
 import { STORAGE_KEYS } from "@/constants/schema";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import { cacheManagerService } from "@/services/storage/cache-manager.service";
@@ -229,7 +229,7 @@ function RootLayoutContent() {
     <AppLanguageProvider>
       <AppDataProvider>
         <OpportunitiesProvider>
-          <AuthEmailLinkHandler />
+          <AuthRedirectHandler />
           <Stack
             screenOptions={{
               headerShown: false,
