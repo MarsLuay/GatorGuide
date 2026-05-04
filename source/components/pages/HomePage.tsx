@@ -323,11 +323,6 @@ export default function HomePage() {
         .slice(0, 5),
     [desktopRoadmap, unfinishedRecommendedOpportunities]
   );
-  const desktopNextDeadlineEntry = useMemo(
-    () => desktopCombinedDeadlineEntries[0] ?? null,
-    [desktopCombinedDeadlineEntries]
-  );
-
   const handleOpenDeadlineEntry = useCallback(async (item: DeadlineCalendarEntry) => {
     try {
       if (item.target.type === "college") {
@@ -595,38 +590,14 @@ export default function HomePage() {
           </Text>
         </View>
       )}
-    </View>
-  );
 
-  const renderNextDeadlineCard = (entry: DeadlineCalendarEntry) => (
-    <AnimatedCardPressable
-      onPress={() => {
-        void handleOpenDeadlineEntry(entry);
-      }}
-      className={`border rounded-3xl p-4 ${dashboardItemClass}`}
-    >
-      <View className="flex-row items-start">
-        <View className="flex-1 min-w-0 pr-3">
-          <Text className={`${textClass} font-semibold`} numberOfLines={2}>
-            {entry.title}
-          </Text>
-          <Text className={`${secondaryTextClass} text-sm mt-1`} numberOfLines={2}>
-            {entry.subtitle}
-          </Text>
-          <Text className="text-emerald-500 text-xs font-semibold mt-3">
-            {t("home.openAction")}
-          </Text>
-        </View>
-        <View className="items-end gap-3">
-          {renderDeadlineCheckbox(entry)}
-          <View className={`px-3 py-1.5 rounded-full ${dashboardBadgeClass}`}>
-            <Text className={`${dashboardBadgeTextClass} text-xs font-semibold`}>
-              {formatImportantDate(entry.dueAt)}
-            </Text>
-          </View>
-        </View>
-      </View>
-    </AnimatedCardPressable>
+      <AnimatedChipPressable
+        onPress={openCalendar}
+        className="mt-4 rounded-xl bg-emerald-500 px-4 py-3 items-center"
+      >
+        <Text className="text-white font-semibold">Open deadline calendar</Text>
+      </AnimatedChipPressable>
+    </View>
   );
 
   const renderCurrentCoursesDashboardPanel = ({ fullWidth = false }: { fullWidth?: boolean } = {}) => {
@@ -842,32 +813,29 @@ export default function HomePage() {
         <View className={`${dashboardPanelClass} border rounded-[28px] p-5`} style={dashboardSectionWidth}>
           <View className="flex-row items-start mb-4">
             <View className="w-11 h-11 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
-              <Ionicons name="calendar-outline" size={18} color="#008f4e" />
+              <Ionicons name="map-outline" size={18} color="#008f4e" />
             </View>
             <View className="flex-1">
-              <Text className={`${textClass} text-lg font-semibold`}>{t("home.deadlineCalendarTitle")}</Text>
+              <Text className={`${textClass} text-lg font-semibold`}>Course Planner</Text>
               <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                {t("home.deadlineCalendarBody")}
+                Plan your future courses and trace your transfer roadmap.
               </Text>
             </View>
           </View>
 
-          {desktopNextDeadlineEntry ? (
-            renderNextDeadlineCard(desktopNextDeadlineEntry)
-          ) : (
-            <View className={`border rounded-3xl p-4 ${dashboardMutedClass}`}>
-              <Text className={`${textClass} font-semibold`}>No deadlines yet</Text>
-              <Text className={`${secondaryTextClass} text-sm mt-1`}>
-                Add dates to your planner or finish your profile to see more deadlines here.
-              </Text>
-            </View>
-          )}
+          <View className={`border rounded-3xl p-4 flex-1 justify-center items-center ${dashboardMutedClass}`}>
+            <Ionicons name="school-outline" size={32} color="#008f4e" style={{ opacity: 0.5, marginBottom: 8 }} />
+            <Text className={`${textClass} font-semibold text-center`}>Your graduation roadmap</Text>
+            <Text className={`${secondaryTextClass} text-sm mt-1 text-center px-4`}>
+              Design your schedule quarter by quarter.
+            </Text>
+          </View>
 
           <AnimatedChipPressable
-            onPress={openCalendar}
+            onPress={() => router.push(ROUTES.transferPlanner)}
             className="mt-4 rounded-xl bg-emerald-500 px-4 py-3 items-center"
           >
-            <Text className="text-white font-semibold">Open deadline calendar</Text>
+            <Text className="text-white font-semibold">Open course planner</Text>
           </AnimatedChipPressable>
         </View>
 
