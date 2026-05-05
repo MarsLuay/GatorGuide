@@ -32,6 +32,8 @@ import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 import * as Haptics from "expo-haptics";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { STORAGE_KEYS } from "@/constants/schema";
 
 type IconName = keyof typeof Ionicons.glyphMap;
 
@@ -815,6 +817,7 @@ export default function SettingsPage() {
       } else {
         await deleteAccount();
       }
+      await AsyncStorage.removeItem(STORAGE_KEYS.guestProfileShow).catch(() => {});
       router.replace(ROUTES.login);
     } catch {
       Alert.alert(
@@ -1292,7 +1295,7 @@ export default function SettingsPage() {
           >
             <AnimatedChipPressable
               onPress={() => setShowDeleteConfirm(false)}
-              className={`${cardBgClass} border ${cardBorderClass} rounded-lg py-4 items-center`}
+              className={`${cardBgClass} border ${cardBorderClass} rounded-2xl py-4 items-center`}
               containerStyle={{ flex: stackDialogActions ? undefined : 1 }}
             >
               <Text className={textClass}>{t("general.cancel")}</Text>
@@ -1300,7 +1303,7 @@ export default function SettingsPage() {
 
             <AnimatedChipPressable
               onPress={handleDeleteConfirm}
-              className={`bg-emerald-800 rounded-lg py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
+              className={`bg-emerald-800 rounded-2xl py-4 items-center ${!isHydrated ? "opacity-60" : ""}`}
               containerStyle={{ flex: stackDialogActions ? undefined : 1 }}
               disabled={!isHydrated}
             >

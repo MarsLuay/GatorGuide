@@ -425,7 +425,7 @@ const rawTranslations = {
     "resources.costCalculatorDesc": "Estimate total cost of attendance.",
     "resources.transferPlanner": "Transfer Planner",
     "resources.transferPlannerDesc": "Find your degree path with track matching and classes that directly transfer over.",
-    "resources.studentTools": "College Links",
+    "resources.studentTools": "Student & Transfer Links",
     "resources.ctcLink": "ctcLink",
     "resources.ctcLinkDesc": "Log in to registration, finances, and student account tools.",
     "resources.canvas": "Canvas (eGator)",

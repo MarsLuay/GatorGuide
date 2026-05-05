@@ -41,6 +41,7 @@ $requirementDiffReportPath = Join-Path $tmpDir "transfer-planner-requirement-dif
 $ownerAuditReportPath = Join-Path $tmpDir "transfer-planner-owner-audit.json"
 $hardeningReportPath = Join-Path $tmpDir "transfer-planner-hardening-report.json"
 $sourceYearCoverageReportPath = Join-Path $tmpDir "transfer-planner-source-year-coverage.json"
+$deadlineRefreshReportPath = Join-Path $tmpDir "deadline-refresh-report.json"
 
 $stepResults = [ordered]@{
   "Planner refresh" = "pending"
@@ -366,6 +367,13 @@ function Get-MaintenanceSectionCatalog {
         StepLabel = "Planner refresh"
       },
       [pscustomobject]@{
+        Id = "deadline-refresh"
+        Title = "Refresh: deadline sources"
+        Description = "Parse Green River registrar dates, Green River financial aid deadlines, and UW Seattle transfer application deadlines."
+        Kind = "refresh"
+        StepLabel = "Planner refresh"
+      },
+      [pscustomobject]@{
         Id = "catalog-and-generation"
         Title = "Refresh: catalog ingest and generated outputs"
         Description = "Regenerate bootstrap, equivalencies, catalog ingests, metadata, availability, runtime bundle, and docs."
@@ -460,6 +468,13 @@ function Get-SectionArtifacts {
         )
       }
       return @($paths | Where-Object { $_ } | Select-Object -Unique)
+    }
+    "deadline-refresh" {
+      return @(
+        (Join-Path $tmpDir "deadline-refresh-report.json"),
+        (Join-Path $tmpDir "deadline-refresh-report.md"),
+        (Join-Path $projectRoot "data\starter-opportunities.json")
+      )
     }
     "catalog-and-generation" {
       return @(
@@ -1656,6 +1671,7 @@ function Write-Summary {
   $ownerAuditReport = Read-JsonReport -Path $ownerAuditReportPath
   $hardeningReport = Read-JsonReport -Path $hardeningReportPath
   $sourceYearCoverageReport = Read-JsonReport -Path $sourceYearCoverageReportPath
+  $deadlineRefreshReport = Read-JsonReport -Path $deadlineRefreshReportPath
   $laymansDiagnosisItems = @(
     Get-TransferPlannerLaymansDiagnosis `
       -ProjectRoot $projectRoot `
@@ -1789,6 +1805,13 @@ function Write-Summary {
     $summaryLines += "- Source year coverage outcome: unavailable (source year coverage report missing)."
   }
 
+  if ($deadlineRefreshReport) {
+    $summaryLines += "- Deadline refresh parsed deadlines: $($deadlineRefreshReport.parsedCount)"
+    $summaryLines += "- Deadline refresh created/updated/unchanged: $(@($deadlineRefreshReport.created).Count)/$(@($deadlineRefreshReport.updated).Count)/$(@($deadlineRefreshReport.unchanged).Count)"
+  } else {
+    $summaryLines += "- Deadline refresh: unavailable (deadline refresh report missing)."
+  }
+
   $summaryLines += ""
 
   $summaryLines += @(
@@ -1816,6 +1839,7 @@ function Write-Summary {
     "- Planner diff classification report: $(Join-Path $tmpDir 'transfer-planner-requirement-diff-promotion-report.md')",
     "- Planner hardening report: $(Join-Path $tmpDir 'transfer-planner-hardening-report.md')",
     "- Planner source year coverage report: $(Join-Path $tmpDir 'transfer-planner-source-year-coverage.md')",
+    "- Deadline refresh report: $(Join-Path $tmpDir 'deadline-refresh-report.md')",
     "- QA web export: $qaWebPath",
     "- QA output root: $qaResultsRoot",
     ""

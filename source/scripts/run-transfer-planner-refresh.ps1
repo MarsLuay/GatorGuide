@@ -31,6 +31,7 @@ $ownerAuditPath = Join-Path $tmpDir "transfer-planner-owner-audit.md"
 $equivalencyGuidePath = Join-Path $tmpDir "transfer-planner-equivalency-guide-parse.md"
 $grcCatalogPath = Join-Path $tmpDir "transfer-planner-grc-catalog-ingest.md"
 $uwCatalogPath = Join-Path $tmpDir "transfer-planner-uw-catalog-ingest.md"
+$deadlineRefreshPath = Join-Path $tmpDir "deadline-refresh-report.md"
 
 function Write-Section {
   param([string]$Message)
@@ -166,7 +167,8 @@ try {
       @{ Label = "owner audit report"; Path = $ownerAuditPath },
       @{ Label = "equivalency guide parse report"; Path = $equivalencyGuidePath },
       @{ Label = "GRC catalog ingest report"; Path = $grcCatalogPath },
-      @{ Label = "UW catalog ingest report"; Path = $uwCatalogPath }
+      @{ Label = "UW catalog ingest report"; Path = $uwCatalogPath },
+      @{ Label = "deadline refresh report"; Path = $deadlineRefreshPath }
     )
 
     foreach ($report in $reportPaths) {

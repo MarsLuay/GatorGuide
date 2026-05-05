@@ -511,7 +511,7 @@ export function AppDataProvider({ children }: { children: React.ReactNode }) {
       await notificationsService.clearManagedNotifications().catch(() => {});
       setState(initialState);
       reconciledSavedCollegesUidRef.current = null;
-      await AsyncStorage.removeItem(STORAGE_KEY);
+      await AsyncStorage.multiRemove([STORAGE_KEY, STORAGE_KEYS.guestProfileShow]);
     }
   }, []);
 

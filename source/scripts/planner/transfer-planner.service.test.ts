@@ -8249,6 +8249,155 @@ test("Quarter planning keeps UW-required classes ahead of optional Green River a
   assert.equal(plannedLabels.indexOf("ENGL& 101") < plannedLabels.indexOf("MATH 238"), true);
 });
 
+test("Green River branch renders official runtime track choice slots as selectable option groups", () => {
+  const accountingTrack = getTransferPlannerTrack(
+    "grc-associate-business-entrepreneurship-accounting-aaa"
+  );
+  assert.ok(accountingTrack, "Expected the runtime Green River Accounting track.");
+  assert.deepEqual(
+    accountingTrack.terms.map((term) => ({ label: term.label, courses: term.courses })),
+    [
+      {
+        label: "Quarter 1 (15 credits)",
+        courses: ["ACCT 110", "BTAC 100", "BUS& 101"],
+      },
+      {
+        label: "Quarter 2 (15 credits)",
+        courses: ["ACCT 111", "BTAC 110", "BTAC 162"],
+      },
+      {
+        label: "Quarter 3 (15 credits)",
+        courses: ["ACCT 113", "BTAC 163", "ENGL& 101"],
+      },
+      {
+        label: "Quarter 4 (15 credits)",
+        courses: [
+          "ACCT 212",
+          "POLS& 200",
+          "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230, CMST& 240",
+        ],
+      },
+      {
+        label: "Quarter 5 (15 credits)",
+        courses: ["ACCT& 203", "ACCT 215", "ACCT 221"],
+      },
+      {
+        label: "Quarter 6 (15 credits)",
+        courses: [
+          "ACCT 218",
+          "ACCT 260",
+          "Elective - select 5 credits: COOP 171, ECON 100, ECON& 201, ECON& 202, PHIL& 115, PHIL& 120. Any ACCT course not included above; Any BTAC course not included above; Any BUS/BUS& course not included above; Any MATH course",
+        ],
+      },
+    ]
+  );
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: null,
+    applicationStatuses: [],
+    beforeEnrollmentStatuses: [],
+    stayAtGrcStatuses: [],
+    completedCourses: [],
+    track: accountingTrack,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const plannedCourses = quarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const cmstChoice = plannedCourses.find((course) =>
+    course.optionGroup?.options.some((option) => option.label === "CMST& 101")
+  );
+  const electiveChoice = plannedCourses.find((course) =>
+    course.optionGroup?.options.some(
+      (option) => option.label === "Any ACCT course not included above"
+    )
+  );
+
+  assert.ok(cmstChoice?.optionGroup, "Expected the CMST select-one slot to render as options.");
+  const cmstOptionGroup = cmstChoice.optionGroup;
+  assert.equal(cmstOptionGroup.selectionCount, 1);
+  assert.deepEqual(
+    cmstOptionGroup.options.map((option) => option.label),
+    ["CMST& 101", "CMST& 210", "CMST& 220", "CMST& 230", "CMST& 240"]
+  );
+  assert.ok(
+    electiveChoice?.optionGroup,
+    "Expected the Accounting elective slot to keep broad subject-category options."
+  );
+  const electiveOptionGroup = electiveChoice.optionGroup;
+  assert.equal(electiveChoice.creditAmount, 5);
+  assert.deepEqual(
+    electiveOptionGroup.options.map((option) => option.label),
+    [
+      "COOP 171",
+      "ECON 100",
+      "ECON& 201",
+      "ECON& 202",
+      "PHIL& 115",
+      "PHIL& 120",
+      "Any ACCT course not included above",
+      "Any BTAC course not included above",
+      "Any BUS/BUS& course not included above",
+      "Any MATH course",
+    ]
+  );
+
+  const selectedCmstOption = cmstOptionGroup.options.find(
+    (option) => option.label === "CMST& 230"
+  );
+  const selectedMathElectiveOption = electiveOptionGroup.options.find(
+    (option) => option.label === "Any MATH course"
+  );
+  assert.ok(selectedCmstOption, "Expected CMST& 230 to be selectable.");
+  assert.ok(selectedMathElectiveOption, "Expected the broad MATH elective category to be selectable.");
+
+  const selectedQuarterPlan = buildSuggestedQuarterPlan({
+    plan: null,
+    applicationStatuses: [],
+    beforeEnrollmentStatuses: [],
+    stayAtGrcStatuses: [],
+    completedCourses: [],
+    track: accountingTrack,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+    selectedRequirementOptionIdsByGroup: {
+      [cmstOptionGroup.id]: [selectedCmstOption.id],
+      [electiveOptionGroup.id]: [selectedMathElectiveOption.id],
+    },
+  });
+  const selectedPlannedCourses = selectedQuarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+
+  assert.ok(
+    selectedPlannedCourses.some(
+      (course) =>
+        course.label === "CMST& 230" &&
+        course.optionGroup?.id === cmstOptionGroup.id &&
+        course.optionGroup?.isSelectionPrompt === false
+    ),
+    "Expected a selected CMST option to become the planned course."
+  );
+  assert.ok(
+    selectedPlannedCourses.some(
+      (course) =>
+        course.label === "Any MATH course" &&
+        course.optionGroup?.id === electiveOptionGroup.id &&
+        course.optionGroup?.isSelectionPrompt === false
+    ),
+    "Expected a selected broad elective category to become the planned slot."
+  );
+  assert.equal(
+    selectedPlannedCourses.some(
+      (course) =>
+        course.optionGroup?.id === electiveOptionGroup.id &&
+        course.optionGroup?.isSelectionPrompt === true
+    ),
+    false
+  );
+});
+
 test("Seattle CS Data Science option keeps ACS track breadth generic and out of UW-transfer-only mode", () => {
   const runtimeBasePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-science");
   assert.ok(runtimeBasePlan, "Expected a Seattle Computer Science runtime plan.");

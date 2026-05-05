@@ -303,11 +303,21 @@ export default function ProfilePage() {
   >({});
 
   useEffect(() => {
-    if (!user?.isGuest) return;
+    let cancelled = false;
+
+    if (!user?.isGuest) {
+      setShowGuestProfile(false);
+      return;
+    }
+
     AsyncStorage.getItem(STORAGE_KEYS.guestProfileShow).then((value) => {
-      if (value === "true") setShowGuestProfile(true);
+      if (!cancelled) setShowGuestProfile(value === "true");
     });
-  }, [user?.isGuest]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [user?.uid, user?.isGuest]);
 
   useEffect(() => {
     let cancelled = false;
@@ -1614,7 +1624,7 @@ export default function ProfilePage() {
 
             <AnimatedChipPressable
               onPress={() => router.push(ROUTES.login)}
-              className={`${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-lg py-4 px-6 items-center flex-row justify-center`}
+              className={`${isLight ? "bg-emerald-200" : "bg-emerald-500"} rounded-2xl py-4 px-6 items-center flex-row justify-center`}
             >
               <MaterialIcons name="arrow-forward" size={20} color="#001f0f" />
               <Text className={`${isDark || isGreen ? 'text-white' : 'text-emerald-900'} font-semibold ml-2`}>{t("profile.createYourProfile")}</Text>
@@ -1625,7 +1635,7 @@ export default function ProfilePage() {
                 setShowGuestProfile(true);
                 AsyncStorage.setItem(STORAGE_KEYS.guestProfileShow, "true").catch(() => {});
               }}
-              className={`${cardBgClass} border rounded-lg py-3 px-6 items-center mt-3`}
+              className={`${cardBgClass} border rounded-2xl py-3 px-6 items-center mt-3`}
             >
               <Text className={secondaryTextClass}>{t("profile.continueAsGuest")}</Text>
             </AnimatedChipPressable>

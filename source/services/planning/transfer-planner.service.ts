@@ -305,6 +305,14 @@ type PendingSuggestedCourse = SuggestedQuarterCourse & {
   corequisiteCourseSets: string[][];
 };
 
+type ParsedGrcTrackChoiceSlot = {
+  id: string;
+  title: string;
+  promptLabel: string;
+  selectionCount: number;
+  options: SuggestedQuarterCourseOption[];
+};
+
 export type TransferPlannerCoursePlanningGraph = {
   prerequisiteCourseSetsByCourseCode: Record<string, string[][]>;
   corequisiteCourseSetsByCourseCode: Record<string, string[][]>;
@@ -5055,6 +5063,291 @@ function shouldUseTrackTermForSupplementalPlanning(termLabel: string) {
   return !TRACK_SUPPLEMENTAL_TERM_LABEL_PATTERN.test(String(termLabel ?? "").trim());
 }
 
+function buildPlannerStableId(value: string, fallback = "item") {
+  return (
+    String(value ?? "")
+      .toLowerCase()
+      .replace(/&/g, " and ")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || fallback
+  );
+}
+
+function normalizeGrcTrackSlotLabel(value: string) {
+  return String(value ?? "")
+    .replace(/\s+/g, " ")
+    .replace(/\belective-any\b/gi, "elective - any")
+    .replace(/\s*;\s*Recommended:.*$/i, "")
+    .replace(/\.\s+-\s+must\b.*$/i, "")
+    .trim();
+}
+
+function getGrcTrackChoiceSelectionCount(label: string) {
+  const normalizedLabel = normalizeGrcTrackSlotLabel(label);
+  const chooseOfMatch = normalizedLabel.match(/\b(?:choose|select)\s+(\d+)\s+of\b/i);
+  const explicitCountMatch = normalizedLabel.match(
+    /\b(?:choose|select)\s+(\d+)(?!\s*credits?\b)\b/i
+  );
+  const wordCountMatch = normalizedLabel.match(
+    /\b(?:choose|select)\s+(one|two|three|four|five)\b/i
+  );
+  const wordCounts: Record<string, number> = {
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+  };
+  const rawCount =
+    chooseOfMatch?.[1] ??
+    explicitCountMatch?.[1] ??
+    (wordCountMatch?.[1] ? String(wordCounts[wordCountMatch[1].toLowerCase()] ?? "") : "");
+  const selectionCount = Number.parseInt(rawCount, 10);
+  if (Number.isFinite(selectionCount) && selectionCount > 0) {
+    return Math.min(selectionCount, 10);
+  }
+
+  return 1;
+}
+
+function getGrcTrackChoiceSlotCreditAmount(label: string, selectionCount: number) {
+  const normalizedLabel = normalizeGrcTrackSlotLabel(label);
+  const creditMatch = normalizedLabel.match(
+    /\b(?:select|choose|from|minimum|at least)\s+(\d+(?:\.\d+)?)\s+credits?\b/i
+  );
+  const creditAmount = getPositiveCreditAmount(creditMatch?.[1]);
+  return selectionCount === 1 ? creditAmount : null;
+}
+
+function getGrcTrackChoiceOptionsText(label: string) {
+  const normalizedLabel = normalizeGrcTrackSlotLabel(label);
+  const colonIndex = normalizedLabel.indexOf(":");
+  if (colonIndex >= 0) {
+    const prefix = normalizedLabel.slice(0, colonIndex);
+    const suffix = normalizedLabel.slice(colonIndex + 1).trim();
+    if (
+      suffix &&
+      /\b(?:select|choose|elective|options?|following|approved)\b/i.test(prefix)
+    ) {
+      return suffix;
+    }
+  }
+
+  if (/\s+or\s+/i.test(normalizedLabel)) {
+    return normalizedLabel;
+  }
+
+  return "";
+}
+
+function shouldSplitGrcTrackOptionOnOr(value: string) {
+  if (!/\s+or\s+/i.test(value)) {
+    return false;
+  }
+
+  const courseCodes = extractCourseCodes(value);
+  if (courseCodes.length <= 1 && /\bor\s+higher\b/i.test(value)) {
+    return false;
+  }
+
+  return true;
+}
+
+function splitGrcTrackChoiceOptionText(value: string) {
+  const normalizedText = String(value ?? "")
+    .replace(/\.\s+(?=(?:Any|Choose|Select)\b)/gi, "; ")
+    .replace(/\s*;\s*Recommended:.*$/i, "")
+    .trim();
+  const options: string[] = [];
+
+  for (const semicolonPart of normalizedText.split(/\s*;\s*/)) {
+    const part = semicolonPart.trim();
+    if (!part) {
+      continue;
+    }
+
+    const commaParts = part.includes(",") ? part.split(/\s*,\s*/) : [part];
+    for (const commaPart of commaParts) {
+      const nextParts = shouldSplitGrcTrackOptionOnOr(commaPart)
+        ? commaPart.split(/\s+or\s+(?!higher\b)/i)
+        : [commaPart];
+      options.push(...nextParts);
+    }
+  }
+
+  return options;
+}
+
+function cleanGrcTrackChoiceOptionLabel(value: string) {
+  return normalizeGrcTrackSlotLabel(value)
+    .replace(/^\s*(?:select|choose)\s+one\s*:?\s*/i, "")
+    .replace(/^\s*(?:choose|select)\s+\d+\s+(?:of\s+)?(?:the\s+following\s+)?(?:courses?)?\s*:?\s*/i, "")
+    .replace(/\s+-\s+must be taken.*$/i, "")
+    .replace(/\s*\.\s*$/g, "")
+    .trim();
+}
+
+function getGrcTrackChoiceTitle(label: string) {
+  const normalizedLabel = normalizeGrcTrackSlotLabel(label);
+  const colonIndex = normalizedLabel.indexOf(":");
+  const prefix = colonIndex >= 0 ? normalizedLabel.slice(0, colonIndex).trim() : "";
+  if (prefix && prefix.length <= 96) {
+    return prefix;
+  }
+  if (/\b(?:select|choose)\s+one\b/i.test(normalizedLabel)) {
+    return "Select one";
+  }
+  if (/\b(?:select|choose)\s+\d+\s+credits?\b/i.test(normalizedLabel)) {
+    return normalizedLabel.match(/\b(?:select|choose)\s+\d+\s+credits?\b/i)?.[0] ?? "Choose credits";
+  }
+  return "Choose a Green River track option";
+}
+
+function buildGrcTrackChoicePromptLabel(
+  parsedSlot: Pick<ParsedGrcTrackChoiceSlot, "title" | "selectionCount">
+) {
+  if (/\b(?:select|choose)\s+one\b/i.test(parsedSlot.title)) {
+    return "Select one Green River track option";
+  }
+  if (/\b(?:select|choose)\s+\d+\s+credits?\b/i.test(parsedSlot.title)) {
+    return parsedSlot.title;
+  }
+  if (parsedSlot.selectionCount > 1) {
+    return `Choose ${parsedSlot.selectionCount} Green River track options`;
+  }
+  return parsedSlot.title || "Choose a Green River track option";
+}
+
+function parseGrcTrackChoiceSlot(label: string): ParsedGrcTrackChoiceSlot | null {
+  const normalizedLabel = normalizeGrcTrackSlotLabel(label);
+  const optionsText = getGrcTrackChoiceOptionsText(normalizedLabel);
+  if (!optionsText) {
+    return null;
+  }
+
+  const extractedCourseCodes = extractCourseCodes(optionsText);
+  const hasOpenCourseCategory =
+    /\bany\s+[A-Z][A-Z&/]*(?:\s*\/\s*[A-Z][A-Z&/]*)*\s+course\b/i.test(optionsText) ||
+    /\b(?:program\s+)?elective\s*-\s*any\b/i.test(optionsText) ||
+    /\bother\s+college(?:-|\s)level\b/i.test(optionsText);
+  if (extractedCourseCodes.length < 2 && !hasOpenCourseCategory) {
+    return null;
+  }
+
+  const selectionCount = getGrcTrackChoiceSelectionCount(normalizedLabel);
+  const slotCreditAmount = getGrcTrackChoiceSlotCreditAmount(normalizedLabel, selectionCount);
+  const seenOptionLabels = new Set<string>();
+  const options = splitGrcTrackChoiceOptionText(optionsText)
+    .map((optionLabel) => cleanGrcTrackChoiceOptionLabel(optionLabel))
+    .filter(Boolean)
+    .filter((optionLabel) => {
+      const optionKey = optionLabel.toLowerCase();
+      if (seenOptionLabels.has(optionKey)) {
+        return false;
+      }
+      seenOptionLabels.add(optionKey);
+      return true;
+    })
+    .map<SuggestedQuarterCourseOption>((optionLabel, optionIndex) => {
+      const optionCourseCodes = unique(extractCourseCodes(optionLabel));
+      const optionCreditAmount =
+        slotCreditAmount ?? inferSuggestedCourseCreditAmount(optionLabel, optionCourseCodes);
+      return {
+        id: `official-grc-track-option:${buildPlannerStableId(normalizedLabel)}:${buildPlannerStableId(
+          optionLabel,
+          `option-${optionIndex + 1}`
+        )}`,
+        label: optionLabel,
+        selectedLabel: optionLabel,
+        courseLabels: [optionLabel],
+        courseCodes: optionCourseCodes,
+        guidanceSummary: null,
+        creditAmount: optionCreditAmount,
+        creditMin: optionCreditAmount,
+        creditMax: optionCreditAmount,
+      };
+    });
+
+  if (options.length < 2) {
+    return null;
+  }
+
+  const title = getGrcTrackChoiceTitle(normalizedLabel);
+  const parsedSlot = {
+    id: `official-grc-track-choice:${buildPlannerStableId(normalizedLabel)}`,
+    title,
+    promptLabel: "",
+    selectionCount: Math.min(selectionCount, options.length),
+    options,
+  } satisfies ParsedGrcTrackChoiceSlot;
+
+  return {
+    ...parsedSlot,
+    promptLabel: buildGrcTrackChoicePromptLabel(parsedSlot),
+  };
+}
+
+function buildGrcTrackChoiceOptionGroup(input: {
+  label: string;
+  selectedOptionIds: string[];
+  isSelectionPrompt: boolean;
+}) {
+  const parsedSlot = parseGrcTrackChoiceSlot(input.label);
+  if (!parsedSlot) {
+    return null;
+  }
+
+  const optionIds = new Set(parsedSlot.options.map((option) => option.id));
+  const selectedOptionIds = input.selectedOptionIds.filter((optionId) => optionIds.has(optionId));
+
+  return {
+    ...parsedSlot,
+    selectedOptionIds,
+    isSelectionPrompt: input.isSelectionPrompt,
+  } satisfies SuggestedQuarterCourseOptionGroup;
+}
+
+function getGrcTrackChoiceGuidanceSummary(optionGroup: SuggestedQuarterCourseOptionGroup) {
+  const previewLabels = optionGroup.options
+    .slice(0, CHECKLIST_CHOICE_PREVIEW_LIMIT)
+    .map((option) => option.label);
+  const hiddenCount = Math.max(optionGroup.options.length - previewLabels.length, 0);
+  if (!previewLabels.length) {
+    return null;
+  }
+
+  return `Options: ${previewLabels.join(", ")}${hiddenCount > 0 ? `, plus ${hiddenCount} more` : ""}.`;
+}
+
+function isGrcTrackChoiceSlotSatisfied(
+  parsedSlot: ParsedGrcTrackChoiceSlot,
+  completedCourseCodes: Set<string>,
+  coveredCourseCodes: Set<string>
+) {
+  const satisfiedOptionCount = parsedSlot.options.filter((option) =>
+    option.courseCodes.some(
+      (courseCode) => completedCourseCodes.has(courseCode) || coveredCourseCodes.has(courseCode)
+    )
+  ).length;
+  return satisfiedOptionCount >= parsedSlot.selectionCount;
+}
+
+function isFlexibleGrcTrackSingleCourseLabel(label: string) {
+  const normalizedLabel = normalizeGrcTrackSlotLabel(label);
+  const explicitCourseCodes = extractCourseCodes(normalizedLabel);
+  if (explicitCourseCodes.length !== 1) {
+    return false;
+  }
+  if (isTrackSupplementalCourseLabel(normalizedLabel)) {
+    return true;
+  }
+  if (/\b(?:elective|general education|humanities|social science|natural science)\b/i.test(normalizedLabel)) {
+    return false;
+  }
+
+  return true;
+}
+
 function isTrackSupplementalCourseLabel(label: string) {
   const normalizedLabel = normalizeCourseCode(label);
   const explicitCourseCodes = extractCourseCodes(label);
@@ -5068,6 +5361,7 @@ function getResolvedTrackSupplementalCourseLabels(input: {
   completedCourseCodes: Set<string>;
   coveredCourseCodes: Set<string>;
   referenceDate?: Date;
+  includeFlexibleTrackSlots?: boolean;
 }) {
   if (!input.track) {
     return [] as string[];
@@ -5089,27 +5383,52 @@ function getResolvedTrackSupplementalCourseLabels(input: {
     }
 
     for (const label of term.courses) {
-      if (!isTrackSupplementalCourseLabel(label)) {
+      const normalizedSlotLabel = normalizeGrcTrackSlotLabel(label);
+      const parsedChoiceSlot = input.includeFlexibleTrackSlots
+        ? parseGrcTrackChoiceSlot(normalizedSlotLabel)
+        : null;
+      const isSingleCourseSlot = isTrackSupplementalCourseLabel(normalizedSlotLabel);
+      const shouldKeepFlexibleSingleCourseSlot =
+        input.includeFlexibleTrackSlots &&
+        !parsedChoiceSlot &&
+        isFlexibleGrcTrackSingleCourseLabel(normalizedSlotLabel);
+
+      if (!isSingleCourseSlot && !parsedChoiceSlot && !shouldKeepFlexibleSingleCourseSlot) {
         continue;
       }
 
-      const explicitCourseCode = extractCourseCodes(label)[0] ?? null;
-      if (!explicitCourseCode) {
-        continue;
-      }
-
-      const normalizedLabel = normalizeCourseCode(label);
       if (
-        !normalizedLabel ||
-        seenLabels.has(normalizedLabel) ||
-        coveredCourseCodes.has(explicitCourseCode) ||
-        input.completedCourseCodes.has(explicitCourseCode)
+        parsedChoiceSlot &&
+        isGrcTrackChoiceSlotSatisfied(parsedChoiceSlot, input.completedCourseCodes, coveredCourseCodes)
       ) {
         continue;
       }
 
-      seenLabels.add(normalizedLabel);
-      coveredCourseCodes.add(explicitCourseCode);
+      const explicitCourseCodes = extractCourseCodes(normalizedSlotLabel);
+      const explicitCourseCode = explicitCourseCodes[0] ?? null;
+      if (!parsedChoiceSlot && !explicitCourseCode) {
+        continue;
+      }
+
+      const normalizedLabel = isSingleCourseSlot
+        ? normalizeCourseCode(normalizedSlotLabel)
+        : normalizedSlotLabel;
+      const normalizedLabelKey = normalizedLabel.toLowerCase();
+      if (
+        !normalizedLabel ||
+        seenLabels.has(normalizedLabelKey) ||
+        (!parsedChoiceSlot &&
+          explicitCourseCode &&
+          (coveredCourseCodes.has(explicitCourseCode) ||
+            input.completedCourseCodes.has(explicitCourseCode)))
+      ) {
+        continue;
+      }
+
+      seenLabels.add(normalizedLabelKey);
+      if (!parsedChoiceSlot && explicitCourseCode) {
+        coveredCourseCodes.add(explicitCourseCode);
+      }
       supplementalCourseLabels.push(normalizedLabel);
     }
   }
@@ -5127,19 +5446,35 @@ function buildTrackSupplementalSuggestedCourses(input: {
   prerequisiteCourseMap: Map<string, string[][]>;
   corequisiteCourseMap: Map<string, string[][]>;
   sourceOrderStart: number;
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+  includeFlexibleTrackSlots?: boolean;
 }) {
-  return input.courseLabels.map<PendingSuggestedCourse>((label, index) => {
-    const explicitCourseCodes = extractCourseCodes(label);
+  const suggestedCourses: PendingSuggestedCourse[] = [];
+  let sourceOrderOffset = 0;
+  const selectedRequirementOptionIdsByGroup = input.selectedRequirementOptionIdsByGroup ?? {};
+
+  const buildPendingCourse = (args: {
+    label: string;
+    sourceOrder: number;
+    optionGroup?: SuggestedQuarterCourseOptionGroup | null;
+    sequenceGroup?: string | null;
+    creditAmount?: number | null;
+    creditMin?: number | null;
+    creditMax?: number | null;
+  }): PendingSuggestedCourse => {
+    const explicitCourseCodes = extractCourseCodes(args.label);
 
     return {
-      label,
-      type: isCoreCourseLabel(label) ? "core" : "elective",
+      label: args.label,
+      type: isCoreCourseLabel(args.label) ? "core" : "elective",
       status: "planned",
       sourceKind: "official-grc-track",
-      guidanceSummary: buildTrackSupplementalGuidanceSummary(),
-      sequenceGroup: null,
+      guidanceSummary: args.optionGroup
+        ? getGrcTrackChoiceGuidanceSummary(args.optionGroup)
+        : buildTrackSupplementalGuidanceSummary(),
+      sequenceGroup: args.sequenceGroup ?? null,
       priorityRank: REQUIREMENT_PRIORITY_RANK.stayAtGrc,
-      sourceOrder: input.sourceOrderStart + index,
+      sourceOrder: args.sourceOrder,
       explicitCourseCodes,
       prerequisiteCourseSets: unique(
         explicitCourseCodes.flatMap(
@@ -5151,8 +5486,87 @@ function buildTrackSupplementalSuggestedCourses(input: {
           (courseCode) => input.corequisiteCourseMap.get(courseCode) ?? []
         )
       ).map((courseSet) => [...courseSet]),
+      optionGroup: args.optionGroup ?? null,
+      creditAmount: args.creditAmount,
+      creditMin: args.creditMin,
+      creditMax: args.creditMax,
     };
-  });
+  };
+
+  for (const label of input.courseLabels) {
+    const promptOptionGroup = input.includeFlexibleTrackSlots
+      ? buildGrcTrackChoiceOptionGroup({
+          label,
+          selectedOptionIds: normalizeSelectedRequirementOptionIds(
+            selectedRequirementOptionIdsByGroup[parseGrcTrackChoiceSlot(label)?.id ?? ""]
+          ),
+          isSelectionPrompt: true,
+        })
+      : null;
+
+    if (promptOptionGroup) {
+      const selectedOptionIds = promptOptionGroup.selectedOptionIds;
+      const selectedOptionIdSet = new Set(selectedOptionIds);
+      const selectedOptions = promptOptionGroup.options
+        .filter((option) => selectedOptionIdSet.has(option.id))
+        .slice(0, promptOptionGroup.selectionCount);
+      const selectedOptionGroup = {
+        ...promptOptionGroup,
+        selectedOptionIds: selectedOptions.map((option) => option.id),
+        isSelectionPrompt: false,
+      };
+      let attachedOptionGroup = false;
+
+      for (const option of selectedOptions) {
+        const optionCreditRange = getSuggestedCourseCreditRangeFromValues({
+          creditAmount: option.creditAmount,
+          creditMin: option.creditMin,
+          creditMax: option.creditMax,
+        });
+
+        for (const optionLabel of option.courseLabels.length ? option.courseLabels : [option.label]) {
+          suggestedCourses.push(
+            buildPendingCourse({
+              label: optionLabel,
+              sourceOrder: input.sourceOrderStart + sourceOrderOffset,
+              optionGroup: attachedOptionGroup ? null : selectedOptionGroup,
+              sequenceGroup:
+                option.courseLabels.length > 1 ? `${promptOptionGroup.id}:${option.id}` : null,
+              ...optionCreditRange,
+            })
+          );
+          sourceOrderOffset += 1;
+          attachedOptionGroup = true;
+        }
+      }
+
+      if (selectedOptions.length >= promptOptionGroup.selectionCount) {
+        continue;
+      }
+
+      const promptCreditRange = getSuggestedQuarterCourseOptionGroupCreditRange(promptOptionGroup);
+      suggestedCourses.push(
+        buildPendingCourse({
+          label: promptOptionGroup.promptLabel,
+          sourceOrder: input.sourceOrderStart + sourceOrderOffset,
+          optionGroup: promptOptionGroup,
+          ...promptCreditRange,
+        })
+      );
+      sourceOrderOffset += 1;
+      continue;
+    }
+
+    suggestedCourses.push(
+      buildPendingCourse({
+        label,
+        sourceOrder: input.sourceOrderStart + sourceOrderOffset,
+      })
+    );
+    sourceOrderOffset += 1;
+  }
+
+  return suggestedCourses;
 }
 
 function getAvailabilityQuarterForPlanningKind(kind: PlanningQuarterKind) {
@@ -9766,12 +10180,14 @@ export function buildSuggestedQuarterPlan(input: {
         : status.explicitCourseCodes
     ),
   ]);
+  const includeFlexibleGrcTrackSlots = !input.plan;
   const resolvedTrackSupplementalCourseLabels = getResolvedTrackSupplementalCourseLabels({
     track: input.track,
     completedCourses: input.completedCourses,
     completedCourseCodes,
     coveredCourseCodes: trackSupplementalCoveredCourseCodes,
     referenceDate: input.referenceDate,
+    includeFlexibleTrackSlots: includeFlexibleGrcTrackSlots,
   });
   const actionableCourseCodes = new Set([
     ...checklistCourseCodes,
@@ -9824,6 +10240,8 @@ export function buildSuggestedQuarterPlan(input: {
     prerequisiteCourseMap,
     corequisiteCourseMap,
     sourceOrderStart: essentialRemainingCourses.length + stayAtGrcRemainingCourses.length,
+    selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+    includeFlexibleTrackSlots: includeFlexibleGrcTrackSlots,
   });
   const essentialDependencyCourses = buildPrerequisiteDependencyCoursesForEssentialPlan(
     essentialRemainingCourses,

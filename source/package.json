@@ -27,6 +27,7 @@
     "planner:generate-student-runtime": "node scripts/planner/generate-transfer-planner-student-runtime.cjs",
     "planner:audit:owners": "node scripts/planner/verify-transfer-planner-owner-audit.cjs",
     "planner:refresh": "node scripts/planner/refresh-transfer-planner-sources.cjs",
+    "planner:refresh-deadlines": "node scripts/planner/refresh-deadline-sources.cjs",
     "planner:verify": "node scripts/planner/refresh-transfer-planner-sources.cjs --verify-only",
     "planner:hardening:verify": "node scripts/planner/verify-transfer-planner-hardening.cjs",
     "planner:status": "node scripts/planner/planner-status.cjs",

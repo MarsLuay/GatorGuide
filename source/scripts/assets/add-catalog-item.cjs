@@ -31,7 +31,7 @@ const GOOGLE_SHEETS_EXPORT_URL =
 
 const RESOURCE_SECTION_LABELS = {
   "resources.tools": "Tools",
-  "resources.studentTools": "College Links",
+  "resources.studentTools": "Student & Transfer Links",
   "resources.greenRiverTransfer": "Green River Transfer",
   "resources.commonWaUniversities": "Common WA Universities",
   "resources.transferGuides": "Transfer Guides",
@@ -39,15 +39,19 @@ const RESOURCE_SECTION_LABELS = {
 
 const RESOURCE_SUBSECTION_LABELS = {
   "student-links": "Student Links",
-  "transfer-planning": "Transfer Planning",
+  "green-river-transfer": "Green River Transfer",
+  "transfer-guides": "Transfer Guides",
+  "common-wa-universities": "Common WA Universities",
 };
 
 const RESOURCE_KIND_TARGETS = {
   tools: { sectionId: "tools", subsectionId: null },
   "student-tools": { sectionId: "student-tools", subsectionId: "student-links" },
-  "green-river-transfer": { sectionId: "student-tools", subsectionId: "transfer-planning" },
-  "common-wa-universities": { sectionId: "student-tools", subsectionId: "transfer-planning" },
-  "transfer-guides": { sectionId: "student-tools", subsectionId: "transfer-planning" },
+  "green-river-transfer": { sectionId: "student-tools", subsectionId: "green-river-transfer" },
+  "common-wa-universities": { sectionId: "student-tools", subsectionId: "common-wa-universities" },
+  "transfer-guides": { sectionId: "student-tools", subsectionId: "transfer-guides" },
+  "financial-aid-scholarships": { sectionId: "financial-aid-scholarships", subsectionId: null },
+  "career-internships": { sectionId: "career-internship-links", subsectionId: null },
 };
 
 const RESOURCE_KIND_OPTIONS = [
@@ -70,6 +74,14 @@ const RESOURCE_KIND_OPTIONS = [
   {
     value: "transfer-guides",
     label: "Transfer guide / equivalency guide",
+  },
+  {
+    value: "financial-aid-scholarships",
+    label: "Financial aid or scholarship link",
+  },
+  {
+    value: "career-internships",
+    label: "Career, job, or internship link",
   },
   {
     value: "__other_existing__",

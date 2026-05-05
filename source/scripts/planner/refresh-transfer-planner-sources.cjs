@@ -73,6 +73,7 @@ const REFRESH_SECTION_DEFINITIONS = [
       },
       { label: "Discover primary official sources" },
       { label: "Build primary-source automation queue" },
+      { label: "Promote high-confidence primary sources" },
       { label: "Classify hidden source gaps" },
     ],
   },
@@ -101,6 +102,13 @@ const REFRESH_SECTION_DEFINITIONS = [
         include: (options) => !options.skipDownloads,
       },
     ],
+  },
+  {
+    id: "deadline-refresh",
+    title: "Refresh: deadline sources",
+    description:
+      "Parse high-value deadline sources: Green River registrar dates, Green River financial aid deadlines, and UW Seattle transfer application deadlines.",
+    steps: [{ label: "Refresh deadline sources" }],
   },
   {
     id: "catalog-and-generation",
@@ -656,6 +664,12 @@ async function main() {
         } else {
           markSkipped("Snapshot Green River annual schedules", "--skip-downloads");
         }
+        return;
+      }
+      case "deadline-refresh": {
+        runTrackedStep("Refresh deadline sources", () =>
+          runCommand("node", ["scripts/planner/refresh-deadline-sources.cjs"])
+        );
         return;
       }
       case "catalog-and-generation": {
