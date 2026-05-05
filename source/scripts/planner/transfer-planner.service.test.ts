@@ -5351,6 +5351,7 @@ test("Applied Mathematics track guidance keeps breadth placeholders clearly labe
 
   const plannedCourses = buildSuggestedQuarterPlan({
     plan,
+    plannerCollegeId: "uw",
     applicationStatuses: [],
     beforeEnrollmentStatuses: [],
     stayAtGrcStatuses: [],
@@ -5391,6 +5392,33 @@ test("Applied Mathematics track guidance keeps breadth placeholders clearly labe
   assert.match(
     sharedBreadthCourse?.guidanceSummary ?? "",
     /additional A&H\/SSc credits from the official matched Green River associate pathway map for Applied Mathematics\./i
+  );
+
+  const grcPlannerCourses = buildSuggestedQuarterPlan({
+    plan: null,
+    plannerCollegeId: "grc",
+    applicationStatuses: [],
+    beforeEnrollmentStatuses: [],
+    stayAtGrcStatuses: [],
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  })
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const grcSocialScienceCourse = grcPlannerCourses.find(
+    (course) => course.label === "5 credits of Social Science"
+  );
+
+  assert.ok(grcSocialScienceCourse, "Expected the Green River planner SSc placeholder.");
+  assert.match(
+    grcSocialScienceCourse?.guidanceSummary ?? "",
+    /5\/5 SSc credits from the official matched Green River associate pathway map for this plan\./i
+  );
+  assert.doesNotMatch(
+    grcSocialScienceCourse?.guidanceSummary ?? "",
+    /not an official .* transfer admission requirement\./i
   );
 });
 
@@ -5811,6 +5839,188 @@ test("Generated ACS-DTA/MRP track keeps distribution guidance generic instead of
   assert.equal(allLabels.includes("PSYC& 100"), false);
   assert.equal(allLabels.includes("AMES 100"), false);
   assert.equal(allLabels.includes("ANTH& 206"), false);
+});
+
+test("AST-2/MRP Computer and Electrical Engineering planning does not double-count alternate breadth rows", () => {
+  const track = getTransferPlannerTrack(
+    "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering"
+  );
+  assert.ok(
+    track,
+    "Expected the Green River AST-2/MRP Computer and Electrical Engineering track."
+  );
+
+  const sourceBreadthLabels = track.terms
+    .flatMap((term) => term.courses)
+    .filter((label) => /humanities|social science/i.test(label));
+  assert.deepEqual(sourceBreadthLabels, [
+    "2 C - Humanities/Fine Arts/English or Social Science",
+    "H 1 - Humanities/Fine Arts/English",
+    "S 1 - Social Science",
+    "CS 123 or 2 C - Humanities/Fine Arts/English or Social Science",
+  ]);
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: null,
+    applicationStatuses: [],
+    beforeEnrollmentStatuses: [],
+    stayAtGrcStatuses: [],
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const plannedBreadthPlaceholders = quarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.sourceKind === "official-grc-track-breadth");
+  const plannedBreadthLabels = plannedBreadthPlaceholders.map((course) => course.label);
+
+  assert.deepEqual(plannedBreadthLabels, [
+    "5 credits of A&H or SSc",
+    "5 credits of Humanities",
+    "5 credits of Social Science",
+  ]);
+  assert.equal(
+    plannedBreadthPlaceholders.reduce(
+      (total, course) => total + (course.creditAmount ?? 0),
+      0
+    ),
+    15
+  );
+  assert.equal(
+    plannedBreadthLabels.filter((label) => label === "5 credits of A&H or SSc").length,
+    1
+  );
+});
+
+test("AST-2/MRP Computer and Electrical Engineering preserves official programming group choices", () => {
+  const track = getTransferPlannerTrack(
+    "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering"
+  );
+  assert.ok(
+    track,
+    "Expected the Green River AST-2/MRP Computer and Electrical Engineering track."
+  );
+
+  const groupedChoice = track.groupedChoices?.find((choice) =>
+    /computer programming/i.test(choice.label)
+  );
+  assert.ok(groupedChoice, "Expected the official Computer Programming grouped choice.");
+  assert.equal(groupedChoice.requiredCredits, 10);
+  assert.deepEqual(
+    groupedChoice.options.map((option) => ({
+      label: option.label,
+      courseCodes: option.courseCodes,
+    })),
+    [
+      {
+        label: "Group 1: CS 122 + CS 123",
+        courseCodes: ["CS 122", "CS 123"],
+      },
+      {
+        label: "Group 2: CS& 131 + CS 132",
+        courseCodes: ["CS& 131", "CS 132"],
+      },
+    ]
+  );
+  assert.equal(
+    groupedChoice.options.flatMap((option) => option.courseCodes).includes("CS 121"),
+    false
+  );
+
+  const buildGrcOnlyPlan = (completedCourseCodes: string[] = [], selectedOptionIds: string[] = []) =>
+    buildSuggestedQuarterPlan({
+      plan: null,
+      plannerCollegeId: "grc",
+      applicationStatuses: [],
+      beforeEnrollmentStatuses: [],
+      stayAtGrcStatuses: [],
+      completedCourses: completedCourseCodes.map((courseCode) => ({
+        code: courseCode,
+        label: courseCode,
+        credits: 5,
+        termLabel: "Completed transfer work",
+        termStartDate: "2025-09-01",
+      })),
+      track,
+      includeStayAtGrcCourses: true,
+      referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+      selectedRequirementOptionIdsByGroup: selectedOptionIds.length
+        ? {
+            [groupedChoice.id]: selectedOptionIds,
+          }
+        : {},
+    })
+      .filter((quarter) => quarter.phase === "planned")
+      .flatMap((quarter) => quarter.courses);
+  const findProgrammingPrompt = (completedCourseCodes: string[] = []) =>
+    buildGrcOnlyPlan(completedCourseCodes).find(
+      (course) => course.optionGroup?.id === groupedChoice.id
+    );
+
+  const plannedCourses = buildGrcOnlyPlan();
+  const programmingPrompt = plannedCourses.find(
+    (course) => course.optionGroup?.id === groupedChoice.id
+  );
+  assert.ok(programmingPrompt?.optionGroup, "Expected one grouped programming prompt.");
+  assert.equal(programmingPrompt.creditAmount, 10);
+  assert.deepEqual(
+    programmingPrompt.optionGroup.options.map((option) => ({
+      label: option.label,
+      courseLabels: option.courseLabels,
+      courseCodes: option.courseCodes,
+      creditAmount: option.creditAmount,
+    })),
+    [
+      {
+        label: "Group 1: CS 122 + CS 123",
+        courseLabels: ["CS 122", "CS 123"],
+        courseCodes: ["CS 122", "CS 123"],
+        creditAmount: 10,
+      },
+      {
+        label: "Group 2: CS& 131 + CS 132",
+        courseLabels: ["CS& 131", "CS 132"],
+        courseCodes: ["CS& 131", "CS 132"],
+        creditAmount: 10,
+      },
+    ]
+  );
+  assert.equal(
+    plannedCourses.some((course) => course.optionGroup?.id === "official-grc-track-choice:cs-121-or-cs-and-131"),
+    false
+  );
+  assert.equal(
+    plannedCourses.some((course) => course.optionGroup?.id === "official-grc-track-choice:cs-122-or-cs-132"),
+    false
+  );
+
+  assert.ok(findProgrammingPrompt(["CS 122"]), "CS 122 alone should not satisfy Group 1.");
+  assert.ok(findProgrammingPrompt(["CS& 131"]), "CS& 131 alone should not satisfy Group 2.");
+  assert.equal(
+    findProgrammingPrompt(["CS 122", "CS 123"]),
+    undefined,
+    "CS 122 plus CS 123 should satisfy Group 1."
+  );
+  assert.equal(
+    findProgrammingPrompt(["CS& 131", "CS 132"]),
+    undefined,
+    "CS& 131 plus CS 132 should satisfy Group 2."
+  );
+
+  const groupOneSelectedCourses = buildGrcOnlyPlan([], [groupedChoice.options[0].id]);
+  const groupOneLabels = groupOneSelectedCourses.map((course) => course.label);
+  assert.equal(groupOneLabels.includes("CS 122"), true);
+  assert.equal(groupOneLabels.includes("CS 123"), true);
+  assert.equal(
+    groupOneSelectedCourses.some(
+      (course) =>
+        course.optionGroup?.id === groupedChoice.id &&
+        course.optionGroup.isSelectionPrompt === true
+    ),
+    false
+  );
 });
 
 test("Generated Math Education AM-DTA tracks keep source identity and avoid note-only filler slots", () => {

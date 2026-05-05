@@ -4752,6 +4752,43 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Associate in Computer Science, ACS-DTA/MRP curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/computer-science/associate-in-computer-science-acs-dta-mrp.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp:5-specific-requirements-10-15-credits-choose-one-of-the-following-groups",
+        "label": "5. Specific Requirements (10-15 credits) > Choose one of the following groups:",
+        "requiredCredits": null,
+        "sourceHeading": "5. Specific Requirements (10-15 credits) > Choose one of the following groups:",
+        "sourceProgramId": 3291,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp:5-specific-requirements-10-15-credits-choose-one-of-the-following-groups:group-1",
+            "label": "Group 1: CS 121 + CS 122 + CS 123",
+            "courseLabels": [
+              "CS 121",
+              "CS 122",
+              "CS 123"
+            ],
+            "courseCodes": [
+              "CS 121",
+              "CS 122",
+              "CS 123"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp:5-specific-requirements-10-15-credits-choose-one-of-the-following-groups:group-2",
+            "label": "Group 2: CS& 131 + CS 132",
+            "courseLabels": [
+              "CS& 131",
+              "CS 132"
+            ],
+            "courseCodes": [
+              "CS& 131",
+              "CS 132"
+            ]
+          }
+        ]
+      }
     ]
   },
   {
@@ -5247,6 +5284,41 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Transfer Track 2/MRP-Computer and Electrical Engineering curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering.html"
+      }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-c-computer-programming-10-credits",
+        "label": "3. Specific Requirements (48 credits) > C. Computer Programming (10 credits)",
+        "requiredCredits": 10,
+        "sourceHeading": "3. Specific Requirements (48 credits) > C. Computer Programming (10 credits)",
+        "sourceProgramId": 3169,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-c-computer-programming-10-credits:group-1",
+            "label": "Group 1: CS 122 + CS 123",
+            "courseLabels": [
+              "CS 122",
+              "CS 123"
+            ],
+            "courseCodes": [
+              "CS 122",
+              "CS 123"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-c-computer-programming-10-credits:group-2",
+            "label": "Group 2: CS& 131 + CS 132",
+            "courseLabels": [
+              "CS& 131",
+              "CS 132"
+            ],
+            "courseCodes": [
+              "CS& 131",
+              "CS 132"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -10046,7 +10118,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
 ];
 
 export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; officialSupportedProgramCount: number; connectedAssociateTrackCount: number; connectedSupportedProgramCount: number; generatedTrackCount: number; } = {
-  "generatedAt": "2026-05-05T08:51:00.697Z",
+  "generatedAt": "2026-05-05T10:03:11.891Z",
   "currentCatalogId": 11,
   "currentCatalogName": "2025-2026 Catalog",
   "programMapPageCount": 147,

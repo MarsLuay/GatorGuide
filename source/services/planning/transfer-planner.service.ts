@@ -34,6 +34,7 @@ const SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN =
   /\b(approved list|not required for transferring|elective|replacement|course list|course lists|course evaluation|course evaluations|recommended|suggested|consider|first year students|suggested general education|suggested course pathways?|choose\s+(?:one|[0-9]+)|one\s+of|select(?:ed|ing)?|\d+\s+credits?\s+from|minimum\s+\d+\s+credits?[^.]{0,80}\bfrom)\b/i;
 const SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_PATTERN =
   /\bCourse (?:equivalent to|overlaps with):\s*([^.]*)/gi;
+type TransferPlannerSelectedCollegeId = "grc" | "uw";
 
 export type TranscriptCourseEntry = {
   code: string;
@@ -312,6 +313,18 @@ type ParsedGrcTrackChoiceSlot = {
   selectionCount: number;
   options: SuggestedQuarterCourseOption[];
 };
+
+type GrcTrackGroupedChoice = NonNullable<TransferPlannerTrack["groupedChoices"]>[number];
+
+type TrackSupplementalCourseSlot =
+  | {
+      kind: "label";
+      label: string;
+    }
+  | {
+      kind: "grouped-choice";
+      groupedChoice: GrcTrackGroupedChoice;
+    };
 
 export type TransferPlannerCoursePlanningGraph = {
   prerequisiteCourseSetsByCourseCode: Record<string, string[][]>;
@@ -5307,6 +5320,56 @@ function buildGrcTrackChoiceOptionGroup(input: {
   } satisfies SuggestedQuarterCourseOptionGroup;
 }
 
+function buildGrcTrackGroupedChoiceOptionGroup(input: {
+  groupedChoice: GrcTrackGroupedChoice;
+  selectedOptionIds: string[];
+  isSelectionPrompt: boolean;
+}) {
+  const options = input.groupedChoice.options
+    .map<SuggestedQuarterCourseOption>((option) => {
+      const courseLabels = unique((option.courseLabels ?? []).map((label) => String(label ?? "").trim()).filter(Boolean));
+      const courseCodes = unique([
+        ...(option.courseCodes ?? []),
+        ...courseLabels.flatMap((label) => extractCourseCodes(label)),
+      ].map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean));
+      const inferredCreditAmount = courseLabels
+        .map((label) => inferSuggestedCourseCreditAmount(label, extractCourseCodes(label)) ?? 0)
+        .reduce((total, credits) => total + credits, 0);
+      const creditAmount =
+        input.groupedChoice.requiredCredits ?? (inferredCreditAmount > 0 ? inferredCreditAmount : null);
+
+      return {
+        id: option.id,
+        label: option.label,
+        selectedLabel: option.label,
+        courseLabels,
+        courseCodes,
+        guidanceSummary: null,
+        creditAmount,
+        creditMin: creditAmount,
+        creditMax: creditAmount,
+      };
+    })
+    .filter((option) => option.courseLabels.length && option.courseCodes.length);
+
+  if (options.length < 2) {
+    return null;
+  }
+
+  const optionIds = new Set(options.map((option) => option.id));
+  const selectedOptionIds = input.selectedOptionIds.filter((optionId) => optionIds.has(optionId));
+
+  return {
+    id: input.groupedChoice.id,
+    title: input.groupedChoice.label,
+    promptLabel: input.groupedChoice.label,
+    selectionCount: 1,
+    selectedOptionIds,
+    options,
+    isSelectionPrompt: input.isSelectionPrompt,
+  } satisfies SuggestedQuarterCourseOptionGroup;
+}
+
 function getGrcTrackChoiceGuidanceSummary(optionGroup: SuggestedQuarterCourseOptionGroup) {
   const previewLabels = optionGroup.options
     .slice(0, CHECKLIST_CHOICE_PREVIEW_LIMIT)
@@ -5325,11 +5388,34 @@ function isGrcTrackChoiceSlotSatisfied(
   coveredCourseCodes: Set<string>
 ) {
   const satisfiedOptionCount = parsedSlot.options.filter((option) =>
-    option.courseCodes.some(
-      (courseCode) => completedCourseCodes.has(courseCode) || coveredCourseCodes.has(courseCode)
-    )
+    option.courseCodes.length > 1
+      ? option.courseCodes.every(
+          (courseCode) => completedCourseCodes.has(courseCode) || coveredCourseCodes.has(courseCode)
+        )
+      : option.courseCodes.some(
+          (courseCode) => completedCourseCodes.has(courseCode) || coveredCourseCodes.has(courseCode)
+        )
   ).length;
   return satisfiedOptionCount >= parsedSlot.selectionCount;
+}
+
+function isGrcTrackGroupedChoiceSatisfied(
+  groupedChoice: GrcTrackGroupedChoice,
+  completedCourseCodes: Set<string>,
+  coveredCourseCodes: Set<string>
+) {
+  return groupedChoice.options.some((option) => {
+    const courseCodes = unique([
+      ...(option.courseCodes ?? []),
+      ...(option.courseLabels ?? []).flatMap((label) => extractCourseCodes(label)),
+    ].map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean));
+    return (
+      courseCodes.length > 0 &&
+      courseCodes.every(
+        (courseCode) => completedCourseCodes.has(courseCode) || coveredCourseCodes.has(courseCode)
+      )
+    );
+  });
 }
 
 function isFlexibleGrcTrackSingleCourseLabel(label: string) {
@@ -5355,6 +5441,57 @@ function isTrackSupplementalCourseLabel(label: string) {
   return explicitCourseCodes.length === 1 && explicitCourseCodes[0] === normalizedLabel;
 }
 
+function getGrcTrackGroupedChoiceCourseCodes(groupedChoice: GrcTrackGroupedChoice) {
+  return unique(
+    groupedChoice.options.flatMap((option) => [
+      ...(option.courseCodes ?? []),
+      ...(option.courseLabels ?? []).flatMap((label) => extractCourseCodes(label)),
+    ])
+  )
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean);
+}
+
+function getGrcTrackGroupedChoicesForLabel(
+  label: string,
+  groupedChoices: GrcTrackGroupedChoice[]
+) {
+  const explicitCourseCodes = extractCourseCodes(label);
+  if (!explicitCourseCodes.length) {
+    return [] as GrcTrackGroupedChoice[];
+  }
+
+  return groupedChoices.filter((groupedChoice) => {
+    const groupedCourseCodes = new Set(getGrcTrackGroupedChoiceCourseCodes(groupedChoice));
+    return explicitCourseCodes.some((courseCode) => groupedCourseCodes.has(courseCode));
+  });
+}
+
+function shouldSkipTrackLabelCoveredByGroupedChoice(
+  label: string,
+  groupedChoices: GrcTrackGroupedChoice[]
+) {
+  const explicitCourseCodes = extractCourseCodes(label);
+  if (!explicitCourseCodes.length || !groupedChoices.length) {
+    return false;
+  }
+
+  const groupedCourseCodes = new Set(
+    groupedChoices.flatMap((groupedChoice) => getGrcTrackGroupedChoiceCourseCodes(groupedChoice))
+  );
+  const groupedCodeCount = explicitCourseCodes.filter((courseCode) =>
+    groupedCourseCodes.has(courseCode)
+  ).length;
+  if (!groupedCodeCount) {
+    return false;
+  }
+
+  return (
+    explicitCourseCodes.every((courseCode) => groupedCourseCodes.has(courseCode)) ||
+    /\b(?:or|select|choose)\b/i.test(label)
+  );
+}
+
 function getResolvedTrackSupplementalCourseLabels(input: {
   track: TransferPlannerTrack | null | undefined;
   completedCourses: TranscriptCourseEntry[];
@@ -5364,11 +5501,16 @@ function getResolvedTrackSupplementalCourseLabels(input: {
   includeFlexibleTrackSlots?: boolean;
 }) {
   if (!input.track) {
-    return [] as string[];
+    return [] as TrackSupplementalCourseSlot[];
   }
 
-  const supplementalCourseLabels: string[] = [];
+  const supplementalCourseSlots: TrackSupplementalCourseSlot[] = [];
   const seenLabels = new Set<string>();
+  const seenGroupedChoiceIds = new Set<string>();
+  const groupedChoices = input.includeFlexibleTrackSlots ? input.track.groupedChoices ?? [] : [];
+  const completedCourseCodes = new Set(
+    [...input.completedCourseCodes].map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
   const coveredCourseCodes = new Set(
     [...input.coveredCourseCodes].map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
   );
@@ -5384,6 +5526,28 @@ function getResolvedTrackSupplementalCourseLabels(input: {
 
     for (const label of term.courses) {
       const normalizedSlotLabel = normalizeGrcTrackSlotLabel(label);
+      const groupedChoicesForLabel = getGrcTrackGroupedChoicesForLabel(
+        normalizedSlotLabel,
+        groupedChoices
+      );
+      for (const groupedChoice of groupedChoicesForLabel) {
+        if (
+          seenGroupedChoiceIds.has(groupedChoice.id) ||
+          isGrcTrackGroupedChoiceSatisfied(groupedChoice, completedCourseCodes, coveredCourseCodes)
+        ) {
+          continue;
+        }
+
+        seenGroupedChoiceIds.add(groupedChoice.id);
+        supplementalCourseSlots.push({
+          kind: "grouped-choice",
+          groupedChoice,
+        });
+      }
+      if (shouldSkipTrackLabelCoveredByGroupedChoice(normalizedSlotLabel, groupedChoicesForLabel)) {
+        continue;
+      }
+
       const parsedChoiceSlot = input.includeFlexibleTrackSlots
         ? parseGrcTrackChoiceSlot(normalizedSlotLabel)
         : null;
@@ -5399,7 +5563,7 @@ function getResolvedTrackSupplementalCourseLabels(input: {
 
       if (
         parsedChoiceSlot &&
-        isGrcTrackChoiceSlotSatisfied(parsedChoiceSlot, input.completedCourseCodes, coveredCourseCodes)
+        isGrcTrackChoiceSlotSatisfied(parsedChoiceSlot, completedCourseCodes, coveredCourseCodes)
       ) {
         continue;
       }
@@ -5420,7 +5584,7 @@ function getResolvedTrackSupplementalCourseLabels(input: {
         (!parsedChoiceSlot &&
           explicitCourseCode &&
           (coveredCourseCodes.has(explicitCourseCode) ||
-            input.completedCourseCodes.has(explicitCourseCode)))
+            completedCourseCodes.has(explicitCourseCode)))
       ) {
         continue;
       }
@@ -5429,11 +5593,14 @@ function getResolvedTrackSupplementalCourseLabels(input: {
       if (!parsedChoiceSlot && explicitCourseCode) {
         coveredCourseCodes.add(explicitCourseCode);
       }
-      supplementalCourseLabels.push(normalizedLabel);
+      supplementalCourseSlots.push({
+        kind: "label",
+        label: normalizedLabel,
+      });
     }
   }
 
-  return supplementalCourseLabels;
+  return supplementalCourseSlots;
 }
 
 function buildTrackSupplementalGuidanceSummary() {
@@ -5442,7 +5609,7 @@ function buildTrackSupplementalGuidanceSummary() {
 
 function buildTrackSupplementalSuggestedCourses(input: {
   track: TransferPlannerTrack | null | undefined;
-  courseLabels: string[];
+  courseSlots: TrackSupplementalCourseSlot[];
   prerequisiteCourseMap: Map<string, string[][]>;
   corequisiteCourseMap: Map<string, string[][]>;
   sourceOrderStart: number;
@@ -5493,15 +5660,24 @@ function buildTrackSupplementalSuggestedCourses(input: {
     };
   };
 
-  for (const label of input.courseLabels) {
+  for (const slot of input.courseSlots) {
+    const label = slot.kind === "label" ? slot.label : slot.groupedChoice.label;
     const promptOptionGroup = input.includeFlexibleTrackSlots
-      ? buildGrcTrackChoiceOptionGroup({
-          label,
-          selectedOptionIds: normalizeSelectedRequirementOptionIds(
-            selectedRequirementOptionIdsByGroup[parseGrcTrackChoiceSlot(label)?.id ?? ""]
-          ),
-          isSelectionPrompt: true,
-        })
+      ? slot.kind === "grouped-choice"
+        ? buildGrcTrackGroupedChoiceOptionGroup({
+            groupedChoice: slot.groupedChoice,
+            selectedOptionIds: normalizeSelectedRequirementOptionIds(
+              selectedRequirementOptionIdsByGroup[slot.groupedChoice.id]
+            ),
+            isSelectionPrompt: true,
+          })
+        : buildGrcTrackChoiceOptionGroup({
+            label,
+            selectedOptionIds: normalizeSelectedRequirementOptionIds(
+              selectedRequirementOptionIdsByGroup[parseGrcTrackChoiceSlot(label)?.id ?? ""]
+            ),
+            isSelectionPrompt: true,
+          })
       : null;
 
     if (promptOptionGroup) {
@@ -5525,6 +5701,19 @@ function buildTrackSupplementalSuggestedCourses(input: {
         });
 
         for (const optionLabel of option.courseLabels.length ? option.courseLabels : [option.label]) {
+          const optionLabelCourseCodes = extractCourseCodes(optionLabel);
+          const optionLabelCreditAmount =
+            option.courseLabels.length > 1
+              ? inferSuggestedCourseCreditAmount(optionLabel, optionLabelCourseCodes)
+              : null;
+          const optionLabelCreditRange =
+            optionLabelCreditAmount === null
+              ? optionCreditRange
+              : getSuggestedCourseCreditRangeFromValues({
+                  creditAmount: optionLabelCreditAmount,
+                  creditMin: optionLabelCreditAmount,
+                  creditMax: optionLabelCreditAmount,
+                });
           suggestedCourses.push(
             buildPendingCourse({
               label: optionLabel,
@@ -5532,7 +5721,7 @@ function buildTrackSupplementalSuggestedCourses(input: {
               optionGroup: attachedOptionGroup ? null : selectedOptionGroup,
               sequenceGroup:
                 option.courseLabels.length > 1 ? `${promptOptionGroup.id}:${option.id}` : null,
-              ...optionCreditRange,
+              ...optionLabelCreditRange,
             })
           );
           sourceOrderOffset += 1;
@@ -5912,6 +6101,18 @@ function buildGeneralEducationPlaceholder(
   if (!kind) return null;
 
   return createGeneralEducationPlaceholderByKind(kind);
+}
+
+function isChoiceBackedGeneralEducationPlaceholderLabel(label: string) {
+  if (!getGeneralEducationPlaceholderKind(label)) {
+    return false;
+  }
+
+  if (!extractCourseCodes(label).length) {
+    return false;
+  }
+
+  return /\b(?:or|select|choose)\b/i.test(label);
 }
 
 function createGeneralEducationPlaceholderByKind(
@@ -6344,6 +6545,7 @@ function buildTrackGeneralEducationGuidancePlaceholders(args: {
     : [];
   const mapped = resolvedTrackTerms
     .flatMap((term) => term.courses)
+    .filter((entry) => !isChoiceBackedGeneralEducationPlaceholderLabel(String(entry)))
     .map((entry) => buildGeneralEducationPlaceholder(String(entry)))
     .filter((entry): entry is GeneralEducationPlaceholder => !!entry);
   if (!mapped.length) {
@@ -8697,6 +8899,21 @@ function getTrackGeneralEducationPlannerGuidanceRelationText(
   return `from the official matched Green River associate pathway map for ${getGeneralEducationPlanTitle(plan)}`;
 }
 
+function getTrackGeneralEducationTransferAdmissionCollegeLabel(args: {
+  plannerCollegeId?: TransferPlannerSelectedCollegeId | null;
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  if (args.plannerCollegeId === "grc") {
+    return null;
+  }
+
+  if (args.plannerCollegeId === "uw" || args.plan?.campusId?.startsWith("uw-")) {
+    return "UW";
+  }
+
+  return null;
+}
+
 function buildGeneralEducationPlaceholderProgressSummary(args: {
   placeholder: GeneralEducationPlaceholder;
   placeholderIndex: number;
@@ -8815,6 +9032,7 @@ function buildTrackGeneralEducationPlaceholderGuidanceSummary(args: {
   placeholderIndex: number;
   placeholders: GeneralEducationPlaceholder[];
   plan?: TransferPlannerMajorPlan | null;
+  plannerCollegeId?: TransferPlannerSelectedCollegeId | null;
   completedCreditProgress?: CompletedGeneralEducationCreditProgress;
 }) {
   const requirementTargets = buildTrackGeneralEducationGuidanceTargets(args.placeholders);
@@ -8822,12 +9040,16 @@ function buildTrackGeneralEducationPlaceholderGuidanceSummary(args: {
     return null;
   }
 
+  const transferAdmissionCollegeLabel =
+    getTrackGeneralEducationTransferAdmissionCollegeLabel(args);
+
   return buildGeneralEducationPlaceholderProgressSummary({
     ...args,
     requirementTargets,
     relationText: getTrackGeneralEducationPlannerGuidanceRelationText(args.plan),
-    additionalGuidanceText:
-      "This is an official Green River track slot, not an official UW transfer admission requirement.",
+    additionalGuidanceText: transferAdmissionCollegeLabel
+      ? `This is an official Green River track slot, not an official ${transferAdmissionCollegeLabel} transfer admission requirement.`
+      : null,
   });
 }
 
@@ -10105,6 +10327,7 @@ function attachAutomaticTransferEquivalencyGuidance(
 
 export function buildSuggestedQuarterPlan(input: {
   plan?: TransferPlannerMajorPlan | null;
+  plannerCollegeId?: TransferPlannerSelectedCollegeId | null;
   applicationStatuses: TransferRequirementStatus[];
   beforeEnrollmentStatuses: TransferRequirementStatus[];
   stayAtGrcStatuses: TransferRequirementStatus[];
@@ -10181,7 +10404,7 @@ export function buildSuggestedQuarterPlan(input: {
     ),
   ]);
   const includeFlexibleGrcTrackSlots = !input.plan;
-  const resolvedTrackSupplementalCourseLabels = getResolvedTrackSupplementalCourseLabels({
+  const resolvedTrackSupplementalCourseSlots = getResolvedTrackSupplementalCourseLabels({
     track: input.track,
     completedCourses: input.completedCourses,
     completedCourseCodes,
@@ -10191,7 +10414,14 @@ export function buildSuggestedQuarterPlan(input: {
   });
   const actionableCourseCodes = new Set([
     ...checklistCourseCodes,
-    ...resolvedTrackSupplementalCourseLabels.flatMap((label) => extractCourseCodes(label)),
+    ...resolvedTrackSupplementalCourseSlots.flatMap((slot) =>
+      slot.kind === "label"
+        ? extractCourseCodes(slot.label)
+        : slot.groupedChoice.options.flatMap((option) => [
+            ...(option.courseCodes ?? []),
+            ...(option.courseLabels ?? []).flatMap((label) => extractCourseCodes(label)),
+          ])
+    ),
   ]);
   const planningGraph = buildTransferPlannerCoursePlanningGraph({
     plan: input.plan,
@@ -10236,7 +10466,7 @@ export function buildSuggestedQuarterPlan(input: {
   );
   const trackSupplementalCourses = buildTrackSupplementalSuggestedCourses({
     track: input.track,
-    courseLabels: resolvedTrackSupplementalCourseLabels,
+    courseSlots: resolvedTrackSupplementalCourseSlots,
     prerequisiteCourseMap,
     corequisiteCourseMap,
     sourceOrderStart: essentialRemainingCourses.length + stayAtGrcRemainingCourses.length,
@@ -10376,6 +10606,7 @@ export function buildSuggestedQuarterPlan(input: {
                     placeholderIndex: scopedPlaceholderIndex,
                     placeholders: scopedPlaceholders,
                     plan: input.plan,
+                    plannerCollegeId: input.plannerCollegeId,
                     completedCreditProgress: completedGeneralEducationCreditProgress,
                   })
                 : buildSourceBackedMajorGeneralEducationPlaceholderGuidanceSummary({

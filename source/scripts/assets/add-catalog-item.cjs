@@ -961,6 +961,8 @@ const OPPORTUNITY_TYPE_LABELS = {
   internship: "Internship",
   general_deadline: "General deadline",
   college_deadline: "College deadline",
+  "quarter-start": "Quarter start",
+  "quarter-end": "Quarter end",
 };
 
 const WORKBOOK_OPTION_SHEET_NAME = "Options";
@@ -1545,7 +1547,10 @@ function buildResourceExportWorkbookSheets(resourceCatalog, opportunities) {
   const resourceRows = getResourceExportRows(resourceCatalog);
   const allOpportunities = dedupeOpportunities(opportunities);
   const isDeadlineOpportunity = (opportunity) =>
-    opportunity.type === "general_deadline" || opportunity.type === "college_deadline";
+    opportunity.type === "general_deadline" ||
+    opportunity.type === "college_deadline" ||
+    opportunity.type === "quarter-start" ||
+    opportunity.type === "quarter-end";
   const belongsInLegacy = (opportunity) => isExpiredOneTimeOpportunity(opportunity);
   const scholarshipRows = getScholarshipLinkExportRows(
     allOpportunities,
@@ -4100,6 +4105,8 @@ async function removeOpportunity(rl) {
             { value: "internship", label: "Internship / work opportunity" },
             { value: "college_deadline", label: "College deadline" },
             { value: "general_deadline", label: "General deadline" },
+            { value: "quarter-start", label: "Quarter start" },
+            { value: "quarter-end", label: "Quarter end" },
             { value: "__all__", label: "Show all opportunities" },
           ],
           { defaultValue: "__all__" }
@@ -4525,6 +4532,8 @@ async function main() {
             { value: "internship", label: "Internship / work opportunity" },
             { value: "college_deadline", label: "College deadline" },
             { value: "general_deadline", label: "General deadline" },
+            { value: "quarter-start", label: "Quarter start" },
+            { value: "quarter-end", label: "Quarter end" },
             {
               value: "resource",
               label:

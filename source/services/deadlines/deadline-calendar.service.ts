@@ -68,6 +68,10 @@ const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
 const UW_SEATTLE_TRANSFER_APPLICATION_DEADLINE_PATTERN =
   /^uw-seattle-transfer-application-deadline-/;
 
+function isAcademicCalendarOpportunityType(type: string) {
+  return type === "quarter-start" || type === "quarter-end";
+}
+
 function toDate(value: unknown): Date | null {
   const raw = String(value ?? "").trim();
   if (!raw) return null;
@@ -169,6 +173,8 @@ function buildOpportunityEntry(
         ? opportunity.college.collegeName || opportunity.organizationName || "College deadline"
         : opportunity.type === "general_deadline"
           ? opportunity.organizationName || "General deadline"
+          : isAcademicCalendarOpportunityType(opportunity.type)
+            ? opportunity.college.collegeName || opportunity.organizationName || "Academic calendar"
           : opportunity.organizationName || "Opportunity",
     description: opportunity.summary,
     kind: opportunity.type,
@@ -177,6 +183,8 @@ function buildOpportunityEntry(
         ? "College deadline"
         : opportunity.type === "general_deadline"
           ? "General deadline"
+          : isAcademicCalendarOpportunityType(opportunity.type)
+            ? "Academic calendar"
           : "Opportunity",
     isDone: opportunity.isDone,
     target,

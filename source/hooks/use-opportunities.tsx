@@ -58,6 +58,13 @@ function shouldSyncNotificationForOpportunity(
     return preferences.collegeDeadlines;
   }
 
+  if (
+    opportunity.type === OPPORTUNITY_TYPES.quarterStart ||
+    opportunity.type === OPPORTUNITY_TYPES.quarterEnd
+  ) {
+    return preferences.collegeDeadlines;
+  }
+
   if (opportunity.type === OPPORTUNITY_TYPES.generalDeadline) {
     return preferences.generalDeadlines;
   }

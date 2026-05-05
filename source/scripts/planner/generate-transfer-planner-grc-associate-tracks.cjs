@@ -118,10 +118,25 @@ function normalizeTrackCourseTerms(terms) {
   }));
 }
 
+function normalizeTrackGroupedChoices(groupedChoices) {
+  return (Array.isArray(groupedChoices) ? groupedChoices : [])
+    .map((choice) => ({
+      ...choice,
+      options: (choice?.options ?? []).map((option) => ({
+        ...option,
+        courseLabels: uniqueStrings(option?.courseLabels ?? []),
+        courseCodes: uniqueStrings((option?.courseCodes ?? []).map((code) => normalizeCourseCode(code))),
+      })),
+    }))
+    .filter((choice) => choice.options.length >= 2);
+}
+
 function normalizeGeneratedTrack(track) {
+  const groupedChoices = normalizeTrackGroupedChoices(track?.groupedChoices);
   return {
     ...track,
     terms: normalizeTrackCourseTerms(track?.terms),
+    ...(groupedChoices.length ? { groupedChoices } : {}),
   };
 }
 
@@ -363,6 +378,52 @@ function getProgramByConnectorName(programs, page) {
   return null;
 }
 
+function normalizeProgramRequirementMatchName(value) {
+  return String(value ?? "")
+    .replace(/\bcurriculum\s+map\b/gi, " ")
+    .replace(/\b(?:AST|AAS|AAA|AA|AFA|BAS|Certificate|DTA|MRP)\b/gi, " ")
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+function getRequirementProgramForCurriculumMap(programs, page, curriculumProgramSummary) {
+  const curriculumProgramId = Number(curriculumProgramSummary?.id ?? 0);
+  const baseNames = uniqueStrings([
+    page.connectorProgramName,
+    page.connectorProgramName?.replace(/\s+Curriculum\s+Map\s*$/i, ""),
+    page.h1,
+    curriculumProgramSummary?.name?.replace(/\s+Curriculum\s+Map\s*$/i, ""),
+  ])
+    .map(normalizeProgramRequirementMatchName)
+    .filter(Boolean);
+  if (!baseNames.length) {
+    return null;
+  }
+
+  const candidates = programs
+    .filter((program) => Number(program?.id ?? 0) !== curriculumProgramId)
+    .filter((program) => !/\bcurriculum\s+map\b/i.test(String(program?.name ?? "")))
+    .map((program) => ({
+      program,
+      normalizedName: normalizeProgramRequirementMatchName(program?.name),
+    }))
+    .filter((entry) => entry.normalizedName);
+
+  return (
+    candidates.find((entry) =>
+      baseNames.some(
+        (baseName) =>
+          entry.normalizedName === baseName ||
+          entry.normalizedName.includes(baseName) ||
+          baseName.includes(entry.normalizedName)
+      )
+    )?.program ?? null
+  );
+}
+
 function cleanTrackTitle(rawTitle) {
   const title = String(rawTitle ?? "").trim();
   const suffixPatterns = [
@@ -540,6 +601,201 @@ function buildCourseEntries(core) {
       index,
       label: normalizeCourseTitleLabel(course.title),
     }));
+}
+
+function getCreditAmountFromText(value) {
+  const match = String(value ?? "").match(/\b(\d+(?:\.\d+)?)\s*credits?\b/i);
+  if (!match) {
+    return null;
+  }
+  const creditAmount = Number.parseFloat(match[1]);
+  return Number.isFinite(creditAmount) && creditAmount > 0 ? creditAmount : null;
+}
+
+function getGroupedChoiceMarkerLabel(value) {
+  const signal = normalizeStructuralTrackNote(value);
+  const match = signal.match(/\b(group|option|sequence)\s*([A-Z]|\d+)\b/i);
+  if (!match) {
+    return "";
+  }
+
+  const markerKind = `${match[1].slice(0, 1).toUpperCase()}${match[1].slice(1).toLowerCase()}`;
+  return `${markerKind} ${String(match[2]).toUpperCase()}`;
+}
+
+function getGroupedChoiceAdhocLabel(adhoc) {
+  return (
+    getGroupedChoiceMarkerLabel(adhoc?.display) ||
+    getGroupedChoiceMarkerLabel(adhoc?.content) ||
+    getGroupedChoiceMarkerLabel(adhoc?.name)
+  );
+}
+
+function hasGroupedChoiceCue(value) {
+  const normalized = normalizeStructuralTrackNote(value);
+  return /\b(?:choose|select)\s+(?:one|1)\b[^.]{0,120}\b(?:groups?|options?|sequences?)\b/i.test(
+    normalized
+  );
+}
+
+function getGroupedChoiceCoreRequiredCredits(core) {
+  return (
+    getCreditAmountFromText(core?.name) ??
+    getCreditAmountFromText(core?.description) ??
+    null
+  );
+}
+
+function buildGroupedChoiceOption(input) {
+  const courseLabels = uniqueStrings((input.courseEntries ?? []).map((course) => course.label));
+  const courseCodes = uniqueStrings(courseLabels.flatMap((label) => extractCourseCodes(label)));
+  if (!courseLabels.length || !courseCodes.length) {
+    return null;
+  }
+
+  return {
+    id: `${input.choiceId}:${slugify(input.groupLabel || `group-${input.optionIndex + 1}`)}`,
+    label: `${input.groupLabel || `Group ${input.optionIndex + 1}`}: ${courseLabels.join(" + ")}`,
+    courseLabels,
+    courseCodes,
+  };
+}
+
+function buildGroupedChoiceFromAdhocMarkers(core, choiceId, sourceProgramId, labelParts) {
+  const courseEntries = buildCourseEntries(core);
+  if (courseEntries.length < 2) {
+    return null;
+  }
+
+  const courseIndexById = new Map(courseEntries.map((course) => [course.id, course.index]));
+  const markers = (core.adhocs ?? [])
+    .map((adhoc) => ({
+      adhoc,
+      groupLabel: getGroupedChoiceAdhocLabel(adhoc),
+      startIndex: getSelectionStartIndex(adhoc, courseIndexById, courseEntries.length),
+    }))
+    .filter((marker) => marker.groupLabel && marker.startIndex < courseEntries.length)
+    .sort((left, right) => left.startIndex - right.startIndex);
+
+  if (markers.length < 2) {
+    return null;
+  }
+
+  const options = markers
+    .map((marker, markerIndex) =>
+      buildGroupedChoiceOption({
+        choiceId,
+        optionIndex: markerIndex,
+        groupLabel: marker.groupLabel,
+        courseEntries: courseEntries.slice(
+          marker.startIndex,
+          markers[markerIndex + 1]?.startIndex ?? courseEntries.length
+        ),
+      })
+    )
+    .filter(Boolean);
+
+  if (options.length < 2) {
+    return null;
+  }
+
+  return {
+    id: choiceId,
+    label: labelParts.join(" > ") || "Choose one group",
+    requiredCredits: getGroupedChoiceCoreRequiredCredits(core),
+    sourceHeading: labelParts.join(" > ") || String(core?.name ?? "").trim() || null,
+    sourceProgramId,
+    options,
+  };
+}
+
+function buildGroupedChoiceFromChildGroups(core, choiceId, sourceProgramId, labelParts) {
+  const groupChildren = (core.children ?? [])
+    .map((child, childIndex) => ({
+      child,
+      childIndex,
+      groupLabel: getGroupedChoiceMarkerLabel(child?.name),
+    }))
+    .filter((entry) => entry.groupLabel);
+
+  if (groupChildren.length < 2) {
+    return null;
+  }
+
+  const options = groupChildren
+    .map((entry, optionIndex) =>
+      buildGroupedChoiceOption({
+        choiceId,
+        optionIndex,
+        groupLabel: entry.groupLabel,
+        courseEntries: buildCourseEntries(entry.child),
+      })
+    )
+    .filter(Boolean);
+
+  if (options.length < 2) {
+    return null;
+  }
+
+  return {
+    id: choiceId,
+    label: labelParts.join(" > ") || "Choose one group",
+    requiredCredits: getGroupedChoiceCoreRequiredCredits(core),
+    sourceHeading: labelParts.join(" > ") || String(core?.name ?? "").trim() || null,
+    sourceProgramId,
+    options,
+  };
+}
+
+function collectGroupedChoicesFromCore(core, trackId, sourceProgramId, prefix = []) {
+  const labelParts = [...prefix, String(core?.name ?? "").trim()].filter(Boolean);
+  const cueText = `${core?.name ?? ""} ${core?.description ?? ""}`;
+  const hasChoiceCue = hasGroupedChoiceCue(cueText);
+  const choiceId = `official-grc-track-grouped-choice:${slugify(trackId)}:${slugify(
+    labelParts.join(" ")
+  )}`;
+  const choices = [];
+
+  if (hasChoiceCue) {
+    const adhocChoice = buildGroupedChoiceFromAdhocMarkers(
+      core,
+      choiceId,
+      sourceProgramId,
+      labelParts
+    );
+    const childChoice = buildGroupedChoiceFromChildGroups(
+      core,
+      choiceId,
+      sourceProgramId,
+      labelParts
+    );
+    if (adhocChoice) {
+      choices.push(adhocChoice);
+    } else if (childChoice) {
+      choices.push(childChoice);
+    }
+  }
+
+  for (const child of core.children ?? []) {
+    choices.push(...collectGroupedChoicesFromCore(child, trackId, sourceProgramId, labelParts));
+  }
+
+  return choices;
+}
+
+function collectGroupedChoicesFromProgram(program, trackId) {
+  const sourceProgramId = Number(program?.id ?? 0) || null;
+  const choices = (program?.cores ?? []).flatMap((core) =>
+    collectGroupedChoicesFromCore(core, trackId, sourceProgramId)
+  );
+  const seenIds = new Set();
+  return choices.filter((choice) => {
+    if (seenIds.has(choice.id)) {
+      return false;
+    }
+    seenIds.add(choice.id);
+    return true;
+  });
 }
 
 function getSelectionStartIndex(adhoc, courseIndexById, courseCount) {
@@ -982,7 +1238,7 @@ function buildGeneratedTrackNotes(page, coreTerms) {
   return uniqueStrings(notes);
 }
 
-function buildTrackFromProgramPage(page, program) {
+function buildTrackFromProgramPage(page, program, requirementProgram = null) {
   const coreTerms = flattenProgramCores(program.cores ?? []).filter(
     (term) => term.courses.length || term.description
   );
@@ -997,8 +1253,13 @@ function buildTrackFromProgramPage(page, program) {
     throw new Error(`No curriculum-map terms were extracted for ${page.h1}.`);
   }
 
+  const trackId = getGeneratedTrackId(page);
+  const groupedChoices = requirementProgram
+    ? collectGroupedChoicesFromProgram(requirementProgram, trackId)
+    : [];
+
   return {
-    id: getGeneratedTrackId(page),
+    id: trackId,
     code: inferTrackCode(page),
     title: cleanTrackTitle(page.h1),
     summary: buildGeneratedTrackSummary(page),
@@ -1011,6 +1272,7 @@ function buildTrackFromProgramPage(page, program) {
         url: page.url,
       },
     ],
+    ...(groupedChoices.length ? { groupedChoices } : {}),
   };
 }
 
@@ -1099,13 +1361,30 @@ async function main() {
       const program = await fetchJson(
         `${GRC_WIDGET_API_ROOT_URL}/catalog/${currentCatalog.id}/program/${programSummary.id}`
       );
+      const requirementProgramSummary = getRequirementProgramForCurriculumMap(
+        catalogPrograms,
+        page,
+        programSummary
+      );
+      const requirementProgram =
+        requirementProgramSummary && Number(requirementProgramSummary.id) !== Number(programSummary.id)
+          ? await fetchJson(
+              `${GRC_WIDGET_API_ROOT_URL}/catalog/${currentCatalog.id}/program/${requirementProgramSummary.id}`
+            )
+          : null;
 
       return {
         page,
         program,
+        requirementProgram,
         programSummary:
           catalogProgramByName.get(String(programSummary.name ?? "").trim()) ?? programSummary,
-        track: buildTrackFromProgramPage(page, program),
+        requirementProgramSummary:
+          requirementProgramSummary
+            ? catalogProgramByName.get(String(requirementProgramSummary.name ?? "").trim()) ??
+              requirementProgramSummary
+            : null,
+        track: buildTrackFromProgramPage(page, program, requirementProgram),
       };
     }
   )).filter(Boolean);
@@ -1143,6 +1422,8 @@ async function main() {
       connectorProgramName: record.page.connectorProgramName,
       catalogProgramId: Number(record.program?.id ?? 0),
       catalogProgramName: String(record.program?.name ?? "").trim(),
+      requirementProgramId: Number(record.requirementProgram?.id ?? 0) || null,
+      requirementProgramName: String(record.requirementProgram?.name ?? "").trim() || null,
       track: record.track,
     })),
   };

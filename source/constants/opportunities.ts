@@ -188,9 +188,9 @@ export function normalizeOpportunityId(value: unknown): string {
 
 export function normalizeOpportunityType(value: unknown): OpportunityType {
   const parsed = String(value ?? "").trim();
-  if (parsed === OPPORTUNITY_TYPES.internship) return OPPORTUNITY_TYPES.internship;
-  if (parsed === OPPORTUNITY_TYPES.generalDeadline) return OPPORTUNITY_TYPES.generalDeadline;
-  if (parsed === OPPORTUNITY_TYPES.collegeDeadline) return OPPORTUNITY_TYPES.collegeDeadline;
+  if ((Object.values(OPPORTUNITY_TYPES) as string[]).includes(parsed)) {
+    return parsed as OpportunityType;
+  }
   return OPPORTUNITY_TYPES.scholarship;
 }
 

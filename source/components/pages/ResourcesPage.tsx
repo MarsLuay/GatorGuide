@@ -19,6 +19,7 @@ import {
   type ResourceCatalogSubsection,
 } from "@/constants/resource-catalog";
 import { ROUTES } from "@/constants/routes";
+import { OPPORTUNITY_TYPES } from "@/constants/opportunities";
 import {
   getTransferEquivalencyTagDisplayLabel,
   TRANSFER_EQUIVALENCY_ALL_TRACKED_TAGS_PARAM,
@@ -503,6 +504,15 @@ export default function ResourcesPage() {
         title: "General deadlines",
         items: filteredOpportunities.filter(
           (opportunity) => opportunity.type === "general_deadline"
+        ),
+      },
+      {
+        key: "academic_calendar",
+        title: "Academic calendar",
+        items: filteredOpportunities.filter(
+          (opportunity) =>
+            opportunity.type === OPPORTUNITY_TYPES.quarterStart ||
+            opportunity.type === OPPORTUNITY_TYPES.quarterEnd
         ),
       },
     ].filter((subsection) => subsection.items.length > 0);

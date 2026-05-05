@@ -11,6 +11,7 @@ import {
   OPPORTUNITY_DEADLINE_TYPES,
   OPPORTUNITY_PROGRESS_STATES,
   OPPORTUNITY_STATUSES,
+  OPPORTUNITY_TYPES,
   resolveOpportunityProgress,
   resolveOpportunityDueDate,
 } from "@/constants/opportunities";
@@ -148,6 +149,15 @@ function getFinancialAidMatchTags(input: MatchInput): OpportunityFinancialAidTag
   return uniqueStrings(tags) as OpportunityFinancialAidTag[];
 }
 
+function isDeadlineOpportunityType(type: Opportunity["type"]) {
+  return (
+    type === OPPORTUNITY_TYPES.collegeDeadline ||
+    type === OPPORTUNITY_TYPES.generalDeadline ||
+    type === OPPORTUNITY_TYPES.quarterStart ||
+    type === OPPORTUNITY_TYPES.quarterEnd
+  );
+}
+
 function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedOpportunity | null {
   if (opportunity.status === OPPORTUNITY_STATUSES.archived) return null;
 
@@ -281,10 +291,7 @@ function scoreOpportunity(opportunity: Opportunity, input: MatchInput): MatchedO
     matchReasons.push("Rolling deadline");
   }
 
-  if (
-    opportunity.type === "college_deadline" ||
-    opportunity.type === "general_deadline"
-  ) {
+  if (isDeadlineOpportunityType(opportunity.type)) {
     score += 10;
   }
 

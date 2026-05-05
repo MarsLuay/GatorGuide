@@ -4777,6 +4777,43 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Associate in Computer Science, ACS-DTA/MRP curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/computer-science/associate-in-computer-science-acs-dta-mrp.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp:5-specific-requirements-10-15-credits-choose-one-of-the-following-groups",
+        "label": "5. Specific Requirements (10-15 credits) > Choose one of the following groups:",
+        "requiredCredits": null,
+        "sourceHeading": "5. Specific Requirements (10-15 credits) > Choose one of the following groups:",
+        "sourceProgramId": 3291,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp:5-specific-requirements-10-15-credits-choose-one-of-the-following-groups:group-1",
+            "label": "Group 1: CS 121 + CS 122 + CS 123",
+            "courseLabels": [
+              "CS 121",
+              "CS 122",
+              "CS 123"
+            ],
+            "courseCodes": [
+              "CS 121",
+              "CS 122",
+              "CS 123"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp:5-specific-requirements-10-15-credits-choose-one-of-the-following-groups:group-2",
+            "label": "Group 2: CS& 131 + CS 132",
+            "courseLabels": [
+              "CS& 131",
+              "CS 132"
+            ],
+            "courseCodes": [
+              "CS& 131",
+              "CS 132"
+            ]
+          }
+        ]
+      }
     ]
   },
   {
@@ -5272,6 +5309,41 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Transfer Track 2/MRP-Computer and Electrical Engineering curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering.html"
+      }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-c-computer-programming-10-credits",
+        "label": "3. Specific Requirements (48 credits) > C. Computer Programming (10 credits)",
+        "requiredCredits": 10,
+        "sourceHeading": "3. Specific Requirements (48 credits) > C. Computer Programming (10 credits)",
+        "sourceProgramId": 3169,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-c-computer-programming-10-credits:group-1",
+            "label": "Group 1: CS 122 + CS 123",
+            "courseLabels": [
+              "CS 122",
+              "CS 123"
+            ],
+            "courseCodes": [
+              "CS 122",
+              "CS 123"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-c-computer-programming-10-credits:group-2",
+            "label": "Group 2: CS& 131 + CS 132",
+            "courseLabels": [
+              "CS& 131",
+              "CS 132"
+            ],
+            "courseCodes": [
+              "CS& 131",
+              "CS 132"
+            ]
+          }
+        ]
       }
     ]
   },
@@ -14820,8 +14892,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW HCDE degree requirements",
-        "url": "https://www.hcde.washington.edu/bs/requirements/2024",
+        "label": "Degree requirements",
+        "url": "https://www.hcde.washington.edu/bs/requirements",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -16749,11 +16821,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma Arts, Media and Culture overview",
-        "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-        "visibility": "visible",
-        "status": "verified",
-        "sourceConfidence": "medium"
+        "label": "UW Tacoma Arts, Media and Culture - American Cultures Track",
+        "url": "https://www.tacoma.uw.edu/sias/cac/american-cultures-track"
+      },
+      {
+        "label": "UW Tacoma Arts, Media and Culture - Comparative Arts Track",
+        "url": "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track"
+      },
+      {
+        "label": "UW Tacoma Arts, Media and Culture - Film and Media Track",
+        "url": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track"
+      },
+      {
+        "label": "UW Tacoma Arts, Media and Culture - Literature Track",
+        "url": "https://www.tacoma.uw.edu/sias/cac/literature-track"
+      },
+      {
+        "label": "UW Tacoma Arts, Media and Culture - Visual and Performing Arts Track",
+        "url": "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track"
       }
     ],
     "degreeMapSections": [],
@@ -16772,15 +16857,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Arts, Media and Culture overview",
-            "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -16914,24 +16991,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "research-track",
         "label": "RESEARCH TRACK",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "professional-track",
-        "label": "PROFESSIONAL TRACK",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -17129,26 +17188,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": [
-      {
-        "id": "b-a-route",
-        "label": "B.A. route",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      }
-    ]
+    "pathways": []
   },
   {
     "id": "uw-tacoma-economics-and-policy-analysis",

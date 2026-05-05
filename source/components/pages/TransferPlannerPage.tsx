@@ -4828,6 +4828,7 @@ export default function TransferPlannerPage() {
       isPlannerComputationReady
         ? buildSuggestedQuarterPlan({
             plan: isUwPlanner ? plan : null,
+            plannerCollegeId: selectedCollegeId,
             applicationStatuses,
             beforeEnrollmentStatuses,
             stayAtGrcStatuses,
@@ -4852,6 +4853,7 @@ export default function TransferPlannerPage() {
       allowSummerClasses,
       onlyUwEssentialClasses,
       plan,
+      selectedCollegeId,
       selectedRequirementOptionIdsByGroup,
       stayAtGrcStatuses,
       track,

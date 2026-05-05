@@ -79,6 +79,8 @@ const TYPE_OPTIONS = [
   OPPORTUNITY_TYPES.internship,
   OPPORTUNITY_TYPES.generalDeadline,
   OPPORTUNITY_TYPES.collegeDeadline,
+  OPPORTUNITY_TYPES.quarterStart,
+  OPPORTUNITY_TYPES.quarterEnd,
 ] as const;
 
 const STATUS_OPTIONS = [

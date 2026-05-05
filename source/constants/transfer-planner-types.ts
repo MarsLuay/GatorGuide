@@ -200,6 +200,22 @@ export type TransferPlannerTrackCatalogYear = {
   notes?: string[];
 };
 
+export type TransferPlannerTrackGroupedChoiceOption = {
+  id: string;
+  label: string;
+  courseLabels: string[];
+  courseCodes: string[];
+};
+
+export type TransferPlannerTrackGroupedChoice = {
+  id: string;
+  label: string;
+  requiredCredits?: number | null;
+  sourceHeading?: string | null;
+  sourceProgramId?: number | null;
+  options: TransferPlannerTrackGroupedChoiceOption[];
+};
+
 export type TransferPlannerTrack = {
   id: string;
   code: string;
@@ -210,6 +226,7 @@ export type TransferPlannerTrack = {
   notes: string[];
   officialLinks?: TransferPlannerLink[];
   catalogYears?: TransferPlannerTrackCatalogYear[];
+  groupedChoices?: TransferPlannerTrackGroupedChoice[];
 };
 
 export type TransferPlannerCourseAvailability =

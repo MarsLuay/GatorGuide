@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   normalizeOpportunity,
+  OPPORTUNITY_TYPES,
   OPPORTUNITY_PROGRESS_STATES,
   resolveOpportunityDueDate,
   resolveOpportunityProgress,
@@ -263,6 +264,37 @@ test("Deadline calendar keeps the stored occurrence when a recurring opportunity
     [toLocalDateKey(originalDueDate), toLocalDateKey(nextDueDate)]
   );
   assert.equal(new Set(entries.map((entry) => entry.id)).size, 2);
+});
+
+test("Quarter calendar opportunities stay out of the scholarship category", () => {
+  const quarterOpportunities = STARTER_OPPORTUNITIES.filter((opportunity) =>
+    /^grc-quarter-(?:start|end)-/.test(opportunity.opportunityId)
+  ).map((opportunity) => normalizeOpportunity(opportunity));
+  const quarterTypeCounts = quarterOpportunities.reduce<Record<string, number>>(
+    (counts, opportunity) => ({
+      ...counts,
+      [opportunity.type]: (counts[opportunity.type] ?? 0) + 1,
+    }),
+    {}
+  );
+  const matched = opportunityMatchingService.matchOpportunities(quarterOpportunities, {
+    user: null,
+    questionnaireAnswers: {},
+    statusById: {},
+  });
+  const entries = deadlineCalendarService.buildOpportunityEntries(matched);
+
+  assert.equal(quarterOpportunities.length, 24);
+  assert.equal(quarterTypeCounts[OPPORTUNITY_TYPES.quarterStart], 12);
+  assert.equal(quarterTypeCounts[OPPORTUNITY_TYPES.quarterEnd], 12);
+  assert.equal(quarterTypeCounts[OPPORTUNITY_TYPES.scholarship] ?? 0, 0);
+  assert.ok(
+    entries.every((entry) =>
+      entry.kind === OPPORTUNITY_TYPES.quarterStart ||
+      entry.kind === OPPORTUNITY_TYPES.quarterEnd
+    )
+  );
+  assert.ok(entries.every((entry) => entry.sourceLabel === "Academic calendar"));
 });
 
 test("Transcript credit estimate adds 15 credits for completed fall, winter, and spring terms after stale transcript data", () => {

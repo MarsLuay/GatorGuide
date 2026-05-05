@@ -6,6 +6,7 @@ import {
   type UserOpportunityStatus,
   isOpportunityDoneForCurrentCycle,
   OPPORTUNITY_NOTIFICATION_OFFSETS_DAYS,
+  OPPORTUNITY_TYPES,
   resolveOpportunityDueDate,
 } from '@/constants/opportunities';
 import { STORAGE_KEYS } from '@/constants/schema';
@@ -174,9 +175,12 @@ function buildOpportunityReminderCopy(
       ? 'college deadline'
       : opportunity.type === 'general_deadline'
         ? 'deadline'
-      : opportunity.type === 'internship'
-        ? 'internship'
-        : 'scholarship';
+        : opportunity.type === OPPORTUNITY_TYPES.quarterStart ||
+            opportunity.type === OPPORTUNITY_TYPES.quarterEnd
+          ? 'academic calendar date'
+          : opportunity.type === 'internship'
+            ? 'internship'
+            : 'scholarship';
 
   if (offsetDays === 7) {
     return {
