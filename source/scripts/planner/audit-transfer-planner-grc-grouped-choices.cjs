@@ -80,6 +80,9 @@ function buildQuarterPlan(track) {
 function auditGroupedChoice(track, groupedChoice) {
   const groupedCourseCodes = getGroupedChoiceCourseCodes(groupedChoice);
   const groupedCourseCodeSet = new Set(groupedCourseCodes);
+  const officialGroupedChoiceIds = new Set(
+    (track.groupedChoices ?? []).map((choice) => choice.id).filter(Boolean)
+  );
   const sourceSplitLabels = (track.terms ?? []).flatMap((term) =>
     (term.courses ?? [])
       .filter((label) => isSplitChoiceLabel(label, groupedCourseCodeSet))
@@ -104,6 +107,9 @@ function auditGroupedChoice(track, groupedChoice) {
   const unrelatedSplitOptionRows = plannedCourses.filter((entry) => {
     const optionGroup = entry.course.optionGroup;
     if (!optionGroup || optionGroup.id === groupedChoice.id) {
+      return false;
+    }
+    if (officialGroupedChoiceIds.has(optionGroup.id)) {
       return false;
     }
 

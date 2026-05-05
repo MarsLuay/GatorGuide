@@ -109,9 +109,14 @@ import {
   buildMajorSpecificsCourseSections,
   buildMajorSpecificsRenderingAudit,
   buildUwGeneralTransferRequirementSection,
+  getPreparatoryTrackCourseCodeSet,
   getCurrentTransferPlannerGrcCatalogYearLabel,
   inferTransferPlannerGrcCatalogYearLabel,
+  getResolvedTrackTermsForRequirementDisplay,
   buildSuggestedQuarterPlan,
+  buildSuggestedQuarterRemainingCreditRange,
+  hasCourseAndDistributionPlaceholderSignal,
+  isMergedCourseDistributionRequirementLabel,
   type TranscriptCourseEntry,
 } from "@/services/planning/transfer-planner.service";
 const {
@@ -5894,6 +5899,88 @@ test("AST-2/MRP Computer and Electrical Engineering planning does not double-cou
   );
 });
 
+test("AST-2/MRP Computer and Electrical Engineering suppresses merged course/distribution required labels", () => {
+  const track = getTransferPlannerTrack(
+    "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering"
+  );
+  assert.ok(
+    track,
+    "Expected the Green River AST-2/MRP Computer and Electrical Engineering track."
+  );
+
+  const mixedLabel = "CS 123 or 2 C - Humanities/Fine Arts/English or Social Science";
+  assert.equal(hasCourseAndDistributionPlaceholderSignal(mixedLabel), true);
+  assert.equal(isMergedCourseDistributionRequirementLabel(mixedLabel), true);
+  assert.equal(
+    isMergedCourseDistributionRequirementLabel("POLS& 200 - American Government"),
+    false
+  );
+
+  const simulatedGrcRequiredCourseCodes: string[] = [];
+  const seenCourseCodes = new Set<string>();
+  const preparatoryCourseCodes = getPreparatoryTrackCourseCodeSet(track);
+  for (const term of getResolvedTrackTermsForRequirementDisplay(track, [])) {
+    if (/\btransferability of credits\b/i.test(String(term.label ?? "").trim())) {
+      continue;
+    }
+
+    for (const label of term.courses) {
+      if (isMergedCourseDistributionRequirementLabel(label)) {
+        continue;
+      }
+
+      const courseCodes = extractCourseCodes(label);
+      if (courseCodes.length !== 1) {
+        continue;
+      }
+
+      const courseCode = normalizeCourseCode(courseCodes[0]);
+      if (
+        !courseCode ||
+        preparatoryCourseCodes.has(courseCode) ||
+        seenCourseCodes.has(courseCode)
+      ) {
+        continue;
+      }
+
+      seenCourseCodes.add(courseCode);
+      simulatedGrcRequiredCourseCodes.push(courseCode);
+    }
+  }
+
+  assert.equal(
+    simulatedGrcRequiredCourseCodes.includes("CS 123"),
+    false,
+    "CS 123 should not be promoted out of the official programming grouped choice by the Required Major Courses fallback."
+  );
+  assert.equal(
+    simulatedGrcRequiredCourseCodes.some((courseCode) => /\b2\s*C\b/i.test(courseCode)),
+    false
+  );
+
+  const usageSummary = buildTrackUsageSummary(
+    track,
+    getRequiredPlan("uw-seattle-computer-engineering"),
+    []
+  );
+  assert.equal(
+    usageSummary?.directUseEntries.includes(mixedLabel) ||
+      usageSummary?.extraSpecificEntries.includes(mixedLabel),
+    false,
+    "Merged source labels should not be classified as specific track course requirements."
+  );
+
+  const pageSource = readFileSync("components/pages/TransferPlannerPage.tsx", "utf8");
+  const requiredCoursesBuilder = pageSource.slice(
+    pageSource.indexOf("function buildMajorSpecificsGrcRequiredMajorCourseLines"),
+    pageSource.indexOf("function buildRequiredPlannerCourseCodes")
+  );
+  assert.match(
+    requiredCoursesBuilder,
+    /isMergedCourseDistributionRequirementLabel\(normalizedLabel\)/
+  );
+});
+
 test("AST-2/MRP Computer and Electrical Engineering preserves official programming group choices", () => {
   const track = getTransferPlannerTrack(
     "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering"
@@ -6018,6 +6105,163 @@ test("AST-2/MRP Computer and Electrical Engineering preserves official programmi
       (course) =>
         course.optionGroup?.id === groupedChoice.id &&
         course.optionGroup.isSelectionPrompt === true
+    ),
+    false
+  );
+});
+
+test("AST-2/MRP Computer and Electrical Engineering preserves official choose-two engineering elective options", () => {
+  const track = getTransferPlannerTrack(
+    "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering"
+  );
+  assert.ok(
+    track,
+    "Expected the Green River AST-2/MRP Computer and Electrical Engineering track."
+  );
+
+  const electiveChoice = track.groupedChoices?.find((choice) =>
+    /math, science.*engr elective/i.test(choice.label)
+  );
+  assert.ok(electiveChoice, "Expected the official Math, Science & Engineering elective group.");
+  assert.equal(electiveChoice.selectionCount, 2);
+  assert.equal(electiveChoice.requiredCredits, 10);
+  assert.deepEqual(
+    electiveChoice.options.map((option) => option.courseCodes[0]),
+    ["ENGR& 104", "ENGR& 214", "ENGR& 224", "ENGR 250", "ENGR 271", "ENGL 128", "ENGL& 235"]
+  );
+  assert.deepEqual(
+    (electiveChoice.defaultOptionIds ?? []).map(
+      (optionId) => electiveChoice.options.find((option) => option.id === optionId)?.courseCodes[0]
+    ),
+    ["ENGR 271", "ENGL& 235"]
+  );
+
+  const buildGrcOnlyQuarterPlan = (completedCourseCodes: string[] = []) =>
+    buildSuggestedQuarterPlan({
+      plan: null,
+      plannerCollegeId: "grc",
+      applicationStatuses: [],
+      beforeEnrollmentStatuses: [],
+      stayAtGrcStatuses: [],
+      completedCourses: completedCourseCodes.map((courseCode) => ({
+        code: courseCode,
+        label: courseCode,
+        credits: 5,
+        termLabel: "Completed transfer work",
+        termStartDate: "2025-09-01",
+      })),
+      track,
+      includeStayAtGrcCourses: true,
+      referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+    });
+  const buildGrcOnlyPlan = (completedCourseCodes: string[] = []) =>
+    buildGrcOnlyQuarterPlan(completedCourseCodes)
+      .filter((quarter) => quarter.phase === "planned")
+      .flatMap((quarter) => quarter.courses);
+
+  const plannedCourses = buildGrcOnlyPlan();
+  const electiveRows = plannedCourses.filter(
+    (course) => course.optionGroup?.id === electiveChoice.id
+  );
+
+  assert.deepEqual(
+    electiveRows.map((course) => course.label).sort(),
+    ["ENGL& 235", "ENGR 271"]
+  );
+  assert.equal(
+    plannedCourses.filter((course) => course.label === "ENGR 271" && !course.optionGroup).length,
+    0
+  );
+  assert.equal(
+    plannedCourses.filter((course) => course.label === "ENGL& 235" && !course.optionGroup).length,
+    0
+  );
+  for (const row of electiveRows) {
+    assert.equal(row.optionGroup?.selectionCount, 2);
+    assert.equal(row.optionGroup?.requiredCredits, 10);
+    assert.equal(row.optionGroup?.selectionSource, "default");
+    assert.equal(row.optionGroup?.isSelectionPrompt, false);
+    assert.match(row.guidanceSummary ?? "", /Default sample-map options: ENGR 271: ENGR 271, ENGL& 235: ENGL& 235/i);
+    assert.match(row.guidanceSummary ?? "", /Options: ENGR& 104: ENGR& 104/i);
+  }
+  assert.equal(
+    plannedCourses.some(
+      (course) =>
+        course.optionGroup?.id === electiveChoice.id &&
+        course.optionGroup.isSelectionPrompt === true
+    ),
+    false
+  );
+
+  const oneCompletedRows = buildGrcOnlyPlan(["ENGR 271"]).filter(
+    (course) => course.optionGroup?.id === electiveChoice.id
+  );
+  assert.deepEqual(
+    oneCompletedRows.map((course) => course.label),
+    ["ENGL& 235"]
+  );
+  assert.equal(
+    oneCompletedRows.some((course) => course.optionGroup?.isSelectionPrompt),
+    false,
+    "One completed default plus one remaining default should satisfy the choose-two plan without duplicating completed credit."
+  );
+
+  const fullyCompletedRows = buildGrcOnlyPlan(["ENGR 271", "ENGL& 235"]).filter(
+    (course) => course.optionGroup?.id === electiveChoice.id
+  );
+  assert.deepEqual(fullyCompletedRows, []);
+
+  const programmingChoice = track.groupedChoices?.find((choice) =>
+    /computer programming/i.test(choice.label)
+  );
+  const remainingCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: buildGrcOnlyQuarterPlan(),
+    track,
+  });
+  assert.equal(track.minimumCredits, 98);
+  assert.equal(remainingCreditRange.catalogMinimumCredits, 98);
+  assert.equal(remainingCreditRange.hasUnresolvedOptions, true);
+  assert.equal(remainingCreditRange.exactRemainingCredits, null);
+  assert.equal(remainingCreditRange.minRemainingCredits, 98);
+  assert.ok(
+    remainingCreditRange.maxRemainingCredits > remainingCreditRange.minRemainingCredits
+  );
+  assert.ok(
+    remainingCreditRange.unresolvedOptionGroupIds.includes(programmingChoice?.id ?? "")
+  );
+  assert.ok(remainingCreditRange.unresolvedOptionGroupIds.includes(electiveChoice.id));
+  assert.ok(
+    remainingCreditRange.unresolvedPlaceholderLabels.includes("5 credits of A&H or SSc")
+  );
+
+  const pageSource = readFileSync("components/pages/TransferPlannerPage.tsx", "utf8");
+  const requiredCoursesBuilder = pageSource.slice(
+    pageSource.indexOf("function buildMajorSpecificsGrcRequiredMajorCourseLines"),
+    pageSource.indexOf("function buildRequiredPlannerCourseCodes")
+  );
+  assert.match(
+    requiredCoursesBuilder,
+    /groupedChoices\.map\(buildTrackGroupedChoiceRequiredCourseLine\)/
+  );
+  assert.match(
+    requiredCoursesBuilder,
+    /isTrackCourseLabelCoveredByGroupedChoice\(normalizedLabel,\s*groupedChoices\)/
+  );
+});
+
+test("Green River generated credit bounds ignore residency-only catalog minimums", () => {
+  const acsTrack = TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS.find(
+    (track) =>
+      track.id === "grc-associate-stem-computer-science-associate-in-computer-science-acs-dta-mrp"
+  );
+  assert.ok(acsTrack, "Expected the generated Associate in Computer Science track.");
+  assert.equal(acsTrack.minimumCredits, 90);
+  assert.equal(acsTrack.maximumCredits, 90);
+  assert.equal(
+    TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS.some(
+      (track) =>
+        (track.minimumCredits === 24 || track.maximumCredits === 24) &&
+        track.notes.some((note) => /Published duration:\s*90 credits\./i.test(note))
     ),
     false
   );

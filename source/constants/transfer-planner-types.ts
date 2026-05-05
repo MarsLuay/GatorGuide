@@ -211,6 +211,8 @@ export type TransferPlannerTrackGroupedChoice = {
   id: string;
   label: string;
   requiredCredits?: number | null;
+  selectionCount?: number | null;
+  defaultOptionIds?: string[];
   sourceHeading?: string | null;
   sourceProgramId?: number | null;
   options: TransferPlannerTrackGroupedChoiceOption[];
@@ -222,6 +224,8 @@ export type TransferPlannerTrack = {
   title: string;
   summary: string;
   bestFor: string[];
+  minimumCredits?: number | null;
+  maximumCredits?: number | null;
   terms: TransferPlannerTrackTerm[];
   notes: string[];
   officialLinks?: TransferPlannerLink[];

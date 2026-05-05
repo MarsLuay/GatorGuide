@@ -75,6 +75,111 @@ function stripHtml(value) {
     .trim();
 }
 
+function parsePositiveCreditNumber(value) {
+  const credits = Number.parseFloat(String(value ?? ""));
+  return Number.isFinite(credits) && credits > 0 ? credits : null;
+}
+
+function hasResidencyCreditContext(normalizedText, match) {
+  const matchIndex = Number(match?.index ?? -1);
+  if (matchIndex < 0) {
+    return false;
+  }
+
+  const context = normalizedText.slice(
+    Math.max(0, matchIndex - 60),
+    matchIndex + String(match[0] ?? "").length + 100
+  );
+  return (
+    /\b(?:at|from)\s+Green River(?:\s+College)?\b/i.test(context) ||
+    /\bresiden(?:ce|cy)\b/i.test(context)
+  );
+}
+
+function findNonResidencyCreditMatch(normalizedText, pattern) {
+  for (const match of normalizedText.matchAll(pattern)) {
+    if (!hasResidencyCreditContext(normalizedText, match)) {
+      return match;
+    }
+  }
+  return null;
+}
+
+function parseCreditRangeFromText(value) {
+  const normalized = stripHtml(value)
+    .replace(/\bquarter[-\s]*credits?\b/gi, "credits")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!normalized || !/\bcredits?\b/i.test(normalized)) {
+    return null;
+  }
+
+  const minimumRangeMatch = normalized.match(
+    /\bminimum(?:\s+of)?\s+(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)\s*credits?\b/i
+  );
+  const rangeMatch =
+    minimumRangeMatch ??
+    normalized.match(/\b(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)\s*credits?\b/i);
+  if (rangeMatch) {
+    const left = parsePositiveCreditNumber(rangeMatch[1]);
+    const right = parsePositiveCreditNumber(rangeMatch[2]);
+    if (left !== null && right !== null) {
+      return {
+        minimumCredits: Math.min(left, right),
+        maximumCredits: Math.max(left, right),
+      };
+    }
+  }
+
+  const minimumMatch = findNonResidencyCreditMatch(
+    normalized,
+    /\b(?:minimum(?:\s+of)?|at least)\s+(\d+(?:\.\d+)?)\s*credits?\b/gi
+  );
+  if (minimumMatch) {
+    const minimumCredits = parsePositiveCreditNumber(minimumMatch[1]);
+    return minimumCredits === null
+      ? null
+      : {
+          minimumCredits,
+          maximumCredits: null,
+        };
+  }
+
+  const completeMatch = findNonResidencyCreditMatch(
+    normalized,
+    /\b(?:complete|must complete|students must complete|to earn this degree[^.]{0,80}complete)\s+(\d+(?:\.\d+)?)\s*credits?\b/gi
+  );
+  if (completeMatch) {
+    const minimumCredits = parsePositiveCreditNumber(completeMatch[1]);
+    return minimumCredits === null
+      ? null
+      : {
+          minimumCredits,
+          maximumCredits: null,
+        };
+  }
+
+  const exactMatch = findNonResidencyCreditMatch(
+    normalized,
+    /\b(\d+(?:\.\d+)?)\s*credits?\b/gi
+  );
+  const exactCredits = parsePositiveCreditNumber(exactMatch?.[1]);
+  return exactCredits === null
+    ? null
+    : {
+        minimumCredits: exactCredits,
+        maximumCredits: exactCredits,
+      };
+}
+
+function getProgramCreditRange(page, requirementProgram) {
+  return (
+    parseCreditRangeFromText(requirementProgram?.description) ??
+    parseCreditRangeFromText(page?.duration) ??
+    null
+  );
+}
+
 function normalizeCourseCode(value) {
   return String(value ?? "")
     .replace(/\u00A0/g, " ")
@@ -122,6 +227,11 @@ function normalizeTrackGroupedChoices(groupedChoices) {
   return (Array.isArray(groupedChoices) ? groupedChoices : [])
     .map((choice) => ({
       ...choice,
+      selectionCount:
+        Number.isFinite(Number(choice?.selectionCount)) && Number(choice.selectionCount) > 0
+          ? Number(choice.selectionCount)
+          : undefined,
+      defaultOptionIds: uniqueStrings(choice?.defaultOptionIds ?? []),
       options: (choice?.options ?? []).map((option) => ({
         ...option,
         courseLabels: uniqueStrings(option?.courseLabels ?? []),
@@ -133,8 +243,12 @@ function normalizeTrackGroupedChoices(groupedChoices) {
 
 function normalizeGeneratedTrack(track) {
   const groupedChoices = normalizeTrackGroupedChoices(track?.groupedChoices);
+  const minimumCredits = parsePositiveCreditNumber(track?.minimumCredits);
+  const maximumCredits = parsePositiveCreditNumber(track?.maximumCredits);
   return {
     ...track,
+    ...(minimumCredits !== null ? { minimumCredits } : {}),
+    ...(maximumCredits !== null ? { maximumCredits } : {}),
     terms: normalizeTrackCourseTerms(track?.terms),
     ...(groupedChoices.length ? { groupedChoices } : {}),
   };
@@ -612,6 +726,49 @@ function getCreditAmountFromText(value) {
   return Number.isFinite(creditAmount) && creditAmount > 0 ? creditAmount : null;
 }
 
+const SELECTION_COUNT_WORDS = new Map([
+  ["one", 1],
+  ["two", 2],
+  ["three", 3],
+  ["four", 4],
+  ["five", 5],
+  ["six", 6],
+  ["seven", 7],
+  ["eight", 8],
+  ["nine", 9],
+  ["ten", 10],
+]);
+
+function parseSelectionCountToken(value) {
+  const normalized = String(value ?? "").trim().toLowerCase();
+  const numericValue = Number.parseInt(normalized, 10);
+  if (Number.isFinite(numericValue) && numericValue > 0) {
+    return numericValue;
+  }
+  return SELECTION_COUNT_WORDS.get(normalized) ?? null;
+}
+
+function getCourseSelectionCountFromText(value) {
+  const signal = normalizeStructuralTrackNote(value);
+  const match = signal.match(
+    /\b(?:select|choose)\s+(\d+|one|two|three|four|five|six|seven|eight|nine|ten)(?:\s+(?:approved\s+)?(?:courses?|classes?|options?)\b|\s+of\b)/i
+  );
+  if (!match) {
+    return null;
+  }
+  return parseSelectionCountToken(match[1]);
+}
+
+function hasCourseSelectionChoiceCue(value) {
+  const selectionCount = getCourseSelectionCountFromText(value);
+  if (selectionCount === null || selectionCount <= 0) {
+    return false;
+  }
+  return /\b(?:from|following|list|approved|advisor|consultation)\b/i.test(
+    normalizeStructuralTrackNote(value)
+  );
+}
+
 function getGroupedChoiceMarkerLabel(value) {
   const signal = normalizeStructuralTrackNote(value);
   const match = signal.match(/\b(group|option|sequence)\s*([A-Z]|\d+)\b/i);
@@ -644,6 +801,10 @@ function getGroupedChoiceCoreRequiredCredits(core) {
     getCreditAmountFromText(core?.description) ??
     null
   );
+}
+
+function getCourseSelectionChoiceRequiredCredits(core, selectionCount) {
+  return getGroupedChoiceCoreRequiredCredits(core) ?? (selectionCount > 0 ? selectionCount * 5 : null);
 }
 
 function buildGroupedChoiceOption(input) {
@@ -747,10 +908,45 @@ function buildGroupedChoiceFromChildGroups(core, choiceId, sourceProgramId, labe
   };
 }
 
+function buildCourseSelectionChoiceFromCore(core, choiceId, sourceProgramId, labelParts) {
+  const cueText = `${core?.name ?? ""} ${core?.description ?? ""}`;
+  const selectionCount = getCourseSelectionCountFromText(cueText);
+  const courseEntries = buildCourseEntries(core);
+  if (!selectionCount || selectionCount <= 0 || courseEntries.length <= selectionCount) {
+    return null;
+  }
+
+  const options = courseEntries
+    .map((course, optionIndex) =>
+      buildGroupedChoiceOption({
+        choiceId,
+        optionIndex,
+        groupLabel: course.label,
+        courseEntries: [course],
+      })
+    )
+    .filter(Boolean);
+
+  if (options.length <= selectionCount) {
+    return null;
+  }
+
+  return {
+    id: choiceId,
+    label: labelParts.join(" > ") || "Choose approved courses",
+    requiredCredits: getCourseSelectionChoiceRequiredCredits(core, selectionCount),
+    selectionCount,
+    sourceHeading: labelParts.join(" > ") || String(core?.name ?? "").trim() || null,
+    sourceProgramId,
+    options,
+  };
+}
+
 function collectGroupedChoicesFromCore(core, trackId, sourceProgramId, prefix = []) {
   const labelParts = [...prefix, String(core?.name ?? "").trim()].filter(Boolean);
   const cueText = `${core?.name ?? ""} ${core?.description ?? ""}`;
   const hasChoiceCue = hasGroupedChoiceCue(cueText);
+  const hasCourseSelectionCue = hasCourseSelectionChoiceCue(cueText);
   const choiceId = `official-grc-track-grouped-choice:${slugify(trackId)}:${slugify(
     labelParts.join(" ")
   )}`;
@@ -774,6 +970,16 @@ function collectGroupedChoicesFromCore(core, trackId, sourceProgramId, prefix = 
     } else if (childChoice) {
       choices.push(childChoice);
     }
+  } else if (hasCourseSelectionCue) {
+    const courseSelectionChoice = buildCourseSelectionChoiceFromCore(
+      core,
+      choiceId,
+      sourceProgramId,
+      labelParts
+    );
+    if (courseSelectionChoice) {
+      choices.push(courseSelectionChoice);
+    }
   }
 
   for (const child of core.children ?? []) {
@@ -795,6 +1001,58 @@ function collectGroupedChoicesFromProgram(program, trackId) {
     }
     seenIds.add(choice.id);
     return true;
+  });
+}
+
+function getGroupedChoiceOptionCourseCodeSet(option) {
+  return new Set(
+    uniqueStrings([
+      ...(option?.courseCodes ?? []),
+      ...(option?.courseLabels ?? []).flatMap((label) => extractCourseCodes(label)),
+    ]).map((courseCode) => normalizeCourseCode(courseCode))
+  );
+}
+
+function getDefaultGroupedChoiceOptionIds(choice, terms) {
+  const selectionCount = Number(choice?.selectionCount ?? 1);
+  if (!Number.isFinite(selectionCount) || selectionCount <= 1) {
+    return [];
+  }
+
+  const termCourseLabels = (terms ?? [])
+    .flatMap((term) => term.courses ?? [])
+    .map((label) => String(label ?? "").replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+  const defaultOptionIds = [];
+
+  for (const option of choice.options ?? []) {
+    const optionCourseCodes = getGroupedChoiceOptionCourseCodeSet(option);
+    if (!optionCourseCodes.size) {
+      continue;
+    }
+
+    const isScheduledByMap = termCourseLabels.some((label) => {
+      const labelCourseCodes = extractCourseCodes(label).map((courseCode) =>
+        normalizeCourseCode(courseCode)
+      );
+      return (
+        labelCourseCodes.length > 0 &&
+        labelCourseCodes.every((courseCode) => optionCourseCodes.has(courseCode))
+      );
+    });
+
+    if (isScheduledByMap) {
+      defaultOptionIds.push(option.id);
+    }
+  }
+
+  return uniqueStrings(defaultOptionIds).slice(0, selectionCount);
+}
+
+function attachGroupedChoiceDefaultOptions(groupedChoices, terms) {
+  return groupedChoices.map((choice) => {
+    const defaultOptionIds = getDefaultGroupedChoiceOptionIds(choice, terms);
+    return defaultOptionIds.length ? { ...choice, defaultOptionIds } : choice;
   });
 }
 
@@ -1257,6 +1515,8 @@ function buildTrackFromProgramPage(page, program, requirementProgram = null) {
   const groupedChoices = requirementProgram
     ? collectGroupedChoicesFromProgram(requirementProgram, trackId)
     : [];
+  const groupedChoicesWithDefaults = attachGroupedChoiceDefaultOptions(groupedChoices, terms);
+  const creditRange = getProgramCreditRange(page, requirementProgram);
 
   return {
     id: trackId,
@@ -1264,6 +1524,8 @@ function buildTrackFromProgramPage(page, program, requirementProgram = null) {
     title: cleanTrackTitle(page.h1),
     summary: buildGeneratedTrackSummary(page),
     bestFor: uniqueStrings([cleanTrackTitle(page.h1)]),
+    ...(creditRange?.minimumCredits ? { minimumCredits: creditRange.minimumCredits } : {}),
+    ...(creditRange?.maximumCredits ? { maximumCredits: creditRange.maximumCredits } : {}),
     terms,
     notes: buildGeneratedTrackNotes(page, coreTerms),
     officialLinks: [
@@ -1272,7 +1534,7 @@ function buildTrackFromProgramPage(page, program, requirementProgram = null) {
         url: page.url,
       },
     ],
-    ...(groupedChoices.length ? { groupedChoices } : {}),
+    ...(groupedChoicesWithDefaults.length ? { groupedChoices: groupedChoicesWithDefaults } : {}),
   };
 }
 

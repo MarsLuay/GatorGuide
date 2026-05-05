@@ -37,6 +37,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Accounting"
     ],
+    "minimumCredits": 35,
+    "maximumCredits": 40,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -106,6 +108,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Administrative Assistant"
     ],
+    "minimumCredits": 55,
+    "maximumCredits": 60,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -190,6 +194,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Business"
     ],
+    "minimumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -263,6 +268,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Business Applications Specialist"
     ],
+    "minimumCredits": 60,
+    "maximumCredits": 60,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -340,6 +347,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Business Management"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 95,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -404,6 +413,90 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Business Management, AAA curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/aaa.html"
+      }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-written-communication",
+        "label": "Related Instruction Requirements (20 credits) > Written Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Written Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-written-communication:btac-130",
+            "label": "BTAC 130: BTAC 130",
+            "courseLabels": [
+              "BTAC 130"
+            ],
+            "courseCodes": [
+              "BTAC 130"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-written-communication:engl-and-101",
+            "label": "ENGL& 101: ENGL& 101",
+            "courseLabels": [
+              "ENGL& 101"
+            ],
+            "courseCodes": [
+              "ENGL& 101"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-oral-communication",
+        "label": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-oral-communication:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-oral-communication:cmst-117",
+            "label": "CMST 117: CMST 117",
+            "courseLabels": [
+              "CMST 117"
+            ],
+            "courseCodes": [
+              "CMST 117"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-business-entrepreneurship-business-management-aaa:related-instruction-requirements-20-credits-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
       }
     ]
   },
@@ -484,6 +577,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Anthropology"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -568,6 +663,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Realtime Transcription"
     ],
+    "minimumCredits": 150,
+    "maximumCredits": 150,
     "terms": [
       {
         "label": "Quarter 1 (13 credits)",
@@ -680,6 +777,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Criminal Justice"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -760,6 +859,39 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Criminal Justice, AAS-T curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/criminal-justice/aas-t.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-criminal-justice-aas-t:required-core-classes-45-credits-related-instruction-requirements-35-credits-oral-communication-and-human-relations-5-credits",
+        "label": "Required Core Classes (45 credits) > Related Instruction Requirements (35 credits) > Oral Communication & Human Relations (5 credits):",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Required Core Classes (45 credits) > Related Instruction Requirements (35 credits) > Oral Communication & Human Relations (5 credits):",
+        "sourceProgramId": 3219,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-criminal-justice-aas-t:required-core-classes-45-credits-related-instruction-requirements-35-credits-oral-communication-and-human-relations-5-credits:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-criminal-justice-aas-t:required-core-classes-45-credits-related-instruction-requirements-35-credits-oral-communication-and-human-relations-5-credits:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -770,6 +902,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Forensic"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -865,6 +999,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Early Childhood Education"
     ],
+    "minimumCredits": 47,
+    "maximumCredits": 47,
     "terms": [
       {
         "label": "Quarter 1 (12 credits)",
@@ -934,6 +1070,79 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Early Childhood Education, AAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/early-childhood-education-aas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas:requirements-35-credits-choose-one-of-the-following",
+        "label": "Requirements (35 credits) > Choose one of the following:",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements (35 credits) > Choose one of the following:",
+        "sourceProgramId": 3236,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas:requirements-35-credits-choose-one-of-the-following:educ-and-130",
+            "label": "EDUC& 130: EDUC& 130",
+            "courseLabels": [
+              "EDUC& 130"
+            ],
+            "courseCodes": [
+              "EDUC& 130"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas:requirements-35-credits-choose-one-of-the-following:eced-and-132",
+            "label": "ECED& 132: ECED& 132",
+            "courseLabels": [
+              "ECED& 132"
+            ],
+            "courseCodes": [
+              "ECED& 132"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas:requirements-35-credits-choose-one-of-the-following:eced-and-134",
+            "label": "ECED& 134: ECED& 134",
+            "courseLabels": [
+              "ECED& 134"
+            ],
+            "courseCodes": [
+              "ECED& 134"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas:requirements-35-credits-choose-one-of-the-following:eced-and-137",
+            "label": "ECED& 137: ECED& 137",
+            "courseLabels": [
+              "ECED& 137"
+            ],
+            "courseCodes": [
+              "ECED& 137"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas:requirements-35-credits-choose-one-of-the-following:eced-and-138",
+            "label": "ECED& 138: ECED& 138",
+            "courseLabels": [
+              "ECED& 138"
+            ],
+            "courseCodes": [
+              "ECED& 138"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-early-childhood-education-aas:requirements-35-credits-choose-one-of-the-following:eced-and-139",
+            "label": "ECED& 139: ECED& 139",
+            "courseLabels": [
+              "ECED& 139"
+            ],
+            "courseCodes": [
+              "ECED& 139"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -944,6 +1153,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Early Childhood Education and Diversity Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1023,6 +1234,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Early Childhood Education Paraeducator"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (13 credits)",
@@ -1084,6 +1297,69 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Early Childhood Education Paraeducator, AAS-T curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/paraeducator-aas-t.html"
+      }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t:requirements-related-instruction-requirements-23-credits-oral-communication-5-credits",
+        "label": "Requirements > Related Instruction Requirements (23 credits) > Oral Communication (5 credits)",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements > Related Instruction Requirements (23 credits) > Oral Communication (5 credits)",
+        "sourceProgramId": 3229,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t:requirements-related-instruction-requirements-23-credits-oral-communication-5-credits:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t:requirements-related-instruction-requirements-23-credits-oral-communication-5-credits:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t:requirements-related-instruction-requirements-23-credits-oral-communication-5-credits:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t:requirements-related-instruction-requirements-23-credits-oral-communication-5-credits:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-education-law-social-science-early-childhood-education-paraeducator-aas-t:requirements-related-instruction-requirements-23-credits-oral-communication-5-credits:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
       }
     ]
   },
@@ -1162,6 +1438,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in History"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1247,6 +1525,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Legal Administrative Assistant"
     ],
+    "minimumCredits": 55,
+    "maximumCredits": 60,
     "terms": [
       {
         "label": "Quarter 1- Fall (15 credits)",
@@ -1330,6 +1610,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in Political Science"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1403,6 +1685,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Psychology"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1483,6 +1767,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Emphasis in Sociology"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1557,6 +1843,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Art History"
     ],
+    "minimumCredits": 130,
+    "maximumCredits": 130,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1640,6 +1928,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Creative Expression"
     ],
+    "minimumCredits": 130,
+    "maximumCredits": 130,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1767,6 +2057,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Fine Arts, with Concentration in Ceramics"
     ],
+    "minimumCredits": 103,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1839,6 +2130,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Fine Arts, with Concentration in Design"
     ],
+    "minimumCredits": 103,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1912,6 +2204,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Fine Arts, with Concentration in Photography"
     ],
+    "minimumCredits": 103,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -1981,6 +2274,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Fine Arts, with Concentration in Studio Art"
     ],
+    "minimumCredits": 103,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -2052,6 +2346,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Fine Arts"
     ],
+    "minimumCredits": 103,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -2159,6 +2454,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Asian Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -2325,6 +2622,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Communication Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -2407,6 +2706,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Diversity Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -2883,6 +3184,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Film Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -2954,6 +3257,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA with Concentration in Gender Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3051,6 +3356,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with concentration in Global Studies and Hispanic Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3123,6 +3430,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Global Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3252,6 +3561,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Hispanic Studies"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3338,6 +3649,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Digital & Broadcast Media"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3410,6 +3723,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Music"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3516,6 +3831,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Philosophy"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3608,6 +3925,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "AA-DTA with Concentration in Theatre Arts"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3699,6 +4018,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Medical Office Administration, AAA with emphasis in Front Office"
     ],
+    "minimumCredits": 94,
+    "maximumCredits": 95,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3769,6 +4090,39 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Medical Office Administration, AAA with emphasis in Front Office curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-front-office.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-front-office:related-instruction-requirements-oral-communication",
+        "label": "Related Instruction Requirements > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Oral Communication",
+        "sourceProgramId": 3257,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-front-office:related-instruction-requirements-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-front-office:related-instruction-requirements-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -3779,6 +4133,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement"
     ],
+    "minimumCredits": 94,
+    "maximumCredits": 95,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3848,6 +4204,39 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Medical Office Administration, AAA with emphasis in Medical Coding and Reimbursement curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/aaa-emphasis-medical-coding-reimbursement.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-medical-coding-reimbursement:related-instruction-requirements-oral-communication",
+        "label": "Related Instruction Requirements > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Oral Communication",
+        "sourceProgramId": 3257,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-medical-coding-reimbursement:related-instruction-requirements-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-medical-office-administration-aaa-emphasis-medical-coding-reimbursement:related-instruction-requirements-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -3858,6 +4247,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Pre-Nursing"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 91,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -3932,6 +4323,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Practical Nursing"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -3994,6 +4387,100 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Practical Nursing, AAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-oral-communication",
+        "label": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Oral Communication",
+        "sourceProgramId": 3267,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-computation",
+        "label": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Computation",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Computation",
+        "sourceProgramId": 3267,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-computation:math-and-146",
+            "label": "MATH& 146: MATH& 146",
+            "courseLabels": [
+              "MATH& 146"
+            ],
+            "courseCodes": [
+              "MATH& 146"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas:requirements-program-degree-requirements-related-instruction-requirements-computation:math-256",
+            "label": "MATH 256: MATH 256",
+            "courseLabels": [
+              "MATH 256"
+            ],
+            "courseCodes": [
+              "MATH 256"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -4004,6 +4491,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Practical Nursing, AAS Part-time (Hybrid)"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -4077,6 +4566,100 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Practical Nursing, AAS Part-time (Hybrid) curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-hybrid.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-oral-communication",
+        "label": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Oral Communication",
+        "sourceProgramId": 3267,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-computation",
+        "label": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Computation",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Computation",
+        "sourceProgramId": 3267,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-computation:math-and-146",
+            "label": "MATH& 146: MATH& 146",
+            "courseLabels": [
+              "MATH& 146"
+            ],
+            "courseCodes": [
+              "MATH& 146"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-hybrid:requirements-program-degree-requirements-related-instruction-requirements-computation:math-256",
+            "label": "MATH 256: MATH 256",
+            "courseLabels": [
+              "MATH 256"
+            ],
+            "courseCodes": [
+              "MATH 256"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -4087,6 +4670,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Practical Nursing, AAS Part-time (Online)"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -4164,6 +4749,100 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Practical Nursing, AAS Part-time (Online) curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/nursing/practical-nursing-aas-part-time-online.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-oral-communication",
+        "label": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Oral Communication",
+        "sourceProgramId": 3267,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-oral-communication:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-computation",
+        "label": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Computation",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements > Program Degree Requirements: > Related Instruction Requirements > Computation",
+        "sourceProgramId": 3267,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-computation:math-and-146",
+            "label": "MATH& 146: MATH& 146",
+            "courseLabels": [
+              "MATH& 146"
+            ],
+            "courseCodes": [
+              "MATH& 146"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-healthcare-wellness-nursing-practical-nursing-aas-part-time-online:requirements-program-degree-requirements-related-instruction-requirements-computation:math-256",
+            "label": "MATH 256: MATH 256",
+            "courseLabels": [
+              "MATH 256"
+            ],
+            "courseCodes": [
+              "MATH 256"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -4174,6 +4853,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Occupational Therapy Assistant"
     ],
+    "minimumCredits": 105,
+    "maximumCredits": 105,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -4276,6 +4957,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Occupational Therapy Assistant, AAS Hybrid"
     ],
+    "minimumCredits": 105,
+    "maximumCredits": 105,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -4388,6 +5071,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Physical Therapist Assistant"
     ],
+    "minimumCredits": 107,
+    "maximumCredits": 107,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -4485,6 +5170,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Biology, DTA/MRP"
     ],
+    "minimumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (16 credits)",
@@ -4556,6 +5242,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Science Transfer Track 1 Biology"
     ],
+    "minimumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (16 credits)",
@@ -4627,6 +5314,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Science Transfer Track 1 - Chemistry"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 0",
@@ -4706,6 +5395,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Computer Science"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 0",
@@ -4812,7 +5503,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
               "CS 132"
             ]
           }
-        ]
+        ],
+        "defaultOptionIds": []
       }
     ]
   },
@@ -4824,6 +5516,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Cybersecurity and Networking"
     ],
+    "minimumCredits": 92,
+    "maximumCredits": 92,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -4884,6 +5578,59 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Cybersecurity and Networking, AAS-T curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/cybersecurity-and-networking-aas-t.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t:related-instruction-requirements-25-credits-choose-one-of-the-following",
+        "label": "Related Instruction Requirements (25 credits) > Choose one of the following:",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (25 credits) > Choose one of the following:",
+        "sourceProgramId": 3150,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-and-235",
+            "label": "ENGL& 235: ENGL& 235",
+            "courseLabels": [
+              "ENGL& 235"
+            ],
+            "courseCodes": [
+              "ENGL& 235"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-128",
+            "label": "ENGL 128: ENGL 128",
+            "courseLabels": [
+              "ENGL 128"
+            ],
+            "courseCodes": [
+              "ENGL 128"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-126",
+            "label": "ENGL 126: ENGL 126",
+            "courseLabels": [
+              "ENGL 126"
+            ],
+            "courseCodes": [
+              "ENGL 126"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-cybersecurity-networking-cybersecurity-and-networking-aas-t:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-127",
+            "label": "ENGL 127: ENGL 127",
+            "courseLabels": [
+              "ENGL 127"
+            ],
+            "courseCodes": [
+              "ENGL 127"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -4894,6 +5641,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Data Analytics and Software Development, AAS-T Business Management Track"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 95,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -4954,6 +5703,90 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Data Analytics and Software Development, AAS-T Business Management Track curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-business-management-track.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-20-credits-written-communication",
+        "label": "Related Instruction Requirements (20 credits) > Written Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Written Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-20-credits-written-communication:btac-130",
+            "label": "BTAC 130: BTAC 130",
+            "courseLabels": [
+              "BTAC 130"
+            ],
+            "courseCodes": [
+              "BTAC 130"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-20-credits-written-communication:engl-and-101",
+            "label": "ENGL& 101: ENGL& 101",
+            "courseLabels": [
+              "ENGL& 101"
+            ],
+            "courseCodes": [
+              "ENGL& 101"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-20-credits-oral-communication",
+        "label": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-20-credits-oral-communication:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-20-credits-oral-communication:cmst-117",
+            "label": "CMST 117: CMST 117",
+            "courseLabels": [
+              "CMST 117"
+            ],
+            "courseCodes": [
+              "CMST 117"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-20-credits-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-business-management-track:related-instruction-requirements-20-credits-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -4964,6 +5797,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Data Analytics and Software Development, AAS-T Software Development Track"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -5023,6 +5858,120 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Data Analytics and Software Development, AAS-T Software Development Track curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/data-analytics-software-development/aas-t-software-development-track.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following",
+        "label": "Related Instruction Requirements > Written Communication (10 credits) > Choose one of the following:",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Written Communication (10 credits) > Choose one of the following:",
+        "sourceProgramId": 3306,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-126",
+            "label": "ENGL 126: ENGL 126",
+            "courseLabels": [
+              "ENGL 126"
+            ],
+            "courseCodes": [
+              "ENGL 126"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-127",
+            "label": "ENGL 127: ENGL 127",
+            "courseLabels": [
+              "ENGL 127"
+            ],
+            "courseCodes": [
+              "ENGL 127"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-128",
+            "label": "ENGL 128: ENGL 128",
+            "courseLabels": [
+              "ENGL 128"
+            ],
+            "courseCodes": [
+              "ENGL 128"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-and-235",
+            "label": "ENGL& 235: ENGL& 235",
+            "courseLabels": [
+              "ENGL& 235"
+            ],
+            "courseCodes": [
+              "ENGL& 235"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-human-relations-5-credits",
+        "label": "Related Instruction Requirements > Human Relations (5 credits)",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Human Relations (5 credits)",
+        "sourceProgramId": 3306,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-human-relations-5-credits:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-human-relations-5-credits:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-human-relations-5-credits:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-human-relations-5-credits:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-data-analytics-software-development-aas-t-software-development-track:related-instruction-requirements-human-relations-5-credits:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -5033,6 +5982,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Transfer Track 2-Bioengineering and Chemical Engineering"
     ],
+    "minimumCredits": 102,
+    "maximumCredits": 103,
     "terms": [
       {
         "label": "Quarter 0",
@@ -5106,6 +6057,141 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Transfer Track 2-Bioengineering and Chemical Engineering curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list",
+        "label": "3. Specific Requirements (57 credits) > E. Select at least 10 credits from the following list",
+        "requiredCredits": 10,
+        "selectionCount": 2,
+        "sourceHeading": "3. Specific Requirements (57 credits) > E. Select at least 10 credits from the following list",
+        "sourceProgramId": 3168,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:biol-and-212",
+            "label": "BIOL& 212: BIOL& 212",
+            "courseLabels": [
+              "BIOL& 212"
+            ],
+            "courseCodes": [
+              "BIOL& 212"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:biol-and-213",
+            "label": "BIOL& 213: BIOL& 213",
+            "courseLabels": [
+              "BIOL& 213"
+            ],
+            "courseCodes": [
+              "BIOL& 213"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:chem-and-263",
+            "label": "CHEM& 263: CHEM& 263",
+            "courseLabels": [
+              "CHEM& 263"
+            ],
+            "courseCodes": [
+              "CHEM& 263"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:cs-121",
+            "label": "CS 121: CS 121",
+            "courseLabels": [
+              "CS 121"
+            ],
+            "courseCodes": [
+              "CS 121"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:cs-122",
+            "label": "CS 122: CS 122",
+            "courseLabels": [
+              "CS 122"
+            ],
+            "courseCodes": [
+              "CS 122"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:cs-and-131",
+            "label": "CS& 131: CS& 131",
+            "courseLabels": [
+              "CS& 131"
+            ],
+            "courseCodes": [
+              "CS& 131"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:engr-and-204",
+            "label": "ENGR& 204: ENGR& 204",
+            "courseLabels": [
+              "ENGR& 204"
+            ],
+            "courseCodes": [
+              "ENGR& 204"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:engr-and-224",
+            "label": "ENGR& 224: ENGR& 224",
+            "courseLabels": [
+              "ENGR& 224"
+            ],
+            "courseCodes": [
+              "ENGR& 224"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:engr-250",
+            "label": "ENGR 250: ENGR 250",
+            "courseLabels": [
+              "ENGR 250"
+            ],
+            "courseCodes": [
+              "ENGR 250"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:engl-128",
+            "label": "ENGL 128: ENGL 128",
+            "courseLabels": [
+              "ENGL 128"
+            ],
+            "courseCodes": [
+              "ENGL 128"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:engl-and-235",
+            "label": "ENGL& 235: ENGL& 235",
+            "courseLabels": [
+              "ENGL& 235"
+            ],
+            "courseCodes": [
+              "ENGL& 235"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:math-240",
+            "label": "MATH 240: MATH 240",
+            "courseLabels": [
+              "MATH 240"
+            ],
+            "courseCodes": [
+              "MATH 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": [
+          "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering:3-specific-requirements-57-credits-e-select-at-least-10-credits-from-the-following-list:math-240"
+        ]
+      }
     ]
   },
   {
@@ -5116,6 +6202,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Transfer Track 2/MRP-Civil and Mechanical Engineering"
     ],
+    "minimumCredits": 107,
     "terms": [
       {
         "label": "Quarter 0",
@@ -5220,6 +6307,132 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Transfer Track 2/MRP-Civil and Mechanical Engineering curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/engineering/associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following",
+        "label": "3. Specific Requirements (55 credits) > D. Select 2 courses from the following",
+        "requiredCredits": 10,
+        "selectionCount": 2,
+        "sourceHeading": "3. Specific Requirements (55 credits) > D. Select 2 courses from the following",
+        "sourceProgramId": 3167,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-121",
+            "label": "CS 121: CS 121",
+            "courseLabels": [
+              "CS 121"
+            ],
+            "courseCodes": [
+              "CS 121"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-122",
+            "label": "CS 122: CS 122",
+            "courseLabels": [
+              "CS 122"
+            ],
+            "courseCodes": [
+              "CS 122"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-and-131",
+            "label": "CS& 131: CS& 131",
+            "courseLabels": [
+              "CS& 131"
+            ],
+            "courseCodes": [
+              "CS& 131"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engl-128",
+            "label": "ENGL 128: ENGL 128",
+            "courseLabels": [
+              "ENGL 128"
+            ],
+            "courseCodes": [
+              "ENGL 128"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engl-and-235",
+            "label": "ENGL& 235: ENGL& 235",
+            "courseLabels": [
+              "ENGL& 235"
+            ],
+            "courseCodes": [
+              "ENGL& 235"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-and-104",
+            "label": "ENGR& 104: ENGR& 104",
+            "courseLabels": [
+              "ENGR& 104"
+            ],
+            "courseCodes": [
+              "ENGR& 104"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-and-114",
+            "label": "ENGR& 114: ENGR& 114",
+            "courseLabels": [
+              "ENGR& 114"
+            ],
+            "courseCodes": [
+              "ENGR& 114"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-140",
+            "label": "ENGR 140: ENGR 140",
+            "courseLabels": [
+              "ENGR 140"
+            ],
+            "courseCodes": [
+              "ENGR 140"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-and-204",
+            "label": "ENGR& 204: ENGR& 204",
+            "courseLabels": [
+              "ENGR& 204"
+            ],
+            "courseCodes": [
+              "ENGR& 204"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-and-224",
+            "label": "ENGR& 224: ENGR& 224",
+            "courseLabels": [
+              "ENGR& 224"
+            ],
+            "courseCodes": [
+              "ENGR& 224"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:engr-250",
+            "label": "ENGR 250: ENGR 250",
+            "courseLabels": [
+              "ENGR 250"
+            ],
+            "courseCodes": [
+              "ENGR 250"
+            ]
+          }
+        ],
+        "defaultOptionIds": [
+          "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-121",
+          "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering:3-specific-requirements-55-credits-d-select-2-courses-from-the-following:cs-122"
+        ]
+      }
     ]
   },
   {
@@ -5230,6 +6443,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Transfer Track 2/MRP-Computer and Electrical Engineering"
     ],
+    "minimumCredits": 98,
     "terms": [
       {
         "label": "Quarter 0",
@@ -5343,6 +6557,91 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
               "CS 132"
             ]
           }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses",
+        "label": "3. Specific Requirements (48 credits) > F. Math, Science & Engr Elective (Select 2 courses)",
+        "requiredCredits": 10,
+        "selectionCount": 2,
+        "sourceHeading": "3. Specific Requirements (48 credits) > F. Math, Science & Engr Elective (Select 2 courses)",
+        "sourceProgramId": 3169,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engr-and-104",
+            "label": "ENGR& 104: ENGR& 104",
+            "courseLabels": [
+              "ENGR& 104"
+            ],
+            "courseCodes": [
+              "ENGR& 104"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engr-and-214",
+            "label": "ENGR& 214: ENGR& 214",
+            "courseLabels": [
+              "ENGR& 214"
+            ],
+            "courseCodes": [
+              "ENGR& 214"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engr-and-224",
+            "label": "ENGR& 224: ENGR& 224",
+            "courseLabels": [
+              "ENGR& 224"
+            ],
+            "courseCodes": [
+              "ENGR& 224"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engr-250",
+            "label": "ENGR 250: ENGR 250",
+            "courseLabels": [
+              "ENGR 250"
+            ],
+            "courseCodes": [
+              "ENGR 250"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engr-271",
+            "label": "ENGR 271: ENGR 271",
+            "courseLabels": [
+              "ENGR 271"
+            ],
+            "courseCodes": [
+              "ENGR 271"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engl-128",
+            "label": "ENGL 128: ENGL 128",
+            "courseLabels": [
+              "ENGL 128"
+            ],
+            "courseCodes": [
+              "ENGL 128"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engl-and-235",
+            "label": "ENGL& 235: ENGL& 235",
+            "courseLabels": [
+              "ENGL& 235"
+            ],
+            "courseCodes": [
+              "ENGL& 235"
+            ]
+          }
+        ],
+        "defaultOptionIds": [
+          "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engr-271",
+          "official-grc-track-grouped-choice:grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering:3-specific-requirements-48-credits-f-math-science-and-engr-elective-select-2-courses:engl-and-235"
         ]
       }
     ]
@@ -5355,6 +6654,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Math Education"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -5428,6 +6729,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Math Education"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -5511,6 +6814,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Math Education"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 91,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -5589,6 +6894,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Science Transfer Track 2-Physics"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 0",
@@ -5671,6 +6978,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Automotive Technology"
     ],
+    "minimumCredits": 96,
+    "maximumCredits": 103,
     "terms": [
       {
         "label": "General Education",
@@ -5740,6 +7049,160 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Automotive Technology, AAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/automotive-technology/aas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-oral-communication",
+        "label": "Related Instruction Requirements > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Oral Communication",
+        "sourceProgramId": 3188,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-oral-communication:cmst-105",
+            "label": "CMST 105: CMST 105",
+            "courseLabels": [
+              "CMST 105"
+            ],
+            "courseCodes": [
+              "CMST 105"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-oral-communication:cmst-117",
+            "label": "CMST 117: CMST 117",
+            "courseLabels": [
+              "CMST 117"
+            ],
+            "courseCodes": [
+              "CMST 117"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-oral-communication:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-oral-communication:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-human-relations",
+        "label": "Related Instruction Requirements > Human Relations",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Human Relations",
+        "sourceProgramId": 3188,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-human-relations:bus-166",
+            "label": "BUS 166: BUS 166",
+            "courseLabels": [
+              "BUS 166"
+            ],
+            "courseCodes": [
+              "BUS 166"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-human-relations:cmst-106",
+            "label": "CMST 106: CMST 106",
+            "courseLabels": [
+              "CMST 106"
+            ],
+            "courseCodes": [
+              "CMST 106"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-human-relations:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-human-relations:cmst-117",
+            "label": "CMST 117: CMST 117",
+            "courseLabels": [
+              "CMST 117"
+            ],
+            "courseCodes": [
+              "CMST 117"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-human-relations:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-human-relations:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-automotive-technology-aas:related-instruction-requirements-human-relations:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -5750,6 +7213,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology, AAS-Air Traffic Control Track"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 97,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -5822,6 +7287,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology, AAS-Airline Dispatch Track"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 97,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -5894,6 +7361,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology, AAS-Aviation Management Track"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 97,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -5965,6 +7434,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology, AAS-Commercial Pilot Track"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 97,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -6039,6 +7510,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Unmanned Aerial Systems, AAS Curriclum Map"
     ],
+    "minimumCredits": 92,
+    "maximumCredits": 92,
     "terms": [
       {
         "label": "Quarter 1 (17 credits)",
@@ -6101,6 +7574,59 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Unmanned Aerial Systems, AAS Curriclum Map curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/unmanned-aerial-systems-aas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-unmanned-aerial-systems-aas:related-instruction-requirements-20-credits-humanities-5-credits",
+        "label": "Related Instruction Requirements (20 credits) > Humanities (5 credits)",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Humanities (5 credits)",
+        "sourceProgramId": 3272,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-unmanned-aerial-systems-aas:related-instruction-requirements-20-credits-humanities-5-credits:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-unmanned-aerial-systems-aas:related-instruction-requirements-20-credits-humanities-5-credits:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-unmanned-aerial-systems-aas:related-instruction-requirements-20-credits-humanities-5-credits:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-aviation-technology-unmanned-aerial-systems-aas:related-instruction-requirements-20-credits-humanities-5-credits:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -6111,6 +7637,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Residential and Light Commercial"
     ],
+    "minimumCredits": 43,
+    "maximumCredits": 43,
     "terms": [
       {
         "label": "Fall Quarter",
@@ -6180,6 +7708,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Machining and Manufacturing Technology"
     ],
+    "minimumCredits": 39,
+    "maximumCredits": 44,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -6246,6 +7776,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Mechatronics Technician"
     ],
+    "minimumCredits": 103,
+    "maximumCredits": 109,
     "terms": [
       {
         "label": "Quarter 1 (13 credits)",
@@ -6304,6 +7836,89 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Mechatronics Technician, AAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/mechatronics-technician/aas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas:related-instruction-requirements-8-15-credits-human-relations-3-5-credits",
+        "label": "Related Instruction Requirements (8-15 credits) > Human Relations (3-5 credits)",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (8-15 credits) > Human Relations (3-5 credits)",
+        "sourceProgramId": 3252,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas:related-instruction-requirements-8-15-credits-human-relations-3-5-credits:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas:related-instruction-requirements-8-15-credits-human-relations-3-5-credits:cmst-105",
+            "label": "CMST 105: CMST 105",
+            "courseLabels": [
+              "CMST 105"
+            ],
+            "courseCodes": [
+              "CMST 105"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas:related-instruction-requirements-8-15-credits-human-relations-3-5-credits:cmst-106",
+            "label": "CMST 106: CMST 106",
+            "courseLabels": [
+              "CMST 106"
+            ],
+            "courseCodes": [
+              "CMST 106"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas:related-instruction-requirements-8-15-credits-human-relations-3-5-credits:cmst-117",
+            "label": "CMST 117: CMST 117",
+            "courseLabels": [
+              "CMST 117"
+            ],
+            "courseCodes": [
+              "CMST 117"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas:related-instruction-requirements-8-15-credits-human-relations-3-5-credits:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas:related-instruction-requirements-8-15-credits-human-relations-3-5-credits:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-mechatronics-technician-aas:related-instruction-requirements-8-15-credits-human-relations-3-5-credits:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -6314,6 +7929,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Natural Resources"
     ],
+    "minimumCredits": 95,
+    "maximumCredits": 95,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -6386,6 +8003,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Natural Resources-Forestry"
     ],
+    "minimumCredits": 111,
+    "maximumCredits": 111,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -6473,6 +8092,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Geographic Information Systems"
     ],
+    "minimumCredits": 119,
+    "maximumCredits": 119,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -6562,6 +8183,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Natural Resources-Park Management"
     ],
+    "minimumCredits": 121,
+    "maximumCredits": 123,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -6661,6 +8284,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Natural Resources-Water Quality"
     ],
+    "minimumCredits": 131,
+    "maximumCredits": 133,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -6762,6 +8387,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Natural Resources-Wildland Fire"
     ],
+    "minimumCredits": 116,
+    "maximumCredits": 116,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -6850,6 +8477,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Wastewater Technology"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -6925,6 +8554,39 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Wastewater Technology, AAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/wastewater-technology-aas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-aas:related-instruction-requirements-20-credits-computation",
+        "label": "Related Instruction Requirements (20 credits) > Computation",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Computation",
+        "sourceProgramId": 3274,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-aas:related-instruction-requirements-20-credits-computation:math-and-107",
+            "label": "MATH& 107: MATH& 107",
+            "courseLabels": [
+              "MATH& 107"
+            ],
+            "courseCodes": [
+              "MATH& 107"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-associate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-aas:related-instruction-requirements-20-credits-computation:math-and-141",
+            "label": "MATH& 141: MATH& 141",
+            "courseLabels": [
+              "MATH& 141"
+            ],
+            "courseCodes": [
+              "MATH& 141"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -6935,6 +8597,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Water Supply Technology"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -7022,6 +8686,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Welding Technology"
     ],
+    "minimumCredits": 94,
+    "maximumCredits": 94,
     "terms": [
       {
         "label": "General Education",
@@ -7092,6 +8758,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Associate in Arts-DTA"
     ],
+    "minimumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (12 credits)",
@@ -7183,6 +8850,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Accounting, BAS w/Accounting AAA"
     ],
+    "minimumCredits": 35,
+    "maximumCredits": 40,
     "terms": [
       {
         "label": "Quarter 1- Fall (15 credits)",
@@ -7254,6 +8923,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Accounting, BAS w/Associate in Business DTA/MRP"
     ],
+    "minimumCredits": 35,
+    "maximumCredits": 40,
     "terms": [
       {
         "label": "Quarter 1- Fall (15 credits)",
@@ -7324,6 +8995,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Accounting, BAS w/Business Management AAA"
     ],
+    "minimumCredits": 35,
+    "maximumCredits": 40,
     "terms": [
       {
         "label": "Quarter 1- Fall (15 credits)",
@@ -7395,6 +9068,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Applied Management"
     ],
+    "minimumCredits": 180,
+    "maximumCredits": 180,
     "terms": [
       {
         "label": "Quarter 0",
@@ -7473,6 +9148,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Marketing & Entrepreneurship"
     ],
+    "minimumCredits": 180,
+    "maximumCredits": 180,
     "terms": [
       {
         "label": "Quarter 0",
@@ -7554,6 +9231,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Realtime Reporting: Court Reporting & Captioning"
     ],
+    "minimumCredits": 180,
+    "maximumCredits": 180,
     "terms": [
       {
         "label": "Quarter 0",
@@ -7633,6 +9312,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Early Childhood Education: Infant and Child Mental Health"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -7710,6 +9391,69 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Early Childhood Education: Infant and Child Mental Health, BAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/infant-and-child-mental-health-bas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-bas-education-law-social-science-early-childhood-education-infant-and-child-mental-health-bas:related-instruction-requirements-17-credits-oral-communication",
+        "label": "Related Instruction Requirements (17 credits) > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (17 credits) > Oral Communication",
+        "sourceProgramId": 3230,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-education-law-social-science-early-childhood-education-infant-and-child-mental-health-bas:related-instruction-requirements-17-credits-oral-communication:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-education-law-social-science-early-childhood-education-infant-and-child-mental-health-bas:related-instruction-requirements-17-credits-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-education-law-social-science-early-childhood-education-infant-and-child-mental-health-bas:related-instruction-requirements-17-credits-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-education-law-social-science-early-childhood-education-infant-and-child-mental-health-bas:related-instruction-requirements-17-credits-oral-communication:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-education-law-social-science-early-childhood-education-infant-and-child-mental-health-bas:related-instruction-requirements-17-credits-oral-communication:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -7720,6 +9464,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Cybersecurity and Networking"
     ],
+    "minimumCredits": 92,
+    "maximumCredits": 92,
     "terms": [
       {
         "label": "Quarter 0",
@@ -7809,6 +9555,59 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Cybersecurity and Networking, BAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/cybersecurity-networking/cybersecurity-and-networking-bas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-bas-stem-cybersecurity-networking-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following",
+        "label": "Related Instruction Requirements (25 credits) > Choose one of the following:",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (25 credits) > Choose one of the following:",
+        "sourceProgramId": 3150,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-cybersecurity-networking-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-and-235",
+            "label": "ENGL& 235: ENGL& 235",
+            "courseLabels": [
+              "ENGL& 235"
+            ],
+            "courseCodes": [
+              "ENGL& 235"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-cybersecurity-networking-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-128",
+            "label": "ENGL 128: ENGL 128",
+            "courseLabels": [
+              "ENGL 128"
+            ],
+            "courseCodes": [
+              "ENGL 128"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-cybersecurity-networking-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-126",
+            "label": "ENGL 126: ENGL 126",
+            "courseLabels": [
+              "ENGL 126"
+            ],
+            "courseCodes": [
+              "ENGL 126"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-cybersecurity-networking-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-127",
+            "label": "ENGL 127: ENGL 127",
+            "courseLabels": [
+              "ENGL 127"
+            ],
+            "courseCodes": [
+              "ENGL 127"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -7819,6 +9618,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Cybersecurity and Networking"
     ],
+    "minimumCredits": 92,
+    "maximumCredits": 92,
     "terms": [
       {
         "label": "Quarter 0",
@@ -7908,6 +9709,59 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Cybersecurity and Networking, BAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/information-technology/cybersecurity-and-networking-bas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following",
+        "label": "Related Instruction Requirements (25 credits) > Choose one of the following:",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (25 credits) > Choose one of the following:",
+        "sourceProgramId": 3150,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-and-235",
+            "label": "ENGL& 235: ENGL& 235",
+            "courseLabels": [
+              "ENGL& 235"
+            ],
+            "courseCodes": [
+              "ENGL& 235"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-128",
+            "label": "ENGL 128: ENGL 128",
+            "courseLabels": [
+              "ENGL 128"
+            ],
+            "courseCodes": [
+              "ENGL 128"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-126",
+            "label": "ENGL 126: ENGL 126",
+            "courseLabels": [
+              "ENGL 126"
+            ],
+            "courseCodes": [
+              "ENGL 126"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-cybersecurity-and-networking-bas:related-instruction-requirements-25-credits-choose-one-of-the-following:engl-127",
+            "label": "ENGL 127: ENGL 127",
+            "courseLabels": [
+              "ENGL 127"
+            ],
+            "courseCodes": [
+              "ENGL 127"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -7918,6 +9772,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Software Development"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -7988,6 +9844,120 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Software Development, BAS curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/stem/information-technology/software-development-bas.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following",
+        "label": "Related Instruction Requirements > Written Communication (10 credits) > Choose one of the following:",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Written Communication (10 credits) > Choose one of the following:",
+        "sourceProgramId": 3306,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-126",
+            "label": "ENGL 126: ENGL 126",
+            "courseLabels": [
+              "ENGL 126"
+            ],
+            "courseCodes": [
+              "ENGL 126"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-127",
+            "label": "ENGL 127: ENGL 127",
+            "courseLabels": [
+              "ENGL 127"
+            ],
+            "courseCodes": [
+              "ENGL 127"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-128",
+            "label": "ENGL 128: ENGL 128",
+            "courseLabels": [
+              "ENGL 128"
+            ],
+            "courseCodes": [
+              "ENGL 128"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-written-communication-10-credits-choose-one-of-the-following:engl-and-235",
+            "label": "ENGL& 235: ENGL& 235",
+            "courseLabels": [
+              "ENGL& 235"
+            ],
+            "courseCodes": [
+              "ENGL& 235"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-human-relations-5-credits",
+        "label": "Related Instruction Requirements > Human Relations (5 credits)",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Human Relations (5 credits)",
+        "sourceProgramId": 3306,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-human-relations-5-credits:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-human-relations-5-credits:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-human-relations-5-credits:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-human-relations-5-credits:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-bas-stem-information-technology-software-development-bas:related-instruction-requirements-human-relations-5-credits:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -7998,6 +9968,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aeronautical Science"
     ],
+    "minimumCredits": 180,
+    "maximumCredits": 180,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -8081,6 +10053,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Forest Resource Management, BAS Forestry Operations Track"
     ],
+    "minimumCredits": 186,
+    "maximumCredits": 186,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -8182,6 +10156,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Forest Resource Management, BAS Sampling and Assessment Track"
     ],
+    "minimumCredits": 186,
+    "maximumCredits": 186,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -8279,6 +10255,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Accounting Clerk"
     ],
+    "minimumCredits": 35,
+    "maximumCredits": 40,
     "terms": [
       {
         "label": "Core Requirements",
@@ -8310,6 +10288,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Accounting"
     ],
+    "minimumCredits": 35,
+    "maximumCredits": 40,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8354,6 +10334,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Administrative Assistant"
     ],
+    "minimumCredits": 55,
+    "maximumCredits": 60,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8415,6 +10397,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Business Applications Specialist"
     ],
+    "minimumCredits": 60,
+    "maximumCredits": 60,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8474,6 +10458,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Business Applications Specialist for Small Business"
     ],
+    "minimumCredits": 40,
+    "maximumCredits": 40,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8520,6 +10506,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Business Management - Business Foundations"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 95,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8556,6 +10544,90 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Business Management - Business Foundations Certificate curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/business-foundations-certificate.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-business-foundations-certificate:related-instruction-requirements-20-credits-written-communication",
+        "label": "Related Instruction Requirements (20 credits) > Written Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Written Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-business-foundations-certificate:related-instruction-requirements-20-credits-written-communication:btac-130",
+            "label": "BTAC 130: BTAC 130",
+            "courseLabels": [
+              "BTAC 130"
+            ],
+            "courseCodes": [
+              "BTAC 130"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-business-foundations-certificate:related-instruction-requirements-20-credits-written-communication:engl-and-101",
+            "label": "ENGL& 101: ENGL& 101",
+            "courseLabels": [
+              "ENGL& 101"
+            ],
+            "courseCodes": [
+              "ENGL& 101"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-business-foundations-certificate:related-instruction-requirements-20-credits-oral-communication",
+        "label": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-business-foundations-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-business-foundations-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-117",
+            "label": "CMST 117: CMST 117",
+            "courseLabels": [
+              "CMST 117"
+            ],
+            "courseCodes": [
+              "CMST 117"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-business-foundations-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-business-foundations-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -8566,6 +10638,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Business Management: Entrepreneurship"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 95,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8600,6 +10674,90 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Business Management: Entrepreneurship Certificate curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/entrepreneurship-certificate.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-entrepreneurship-certificate:related-instruction-requirements-20-credits-written-communication",
+        "label": "Related Instruction Requirements (20 credits) > Written Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Written Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-entrepreneurship-certificate:related-instruction-requirements-20-credits-written-communication:btac-130",
+            "label": "BTAC 130: BTAC 130",
+            "courseLabels": [
+              "BTAC 130"
+            ],
+            "courseCodes": [
+              "BTAC 130"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-entrepreneurship-certificate:related-instruction-requirements-20-credits-written-communication:engl-and-101",
+            "label": "ENGL& 101: ENGL& 101",
+            "courseLabels": [
+              "ENGL& 101"
+            ],
+            "courseCodes": [
+              "ENGL& 101"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-entrepreneurship-certificate:related-instruction-requirements-20-credits-oral-communication",
+        "label": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-entrepreneurship-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-entrepreneurship-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-117",
+            "label": "CMST 117: CMST 117",
+            "courseLabels": [
+              "CMST 117"
+            ],
+            "courseCodes": [
+              "CMST 117"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-entrepreneurship-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-entrepreneurship-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -8610,6 +10768,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Business Management - Retail Management"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 95,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8652,6 +10812,90 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Business Management - Retail Management Certificate curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/retail-management-certificate.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-written-communication",
+        "label": "Related Instruction Requirements (20 credits) > Written Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Written Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-written-communication:btac-130",
+            "label": "BTAC 130: BTAC 130",
+            "courseLabels": [
+              "BTAC 130"
+            ],
+            "courseCodes": [
+              "BTAC 130"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-written-communication:engl-and-101",
+            "label": "ENGL& 101: ENGL& 101",
+            "courseLabels": [
+              "ENGL& 101"
+            ],
+            "courseCodes": [
+              "ENGL& 101"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      },
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-oral-communication",
+        "label": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Oral Communication",
+        "sourceProgramId": 3198,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-and-101",
+            "label": "CMST& 101: CMST& 101",
+            "courseLabels": [
+              "CMST& 101"
+            ],
+            "courseCodes": [
+              "CMST& 101"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-117",
+            "label": "CMST 117: CMST 117",
+            "courseLabels": [
+              "CMST 117"
+            ],
+            "courseCodes": [
+              "CMST 117"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-business-entrepreneurship-business-management-retail-management-certificate:related-instruction-requirements-20-credits-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -8662,6 +10906,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Court Reporting & Captioning-Scopist/Text Editor"
     ],
+    "minimumCredits": 44,
+    "maximumCredits": 44,
     "terms": [
       {
         "label": "Quarter 1 (11 credits)",
@@ -8713,6 +10959,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Criminal Justice - Corrections"
     ],
+    "minimumCredits": 30,
+    "maximumCredits": 30,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8749,6 +10997,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Forensic and Fingerprinting"
     ],
+    "minimumCredits": 30,
+    "maximumCredits": 30,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8785,6 +11035,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Criminal Justice - Law Enforcement"
     ],
+    "minimumCredits": 30,
+    "maximumCredits": 30,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -8821,6 +11073,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Early Childhood Education Certificate of Specialization"
     ],
+    "minimumCredits": 20,
+    "maximumCredits": 20,
     "terms": [
       {
         "label": "Quarter 1 (12 credits)",
@@ -8871,6 +11125,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Paraeducator State"
     ],
+    "minimumCredits": 47,
+    "maximumCredits": 47,
     "terms": [
       {
         "label": "Quarter 1 (13 credits)",
@@ -8925,6 +11181,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Early Childhood Education (Statewide)"
     ],
+    "minimumCredits": 47,
+    "maximumCredits": 47,
     "terms": [
       {
         "label": "Quarter 1 (12 credits)",
@@ -8972,6 +11230,79 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Early Childhood Education (Statewide) Certificate curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/statewide-certificate.html"
+      }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-education-law-social-science-early-childhood-education-statewide-certificate:requirements-35-credits-choose-one-of-the-following",
+        "label": "Requirements (35 credits) > Choose one of the following:",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements (35 credits) > Choose one of the following:",
+        "sourceProgramId": 3236,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-education-law-social-science-early-childhood-education-statewide-certificate:requirements-35-credits-choose-one-of-the-following:educ-and-130",
+            "label": "EDUC& 130: EDUC& 130",
+            "courseLabels": [
+              "EDUC& 130"
+            ],
+            "courseCodes": [
+              "EDUC& 130"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-education-law-social-science-early-childhood-education-statewide-certificate:requirements-35-credits-choose-one-of-the-following:eced-and-132",
+            "label": "ECED& 132: ECED& 132",
+            "courseLabels": [
+              "ECED& 132"
+            ],
+            "courseCodes": [
+              "ECED& 132"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-education-law-social-science-early-childhood-education-statewide-certificate:requirements-35-credits-choose-one-of-the-following:eced-and-134",
+            "label": "ECED& 134: ECED& 134",
+            "courseLabels": [
+              "ECED& 134"
+            ],
+            "courseCodes": [
+              "ECED& 134"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-education-law-social-science-early-childhood-education-statewide-certificate:requirements-35-credits-choose-one-of-the-following:eced-and-137",
+            "label": "ECED& 137: ECED& 137",
+            "courseLabels": [
+              "ECED& 137"
+            ],
+            "courseCodes": [
+              "ECED& 137"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-education-law-social-science-early-childhood-education-statewide-certificate:requirements-35-credits-choose-one-of-the-following:eced-and-138",
+            "label": "ECED& 138: ECED& 138",
+            "courseLabels": [
+              "ECED& 138"
+            ],
+            "courseCodes": [
+              "ECED& 138"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-education-law-social-science-early-childhood-education-statewide-certificate:requirements-35-credits-choose-one-of-the-following:eced-and-139",
+            "label": "ECED& 139: ECED& 139",
+            "courseLabels": [
+              "ECED& 139"
+            ],
+            "courseCodes": [
+              "ECED& 139"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
       }
     ]
   },
@@ -9021,6 +11352,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Emergency Room and Patient Care Technician"
     ],
+    "minimumCredits": 30,
+    "maximumCredits": 30,
     "terms": [
       {
         "label": "Admission Requirements",
@@ -9070,6 +11403,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Medical Coding and Reimbursement Specialist"
     ],
+    "minimumCredits": 75,
+    "maximumCredits": 75,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -9124,6 +11459,39 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Medical Coding and Reimbursement Specialist Certificate curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/healthcare-wellness/medical-office-administration/medical-coding-reimbursement-specialist-certificate.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-healthcare-wellness-medical-office-administration-medical-coding-reimbursement-specialist-certificate:requirements-related-instruction-requirements-20-credits-oral-communication",
+        "label": "Requirements > Related Instruction Requirements (20 credits) > Oral Communication",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Requirements > Related Instruction Requirements (20 credits) > Oral Communication",
+        "sourceProgramId": 3289,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-healthcare-wellness-medical-office-administration-medical-coding-reimbursement-specialist-certificate:requirements-related-instruction-requirements-20-credits-oral-communication:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-healthcare-wellness-medical-office-administration-medical-coding-reimbursement-specialist-certificate:requirements-related-instruction-requirements-20-credits-oral-communication:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -9134,6 +11502,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Medical Front Office"
     ],
+    "minimumCredits": 54,
+    "maximumCredits": 54,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -9195,6 +11565,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Medical Office Manager"
     ],
+    "minimumCredits": 40,
+    "maximumCredits": 40,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -9245,6 +11617,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Medical Office Support"
     ],
+    "minimumCredits": 30,
+    "maximumCredits": 30,
     "terms": [
       {
         "label": "Quarter 1 (10 credits)",
@@ -9289,6 +11663,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Nurse Assistant"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Requirements",
@@ -9329,6 +11705,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Advanced Network Administration and Security"
     ],
+    "minimumCredits": 42,
+    "maximumCredits": 42,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -9387,6 +11765,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Cloud Fundamentals"
     ],
+    "minimumCredits": 12,
+    "maximumCredits": 12,
     "terms": [
       {
         "label": "Quarter 1 (10 credits)",
@@ -9424,6 +11804,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "IT Fundamentals"
     ],
+    "minimumCredits": 15,
+    "maximumCredits": 15,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -9455,6 +11837,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Scripting Fundamentals"
     ],
+    "minimumCredits": 15,
+    "maximumCredits": 15,
     "terms": [
       {
         "label": "Quarter 1 (10 credits)",
@@ -9492,6 +11876,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Security Fundamentals"
     ],
+    "minimumCredits": 15,
+    "maximumCredits": 15,
     "terms": [
       {
         "label": "Quarter 1 (10 credits)",
@@ -9535,6 +11921,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Advanced Network Administration and Security"
     ],
+    "minimumCredits": 42,
+    "maximumCredits": 42,
     "terms": [
       {
         "label": "Entry Requirements",
@@ -9593,6 +11981,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Information Technology-Cloud Fundamentals"
     ],
+    "minimumCredits": 12,
+    "maximumCredits": 12,
     "terms": [
       {
         "label": "Quarter 1 (10 credits)",
@@ -9630,6 +12020,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Information Technology-Fundamentals"
     ],
+    "minimumCredits": 15,
+    "maximumCredits": 15,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -9661,6 +12053,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "IT-Scripting Fundamentals"
     ],
+    "minimumCredits": 15,
+    "maximumCredits": 15,
     "terms": [
       {
         "label": "Quarter 1 (10 credits)",
@@ -9698,6 +12092,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "IT-Security Fundamentals"
     ],
+    "minimumCredits": 15,
+    "maximumCredits": 15,
     "terms": [
       {
         "label": "Quarter 1 (10 credits)",
@@ -9741,6 +12137,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology: Air Traffic Controller"
     ],
+    "minimumCredits": 44,
+    "maximumCredits": 44,
     "terms": [
       {
         "label": "Quarter 1 (10 credits)",
@@ -9792,6 +12190,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology - Aviation Operations Management"
     ],
+    "minimumCredits": 40,
+    "maximumCredits": 40,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -9838,6 +12238,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Carpentry Technology"
     ],
+    "minimumCredits": 43,
+    "maximumCredits": 43,
     "terms": [
       {
         "label": "Fall Quarter",
@@ -9880,6 +12282,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Carpentry Technology Pre-Apprenticeship"
     ],
+    "minimumCredits": 43,
+    "maximumCredits": 43,
     "terms": [
       {
         "label": "Fall Quarter",
@@ -9924,6 +12328,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Machining and Manufacturing Technology"
     ],
+    "minimumCredits": 39,
+    "maximumCredits": 44,
     "terms": [
       {
         "label": "Quarter 1 (15 credits)",
@@ -9967,6 +12373,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Municipal Wastewater Treatment Technology"
     ],
+    "minimumCredits": 90,
+    "maximumCredits": 90,
     "terms": [
       {
         "label": "Quarter 1 (9 credits)",
@@ -10010,6 +12418,39 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Municipal Wastewater Treatment Technology Certificate curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/water-wastewater-technology/wastewater-technology-municipal-wastewater-treatment-technology-certificate.html"
       }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-municipal-wastewater-treatment-technology-certificate:related-instruction-requirements-20-credits-computation",
+        "label": "Related Instruction Requirements (20 credits) > Computation",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements (20 credits) > Computation",
+        "sourceProgramId": 3274,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-municipal-wastewater-treatment-technology-certificate:related-instruction-requirements-20-credits-computation:math-and-107",
+            "label": "MATH& 107: MATH& 107",
+            "courseLabels": [
+              "MATH& 107"
+            ],
+            "courseCodes": [
+              "MATH& 107"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-water-wastewater-technology-wastewater-technology-municipal-wastewater-treatment-technology-certificate:related-instruction-requirements-20-credits-computation:math-and-141",
+            "label": "MATH& 141: MATH& 141",
+            "courseLabels": [
+              "MATH& 141"
+            ],
+            "courseCodes": [
+              "MATH& 141"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
+      }
     ]
   },
   {
@@ -10020,6 +12461,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Water Distribution Technology"
     ],
+    "minimumCredits": 31,
+    "maximumCredits": 41,
     "terms": [
       {
         "label": "Quarter 1 (13 credits)",
@@ -10074,6 +12517,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Welding Technology Certificates"
     ],
+    "minimumCredits": 94,
+    "maximumCredits": 104,
     "terms": [
       {
         "label": "Quarter 1 (13 credits)",
@@ -10137,6 +12582,89 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Welding Technology Certificates curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/welding-technology/welding-technology-certificates.html"
+      }
+    ],
+    "groupedChoices": [
+      {
+        "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-certificates:related-instruction-requirements-human-relations",
+        "label": "Related Instruction Requirements > Human Relations",
+        "requiredCredits": 5,
+        "selectionCount": 1,
+        "sourceHeading": "Related Instruction Requirements > Human Relations",
+        "sourceProgramId": 3278,
+        "options": [
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-certificates:related-instruction-requirements-human-relations:bus-166",
+            "label": "BUS 166: BUS 166",
+            "courseLabels": [
+              "BUS 166"
+            ],
+            "courseCodes": [
+              "BUS 166"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-certificates:related-instruction-requirements-human-relations:cmst-106",
+            "label": "CMST 106: CMST 106",
+            "courseLabels": [
+              "CMST 106"
+            ],
+            "courseCodes": [
+              "CMST 106"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-certificates:related-instruction-requirements-human-relations:cmst-and-210",
+            "label": "CMST& 210: CMST& 210",
+            "courseLabels": [
+              "CMST& 210"
+            ],
+            "courseCodes": [
+              "CMST& 210"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-certificates:related-instruction-requirements-human-relations:cmst-117",
+            "label": "CMST 117: CMST 117",
+            "courseLabels": [
+              "CMST 117"
+            ],
+            "courseCodes": [
+              "CMST 117"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-certificates:related-instruction-requirements-human-relations:cmst-and-220",
+            "label": "CMST& 220: CMST& 220",
+            "courseLabels": [
+              "CMST& 220"
+            ],
+            "courseCodes": [
+              "CMST& 220"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-certificates:related-instruction-requirements-human-relations:cmst-and-230",
+            "label": "CMST& 230: CMST& 230",
+            "courseLabels": [
+              "CMST& 230"
+            ],
+            "courseCodes": [
+              "CMST& 230"
+            ]
+          },
+          {
+            "id": "official-grc-track-grouped-choice:grc-certificate-trades-industrial-tech-aviation-natural-resources-welding-technology-welding-technology-certificates:related-instruction-requirements-human-relations:cmst-and-240",
+            "label": "CMST& 240: CMST& 240",
+            "courseLabels": [
+              "CMST& 240"
+            ],
+            "courseCodes": [
+              "CMST& 240"
+            ]
+          }
+        ],
+        "defaultOptionIds": []
       }
     ]
   }

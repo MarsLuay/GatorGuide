@@ -64,6 +64,7 @@ import {
   buildSourceBackedRequiredCourseCodes,
   buildSourceBackedUwCourseConsideredSummaryEntries,
   buildSuggestedQuarterPlan,
+  buildSuggestedQuarterRemainingCreditRange,
   buildUwGeneralTransferRequirementSection,
   buildRequirementStatuses,
   buildTransferPlannerStudentCourseEvaluations,
@@ -71,6 +72,7 @@ import {
   extractCourseCodes,
   getPreparatoryTrackCourseCodeSet,
   getResolvedTrackTermsForRequirementDisplay,
+  isMergedCourseDistributionRequirementLabel,
   parseCompletedTranscriptCourses,
   UW_TRANSFER_ADMISSION_CADR_EXEMPTION_QUARTER_CREDITS,
   type SuggestedQuarterPlan,
@@ -603,7 +605,7 @@ function normalizePlannerSelectedOptionsMap(rawValue: unknown) {
         )
       );
 
-      if (normalizedGroupId && optionIds.length) {
+      if (normalizedGroupId) {
         selections[normalizedGroupId] = optionIds;
       }
     }
@@ -1458,6 +1460,80 @@ function buildRequiredCourseSentence(courseLabel: string) {
   return normalizedCourseLabel ? `${normalizedCourseLabel} is required.` : "";
 }
 
+function getTrackGroupedChoiceSelectionCount(
+  choice: NonNullable<TransferPlannerTrack["groupedChoices"]>[number]
+) {
+  const selectionCount = Number(choice.selectionCount ?? 1);
+  if (!Number.isFinite(selectionCount) || selectionCount <= 0) {
+    return 1;
+  }
+  return Math.max(1, Math.min(Math.ceil(selectionCount), choice.options.length || 1));
+}
+
+function getTrackGroupedChoiceShortLabel(label: string) {
+  return (
+    String(label ?? "")
+      .split(">")
+      .map((part) => part.trim())
+      .filter(Boolean)
+      .at(-1) ?? "Green River track option"
+  );
+}
+
+function buildTrackGroupedChoiceRequiredCourseLine(
+  choice: NonNullable<TransferPlannerTrack["groupedChoices"]>[number]
+) {
+  const selectionCount = getTrackGroupedChoiceSelectionCount(choice);
+  const optionLabels = choice.options.map((option) => option.label).filter(Boolean);
+  const previewOptions = optionLabels.slice(0, 10);
+  const hiddenOptionCount = Math.max(optionLabels.length - previewOptions.length, 0);
+  const optionsText = previewOptions.length
+    ? `${previewOptions.join("; ")}${hiddenOptionCount > 0 ? `; plus ${hiddenOptionCount} more` : ""}`
+    : "approved options";
+  const actionText =
+    selectionCount === 1
+      ? "Choose one approved option"
+      : `Choose ${selectionCount} approved options`;
+  const defaultOptionLabels = (choice.defaultOptionIds ?? [])
+    .map((optionId) => choice.options.find((option) => option.id === optionId)?.label ?? "")
+    .filter(Boolean);
+  const defaultText = defaultOptionLabels.length
+    ? ` Default sample-map option${defaultOptionLabels.length === 1 ? "" : "s"}: ${defaultOptionLabels.join("; ")}.`
+    : "";
+  const creditText = choice.requiredCredits ? ` (${choice.requiredCredits} credits)` : "";
+
+  return {
+    id: choice.id,
+    text: `${getTrackGroupedChoiceShortLabel(choice.label)}${creditText}: ${actionText}. Options: ${optionsText}.${defaultText}`,
+  };
+}
+
+function isTrackCourseLabelCoveredByGroupedChoice(
+  label: string,
+  groupedChoices: NonNullable<TransferPlannerTrack["groupedChoices"]>
+) {
+  const courseCodes = extractCourseCodes(label).map((courseCode) =>
+    normalizePlannerCourseCode(courseCode)
+  );
+  if (!courseCodes.length || !groupedChoices.length) {
+    return false;
+  }
+
+  return groupedChoices.some((choice) => {
+    const choiceCourseCodes = new Set(
+      choice.options
+        .flatMap((option) => [...(option.courseCodes ?? []), ...(option.courseLabels ?? []).flatMap(extractCourseCodes)])
+        .map((courseCode) => normalizePlannerCourseCode(courseCode))
+        .filter(Boolean)
+    );
+    if (!choiceCourseCodes.size) {
+      return false;
+    }
+
+    return courseCodes.some((courseCode) => choiceCourseCodes.has(courseCode));
+  });
+}
+
 function buildMajorSpecificsGrcRequiredMajorCourseLines(args: {
   plan: TransferPlannerResolvedMajorPlan | null;
   track: TransferPlannerTrack | null;
@@ -1479,8 +1555,13 @@ function buildMajorSpecificsGrcRequiredMajorCourseLines(args: {
   const orderedLines: { id: string; text: string }[] = [];
   const seenCourseCodes = new Set<string>();
   const preparatoryCourseCodes = getPreparatoryTrackCourseCodeSet(track);
+  const groupedChoices = track?.groupedChoices ?? [];
+  orderedLines.push(...groupedChoices.map(buildTrackGroupedChoiceRequiredCourseLine));
   const addCourseLabel = (courseLabel: string) => {
     const normalizedLabel = String(courseLabel ?? "").replace(/\s+/g, " ").trim();
+    if (isMergedCourseDistributionRequirementLabel(normalizedLabel)) return;
+    if (isTrackCourseLabelCoveredByGroupedChoice(normalizedLabel, groupedChoices)) return;
+
     const explicitCourseCodes = extractCourseCodes(normalizedLabel);
     if (!normalizedLabel || explicitCourseCodes.length !== 1) return;
 
@@ -1790,6 +1871,341 @@ function removeGuidanceSummaryPrefixes(
   }
 
   return remainingSummary || null;
+}
+
+function isSuggestedScheduleGeneratedOptionSummary(summary: string | null | undefined) {
+  const normalizedSummary = String(summary ?? "").replace(/\s+/g, " ").trim();
+  if (!normalizedSummary) return false;
+
+  return (
+    /^Default sample-map options?:/i.test(normalizedSummary) ||
+    /^Selected options?:/i.test(normalizedSummary) ||
+    /^Options:/i.test(normalizedSummary)
+  );
+}
+
+type SuggestedScheduleOptionGroup = NonNullable<
+  SuggestedQuarterPlan["courses"][number]["optionGroup"]
+>;
+type SuggestedScheduleOption = SuggestedScheduleOptionGroup["options"][number];
+
+function getSuggestedScheduleUniqueOptionIds(optionIds: string[] | null | undefined) {
+  return [
+    ...new Set(
+      (optionIds ?? []).map((optionId) => String(optionId ?? "").trim()).filter(Boolean)
+    ),
+  ];
+}
+
+function getSuggestedScheduleSelectedOptions(optionGroup: SuggestedScheduleOptionGroup) {
+  const selectedOptionIdSet = new Set(
+    getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds)
+  );
+  return optionGroup.options.filter((option) => selectedOptionIdSet.has(option.id));
+}
+
+function getSuggestedScheduleOptionCourseDisplayLabels(option: SuggestedScheduleOption) {
+  return option.courseLabels
+    .map(getSuggestedScheduleCourseDisplayLabel)
+    .map((label) => label.trim())
+    .filter(Boolean);
+}
+
+function isSuggestedScheduleDuplicateSingleCourseOptionLabel(
+  option: SuggestedScheduleOption
+) {
+  if (option.courseLabels.length !== 1) return false;
+
+  const normalizedOptionLabel = String(option.label ?? "").replace(/\s+/g, " ").trim();
+  const normalizedCourseLabel = String(option.courseLabels[0] ?? "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!normalizedOptionLabel || !normalizedCourseLabel) return false;
+
+  return (
+    normalizedOptionLabel.toUpperCase() === normalizedCourseLabel.toUpperCase() ||
+    normalizedOptionLabel.toUpperCase() ===
+      `${normalizedCourseLabel}: ${normalizedCourseLabel}`.toUpperCase()
+  );
+}
+
+function getSuggestedScheduleOptionDisplayLabel(option: SuggestedScheduleOption) {
+  const courseDisplayLabels = getSuggestedScheduleOptionCourseDisplayLabels(option);
+  const normalizedOptionLabel = String(option.label ?? "").replace(/\s+/g, " ").trim();
+  if (
+    courseDisplayLabels.length === 1 &&
+    isSuggestedScheduleDuplicateSingleCourseOptionLabel(option)
+  ) {
+    return courseDisplayLabels[0];
+  }
+
+  return normalizedOptionLabel || courseDisplayLabels.join(" / ") || "Option";
+}
+
+function getSuggestedScheduleOptionCourseDetailText(option: SuggestedScheduleOption) {
+  const courseDisplayLabels = getSuggestedScheduleOptionCourseDisplayLabels(option);
+  if (!courseDisplayLabels.length) return null;
+
+  const optionDisplayLabel = getSuggestedScheduleOptionDisplayLabel(option);
+  const courseDetailText = courseDisplayLabels.join(", ");
+  return courseDetailText === optionDisplayLabel ? null : courseDetailText;
+}
+
+function getSuggestedScheduleOptionSelectedDisplayLabel(option: SuggestedScheduleOption) {
+  const optionDisplayLabel = getSuggestedScheduleOptionDisplayLabel(option);
+  const courseDetailText = getSuggestedScheduleOptionCourseDetailText(option);
+  return courseDetailText ? `${optionDisplayLabel} (${courseDetailText})` : optionDisplayLabel;
+}
+
+function getSuggestedScheduleSelectedOptionLabels(optionGroup: SuggestedScheduleOptionGroup) {
+  return getSuggestedScheduleSelectedOptions(optionGroup).map((option) => {
+    const selectedLabel = getSuggestedScheduleOptionSelectedDisplayLabel(option);
+    return option.guidanceSummary
+      ? `${selectedLabel}. ${option.guidanceSummary}`
+      : selectedLabel;
+  });
+}
+
+function getSuggestedScheduleOptionCreditRange(option: SuggestedScheduleOption) {
+  return {
+    creditMin: Number(option.creditMin ?? option.creditAmount) || 0,
+    creditMax:
+      Number(option.creditMax ?? option.creditAmount ?? option.creditMin) || 0,
+  };
+}
+
+function getSuggestedScheduleOptionGroupSelectionTargetText(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  const selectionCount = Math.max(
+    1,
+    Math.ceil(Number(optionGroup.selectionCount ?? 1) || 1)
+  );
+  return selectionCount === 1
+    ? "Choose 1 approved option"
+    : `Choose ${selectionCount} approved options`;
+}
+
+function getSuggestedScheduleOptionGroupSelectedCount(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  return getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds).length;
+}
+
+function collectSuggestedScheduleOptionGroups(quarters: SuggestedQuarterPlan[]) {
+  const optionGroupsById = new Map<string, SuggestedScheduleOptionGroup>();
+
+  for (const quarter of quarters) {
+    for (const course of quarter.courses) {
+      const optionGroup = course.optionGroup ?? null;
+      if (!optionGroup) continue;
+
+      const currentOptionGroup = optionGroupsById.get(optionGroup.id);
+      if (!currentOptionGroup) {
+        optionGroupsById.set(optionGroup.id, optionGroup);
+        continue;
+      }
+
+      const currentSelectedCount = getSuggestedScheduleOptionGroupSelectedCount(
+        currentOptionGroup
+      );
+      const nextSelectedCount = getSuggestedScheduleOptionGroupSelectedCount(optionGroup);
+      const shouldPreferNextGroup =
+        (optionGroup.selectionSource === "student" &&
+          currentOptionGroup.selectionSource !== "student") ||
+        (optionGroup.isSelectionPrompt && !currentOptionGroup.isSelectionPrompt) ||
+        nextSelectedCount > currentSelectedCount;
+
+      if (shouldPreferNextGroup) {
+        optionGroupsById.set(optionGroup.id, optionGroup);
+      }
+    }
+  }
+
+  return [...optionGroupsById.values()];
+}
+
+function SuggestedScheduleOptionsBox({
+  optionGroups,
+  onSelectRequirementOption,
+  textClass,
+  secondaryTextClass,
+  borderClass,
+}: {
+  optionGroups: SuggestedScheduleOptionGroup[];
+  onSelectRequirementOption: (
+    groupId: string,
+    optionId: string,
+    selectionCount: number,
+    currentSelectedOptionIds?: string[]
+  ) => void;
+  textClass: string;
+  secondaryTextClass: string;
+  borderClass: string;
+}) {
+  const { isLight } = useAppTheme();
+  const [closedOptionGroupIds, setClosedOptionGroupIds] = useState<Set<string>>(
+    () => new Set()
+  );
+  const toggleOptionGroup = useCallback((groupId: string) => {
+    setClosedOptionGroupIds((currentGroupIds) => {
+      const nextGroupIds = new Set(currentGroupIds);
+      if (nextGroupIds.has(groupId)) {
+        nextGroupIds.delete(groupId);
+      } else {
+        nextGroupIds.add(groupId);
+      }
+      return nextGroupIds;
+    });
+  }, []);
+
+  if (!optionGroups.length) return null;
+
+  return (
+    <View
+      className={`mt-3 rounded-2xl border px-3 py-3 gap-3 ${
+        isLight ? `bg-white/80 ${borderClass}` : "bg-slate-950/30 border-white/10"
+      }`}
+    >
+      <View className="flex-row items-center gap-2">
+        <Ionicons name="options-outline" size={17} color="#059669" />
+        <Text className={`${textClass} text-sm font-semibold`}>
+          Choose your plan options
+        </Text>
+      </View>
+
+      {optionGroups.map((optionGroup) => {
+        const selectedOptionIdSet = new Set(
+          getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds)
+        );
+        const selectedOptionLabels = getSuggestedScheduleSelectedOptionLabels(optionGroup);
+        const selectionCount = Math.max(
+          1,
+          Math.ceil(Number(optionGroup.selectionCount ?? 1) || 1)
+        );
+        const selectedCount = Math.min(selectedOptionIdSet.size, selectionCount);
+        const isOptionGroupOpen = !closedOptionGroupIds.has(optionGroup.id);
+
+        return (
+          <View
+            key={optionGroup.id}
+            className={`rounded-xl border px-3 py-3 gap-3 ${
+              isLight ? `bg-slate-50 ${borderClass}` : "bg-white/5 border-white/10"
+            }`}
+          >
+            <Pressable
+              onPress={() => toggleOptionGroup(optionGroup.id)}
+              accessibilityRole="button"
+              accessibilityState={{ expanded: isOptionGroupOpen }}
+              accessibilityLabel={`${isOptionGroupOpen ? "Close" : "Open"} options for ${
+                optionGroup.title
+              }`}
+              className="flex-row items-start justify-between gap-3"
+              hitSlop={8}
+            >
+              <View className="flex-1 min-w-0">
+                <Text className={`${textClass} text-sm font-semibold`}>
+                  {optionGroup.title}
+                </Text>
+                <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                  {selectedOptionLabels.length
+                    ? `Selected: ${selectedOptionLabels.join("; ")}`
+                    : getSuggestedScheduleOptionGroupSelectionTargetText(optionGroup)}
+                </Text>
+              </View>
+              <Text
+                className={`${secondaryTextClass} text-xs font-semibold`}
+                style={{ fontVariant: ["tabular-nums"] }}
+              >
+                {selectedCount}/{selectionCount}
+              </Text>
+              <Ionicons
+                name={isOptionGroupOpen ? "chevron-up" : "chevron-down"}
+                size={18}
+                color="#9CA3AF"
+                style={{ marginTop: 1 }}
+              />
+            </Pressable>
+
+            {isOptionGroupOpen ? (
+              <View className="gap-2">
+                {optionGroup.options.map((option) => {
+                  const isSelected = selectedOptionIdSet.has(option.id);
+                  const optionCreditRange = getSuggestedScheduleOptionCreditRange(option);
+                  const hasCreditRange =
+                    optionCreditRange.creditMin > 0 && optionCreditRange.creditMax > 0;
+                  const optionDisplayLabel = getSuggestedScheduleOptionDisplayLabel(option);
+                  const optionCourseDetailText =
+                    getSuggestedScheduleOptionCourseDetailText(option);
+
+                  return (
+                    <Pressable
+                      key={option.id}
+                      onPress={() =>
+                        onSelectRequirementOption(
+                          optionGroup.id,
+                          option.id,
+                          selectionCount,
+                          optionGroup.selectedOptionIds
+                        )
+                      }
+                      accessibilityRole={selectionCount === 1 ? "radio" : "checkbox"}
+                      accessibilityState={{ checked: isSelected }}
+                      className={`rounded-xl border px-3 py-2 flex-row items-start gap-2 ${
+                        isSelected
+                          ? "border-emerald-500/30 bg-emerald-500/10"
+                          : isLight
+                            ? `bg-white ${borderClass}`
+                            : "bg-white/5 border-white/10"
+                      }`}
+                    >
+                      <Ionicons
+                        name={
+                          isSelected
+                            ? selectionCount === 1
+                              ? "radio-button-on"
+                              : "checkbox"
+                            : selectionCount === 1
+                              ? "radio-button-off"
+                              : "square-outline"
+                        }
+                        size={18}
+                        color={isSelected ? "#008f4e" : "#9CA3AF"}
+                        style={{ marginTop: 1 }}
+                      />
+                      <View className="flex-1 min-w-0">
+                        <Text className={`${textClass} text-sm font-medium`}>
+                          {optionDisplayLabel}
+                        </Text>
+                        {optionCourseDetailText ? (
+                          <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                            {optionCourseDetailText}
+                          </Text>
+                        ) : null}
+                        {option.guidanceSummary ? (
+                          <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                            {option.guidanceSummary}
+                          </Text>
+                        ) : null}
+                      </View>
+                      {hasCreditRange ? (
+                        <Text
+                          className={`${secondaryTextClass} text-xs font-medium`}
+                          style={{ fontVariant: ["tabular-nums"] }}
+                        >
+                          {formatSuggestedScheduleCreditRange(optionCreditRange)}
+                        </Text>
+                      ) : null}
+                    </Pressable>
+                  );
+                })}
+              </View>
+            ) : null}
+          </View>
+        );
+      })}
+    </View>
+  );
 }
 
 function buildTranscriptDebugSnapshot({
@@ -2833,7 +3249,12 @@ function SuggestedScheduleCard({
   onToggleAllowStemPrepClasses: () => void;
   currentCourseSelections: Set<string>;
   onToggleCurrentCourse: (courseKey: string, fallbackCourseLabel?: string) => void;
-  onSelectRequirementOption: (groupId: string, optionId: string, selectionCount: number) => void;
+  onSelectRequirementOption: (
+    groupId: string,
+    optionId: string,
+    selectionCount: number,
+    currentSelectedOptionIds?: string[]
+  ) => void;
   textClass: string;
   secondaryTextClass: string;
   cardClass: string;
@@ -2841,8 +3262,13 @@ function SuggestedScheduleCard({
 }) {
   const router = useRouter();
   const { isLight } = useAppTheme();
-  const visibleQuarters = quarters.filter(
-    (quarter) => quarter.phase !== "planned" || quarter.courses.length > 0
+  const visibleQuarters = useMemo(
+    () => quarters.filter((quarter) => quarter.phase !== "planned" || quarter.courses.length > 0),
+    [quarters]
+  );
+  const scheduleOptionGroups = useMemo(
+    () => collectSuggestedScheduleOptionGroups(visibleQuarters),
+    [visibleQuarters]
   );
   const plannedQuarterBadgeClass = isLight
     ? `bg-white border ${borderClass}`
@@ -2850,20 +3276,6 @@ function SuggestedScheduleCard({
   const plannedCourseContainerClass = isLight
     ? `bg-white border ${borderClass}`
     : "bg-white/5 border border-white/10";
-  const [openRequirementOptionGroups, setOpenRequirementOptionGroups] = useState<Set<string>>(
-    () => new Set()
-  );
-  const toggleRequirementOptionGroup = useCallback((groupId: string) => {
-    setOpenRequirementOptionGroups((currentGroups) => {
-      const nextGroups = new Set(currentGroups);
-      if (nextGroups.has(groupId)) {
-        nextGroups.delete(groupId);
-      } else {
-        nextGroups.add(groupId);
-      }
-      return nextGroups;
-    });
-  }, []);
   const grcTrackRequirementNoun = getGrcTrackRequirementNoun(grcTrack);
   const scheduleTitle =
     collegeId === "grc"
@@ -2871,20 +3283,14 @@ function SuggestedScheduleCard({
         ? "GRC Degree Plan"
         : "GRC Program Plan"
       : "GRC Quarter Plan";
-  const remainingCreditRange = quarters
-    .flatMap((quarter) => quarter.courses)
-    .filter((course) => course.status !== "completed")
-    .reduce(
-      (totalCredits, course) => {
-        const courseCreditRange = getSuggestedCourseCreditRange(course);
-        return {
-          creditMin: totalCredits.creditMin + courseCreditRange.creditMin,
-          creditMax: totalCredits.creditMax + courseCreditRange.creditMax,
-        };
-      },
-      { creditMin: 0, creditMax: 0 }
-    );
-  const remainingCreditText = formatSuggestedScheduleCreditRange(remainingCreditRange);
+  const remainingCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters,
+    track: collegeId === "grc" ? grcTrack : null,
+  });
+  const remainingCreditText = formatSuggestedScheduleCreditRange({
+    creditMin: remainingCreditRange.minRemainingCredits,
+    creditMax: remainingCreditRange.maxRemainingCredits,
+  });
   const remainingCreditCredentialLabel = getSuggestedScheduleCredentialLabel(
     degreeTitle,
     collegeId === "grc" ? grcTrackRequirementNoun : "degree"
@@ -2980,6 +3386,13 @@ function SuggestedScheduleCard({
           </Text>{" "}
           left in order to finish what you can for the {remainingCreditCredentialLabel}
         </Text>
+        <SuggestedScheduleOptionsBox
+          optionGroups={scheduleOptionGroups}
+          onSelectRequirementOption={onSelectRequirementOption}
+          textClass={textClass}
+          secondaryTextClass={secondaryTextClass}
+          borderClass={borderClass}
+        />
         {uwTransferMinimumRequirementSummary ? (
           <Text className={`${secondaryTextClass} text-sm mt-2`}>
             {uwTransferMinimumRequirementSummary}
@@ -3039,9 +3452,6 @@ function SuggestedScheduleCard({
                     currentCourseSelections.has(courseSelectionKey) ||
                     currentCourseSelections.has(course.label);
                   const optionGroup = course.optionGroup ?? null;
-                  const isOptionGroupOpen = optionGroup
-                    ? openRequirementOptionGroups.has(optionGroup.id)
-                    : false;
                   const shouldShowCurrentCourseCheckbox =
                     course.status !== "completed" && !optionGroup?.isSelectionPrompt;
 
@@ -3085,141 +3495,40 @@ function SuggestedScheduleCard({
                                       : textClass
                               }`;
                               if (optionGroup) {
-                                const selectedOptionIdSet = new Set(optionGroup.selectedOptionIds);
-                                const selectedOptions = optionGroup.options.filter((option) =>
-                                  selectedOptionIdSet.has(option.id)
-                                );
-                                const selectedOptionLabels = selectedOptions.map((option) => {
-                                  const selectedLabel =
-                                    String(option.selectedLabel ?? "").trim() ||
-                                    option.courseLabels.join(" / ") ||
-                                    option.label;
-                                  return option.guidanceSummary
-                                    ? `${selectedLabel}. ${option.guidanceSummary}`
-                                    : selectedLabel;
-                                });
-                                const optionGroupGuidanceSummary = removeGuidanceSummaryPrefixes(
+                                const selectedOptions =
+                                  getSuggestedScheduleSelectedOptions(optionGroup);
+                                const selectedOptionLabels =
+                                  getSuggestedScheduleSelectedOptionLabels(optionGroup);
+                                const rawOptionGroupGuidanceSummary = removeGuidanceSummaryPrefixes(
                                   course.guidanceSummary,
                                   selectedOptions.map((option) => option.guidanceSummary)
                                 );
+                                const optionGroupGuidanceSummary =
+                                  isSuggestedScheduleGeneratedOptionSummary(
+                                    rawOptionGroupGuidanceSummary
+                                  )
+                                    ? null
+                                    : rawOptionGroupGuidanceSummary;
 
                                 return (
-                                  <View className="gap-2">
-                                    <Pressable
-                                      onPress={() => toggleRequirementOptionGroup(optionGroup.id)}
-                                      accessibilityRole="button"
-                                      accessibilityState={{ expanded: isOptionGroupOpen }}
-                                      accessibilityLabel={`Show options for ${optionGroup.title}`}
-                                      className="flex-row items-start justify-between gap-2"
-                                      hitSlop={8}
-                                    >
-                                      <View className="flex-1 min-w-0">
-                                        <Text className={courseTextClass}>
-                                          {courseDisplayLabel}
-                                        </Text>
-                                        {selectedOptionLabels.length ? (
-                                          <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                                            Selected: {selectedOptionLabels.join("; ")}
-                                          </Text>
-                                        ) : null}
-                                      </View>
-                                      <Ionicons
-                                        name={isOptionGroupOpen ? "chevron-up" : "chevron-down"}
-                                        size={18}
-                                        color="#9CA3AF"
-                                      />
-                                    </Pressable>
+                                  <View className="gap-1">
+                                    <Text className={courseTextClass}>
+                                      {optionGroup.isSelectionPrompt
+                                        ? optionGroup.title
+                                        : courseDisplayLabel}
+                                    </Text>
+                                    <Text className={`${secondaryTextClass} text-xs`}>
+                                      {selectedOptionLabels.length
+                                        ? `Selected: ${selectedOptionLabels.join("; ")}`
+                                        : getSuggestedScheduleOptionGroupSelectionTargetText(
+                                            optionGroup
+                                          )}
+                                    </Text>
 
                                     {optionGroupGuidanceSummary ? (
                                       <Text className={`${secondaryTextClass} text-xs`}>
                                         {optionGroupGuidanceSummary}
                                       </Text>
-                                    ) : null}
-
-                                    {isOptionGroupOpen ? (
-                                      <View className="gap-2">
-                                        {optionGroup.options.map((option) => {
-                                          const isSelected = selectedOptionIdSet.has(option.id);
-                                          const optionCreditRange = {
-                                            creditMin:
-                                              Number(option.creditMin ?? option.creditAmount) || 0,
-                                            creditMax:
-                                              Number(
-                                                option.creditMax ??
-                                                  option.creditAmount ??
-                                                  option.creditMin
-                                              ) || 0,
-                                          };
-                                          const hasCreditRange =
-                                            optionCreditRange.creditMin > 0 &&
-                                            optionCreditRange.creditMax > 0;
-
-                                          return (
-                                            <Pressable
-                                              key={option.id}
-                                              onPress={() =>
-                                                onSelectRequirementOption(
-                                                  optionGroup.id,
-                                                  option.id,
-                                                  optionGroup.selectionCount
-                                                )
-                                              }
-                                              accessibilityRole={
-                                                optionGroup.selectionCount === 1
-                                                  ? "radio"
-                                                  : "checkbox"
-                                              }
-                                              accessibilityState={{ checked: isSelected }}
-                                              className={`rounded-xl border px-3 py-2 flex-row items-start gap-2 ${
-                                                isSelected
-                                                  ? "border-emerald-500/30 bg-emerald-500/10"
-                                                  : isLight
-                                                    ? `bg-slate-50 ${borderClass}`
-                                                    : "bg-white/5 border-white/10"
-                                              }`}
-                                            >
-                                              <Ionicons
-                                                name={
-                                                  isSelected
-                                                    ? optionGroup.selectionCount === 1
-                                                      ? "radio-button-on"
-                                                      : "checkbox"
-                                                    : optionGroup.selectionCount === 1
-                                                      ? "radio-button-off"
-                                                      : "square-outline"
-                                                }
-                                                size={18}
-                                                color={isSelected ? "#008f4e" : "#9CA3AF"}
-                                                style={{ marginTop: 1 }}
-                                              />
-                                              <View className="flex-1 min-w-0">
-                                                <Text className={`${textClass} text-sm font-medium`}>
-                                                  {option.label}
-                                                </Text>
-                                                {option.courseLabels.length &&
-                                                option.courseLabels.join(", ") !== option.label ? (
-                                                  <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                                                    {option.courseLabels.join(", ")}
-                                                  </Text>
-                                                ) : null}
-                                                {option.guidanceSummary ? (
-                                                  <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                                                    {option.guidanceSummary}
-                                                  </Text>
-                                                ) : null}
-                                              </View>
-                                              {hasCreditRange ? (
-                                                <Text
-                                                  className={`${secondaryTextClass} text-xs font-medium`}
-                                                  style={{ fontVariant: ["tabular-nums"] }}
-                                                >
-                                                  {formatSuggestedScheduleCreditRange(optionCreditRange)}
-                                                </Text>
-                                              ) : null}
-                                            </Pressable>
-                                          );
-                                        })}
-                                      </View>
                                     ) : null}
                                   </View>
                                 );
@@ -4950,13 +5259,27 @@ export default function TransferPlannerPage() {
     ]
   );
   const handleSelectRequirementOption = useCallback(
-    async (groupId: string, optionId: string, selectionCount: number) => {
+    async (
+      groupId: string,
+      optionId: string,
+      selectionCount: number,
+      currentSelectedOptionIds?: string[]
+    ) => {
       const normalizedGroupId = String(groupId ?? "").trim();
       const normalizedOptionId = String(optionId ?? "").trim();
       if (!normalizedGroupId || !normalizedOptionId) return;
 
       const currentPathSelections = selectedOptionsByPath[plannerPathKey] ?? {};
-      const currentGroupSelections = currentPathSelections[normalizedGroupId] ?? [];
+      const hasStoredGroupSelection = Object.prototype.hasOwnProperty.call(
+        currentPathSelections,
+        normalizedGroupId
+      );
+      const displayedGroupSelections = getSuggestedScheduleUniqueOptionIds(
+        currentSelectedOptionIds
+      );
+      const currentGroupSelections = hasStoredGroupSelection
+        ? currentPathSelections[normalizedGroupId] ?? []
+        : displayedGroupSelections;
       const normalizedSelectionCount =
         Number.isFinite(selectionCount) && selectionCount > 1
           ? Math.floor(selectionCount)
@@ -4971,10 +5294,6 @@ export default function TransferPlannerPage() {
         ...currentPathSelections,
         [normalizedGroupId]: nextGroupSelections,
       };
-
-      if (!nextGroupSelections.length) {
-        delete nextPathSelections[normalizedGroupId];
-      }
 
       const nextSelectionMap = {
         ...selectedOptionsByPath,

@@ -245,7 +245,9 @@ export type SuggestedQuarterCourseOptionGroup = {
   title: string;
   promptLabel: string;
   selectionCount: number;
+  requiredCredits?: number | null;
   selectedOptionIds: string[];
+  selectionSource?: "student" | "default" | null;
   options: SuggestedQuarterCourseOption[];
   isSelectionPrompt: boolean;
 };
@@ -268,6 +270,20 @@ export type SuggestedQuarterPlan = {
   label: string;
   phase: "completed" | "current" | "planned";
   courses: SuggestedQuarterCourse[];
+};
+
+export type SuggestedQuarterRemainingCreditRange = {
+  minRemainingCredits: number;
+  maxRemainingCredits: number;
+  exactRemainingCredits: number | null;
+  scheduledMinRemainingCredits: number;
+  scheduledMaxRemainingCredits: number;
+  completedCredits: number;
+  catalogMinimumCredits: number | null;
+  catalogMaximumCredits: number | null;
+  hasUnresolvedOptions: boolean;
+  unresolvedOptionGroupIds: string[];
+  unresolvedPlaceholderLabels: string[];
 };
 
 export type TransferPlannerStudentEvaluationReportBucket = {
@@ -1441,10 +1457,17 @@ function getPlannerSelectedRequirementOptionIds(
   selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>
 ) {
   const selectionKey = getRequirementOptionSelectionKey(item);
+  const hasExplicitSelection =
+    !!selectedRequirementOptionIdsByGroup &&
+    (Object.prototype.hasOwnProperty.call(selectedRequirementOptionIdsByGroup, selectionKey) ||
+      Object.prototype.hasOwnProperty.call(selectedRequirementOptionIdsByGroup, item.id));
   const selectedValue =
     selectedRequirementOptionIdsByGroup?.[selectionKey] ??
     selectedRequirementOptionIdsByGroup?.[item.id];
   const selectedIds = normalizeSelectedRequirementOptionIds(selectedValue);
+  if (hasExplicitSelection) {
+    return selectedIds;
+  }
   if (selectedIds.length) {
     return selectedIds;
   }
@@ -1481,6 +1504,46 @@ function getRequirementOptionSelectionCount(item: TransferPlannerChecklistItem) 
   return optionCount > 0
     ? Math.max(1, Math.min(optionCount, Math.ceil(selectionCount)))
     : Math.max(1, Math.ceil(selectionCount));
+}
+
+function getSuggestedQuarterCourseOptionMaximumCreditValue(
+  option: SuggestedQuarterCourseOption
+) {
+  const creditValue = Number(option.creditMax ?? option.creditAmount ?? option.creditMin ?? 0);
+  return Number.isFinite(creditValue) && creditValue > 0 ? creditValue : 0;
+}
+
+function getRequirementOptionSelectionCountForSuggestedOptions(
+  item: TransferPlannerChecklistItem,
+  options: SuggestedQuarterCourseOption[]
+) {
+  const group = item.requirementGroup;
+  const optionCount = options.length;
+  if (!optionCount) return 0;
+
+  if (group?.requirementType === "choose_credits") {
+    const requiredCredits = Number(item.minCredits ?? group.minCredits ?? 0);
+    if (Number.isFinite(requiredCredits) && requiredCredits > 0) {
+      let selectedCreditTotal = 0;
+      let selectedOptionCount = 0;
+      const optionCredits = options
+        .map(getSuggestedQuarterCourseOptionMaximumCreditValue)
+        .filter((creditValue) => creditValue > 0)
+        .sort((left, right) => right - left);
+
+      for (const creditValue of optionCredits) {
+        selectedCreditTotal += creditValue;
+        selectedOptionCount += 1;
+        if (selectedCreditTotal >= requiredCredits) {
+          return selectedOptionCount;
+        }
+      }
+
+      return Math.max(1, Math.min(optionCount, optionCredits.length || optionCount));
+    }
+  }
+
+  return Math.min(getRequirementOptionSelectionCount(item), optionCount);
 }
 
 function getRequirementOptionFinishTitle(item: TransferPlannerChecklistItem) {
@@ -1556,9 +1619,74 @@ function buildSuggestedQuarterCourseOption(
   };
 }
 
+function getSuggestedQuarterCourseOptionDeduplicationKey(
+  option: SuggestedQuarterCourseOption
+) {
+  const normalizedCourseCodes = option.courseCodes
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean)
+    .sort();
+  if (normalizedCourseCodes.length) {
+    return `course-codes:${normalizedCourseCodes.join("|")}`;
+  }
+
+  return `course-labels:${option.courseLabels
+    .map((label) => String(label ?? "").replace(/\s+/g, " ").trim().toLowerCase())
+    .filter(Boolean)
+    .sort()
+    .join("|")}`;
+}
+
+function dedupeSuggestedQuarterCourseOptions(input: {
+  options: SuggestedQuarterCourseOption[];
+  selectedOptionIds: string[];
+}) {
+  const options: SuggestedQuarterCourseOption[] = [];
+  const optionIdAliases = new Map<string, string>();
+  const optionIndexByKey = new Map<string, number>();
+
+  for (const option of input.options) {
+    const key = getSuggestedQuarterCourseOptionDeduplicationKey(option);
+    const existingIndex = optionIndexByKey.get(key);
+    if (existingIndex == null) {
+      optionIndexByKey.set(key, options.length);
+      optionIdAliases.set(option.id, option.id);
+      options.push(option);
+      continue;
+    }
+
+    const existingOption = options[existingIndex];
+    optionIdAliases.set(option.id, existingOption.id);
+    options[existingIndex] = {
+      ...existingOption,
+      courseLabels: unique([...existingOption.courseLabels, ...option.courseLabels]),
+      courseCodes: unique([...existingOption.courseCodes, ...option.courseCodes]),
+      guidanceSummary: existingOption.guidanceSummary ?? option.guidanceSummary ?? null,
+    };
+  }
+
+  const optionIds = new Set(options.map((option) => option.id));
+  const selectedOptionIds = unique(
+    input.selectedOptionIds
+      .map((optionId) => optionIdAliases.get(optionId) ?? optionId)
+      .filter((optionId) => optionIds.has(optionId))
+  );
+
+  return { options, selectedOptionIds };
+}
+
 function getSuggestedQuarterCourseOptionGroupCreditRange(
   optionGroup: SuggestedQuarterCourseOptionGroup
 ) {
+  const requiredCredits = getPositiveCreditAmount(optionGroup.requiredCredits);
+  if (requiredCredits !== null) {
+    return {
+      creditAmount: requiredCredits,
+      creditMin: requiredCredits,
+      creditMax: requiredCredits,
+    };
+  }
+
   const selectableCreditRanges = optionGroup.options
     .map((option) =>
       getSuggestedCourseCreditRangeFromValues({
@@ -1614,22 +1742,26 @@ function buildSuggestedQuarterCourseOptionGroup(input: {
       buildSuggestedQuarterCourseOption(input.item, option, optionIndex, input.campusId)
     )
     .filter((option): option is SuggestedQuarterCourseOption => !!option);
-  if (!options.length) {
+  const dedupedOptions = dedupeSuggestedQuarterCourseOptions({
+    options,
+    selectedOptionIds: input.selectedOptionIds,
+  });
+  if (!dedupedOptions.options.length) {
     return null;
   }
 
-  const optionIds = new Set(options.map((option) => option.id));
-  const selectedOptionIds = input.selectedOptionIds.filter((optionId) =>
-    optionIds.has(optionId)
+  const selectionCount = getRequirementOptionSelectionCountForSuggestedOptions(
+    input.item,
+    dedupedOptions.options
   );
 
   return {
     id: getRequirementOptionSelectionKey(input.item),
     title: getRequirementOptionFinishTitle(input.item),
-    promptLabel: buildRequirementOptionPromptLabel(input.item, options.length),
-    selectionCount: getRequirementOptionSelectionCount(input.item),
-    selectedOptionIds,
-    options,
+    promptLabel: buildRequirementOptionPromptLabel(input.item, dedupedOptions.options.length),
+    selectionCount,
+    selectedOptionIds: dedupedOptions.selectedOptionIds,
+    options: dedupedOptions.options,
     isSelectionPrompt: input.isSelectionPrompt,
   } satisfies SuggestedQuarterCourseOptionGroup;
 }
@@ -1691,6 +1823,34 @@ export function extractCourseCodes(value: string) {
       ...extractTransferPlannerCourseCodes(String(value ?? "")),
     ].map((match) => normalizeCourseCode(match))
   );
+}
+
+const GRC_DISTRIBUTION_PLACEHOLDER_CODE_PATTERN =
+  /\b(?:[123]\s*[ABC]|[HSDN]\s*\d+)\b(?:\s*[-:]|\b)/i;
+const GRC_DISTRIBUTION_PLACEHOLDER_TEXT_PATTERN =
+  /\b(?:A\s*&\s*H|SSc|NSc|humanities|fine arts|arts and humanities|social sciences?|natural sciences?)\b/i;
+const GRC_DISTRIBUTION_CHOICE_CUE_PATTERN = /\b(?:or|select|choose)\b/i;
+
+export function hasCourseAndDistributionPlaceholderSignal(label: string) {
+  const normalizedLabel = String(label ?? "").replace(/\s+/g, " ").trim();
+  if (!normalizedLabel || !extractCourseCodes(normalizedLabel).length) {
+    return false;
+  }
+
+  const hasDistributionCode =
+    GRC_DISTRIBUTION_PLACEHOLDER_CODE_PATTERN.test(normalizedLabel);
+  const hasDistributionText =
+    GRC_DISTRIBUTION_PLACEHOLDER_TEXT_PATTERN.test(normalizedLabel);
+  const hasChoiceCue = GRC_DISTRIBUTION_CHOICE_CUE_PATTERN.test(normalizedLabel);
+
+  return (
+    (hasDistributionCode && (hasChoiceCue || hasDistributionText)) ||
+    (hasDistributionText && hasChoiceCue)
+  );
+}
+
+export function isMergedCourseDistributionRequirementLabel(label: string) {
+  return hasCourseAndDistributionPlaceholderSignal(label);
 }
 
 function extractSourceBackedUwCourseCodesFromRequirementText(value: string) {
@@ -2331,6 +2491,116 @@ function getSuggestedCourseCreditRangeFromValues(input: {
       minCredits != null && maxCredits != null && minCredits === maxCredits ? minCredits : exactCredits,
     creditMin: minCredits,
     creditMax: maxCredits,
+  };
+}
+
+function getSuggestedQuarterCourseCreditRange(course: SuggestedQuarterCourse) {
+  const range = getSuggestedCourseCreditRangeFromValues({
+    creditAmount: course.creditAmount,
+    creditMin: course.creditMin,
+    creditMax: course.creditMax,
+  });
+
+  return {
+    creditMin: range.creditMin ?? 0,
+    creditMax: range.creditMax ?? range.creditMin ?? 0,
+  };
+}
+
+function isSuggestedQuarterOptionGroupResolved(
+  optionGroup: SuggestedQuarterCourseOptionGroup | null | undefined
+) {
+  if (!optionGroup) {
+    return true;
+  }
+  if (optionGroup.isSelectionPrompt || optionGroup.selectionSource === "default") {
+    return false;
+  }
+
+  const selectionCount = Math.max(1, Math.ceil(Number(optionGroup.selectionCount ?? 1) || 1));
+  return unique(optionGroup.selectedOptionIds ?? []).length >= selectionCount;
+}
+
+function isUnresolvedFlexiblePlaceholderCourse(course: SuggestedQuarterCourse) {
+  if (course.status === "completed") {
+    return false;
+  }
+  if (course.sourceKind === "official-grc-track-breadth") {
+    return true;
+  }
+
+  const label = String(course.label ?? "").replace(/\s+/g, " ").trim();
+  if (!label || extractCourseCodes(label).length) {
+    return false;
+  }
+
+  return /\b(?:credits? of|elective|general education|humanities|social science|natural science|a&h|ssc|nsc)\b/i.test(
+    label
+  );
+}
+
+export function buildSuggestedQuarterRemainingCreditRange(input: {
+  quarters: SuggestedQuarterPlan[];
+  track?: TransferPlannerTrack | null;
+}): SuggestedQuarterRemainingCreditRange {
+  const unresolvedOptionGroupIds = new Set<string>();
+  const unresolvedPlaceholderLabels = new Set<string>();
+  let scheduledMinRemainingCredits = 0;
+  let scheduledMaxRemainingCredits = 0;
+  let completedCredits = 0;
+
+  for (const quarter of input.quarters) {
+    for (const course of quarter.courses) {
+      const courseCreditRange = getSuggestedQuarterCourseCreditRange(course);
+      if (course.status === "completed") {
+        completedCredits += courseCreditRange.creditMin;
+        continue;
+      }
+
+      scheduledMinRemainingCredits += courseCreditRange.creditMin;
+      scheduledMaxRemainingCredits += courseCreditRange.creditMax;
+
+      if (!isSuggestedQuarterOptionGroupResolved(course.optionGroup)) {
+        unresolvedOptionGroupIds.add(course.optionGroup?.id ?? course.label);
+      }
+      if (isUnresolvedFlexiblePlaceholderCourse(course)) {
+        unresolvedPlaceholderLabels.add(course.label);
+      }
+    }
+  }
+
+  const catalogMinimumCredits = getPositiveCreditAmount(input.track?.minimumCredits);
+  const catalogMaximumCredits = getPositiveCreditAmount(input.track?.maximumCredits);
+  const hasUnresolvedOptions =
+    unresolvedOptionGroupIds.size > 0 || unresolvedPlaceholderLabels.size > 0;
+  let minRemainingCredits = scheduledMinRemainingCredits;
+  let maxRemainingCredits = scheduledMaxRemainingCredits;
+
+  if (hasUnresolvedOptions && catalogMinimumCredits !== null) {
+    minRemainingCredits = Math.max(0, catalogMinimumCredits - completedCredits);
+  }
+  if (hasUnresolvedOptions && catalogMaximumCredits !== null) {
+    maxRemainingCredits = Math.max(0, catalogMaximumCredits - completedCredits);
+  }
+  if (maxRemainingCredits < minRemainingCredits) {
+    maxRemainingCredits = minRemainingCredits;
+  }
+
+  return {
+    minRemainingCredits,
+    maxRemainingCredits,
+    exactRemainingCredits:
+      !hasUnresolvedOptions && minRemainingCredits === maxRemainingCredits
+        ? minRemainingCredits
+        : null,
+    scheduledMinRemainingCredits,
+    scheduledMaxRemainingCredits,
+    completedCredits,
+    catalogMinimumCredits,
+    catalogMaximumCredits,
+    hasUnresolvedOptions,
+    unresolvedOptionGroupIds: [...unresolvedOptionGroupIds].sort(),
+    unresolvedPlaceholderLabels: [...unresolvedPlaceholderLabels].sort(),
   };
 }
 
@@ -3741,6 +4011,7 @@ function buildMajorSpecificsSuggestedPlanRows(input: {
   for (const course of suggestedPlan.flatMap((quarter) => quarter.courses)) {
     const label = String(course.label ?? "").trim();
     if (!label) continue;
+    if (isMergedCourseDistributionRequirementLabel(label)) continue;
 
     const normalizedCourseCode = getCourseCodeForMajorSpecificsLabel(label);
     const isPrerequisite = /\bprerequisite\b/i.test(course.guidanceSummary ?? "");
@@ -4042,6 +4313,12 @@ export function buildMajorSpecificsRenderingAudit(
       }
       if (hasChoiceAlternatives && !row.alternativeOptionsText) {
         flags.push("selected-option-missing-alternative-text");
+      }
+      if (
+        hasCourseAndDistributionPlaceholderSignal(row.displayCourseCode) ||
+        hasCourseAndDistributionPlaceholderSignal(row.text)
+      ) {
+        flags.push("merged-course-and-distribution-label");
       }
 
       return {
@@ -4679,6 +4956,10 @@ export function buildTrackUsageSummary(
 
   for (const term of getResolvedTrackTermsForPlanning(track, completedCourses)) {
     for (const courseEntry of term.courses) {
+      if (isMergedCourseDistributionRequirementLabel(courseEntry)) {
+        continue;
+      }
+
       if (extractCourseCodes(courseEntry).length > 0) {
         specificEntries.push(courseEntry);
       } else {
@@ -5324,7 +5605,15 @@ function buildGrcTrackGroupedChoiceOptionGroup(input: {
   groupedChoice: GrcTrackGroupedChoice;
   selectedOptionIds: string[];
   isSelectionPrompt: boolean;
+  selectionSource?: SuggestedQuarterCourseOptionGroup["selectionSource"];
 }) {
+  const selectionCount = Math.max(
+    1,
+    Math.min(
+      Number(input.groupedChoice.selectionCount ?? 1) || 1,
+      input.groupedChoice.options.length || 1
+    )
+  );
   const options = input.groupedChoice.options
     .map<SuggestedQuarterCourseOption>((option) => {
       const courseLabels = unique((option.courseLabels ?? []).map((label) => String(label ?? "").trim()).filter(Boolean));
@@ -5336,7 +5625,11 @@ function buildGrcTrackGroupedChoiceOptionGroup(input: {
         .map((label) => inferSuggestedCourseCreditAmount(label, extractCourseCodes(label)) ?? 0)
         .reduce((total, credits) => total + credits, 0);
       const creditAmount =
-        input.groupedChoice.requiredCredits ?? (inferredCreditAmount > 0 ? inferredCreditAmount : null);
+        selectionCount === 1
+          ? input.groupedChoice.requiredCredits ?? (inferredCreditAmount > 0 ? inferredCreditAmount : null)
+          : inferredCreditAmount > 0
+            ? inferredCreditAmount
+            : null;
 
       return {
         id: option.id,
@@ -5363,23 +5656,38 @@ function buildGrcTrackGroupedChoiceOptionGroup(input: {
     id: input.groupedChoice.id,
     title: input.groupedChoice.label,
     promptLabel: input.groupedChoice.label,
-    selectionCount: 1,
+    selectionCount,
+    requiredCredits: input.groupedChoice.requiredCredits ?? null,
     selectedOptionIds,
+    selectionSource: input.selectionSource ?? null,
     options,
     isSelectionPrompt: input.isSelectionPrompt,
   } satisfies SuggestedQuarterCourseOptionGroup;
 }
 
 function getGrcTrackChoiceGuidanceSummary(optionGroup: SuggestedQuarterCourseOptionGroup) {
+  const selectedOptionLabels = optionGroup.options
+    .filter((option) => optionGroup.selectedOptionIds.includes(option.id))
+    .map((option) => option.label);
   const previewLabels = optionGroup.options
     .slice(0, CHECKLIST_CHOICE_PREVIEW_LIMIT)
     .map((option) => option.label);
   const hiddenCount = Math.max(optionGroup.options.length - previewLabels.length, 0);
-  if (!previewLabels.length) {
+  if (!previewLabels.length && !selectedOptionLabels.length) {
     return null;
   }
 
-  return `Options: ${previewLabels.join(", ")}${hiddenCount > 0 ? `, plus ${hiddenCount} more` : ""}.`;
+  const optionListText = previewLabels.length
+    ? `Options: ${previewLabels.join(", ")}${hiddenCount > 0 ? `, plus ${hiddenCount} more` : ""}.`
+    : "";
+  if (!optionGroup.isSelectionPrompt && selectedOptionLabels.length) {
+    const selectedText = `${optionGroup.selectionSource === "default" ? "Default sample-map option" : "Selected option"}${
+      selectedOptionLabels.length === 1 ? "" : "s"
+    }: ${selectedOptionLabels.join(", ")}.`;
+    return joinGuidanceSummaries(selectedText, optionListText);
+  }
+
+  return optionListText;
 }
 
 function isGrcTrackChoiceSlotSatisfied(
@@ -5404,7 +5712,14 @@ function isGrcTrackGroupedChoiceSatisfied(
   completedCourseCodes: Set<string>,
   coveredCourseCodes: Set<string>
 ) {
-  return groupedChoice.options.some((option) => {
+  const selectionCount = Math.max(
+    1,
+    Math.min(
+      Number(groupedChoice.selectionCount ?? 1) || 1,
+      groupedChoice.options.length || 1
+    )
+  );
+  const satisfiedOptionCount = groupedChoice.options.filter((option) => {
     const courseCodes = unique([
       ...(option.courseCodes ?? []),
       ...(option.courseLabels ?? []).flatMap((label) => extractCourseCodes(label)),
@@ -5415,7 +5730,8 @@ function isGrcTrackGroupedChoiceSatisfied(
         (courseCode) => completedCourseCodes.has(courseCode) || coveredCourseCodes.has(courseCode)
       )
     );
-  });
+  }).length;
+  return satisfiedOptionCount >= selectionCount;
 }
 
 function isFlexibleGrcTrackSingleCourseLabel(label: string) {
@@ -5547,6 +5863,9 @@ function getResolvedTrackSupplementalCourseLabels(input: {
       if (shouldSkipTrackLabelCoveredByGroupedChoice(normalizedSlotLabel, groupedChoicesForLabel)) {
         continue;
       }
+      if (isMergedCourseDistributionRequirementLabel(normalizedSlotLabel)) {
+        continue;
+      }
 
       const parsedChoiceSlot = input.includeFlexibleTrackSlots
         ? parseGrcTrackChoiceSlot(normalizedSlotLabel)
@@ -5600,6 +5919,23 @@ function getResolvedTrackSupplementalCourseLabels(input: {
     }
   }
 
+  if (input.includeFlexibleTrackSlots) {
+    for (const groupedChoice of groupedChoices) {
+      if (
+        seenGroupedChoiceIds.has(groupedChoice.id) ||
+        isGrcTrackGroupedChoiceSatisfied(groupedChoice, completedCourseCodes, coveredCourseCodes)
+      ) {
+        continue;
+      }
+
+      seenGroupedChoiceIds.add(groupedChoice.id);
+      supplementalCourseSlots.push({
+        kind: "grouped-choice",
+        groupedChoice,
+      });
+    }
+  }
+
   return supplementalCourseSlots;
 }
 
@@ -5613,12 +5949,31 @@ function buildTrackSupplementalSuggestedCourses(input: {
   prerequisiteCourseMap: Map<string, string[][]>;
   corequisiteCourseMap: Map<string, string[][]>;
   sourceOrderStart: number;
+  completedCourseCodes?: Set<string> | string[];
+  coveredCourseCodes?: Set<string> | string[];
   selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
   includeFlexibleTrackSlots?: boolean;
 }) {
   const suggestedCourses: PendingSuggestedCourse[] = [];
   let sourceOrderOffset = 0;
   const selectedRequirementOptionIdsByGroup = input.selectedRequirementOptionIdsByGroup ?? {};
+  const satisfiedCourseCodes = new Set(
+    [...(input.completedCourseCodes ?? []), ...(input.coveredCourseCodes ?? [])]
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+  const isCourseCodeSetSatisfied = (courseCodes: string[]) => {
+    const normalizedCourseCodes = unique(courseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean));
+    return (
+      normalizedCourseCodes.length > 0 &&
+      normalizedCourseCodes.every((courseCode) => satisfiedCourseCodes.has(courseCode))
+    );
+  };
+  const isOptionSatisfied = (option: SuggestedQuarterCourseOption) =>
+    isCourseCodeSetSatisfied([
+      ...(option.courseCodes ?? []),
+      ...(option.courseLabels ?? []).flatMap((label) => extractCourseCodes(label)),
+    ]);
 
   const buildPendingCourse = (args: {
     label: string;
@@ -5662,14 +6017,37 @@ function buildTrackSupplementalSuggestedCourses(input: {
 
   for (const slot of input.courseSlots) {
     const label = slot.kind === "label" ? slot.label : slot.groupedChoice.label;
+    const hasExplicitGroupedChoiceSelection =
+      slot.kind === "grouped-choice" &&
+      Object.prototype.hasOwnProperty.call(
+        selectedRequirementOptionIdsByGroup,
+        slot.groupedChoice.id
+      );
+    const explicitGroupedChoiceSelectionIds =
+      slot.kind === "grouped-choice"
+        ? normalizeSelectedRequirementOptionIds(
+            selectedRequirementOptionIdsByGroup[slot.groupedChoice.id]
+          )
+        : [];
+    const defaultGroupedChoiceSelectionIds =
+      slot.kind === "grouped-choice" &&
+      !hasExplicitGroupedChoiceSelection &&
+      !explicitGroupedChoiceSelectionIds.length
+        ? normalizeSelectedRequirementOptionIds(slot.groupedChoice.defaultOptionIds ?? [])
+        : [];
     const promptOptionGroup = input.includeFlexibleTrackSlots
       ? slot.kind === "grouped-choice"
         ? buildGrcTrackGroupedChoiceOptionGroup({
             groupedChoice: slot.groupedChoice,
-            selectedOptionIds: normalizeSelectedRequirementOptionIds(
-              selectedRequirementOptionIdsByGroup[slot.groupedChoice.id]
-            ),
+            selectedOptionIds: explicitGroupedChoiceSelectionIds.length
+              ? explicitGroupedChoiceSelectionIds
+              : defaultGroupedChoiceSelectionIds,
             isSelectionPrompt: true,
+            selectionSource: hasExplicitGroupedChoiceSelection
+              ? "student"
+              : defaultGroupedChoiceSelectionIds.length
+                ? "default"
+                : null,
           })
         : buildGrcTrackChoiceOptionGroup({
             label,
@@ -5691,9 +6069,13 @@ function buildTrackSupplementalSuggestedCourses(input: {
         selectedOptionIds: selectedOptions.map((option) => option.id),
         isSelectionPrompt: false,
       };
-      let attachedOptionGroup = false;
 
       for (const option of selectedOptions) {
+        if (isOptionSatisfied(option)) {
+          continue;
+        }
+
+        let attachedOptionGroup = false;
         const optionCreditRange = getSuggestedCourseCreditRangeFromValues({
           creditAmount: option.creditAmount,
           creditMin: option.creditMin,
@@ -5702,6 +6084,10 @@ function buildTrackSupplementalSuggestedCourses(input: {
 
         for (const optionLabel of option.courseLabels.length ? option.courseLabels : [option.label]) {
           const optionLabelCourseCodes = extractCourseCodes(optionLabel);
+          if (isCourseCodeSetSatisfied(optionLabelCourseCodes)) {
+            continue;
+          }
+
           const optionLabelCreditAmount =
             option.courseLabels.length > 1
               ? inferSuggestedCourseCreditAmount(optionLabel, optionLabelCourseCodes)
@@ -10010,10 +10396,10 @@ function buildRemainingSuggestedCourses(
           })
         : null;
       const selectedOptionEntries = selectedOptionGroup
-        ? getSelectedRequirementOptionsForPlanner(status.item, selectedOptionIds).slice(
-            0,
-            selectedOptionGroup.selectionCount
-          )
+        ? getSelectedRequirementOptionsForPlanner(
+            status.item,
+            selectedOptionGroup.selectedOptionIds
+          ).slice(0, selectedOptionGroup.selectionCount)
         : [];
 
       if (selectedOptionGroup && selectedOptionEntries.length) {
@@ -10470,6 +10856,8 @@ export function buildSuggestedQuarterPlan(input: {
     prerequisiteCourseMap,
     corequisiteCourseMap,
     sourceOrderStart: essentialRemainingCourses.length + stayAtGrcRemainingCourses.length,
+    completedCourseCodes,
+    coveredCourseCodes: trackSupplementalCoveredCourseCodes,
     selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
     includeFlexibleTrackSlots: includeFlexibleGrcTrackSlots,
   });

@@ -609,8 +609,8 @@ export default function TransferEquivalencyCatalogPage() {
           </Text>
         </View>
 
-        <View className="mt-5 gap-4">
-          <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4`}>
+        <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4 mt-5 gap-4`}>
+          <View>
             <Text className={`${textClass} font-semibold`}>College</Text>
             <Text className={`${secondaryTextClass} text-xs mt-1`}>
               Choose whether to browse UW transfer outcomes or Green River source courses.
@@ -638,7 +638,7 @@ export default function TransferEquivalencyCatalogPage() {
             </View>
           </View>
 
-          <View className={`${cardBgClass} border ${borderClass} rounded-2xl px-4 py-4`}>
+          <View className={`border-t ${borderClass} pt-4`}>
             <Text className={`${textClass} font-semibold`}>Campus</Text>
             <Text className={`${secondaryTextClass} text-xs mt-1`}>
               {campusHelperText}
