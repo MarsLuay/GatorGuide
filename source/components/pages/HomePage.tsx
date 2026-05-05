@@ -564,7 +564,9 @@ export default function HomePage() {
                             ? "Scholarship"
                             : entry.kind === "internship"
                               ? "Internship"
-                              : "College"}
+                              : entry.kind === "quarter-start" || entry.kind === "quarter-end"
+                                ? "College"
+                                : "College"}
                       </Text>
                     </View>
                     <Text className="text-emerald-500 text-xs font-semibold">{t("home.openAction")}</Text>

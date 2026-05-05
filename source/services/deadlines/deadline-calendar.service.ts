@@ -10,7 +10,9 @@ export type DeadlineCalendarEntryKind =
   | "internship"
   | "general_deadline"
   | "college_deadline"
-  | "roadmap_task";
+  | "roadmap_task"
+  | "quarter-start"
+  | "quarter-end";
 
 export type DeadlineCalendarEntryTarget =
   | {

@@ -2985,6 +2985,15 @@ function SuggestedScheduleCard({
             {uwTransferMinimumRequirementSummary}
           </Text>
         ) : null}
+        <AnimatedIconPressable
+          onPress={() => void openExternalLink("https://greenriver.navigate.eab.com/")}
+          className="mt-3 flex-row items-center gap-2"
+        >
+          <Ionicons name="calendar-outline" size={16} color="#059669" />
+          <Text className="text-sm font-semibold text-emerald-600 underline">
+            Schedule a meeting with a GRC advisor
+          </Text>
+        </AnimatedIconPressable>
       </View>
 
       <View className="gap-4 mt-4">

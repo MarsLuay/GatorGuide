@@ -16928,6 +16928,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
+      },
+      {
+        "id": "professional-track",
+        "label": "PROFESSIONAL TRACK",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
       }
     ]
   },

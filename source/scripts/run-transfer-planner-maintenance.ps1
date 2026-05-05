@@ -1627,6 +1627,29 @@ function Write-Summary {
     }
   }
 
+  function Get-ChangedMajorRequirementOwnerCount {
+    $fingerprintsPath = Join-Path $tmpDir "transfer-planner-source-fingerprints.json"
+    $data = Read-JsonReport -Path $fingerprintsPath
+    if (-not $data -or -not $data.requirementDiff) {
+      return "unknown"
+    }
+
+    $diff = $data.requirementDiff
+    $items = @()
+    if ($diff.added) { foreach ($i in $diff.added) { $items += $i } }
+    if ($diff.changed) { foreach ($i in $diff.changed) { $items += $i } }
+    if ($diff.removed) { foreach ($i in $diff.removed) { $items += $i } }
+
+    $uniqueMajors = New-Object System.Collections.Generic.HashSet[string]
+    foreach ($item in $items) {
+      if ([string]::IsNullOrWhiteSpace($item.pathwayId) -and -not [string]::IsNullOrWhiteSpace($item.ownerId)) {
+        $uniqueMajors.Add($item.ownerId) | Out-Null
+      }
+    }
+
+    return $uniqueMajors.Count
+  }
+
   $sourceGapReport = Read-JsonReport -Path $sourceGapReportPath
   $requirementParseReport = Read-JsonReport -Path $requirementParseReportPath
   $requirementDiffReport = Read-JsonReport -Path $requirementDiffReportPath
@@ -1797,6 +1820,10 @@ function Write-Summary {
     "- QA output root: $qaResultsRoot",
     ""
   )
+
+  $changedMajorCount = Get-ChangedMajorRequirementOwnerCount
+  $summaryLines += ""
+  $summaryLines += "How many majors changed? $changedMajorCount"
 
   Set-Content -Path $summaryPath -Value ($summaryLines -join [Environment]::NewLine) -Encoding UTF8
 }

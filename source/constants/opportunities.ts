@@ -5,6 +5,8 @@ export const OPPORTUNITY_TYPES = {
   internship: "internship",
   generalDeadline: "general_deadline",
   collegeDeadline: "college_deadline",
+  quarterStart: "quarter-start",
+  quarterEnd: "quarter-end",
 } as const;
 
 export type OpportunityType = ValueOf<typeof OPPORTUNITY_TYPES>;

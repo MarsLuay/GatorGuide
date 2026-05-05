@@ -655,7 +655,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-23T13:49:51.687Z"
+    "generatedAt": "2026-05-05T02:19:11.479Z"
   },
   {
     "ownerType": "pathway",
@@ -683,7 +683,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/babioccheck2017_001.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-23T13:49:51.687Z"
+    "generatedAt": "2026-05-05T02:19:11.479Z"
   },
   {
     "ownerType": "pathway",
@@ -710,7 +710,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-23T13:49:51.687Z"
+    "generatedAt": "2026-05-05T02:19:11.479Z"
   },
   {
     "ownerType": "major",
@@ -828,34 +828,6 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate"
     ],
     "generatedAt": "2026-04-16T19:30:35.305Z"
-  },
-  {
-    "ownerType": "major",
-    "ownerId": "uw-seattle-education-communities-and-organizations",
-    "ownerKey": "uw-seattle-education-communities-and-organizations",
-    "planId": "uw-seattle-education-communities-and-organizations",
-    "pathwayId": null,
-    "ownerTitle": "Education, Communities & Organizations",
-    "campusId": "uw-seattle",
-    "url": "https://education.washington.edu/academics/degree/bachelor-arts-ba",
-    "label": "Bachelor of Arts (B.A.)",
-    "score": 72,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "matches major keyword \"communities\"",
-      "matches major keyword \"education\"",
-      "matches major keyword \"organizations\"",
-      "matches multiple major keywords",
-      "official source text matches the selected major",
-      "page title fetched successfully",
-      "specific bachelor route wording",
-      "stays on an official UW domain",
-      "stays on the current official department host",
-      "verified against an official source candidate",
-      "Replaces existing primary https://education.washington.edu/sites/default/files/programs/undergrad/eco/ECO%20Degree%20Requirement%20Checklist%2011.14.24.pdf after weak-source re-evaluation."
-    ],
-    "generatedAt": "2026-04-23T13:49:51.687Z"
   },
   {
     "ownerType": "major",
@@ -1081,11 +1053,11 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
     "campusId": "uw-seattle",
     "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsee/degree-requirements/",
     "label": "BSEE Degree Requirements",
-    "score": 80,
+    "score": 92,
     "confidence": "high",
     "reasons": [
       "admissions wording",
-      "discovered from an official source page",
+      "already stored as an official source",
       "explicit degree-requirements wording",
       "explicit major-requirements wording",
       "generic campus requirements wording",
@@ -1095,15 +1067,16 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "matches major keyword \"photonics\"",
       "matches multiple major keywords",
       "official source text matches the selected major",
-      "older year signal than current primary (2022 vs 2025)",
+      "older year signal than current primary (2022 vs 2023)",
       "page title fetched successfully",
       "requirements path segment",
       "specific bachelor route wording",
       "stays on an official UW domain",
       "stays on the current official department host",
+      "verified against an official source candidate",
       "Replaces existing primary https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/ after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-23T13:49:51.687Z"
+    "generatedAt": "2026-05-05T02:19:11.479Z"
   },
   {
     "ownerType": "major",
@@ -1234,6 +1207,36 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
   },
   {
     "ownerType": "major",
+    "ownerId": "uw-seattle-human-centered-design-engineering",
+    "ownerKey": "uw-seattle-human-centered-design-engineering",
+    "planId": "uw-seattle-human-centered-design-engineering",
+    "pathwayId": null,
+    "ownerTitle": "Human Centered Design & Engineering",
+    "campusId": "uw-seattle",
+    "url": "https://www.hcde.washington.edu/bs/requirements",
+    "label": "Degree requirements",
+    "score": 92,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "explicit degree-requirements wording",
+      "explicitly names the selected major",
+      "matches major keyword \"centered\"",
+      "matches major keyword \"design\"",
+      "matches major keyword \"engineering\"",
+      "matches major keyword \"human\"",
+      "matches multiple major keywords",
+      "official source text matches the selected major",
+      "older year signal than current primary (2024 vs 2025)",
+      "page title fetched successfully",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "Replaces existing primary https://www.hcde.washington.edu/bs/requirements/2024 after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-05T02:19:11.479Z"
+  },
+  {
+    "ownerType": "major",
     "ownerId": "uw-seattle-individualized-studies",
     "ownerKey": "uw-seattle-individualized-studies",
     "planId": "uw-seattle-individualized-studies",
@@ -1348,7 +1351,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-04-23T13:49:51.687Z"
+    "generatedAt": "2026-05-05T02:19:11.479Z"
   },
   {
     "ownerType": "major",
