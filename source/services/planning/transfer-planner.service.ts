@@ -293,6 +293,17 @@ export type UnselectedOptionPrerequisiteAuditEntry = {
   copyOnlyDebugText: string;
 };
 
+export type OptionGroupSatisfactionAuditEntry = {
+  groupId: string;
+  requirement: string;
+  acceptedUwOptions: string[];
+  completedGrcCourses: string[];
+  satisfiedBy: string[];
+  scheduledExtraCourses: string[];
+  shouldScheduleExtra: boolean;
+  copyOnlyDebugText: string;
+};
+
 export type SuggestedQuarterPlan = {
   label: string;
   phase: "completed" | "current" | "planned";
@@ -3131,7 +3142,7 @@ export function buildSuggestedQuarterRemainingCreditRange(input: {
 }
 
 function getChecklistCourseOptions(item: TransferPlannerChecklistItem) {
-  return [item.grcCourses, ...(item.alternatives ?? [])]
+  const baseOptions = [item.grcCourses, ...(item.alternatives ?? [])]
     .map((courseLabels) =>
       Array.from(
         new Set(
@@ -3142,6 +3153,35 @@ function getChecklistCourseOptions(item: TransferPlannerChecklistItem) {
       )
     )
     .filter((courseLabels) => courseLabels.length > 0);
+
+  if (item.requirementGroup?.requirementType !== "choose_one") {
+    return baseOptions;
+  }
+
+  const hasMultiCourseGrcOption = (item.requirementGroup.options ?? []).some(
+    (option) =>
+      unique(
+        (option.grcMatches ?? []).flatMap((label) => extractCourseCodes(label))
+      ).length > 1
+  );
+  if (hasMultiCourseGrcOption) {
+    return baseOptions;
+  }
+
+  const allRequirementGroupOptionLabels = unique(
+    (item.requirementGroup.options ?? [])
+      .flatMap((option) => getRequirementOptionCourseLabels(option))
+      .map((label) => String(label ?? "").trim())
+      .filter(Boolean)
+  );
+  if (!allRequirementGroupOptionLabels.length) {
+    return baseOptions;
+  }
+
+  return uniqueBy(
+    [...baseOptions, allRequirementGroupOptionLabels],
+    (courseLabels) => courseLabels.join("||")
+  );
 }
 
 function buildRequirementCourseOption(
@@ -12826,6 +12866,141 @@ export function auditUwBioengineeringSourceBackedRequirements(input: {
   });
 }
 
+function getRequirementGroupAcceptedUwOptionLabels(
+  group: NonNullable<TransferPlannerChecklistItem["requirementGroup"]>
+) {
+  return unique(
+    (group.options ?? [])
+      .map((option) => {
+        const displayCodes = (option.displayCourseCodes ?? [])
+          .map((courseCode) => String(courseCode ?? "").trim())
+          .filter(Boolean);
+        const courseCodes = displayCodes.length
+          ? displayCodes
+          : [
+              ...(option.uwCourses ?? []),
+              ...(option.equivalentUwCourseCodes ?? []),
+            ]
+              .map((courseCode) => String(courseCode ?? "").trim())
+              .filter(Boolean);
+        return courseCodes.length
+          ? courseCodes.join(" / ")
+          : String(option.label ?? "").trim();
+      })
+      .filter(Boolean)
+  );
+}
+
+function getRequirementGroupGrcOptionCourseCodes(
+  group: NonNullable<TransferPlannerChecklistItem["requirementGroup"]>
+) {
+  return sortCourseCodes(
+    (group.options ?? [])
+      .flatMap((option) => option.grcMatches ?? [])
+      .flatMap((label) => extractCourseCodes(label))
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
+export function auditOptionGroupSatisfaction(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+  completedCourses?: TranscriptCourseEntry[];
+}) {
+  if (!input.plan) {
+    return [] as OptionGroupSatisfactionAuditEntry[];
+  }
+
+  const completedCourses = input.completedCourses ?? [];
+  const statuses = [
+    ...buildRequirementStatuses(input.plan.applicationChecklist, completedCourses),
+    ...buildRequirementStatuses(input.plan.beforeEnrollmentChecklist, completedCourses),
+    ...buildRequirementStatuses(input.plan.stayAtGrcChecklist, completedCourses),
+  ];
+  const scheduledCourseCodes = new Set(
+    input.suggestedPlan
+      .filter((quarter) => quarter.phase !== "completed")
+      .flatMap((quarter) => quarter.courses)
+      .filter((course) => course.status !== "completed")
+      .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+  const completedCourseCodes = new Set(
+    completedCourses.map((course) => normalizeCourseCode(course.code)).filter(Boolean)
+  );
+  const rows: OptionGroupSatisfactionAuditEntry[] = [];
+  const seenGroupIds = new Set<string>();
+
+  for (const status of statuses) {
+    const group = status.item.requirementGroup;
+    if (
+      !group?.options.length ||
+      !(
+        group.requirementType === "choose_one" ||
+        group.requirementType === "choose_n" ||
+        group.requirementType === "choose_credits" ||
+        group.requirementType === "sequence_choice"
+      )
+    ) {
+      continue;
+    }
+
+    const groupId = getRequirementOptionSelectionKey(status.item);
+    if (seenGroupIds.has(groupId)) {
+      continue;
+    }
+    seenGroupIds.add(groupId);
+
+    const acceptedUwOptions = getRequirementGroupAcceptedUwOptionLabels(group);
+    const acceptedGrcCourseCodes = new Set(getRequirementGroupGrcOptionCourseCodes(group));
+    const matchedCourseCodes = new Set(
+      status.matchedCourses.map((course) => normalizeCourseCode(course.code)).filter(Boolean)
+    );
+    const completedGrcCourses = sortCourseCodes(
+      completedCourses
+        .map((course) => normalizeCourseCode(course.code))
+        .filter((courseCode) => acceptedGrcCourseCodes.has(courseCode))
+    );
+    const satisfiedBy = sortCourseCodes(
+      status.matchedCourses
+        .map((course) => normalizeCourseCode(course.code))
+        .filter((courseCode) => courseCode && acceptedGrcCourseCodes.has(courseCode))
+    );
+    const scheduledExtraCourses = sortCourseCodes(
+      [...scheduledCourseCodes].filter(
+        (courseCode) =>
+          acceptedGrcCourseCodes.has(courseCode) &&
+          !completedCourseCodes.has(courseCode) &&
+          !matchedCourseCodes.has(courseCode)
+      )
+    );
+    const shouldScheduleExtra = !status.matched;
+
+    rows.push({
+      groupId,
+      requirement: group.label || status.item.title,
+      acceptedUwOptions,
+      completedGrcCourses,
+      satisfiedBy,
+      scheduledExtraCourses,
+      shouldScheduleExtra,
+      copyOnlyDebugText: [
+        "[copy-only option satisfaction audit]",
+        `Requirement: ${group.label || status.item.title}`,
+        `Accepted UW options: ${acceptedUwOptions.length ? acceptedUwOptions.join(", ") : "none"}`,
+        `Completed GRC courses: ${completedGrcCourses.length ? completedGrcCourses.join(", ") : "none"}`,
+        `Satisfied by: ${satisfiedBy.length ? satisfiedBy.join(", ") : "none"}`,
+        `Scheduled extra courses: ${scheduledExtraCourses.length ? scheduledExtraCourses.join(", ") : "none"}`,
+        `Should schedule extra: ${shouldScheduleExtra ? "yes" : "no"}`,
+      ].join(" "),
+    });
+  }
+
+  return rows;
+}
+
 function getTransferPlannerPlanChecklistItems(plan: TransferPlannerMajorPlan) {
   return [
     ...plan.applicationChecklist,
@@ -12908,7 +13083,9 @@ export function auditUnselectedOptionPrerequisiteScheduling(input: {
   }
   const scheduledCourseCodes = new Set(
     input.suggestedPlan
+      .filter((quarter) => quarter.phase !== "completed")
       .flatMap((quarter) => quarter.courses)
+      .filter((course) => course.status !== "completed")
       .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
       .map((courseCode) => normalizeCourseCode(courseCode))
       .filter(Boolean)

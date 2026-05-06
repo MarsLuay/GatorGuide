@@ -71,6 +71,7 @@ import {
   buildTransferPlannerStudentEvaluationReport,
   buildSuggestedQuarterCourseOptionGroupsForTrack,
   countMatchedGrcTrackGeneralEducationBreadthRows,
+  auditOptionGroupSatisfaction,
   auditUwBioengineeringSourceBackedRequirements,
   extractCourseCodes,
   getPreparatoryTrackCourseCodeSet,
@@ -3725,14 +3726,21 @@ function SuggestedScheduleCard({
           degreeTitle,
         });
   const sourceBackedRequirementAuditText = useMemo(
-    () =>
-      auditUwBioengineeringSourceBackedRequirements({
+    () => {
+      const sourceBackedAuditLines = auditUwBioengineeringSourceBackedRequirements({
         plan,
         suggestedPlan: quarters,
         completedCourses,
       })
-        .map((entry) => entry.copyOnlyDebugText)
-        .join("\n"),
+        .map((entry) => entry.copyOnlyDebugText);
+      const optionSatisfactionAuditLines = auditOptionGroupSatisfaction({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+      }).map((entry) => entry.copyOnlyDebugText);
+
+      return [...sourceBackedAuditLines, ...optionSatisfactionAuditLines].join("\n");
+    },
     [completedCourses, plan, quarters]
   );
   const stemPrepToggleGuidance =

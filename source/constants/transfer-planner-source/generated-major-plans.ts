@@ -64,6 +64,7 @@ const UW_SEATTLE_ECE_PLAN_ID = "uw-seattle-electrical-computer-engineering";
 const UW_SEATTLE_ME_PLAN_ID = "uw-seattle-mechanical-engineering";
 const UW_SEATTLE_CIVIL_PLAN_ID = "uw-seattle-civil-engineering";
 const UW_SEATTLE_BIOENGINEERING_PLAN_ID = "uw-seattle-bioengineering";
+const UW_SEATTLE_SBSE_PLAN_ID = "uw-seattle-sustainable-bioresource-systems-engineering";
 const UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID =
   "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering";
 const COMPACT_NORMALIZED_RUNTIME_PLAN_IDS = new Set([
@@ -2857,6 +2858,116 @@ function buildKnownMaterialsScienceRequirementGroups(
   return groups;
 }
 
+function buildKnownSbseComputationDataScienceGroup(
+  planId: string
+): TransferPlannerRequirementGroup {
+  const option = (input: {
+    id: string;
+    displayCourseCodes?: string[];
+    uwCourses: string[];
+    equivalentUwCourseCodes?: string[];
+    grcMatches?: string[];
+    label: string;
+  }) =>
+    buildRequirementOption({
+      id: `${planId}:requirement-option:sbse-computation-${input.id}`,
+      credits: 4,
+      sourceHeading: "Computation and Data Science elective",
+      sourceCategory: "computation_data_science_elective",
+      ...input,
+    });
+
+  return buildRequirementGroup({
+    id: `${planId}:requirement-group:computation-data-science-elective`,
+    label: "Computation and Data Science elective: choose one approved course",
+    category: "computation_data_science_elective",
+    subcategory: "computation_data_science",
+    requirementType: "choose_one",
+    minCourses: 1,
+    maxCourses: 1,
+    sourceHeading: "Computation and Data Science elective",
+    notes: [
+      "Official UW SBSE source requires one course and accepts AMATH 301, CSE 121/122/123/142/143, CSE 160, INFO/CSE/STAT 180, or Q SCI 256.",
+      "All source-backed accepted options are preserved so a completed Green River equivalent can satisfy the bucket without scheduling another option.",
+    ],
+    options: [
+      option({
+        id: "amath-301",
+        uwCourses: ["AMATH 301"],
+        grcMatches: ["ENGR 250"],
+        label: "AMATH 301",
+      }),
+      option({
+        id: "cse-121",
+        uwCourses: ["CSE 121"],
+        grcMatches: ["CS 121"],
+        label: "CSE 121",
+      }),
+      option({
+        id: "cse-122",
+        uwCourses: ["CSE 122"],
+        grcMatches: ["CS 122"],
+        label: "CSE 122",
+      }),
+      option({
+        id: "cse-123",
+        uwCourses: ["CSE 123"],
+        grcMatches: ["CS 123"],
+        label: "CSE 123",
+      }),
+      option({
+        id: "cse-142",
+        uwCourses: ["CSE 142"],
+        grcMatches: ["CS& 141"],
+        label: "CSE 142",
+      }),
+      option({
+        id: "cse-143",
+        uwCourses: ["CSE 143"],
+        grcMatches: ["CS 145"],
+        label: "CSE 143",
+      }),
+      option({
+        id: "cse-160",
+        uwCourses: ["CSE 160"],
+        label: "CSE 160",
+      }),
+      option({
+        id: "info-180-cse-180-stat-180",
+        displayCourseCodes: ["INFO 180", "CSE 180", "STAT 180"],
+        uwCourses: ["INFO 180"],
+        equivalentUwCourseCodes: ["CSE 180", "STAT 180"],
+        label: "INFO 180 / CSE 180 / STAT 180",
+      }),
+      option({
+        id: "qsci-256",
+        displayCourseCodes: ["Q SCI 256"],
+        uwCourses: ["QSCI 256"],
+        label: "Q SCI 256",
+      }),
+    ],
+  });
+}
+
+function buildKnownSbseRequirementGroups(planId: string, _pathwayId?: string | null) {
+  if (planId !== UW_SEATTLE_SBSE_PLAN_ID) {
+    return [] as TransferPlannerRequirementGroup[];
+  }
+
+  return [buildKnownSbseComputationDataScienceGroup(planId)];
+}
+
+function isSupersededSbseRequirementGroup(
+  planId: string,
+  group: TransferPlannerRequirementGroup
+) {
+  if (planId !== UW_SEATTLE_SBSE_PLAN_ID) {
+    return false;
+  }
+
+  return group.id.endsWith(":cse-123-or-cse-143");
+}
+
 function hydrateRequirementOption(
   option: TransferPlannerRequirementOption
 ): TransferPlannerRequirementOption {
@@ -2925,7 +3036,7 @@ function getParsedRequirementGroupsFromBlock(
   const parsedRequirementGroups = (block as {
     parsedRequirementGroups?: TransferPlannerRequirementGroup[];
   }).parsedRequirementGroups;
-  const rawGroups =
+  const parsedOrKnownGroups =
     block.planId === "uw-seattle-materials-science-engineering"
       ? parsedRequirementGroups && parsedRequirementGroups.length
         ? parsedRequirementGroups.filter((group) => knownMaterialsScienceGroupIds.has(group.id))
@@ -2933,6 +3044,10 @@ function getParsedRequirementGroupsFromBlock(
       : parsedRequirementGroups && parsedRequirementGroups.length
         ? parsedRequirementGroups
         : knownMaterialsScienceGroups;
+  const rawGroups = uniqueById([
+    ...parsedOrKnownGroups,
+    ...buildKnownSbseRequirementGroups(block.planId, block.pathwayId),
+  ]).filter((group) => !isSupersededSbseRequirementGroup(block.planId, group));
 
   return rawGroups
     .filter((group) => shouldMaterializeParsedRequirementGroup(block, group))

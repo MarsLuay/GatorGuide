@@ -121,6 +121,7 @@ import {
   inferTransferPlannerGrcCatalogYearLabel,
   getResolvedTrackTermsForRequirementDisplay,
   buildSuggestedQuarterPlan,
+  auditOptionGroupSatisfaction,
   auditUnselectedOptionPrerequisiteScheduling,
   auditVisibleGrcQuarterPlanScope,
   auditUwCivilEngineeringLowerDivisionRequirements,
@@ -6172,6 +6173,18 @@ test("Transfer planner UI exposes copy-only option group visibility debug counts
   assert.match(pageSource, /\[copy-only option group visibility\]/);
   assert.match(pageSource, /Raw group count:/);
   assert.match(pageSource, /Displayed group count:/);
+});
+
+test("Transfer planner UI exposes copy-only option satisfaction audit rows", () => {
+  const pageSource = readFileSync("components/pages/TransferPlannerPage.tsx", "utf8");
+  const serviceSource = readFileSync("services/planning/transfer-planner.service.ts", "utf8");
+
+  assert.match(pageSource, /auditOptionGroupSatisfaction/);
+  assert.match(pageSource, /optionSatisfactionAuditLines/);
+  assert.match(serviceSource, /\[copy-only option satisfaction audit\]/);
+  assert.match(serviceSource, /Accepted UW options:/);
+  assert.match(serviceSource, /Satisfied by:/);
+  assert.match(serviceSource, /Should schedule extra:/);
 });
 
 test("Generic UW transfer milestone remains available for non-engineering Seattle majors", () => {
@@ -14284,6 +14297,141 @@ test("Materials source parse retains normalized lower-division and core MSE requ
     true,
     "Expected the NME option source parse to retain the normalized NME 220 code."
   );
+});
+
+test("SBSE computation/data science options satisfy from completed CS 122 without scheduling CS 123", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-sustainable-bioresource-systems-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the SBSE runtime plan.");
+
+  const baseComputationGroup = runtimePlan.requirementGroups?.find((group) =>
+    group.id.endsWith(":computation-data-science-elective")
+  );
+  assert.ok(
+    baseComputationGroup,
+    "Expected the SBSE base/default runtime plan to preserve the computation/data science group."
+  );
+
+  const businessPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    runtimePlan,
+    "business-option"
+  );
+  assert.ok(businessPlan, "Expected the SBSE Business Option runtime plan.");
+
+  const computationGroup = businessPlan.requirementGroups?.find((group) =>
+    group.id.endsWith(":computation-data-science-elective")
+  );
+  assert.ok(
+    computationGroup,
+    "Expected SBSE Business Option to expose the broad computation/data science option group."
+  );
+  assert.equal(
+    businessPlan.requirementGroups?.some((group) => group.id.endsWith(":cse-123-or-cse-143")),
+    false,
+    "Expected the narrow CSE 123/CSE 143 group to be replaced by the source-backed broad option group."
+  );
+
+  const acceptedUwCodes = new Set(
+    (computationGroup?.options ?? [])
+      .flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+      ])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+  );
+  for (const courseCode of [
+    "AMATH 301",
+    "CSE 121",
+    "CSE 122",
+    "CSE 123",
+    "CSE 142",
+    "CSE 143",
+    "CSE 160",
+    "INFO 180",
+    "CSE 180",
+    "STAT 180",
+    "Q SCI 256",
+  ]) {
+    assert.equal(
+      acceptedUwCodes.has(normalizeCourseCode(courseCode)),
+      true,
+      `Expected SBSE computation/data science options to include ${courseCode}.`
+    );
+  }
+
+  const cse122Option = computationGroup?.options.find((option) =>
+    option.uwCourses.includes("CSE 122")
+  );
+  assert.deepEqual(cse122Option?.grcMatches, ["CS 122"]);
+
+  const completedCourses: TranscriptCourseEntry[] = [
+    { code: "CS 121", label: "CS 121", credits: 5 },
+    { code: "CS 122", label: "CS 122", credits: 5 },
+  ];
+  const statuses = buildStatuses(businessPlan, completedCourses);
+  const computationStatus = [
+    ...statuses.applicationStatuses,
+    ...statuses.beforeEnrollmentStatuses,
+    ...statuses.stayAtGrcStatuses,
+  ].find((status) => status.item.requirementGroup?.id === computationGroup?.id);
+
+  assert.equal(computationStatus?.matched, true);
+  assert.equal(
+    computationStatus?.matchedCourses.some((course) => course.code === "CS 122"),
+    true
+  );
+
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: businessPlan,
+    ...statuses,
+    completedCourses,
+    track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedLabels = new Set(
+    suggestedPlan
+      .filter((quarter) => quarter.phase === "planned")
+      .flatMap((quarter) => quarter.courses.map((course) => course.label))
+  );
+
+  assert.equal(plannedLabels.has("CS 123"), false);
+  assert.equal(plannedLabels.has("CS& 141"), false);
+
+  const optionSatisfactionAudit = auditOptionGroupSatisfaction({
+    plan: businessPlan,
+    suggestedPlan,
+    completedCourses,
+  });
+  const computationAudit = optionSatisfactionAudit.find(
+    (entry) => entry.groupId === computationGroup?.id
+  );
+  assert.ok(computationAudit, "Expected option-group satisfaction audit for SBSE computation.");
+  assert.equal(computationAudit?.satisfiedBy.includes("CS 122"), true);
+  assert.deepEqual(computationAudit?.scheduledExtraCourses, []);
+  assert.equal(computationAudit?.shouldScheduleExtra, false);
+  assert.match(
+    computationAudit?.copyOnlyDebugText ?? "",
+    /^\[copy-only option satisfaction audit\]/
+  );
+  assert.match(computationAudit?.copyOnlyDebugText ?? "", /Accepted UW options: .*CSE 122/);
+
+  const unselectedPrerequisiteLeaks = auditUnselectedOptionPrerequisiteScheduling({
+    plan: businessPlan,
+    suggestedPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup: {},
+  }).filter(
+    (row) =>
+      row.groupId === computationGroup?.id &&
+      !row.optionSelected &&
+      row.prerequisiteScheduled &&
+      !row.shouldSchedule
+  );
+  assert.deepEqual(unselectedPrerequisiteLeaks, []);
 });
 
 test("Materials parser and planner preserve choose-one and elective requirement groups", () => {

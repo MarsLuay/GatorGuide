@@ -1187,6 +1187,89 @@ function auditMseNme(checks) {
   );
 }
 
+function auditSbseOptionSatisfaction(checks) {
+  const runtimePlan = source.getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-sustainable-bioresource-systems-engineering"
+  );
+  const baseGroup = runtimePlan?.requirementGroups?.find((group) =>
+    group.id.endsWith(":computation-data-science-elective")
+  );
+  const plan = source.resolveTransferPlannerStudentRuntimeMajorPlan(runtimePlan, "business-option");
+  const completedCourses = [
+    { code: "CS 121", label: "CS 121", credits: 5 },
+    { code: "CS 122", label: "CS 122", credits: 5 },
+  ];
+  const statuses = {
+    applicationStatuses: planner.buildRequirementStatuses(plan?.applicationChecklist ?? [], completedCourses),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(
+      plan?.beforeEnrollmentChecklist ?? [],
+      completedCourses
+    ),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(plan?.stayAtGrcChecklist ?? [], completedCourses),
+  };
+  const quarterPlan = planner.buildSuggestedQuarterPlan({
+    plan,
+    ...statuses,
+    completedCourses,
+    track: source.getTransferPlannerTrack(plan?.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {},
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedLabels = getVisiblePlannedLabels(quarterPlan);
+  const computationGroup = plan?.requirementGroups?.find((group) =>
+    group.id.endsWith(":computation-data-science-elective")
+  );
+  const acceptedUwCodes = new Set(
+    (computationGroup?.options ?? [])
+      .flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+      ])
+      .map(normalizeCourseCode)
+  );
+  const optionAudit = planner.auditOptionGroupSatisfaction({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses,
+  });
+  const auditRow = optionAudit.find((row) => row.groupId === computationGroup?.id);
+
+  addCheck(
+    checks,
+    "uw-sbse-business:computation-option-satisfied-by-cs122",
+    "UW SBSE Business computation/data science option accepts completed CS 122 without scheduling CS 123",
+    Boolean(baseGroup) &&
+      Boolean(computationGroup) &&
+      !plan?.requirementGroups?.some((group) => group.id.endsWith(":cse-123-or-cse-143")) &&
+      [
+        "AMATH 301",
+        "CSE 121",
+        "CSE 122",
+        "CSE 123",
+        "CSE 142",
+        "CSE 143",
+        "CSE 160",
+        "INFO 180",
+        "CSE 180",
+        "STAT 180",
+        "Q SCI 256",
+      ].every((courseCode) => acceptedUwCodes.has(normalizeCourseCode(courseCode))) &&
+      auditRow?.shouldScheduleExtra === false &&
+      (auditRow?.satisfiedBy ?? []).includes("CS 122") &&
+      (auditRow?.scheduledExtraCourses ?? []).length === 0 &&
+      !plannedLabels.includes("CS 123") &&
+      !plannedLabels.includes("CS& 141"),
+    [
+      auditRow?.copyOnlyDebugText ?? "Missing option satisfaction audit row.",
+      `Planned labels: ${plannedLabels.join(", ")}`,
+    ].join(" "),
+    "over-scheduled-alternatives"
+  );
+}
+
 function auditEcePhotonics(checks) {
   const plan = resolveRuntimePlan("uw-seattle-electrical-computer-engineering", "photonics-pathway");
   const quarterPlan = buildQuarterPlan(plan);
@@ -1250,6 +1333,9 @@ function runRegressionChecks(targetPlanId) {
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-materials-science-engineering") {
     auditMseNme(checks);
+  }
+  if (!targetPlanId || targetPlanId === "uw-seattle-sustainable-bioresource-systems-engineering") {
+    auditSbseOptionSatisfaction(checks);
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-electrical-computer-engineering") {
     auditEcePhotonics(checks);
