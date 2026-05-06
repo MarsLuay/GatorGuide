@@ -2632,6 +2632,38 @@ function getAutoTrackSummaryText(trackSummary: string) {
   return stripGeneratedProgramMapSummarySentence(trackSummary);
 }
 
+function parseMatchedTrackSummaryCounts(trackSummary: string) {
+  const match = String(trackSummary ?? "").match(
+    /\bmatches\s+(\d+)\s+of\s+the\s+(\d+)\s+degree-specific Green River classes/i
+  );
+  if (!match) {
+    return {
+      matchCount: "unknown",
+      totalTrackedGrcCompletableRequirements: "unknown",
+    };
+  }
+
+  return {
+    matchCount: match[1],
+    totalTrackedGrcCompletableRequirements: match[2],
+  };
+}
+
+function buildCopyOnlyMatchedTrackDebugText(input: {
+  headerTrackId: string | null;
+  explanationTrackId: string | null;
+  trackSummary: string;
+}) {
+  const counts = parseMatchedTrackSummaryCounts(input.trackSummary);
+  return [
+    "[copy-only matched track debug]",
+    `Header track id: ${input.headerTrackId ?? "none"}`,
+    `Explanation track id: ${input.explanationTrackId ?? "none"}`,
+    `Match count: ${counts.matchCount}`,
+    `Total tracked GRC-completable requirements: ${counts.totalTrackedGrcCompletableRequirements}`,
+  ].join(" ");
+}
+
 function SelectorField({
   label,
   value,
@@ -2847,6 +2879,8 @@ function PlannerSelectionFields({
 
 function PlannerTrackOverviewCard({
   collegeId,
+  headerTrackId,
+  explanationTrackId,
   trackCode,
   trackTitle,
   trackSummary,
@@ -2857,6 +2891,8 @@ function PlannerTrackOverviewCard({
   borderClass,
 }: {
   collegeId: PlannerCollegeId;
+  headerTrackId: string | null;
+  explanationTrackId: string | null;
   trackCode: string | null;
   trackTitle: string;
   trackSummary: string;
@@ -2867,6 +2903,11 @@ function PlannerTrackOverviewCard({
   borderClass: string;
 }) {
   const visibleTrackSummary = getAutoTrackSummaryText(trackSummary);
+  const matchedTrackDebugText = buildCopyOnlyMatchedTrackDebugText({
+    headerTrackId,
+    explanationTrackId,
+    trackSummary,
+  });
   const shouldShowBestTrackCard =
     collegeId === "uw" ? Boolean(trackCode) && !hasNoDirectMajorEquivalencies : Boolean(trackTitle);
   const headingText = trackCode ? `${trackCode} | ${trackTitle}` : trackTitle;
@@ -2902,6 +2943,14 @@ function PlannerTrackOverviewCard({
         {visibleTrackSummary ? (
           <Text className={`${secondaryTextClass} text-sm mt-2`}>{visibleTrackSummary}</Text>
         ) : null}
+        <Text
+          selectable
+          style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+        >
+          {matchedTrackDebugText}
+        </Text>
         {/* Official program map link removed per request */}
       </View>
     </View>
@@ -3261,6 +3310,8 @@ function TranscriptSummaryCard({
 
             <PlannerTrackOverviewCard
               collegeId={collegeId}
+              headerTrackId={track?.id ?? null}
+              explanationTrackId={isUwPlanner ? plan.bestTrackId ?? null : track?.id ?? null}
               trackCode={trackCode}
               trackTitle={trackTitle}
               trackSummary={trackSummary}
@@ -3289,6 +3340,8 @@ function TranscriptSummaryCard({
           <>
             <PlannerTrackOverviewCard
               collegeId={collegeId}
+              headerTrackId={track?.id ?? null}
+              explanationTrackId={track?.id ?? null}
               trackCode={trackCode}
               trackTitle={trackTitle}
               trackSummary={trackSummary}
@@ -3396,6 +3449,8 @@ function TranscriptSummaryCard({
 
           <PlannerTrackOverviewCard
             collegeId={collegeId}
+            headerTrackId={track?.id ?? null}
+            explanationTrackId={isUwPlanner ? plan.bestTrackId ?? null : track?.id ?? null}
             trackCode={trackCode}
             trackTitle={trackTitle}
             trackSummary={trackSummary}
@@ -3437,6 +3492,8 @@ function TranscriptSummaryCard({
         <>
           <PlannerTrackOverviewCard
             collegeId={collegeId}
+            headerTrackId={track?.id ?? null}
+            explanationTrackId={track?.id ?? null}
             trackCode={trackCode}
             trackTitle={trackTitle}
             trackSummary={trackSummary}

@@ -70,6 +70,7 @@ const COMPACT_NORMALIZED_RUNTIME_PLAN_IDS = new Set([
   UW_SEATTLE_ECE_PLAN_ID,
   UW_SEATTLE_ME_PLAN_ID,
   UW_SEATTLE_CIVIL_PLAN_ID,
+  UW_SEATTLE_BIOENGINEERING_PLAN_ID,
 ]);
 const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
   "uw-green-river-equivalency-guide",
@@ -92,6 +93,8 @@ const AUTO_TRACK_ENGINEERING_DISCIPLINE_AFFINITY_WEIGHT = 4;
 const AUTO_TRACK_ENGINEERING_DISCIPLINE_MISMATCH_PENALTY = 2;
 const AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN =
   /\b(transferability of credits|generally transferable courses|section [a-z])\b/i;
+const AUTO_TRACK_RECOMMENDATION_SUMMARY_PATTERN =
+  /\bcurrent closest Green River transfer path\b/i;
 const AUTO_TRACK_GENERIC_SUBJECT_PREFIXES = new Set(["ENGL"]);
 const AUTO_TRACK_CONTEXTUAL_SUBJECT_PREFIXES = new Set(["MATH"]);
 const AUTO_TRACK_SUBJECT_AFFINITY_RULES: Array<{
@@ -4468,7 +4471,15 @@ function applyAutoTrackRecommendation<T extends {
       )
     : null);
 
-  if (!autoTrack || scope.bestTrackId === autoTrack.trackId) {
+  if (!autoTrack) {
+    return scope;
+  }
+
+  const currentSummary = String(scope.recommendedTrackSummary ?? "").trim();
+  const shouldRefreshAutoTrackCopy =
+    !currentSummary || AUTO_TRACK_RECOMMENDATION_SUMMARY_PATTERN.test(currentSummary);
+
+  if (scope.bestTrackId === autoTrack.trackId && !shouldRefreshAutoTrackCopy) {
     return scope;
   }
 
@@ -5194,17 +5205,21 @@ function buildTrackMatchCourseList(scope: {
   stayAtGrcChecklist: TransferPlannerChecklistItem[];
 }, planId: string, pathwayId?: string | null) {
   const automaticTrackMatchCourseList = buildAutomaticTrackMatchCourseList(planId, pathwayId);
+  const trackMatchSeedCourseList =
+    planId === UW_SEATTLE_BIOENGINEERING_PLAN_ID
+      ? buildStudentVisibleAutomaticCourseList(scope)
+      : buildStudentVisibleTrackMatchCourseList({
+          ...scope,
+          grcCourseList: uniqueReferenceCourseLabels([
+            ...(scope.grcCourseList ?? []),
+            ...automaticTrackMatchCourseList,
+          ]),
+        });
 
   return orderStringsByBase(
     uniqueReferenceCourseLabels([
       ...automaticTrackMatchCourseList,
-      ...buildStudentVisibleTrackMatchCourseList({
-        ...scope,
-        grcCourseList: uniqueReferenceCourseLabels([
-          ...(scope.grcCourseList ?? []),
-          ...automaticTrackMatchCourseList,
-        ]),
-      }),
+      ...trackMatchSeedCourseList,
     ]),
     automaticTrackMatchCourseList.length ? automaticTrackMatchCourseList : scope.grcCourseList ?? []
   );
@@ -5940,12 +5955,15 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
     beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
     stayAtGrcChecklist: prunedStayAtGrcChecklist,
   });
-  const studentVisibleTrackMatchCourseList = buildStudentVisibleTrackMatchCourseList({
-    grcCourseList: automaticTrackMatchCourseList,
-    applicationChecklist,
-    beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
-    stayAtGrcChecklist: prunedStayAtGrcChecklist,
-  });
+  const studentVisibleTrackMatchCourseList =
+    basePlan.id === UW_SEATTLE_BIOENGINEERING_PLAN_ID
+      ? studentVisibleCourseList
+      : buildStudentVisibleTrackMatchCourseList({
+          grcCourseList: automaticTrackMatchCourseList,
+          applicationChecklist,
+          beforeEnrollmentChecklist: prunedBeforeEnrollmentChecklist,
+          stayAtGrcChecklist: prunedStayAtGrcChecklist,
+        });
 
   const runtimePlan = applyStrictSourceBackedFallback(
     applyAutoTrackRecommendationFromStudentVisibleList({

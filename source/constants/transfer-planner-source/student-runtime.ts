@@ -150,6 +150,9 @@ const UW_SEATTLE_CIVIL_PLAN_ID = "uw-seattle-civil-engineering";
 const UW_SEATTLE_BIOENGINEERING_PLAN_ID = "uw-seattle-bioengineering";
 const UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID =
   "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering";
+const RUNTIME_AUTO_TRACK_MATCH_EXAMPLE_LIMIT = 4;
+const RUNTIME_AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN =
+  /\b(transferability of credits|generally transferable courses|section [a-z])\b/i;
 const UW_SEATTLE_BIOENGINEERING_SOURCE_BACKED_GEN_ED_SECTION = {
   id: "uw-seattle-bioengineering-source-backed-general-education",
   title: "Bioengineering source-backed general education requirements",
@@ -703,6 +706,87 @@ function appendUwSeattleBioengineeringGeneralEducationSection<
   };
 }
 
+function buildRuntimeTrackReferenceCourseCodes(track: TransferPlannerTrack) {
+  return unique(
+    track.terms
+      .filter(
+        (term) =>
+          !RUNTIME_AUTO_MATCH_EXCLUDED_TRACK_TERM_LABEL_PATTERN.test(
+            String(term.label ?? "").trim()
+          )
+      )
+      .flatMap((term) => term.courses)
+      .flatMap((courseLabel) => extractTransferPlannerCourseCodes(courseLabel))
+  );
+}
+
+function buildRuntimeReferenceLabelByCode(labels: string[]) {
+  const labelByCode = new Map<string, string>();
+
+  for (const label of labels) {
+    for (const code of extractTransferPlannerCourseCodes(label)) {
+      if (!labelByCode.has(code)) {
+        labelByCode.set(code, label);
+      }
+    }
+  }
+
+  return labelByCode;
+}
+
+function buildRuntimeMatchedTrackRecommendation(plan: TransferPlannerMajorPlan) {
+  const track = getTransferPlannerTrack(plan.bestTrackId ?? null);
+  if (!track) {
+    return null;
+  }
+
+  const trackedGrcRequirementLabels = getTransferPlannerGrcCourseList(plan);
+  const trackedGrcRequirementCodes = unique(
+    trackedGrcRequirementLabels.flatMap((label) => extractTransferPlannerCourseCodes(label))
+  );
+  if (!trackedGrcRequirementCodes.length) {
+    return null;
+  }
+
+  const trackedGrcRequirementCodeSet = new Set(trackedGrcRequirementCodes);
+  const labelByCode = buildRuntimeReferenceLabelByCode(trackedGrcRequirementLabels);
+  const matchedCourseCodes = buildRuntimeTrackReferenceCourseCodes(track).filter((courseCode) =>
+    trackedGrcRequirementCodeSet.has(courseCode)
+  );
+  const matchedCourseLabels = unique(
+    matchedCourseCodes.map((courseCode) => labelByCode.get(courseCode) ?? courseCode)
+  );
+  const matchedExamples = matchedCourseLabels.slice(0, RUNTIME_AUTO_TRACK_MATCH_EXAMPLE_LIMIT);
+  const remainingCount = Math.max(matchedCourseLabels.length - matchedExamples.length, 0);
+  const examplesNote = matchedExamples.length
+    ? `, including ${matchedExamples.join(", ")}${
+        remainingCount > 0 ? `, plus ${remainingCount} more` : ""
+      }`
+    : "";
+
+  return {
+    recommendedTrackSummary: `${track.code} is the current closest Green River transfer path for this degree because it matches ${matchedCourseCodes.length} of the ${trackedGrcRequirementCodes.length} degree-specific Green River classes currently tracked for this major.`,
+    whyThisTrack: [
+      `${track.code} has the strongest direct overlap with the current degree-specific Green River class list${examplesNote}.`,
+      `This auto-match compares every hardcoded course in the current Green River transfer tracks against the major's tracked Green River classes and keeps the track with the highest concrete course overlap.`,
+      `Use the remaining major-specific checklist items to add the classes that ${track.code} does not cover by itself.`,
+    ],
+  };
+}
+
+function refreshRuntimeMatchedTrackCopy<T extends TransferPlannerMajorPlan>(plan: T): T {
+  const matchedTrackRecommendation = buildRuntimeMatchedTrackRecommendation(plan);
+  if (!matchedTrackRecommendation) {
+    return plan;
+  }
+
+  return {
+    ...plan,
+    recommendedTrackSummary: matchedTrackRecommendation.recommendedTrackSummary,
+    whyThisTrack: matchedTrackRecommendation.whyThisTrack,
+  };
+}
+
 function normalizeUwSeattleBioengineeringRuntimePlan<T extends TransferPlannerMajorPlan>(
   plan: T
 ): T {
@@ -720,7 +804,7 @@ function normalizeUwSeattleBioengineeringRuntimePlan<T extends TransferPlannerMa
     { onlyCanonicalGrcCourses: true }
   );
 
-  return appendUwSeattleBioengineeringGeneralEducationSection({
+  return refreshRuntimeMatchedTrackCopy(appendUwSeattleBioengineeringGeneralEducationSection({
     ...plan,
     bestTrackId: UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID,
     applicationChecklist: checklist.applicationChecklist,
@@ -732,7 +816,7 @@ function normalizeUwSeattleBioengineeringRuntimePlan<T extends TransferPlannerMa
       ...(plan.validationNotes ?? []),
       "Runtime Bioengineering transfer checklist normalized to the current UW Bioengineering lower-division, programming, science, math, and general-education requirements.",
     ]),
-  });
+  }));
 }
 
 function normalizeStudentRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(plan: T): T {

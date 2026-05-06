@@ -79,6 +79,12 @@ import {
   type TransferPlannerParsedRequirementSourceBlock,
 } from "@/constants/transfer-planner-source";
 import {
+  getTransferPlannerMajorPlan as getCompactRuntimeMajorPlan,
+  getTransferPlannerGrcCourseList as getCompactRuntimeGrcCourseList,
+  getTransferPlannerTrack as getCompactRuntimeTrack,
+  resolveTransferPlannerStudentRuntimeMajorPlan as resolveCompactRuntimeMajorPlan,
+} from "@/constants/transfer-planner-source/student-runtime";
+import {
   isSuspiciousStructuralPathwayId,
   isSuspiciousStructuralPathwayLabel,
   materializeTransferPlannerPathways,
@@ -2271,7 +2277,7 @@ test("Seattle French and Italian stay on dedicated source targeting without revi
   }
 });
 
-test("Bioengineering runtime auto-match falls back to the student-visible course list", () => {
+test("Bioengineering runtime auto-match uses the current GRC-completable requirement set", () => {
   const runtimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(
     getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-bioengineering"),
     null
@@ -2279,24 +2285,76 @@ test("Bioengineering runtime auto-match falls back to the student-visible course
   assert.ok(runtimePlan, "Expected Bioengineering runtime planner data.");
 
   const visibleGrcCourseList = getTransferPlannerGrcCourseList(runtimePlan);
-  assert.deepEqual(visibleGrcCourseList.sort(), [
+  assert.deepEqual([...visibleGrcCourseList].sort(), [
     "BIOL& 211",
     "BIOL& 212",
     "BIOL& 213",
+    "CHEM& 161",
+    "CHEM& 162",
+    "CHEM& 163",
+    "CHEM& 261",
+    "ENGL& 101",
     "ENGR 250",
+    "MATH 238",
+    "MATH 240",
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 153",
+    "MATH& 163",
+    "MATH& 254",
+    "PHYS& 221",
+    "PHYS& 222",
   ]);
+  assert.equal(visibleGrcCourseList.includes("STAT 311"), false);
+  assert.equal(visibleGrcCourseList.includes("QSCI 381"), false);
 
   const visibleCourseRecommendation =
-    getTransferPlannerAutoMatchedTrackRecommendation(visibleGrcCourseList);
+    getTransferPlannerAutoMatchedTrackRecommendation(
+      visibleGrcCourseList,
+      runtimePlan.bestTrackId ?? null,
+      { majorTitle: runtimePlan.title }
+    );
   assert.equal(
     runtimePlan.bestTrackId,
     visibleCourseRecommendation?.trackId ?? null,
-    "Expected generated runtime bestTrackId to agree with the student-visible course-pool recommendation."
+    "Expected generated runtime bestTrackId to agree with the current GRC-completable course-pool recommendation."
   );
   assert.equal(
     runtimePlan.bestTrackId,
-    "grc-associate-stem-biology-associate-in-biology-dta-mrp"
+    "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering"
   );
+  assert.equal(visibleCourseRecommendation?.matchCount, 14);
+  assert.equal(visibleCourseRecommendation?.totalPlanCourseCount, 18);
+  assert.match(
+    runtimePlan.recommendedTrackSummary,
+    /^AST-2 is the current closest Green River transfer path .* matches 14 of the 18/i
+  );
+  assert.doesNotMatch(runtimePlan.recommendedTrackSummary, /AA-DTA|3 of the 4/i);
+});
+
+test("Compact Bioengineering runtime displays the same AST-2 track in the header and explanation", () => {
+  const runtimePlan = resolveCompactRuntimeMajorPlan(
+    getCompactRuntimeMajorPlan("uw-seattle-bioengineering"),
+    null
+  );
+  assert.ok(runtimePlan, "Expected compact Bioengineering runtime planner data.");
+
+  const track = getCompactRuntimeTrack(runtimePlan.bestTrackId ?? null);
+  const visibleGrcCourseList = getCompactRuntimeGrcCourseList(runtimePlan);
+  assert.ok(track, "Expected compact runtime to resolve the Bioengineering matched track.");
+  assert.equal(track?.code, "AST-2");
+  assert.match(track?.title ?? "", /Bioengineering and Chemical Engineering/);
+  assert.equal(
+    runtimePlan.bestTrackId,
+    "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering"
+  );
+  assert.equal(visibleGrcCourseList.length, 18);
+  assert.equal(visibleGrcCourseList.includes("STAT 311"), false);
+  assert.match(
+    runtimePlan.recommendedTrackSummary,
+    /^AST-2 is the current closest Green River transfer path .* matches 14 of the 18/i
+  );
+  assert.doesNotMatch(runtimePlan.recommendedTrackSummary, /AA-DTA|3 of the 4/i);
 });
 
 test("Prompt 2 upstream recovery follows same-program curriculum and prerequisite links safely", () => {
@@ -5884,6 +5942,17 @@ test("Transfer planner UI exposes copy-only Gen-Ed source debug counts", () => {
   );
   assert.match(pageSource, /countMatchedGrcTrackGeneralEducationBreadthRows/);
   assert.match(pageSource, /genEdSourceDebugText/);
+});
+
+test("Transfer planner UI exposes copy-only matched-track debug counts", () => {
+  const pageSource = readFileSync("components/pages/TransferPlannerPage.tsx", "utf8");
+
+  assert.match(pageSource, /buildCopyOnlyMatchedTrackDebugText/);
+  assert.match(pageSource, /\[copy-only matched track debug\]/);
+  assert.match(pageSource, /Header track id:/);
+  assert.match(pageSource, /Explanation track id:/);
+  assert.match(pageSource, /Match count:/);
+  assert.match(pageSource, /Total tracked GRC-completable requirements:/);
 });
 
 test("Generic UW transfer milestone remains available for non-engineering Seattle majors", () => {
