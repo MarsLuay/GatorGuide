@@ -82,6 +82,7 @@ The current green-state maintenance baseline is:
   - `scripts/planner/ingest-grc-catalog.cjs`
   - `scripts/planner/ingest-uw-catalog.cjs`
   - `scripts/planner/generate-transfer-planner-course-metadata.cjs`
+  - `scripts/planner/audit-transfer-planner-source-backed-coverage.cjs`
   - `scripts/planner/verify-transfer-planner-hardening.cjs`
   - `scripts/planner/refresh-transfer-planner-sources.cjs`
   - `../Course-Planner-Updater.bat`
@@ -96,6 +97,7 @@ The current green-state maintenance baseline is:
   - `npm run planner:ingest-grc-catalog`
   - `npm run planner:ingest-uw-catalog`
   - `npm run planner:build-course-metadata`
+  - `npm run planner:audit:source-backed-coverage`
   - `npm run planner:refresh`
   - `npm run planner:verify`
   - `npm run planner:hardening:verify`

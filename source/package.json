@@ -29,6 +29,7 @@
     "planner:audit:grc-merged-labels": "node scripts/planner/audit-transfer-planner-grc-merged-required-labels.cjs",
     "planner:audit:grc-choose-n-electives": "node scripts/planner/audit-transfer-planner-grc-choose-n-electives.cjs",
     "planner:audit:grc-remaining-credit-ranges": "node scripts/planner/audit-transfer-planner-grc-remaining-credit-ranges.cjs",
+    "planner:audit:source-backed-coverage": "node scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
     "planner:refresh": "node scripts/planner/refresh-transfer-planner-sources.cjs",
     "planner:refresh-deadlines": "node scripts/planner/refresh-deadline-sources.cjs",
     "planner:verify": "node scripts/planner/refresh-transfer-planner-sources.cjs --verify-only",

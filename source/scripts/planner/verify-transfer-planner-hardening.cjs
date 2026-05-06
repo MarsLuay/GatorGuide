@@ -1,4 +1,5 @@
 const assert = require("assert/strict");
+const { spawnSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
@@ -22,6 +23,14 @@ const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-hardening-report.json");
 const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-hardening-report.md");
+const SOURCE_BACKED_COVERAGE_AUDIT_SCRIPT = path.resolve(
+  REPO_ROOT,
+  "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs"
+);
+const SOURCE_BACKED_COVERAGE_AUDIT_REPORT_PATH = path.resolve(
+  TMP_DIR,
+  "transfer-planner-source-backed-coverage-audit.json"
+);
 const SOURCE_GAP_REPORT_PATH = path.resolve(TMP_DIR, "transfer-planner-source-gaps.json");
 const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
   TMP_DIR,
@@ -192,6 +201,25 @@ function main() {
       return [
         "Docs checked: README, docs/README, planner summary, bootstrap source layer",
         "UI checked: TransferPlannerPage",
+      ];
+    }),
+    runCheck("source-backed-coverage-audit-clean", "Source-backed coverage maintainer audit passes", () => {
+      const result = spawnSync(process.execPath, [SOURCE_BACKED_COVERAGE_AUDIT_SCRIPT], {
+        cwd: REPO_ROOT,
+        encoding: "utf8",
+      });
+      assert.equal(
+        result.status,
+        0,
+        `source-backed coverage audit failed\nstdout:\n${result.stdout}\nstderr:\n${result.stderr}`
+      );
+      const auditReport = readJson(SOURCE_BACKED_COVERAGE_AUDIT_REPORT_PATH);
+      assert.equal(auditReport.outcome, "passed");
+      assert.equal(auditReport.summary.failedRegressionCheckCount, 0);
+      return [
+        `UW owners audited: ${auditReport.summary.ownerCount}`,
+        `Requirement coverage rows: ${auditReport.summary.requirementCoverageRowCount}`,
+        `Report: ${SOURCE_BACKED_COVERAGE_AUDIT_REPORT_PATH}`,
       ];
     }),
   ];

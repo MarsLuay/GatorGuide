@@ -509,7 +509,9 @@ function Get-SectionArtifacts {
     "hardening" {
       return @(
         (Join-Path $tmpDir "transfer-planner-hardening-report.json"),
-        (Join-Path $tmpDir "transfer-planner-hardening-report.md")
+        (Join-Path $tmpDir "transfer-planner-hardening-report.md"),
+        (Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.json"),
+        (Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.md")
       )
     }
     default {

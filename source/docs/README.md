@@ -69,4 +69,4 @@ For transfer-planner work:
   - `npm run planner:windows:maintenance`
   - `npm run planner:full:verify`
   - `..\Course-Planner-Updater.bat`
-- The same maintenance pass now emits `.tmp/transfer-planner-hardening-report.md`, which is the single artifact that checks source gaps, parser failures, diff classification cleanup, machine-readable availability statuses, and source-backed-or-hidden wording.
+- The same maintenance pass now emits `.tmp/transfer-planner-hardening-report.md`, which is the single artifact that checks source gaps, parser failures, diff classification cleanup, machine-readable availability statuses, source-backed-or-hidden wording, and the source-backed coverage audit at `.tmp/transfer-planner-source-backed-coverage-audit.md`.

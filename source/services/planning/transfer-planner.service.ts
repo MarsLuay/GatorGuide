@@ -2968,7 +2968,15 @@ export function buildSuggestedQuarterRemainingCreditRange(input: {
 
   for (const quarter of input.quarters) {
     for (const course of quarter.courses) {
-      const courseCreditRange = getSuggestedQuarterCourseCreditRange(course);
+      const rawCourseCreditRange = getSuggestedQuarterCourseCreditRange(course);
+      const courseCreditRange =
+        course.optionGroup?.isSelectionPrompt &&
+        !isSuggestedQuarterOptionGroupResolved(course.optionGroup)
+          ? {
+              creditMin: 0,
+              creditMax: rawCourseCreditRange.creditMax,
+            }
+          : rawCourseCreditRange;
       if (course.status === "completed") {
         completedCredits += courseCreditRange.creditMin;
         continue;

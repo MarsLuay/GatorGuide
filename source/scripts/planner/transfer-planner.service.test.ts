@@ -5209,7 +5209,9 @@ test("GRC-only Accounting AAA credit range stays combined", () => {
   assert.equal(range.hiddenUwOnlyCredits, 0);
   assert.equal(range.mainMinRemainingCredits, range.minRemainingCredits);
   assert.equal(range.mainMaxRemainingCredits, range.maxRemainingCredits);
-  assert.ok(range.minRemainingCredits > 0);
+  assert.equal(range.minRemainingCredits, 80);
+  assert.equal(range.maxRemainingCredits, 90);
+  assert.equal(range.exactRemainingCredits, null);
 });
 
 test("Materials NME planning can skip placement-dependent STEM prep classes", () => {
@@ -5953,6 +5955,17 @@ test("Transfer planner UI exposes copy-only matched-track debug counts", () => {
   assert.match(pageSource, /Explanation track id:/);
   assert.match(pageSource, /Match count:/);
   assert.match(pageSource, /Total tracked GRC-completable requirements:/);
+});
+
+test("Transfer planner UI exposes copy-only option group visibility debug counts", () => {
+  const pageSource = readFileSync("components/pages/TransferPlannerPage.tsx", "utf8");
+
+  assert.match(pageSource, /buildSuggestedScheduleCopyOnlyOptionBoxSummaryText/);
+  assert.match(pageSource, /buildSuggestedScheduleCopyOnlyOptionGroupVisibilityText/);
+  assert.match(pageSource, /\[copy-only option box summary\]/);
+  assert.match(pageSource, /\[copy-only option group visibility\]/);
+  assert.match(pageSource, /Raw group count:/);
+  assert.match(pageSource, /Displayed group count:/);
 });
 
 test("Generic UW transfer milestone remains available for non-engineering Seattle majors", () => {
@@ -6801,6 +6814,7 @@ test("AST-2/MRP Computer and Electrical Engineering preserves official choose-tw
       })),
       track,
       includeStayAtGrcCourses: true,
+      includeStemPrepCourses: false,
       referenceDate: new Date("2026-01-15T12:00:00.000Z"),
     });
   const buildGrcOnlyPlan = (completedCourseCodes: string[] = []) =>
@@ -6869,12 +6883,10 @@ test("AST-2/MRP Computer and Electrical Engineering preserves official choose-tw
   });
   assert.equal(track.minimumCredits, 98);
   assert.equal(remainingCreditRange.catalogMinimumCredits, 98);
+  assert.equal(remainingCreditRange.minRemainingCredits, 98);
   assert.equal(remainingCreditRange.hasUnresolvedOptions, true);
   assert.equal(remainingCreditRange.exactRemainingCredits, null);
-  assert.equal(remainingCreditRange.minRemainingCredits, 98);
-  assert.ok(
-    remainingCreditRange.maxRemainingCredits > remainingCreditRange.minRemainingCredits
-  );
+  assert.equal(remainingCreditRange.maxRemainingCredits, 98);
   assert.ok(
     remainingCreditRange.unresolvedOptionGroupIds.includes(programmingChoice?.id ?? "")
   );
@@ -8230,6 +8242,7 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(maintenanceScript, /verify-transfer-planner-hardening\.cjs/);
   assert.match(maintenanceScript, /transfer-planner-maintenance-summary\.md/);
   assert.match(maintenanceScript, /transfer-planner-hardening-report\.md/);
+  assert.match(maintenanceScript, /transfer-planner-source-backed-coverage-audit\.md/);
   assert.match(maintenanceScript, /Start-Process/);
   assert.match(maintenanceScript, /Tee-Object\s+-FilePath\s+\$logPath\s+-Append/);
   assert.match(maintenanceScript, /-OnlySection/);
@@ -8285,10 +8298,12 @@ test("Windows planner maintenance launcher runs refresh, installs Chromium, runs
   assert.match(windowsInteractionsScript, /waitForPathname\(page,\s*"\/privacy"\)/);
 
   assert.match(packageJson, /"planner:hardening:verify":/);
+  assert.match(packageJson, /"planner:audit:source-backed-coverage":/);
   assert.match(packageJson, /"planner:windows:maintenance":/);
   assert.match(packageJson, /"planner:full:verify":/);
   assert.match(readme, /planner:windows:maintenance/);
   assert.match(readme, /transfer-planner-hardening-report\.md/);
+  assert.match(readme, /transfer-planner-source-backed-coverage-audit\.md/);
   assert.match(readme, /Course-Planner-Updater\.bat/);
   assert.doesNotMatch(readme, /run-planner-maintenance\.cmd/);
   assert.match(readme, /transfer-planner-maintenance-summary\.md/);
@@ -8441,6 +8456,9 @@ test("Single-pass planner hardening invariants hold across the five robustness f
   const requirementDiffReport = JSON.parse(
     readFileSync(".tmp/transfer-planner-requirement-diff-promotion-report.json", "utf8")
   );
+  const sourceBackedCoverageAudit = JSON.parse(
+    readFileSync(".tmp/transfer-planner-source-backed-coverage-audit.json", "utf8")
+  );
   const allowedAvailabilityStatuses = new Set([
     "published-in-latest-schedule",
     "published-in-recent-history-not-latest",
@@ -8477,6 +8495,9 @@ test("Single-pass planner hardening invariants hold across the five robustness f
     false
   );
   assert.deepEqual(invalidAvailabilityStatuses, []);
+  assert.equal(sourceBackedCoverageAudit.outcome, "passed");
+  assert.equal(sourceBackedCoverageAudit.summary.failedRegressionCheckCount, 0);
+  assert.ok(sourceBackedCoverageAudit.summary.requirementCoverageRowCount > 0);
   assert.match(toolSummary, /source-backed/i);
 });
 
@@ -8546,9 +8567,71 @@ test("Planner hardening verifier script checks the five robustness contracts in 
   assert.match(verifierScript, /source-backed-campus-specific-no-clean-grc-match/);
   assert.match(verifierScript, /manual-review/);
   assert.match(verifierScript, /TransferPlannerPage\.tsx/);
+  assert.match(verifierScript, /audit-transfer-planner-source-backed-coverage\.cjs/);
+  assert.match(verifierScript, /transfer-planner-source-backed-coverage-audit\.json/);
   assert.match(verifierScript, /transfer-planner-hardening-report\.md/);
+  assert.match(docsReadme, /transfer-planner-source-backed-coverage-audit\.md/);
   assert.match(docsReadme, /transfer-planner-hardening-report\.md/);
   assert.match(docsReadme, /planner:full:verify/);
+});
+
+test("Source-backed coverage maintainer audit guards today's planner regressions", () => {
+  const auditScript = readFileSync(
+    "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
+    "utf8"
+  );
+  const auditReport = JSON.parse(
+    readFileSync(".tmp/transfer-planner-source-backed-coverage-audit.json", "utf8")
+  );
+  const requiredIssueTypes = [
+    "missing-detected-course",
+    "unmapped-uw-only",
+    "over-scheduled-alternatives",
+    "stale-match-count",
+    "gen-ed-scope-leak",
+    "option-group-disappears-after-refresh",
+    "prep-credit-counted-as-main",
+  ];
+  const requiredCheckIds = [
+    "uw-mechanical-engineering:visible-courses",
+    "uw-civil-engineering:chem152-visible",
+    "uw-bioengineering:match-count-fresh",
+    "uw-mse-nme:option-groups",
+    "uw-ece-photonics:programming-and-science",
+    "grc-accounting-aaa:selected-total-90",
+    "grc-ast2-computer-electrical:total-98-no-prep",
+    "grc-ast2-civil-mechanical:official-total-107",
+  ];
+
+  for (const issueType of requiredIssueTypes) {
+    assert.match(auditScript, new RegExp(escapeRegExp(issueType)));
+    assert.ok(
+      Object.prototype.hasOwnProperty.call(
+        auditReport.summary.issueCountsByType,
+        issueType
+      )
+    );
+  }
+
+  assert.equal(auditReport.outcome, "passed");
+  assert.equal(auditReport.summary.failedRegressionCheckCount, 0);
+  for (const checkId of requiredCheckIds) {
+    assert.ok(
+      auditReport.regressionChecks.some(
+        (check: { id: string; status: string }) =>
+          check.id === checkId && check.status === "passed"
+      ),
+      `Expected maintainer audit check ${checkId} to pass.`
+    );
+  }
+  assert.ok(
+    auditReport.requirementCoverageRows.some(
+      (row: { majorId: string; uwRequirementLabel: string; copyOnlyDebugText: string }) =>
+        row.majorId === "uw-seattle-bioengineering" &&
+        row.uwRequirementLabel === "CHEM 162" &&
+        /^\[copy-only source-backed requirement audit\]/.test(row.copyOnlyDebugText)
+    )
+  );
 });
 
 test.skip("Phase 10 student runtime planner strips planner-authored detail and keeps automatic data", () => {
@@ -9311,6 +9394,36 @@ test("GRC Civil and Mechanical AST-2/MRP track keeps source-backed engineering s
     ),
     []
   );
+
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: null,
+    plannerCollegeId: "grc",
+    applicationStatuses: [],
+    beforeEnrollmentStatuses: [],
+    stayAtGrcStatuses: [],
+    completedCourses: [],
+    track,
+    includeStayAtGrcCourses: true,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedLabels = quarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses.map((course) => course.label));
+  const range = buildSuggestedQuarterRemainingCreditRange({
+    quarters: quarterPlan,
+    track,
+    creditBucketMode: "combined",
+  });
+  const indexOf = (label: string) => plannedLabels.indexOf(label);
+
+  assert.equal(track.minimumCredits, 107);
+  assert.equal(range.minRemainingCredits, 107);
+  assert.equal(indexOf("ENGR 106") < indexOf("ENGR& 214"), true);
+  assert.equal(indexOf("ENGR& 214") < indexOf("ENGR& 215"), true);
+  assert.equal(indexOf("ENGR& 214") < indexOf("ENGR& 225"), true);
+  assert.equal(indexOf("MATH& 264") < indexOf("MATH 238"), true);
 });
 
 test("Fallback-note gating now only stays off for runtime rows that truly still lack structured planner data", () => {
@@ -10030,6 +10143,11 @@ test("Green River branch renders official runtime track choice slots as selectab
   const selectedPlannedCourses = selectedQuarterPlan
     .filter((quarter) => quarter.phase === "planned")
     .flatMap((quarter) => quarter.courses);
+  const selectedCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: selectedQuarterPlan,
+    track: accountingTrack,
+    creditBucketMode: "combined",
+  });
 
   assert.ok(
     selectedPlannedCourses.some(
@@ -10057,6 +10175,9 @@ test("Green River branch renders official runtime track choice slots as selectab
     ),
     false
   );
+  assert.equal(selectedCreditRange.exactRemainingCredits, 90);
+  assert.equal(selectedCreditRange.minRemainingCredits, 90);
+  assert.equal(selectedCreditRange.maxRemainingCredits, 90);
 
   const selectedEconQuarterPlan = buildSuggestedQuarterPlan({
     plan: null,

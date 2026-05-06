@@ -95,6 +95,12 @@ It also writes a planner hardening report that clarifies the current planner con
 source\.tmp\transfer-planner-hardening-report.md
 ```
 
+The hardening pass also runs the source-backed coverage maintainer audit:
+
+```text
+source\.tmp\transfer-planner-source-backed-coverage-audit.md
+```
+
 The Green River discovery pass also writes the current public-material snapshot used by the refresh tool:
 
 ```text
