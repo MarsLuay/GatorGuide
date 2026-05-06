@@ -1198,7 +1198,48 @@ function auditSbseOptionSatisfaction(checks) {
   const completedCourses = [
     { code: "CS 121", label: "CS 121", credits: 5 },
     { code: "CS 122", label: "CS 122", credits: 5 },
+    { code: "CHEM& 161", label: "CHEM& 161", credits: 5 },
+    { code: "CHEM& 162", label: "CHEM& 162", credits: 5 },
+    { code: "CHEM& 163", label: "CHEM& 163", credits: 5 },
+    { code: "MATH& 151", label: "MATH& 151", credits: 5 },
+    { code: "MATH& 152", label: "MATH& 152", credits: 5 },
+    { code: "MATH& 163", label: "MATH& 163", credits: 5 },
+    { code: "ENGL& 101", label: "ENGL& 101", credits: 5 },
   ];
+  const noTranscriptStatuses = {
+    applicationStatuses: planner.buildRequirementStatuses(plan?.applicationChecklist ?? [], []),
+    beforeEnrollmentStatuses: planner.buildRequirementStatuses(plan?.beforeEnrollmentChecklist ?? [], []),
+    stayAtGrcStatuses: planner.buildRequirementStatuses(plan?.stayAtGrcChecklist ?? [], []),
+  };
+  const noTranscriptQuarterPlan = planner.buildSuggestedQuarterPlan({
+    plan,
+    ...noTranscriptStatuses,
+    completedCourses: [],
+    track: source.getTransferPlannerTrack(plan?.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {},
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const noTranscriptCourses = getVisiblePlannedCourses(noTranscriptQuarterPlan);
+  const noTranscriptLabels = noTranscriptCourses.map((course) => course.label);
+  const noTranscriptOptionGroups = noTranscriptCourses.flatMap((course) =>
+    course.optionGroup ? [course.optionGroup] : []
+  );
+  const noTranscriptCreditRange = planner.buildSuggestedQuarterRemainingCreditRange({
+    quarters: noTranscriptQuarterPlan,
+    track: source.getTransferPlannerTrack(plan?.bestTrackId ?? null),
+    creditBucketMode: "uw-transfer",
+  });
+  const classificationAudit = planner.auditRequirementClassification({
+    plan,
+    suggestedPlan: noTranscriptQuarterPlan,
+    completedCourses: [],
+  });
+  const classificationByRequirement = new Map(
+    classificationAudit.map((row) => [row.requirement, row])
+  );
   const statuses = {
     applicationStatuses: planner.buildRequirementStatuses(plan?.applicationChecklist ?? [], completedCourses),
     beforeEnrollmentStatuses: planner.buildRequirementStatuses(
@@ -1222,8 +1263,19 @@ function auditSbseOptionSatisfaction(checks) {
   const computationGroup = plan?.requirementGroups?.find((group) =>
     group.id.endsWith(":computation-data-science-elective")
   );
+  const businessGroup = plan?.requirementGroups?.find((group) =>
+    group.id.endsWith(":business-policy-economics-elective")
+  );
   const acceptedUwCodes = new Set(
     (computationGroup?.options ?? [])
+      .flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+      ])
+      .map(normalizeCourseCode)
+  );
+  const acceptedBusinessUwCodes = new Set(
+    (businessGroup?.options ?? [])
       .flatMap((option) => [
         ...(option.uwCourses ?? []),
         ...(option.equivalentUwCourseCodes ?? []),
@@ -1236,6 +1288,46 @@ function auditSbseOptionSatisfaction(checks) {
     completedCourses,
   });
   const auditRow = optionAudit.find((row) => row.groupId === computationGroup?.id);
+
+  addCheck(
+    checks,
+    "uw-sbse-business:no-transcript-classification",
+    "UW SBSE Business no-transcript plan exposes only true elective option groups and schedules sequences normally",
+    noTranscriptOptionGroups.length === 2 &&
+      JSON.stringify(noTranscriptOptionGroups.map((group) => group.title)) ===
+        JSON.stringify([
+          "Computation and Data Science elective: choose one approved course",
+          "Business, Policy, and Economics elective: choose one approved course",
+        ]) &&
+      [
+        "MATH& 151",
+        "MATH& 152",
+        "MATH& 163",
+        "CHEM& 161",
+        "CHEM& 162",
+        "CHEM& 163",
+        "PHYS& 221",
+        "ENGL& 101",
+      ].every((courseCode) => noTranscriptLabels.includes(courseCode)) &&
+      !noTranscriptLabels.some((label) =>
+        /this requirement|\+ %|AMATH 351 or MATH 125|AMATH 352 or MATH 126/i.test(label)
+      ) &&
+      noTranscriptCreditRange.maxRemainingCredits < 136 &&
+      classificationByRequirement.get("MATH 124, MATH 125, and MATH 126 calculus sequence")?.classification ===
+        "required-sequence" &&
+      classificationByRequirement.get("CHEM 142, CHEM 152, and CHEM 162 chemistry sequence")?.classification ===
+        "required-sequence" &&
+      classificationByRequirement.get("Computation and Data Science elective: choose one approved course")?.classification ===
+        "true-option" &&
+      classificationByRequirement.get("Business, Policy, and Economics elective: choose one approved course")?.classification ===
+        "true-option",
+    [
+      classificationAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      `No-transcript option groups: ${noTranscriptOptionGroups.map((group) => group.title).join(", ")}`,
+      `No-transcript credit range: ${JSON.stringify(noTranscriptCreditRange)}`,
+    ].join("\n"),
+    "over-scheduled-alternatives"
+  );
 
   addCheck(
     checks,
@@ -1257,11 +1349,19 @@ function auditSbseOptionSatisfaction(checks) {
         "STAT 180",
         "Q SCI 256",
       ].every((courseCode) => acceptedUwCodes.has(normalizeCourseCode(courseCode))) &&
+      Boolean(businessGroup) &&
+      ["ECON 200", "ECON 201", "ESRM 235", "ECON 235", "ENVIR 235", "ESRM 320", "ESRM 321", "ESRM 400", "ESRM 423", "ESRM 465"].every(
+        (courseCode) => acceptedBusinessUwCodes.has(normalizeCourseCode(courseCode))
+      ) &&
       auditRow?.shouldScheduleExtra === false &&
       (auditRow?.satisfiedBy ?? []).includes("CS 122") &&
       (auditRow?.scheduledExtraCourses ?? []).length === 0 &&
+      auditRow?.independentSchedulingReason === "none" &&
       !plannedLabels.includes("CS 123") &&
-      !plannedLabels.includes("CS& 141"),
+      !plannedLabels.includes("CS& 141") &&
+      !["MATH& 151", "MATH& 152", "MATH& 163", "CHEM& 161", "CHEM& 162", "CHEM& 163", "ENGL& 101"].some(
+        (courseCode) => plannedLabels.includes(courseCode)
+      ),
     [
       auditRow?.copyOnlyDebugText ?? "Missing option satisfaction audit row.",
       `Planned labels: ${plannedLabels.join(", ")}`,

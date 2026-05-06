@@ -71,6 +71,7 @@ import {
   buildTransferPlannerStudentEvaluationReport,
   buildSuggestedQuarterCourseOptionGroupsForTrack,
   countMatchedGrcTrackGeneralEducationBreadthRows,
+  auditRequirementClassification,
   auditOptionGroupSatisfaction,
   auditUwBioengineeringSourceBackedRequirements,
   extractCourseCodes,
@@ -3738,8 +3739,17 @@ function SuggestedScheduleCard({
         suggestedPlan: quarters,
         completedCourses,
       }).map((entry) => entry.copyOnlyDebugText);
+      const requirementClassificationAuditLines = auditRequirementClassification({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+      }).map((entry) => entry.copyOnlyDebugText);
 
-      return [...sourceBackedAuditLines, ...optionSatisfactionAuditLines].join("\n");
+      return [
+        ...sourceBackedAuditLines,
+        ...optionSatisfactionAuditLines,
+        ...requirementClassificationAuditLines,
+      ].join("\n");
     },
     [completedCourses, plan, quarters]
   );

@@ -301,6 +301,21 @@ export type OptionGroupSatisfactionAuditEntry = {
   satisfiedBy: string[];
   scheduledExtraCourses: string[];
   shouldScheduleExtra: boolean;
+  independentSchedulingReason: string;
+  copyOnlyDebugText: string;
+};
+
+export type RequirementClassificationAuditEntry = {
+  requirement: string;
+  classification:
+    | "required-sequence"
+    | "true-option"
+    | "prerequisite-alternative"
+    | "overlap"
+    | "hidden-unmapped";
+  scheduledCourses: string[];
+  countedCredits: number;
+  reason: string;
   copyOnlyDebugText: string;
 };
 
@@ -12903,6 +12918,54 @@ function getRequirementGroupGrcOptionCourseCodes(
   );
 }
 
+function getScheduledPlannerCourses(suggestedPlan: SuggestedQuarterPlan[]) {
+  return suggestedPlan
+    .filter((quarter) => quarter.phase !== "completed")
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.status !== "completed");
+}
+
+function getScheduledPlannerCourseCodeSet(suggestedPlan: SuggestedQuarterPlan[]) {
+  return new Set(
+    getScheduledPlannerCourses(suggestedPlan)
+      .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
+function getRequirementStatusCourseCodeSet(status: TransferRequirementStatus) {
+  return new Set(
+    status.explicitCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+}
+
+function buildIndependentSchedulingReasonForOptionExtras(input: {
+  currentGroupId: string;
+  scheduledExtraCourses: string[];
+  statuses: TransferRequirementStatus[];
+}) {
+  const extraCourseCodes = new Set(
+    input.scheduledExtraCourses.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+  );
+  if (!extraCourseCodes.size) {
+    return "none";
+  }
+
+  const reasons = input.statuses
+    .filter((status) => status.item.requirementGroup?.id !== input.currentGroupId)
+    .filter((status) => {
+      const statusCourseCodes = getRequirementStatusCourseCodeSet(status);
+      return [...extraCourseCodes].some((courseCode) => statusCourseCodes.has(courseCode));
+    })
+    .map((status) => status.item.requirementGroup?.label || status.item.title)
+    .filter(Boolean);
+
+  return reasons.length
+    ? `Scheduled independently for source-backed requirement: ${unique(reasons).join("; ")}`
+    : "none";
+}
+
 export function auditOptionGroupSatisfaction(input: {
   plan?: TransferPlannerMajorPlan | null;
   suggestedPlan: SuggestedQuarterPlan[];
@@ -12918,15 +12981,7 @@ export function auditOptionGroupSatisfaction(input: {
     ...buildRequirementStatuses(input.plan.beforeEnrollmentChecklist, completedCourses),
     ...buildRequirementStatuses(input.plan.stayAtGrcChecklist, completedCourses),
   ];
-  const scheduledCourseCodes = new Set(
-    input.suggestedPlan
-      .filter((quarter) => quarter.phase !== "completed")
-      .flatMap((quarter) => quarter.courses)
-      .filter((course) => course.status !== "completed")
-      .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
-      .map((courseCode) => normalizeCourseCode(courseCode))
-      .filter(Boolean)
-  );
+  const scheduledCourseCodes = getScheduledPlannerCourseCodeSet(input.suggestedPlan);
   const completedCourseCodes = new Set(
     completedCourses.map((course) => normalizeCourseCode(course.code)).filter(Boolean)
   );
@@ -12977,6 +13032,11 @@ export function auditOptionGroupSatisfaction(input: {
       )
     );
     const shouldScheduleExtra = !status.matched;
+    const independentSchedulingReason = buildIndependentSchedulingReasonForOptionExtras({
+      currentGroupId: groupId,
+      scheduledExtraCourses,
+      statuses,
+    });
 
     rows.push({
       groupId,
@@ -12986,6 +13046,7 @@ export function auditOptionGroupSatisfaction(input: {
       satisfiedBy,
       scheduledExtraCourses,
       shouldScheduleExtra,
+      independentSchedulingReason,
       copyOnlyDebugText: [
         "[copy-only option satisfaction audit]",
         `Requirement: ${group.label || status.item.title}`,
@@ -12994,6 +13055,153 @@ export function auditOptionGroupSatisfaction(input: {
         `Satisfied by: ${satisfiedBy.length ? satisfiedBy.join(", ") : "none"}`,
         `Scheduled extra courses: ${scheduledExtraCourses.length ? scheduledExtraCourses.join(", ") : "none"}`,
         `Should schedule extra: ${shouldScheduleExtra ? "yes" : "no"}`,
+        `Independent scheduling reason: ${independentSchedulingReason}`,
+      ].join(" "),
+    });
+  }
+
+  return rows;
+}
+
+function classifyRequirementForAudit(
+  item: TransferPlannerChecklistItem,
+  seenCourseCodes: Set<string>
+): RequirementClassificationAuditEntry["classification"] {
+  const group = item.requirementGroup;
+  const labelContext = `${group?.category ?? ""} ${group?.subcategory ?? ""} ${group?.label ?? ""} ${item.title}`;
+  const courseCodes = getChecklistChoiceLabels(item)
+    .flatMap((label) => extractCourseCodes(label))
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean);
+
+  if (!courseCodes.length) {
+    return "hidden-unmapped";
+  }
+
+  if (
+    /\b(?:computation_data_science_elective|business_policy_economics_elective)\b/i.test(
+      labelContext
+    ) ||
+    (group?.requirementType === "choose_one" && /\belective\b/i.test(labelContext))
+  ) {
+    return "true-option";
+  }
+
+  if (
+    /\brequired_sequence\b/i.test(labelContext) ||
+    group?.requirementType === "all_required"
+  ) {
+    return "required-sequence";
+  }
+
+  if (courseCodes.length > 0 && courseCodes.every((courseCode) => seenCourseCodes.has(courseCode))) {
+    return "overlap";
+  }
+
+  if (group?.requirementType === "choose_one" || /\bor\b/i.test(labelContext)) {
+    return "prerequisite-alternative";
+  }
+
+  return "required-sequence";
+}
+
+function getRequirementClassificationReason(input: {
+  item: TransferPlannerChecklistItem;
+  classification: RequirementClassificationAuditEntry["classification"];
+}) {
+  const { item, classification } = input;
+  const group = item.requirementGroup;
+
+  if (classification === "true-option") {
+    return "Source-backed elective bucket preserved as a student-facing option group.";
+  }
+  if (classification === "required-sequence") {
+    return group?.category === "required_sequence"
+      ? "Curated source-backed sequence; scheduled as required courses instead of a free-choice dropdown."
+      : "Required source-backed courses are scheduled normally.";
+  }
+  if (classification === "overlap") {
+    return "All courses in this expression overlap an earlier source-backed requirement, so it should not add credits or a dropdown.";
+  }
+  if (classification === "hidden-unmapped") {
+    return "No Green River equivalent is currently mapped, so the requirement remains hidden/internal.";
+  }
+  return "Parser/admission alternative expression; not a true student-facing elective.";
+}
+
+export function auditRequirementClassification(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+  completedCourses?: TranscriptCourseEntry[];
+}) {
+  if (!input.plan) {
+    return [] as RequirementClassificationAuditEntry[];
+  }
+
+  const completedCourseCodes = new Set(
+    (input.completedCourses ?? [])
+      .map((course) => normalizeCourseCode(course.code))
+      .filter(Boolean)
+  );
+  const scheduledCourses = getScheduledPlannerCourses(input.suggestedPlan);
+  const seenCourseCodes = new Set<string>();
+  const rows: RequirementClassificationAuditEntry[] = [];
+
+  for (const item of getTransferPlannerPlanChecklistItems(input.plan)) {
+    const classification = classifyRequirementForAudit(item, seenCourseCodes);
+    const itemCourseCodes = new Set(
+      getChecklistChoiceLabels(item)
+        .flatMap((label) => extractCourseCodes(label))
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    );
+    const matchingScheduledCourses = scheduledCourses.filter((course) =>
+      getSuggestedQuarterCourseSatisfyingCourseCodes(course)
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .some((courseCode) => itemCourseCodes.has(courseCode))
+    );
+    const scheduledCourseCodes = sortCourseCodes(
+      matchingScheduledCourses
+        .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter((courseCode) => itemCourseCodes.has(courseCode))
+    );
+    const countedCredits = matchingScheduledCourses.reduce((total, course) => {
+      const courseCodes = getSuggestedQuarterCourseSatisfyingCourseCodes(course)
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean);
+      if (!courseCodes.some((courseCode) => itemCourseCodes.has(courseCode))) {
+        return total;
+      }
+
+      return total + (
+        getPositiveCreditAmount(course.creditAmount) ??
+        getPositiveCreditAmount(course.creditMin) ??
+        getPositiveCreditAmount(course.creditMax) ??
+        0
+      );
+    }, 0);
+    const reason = getRequirementClassificationReason({ item, classification });
+
+    for (const courseCode of itemCourseCodes) {
+      if (!completedCourseCodes.has(courseCode)) {
+        seenCourseCodes.add(courseCode);
+      }
+    }
+
+    rows.push({
+      requirement: item.requirementGroup?.label || item.title,
+      classification,
+      scheduledCourses: scheduledCourseCodes,
+      countedCredits,
+      reason,
+      copyOnlyDebugText: [
+        "[copy-only requirement classification audit]",
+        `Requirement: ${item.requirementGroup?.label || item.title}`,
+        `Classification: ${classification}`,
+        `Scheduled courses: ${scheduledCourseCodes.length ? scheduledCourseCodes.join(", ") : "none"}`,
+        `Counted credits: ${countedCredits}`,
+        `Reason: ${reason}`,
       ].join(" "),
     });
   }

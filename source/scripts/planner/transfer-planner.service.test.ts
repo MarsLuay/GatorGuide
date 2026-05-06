@@ -122,6 +122,7 @@ import {
   getResolvedTrackTermsForRequirementDisplay,
   buildSuggestedQuarterPlan,
   auditOptionGroupSatisfaction,
+  auditRequirementClassification,
   auditUnselectedOptionPrerequisiteScheduling,
   auditVisibleGrcQuarterPlanScope,
   auditUwCivilEngineeringLowerDivisionRequirements,
@@ -6180,11 +6181,16 @@ test("Transfer planner UI exposes copy-only option satisfaction audit rows", () 
   const serviceSource = readFileSync("services/planning/transfer-planner.service.ts", "utf8");
 
   assert.match(pageSource, /auditOptionGroupSatisfaction/);
+  assert.match(pageSource, /auditRequirementClassification/);
   assert.match(pageSource, /optionSatisfactionAuditLines/);
+  assert.match(pageSource, /requirementClassificationAuditLines/);
   assert.match(serviceSource, /\[copy-only option satisfaction audit\]/);
+  assert.match(serviceSource, /\[copy-only requirement classification audit\]/);
   assert.match(serviceSource, /Accepted UW options:/);
   assert.match(serviceSource, /Satisfied by:/);
   assert.match(serviceSource, /Should schedule extra:/);
+  assert.match(serviceSource, /Independent scheduling reason:/);
+  assert.match(serviceSource, /Classification:/);
 });
 
 test("Generic UW transfer milestone remains available for non-engineering Seattle majors", () => {
@@ -14297,6 +14303,193 @@ test("Materials source parse retains normalized lower-division and core MSE requ
     true,
     "Expected the NME option source parse to retain the normalized NME 220 code."
   );
+});
+
+test("SBSE Business Option no-transcript planning classifies sequences and exposes only true electives", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-sustainable-bioresource-systems-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the SBSE runtime plan.");
+  const businessPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    runtimePlan,
+    "business-option"
+  );
+  assert.ok(businessPlan, "Expected the SBSE Business Option runtime plan.");
+
+  const statuses = buildStatuses(businessPlan, []);
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: businessPlan,
+    ...statuses,
+    completedCourses: [],
+    track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {},
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedCourses = suggestedPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const plannedLabels = new Set(plannedCourses.map((course) => course.label));
+  const visibleOptionGroups = plannedCourses.flatMap((course) =>
+    course.optionGroup ? [course.optionGroup] : []
+  );
+  const visibleOptionGroupTitles = visibleOptionGroups.map((group) => group.title);
+  const creditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: suggestedPlan,
+    track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+    creditBucketMode: "uw-transfer",
+  });
+  const classificationAudit = auditRequirementClassification({
+    plan: businessPlan,
+    suggestedPlan,
+    completedCourses: [],
+  });
+  const byRequirement = new Map(
+    classificationAudit.map((entry) => [entry.requirement, entry])
+  );
+
+  assert.deepEqual(visibleOptionGroupTitles, [
+    "Computation and Data Science elective: choose one approved course",
+    "Business, Policy, and Economics elective: choose one approved course",
+  ]);
+  assert.equal(visibleOptionGroups.length < 10, true);
+  for (const requiredCourse of [
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 163",
+    "CHEM& 161",
+    "CHEM& 162",
+    "CHEM& 163",
+    "PHYS& 221",
+    "ENGL& 101",
+  ]) {
+    assert.equal(plannedLabels.has(requiredCourse), true, `Expected ${requiredCourse}.`);
+  }
+  assert.equal(plannedLabels.has("CS 123"), false);
+  assert.equal(plannedLabels.has("CS& 141"), false);
+  assert.equal(creditRange.maxRemainingCredits < 136, true);
+  assert.equal(
+    [...plannedLabels].some((label) =>
+      /this requirement|\+ %|AMATH 351 or MATH 125|AMATH 352 or MATH 126/i.test(label)
+    ),
+    false
+  );
+  assert.equal(
+    byRequirement.get("MATH 124, MATH 125, and MATH 126 calculus sequence")?.classification,
+    "required-sequence"
+  );
+  assert.equal(
+    byRequirement.get("CHEM 142, CHEM 152, and CHEM 162 chemistry sequence")?.classification,
+    "required-sequence"
+  );
+  assert.equal(
+    byRequirement.get("Computation and Data Science elective: choose one approved course")?.classification,
+    "true-option"
+  );
+  assert.equal(
+    byRequirement.get("Business, Policy, and Economics elective: choose one approved course")?.classification,
+    "true-option"
+  );
+  assert.ok(
+    classificationAudit.every((entry) =>
+      entry.copyOnlyDebugText.startsWith("[copy-only requirement classification audit]")
+    )
+  );
+});
+
+test("SBSE Business Option transcript-loaded planning does not reschedule satisfied math, chemistry, or computation options", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-sustainable-bioresource-systems-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the SBSE runtime plan.");
+  const businessPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    runtimePlan,
+    "business-option"
+  );
+  assert.ok(businessPlan, "Expected the SBSE Business Option runtime plan.");
+
+  const completedCourses: TranscriptCourseEntry[] = [
+    { code: "CS 121", label: "CS 121", credits: 5 },
+    { code: "CS 122", label: "CS 122", credits: 5 },
+    { code: "CHEM& 161", label: "CHEM& 161", credits: 5 },
+    { code: "CHEM& 162", label: "CHEM& 162", credits: 5 },
+    { code: "CHEM& 163", label: "CHEM& 163", credits: 5 },
+    { code: "MATH& 151", label: "MATH& 151", credits: 5 },
+    { code: "MATH& 152", label: "MATH& 152", credits: 5 },
+    { code: "MATH& 163", label: "MATH& 163", credits: 5 },
+    { code: "ENGL& 101", label: "ENGL& 101", credits: 5 },
+  ];
+  const statuses = buildStatuses(businessPlan, completedCourses);
+  const allStatuses = [
+    ...statuses.applicationStatuses,
+    ...statuses.beforeEnrollmentStatuses,
+    ...statuses.stayAtGrcStatuses,
+  ];
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: businessPlan,
+    ...statuses,
+    completedCourses,
+    track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {},
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedLabels = new Set(
+    suggestedPlan
+      .filter((quarter) => quarter.phase === "planned")
+      .flatMap((quarter) => quarter.courses.map((course) => course.label))
+  );
+  const getStatus = (title: string) => allStatuses.find((status) => status.item.title === title);
+
+  assert.equal(
+    getStatus("MATH 124, MATH 125, and MATH 126 calculus sequence")?.matched,
+    true
+  );
+  assert.equal(
+    getStatus("CHEM 142, CHEM 152, and CHEM 162 chemistry sequence")?.matched,
+    true
+  );
+  assert.equal(getStatus("English Composition: 5 credits")?.matched, true);
+  for (const alreadyCompleted of [
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 163",
+    "CHEM& 161",
+    "CHEM& 162",
+    "CHEM& 163",
+    "ENGL& 101",
+    "CS 123",
+    "CS& 141",
+  ]) {
+    assert.equal(
+      plannedLabels.has(alreadyCompleted),
+      false,
+      `Did not expect ${alreadyCompleted} to be scheduled.`
+    );
+  }
+
+  const optionAudit = auditOptionGroupSatisfaction({
+    plan: businessPlan,
+    suggestedPlan,
+    completedCourses,
+  });
+  const computationAudit = optionAudit.find((entry) =>
+    /Computation and Data Science/i.test(entry.requirement)
+  );
+  assert.ok(computationAudit, "Expected computation option audit.");
+  assert.equal(computationAudit?.satisfiedBy.includes("CS 122"), true);
+  assert.deepEqual(computationAudit?.scheduledExtraCourses, []);
+  assert.equal(computationAudit?.shouldScheduleExtra, false);
+  assert.equal(computationAudit?.independentSchedulingReason, "none");
+  for (const row of optionAudit) {
+    if (!row.shouldScheduleExtra && row.scheduledExtraCourses.length > 0) {
+      assert.notEqual(row.independentSchedulingReason, "none");
+    }
+  }
 });
 
 test("SBSE computation/data science options satisfy from completed CS 122 without scheduling CS 123", () => {

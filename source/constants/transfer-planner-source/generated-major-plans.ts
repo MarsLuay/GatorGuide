@@ -2949,12 +2949,265 @@ function buildKnownSbseComputationDataScienceGroup(
   });
 }
 
+function buildKnownSbseMathSequenceGroup(planId: string): TransferPlannerRequirementGroup {
+  const option = (input: {
+    id: string;
+    uwCourses: string[];
+    equivalentUwCourseCodes?: string[];
+    grcMatches: string[];
+    label: string;
+  }) =>
+    buildRequirementOption({
+      id: `${planId}:requirement-option:sbse-math-${input.id}`,
+      credits: 5,
+      sourceHeading: "Mathematics admission minimum sequence",
+      sourceCategory: "required_sequence",
+      ...input,
+    });
+
+  return buildRequirementGroup({
+    id: `${planId}:requirement-group:sbse-math-124-125-126-sequence`,
+    label: "MATH 124, MATH 125, and MATH 126 calculus sequence",
+    category: "required_sequence",
+    subcategory: "sbse_math_sequence",
+    requirementType: "all_required",
+    minCourses: 3,
+    maxCourses: 3,
+    sourceHeading: "MATH 124/125/126 or honors equivalent",
+    notes: [
+      "SBSE is a minimum-requirements major; the MATH 124/125/126 admission minimum is a required sequence, not a choose-one dropdown.",
+      "Green River equivalents are MATH& 151, MATH& 152, and MATH& 163.",
+    ],
+    options: [
+      option({
+        id: "math-124",
+        uwCourses: ["MATH 124"],
+        equivalentUwCourseCodes: ["MATH 134"],
+        grcMatches: ["MATH& 151"],
+        label: "MATH 124",
+      }),
+      option({
+        id: "math-125",
+        uwCourses: ["MATH 125"],
+        equivalentUwCourseCodes: ["MATH 135"],
+        grcMatches: ["MATH& 152"],
+        label: "MATH 125",
+      }),
+      option({
+        id: "math-126",
+        uwCourses: ["MATH 126"],
+        equivalentUwCourseCodes: ["MATH 136"],
+        grcMatches: ["MATH& 163"],
+        label: "MATH 126",
+      }),
+    ],
+  });
+}
+
+function buildKnownSbseChemistrySequenceGroup(planId: string): TransferPlannerRequirementGroup {
+  const option = (input: {
+    id: string;
+    uwCourses: string[];
+    equivalentUwCourseCodes?: string[];
+    grcMatches: string[];
+    label: string;
+  }) =>
+    buildRequirementOption({
+      id: `${planId}:requirement-option:sbse-chemistry-${input.id}`,
+      credits: 5,
+      sourceHeading: "Chemistry admission minimum sequence",
+      sourceCategory: "required_sequence",
+      ...input,
+    });
+
+  return buildRequirementGroup({
+    id: `${planId}:requirement-group:sbse-chem-142-152-162-sequence`,
+    label: "CHEM 142, CHEM 152, and CHEM 162 chemistry sequence",
+    category: "required_sequence",
+    subcategory: "sbse_chemistry_sequence",
+    requirementType: "all_required",
+    minCourses: 3,
+    maxCourses: 3,
+    sourceHeading: "CHEM 142/152/162 or honors equivalent",
+    notes: [
+      "SBSE is a minimum-requirements major; the CHEM 142/152/162 admission minimum is a required sequence, not a choose-one dropdown.",
+      "Green River equivalents are CHEM& 161, CHEM& 162, and CHEM& 163.",
+    ],
+    options: [
+      option({
+        id: "chem-142",
+        uwCourses: ["CHEM 142"],
+        equivalentUwCourseCodes: ["CHEM 143", "CHEM 145"],
+        grcMatches: ["CHEM& 161"],
+        label: "CHEM 142",
+      }),
+      option({
+        id: "chem-152",
+        uwCourses: ["CHEM 152"],
+        equivalentUwCourseCodes: ["CHEM 153", "CHEM 155"],
+        grcMatches: ["CHEM& 162"],
+        label: "CHEM 152",
+      }),
+      option({
+        id: "chem-162",
+        uwCourses: ["CHEM 162"],
+        equivalentUwCourseCodes: ["CHEM 165"],
+        grcMatches: ["CHEM& 163"],
+        label: "CHEM 162",
+      }),
+    ],
+  });
+}
+
+function buildKnownSbsePhysicsMinimumGroup(planId: string): TransferPlannerRequirementGroup {
+  return buildRequirementGroup({
+    id: `${planId}:requirement-group:sbse-phys-121-minimum`,
+    label: "PHYS 121 or PHYS 141 physics minimum",
+    category: "required_sequence",
+    subcategory: "sbse_physics_minimum",
+    requirementType: "all_required",
+    minCourses: 1,
+    maxCourses: 1,
+    sourceHeading: "PHYS 121 or PHYS 141",
+    notes: [
+      "SBSE admission minimums include PHYS 121 or PHYS 141; Green River's source-backed equivalent is PHYS& 221.",
+    ],
+    options: [
+      buildRequirementOption({
+        id: `${planId}:requirement-option:sbse-physics-phys-121`,
+        uwCourses: ["PHYS 121"],
+        equivalentUwCourseCodes: ["PHYS 141"],
+        grcMatches: ["PHYS& 221"],
+        credits: 5,
+        sourceHeading: "PHYS 121 or PHYS 141",
+        sourceCategory: "required_sequence",
+        label: "PHYS 121",
+      }),
+    ],
+  });
+}
+
+function buildKnownSbseEnglishCompositionGroup(planId: string): TransferPlannerRequirementGroup {
+  return buildRequirementGroup({
+    id: `${planId}:requirement-group:sbse-english-composition`,
+    label: "English Composition: 5 credits",
+    category: "required_sequence",
+    subcategory: "sbse_english_composition",
+    requirementType: "all_required",
+    minCourses: 1,
+    maxCourses: 1,
+    sourceHeading: "5 credits English Composition",
+    notes: [
+      "SBSE admission minimums include 5 credits of English Composition.",
+    ],
+    options: [
+      buildRequirementOption({
+        id: `${planId}:requirement-option:sbse-english-engl-131`,
+        uwCourses: ["ENGL 131"],
+        grcMatches: ["ENGL& 101"],
+        credits: 5,
+        sourceHeading: "5 credits English Composition",
+        sourceCategory: "required_sequence",
+        label: "ENGL 131",
+      }),
+    ],
+  });
+}
+
+function buildKnownSbseBusinessPolicyEconomicsGroup(
+  planId: string
+): TransferPlannerRequirementGroup {
+  const option = (input: {
+    id: string;
+    displayCourseCodes?: string[];
+    uwCourses: string[];
+    equivalentUwCourseCodes?: string[];
+    grcMatches?: string[];
+    label: string;
+  }) =>
+    buildRequirementOption({
+      id: `${planId}:requirement-option:sbse-business-policy-economics-${input.id}`,
+      credits: 5,
+      sourceHeading: "Business, Policy, and Economics elective",
+      sourceCategory: "business_policy_economics_elective",
+      ...input,
+    });
+
+  return buildRequirementGroup({
+    id: `${planId}:requirement-group:business-policy-economics-elective`,
+    label: "Business, Policy, and Economics elective: choose one approved course",
+    category: "business_policy_economics_elective",
+    subcategory: "business_policy_economics",
+    requirementType: "choose_one",
+    minCourses: 1,
+    maxCourses: 1,
+    sourceHeading: "Business, Policy, and Economics elective",
+    notes: [
+      "Official UW SBSE source requires one Business, Policy, and Economics course and accepts ECON 200, ECON 201, ESRM/ECON/ENVIR 235, ESRM 320, ESRM 321, ESRM 400, ESRM 423, or ESRM 465.",
+      "Only source-backed accepted options are exposed as the student-facing elective bucket.",
+    ],
+    options: [
+      option({
+        id: "econ-200",
+        uwCourses: ["ECON 200"],
+        grcMatches: ["ECON& 201"],
+        label: "ECON 200",
+      }),
+      option({
+        id: "econ-201",
+        uwCourses: ["ECON 201"],
+        grcMatches: ["ECON& 202"],
+        label: "ECON 201",
+      }),
+      option({
+        id: "esrm-235-econ-235-envir-235",
+        displayCourseCodes: ["ESRM 235", "ECON 235", "ENVIR 235"],
+        uwCourses: ["ESRM 235"],
+        equivalentUwCourseCodes: ["ECON 235", "ENVIR 235"],
+        label: "ESRM 235 / ECON 235 / ENVIR 235",
+      }),
+      option({
+        id: "esrm-320",
+        uwCourses: ["ESRM 320"],
+        label: "ESRM 320",
+      }),
+      option({
+        id: "esrm-321",
+        uwCourses: ["ESRM 321"],
+        label: "ESRM 321",
+      }),
+      option({
+        id: "esrm-400",
+        uwCourses: ["ESRM 400"],
+        label: "ESRM 400",
+      }),
+      option({
+        id: "esrm-423",
+        uwCourses: ["ESRM 423"],
+        label: "ESRM 423",
+      }),
+      option({
+        id: "esrm-465",
+        uwCourses: ["ESRM 465"],
+        label: "ESRM 465",
+      }),
+    ],
+  });
+}
+
 function buildKnownSbseRequirementGroups(planId: string, _pathwayId?: string | null) {
   if (planId !== UW_SEATTLE_SBSE_PLAN_ID) {
     return [] as TransferPlannerRequirementGroup[];
   }
 
-  return [buildKnownSbseComputationDataScienceGroup(planId)];
+  return [
+    buildKnownSbseMathSequenceGroup(planId),
+    buildKnownSbseChemistrySequenceGroup(planId),
+    buildKnownSbsePhysicsMinimumGroup(planId),
+    buildKnownSbseEnglishCompositionGroup(planId),
+    buildKnownSbseComputationDataScienceGroup(planId),
+    buildKnownSbseBusinessPolicyEconomicsGroup(planId),
+  ];
 }
 
 function isSupersededSbseRequirementGroup(
@@ -3037,7 +3290,9 @@ function getParsedRequirementGroupsFromBlock(
     parsedRequirementGroups?: TransferPlannerRequirementGroup[];
   }).parsedRequirementGroups;
   const parsedOrKnownGroups =
-    block.planId === "uw-seattle-materials-science-engineering"
+    block.planId === UW_SEATTLE_SBSE_PLAN_ID
+      ? []
+      : block.planId === "uw-seattle-materials-science-engineering"
       ? parsedRequirementGroups && parsedRequirementGroups.length
         ? parsedRequirementGroups.filter((group) => knownMaterialsScienceGroupIds.has(group.id))
         : knownMaterialsScienceGroups
