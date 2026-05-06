@@ -282,6 +282,17 @@ export type SuggestedQuarterCourse = {
   satisfiesSourceBackedUwRequirement?: boolean | null;
 };
 
+export type UnselectedOptionPrerequisiteAuditEntry = {
+  groupId: string;
+  optionId: string;
+  optionSelected: boolean;
+  prerequisiteCourseCode: string;
+  prerequisiteScheduled: boolean;
+  shouldSchedule: boolean;
+  reason: string;
+  copyOnlyDebugText: string;
+};
+
 export type SuggestedQuarterPlan = {
   label: string;
   phase: "completed" | "current" | "planned";
@@ -1848,6 +1859,55 @@ function getSelectedRequirementOptionsForPlanner(
       optionId: getRequirementOptionId(item, option, optionIndex),
     }))
     .filter((entry) => selectedOptionIdSet.has(entry.optionId));
+}
+
+function shouldScheduleRequirementStatusAsPlannerChoiceBucket(
+  status: TransferRequirementStatus,
+  plan?: TransferPlannerMajorPlan | null
+) {
+  const hasChoiceGroup =
+    isChoiceRequirementStatus(status) &&
+    Boolean(status.item.requirementGroup?.options?.length);
+  if (!hasChoiceGroup) {
+    return false;
+  }
+
+  if (isUwTransferPlannerPlan(plan)) {
+    return true;
+  }
+
+  return (
+    status.requiredCompletedCount > 0 &&
+    status.requiredCompletedCount < status.explicitCourseCodes.length
+  );
+}
+
+function getSelectedRequirementOptionEntriesForPlannerScheduling(input: {
+  item: TransferPlannerChecklistItem;
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  const selectedOptionIds = getPlannerSelectedRequirementOptionIdsForScheduling({
+    item: input.item,
+    selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+    plan: input.plan,
+  });
+  const selectedOptionGroup = buildSuggestedQuarterCourseOptionGroup({
+    item: input.item,
+    selectedOptionIds,
+    isSelectionPrompt: false,
+    campusId: input.campusId,
+  });
+
+  if (!selectedOptionGroup) {
+    return [] as { option: RequirementGroupOption; optionId: string; optionIndex: number }[];
+  }
+
+  return getSelectedRequirementOptionsForPlanner(
+    input.item,
+    selectedOptionGroup.selectedOptionIds
+  ).slice(0, selectedOptionGroup.selectionCount);
 }
 
 function unique<T>(items: T[]) {
@@ -11563,8 +11623,7 @@ function buildRemainingSuggestedCourses(
         status.requiredCompletedCount === status.explicitCourseCodes.length &&
         status.explicitCourseCodes.length > 1;
       const shouldScheduleAsChoiceBucket =
-        status.requiredCompletedCount > 0 &&
-        status.requiredCompletedCount < status.explicitCourseCodes.length;
+        shouldScheduleRequirementStatusAsPlannerChoiceBucket(status, plan);
       const guidanceSummary = joinGuidanceSummaries(
         majorRequirementGuidanceSummary,
         buildChecklistGuidanceSummary(section.bucket, status.item)
@@ -11585,10 +11644,12 @@ function buildRemainingSuggestedCourses(
           })
         : null;
       const selectedOptionEntries = selectedOptionGroup
-        ? getSelectedRequirementOptionsForPlanner(
-            status.item,
-            selectedOptionGroup.selectedOptionIds
-          ).slice(0, selectedOptionGroup.selectionCount)
+        ? getSelectedRequirementOptionEntriesForPlannerScheduling({
+            item: status.item,
+            selectedRequirementOptionIdsByGroup,
+            campusId,
+            plan,
+          })
         : [];
 
       if (selectedOptionGroup && selectedOptionEntries.length) {
@@ -11970,6 +12031,29 @@ function attachAutomaticTransferEquivalencyGuidance(
   });
 }
 
+function getPlannerActionableCourseCodesForRequirementStatus(input: {
+  status: TransferRequirementStatus;
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  const { status } = input;
+  if (!shouldScheduleRequirementStatusAsPlannerChoiceBucket(status, input.plan)) {
+    return status.explicitCourseCodes;
+  }
+
+  return unique(
+    getSelectedRequirementOptionEntriesForPlannerScheduling({
+      item: status.item,
+      selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+      campusId: input.campusId,
+      plan: input.plan,
+    }).flatMap((entry) =>
+      getRequirementOptionCourseLabels(entry.option).flatMap((label) => extractCourseCodes(label))
+    )
+  );
+}
+
 export function buildSuggestedQuarterPlan(input: {
   plan?: TransferPlannerMajorPlan | null;
   plannerCollegeId?: TransferPlannerSelectedCollegeId | null;
@@ -12038,7 +12122,14 @@ export function buildSuggestedQuarterPlan(input: {
       ...applicationStatuses,
       ...beforeEnrollmentStatuses,
       ...stayAtGrcStatuses,
-    ].flatMap((status) => status.explicitCourseCodes)
+    ].flatMap((status) =>
+      getPlannerActionableCourseCodesForRequirementStatus({
+        status,
+        selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+        campusId: input.plan?.campusId,
+        plan: input.plan,
+      })
+    )
   );
   const trackSupplementalCoveredCourseCodes = new Set([
     ...[
@@ -12047,7 +12138,15 @@ export function buildSuggestedQuarterPlan(input: {
       ...stayAtGrcStatuses,
     ].flatMap((status) =>
       isChoiceRequirementStatus(status)
-        ? status.matchedCourses.map((course) => course.code)
+        ? unique([
+            ...status.matchedCourses.map((course) => course.code),
+            ...getPlannerActionableCourseCodesForRequirementStatus({
+              status,
+              selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+              campusId: input.plan?.campusId,
+              plan: input.plan,
+            }),
+          ])
         : status.explicitCourseCodes
     ),
   ]);
@@ -12725,4 +12824,223 @@ export function auditUwBioengineeringSourceBackedRequirements(input: {
       ].join(" "),
     } satisfies SourceBackedRequirementAuditEntry;
   });
+}
+
+function getTransferPlannerPlanChecklistItems(plan: TransferPlannerMajorPlan) {
+  return [
+    ...plan.applicationChecklist,
+    ...plan.beforeEnrollmentChecklist,
+    ...plan.stayAtGrcChecklist,
+  ];
+}
+
+function collectTransitivePrerequisiteCourseCodes(
+  courseCodes: string[],
+  prerequisiteCourseMap: Map<string, string[][]>
+): Set<string> {
+  const collected = new Set<string>();
+  const pending = courseCodes.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean);
+
+  for (let index = 0; index < pending.length; index += 1) {
+    const courseCode = pending[index];
+    if (!courseCode) continue;
+    for (const prerequisiteCode of prerequisiteCourseMap.get(courseCode) ?? []) {
+      for (const normalizedPrerequisiteCode of prerequisiteCode
+        .map((code) => normalizeCourseCode(code))
+        .filter(Boolean)) {
+        if (collected.has(normalizedPrerequisiteCode)) {
+          continue;
+        }
+        collected.add(normalizedPrerequisiteCode);
+        pending.push(normalizedPrerequisiteCode);
+      }
+    }
+  }
+
+  return collected;
+}
+
+export function auditUnselectedOptionPrerequisiteScheduling(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+  completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+}) {
+  if (!input.plan) {
+    return [] as UnselectedOptionPrerequisiteAuditEntry[];
+  }
+
+  const plan = input.plan;
+  const completedCourses = input.completedCourses ?? [];
+  const completedCourseCodes = new Set(
+    completedCourses.map((course) => normalizeCourseCode(course.code)).filter(Boolean)
+  );
+  const statuses = [
+    ...buildRequirementStatuses(plan.applicationChecklist, completedCourses),
+    ...buildRequirementStatuses(plan.beforeEnrollmentChecklist, completedCourses),
+    ...buildRequirementStatuses(plan.stayAtGrcChecklist, completedCourses),
+  ];
+  const activeRequirementCourseCodes = new Set(
+    statuses
+      .flatMap((status) =>
+        getPlannerActionableCourseCodesForRequirementStatus({
+          status,
+          selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+          campusId: plan.campusId,
+          plan,
+        })
+      )
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+  for (const courseCode of input.suggestedPlan
+    .flatMap((quarter) => quarter.courses)
+    .filter(
+      (course) =>
+        (course.sourceKind === "uw-major-requirement" ||
+          course.sourceKind === "uw-major-breadth") &&
+        course.optionGroup?.isSelectionPrompt !== true
+    )
+    .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean)) {
+    activeRequirementCourseCodes.add(courseCode);
+  }
+  const scheduledCourseCodes = new Set(
+    input.suggestedPlan
+      .flatMap((quarter) => quarter.courses)
+      .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+  const scheduledGraph = buildTransferPlannerCoursePlanningGraph({
+    plan,
+    actionableCourseCodes: scheduledCourseCodes,
+  });
+  const scheduledPrerequisiteMap = getCoursePlanningGraphRequirementMap(
+    scheduledGraph,
+    "prerequisiteCourseSetsByCourseCode"
+  );
+  const activePrerequisiteCourseCodes = collectTransitivePrerequisiteCourseCodes(
+    [...activeRequirementCourseCodes],
+    scheduledPrerequisiteMap
+  );
+  const shouldScheduleCourseCodes = new Set([
+    ...activeRequirementCourseCodes,
+    ...activePrerequisiteCourseCodes,
+  ]);
+  const scheduledCourses = input.suggestedPlan.flatMap((quarter) => quarter.courses);
+  let addedGuidanceBackedPrerequisite = true;
+  while (addedGuidanceBackedPrerequisite) {
+    addedGuidanceBackedPrerequisite = false;
+
+    for (const course of scheduledCourses) {
+      if (course.courseRole !== "local_grc_prerequisite") {
+        continue;
+      }
+      const dependentCourseCodes = extractCourseCodes(course.guidanceSummary ?? "");
+      if (!dependentCourseCodes.some((courseCode) => shouldScheduleCourseCodes.has(courseCode))) {
+        continue;
+      }
+
+      for (const courseCode of getSuggestedQuarterCourseSatisfyingCourseCodes(course)) {
+        if (shouldScheduleCourseCodes.has(courseCode)) {
+          continue;
+        }
+        shouldScheduleCourseCodes.add(courseCode);
+        activePrerequisiteCourseCodes.add(courseCode);
+        addedGuidanceBackedPrerequisite = true;
+      }
+    }
+  }
+  const checklistItems = getTransferPlannerPlanChecklistItems(plan);
+  const allOptionCourseCodes = unique(
+    checklistItems.flatMap((item) =>
+      (item.requirementGroup?.options ?? []).flatMap((option) =>
+        getRequirementOptionCourseLabels(option).flatMap((label) => extractCourseCodes(label))
+      )
+    )
+  );
+  const auditGraph = buildTransferPlannerCoursePlanningGraph({
+    plan,
+    actionableCourseCodes: unique([...scheduledCourseCodes, ...allOptionCourseCodes]),
+  });
+  const auditPrerequisiteMap = getCoursePlanningGraphRequirementMap(
+    auditGraph,
+    "prerequisiteCourseSetsByCourseCode"
+  );
+  const rows: UnselectedOptionPrerequisiteAuditEntry[] = [];
+
+  for (const item of checklistItems) {
+    const group = item.requirementGroup;
+    if (
+      !group?.options.length ||
+      !(
+        group.requirementType === "choose_one" ||
+        group.requirementType === "choose_n" ||
+        group.requirementType === "choose_credits" ||
+        group.requirementType === "sequence_choice"
+      )
+    ) {
+      continue;
+    }
+
+    const groupId = getRequirementOptionSelectionKey(item);
+    const selectedOptionIds = getPlannerSelectedRequirementOptionIdsForScheduling({
+      item,
+      selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+      plan,
+    });
+    const selectedOptionIdSet = new Set(selectedOptionIds);
+
+    for (const [optionIndex, option] of group.options.entries()) {
+      const optionId = getRequirementOptionId(item, option, optionIndex);
+      const optionSelected = selectedOptionIdSet.has(optionId);
+      const optionCourseCodes = unique(
+        getRequirementOptionCourseLabels(option).flatMap((label) => extractCourseCodes(label))
+      );
+      const prerequisiteCourseCodes = [...collectTransitivePrerequisiteCourseCodes(
+        optionCourseCodes,
+        auditPrerequisiteMap
+      )].sort((left, right) => left.localeCompare(right));
+
+      for (const prerequisiteCourseCode of prerequisiteCourseCodes) {
+        const prerequisiteScheduled = scheduledCourseCodes.has(prerequisiteCourseCode);
+        const shouldSchedule =
+          !completedCourseCodes.has(prerequisiteCourseCode) &&
+          (
+            optionSelected ||
+            shouldScheduleCourseCodes.has(prerequisiteCourseCode)
+          );
+        const reason = optionSelected
+          ? "prerequisite for selected option"
+          : activeRequirementCourseCodes.has(prerequisiteCourseCode)
+            ? "independently source-backed requirement"
+            : activePrerequisiteCourseCodes.has(prerequisiteCourseCode)
+              ? "prerequisite for selected or required course"
+              : "unselected option prerequisite only";
+
+        rows.push({
+          groupId,
+          optionId,
+          optionSelected,
+          prerequisiteCourseCode,
+          prerequisiteScheduled,
+          shouldSchedule,
+          reason,
+          copyOnlyDebugText: [
+            "[copy-only unselected option prerequisite audit]",
+            `Group id: ${groupId}`,
+            `Option id: ${optionId}`,
+            `Option selected: ${optionSelected ? "yes" : "no"}`,
+            `Prerequisite scheduled: ${prerequisiteCourseCode} (${prerequisiteScheduled ? "yes" : "no"})`,
+            `Should schedule: ${shouldSchedule ? "yes" : "no"}`,
+            `Reason: ${reason}`,
+          ].join(" "),
+        });
+      }
+    }
+  }
+
+  return rows;
 }

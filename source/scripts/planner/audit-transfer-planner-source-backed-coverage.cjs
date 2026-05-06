@@ -1143,6 +1143,7 @@ function parseMatchedTrackSummary(summary) {
 function auditMseNme(checks) {
   const plan = resolveRuntimePlan("uw-seattle-materials-science-engineering", "nme-option");
   const quarterPlan = buildQuarterPlan(plan, { includeStayAtGrcCourses: true });
+  const transferOnlyQuarterPlan = buildQuarterPlan(plan, { includeStayAtGrcCourses: false });
   const labels = getVisiblePlannedLabels(quarterPlan);
   const optionGroups = getVisiblePlannedCourses(quarterPlan).flatMap((course) =>
     course.optionGroup ? [course.optionGroup] : []
@@ -1152,7 +1153,7 @@ function auditMseNme(checks) {
     checks,
     "uw-mse-nme:source-backed-key-rows",
     "UW MSE/NME keeps source-backed lower-division transfer rows visible",
-    ["MATH& 151", "MATH& 152", "MATH& 163", "CHEM& 161", "CHEM& 162", "PHYS& 221", "PHYS& 222", "PHYS& 223", "ENGR 140", "CS 122"].every((courseCode) =>
+    ["MATH& 151", "MATH& 152", "MATH& 163", "CHEM& 161", "CHEM& 162", "PHYS& 221", "PHYS& 222", "PHYS& 223", "ENGR 140"].every((courseCode) =>
       labels.includes(courseCode)
     ),
     labels.join(", "),
@@ -1162,10 +1163,27 @@ function auditMseNme(checks) {
     checks,
     "uw-mse-nme:option-groups",
     "UW MSE/NME option groups keep source-backed cardinality",
-    optionGroups.some((group) => /Science Electives/i.test(group.title) && group.selectionCount === 2) &&
+    optionGroups.some((group) => /Scientific computing/i.test(group.title) && group.selectionCount === 1) &&
+      optionGroups.some((group) => /Science Electives/i.test(group.title) && group.selectionCount === 2) &&
       optionGroups.some((group) => /Engineering Fundamentals Electives/i.test(group.title) && group.requiredCredits === 8),
     JSON.stringify(optionGroups.map((group) => ({ title: group.title, selectionCount: group.selectionCount, requiredCredits: group.requiredCredits }))),
     "option-group-disappears-after-refresh"
+  );
+  const unselectedOptionPrerequisiteLeaks = planner
+    .auditUnselectedOptionPrerequisiteScheduling({
+      plan,
+      suggestedPlan: transferOnlyQuarterPlan,
+      completedCourses: [],
+      selectedRequirementOptionIdsByGroup: {},
+    })
+    .filter((row) => !row.optionSelected && row.prerequisiteScheduled && !row.shouldSchedule);
+  addCheck(
+    checks,
+    "uw-mse-nme:unselected-option-prerequisites",
+    "UW MSE/NME does not schedule prerequisites for unselected option courses",
+    unselectedOptionPrerequisiteLeaks.length === 0,
+    unselectedOptionPrerequisiteLeaks.map((row) => row.copyOnlyDebugText).join("\n") || "No leaked unselected option prerequisites.",
+    "over-scheduled-alternatives"
   );
 }
 
@@ -1173,18 +1191,34 @@ function auditEcePhotonics(checks) {
   const plan = resolveRuntimePlan("uw-seattle-electrical-computer-engineering", "photonics-pathway");
   const quarterPlan = buildQuarterPlan(plan);
   const labels = getVisiblePlannedLabels(quarterPlan);
+  const optionGroups = getVisiblePlannedCourses(quarterPlan).flatMap((course) =>
+    course.optionGroup ? [course.optionGroup] : []
+  );
+  const programmingGroupVisible = optionGroups.some((group) =>
+    (group.options ?? []).some((option) =>
+      (option.courseCodes ?? []).some((courseCode) => ["CS 121", "CS 122", "CS 123"].includes(courseCode))
+    )
+  );
 
   addCheck(
     checks,
     "uw-ece-photonics:programming-and-science",
-    "UW ECE Photonics transfer-only plan preserves programming/math/science rows",
-    ["CS 121", "CS 122", "CS 123", "MATH 238", "MATH 240"].every((courseCode) =>
+    "UW ECE Photonics transfer-only plan preserves programming option group and math/science rows",
+    programmingGroupVisible &&
+      ["MATH 238", "MATH 240"].every((courseCode) =>
       labels.includes(courseCode)
     ) &&
+      !["CS 121", "CS 122", "CS 123"].some((courseCode) => labels.includes(courseCode)) &&
       !["CHEM& 131", "CHEM 220", "ENGL 126", "ENGL 128", "ENGR 140"].some((courseCode) =>
         labels.includes(courseCode)
       ),
-    labels.join(", "),
+    JSON.stringify({
+      labels,
+      optionGroups: optionGroups.map((group) => ({
+        title: group.title,
+        options: group.options.map((option) => option.courseCodes),
+      })),
+    }),
     "missing-detected-course"
   );
 }

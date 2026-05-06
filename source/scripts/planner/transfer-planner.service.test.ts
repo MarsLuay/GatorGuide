@@ -121,6 +121,7 @@ import {
   inferTransferPlannerGrcCatalogYearLabel,
   getResolvedTrackTermsForRequirementDisplay,
   buildSuggestedQuarterPlan,
+  auditUnselectedOptionPrerequisiteScheduling,
   auditVisibleGrcQuarterPlanScope,
   auditUwCivilEngineeringLowerDivisionRequirements,
   auditUwBioengineeringSourceBackedRequirements,
@@ -1327,6 +1328,29 @@ function buildStatuses(plan: TransferPlannerMajorPlan, completedCourses: Transcr
       completedCourses
     ),
     stayAtGrcStatuses: buildRequirementStatuses(plan.stayAtGrcChecklist, completedCourses),
+  };
+}
+
+function getRequirementOptionSelection(
+  plan: TransferPlannerMajorPlan,
+  groupIdSuffix: string,
+  optionIdFragment: string
+) {
+  const item = [
+    ...plan.applicationChecklist,
+    ...plan.beforeEnrollmentChecklist,
+    ...plan.stayAtGrcChecklist,
+  ].find((candidate) => candidate.requirementGroup?.id.endsWith(groupIdSuffix));
+  assert.ok(item?.requirementGroup, `Expected requirement group ${groupIdSuffix}.`);
+
+  const option = item.requirementGroup.options.find((candidate) =>
+    String(candidate.id ?? "").includes(optionIdFragment)
+  );
+  assert.ok(option?.id, `Expected option ${optionIdFragment} in ${groupIdSuffix}.`);
+
+  return {
+    groupId: item.requirementGroup.id,
+    optionId: option.id,
   };
 }
 
@@ -4851,15 +4875,14 @@ test("Materials NME planning does not duplicate official breadth with matched-tr
     )
   );
 
-  assert.deepEqual(
-    ahSscPlaceholderCourses.map((course) => course.label),
-    [
-      "5 credits of Humanities",
-      "5 credits of Social Science",
-      "5 credits of A&H or SSc",
-      "5 credits of Humanities",
-      "5 credits of Social Science",
-    ]
+  assert.deepEqual(ahSscPlaceholderCourses.map((course) => course.label), []);
+  assert.ok(
+    plannedCourses.some((course) =>
+      /Engineering Fundamentals Electives|Scientific computing/i.test(
+        course.optionGroup?.title ?? ""
+      )
+    ),
+    "Expected unresolved source-backed option prompts instead of auto-filled breadth rows."
   );
   assert.equal(
     ahSscPlaceholderCourses.some((course) =>
@@ -4890,8 +4913,8 @@ test("Materials NME planning does not duplicate official breadth with matched-tr
   );
   assert.equal(
     transferOnlyPlannedCourses.some((course) =>
-      /needed for Materials Science & Engineering \(NME Option\)/i.test(
-        course.guidanceSummary ?? ""
+      /Engineering Fundamentals Electives|Scientific computing/i.test(
+        course.optionGroup?.title ?? ""
       )
     ),
     true
@@ -4904,6 +4927,11 @@ test("Materials NME planning separates UW-major rows from official AST-2 track r
   assert.ok(nmePlan, "Expected the Materials NME source plan.");
 
   const track = getTransferPlannerTrack(nmePlan.bestTrackId ?? null);
+  const scientificComputingSelection = getRequirementOptionSelection(
+    nmePlan,
+    ":scientific-computing",
+    "cse-122"
+  );
   const plannedCourses = buildSuggestedQuarterPlan({
     plan: nmePlan,
     ...buildStatuses(nmePlan, []),
@@ -4911,6 +4939,9 @@ test("Materials NME planning separates UW-major rows from official AST-2 track r
     track,
     includeStayAtGrcCourses: true,
     referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+    selectedRequirementOptionIdsByGroup: {
+      [scientificComputingSelection.groupId]: [scientificComputingSelection.optionId],
+    },
   })
     .filter((quarter) => quarter.phase === "planned")
     .flatMap((quarter) => quarter.courses);
@@ -4918,7 +4949,7 @@ test("Materials NME planning separates UW-major rows from official AST-2 track r
   const cs122 = plannedCourses.find((course) => course.label === "CS 122");
   const engr140 = plannedCourses.find((course) => course.label === "ENGR 140");
   const math141 = plannedCourses.find((course) => course.label === "MATH& 141");
-  const biol211 = plannedCourses.find((course) => course.label === "BIOL& 211");
+  const chem163 = plannedCourses.find((course) => course.label === "CHEM& 163");
 
   assert.equal(cs122?.sourceKind, "uw-major-requirement");
   assert.doesNotMatch(
@@ -4934,8 +4965,8 @@ test("Materials NME planning separates UW-major rows from official AST-2 track r
 
   assert.equal(math141?.sourceKind, "official-grc-track");
   assert.doesNotMatch(math141?.guidanceSummary ?? "", /Official Green River AST-2/i);
-  assert.equal(biol211?.sourceKind, "official-grc-track");
-  assert.doesNotMatch(biol211?.guidanceSummary ?? "", /Official Green River AST-2/i);
+  assert.equal(chem163?.sourceKind, "official-grc-track");
+  assert.doesNotMatch(chem163?.guidanceSummary ?? "", /Official Green River AST-2/i);
 });
 
 test("Optional STEM prep rows carry test-out guidance while required transfer courses stay untagged", () => {
@@ -5183,6 +5214,173 @@ test("NME option groups carry requirement targets for explicit student-facing la
   assert.equal(engineeringFundamentals?.requiredCredits, 8);
 });
 
+test("Materials NME does not schedule prerequisites for unselected option courses", () => {
+  const sourcePlan = getRequiredPlan("uw-seattle-materials-science-engineering");
+  const nmePlan = resolveTransferPlannerMajorPlan(sourcePlan, "nme-option");
+  assert.ok(nmePlan, "Expected the Materials NME source plan.");
+
+  const selectedRequirementOptionIdsByGroup = {};
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: nmePlan,
+    ...buildStatuses(nmePlan, []),
+    completedCourses: [],
+    track: getTransferPlannerTrack(nmePlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const plannedCourses = quarterPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses);
+  const plannedLabels = new Set(plannedCourses.map((course) => course.label));
+  const engineeringFundamentals = plannedCourses.find((course) =>
+    /Engineering Fundamentals Electives/i.test(course.optionGroup?.title ?? "")
+  );
+  const auditRows = auditUnselectedOptionPrerequisiteScheduling({
+    plan: nmePlan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup,
+  });
+  const cs123AuditRows = auditRows.filter((row) =>
+    row.optionId.includes("engineering-fundamentals-cse-123")
+  );
+
+  assert.equal(plannedLabels.has("CS 121"), false);
+  assert.equal(plannedLabels.has("CS 122"), false);
+  assert.equal(plannedLabels.has("CS 123"), false);
+  assert.ok(engineeringFundamentals, "Expected the Engineering Fundamentals prompt to stay visible.");
+  assert.equal(engineeringFundamentals?.optionGroup?.isSelectionPrompt, true);
+  assert.deepEqual(engineeringFundamentals?.optionGroup?.selectedOptionIds, []);
+
+  for (const independentlyRequiredOrPrerequisite of [
+    "ENGR 100",
+    "ENGR 106",
+    "ENGR& 214",
+    "ENGR& 225",
+  ]) {
+    assert.equal(
+      plannedLabels.has(independentlyRequiredOrPrerequisite),
+      true,
+      `Expected ${independentlyRequiredOrPrerequisite} to remain when independently justified.`
+    );
+  }
+
+  assert.deepEqual(
+    cs123AuditRows.map((row) => [
+      row.prerequisiteCourseCode,
+      row.optionSelected,
+      row.prerequisiteScheduled,
+      row.shouldSchedule,
+    ]),
+    [
+      ["CS 121", false, false, false],
+      ["CS 122", false, false, false],
+    ]
+  );
+  assert.ok(
+    cs123AuditRows.every((row) =>
+      row.copyOnlyDebugText.startsWith("[copy-only unselected option prerequisite audit]")
+    )
+  );
+  assert.deepEqual(
+    auditRows
+      .filter((row) => !row.optionSelected && row.prerequisiteScheduled && !row.shouldSchedule)
+      .map((row) => row.copyOnlyDebugText),
+    []
+  );
+});
+
+test("Materials NME schedules only the selected Engineering Fundamentals option chain", () => {
+  const sourcePlan = getRequiredPlan("uw-seattle-materials-science-engineering");
+  const nmePlan = resolveTransferPlannerMajorPlan(sourcePlan, "nme-option");
+  assert.ok(nmePlan, "Expected the Materials NME source plan.");
+
+  const engineeringFundamentalsGroupId =
+    "uw-seattle-materials-science-engineering:requirement-group:engineering-fundamentals-electives";
+  const cases = [
+    {
+      optionFragment: "engineering-fundamentals-cse-123",
+      expected: ["CS 121", "CS 122", "CS 123"],
+      absent: ["ENGR& 204", "ENGR& 215"],
+    },
+    {
+      optionFragment: "engineering-fundamentals-ee-215",
+      expected: ["ENGR& 204"],
+      absent: ["CS 121", "CS 122", "CS 123", "ENGR& 215"],
+    },
+    {
+      optionFragment: "engineering-fundamentals-me-230",
+      expected: ["ENGR& 215", "ENGR& 214"],
+      absent: ["CS 121", "CS 122", "CS 123", "ENGR& 204"],
+    },
+  ];
+
+  for (const testCase of cases) {
+    const selection = getRequirementOptionSelection(
+      nmePlan,
+      ":engineering-fundamentals-electives",
+      testCase.optionFragment
+    );
+    assert.equal(selection.groupId, engineeringFundamentalsGroupId);
+    const selectedRequirementOptionIdsByGroup = {
+      [selection.groupId]: [selection.optionId],
+    };
+    const quarterPlan = buildSuggestedQuarterPlan({
+      plan: nmePlan,
+      ...buildStatuses(nmePlan, []),
+      completedCourses: [],
+      track: getTransferPlannerTrack(nmePlan.bestTrackId ?? null),
+      includeStayAtGrcCourses: false,
+      includeStemPrepCourses: false,
+      includeSummerQuarter: false,
+      selectedRequirementOptionIdsByGroup,
+      referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+    });
+    const plannedLabels = new Set(
+      quarterPlan
+        .filter((quarter) => quarter.phase === "planned")
+        .flatMap((quarter) => quarter.courses.map((course) => course.label))
+    );
+    const auditRows = auditUnselectedOptionPrerequisiteScheduling({
+      plan: nmePlan,
+      suggestedPlan: quarterPlan,
+      completedCourses: [],
+      selectedRequirementOptionIdsByGroup,
+    });
+    const selectedAuditRows = auditRows.filter((row) => row.optionSelected);
+
+    for (const expectedLabel of testCase.expected) {
+      assert.equal(
+        plannedLabels.has(expectedLabel),
+        true,
+        `Expected ${expectedLabel} after selecting ${testCase.optionFragment}.`
+      );
+    }
+    for (const absentLabel of testCase.absent) {
+      assert.equal(
+        plannedLabels.has(absentLabel),
+        false,
+        `Did not expect ${absentLabel} after selecting ${testCase.optionFragment}.`
+      );
+    }
+    assert.ok(selectedAuditRows.length > 0, "Expected selected option prerequisite audit rows.");
+    assert.ok(
+      selectedAuditRows.every(
+        (row) => row.prerequisiteScheduled && row.shouldSchedule && row.optionSelected
+      )
+    );
+    assert.deepEqual(
+      auditRows
+        .filter((row) => !row.optionSelected && row.prerequisiteScheduled && !row.shouldSchedule)
+        .map((row) => row.copyOnlyDebugText),
+      []
+    );
+  }
+});
+
 test("GRC-only Accounting AAA credit range stays combined", () => {
   const track = getTransferPlannerTrack("grc-associate-business-entrepreneurship-accounting-aaa");
   assert.ok(track, "Expected the GRC Accounting AAA track.");
@@ -5253,11 +5451,6 @@ test("Materials NME planning can skip placement-dependent STEM prep classes", ()
     defaultPlannedCourses.find((course) => course.label === "MATH& 141")?.creditAmount,
     5
   );
-  assert.equal(
-    defaultPlannedCourses.find((course) => course.label === "5 credits of Humanities")
-      ?.creditAmount,
-    5
-  );
   assert.equal(noPrepLabels.has("MATH& 141"), false);
   assert.equal(noPrepLabels.has("MATH& 142"), false);
   assert.equal(noPrepLabels.has("CHEM& 140"), false);
@@ -5271,8 +5464,18 @@ test("Materials NME planning can skip placement-dependent STEM prep classes", ()
   assert.ok(noPrepLabels.has("PHYS& 222"));
   assert.ok(noPrepLabels.has("PHYS& 223"));
   assert.ok(noPrepLabels.has("ENGR 140"));
-  assert.ok(noPrepLabels.has("CS 122"));
-  assert.ok(noPrepLabels.has("BIOL& 211"));
+  assert.equal(noPrepLabels.has("CS 122"), false);
+  assert.equal(noPrepLabels.has("BIOL& 211"), false);
+  assert.ok(
+    noPrepPlannedCourses.some((course) =>
+      /Scientific computing/i.test(course.optionGroup?.title ?? "")
+    )
+  );
+  assert.ok(
+    noPrepPlannedCourses.some((course) =>
+      /Science Electives/i.test(course.optionGroup?.title ?? "")
+    )
+  );
   assert.deepEqual(
     Array.from(new Set(defaultPlannedCourses.map((course) => course.label)))
       .filter((label) => !noPrepLabels.has(label))
@@ -5301,7 +5504,6 @@ test("Materials NME filler placeholders are not labeled as official AST-2 track 
     (course) => course.label === "5 credits of Natural Sciences"
   );
 
-  assert.ok(naturalSciencePlaceholders.length > 0);
   assert.ok(
     naturalSciencePlaceholders.every((course) => course.sourceKind === "uw-major-breadth")
   );
@@ -5319,6 +5521,10 @@ test("Materials NME filler placeholders are not labeled as official AST-2 track 
       )
     ),
     false
+  );
+  assert.ok(
+    plannedCourses.some((course) => /Science Electives/i.test(course.optionGroup?.title ?? "")),
+    "Expected the unresolved source-backed Science Electives option group to remain visible."
   );
 });
 
