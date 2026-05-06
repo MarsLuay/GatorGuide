@@ -45,6 +45,9 @@ import {
 } from "./derived-shared-source-plans";
 import { normalizeTransferPlannerCourseCode } from "./course-code-normalization";
 import { stripTransferPlannerPlanTitlePrefix } from "./pathway-title-normalization";
+import {
+  resolveTransferPlannerStudentRuntimeMajorPlan as resolveCompactStudentRuntimeMajorPlan,
+} from "./student-runtime";
 import type {
   TransferPlannerDegreeMapBlock,
   TransferPlannerMajorPathwayEntry,
@@ -57,6 +60,17 @@ import type {
 } from "./schema";
 
 const STRUCTURED_GRC_SOURCE_KINDS = new Set(["plan-checklist", "plan-course-list"]);
+const UW_SEATTLE_ECE_PLAN_ID = "uw-seattle-electrical-computer-engineering";
+const UW_SEATTLE_ME_PLAN_ID = "uw-seattle-mechanical-engineering";
+const UW_SEATTLE_CIVIL_PLAN_ID = "uw-seattle-civil-engineering";
+const UW_SEATTLE_BIOENGINEERING_PLAN_ID = "uw-seattle-bioengineering";
+const UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID =
+  "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering";
+const COMPACT_NORMALIZED_RUNTIME_PLAN_IDS = new Set([
+  UW_SEATTLE_ECE_PLAN_ID,
+  UW_SEATTLE_ME_PLAN_ID,
+  UW_SEATTLE_CIVIL_PLAN_ID,
+]);
 const GUIDE_BACKED_EQUIVALENCY_RULE_SOURCE_KINDS = new Set([
   "uw-green-river-equivalency-guide",
   "uw-green-river-equivalency-guide-derived",
@@ -144,6 +158,19 @@ const AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_TITLE = "Source-backed UW prep guidanc
 const AUTO_SOURCE_BACKED_UW_PREP_GUIDANCE_NOTE =
   "Current official source-backed requirement materials identify more UW prep for this major, but the published Green River equivalent path is not yet provable enough for planner-ready course mapping.";
 const MAX_SOURCE_BACKED_UW_PREP_TARGET_COUNT = 18;
+const UW_SEATTLE_BIOENGINEERING_SOURCE_BACKED_GEN_ED_SECTION: TransferPlannerDegreeMapSection = {
+  id: "uw-seattle-bioengineering-source-backed-general-education",
+  title: "Bioengineering source-backed general education requirements",
+  note: "Official UW Bioengineering general education targets parsed from the degree requirements page.",
+  items: [
+    "English Composition: 5 credits.",
+    "Arts and Humanities: 10 credits minimum.",
+    "Social Sciences: 10 credits minimum.",
+    "4 additional credits of Arts and Humanities or Social Sciences.",
+    "Diversity: 3 credits; these credits may overlap with Areas of Inquiry.",
+    "Additional Areas of Inquiry 8 credits from any area as general electives.",
+  ],
+};
 const SOURCE_ONLY_FALLBACK_NOISE_PREFIXES = new Set([
   "AUTUMN",
   "WINTER",
@@ -281,18 +308,67 @@ const SUPPLEMENTAL_CHECKLIST_SEEDS_BY_PLAN: Partial<
       grcCourses: ["CHEM& 161", "CHEM& 162", "CHEM& 163"],
     },
   ],
-  "uw-seattle-bioengineering": [
+  [UW_SEATTLE_BIOENGINEERING_PLAN_ID]: [
+    {
+      id: "bioe-english-composition",
+      phase: "before-application",
+      title: "English Composition",
+      grcCourses: ["ENGL& 101"],
+    },
+    {
+      id: "bioe-calculus",
+      phase: "before-application",
+      title: "MATH 124, 125, 126",
+      grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
+      alternatives: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
+    },
+    {
+      id: "bioe-general-chemistry",
+      phase: "before-application",
+      title: "CHEM 142, 152, 162",
+      grcCourses: ["CHEM& 161", "CHEM& 162", "CHEM& 163"],
+    },
+    {
+      id: "bioe-physics-121",
+      phase: "before-application",
+      title: "PHYS 121",
+      grcCourses: ["PHYS& 221"],
+    },
     {
       id: "biol180",
       phase: "before-application",
-      title: "BIOL 180 pathway",
+      title: "BIOL 180, 200, 220",
       grcCourses: ["BIOL& 211", "BIOL& 212", "BIOL& 213"],
     },
     {
       id: "programming",
       phase: "before-application",
-      title: "Programming",
+      title: "AMATH 301",
       grcCourses: ["ENGR 250"],
+    },
+    {
+      id: "bioe-math207",
+      phase: "before-enrollment",
+      title: "MATH 207 or AMATH 351",
+      grcCourses: ["MATH 238"],
+    },
+    {
+      id: "bioe-math208",
+      phase: "before-enrollment",
+      title: "MATH 208 or AMATH 352",
+      grcCourses: ["MATH 240"],
+    },
+    {
+      id: "bioe-organic-chemistry",
+      phase: "before-enrollment",
+      title: "CHEM 223 or CHEM 237",
+      grcCourses: ["CHEM& 261"],
+    },
+    {
+      id: "bioe-physics-122",
+      phase: "before-enrollment",
+      title: "PHYS 122",
+      grcCourses: ["PHYS& 222"],
     },
   ],
   "uw-seattle-business-administration": [
@@ -4449,6 +4525,23 @@ function buildDegreeMapSection(block: TransferPlannerDegreeMapBlock): TransferPl
   });
 }
 
+function appendSourceBackedBioengineeringGeneralEducationSection(
+  planId: string,
+  sections: TransferPlannerDegreeMapSection[] | undefined
+) {
+  if (planId !== UW_SEATTLE_BIOENGINEERING_PLAN_ID) {
+    return sections;
+  }
+
+  const section = sanitizeDegreeMapSection(
+    UW_SEATTLE_BIOENGINEERING_SOURCE_BACKED_GEN_ED_SECTION
+  );
+  return [
+    ...(sections ?? []).filter((entry) => entry.id !== section.id),
+    section,
+  ];
+}
+
 const REQUIREMENTS_BY_KEY = new Map<PathwayPlanKey, TransferPlannerMajorRequirementAtom[]>();
 for (const requirement of TRANSFER_PLANNER_MAJOR_REQUIREMENT_REGISTRY) {
   const key = makePathwayPlanKey(requirement.planId, requirement.pathwayId);
@@ -5079,12 +5172,18 @@ function buildDegreeMapSections(
 ) {
   const blocks = DEGREE_MAPS_BY_KEY.get(makePathwayPlanKey(planId, pathwayId)) ?? [];
   if (!blocks.length) {
-    return baseSections?.map((section) => sanitizeDegreeMapSection(section));
+    return appendSourceBackedBioengineeringGeneralEducationSection(
+      planId,
+      baseSections?.map((section) => sanitizeDegreeMapSection(section))
+    );
   }
 
-  return orderByBaseIds(
-    blocks.map(buildDegreeMapSection),
-    (baseSections ?? []).map((section) => section.id)
+  return appendSourceBackedBioengineeringGeneralEducationSection(
+    planId,
+    orderByBaseIds(
+      blocks.map(buildDegreeMapSection),
+      (baseSections ?? []).map((section) => section.id)
+    )
   );
 }
 
@@ -6200,6 +6299,12 @@ export function getTransferPlannerStudentRuntimePathwaysForPlan(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
   if (!plan) return [] as TransferPlannerMajorPathway[];
+  if (COMPACT_NORMALIZED_RUNTIME_PLAN_IDS.has(plan.id)) {
+    return materializePlanPathways(
+      getTransferPlannerSourceGeneratedMajorPlan(plan.id) ?? plan,
+      false
+    );
+  }
   return materializePlanPathways(plan, false);
 }
 
@@ -6239,6 +6344,24 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
   pathwayId: string | null | undefined
 ) {
   if (!plan) return null as TransferPlannerResolvedMajorPlan | null;
+  if (COMPACT_NORMALIZED_RUNTIME_PLAN_IDS.has(plan.id)) {
+    const normalizedPlan = resolveCompactStudentRuntimeMajorPlan(plan, pathwayId);
+    const pathways = materializePlanPathways(
+      getTransferPlannerSourceGeneratedMajorPlan(plan.id) ?? plan,
+      false
+    );
+    const selectedPathway = pickResolvedPlannerPathway(pathways, pathwayId);
+    return normalizedPlan
+      ? {
+          ...normalizedPlan,
+          pathways,
+          selectedPathwayId: selectedPathway?.id ?? normalizedPlan.selectedPathwayId,
+          selectedPathwayLabel: selectedPathway?.label ?? normalizedPlan.selectedPathwayLabel,
+          selectedPathwaySummary:
+            selectedPathway?.summary ?? normalizedPlan.selectedPathwaySummary,
+        }
+      : null;
+  }
 
   const pathways = materializePlanPathways(plan, false);
   if (!pathways.length) {

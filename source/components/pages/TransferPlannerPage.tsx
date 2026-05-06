@@ -69,6 +69,9 @@ import {
   buildRequirementStatuses,
   buildTransferPlannerStudentCourseEvaluations,
   buildTransferPlannerStudentEvaluationReport,
+  buildSuggestedQuarterCourseOptionGroupsForTrack,
+  countMatchedGrcTrackGeneralEducationBreadthRows,
+  auditUwBioengineeringSourceBackedRequirements,
   extractCourseCodes,
   getPreparatoryTrackCourseCodeSet,
   getResolvedTrackTermsForRequirementDisplay,
@@ -95,7 +98,10 @@ const CTCLINK_UNOFFICIAL_TRANSCRIPT_URL =
   "https://csprd.ctclink.us/psp/csprd/EMPLOYEE/SA/c/SA_LEARNER_SERVICES.SSS_TSRQST_UNOFF.GBL?pts_Portal=EMPLOYEE&pts_PortalHostNode=SA&pts_Market=GBL";
 
 const CURRENT_PLANNED_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
-const SELECTED_PLANNER_OPTIONS_FIELD = "transferPlannerSelectedOptionsByPath";
+// Bump this suffix when planner option-group generation changes so older saved
+// selections/cache entries cannot hide newly generated option groups.
+const SELECTED_PLANNER_OPTIONS_STORAGE_VERSION = "v2";
+const SELECTED_PLANNER_OPTIONS_FIELD = `transferPlannerSelectedOptionsByPath:${SELECTED_PLANNER_OPTIONS_STORAGE_VERSION}`;
 const SELECTED_PATHWAY_FIELD = "transferPlannerSelectedPathwayByPlan";
 const LAST_SELECTED_PLAN_FIELD = "transferPlannerLastSelectedPlan";
 const GRC_PLANNER_CAMPUS_ID = "grc";
@@ -893,7 +899,40 @@ function getUwTransferApplicationCycleForQuarter(
   };
 }
 
-function buildUwTransferMinimumRequirementSummary(quarters: SuggestedQuarterPlan[]) {
+function shouldUseGenericUwTransferMinimumRequirementSummary(input: {
+  selectedCampusId: TransferPlannerCampusId | null;
+  selectedMajorId: string | null;
+  degreeTitle: string;
+}) {
+  const context = [input.selectedCampusId, input.selectedMajorId, input.degreeTitle]
+    .map((value) => String(value ?? "").replace(/[-_]+/g, " ").toLowerCase())
+    .join(" ");
+
+  // Generic UW transfer timing is only a broad university-level credit milestone.
+  // Do not show it for engineering-style majors because those usually have
+  // source-specific departmental admission cycles and prerequisite gates.
+  if (
+    /\b(?:engineering|materials science|bioengineering|chemical engineering|computer engineering|electrical engineering|mechanical engineering|civil engineering|industrial engineering|aeronautics|astronautics|human centered design|hcde)\b/i.test(
+      context
+    )
+  ) {
+    return false;
+  }
+
+  return true;
+}
+
+function buildUwTransferMinimumRequirementSummary(input: {
+  quarters: SuggestedQuarterPlan[];
+  selectedCampusId: TransferPlannerCampusId | null;
+  selectedMajorId: string | null;
+  degreeTitle: string;
+}) {
+  if (!shouldUseGenericUwTransferMinimumRequirementSummary(input)) {
+    return null;
+  }
+
+  const quarters = input.quarters;
   const completedCredits = quarters
     .filter((quarter) => quarter.phase === "completed")
     .reduce(
@@ -1346,6 +1385,19 @@ function buildMajorSpecificsSourceBackedUwGeneralEducationSection(
     plannerUsage: sourceBackedSection?.plannerUsage ?? ("summary-only" as const),
     items: mergedItems,
   } satisfies TransferPlannerGeneralRequirementSection;
+}
+
+function buildCopyOnlyGenEdSourceDebugText(input: {
+  plannerMode: string;
+  sourceBackedTargetCount: number;
+  hiddenMatchedGrcTrackBreadthRowCount: number;
+}) {
+  return [
+    "[copy-only gen-ed source debug]",
+    `Planner mode: ${input.plannerMode}`,
+    `UW source-backed targets: ${input.sourceBackedTargetCount}`,
+    `Matched GRC track breadth rows hidden from UW gen-ed section: ${input.hiddenMatchedGrcTrackBreadthRowCount}`,
+  ].join(" ");
 }
 
 function buildMajorSpecificsGrcGeneralEducationCreditLines(args: {
@@ -1966,6 +2018,56 @@ function getSuggestedScheduleSelectedOptionLabels(optionGroup: SuggestedSchedule
   });
 }
 
+const COPY_ONLY_OPTION_STATUS_TEXT_STYLE = {
+  color: "transparent",
+  opacity: 0.01,
+  fontSize: 1,
+  lineHeight: 1,
+  height: 1,
+  maxHeight: 1,
+  overflow: "hidden" as const,
+};
+
+function buildSuggestedScheduleCopyOnlyOptionStatusText(input: {
+  optionGroup: SuggestedScheduleOptionGroup;
+  option: SuggestedScheduleOption;
+  isSelected: boolean;
+}) {
+  return [
+    "[copy-only option status]",
+    `Option group: ${input.optionGroup.title}`,
+    `Option: ${getSuggestedScheduleOptionDisplayLabel(input.option)}`,
+    `Is selected option: ${input.isSelected ? "yes" : "no"}`,
+    `Option id: ${input.option.id}`,
+    `Option group id: ${input.optionGroup.id}`,
+  ].join(" ");
+}
+
+function buildSuggestedScheduleCopyOnlyToggleStatusText(input: {
+  collegeId: PlannerCollegeId;
+  showOnlyUwEssentialClassesToggle: boolean;
+  onlyUwEssentialClasses: boolean;
+  allowStemPrepClasses: boolean;
+  allowSummerClasses: boolean;
+}) {
+  return [
+    "[copy-only planner toggle status]",
+    `Planner college: ${input.collegeId}`,
+    `Classes for UW transfer only toggle visible: ${
+      input.showOnlyUwEssentialClassesToggle ? "yes" : "no"
+    }`,
+    `Classes for UW transfer only: ${
+      input.showOnlyUwEssentialClassesToggle
+        ? input.onlyUwEssentialClasses
+          ? "on"
+          : "off"
+        : "not applicable"
+    }`,
+    `Allow STEM prep classes: ${input.allowStemPrepClasses ? "on" : "off"}`,
+    `Allow summer classes: ${input.allowSummerClasses ? "on" : "off"}`,
+  ].join(" ");
+}
+
 function getSuggestedScheduleOptionCreditRange(option: SuggestedScheduleOption) {
   return {
     creditMin: Number(option.creditMin ?? option.creditAmount) || 0,
@@ -1992,47 +2094,193 @@ function getSuggestedScheduleOptionGroupSelectedCount(
   return getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds).length;
 }
 
-function collectSuggestedScheduleOptionGroups(quarters: SuggestedQuarterPlan[]) {
+function shouldPreferSuggestedScheduleOptionGroup(
+  currentOptionGroup: SuggestedScheduleOptionGroup,
+  nextOptionGroup: SuggestedScheduleOptionGroup
+) {
+  const currentSelectedCount = getSuggestedScheduleOptionGroupSelectedCount(
+    currentOptionGroup
+  );
+  const nextSelectedCount = getSuggestedScheduleOptionGroupSelectedCount(nextOptionGroup);
+
+  return (
+    (nextOptionGroup.selectionSource === "student" &&
+      currentOptionGroup.selectionSource !== "student") ||
+    (nextOptionGroup.isSelectionPrompt && !currentOptionGroup.isSelectionPrompt) ||
+    nextSelectedCount > currentSelectedCount
+  );
+}
+
+function mergeSuggestedScheduleOptionGroups(
+  existingOptionGroups: SuggestedScheduleOptionGroup[],
+  nextOptionGroups: SuggestedScheduleOptionGroup[]
+) {
   const optionGroupsById = new Map<string, SuggestedScheduleOptionGroup>();
 
-  for (const quarter of quarters) {
-    for (const course of quarter.courses) {
-      const optionGroup = course.optionGroup ?? null;
-      if (!optionGroup) continue;
+  for (const optionGroup of existingOptionGroups) {
+    optionGroupsById.set(optionGroup.id, optionGroup);
+  }
 
-      const currentOptionGroup = optionGroupsById.get(optionGroup.id);
-      if (!currentOptionGroup) {
-        optionGroupsById.set(optionGroup.id, optionGroup);
-        continue;
-      }
-
-      const currentSelectedCount = getSuggestedScheduleOptionGroupSelectedCount(
-        currentOptionGroup
-      );
-      const nextSelectedCount = getSuggestedScheduleOptionGroupSelectedCount(optionGroup);
-      const shouldPreferNextGroup =
-        (optionGroup.selectionSource === "student" &&
-          currentOptionGroup.selectionSource !== "student") ||
-        (optionGroup.isSelectionPrompt && !currentOptionGroup.isSelectionPrompt) ||
-        nextSelectedCount > currentSelectedCount;
-
-      if (shouldPreferNextGroup) {
-        optionGroupsById.set(optionGroup.id, optionGroup);
-      }
+  for (const optionGroup of nextOptionGroups) {
+    const currentOptionGroup = optionGroupsById.get(optionGroup.id);
+    if (
+      !currentOptionGroup ||
+      shouldPreferSuggestedScheduleOptionGroup(currentOptionGroup, optionGroup)
+    ) {
+      optionGroupsById.set(optionGroup.id, optionGroup);
     }
   }
 
   return [...optionGroupsById.values()];
 }
 
+function collectSuggestedScheduleOptionGroups(quarters: SuggestedQuarterPlan[]) {
+  const optionGroups: SuggestedScheduleOptionGroup[] = [];
+
+  for (const quarter of quarters) {
+    for (const course of quarter.courses) {
+      const optionGroup = course.optionGroup ?? null;
+      if (!optionGroup) continue;
+      optionGroups.push(optionGroup);
+    }
+  }
+
+  return mergeSuggestedScheduleOptionGroups([], optionGroups);
+}
+
+function buildSuggestedScheduleCopyOnlyOptionBoxSummaryText(input: {
+  rawOptionGroups: SuggestedScheduleOptionGroup[];
+  trackOptionGroups: SuggestedScheduleOptionGroup[];
+  displayedOptionGroups: SuggestedScheduleOptionGroup[];
+}) {
+  const formatIds = (optionGroups: SuggestedScheduleOptionGroup[]) =>
+    optionGroups.length
+      ? optionGroups.map((optionGroup) => `${optionGroup.title}::${optionGroup.id}`).join(" | ")
+      : "none";
+
+  return [
+    "[copy-only option box summary]",
+    `Raw group count: ${input.rawOptionGroups.length}`,
+    `Raw quarter option group count: ${input.rawOptionGroups.length}`,
+    `Raw quarter option groups: ${formatIds(input.rawOptionGroups)}`,
+    `Matched track option group count: ${input.trackOptionGroups.length}`,
+    `Matched track option groups: ${formatIds(input.trackOptionGroups)}`,
+    `Displayed group count: ${input.displayedOptionGroups.length}`,
+    `Displayed option group count: ${input.displayedOptionGroups.length}`,
+    `Displayed option groups: ${formatIds(input.displayedOptionGroups)}`,
+  ].join(" ");
+}
+
+function buildSuggestedScheduleCopyOnlyOptionGroupVisibilityText(input: {
+  optionGroup: SuggestedScheduleOptionGroup;
+  isOpen: boolean;
+}) {
+  return [
+    "[copy-only option group visibility]",
+    `Group id: ${input.optionGroup.id}`,
+    `Group title: ${input.optionGroup.title}`,
+    "Is visible: yes",
+    "Is in option box: yes",
+    `Is open: ${input.isOpen ? "yes" : "no"}`,
+    `Selection source: ${input.optionGroup.selectionSource ?? "none"}`,
+    `Selected count: ${getSuggestedScheduleOptionGroupSelectedCount(input.optionGroup)}`,
+    `Required count: ${getSuggestedScheduleOptionGroupRequiredSelectionCount(input.optionGroup)}`,
+  ].join(" ");
+}
+
+function buildSuggestedScheduleCopyOnlySelectedOptionStateText(input: {
+  plannerPathKey: string;
+  optionGroup: SuggestedScheduleOptionGroup;
+}) {
+  return [
+    "[copy-only selected option state]",
+    `Path key: ${input.plannerPathKey}`,
+    `Group id: ${input.optionGroup.id}`,
+    `Selected ids: ${
+      getSuggestedScheduleUniqueOptionIds(input.optionGroup.selectedOptionIds).join(", ") ||
+      "none"
+    }`,
+  ].join(" ");
+}
+
+function buildSuggestedScheduleCopyOnlyOptionDropdownHeaderText(input: {
+  optionGroup: SuggestedScheduleOptionGroup;
+  isOpen: boolean;
+  displayTitle: string;
+  statusText: string;
+  progressText: string;
+}) {
+  return [
+    "[copy-only option dropdown header]",
+    `Group id: ${input.optionGroup.id}`,
+    `Visible header title: ${input.displayTitle}`,
+    `Visible header status: ${input.statusText}`,
+    `Visible header progress: ${input.progressText}`,
+    `Is open: ${input.isOpen ? "yes" : "no"}`,
+  ].join(" ");
+}
+
+function getSuggestedScheduleOptionGroupRequiredSelectionCount(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  return Math.max(1, Math.ceil(Number(optionGroup.selectionCount ?? 1) || 1));
+}
+
+function isSuggestedScheduleUnresolvedOptionPromptCourse(
+  course: SuggestedQuarterPlan["courses"][number]
+) {
+  const optionGroup = course.optionGroup ?? null;
+  if (!optionGroup?.isSelectionPrompt || course.status === "completed") {
+    return false;
+  }
+
+  const selectedCount = getSuggestedScheduleOptionGroupSelectedCount(optionGroup);
+  const requiredSelectionCount = getSuggestedScheduleOptionGroupRequiredSelectionCount(optionGroup);
+  return selectedCount < requiredSelectionCount;
+}
+
+function buildSuggestedScheduleRenderedQuarters(quarters: SuggestedQuarterPlan[]) {
+  return quarters
+    .map((quarter) => ({
+      ...quarter,
+      courses: quarter.courses.filter(
+        (course) => !isSuggestedScheduleUnresolvedOptionPromptCourse(course)
+      ),
+    }))
+    .filter((quarter) => quarter.phase !== "planned" || quarter.courses.length > 0);
+}
+
+function buildSuggestedScheduleCreditRangeQuarters(quarters: SuggestedQuarterPlan[]) {
+  return quarters.map((quarter) => ({
+    ...quarter,
+    courses: quarter.courses.map((course) => {
+      if (!isSuggestedScheduleUnresolvedOptionPromptCourse(course)) {
+        return course;
+      }
+
+      const creditRange = getSuggestedCourseCreditRange(course);
+      return {
+        ...course,
+        creditAmount: null,
+        creditMin: 0,
+        creditMax: creditRange.creditMax,
+      };
+    }),
+  }));
+}
+
 function SuggestedScheduleOptionsBox({
   optionGroups,
+  plannerPathKey,
+  optionBoxSummaryText,
   onSelectRequirementOption,
   textClass,
   secondaryTextClass,
   borderClass,
 }: {
   optionGroups: SuggestedScheduleOptionGroup[];
+  plannerPathKey: string;
+  optionBoxSummaryText?: string | null;
   onSelectRequirementOption: (
     groupId: string,
     optionId: string,
@@ -2074,6 +2322,17 @@ function SuggestedScheduleOptionsBox({
         </Text>
       </View>
 
+      {optionBoxSummaryText ? (
+        <Text
+          selectable
+          style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+        >
+          {optionBoxSummaryText}
+        </Text>
+      ) : null}
+
       {optionGroups.map((optionGroup) => {
         const selectedOptionIdSet = new Set(
           getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds)
@@ -2085,6 +2344,11 @@ function SuggestedScheduleOptionsBox({
         );
         const selectedCount = Math.min(selectedOptionIdSet.size, selectionCount);
         const isOptionGroupOpen = !closedOptionGroupIds.has(optionGroup.id);
+        const optionGroupDisplayTitle = optionGroup.title || "Choose options";
+        const optionGroupStatusText = selectedOptionLabels.length
+          ? `Selected: ${selectedOptionLabels.join("; ")}`
+          : getSuggestedScheduleOptionGroupSelectionTargetText(optionGroup);
+        const optionGroupProgressText = `${selectedCount}/${selectionCount}`;
 
         return (
           <View
@@ -2098,34 +2362,78 @@ function SuggestedScheduleOptionsBox({
               accessibilityRole="button"
               accessibilityState={{ expanded: isOptionGroupOpen }}
               accessibilityLabel={`${isOptionGroupOpen ? "Close" : "Open"} options for ${
-                optionGroup.title
+                optionGroupDisplayTitle
               }`}
-              className="flex-row items-start justify-between gap-3"
+              className={`rounded-xl border px-3 py-3 flex-row items-center justify-between gap-3 ${
+                isLight
+                  ? "bg-white border-emerald-500/30"
+                  : "bg-emerald-500/10 border-emerald-500/20"
+              }`}
               hitSlop={8}
             >
               <View className="flex-1 min-w-0">
-                <Text className={`${textClass} text-sm font-semibold`}>
-                  {optionGroup.title}
+                <Text selectable className={`${textClass} text-sm font-bold`}>
+                  {optionGroupDisplayTitle}
                 </Text>
-                <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                  {selectedOptionLabels.length
-                    ? `Selected: ${selectedOptionLabels.join("; ")}`
-                    : getSuggestedScheduleOptionGroupSelectionTargetText(optionGroup)}
+                <Text selectable className={`${secondaryTextClass} text-xs mt-1`}>
+                  {optionGroupStatusText}
                 </Text>
               </View>
-              <Text
-                className={`${secondaryTextClass} text-xs font-semibold`}
-                style={{ fontVariant: ["tabular-nums"] }}
-              >
-                {selectedCount}/{selectionCount}
-              </Text>
-              <Ionicons
-                name={isOptionGroupOpen ? "chevron-up" : "chevron-down"}
-                size={18}
-                color="#9CA3AF"
-                style={{ marginTop: 1 }}
-              />
+
+              <View className="flex-row items-center gap-2">
+                <Text
+                  selectable
+                  className={`${secondaryTextClass} text-xs font-semibold`}
+                  style={{ fontVariant: ["tabular-nums"] }}
+                >
+                  {optionGroupProgressText}
+                </Text>
+                <Ionicons
+                  name={isOptionGroupOpen ? "chevron-up-circle" : "chevron-down-circle"}
+                  size={22}
+                  color="#059669"
+                />
+              </View>
             </Pressable>
+
+            <Text
+              selectable
+              style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+              accessibilityElementsHidden
+              importantForAccessibility="no-hide-descendants"
+            >
+              {buildSuggestedScheduleCopyOnlyOptionGroupVisibilityText({
+                optionGroup,
+                isOpen: isOptionGroupOpen,
+              })}
+            </Text>
+
+            <Text
+              selectable
+              style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+              accessibilityElementsHidden
+              importantForAccessibility="no-hide-descendants"
+            >
+              {buildSuggestedScheduleCopyOnlySelectedOptionStateText({
+                plannerPathKey,
+                optionGroup,
+              })}
+            </Text>
+
+            <Text
+              selectable
+              style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+              accessibilityElementsHidden
+              importantForAccessibility="no-hide-descendants"
+            >
+              {buildSuggestedScheduleCopyOnlyOptionDropdownHeaderText({
+                optionGroup,
+                isOpen: isOptionGroupOpen,
+                displayTitle: optionGroupDisplayTitle,
+                statusText: optionGroupStatusText,
+                progressText: optionGroupProgressText,
+              })}
+            </Text>
 
             {isOptionGroupOpen ? (
               <View className="gap-2">
@@ -2187,6 +2495,18 @@ function SuggestedScheduleOptionsBox({
                             {option.guidanceSummary}
                           </Text>
                         ) : null}
+                        <Text
+                          selectable
+                          style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+                          accessibilityElementsHidden
+                          importantForAccessibility="no-hide-descendants"
+                        >
+                          {buildSuggestedScheduleCopyOnlyOptionStatusText({
+                            optionGroup,
+                            option,
+                            isSelected,
+                          })}
+                        </Text>
                       </View>
                       {hasCreditRange ? (
                         <Text
@@ -3211,6 +3531,8 @@ function MajorPathwaySection({
 function SuggestedScheduleCard({
   collegeId,
   quarters,
+  plan,
+  plannerPathKey,
   degreeTitle,
   grcTrack,
   campusLabel,
@@ -3224,8 +3546,10 @@ function SuggestedScheduleCard({
   onToggleAllowSummerClasses,
   allowStemPrepClasses,
   onToggleAllowStemPrepClasses,
+  completedCourses,
   currentCourseSelections,
   onToggleCurrentCourse,
+  selectedRequirementOptionIdsByGroup,
   onSelectRequirementOption,
   textClass,
   secondaryTextClass,
@@ -3234,6 +3558,8 @@ function SuggestedScheduleCard({
 }: {
   collegeId: PlannerCollegeId;
   quarters: SuggestedQuarterPlan[];
+  plan: TransferPlannerResolvedMajorPlan | null;
+  plannerPathKey: string;
   degreeTitle: string;
   grcTrack: TransferPlannerTrack | null;
   campusLabel: string;
@@ -3247,8 +3573,13 @@ function SuggestedScheduleCard({
   onToggleAllowSummerClasses: () => void;
   allowStemPrepClasses: boolean;
   onToggleAllowStemPrepClasses: () => void;
+  completedCourses: TranscriptCourseEntry[];
   currentCourseSelections: Set<string>;
   onToggleCurrentCourse: (courseKey: string, fallbackCourseLabel?: string) => void;
+  selectedRequirementOptionIdsByGroup: Record<
+    string,
+    string[] | string | null | undefined
+  >;
   onSelectRequirementOption: (
     groupId: string,
     optionId: string,
@@ -3266,8 +3597,40 @@ function SuggestedScheduleCard({
     () => quarters.filter((quarter) => quarter.phase !== "planned" || quarter.courses.length > 0),
     [quarters]
   );
+  const rawQuarterOptionGroups = useMemo(
+    () => collectSuggestedScheduleOptionGroups(quarters),
+    [quarters]
+  );
+  const trackOptionGroups = useMemo(
+    () =>
+      collegeId === "grc" || !onlyUwEssentialClasses
+        ? buildSuggestedQuarterCourseOptionGroupsForTrack({
+            track: grcTrack,
+            selectedRequirementOptionIdsByGroup,
+            includeParsedTrackChoiceSlots: collegeId === "grc",
+          })
+        : [],
+    [collegeId, grcTrack, onlyUwEssentialClasses, selectedRequirementOptionIdsByGroup]
+  );
   const scheduleOptionGroups = useMemo(
-    () => collectSuggestedScheduleOptionGroups(visibleQuarters),
+    () => mergeSuggestedScheduleOptionGroups(trackOptionGroups, rawQuarterOptionGroups),
+    [rawQuarterOptionGroups, trackOptionGroups]
+  );
+  const optionBoxSummaryText = useMemo(
+    () =>
+      buildSuggestedScheduleCopyOnlyOptionBoxSummaryText({
+        rawOptionGroups: rawQuarterOptionGroups,
+        trackOptionGroups,
+        displayedOptionGroups: scheduleOptionGroups,
+      }),
+    [rawQuarterOptionGroups, trackOptionGroups, scheduleOptionGroups]
+  );
+  const renderedQuarters = useMemo(
+    () => buildSuggestedScheduleRenderedQuarters(visibleQuarters),
+    [visibleQuarters]
+  );
+  const creditRangeQuarters = useMemo(
+    () => buildSuggestedScheduleCreditRangeQuarters(visibleQuarters),
     [visibleQuarters]
   );
   const plannedQuarterBadgeClass = isLight
@@ -3284,7 +3647,7 @@ function SuggestedScheduleCard({
         : "GRC Program Plan"
       : "GRC Quarter Plan";
   const remainingCreditRange = buildSuggestedQuarterRemainingCreditRange({
-    quarters,
+    quarters: creditRangeQuarters,
     track: collegeId === "grc" ? grcTrack : null,
   });
   const remainingCreditText = formatSuggestedScheduleCreditRange({
@@ -3296,7 +3659,25 @@ function SuggestedScheduleCard({
     collegeId === "grc" ? grcTrackRequirementNoun : "degree"
   );
   const uwTransferMinimumRequirementSummary =
-    collegeId === "grc" ? null : buildUwTransferMinimumRequirementSummary(quarters);
+    collegeId === "grc"
+      ? null
+      : buildUwTransferMinimumRequirementSummary({
+          quarters: creditRangeQuarters,
+          selectedCampusId,
+          selectedMajorId,
+          degreeTitle,
+        });
+  const sourceBackedRequirementAuditText = useMemo(
+    () =>
+      auditUwBioengineeringSourceBackedRequirements({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+      })
+        .map((entry) => entry.copyOnlyDebugText)
+        .join("\n"),
+    [completedCourses, plan, quarters]
+  );
   const stemPrepToggleGuidance =
     "Turn off 'Allow STEM prep classes' to skip unnecessary placement-dependent prep classes like Precalculus I/II or general physics when you are ready to start with Calculus I and Engineering Physics I.";
   const scheduleDescription =
@@ -3378,6 +3759,31 @@ function SuggestedScheduleCard({
         ) : null}
       </View>
 
+      <Text
+        selectable
+        style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+        accessibilityElementsHidden
+        importantForAccessibility="no-hide-descendants"
+      >
+        {buildSuggestedScheduleCopyOnlyToggleStatusText({
+          collegeId,
+          showOnlyUwEssentialClassesToggle,
+          onlyUwEssentialClasses,
+          allowStemPrepClasses,
+          allowSummerClasses,
+        })}
+      </Text>
+      {sourceBackedRequirementAuditText ? (
+        <Text
+          selectable
+          style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+        >
+          {sourceBackedRequirementAuditText}
+        </Text>
+      ) : null}
+
       <View className="mt-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/10 px-4 py-4">
         <Text className={`${textClass} text-base font-semibold`}>
           You have{" "}
@@ -3388,6 +3794,8 @@ function SuggestedScheduleCard({
         </Text>
         <SuggestedScheduleOptionsBox
           optionGroups={scheduleOptionGroups}
+          plannerPathKey={plannerPathKey}
+          optionBoxSummaryText={optionBoxSummaryText}
           onSelectRequirementOption={onSelectRequirementOption}
           textClass={textClass}
           secondaryTextClass={secondaryTextClass}
@@ -3410,7 +3818,7 @@ function SuggestedScheduleCard({
       </View>
 
       <View className="gap-4 mt-4">
-        {visibleQuarters.map((quarter, quarterIndex) => (
+        {renderedQuarters.map((quarter, quarterIndex) => (
           <View
             key={`${quarter.phase}-${quarter.label}-${quarterIndex}`}
             className={`border ${borderClass} rounded-2xl px-4 py-4`}
@@ -3459,6 +3867,11 @@ function SuggestedScheduleCard({
                   const isCoreVisual =
                     course.type === "core" ||
                     (collegeId === "grc" && String(course.sourceKind ?? "").startsWith("official-grc"));
+                  const grcProgramRequirementFlavorText =
+                    collegeId === "grc" &&
+                    String(course.sourceKind ?? "").startsWith("official-grc")
+                      ? "Required for this Green River program."
+                      : null;
 
                   return (
                     <View
@@ -3524,6 +3937,11 @@ function SuggestedScheduleCard({
                                             optionGroup
                                           )}
                                     </Text>
+                                    {grcProgramRequirementFlavorText ? (
+                                      <Text className={`${secondaryTextClass} text-xs`}>
+                                        {grcProgramRequirementFlavorText}
+                                      </Text>
+                                    ) : null}
 
                                     {optionGroupGuidanceSummary ? (
                                       <Text className={`${secondaryTextClass} text-xs`}>
@@ -3576,6 +3994,11 @@ function SuggestedScheduleCard({
                                 </Text>
                               );
                             })()}
+                            {!optionGroup && grcProgramRequirementFlavorText ? (
+                              <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                                {grcProgramRequirementFlavorText}
+                              </Text>
+                            ) : null}
                             {!optionGroup && course.guidanceSummary ? (
                               <Text className={`${secondaryTextClass} text-xs mt-1`}>
                                 {course.guidanceSummary}
@@ -3866,6 +4289,30 @@ function MajorSpecificsSection({
         : null,
     [isReferenceOpen, isUwClassesOpen, plan]
   );
+  const matchedGrcTrackBreadthRowsHiddenFromUwGenEdSection = useMemo(
+    () =>
+      isReferenceOpen && isUwClassesOpen
+        ? countMatchedGrcTrackGeneralEducationBreadthRows({
+            track,
+            completedCourses,
+            plan,
+          })
+        : 0,
+    [completedCourses, isReferenceOpen, isUwClassesOpen, plan, track]
+  );
+  const genEdSourceDebugText = useMemo(
+    () =>
+      buildCopyOnlyGenEdSourceDebugText({
+        plannerMode: "GRC -> UW",
+        sourceBackedTargetCount: sourceBackedUwGeneralEducationSection?.items.length ?? 0,
+        hiddenMatchedGrcTrackBreadthRowCount:
+          matchedGrcTrackBreadthRowsHiddenFromUwGenEdSection,
+      }),
+    [
+      matchedGrcTrackBreadthRowsHiddenFromUwGenEdSection,
+      sourceBackedUwGeneralEducationSection,
+    ]
+  );
   const uwGeneralTransferRequirementSection = useMemo(
     () =>
       isReferenceOpen && isUwClassesOpen
@@ -4111,6 +4558,15 @@ function MajorSpecificsSection({
                       ) : null}
                     </View>
                   ) : null}
+
+                  <Text
+                    selectable
+                    style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+                    accessibilityElementsHidden
+                    importantForAccessibility="no-hide-descendants"
+                  >
+                    {genEdSourceDebugText}
+                  </Text>
 
                   {!sourceBackedUwGeneralEducationSection ? (
                     <Text className={`${secondaryTextClass} text-sm`}>
@@ -5269,51 +5725,60 @@ export default function TransferPlannerPage() {
       const normalizedOptionId = String(optionId ?? "").trim();
       if (!normalizedGroupId || !normalizedOptionId) return;
 
-      const currentPathSelections = selectedOptionsByPath[plannerPathKey] ?? {};
-      const hasStoredGroupSelection = Object.prototype.hasOwnProperty.call(
-        currentPathSelections,
-        normalizedGroupId
-      );
       const displayedGroupSelections = getSuggestedScheduleUniqueOptionIds(
         currentSelectedOptionIds
       );
-      const currentGroupSelections = hasStoredGroupSelection
-        ? currentPathSelections[normalizedGroupId] ?? []
-        : displayedGroupSelections;
       const normalizedSelectionCount =
         Number.isFinite(selectionCount) && selectionCount > 1
           ? Math.floor(selectionCount)
           : 1;
-      const nextGroupSelections =
-        normalizedSelectionCount === 1
-          ? [normalizedOptionId]
-          : currentGroupSelections.includes(normalizedOptionId)
-            ? currentGroupSelections.filter((entry) => entry !== normalizedOptionId)
-            : [...currentGroupSelections, normalizedOptionId].slice(-normalizedSelectionCount);
-      const nextPathSelections = {
-        ...currentPathSelections,
-        [normalizedGroupId]: nextGroupSelections,
-      };
 
-      const nextSelectionMap = {
-        ...selectedOptionsByPath,
-        [plannerPathKey]: nextPathSelections,
-      };
+      await setQuestionnaireAnswers((currentAnswers) => {
+        const currentSelectedOptionsByPath = normalizePlannerSelectedOptionsMap(
+          currentAnswers?.[SELECTED_PLANNER_OPTIONS_FIELD]
+        );
+        const currentPathSelections = currentSelectedOptionsByPath[plannerPathKey] ?? {};
+        const hasStoredGroupSelection = Object.prototype.hasOwnProperty.call(
+          currentPathSelections,
+          normalizedGroupId
+        );
+        const rawStoredGroupSelection = currentPathSelections[normalizedGroupId];
+        const storedGroupSelections = getSuggestedScheduleUniqueOptionIds(
+          Array.isArray(rawStoredGroupSelection)
+            ? rawStoredGroupSelection
+            : rawStoredGroupSelection == null
+              ? []
+              : [rawStoredGroupSelection]
+        );
+        const currentGroupSelections = hasStoredGroupSelection
+          ? storedGroupSelections
+          : displayedGroupSelections;
+        const nextGroupSelections =
+          normalizedSelectionCount === 1
+            ? [normalizedOptionId]
+            : currentGroupSelections.includes(normalizedOptionId)
+              ? currentGroupSelections.filter((entry) => entry !== normalizedOptionId)
+              : [...currentGroupSelections, normalizedOptionId].slice(-normalizedSelectionCount);
+        const nextPathSelections = {
+          ...currentPathSelections,
+          [normalizedGroupId]: nextGroupSelections,
+        };
+        const nextSelectionMap = {
+          ...currentSelectedOptionsByPath,
+          [plannerPathKey]: nextPathSelections,
+        };
 
-      if (!Object.keys(nextPathSelections).length) {
-        delete nextSelectionMap[plannerPathKey];
-      }
+        if (!Object.keys(nextPathSelections).length) {
+          delete nextSelectionMap[plannerPathKey];
+        }
 
-      await setQuestionnaireAnswers((currentAnswers) => ({
-        ...currentAnswers,
-        [SELECTED_PLANNER_OPTIONS_FIELD]: nextSelectionMap,
-      }));
+        return {
+          ...currentAnswers,
+          [SELECTED_PLANNER_OPTIONS_FIELD]: nextSelectionMap,
+        };
+      });
     },
-    [
-      plannerPathKey,
-      selectedOptionsByPath,
-      setQuestionnaireAnswers,
-    ]
+    [plannerPathKey, setQuestionnaireAnswers]
   );
   const handleSelectPathway = useCallback(
     async (pathwayId: string) => {
@@ -5850,7 +6315,9 @@ export default function TransferPlannerPage() {
                 <SuggestedScheduleCard
                   key={plannerPathKey}
                   quarters={suggestedQuarterPlan}
+                  plan={isUwPlanner ? plan : null}
                   collegeId={selectedCollegeId}
+                  plannerPathKey={plannerPathKey}
                   degreeTitle={activeDegreeTitle}
                   grcTrack={track}
                   campusLabel={selectedCampusLabel}
@@ -5870,8 +6337,10 @@ export default function TransferPlannerPage() {
                   onToggleAllowStemPrepClasses={() =>
                     setAllowStemPrepClasses((current) => !current)
                   }
+                  completedCourses={completedCourses}
                   currentCourseSelections={currentPlannedCourseSet}
                   onToggleCurrentCourse={handleToggleCurrentCourse}
+                  selectedRequirementOptionIdsByGroup={selectedRequirementOptionIdsByGroup}
                   onSelectRequirementOption={handleSelectRequirementOption}
                   textClass={textClass}
                   secondaryTextClass={secondaryTextClass}

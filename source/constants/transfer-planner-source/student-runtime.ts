@@ -14,8 +14,11 @@ import {
 import type {
   TransferPlannerCampus,
   TransferPlannerCampusId,
+  TransferPlannerChecklistItem,
   TransferPlannerMajorPlan,
   TransferPlannerMajorPathway,
+  TransferPlannerRequirementGroup,
+  TransferPlannerRequirementOption,
   TransferPlannerResolvedMajorPlan,
   TransferPlannerTrack,
 } from "../transfer-planner-types";
@@ -135,6 +138,615 @@ function unique<T>(values: T[]) {
 
 function getPlannerPathwayKey(planId: string, pathwayId?: string | null) {
   return `${planId}::${pathwayId ?? ""}`;
+}
+
+const UW_SEATTLE_ECE_PLAN_ID = "uw-seattle-electrical-computer-engineering";
+const UW_SEATTLE_ECE_TRANSFER_TRACK_ID =
+  "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering";
+const UW_SEATTLE_ME_PLAN_ID = "uw-seattle-mechanical-engineering";
+const UW_SEATTLE_CIVIL_MECHANICAL_TRANSFER_TRACK_ID =
+  "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering";
+const UW_SEATTLE_CIVIL_PLAN_ID = "uw-seattle-civil-engineering";
+const UW_SEATTLE_BIOENGINEERING_PLAN_ID = "uw-seattle-bioengineering";
+const UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID =
+  "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering";
+const UW_SEATTLE_BIOENGINEERING_SOURCE_BACKED_GEN_ED_SECTION = {
+  id: "uw-seattle-bioengineering-source-backed-general-education",
+  title: "Bioengineering source-backed general education requirements",
+  note: "Official UW Bioengineering general education targets parsed from the degree requirements page.",
+  items: [
+    "English Composition: 5 credits.",
+    "Arts and Humanities: 10 credits minimum.",
+    "Social Sciences: 10 credits minimum.",
+    "4 additional credits of Arts and Humanities or Social Sciences.",
+    "Diversity: 3 credits; these credits may overlap with Areas of Inquiry.",
+    "Additional Areas of Inquiry 8 credits from any area as general electives.",
+  ],
+};
+
+function buildRuntimeRequirementOption(input: {
+  ownerId: string;
+  groupId: string;
+  courseCode: string;
+  grcMatches: string[];
+  label?: string;
+}): TransferPlannerRequirementOption {
+  return {
+    id: `${input.ownerId}:requirement-option:${input.courseCode
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")}`,
+    displayCourseCodes: [input.courseCode],
+    uwCourses: [input.courseCode],
+    equivalentUwCourseCodes: [],
+    credits: null,
+    creditMin: null,
+    creditMax: null,
+    creditText: null,
+    maxCredits: null,
+    title: null,
+    department: null,
+    category: null,
+    sourceHeading: input.label ?? input.courseCode,
+    sourceCategory: "source-choice",
+    grcMatches: input.grcMatches,
+    constraints: [],
+    notes: [],
+    label: input.label ?? input.courseCode,
+  };
+}
+
+function buildRuntimeRequirementGroup(input: {
+  ownerId: string;
+  id: string;
+  label: string;
+  minCourses?: number;
+  maxCourses?: number;
+  options: { courseCode: string; grcMatches: string[]; label?: string }[];
+}): TransferPlannerRequirementGroup {
+  const groupId = `${input.ownerId}:requirement-group:${input.id}`;
+  return {
+    id: groupId,
+    label: input.label,
+    category: "source-choice",
+    subcategory: null,
+    requirementType: (input.maxCourses ?? input.minCourses ?? 1) === 1 ? "choose_one" : "choose_n",
+    minCourses: input.minCourses ?? 1,
+    maxCourses: input.maxCourses ?? input.minCourses ?? 1,
+    minCredits: null,
+    maxCredits: null,
+    sourceHeading: input.label,
+    notes: [],
+    options: input.options.map((option) =>
+      buildRuntimeRequirementOption({
+        ownerId: input.ownerId,
+        groupId,
+        ...option,
+      })
+    ),
+  };
+}
+
+function buildRuntimeChecklistItem(input: {
+  id: string;
+  title: string;
+  grcCourses: string[];
+  alternatives?: string[][];
+  note?: string;
+  minCompletedCount?: number;
+  requirementGroup?: TransferPlannerRequirementGroup;
+}): TransferPlannerChecklistItem {
+  return {
+    id: input.id,
+    title: input.title,
+    grcCourses: input.grcCourses,
+    ...(input.alternatives ? { alternatives: input.alternatives } : {}),
+    ...(input.note ? { note: input.note } : {}),
+    ...(input.minCompletedCount ? { minCompletedCount: input.minCompletedCount } : {}),
+    ...(input.requirementGroup ? { requirementGroup: input.requirementGroup } : {}),
+  };
+}
+
+function buildUwSeattleEceRuntimeChecklist() {
+  const ownerId = UW_SEATTLE_ECE_PLAN_ID;
+  const programmingAdmissionGroup = buildRuntimeRequirementGroup({
+    ownerId,
+    id: "ece-transfer-programming-admission",
+    label: "CSE 122 or CSE 123 or CSE 142 or CSE 143",
+    options: [
+      { courseCode: "CSE 122", grcMatches: ["CS 122"] },
+      { courseCode: "CSE 123", grcMatches: ["CS 123"] },
+      { courseCode: "CSE 142", grcMatches: ["CS& 141"] },
+      { courseCode: "CSE 143", grcMatches: ["CS 145"] },
+    ],
+  });
+  const programmingPreEnrollmentGroup = buildRuntimeRequirementGroup({
+    ownerId,
+    id: "ece-preenroll-programming",
+    label: "CSE 123 or CSE 143",
+    options: [
+      { courseCode: "CSE 123", grcMatches: ["CS 123"] },
+      { courseCode: "CSE 143", grcMatches: ["CS 145"] },
+    ],
+  });
+
+  const applicationChecklist = [
+    buildRuntimeChecklistItem({
+      id: "ece-transfer-calculus",
+      title: "MATH 124, 125, 126",
+      grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
+      alternatives: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "ece-transfer-programming-admission",
+      title: "CSE 122 or CSE 123 or CSE 142 or CSE 143",
+      grcCourses: ["CS 122"],
+      alternatives: [["CS 123"], ["CS 145"]],
+      minCompletedCount: 1,
+      requirementGroup: programmingAdmissionGroup,
+    }),
+    buildRuntimeChecklistItem({
+      id: "ece-transfer-physics",
+      title: "PHYS 121 and PHYS 122",
+      grcCourses: ["PHYS& 221", "PHYS& 222"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "ece-transfer-english-composition",
+      title: "ENGL 131 or other composition course",
+      grcCourses: ["ENGL& 101"],
+    }),
+  ];
+
+  const beforeEnrollmentChecklist = [
+    buildRuntimeChecklistItem({
+      id: "ece-preenroll-programming",
+      title: "CSE 123 or CSE 143",
+      grcCourses: ["CS 123"],
+      alternatives: [["CS 145"]],
+      minCompletedCount: 1,
+      requirementGroup: programmingPreEnrollmentGroup,
+    }),
+    buildRuntimeChecklistItem({
+      id: "ece-preenroll-math207",
+      title: "MATH 207 or AMATH 351",
+      grcCourses: ["MATH 238"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "ece-degree-math208",
+      title: "MATH 208 or AMATH 352",
+      grcCourses: ["MATH 240"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "ece-preenroll-approved-science-chem142",
+      title: "Approved natural science course: CHEM 142",
+      grcCourses: ["CHEM& 161"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "ece-degree-ee215",
+      title: "EE 215",
+      grcCourses: ["ENGR& 204"],
+      note: "Not part of the minimum transfer-admission classes, but useful to complete before or during UW enrollment because it is needed to complete the degree either way.",
+    }),
+  ];
+
+  return {
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    requirementGroups: [programmingAdmissionGroup, programmingPreEnrollmentGroup],
+  };
+}
+
+function normalizeUwSeattleEceRuntimePlan<T extends TransferPlannerResolvedMajorPlan>(plan: T): T {
+  if (plan.id !== UW_SEATTLE_ECE_PLAN_ID) {
+    return plan;
+  }
+
+  const checklist = buildUwSeattleEceRuntimeChecklist();
+  const grcCourseList = unique(
+    [
+      ...checklist.applicationChecklist,
+      ...checklist.beforeEnrollmentChecklist,
+    ].flatMap((item) => [item.grcCourses, ...(item.alternatives ?? [])].flat())
+  ).map((courseCode) => normalizeCourseCode(courseCode));
+
+  return {
+    ...plan,
+    bestTrackId: plan.bestTrackId ?? UW_SEATTLE_ECE_TRANSFER_TRACK_ID,
+    applicationChecklist: checklist.applicationChecklist,
+    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
+    stayAtGrcChecklist: [],
+    grcCourseList,
+    requirementGroups: checklist.requirementGroups,
+    validationNotes: unique([
+      ...(plan.validationNotes ?? []),
+      "Runtime ECE transfer checklist normalized to the current BSECE transfer admission and lower-division degree requirements.",
+    ]),
+  };
+}
+
+function buildUwSeattleMechanicalRuntimeChecklist() {
+  const applicationChecklist = [
+    buildRuntimeChecklistItem({
+      id: "me-transfer-english-composition",
+      title: "English Composition",
+      grcCourses: ["ENGL& 101"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-transfer-calculus",
+      title: "MATH 124, 125, 126",
+      grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
+      alternatives: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-transfer-physics",
+      title: "PHYS 121 and PHYS 122",
+      grcCourses: ["PHYS& 221", "PHYS& 222"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-transfer-chem142",
+      title: "CHEM 142",
+      grcCourses: ["CHEM& 161"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-transfer-aa210",
+      title: "AA 210",
+      grcCourses: ["ENGR& 214"],
+    }),
+  ];
+
+  const beforeEnrollmentChecklist = [
+    buildRuntimeChecklistItem({
+      id: "me-preenroll-chem152",
+      title: "CHEM 152",
+      grcCourses: ["CHEM& 162"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-preenroll-cee220",
+      title: "CEE 220",
+      grcCourses: ["ENGR& 225"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-preenroll-me230",
+      title: "ME 230",
+      grcCourses: ["ENGR& 215"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-preenroll-phys123",
+      title: "PHYS 123",
+      grcCourses: ["PHYS& 223"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-preenroll-math207",
+      title: "MATH 207 or MATH 307",
+      grcCourses: ["MATH 238"],
+      alternatives: [["MATH 307"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-preenroll-math208",
+      title: "MATH 208 or MATH 308",
+      grcCourses: ["MATH 240"],
+      alternatives: [["MATH 308"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-degree-math224",
+      title: "MATH 224 or MATH 324",
+      grcCourses: ["MATH& 264"],
+      note: "Not part of the minimum transfer-admission classes, but useful to complete before or during UW enrollment because it is needed to complete the degree either way.",
+    }),
+  ];
+
+  return {
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+  };
+}
+
+function buildRuntimeGrcCourseListFromChecklists(
+  checklists: TransferPlannerChecklistItem[],
+  options: { onlyCanonicalGrcCourses?: boolean } = {}
+) {
+  return unique(
+    checklists
+      .flatMap((item) => [item.grcCourses, ...(item.alternatives ?? [])].flat())
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter((courseCode) =>
+        options.onlyCanonicalGrcCourses
+          ? Boolean(getTransferPlannerCanonicalCourse("grc", courseCode))
+          : Boolean(courseCode)
+      )
+  );
+}
+
+function normalizeUwSeattleMechanicalRuntimePlan<T extends TransferPlannerResolvedMajorPlan>(
+  plan: T
+): T {
+  if (plan.id !== UW_SEATTLE_ME_PLAN_ID) {
+    return plan;
+  }
+
+  const checklist = buildUwSeattleMechanicalRuntimeChecklist();
+  const grcCourseList = unique(
+    [
+      ...checklist.applicationChecklist,
+      ...checklist.beforeEnrollmentChecklist,
+    ].flatMap((item) => [item.grcCourses, ...(item.alternatives ?? [])].flat())
+  ).map((courseCode) => normalizeCourseCode(courseCode));
+
+  return {
+    ...plan,
+    bestTrackId:
+      plan.bestTrackId ?? UW_SEATTLE_CIVIL_MECHANICAL_TRANSFER_TRACK_ID,
+    applicationChecklist: checklist.applicationChecklist,
+    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
+    stayAtGrcChecklist: [],
+    grcCourseList,
+    requirementGroups: [],
+    validationNotes: unique([
+      ...(plan.validationNotes ?? []),
+      "Runtime Mechanical Engineering transfer checklist normalized to the current ME transfer admission and enrollment requirements.",
+    ]),
+  };
+}
+
+function buildUwSeattleCivilRuntimeChecklist() {
+  const applicationChecklist = [
+    buildRuntimeChecklistItem({
+      id: "civil-transfer-english-composition",
+      title: "English Composition",
+      grcCourses: ["ENGL& 101"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-transfer-calculus",
+      title: "MATH 124, 125, 126",
+      grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
+      alternatives: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-transfer-physics",
+      title: "PHYS 121 and PHYS 122",
+      grcCourses: ["PHYS& 221", "PHYS& 222"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-transfer-chem142",
+      title: "CHEM 142",
+      grcCourses: ["CHEM& 161"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-transfer-aa210",
+      title: "AA 210",
+      grcCourses: ["ENGR& 214"],
+    }),
+  ];
+
+  const beforeEnrollmentChecklist = [
+    buildRuntimeChecklistItem({
+      id: "civil-preenroll-chem152",
+      title: "CHEM 152",
+      grcCourses: ["CHEM& 162"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-preenroll-cee220",
+      title: "CEE 220",
+      grcCourses: ["ENGR& 225"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-preenroll-me230",
+      title: "ME 230",
+      grcCourses: ["ENGR& 215"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-preenroll-phys123",
+      title: "PHYS 123",
+      grcCourses: ["PHYS& 223"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-preenroll-math207",
+      title: "MATH 207 or MATH 307 or AMATH 351",
+      grcCourses: ["MATH 238"],
+      alternatives: [["MATH 307"], ["AMATH 351"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-preenroll-math208",
+      title: "MATH 208 or MATH 308 or AMATH 352",
+      grcCourses: ["MATH 240"],
+      alternatives: [["MATH 308"], ["AMATH 352"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-economics-topic-requirement",
+      title: "Economics topic requirement: IND E 250, ECON 200 or 201, or ESRM/ECON/ENVIR 235",
+      grcCourses: ["ECON& 202"],
+      alternatives: [["ECON& 201"], ["ENVIR 235"], ["IND E 250"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-basic-science-course",
+      title: "Basic Science Elective",
+      grcCourses: ["NATRS 210"],
+      alternatives: [["GEOL& 101"]],
+      minCompletedCount: 1,
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-statistics-requirement",
+      title: "IND E 315, QSCI 381, STAT 290, or STAT 390",
+      grcCourses: [],
+      minCompletedCount: 1,
+      note: "Kept internal in Green River transfer-only planning until a source-backed Green River equivalent is available.",
+    }),
+  ];
+
+  return {
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist: [] as TransferPlannerChecklistItem[],
+  };
+}
+
+function normalizeUwSeattleCivilRuntimePlan<T extends TransferPlannerResolvedMajorPlan>(
+  plan: T
+): T {
+  if (plan.id !== UW_SEATTLE_CIVIL_PLAN_ID) {
+    return plan;
+  }
+
+  const checklist = buildUwSeattleCivilRuntimeChecklist();
+  const grcCourseList = buildRuntimeGrcCourseListFromChecklists(
+    [
+      ...checklist.applicationChecklist,
+      ...checklist.beforeEnrollmentChecklist,
+      ...checklist.stayAtGrcChecklist,
+    ],
+    { onlyCanonicalGrcCourses: true }
+  );
+
+  return {
+    ...plan,
+    bestTrackId:
+      plan.bestTrackId ?? UW_SEATTLE_CIVIL_MECHANICAL_TRANSFER_TRACK_ID,
+    applicationChecklist: checklist.applicationChecklist,
+    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
+    stayAtGrcChecklist: checklist.stayAtGrcChecklist,
+    grcCourseList,
+    requirementGroups: [],
+    validationNotes: unique([
+      ...(plan.validationNotes ?? []),
+      "Runtime Civil Engineering transfer checklist normalized to the current BSCE application, enrollment, and lower-division degree requirements.",
+    ]),
+  };
+}
+
+function buildUwSeattleBioengineeringRuntimeChecklist() {
+  const applicationChecklist = [
+    buildRuntimeChecklistItem({
+      id: "bioe-english-composition",
+      title: "English Composition",
+      grcCourses: ["ENGL& 101"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "bioe-calculus",
+      title: "MATH 124, 125, 126",
+      grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
+      alternatives: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "bioe-general-chemistry",
+      title: "CHEM 142, 152, 162",
+      grcCourses: ["CHEM& 161", "CHEM& 162", "CHEM& 163"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "bioe-physics-121",
+      title: "PHYS 121",
+      grcCourses: ["PHYS& 221"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "biol180",
+      title: "BIOL 180, 200, 220",
+      grcCourses: ["BIOL& 211", "BIOL& 212", "BIOL& 213"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "programming",
+      title: "AMATH 301",
+      grcCourses: ["ENGR 250"],
+    }),
+  ];
+
+  const beforeEnrollmentChecklist = [
+    buildRuntimeChecklistItem({
+      id: "bioe-math207",
+      title: "MATH 207 or AMATH 351",
+      grcCourses: ["MATH 238"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "bioe-math208",
+      title: "MATH 208 or AMATH 352",
+      grcCourses: ["MATH 240"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "bioe-statistics-requirement",
+      title: "STAT 311, STAT 390, IND E 315, or Q SCI 381",
+      grcCourses: [],
+      minCompletedCount: 1,
+      note: "Kept internal in Green River transfer-only planning until a source-backed Green River equivalent is available.",
+    }),
+    buildRuntimeChecklistItem({
+      id: "bioe-organic-chemistry",
+      title: "CHEM 223 or CHEM 237",
+      grcCourses: ["CHEM& 261"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "bioe-physics-122",
+      title: "PHYS 122",
+      grcCourses: ["PHYS& 222"],
+    }),
+  ];
+
+  return {
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist: [] as TransferPlannerChecklistItem[],
+  };
+}
+
+function appendUwSeattleBioengineeringGeneralEducationSection<
+  T extends TransferPlannerMajorPlan,
+>(plan: T): T {
+  if (plan.id !== UW_SEATTLE_BIOENGINEERING_PLAN_ID) {
+    return plan;
+  }
+
+  return {
+    ...plan,
+    degreeMapSections: [
+      ...(plan.degreeMapSections ?? []).filter(
+        (section) => section.id !== UW_SEATTLE_BIOENGINEERING_SOURCE_BACKED_GEN_ED_SECTION.id
+      ),
+      UW_SEATTLE_BIOENGINEERING_SOURCE_BACKED_GEN_ED_SECTION,
+    ],
+  };
+}
+
+function normalizeUwSeattleBioengineeringRuntimePlan<T extends TransferPlannerMajorPlan>(
+  plan: T
+): T {
+  if (plan.id !== UW_SEATTLE_BIOENGINEERING_PLAN_ID) {
+    return plan;
+  }
+
+  const checklist = buildUwSeattleBioengineeringRuntimeChecklist();
+  const grcCourseList = buildRuntimeGrcCourseListFromChecklists(
+    [
+      ...checklist.applicationChecklist,
+      ...checklist.beforeEnrollmentChecklist,
+      ...checklist.stayAtGrcChecklist,
+    ],
+    { onlyCanonicalGrcCourses: true }
+  );
+
+  return appendUwSeattleBioengineeringGeneralEducationSection({
+    ...plan,
+    bestTrackId: UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID,
+    applicationChecklist: checklist.applicationChecklist,
+    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
+    stayAtGrcChecklist: checklist.stayAtGrcChecklist,
+    grcCourseList,
+    requirementGroups: [],
+    validationNotes: unique([
+      ...(plan.validationNotes ?? []),
+      "Runtime Bioengineering transfer checklist normalized to the current UW Bioengineering lower-division, programming, science, math, and general-education requirements.",
+    ]),
+  });
+}
+
+function normalizeStudentRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(plan: T): T {
+  return normalizeUwSeattleBioengineeringRuntimePlan(plan);
+}
+
+function normalizeStudentRuntimeResolvedMajorPlan<T extends TransferPlannerResolvedMajorPlan>(
+  plan: T
+): T {
+  return normalizeUwSeattleBioengineeringRuntimePlan(
+    normalizeUwSeattleCivilRuntimePlan(
+      normalizeUwSeattleMechanicalRuntimePlan(normalizeUwSeattleEceRuntimePlan(plan))
+    )
+  );
 }
 
 export function normalizeTransferPlannerCourseCode(value: string) {
@@ -470,7 +1082,9 @@ export function getTransferPlannerEquivalencyRulesForSourceCourse(
 export function getTransferPlannerStudentRuntimeMajorsForCampus(
   campusId: TransferPlannerCampusId
 ) {
-  return TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS.filter((plan) => plan.campusId === campusId);
+  return TRANSFER_PLANNER_RUNTIME_MAJOR_PLANS.filter((plan) => plan.campusId === campusId).map(
+    (plan) => normalizeStudentRuntimeMajorPlan(plan)
+  );
 }
 
 export function getTransferPlannerStudentRuntimePathwaysForPlan(
@@ -497,8 +1111,8 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
     TRANSFER_PLANNER_RUNTIME_RESOLVED_MAJOR_PLANS_BY_KEY[getPlannerPathwayKey(plan.id, null)] ??
     null;
 
-  return resolvedPlan
-    ? { ...resolvedPlan, pathways }
+  const resolvedRuntimePlan = resolvedPlan
+    ? ({ ...resolvedPlan, pathways } satisfies TransferPlannerResolvedMajorPlan)
     : ({
         ...plan,
         pathways,
@@ -506,10 +1120,13 @@ export function resolveTransferPlannerStudentRuntimeMajorPlan(
         selectedPathwayLabel: null,
         selectedPathwaySummary: null,
       } satisfies TransferPlannerResolvedMajorPlan);
+
+  return normalizeStudentRuntimeResolvedMajorPlan(resolvedRuntimePlan);
 }
 
 export function getTransferPlannerMajorPlan(planId: string) {
-  return MAJOR_PLANS_BY_ID.get(planId) ?? null;
+  const plan = MAJOR_PLANS_BY_ID.get(planId) ?? null;
+  return plan ? normalizeStudentRuntimeMajorPlan(plan) : null;
 }
 
 export function resolveTransferPlannerMajorPlan(
