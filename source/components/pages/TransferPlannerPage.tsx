@@ -3904,6 +3904,7 @@ function SuggestedScheduleCard({
         plan,
         suggestedPlan: quarters,
         completedCourses,
+        selectedRequirementOptionIdsByGroup,
       }).map((entry) => entry.copyOnlyDebugText);
       const optionTitleFallbackAuditLines = scheduleOptionTitleFallbackAuditRows.map(
         (entry) => entry.copyOnlyDebugText

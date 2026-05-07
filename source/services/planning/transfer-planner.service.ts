@@ -330,6 +330,7 @@ export type OptionGroupSatisfactionAuditEntry = {
   mappedGrcOptions?: string[];
   categoryOptions?: string[];
   selectedOptionIds: string[];
+  selectedCategoryOptions?: string[];
   completedGrcCourses: string[];
   completedSatisfyingCourses: string[];
   scheduledSatisfyingCourses: string[];
@@ -353,8 +354,14 @@ export type CategoryOptionDetectionAuditEntry = {
   credits: number | null;
   sourceText: string;
   visibleOption: boolean;
+  selected: boolean;
   satisfiedByTranscriptCourse: string | null;
-  issue: "missing-category-option" | "unsupported-category" | null;
+  issue:
+    | "missing-category-option"
+    | "unsupported-category"
+    | "selected-category-hidden"
+    | "selected-category-unsatisfied"
+    | null;
   copyOnlyDebugText: string;
 };
 
@@ -2077,6 +2084,44 @@ function getRequirementOptionLabelsByIds(
   );
 }
 
+function getRequirementOptionDisplayLabelsByIds(
+  optionGroup: SuggestedQuarterCourseOptionGroup,
+  optionIds: string[] | null | undefined
+) {
+  const optionIdSet = new Set(
+    (optionIds ?? []).map((optionId) => String(optionId ?? "").trim()).filter(Boolean)
+  );
+  if (!optionIdSet.size) {
+    return [] as string[];
+  }
+
+  return unique(
+    optionGroup.options
+      .filter((option) => optionIdSet.has(option.id))
+      .map((option) => option.selectedLabel || option.label)
+      .filter(Boolean)
+  );
+}
+
+function getCategoryOptionDisplayLabelsByIds(
+  optionGroup: SuggestedQuarterCourseOptionGroup,
+  optionIds: string[] | null | undefined
+) {
+  const optionIdSet = new Set(
+    (optionIds ?? []).map((optionId) => String(optionId ?? "").trim()).filter(Boolean)
+  );
+  if (!optionIdSet.size) {
+    return [] as string[];
+  }
+
+  return unique(
+    optionGroup.options
+      .filter((option) => optionIdSet.has(option.id) && isRequirementCategoryOption(option))
+      .map((option) => getRequirementCategoryOptionLabel(option))
+      .filter(Boolean)
+  );
+}
+
 function buildChooseNRequirementLabel(item: TransferPlannerChecklistItem, chooseCount: number) {
   const cleanedTitle = String(item.title ?? "")
     .replace(/^One\s*(?:\(\s*1\s*\))?\s*/i, "")
@@ -2956,6 +3001,7 @@ function getCourseVisibilityScope(input: {
   sourceKind?: SuggestedQuarterCourseSourceKind | null;
   plan?: TransferPlannerMajorPlan | null;
   isPrepCourse?: boolean;
+  hasCategoryOption?: boolean;
 }): SuggestedQuarterCourseVisibilityScope {
   if (input.isPrepCourse) {
     return "visible-grc-optional-prep" satisfies SuggestedQuarterCourseVisibilityScope;
@@ -2970,6 +3016,13 @@ function getCourseVisibilityScope(input: {
   }
 
   if (hasVisibleGrcCourseOrEquivalent(input.explicitCourseCodes, input.plan)) {
+    return "visible-grc-completable" satisfies SuggestedQuarterCourseVisibilityScope;
+  }
+
+  if (
+    input.hasCategoryOption &&
+    (input.sourceKind === "uw-major-requirement" || input.sourceKind === "uw-major-breadth")
+  ) {
     return "visible-grc-completable" satisfies SuggestedQuarterCourseVisibilityScope;
   }
 
@@ -3010,11 +3063,15 @@ function withSuggestedQuarterCourseVisibilityScope<
     .map((courseCode) => normalizeCourseCode(courseCode))
     .filter(Boolean);
   const sourceKind = input.sourceKind ?? course.sourceKind ?? null;
+  const hasCategoryOption = (course.optionGroup?.options ?? []).some((option) =>
+    isRequirementCategoryOption(option)
+  );
   const visibilityScope = getCourseVisibilityScope({
     explicitCourseCodes,
     sourceKind,
     plan: input.plan,
     isPrepCourse: input.isPrepCourse,
+    hasCategoryOption,
   });
 
   return {
@@ -12342,9 +12399,8 @@ function buildSuggestedQuarterOptionGroupSatisfactionCandidates(input: {
   campusId?: TransferPlannerMajorPlan["campusId"] | null;
   consumedCompletedCourseCodes?: Set<string>;
 }): OptionGroupSatisfactionCandidateResolution {
-  const userOrDefaultSelectedOptionIds = getConcreteOptionIds(
-    input.optionGroup,
-    getSuggestedScheduleUniqueIds(input.optionGroup.selectedOptionIds)
+  const userOrDefaultSelectedOptionIds = getSuggestedScheduleUniqueIds(
+    input.optionGroup.selectedOptionIds
   );
   const completedSatisfiedOptionIds = getOptionIdsSatisfiedByCourseCodes(
     input.optionGroup,
@@ -13561,6 +13617,36 @@ function buildRemainingSuggestedCourses(
             selectedEntry.option,
             selectedCourseLabels
           );
+
+          if (!selectedCourseLabels.length && isRequirementCategoryOption(selectedEntry.option)) {
+            const selectedCategoryLabel =
+              getRequirementCategoryOptionLabel(selectedEntry.option) ||
+              getRequirementOptionDisplayLabel(selectedEntry.option) ||
+              selectedEntry.option.label ||
+              status.item.title;
+            const categoryGuidanceSummary = buildCategoryOptionGuidanceSummary(
+              selectedEntry.option
+            );
+            const nextCourse: PendingSuggestedCourse = {
+              label: selectedCategoryLabel,
+              type: "elective",
+              status: "planned",
+              sourceKind: "uw-major-requirement",
+              guidanceSummary: joinGuidanceSummaries(guidanceSummary, categoryGuidanceSummary),
+              sequenceGroup: null,
+              priorityRank: REQUIREMENT_PRIORITY_RANK[section.bucket],
+              sourceOrder,
+              explicitCourseCodes: [],
+              prerequisiteCourseSets: [],
+              corequisiteCourseSets: [],
+              optionGroup: isFirstSelectedOptionCourse ? resolvedOptionGroup : null,
+              ...selectedOptionCreditRange,
+            };
+
+            addRemainingCourse(nextCourse);
+            isFirstSelectedOptionCourse = false;
+            continue;
+          }
 
           for (const selectedLabel of selectedCourseLabels) {
             const explicitCourseCodes = extractCourseCodes(selectedLabel);
@@ -15733,8 +15819,10 @@ export function auditOptionGroupSatisfaction(input: {
         ? "student"
         : "default"
       : null;
+    const visibleOptionGroup = displayedOptionGroupsById.get(groupId) ?? null;
+    const visibleOptionGroupDisplayed = Boolean(visibleOptionGroup);
     const auditOptionGroup =
-      displayedOptionGroupsById.get(groupId) ??
+      visibleOptionGroup ??
       buildSuggestedQuarterCourseOptionGroup({
         item: status.item,
         selectedOptionIds: fallbackSelectedOptionIds,
@@ -15762,10 +15850,24 @@ export function auditOptionGroupSatisfaction(input: {
       getSuggestedQuarterCourseOptionGroupResolvedOptionIds(resolvedAuditOptionGroup).length,
       requiredCount
     );
+    const resolvedDisplayedOptionIds =
+      getSuggestedQuarterCourseOptionGroupResolvedOptionIds(resolvedAuditOptionGroup);
     const displayedProgress = `${resolvedSatisfiedCount}/${requiredCount}`;
     const acceptedUwOptions = getRequirementGroupAcceptedUwOptionLabels(group);
     const mappedGrcOptions = getRequirementGroupGrcOptionCourseCodes(group);
     const categoryOptions = getRequirementGroupCategoryOptionLabels(group);
+    const categoryOptionIds = new Set(getCategoryOptionIds(resolvedAuditOptionGroup));
+    const selectedCategoryOptionIds = resolvedAuditOptionGroup.selectedOptionIds.filter(
+      (optionId) => categoryOptionIds.has(optionId)
+    );
+    const selectedCategoryOptions = getCategoryOptionDisplayLabelsByIds(
+      resolvedAuditOptionGroup,
+      selectedCategoryOptionIds
+    );
+    const resolvedDisplayedOptions = getRequirementOptionDisplayLabelsByIds(
+      resolvedAuditOptionGroup,
+      resolvedDisplayedOptionIds
+    );
     const acceptedGrcCourseCodes = new Set(getRequirementGroupGrcOptionCourseCodes(group));
     const matchedCourseCodes = new Set(
       status.matchedCourses.map((course) => normalizeCourseCode(course.code)).filter(Boolean)
@@ -15795,10 +15897,20 @@ export function auditOptionGroupSatisfaction(input: {
       scheduledExtraCourses,
       statuses,
     });
+    const selectedCategoryIssue = selectedCategoryOptionIds.length
+      ? !visibleOptionGroupDisplayed
+        ? "selected-category-hidden"
+        : selectedCategoryOptionIds.some(
+            (optionId) => !resolvedDisplayedOptionIds.includes(optionId)
+          )
+          ? "selected-category-unsatisfied"
+          : null
+      : null;
     const issue =
-      scheduledExtraCourses.length > 0 && resolvedSatisfiedCount === 0
+      selectedCategoryIssue ??
+      (scheduledExtraCourses.length > 0 && resolvedSatisfiedCount === 0
         ? "scheduled satisfying course not reflected in option progress"
-        : null;
+        : null);
 
     rows.push({
       groupId,
@@ -15809,6 +15921,7 @@ export function auditOptionGroupSatisfaction(input: {
       mappedGrcOptions,
       categoryOptions,
       selectedOptionIds: resolvedAuditOptionGroup.selectedOptionIds,
+      selectedCategoryOptions,
       completedGrcCourses,
       completedSatisfyingCourses: resolvedAuditOptionGroup.completedSatisfyingCourseCodes ?? [],
       scheduledSatisfyingCourses: resolvedAuditOptionGroup.scheduledSatisfyingCourseCodes ?? [],
@@ -15852,6 +15965,9 @@ export function auditOptionGroupSatisfaction(input: {
             ? (resolvedAuditOptionGroup.scheduledSatisfyingCourseCodes ?? []).join(", ")
             : "none"
         }`,
+        `Selected category options: ${
+          selectedCategoryOptions.length ? selectedCategoryOptions.join(", ") : "none"
+        }`,
         `Counted satisfying courses: ${
           (resolvedAuditOptionGroup.countedSatisfyingCourseCodes ?? []).length
             ? (resolvedAuditOptionGroup.countedSatisfyingCourseCodes ?? []).join(", ")
@@ -15865,6 +15981,12 @@ export function auditOptionGroupSatisfaction(input: {
         }`,
         `Resolved displayed courses: ${
           (resolvedAuditOptionGroup.countedSatisfyingCourseCodes ?? []).join(", ") || "none"
+        }`,
+        `Resolved displayed courses/options: ${
+          unique([
+            ...(resolvedAuditOptionGroup.countedSatisfyingCourseCodes ?? []),
+            ...resolvedDisplayedOptions,
+          ]).join(", ") || "none"
         }`,
         `Resolved satisfied count: ${resolvedSatisfiedCount}`,
         `Displayed progress: ${displayedProgress}`,
@@ -15936,6 +16058,7 @@ export function auditCategoryOptionDetection(input: {
   plan?: TransferPlannerMajorPlan | null;
   suggestedPlan: SuggestedQuarterPlan[];
   completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
 }) {
   if (!input.plan) {
     return [] as CategoryOptionDetectionAuditEntry[];
@@ -15964,6 +16087,7 @@ export function auditCategoryOptionDetection(input: {
         `Credits: ${row.credits ?? "none"}`,
         `Source text: ${row.sourceText || "none"}`,
         `Visible option: ${row.visibleOption ? "yes" : "no"}`,
+        `Selected: ${row.selected ? "yes" : "no"}`,
         `Satisfied by transcript course: ${row.satisfiedByTranscriptCourse ?? "none"}`,
         `Issue: ${row.issue ?? "none"}`,
       ].join(" "),
@@ -15976,6 +16100,17 @@ export function auditCategoryOptionDetection(input: {
       continue;
     }
     const visibleGroup = visibleOptionGroupsById.get(group.id);
+    const selectedOptionIds = new Set([
+      ...(visibleGroup?.selectedOptionIds ?? []),
+      ...getPlannerSelectedRequirementOptionIdsForScheduling({
+        item,
+        selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+        plan: input.plan,
+      }),
+    ]);
+    const resolvedOptionIds = new Set(
+      visibleGroup ? getSuggestedQuarterCourseOptionGroupResolvedOptionIds(visibleGroup) : []
+    );
     const visibleCategoryLabels = new Set(
       (visibleGroup?.options ?? [])
         .filter((option) => isRequirementCategoryOption(option))
@@ -15988,9 +16123,21 @@ export function auditCategoryOptionDetection(input: {
       }
 
       const categoryLabel = getRequirementCategoryOptionLabel(option);
+      const optionId = getRequirementOptionId(item, option, group.options.indexOf(option));
+      const selected = selectedOptionIds.has(optionId);
+      const visibleOption = visibleCategoryLabels.has(categoryLabel);
+      const issue = (() => {
+        if (!visibleOption) {
+          return selected ? "selected-category-hidden" : "missing-category-option";
+        }
+        if (selected && !resolvedOptionIds.has(optionId)) {
+          return "selected-category-unsatisfied";
+        }
+        return null;
+      })();
       const completedCategoryCourses = getCompletedCourseCodesSatisfyingCategoryOption({
         option: {
-          id: option.id ?? categoryLabel,
+          id: optionId || categoryLabel,
           optionKind: "category-option",
           label: categoryLabel,
           selectedLabel: categoryLabel,
@@ -16010,9 +16157,10 @@ export function auditCategoryOptionDetection(input: {
         category: option.categoryOption?.sourceCategoryCode ?? option.categoryOption?.category ?? "",
         credits: option.categoryOption?.credits ?? null,
         sourceText: option.categoryOption?.sourceText ?? categoryLabel,
-        visibleOption: visibleCategoryLabels.has(categoryLabel),
+        visibleOption,
+        selected,
         satisfiedByTranscriptCourse: completedCategoryCourses[0] ?? null,
-        issue: visibleCategoryLabels.has(categoryLabel) ? null : "missing-category-option",
+        issue,
       });
     }
   }
@@ -16046,6 +16194,7 @@ export function auditCategoryOptionDetection(input: {
       credits: parseCategoryOptionAuditCredits(sourceLine),
       sourceText: sourceLine,
       visibleOption: false,
+      selected: false,
       satisfiedByTranscriptCourse: null,
       issue: "missing-category-option",
     });

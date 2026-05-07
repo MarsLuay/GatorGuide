@@ -1918,6 +1918,20 @@ function auditEcePhotonics(checks) {
 function auditAeronauticsCategoryOptions(checks) {
   const plan = resolveRuntimePlan("uw-seattle-aeronautics-astronautics", null);
   const quarterPlan = buildQuarterPlan(plan);
+  const scienceRequirementGroup = plan?.requirementGroups?.find((group) =>
+    (group.options ?? []).some((option) => option.categoryOption?.category === "NSC")
+  );
+  const categoryOption = scienceRequirementGroup?.options?.find(
+    (option) => option.categoryOption?.category === "NSC"
+  );
+  const selectedCategoryQuarterPlan =
+    scienceRequirementGroup && categoryOption?.id
+      ? buildQuarterPlan(plan, {
+          selectedRequirementOptionIdsByGroup: {
+            [scienceRequirementGroup.id]: [categoryOption.id],
+          },
+        })
+      : [];
   const optionGroups = getVisiblePlannedCourses(quarterPlan).flatMap((course) =>
     course.optionGroup ? [course.optionGroup] : []
   );
@@ -1938,6 +1952,38 @@ function auditAeronauticsCategoryOptions(checks) {
   });
   const scienceSatisfactionAudit = satisfactionAudit.find(
     (row) => row.groupId === scienceChoiceGroup?.id
+  );
+  const selectedCategoryGroups = getVisiblePlannedCourses(selectedCategoryQuarterPlan).flatMap(
+    (course) => (course.optionGroup ? [course.optionGroup] : [])
+  );
+  const selectedCategoryGroup = selectedCategoryGroups.find(
+    (group) => group.id === scienceRequirementGroup?.id
+  );
+  const selectedCategoryLabels = getVisiblePlannedLabels(selectedCategoryQuarterPlan);
+  const selectedCategoryAudit =
+    scienceRequirementGroup && categoryOption?.id
+      ? planner.auditCategoryOptionDetection({
+          plan,
+          suggestedPlan: selectedCategoryQuarterPlan,
+          completedCourses: [],
+          selectedRequirementOptionIdsByGroup: {
+            [scienceRequirementGroup.id]: [categoryOption.id],
+          },
+        })
+      : [];
+  const selectedCategorySatisfactionAudit =
+    scienceRequirementGroup && categoryOption?.id
+      ? planner.auditOptionGroupSatisfaction({
+          plan,
+          suggestedPlan: selectedCategoryQuarterPlan,
+          completedCourses: [],
+          selectedRequirementOptionIdsByGroup: {
+            [scienceRequirementGroup.id]: [categoryOption.id],
+          },
+        })
+      : [];
+  const selectedCategorySatisfactionRow = selectedCategorySatisfactionAudit.find(
+    (row) => row.groupId === scienceRequirementGroup?.id
   );
 
   addCheck(
@@ -1967,6 +2013,37 @@ function auditAeronauticsCategoryOptions(checks) {
         .filter((row) => row.groupId === scienceChoiceGroup?.id)
         .map((row) => row.copyOnlyDebugText)
         .join("\n"),
+    ],
+    "missing-category-option"
+  );
+
+  addCheck(
+    checks,
+    "uw-seattle-aeronautics-astronautics:selected-category-science-option",
+    "UW Aeronautics & Astronautics selected NSc category option remains visible and counts without a fake course",
+    Boolean(selectedCategoryGroup) &&
+      selectedCategoryGroup?.resolvedSatisfiedOptionIds?.length === 1 &&
+      selectedCategoryGroup?.resolvedSatisfiedOptionIds?.[0] === categoryOption?.id &&
+      selectedCategoryGroup?.optionSatisfactionSourcesById?.[categoryOption?.id ?? ""]?.includes(
+        "user-selected"
+      ) &&
+      !selectedCategoryLabels.includes("ENGR& 114") &&
+      selectedCategoryLabels.some((label) => /5 credits of Natural Sciences \(NSc\)/i.test(label)) &&
+      selectedCategoryAudit.some(
+        (row) =>
+          row.visibleOption &&
+          row.selected &&
+          row.issue === null &&
+          /NSc|Natural Sciences/i.test(row.copyOnlyDebugText)
+      ) &&
+      selectedCategorySatisfactionRow?.displayedProgress === "1/1" &&
+      /Selected category options: 5 credits of Natural Sciences \(NSc\)/i.test(
+        selectedCategorySatisfactionRow?.copyOnlyDebugText ?? ""
+      ),
+    [
+      `Selected category labels: ${selectedCategoryLabels.join(", ")}`,
+      selectedCategoryAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      selectedCategorySatisfactionAudit.map((row) => row.copyOnlyDebugText).join("\n"),
     ],
     "missing-category-option"
   );

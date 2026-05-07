@@ -6357,6 +6357,107 @@ test("Seattle Aeronautics selected ME 123 mapped option still schedules ENGR& 11
   );
 });
 
+test("Seattle Aeronautics selected NSc category option remains visible and counts category credits", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
+  assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
+
+  const scienceGroup = runtimePlan.requirementGroups?.find((group) =>
+    group.options.some((option) => option.categoryOption?.category === "NSC")
+  );
+  const categoryOption = scienceGroup?.options.find(
+    (option) => option.categoryOption?.category === "NSC"
+  );
+  assert.ok(scienceGroup, "Expected A&A science choice requirement group.");
+  assert.ok(categoryOption?.id, "Expected NSc category option id.");
+
+  const selectedRequirementOptionIdsByGroup = {
+    [scienceGroup.id]: [categoryOption.id],
+  };
+  const statuses = buildStatuses(runtimePlan, []);
+  const noSelectionPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...statuses,
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {},
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const selectedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...statuses,
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedLabels = selectedPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses.map((course) => course.label));
+  const optionGroups = collectVisibleOptionGroupsForTitleAudit(selectedPlan);
+  const scienceChoiceGroup = optionGroups.find((group) => group.id === scienceGroup.id);
+  const noSelectionCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: noSelectionPlan,
+  });
+  const selectedCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: selectedPlan,
+  });
+
+  assert.ok(scienceChoiceGroup, "Expected selected NSc category option group to remain visible.");
+  assert.deepEqual(scienceChoiceGroup?.resolvedSatisfiedOptionIds, [categoryOption.id]);
+  assert.equal(scienceChoiceGroup?.optionSatisfactionSourcesById?.[categoryOption.id]?.includes("user-selected"), true);
+  assert.equal(plannedLabels.includes("ENGR& 114"), false);
+  assert.equal(
+    plannedLabels.some((label) => /^NSc$/i.test(label)),
+    false,
+    "The selected category option must not invent a fake NSc course."
+  );
+  assert.equal(
+    plannedLabels.some(
+      (label) =>
+        /5 credits of Natural Sciences \(NSc\)/i.test(label) &&
+        extractCourseCodes(label).length === 0
+    ),
+    true,
+    "Expected a non-course category-credit placeholder."
+  );
+  assert.equal(
+    selectedCreditRange.mainMinRemainingCredits,
+    noSelectionCreditRange.mainMinRemainingCredits + 5
+  );
+
+  const categoryAudit = auditCategoryOptionDetection({
+    plan: runtimePlan,
+    suggestedPlan: selectedPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup,
+  }).find((entry) => entry.category === "NSc");
+  assert.equal(categoryAudit?.visibleOption, true);
+  assert.equal(categoryAudit?.selected, true);
+  assert.equal(categoryAudit?.issue, null);
+
+  const satisfactionAudit = auditOptionGroupSatisfaction({
+    plan: runtimePlan,
+    suggestedPlan: selectedPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup,
+  }).find((entry) => entry.groupId === scienceGroup.id);
+  assert.equal(satisfactionAudit?.displayedProgress, "1/1");
+  assert.deepEqual(satisfactionAudit?.selectedCategoryOptions, [
+    "5 credits of Natural Sciences (NSc)",
+  ]);
+  assert.equal(satisfactionAudit?.issue, null);
+  assert.match(
+    satisfactionAudit?.copyOnlyDebugText ?? "",
+    /Selected category options: 5 credits of Natural Sciences \(NSc\)/
+  );
+});
+
 test("Applied Mathematics track guidance keeps breadth placeholders clearly labeled as matched-pathway planner guidance", () => {
   const plan = getRequiredPlan("uw-seattle-applied-mathematics");
   const track = {
