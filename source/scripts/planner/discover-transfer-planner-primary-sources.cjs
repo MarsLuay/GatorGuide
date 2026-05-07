@@ -70,6 +70,9 @@ const SOURCE_WEAK_PRIMARY_HEADING_PATTERN =
 const SOURCE_OVERVIEW_ONLY_PATTERN = /\boverview\b/i;
 const LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
+const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
+  /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
+const UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN = /#(?:program|credential)-UG-[A-Z0-9-]+/i;
 const STOP_TOKENS = new Set([
   "route",
   "option",
@@ -129,6 +132,12 @@ const TARGETED_OFFICIAL_SOURCE_CANDIDATES = {
     {
       label: "UW B.A. in American Indian Studies",
       url: "https://ais.washington.edu/ba-american-indian-studies",
+    },
+  ],
+  "uw-seattle-sustainable-bioresource-systems-engineering": [
+    {
+      label: "UW General Catalog Sustainable Bioresource Systems Engineering major",
+      url: "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html#program-UG-SBSE-MAJOR",
     },
   ],
   "uw-tacoma-interdisciplinary-arts-and-sciences-individually-designed": [
@@ -311,6 +320,10 @@ function isAllowedDiscoveryUrl(url, baseDomains) {
       lower.includes("/search?") ||
       lower.includes("/wp-login") ||
       lower.includes("/feed") ||
+      /(?:facebook|instagram|linkedin|twitter|x\.com|youtube)\.com/.test(lower) ||
+      /\/(?:alumni|donate|giving|faculty|people|staff|news|events?|research|search)(?:[/?#]|$)/.test(
+        lower
+      ) ||
       isBlockedPrimarySourceCandidateUrl(lower)
     ) {
       return false;
@@ -344,7 +357,6 @@ function isBlockedPrimarySourceCandidateUrl(url) {
 function normalizeCandidateUrl(url) {
   try {
     const parsed = new URL(url);
-    parsed.hash = "";
     return parsed.toString();
   } catch {
     return String(url ?? "").trim();
@@ -469,6 +481,65 @@ function getOfficialLinkParserType(link, role) {
   return "unknown";
 }
 
+function classifySourceDiscoveryRole(candidate) {
+  const searchable = [
+    candidate?.url,
+    candidate?.label,
+    candidate?.anchorText,
+    candidate?.pageTitle,
+    ...(candidate?.pageHeadings ?? []),
+  ]
+    .filter(Boolean)
+    .join(" \n")
+    .toLowerCase();
+
+  if (!searchable.trim()) {
+    return "ignored";
+  }
+
+  if (isBlockedPrimarySourceCandidateUrl(searchable)) {
+    return "ignored";
+  }
+
+  if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable)) {
+    return "official-catalog";
+  }
+
+  if (/\b(?:archive|archived|retired|old requirements?|prior to|pre-20\d{2})\b/.test(searchable)) {
+    return "old-archival";
+  }
+
+  if (/\bequivalenc(?:y|ies)\b|\/apply\/transfer\/equivalency-guide\//.test(searchable)) {
+    return "transfer-equivalency";
+  }
+
+  if (/\bgreen river\b|\bgrc\b|\bassociate\b|\bast-?2\b|\bmrp\b/.test(searchable)) {
+    return "matched-grc-track";
+  }
+
+  if (/\bsample (?:schedule|plan)|\bstudy plan\b|\bplan of study\b/.test(searchable)) {
+    return "sample-schedule";
+  }
+
+  if (/\bcurriculum(?: map)?\b|\bdegree map\b|\bfour-year plan\b/.test(searchable)) {
+    return "curriculum-map";
+  }
+
+  if (/\badmissions?\b|\bapply\b|\bapplication\b|\bpreparation\b|\bprerequisites?\b/.test(searchable)) {
+    return "admissions-preparation";
+  }
+
+  if (/\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bchecklist\b/.test(searchable)) {
+    return "primary-degree-requirements";
+  }
+
+  if (/\brequirements?\b|\bundergraduate\b|\bmajor\b|\bprogram\b/.test(searchable)) {
+    return "department-requirements";
+  }
+
+  return "ignored";
+}
+
 function getOfficialPrimaryScore(link) {
   const role = getOfficialLinkRole(link);
   const parserType = getOfficialLinkParserType(link, role);
@@ -478,6 +549,13 @@ function getOfficialPrimaryScore(link) {
   if (role === "degree-requirements") score += 100;
   if (role === "curriculum") score += 70;
   if (role === "catalog") score += 50;
+  if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable)) score += 35;
+  if (
+    UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable) &&
+    UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN.test(searchable)
+  ) {
+    score += 12;
+  }
   if (parserType === "pdf-degree-sheet") score += 20;
   if (/degree requirements|major requirements|graduation requirements/.test(searchable)) score += 25;
   if (/curriculum/.test(searchable)) score += 15;
@@ -486,9 +564,6 @@ function getOfficialPrimaryScore(link) {
     /\b(track|option|route|pathway|concentration|specialization)\b/.test(searchable)
   ) {
     score += 8;
-  }
-  if (/\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//.test(searchable)) {
-    score -= 15;
   }
   if (role === "admissions" || role === "equivalency" || role === "availability") score -= 40;
 
@@ -1363,10 +1438,12 @@ function scoreCandidate(target, candidate) {
     return {
       score: -100,
       confidence: "low",
+      sourceRole: "ignored",
       reasons: ["authentication or course-list URL is not a primary degree-requirements source"],
     };
   }
 
+  const sourceRole = classifySourceDiscoveryRole(candidate);
   const combinedText = [
     candidate.url,
     candidate.label,
@@ -1382,6 +1459,59 @@ function scoreCandidate(target, candidate) {
   const reasons = [];
   let score = 0;
   let matchedKeywordCount = 0;
+
+  const sourceRoleRules = {
+    "official-catalog": {
+      score: 34,
+      reason: "official UW General Catalog program page",
+    },
+    "primary-degree-requirements": {
+      score: 30,
+      reason: "primary degree requirements source role",
+    },
+    "department-requirements": {
+      score: 24,
+      reason: "department requirements source role",
+    },
+    "admissions-preparation": {
+      score: 4,
+      reason: "admissions or preparation source role",
+    },
+    "sample-schedule": {
+      score: 2,
+      reason: "sample schedule supports planning but is not requirement authority",
+    },
+    "curriculum-map": {
+      score: 8,
+      reason: "curriculum map source role",
+    },
+    "transfer-equivalency": {
+      score: -30,
+      reason: "transfer equivalency is not degree-requirement authority",
+    },
+    "matched-grc-track": {
+      score: -34,
+      reason: "matched Green River track is not UW requirement authority",
+    },
+    "old-archival": {
+      score: -80,
+      reason: "old or archival source role",
+    },
+    ignored: {
+      score: -60,
+      reason: "ignored source role",
+    },
+  };
+  const sourceRoleRule = sourceRoleRules[sourceRole] ?? sourceRoleRules.ignored;
+  score += sourceRoleRule.score;
+  addReason(reasons, sourceRoleRule.reason);
+  if (
+    sourceRole === "official-catalog" &&
+    UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN.test(candidate.url)
+  ) {
+    score += 14;
+    addReason(reasons, "official catalog URL includes a major-specific anchor");
+  }
 
   const positiveRules = [
     { pattern: /\bdegree requirements?\b/, score: 28, reason: "explicit degree-requirements wording" },
@@ -1557,6 +1687,7 @@ function scoreCandidate(target, candidate) {
   return {
     score,
     confidence,
+    sourceRole,
     reasons: uniqueSorted(reasons),
     detectedYears: candidateYearInfo.detectedYears,
     latestDetectedYear: candidateYearInfo.latestDetectedYear,
@@ -1584,6 +1715,11 @@ function mergeCandidate(existing, incoming) {
     ]),
     sourcePageUrl: winning.sourcePageUrl || existing.sourcePageUrl || incoming.sourcePageUrl || null,
     sourceKinds: uniqueSorted([...(existing.sourceKinds ?? []), ...(incoming.sourceKinds ?? [])]),
+    sourceRole: winning.sourceRole || existing.sourceRole || incoming.sourceRole || "ignored",
+    discoveryDepth: Math.min(
+      existing.discoveryDepth ?? Number.POSITIVE_INFINITY,
+      incoming.discoveryDepth ?? Number.POSITIVE_INFINITY
+    ),
     reasons: winning.reasons ?? [],
     score: winning.score,
     confidence: winning.confidence,
@@ -1631,6 +1767,10 @@ function addScoredCandidate(candidateMap, target, rawCandidate) {
     pageHeadings: rawCandidate.pageHeadings ?? [],
     sourcePageUrl: rawCandidate.sourcePageUrl ?? null,
     sourceKinds: rawCandidate.sourceKind ? [rawCandidate.sourceKind] : [],
+    sourceRole: scored.sourceRole,
+    discoveryDepth: Number.isFinite(rawCandidate.discoveryDepth)
+      ? rawCandidate.discoveryDepth
+      : 0,
     score: scored.score,
     confidence: scored.confidence,
     reasons: scored.reasons,
@@ -1850,6 +1990,58 @@ function buildOfficialSiteRootSeedPages(target) {
   }
 }
 
+function shouldRunDeeperDiscovery(target, candidateMap) {
+  if (!target.existingPrimaryUrl) {
+    return true;
+  }
+
+  if (target.analysisMode === "weak-existing-primary") {
+    return true;
+  }
+
+  const sortedCandidates = [...candidateMap.values()].sort(compareScoredCandidates);
+  const currentPrimary = sortedCandidates.find(
+    (candidate) => candidate.url === target.existingPrimaryUrl
+  );
+  const topCandidate = sortedCandidates[0] ?? null;
+
+  if (!currentPrimary && !topCandidate) {
+    return true;
+  }
+
+  if ((target.reevaluationSignals ?? []).length > 0) {
+    return true;
+  }
+
+  if ((currentPrimary?.score ?? Number.NEGATIVE_INFINITY) < MIN_HIGH_CONFIDENCE_SCORE) {
+    return true;
+  }
+
+  return Boolean(topCandidate && topCandidate.confidence !== "high");
+}
+
+function buildSourceDiscoveryAuditLines(target, candidates, suggestion) {
+  const usedUrl =
+    suggestion.suggestedPrimary?.url ??
+    (suggestion.action === "keep-existing-primary" ? target.existingPrimaryUrl : null);
+
+  return (candidates ?? []).map((candidate) => {
+    const usedForParsing = usedUrl && candidate.url === usedUrl;
+    return [
+      "[source discovery audit]",
+      `Major id: ${target.planId ?? "unknown"}`,
+      `Seed URL: ${candidate.sourcePageUrl ?? target.existingPrimaryUrl ?? "n/a"}`,
+      `Candidate URL: ${candidate.url}`,
+      `Link text: ${candidate.anchorText || candidate.label || candidate.pageTitle || "n/a"}`,
+      `Source role: ${candidate.sourceRole ?? "ignored"}`,
+      `Discovery depth: ${candidate.discoveryDepth ?? 0}`,
+      `Score: ${candidate.score}`,
+      `Used for parsing: ${usedForParsing ? "yes" : "no"}`,
+      `Reason: ${(candidate.reasons ?? []).join("; ") || "no scoring reason recorded"}`,
+    ].join(" ");
+  });
+}
+
 async function analyzeOwner(target, timeoutMs, options = {}) {
   const inspectPageImpl = options.inspectPageImpl ?? inspectPage;
   const discoveryLinks = [
@@ -1890,6 +2082,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
           ? target.parsedBlock?.extractedHeadings ?? []
           : [],
       sourceKind: "official-link",
+      discoveryDepth: 0,
     });
   }
 
@@ -1897,6 +2090,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     addScoredCandidate(candidateMap, target, {
       ...candidate,
       sourceKind: "targeted-official-candidate",
+      discoveryDepth: 0,
     });
   }
 
@@ -1930,6 +2124,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
       pageTitle: page.title,
       pageHeadings: page.headings,
       sourceKind: "official-link",
+      discoveryDepth: 0,
     });
 
     for (const anchor of page.anchors) {
@@ -1941,6 +2136,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
         anchorText: anchor.text,
         sourcePageUrl: page.finalUrl || link.url,
         sourceKind: "discovered-anchor",
+        discoveryDepth: 1,
       });
     }
   }
@@ -1968,6 +2164,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
         url: anchor.url,
         anchorText: anchor.text,
         sourcePageUrl: page.finalUrl || sourcePage.url,
+        discoveryDepth: 1,
         sourceKind:
           sourcePage.sourceKind === "official-site-root"
             ? "discovered-anchor"
@@ -1976,13 +2173,13 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     }
   }
 
-  const candidateList = [...candidateMap.values()]
-    .sort(compareScoredCandidates)
-    .slice(0, 20);
-
   const verifiedCandidateUrls = new Set();
+  const allowDeeperDiscovery = shouldRunDeeperDiscovery(target, candidateMap);
 
   for (let pass = 0; pass < MAX_DISCOVERY_VERIFICATION_PASSES; pass += 1) {
+    if (!allowDeeperDiscovery) {
+      break;
+    }
     const verifyTargets = [...candidateMap.values()]
       .sort(compareScoredCandidates)
       .filter(
@@ -1990,6 +2187,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
           !verifiedCandidateUrls.has(candidate.url) &&
           !candidate.pageTitle &&
           !candidate.url.toLowerCase().includes(".pdf") &&
+          (candidate.discoveryDepth ?? 0) < 2 &&
           candidate.score >= 8
       )
       .slice(0, MAX_DISCOVERED_CANDIDATES_PER_OWNER);
@@ -2009,6 +2207,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
         pageHeadings: page.headings,
         sourcePageUrl: candidate.sourcePageUrl,
         sourceKind: candidate.sourceKinds?.[0] ?? "discovered-anchor",
+        discoveryDepth: candidate.discoveryDepth ?? 1,
       });
 
       for (const anchor of page.anchors) {
@@ -2020,6 +2219,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
           anchorText: anchor.text,
           sourcePageUrl: page.finalUrl || candidate.url,
           sourceKind: "discovered-anchor",
+          discoveryDepth: Math.min(2, (candidate.discoveryDepth ?? 1) + 1),
         });
       }
     }
@@ -2051,6 +2251,8 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     suggestedPrimary: suggestion.suggestedPrimary ?? null,
     suggestedAction: suggestion.action,
     suggestedScoreDelta: suggestion.scoreDelta ?? null,
+    deeperDiscoveryEnabled: allowDeeperDiscovery,
+    sourceDiscoveryAuditLines: buildSourceDiscoveryAuditLines(target, rescoredCandidates, suggestion),
     topCandidates: rescoredCandidates,
   };
 }
@@ -2100,6 +2302,8 @@ function writeMarkdownReport(report) {
       lines.push("");
       owner.topCandidates.slice(0, 3).forEach((candidate) => {
         lines.push(`  - ${candidate.url}`);
+        lines.push(`    - source role: ${candidate.sourceRole ?? "ignored"}`);
+        lines.push(`    - discovery depth: ${candidate.discoveryDepth ?? 0}`);
         lines.push(`    - confidence: ${candidate.confidence}`);
         lines.push(`    - score: ${candidate.score}`);
         if (candidate.latestDetectedYear) {
@@ -2108,6 +2312,12 @@ function writeMarkdownReport(report) {
         lines.push(`    - reasons: ${candidate.reasons.join("; ")}`);
       });
       lines.push("");
+      for (const auditLine of owner.sourceDiscoveryAuditLines ?? []) {
+        lines.push(`  - ${auditLine}`);
+      }
+      if ((owner.sourceDiscoveryAuditLines ?? []).length) {
+        lines.push("");
+      }
     });
   }
 
@@ -2123,12 +2333,14 @@ function writeMarkdownReport(report) {
       if (owner.suggestedPrimary) {
         lines.push(`- Suggested replacement: ${owner.suggestedPrimary.url}`);
         lines.push(`- Replacement confidence: ${owner.suggestedPrimary.confidence}`);
+        lines.push(`- Replacement source role: ${owner.suggestedPrimary.sourceRole ?? "ignored"}`);
         lines.push(`- Replacement score: ${owner.suggestedPrimary.score}`);
         if (owner.suggestedPrimary.latestDetectedYear) {
           lines.push(`- Replacement detected year: ${owner.suggestedPrimary.latestDetectedYear}`);
         }
       } else if (owner.reviewCandidate) {
         lines.push(`- Review candidate: ${owner.reviewCandidate.url}`);
+        lines.push(`- Review candidate source role: ${owner.reviewCandidate.sourceRole ?? "ignored"}`);
         lines.push(`- Review candidate score: ${owner.reviewCandidate.score}`);
         if (owner.reviewCandidate.latestDetectedYear) {
           lines.push(`- Review candidate detected year: ${owner.reviewCandidate.latestDetectedYear}`);
@@ -2152,6 +2364,10 @@ function writeMarkdownReport(report) {
       }
       lines.push(`- Official links scanned: ${owner.officialLinks.length}`);
       lines.push(`- Candidate URLs inspected: ${owner.candidateCount}`);
+      lines.push(`- Deeper discovery enabled: ${owner.deeperDiscoveryEnabled ? "yes" : "no"}`);
+      for (const auditLine of owner.sourceDiscoveryAuditLines ?? []) {
+        lines.push(`- ${auditLine}`);
+      }
       lines.push("");
     }
   }
@@ -2230,11 +2446,14 @@ module.exports = {
   buildReplacementDecision,
   buildWeakExistingOwnerTargets,
   buildWeakExistingPrimarySignals,
+  classifySourceDiscoveryRole,
   compareScoredCandidates,
   extractAnchors,
   extractHeadings,
+  getOfficialPrimaryScore,
   inspectPage,
   scoreCandidate,
+  shouldRunDeeperDiscovery,
 };
 
 if (require.main === module) {

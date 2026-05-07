@@ -65,6 +65,11 @@ const UW_SEATTLE_ME_PLAN_ID = "uw-seattle-mechanical-engineering";
 const UW_SEATTLE_CIVIL_PLAN_ID = "uw-seattle-civil-engineering";
 const UW_SEATTLE_BIOENGINEERING_PLAN_ID = "uw-seattle-bioengineering";
 const UW_SEATTLE_SBSE_PLAN_ID = "uw-seattle-sustainable-bioresource-systems-engineering";
+const UW_SEATTLE_SBSE_STALE_BUSINESS_POLICY_ECONOMICS_GRC_CODES = new Set([
+  "ACCT& 201",
+  "ACCT& 202",
+  "ACCT& 203",
+]);
 const UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID =
   "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering";
 const COMPACT_NORMALIZED_RUNTIME_PLAN_IDS = new Set([
@@ -2868,14 +2873,16 @@ function buildKnownSbseComputationDataScienceGroup(
     equivalentUwCourseCodes?: string[];
     grcMatches?: string[];
     label: string;
-  }) =>
-    buildRequirementOption({
-      id: `${planId}:requirement-option:sbse-computation-${input.id}`,
+  }) => {
+    const { id, ...optionInput } = input;
+    return buildRequirementOption({
+      id: `${planId}:requirement-option:sbse-computation-${id}`,
       credits: 4,
       sourceHeading: "Computation and Data Science elective",
       sourceCategory: "computation_data_science_elective",
-      ...input,
+      ...optionInput,
     });
+  };
 
   return buildRequirementGroup({
     id: `${planId}:requirement-group:computation-data-science-elective`,
@@ -2956,14 +2963,16 @@ function buildKnownSbseMathSequenceGroup(planId: string): TransferPlannerRequire
     equivalentUwCourseCodes?: string[];
     grcMatches: string[];
     label: string;
-  }) =>
-    buildRequirementOption({
-      id: `${planId}:requirement-option:sbse-math-${input.id}`,
+  }) => {
+    const { id, ...optionInput } = input;
+    return buildRequirementOption({
+      id: `${planId}:requirement-option:sbse-math-${id}`,
       credits: 5,
       sourceHeading: "Mathematics admission minimum sequence",
       sourceCategory: "required_sequence",
-      ...input,
+      ...optionInput,
     });
+  };
 
   return buildRequirementGroup({
     id: `${planId}:requirement-group:sbse-math-124-125-126-sequence`,
@@ -3011,14 +3020,16 @@ function buildKnownSbseChemistrySequenceGroup(planId: string): TransferPlannerRe
     equivalentUwCourseCodes?: string[];
     grcMatches: string[];
     label: string;
-  }) =>
-    buildRequirementOption({
-      id: `${planId}:requirement-option:sbse-chemistry-${input.id}`,
+  }) => {
+    const { id, ...optionInput } = input;
+    return buildRequirementOption({
+      id: `${planId}:requirement-option:sbse-chemistry-${id}`,
       credits: 5,
       sourceHeading: "Chemistry admission minimum sequence",
       sourceCategory: "required_sequence",
-      ...input,
+      ...optionInput,
     });
+  };
 
   return buildRequirementGroup({
     id: `${planId}:requirement-group:sbse-chem-142-152-162-sequence`,
@@ -3124,14 +3135,16 @@ function buildKnownSbseBusinessPolicyEconomicsGroup(
     equivalentUwCourseCodes?: string[];
     grcMatches?: string[];
     label: string;
-  }) =>
-    buildRequirementOption({
-      id: `${planId}:requirement-option:sbse-business-policy-economics-${input.id}`,
+  }) => {
+    const { id, ...optionInput } = input;
+    return buildRequirementOption({
+      id: `${planId}:requirement-option:sbse-business-policy-economics-${id}`,
       credits: 5,
       sourceHeading: "Business, Policy, and Economics elective",
       sourceCategory: "business_policy_economics_elective",
-      ...input,
+      ...optionInput,
     });
+  };
 
   return buildRequirementGroup({
     id: `${planId}:requirement-group:business-policy-economics-elective`,
@@ -3219,6 +3232,22 @@ function isSupersededSbseRequirementGroup(
   }
 
   return group.id.endsWith(":cse-123-or-cse-143");
+}
+
+function filterStaleSbseBusinessPolicyEconomicsCourseCodes(
+  courseCodes: string[],
+  planId: string
+) {
+  if (planId !== UW_SEATTLE_SBSE_PLAN_ID) {
+    return courseCodes;
+  }
+
+  return courseCodes.filter(
+    (courseCode) =>
+      !UW_SEATTLE_SBSE_STALE_BUSINESS_POLICY_ECONOMICS_GRC_CODES.has(
+        normalizeCourseCode(courseCode)
+      )
+  );
 }
 
 function hydrateRequirementOption(
@@ -5467,18 +5496,24 @@ function getStructuredCourseCodesForPlan(
   );
 
   const structuredCourseCodes = orderStringsByBase(
-    uniquePlannerStrings([
-      ...baseCourseOrder,
-      ...filteredCodes,
-      ...sourceBackedClassificationCodes,
-      ...sourceBackedGuideCodes,
-      ...degreeMapGuideCodes,
-    ]),
+    filterStaleSbseBusinessPolicyEconomicsCourseCodes(
+      uniquePlannerStrings([
+        ...baseCourseOrder,
+        ...filteredCodes,
+        ...sourceBackedClassificationCodes,
+        ...sourceBackedGuideCodes,
+        ...degreeMapGuideCodes,
+      ]),
+      planId
+    ),
     baseCourseOrder
   );
 
   return applyRequirementGroupSelectionsToCourseList(
-    applySiblingChoiceSourceBackedRecovery(structuredCourseCodes, planId, pathwayId),
+    filterStaleSbseBusinessPolicyEconomicsCourseCodes(
+      applySiblingChoiceSourceBackedRecovery(structuredCourseCodes, planId, pathwayId),
+      planId
+    ),
     planId,
     pathwayId
   );
@@ -5923,23 +5958,29 @@ function buildAutomaticCourseList(
     : [];
 
   const automaticCourseList = orderStringsByBase(
-    uniquePlannerStrings([
-      ...runtimeRequirementCourseCodes,
-      ...scopeKeys.flatMap(
-        (scopeKey) => DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
-      ),
-      ...scopeKeys.flatMap(
-        (scopeKey) => SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY.get(scopeKey) ?? []
-      ),
-      ...scopeKeys.flatMap(
-        (scopeKey) => SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
-      ),
-    ]),
+    filterStaleSbseBusinessPolicyEconomicsCourseCodes(
+      uniquePlannerStrings([
+        ...runtimeRequirementCourseCodes,
+        ...scopeKeys.flatMap(
+          (scopeKey) => DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
+        ),
+        ...scopeKeys.flatMap(
+          (scopeKey) => SOURCE_BACKED_CLASSIFICATION_COURSES_BY_KEY.get(scopeKey) ?? []
+        ),
+        ...scopeKeys.flatMap(
+          (scopeKey) => SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
+        ),
+      ]),
+      planId
+    ),
     []
   );
 
   return applyRequirementGroupSelectionsToCourseList(
-    applySiblingChoiceSourceBackedRecovery(automaticCourseList, planId, pathwayId),
+    filterStaleSbseBusinessPolicyEconomicsCourseCodes(
+      applySiblingChoiceSourceBackedRecovery(automaticCourseList, planId, pathwayId),
+      planId
+    ),
     planId,
     pathwayId
   );
@@ -5962,25 +6003,31 @@ function buildAutomaticTrackMatchCourseList(planId: string, pathwayId?: string |
   const scopeKeys = getAutomaticScopeKeys(planId, pathwayId);
 
   const automaticTrackMatchCourseList = orderStringsByBase(
-    uniquePlannerStrings([
-      ...scopeKeys.flatMap(
-        (scopeKey) => DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
-      ),
-      ...scopeKeys.flatMap(
-        (scopeKey) => SOURCE_BACKED_TRACK_MATCH_COURSES_BY_KEY.get(scopeKey) ?? []
-      ),
-      ...scopeKeys.flatMap(
-        (scopeKey) => SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
-      ),
-    ]),
+    filterStaleSbseBusinessPolicyEconomicsCourseCodes(
+      uniquePlannerStrings([
+        ...scopeKeys.flatMap(
+          (scopeKey) => DEGREE_MAP_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
+        ),
+        ...scopeKeys.flatMap(
+          (scopeKey) => SOURCE_BACKED_TRACK_MATCH_COURSES_BY_KEY.get(scopeKey) ?? []
+        ),
+        ...scopeKeys.flatMap(
+          (scopeKey) => SOURCE_BACKED_GUIDE_COURSES_BY_KEY.get(scopeKey) ?? []
+        ),
+      ]),
+      planId
+    ),
     []
   );
 
   return applyRequirementGroupSelectionsToCourseList(
-    applySiblingChoiceSourceBackedRecovery(
-      automaticTrackMatchCourseList,
-      planId,
-      pathwayId
+    filterStaleSbseBusinessPolicyEconomicsCourseCodes(
+      applySiblingChoiceSourceBackedRecovery(
+        automaticTrackMatchCourseList,
+        planId,
+        pathwayId
+      ),
+      planId
     ),
     planId,
     pathwayId

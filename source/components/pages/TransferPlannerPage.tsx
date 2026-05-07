@@ -72,6 +72,10 @@ import {
   buildSuggestedQuarterCourseOptionGroupsForTrack,
   countMatchedGrcTrackGeneralEducationBreadthRows,
   auditRequirementClassification,
+  auditInvalidScheduledOptions,
+  auditSbseCreditTotals,
+  auditSbseCurrentVsOldSource,
+  auditSbseScheduledRowSources,
   auditOptionGroupSatisfaction,
   auditUwBioengineeringSourceBackedRequirements,
   extractCourseCodes,
@@ -3744,14 +3748,41 @@ function SuggestedScheduleCard({
         suggestedPlan: quarters,
         completedCourses,
       }).map((entry) => entry.copyOnlyDebugText);
+      const invalidScheduledOptionAuditLines = auditInvalidScheduledOptions({
+        plan,
+        suggestedPlan: quarters,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const sbseCurrentVsOldSourceAuditLines = auditSbseCurrentVsOldSource({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+        selectedRequirementOptionIdsByGroup,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const sbseScheduledRowSourceAuditLines = auditSbseScheduledRowSources({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+        selectedRequirementOptionIdsByGroup,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const sbseCreditAuditLines = auditSbseCreditTotals({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+        selectedRequirementOptionIdsByGroup,
+        track: grcTrack,
+      }).map((entry) => entry.copyOnlyDebugText);
 
       return [
         ...sourceBackedAuditLines,
         ...optionSatisfactionAuditLines,
         ...requirementClassificationAuditLines,
+        ...invalidScheduledOptionAuditLines,
+        ...sbseCurrentVsOldSourceAuditLines,
+        ...sbseScheduledRowSourceAuditLines,
+        ...sbseCreditAuditLines,
       ].join("\n");
     },
-    [completedCourses, plan, quarters]
+    [completedCourses, grcTrack, plan, quarters, selectedRequirementOptionIdsByGroup]
   );
   const stemPrepToggleGuidance =
     "Turn off 'Allow STEM prep classes' to skip unnecessary placement-dependent prep classes like Precalculus I/II or general physics when you are ready to start with Calculus I and Engineering Physics I.";

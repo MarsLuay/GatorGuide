@@ -123,6 +123,10 @@ import {
   buildSuggestedQuarterPlan,
   auditOptionGroupSatisfaction,
   auditRequirementClassification,
+  auditInvalidScheduledOptions,
+  auditSbseCreditTotals,
+  auditSbseCurrentVsOldSource,
+  auditSbseScheduledRowSources,
   auditUnselectedOptionPrerequisiteScheduling,
   auditVisibleGrcQuarterPlanScope,
   auditUwCivilEngineeringLowerDivisionRequirements,
@@ -6182,15 +6186,31 @@ test("Transfer planner UI exposes copy-only option satisfaction audit rows", () 
 
   assert.match(pageSource, /auditOptionGroupSatisfaction/);
   assert.match(pageSource, /auditRequirementClassification/);
+  assert.match(pageSource, /auditInvalidScheduledOptions/);
+  assert.match(pageSource, /auditSbseCurrentVsOldSource/);
+  assert.match(pageSource, /auditSbseScheduledRowSources/);
+  assert.match(pageSource, /auditSbseCreditTotals/);
   assert.match(pageSource, /optionSatisfactionAuditLines/);
   assert.match(pageSource, /requirementClassificationAuditLines/);
+  assert.match(pageSource, /invalidScheduledOptionAuditLines/);
+  assert.match(pageSource, /sbseCurrentVsOldSourceAuditLines/);
+  assert.match(pageSource, /sbseScheduledRowSourceAuditLines/);
+  assert.match(pageSource, /sbseCreditAuditLines/);
   assert.match(serviceSource, /\[copy-only option satisfaction audit\]/);
   assert.match(serviceSource, /\[copy-only requirement classification audit\]/);
+  assert.match(serviceSource, /\[copy-only invalid scheduled option audit\]/);
+  assert.match(serviceSource, /\[copy-only current-vs-old-source audit\]/);
+  assert.match(serviceSource, /\[copy-only SBSE scheduled row source audit\]/);
+  assert.match(serviceSource, /\[copy-only SBSE credit audit\]/);
   assert.match(serviceSource, /Accepted UW options:/);
   assert.match(serviceSource, /Satisfied by:/);
   assert.match(serviceSource, /Should schedule extra:/);
   assert.match(serviceSource, /Independent scheduling reason:/);
   assert.match(serviceSource, /Classification:/);
+  assert.match(serviceSource, /Is accepted by current source:/);
+  assert.match(serviceSource, /Current SBSE source-backed:/);
+  assert.match(serviceSource, /Should schedule:/);
+  assert.match(serviceSource, /Old-BSE\/matched-track filtered credits:/);
 });
 
 test("Generic UW transfer milestone remains available for non-engineering Seattle majors", () => {
@@ -14336,6 +14356,9 @@ test("SBSE Business Option no-transcript planning classifies sequences and expos
     course.optionGroup ? [course.optionGroup] : []
   );
   const visibleOptionGroupTitles = visibleOptionGroups.map((group) => group.title);
+  const businessPolicyOptionGroup = visibleOptionGroups.find((group) =>
+    /Business, Policy, and Economics/i.test(group.title)
+  );
   const creditRange = buildSuggestedQuarterRemainingCreditRange({
     quarters: suggestedPlan,
     track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
@@ -14349,11 +14372,38 @@ test("SBSE Business Option no-transcript planning classifies sequences and expos
   const byRequirement = new Map(
     classificationAudit.map((entry) => [entry.requirement, entry])
   );
+  const invalidScheduledOptionAudit = auditInvalidScheduledOptions({
+    plan: businessPlan,
+    suggestedPlan,
+  });
+  const currentVsOldSourceAudit = auditSbseCurrentVsOldSource({
+    plan: businessPlan,
+    suggestedPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const scheduledRowSourceAudit = auditSbseScheduledRowSources({
+    plan: businessPlan,
+    suggestedPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const sbseCreditAudit = auditSbseCreditTotals({
+    plan: businessPlan,
+    suggestedPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup: {},
+    track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+  });
 
   assert.deepEqual(visibleOptionGroupTitles, [
     "Computation and Data Science elective: choose one approved course",
     "Business, Policy, and Economics elective: choose one approved course",
   ]);
+  assert.deepEqual(
+    (businessPolicyOptionGroup?.options ?? []).map((option) => option.courseCodes),
+    [["ECON& 201"], ["ECON& 202"]]
+  );
   assert.equal(visibleOptionGroups.length < 10, true);
   for (const requiredCourse of [
     "MATH& 151",
@@ -14369,7 +14419,31 @@ test("SBSE Business Option no-transcript planning classifies sequences and expos
   }
   assert.equal(plannedLabels.has("CS 123"), false);
   assert.equal(plannedLabels.has("CS& 141"), false);
-  assert.equal(creditRange.maxRemainingCredits < 136, true);
+  assert.equal(plannedLabels.has("ACCT& 203"), false);
+  for (const staleOrTrackOnlyCourse of [
+    "CHEM& 262",
+    "PHYS& 223",
+    "ENGR& 204",
+    "ENGR& 214",
+    "ENGR& 215",
+    "ENGR& 225",
+    "ENGR& 114",
+    "ENGR 140",
+    "ENGL 128",
+    "ENGR 100",
+    "ENGR 106",
+  ]) {
+    assert.equal(
+      plannedLabels.has(staleOrTrackOnlyCourse),
+      false,
+      `Did not expect stale or matched-track-only ${staleOrTrackOnlyCourse} to be scheduled.`
+    );
+  }
+  assert.equal(
+    businessPlan.grcCourseList?.some((courseCode) => /^ACCT\b|^ACCT&\b/i.test(courseCode)),
+    false
+  );
+  assert.equal(creditRange.maxRemainingCredits < 129, true);
   assert.equal(
     [...plannedLabels].some((label) =>
       /this requirement|\+ %|AMATH 351 or MATH 125|AMATH 352 or MATH 126/i.test(label)
@@ -14397,6 +14471,210 @@ test("SBSE Business Option no-transcript planning classifies sequences and expos
       entry.copyOnlyDebugText.startsWith("[copy-only requirement classification audit]")
     )
   );
+  assert.deepEqual(
+    invalidScheduledOptionAudit.filter((entry) => !entry.isAcceptedByCurrentSource),
+    []
+  );
+  assert.equal(
+    currentVsOldSourceAudit.every((entry) => entry.transferOnlyShouldShow),
+    true
+  );
+  assert.equal(
+    currentVsOldSourceAudit.some((entry) => entry.course.includes("ACCT& 203")),
+    false
+  );
+  assert.ok(
+    currentVsOldSourceAudit.some(
+      (entry) =>
+        entry.course === "PHYS& 221" &&
+        entry.currentSbseSourceBacked &&
+        /current SBSE source-backed requirement/i.test(entry.reason)
+    )
+  );
+  assert.ok(
+    currentVsOldSourceAudit.every((entry) =>
+      entry.copyOnlyDebugText.startsWith("[copy-only current-vs-old-source audit]")
+    )
+  );
+  assert.equal(
+    scheduledRowSourceAudit.every((entry) => entry.shouldSchedule),
+    true
+  );
+  assert.ok(
+    scheduledRowSourceAudit.every((entry) =>
+      entry.copyOnlyDebugText.startsWith("[copy-only SBSE scheduled row source audit]")
+    )
+  );
+  for (const sourceBackedCourse of [
+    "CHEM& 261",
+    "ENGR& 224",
+    "MATH 240",
+    "PHYS& 222",
+  ]) {
+    assert.ok(
+      scheduledRowSourceAudit.some(
+        (entry) => entry.course === sourceBackedCourse && entry.source === "current-sbse"
+      ),
+      `Expected ${sourceBackedCourse} to be classified as current SBSE.`
+    );
+  }
+  assert.deepEqual(
+    scheduledRowSourceAudit.filter((entry) =>
+      ["old-bse", "matched-track", "stale-supplemental"].includes(entry.source)
+    ),
+    []
+  );
+  assert.equal(sbseCreditAudit.length, 1);
+  assert.match(
+    sbseCreditAudit[0]?.copyOnlyDebugText ?? "",
+    /^\[copy-only SBSE credit audit\]/
+  );
+  assert.equal(sbseCreditAudit[0]?.oldBseMatchedTrackFilteredCredits, 0);
+
+  const suggestedPlanWithStemPrep = buildSuggestedQuarterPlan({
+    plan: businessPlan,
+    ...statuses,
+    completedCourses: [],
+    track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: true,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup: {},
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedStemPrepLabels = new Set(
+    suggestedPlanWithStemPrep
+      .filter((quarter) => quarter.phase === "planned")
+      .flatMap((quarter) => quarter.courses.map((course) => course.label))
+  );
+  const stemPrepCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: suggestedPlanWithStemPrep,
+    track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+    creditBucketMode: "uw-transfer",
+  });
+  const stemPrepDisplayedCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: suggestedPlanWithStemPrep,
+    track: null,
+  });
+  const stemPrepScheduledRowSourceAudit = auditSbseScheduledRowSources({
+    plan: businessPlan,
+    suggestedPlan: suggestedPlanWithStemPrep,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup: {},
+  });
+
+  for (const staleOrTrackOnlyCourse of [
+    "ACCT& 203",
+    "CHEM& 262",
+    "PHYS& 223",
+    "ENGR& 204",
+    "ENGR& 214",
+    "ENGR& 215",
+    "ENGR& 225",
+    "ENGR& 114",
+    "ENGR 140",
+    "ENGL 128",
+  ]) {
+    assert.equal(
+      plannedStemPrepLabels.has(staleOrTrackOnlyCourse),
+      false,
+      `Did not expect ${staleOrTrackOnlyCourse} in transfer-only STEM prep mode.`
+    );
+  }
+  assert.equal(stemPrepCreditRange.maxRemainingCredits < 100, true);
+  assert.equal(stemPrepDisplayedCreditRange.maxRemainingCredits < 100, true);
+  assert.equal(
+    stemPrepScheduledRowSourceAudit.every((entry) => entry.shouldSchedule),
+    true
+  );
+  assert.ok(
+    stemPrepScheduledRowSourceAudit.some(
+      (entry) => entry.source === "prerequisite" && entry.course === "MATH& 141"
+    )
+  );
+});
+
+test("SBSE Business, Policy, and Economics selected dropdown options schedule only current accepted GRC matches", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-sustainable-bioresource-systems-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the SBSE runtime plan.");
+  const businessPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    runtimePlan,
+    "business-option"
+  );
+  assert.ok(businessPlan, "Expected the SBSE Business Option runtime plan.");
+
+  const businessPolicyItem = [
+    ...businessPlan.applicationChecklist,
+    ...businessPlan.beforeEnrollmentChecklist,
+    ...businessPlan.stayAtGrcChecklist,
+  ].find((item) =>
+    /Business, Policy, and Economics/i.test(item.requirementGroup?.label ?? item.title)
+  );
+  assert.ok(businessPolicyItem?.requirementGroup, "Expected the SBSE business option group.");
+
+  const selections = [
+    { uwCourse: "ECON 200", grcCourse: "ECON& 201" },
+    { uwCourse: "ECON 201", grcCourse: "ECON& 202" },
+  ];
+
+  for (const selection of selections) {
+    const selectedOption = businessPolicyItem.requirementGroup.options.find((option) =>
+      option.uwCourses.includes(selection.uwCourse)
+    );
+    const selectedOptionId = selectedOption?.id;
+    assert.ok(selectedOptionId, `Expected option for ${selection.uwCourse}.`);
+    const selectedRequirementOptionIdsByGroup: Record<string, string[]> = {
+      [businessPolicyItem.requirementGroup.id]: [selectedOptionId],
+    };
+    const statuses = buildStatuses(businessPlan, []);
+    const suggestedPlan = buildSuggestedQuarterPlan({
+      plan: businessPlan,
+      ...statuses,
+      completedCourses: [],
+      track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+      includeStayAtGrcCourses: false,
+      includeStemPrepCourses: false,
+      includeSummerQuarter: false,
+      selectedRequirementOptionIdsByGroup,
+      referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+    });
+    const plannedLabels = new Set(
+      suggestedPlan
+        .filter((quarter) => quarter.phase === "planned")
+        .flatMap((quarter) => quarter.courses.map((course) => course.label))
+    );
+
+    assert.equal(plannedLabels.has(selection.grcCourse), true);
+    assert.equal(plannedLabels.has("ACCT& 203"), false);
+    const currentVsOldAudit = auditSbseCurrentVsOldSource({
+      plan: businessPlan,
+      suggestedPlan,
+      completedCourses: [],
+      selectedRequirementOptionIdsByGroup,
+    });
+    const scheduledRowSourceAudit = auditSbseScheduledRowSources({
+      plan: businessPlan,
+      suggestedPlan,
+      completedCourses: [],
+      selectedRequirementOptionIdsByGroup,
+    });
+
+    assert.deepEqual(
+      currentVsOldAudit.filter((entry) => !entry.transferOnlyShouldShow),
+      []
+    );
+    assert.equal(
+      scheduledRowSourceAudit.every((entry) => entry.shouldSchedule),
+      true
+    );
+    assert.ok(
+      scheduledRowSourceAudit.some(
+        (entry) => entry.course === selection.grcCourse && entry.source === "current-sbse"
+      )
+    );
+  }
 });
 
 test("SBSE Business Option transcript-loaded planning does not reschedule satisfied math, chemistry, or computation options", () => {
@@ -14443,6 +14721,11 @@ test("SBSE Business Option transcript-loaded planning does not reschedule satisf
       .filter((quarter) => quarter.phase === "planned")
       .flatMap((quarter) => quarter.courses.map((course) => course.label))
   );
+  const creditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: suggestedPlan,
+    track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+    creditBucketMode: "uw-transfer",
+  });
   const getStatus = (title: string) => allStatuses.find((status) => status.item.title === title);
 
   assert.equal(
@@ -14464,6 +14747,7 @@ test("SBSE Business Option transcript-loaded planning does not reschedule satisf
     "ENGL& 101",
     "CS 123",
     "CS& 141",
+    "ACCT& 203",
   ]) {
     assert.equal(
       plannedLabels.has(alreadyCompleted),
@@ -14485,6 +14769,42 @@ test("SBSE Business Option transcript-loaded planning does not reschedule satisf
   assert.deepEqual(computationAudit?.scheduledExtraCourses, []);
   assert.equal(computationAudit?.shouldScheduleExtra, false);
   assert.equal(computationAudit?.independentSchedulingReason, "none");
+  assert.equal(creditRange.maxRemainingCredits < 87, true);
+  assert.deepEqual(
+    auditInvalidScheduledOptions({
+      plan: businessPlan,
+      suggestedPlan,
+    }).filter((entry) => !entry.isAcceptedByCurrentSource),
+    []
+  );
+  assert.deepEqual(
+    auditSbseCurrentVsOldSource({
+      plan: businessPlan,
+      suggestedPlan,
+      completedCourses,
+      selectedRequirementOptionIdsByGroup: {},
+    }).filter((entry) => !entry.transferOnlyShouldShow),
+    []
+  );
+  assert.deepEqual(
+    auditSbseScheduledRowSources({
+      plan: businessPlan,
+      suggestedPlan,
+      completedCourses,
+      selectedRequirementOptionIdsByGroup: {},
+    }).filter((entry) => !entry.shouldSchedule),
+    []
+  );
+  assert.equal(
+    auditSbseCreditTotals({
+      plan: businessPlan,
+      suggestedPlan,
+      completedCourses,
+      selectedRequirementOptionIdsByGroup: {},
+      track: getTransferPlannerTrack(businessPlan.bestTrackId ?? null),
+    })[0]?.oldBseMatchedTrackFilteredCredits,
+    0
+  );
   for (const row of optionAudit) {
     if (!row.shouldScheduleExtra && row.scheduledExtraCourses.length > 0) {
       assert.notEqual(row.independentSchedulingReason, "none");
@@ -14593,6 +14913,16 @@ test("SBSE computation/data science options satisfy from completed CS 122 withou
 
   assert.equal(plannedLabels.has("CS 123"), false);
   assert.equal(plannedLabels.has("CS& 141"), false);
+  assert.equal(plannedLabels.has("ACCT& 203"), false);
+  assert.deepEqual(
+    auditSbseScheduledRowSources({
+      plan: businessPlan,
+      suggestedPlan,
+      completedCourses,
+      selectedRequirementOptionIdsByGroup: {},
+    }).filter((entry) => !entry.shouldSchedule),
+    []
+  );
 
   const optionSatisfactionAudit = auditOptionGroupSatisfaction({
     plan: businessPlan,

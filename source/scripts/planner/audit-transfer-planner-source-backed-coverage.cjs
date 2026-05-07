@@ -1227,10 +1227,30 @@ function auditSbseOptionSatisfaction(checks) {
   const noTranscriptOptionGroups = noTranscriptCourses.flatMap((course) =>
     course.optionGroup ? [course.optionGroup] : []
   );
+  const noTranscriptBusinessOptionGroup = noTranscriptOptionGroups.find((group) =>
+    /Business, Policy, and Economics/i.test(group.title)
+  );
   const noTranscriptCreditRange = planner.buildSuggestedQuarterRemainingCreditRange({
     quarters: noTranscriptQuarterPlan,
     track: source.getTransferPlannerTrack(plan?.bestTrackId ?? null),
     creditBucketMode: "uw-transfer",
+  });
+  const noTranscriptInvalidOptionAudit = planner.auditInvalidScheduledOptions({
+    plan,
+    suggestedPlan: noTranscriptQuarterPlan,
+  });
+  const noTranscriptCurrentVsOldAudit = planner.auditSbseCurrentVsOldSource({
+    plan,
+    suggestedPlan: noTranscriptQuarterPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const noTranscriptCreditAudit = planner.auditSbseCreditTotals({
+    plan,
+    suggestedPlan: noTranscriptQuarterPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup: {},
+    track: source.getTransferPlannerTrack(plan?.bestTrackId ?? null),
   });
   const classificationAudit = planner.auditRequirementClassification({
     plan,
@@ -1260,6 +1280,11 @@ function auditSbseOptionSatisfaction(checks) {
     referenceDate: new Date("2026-05-06T12:00:00.000Z"),
   });
   const plannedLabels = getVisiblePlannedLabels(quarterPlan);
+  const transcriptCreditRange = planner.buildSuggestedQuarterRemainingCreditRange({
+    quarters: quarterPlan,
+    track: source.getTransferPlannerTrack(plan?.bestTrackId ?? null),
+    creditBucketMode: "uw-transfer",
+  });
   const computationGroup = plan?.requirementGroups?.find((group) =>
     group.id.endsWith(":computation-data-science-elective")
   );
@@ -1287,6 +1312,23 @@ function auditSbseOptionSatisfaction(checks) {
     suggestedPlan: quarterPlan,
     completedCourses,
   });
+  const invalidOptionAudit = planner.auditInvalidScheduledOptions({
+    plan,
+    suggestedPlan: quarterPlan,
+  });
+  const currentVsOldAudit = planner.auditSbseCurrentVsOldSource({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const creditAudit = planner.auditSbseCreditTotals({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup: {},
+    track: source.getTransferPlannerTrack(plan?.bestTrackId ?? null),
+  });
   const auditRow = optionAudit.find((row) => row.groupId === computationGroup?.id);
 
   addCheck(
@@ -1309,10 +1351,17 @@ function auditSbseOptionSatisfaction(checks) {
         "PHYS& 221",
         "ENGL& 101",
       ].every((courseCode) => noTranscriptLabels.includes(courseCode)) &&
+      !noTranscriptLabels.includes("ACCT& 203") &&
+      !(plan?.grcCourseList ?? []).some((courseCode) => /^ACCT\b|^ACCT&\b/i.test(courseCode)) &&
+      JSON.stringify((noTranscriptBusinessOptionGroup?.options ?? []).map((option) => option.courseCodes)) ===
+        JSON.stringify([["ECON& 201"], ["ECON& 202"]]) &&
       !noTranscriptLabels.some((label) =>
         /this requirement|\+ %|AMATH 351 or MATH 125|AMATH 352 or MATH 126/i.test(label)
       ) &&
-      noTranscriptCreditRange.maxRemainingCredits < 136 &&
+      noTranscriptCreditRange.maxRemainingCredits < 129 &&
+      noTranscriptInvalidOptionAudit.every((row) => row.isAcceptedByCurrentSource) &&
+      noTranscriptCurrentVsOldAudit.every((row) => row.transferOnlyShouldShow) &&
+      noTranscriptCreditAudit[0]?.oldBseMatchedTrackFilteredCredits === 0 &&
       classificationByRequirement.get("MATH 124, MATH 125, and MATH 126 calculus sequence")?.classification ===
         "required-sequence" &&
       classificationByRequirement.get("CHEM 142, CHEM 152, and CHEM 162 chemistry sequence")?.classification ===
@@ -1323,7 +1372,16 @@ function auditSbseOptionSatisfaction(checks) {
         "true-option",
     [
       classificationAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      noTranscriptInvalidOptionAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      noTranscriptCurrentVsOldAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      noTranscriptCreditAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      `SBSE plan ACCT course-list entries: ${(plan?.grcCourseList ?? []).filter((courseCode) =>
+        /^ACCT\b|^ACCT&\b/i.test(courseCode)
+      ).join(", ")}`,
       `No-transcript option groups: ${noTranscriptOptionGroups.map((group) => group.title).join(", ")}`,
+      `No-transcript business mapped options: ${JSON.stringify(
+        (noTranscriptBusinessOptionGroup?.options ?? []).map((option) => option.courseCodes)
+      )}`,
       `No-transcript credit range: ${JSON.stringify(noTranscriptCreditRange)}`,
     ].join("\n"),
     "over-scheduled-alternatives"
@@ -1359,11 +1417,20 @@ function auditSbseOptionSatisfaction(checks) {
       auditRow?.independentSchedulingReason === "none" &&
       !plannedLabels.includes("CS 123") &&
       !plannedLabels.includes("CS& 141") &&
+      !plannedLabels.includes("ACCT& 203") &&
+      transcriptCreditRange.maxRemainingCredits < 87 &&
+      invalidOptionAudit.every((row) => row.isAcceptedByCurrentSource) &&
+      currentVsOldAudit.every((row) => row.transferOnlyShouldShow) &&
+      creditAudit[0]?.oldBseMatchedTrackFilteredCredits === 0 &&
       !["MATH& 151", "MATH& 152", "MATH& 163", "CHEM& 161", "CHEM& 162", "CHEM& 163", "ENGL& 101"].some(
         (courseCode) => plannedLabels.includes(courseCode)
       ),
     [
       auditRow?.copyOnlyDebugText ?? "Missing option satisfaction audit row.",
+      invalidOptionAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      currentVsOldAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      creditAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      `Transcript credit range: ${JSON.stringify(transcriptCreditRange)}`,
       `Planned labels: ${plannedLabels.join(", ")}`,
     ].join(" "),
     "over-scheduled-alternatives"

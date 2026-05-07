@@ -52,6 +52,31 @@ export type TransferPlannerSourceManifestParserType =
 
 export type TransferPlannerSourceManifestConfidence = "high" | "medium" | "low";
 
+export type TransferPlannerDiscoveredSourceRole =
+  | "official-catalog"
+  | "primary-degree-requirements"
+  | "department-requirements"
+  | "admissions-preparation"
+  | "sample-schedule"
+  | "curriculum-map"
+  | "transfer-equivalency"
+  | "matched-grc-track"
+  | "old-archival"
+  | "ignored";
+
+export type TransferPlannerSourceSectionAudit = {
+  line: string;
+  majorId?: string | null;
+  sourceUrl?: string | null;
+  sourceRole?: TransferPlannerDiscoveredSourceRole | string | null;
+  requestedAnchor?: string | null;
+  anchorFound?: boolean;
+  sectionHeading?: string | null;
+  sectionMatchedSelectedMajor?: boolean;
+  stopBoundary?: string | null;
+  ignoredNeighboringSections?: string[];
+};
+
 export type TransferPlannerSourceCoverageStatus =
   | "verified"
   | "partially-verified"
@@ -311,6 +336,8 @@ export type TransferPlannerParsedRequirementSourceBlock = {
   adapterFamily: string;
   sourceUrl: string;
   sourceLabel: string;
+  sourceRole?: TransferPlannerDiscoveredSourceRole | string;
+  sourceSectionAudit?: TransferPlannerSourceSectionAudit | null;
   resolutionStrategy: TransferPlannerRequirementSourceResolutionStrategy;
   ok: boolean;
   parseConfidence: TransferPlannerSourceManifestConfidence;
@@ -347,6 +374,7 @@ export type TransferPlannerRequirementSourceAdapterSummary = {
   countsByAdapterFamily: Record<string, number>;
   countsByCampus: Record<string, number>;
   countsByResolutionStrategy: Record<string, number>;
+  countsBySourceRole?: Record<string, number>;
   qualityWarningCount: number;
   qualityNoteCount: number;
   countsByQualitySignalCode: Record<string, number>;

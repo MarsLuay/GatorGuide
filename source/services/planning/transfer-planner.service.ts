@@ -319,6 +319,51 @@ export type RequirementClassificationAuditEntry = {
   copyOnlyDebugText: string;
 };
 
+export type InvalidScheduledOptionAuditEntry = {
+  requirement: string;
+  scheduledCourse: string;
+  uwEquivalent: string;
+  isAcceptedByCurrentSource: boolean;
+  reason: string;
+  copyOnlyDebugText: string;
+};
+
+export type SbseCurrentVsOldSourceAuditEntry = {
+  course: string;
+  uwEquivalent: string;
+  currentSbseSourceBacked: boolean;
+  oldBseOnly: boolean;
+  matchedTrackOnly: boolean;
+  prerequisiteForCurrentSource: boolean;
+  transferOnlyShouldShow: boolean;
+  reason: string;
+  copyOnlyDebugText: string;
+};
+
+export type SbseCreditAuditEntry = {
+  currentSbseSourceBackedCredits: number;
+  trueOptionSelectedCredits: number;
+  localPrerequisiteCredits: number;
+  oldBseMatchedTrackFilteredCredits: number;
+  displayedRemainingCredits: string;
+  copyOnlyDebugText: string;
+};
+
+export type SbseScheduledRowSourceAuditEntry = {
+  course: string;
+  uwEquivalent: string;
+  source:
+    | "current-sbse"
+    | "old-bse"
+    | "matched-track"
+    | "prerequisite"
+    | "stale-supplemental"
+    | "transcript";
+  reason: string;
+  shouldSchedule: boolean;
+  copyOnlyDebugText: string;
+};
+
 export type SuggestedQuarterPlan = {
   label: string;
   phase: "completed" | "current" | "planned";
@@ -12345,6 +12390,14 @@ export function buildSuggestedQuarterPlan(input: {
     ),
     "requirement"
   );
+  const sourceValidatedGuidedRemainingCourses = filterSbseTransferOnlyCurrentSourceCourses({
+    plan: input.plan,
+    transferOnlyMode: input.includeStayAtGrcCourses === false,
+    courses: guidedRemainingCourses,
+    completedCourses: input.completedCourses,
+    selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+    prerequisiteCourseMap,
+  });
   const completedQuarterPlans = buildCompletedQuarterPlans(input.completedCourses, {
     campusId: input.plan?.campusId,
     plan: input.plan,
@@ -12354,7 +12407,7 @@ export function buildSuggestedQuarterPlan(input: {
       ...stayAtGrcStatuses,
     ],
   });
-  const guidedCoursesStillToPlan = guidedRemainingCourses
+  const guidedCoursesStillToPlan = sourceValidatedGuidedRemainingCourses
     .filter(isVisibleGrcQuarterPlanCourse)
     .filter((course) => !isSelectedCurrentCourse(course));
 
@@ -12466,7 +12519,7 @@ export function buildSuggestedQuarterPlan(input: {
           }
         ), "gen-ed");
   const currentQuarterCourses = [
-    ...guidedRemainingCourses,
+    ...sourceValidatedGuidedRemainingCourses,
     ...allFillerPool,
   ]
     .filter(isVisibleGrcQuarterPlanCourse)
@@ -12918,6 +12971,20 @@ function getRequirementGroupGrcOptionCourseCodes(
   );
 }
 
+function getRequirementGroupAcceptedUwCourseCodeSet(
+  group: NonNullable<TransferPlannerChecklistItem["requirementGroup"]>
+) {
+  return new Set(
+    (group.options ?? [])
+      .flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+      ])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
 function getScheduledPlannerCourses(suggestedPlan: SuggestedQuarterPlan[]) {
   return suggestedPlan
     .filter((quarter) => quarter.phase !== "completed")
@@ -12931,6 +12998,550 @@ function getScheduledPlannerCourseCodeSet(suggestedPlan: SuggestedQuarterPlan[])
       .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
       .map((courseCode) => normalizeCourseCode(courseCode))
       .filter(Boolean)
+  );
+}
+
+const UW_SEATTLE_SBSE_PLAN_ID = "uw-seattle-sustainable-bioresource-systems-engineering";
+const CURRENT_SBSE_TRUE_OPTION_GROUP_PATTERN =
+  /\b(?:computation[-_\s]*data[-_\s]*science|business,\s*policy,\s*and\s*economics|business[-_\s]*policy[-_\s]*economics)\b/i;
+const CURRENT_SBSE_SOURCE_BACKED_GRC_COURSE_CODES = new Set(
+  [
+    "CHEM& 161",
+    "CHEM& 162",
+    "CHEM& 163",
+    "CHEM& 261",
+    "ENGL& 101",
+    "ENGR& 224",
+    "MATH 238",
+    "MATH 240",
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 163",
+    "PHYS& 221",
+    "PHYS& 222",
+  ].map((courseCode) => normalizeCourseCode(courseCode))
+);
+
+type SbseStaleCourseAuditMetadata = {
+  uwEquivalent: string;
+  oldBseOnly?: boolean;
+  staleAlternativeSourceRow?: boolean;
+  reason: string;
+};
+
+type SbseTransferOnlyCourseClassification =
+  | "current SBSE source-backed requirement"
+  | "current SBSE true option, selected/defaulted"
+  | "prerequisite for a current SBSE source-backed course"
+  | "completed transcript course"
+  | "old-BSE-only"
+  | "matched-track-only"
+  | "stale alternative-source row"
+  | "hidden/unmapped UW-only";
+
+type SbseTransferOnlyCourseValidation = SbseCurrentVsOldSourceAuditEntry & {
+  classification: SbseTransferOnlyCourseClassification;
+  courseCodes: string[];
+  creditAmount: number;
+};
+
+const SBSE_STALE_OR_OLD_COURSE_AUDIT_METADATA_ENTRIES: Array<
+  [string, SbseStaleCourseAuditMetadata]
+> = [
+    [
+      "ACCT& 201",
+      {
+        uwEquivalent: "ACCTG 215",
+        staleAlternativeSourceRow: true,
+        reason:
+          "stale alternative-source row from an accounting business-path alternative; ACCTG 215 is not in the current SBSE Business, Policy, and Economics list.",
+      },
+    ],
+    [
+      "ACCT& 202",
+      {
+        uwEquivalent: "ACCTG 215",
+        staleAlternativeSourceRow: true,
+        reason:
+          "stale alternative-source row from an accounting business-path alternative; ACCTG 215 is not in the current SBSE Business, Policy, and Economics list.",
+      },
+    ],
+    [
+      "ACCT& 203",
+      {
+        uwEquivalent: "ACCTG 225",
+        staleAlternativeSourceRow: true,
+        reason:
+          "stale alternative-source row from an accounting business-path alternative; ACCTG 225 is not in the current SBSE Business, Policy, and Economics list.",
+      },
+    ],
+    [
+      "CHEM& 262",
+      {
+        uwEquivalent: "CHEM 238",
+        oldBseOnly: true,
+        reason:
+          "old-BSE-only organic chemistry row; current SBSE transfer planning only keeps it if it is needed as a prerequisite for a current SBSE source-backed row.",
+      },
+    ],
+    [
+      "PHYS& 223",
+      {
+        uwEquivalent: "PHYS 123",
+        oldBseOnly: true,
+        reason:
+          "old-BSE-only physics depth row; current SBSE transfer planning only keeps it if it is needed as a prerequisite for a current SBSE source-backed row.",
+      },
+    ],
+    [
+      "ENGR& 204",
+      {
+        uwEquivalent: "EE 215",
+        oldBseOnly: true,
+        reason:
+          "old-BSE or matched AST-2 engineering row; current SBSE source evidence does not require EE 215.",
+      },
+    ],
+    [
+      "ENGR& 214",
+      {
+        uwEquivalent: "AA 210",
+        oldBseOnly: true,
+        reason:
+          "matched AST-2 engineering row; current SBSE transfer planning only keeps it if it is a prerequisite for a current SBSE source-backed row.",
+      },
+    ],
+    [
+      "ENGR& 215",
+      {
+        uwEquivalent: "ME 230",
+        oldBseOnly: true,
+        reason:
+          "matched AST-2 engineering row; current SBSE transfer planning only keeps it if it is a prerequisite for a current SBSE source-backed row.",
+      },
+    ],
+    [
+      "ENGR& 225",
+      {
+        uwEquivalent: "CEE 220",
+        oldBseOnly: true,
+        reason:
+          "matched AST-2 engineering row; current SBSE transfer planning only keeps it if it is a prerequisite for a current SBSE source-backed row.",
+      },
+    ],
+    [
+      "ENGR& 114",
+      {
+        uwEquivalent: "ME 123",
+        oldBseOnly: true,
+        reason:
+          "matched AST-2 engineering row; current SBSE transfer planning only keeps it if it is a prerequisite for a current SBSE source-backed row.",
+      },
+    ],
+    [
+      "ENGR 140",
+      {
+        uwEquivalent: "MSE 170",
+        oldBseOnly: true,
+        reason:
+          "matched AST-2 materials row; current SBSE transfer planning only keeps it if it is a prerequisite for a current SBSE source-backed row.",
+      },
+    ],
+    [
+      "ENGL 128",
+      {
+        uwEquivalent: "ENGR 231",
+        oldBseOnly: true,
+        reason:
+          "old engineering communication row; current SBSE source evidence does not require ENGR 231.",
+      },
+    ],
+    [
+      "ENGR 100",
+      {
+        uwEquivalent: "none",
+        oldBseOnly: true,
+        reason:
+          "matched AST-2 introductory engineering row; current SBSE transfer planning only keeps it if it unlocks a current SBSE source-backed course.",
+      },
+    ],
+    [
+      "ENGR 106",
+      {
+        uwEquivalent: "none",
+        oldBseOnly: true,
+        reason:
+          "matched AST-2 introductory engineering row; current SBSE transfer planning only keeps it if it unlocks a current SBSE source-backed course.",
+      },
+    ],
+];
+
+const SBSE_STALE_OR_OLD_COURSE_AUDIT_METADATA = new Map<
+  string,
+  SbseStaleCourseAuditMetadata
+>(
+  SBSE_STALE_OR_OLD_COURSE_AUDIT_METADATA_ENTRIES.map(([courseCode, metadata]) => [
+    normalizeCourseCode(courseCode),
+    metadata,
+  ])
+);
+
+function isCurrentSbsePlan(
+  plan: TransferPlannerMajorPlan | null | undefined
+): plan is TransferPlannerMajorPlan {
+  return plan?.id === UW_SEATTLE_SBSE_PLAN_ID;
+}
+
+function isCurrentSbseTrueOptionGroupId(value: string | null | undefined) {
+  return CURRENT_SBSE_TRUE_OPTION_GROUP_PATTERN.test(String(value ?? ""));
+}
+
+function isCurrentSbseTrueOptionRequirementGroup(
+  group: TransferPlannerChecklistItem["requirementGroup"] | null | undefined
+) {
+  if (!group) {
+    return false;
+  }
+
+  return isCurrentSbseTrueOptionGroupId(
+    `${group.id} ${group.label} ${group.category} ${group.subcategory ?? ""}`
+  );
+}
+
+function isCurrentSbseTrueOptionSuggestedGroup(
+  group: SuggestedQuarterCourseOptionGroup | null | undefined
+) {
+  if (!group) {
+    return false;
+  }
+
+  return isCurrentSbseTrueOptionGroupId(`${group.id} ${group.title}`);
+}
+
+function isCurrentSbseKnownRequirementGroup(
+  group: TransferPlannerChecklistItem["requirementGroup"] | null | undefined
+) {
+  if (!group) {
+    return false;
+  }
+
+  if (isCurrentSbseTrueOptionRequirementGroup(group)) {
+    return true;
+  }
+
+  return (
+    group.id.startsWith(`${UW_SEATTLE_SBSE_PLAN_ID}:requirement-group:sbse-`) ||
+    /\bsbse_/i.test(`${group.category} ${group.subcategory ?? ""}`)
+  );
+}
+
+function getCurrentSbseRequiredCourseCodeSet(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  const courseCodes = new Set<string>();
+  if (!isCurrentSbsePlan(plan)) {
+    return courseCodes;
+  }
+
+  for (const courseCode of CURRENT_SBSE_SOURCE_BACKED_GRC_COURSE_CODES) {
+    courseCodes.add(courseCode);
+  }
+
+  for (const item of getTransferPlannerPlanChecklistItems(plan)) {
+    const group = item.requirementGroup;
+    if (
+      !isCurrentSbseKnownRequirementGroup(group) ||
+      isCurrentSbseTrueOptionRequirementGroup(group)
+    ) {
+      continue;
+    }
+
+    for (const label of [
+      ...(item.grcCourses ?? []),
+      ...((group?.options ?? []).flatMap((option) => getRequirementOptionCourseLabels(option))),
+    ]) {
+      for (const courseCode of extractCourseCodes(label)) {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        if (normalizedCourseCode) {
+          courseCodes.add(normalizedCourseCode);
+        }
+      }
+    }
+  }
+
+  return courseCodes;
+}
+
+function getCurrentSbseSelectedTrueOptionCourseCodeSet(input: {
+  plan: TransferPlannerMajorPlan | null | undefined;
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+}) {
+  const courseCodes = new Set<string>();
+  const plan = input.plan;
+  if (!isCurrentSbsePlan(plan)) {
+    return courseCodes;
+  }
+
+  for (const item of getTransferPlannerPlanChecklistItems(plan)) {
+    const group = item.requirementGroup;
+    if (!isCurrentSbseTrueOptionRequirementGroup(group)) {
+      continue;
+    }
+
+    const selectedIds = new Set(
+      getPlannerSelectedRequirementOptionIds(item, input.selectedRequirementOptionIdsByGroup)
+    );
+    if (!selectedIds.size) {
+      continue;
+    }
+
+    for (const entry of getSelectedRequirementOptionsForPlanner(
+      item,
+      [...selectedIds]
+    )) {
+      for (const label of getRequirementOptionCourseLabels(entry.option)) {
+        for (const courseCode of extractCourseCodes(label)) {
+          const normalizedCourseCode = normalizeCourseCode(courseCode);
+          if (normalizedCourseCode) {
+            courseCodes.add(normalizedCourseCode);
+          }
+        }
+      }
+    }
+  }
+
+  return courseCodes;
+}
+
+function getSbseStaleOrOldCourseMetadata(courseCodes: string[]) {
+  for (const courseCode of courseCodes) {
+    const metadata = SBSE_STALE_OR_OLD_COURSE_AUDIT_METADATA.get(
+      normalizeCourseCode(courseCode)
+    );
+    if (metadata) {
+      return metadata;
+    }
+  }
+
+  return null;
+}
+
+function buildSbseTransferOnlyValidationContext(input: {
+  plan: TransferPlannerMajorPlan | null | undefined;
+  completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+  prerequisiteCourseMap: Map<string, string[][]>;
+}) {
+  const currentRequiredCourseCodes = getCurrentSbseRequiredCourseCodeSet(input.plan);
+  const selectedTrueOptionCourseCodes = getCurrentSbseSelectedTrueOptionCourseCodeSet({
+    plan: input.plan,
+    selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+  });
+  const currentSourceCourseCodes = new Set([
+    ...currentRequiredCourseCodes,
+    ...selectedTrueOptionCourseCodes,
+  ]);
+  const prerequisiteCourseCodes = collectTransitivePrerequisiteCourseCodes(
+    [...currentSourceCourseCodes],
+    input.prerequisiteCourseMap
+  );
+  const completedCourseCodes = new Set(
+    (input.completedCourses ?? [])
+      .map((course) => normalizeCourseCode(course.code))
+      .filter(Boolean)
+  );
+
+  return {
+    currentRequiredCourseCodes,
+    selectedTrueOptionCourseCodes,
+    currentSourceCourseCodes,
+    prerequisiteCourseCodes,
+    completedCourseCodes,
+  };
+}
+
+function getSbseCourseUwEquivalentLabel(input: {
+  course: SuggestedQuarterCourse;
+  courseCodes: string[];
+  plan: TransferPlannerMajorPlan | null | undefined;
+  staleOrOldMetadata: SbseStaleCourseAuditMetadata | null;
+}) {
+  if (input.staleOrOldMetadata?.uwEquivalent) {
+    return input.staleOrOldMetadata.uwEquivalent;
+  }
+
+  if (isCurrentSbseTrueOptionSuggestedGroup(input.course.optionGroup)) {
+    return "current SBSE option group";
+  }
+
+  const equivalentCourseCodes = sortCourseCodes(
+    input.courseCodes.flatMap((courseCode) => {
+      if (hasConcreteGrcCourseCode(courseCode)) {
+        return buildBestSingleCourseUwEquivalentCourseCodes(
+          courseCode,
+          input.plan?.campusId
+        );
+      }
+
+      return [normalizeCourseCode(courseCode)];
+    })
+  );
+
+  return equivalentCourseCodes.length ? equivalentCourseCodes.join(", ") : "none";
+}
+
+function classifySbseTransferOnlyCourse(input: {
+  course: SuggestedQuarterCourse;
+  plan: TransferPlannerMajorPlan | null | undefined;
+  validationContext: ReturnType<typeof buildSbseTransferOnlyValidationContext>;
+}) {
+  const courseCodes = getSuggestedQuarterCourseSatisfyingCourseCodes(input.course)
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean);
+  const staleOrOldMetadata = getSbseStaleOrOldCourseMetadata(courseCodes);
+  const isCompletedTranscriptCourse =
+    input.course.status === "completed" ||
+    courseCodes.some((courseCode) =>
+      input.validationContext.completedCourseCodes.has(courseCode)
+    );
+  const isCurrentRequiredCourse =
+    courseCodes.length > 0 &&
+    courseCodes.some((courseCode) =>
+      input.validationContext.currentRequiredCourseCodes.has(courseCode)
+    );
+  const isTrueOptionGroup = isCurrentSbseTrueOptionSuggestedGroup(input.course.optionGroup);
+  const isCurrentSelectedTrueOption =
+    isTrueOptionGroup &&
+    (
+      input.course.optionGroup?.isSelectionPrompt === true ||
+      !courseCodes.length ||
+      courseCodes.some((courseCode) =>
+        input.validationContext.selectedTrueOptionCourseCodes.has(courseCode)
+      )
+    );
+  const isPrerequisiteForCurrentSource =
+    courseCodes.length > 0 &&
+    !isCurrentRequiredCourse &&
+    !isCurrentSelectedTrueOption &&
+    courseCodes.some((courseCode) =>
+      input.validationContext.prerequisiteCourseCodes.has(courseCode)
+    );
+  const currentSbseSourceBacked =
+    isCurrentRequiredCourse || isCurrentSelectedTrueOption;
+  const oldBseOnly = Boolean(
+    staleOrOldMetadata?.oldBseOnly &&
+      !currentSbseSourceBacked &&
+      !isPrerequisiteForCurrentSource
+  );
+  const matchedTrackOnly = Boolean(
+    input.course.sourceKind === "official-grc-track" &&
+      !currentSbseSourceBacked &&
+      !isPrerequisiteForCurrentSource
+  );
+  const staleAlternativeSourceRow = Boolean(
+    staleOrOldMetadata?.staleAlternativeSourceRow &&
+      !currentSbseSourceBacked &&
+      !isPrerequisiteForCurrentSource
+  );
+  const transferOnlyShouldShow =
+    isCompletedTranscriptCourse ||
+    currentSbseSourceBacked ||
+    isPrerequisiteForCurrentSource;
+  const creditRange = getSuggestedQuarterCourseCreditRange(input.course);
+  const creditAmount = creditRange.creditMax || creditRange.creditMin || 0;
+
+  let classification: SbseTransferOnlyCourseClassification =
+    "hidden/unmapped UW-only";
+  let reason = "hidden/unmapped UW-only row; transfer-only mode should not display it.";
+
+  if (isCompletedTranscriptCourse) {
+    classification = "completed transcript course";
+    reason = "completed transcript course; completed courses remain visible for context.";
+  } else if (isCurrentRequiredCourse) {
+    classification = "current SBSE source-backed requirement";
+    reason = "current SBSE source-backed requirement from the SBSE requirements page.";
+  } else if (isCurrentSelectedTrueOption) {
+    classification = "current SBSE true option, selected/defaulted";
+    reason =
+      input.course.optionGroup?.isSelectionPrompt === true
+        ? "current SBSE true option group prompt; visible and editable until the student chooses an accepted option."
+        : "selected/defaulted course from a current SBSE true option group.";
+  } else if (isPrerequisiteForCurrentSource) {
+    classification = "prerequisite for a current SBSE source-backed course";
+    reason =
+      "local prerequisite for a visible current SBSE source-backed course.";
+  } else if (staleAlternativeSourceRow) {
+    classification = "stale alternative-source row";
+    reason = staleOrOldMetadata?.reason ?? "stale alternative-source row.";
+  } else if (oldBseOnly) {
+    classification = "old-BSE-only";
+    reason = staleOrOldMetadata?.reason ?? "old-BSE-only row.";
+  } else if (matchedTrackOnly) {
+    classification = "matched-track-only";
+    reason =
+      "matched-track-only course from the closest Green River associate path; not a current SBSE source-backed transfer requirement.";
+  }
+
+  const uwEquivalent = getSbseCourseUwEquivalentLabel({
+    course: input.course,
+    courseCodes,
+    plan: input.plan,
+    staleOrOldMetadata,
+  });
+  const courseLabel = courseCodes.length ? courseCodes.join(", ") : input.course.label;
+
+  return {
+    course: courseLabel,
+    uwEquivalent,
+    currentSbseSourceBacked,
+    oldBseOnly,
+    matchedTrackOnly,
+    prerequisiteForCurrentSource: isPrerequisiteForCurrentSource,
+    transferOnlyShouldShow,
+    reason,
+    classification,
+    courseCodes,
+    creditAmount,
+    copyOnlyDebugText: [
+      "[copy-only current-vs-old-source audit]",
+      `Course: ${courseLabel}`,
+      `UW equivalent: ${uwEquivalent}`,
+      `Current SBSE source-backed: ${currentSbseSourceBacked ? "yes" : "no"}`,
+      `Old BSE-only: ${oldBseOnly ? "yes" : "no"}`,
+      `Matched-track-only: ${matchedTrackOnly ? "yes" : "no"}`,
+      `Prerequisite-for-current-source: ${isPrerequisiteForCurrentSource ? "yes" : "no"}`,
+      `Transfer-only should show: ${transferOnlyShouldShow ? "yes" : "no"}`,
+      `Reason: ${classification}; ${reason}`,
+    ].join(" "),
+  } satisfies SbseTransferOnlyCourseValidation;
+}
+
+function filterSbseTransferOnlyCurrentSourceCourses(input: {
+  plan: TransferPlannerMajorPlan | null | undefined;
+  transferOnlyMode: boolean;
+  courses: PendingSuggestedCourse[];
+  completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+  prerequisiteCourseMap: Map<string, string[][]>;
+}) {
+  if (!isCurrentSbsePlan(input.plan) || !input.transferOnlyMode) {
+    return input.courses;
+  }
+
+  const validationContext = buildSbseTransferOnlyValidationContext({
+    plan: input.plan,
+    completedCourses: input.completedCourses,
+    selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+    prerequisiteCourseMap: input.prerequisiteCourseMap,
+  });
+
+  return input.courses.filter(
+    (course) =>
+      classifySbseTransferOnlyCourse({
+        course,
+        plan: input.plan,
+        validationContext,
+      }).transferOnlyShouldShow
   );
 }
 
@@ -13061,6 +13672,366 @@ export function auditOptionGroupSatisfaction(input: {
   }
 
   return rows;
+}
+
+const INVALID_SCHEDULED_OPTION_AUDIT_RULES: Array<{
+  planId: string;
+  requirementPattern: RegExp;
+  grcCourseCodes: string[];
+  uwCourseCodes: string[];
+  staleSourceReason: string;
+}> = [
+  {
+    planId: "uw-seattle-sustainable-bioresource-systems-engineering",
+    requirementPattern: /Business,\s*Policy,\s*and\s*Economics/i,
+    grcCourseCodes: ["ACCT& 201", "ACCT& 202", "ACCT& 203"],
+    uwCourseCodes: ["ACCTG 215", "ACCTG 225"],
+    staleSourceReason:
+      "The accounting sequence belongs to a stale broad SBSE business alternative, not the current source-backed Business, Policy, and Economics elective list.",
+  },
+];
+
+function getInvalidScheduledOptionAuditRuleMatches(input: {
+  planId: string;
+  requirement: string;
+}) {
+  return INVALID_SCHEDULED_OPTION_AUDIT_RULES.filter(
+    (rule) => rule.planId === input.planId && rule.requirementPattern.test(input.requirement)
+  ).map((rule) => ({
+    ...rule,
+    grcCourseCodes: rule.grcCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)),
+    uwCourseCodes: rule.uwCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)),
+  }));
+}
+
+export function auditInvalidScheduledOptions(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+}) {
+  if (!input.plan) {
+    return [] as InvalidScheduledOptionAuditEntry[];
+  }
+
+  const scheduledCourses = getScheduledPlannerCourses(input.suggestedPlan);
+  const rows: InvalidScheduledOptionAuditEntry[] = [];
+  const seenRows = new Set<string>();
+
+  for (const item of getTransferPlannerPlanChecklistItems(input.plan)) {
+    const group = item.requirementGroup;
+    if (!group?.options.length) {
+      continue;
+    }
+
+    const requirement = group.label || item.title;
+    const ruleMatches = getInvalidScheduledOptionAuditRuleMatches({
+      planId: input.plan.id,
+      requirement,
+    });
+    if (!ruleMatches.length) {
+      continue;
+    }
+
+    const acceptedGrcCourseCodes = new Set(getRequirementGroupGrcOptionCourseCodes(group));
+    const acceptedUwCourseCodes = getRequirementGroupAcceptedUwCourseCodeSet(group);
+
+    for (const course of scheduledCourses) {
+      const scheduledCourseCodes = getSuggestedQuarterCourseSatisfyingCourseCodes(course)
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean);
+      const guidanceCourseCodes = extractCourseCodes(course.guidanceSummary ?? "")
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean);
+      const matchingRule = ruleMatches.find((rule) => {
+        const grcCodes = new Set(rule.grcCourseCodes);
+        const uwCodes = new Set(rule.uwCourseCodes);
+        return (
+          scheduledCourseCodes.some((courseCode) => grcCodes.has(courseCode)) ||
+          guidanceCourseCodes.some((courseCode) => uwCodes.has(courseCode))
+        );
+      });
+      if (!matchingRule) {
+        continue;
+      }
+
+      const scheduledCourse =
+        sortCourseCodes(
+          scheduledCourseCodes.filter((courseCode) =>
+            matchingRule.grcCourseCodes.includes(courseCode)
+          )
+        )[0] ??
+        extractCourseCodes(course.label)[0] ??
+        course.label;
+      const uwEquivalent =
+        sortCourseCodes(
+          guidanceCourseCodes.filter((courseCode) =>
+            matchingRule.uwCourseCodes.includes(courseCode)
+          )
+        )[0] ??
+        matchingRule.uwCourseCodes[0] ??
+        "unknown";
+      const isAcceptedByCurrentSource =
+        scheduledCourseCodes.some((courseCode) => acceptedGrcCourseCodes.has(courseCode)) ||
+        guidanceCourseCodes.some((courseCode) => acceptedUwCourseCodes.has(courseCode));
+      const reason = isAcceptedByCurrentSource
+        ? "Scheduled course is accepted by the current source-backed option list."
+        : matchingRule.staleSourceReason;
+      const rowKey = `${group.id}:${scheduledCourse}:${uwEquivalent}`;
+      if (seenRows.has(rowKey)) {
+        continue;
+      }
+      seenRows.add(rowKey);
+
+      rows.push({
+        requirement,
+        scheduledCourse,
+        uwEquivalent,
+        isAcceptedByCurrentSource,
+        reason,
+        copyOnlyDebugText: [
+          "[copy-only invalid scheduled option audit]",
+          `Requirement: ${requirement}`,
+          `Scheduled course: ${scheduledCourse}`,
+          `UW equivalent: ${uwEquivalent}`,
+          `Is accepted by current source: ${isAcceptedByCurrentSource ? "yes" : "no"}`,
+          `Reason: ${reason}`,
+        ].join(" "),
+      });
+    }
+  }
+
+  return rows;
+}
+
+function buildSbseCurrentVsOldSourceAuditRows(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+  completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+}) {
+  if (!isCurrentSbsePlan(input.plan)) {
+    return [] as Array<{
+      course: SuggestedQuarterCourse;
+      validation: SbseTransferOnlyCourseValidation;
+    }>;
+  }
+
+  const scheduledCourses = input.suggestedPlan.flatMap((quarter) => quarter.courses);
+  const visibleCourseCodes = scheduledCourses
+    .flatMap((course) => getSuggestedQuarterCourseSatisfyingCourseCodes(course))
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter(Boolean);
+  const currentRequiredCourseCodes = [
+    ...getCurrentSbseRequiredCourseCodeSet(input.plan),
+    ...getCurrentSbseSelectedTrueOptionCourseCodeSet({
+      plan: input.plan,
+      selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+    }),
+  ];
+  const completedCourseCodes = (input.completedCourses ?? [])
+    .map((course) => normalizeCourseCode(course.code))
+    .filter(Boolean);
+  const staleOrOldCourseCodes = [...SBSE_STALE_OR_OLD_COURSE_AUDIT_METADATA.keys()];
+  const graph = buildTransferPlannerCoursePlanningGraph({
+    plan: input.plan,
+    actionableCourseCodes: new Set([
+      ...visibleCourseCodes,
+      ...currentRequiredCourseCodes,
+      ...completedCourseCodes,
+      ...staleOrOldCourseCodes,
+    ]),
+  });
+  const validationContext = buildSbseTransferOnlyValidationContext({
+    plan: input.plan,
+    completedCourses: input.completedCourses,
+    selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+    prerequisiteCourseMap: getCoursePlanningGraphRequirementMap(
+      graph,
+      "prerequisiteCourseSetsByCourseCode"
+    ),
+  });
+
+  return scheduledCourses.map((course) => ({
+    course,
+    validation: classifySbseTransferOnlyCourse({
+      course,
+      plan: input.plan,
+      validationContext,
+    }),
+  }));
+}
+
+export function auditSbseCurrentVsOldSource(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+  completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+}) {
+  return buildSbseCurrentVsOldSourceAuditRows(input).map(
+    (row) =>
+      ({
+        course: row.validation.course,
+        uwEquivalent: row.validation.uwEquivalent,
+        currentSbseSourceBacked: row.validation.currentSbseSourceBacked,
+        oldBseOnly: row.validation.oldBseOnly,
+        matchedTrackOnly: row.validation.matchedTrackOnly,
+        prerequisiteForCurrentSource: row.validation.prerequisiteForCurrentSource,
+        transferOnlyShouldShow: row.validation.transferOnlyShouldShow,
+        reason: row.validation.reason,
+        copyOnlyDebugText: row.validation.copyOnlyDebugText,
+      }) satisfies SbseCurrentVsOldSourceAuditEntry
+  );
+}
+
+function getSbseScheduledRowSource(
+  validation: SbseTransferOnlyCourseValidation
+): SbseScheduledRowSourceAuditEntry["source"] {
+  if (validation.classification === "completed transcript course") {
+    return "transcript";
+  }
+
+  if (
+    validation.classification === "current SBSE source-backed requirement" ||
+    validation.classification === "current SBSE true option, selected/defaulted"
+  ) {
+    return "current-sbse";
+  }
+
+  if (validation.classification === "prerequisite for a current SBSE source-backed course") {
+    return "prerequisite";
+  }
+
+  if (validation.classification === "matched-track-only") {
+    return "matched-track";
+  }
+
+  if (validation.classification === "old-BSE-only") {
+    return "old-bse";
+  }
+
+  return "stale-supplemental";
+}
+
+export function auditSbseScheduledRowSources(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+  completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+}) {
+  return buildSbseCurrentVsOldSourceAuditRows(input).map((row) => {
+    const source = getSbseScheduledRowSource(row.validation);
+    const reason = `${row.validation.classification}; ${row.validation.reason}`;
+
+    return {
+      course: row.validation.course,
+      uwEquivalent: row.validation.uwEquivalent,
+      source,
+      reason,
+      shouldSchedule: row.validation.transferOnlyShouldShow,
+      copyOnlyDebugText: [
+        "[copy-only SBSE scheduled row source audit]",
+        `Course: ${row.validation.course}`,
+        `UW equivalent: ${row.validation.uwEquivalent}`,
+        `Source: ${source}`,
+        `Reason: ${reason}`,
+        `Should schedule: ${row.validation.transferOnlyShouldShow ? "yes" : "no"}`,
+      ].join(" "),
+    } satisfies SbseScheduledRowSourceAuditEntry;
+  });
+}
+
+function formatSbseAuditCreditValue(value: number) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(1);
+}
+
+function formatSbseDisplayedRemainingCredits(range: SuggestedQuarterRemainingCreditRange) {
+  if (range.minRemainingCredits === range.maxRemainingCredits) {
+    return formatSbseAuditCreditValue(range.maxRemainingCredits);
+  }
+
+  return `${formatSbseAuditCreditValue(range.minRemainingCredits)}-${formatSbseAuditCreditValue(
+    range.maxRemainingCredits
+  )}`;
+}
+
+export function auditSbseCreditTotals(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+  completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+  track?: TransferPlannerTrack | null;
+}) {
+  if (!isCurrentSbsePlan(input.plan)) {
+    return [] as SbseCreditAuditEntry[];
+  }
+
+  const auditRows = buildSbseCurrentVsOldSourceAuditRows(input);
+  let currentSbseSourceBackedCredits = 0;
+  let trueOptionSelectedCredits = 0;
+  let localPrerequisiteCredits = 0;
+  let oldBseMatchedTrackFilteredCredits = 0;
+
+  for (const row of auditRows) {
+    if (row.course.status === "completed") {
+      continue;
+    }
+
+    if (!row.validation.transferOnlyShouldShow) {
+      oldBseMatchedTrackFilteredCredits += row.validation.creditAmount;
+      continue;
+    }
+
+    if (row.validation.classification === "current SBSE source-backed requirement") {
+      currentSbseSourceBackedCredits += row.validation.creditAmount;
+      continue;
+    }
+
+    if (
+      row.validation.classification === "current SBSE true option, selected/defaulted" &&
+      row.course.optionGroup?.isSelectionPrompt !== true
+    ) {
+      trueOptionSelectedCredits += row.validation.creditAmount;
+      continue;
+    }
+
+    if (
+      row.validation.classification ===
+      "prerequisite for a current SBSE source-backed course"
+    ) {
+      localPrerequisiteCredits += row.validation.creditAmount;
+    }
+  }
+
+  const displayedRemainingCredits = formatSbseDisplayedRemainingCredits(
+    buildSuggestedQuarterRemainingCreditRange({
+      quarters: input.suggestedPlan,
+      track: input.track ?? null,
+      creditBucketMode: "uw-transfer",
+    })
+  );
+
+  return [
+    {
+      currentSbseSourceBackedCredits,
+      trueOptionSelectedCredits,
+      localPrerequisiteCredits,
+      oldBseMatchedTrackFilteredCredits,
+      displayedRemainingCredits,
+      copyOnlyDebugText: [
+        "[copy-only SBSE credit audit]",
+        `Current SBSE source-backed credits: ${formatSbseAuditCreditValue(
+          currentSbseSourceBackedCredits
+        )}`,
+        `True option selected credits: ${formatSbseAuditCreditValue(
+          trueOptionSelectedCredits
+        )}`,
+        `Local prerequisite credits: ${formatSbseAuditCreditValue(localPrerequisiteCredits)}`,
+        `Old-BSE/matched-track filtered credits: ${formatSbseAuditCreditValue(
+          oldBseMatchedTrackFilteredCredits
+        )}`,
+        `Displayed remaining credits: ${displayedRemainingCredits}`,
+      ].join(" "),
+    },
+  ] satisfies SbseCreditAuditEntry[];
 }
 
 function classifyRequirementForAudit(

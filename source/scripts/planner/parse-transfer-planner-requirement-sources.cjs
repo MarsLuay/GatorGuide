@@ -276,6 +276,8 @@ const NON_STUDENT_FACING_REQUIREMENT_HINT_PATTERN =
   /\b(suggested general education|not required for transferring|highly recommended courses?|other recommended courses?|approved list|study abroad|capstone courses?|course evaluations?|course lists?|policy(?:\s*&\s*|\s+and\s+)procedures|graduate school|graduate programs?)\b/i;
 const LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
+const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
+  /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
 const GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN =
   /\b(graduate|ph\.?\s*d\.?|doctor(?:al|ate)?|m\.?\s*a\.?|master(?:'s)?)\b|\/(?:ma|phd|graduate)(?:[-/]|$)/i;
 const TRACK_CATALOG_SUPPLEMENTAL_SOURCE_PATTERN =
@@ -545,6 +547,10 @@ function selectRequirementSourceAdapter(entry) {
 }
 
 function getSourceRoleScore(entry) {
+  if (classifyRequirementSourceRole(entry) === "official-catalog") {
+    return 6;
+  }
+
   switch (entry.role) {
     case "degree-requirements":
       return 6;
@@ -553,12 +559,69 @@ function getSourceRoleScore(entry) {
     case "worksheet":
       return 4;
     case "catalog":
-      return 3;
+      return 6;
     case "overview":
       return 2;
     default:
       return 1;
   }
+}
+
+function classifyRequirementSourceRole(entry) {
+  const searchable = normalizeMatcherText(
+    [
+      entry?.url,
+      entry?.label,
+      entry?.sourceLabel,
+      entry?.ownerTitle,
+      entry?.role,
+      entry?.parserType,
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+
+  if (!searchable) {
+    return "ignored";
+  }
+
+  if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(String(entry?.url ?? ""))) {
+    return "official-catalog";
+  }
+
+  if (/\b(?:archive|archived|retired|old requirements?|prior to|pre-20\d{2})\b/.test(searchable)) {
+    return "old-archival";
+  }
+
+  if (/\bequivalenc(?:y|ies)\b|equivalency guide/.test(searchable)) {
+    return "transfer-equivalency";
+  }
+
+  if (/\bgreen river\b|\bgrc\b|\bassociate\b|\bast-?2\b|\bmrp\b/.test(searchable)) {
+    return "matched-grc-track";
+  }
+
+  if (/\bsample (?:schedule|plan)|\bstudy plan\b|\bplan of study\b/.test(searchable)) {
+    return "sample-schedule";
+  }
+
+  if (/\bcurriculum(?: map)?\b|\bdegree map\b|\bfour-year plan\b/.test(searchable)) {
+    return "curriculum-map";
+  }
+
+  if (/\badmissions?\b|\bapply\b|\bapplication\b|\bpreparation\b|\bprerequisites?\b/.test(searchable)) {
+    return "admissions-preparation";
+  }
+
+  if (/\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bchecklist\b/.test(searchable)) {
+    return "primary-degree-requirements";
+  }
+
+  if (/\brequirements?\b|\bundergraduate\b|\bmajor\b|\bprogram\b/.test(searchable)) {
+    return "department-requirements";
+  }
+
+  return "ignored";
 }
 
 function getParserTypeScore(parserType) {
@@ -2440,6 +2503,192 @@ function scopePdfPageBlocks(entry, pageBlocks) {
   return pageBlocks.slice(startIndex, endIndex + 1);
 }
 
+function escapeRegex(value) {
+  return String(value ?? "").replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function getRequestedUrlAnchor(url) {
+  try {
+    const hash = new URL(String(url ?? "")).hash;
+    if (!hash) {
+      return null;
+    }
+    return decodeURIComponent(hash.slice(1)).trim() || null;
+  } catch {
+    const match = String(url ?? "").match(/#(.+)$/);
+    return match ? decodeURIComponent(match[1]).trim() || null : null;
+  }
+}
+
+function findCatalogAnchorTag(html, anchor) {
+  if (!anchor) {
+    return null;
+  }
+
+  const escapedAnchor = escapeRegex(anchor);
+  const patterns = [
+    new RegExp(`<[^>]+\\b(?:id|name)=(["'])${escapedAnchor}\\1[^>]*>`, "i"),
+    new RegExp(`<[^>]+\\bdata-expand=(["'])[^"']*${escapedAnchor}[^"']*\\1[^>]*>`, "i"),
+  ];
+
+  for (const pattern of patterns) {
+    const match = pattern.exec(html);
+    if (!match) {
+      continue;
+    }
+    return {
+      index: match.index,
+      endIndex: match.index + match[0].length,
+      tagHtml: match[0],
+      heading: stripHtml(match[0]),
+    };
+  }
+
+  return null;
+}
+
+function findNextCatalogPeerBoundary(html, searchStartIndex) {
+  const boundaryPattern =
+    /<(?:(?:h[23]\b[^>]*\bid=(["'])program-[^"']+\1[^>]*>[\s\S]*?<\/h[23]>)|(?:div\b[^>]*\bclass=(["'])[^"']*\bexpandableGroup\b[^"']*\2[^>]*\bdata-expand=(["'])program-[^"']+\3[^>]*>))/gi;
+  boundaryPattern.lastIndex = Math.max(0, searchStartIndex);
+  const match = boundaryPattern.exec(html);
+
+  if (!match) {
+    return {
+      index: html.length,
+      label: "end of document",
+    };
+  }
+
+  return {
+    index: match.index,
+    label: stripHtml(match[0]) || normalizeWhitespace(match[0]).slice(0, 120),
+  };
+}
+
+function collectIgnoredCatalogNeighboringSections(html, searchStartIndex) {
+  const ignored = [];
+  const boundaryPattern =
+    /<h[23]\b[^>]*\bid=(["'])program-[^"']+\1[^>]*>([\s\S]*?)<\/h[23]>/gi;
+  boundaryPattern.lastIndex = Math.max(0, searchStartIndex);
+
+  for (const match of html.matchAll(boundaryPattern)) {
+    if (match.index < searchStartIndex) {
+      continue;
+    }
+    const heading = stripHtml(match[2]);
+    if (heading) {
+      ignored.push(heading);
+    }
+    if (ignored.length >= 6) {
+      break;
+    }
+  }
+
+  return ignored;
+}
+
+function catalogSectionMatchesSelectedMajor(entry, sectionHeading, sectionLines) {
+  const scopedText = normalizeMatcherText(
+    [sectionHeading, ...(sectionLines ?? []).slice(0, 20)].filter(Boolean).join(" ")
+  );
+  const exactTitle = normalizeMatcherText(entry.ownerTitle ?? "");
+  if (exactTitle && scopedText.includes(exactTitle)) {
+    return true;
+  }
+
+  const titleTokens = getTitleScopeTokens(entry);
+  if (!titleTokens.length) {
+    return false;
+  }
+
+  const tokenMatches = titleTokens.filter((token) => scopedText.includes(token)).length;
+  return tokenMatches >= Math.max(1, Math.min(2, titleTokens.length));
+}
+
+function buildSourceSectionAudit(input) {
+  return {
+    line: [
+      "[source section audit]",
+      `Major id: ${input.majorId ?? "unknown"}`,
+      `Source URL: ${input.sourceUrl ?? "n/a"}`,
+      `Source role: ${input.sourceRole ?? "ignored"}`,
+      `Requested anchor: ${input.requestedAnchor ?? "none"}`,
+      `Anchor found: ${input.anchorFound ? "yes" : "no"}`,
+      `Section heading: ${input.sectionHeading ?? "n/a"}`,
+      `Section matched selected major: ${input.sectionMatchedSelectedMajor ? "yes" : "no"}`,
+      `Stop boundary: ${input.stopBoundary ?? "n/a"}`,
+      `Ignored neighboring sections: ${
+        (input.ignoredNeighboringSections ?? []).length
+          ? input.ignoredNeighboringSections.join(" | ")
+          : "none"
+      }`,
+    ].join(" "),
+    ...input,
+  };
+}
+
+function scopeCatalogHtmlByAnchor(entry, html) {
+  if (!isLegacyStudentCatalogSource(entry)) {
+    return null;
+  }
+
+  const sourceRole = classifyRequirementSourceRole(entry);
+  const requestedAnchor = getRequestedUrlAnchor(entry.url);
+  if (!requestedAnchor) {
+    return null;
+  }
+
+  const anchorMatch = findCatalogAnchorTag(html, requestedAnchor);
+  if (!anchorMatch) {
+    return {
+      scoped: false,
+      sectionAudit: buildSourceSectionAudit({
+        majorId: entry.planId,
+        sourceUrl: entry.url,
+        sourceRole,
+        requestedAnchor,
+        anchorFound: false,
+        sectionHeading: null,
+        sectionMatchedSelectedMajor: false,
+        stopBoundary: "fallback to scored HTML scope",
+        ignoredNeighboringSections: [],
+      }),
+    };
+  }
+
+  const stopBoundary = findNextCatalogPeerBoundary(html, anchorMatch.endIndex);
+  const sectionHtml = html.slice(anchorMatch.index, stopBoundary.index);
+  const sectionLines = buildHtmlLines(sectionHtml);
+  const sectionHeadings = extractHeadings(sectionHtml);
+  const sectionHeading = sectionHeadings[0] || anchorMatch.heading || null;
+  const ignoredNeighboringSections = collectIgnoredCatalogNeighboringSections(
+    html,
+    stopBoundary.index
+  );
+
+  return {
+    scoped: true,
+    lines: sectionLines,
+    headings: sectionHeadings,
+    sectionAudit: buildSourceSectionAudit({
+      majorId: entry.planId,
+      sourceUrl: entry.url,
+      sourceRole,
+      requestedAnchor,
+      anchorFound: true,
+      sectionHeading,
+      sectionMatchedSelectedMajor: catalogSectionMatchesSelectedMajor(
+        entry,
+        sectionHeading,
+        sectionLines
+      ),
+      stopBoundary: stopBoundary.label,
+      ignoredNeighboringSections,
+    }),
+  };
+}
+
 function scopeHtmlLines(entry, title, headings, lines) {
   const titleTokens = getTitleScopeTokens(entry);
   if (!titleTokens.length || lines.length <= 20) {
@@ -3503,7 +3752,7 @@ function buildParseConfidence(parsedCourseCodes, requirementCueLines, parserType
   return "low";
 }
 
-function buildHtmlParsedResult(entry, title, headings, lines) {
+function buildHtmlParsedResult(entry, title, headings, lines, options = {}) {
   const requirementCueLines = extractRequirementCueLines(lines);
   const chooseStatements = extractChooseStatements(lines);
   const pathwayLabels = extractPathwayLabels(entry, lines, headings);
@@ -3525,6 +3774,8 @@ function buildHtmlParsedResult(entry, title, headings, lines) {
     resolvedSourceUrl: entry.url,
     resolvedSourceLabel: entry.label,
     resolvedParserType: entry.parserType,
+    sourceRole: options.sourceRole ?? classifyRequirementSourceRole(entry),
+    sourceSectionAudit: options.sourceSectionAudit ?? null,
   };
 }
 
@@ -3606,6 +3857,9 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
     ["html-degree-page", "html-curriculum-page"].includes(entry.parserType)
       ? buildFocusedScopedHtmlOverflowParsed(fullParsed, scopedParsed)
       : scopedParsed;
+  if (scopedParsed.sourceSectionAudit?.anchorFound) {
+    return enrichedScopedParsed;
+  }
   const scopedLowerDivisionCount = getParsedLowerDivisionCourseCount(enrichedScopedParsed);
   const fullHasRequirementAnchors = (fullParsed.snapshotLines ?? []).some((line) =>
     /^(major admissions requirements|admission requirements|degree requirements|major requirements|curriculum)$/i.test(
@@ -3661,11 +3915,26 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
   }
 
   const { html, title, headings, lines } = await getHtmlSourceArtifacts(entry.url, timeoutMs);
-  const scopedLines = scopeHtmlLines(entry, title, headings, lines);
+  const catalogScope = scopeCatalogHtmlByAnchor(entry, html);
+  const scopedLines =
+    catalogScope?.scoped && catalogScope.lines?.length
+      ? catalogScope.lines
+      : scopeHtmlLines(entry, title, headings, lines);
+  const scopedHeadings =
+    catalogScope?.scoped && catalogScope.headings?.length ? catalogScope.headings : headings;
+  const sourceRole = classifyRequirementSourceRole(entry);
   const htmlParsed = selectPreferredHtmlParsed(
     entry,
-    buildHtmlParsedResult(entry, title, headings, lines),
-    scopedLines === lines ? null : buildHtmlParsedResult(entry, title, headings, scopedLines)
+    buildHtmlParsedResult(entry, title, headings, lines, {
+      sourceRole,
+      sourceSectionAudit: catalogScope?.sectionAudit ?? null,
+    }),
+    scopedLines === lines
+      ? null
+      : buildHtmlParsedResult(entry, title, scopedHeadings, scopedLines, {
+          sourceRole,
+          sourceSectionAudit: catalogScope?.sectionAudit ?? null,
+        })
   );
   const visitedUrls = options.visitedUrls ?? new Set();
   const normalizedEntryUrl = normalizeUrlForComparison(entry.url);
@@ -4831,6 +5100,8 @@ function buildManifestParseSuccess(
     adapterFamily: selectRequirementSourceAdapter(effectiveEntry).family,
     sourceUrl: effectiveSourceUrl,
     sourceLabel: effectiveSourceLabel,
+    sourceRole: parsed.sourceRole ?? classifyRequirementSourceRole(effectiveEntry),
+    sourceSectionAudit: parsed.sourceSectionAudit ?? null,
     resolutionStrategy,
     ok: true,
     extractedTitle: parsed.title,
@@ -4889,6 +5160,8 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
       adapterFamily: primaryAdapter.family,
       sourceUrl: entry.url,
       sourceLabel: entry.label,
+      sourceRole: classifyRequirementSourceRole(entry),
+      sourceSectionAudit: null,
       resolutionStrategy: "cached-snapshot",
       ok: false,
       extractedTitle: null,
@@ -5024,6 +5297,8 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
       adapterFamily: primaryAdapter.family,
       sourceUrl: entry.url,
       sourceLabel: entry.label,
+      sourceRole: classifyRequirementSourceRole(entry),
+      sourceSectionAudit: null,
       resolutionStrategy: "primary-source",
       ok: false,
       extractedTitle: null,
@@ -5246,6 +5521,7 @@ function buildParseReport(owners, options = {}) {
     countsByAdapterFamily: countBy(fullOwners, (owner) => owner.adapterFamily),
     countsByCampus: countBy(fullOwners, (owner) => owner.campusId),
     countsByResolutionStrategy: countBy(fullOwners, (owner) => owner.resolutionStrategy),
+    countsBySourceRole: countBy(fullOwners, (owner) => owner.sourceRole ?? "ignored"),
     withParsedCourseCodesCount: fullOwners.filter((owner) => owner.parsedUwCourseCodes.length > 0).length,
     withSourceOnlyCourseCodesCount: fullOwners.filter(
       (owner) => owner.sourceOnlyUwCourseCodes.length > 0
@@ -5275,6 +5551,9 @@ function buildParseReport(owners, options = {}) {
     ),
     targetPlanId: options.targetPlanId ?? null,
     targetOwnerCount: scopedOwners.length,
+    sourceSectionAuditLines: scopedOwners
+      .map((owner) => owner.sourceSectionAudit?.line ?? null)
+      .filter(Boolean),
     uwMseCourseExtractionAudit: buildUwMseCourseExtractionAudit(mergedOwners),
     owners: mergedOwners,
   };
@@ -5407,6 +5686,8 @@ function writeGeneratedRequirementSourceAdapters(report) {
     adapterFamily: owner.adapterFamily,
     sourceUrl: owner.sourceUrl,
     sourceLabel: owner.sourceLabel,
+    sourceRole: owner.sourceRole,
+    sourceSectionAudit: owner.sourceSectionAudit,
     resolutionStrategy: owner.resolutionStrategy,
     ok: owner.ok,
     parseConfidence: owner.parseConfidence,
@@ -5469,6 +5750,7 @@ function writeGeneratedRequirementSourceAdapters(report) {
     countsByAdapterFamily: countBy(fullOwners, (owner) => owner.adapterFamily),
     countsByCampus: countBy(fullOwners, (owner) => owner.campusId),
     countsByResolutionStrategy: countBy(fullOwners, (owner) => owner.resolutionStrategy),
+    countsBySourceRole: countBy(fullOwners, (owner) => owner.sourceRole ?? "ignored"),
     qualityWarningCount: fullOwners.reduce(
       (count, owner) =>
         count + owner.qualitySignals.filter((signal) => signal.severity === "warning").length,
@@ -5562,6 +5844,12 @@ function buildMarkdownReport(report) {
       .sort(([left], [right]) => left.localeCompare(right))
       .map(([resolutionStrategy, count]) => `- ${resolutionStrategy}: ${count}`),
     "",
+    "## Source Roles",
+    "",
+    ...Object.entries(report.countsBySourceRole ?? {})
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([sourceRole, count]) => `- ${sourceRole}: ${count}`),
+    "",
     "## Parser Quality Signals",
     "",
     ...Object.entries(report.countsByQualitySignalCode)
@@ -5602,6 +5890,14 @@ function buildMarkdownReport(report) {
           `  - ${entry.normalizedCourseCode}: ${(entry.notes ?? []).join(" | ")}`
         );
       }
+    }
+    lines.push("");
+  }
+
+  if ((report.sourceSectionAuditLines ?? []).length) {
+    lines.push("## Source Section Audit", "");
+    for (const auditLine of report.sourceSectionAuditLines) {
+      lines.push(`- ${auditLine}`);
     }
     lines.push("");
   }
@@ -5648,6 +5944,7 @@ function buildMarkdownReport(report) {
           lines.push(`- Primary source: ${owner.primarySourceUrl}`);
         }
         lines.push(`- Parser type: ${owner.parserType}`);
+        lines.push(`- Source role: ${owner.sourceRole ?? "ignored"}`);
         lines.push(`- Parser adapter: ${owner.adapterId}`);
         lines.push(`- Resolution strategy: ${owner.resolutionStrategy}`);
         lines.push(`- Parse confidence: ${owner.parseConfidence}`);
@@ -5663,6 +5960,9 @@ function buildMarkdownReport(report) {
         if (owner.requirementCueLines.length) {
           lines.push(`- Requirement cues: ${owner.requirementCueLines.slice(0, 3).join(" | ")}`);
         }
+        if (owner.sourceSectionAudit?.line) {
+          lines.push(`- ${owner.sourceSectionAudit.line}`);
+        }
         lines.push(`- Snapshot: ${owner.snapshotPath ?? "n/a"}`);
         lines.push("");
       });
@@ -5676,7 +5976,11 @@ function buildMarkdownReport(report) {
       noCourseOwners.slice(0, 50).forEach((owner) => {
         lines.push(`- ${owner.ownerTitle}`);
         lines.push(`  - Source: ${owner.sourceUrl}`);
+        lines.push(`  - Source role: ${owner.sourceRole ?? "ignored"}`);
         lines.push(`  - Parser type: ${owner.parserType}`);
+        if (owner.sourceSectionAudit?.line) {
+          lines.push(`  - ${owner.sourceSectionAudit.line}`);
+        }
         lines.push(`  - Requirement cues found: ${owner.requirementCueLines.length}`);
       });
       lines.push("");
@@ -5688,6 +5992,7 @@ function buildMarkdownReport(report) {
       failedOwners.slice(0, 50).forEach((owner) => {
         lines.push(`- ${owner.ownerTitle}`);
         lines.push(`  - Source: ${owner.sourceUrl}`);
+        lines.push(`  - Source role: ${owner.sourceRole ?? "ignored"}`);
         lines.push(`  - Error: ${owner.error ?? "unknown error"}`);
       });
       lines.push("");
@@ -5754,7 +6059,34 @@ async function main() {
   console.log(`Snapshots: ${SNAPSHOT_DIR}`);
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+function parseHtmlSourceFromArtifactsForTest(entry, html) {
+  const title = extractTitle(html);
+  const headings = extractHeadings(html);
+  const lines = buildHtmlLines(html);
+  const catalogScope = scopeCatalogHtmlByAnchor(entry, html);
+  const scopedLines =
+    catalogScope?.scoped && catalogScope.lines?.length
+      ? catalogScope.lines
+      : scopeHtmlLines(entry, title, headings, lines);
+  const scopedHeadings =
+    catalogScope?.scoped && catalogScope.headings?.length ? catalogScope.headings : headings;
+  return buildHtmlParsedResult(entry, title, scopedHeadings, scopedLines, {
+    sourceRole: classifyRequirementSourceRole(entry),
+    sourceSectionAudit: catalogScope?.sectionAudit ?? null,
+  });
+}
+
+module.exports = {
+  buildHtmlLines,
+  buildParseReport,
+  classifyRequirementSourceRole,
+  parseHtmlSourceFromArtifactsForTest,
+  scopeCatalogHtmlByAnchor,
+};
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
