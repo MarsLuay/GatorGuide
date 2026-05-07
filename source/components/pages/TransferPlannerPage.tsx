@@ -2047,10 +2047,12 @@ function buildSuggestedScheduleCopyOnlyOptionStatusText(input: {
   optionGroup: SuggestedScheduleOptionGroup;
   option: SuggestedScheduleOption;
   isSelected: boolean;
+  displayGroupTitle: string;
 }) {
   return [
     "[copy-only option status]",
-    `Option group: ${input.optionGroup.title}`,
+    `Option group: ${input.displayGroupTitle}`,
+    `Original group title: ${input.optionGroup.title || "none"}`,
     `Option: ${getSuggestedScheduleOptionDisplayLabel(input.option)}`,
     `Is selected option: ${input.isSelected ? "yes" : "no"}`,
     `Option id: ${input.option.id}`,
@@ -2643,6 +2645,7 @@ function SuggestedScheduleOptionsBox({
                             optionGroup,
                             option,
                             isSelected,
+                            displayGroupTitle: optionGroupDisplayTitle,
                           })}
                         </Text>
                       </View>

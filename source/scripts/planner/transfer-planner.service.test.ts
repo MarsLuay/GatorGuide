@@ -6468,6 +6468,9 @@ test("Transfer planner UI exposes copy-only option satisfaction audit rows", () 
   assert.match(serviceSource, /Resolved displayed option ids after cap:/);
   assert.match(serviceSource, /Displayed title:/);
   assert.match(serviceSource, /Displayed credits:/);
+  assert.match(pageSource, /displayGroupTitle: optionGroupDisplayTitle/);
+  assert.match(pageSource, /`Option group: \$\{input\.displayGroupTitle\}`/);
+  assert.match(pageSource, /`Original group title: \$\{input\.optionGroup\.title \|\| "none"\}`/);
   assert.match(serviceSource, /Counted GRC credits:/);
   assert.match(serviceSource, /Component courses:/);
   assert.match(serviceSource, /Displayed as selected:/);
