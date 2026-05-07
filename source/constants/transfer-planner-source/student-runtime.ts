@@ -136,6 +136,20 @@ function unique<T>(values: T[]) {
   return Array.from(new Set(values));
 }
 
+function uniqueBy<T>(values: T[], getKey: (value: T) => string) {
+  const seen = new Set<string>();
+  const result: T[] = [];
+  for (const value of values) {
+    const key = getKey(value);
+    if (seen.has(key)) {
+      continue;
+    }
+    seen.add(key);
+    result.push(value);
+  }
+  return result;
+}
+
 function getPlannerPathwayKey(planId: string, pathwayId?: string | null) {
   return `${planId}::${pathwayId ?? ""}`;
 }
@@ -168,6 +182,182 @@ const UW_SEATTLE_BIOENGINEERING_SOURCE_BACKED_GEN_ED_SECTION = {
   ],
 };
 
+const RUNTIME_CATEGORY_OPTION_DEFINITIONS = [
+  {
+    category: "NSC",
+    sourceCategoryCode: "NSc",
+    longLabel: "Natural Sciences",
+    pattern: /\b(?:N\s*Sc|natural sciences?|natural science)\b/i,
+  },
+  {
+    category: "AH",
+    sourceCategoryCode: "A&H",
+    longLabel: "Arts and Humanities",
+    pattern: /\b(?:A\s*&\s*H|arts?\s+(?:and|&)\s+humanities|humanities|fine arts?)\b/i,
+  },
+  {
+    category: "SSC",
+    sourceCategoryCode: "SSc",
+    longLabel: "Social Sciences",
+    pattern: /\b(?:S\s*Sc|social sciences?)\b/i,
+  },
+  {
+    category: "QSR",
+    sourceCategoryCode: "QSR",
+    longLabel: "Quantitative and Symbolic Reasoning",
+    pattern: /\bQSR\b|\bquantitative and symbolic reasoning\b/i,
+  },
+  {
+    category: "VLPA",
+    sourceCategoryCode: "VLPA",
+    longLabel: "Visual, Literary, and Performing Arts",
+    pattern: /\bVLPA\b|\bvisual,\s*literary,\s*and\s*performing arts\b/i,
+  },
+  {
+    category: "DIV",
+    sourceCategoryCode: "DIV",
+    longLabel: "Diversity",
+    pattern: /\bDIV\b|\bdiversity\b/i,
+  },
+  {
+    category: "NW",
+    sourceCategoryCode: "NW",
+    longLabel: "Natural World",
+    pattern: /\bNW\b|\bnatural world\b/i,
+  },
+  {
+    category: "IANDS",
+    sourceCategoryCode: "I&S",
+    longLabel: "Individuals and Societies",
+    pattern: /\bI\s*&\s*S\b|\bindividuals\s+and\s+societies\b/i,
+  },
+] as const;
+
+function slugifyRuntimeId(value: string) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getRuntimeCategoryOptionDescriptor(text: string | null | undefined) {
+  const normalized = String(text ?? "").replace(/\s+/g, " ").trim();
+  if (!normalized) return null;
+  return (
+    RUNTIME_CATEGORY_OPTION_DEFINITIONS.find((definition) =>
+      definition.pattern.test(normalized)
+    ) ?? null
+  );
+}
+
+function parseRuntimeCategoryOptionCreditAmount(
+  text: string | null | undefined,
+  fallbackCredits: number | null = null
+) {
+  const normalized = String(text ?? "").replace(/\s+/g, " ").trim();
+  const parentheticalCreditMatch = normalized.match(/\(\s*(\d+(?:\.\d+)?)\s*\)/);
+  if (parentheticalCreditMatch) {
+    return Number(parentheticalCreditMatch[1]);
+  }
+
+  const explicitCreditMatch = normalized.match(/\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b/i);
+  if (explicitCreditMatch) {
+    return Number(explicitCreditMatch[1]);
+  }
+
+  return fallbackCredits;
+}
+
+function buildRuntimeCategoryRequirementOption(input: {
+  ownerId: string;
+  groupId: string;
+  sourceText: string;
+  fallbackCredits?: number | null;
+  index?: number;
+}): TransferPlannerRequirementOption | null {
+  const descriptor = getRuntimeCategoryOptionDescriptor(input.sourceText);
+  if (!descriptor) {
+    return null;
+  }
+
+  const credits = parseRuntimeCategoryOptionCreditAmount(
+    input.sourceText,
+    input.fallbackCredits ?? null
+  );
+  if (!Number.isFinite(credits) || !credits || credits <= 0) {
+    return null;
+  }
+
+  const sourceText = String(input.sourceText ?? "").replace(/\s+/g, " ").trim();
+  const title = `${credits} credits of ${descriptor.longLabel} (${descriptor.sourceCategoryCode})`;
+  const optionSlug = slugifyRuntimeId(
+    `category-${descriptor.category}-${credits}-${input.index ?? 1}`
+  );
+
+  return {
+    id: `${input.groupId}:requirement-option:${optionSlug}`,
+    optionKind: "category-option",
+    displayCourseCodes: [],
+    uwCourses: [],
+    equivalentUwCourseCodes: [],
+    credits,
+    creditMin: credits,
+    creditMax: credits,
+    creditText: String(credits),
+    maxCredits: null,
+    title,
+    department: null,
+    category: descriptor.category,
+    sourceHeading: sourceText,
+    sourceCategory: "source-choice",
+    grcMatches: [],
+    categoryOption: {
+      category: descriptor.category,
+      sourceCategoryCode: descriptor.sourceCategoryCode,
+      title,
+      credits,
+      sourceText,
+    },
+    constraints: [],
+    notes: ["Category option; no specific Green River course is invented."],
+    label: title,
+  };
+}
+
+function buildRuntimeCategoryRequirementOptionsFromChoiceLine(input: {
+  ownerId: string;
+  groupId: string;
+  line: string;
+  fallbackCredits?: number | null;
+}) {
+  const normalizedLine = String(input.line ?? "").replace(/\s+/g, " ").trim();
+  if (!/\bor\b|choose|select|one of/i.test(normalizedLine)) {
+    return [] as TransferPlannerRequirementOption[];
+  }
+
+  return uniqueBy(
+    normalizedLine
+      .split(/\bor\b|;|\u2022/gi)
+      .map((segment) => segment.replace(/\s+/g, " ").trim())
+      .filter(Boolean)
+      .filter((segment) => extractTransferPlannerCourseCodes(segment).length === 0)
+      .map((segment, index) =>
+        buildRuntimeCategoryRequirementOption({
+          ownerId: input.ownerId,
+          groupId: input.groupId,
+          sourceText: segment,
+          fallbackCredits: input.fallbackCredits ?? null,
+          index: index + 1,
+        })
+      )
+      .filter((option): option is TransferPlannerRequirementOption => Boolean(option)),
+    (option) =>
+      `${option.categoryOption?.category ?? ""}:${option.categoryOption?.credits ?? ""}:${
+        option.categoryOption?.sourceText ?? ""
+      }`
+  );
+}
+
 function buildRuntimeRequirementOption(input: {
   ownerId: string;
   groupId: string;
@@ -180,6 +370,7 @@ function buildRuntimeRequirementOption(input: {
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, "-")
       .replace(/^-+|-+$/g, "")}`,
+    optionKind: "course",
     displayCourseCodes: [input.courseCode],
     uwCourses: [input.courseCode],
     equivalentUwCourseCodes: [],
@@ -194,6 +385,7 @@ function buildRuntimeRequirementOption(input: {
     sourceHeading: input.label ?? input.courseCode,
     sourceCategory: "source-choice",
     grcMatches: input.grcMatches,
+    categoryOption: null,
     constraints: [],
     notes: [],
     label: input.label ?? input.courseCode,
@@ -206,7 +398,10 @@ function buildRuntimeRequirementGroup(input: {
   label: string;
   minCourses?: number;
   maxCourses?: number;
-  options: { courseCode: string; grcMatches: string[]; label?: string }[];
+  options: (
+    | { courseCode: string; grcMatches: string[]; label?: string }
+    | { categoryOption: TransferPlannerRequirementOption["categoryOption"]; label?: string }
+  )[];
 }): TransferPlannerRequirementGroup {
   const groupId = `${input.ownerId}:requirement-group:${input.id}`;
   return {
@@ -221,13 +416,31 @@ function buildRuntimeRequirementGroup(input: {
     maxCredits: null,
     sourceHeading: input.label,
     notes: [],
-    options: input.options.map((option) =>
-      buildRuntimeRequirementOption({
-        ownerId: input.ownerId,
-        groupId,
-        ...option,
+    options: input.options
+      .map((option, index) => {
+        if ("categoryOption" in option && option.categoryOption) {
+          return buildRuntimeCategoryRequirementOption({
+            ownerId: input.ownerId,
+            groupId,
+            sourceText: option.categoryOption.sourceText,
+            fallbackCredits: option.categoryOption.credits,
+            index: index + 1,
+          });
+        }
+
+        if ("courseCode" in option) {
+          return buildRuntimeRequirementOption({
+            ownerId: input.ownerId,
+            groupId,
+            courseCode: option.courseCode,
+            grcMatches: option.grcMatches,
+            label: option.label,
+          });
+        }
+
+        return null;
       })
-    ),
+      .filter((option): option is TransferPlannerRequirementOption => Boolean(option)),
   };
 }
 
@@ -962,19 +1175,204 @@ function normalizeUwSeattleChemicalEngineeringRuntimePlan<T extends TransferPlan
   });
 }
 
+function getRequirementGroupOptionUwCourseCodeSet(group: TransferPlannerRequirementGroup) {
+  return new Set(
+    (group.options ?? [])
+      .flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+      ])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
+function requirementGroupMatchesCategoryChoiceLine(input: {
+  group: TransferPlannerRequirementGroup;
+  lineCourseCodes: string[];
+}) {
+  const groupCourseCodes = getRequirementGroupOptionUwCourseCodeSet(input.group);
+  if (!groupCourseCodes.size || !input.lineCourseCodes.length) {
+    return false;
+  }
+
+  const lineCourseCodeSet = new Set(input.lineCourseCodes.map(normalizeCourseCode));
+  const matchedGroupCourseCount = [...groupCourseCodes].filter((courseCode) =>
+    lineCourseCodeSet.has(courseCode)
+  ).length;
+  if (input.lineCourseCodes.length > 1 && groupCourseCodes.size === 1) {
+    return false;
+  }
+
+  return matchedGroupCourseCount >= Math.min(groupCourseCodes.size, input.lineCourseCodes.length);
+}
+
+function addCategoryOptionsToRequirementGroup(
+  group: TransferPlannerRequirementGroup,
+  ownerId: string,
+  sourceLines: string[]
+) {
+  const categoryOptionsToAdd: TransferPlannerRequirementOption[] = [];
+
+  for (const line of sourceLines) {
+    const lineCourseCodes = extractTransferPlannerCourseCodes(line);
+    if (
+      !requirementGroupMatchesCategoryChoiceLine({
+        group,
+        lineCourseCodes,
+      })
+    ) {
+      continue;
+    }
+
+    categoryOptionsToAdd.push(
+      ...buildRuntimeCategoryRequirementOptionsFromChoiceLine({
+        ownerId,
+        groupId: group.id,
+        line,
+        fallbackCredits: parseRuntimeCategoryOptionCreditAmount(line),
+      })
+    );
+  }
+
+  if (!categoryOptionsToAdd.length) {
+    return group;
+  }
+
+  const existingCategoryKeys = new Set(
+    (group.options ?? [])
+      .filter((option) => option.optionKind === "category-option" && option.categoryOption)
+      .map(
+        (option) =>
+          `${option.categoryOption?.category ?? ""}:${option.categoryOption?.credits ?? ""}:${
+            option.categoryOption?.sourceText ?? ""
+          }`
+      )
+  );
+  const newCategoryOptions = categoryOptionsToAdd.filter((option) => {
+    const key = `${option.categoryOption?.category ?? ""}:${
+      option.categoryOption?.credits ?? ""
+    }:${option.categoryOption?.sourceText ?? ""}`;
+    return key && !existingCategoryKeys.has(key);
+  });
+
+  if (!newCategoryOptions.length) {
+    return group;
+  }
+
+  return {
+    ...group,
+    options: [...(group.options ?? []), ...newCategoryOptions],
+  };
+}
+
+function addCategoryOptionsToChecklistItems(
+  items: TransferPlannerChecklistItem[] | undefined,
+  groupMap: Map<string, TransferPlannerRequirementGroup>
+) {
+  return (items ?? []).map<TransferPlannerChecklistItem>((item) => {
+    const group = item.requirementGroup ? groupMap.get(item.requirementGroup.id) : null;
+    if (!group || group === item.requirementGroup) {
+      return item;
+    }
+
+    const retainedOptionIds = new Set((group.options ?? []).map((option) => option.id));
+    return {
+      ...item,
+      requirementGroup: group,
+      unselectedRequirementOptionIds: unique([
+        ...(item.unselectedRequirementOptionIds ?? []),
+        ...(group.options ?? [])
+          .map((option) => option.id)
+          .filter((optionId): optionId is string =>
+            Boolean(optionId && !item.selectedRequirementOptionIds?.includes(optionId))
+          ),
+      ]).filter((optionId) => retainedOptionIds.has(optionId)),
+    };
+  });
+}
+
+export function normalizeCategoryOptionRuntimePlan<T extends TransferPlannerMajorPlan>(
+  plan: T
+): T {
+  const selectedPathwayId =
+    "selectedPathwayId" in plan
+      ? ((plan as unknown as { selectedPathwayId?: string | null }).selectedPathwayId ?? null)
+      : null;
+  const sourceLines = getTransferPlannerParsedRequirementSourceBlocks(
+    plan.id,
+    selectedPathwayId
+  ).flatMap((block) => [
+    ...(block.requirementCueLines ?? []),
+    ...((block as { chooseStatements?: string[] }).chooseStatements ?? []),
+  ]);
+
+  if (!sourceLines.length) {
+    return plan;
+  }
+
+  const originalGroups = plan.requirementGroups ?? [];
+  const checklistGroups = [
+    ...(plan.applicationChecklist ?? []),
+    ...(plan.beforeEnrollmentChecklist ?? []),
+    ...(plan.stayAtGrcChecklist ?? []),
+  ]
+    .map((item) => item.requirementGroup)
+    .filter((group): group is TransferPlannerRequirementGroup => Boolean(group));
+  const groupsById = new Map<string, TransferPlannerRequirementGroup>();
+  for (const group of [...originalGroups, ...checklistGroups]) {
+    groupsById.set(group.id, group);
+  }
+
+  let changed = false;
+  const normalizedGroupsById = new Map<string, TransferPlannerRequirementGroup>();
+  for (const group of groupsById.values()) {
+    const normalizedGroup = addCategoryOptionsToRequirementGroup(group, plan.id, sourceLines);
+    normalizedGroupsById.set(group.id, normalizedGroup);
+    if (normalizedGroup !== group) {
+      changed = true;
+    }
+  }
+
+  if (!changed) {
+    return plan;
+  }
+
+  return {
+    ...plan,
+    requirementGroups: originalGroups.map((group) => normalizedGroupsById.get(group.id) ?? group),
+    applicationChecklist: addCategoryOptionsToChecklistItems(
+      plan.applicationChecklist,
+      normalizedGroupsById
+    ),
+    beforeEnrollmentChecklist: addCategoryOptionsToChecklistItems(
+      plan.beforeEnrollmentChecklist,
+      normalizedGroupsById
+    ),
+    stayAtGrcChecklist: addCategoryOptionsToChecklistItems(
+      plan.stayAtGrcChecklist,
+      normalizedGroupsById
+    ),
+  };
+}
+
 function normalizeStudentRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(plan: T): T {
-  return normalizeUwSeattleChemicalEngineeringRuntimePlan(
-    normalizeUwSeattleBioengineeringRuntimePlan(plan)
+  return normalizeCategoryOptionRuntimePlan(
+    normalizeUwSeattleChemicalEngineeringRuntimePlan(
+      normalizeUwSeattleBioengineeringRuntimePlan(plan)
+    )
   );
 }
 
 function normalizeStudentRuntimeResolvedMajorPlan<T extends TransferPlannerResolvedMajorPlan>(
   plan: T
 ): T {
-  return normalizeUwSeattleChemicalEngineeringRuntimePlan(
-    normalizeUwSeattleBioengineeringRuntimePlan(
-      normalizeUwSeattleCivilRuntimePlan(
-        normalizeUwSeattleMechanicalRuntimePlan(normalizeUwSeattleEceRuntimePlan(plan))
+  return normalizeCategoryOptionRuntimePlan(
+    normalizeUwSeattleChemicalEngineeringRuntimePlan(
+      normalizeUwSeattleBioengineeringRuntimePlan(
+        normalizeUwSeattleCivilRuntimePlan(
+          normalizeUwSeattleMechanicalRuntimePlan(normalizeUwSeattleEceRuntimePlan(plan))
+        )
       )
     )
   );

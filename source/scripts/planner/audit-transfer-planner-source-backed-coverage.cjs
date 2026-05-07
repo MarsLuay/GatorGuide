@@ -41,6 +41,7 @@ const ISSUE_TYPES = [
   "partial-compound-path",
   "missing-compound-path",
   "missing-option-group",
+  "missing-category-option",
   "false-required-promotion",
 ];
 
@@ -1914,6 +1915,63 @@ function auditEcePhotonics(checks) {
   );
 }
 
+function auditAeronauticsCategoryOptions(checks) {
+  const plan = resolveRuntimePlan("uw-seattle-aeronautics-astronautics", null);
+  const quarterPlan = buildQuarterPlan(plan);
+  const optionGroups = getVisiblePlannedCourses(quarterPlan).flatMap((course) =>
+    course.optionGroup ? [course.optionGroup] : []
+  );
+  const scienceChoiceGroup = optionGroups.find(
+    (group) =>
+      (group.options ?? []).some((option) => (option.courseCodes ?? []).includes("ENGR& 114")) &&
+      (group.options ?? []).some((option) => option.categoryOption?.category === "NSC")
+  );
+  const categoryAudit = planner.auditCategoryOptionDetection({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const satisfactionAudit = planner.auditOptionGroupSatisfaction({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const scienceSatisfactionAudit = satisfactionAudit.find(
+    (row) => row.groupId === scienceChoiceGroup?.id
+  );
+
+  addCheck(
+    checks,
+    "uw-seattle-aeronautics-astronautics:mixed-course-category-science-option",
+    "UW Aeronautics & Astronautics preserves the CSE 160 / ME 123 / other NSc mixed option group",
+    Boolean(scienceChoiceGroup) &&
+      scienceChoiceGroup.selectionCount === 1 &&
+      (scienceChoiceGroup.resolvedSatisfiedOptionIds ?? []).length === 0 &&
+      (scienceChoiceGroup.options ?? []).some((option) =>
+        /5 credits of Natural Sciences \(NSc\)/i.test(option.label ?? "")
+      ) &&
+      !(scienceChoiceGroup.options ?? []).some((option) =>
+        (option.courseCodes ?? []).includes("CSE 160")
+      ) &&
+      categoryAudit.some(
+        (row) => row.visibleOption && row.issue === null && /NSc|Natural Sciences/i.test(row.copyOnlyDebugText)
+      ) &&
+      scienceSatisfactionAudit?.displayedProgress === "0/1" &&
+      /Category options: .*Natural Sciences/i.test(scienceSatisfactionAudit?.copyOnlyDebugText ?? ""),
+    [
+      `Option groups: ${optionGroups
+        .map((group) => `${group.id}: ${(group.options ?? []).map((option) => option.label).join(" | ")}`)
+        .join("\n")}`,
+      categoryAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      satisfactionAudit
+        .filter((row) => row.groupId === scienceChoiceGroup?.id)
+        .map((row) => row.copyOnlyDebugText)
+        .join("\n"),
+    ],
+    "missing-category-option"
+  );
+}
+
 function buildProtectedRows(targetPlanId) {
   const rows = [];
   if (!targetPlanId || targetPlanId === "uw-seattle-mechanical-engineering") {
@@ -1950,6 +2008,9 @@ function runRegressionChecks(targetPlanId) {
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-electrical-computer-engineering") {
     auditEcePhotonics(checks);
+  }
+  if (!targetPlanId || targetPlanId === "uw-seattle-aeronautics-astronautics") {
+    auditAeronauticsCategoryOptions(checks);
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-mechanical-engineering") {
     auditMajorGenEdScope(checks);

@@ -1237,6 +1237,152 @@ function parseRequirementCreditAmount(value) {
   return null;
 }
 
+const CATEGORY_OPTION_DEFINITIONS = [
+  {
+    category: "NSC",
+    sourceCategoryCode: "NSc",
+    longLabel: "Natural Sciences",
+    pattern: /\b(?:N\s*Sc|natural sciences?|natural science)\b/i,
+  },
+  {
+    category: "AH",
+    sourceCategoryCode: "A&H",
+    longLabel: "Arts and Humanities",
+    pattern: /\b(?:A\s*&\s*H|arts?\s+(?:and|&)\s+humanities|humanities|fine arts?)\b/i,
+  },
+  {
+    category: "SSC",
+    sourceCategoryCode: "SSc",
+    longLabel: "Social Sciences",
+    pattern: /\b(?:S\s*Sc|social sciences?)\b/i,
+  },
+  {
+    category: "QSR",
+    sourceCategoryCode: "QSR",
+    longLabel: "Quantitative and Symbolic Reasoning",
+    pattern: /\bQSR\b|\bquantitative and symbolic reasoning\b/i,
+  },
+  {
+    category: "VLPA",
+    sourceCategoryCode: "VLPA",
+    longLabel: "Visual, Literary, and Performing Arts",
+    pattern: /\bVLPA\b|\bvisual,\s*literary,\s*and\s*performing arts\b/i,
+  },
+  {
+    category: "DIV",
+    sourceCategoryCode: "DIV",
+    longLabel: "Diversity",
+    pattern: /\bDIV\b|\bdiversity\b/i,
+  },
+  {
+    category: "NW",
+    sourceCategoryCode: "NW",
+    longLabel: "Natural World",
+    pattern: /\bNW\b|\bnatural world\b/i,
+  },
+  {
+    category: "IANDS",
+    sourceCategoryCode: "I&S",
+    longLabel: "Individuals and Societies",
+    pattern: /\bI\s*&\s*S\b|\bindividuals\s+and\s+societies\b/i,
+  },
+];
+
+function getRequirementCategoryOptionDescriptor(text) {
+  const normalized = normalizeWhitespace(text);
+  if (!normalized) return null;
+  return CATEGORY_OPTION_DEFINITIONS.find((definition) =>
+    definition.pattern.test(normalized)
+  ) ?? null;
+}
+
+function parseCategoryOptionCreditAmount(text, fallbackCredits = null) {
+  const normalized = normalizeWhitespace(text);
+  const parentheticalCreditMatch = normalized.match(/\(\s*(\d+(?:\.\d+)?)\s*\)/);
+  if (parentheticalCreditMatch) {
+    return Number(parentheticalCreditMatch[1]);
+  }
+
+  const explicitCreditMatch = normalized.match(/\b(\d+(?:\.\d+)?)\s*(?:credits?|cr)\b/i);
+  if (explicitCreditMatch) {
+    return Number(explicitCreditMatch[1]);
+  }
+
+  return fallbackCredits;
+}
+
+function buildCategoryRequirementOption(input) {
+  const descriptor = getRequirementCategoryOptionDescriptor(input.sourceText);
+  if (!descriptor) {
+    return null;
+  }
+
+  const credits = parseCategoryOptionCreditAmount(input.sourceText, input.fallbackCredits);
+  if (!Number.isFinite(credits) || credits <= 0) {
+    return null;
+  }
+
+  const sourceText = normalizeWhitespace(input.sourceText);
+  const title = `${credits} credits of ${descriptor.longLabel} (${descriptor.sourceCategoryCode})`;
+
+  return {
+    id: input.id,
+    optionKind: "category-option",
+    displayCourseCodes: [],
+    uwCourses: [],
+    equivalentUwCourseCodes: [],
+    credits,
+    creditMin: credits,
+    creditMax: credits,
+    creditText: String(credits),
+    maxCredits: null,
+    title,
+    department: null,
+    category: descriptor.category,
+    sourceHeading: input.sourceHeading,
+    sourceCategory: input.sourceCategory,
+    grcMatches: [],
+    categoryOption: {
+      category: descriptor.category,
+      sourceCategoryCode: descriptor.sourceCategoryCode,
+      title,
+      credits,
+      sourceText,
+    },
+    constraints: [],
+    notes: ["Category option; no specific Green River course is invented."],
+    label: title,
+  };
+}
+
+function buildCategoryRequirementOptionsFromChoiceLine(owner, normalizedLine, fallbackCredits) {
+  if (!/\bor\b|choose|select|one of/i.test(normalizedLine)) {
+    return [];
+  }
+
+  return uniqueBy(
+    normalizedLine
+      .split(/\bor\b|;|\u2022/gi)
+      .map(normalizeWhitespace)
+      .filter(Boolean)
+      .filter((segment) => extractCourseCodesFromLine(segment).length === 0)
+      .map((segment, index) =>
+        buildCategoryRequirementOption({
+          id: `${owner.ownerId}:requirement-option:${slugify(
+            `category-${segment}-${index + 1}`
+          )}`,
+          sourceText: segment,
+          sourceHeading: normalizedLine,
+          sourceCategory: "source-choice",
+          fallbackCredits,
+        })
+      )
+      .filter(Boolean),
+    (option) =>
+      `${option.categoryOption.category}:${option.categoryOption.credits}:${option.categoryOption.sourceText}`
+  );
+}
+
 function buildParsedRequirementOption(input) {
   const uwCourses = uniqueSorted(
     (input.uwCourses ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
@@ -1252,9 +1398,27 @@ function buildParsedRequirementOption(input) {
       .filter((courseCode) => courseCode && !uwCourses.includes(courseCode))
   );
   const label = normalizeWhitespace(input.label ?? uwCourses.join(" / "));
+  const rawCategoryOption = input.categoryOption ?? null;
+  const categoryOption = rawCategoryOption
+    ? {
+        category: normalizeWhitespace(rawCategoryOption.category ?? "") || null,
+        sourceCategoryCode: normalizeWhitespace(rawCategoryOption.sourceCategoryCode ?? "") || null,
+        title: normalizeWhitespace(rawCategoryOption.title ?? "") || null,
+        credits: rawCategoryOption.credits ?? null,
+        sourceText: normalizeWhitespace(rawCategoryOption.sourceText ?? "") || null,
+      }
+    : null;
+  const hasCategoryOption =
+    input.optionKind === "category-option" &&
+    !!categoryOption?.category &&
+    !!categoryOption?.sourceCategoryCode &&
+    !!categoryOption?.title &&
+    Number.isFinite(categoryOption.credits) &&
+    categoryOption.credits > 0;
 
   return {
     id: input.id,
+    optionKind: hasCategoryOption ? "category-option" : "course",
     displayCourseCodes,
     uwCourses,
     equivalentUwCourseCodes,
@@ -1271,9 +1435,18 @@ function buildParsedRequirementOption(input) {
     grcMatches: uniqueSorted(
       (input.grcMatches ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
     ),
+    categoryOption: hasCategoryOption
+      ? {
+          category: categoryOption.category,
+          sourceCategoryCode: categoryOption.sourceCategoryCode,
+          title: categoryOption.title,
+          credits: categoryOption.credits,
+          sourceText: categoryOption.sourceText,
+        }
+      : null,
     constraints: uniqueSorted((input.constraints ?? []).map(normalizeWhitespace).filter(Boolean)),
     notes: uniqueSorted((input.notes ?? []).map(normalizeWhitespace).filter(Boolean)),
-    label,
+    label: label || categoryOption?.title || "",
   };
 }
 
@@ -1302,7 +1475,10 @@ function buildParsedRequirementGroup(input) {
         })
       )
       .filter(
-        (option) => option.uwCourses.length > 0 || option.equivalentUwCourseCodes.length > 0
+        (option) =>
+          option.uwCourses.length > 0 ||
+          option.equivalentUwCourseCodes.length > 0 ||
+          option.optionKind === "category-option"
       ),
   };
 }
@@ -2185,13 +2361,21 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
     const courseCodes = extractCourseCodesFromLine(normalizedLine).filter((courseCode) =>
       parsedCourseCodeSet.has(courseCode)
     );
-    if (courseCodes.length < 2) {
+    const credits = parseRequirementCreditAmount(normalizedLine);
+    const categoryOptions = buildCategoryRequirementOptionsFromChoiceLine(
+      owner,
+      normalizedLine,
+      credits
+    );
+    if (courseCodes.length < 2 && !categoryOptions.length) {
+      continue;
+    }
+    if (courseCodes.length + categoryOptions.length < 2) {
       continue;
     }
 
-    const credits = parseRequirementCreditAmount(normalizedLine);
     let group;
-    if (isEquivalentNumberAliasLine(normalizedLine, courseCodes)) {
+    if (!categoryOptions.length && isEquivalentNumberAliasLine(normalizedLine, courseCodes)) {
       group = buildParsedRequirementGroup({
         id: `${owner.ownerId}:requirement-group:${slugify(courseCodes.join("-"))}`,
         label: courseCodes.join(" / "),
@@ -2217,12 +2401,15 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
         requirementType: "choose_one",
         minCourses: 1,
         maxCourses: 1,
-        options: courseCodes.map((courseCode) => ({
-          id: `${owner.ownerId}:requirement-option:${slugify(courseCode)}`,
-          uwCourses: [courseCode],
-          credits,
-          label: courseCode,
-        })),
+        options: [
+          ...courseCodes.map((courseCode) => ({
+            id: `${owner.ownerId}:requirement-option:${slugify(courseCode)}`,
+            uwCourses: [courseCode],
+            credits,
+            label: courseCode,
+          })),
+          ...categoryOptions,
+        ],
       });
     }
 

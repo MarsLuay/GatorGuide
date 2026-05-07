@@ -26,8 +26,17 @@ export type TransferPlannerRequirementType =
   | "choose_credits"
   | "sequence_choice";
 
+export type TransferPlannerRequirementCategoryOption = {
+  category: string;
+  sourceCategoryCode: string;
+  title: string;
+  credits: number;
+  sourceText: string;
+};
+
 export type TransferPlannerRequirementOption = {
   id?: string;
+  optionKind?: "course" | "category-option";
   displayCourseCodes?: string[];
   uwCourses: string[];
   equivalentUwCourseCodes?: string[];
@@ -42,6 +51,7 @@ export type TransferPlannerRequirementOption = {
   sourceHeading?: string | null;
   sourceCategory?: string | null;
   grcMatches: string[];
+  categoryOption?: TransferPlannerRequirementCategoryOption | null;
   constraints?: string[];
   notes?: string[];
   label: string;

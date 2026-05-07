@@ -78,6 +78,7 @@ import {
   auditSbseScheduledRowSources,
   auditOptionGroupSatisfaction,
   auditOptionAllocation,
+  auditCategoryOptionDetection,
   auditOptionTitleFallback,
   auditOptionCredits,
   auditOptionSelectionSources,
@@ -3897,6 +3898,12 @@ function SuggestedScheduleCard({
       const optionAllocationAuditLines = auditOptionAllocation({
         suggestedPlan: quarters,
         completedCourses,
+        plan,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const categoryOptionDetectionAuditLines = auditCategoryOptionDetection({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
       }).map((entry) => entry.copyOnlyDebugText);
       const optionTitleFallbackAuditLines = scheduleOptionTitleFallbackAuditRows.map(
         (entry) => entry.copyOnlyDebugText
@@ -3975,6 +3982,7 @@ function SuggestedScheduleCard({
         ...requirementRolePrecedenceAuditLines,
         ...optionSatisfactionAuditLines,
         ...optionAllocationAuditLines,
+        ...categoryOptionDetectionAuditLines,
         ...optionTitleFallbackAuditLines,
         ...optionCreditAuditLines,
         ...optionSelectionSourceAuditLines,

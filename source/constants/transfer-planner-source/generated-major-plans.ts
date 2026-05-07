@@ -46,6 +46,7 @@ import {
 import { normalizeTransferPlannerCourseCode } from "./course-code-normalization";
 import { stripTransferPlannerPlanTitlePrefix } from "./pathway-title-normalization";
 import {
+  normalizeCategoryOptionRuntimePlan,
   resolveTransferPlannerStudentRuntimeMajorPlan as resolveCompactStudentRuntimeMajorPlan,
 } from "./student-runtime";
 import type {
@@ -2120,8 +2121,9 @@ function getBestGuideSourceCourseSetForTarget(targetCourseCode: string) {
 
 function buildRequirementOption(input: {
   id?: string;
+  optionKind?: "course" | "category-option";
   displayCourseCodes?: string[];
-  uwCourses: string[];
+  uwCourses?: string[];
   equivalentUwCourseCodes?: string[];
   credits?: number | null;
   creditMin?: number | null;
@@ -2134,12 +2136,13 @@ function buildRequirementOption(input: {
   sourceHeading?: string | null;
   sourceCategory?: string | null;
   grcMatches?: string[];
+  categoryOption?: TransferPlannerRequirementOption["categoryOption"];
   constraints?: string[];
   notes?: string[];
   label: string;
 }): TransferPlannerRequirementOption {
   const uwCourses = uniquePlannerStrings(
-    input.uwCourses.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+    (input.uwCourses ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
   );
   const equivalentUwCourseCodes = uniquePlannerStrings(
     (input.equivalentUwCourseCodes ?? [])
@@ -2149,6 +2152,7 @@ function buildRequirementOption(input: {
 
   return {
     id: input.id,
+    optionKind: input.optionKind === "category-option" ? "category-option" : "course",
     displayCourseCodes: uniquePlannerStrings(
       (input.displayCourseCodes ?? input.uwCourses ?? [])
         .map((courseCode) => sanitizePlannerOwnedText(courseCode))
@@ -2167,6 +2171,7 @@ function buildRequirementOption(input: {
     sourceHeading: sanitizePlannerOwnedText(input.sourceHeading ?? "") || null,
     sourceCategory: sanitizePlannerOwnedText(input.sourceCategory ?? "") || null,
     grcMatches: uniqueReferenceCourseLabels(input.grcMatches ?? []),
+    categoryOption: input.categoryOption ?? null,
     constraints: uniquePlannerStrings(
       (input.constraints ?? []).map((constraint) => sanitizePlannerOwnedText(constraint)).filter(Boolean)
     ),
@@ -2220,7 +2225,8 @@ function buildRequirementGroup(input: {
         (option) =>
           option.uwCourses.length > 0 ||
           (option.equivalentUwCourseCodes ?? []).length > 0 ||
-          option.grcMatches.length > 0
+          option.grcMatches.length > 0 ||
+          option.optionKind === "category-option"
       ),
   };
 }
@@ -3670,6 +3676,10 @@ function getRequirementGroupOptionGrcMatches(group: TransferPlannerRequirementGr
 }
 
 function getRequirementOptionCourseLabels(option: TransferPlannerRequirementOption) {
+  if (option.optionKind === "category-option") {
+    return [] as string[];
+  }
+
   const grcMatches = uniqueReferenceCourseLabels(option.grcMatches ?? []);
   if (grcMatches.length) {
     return grcMatches;
@@ -6713,7 +6723,7 @@ function formatAvailabilityStatusSummary(
 export const TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS: TransferPlannerMajorPlan[] =
   ALL_BASE_MAJOR_PLANS.map(buildSourceGeneratedPlan);
 export const TRANSFER_PLANNER_STUDENT_RUNTIME_MAJOR_PLANS: TransferPlannerMajorPlan[] =
-  ALL_BASE_MAJOR_PLANS.map(buildStudentRuntimePlan);
+  ALL_BASE_MAJOR_PLANS.map((plan) => normalizeCategoryOptionRuntimePlan(buildStudentRuntimePlan(plan)));
 
 export const TRANSFER_PLANNER_CAMPUSES: TransferPlannerCampus[] = TRANSFER_PLANNER_BOOTSTRAP_CAMPUSES;
 export const TRANSFER_PLANNER_TRACKS: TransferPlannerTrack[] = TRANSFER_PLANNER_BOOTSTRAP_TRACKS;
