@@ -38,13 +38,16 @@ const ISSUE_TYPES = [
   "gen-ed-scope-leak",
   "option-group-disappears-after-refresh",
   "prep-credit-counted-as-main",
+  "partial-compound-path",
+  "missing-compound-path",
+  "missing-option-group",
 ];
 
 const UW_CAMPUSES = new Set(["uw-seattle", "uw-bothell", "uw-tacoma"]);
 const CONCRETE_UW_ONLY_PATTERN = /\b[A-Z]{2,8}\s*[123]\d{2}\b/i;
 const UPPER_DIVISION_UW_PATTERN = /\b[A-Z]{2,8}\s*[3-5]\d{2}\b/i;
 const SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN =
-  /\b(approved list|not required for transferring|elective|replacement|course list|course lists|course evaluation|course evaluations|recommended|suggested|consider|first year students|suggested general education|suggested course pathways?|choose\s+(?:one|[0-9]+)|one\s+of|select(?:ed|ing)?|\d+\s+credits?\s+from|minimum\s+\d+\s+credits?[^.]{0,80}\bfrom)\b/i;
+  /\b(approved list|not required for transferring|electives?|general electives?|free electives?|replacement|course list|course lists|course evaluation|course evaluations|recommended|suggested|consider|first year students|suggested general education|suggested course pathways?|choose\s+(?:one|[0-9]+)|one\s+of|select(?:ed|ing)?|\d+\s+credits?\s+from|minimum\s+\d+\s+credits?[^.]{0,80}\bfrom)\b/i;
 
 const TRACK_IDS = {
   accountingAaa: "grc-associate-business-entrepreneurship-accounting-aaa",
@@ -58,17 +61,30 @@ const TRACK_IDS = {
 
 const ME_EXPECTED_REQUIREMENTS = [
   ["AA 210", ["AA 210"], ["ENGR& 214"]],
-  ["CHEM 152", ["CHEM 152"], ["CHEM& 162"]],
+  ["AMATH 301", ["AMATH 301"], ["ENGR 250"]],
+  ["CHEM 152", ["CHEM 152"], ["CHEM& 162", "CHEM& 163"]],
   ["CEE 220", ["CEE 220"], ["ENGR& 225"]],
+  ["E E 215", ["E E 215", "EE 215"], ["ENGR& 204"]],
+  ["M E 123", ["M E 123", "ME 123"], ["ENGR& 114"]],
   ["ME 230", ["ME 230"], ["ENGR& 215"]],
+  ["MSE 170", ["MSE 170"], ["ENGR 140"]],
   ["PHYS 123", ["PHYS 123"], ["PHYS& 223"]],
   ["MATH 207", ["MATH 207"], ["MATH 238"]],
   ["MATH 208", ["MATH 208"], ["MATH 240"]],
   ["ENGL 131", ["ENGL 131"], ["ENGL& 101"]],
 ];
+const ME_ENGINEERING_FUNDAMENTALS_UW_CODES = [
+  "AA 210",
+  "AMATH 301",
+  "CEE 220",
+  "EE 215",
+  "ME 123",
+  "ME 230",
+  "MSE 170",
+];
 
 const CIVIL_EXPECTED_REQUIREMENTS = [
-  ["CHEM 152", ["CHEM 152"], ["CHEM& 162"]],
+  ["CHEM 152", ["CHEM 152"], ["CHEM& 162", "CHEM& 163"]],
   ["Basic Science Elective", ["BIOL 180", "ESS 101"], ["NATRS 210", "GEOL& 101"], "choose 1"],
   [
     "Statistics: IND E 315, QSCI 381, STAT 290, or STAT 390",
@@ -254,7 +270,7 @@ function getRuntimeGeneratedCourseCodes(plan) {
 }
 
 function buildQuarterPlan(plan, options = {}) {
-  const completedCourses = [];
+  const completedCourses = options.completedCourses ?? [];
   return planner.buildSuggestedQuarterPlan({
     plan,
     applicationStatuses: planner.buildRequirementStatuses(plan?.applicationChecklist ?? [], completedCourses),
@@ -617,6 +633,109 @@ function assertOrder(checks, id, label, plannedLabels, beforeCourseCode, afterCo
   );
 }
 
+function getConfidenceScore(confidence) {
+  if (confidence === "high") {
+    return 100;
+  }
+  if (confidence === "medium") {
+    return 60;
+  }
+  if (confidence === "low") {
+    return 20;
+  }
+  return 0;
+}
+
+function getParsedEngineeringFundamentalsFromBlocks(parsedBlocks) {
+  const parsedCourseCodes = new Set(
+    (parsedBlocks ?? [])
+      .flatMap((block) => block.parsedUwCourseCodes ?? [])
+      .map(normalizeCourseCode)
+      .filter(Boolean)
+  );
+  return ME_ENGINEERING_FUNDAMENTALS_UW_CODES.filter((courseCode) =>
+    parsedCourseCodes.has(courseCode)
+  );
+}
+
+function buildMechanicalSourceDiscoveryAuditLines() {
+  const planId = "uw-seattle-mechanical-engineering";
+  const parsedBlocks = source.getTransferPlannerParsedRequirementSourceBlocks(planId, null);
+  const parsedBlocksByUrl = new Map(parsedBlocks.map((block) => [block.sourceUrl, block]));
+
+  return source.getTransferPlannerSourceManifestEntriesForPlan(planId, null).map((entry) => {
+    const parsedBlock = parsedBlocksByUrl.get(entry.url);
+    const extractedEngineeringFundamentals = getParsedEngineeringFundamentalsFromBlocks(
+      parsedBlock ? [parsedBlock] : []
+    );
+    const reason = entry.isPrimaryDegreeRequirementsLink
+      ? "selected primary degree requirements source"
+      : entry.note || (entry.validationNotes ?? []).join("; ") || "candidate retained for source traceability";
+
+    return [
+      "[source discovery audit]",
+      "Major: Mechanical Engineering",
+      `Candidate URL: ${entry.url}`,
+      `Source role: ${entry.role ?? "unknown"}`,
+      `Score: ${getConfidenceScore(entry.confidence)}`,
+      `Used for parsing: ${parsedBlock ? "yes" : "no"}`,
+      `Reason: ${reason}`,
+      `Extracted Engineering Fundamentals: ${
+        extractedEngineeringFundamentals.length
+          ? extractedEngineeringFundamentals.join(", ")
+          : "none"
+      }`,
+    ].join(" ");
+  });
+}
+
+function buildMechanicalSourceSectionAuditLines() {
+  const planId = "uw-seattle-mechanical-engineering";
+  const parsedBlocks = source.getTransferPlannerParsedRequirementSourceBlocks(planId, null);
+  if (!parsedBlocks.length) {
+    return [
+      [
+        "[source section audit]",
+        "Major: Mechanical Engineering",
+        "Source URL: none",
+        "Section heading: Engineering Fundamentals",
+        "Section matched selected major: no",
+        "Parsed UW courses: none",
+        "Ignored reason if skipped: no parsed source block",
+      ].join(" "),
+    ];
+  }
+
+  return parsedBlocks.map((block) => {
+    const extractedEngineeringFundamentals = getParsedEngineeringFundamentalsFromBlocks([block]);
+    const sectionAudit = block.sourceSectionAudit ?? null;
+    const ignoredReason =
+      extractedEngineeringFundamentals.length === ME_ENGINEERING_FUNDAMENTALS_UW_CODES.length
+        ? "none"
+        : "cached/generated parser artifact does not include the full Engineering Fundamentals section";
+
+    return [
+      "[source section audit]",
+      "Major: Mechanical Engineering",
+      `Source URL: ${block.sourceUrl ?? "unknown"}`,
+      `Section heading: ${sectionAudit?.sectionHeading ?? "Engineering Fundamentals"}`,
+      `Section matched selected major: ${
+        sectionAudit
+          ? sectionAudit.sectionMatchedSelectedMajor
+            ? "yes"
+            : "no"
+          : "yes"
+      }`,
+      `Parsed UW courses: ${
+        extractedEngineeringFundamentals.length
+          ? extractedEngineeringFundamentals.join(", ")
+          : "none"
+      }`,
+      `Ignored reason if skipped: ${ignoredReason}`,
+    ].join(" ");
+  });
+}
+
 function auditMechanicalEngineering(checks) {
   const plan = resolveRuntimePlan("uw-seattle-mechanical-engineering", null);
   const quarterPlan = buildQuarterPlan(plan);
@@ -631,13 +750,20 @@ function auditMechanicalEngineering(checks) {
     "PHYS& 223",
     "CHEM& 161",
     "CHEM& 162",
+    "CHEM& 163",
     "ENGR& 214",
+    "ENGR 250",
     "ENGR& 225",
+    "ENGR& 204",
+    "ENGR& 114",
     "ENGR& 215",
+    "ENGR 140",
     "MATH& 264",
     "MATH 238",
     "MATH 240",
   ];
+  const sourceDiscoveryAuditLines = buildMechanicalSourceDiscoveryAuditLines();
+  const sourceSectionAuditLines = buildMechanicalSourceSectionAuditLines();
 
   assertVisibleCourses(
     checks,
@@ -657,9 +783,54 @@ function auditMechanicalEngineering(checks) {
   assertOrder(checks, "uw-mechanical-engineering:engr214-before-engr215", "ENGR& 214 before ENGR& 215", labels, "ENGR& 214", "ENGR& 215");
   assertOrder(checks, "uw-mechanical-engineering:engr214-before-engr225", "ENGR& 214 before ENGR& 225", labels, "ENGR& 214", "ENGR& 225");
   assertOrder(checks, "uw-mechanical-engineering:chem161-before-chem162", "CHEM& 161 before CHEM& 162", labels, "CHEM& 161", "CHEM& 162");
+  assertOrder(checks, "uw-mechanical-engineering:chem162-before-chem163", "CHEM& 162 before CHEM& 163", labels, "CHEM& 162", "CHEM& 163");
   assertOrder(checks, "uw-mechanical-engineering:phys221-before-phys222", "PHYS& 221 before PHYS& 222", labels, "PHYS& 221", "PHYS& 222");
   assertOrder(checks, "uw-mechanical-engineering:phys222-before-phys223", "PHYS& 222 before PHYS& 223", labels, "PHYS& 222", "PHYS& 223");
   assertOrder(checks, "uw-mechanical-engineering:math264-before-math238", "MATH& 264 before MATH 238", labels, "MATH& 264", "MATH 238");
+  addCheck(
+    checks,
+    "uw-mechanical-engineering:source-discovery-audit",
+    "UW Mechanical Engineering source discovery audit records selected source",
+    sourceDiscoveryAuditLines.some((line) =>
+      /Candidate URL: https:\/\/www\.me\.washington\.edu\/students\/ug\/requirements\b/.test(line)
+    ),
+    sourceDiscoveryAuditLines,
+    "missing-detected-course"
+  );
+  addCheck(
+    checks,
+    "uw-mechanical-engineering:source-section-audit",
+    "UW Mechanical Engineering source section audit records Engineering Fundamentals extraction",
+    sourceSectionAuditLines.length > 0,
+    sourceSectionAuditLines,
+    "missing-detected-course"
+  );
+  const requiredCoverageAudit = planner.auditRequiredMappedCourseCoverage({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const missingFundamentalsCoverage = ME_ENGINEERING_FUNDAMENTALS_UW_CODES.filter(
+    (uwCourseCode) =>
+      !requiredCoverageAudit.some(
+        (row) => row.uwCourse === uwCourseCode && row.visibleInPlan && row.issue === null
+      )
+  );
+  addCheck(
+    checks,
+    "uw-mechanical-engineering:required-coverage-engineering-fundamentals",
+    "UW Mechanical Engineering required coverage includes all Engineering Fundamentals rows",
+    missingFundamentalsCoverage.length === 0,
+    missingFundamentalsCoverage.length
+      ? [
+          `Missing coverage: ${missingFundamentalsCoverage.join(", ")}`,
+          ...requiredCoverageAudit.map((row) => row.copyOnlyDebugText),
+        ]
+      : requiredCoverageAudit
+          .filter((row) => ME_ENGINEERING_FUNDAMENTALS_UW_CODES.includes(row.uwCourse))
+          .map((row) => row.copyOnlyDebugText),
+    "missing-detected-course"
+  );
   addCheck(
     checks,
     "uw-mechanical-engineering:quarter-audit-clean",
@@ -679,6 +850,32 @@ function auditCivilEngineering(checks) {
   const plan = resolveRuntimePlan("uw-seattle-civil-engineering", null);
   const quarterPlan = buildQuarterPlan(plan);
   const labels = getVisiblePlannedLabels(quarterPlan);
+  const requiredCoverageAudit = planner.auditRequiredMappedCourseCoverage({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const chem152Coverage = requiredCoverageAudit.find((row) => row.uwCourse === "CHEM 152");
+  const compoundAudit = planner.auditCompoundEquivalencyPaths({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const chem152Compound = compoundAudit.find((row) => row.uwCourse === "CHEM 152");
+  const trueOptionAudit = planner.auditTrueOptionDetection({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const computingTrueOption = trueOptionAudit.find((row) =>
+    /computing|programming/i.test(row.requirement)
+  );
+  const visibleOptionGroups = getVisiblePlannedCourses(quarterPlan)
+    .map((course) => course.optionGroup)
+    .filter(Boolean);
+  const computingOptionGroup = visibleOptionGroups.find((group) =>
+    /computing|programming/i.test(group.title)
+  );
   const civilAudit = planner.auditUwCivilEngineeringLowerDivisionRequirements({
     plan,
     suggestedPlan: quarterPlan,
@@ -693,10 +890,55 @@ function auditCivilEngineering(checks) {
   addCheck(
     checks,
     "uw-civil-engineering:chem152-visible",
-    "UW Civil Engineering CHEM 152 maps to visible CHEM& 162",
-    byRequirement.get("CHEM 152")?.visibleCourseCodes?.includes("CHEM& 162") === true,
+    "UW Civil Engineering CHEM 152 maps to visible CHEM& 162 and CHEM& 163",
+    byRequirement.get("CHEM 152")?.visibleInQuarterPlan === true &&
+      ["CHEM& 162", "CHEM& 163"].every((courseCode) =>
+        byRequirement.get("CHEM 152")?.visibleCourseCodes?.includes(courseCode)
+      ),
     JSON.stringify(byRequirement.get("CHEM 152") ?? null),
     "missing-detected-course"
+  );
+  addCheck(
+    checks,
+    "uw-civil-engineering:chem152-required-coverage",
+    "UW Civil Engineering CHEM 152 required coverage uses the full compound GRC path",
+    JSON.stringify(chem152Coverage?.mappedGrcEquivalentPath ?? []) ===
+      JSON.stringify(["CHEM& 162", "CHEM& 163"]) &&
+      chem152Coverage?.visibleInPlan === true &&
+      chem152Coverage?.issue === null,
+    chem152Coverage?.copyOnlyDebugText ?? labels.join(", "),
+    "partial-compound-path"
+  );
+  addCheck(
+    checks,
+    "uw-civil-engineering:chem152-compound-audit",
+    "UW Civil Engineering CHEM 152 compound audit is satisfied by scheduled components",
+    JSON.stringify(chem152Compound?.grcCompoundPath ?? []) ===
+      JSON.stringify(["CHEM& 162", "CHEM& 163"]) &&
+      chem152Compound?.satisfied === true &&
+      chem152Compound?.issue === null,
+    chem152Compound?.copyOnlyDebugText ?? labels.join(", "),
+    "partial-compound-path"
+  );
+  addCheck(
+    checks,
+    "uw-civil-engineering:computing-option-visible-unresolved",
+    "UW Civil Engineering computing/programming true option appears as unresolved 0/1 without auto-scheduling",
+    computingOptionGroup?.selectionCount === 1 &&
+      (computingOptionGroup.resolvedSatisfiedOptionIds ?? []).length === 0 &&
+      ["ENGR 250", "CS 121", "CS 122", "CS 123", "CS& 141"].every(
+        (courseCode) => !labels.includes(courseCode)
+      ) &&
+      computingTrueOption?.detectedAsTrueOption === true &&
+      computingTrueOption?.visibleOptionGroup === true &&
+      computingTrueOption?.satisfiedBy === "none" &&
+      computingTrueOption?.issue === null,
+    [
+      computingTrueOption?.copyOnlyDebugText,
+      JSON.stringify(computingOptionGroup ?? null),
+      labels.join(", "),
+    ].filter(Boolean).join("\n"),
+    "missing-option-group"
   );
   addCheck(
     checks,
@@ -716,9 +958,55 @@ function auditCivilEngineering(checks) {
     "unmapped-uw-only"
   );
   assertOrder(checks, "uw-civil-engineering:chem161-before-chem162", "CHEM& 161 before CHEM& 162", labels, "CHEM& 161", "CHEM& 162");
+  assertOrder(checks, "uw-civil-engineering:chem162-before-chem163", "CHEM& 162 before CHEM& 163", labels, "CHEM& 162", "CHEM& 163");
   assertOrder(checks, "uw-civil-engineering:engr214-before-engr215", "ENGR& 214 before ENGR& 215", labels, "ENGR& 214", "ENGR& 215");
   assertOrder(checks, "uw-civil-engineering:engr214-before-engr225", "ENGR& 214 before ENGR& 225", labels, "ENGR& 214", "ENGR& 225");
   assertOrder(checks, "uw-civil-engineering:math264-before-math238", "MATH& 264 before MATH 238", labels, "MATH& 264", "MATH 238");
+
+  const cs122Completed = [{ code: "CS 122", label: "CS 122", credits: 5 }];
+  const cs122QuarterPlan = buildQuarterPlan(plan, { completedCourses: cs122Completed });
+  const cs122Labels = getVisiblePlannedLabels(cs122QuarterPlan);
+  const cs122TrueOption = planner.auditTrueOptionDetection({
+    plan,
+    suggestedPlan: cs122QuarterPlan,
+    completedCourses: cs122Completed,
+  }).find((row) => /computing|programming/i.test(row.requirement));
+  addCheck(
+    checks,
+    "uw-civil-engineering:computing-option-satisfied-by-transcript",
+    "UW Civil Engineering completed CS 122 satisfies computing/programming without scheduling another computing course",
+    cs122TrueOption?.satisfiedBy === "transcript-completed" &&
+      ["ENGR 250", "CS 123", "CS& 141"].every((courseCode) => !cs122Labels.includes(courseCode)),
+    cs122TrueOption?.copyOnlyDebugText ?? cs122Labels.join(", "),
+    "missing-option-group"
+  );
+
+  const chem162Completed = [{ code: "CHEM& 162", label: "CHEM& 162", credits: 5 }];
+  const chem162QuarterPlan = buildQuarterPlan(plan, { completedCourses: chem162Completed });
+  const chem162Labels = getVisiblePlannedLabels(chem162QuarterPlan);
+  addCheck(
+    checks,
+    "uw-civil-engineering:partial-chem152-schedules-missing-component",
+    "UW Civil Engineering completed CHEM& 162 only schedules CHEM& 163 for the CHEM 152 compound path",
+    chem162Labels.includes("CHEM& 163") && !chem162Labels.includes("CHEM& 162"),
+    chem162Labels.join(", "),
+    "partial-compound-path"
+  );
+
+  const chemFullCompleted = [
+    { code: "CHEM& 162", label: "CHEM& 162", credits: 5 },
+    { code: "CHEM& 163", label: "CHEM& 163", credits: 5 },
+  ];
+  const chemFullQuarterPlan = buildQuarterPlan(plan, { completedCourses: chemFullCompleted });
+  const chemFullLabels = getVisiblePlannedLabels(chemFullQuarterPlan);
+  addCheck(
+    checks,
+    "uw-civil-engineering:completed-chem152-compound-not-rescheduled",
+    "UW Civil Engineering completed CHEM& 162 and CHEM& 163 fully satisfy CHEM 152 without rescheduling either component",
+    !chemFullLabels.includes("CHEM& 162") && !chemFullLabels.includes("CHEM& 163"),
+    chemFullLabels.join(", "),
+    "partial-compound-path"
+  );
 }
 
 function auditBioengineering(checks) {
@@ -1145,8 +1433,26 @@ function auditMseNme(checks) {
   const quarterPlan = buildQuarterPlan(plan, { includeStayAtGrcCourses: true });
   const transferOnlyQuarterPlan = buildQuarterPlan(plan, { includeStayAtGrcCourses: false });
   const labels = getVisiblePlannedLabels(quarterPlan);
+  const transferOnlyLabels = getVisiblePlannedLabels(transferOnlyQuarterPlan);
   const optionGroups = getVisiblePlannedCourses(quarterPlan).flatMap((course) =>
     course.optionGroup ? [course.optionGroup] : []
+  );
+  const requiredCoverageAudit = planner.auditRequiredMappedCourseCoverage({
+    plan,
+    suggestedPlan: transferOnlyQuarterPlan,
+    completedCourses: [],
+  });
+  const chem152Coverage = requiredCoverageAudit.find((row) => row.uwCourse === "CHEM 152");
+  const optionSatisfactionAudit = planner.auditOptionGroupSatisfaction({
+    plan,
+    suggestedPlan: transferOnlyQuarterPlan,
+    completedCourses: [],
+  });
+  const mathElectiveAudit = optionSatisfactionAudit.find((row) =>
+    /Math Elective/i.test(row.requirement)
+  );
+  const countedMath264 = planner.auditCountedCourses({ suggestedPlan: transferOnlyQuarterPlan }).find(
+    (row) => row.course === "MATH& 264"
   );
 
   addCheck(
@@ -1168,6 +1474,42 @@ function auditMseNme(checks) {
       optionGroups.some((group) => /Engineering Fundamentals Electives/i.test(group.title) && group.requiredCredits === 8),
     JSON.stringify(optionGroups.map((group) => ({ title: group.title, selectionCount: group.selectionCount, requiredCredits: group.requiredCredits }))),
     "option-group-disappears-after-refresh"
+  );
+  addCheck(
+    checks,
+    "uw-mse-nme:required-chem152-coverage",
+    "UW MSE/NME transfer-only plan covers required CHEM 152 with the mapped GRC chemistry continuation path",
+    Boolean(chem152Coverage) &&
+      JSON.stringify(chem152Coverage.mappedGrcEquivalentPath) ===
+        JSON.stringify(["CHEM& 162", "CHEM& 163"]) &&
+      chem152Coverage.visibleInPlan === true &&
+      chem152Coverage.issue === null &&
+      transferOnlyLabels.includes("CHEM& 162") &&
+      transferOnlyLabels.includes("CHEM& 163"),
+    chem152Coverage?.copyOnlyDebugText ?? `Transfer-only labels: ${transferOnlyLabels.join(", ")}`,
+    "missing-detected-course"
+  );
+  addCheck(
+    checks,
+    "uw-mse-nme:math264-option-progress",
+    "UW MSE/NME scheduled MATH& 264 resolves the Math Elective group to 1/1",
+    mathElectiveAudit?.displayedProgress === "1/1" &&
+      mathElectiveAudit?.scheduledSatisfyingCourses?.includes("MATH& 264") &&
+      mathElectiveAudit?.countedSatisfyingCourses?.includes("MATH& 264") &&
+      mathElectiveAudit?.issue === null,
+    mathElectiveAudit?.copyOnlyDebugText ?? `Transfer-only labels: ${transferOnlyLabels.join(", ")}`,
+    "option-group-disappears-after-refresh"
+  );
+  addCheck(
+    checks,
+    "uw-mse-nme:math264-counted-once",
+    "UW MSE/NME counts MATH& 264 once while allowing prerequisite and option roles",
+    countedMath264?.countedOnce === true &&
+      countedMath264?.requirementRoles?.includes("prerequisite") &&
+      countedMath264?.requirementRoles?.includes("option-satisfaction") &&
+      /credit is counted once/i.test(countedMath264?.duplicateCountReason ?? ""),
+    countedMath264?.copyOnlyDebugText ?? `Transfer-only labels: ${transferOnlyLabels.join(", ")}`,
+    "prep-credit-counted-as-main"
   );
   const unselectedOptionPrerequisiteLeaks = planner
     .auditUnselectedOptionPrerequisiteScheduling({
@@ -1441,35 +1783,53 @@ function auditEcePhotonics(checks) {
   const plan = resolveRuntimePlan("uw-seattle-electrical-computer-engineering", "photonics-pathway");
   const quarterPlan = buildQuarterPlan(plan);
   const labels = getVisiblePlannedLabels(quarterPlan);
-  const optionGroups = getVisiblePlannedCourses(quarterPlan).flatMap((course) =>
-    course.optionGroup ? [course.optionGroup] : []
+  const indexOf = (label) => labels.indexOf(label);
+  const optionAllocationAudit = planner.auditOptionAllocation({
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const transferProgrammingAllocation = optionAllocationAudit.find((row) =>
+    /ece-transfer-programming-admission/.test(row.groupId)
   );
-  const programmingGroupVisible = optionGroups.some((group) =>
-    (group.options ?? []).some((option) =>
-      (option.courseCodes ?? []).some((courseCode) => ["CS 121", "CS 122", "CS 123"].includes(courseCode))
-    )
+  const preenrollProgrammingAllocation = optionAllocationAudit.find((row) =>
+    /ece-preenroll-programming/.test(row.groupId)
   );
+  const transferProgrammingResolvedIds =
+    transferProgrammingAllocation?.resolvedDisplayedOptionIdsAfterCap ?? [];
+  const preenrollProgrammingResolvedIds =
+    preenrollProgrammingAllocation?.resolvedDisplayedOptionIdsAfterCap ?? [];
 
   addCheck(
     checks,
     "uw-ece-photonics:programming-and-science",
-    "UW ECE Photonics transfer-only plan preserves programming option group and math/science rows",
-    programmingGroupVisible &&
-      ["MATH 238", "MATH 240"].every((courseCode) =>
+    "UW ECE Photonics transfer-only plan schedules programming and math rows in order",
+    ["CS 121", "CS 122", "CS 123", "MATH 238", "MATH 240"].every((courseCode) =>
       labels.includes(courseCode)
     ) &&
-      !["CS 121", "CS 122", "CS 123"].some((courseCode) => labels.includes(courseCode)) &&
+      indexOf("CS 121") < indexOf("CS 122") &&
+      indexOf("CS 122") < indexOf("CS 123") &&
       !["CHEM& 131", "CHEM 220", "ENGL 126", "ENGL 128", "ENGR 140"].some((courseCode) =>
         labels.includes(courseCode)
       ),
     JSON.stringify({
       labels,
-      optionGroups: optionGroups.map((group) => ({
-        title: group.title,
-        options: group.options.map((option) => option.courseCodes),
-      })),
     }),
     "missing-detected-course"
+  );
+
+  addCheck(
+    checks,
+    "uw-ece-photonics:programming-option-allocation",
+    "UW ECE Photonics overlapping programming options display only the allocated satisfying option",
+    transferProgrammingResolvedIds.length === 1 &&
+      transferProgrammingResolvedIds.some((optionId) => /cse-122$/.test(optionId)) &&
+      !transferProgrammingResolvedIds.some((optionId) => /cse-123$/.test(optionId)) &&
+      preenrollProgrammingResolvedIds.length === 1 &&
+      preenrollProgrammingResolvedIds.some((optionId) => /cse-123$/.test(optionId)),
+    optionAllocationAudit
+      .filter((row) => /ece-(?:transfer|preenroll)-programming/.test(row.groupId))
+      .map((row) => row.copyOnlyDebugText),
+    "option-group-disappears-after-refresh"
   );
 }
 

@@ -3013,6 +3013,64 @@ function buildKnownSbseMathSequenceGroup(planId: string): TransferPlannerRequire
   });
 }
 
+function buildKnownSbsePostCalculusMathGroups(
+  planId: string
+): TransferPlannerRequirementGroup[] {
+  const group = (input: {
+    id: string;
+    label: string;
+    uwCourses: string[];
+    equivalentUwCourseCodes: string[];
+    grcMatches: string[];
+    note: string;
+  }) =>
+    buildRequirementGroup({
+      id: `${planId}:requirement-group:${input.id}`,
+      label: input.label,
+      category: "required_sequence",
+      subcategory: "sbse_post_calculus_math",
+      requirementType: "all_required",
+      minCourses: 1,
+      maxCourses: 1,
+      sourceHeading: "MATH 207 (or AMATH 351), MATH 208 (or AMATH 352)",
+      notes: [
+        input.note,
+        "Green River equivalent is source-backed by the UW Green River transfer equivalency guide.",
+      ],
+      options: [
+        buildRequirementOption({
+          id: `${planId}:requirement-option:${input.id}`,
+          uwCourses: input.uwCourses,
+          equivalentUwCourseCodes: input.equivalentUwCourseCodes,
+          grcMatches: input.grcMatches,
+          credits: 5,
+          sourceHeading: input.label,
+          sourceCategory: "required_sequence",
+          label: input.label,
+        }),
+      ],
+    });
+
+  return [
+    group({
+      id: "sbse-math-207-amath-351",
+      label: "MATH 207 or AMATH 351",
+      uwCourses: ["MATH 207"],
+      equivalentUwCourseCodes: ["AMATH 351"],
+      grcMatches: ["MATH 238"],
+      note: "Current UW SBSE catalog requires MATH 207 or AMATH 351.",
+    }),
+    group({
+      id: "sbse-math-208-amath-352",
+      label: "MATH 208 or AMATH 352",
+      uwCourses: ["MATH 208"],
+      equivalentUwCourseCodes: ["AMATH 352"],
+      grcMatches: ["MATH 240"],
+      note: "Current UW SBSE catalog requires MATH 208 or AMATH 352.",
+    }),
+  ];
+}
+
 function buildKnownSbseChemistrySequenceGroup(planId: string): TransferPlannerRequirementGroup {
   const option = (input: {
     id: string;
@@ -3215,6 +3273,7 @@ function buildKnownSbseRequirementGroups(planId: string, _pathwayId?: string | n
 
   return [
     buildKnownSbseMathSequenceGroup(planId),
+    ...buildKnownSbsePostCalculusMathGroups(planId),
     buildKnownSbseChemistrySequenceGroup(planId),
     buildKnownSbsePhysicsMinimumGroup(planId),
     buildKnownSbseEnglishCompositionGroup(planId),
@@ -3696,6 +3755,15 @@ function buildRequirementGroupChecklistItem(
   const selectedLabels = selectedMatches.length
     ? selectedMatches
     : getSelectedRequirementGroupCourseLabels(group);
+  const selectedEquivalentLabels =
+    selectedOptions.length === 1
+      ? uniqueReferenceCourseLabels(
+          selectedOptions.flatMap((option) => [
+            ...(option.uwCourses ?? []),
+            ...(option.equivalentUwCourseCodes ?? []),
+          ])
+        ).filter((label) => !selectedLabels.includes(label))
+      : [];
   const selectedRequirementOptionIds = selectedOptions
     .map((option) => option.id)
     .filter((optionId): optionId is string => Boolean(optionId));
@@ -3719,6 +3787,7 @@ function buildRequirementGroupChecklistItem(
     }
   } else if (group.requirementType === "all_required" || group.requirementType === "sequence_choice") {
     grcCourses = selectedLabels.length ? selectedLabels : allOptionLabels;
+    alternatives = selectedEquivalentLabels.map((label) => [label]);
   } else {
     grcCourses = allOptionLabels;
   }

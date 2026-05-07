@@ -238,6 +238,8 @@ function buildRuntimeChecklistItem(input: {
   note?: string;
   minCompletedCount?: number;
   requirementGroup?: TransferPlannerRequirementGroup;
+  selectedRequirementOptionIds?: string[];
+  scheduleSelectedRequirementOptions?: boolean;
 }): TransferPlannerChecklistItem {
   return {
     id: input.id,
@@ -247,6 +249,12 @@ function buildRuntimeChecklistItem(input: {
     ...(input.note ? { note: input.note } : {}),
     ...(input.minCompletedCount ? { minCompletedCount: input.minCompletedCount } : {}),
     ...(input.requirementGroup ? { requirementGroup: input.requirementGroup } : {}),
+    ...(input.selectedRequirementOptionIds?.length
+      ? { selectedRequirementOptionIds: input.selectedRequirementOptionIds }
+      : {}),
+    ...(input.scheduleSelectedRequirementOptions
+      ? { scheduleSelectedRequirementOptions: true }
+      : {}),
   };
 }
 
@@ -287,6 +295,8 @@ function buildUwSeattleEceRuntimeChecklist() {
       alternatives: [["CS 123"], ["CS 145"]],
       minCompletedCount: 1,
       requirementGroup: programmingAdmissionGroup,
+      selectedRequirementOptionIds: [programmingAdmissionGroup.options[0]?.id ?? ""].filter(Boolean),
+      scheduleSelectedRequirementOptions: true,
     }),
     buildRuntimeChecklistItem({
       id: "ece-transfer-physics",
@@ -308,6 +318,8 @@ function buildUwSeattleEceRuntimeChecklist() {
       alternatives: [["CS 145"]],
       minCompletedCount: 1,
       requirementGroup: programmingPreEnrollmentGroup,
+      selectedRequirementOptionIds: [programmingPreEnrollmentGroup.options[0]?.id ?? ""].filter(Boolean),
+      scheduleSelectedRequirementOptions: true,
     }),
     buildRuntimeChecklistItem({
       id: "ece-preenroll-math207",
@@ -395,18 +407,38 @@ function buildUwSeattleMechanicalRuntimeChecklist() {
       title: "AA 210",
       grcCourses: ["ENGR& 214"],
     }),
+    buildRuntimeChecklistItem({
+      id: "me-transfer-amath301",
+      title: "AMATH 301",
+      grcCourses: ["ENGR 250"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-transfer-me123",
+      title: "M E 123",
+      grcCourses: ["ENGR& 114"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-transfer-mse170",
+      title: "MSE 170",
+      grcCourses: ["ENGR 140"],
+    }),
   ];
 
   const beforeEnrollmentChecklist = [
     buildRuntimeChecklistItem({
       id: "me-preenroll-chem152",
       title: "CHEM 152",
-      grcCourses: ["CHEM& 162"],
+      grcCourses: ["CHEM& 162", "CHEM& 163"],
     }),
     buildRuntimeChecklistItem({
       id: "me-preenroll-cee220",
       title: "CEE 220",
       grcCourses: ["ENGR& 225"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "me-preenroll-ee215",
+      title: "E E 215",
+      grcCourses: ["ENGR& 204"],
     }),
     buildRuntimeChecklistItem({
       id: "me-preenroll-me230",
@@ -492,6 +524,21 @@ function normalizeUwSeattleMechanicalRuntimePlan<T extends TransferPlannerResolv
 }
 
 function buildUwSeattleCivilRuntimeChecklist() {
+  const ownerId = UW_SEATTLE_CIVIL_PLAN_ID;
+  const civilComputingGroup = buildRuntimeRequirementGroup({
+    ownerId,
+    id: "civil-computing-programming",
+    label: "Computing/programming Engineering Fundamentals",
+    options: [
+      { courseCode: "AMATH 301", grcMatches: ["ENGR 250"] },
+      { courseCode: "CSE 121", grcMatches: ["CS 121"] },
+      { courseCode: "CSE 122", grcMatches: ["CS 122"] },
+      { courseCode: "CSE 123", grcMatches: ["CS 123"] },
+      { courseCode: "CSE 142", grcMatches: ["CS& 141"] },
+      { courseCode: "CSE 160", grcMatches: [] },
+    ],
+  });
+
   const applicationChecklist = [
     buildRuntimeChecklistItem({
       id: "civil-transfer-english-composition",
@@ -525,7 +572,14 @@ function buildUwSeattleCivilRuntimeChecklist() {
     buildRuntimeChecklistItem({
       id: "civil-preenroll-chem152",
       title: "CHEM 152",
-      grcCourses: ["CHEM& 162"],
+      grcCourses: ["CHEM& 162", "CHEM& 163"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "civil-preenroll-computing-programming",
+      title: "Computing/programming Engineering Fundamentals",
+      grcCourses: [],
+      minCompletedCount: 1,
+      requirementGroup: civilComputingGroup,
     }),
     buildRuntimeChecklistItem({
       id: "civil-preenroll-cee220",
@@ -580,6 +634,7 @@ function buildUwSeattleCivilRuntimeChecklist() {
     applicationChecklist,
     beforeEnrollmentChecklist,
     stayAtGrcChecklist: [] as TransferPlannerChecklistItem[],
+    requirementGroups: [civilComputingGroup],
   };
 }
 
@@ -608,7 +663,7 @@ function normalizeUwSeattleCivilRuntimePlan<T extends TransferPlannerResolvedMaj
     beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
     stayAtGrcChecklist: checklist.stayAtGrcChecklist,
     grcCourseList,
-    requirementGroups: [],
+    requirementGroups: checklist.requirementGroups,
     validationNotes: unique([
       ...(plan.validationNotes ?? []),
       "Runtime Civil Engineering transfer checklist normalized to the current BSCE application, enrollment, and lower-division degree requirements.",
@@ -934,20 +989,31 @@ function normalizeExtractedCourseCode(rawSubject: string, rawNumber: string) {
 export function extractTransferPlannerCourseCodes(value: string) {
   const normalizedValue = String(value ?? "").toUpperCase().replace(/\s+/g, " ");
   const extractedCourseCodes: string[] = [];
-  const explicitMatches = [...normalizedValue.matchAll(EXPLICIT_COURSE_CODE_PATTERN)];
+  const explicitMatches = [...normalizedValue.matchAll(EXPLICIT_COURSE_CODE_PATTERN)]
+    .map((match) => {
+      const subject = normalizeExtractedCourseSubject(match[1]);
+      const explicitCode = normalizeExtractedCourseCode(match[1], match[2]);
+      if (!subject || !explicitCode) {
+        return null;
+      }
+
+      return { match, subject, explicitCode };
+    })
+    .filter(Boolean) as Array<{
+      match: RegExpMatchArray;
+      subject: string;
+      explicitCode: string;
+    }>;
 
   for (let index = 0; index < explicitMatches.length; index += 1) {
-    const match = explicitMatches[index];
-    const subject = normalizeExtractedCourseSubject(match[1]);
-    const explicitCode = normalizeExtractedCourseCode(match[1], match[2]);
-    if (!subject || !explicitCode) continue;
+    const { match, subject, explicitCode } = explicitMatches[index];
 
     extractedCourseCodes.push(explicitCode);
 
     const currentMatchEnd = (match.index ?? 0) + match[0].length;
     const nextMatchStart =
       index + 1 < explicitMatches.length
-        ? explicitMatches[index + 1]?.index ?? normalizedValue.length
+        ? explicitMatches[index + 1]?.match.index ?? normalizedValue.length
         : normalizedValue.length;
     const trailingSegment = normalizedValue.slice(currentMatchEnd, nextMatchStart);
 

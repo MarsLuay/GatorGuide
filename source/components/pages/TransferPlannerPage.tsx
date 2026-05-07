@@ -77,6 +77,15 @@ import {
   auditSbseCurrentVsOldSource,
   auditSbseScheduledRowSources,
   auditOptionGroupSatisfaction,
+  auditOptionAllocation,
+  auditOptionTitleFallback,
+  auditOptionCredits,
+  auditOptionSelectionSources,
+  auditCompoundEquivalencyPaths,
+  auditTrueOptionDetection,
+  auditRequiredMappedCourseCoverage,
+  auditRequirementRolePrecedence,
+  auditCountedCourses,
   auditUwBioengineeringSourceBackedRequirements,
   extractCourseCodes,
   getPreparatoryTrackCourseCodeSet,
@@ -1957,7 +1966,7 @@ function getSuggestedScheduleUniqueOptionIds(optionIds: string[] | null | undefi
 
 function getSuggestedScheduleSelectedOptions(optionGroup: SuggestedScheduleOptionGroup) {
   const selectedOptionIdSet = new Set(
-    getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds)
+    getSuggestedScheduleResolvedOptionIds(optionGroup)
   );
   return optionGroup.options.filter((option) => selectedOptionIdSet.has(option.id));
 }
@@ -2046,6 +2055,14 @@ function buildSuggestedScheduleCopyOnlyOptionStatusText(input: {
     `Is selected option: ${input.isSelected ? "yes" : "no"}`,
     `Option id: ${input.option.id}`,
     `Option group id: ${input.optionGroup.id}`,
+    `Satisfied by: ${getSuggestedScheduleOptionSatisfiedBy(
+      input.optionGroup,
+      input.option.id
+    )}`,
+    `Selection source: ${getSuggestedScheduleOptionSatisfiedBy(
+      input.optionGroup,
+      input.option.id
+    )}`,
   ].join(" ");
 }
 
@@ -2097,7 +2114,54 @@ function getSuggestedScheduleOptionGroupSelectionTargetText(
 function getSuggestedScheduleOptionGroupSelectedCount(
   optionGroup: SuggestedScheduleOptionGroup
 ) {
-  return getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds).length;
+  return getSuggestedScheduleResolvedOptionIds(optionGroup).length;
+}
+
+function getSuggestedScheduleResolvedOptionIds(optionGroup: SuggestedScheduleOptionGroup) {
+  if (optionGroup.resolvedSatisfiedOptionIds) {
+    return getSuggestedScheduleUniqueOptionIds(optionGroup.resolvedSatisfiedOptionIds);
+  }
+
+  return getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds);
+}
+
+function getSuggestedScheduleOptionSatisfactionSources(
+  optionGroup: SuggestedScheduleOptionGroup,
+  optionId: string
+) {
+  return optionGroup.optionSatisfactionSourcesById?.[optionId] ?? [];
+}
+
+function getSuggestedScheduleOptionSatisfiedBy(
+  optionGroup: SuggestedScheduleOptionGroup,
+  optionId: string
+) {
+  const sources = new Set(
+    getSuggestedScheduleOptionSatisfactionSources(optionGroup, optionId)
+  );
+  if (sources.has("user-selected")) return "user-selected";
+  if (sources.has("transcript-completed")) return "transcript";
+  if (sources.has("planner-defaulted")) return "default";
+  if (sources.has("scheduled-and-counted")) return "scheduled-counted";
+  if (optionGroup.selectedOptionIds.includes(optionId)) {
+    return optionGroup.selectionSource === "default" ? "default" : "user-selected";
+  }
+  return "none";
+}
+
+function getSuggestedScheduleOptionGroupStatusVerb(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  const selectedSourceLabels = getSuggestedScheduleResolvedOptionIds(optionGroup)
+    .map((optionId) => getSuggestedScheduleOptionSatisfiedBy(optionGroup, optionId))
+    .filter((sourceLabel) => sourceLabel !== "none");
+  const uniqueSourceLabels = getSuggestedScheduleUniqueOptionIds(selectedSourceLabels);
+  if (!uniqueSourceLabels.length) return "Selected";
+  if (uniqueSourceLabels.length > 1) return "Satisfied";
+  if (uniqueSourceLabels[0] === "default") return "Default";
+  if (uniqueSourceLabels[0] === "transcript") return "Completed";
+  if (uniqueSourceLabels[0] === "scheduled-counted") return "Satisfied";
+  return "Selected";
 }
 
 function shouldPreferSuggestedScheduleOptionGroup(
@@ -2154,14 +2218,38 @@ function collectSuggestedScheduleOptionGroups(quarters: SuggestedQuarterPlan[]) 
   return mergeSuggestedScheduleOptionGroups([], optionGroups);
 }
 
+function getSuggestedScheduleOptionGroupDisplayTitle(input: {
+  optionGroup: SuggestedScheduleOptionGroup;
+  titleFallbackAuditRows: ReturnType<typeof auditOptionTitleFallback>;
+  visibleOptionIndex: number;
+}) {
+  return (
+    input.titleFallbackAuditRows[input.visibleOptionIndex - 1]?.displayedTitle ||
+    input.optionGroup.title ||
+    `Requirement Choice ${input.visibleOptionIndex}`
+  );
+}
+
 function buildSuggestedScheduleCopyOnlyOptionBoxSummaryText(input: {
   rawOptionGroups: SuggestedScheduleOptionGroup[];
   trackOptionGroups: SuggestedScheduleOptionGroup[];
   displayedOptionGroups: SuggestedScheduleOptionGroup[];
 }) {
-  const formatIds = (optionGroups: SuggestedScheduleOptionGroup[]) =>
+  const displayedTitleFallbackAuditRows = auditOptionTitleFallback({
+    optionGroups: input.displayedOptionGroups,
+  });
+  const formatIds = (
+    optionGroups: SuggestedScheduleOptionGroup[],
+    titleFallbackAuditRows?: ReturnType<typeof auditOptionTitleFallback>
+  ) =>
     optionGroups.length
-      ? optionGroups.map((optionGroup) => `${optionGroup.title}::${optionGroup.id}`).join(" | ")
+      ? optionGroups
+          .map((optionGroup, index) => {
+            const title =
+              titleFallbackAuditRows?.[index]?.displayedTitle ?? optionGroup.title;
+            return `${title}::${optionGroup.id}`;
+          })
+          .join(" | ")
       : "none";
 
   return [
@@ -2173,24 +2261,32 @@ function buildSuggestedScheduleCopyOnlyOptionBoxSummaryText(input: {
     `Matched track option groups: ${formatIds(input.trackOptionGroups)}`,
     `Displayed group count: ${input.displayedOptionGroups.length}`,
     `Displayed option group count: ${input.displayedOptionGroups.length}`,
-    `Displayed option groups: ${formatIds(input.displayedOptionGroups)}`,
+    `Displayed option groups: ${formatIds(
+      input.displayedOptionGroups,
+      displayedTitleFallbackAuditRows
+    )}`,
   ].join(" ");
 }
 
 function buildSuggestedScheduleCopyOnlyOptionGroupVisibilityText(input: {
   optionGroup: SuggestedScheduleOptionGroup;
+  displayTitle: string;
   isOpen: boolean;
 }) {
   return [
     "[copy-only option group visibility]",
     `Group id: ${input.optionGroup.id}`,
-    `Group title: ${input.optionGroup.title}`,
+    `Group title: ${input.displayTitle}`,
+    `Original group title: ${input.optionGroup.title || "none"}`,
     "Is visible: yes",
     "Is in option box: yes",
     `Is open: ${input.isOpen ? "yes" : "no"}`,
     `Selection source: ${input.optionGroup.selectionSource ?? "none"}`,
     `Selected count: ${getSuggestedScheduleOptionGroupSelectedCount(input.optionGroup)}`,
     `Required count: ${getSuggestedScheduleOptionGroupRequiredSelectionCount(input.optionGroup)}`,
+    `Resolved satisfied option ids: ${
+      getSuggestedScheduleResolvedOptionIds(input.optionGroup).join(", ") || "none"
+    }`,
   ].join(" ");
 }
 
@@ -2205,6 +2301,9 @@ function buildSuggestedScheduleCopyOnlySelectedOptionStateText(input: {
     `Selected ids: ${
       getSuggestedScheduleUniqueOptionIds(input.optionGroup.selectedOptionIds).join(", ") ||
       "none"
+    }`,
+    `Resolved satisfied ids: ${
+      getSuggestedScheduleResolvedOptionIds(input.optionGroup).join(", ") || "none"
     }`,
   ].join(" ");
 }
@@ -2315,6 +2414,11 @@ function SuggestedScheduleOptionsBox({
 
   if (!optionGroups.length) return null;
 
+  const optionTitleFallbackAuditRows = auditOptionTitleFallback({ optionGroups });
+  const optionTitleFallbackAuditText = optionTitleFallbackAuditRows
+    .map((entry) => entry.copyOnlyDebugText)
+    .join("\n");
+
   return (
     <View
       className={`mt-3 rounded-2xl border px-3 py-3 gap-3 ${
@@ -2338,21 +2442,40 @@ function SuggestedScheduleOptionsBox({
           {optionBoxSummaryText}
         </Text>
       ) : null}
+      {optionTitleFallbackAuditText ? (
+        <Text
+          selectable
+          style={COPY_ONLY_OPTION_STATUS_TEXT_STYLE}
+          accessibilityElementsHidden
+          importantForAccessibility="no-hide-descendants"
+        >
+          {optionTitleFallbackAuditText}
+        </Text>
+      ) : null}
 
-      {optionGroups.map((optionGroup) => {
+      {optionGroups.map((optionGroup, optionGroupIndex) => {
         const selectedOptionIdSet = new Set(
-          getSuggestedScheduleUniqueOptionIds(optionGroup.selectedOptionIds)
+          getSuggestedScheduleResolvedOptionIds(optionGroup)
         );
         const selectedOptionLabels = getSuggestedScheduleSelectedOptionLabels(optionGroup);
         const selectionCount = Math.max(
           1,
           Math.ceil(Number(optionGroup.selectionCount ?? 1) || 1)
         );
-        const selectedCount = Math.min(selectedOptionIdSet.size, selectionCount);
+        const selectedCount = Math.min(
+          getSuggestedScheduleOptionGroupSelectedCount(optionGroup),
+          selectionCount
+        );
         const isOptionGroupOpen = !closedOptionGroupIds.has(optionGroup.id);
-        const optionGroupDisplayTitle = optionGroup.title || "Choose options";
+        const optionGroupDisplayTitle = getSuggestedScheduleOptionGroupDisplayTitle({
+          optionGroup,
+          titleFallbackAuditRows: optionTitleFallbackAuditRows,
+          visibleOptionIndex: optionGroupIndex + 1,
+        });
+        const optionGroupStatusVerb =
+          getSuggestedScheduleOptionGroupStatusVerb(optionGroup);
         const optionGroupStatusText = selectedOptionLabels.length
-          ? `Selected: ${selectedOptionLabels.join("; ")}`
+          ? `${optionGroupStatusVerb}: ${selectedOptionLabels.join("; ")}`
           : getSuggestedScheduleOptionGroupSelectionTargetText(optionGroup);
         const optionGroupProgressText = `${selectedCount}/${selectionCount}`;
 
@@ -2410,6 +2533,7 @@ function SuggestedScheduleOptionsBox({
             >
               {buildSuggestedScheduleCopyOnlyOptionGroupVisibilityText({
                 optionGroup,
+                displayTitle: optionGroupDisplayTitle,
                 isOpen: isOptionGroupOpen,
               })}
             </Text>
@@ -2451,6 +2575,9 @@ function SuggestedScheduleOptionsBox({
                   const optionDisplayLabel = getSuggestedScheduleOptionDisplayLabel(option);
                   const optionCourseDetailText =
                     getSuggestedScheduleOptionCourseDetailText(option);
+                  const optionSelectionSource = isSelected
+                    ? getSuggestedScheduleOptionSatisfiedBy(optionGroup, option.id)
+                    : "none";
 
                   return (
                     <Pressable
@@ -2499,6 +2626,11 @@ function SuggestedScheduleOptionsBox({
                         {option.guidanceSummary ? (
                           <Text className={`${secondaryTextClass} text-xs mt-1`}>
                             {option.guidanceSummary}
+                          </Text>
+                        ) : null}
+                        {isSelected && optionSelectionSource !== "none" ? (
+                          <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                            Selection source: {optionSelectionSource}
                           </Text>
                         ) : null}
                         <Text
@@ -3679,6 +3811,20 @@ function SuggestedScheduleCard({
     () => mergeSuggestedScheduleOptionGroups(trackOptionGroups, rawQuarterOptionGroups),
     [rawQuarterOptionGroups, trackOptionGroups]
   );
+  const scheduleOptionTitleFallbackAuditRows = useMemo(
+    () => auditOptionTitleFallback({ optionGroups: scheduleOptionGroups }),
+    [scheduleOptionGroups]
+  );
+  const scheduleOptionDisplayTitleById = useMemo(
+    () =>
+      new Map(
+        scheduleOptionTitleFallbackAuditRows.map((entry) => [
+          entry.groupId,
+          entry.displayedTitle,
+        ])
+      ),
+    [scheduleOptionTitleFallbackAuditRows]
+  );
   const optionBoxSummaryText = useMemo(
     () =>
       buildSuggestedScheduleCopyOnlyOptionBoxSummaryText({
@@ -3742,6 +3888,45 @@ function SuggestedScheduleCard({
         plan,
         suggestedPlan: quarters,
         completedCourses,
+        selectedRequirementOptionIdsByGroup,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const optionAllocationAuditLines = auditOptionAllocation({
+        suggestedPlan: quarters,
+        completedCourses,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const optionTitleFallbackAuditLines = scheduleOptionTitleFallbackAuditRows.map(
+        (entry) => entry.copyOnlyDebugText
+      );
+      const optionCreditAuditLines = auditOptionCredits({
+        suggestedPlan: quarters,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const optionSelectionSourceAuditLines = auditOptionSelectionSources({
+        suggestedPlan: quarters,
+        completedCourses,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const compoundEquivalencyAuditLines = auditCompoundEquivalencyPaths({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const trueOptionDetectionAuditLines = auditTrueOptionDetection({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+        selectedRequirementOptionIdsByGroup,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const requiredMappedCoverageAuditLines = auditRequiredMappedCourseCoverage({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const requirementRolePrecedenceAuditLines = auditRequirementRolePrecedence({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+      }).map((entry) => entry.copyOnlyDebugText);
+      const countedCourseAuditLines = auditCountedCourses({
+        suggestedPlan: quarters,
       }).map((entry) => entry.copyOnlyDebugText);
       const requirementClassificationAuditLines = auditRequirementClassification({
         plan,
@@ -3774,7 +3959,16 @@ function SuggestedScheduleCard({
 
       return [
         ...sourceBackedAuditLines,
+        ...compoundEquivalencyAuditLines,
+        ...trueOptionDetectionAuditLines,
+        ...requiredMappedCoverageAuditLines,
+        ...requirementRolePrecedenceAuditLines,
         ...optionSatisfactionAuditLines,
+        ...optionAllocationAuditLines,
+        ...optionTitleFallbackAuditLines,
+        ...optionCreditAuditLines,
+        ...optionSelectionSourceAuditLines,
+        ...countedCourseAuditLines,
         ...requirementClassificationAuditLines,
         ...invalidScheduledOptionAuditLines,
         ...sbseCurrentVsOldSourceAuditLines,
@@ -3782,7 +3976,14 @@ function SuggestedScheduleCard({
         ...sbseCreditAuditLines,
       ].join("\n");
     },
-    [completedCourses, grcTrack, plan, quarters, selectedRequirementOptionIdsByGroup]
+    [
+      completedCourses,
+      grcTrack,
+      plan,
+      quarters,
+      scheduleOptionTitleFallbackAuditRows,
+      selectedRequirementOptionIdsByGroup,
+    ]
   );
   const stemPrepToggleGuidance =
     "Turn off 'Allow STEM prep classes' to skip unnecessary placement-dependent prep classes like Precalculus I/II or general physics when you are ready to start with Calculus I and Engineering Physics I.";
@@ -4033,7 +4234,8 @@ function SuggestedScheduleCard({
                                   <View className="gap-1">
                                     <Text className={courseTextClass}>
                                       {optionGroup.isSelectionPrompt
-                                        ? optionGroup.title
+                                        ? scheduleOptionDisplayTitleById.get(optionGroup.id) ??
+                                          optionGroup.title
                                         : courseDisplayLabel}
                                     </Text>
                                     <Text className={`${secondaryTextClass} text-xs`}>

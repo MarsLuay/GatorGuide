@@ -615,23 +615,31 @@ function normalizeExtractedCourseCode(rawSubject: string, rawNumber: string) {
 function extractCourseCodes(value: string) {
   const normalizedValue = String(value ?? "").toUpperCase().replace(/\s+/g, " ");
   const extractedCourseCodes: string[] = [];
-  const explicitMatches = [...normalizedValue.matchAll(EXPLICIT_COURSE_CODE_PATTERN)];
+  const explicitMatches = [...normalizedValue.matchAll(EXPLICIT_COURSE_CODE_PATTERN)]
+    .map((match) => {
+      const subject = normalizeExtractedCourseSubject(match[1]);
+      const explicitCode = normalizeExtractedCourseCode(match[1], match[2]);
+      if (!subject || !explicitCode) {
+        return null;
+      }
+
+      return { match, subject, explicitCode };
+    })
+    .filter(Boolean) as Array<{
+      match: RegExpMatchArray;
+      subject: string;
+      explicitCode: string;
+    }>;
 
   for (let index = 0; index < explicitMatches.length; index += 1) {
-    const match = explicitMatches[index];
-    const subject = normalizeExtractedCourseSubject(match[1]);
-    const explicitCode = normalizeExtractedCourseCode(match[1], match[2]);
-
-    if (!subject || !explicitCode) {
-      continue;
-    }
+    const { match, subject, explicitCode } = explicitMatches[index];
 
     extractedCourseCodes.push(explicitCode);
 
     const currentMatchEnd = (match.index ?? 0) + match[0].length;
     const nextMatchStart =
       index + 1 < explicitMatches.length
-        ? (explicitMatches[index + 1].index ?? normalizedValue.length)
+        ? (explicitMatches[index + 1].match.index ?? normalizedValue.length)
         : normalizedValue.length;
     const trailingSegment = normalizedValue.slice(currentMatchEnd, nextMatchStart);
 

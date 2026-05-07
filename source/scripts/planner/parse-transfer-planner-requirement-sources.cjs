@@ -781,6 +781,7 @@ function extractRelevantRequirementLines(lines, headings) {
       TRANSFER_CREDIT_NOISE_PATTERN.test(line) ||
       normalizedHeadings.has(line) ||
       REQUIREMENT_CUE_PATTERN.test(line) ||
+      REQUIREMENT_FRIENDLY_HINT_PATTERN.test(line) ||
       STRUCTURAL_REQUIREMENT_PATTERN.test(line)
     ) {
       if (TRANSFER_CREDIT_NOISE_PATTERN.test(line)) {
@@ -788,7 +789,9 @@ function extractRelevantRequirementLines(lines, headings) {
       }
       const forwardWindow = STRUCTURAL_REQUIREMENT_PATTERN.test(line)
         ? 14
-        : /\b\d+\s+credits?(?:\s*,?\s*from)?\b/i.test(line)
+        : REQUIREMENT_FRIENDLY_HINT_PATTERN.test(line)
+          ? 14
+          : /\b\d+\s+(?:credits?|cr\.?)(?:\s*,?\s*from)?\b/i.test(line)
           ? 10
           : 5;
       for (
@@ -858,6 +861,25 @@ function extractExplicitCourseCodesFromLine(line) {
     }
   }
 
+  for (const rawAlias of Object.keys(EXTRACTED_COURSE_SUBJECT_ALIASES)) {
+    if (!rawAlias.includes(" ")) {
+      continue;
+    }
+
+    const aliasPattern = new RegExp(
+      `\\b${rawAlias
+        .replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+        .replace(/\s+/g, "\\s+")}\\s+(\\d{3}[A-Za-z]?)\\b`,
+      "g"
+    );
+    for (const aliasMatch of normalizedLine.matchAll(aliasPattern)) {
+      const explicitCode = normalizeExtractedCourseCode(rawAlias, aliasMatch[1]);
+      if (explicitCode) {
+        extractedCourseCodes.push(explicitCode);
+      }
+    }
+  }
+
   return uniqueSorted(extractedCourseCodes);
 }
 
@@ -886,6 +908,7 @@ function hasRequirementContextNearLine(lines, index, radius) {
       line &&
       (STRUCTURAL_REQUIREMENT_PATTERN.test(line) ||
         REQUIREMENT_CUE_PATTERN.test(line) ||
+        REQUIREMENT_FRIENDLY_HINT_PATTERN.test(line) ||
         COURSE_CLUSTER_REQUIREMENT_CONTEXT_PATTERN.test(line))
     ) {
       return true;
@@ -1077,10 +1100,18 @@ function isUnsafeRequirementCourseHint(entry, courseCode, hint, lines = []) {
   }
 
   const extractedCourseCodes = extractCourseCodesFromLine(normalizedHint);
+  const hintLineIndex = (lines ?? []).findIndex(
+    (line) =>
+      normalizeWhitespace(line) === normalizedHint ||
+      buildSourceLineHint(courseCode, line) === normalizedHint
+  );
+  const hasNearbyRequirementContext =
+    hintLineIndex >= 0 && hasRequirementContextNearLine(lines, hintLineIndex, 4);
   if (
     extractedCourseCodes.length >= 6 &&
     !REQUIREMENT_FRIENDLY_HINT_PATTERN.test(normalizedHint) &&
-    !DIRECT_REQUIREMENT_COURSE_SEQUENCE_HINT_PATTERN.test(normalizedHint)
+    !DIRECT_REQUIREMENT_COURSE_SEQUENCE_HINT_PATTERN.test(normalizedHint) &&
+    !hasNearbyRequirementContext
   ) {
     return true;
   }
@@ -2770,7 +2801,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
 
   if (
     !ownerSectionRange &&
-    /\b(course #|course name|credits?|electives?|offered|prereq|prerequisite)\b/.test(
+    /\b(course #|course name|credits?|cr\.?|electives?|offered|prereq|prerequisite)\b/.test(
       scopedTableTailText
     )
   ) {
@@ -2788,7 +2819,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
       }
 
       const lineCourseCodes = extractCourseCodesFromLine(line);
-      const hasTableSignal = /\b(course #|course name|credits?|electives?|offered|prereq|prerequisite)\b/i.test(
+      const hasTableSignal = /\b(course #|course name|credits?|cr\.?|electives?|offered|prereq|prerequisite)\b/i.test(
         line
       );
 
