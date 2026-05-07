@@ -41,6 +41,7 @@ const ISSUE_TYPES = [
   "partial-compound-path",
   "missing-compound-path",
   "missing-option-group",
+  "false-required-promotion",
 ];
 
 const UW_CAMPUSES = new Set(["uw-seattle", "uw-bothell", "uw-tacoma"]);
@@ -1009,6 +1010,86 @@ function auditCivilEngineering(checks) {
   );
 }
 
+function auditChemicalEngineering(checks) {
+  const plan = resolveRuntimePlan("uw-seattle-chemical-engineering", "nme-option");
+  const quarterPlan = buildQuarterPlan(plan, { includeStemPrepCourses: false });
+  const labels = getVisiblePlannedLabels(quarterPlan);
+  const falseEngineeringRows = [
+    "ENGR& 214",
+    "ENGR& 225",
+    "ENGR& 204",
+    "ENGR& 114",
+    "ENGR& 215",
+    "ENGR 140",
+    "CS 145",
+    "ENGR 100",
+    "ENGR 106",
+  ];
+  const requiredCoreRows = [
+    "ENGL& 101",
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 163",
+    "MATH& 264",
+    "MATH 238",
+    "MATH 240",
+    "CHEM& 161",
+    "CHEM& 162",
+    "CHEM& 163",
+    "CHEM& 261",
+    "CHEM& 262",
+    "CHEM& 263",
+    "PHYS& 221",
+    "PHYS& 222",
+    "PHYS& 223",
+  ];
+  const sourceScopeAudit = planner.auditSourceScope({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const requiredCoverageAudit = planner.auditRequiredMappedCourseCoverage({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const falseCoverageRows = requiredCoverageAudit.filter((row) =>
+    ["AA 210", "CEE 220", "EE 215", "ME 123", "ME 230", "MSE 170", "CSE 143"].includes(
+      row.uwCourse
+    )
+  );
+  const creditRange = planner.buildSuggestedQuarterRemainingCreditRange({
+    quarters: quarterPlan,
+    track: null,
+  });
+
+  addCheck(
+    checks,
+    "uw-cheme-nme:false-engineering-elective-required-promotion",
+    "UW Chemical Engineering NME does not promote engineering elective rows as required transfer courses",
+    falseEngineeringRows.every((courseCode) => !labels.includes(courseCode)) &&
+      requiredCoreRows.every((courseCode) => labels.includes(courseCode)) &&
+      sourceScopeAudit.length >= 7 &&
+      sourceScopeAudit.every(
+        (row) =>
+          row.detectedRole === "elective-list" &&
+          row.promotedToRequired === false &&
+          row.allowedToSchedule === false &&
+          row.issue === null
+      ) &&
+      falseCoverageRows.length === 0 &&
+      requiredCoverageAudit.every((row) => row.issue === null) &&
+      creditRange.exactRemainingCredits === 86,
+    [
+      `Labels: ${labels.join(", ")}`,
+      sourceScopeAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      requiredCoverageAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      `Credit range: ${JSON.stringify(creditRange)}`,
+    ].join("\n"),
+    "false-required-promotion"
+  );
+}
+
 function auditBioengineering(checks) {
   const plan = resolveRuntimePlan("uw-seattle-bioengineering", null);
   const quarterPlan = buildQuarterPlan(plan);
@@ -1854,6 +1935,9 @@ function runRegressionChecks(targetPlanId) {
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-civil-engineering") {
     auditCivilEngineering(checks);
+  }
+  if (!targetPlanId || targetPlanId === "uw-seattle-chemical-engineering") {
+    auditChemicalEngineering(checks);
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-bioengineering") {
     auditBioengineering(checks);

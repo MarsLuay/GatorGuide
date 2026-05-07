@@ -128,6 +128,7 @@ import {
   auditOptionSelectionSources,
   auditCompoundEquivalencyPaths,
   auditTrueOptionDetection,
+  auditSourceScope,
   auditRequiredMappedCourseCoverage,
   auditRequirementRolePrecedence,
   auditCountedCourses,
@@ -6423,6 +6424,7 @@ test("Transfer planner UI exposes copy-only option satisfaction audit rows", () 
   assert.match(pageSource, /auditOptionSelectionSources/);
   assert.match(pageSource, /auditCompoundEquivalencyPaths/);
   assert.match(pageSource, /auditTrueOptionDetection/);
+  assert.match(pageSource, /auditSourceScope/);
   assert.match(pageSource, /auditRequiredMappedCourseCoverage/);
   assert.match(pageSource, /auditRequirementRolePrecedence/);
   assert.match(pageSource, /auditCountedCourses/);
@@ -6438,6 +6440,7 @@ test("Transfer planner UI exposes copy-only option satisfaction audit rows", () 
   assert.match(pageSource, /optionSelectionSourceAuditLines/);
   assert.match(pageSource, /compoundEquivalencyAuditLines/);
   assert.match(pageSource, /trueOptionDetectionAuditLines/);
+  assert.match(pageSource, /sourceScopeAuditLines/);
   assert.match(pageSource, /requiredMappedCoverageAuditLines/);
   assert.match(pageSource, /requirementRolePrecedenceAuditLines/);
   assert.match(pageSource, /countedCourseAuditLines/);
@@ -6453,6 +6456,7 @@ test("Transfer planner UI exposes copy-only option satisfaction audit rows", () 
   assert.match(serviceSource, /\[copy-only option selection source audit\]/);
   assert.match(serviceSource, /\[copy-only compound equivalency audit\]/);
   assert.match(serviceSource, /\[copy-only true option detection audit\]/);
+  assert.match(serviceSource, /\[copy-only source-scope audit\]/);
   assert.match(serviceSource, /\[copy-only required coverage audit\]/);
   assert.match(serviceSource, /\[copy-only requirement role precedence audit\]/);
   assert.match(serviceSource, /\[copy-only counted course audit\]/);
@@ -6477,6 +6481,8 @@ test("Transfer planner UI exposes copy-only option satisfaction audit rows", () 
   assert.match(serviceSource, /Mapped GRC equivalent\/path:/);
   assert.match(serviceSource, /GRC compound path:/);
   assert.match(serviceSource, /Detected as true option:/);
+  assert.match(serviceSource, /Promoted to required:/);
+  assert.match(serviceSource, /Allowed to schedule:/);
   assert.match(serviceSource, /Winning role:/);
   assert.match(serviceSource, /Counted once:/);
   assert.match(serviceSource, /Independent scheduling reason:/);
@@ -14484,6 +14490,103 @@ test("Chemical Engineering collapses NME source-page aliases into one clean path
     getTransferPlannerGrcCourseList(runtimeChemicalPlan).includes("CHEM& 261"),
     "Expected the base Chemical Engineering pathway to keep organic chemistry in the planner."
   );
+});
+
+test("Chemical Engineering NME does not promote engineering elective rows as required transfer courses", () => {
+  const runtimeChemicalPlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-chemical-engineering"
+  );
+  assert.ok(runtimeChemicalPlan, "Expected runtime Seattle Chemical Engineering plan.");
+  const nmePlan = resolveTransferPlannerStudentRuntimeMajorPlan(runtimeChemicalPlan, "nme-option");
+  assert.ok(nmePlan, "Expected Chemical Engineering NME runtime plan.");
+  const completedCourses: TranscriptCourseEntry[] = [];
+  const statuses = buildStatuses(nmePlan, completedCourses);
+  const quarterPlan = buildSuggestedQuarterPlan({
+    plan: nmePlan,
+    ...statuses,
+    completedCourses,
+    track: getTransferPlannerTrack(nmePlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-01-15T12:00:00.000Z"),
+  });
+  const labels = quarterPlan.flatMap((quarter) => quarter.courses.map((course) => course.label));
+  const falseEngineeringRows = [
+    "ENGR& 214",
+    "ENGR& 225",
+    "ENGR& 204",
+    "ENGR& 114",
+    "ENGR& 215",
+    "ENGR 140",
+    "CS 145",
+    "ENGR 100",
+    "ENGR 106",
+  ];
+  const requiredCoreRows = [
+    "ENGL& 101",
+    "MATH& 151",
+    "MATH& 152",
+    "MATH& 163",
+    "MATH& 264",
+    "MATH 238",
+    "MATH 240",
+    "CHEM& 161",
+    "CHEM& 162",
+    "CHEM& 163",
+    "CHEM& 261",
+    "CHEM& 262",
+    "CHEM& 263",
+    "PHYS& 221",
+    "PHYS& 222",
+    "PHYS& 223",
+  ];
+
+  assert.deepEqual(
+    falseEngineeringRows.filter((courseCode) => labels.includes(courseCode)),
+    []
+  );
+  assert.deepEqual(
+    requiredCoreRows.filter((courseCode) => !labels.includes(courseCode)),
+    []
+  );
+
+  const sourceScopeAudit = auditSourceScope({
+    plan: nmePlan,
+    suggestedPlan: quarterPlan,
+    completedCourses,
+  });
+  for (const uwCourse of ["AA 210", "CEE 220", "EE 215", "ME 123", "ME 230", "MSE 170", "CSE 143"]) {
+    const auditRow = sourceScopeAudit.find((row) => row.uwCourse === uwCourse);
+    assert.ok(auditRow, `Expected source-scope audit row for ${uwCourse}.`);
+    assert.equal(auditRow.detectedRole, "elective-list");
+    assert.equal(auditRow.promotedToRequired, false);
+    assert.equal(auditRow.allowedToSchedule, false);
+    assert.equal(auditRow.issue, null);
+  }
+
+  const requiredCoverageAudit = auditRequiredMappedCourseCoverage({
+    plan: nmePlan,
+    suggestedPlan: quarterPlan,
+    completedCourses,
+  });
+  assert.deepEqual(
+    requiredCoverageAudit
+      .filter((row) =>
+        ["AA 210", "CEE 220", "EE 215", "ME 123", "ME 230", "MSE 170", "CSE 143"].includes(
+          row.uwCourse
+        )
+      )
+      .map((row) => row.uwCourse),
+    []
+  );
+  assert.equal(requiredCoverageAudit.every((row) => row.issue === null), true);
+
+  const creditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: quarterPlan,
+    track: null,
+  });
+  assert.equal(creditRange.exactRemainingCredits, 86);
 });
 
 test("ACMS pathway promotion uses the official semantic option names instead of structural headings", () => {

@@ -147,6 +147,7 @@ const UW_SEATTLE_ME_PLAN_ID = "uw-seattle-mechanical-engineering";
 const UW_SEATTLE_CIVIL_MECHANICAL_TRANSFER_TRACK_ID =
   "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-civil-and-mechanical-engineering";
 const UW_SEATTLE_CIVIL_PLAN_ID = "uw-seattle-civil-engineering";
+const UW_SEATTLE_CHEMICAL_ENGINEERING_PLAN_ID = "uw-seattle-chemical-engineering";
 const UW_SEATTLE_BIOENGINEERING_PLAN_ID = "uw-seattle-bioengineering";
 const UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID =
   "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering";
@@ -874,16 +875,107 @@ function normalizeUwSeattleBioengineeringRuntimePlan<T extends TransferPlannerMa
   }));
 }
 
+function buildUwSeattleChemicalEngineeringRuntimeChecklist() {
+  const applicationChecklist = [
+    buildRuntimeChecklistItem({
+      id: "cheme-english-composition",
+      title: "English Composition",
+      grcCourses: ["ENGL& 101"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "cheme-calculus",
+      title: "MATH 124, 125, 126",
+      grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
+      alternatives: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
+    }),
+    buildRuntimeChecklistItem({
+      id: "cheme-general-chemistry",
+      title: "CHEM 142, 152, 162",
+      grcCourses: ["CHEM& 161", "CHEM& 162", "CHEM& 163"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "cheme-physics",
+      title: "PHYS 121, 122, 123",
+      grcCourses: ["PHYS& 221", "PHYS& 222", "PHYS& 223"],
+    }),
+  ];
+
+  const beforeEnrollmentChecklist = [
+    buildRuntimeChecklistItem({
+      id: "cheme-math-207",
+      title: "MATH 207",
+      grcCourses: ["MATH 238"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "cheme-math-208",
+      title: "MATH 208",
+      grcCourses: ["MATH 240"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "cheme-math-elective",
+      title: "Math Elective: MATH 224",
+      grcCourses: ["MATH& 264"],
+    }),
+    buildRuntimeChecklistItem({
+      id: "cheme-organic-chemistry",
+      title: "CHEM 237 and CHEM 238",
+      grcCourses: ["CHEM& 261", "CHEM& 262", "CHEM& 263"],
+    }),
+  ];
+
+  return {
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist: [] as TransferPlannerChecklistItem[],
+  };
+}
+
+function normalizeUwSeattleChemicalEngineeringRuntimePlan<T extends TransferPlannerMajorPlan>(
+  plan: T
+): T {
+  if (plan.id !== UW_SEATTLE_CHEMICAL_ENGINEERING_PLAN_ID) {
+    return plan;
+  }
+
+  const checklist = buildUwSeattleChemicalEngineeringRuntimeChecklist();
+  const grcCourseList = buildRuntimeGrcCourseListFromChecklists(
+    [
+      ...checklist.applicationChecklist,
+      ...checklist.beforeEnrollmentChecklist,
+      ...checklist.stayAtGrcChecklist,
+    ],
+    { onlyCanonicalGrcCourses: true }
+  );
+
+  return refreshRuntimeMatchedTrackCopy({
+    ...plan,
+    bestTrackId: plan.bestTrackId ?? UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID,
+    applicationChecklist: checklist.applicationChecklist,
+    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
+    stayAtGrcChecklist: checklist.stayAtGrcChecklist,
+    grcCourseList,
+    requirementGroups: [],
+    validationNotes: unique([
+      ...(plan.validationNotes ?? []),
+      "Runtime Chemical Engineering transfer checklist normalized to current ChemE lower-division math, chemistry, physics, English, and mapped NME-path requirements; engineering-elective source lists are not promoted to required transfer rows.",
+    ]),
+  });
+}
+
 function normalizeStudentRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(plan: T): T {
-  return normalizeUwSeattleBioengineeringRuntimePlan(plan);
+  return normalizeUwSeattleChemicalEngineeringRuntimePlan(
+    normalizeUwSeattleBioengineeringRuntimePlan(plan)
+  );
 }
 
 function normalizeStudentRuntimeResolvedMajorPlan<T extends TransferPlannerResolvedMajorPlan>(
   plan: T
 ): T {
-  return normalizeUwSeattleBioengineeringRuntimePlan(
-    normalizeUwSeattleCivilRuntimePlan(
-      normalizeUwSeattleMechanicalRuntimePlan(normalizeUwSeattleEceRuntimePlan(plan))
+  return normalizeUwSeattleChemicalEngineeringRuntimePlan(
+    normalizeUwSeattleBioengineeringRuntimePlan(
+      normalizeUwSeattleCivilRuntimePlan(
+        normalizeUwSeattleMechanicalRuntimePlan(normalizeUwSeattleEceRuntimePlan(plan))
+      )
     )
   );
 }

@@ -83,6 +83,7 @@ import {
   auditOptionSelectionSources,
   auditCompoundEquivalencyPaths,
   auditTrueOptionDetection,
+  auditSourceScope,
   auditRequiredMappedCourseCoverage,
   auditRequirementRolePrecedence,
   auditCountedCourses,
@@ -3918,6 +3919,11 @@ function SuggestedScheduleCard({
         completedCourses,
         selectedRequirementOptionIdsByGroup,
       }).map((entry) => entry.copyOnlyDebugText);
+      const sourceScopeAuditLines = auditSourceScope({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+      }).map((entry) => entry.copyOnlyDebugText);
       const requiredMappedCoverageAuditLines = auditRequiredMappedCourseCoverage({
         plan,
         suggestedPlan: quarters,
@@ -3964,6 +3970,7 @@ function SuggestedScheduleCard({
         ...sourceBackedAuditLines,
         ...compoundEquivalencyAuditLines,
         ...trueOptionDetectionAuditLines,
+        ...sourceScopeAuditLines,
         ...requiredMappedCoverageAuditLines,
         ...requirementRolePrecedenceAuditLines,
         ...optionSatisfactionAuditLines,

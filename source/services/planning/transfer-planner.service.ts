@@ -359,6 +359,24 @@ export type OptionTitleFallbackAuditEntry = {
   copyOnlyDebugText: string;
 };
 
+export type SourceScopeAuditEntry = {
+  major: string;
+  uwCourse: string;
+  sourceSection: string;
+  detectedRole:
+    | "required"
+    | "option"
+    | "elective-list"
+    | "matched-track"
+    | "other-major"
+    | "hidden";
+  promotedToRequired: boolean;
+  allowedToSchedule: boolean;
+  reason: string;
+  issue: "false-required-promotion" | null;
+  copyOnlyDebugText: string;
+};
+
 export type RequiredMappedCourseCoverageAuditEntry = {
   major: string;
   uwRequirement: string;
@@ -1156,6 +1174,12 @@ function getSourceBackedRequirementSourceBlocksForPlan(
 function getSourceBackedRequiredUwCourseCodeSet(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
+  const scopedRequiredUwCourseCodes =
+    getChemicalEngineeringSourceBackedRequiredUwCourseCodeSet(plan);
+  if (scopedRequiredUwCourseCodes) {
+    return scopedRequiredUwCourseCodes;
+  }
+
   const requiredUwCourseCodes = new Set<string>();
   if (!plan) {
     return requiredUwCourseCodes;
@@ -1174,6 +1198,9 @@ function getSourceBackedRequiredUwCourseCodeSet(
         const normalizedCourseCode = normalizeCourseCode(
           course.normalizedCourseCode || course.courseCode
         );
+        if (!shouldAllowSourceScopedRequiredUwCourse(plan, normalizedCourseCode)) {
+          continue;
+        }
         if (!shouldIncludeSourceBackedParsedRequiredCourseCandidate({
           uwCourseCode: normalizedCourseCode,
           sourceLineHints: [course.sourceHeading, course.sourceCategory],
@@ -1202,6 +1229,9 @@ function getSourceBackedRequiredUwCourseCodeSet(
       if (!normalizedCourseCode) {
         continue;
       }
+      if (!shouldAllowSourceScopedRequiredUwCourse(plan, normalizedCourseCode)) {
+        continue;
+      }
       if (trueOptionUwCourseCodes.has(normalizedCourseCode)) {
         continue;
       }
@@ -1227,6 +1257,10 @@ function addChecklistBackedRequiredUwCourses(
     ...(plan.beforeEnrollmentChecklist ?? []),
     ...(plan.stayAtGrcChecklist ?? []),
   ]) {
+    if (!shouldAllowSourceScopedRequiredChecklistItem(plan, item)) {
+      continue;
+    }
+
     if (!shouldTreatChecklistItemPrimaryCoursesAsRequired(item)) {
       continue;
     }
@@ -1677,6 +1711,10 @@ function getChoiceOnlyChecklistCourseCodeSet(plan: TransferPlannerMajorPlan | nu
     ...(plan.beforeEnrollmentChecklist ?? []),
     ...(plan.stayAtGrcChecklist ?? []),
   ]) {
+    if (!shouldAllowSourceScopedRequiredChecklistItem(plan, item)) {
+      continue;
+    }
+
     const choiceLabels = [
       ...(shouldTreatChecklistItemPrimaryCoursesAsRequired(item) ? [] : item.grcCourses ?? []),
       ...(item.alternatives ?? []).flat(),
@@ -2563,6 +2601,174 @@ const LEGACY_COURSE_CODE_ALIASES = new Map<string, string>([["MATH& 254", "MATH&
 export function normalizeCourseCode(value: string) {
   const normalized = normalizeTransferPlannerCourseCode(value);
   return LEGACY_COURSE_CODE_ALIASES.get(normalized) ?? normalized;
+}
+
+const UW_SEATTLE_CHEMICAL_ENGINEERING_PLAN_ID = "uw-seattle-chemical-engineering";
+const CHEMICAL_ENGINEERING_ELECTIVE_LIST_FALSE_REQUIRED_ROWS = [
+  {
+    uwCourse: "AA 210",
+    grcEquivalent: "ENGR& 214",
+    sourceSection: "Engineering Electives",
+    reason:
+      "listed as a Chemical Engineering engineering elective, not a lower-division ChemE core or admission requirement.",
+  },
+  {
+    uwCourse: "CEE 220",
+    grcEquivalent: "ENGR& 225",
+    sourceSection: "Engineering Electives",
+    reason:
+      "listed as a Chemical Engineering engineering elective, not a lower-division ChemE core or admission requirement.",
+  },
+  {
+    uwCourse: "EE 215",
+    grcEquivalent: "ENGR& 204",
+    sourceSection: "Engineering Electives",
+    reason:
+      "listed as a Chemical Engineering engineering elective, not a lower-division ChemE core or admission requirement.",
+  },
+  {
+    uwCourse: "ME 123",
+    grcEquivalent: "ENGR& 114",
+    sourceSection: "Engineering Electives",
+    reason:
+      "listed as a Chemical Engineering engineering elective, not a lower-division ChemE core or admission requirement.",
+  },
+  {
+    uwCourse: "ME 230",
+    grcEquivalent: "ENGR& 215",
+    sourceSection: "Engineering Electives",
+    reason:
+      "listed as a Chemical Engineering engineering elective, not a lower-division ChemE core or admission requirement.",
+  },
+  {
+    uwCourse: "MSE 170",
+    grcEquivalent: "ENGR 140",
+    sourceSection: "Engineering Electives",
+    reason:
+      "listed as a Chemical Engineering engineering elective, not a lower-division ChemE core or admission requirement.",
+  },
+  {
+    uwCourse: "CSE 143",
+    grcEquivalent: "CS 145",
+    sourceSection: "Engineering Electives",
+    reason:
+      "listed as a Chemical Engineering engineering elective, not a lower-division ChemE core or admission requirement.",
+  },
+].map((row) => ({
+  ...row,
+  uwCourse: normalizeCourseCode(row.uwCourse),
+  grcEquivalent: normalizeCourseCode(row.grcEquivalent),
+}));
+const CHEMICAL_ENGINEERING_ELECTIVE_LIST_FALSE_REQUIRED_UW_COURSES = new Set(
+  CHEMICAL_ENGINEERING_ELECTIVE_LIST_FALSE_REQUIRED_ROWS.map((row) => row.uwCourse)
+);
+const CHEMICAL_ENGINEERING_ELECTIVE_LIST_FALSE_REQUIRED_GRC_COURSES = new Set(
+  CHEMICAL_ENGINEERING_ELECTIVE_LIST_FALSE_REQUIRED_ROWS.map((row) => row.grcEquivalent)
+);
+const CHEMICAL_ENGINEERING_SOURCE_BACKED_REQUIRED_UW_REQUIREMENTS = [
+  ["ENGL 131", "English Composition"],
+  ["MATH 124", "MATH 124"],
+  ["MATH 125", "MATH 125"],
+  ["MATH 126", "MATH 126"],
+  ["MATH 207", "MATH 207"],
+  ["MATH 208", "MATH 208"],
+  ["MATH 224", "Math Elective"],
+  ["CHEM 142", "CHEM 142"],
+  ["CHEM 152", "CHEM 152"],
+  ["CHEM 162", "CHEM 162"],
+  ["CHEM 237", "CHEM 237"],
+  ["CHEM 238", "CHEM 238"],
+  ["PHYS 121", "PHYS 121"],
+  ["PHYS 122", "PHYS 122"],
+  ["PHYS 123", "PHYS 123"],
+].map(([courseCode, label]) => ({
+  courseCode: normalizeCourseCode(courseCode),
+  label,
+}));
+
+function isChemicalEngineeringPlan(plan: TransferPlannerMajorPlan | null | undefined) {
+  return plan?.id === UW_SEATTLE_CHEMICAL_ENGINEERING_PLAN_ID;
+}
+
+function isChemicalEngineeringElectiveListFalseRequiredUwCourse(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  courseCode: string | null | undefined
+) {
+  return (
+    isChemicalEngineeringPlan(plan) &&
+    CHEMICAL_ENGINEERING_ELECTIVE_LIST_FALSE_REQUIRED_UW_COURSES.has(
+      normalizeCourseCode(courseCode ?? "")
+    )
+  );
+}
+
+function isChemicalEngineeringElectiveListFalseRequiredGrcCourse(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  courseCode: string | null | undefined
+) {
+  return (
+    isChemicalEngineeringPlan(plan) &&
+    CHEMICAL_ENGINEERING_ELECTIVE_LIST_FALSE_REQUIRED_GRC_COURSES.has(
+      normalizeCourseCode(courseCode ?? "")
+    )
+  );
+}
+
+function shouldAllowSourceScopedRequiredUwCourse(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  uwCourseCode: string | null | undefined
+) {
+  return !isChemicalEngineeringElectiveListFalseRequiredUwCourse(plan, uwCourseCode);
+}
+
+function getChemicalEngineeringSourceBackedRequiredUwCourseCodeSet(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!isChemicalEngineeringPlan(plan)) {
+    return null;
+  }
+
+  return new Set(
+    CHEMICAL_ENGINEERING_SOURCE_BACKED_REQUIRED_UW_REQUIREMENTS.map((row) => row.courseCode)
+  );
+}
+
+function getChemicalEngineeringSourceBackedRequiredUwRequirementLabels(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  if (!isChemicalEngineeringPlan(plan)) {
+    return null;
+  }
+
+  return new Map(
+    CHEMICAL_ENGINEERING_SOURCE_BACKED_REQUIRED_UW_REQUIREMENTS.map((row) => [
+      row.courseCode,
+      row.label,
+    ])
+  );
+}
+
+function shouldAllowSourceScopedRequiredChecklistItem(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  item: TransferPlannerChecklistItem
+) {
+  if (!isChemicalEngineeringPlan(plan)) {
+    return true;
+  }
+
+  const titleCourseCodes = extractCourseCodes(item.title ?? "");
+  if (
+    titleCourseCodes.some((courseCode) =>
+      isChemicalEngineeringElectiveListFalseRequiredUwCourse(plan, courseCode)
+    )
+  ) {
+    return false;
+  }
+
+  const grcCourseCodes = (item.grcCourses ?? []).flatMap((label) => extractCourseCodes(label));
+  return !grcCourseCodes.some((courseCode) =>
+    isChemicalEngineeringElectiveListFalseRequiredGrcCourse(plan, courseCode)
+  );
 }
 
 const SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_CACHE = new Map<string, string[]>();
@@ -4164,6 +4370,7 @@ export function buildSourceBackedRequiredCourseDescriptors(
   const choiceOnlyCourseCodes = getChoiceOnlyChecklistCourseCodeSet(plan);
   const descriptors = [
     ...plan.applicationChecklist
+      .filter((item) => shouldAllowSourceScopedRequiredChecklistItem(plan, item))
       .map((item) =>
         buildSourceBackedRequiredCourseDescriptorForItem({
           item,
@@ -4173,6 +4380,7 @@ export function buildSourceBackedRequiredCourseDescriptors(
       )
       .filter((descriptor) => descriptor !== null),
     ...plan.beforeEnrollmentChecklist
+      .filter((item) => shouldAllowSourceScopedRequiredChecklistItem(plan, item))
       .map((item) =>
         buildSourceBackedRequiredCourseDescriptorForItem({
           item,
@@ -15546,6 +15754,12 @@ function getMappedGrcCourseCodesForRequiredUwCourse(
 function getSourceBackedRequiredUwRequirementLabels(
   plan: TransferPlannerMajorPlan | null | undefined
 ) {
+  const scopedRequirementLabels =
+    getChemicalEngineeringSourceBackedRequiredUwRequirementLabels(plan);
+  if (scopedRequirementLabels) {
+    return scopedRequirementLabels;
+  }
+
   const labelsByCourseCode = new Map<string, string>();
   if (!plan) {
     return labelsByCourseCode;
@@ -15565,6 +15779,7 @@ function getSourceBackedRequiredUwRequirementLabels(
         if (
           !courseCode ||
           labelsByCourseCode.has(courseCode) ||
+          !shouldAllowSourceScopedRequiredUwCourse(plan, courseCode) ||
           !shouldIncludeSourceBackedParsedRequiredCourseCandidate({
             uwCourseCode: courseCode,
             sourceLineHints: [course.sourceHeading, course.sourceCategory],
@@ -15601,6 +15816,9 @@ function getSourceBackedRequiredUwRequirementLabels(
       if (!courseCode || labelsByCourseCode.has(courseCode)) {
         continue;
       }
+      if (!shouldAllowSourceScopedRequiredUwCourse(plan, courseCode)) {
+        continue;
+      }
       if (trueOptionUwCourseCodes.has(courseCode)) {
         continue;
       }
@@ -15634,6 +15852,10 @@ function getChecklistBackedRequiredUwRequirementLabels(
     ...(plan.beforeEnrollmentChecklist ?? []),
     ...(plan.stayAtGrcChecklist ?? []),
   ]) {
+    if (!shouldAllowSourceScopedRequiredChecklistItem(plan, item)) {
+      continue;
+    }
+
     if (!shouldTreatChecklistItemPrimaryCoursesAsRequired(item)) {
       continue;
     }
@@ -15662,6 +15884,52 @@ function getChecklistBackedRequiredUwRequirementLabels(
   }
 
   return labelsByCourseCode;
+}
+
+export function auditSourceScope(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+  completedCourses?: TranscriptCourseEntry[];
+}) {
+  if (!isChemicalEngineeringPlan(input.plan)) {
+    return [] as SourceScopeAuditEntry[];
+  }
+
+  const requiredUwCourseCodes = getSourceBackedRequiredUwCourseCodeSet(input.plan);
+  const scheduledCourseCodes = getScheduledPlannerCourseCodeSet(input.suggestedPlan);
+  const rows = CHEMICAL_ENGINEERING_ELECTIVE_LIST_FALSE_REQUIRED_ROWS.map((row) => {
+    const promotedToRequired = requiredUwCourseCodes.has(row.uwCourse);
+    const scheduled = scheduledCourseCodes.has(row.grcEquivalent);
+    const allowedToSchedule = false;
+    const issue =
+      promotedToRequired || scheduled ? "false-required-promotion" : null;
+    const reason =
+      `${row.reason} GRC equivalent ${row.grcEquivalent} should remain unscheduled unless a current Chemical Engineering source explicitly requires ${row.uwCourse}.`;
+
+    return {
+      major: input.plan?.title ?? input.plan?.id ?? "Chemical Engineering",
+      uwCourse: row.uwCourse,
+      sourceSection: row.sourceSection,
+      detectedRole: "elective-list",
+      promotedToRequired,
+      allowedToSchedule,
+      reason,
+      issue,
+      copyOnlyDebugText: [
+        "[copy-only source-scope audit]",
+        `Major: ${input.plan?.title ?? input.plan?.id ?? "Chemical Engineering"}`,
+        `UW course: ${row.uwCourse}`,
+        `Source section: ${row.sourceSection}`,
+        "Detected role: elective-list",
+        `Promoted to required: ${promotedToRequired ? "yes" : "no"}`,
+        `Allowed to schedule: ${allowedToSchedule ? "yes" : "no"}`,
+        `Reason: ${reason}`,
+        `Issue: ${issue ?? "none"}`,
+      ].join(" "),
+    } satisfies SourceScopeAuditEntry;
+  });
+
+  return rows;
 }
 
 export function auditRequiredMappedCourseCoverage(input: {
