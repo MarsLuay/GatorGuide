@@ -124,6 +124,7 @@ import {
   auditOptionGroupSatisfaction,
   auditOptionAllocation,
   auditCategoryOptionDetection,
+  auditCategoryTranscriptSatisfaction,
   auditOptionTitleFallback,
   auditOptionCredits,
   auditOptionSelectionSources,
@@ -6455,6 +6456,97 @@ test("Seattle Aeronautics selected NSc category option remains visible and count
   assert.match(
     satisfactionAudit?.copyOnlyDebugText ?? "",
     /Selected category options: 5 credits of Natural Sciences \(NSc\)/
+  );
+});
+
+test("Seattle Aeronautics selected NSc category option uses completed CHEM& 140 without a duplicate planned row", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
+  assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
+
+  const scienceGroup = runtimePlan.requirementGroups?.find((group) =>
+    group.options.some((option) => option.categoryOption?.category === "NSC")
+  );
+  const categoryOption = scienceGroup?.options.find(
+    (option) => option.categoryOption?.category === "NSC"
+  );
+  assert.ok(scienceGroup, "Expected A&A science choice requirement group.");
+  assert.ok(categoryOption?.id, "Expected NSc category option id.");
+
+  const selectedRequirementOptionIdsByGroup = {
+    [scienceGroup.id]: [categoryOption.id],
+  };
+  const completedCourses = buildTranscriptCourses("CHEM& 140", "CHEM& 161");
+  const statuses = buildStatuses(runtimePlan, completedCourses);
+  const noTranscriptPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, []),
+    completedCourses: [],
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const selectedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...statuses,
+    completedCourses,
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedLabels = selectedPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses.map((course) => course.label));
+  const completedOptionGroups = collectVisibleOptionGroupsForTitleAudit(selectedPlan);
+  const scienceChoiceGroup = completedOptionGroups.find((group) => group.id === scienceGroup.id);
+  const noTranscriptCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: noTranscriptPlan,
+  });
+  const selectedCreditRange = buildSuggestedQuarterRemainingCreditRange({
+    quarters: selectedPlan,
+  });
+
+  assert.ok(scienceChoiceGroup, "Expected completed CHEM& 140 to keep the option group visible.");
+  assert.deepEqual(scienceChoiceGroup?.resolvedSatisfiedOptionIds, [categoryOption.id]);
+  assert.equal(plannedLabels.includes("ENGR& 114"), false);
+  assert.equal(
+    plannedLabels.some((label) => /5 credits of Natural Sciences \(NSc\)/i.test(label)),
+    false,
+    "Completed CHEM& 140 should suppress the generic future category row."
+  );
+  assert.equal(
+    selectedCreditRange.mainMinRemainingCredits,
+    noTranscriptCreditRange.mainMinRemainingCredits - 5
+  );
+
+  const categoryTranscriptAudit = auditCategoryTranscriptSatisfaction({
+    plan: runtimePlan,
+    suggestedPlan: selectedPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup,
+  }).find((entry) => entry.groupId === scienceGroup.id);
+  assert.equal(categoryTranscriptAudit?.chosenTranscriptSatisfier, "CHEM& 140");
+  assert.equal(categoryTranscriptAudit?.genericCategoryRowScheduled, false);
+  assert.equal(categoryTranscriptAudit?.issue, null);
+
+  const satisfactionAudit = auditOptionGroupSatisfaction({
+    plan: runtimePlan,
+    suggestedPlan: selectedPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup,
+  }).find((entry) => entry.groupId === scienceGroup.id);
+  assert.equal(satisfactionAudit?.displayedProgress, "1/1");
+  assert.equal(satisfactionAudit?.chosenTranscriptCategorySatisfier, "CHEM& 140");
+  assert.equal(satisfactionAudit?.genericPlannedCategoryCredits, 0);
+  assert.equal(satisfactionAudit?.issue, null);
+  assert.match(
+    satisfactionAudit?.copyOnlyDebugText ?? "",
+    /Chosen transcript category satisfier: CHEM& 140/
   );
 });
 

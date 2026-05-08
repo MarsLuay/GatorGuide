@@ -1932,6 +1932,19 @@ function auditAeronauticsCategoryOptions(checks) {
           },
         })
       : [];
+  const chem140CompletedCourses = [
+    { code: "CHEM& 140", label: "CHEM& 140", credits: 5 },
+    { code: "CHEM& 161", label: "CHEM& 161", credits: 5 },
+  ];
+  const selectedCategoryTranscriptQuarterPlan =
+    scienceRequirementGroup && categoryOption?.id
+      ? buildQuarterPlan(plan, {
+          completedCourses: chem140CompletedCourses,
+          selectedRequirementOptionIdsByGroup: {
+            [scienceRequirementGroup.id]: [categoryOption.id],
+          },
+        })
+      : [];
   const optionGroups = getVisiblePlannedCourses(quarterPlan).flatMap((course) =>
     course.optionGroup ? [course.optionGroup] : []
   );
@@ -1985,6 +1998,35 @@ function auditAeronauticsCategoryOptions(checks) {
   const selectedCategorySatisfactionRow = selectedCategorySatisfactionAudit.find(
     (row) => row.groupId === scienceRequirementGroup?.id
   );
+  const selectedCategoryTranscriptLabels = getVisiblePlannedLabels(
+    selectedCategoryTranscriptQuarterPlan
+  );
+  const selectedCategoryTranscriptAudit =
+    scienceRequirementGroup && categoryOption?.id
+      ? planner.auditCategoryTranscriptSatisfaction({
+          plan,
+          suggestedPlan: selectedCategoryTranscriptQuarterPlan,
+          completedCourses: chem140CompletedCourses,
+          selectedRequirementOptionIdsByGroup: {
+            [scienceRequirementGroup.id]: [categoryOption.id],
+          },
+        })
+      : [];
+  const selectedCategoryTranscriptSatisfactionAudit =
+    scienceRequirementGroup && categoryOption?.id
+      ? planner.auditOptionGroupSatisfaction({
+          plan,
+          suggestedPlan: selectedCategoryTranscriptQuarterPlan,
+          completedCourses: chem140CompletedCourses,
+          selectedRequirementOptionIdsByGroup: {
+            [scienceRequirementGroup.id]: [categoryOption.id],
+          },
+        })
+      : [];
+  const selectedCategoryTranscriptSatisfactionRow =
+    selectedCategoryTranscriptSatisfactionAudit.find(
+      (row) => row.groupId === scienceRequirementGroup?.id
+    );
 
   addCheck(
     checks,
@@ -2044,6 +2086,34 @@ function auditAeronauticsCategoryOptions(checks) {
       `Selected category labels: ${selectedCategoryLabels.join(", ")}`,
       selectedCategoryAudit.map((row) => row.copyOnlyDebugText).join("\n"),
       selectedCategorySatisfactionAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+    ],
+    "missing-category-option"
+  );
+
+  addCheck(
+    checks,
+    "uw-seattle-aeronautics-astronautics:selected-category-transcript-satisfaction",
+    "UW Aeronautics & Astronautics selected NSc category option uses completed CHEM& 140 without a duplicate placeholder",
+    !selectedCategoryTranscriptLabels.some((label) =>
+      /5 credits of Natural Sciences \(NSc\)/i.test(label)
+    ) &&
+      !selectedCategoryTranscriptLabels.includes("ENGR& 114") &&
+      selectedCategoryTranscriptAudit.some(
+        (row) =>
+          row.chosenTranscriptSatisfier === "CHEM& 140" &&
+          row.genericCategoryRowScheduled === false &&
+          row.issue === null
+      ) &&
+      selectedCategoryTranscriptSatisfactionRow?.displayedProgress === "1/1" &&
+      selectedCategoryTranscriptSatisfactionRow?.chosenTranscriptCategorySatisfier ===
+        "CHEM& 140" &&
+      selectedCategoryTranscriptSatisfactionRow?.genericPlannedCategoryCredits === 0,
+    [
+      `Selected category transcript labels: ${selectedCategoryTranscriptLabels.join(", ")}`,
+      selectedCategoryTranscriptAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      selectedCategoryTranscriptSatisfactionAudit
+        .map((row) => row.copyOnlyDebugText)
+        .join("\n"),
     ],
     "missing-category-option"
   );

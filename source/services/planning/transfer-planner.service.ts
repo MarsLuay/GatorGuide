@@ -335,6 +335,8 @@ export type OptionGroupSatisfactionAuditEntry = {
   completedSatisfyingCourses: string[];
   scheduledSatisfyingCourses: string[];
   countedSatisfyingCourses: string[];
+  chosenTranscriptCategorySatisfier?: string | null;
+  genericPlannedCategoryCredits?: number;
   resolvedSatisfiedCount: number;
   displayedProgress: string;
   satisfiedBy: string[];
@@ -361,6 +363,25 @@ export type CategoryOptionDetectionAuditEntry = {
     | "unsupported-category"
     | "selected-category-hidden"
     | "selected-category-unsatisfied"
+    | null;
+  copyOnlyDebugText: string;
+};
+
+export type CategoryTranscriptSatisfactionAuditEntry = {
+  major: string;
+  groupId: string;
+  categoryOption: string;
+  selected: boolean;
+  category: string;
+  creditsRequired: number | null;
+  completedCandidateCourses: string[];
+  rejectedCandidateCourses: string[];
+  chosenTranscriptSatisfier: string | null;
+  chosenSatisfierAlreadyUsedByRequiredRow: boolean;
+  genericCategoryRowScheduled: boolean;
+  issue:
+    | "duplicate-category-placeholder"
+    | "no-unused-category-satisfier"
     | null;
   copyOnlyDebugText: string;
 };
@@ -12203,10 +12224,28 @@ function getCompletedCourseCodesSatisfyingCategoryOption(input: {
   }
 
   return sortCourseCodes(
+    getCompletedCourseCodesMatchingCategoryOption({
+      option: input.option,
+      completedCourses: input.completedCourses,
+      campusId: input.campusId,
+    }).filter((courseCode) => !input.consumedCompletedCourseCodes?.has(courseCode))
+  );
+}
+
+function getCompletedCourseCodesMatchingCategoryOption(input: {
+  option: SuggestedQuarterCourseOption;
+  completedCourses: TranscriptCourseEntry[];
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+}) {
+  const tag = normalizeGeneralEducationRequirementTag(input.option.categoryOption?.category);
+  if (!tag || !input.campusId) {
+    return [] as string[];
+  }
+
+  return sortCourseCodes(
     input.completedCourses
       .map((course) => normalizeCourseCode(course.code))
       .filter(Boolean)
-      .filter((courseCode) => !input.consumedCompletedCourseCodes?.has(courseCode))
       .filter((courseCode) =>
         getTransferPlannerEquivalencyRulesForSourceCourse(courseCode)
           .filter((rule) => rule.targetSchoolIds.includes(input.campusId!))
@@ -12215,6 +12254,159 @@ function getCompletedCourseCodesSatisfyingCategoryOption(input: {
           .some((rule) => getEvaluationTargetRequirementTags(rule).includes(tag))
       )
   );
+}
+
+function getRequiredMatchedCompletedCourseReasons(input: {
+  statuses?: TransferRequirementStatus[];
+  currentGroupId?: string | null;
+}) {
+  const reasonsByCourseCode = new Map<string, string[]>();
+
+  for (const status of input.statuses ?? []) {
+    const statusGroupId = status.item.requirementGroup?.id ?? null;
+    if (statusGroupId && statusGroupId === input.currentGroupId) {
+      continue;
+    }
+    if (isChoiceRequirementStatus(status)) {
+      continue;
+    }
+
+    const requirementLabel = status.item.title || status.item.id;
+    for (const course of status.matchedCourses ?? []) {
+      const courseCode = normalizeCourseCode(course.code);
+      if (!courseCode) {
+        continue;
+      }
+      reasonsByCourseCode.set(courseCode, [
+        ...(reasonsByCourseCode.get(courseCode) ?? []),
+        `already consumed by required row ${requirementLabel}`,
+      ]);
+    }
+  }
+
+  return reasonsByCourseCode;
+}
+
+function resolveCategoryOptionTranscriptSatisfaction(input: {
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+  option: SuggestedQuarterCourseOption;
+  completedCourses?: TranscriptCourseEntry[];
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+  requiredMatchedCompletedCourseReasons?: Map<string, string[]>;
+}): CategoryTranscriptSatisfactionResolution {
+  const completedCandidateCourses = getCompletedCourseCodesMatchingCategoryOption({
+    option: input.option,
+    completedCourses: input.completedCourses ?? [],
+    campusId: input.campusId,
+  });
+  const rejectedCandidateCourses: string[] = [];
+  let chosenTranscriptSatisfier: string | null = null;
+  let chosenSatisfierAlreadyUsedByRequiredRow = false;
+
+  for (const courseCode of completedCandidateCourses) {
+    const rejectionReasons = input.requiredMatchedCompletedCourseReasons?.get(courseCode) ?? [];
+    if (rejectionReasons.length) {
+      rejectedCandidateCourses.push(`${courseCode}: ${rejectionReasons.join("; ")}`);
+      continue;
+    }
+
+    chosenTranscriptSatisfier = courseCode;
+    break;
+  }
+
+  if (!chosenTranscriptSatisfier && completedCandidateCourses.length) {
+    const fallbackCourseCode = completedCandidateCourses[0] ?? null;
+    if (fallbackCourseCode) {
+      chosenTranscriptSatisfier = null;
+      chosenSatisfierAlreadyUsedByRequiredRow = Boolean(
+        input.requiredMatchedCompletedCourseReasons?.has(fallbackCourseCode)
+      );
+    }
+  }
+
+  return {
+    groupId: input.optionGroup.id,
+    optionId: input.option.id,
+    optionGroup: input.optionGroup,
+    categoryOptionLabel: getRequirementCategoryOptionLabel(input.option),
+    category:
+      input.option.categoryOption?.sourceCategoryCode ??
+      input.option.categoryOption?.category ??
+      "",
+    creditsRequired: input.option.categoryOption?.credits ?? input.option.creditMax ?? null,
+    completedCandidateCourses,
+    rejectedCandidateCourses,
+    chosenTranscriptSatisfier,
+    chosenSatisfierAlreadyUsedByRequiredRow,
+  };
+}
+
+function buildSelectedCategoryTranscriptSatisfactionResolutions(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+  statuses?: TransferRequirementStatus[];
+}) {
+  if (!input.plan) {
+    return [] as CategoryTranscriptSatisfactionResolution[];
+  }
+
+  const resolutions: CategoryTranscriptSatisfactionResolution[] = [];
+  for (const item of getTransferPlannerPlanChecklistItems(input.plan)) {
+    if (!item.requirementGroup?.options.length) {
+      continue;
+    }
+
+    const selectedOptionIds = getPlannerSelectedRequirementOptionIdsForScheduling({
+      item,
+      selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+      plan: input.plan,
+    });
+    if (!selectedOptionIds.length) {
+      continue;
+    }
+
+    const selectionSource = hasExplicitPlannerSelectedRequirementOptionIds(
+      item,
+      input.selectedRequirementOptionIdsByGroup
+    )
+      ? "student"
+      : "default";
+    const optionGroup = buildSuggestedQuarterCourseOptionGroup({
+      item,
+      selectedOptionIds,
+      isSelectionPrompt: false,
+      selectionSource,
+      campusId: input.plan.campusId,
+    });
+    if (!optionGroup) {
+      continue;
+    }
+
+    const selectedOptionIdSet = new Set(optionGroup.selectedOptionIds);
+    const requiredMatchedReasons = getRequiredMatchedCompletedCourseReasons({
+      statuses: input.statuses,
+      currentGroupId: optionGroup.id,
+    });
+
+    for (const option of optionGroup.options) {
+      if (!selectedOptionIdSet.has(option.id) || !isRequirementCategoryOption(option)) {
+        continue;
+      }
+
+      resolutions.push(
+        resolveCategoryOptionTranscriptSatisfaction({
+          optionGroup,
+          option,
+          completedCourses: input.completedCourses,
+          campusId: input.plan.campusId,
+          requiredMatchedCompletedCourseReasons: requiredMatchedReasons,
+        })
+      );
+    }
+  }
+
+  return resolutions;
 }
 
 function buildCompletedCategoryOptionSatisfaction(input: {
@@ -12237,12 +12429,13 @@ function buildCompletedCategoryOptionSatisfaction(input: {
       campusId: input.campusId,
       consumedCompletedCourseCodes: input.consumedCompletedCourseCodes,
     });
-    if (!satisfyingCourseCodes.length) {
+    const [chosenSatisfyingCourseCode] = satisfyingCourseCodes;
+    if (!chosenSatisfyingCourseCode) {
       continue;
     }
 
     optionIds.push(option.id);
-    courseCodes.push(...satisfyingCourseCodes);
+    courseCodes.push(chosenSatisfyingCourseCode);
   }
 
   return {
@@ -12298,6 +12491,19 @@ type OptionGroupAllocationContext = OptionGroupSatisfactionCandidateResolution &
   acceptedOptionIds: string[];
   acceptedCourseIdentityCount: number;
   overlappingGroups: string[];
+};
+
+type CategoryTranscriptSatisfactionResolution = {
+  groupId: string;
+  optionId: string;
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+  categoryOptionLabel: string;
+  category: string;
+  creditsRequired: number | null;
+  completedCandidateCourses: string[];
+  rejectedCandidateCourses: string[];
+  chosenTranscriptSatisfier: string | null;
+  chosenSatisfierAlreadyUsedByRequiredRow: boolean;
 };
 
 function getSuggestedQuarterOptionGroupRequiredCount(
@@ -12383,7 +12589,7 @@ function getSatisfiedCourseCodesForOptionIds(input: {
               completedCourses: input.completedCourses ?? [],
               campusId: input.campusId,
               consumedCompletedCourseCodes: input.consumedCompletedCourseCodes,
-            })
+            }).slice(0, 1)
           : getRequirementOptionAllCourseCodes(option)
       )
       .map((courseCode) => normalizeCourseCode(courseCode))
@@ -12861,6 +13067,73 @@ function attachResolvedOptionGroupSatisfaction(input: {
       ...course,
       optionGroup: resolveGroup(course.optionGroup),
     })),
+  }));
+}
+
+function attachSelectedCategoryTranscriptSatisfaction(input: {
+  suggestedPlan: SuggestedQuarterPlan[];
+  plan?: TransferPlannerMajorPlan | null;
+  completedCourses: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+  requirementStatuses?: TransferRequirementStatus[];
+}) {
+  const satisfiedCategoryResolutions =
+    buildSelectedCategoryTranscriptSatisfactionResolutions({
+      plan: input.plan,
+      completedCourses: input.completedCourses,
+      selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+      statuses: input.requirementStatuses,
+    }).filter((resolution) => Boolean(resolution.chosenTranscriptSatisfier));
+
+  if (!satisfiedCategoryResolutions.length) {
+    return input.suggestedPlan;
+  }
+
+  const resolutionsByCourseCode = new Map<string, CategoryTranscriptSatisfactionResolution[]>();
+  const satisfiedCategoryKeys = new Set<string>();
+  for (const resolution of satisfiedCategoryResolutions) {
+    const courseCode = normalizeCourseCode(resolution.chosenTranscriptSatisfier ?? "");
+    if (!courseCode) {
+      continue;
+    }
+    resolutionsByCourseCode.set(courseCode, [
+      ...(resolutionsByCourseCode.get(courseCode) ?? []),
+      resolution,
+    ]);
+    satisfiedCategoryKeys.add(`${resolution.groupId}||${resolution.categoryOptionLabel}`);
+  }
+
+  return input.suggestedPlan.map<SuggestedQuarterPlan>((quarter) => ({
+    ...quarter,
+    courses: quarter.courses
+      .filter((course) => {
+        if (quarter.phase !== "planned" && quarter.phase !== "current") {
+          return true;
+        }
+        const optionGroupId = course.optionGroup?.id ?? "";
+        const label = String(course.label ?? "").replace(/\s+/g, " ").trim();
+        return !satisfiedCategoryKeys.has(`${optionGroupId}||${label}`);
+      })
+      .map<SuggestedQuarterCourse>((course) => {
+        if (quarter.phase !== "completed") {
+          return course;
+        }
+
+        const courseCode = normalizeCourseCode(extractCourseCodes(course.label)[0] ?? course.label);
+        const [resolution] = resolutionsByCourseCode.get(courseCode) ?? [];
+        if (!resolution) {
+          return course;
+        }
+
+        return {
+          ...course,
+          optionGroup: course.optionGroup ?? resolution.optionGroup,
+          guidanceSummary: joinGuidanceSummaries(
+            course.guidanceSummary,
+            `${resolution.categoryOptionLabel} is satisfied by this completed transcript course.`
+          ),
+        };
+      }),
   }));
 }
 
@@ -14498,16 +14771,24 @@ export function buildSuggestedQuarterPlan(input: {
     ...(currentQuarterPlan ? [currentQuarterPlan] : []),
     ...futureQuarterPlans,
   ];
-
-  return attachResolvedOptionGroupSatisfaction({
+  const requirementStatuses = [
+    ...applicationStatuses,
+    ...beforeEnrollmentStatuses,
+    ...stayAtGrcStatuses,
+  ];
+  const categoryTranscriptAwareSuggestedPlan = attachSelectedCategoryTranscriptSatisfaction({
     suggestedPlan,
     completedCourses: input.completedCourses,
     plan: input.plan,
-    requirementStatuses: [
-      ...applicationStatuses,
-      ...beforeEnrollmentStatuses,
-      ...stayAtGrcStatuses,
-    ],
+    selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+    requirementStatuses,
+  });
+
+  return attachResolvedOptionGroupSatisfaction({
+    suggestedPlan: categoryTranscriptAwareSuggestedPlan,
+    completedCourses: input.completedCourses,
+    plan: input.plan,
+    requirementStatuses,
   });
 }
 
@@ -15784,6 +16065,23 @@ export function auditOptionGroupSatisfaction(input: {
   const displayedOptionGroupsById = collectSuggestedPlanOptionGroupsById(input.suggestedPlan);
   const rows: OptionGroupSatisfactionAuditEntry[] = [];
   const seenGroupIds = new Set<string>();
+  const categoryTranscriptResolutions =
+    buildSelectedCategoryTranscriptSatisfactionResolutions({
+      plan: input.plan,
+      completedCourses,
+      selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+      statuses,
+    });
+  const categoryTranscriptResolutionsByGroupId = new Map<
+    string,
+    CategoryTranscriptSatisfactionResolution[]
+  >();
+  for (const resolution of categoryTranscriptResolutions) {
+    categoryTranscriptResolutionsByGroupId.set(resolution.groupId, [
+      ...(categoryTranscriptResolutionsByGroupId.get(resolution.groupId) ?? []),
+      resolution,
+    ]);
+  }
 
   for (const status of statuses) {
     const group = status.item.requirementGroup;
@@ -15864,6 +16162,22 @@ export function auditOptionGroupSatisfaction(input: {
       resolvedAuditOptionGroup,
       selectedCategoryOptionIds
     );
+    const selectedCategoryOptionLabels = new Set(selectedCategoryOptions);
+    const groupCategoryTranscriptResolutions =
+      categoryTranscriptResolutionsByGroupId.get(groupId) ?? [];
+    const chosenTranscriptCategorySatisfier =
+      groupCategoryTranscriptResolutions.find((resolution) => resolution.chosenTranscriptSatisfier)
+        ?.chosenTranscriptSatisfier ?? null;
+    const genericPlannedCategoryCredits = input.suggestedPlan
+      .filter((quarter) => quarter.phase === "planned" || quarter.phase === "current")
+      .flatMap((quarter) => quarter.courses)
+      .filter((course) => course.optionGroup?.id === groupId)
+      .filter((course) => selectedCategoryOptionLabels.has(course.label))
+      .filter((course) => extractCourseCodes(course.label).length === 0)
+      .reduce((total, course) => {
+        const creditRange = getSuggestedQuarterCourseCreditRange(course);
+        return total + (creditRange.creditMax || creditRange.creditMin || 0);
+      }, 0);
     const resolvedDisplayedOptions = getRequirementOptionDisplayLabelsByIds(
       resolvedAuditOptionGroup,
       resolvedDisplayedOptionIds
@@ -15908,6 +16222,9 @@ export function auditOptionGroupSatisfaction(input: {
       : null;
     const issue =
       selectedCategoryIssue ??
+      (chosenTranscriptCategorySatisfier && genericPlannedCategoryCredits > 0
+        ? "selected-category-already-satisfied-but-scheduled"
+        : null) ??
       (scheduledExtraCourses.length > 0 && resolvedSatisfiedCount === 0
         ? "scheduled satisfying course not reflected in option progress"
         : null);
@@ -15926,6 +16243,8 @@ export function auditOptionGroupSatisfaction(input: {
       completedSatisfyingCourses: resolvedAuditOptionGroup.completedSatisfyingCourseCodes ?? [],
       scheduledSatisfyingCourses: resolvedAuditOptionGroup.scheduledSatisfyingCourseCodes ?? [],
       countedSatisfyingCourses: resolvedAuditOptionGroup.countedSatisfyingCourseCodes ?? [],
+      chosenTranscriptCategorySatisfier,
+      genericPlannedCategoryCredits,
       resolvedSatisfiedCount,
       displayedProgress,
       satisfiedBy,
@@ -15968,6 +16287,7 @@ export function auditOptionGroupSatisfaction(input: {
         `Selected category options: ${
           selectedCategoryOptions.length ? selectedCategoryOptions.join(", ") : "none"
         }`,
+        `Chosen transcript category satisfier: ${chosenTranscriptCategorySatisfier ?? "none"}`,
         `Counted satisfying courses: ${
           (resolvedAuditOptionGroup.countedSatisfyingCourseCodes ?? []).length
             ? (resolvedAuditOptionGroup.countedSatisfyingCourseCodes ?? []).join(", ")
@@ -15990,6 +16310,7 @@ export function auditOptionGroupSatisfaction(input: {
         }`,
         `Resolved satisfied count: ${resolvedSatisfiedCount}`,
         `Displayed progress: ${displayedProgress}`,
+        `Generic planned category credits: ${genericPlannedCategoryCredits}`,
         `Issue: ${issue ?? "none"}`,
       ].join(" "),
     });
@@ -16201,6 +16522,91 @@ export function auditCategoryOptionDetection(input: {
   }
 
   return rows;
+}
+
+export function auditCategoryTranscriptSatisfaction(input: {
+  plan?: TransferPlannerMajorPlan | null;
+  suggestedPlan: SuggestedQuarterPlan[];
+  completedCourses?: TranscriptCourseEntry[];
+  selectedRequirementOptionIdsByGroup?: Record<string, string[] | string | null | undefined>;
+}) {
+  if (!input.plan) {
+    return [] as CategoryTranscriptSatisfactionAuditEntry[];
+  }
+
+  const completedCourses = input.completedCourses ?? [];
+  const statuses = [
+    ...buildRequirementStatuses(input.plan.applicationChecklist, completedCourses),
+    ...buildRequirementStatuses(input.plan.beforeEnrollmentChecklist, completedCourses),
+    ...buildRequirementStatuses(input.plan.stayAtGrcChecklist, completedCourses),
+  ];
+  const resolutions = buildSelectedCategoryTranscriptSatisfactionResolutions({
+    plan: input.plan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup: input.selectedRequirementOptionIdsByGroup,
+    statuses,
+  });
+
+  return resolutions.map<CategoryTranscriptSatisfactionAuditEntry>((resolution) => {
+    const genericCategoryRowScheduled = input.suggestedPlan
+      .filter((quarter) => quarter.phase === "planned" || quarter.phase === "current")
+      .flatMap((quarter) => quarter.courses)
+      .some(
+        (course) =>
+          course.optionGroup?.id === resolution.groupId &&
+          course.label === resolution.categoryOptionLabel &&
+          extractCourseCodes(course.label).length === 0
+      );
+    const issue =
+      resolution.chosenTranscriptSatisfier && genericCategoryRowScheduled
+        ? "duplicate-category-placeholder"
+        : !resolution.chosenTranscriptSatisfier &&
+            resolution.completedCandidateCourses.length > 0 &&
+            resolution.rejectedCandidateCourses.length > 0
+          ? "no-unused-category-satisfier"
+          : null;
+
+    return {
+      major: input.plan?.title ?? input.plan?.id ?? "unknown",
+      groupId: resolution.groupId,
+      categoryOption: resolution.categoryOptionLabel,
+      selected: true,
+      category: resolution.category,
+      creditsRequired: resolution.creditsRequired,
+      completedCandidateCourses: resolution.completedCandidateCourses,
+      rejectedCandidateCourses: resolution.rejectedCandidateCourses,
+      chosenTranscriptSatisfier: resolution.chosenTranscriptSatisfier,
+      chosenSatisfierAlreadyUsedByRequiredRow:
+        resolution.chosenSatisfierAlreadyUsedByRequiredRow,
+      genericCategoryRowScheduled,
+      issue,
+      copyOnlyDebugText: [
+        "[copy-only category transcript satisfaction audit]",
+        `Major: ${input.plan?.title ?? input.plan?.id ?? "unknown"}`,
+        `Group id: ${resolution.groupId}`,
+        `Category option: ${resolution.categoryOptionLabel}`,
+        "Selected: yes",
+        `Category: ${resolution.category || "none"}`,
+        `Credits required: ${resolution.creditsRequired ?? "none"}`,
+        `Completed candidate courses: ${
+          resolution.completedCandidateCourses.length
+            ? resolution.completedCandidateCourses.join(", ")
+            : "none"
+        }`,
+        `Rejected candidate courses: ${
+          resolution.rejectedCandidateCourses.length
+            ? resolution.rejectedCandidateCourses.join(", ")
+            : "none"
+        }`,
+        `Chosen transcript satisfier: ${resolution.chosenTranscriptSatisfier ?? "none"}`,
+        `Chosen satisfier already used by required row: ${
+          resolution.chosenSatisfierAlreadyUsedByRequiredRow ? "yes" : "no"
+        }`,
+        `Generic category row scheduled: ${genericCategoryRowScheduled ? "yes" : "no"}`,
+        `Issue: ${issue ?? "none"}`,
+      ].join(" "),
+    };
+  });
 }
 
 function formatAuditCreditRange(input: {
