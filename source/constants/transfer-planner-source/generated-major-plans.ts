@@ -64,6 +64,7 @@ const STRUCTURED_GRC_SOURCE_KINDS = new Set(["plan-checklist", "plan-course-list
 const UW_SEATTLE_ECE_PLAN_ID = "uw-seattle-electrical-computer-engineering";
 const UW_SEATTLE_ME_PLAN_ID = "uw-seattle-mechanical-engineering";
 const UW_SEATTLE_CIVIL_PLAN_ID = "uw-seattle-civil-engineering";
+const UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID = "uw-seattle-computer-engineering";
 const UW_SEATTLE_BIOENGINEERING_PLAN_ID = "uw-seattle-bioengineering";
 const UW_SEATTLE_SBSE_PLAN_ID = "uw-seattle-sustainable-bioresource-systems-engineering";
 const UW_SEATTLE_SBSE_STALE_BUSINESS_POLICY_ECONOMICS_GRC_CODES = new Set([
@@ -73,6 +74,8 @@ const UW_SEATTLE_SBSE_STALE_BUSINESS_POLICY_ECONOMICS_GRC_CODES = new Set([
 ]);
 const UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID =
   "grc-associate-stem-engineering-associate-in-science-transfer-track-2-bioengineering-and-chemical-engineering";
+const UW_SEATTLE_COMPUTER_ENGINEERING_TRANSFER_TRACK_ID =
+  "grc-associate-stem-engineering-associate-in-science-transfer-track-2-mrp-computer-and-electrical-engineering";
 const COMPACT_NORMALIZED_RUNTIME_PLAN_IDS = new Set([
   UW_SEATTLE_ECE_PLAN_ID,
   UW_SEATTLE_ME_PLAN_ID,
@@ -252,13 +255,19 @@ type SupplementalChecklistSeed = {
 const SUPPLEMENTAL_CHECKLIST_SEEDS_BY_PLAN: Partial<
   Record<string, SupplementalChecklistSeed[]>
 > = {
-  "uw-seattle-computer-engineering": [
+  [UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID]: [
     {
       id: "calc123",
       phase: "before-application",
       title: "Calculus I-III sequence",
       grcCourses: ["MATH& 151", "MATH& 152", "MATH& 163"],
       alternatives: [["MATH& 151", "MATH& 152", "MATH& 153", "MATH& 254"]],
+    },
+    {
+      id: "phys121",
+      phase: "before-enrollment",
+      title: "PHYS 121",
+      grcCourses: ["PHYS& 221"],
     },
     {
       id: "phys122",
@@ -2235,6 +2244,196 @@ const UW_MSE_NME_OPTION_SOURCE_URL =
   "https://mse.washington.edu/current/undergrad/nmeoption";
 const UW_MSE_NME_REPLACEMENT_REASON =
   "NME Option students complete 19 credits of NME Core and Elective Requirements instead of the standard 15-credit MSE Technical Elective requirement.";
+const UW_COMPUTER_ENGINEERING_DEGREE_REQUIREMENTS_SOURCE_URL =
+  "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf";
+const UW_ALLEN_SCHOOL_COURSE_LIST_SOURCE_URL =
+  "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/";
+
+function buildComputerEngineeringCategoryPlaceholderOption(input: {
+  planId: string;
+  id: string;
+  title: string;
+  category: string;
+  sourceCategoryCode: string;
+  credits: number;
+  creditMin: number;
+  creditMax: number;
+  sourceText: string;
+}): TransferPlannerRequirementOption {
+  return buildRequirementOption({
+    id: `${input.planId}:requirement-option:${input.id}`,
+    optionKind: "category-option",
+    uwCourses: [],
+    credits: input.credits,
+    creditMin: input.creditMin,
+    creditMax: input.creditMax,
+    creditText:
+      input.creditMin === input.creditMax
+        ? String(input.creditMin)
+        : `${input.creditMin}-${input.creditMax}`,
+    label: input.title,
+    categoryOption: {
+      category: input.category,
+      sourceCategoryCode: input.sourceCategoryCode,
+      title: input.title,
+      credits: input.credits,
+      creditMin: input.creditMin,
+      creditMax: input.creditMax,
+      sourceText: input.sourceText,
+    },
+    grcMatches: [],
+  });
+}
+
+function buildKnownComputerEngineeringRequirementGroups(
+  planId: string
+): TransferPlannerRequirementGroup[] {
+  if (planId !== UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID) {
+    return [];
+  }
+
+  const computerEngineeringNaturalScienceOptions = [
+    buildComputerEngineeringCategoryPlaceholderOption({
+      planId,
+      id: "approved-natural-science-placeholder",
+      title: "10 credits of approved Computer Engineering Natural Science",
+      category: "COMPE_APPROVED_NATURAL_SCIENCE",
+      sourceCategoryCode: "Computer Engineering Natural Science",
+      credits: 10,
+      creditMin: 10,
+      creditMax: 10,
+      sourceText:
+        "Official Allen School Computer Engineering natural science list; keep as a category/list bucket unless a real Green River equivalent is source-backed.",
+    }),
+    buildRequirementOption({
+      id: `${planId}:requirement-option:approved-natural-science-chem-142`,
+      uwCourses: ["CHEM 142"],
+      grcMatches: ["CHEM& 161"],
+      credits: 5,
+      label: "CHEM 142",
+    }),
+    buildRequirementOption({
+      id: `${planId}:requirement-option:approved-natural-science-chem-152`,
+      uwCourses: ["CHEM 152"],
+      grcMatches: ["CHEM& 162"],
+      credits: 5,
+      label: "CHEM 152",
+    }),
+    buildRequirementOption({
+      id: `${planId}:requirement-option:approved-natural-science-chem-162`,
+      uwCourses: ["CHEM 162"],
+      grcMatches: ["CHEM& 163"],
+      credits: 5,
+      label: "CHEM 162",
+    }),
+    buildRequirementOption({
+      id: `${planId}:requirement-option:approved-natural-science-phys-123`,
+      uwCourses: ["PHYS 123"],
+      grcMatches: ["PHYS& 223"],
+      credits: 5,
+      label: "PHYS 123",
+    }),
+    buildRequirementOption({
+      id: `${planId}:requirement-option:approved-natural-science-biol-180-200-220`,
+      displayCourseCodes: ["BIOL 180", "BIOL 200", "BIOL 220"],
+      uwCourses: ["BIOL 180"],
+      equivalentUwCourseCodes: ["BIOL 200", "BIOL 220"],
+      grcMatches: ["BIOL& 211", "BIOL& 212", "BIOL& 213"],
+      credits: 15,
+      label: "BIOL 180, BIOL 200, BIOL 220 sequence",
+      notes: [
+        "The UW-GRC equivalency guide maps BIOL 180/200/220 through the full Green River BIOL& 211/212/213 sequence.",
+      ],
+    }),
+  ];
+
+  return [
+    buildRequirementGroup({
+      id: `${planId}:requirement-group:cse-123-or-cse-143`,
+      label: "CSE 123 or CSE 143",
+      category: "computer_engineering_programming",
+      subcategory: "cse_123_or_cse_143",
+      requirementType: "choose_one",
+      minCourses: 1,
+      maxCourses: 1,
+      sourceHeading: "CSE 123 Intro to Computer Programming III (4) OR CSE 143",
+      notes: [
+        `Source: ${UW_COMPUTER_ENGINEERING_DEGREE_REQUIREMENTS_SOURCE_URL}`,
+        "Default Green River path is CS 123; CS 145 is preserved as the CSE 143 alternative for students on the legacy path.",
+      ],
+      options: [
+        buildRequirementOption({
+          id: `${planId}:requirement-option:cse-123`,
+          uwCourses: ["CSE 123"],
+          grcMatches: ["CS 123"],
+          credits: 4,
+          label: "CSE 123",
+        }),
+        buildRequirementOption({
+          id: `${planId}:requirement-option:cse-143`,
+          uwCourses: ["CSE 143"],
+          grcMatches: ["CS 145"],
+          credits: 5,
+          label: "CSE 143",
+        }),
+      ],
+    }),
+    buildRequirementGroup({
+      id: `${planId}:requirement-group:approved-natural-science-10-credits`,
+      label: "10 additional credits approved natural science",
+      category: "computer_engineering_credit_bucket",
+      subcategory: "approved_natural_science",
+      requirementType: "choose_credits",
+      minCredits: 10,
+      maxCredits: 10,
+      sourceHeading:
+        "10 additional credits from approved natural science courses for Computer Engineering",
+      notes: [
+        `Degree sheet source: ${UW_COMPUTER_ENGINEERING_DEGREE_REQUIREMENTS_SOURCE_URL}`,
+        `Approved CE Natural Science list source: ${UW_ALLEN_SCHOOL_COURSE_LIST_SOURCE_URL}`,
+        "Concrete Green River options are included only where the UW-GRC equivalency guide proves the mapping; otherwise the category/list bucket remains visible.",
+      ],
+      options: computerEngineeringNaturalScienceOptions,
+    }),
+    buildRequirementGroup({
+      id: `${planId}:requirement-group:additional-math-science-3-6-credits`,
+      label: "3-6 additional Math/Science",
+      category: "computer_engineering_credit_bucket",
+      subcategory: "additional_math_science",
+      requirementType: "choose_credits",
+      minCredits: 3,
+      maxCredits: 6,
+      sourceHeading:
+        "3-6 additional Math/Science credits from approved natural science courses plus approved Math/Statistics/AMATH courses",
+      notes: [
+        `Degree sheet source: ${UW_COMPUTER_ENGINEERING_DEGREE_REQUIREMENTS_SOURCE_URL}`,
+        `Approved CE Natural Science list source: ${UW_ALLEN_SCHOOL_COURSE_LIST_SOURCE_URL}`,
+        "MATH 207 is mapped to MATH 238 only because the UW-GRC guide proves that equivalency; the remaining approved list is represented by the placeholder until source-backed Green River mappings are available.",
+      ],
+      options: [
+        buildComputerEngineeringCategoryPlaceholderOption({
+          planId,
+          id: "additional-math-science-placeholder",
+          title: "3-6 credits of approved Computer Engineering Math/Science",
+          category: "COMPE_APPROVED_MATH_SCIENCE",
+          sourceCategoryCode: "Computer Engineering Math/Science",
+          credits: 3,
+          creditMin: 3,
+          creditMax: 6,
+          sourceText:
+            "Official Computer Engineering Math/Science bucket: approved CE natural science courses plus STAT 391, STAT 394, MATH 207, MATH 209, MATH 318, MATH 334, MATH 335, MATH 394, AMATH 351, and AMATH 353.",
+        }),
+        buildRequirementOption({
+          id: `${planId}:requirement-option:additional-math-science-math-207`,
+          uwCourses: ["MATH 207"],
+          grcMatches: ["MATH 238"],
+          credits: 4,
+          label: "MATH 207",
+        }),
+      ],
+    }),
+  ];
+}
 
 function buildMaterialsScienceNmeRequirementReplacement(
   planId: string
@@ -3359,8 +3558,11 @@ function shouldMaterializeParsedRequirementGroup(
     return false;
   }
 
-  if (block.planId === "uw-seattle-computer-engineering") {
-    return false;
+  if (block.planId === UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID) {
+    return (
+      group.category === "computer_engineering_programming" ||
+      group.category === "computer_engineering_credit_bucket"
+    );
   }
 
   if (/^first year students:/i.test(label)) {
@@ -3396,6 +3598,7 @@ function getParsedRequirementGroupsFromBlock(
         : knownMaterialsScienceGroups;
   const rawGroups = uniqueById([
     ...parsedOrKnownGroups,
+    ...buildKnownComputerEngineeringRequirementGroups(block.planId),
     ...buildKnownSbseRequirementGroups(block.planId, block.pathwayId),
   ]).filter((group) => !isSupersededSbseRequirementGroup(block.planId, group));
 
@@ -3537,6 +3740,19 @@ function shouldAutoSelectRequirementGroupOption(group: TransferPlannerRequiremen
   return !/\belective\b/i.test(`${group.category} ${group.label}`);
 }
 
+function shouldScheduleSelectedRequirementGroupOptionsByDefault(
+  group: TransferPlannerRequirementGroup
+) {
+  return (
+    group.id ===
+      `${UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID}:requirement-group:cse-123-or-cse-143` ||
+    (
+      group.id.startsWith(`${UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID}:`) &&
+      group.category === "computer_engineering_credit_bucket"
+    )
+  );
+}
+
 function scoreRequirementOption(option: TransferPlannerRequirementOption) {
   const grcMatches = uniqueReferenceCourseLabels(option.grcMatches ?? []);
   if (!grcMatches.length) {
@@ -3654,6 +3870,15 @@ function getSelectedRequirementGroupOptions(group: TransferPlannerRequirementGro
   }
 
   if (group.requirementType === "choose_credits") {
+    if (shouldScheduleSelectedRequirementGroupOptionsByDefault(group)) {
+      const placeholderOptions = (group.options ?? []).filter(
+        (option) => option.optionKind === "category-option"
+      );
+      if (placeholderOptions.length) {
+        return placeholderOptions;
+      }
+    }
+
     return group.minCredits != null && group.minCredits > 0
       ? selectBestRequirementCreditOptions(group, group.minCredits)
       : [];
@@ -3691,9 +3916,35 @@ function getRequirementOptionCourseLabels(option: TransferPlannerRequirementOpti
   ]);
 }
 
+function getRequirementCategoryOptionLabel(option: TransferPlannerRequirementOption) {
+  const categoryOption = option.categoryOption;
+  return (
+    categoryOption?.title ||
+    option.label ||
+    (categoryOption?.credits && categoryOption?.sourceCategoryCode
+      ? `${categoryOption.credits} credits of ${categoryOption.sourceCategoryCode}`
+      : "")
+  );
+}
+
+function getRequirementOptionPlannerLabels(option: TransferPlannerRequirementOption) {
+  if (option.optionKind === "category-option") {
+    const label = getRequirementCategoryOptionLabel(option);
+    return label ? [label] : [];
+  }
+
+  return getRequirementOptionCourseLabels(option);
+}
+
 function getRequirementGroupOptionCourseLabels(group: TransferPlannerRequirementGroup) {
   return uniqueReferenceCourseLabels(
     (group.options ?? []).flatMap((option) => getRequirementOptionCourseLabels(option))
+  );
+}
+
+function getRequirementGroupOptionPlannerLabels(group: TransferPlannerRequirementGroup) {
+  return uniquePlannerStrings(
+    (group.options ?? []).flatMap((option) => getRequirementOptionPlannerLabels(option))
   );
 }
 
@@ -3744,6 +3995,14 @@ function getSelectedRequirementGroupCourseLabels(group: TransferPlannerRequireme
   );
 }
 
+function getSelectedRequirementGroupPlannerLabels(group: TransferPlannerRequirementGroup) {
+  return uniquePlannerStrings(
+    getSelectedRequirementGroupOptions(group).flatMap((option) =>
+      getRequirementOptionPlannerLabels(option)
+    )
+  );
+}
+
 function getRequirementGroupMinCompletedCount(group: TransferPlannerRequirementGroup) {
   if (group.minCourses != null && group.minCourses > 0) {
     return group.minCourses;
@@ -3758,14 +4017,14 @@ function buildRequirementGroupChecklistItem(
   const allOptionMatches = getRequirementGroupOptionGrcMatches(group);
   const allOptionLabels = allOptionMatches.length
     ? allOptionMatches
-    : getRequirementGroupOptionCourseLabels(group);
+    : getRequirementGroupOptionPlannerLabels(group);
   const selectedOptions = getSelectedRequirementGroupOptions(group);
   const selectedMatches = uniqueReferenceCourseLabels(
     selectedOptions.flatMap((option) => option.grcMatches)
   );
   const selectedLabels = selectedMatches.length
     ? selectedMatches
-    : getSelectedRequirementGroupCourseLabels(group);
+    : getSelectedRequirementGroupPlannerLabels(group);
   const selectedEquivalentLabels =
     selectedOptions.length === 1
       ? uniqueReferenceCourseLabels(
@@ -3799,6 +4058,12 @@ function buildRequirementGroupChecklistItem(
   } else if (group.requirementType === "all_required" || group.requirementType === "sequence_choice") {
     grcCourses = selectedLabels.length ? selectedLabels : allOptionLabels;
     alternatives = selectedEquivalentLabels.map((label) => [label]);
+  } else if (
+    group.requirementType === "choose_credits" &&
+    shouldScheduleSelectedRequirementGroupOptionsByDefault(group) &&
+    selectedLabels.length
+  ) {
+    grcCourses = selectedLabels;
   } else {
     grcCourses = allOptionLabels;
   }
@@ -3823,6 +4088,8 @@ function buildRequirementGroupChecklistItem(
     unselectedRequirementOptionIds: unselectedRequirementOptionIds.length
       ? unselectedRequirementOptionIds
       : undefined,
+    scheduleSelectedRequirementOptions:
+      shouldScheduleSelectedRequirementGroupOptionsByDefault(group) || undefined,
   });
 }
 
@@ -4973,6 +5240,7 @@ function applyAutoTrackRecommendation<T extends {
 function applyAutoTrackRecommendationFromStudentVisibleList<T extends {
   title?: string;
   label?: string;
+  id?: string;
   bestTrackId: string | null | undefined;
   recommendedTrackSummary?: string;
   whyThisTrack?: string[];
@@ -5004,6 +5272,37 @@ function applyAutoTrackRecommendationFromStudentVisibleList<T extends {
     fallbackTrackMatchCourseList: visibleCourseList,
     majorTitle: options.majorTitle ?? scope.title ?? scope.label ?? null,
   });
+}
+
+function applyCuratedComputerEngineeringTrack<T extends {
+  id?: string;
+  title?: string;
+  label?: string;
+  bestTrackId: string | null | undefined;
+  recommendedTrackSummary?: string;
+  whyThisTrack?: string[];
+}>(scope: T, planId: string): T {
+  if (planId !== UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID) {
+    return scope;
+  }
+
+  const track = TRANSFER_PLANNER_BOOTSTRAP_TRACKS.find(
+    (entry) => entry.id === UW_SEATTLE_COMPUTER_ENGINEERING_TRANSFER_TRACK_ID
+  );
+  if (!track || scope.bestTrackId === track.id) {
+    return scope;
+  }
+
+  return {
+    ...scope,
+    bestTrackId: track.id,
+    recommendedTrackSummary:
+      `${track.code} is the Green River engineering transfer path used for UW Seattle Computer Engineering because it is the Computer and Electrical Engineering AST-2/MRP pathway.`,
+    whyThisTrack: [
+      `${track.code} keeps the Computer and Electrical Engineering transfer track aligned with the official Computer Engineering lower-division math, physics, and engineering requirements.`,
+      "Use the remaining Computer Engineering checklist items for source-backed UW requirements that the Green River track does not cover by itself.",
+    ],
+  };
 }
 
 function buildDegreeMapSection(block: TransferPlannerDegreeMapBlock): TransferPlannerDegreeMapSection {
@@ -5894,9 +6193,14 @@ function buildSourceGeneratedPlan(basePlan: TransferPlannerMajorPlan): TransferP
 
   const promotedSourceGeneratedPlan = promoteStructuredCoverage(sourceGeneratedWithRequirementGroups);
 
-  return applyAutoTrackRecommendationFromStudentVisibleList(promotedSourceGeneratedPlan, {
-    trackMatchCourseList: buildTrackMatchCourseList(promotedSourceGeneratedPlan, basePlan.id),
-  });
+  const autoTrackedSourceGeneratedPlan = applyAutoTrackRecommendationFromStudentVisibleList(
+    promotedSourceGeneratedPlan,
+    {
+      trackMatchCourseList: buildTrackMatchCourseList(promotedSourceGeneratedPlan, basePlan.id),
+    }
+  );
+
+  return applyCuratedComputerEngineeringTrack(autoTrackedSourceGeneratedPlan, basePlan.id);
 }
 
 function getAutomaticScopeKeys(planId: string, pathwayId?: string | null) {
@@ -6501,9 +6805,14 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
     null
   );
 
+  const runtimePlanWithCuratedTrack = applyCuratedComputerEngineeringTrack(
+    runtimePlan,
+    basePlan.id
+  );
+
   return applyStudentVisibleTrackCourseList(
     {
-      ...runtimePlan,
+      ...runtimePlanWithCuratedTrack,
       grcCourseList: studentVisibleCourseList,
     }
   );

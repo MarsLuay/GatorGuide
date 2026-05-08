@@ -80,6 +80,7 @@ import {
   auditOptionAllocation,
   auditCategoryOptionDetection,
   auditCategoryTranscriptSatisfaction,
+  auditComputerEngineeringCreditBuckets,
   auditOptionTitleFallback,
   auditOptionCredits,
   auditOptionSelectionSources,
@@ -2251,6 +2252,91 @@ function mergeSuggestedScheduleOptionGroups(
   return [...optionGroupsById.values()];
 }
 
+function addStableSuggestedScheduleOptionGroupId(
+  optionGroupIds: string[],
+  seenOptionGroupIds: Set<string>,
+  rawOptionGroupId: string | null | undefined
+) {
+  const optionGroupId = String(rawOptionGroupId ?? "").trim();
+  if (!optionGroupId || seenOptionGroupIds.has(optionGroupId)) {
+    return;
+  }
+
+  seenOptionGroupIds.add(optionGroupId);
+  optionGroupIds.push(optionGroupId);
+}
+
+function buildStableSuggestedScheduleOptionGroupIds(input: {
+  plan: TransferPlannerResolvedMajorPlan | null;
+  trackOptionGroups: SuggestedScheduleOptionGroup[];
+}) {
+  const optionGroupIds: string[] = [];
+  const seenOptionGroupIds = new Set<string>();
+
+  for (const optionGroup of input.trackOptionGroups) {
+    addStableSuggestedScheduleOptionGroupId(
+      optionGroupIds,
+      seenOptionGroupIds,
+      optionGroup.id
+    );
+  }
+
+  const planChecklistItems = [
+    ...(input.plan?.applicationChecklist ?? []),
+    ...(input.plan?.beforeEnrollmentChecklist ?? []),
+    ...(input.plan?.stayAtGrcChecklist ?? []),
+  ];
+
+  for (const item of planChecklistItems) {
+    if (!item.requirementGroup?.options?.length) {
+      continue;
+    }
+
+    addStableSuggestedScheduleOptionGroupId(
+      optionGroupIds,
+      seenOptionGroupIds,
+      item.requirementGroup.id
+    );
+  }
+
+  for (const group of input.plan?.requirementGroups ?? []) {
+    addStableSuggestedScheduleOptionGroupId(
+      optionGroupIds,
+      seenOptionGroupIds,
+      group.id
+    );
+  }
+
+  return optionGroupIds;
+}
+
+function orderSuggestedScheduleOptionGroupsByStableIds(
+  optionGroups: SuggestedScheduleOptionGroup[],
+  stableOptionGroupIds: string[]
+) {
+  if (optionGroups.length < 2 || !stableOptionGroupIds.length) {
+    return optionGroups;
+  }
+
+  const stableIndexByGroupId = new Map(
+    stableOptionGroupIds.map((groupId, index) => [groupId, index])
+  );
+  const fallbackBaseIndex = stableOptionGroupIds.length;
+
+  return optionGroups
+    .map((optionGroup, currentIndex) => ({
+      optionGroup,
+      currentIndex,
+      stableIndex: stableIndexByGroupId.get(optionGroup.id) ?? fallbackBaseIndex + currentIndex,
+    }))
+    .sort((left, right) => {
+      const stableDelta = left.stableIndex - right.stableIndex;
+      if (stableDelta !== 0) return stableDelta;
+      return left.currentIndex - right.currentIndex;
+    })
+    .map((entry) => entry.optionGroup);
+}
+
 function collectSuggestedScheduleOptionGroups(quarters: SuggestedQuarterPlan[]) {
   const optionGroups: SuggestedScheduleOptionGroup[] = [];
 
@@ -3898,9 +3984,17 @@ function SuggestedScheduleCard({
         : [],
     [collegeId, grcTrack, onlyUwEssentialClasses, selectedRequirementOptionIdsByGroup]
   );
+  const stableOptionGroupIds = useMemo(
+    () => buildStableSuggestedScheduleOptionGroupIds({ plan, trackOptionGroups }),
+    [plan, trackOptionGroups]
+  );
   const scheduleOptionGroups = useMemo(
-    () => mergeSuggestedScheduleOptionGroups(trackOptionGroups, rawQuarterOptionGroups),
-    [rawQuarterOptionGroups, trackOptionGroups]
+    () =>
+      orderSuggestedScheduleOptionGroupsByStableIds(
+        mergeSuggestedScheduleOptionGroups(trackOptionGroups, rawQuarterOptionGroups),
+        stableOptionGroupIds
+      ),
+    [rawQuarterOptionGroups, stableOptionGroupIds, trackOptionGroups]
   );
   const forceNumberedOptionTitles = collegeId === "uw";
   const preserveOriginalOptionTitles = collegeId === "grc";
@@ -4013,6 +4107,11 @@ function SuggestedScheduleCard({
         completedCourses,
         selectedRequirementOptionIdsByGroup,
       }).map((entry) => entry.copyOnlyDebugText);
+      const computerEngineeringCreditBucketAuditLines = auditComputerEngineeringCreditBuckets({
+        plan,
+        suggestedPlan: quarters,
+        completedCourses,
+      }).map((entry) => entry.copyOnlyDebugText);
       const optionTitleFallbackAuditLines = scheduleOptionTitleFallbackAuditRows.map(
         (entry) => entry.copyOnlyDebugText
       );
@@ -4096,6 +4195,7 @@ function SuggestedScheduleCard({
         ...optionAllocationAuditLines,
         ...categoryOptionDetectionAuditLines,
         ...categoryTranscriptSatisfactionAuditLines,
+        ...computerEngineeringCreditBucketAuditLines,
         ...optionTitleFallbackAuditLines,
         ...optionCreditAuditLines,
         ...optionSelectionSourceAuditLines,

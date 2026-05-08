@@ -248,6 +248,9 @@ const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
     .map((match) => match?.[1] ?? null)
     .filter(Boolean)
 );
+for (const supplementalSubject of ["ATMS"]) {
+  KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.add(supplementalSubject);
+}
 const REQUIREMENT_CUE_PATTERN =
   /\b(required|requirements|prereq|prerequisite|complete|credits|credit|elective|select|choose|one of the following|two of the following|option|track|route|pathway|concentration)\b/i;
 const GENERAL_ED_REQUIREMENT_CUE_PATTERN =
@@ -1433,6 +1436,19 @@ function looksLikeStandaloneRequirementTitleLine(line) {
   );
 }
 
+const CHOICE_REQUIREMENT_CONTEXT_PATTERN =
+  /\b(?:choose(?:\s+(?:from|one))?|select(?:ed)?|electives?|options?|approved(?:\s+courses?)?|one\s+(?:course\s+)?from|one\s+of)\b/i;
+const CHOICE_REQUIREMENT_LABEL_PATTERN =
+  /\b(?:programming|computing|statistics|thermodynamics|matrix|linear algebra|differential equations|biology|chemistry|physics|economics|communication|composition|science|engineering|fundamentals|mechanics|calculus|electives?|options?|approved)\b/i;
+const CHOICE_LIST_START_PATTERN =
+  /^\(?\s*(?:choose(?:\s+(?:from|one))?|select(?:ed)?|one\s+(?:course\s+)?from|one\s+of|approved(?:\s+courses?)?)\b/i;
+const NON_CHOICE_COURSE_LIST_CONTEXT_PATTERN =
+  /\b(?:all\s+count|will\s+all\s+count|must\s+(?:include|complete)|required\s+to\s+complete|sequence|series)\b/i;
+
+function hasChoiceRequirementContext(value) {
+  return CHOICE_REQUIREMENT_CONTEXT_PATTERN.test(normalizeWhitespace(value));
+}
+
 function findNearbyRequirementChoiceLabel(snapshotLines, choiceLineIndex) {
   const startIndex = Math.max(0, choiceLineIndex - 5);
   let creditLine = "";
@@ -1449,6 +1465,13 @@ function findNearbyRequirementChoiceLabel(snapshotLines, choiceLineIndex) {
       return stripSnapshotPagePrefix(line);
     }
 
+    if (
+      looksLikeStandaloneRequirementTitleLine(line) &&
+      hasChoiceRequirementContext(lineWithoutPage)
+    ) {
+      return stripSnapshotPagePrefix(line);
+    }
+
     if (looksLikeStandaloneRequirementTitleLine(line) && creditLine) {
       return normalizeWhitespace(`${stripSnapshotPagePrefix(line)} ${creditLine}`);
     }
@@ -1457,26 +1480,120 @@ function findNearbyRequirementChoiceLabel(snapshotLines, choiceLineIndex) {
   return "";
 }
 
+function stripChoiceListLine(line) {
+  return stripLeadingRequirementGlyphs(stripSnapshotPagePrefix(line));
+}
+
+function trimChoiceListContinuationNoise(line) {
+  return normalizeWhitespace(
+    String(line ?? "")
+      .replace(
+        /,\s*[A-Z][A-Za-z&/ -]{2,80}\s+\([A-Z& ]+\s+\d{3}(?:\.\d+)?[A-Z]?[^)]*\)\s*$/i,
+        ""
+      )
+      .replace(
+        /\s+\b(?:Professional Practice|Capstone and Professional Practice|Engineering Fundamentals|Engineering & Science Electives|Technical Electives|Written Communication|Academic Planning Notes)\b.*$/i,
+        ""
+      )
+  );
+}
+
+function choiceListContinuationLooksLikeAdjacentRequirement(line) {
+  const normalizedLine = normalizeWhitespace(line);
+  return /\b(?:taken\s+[A-Z]{3}|taken\s+in|qtr|senior year|junior year|capstone design course|professional practice)\b/i.test(
+    normalizedLine
+  );
+}
+
+function canContinueWrappedCourseNumber(previousText, line) {
+  const previous = normalizeWhitespace(previousText);
+  const current = normalizeWhitespace(line);
+  if (!/^\d{3}(?:\.\d+)?[A-Z]?\b/.test(current)) {
+    return false;
+  }
+  return /\b[A-Z]{2,8}(?:\s+[A-Z]{2,8})?$/.test(previous);
+}
+
+function looksLikeChoiceListContinuation(line, previousText) {
+  const normalizedLine = trimChoiceListContinuationNoise(line);
+  if (!normalizedLine || choiceListContinuationLooksLikeAdjacentRequirement(normalizedLine)) {
+    return false;
+  }
+
+  const courseCodes = extractCourseCodesFromLine(normalizedLine);
+  if (courseCodes.length >= 2 && /[,;]/.test(normalizedLine)) {
+    return true;
+  }
+  if (/^(?:or|and)\s+[A-Z]{2,8}/i.test(normalizedLine)) {
+    return true;
+  }
+  if (/^\(\s*\d+(?:\.\d+)?\s*cr\b/i.test(normalizedLine)) {
+    return true;
+  }
+  if (/^[A-Z]{2,8}(?:\s+[A-Z]{2,8})?\s+\d{3}(?:\.\d+)?[A-Z]?\b/i.test(normalizedLine)) {
+    return /[,;)]/.test(normalizedLine) || courseCodes.length > 0;
+  }
+
+  return canContinueWrappedCourseNumber(previousText, normalizedLine);
+}
+
+function choiceListLooksClosed(text) {
+  const normalizedText = normalizeWhitespace(text);
+  const openCount = (normalizedText.match(/\(/g) ?? []).length;
+  const closeCount = (normalizedText.match(/\)/g) ?? []).length;
+  return openCount > 0 && closeCount >= openCount;
+}
+
+function buildChoiceListSourceLine(requirementLabel, startLine, snapshotLines, startIndex) {
+  const parts = [trimChoiceListContinuationNoise(stripChoiceListLine(startLine))].filter(Boolean);
+  let sawClosingParenthesis = choiceListLooksClosed(parts.join(" "));
+
+  for (
+    let index = startIndex + 1;
+    index < Math.min((snapshotLines ?? []).length, startIndex + 10) && !sawClosingParenthesis;
+    index += 1
+  ) {
+    const continuation = trimChoiceListContinuationNoise(stripChoiceListLine(snapshotLines[index]));
+    if (!looksLikeChoiceListContinuation(continuation, parts.join(" "))) {
+      continue;
+    }
+
+    parts.push(continuation);
+    sawClosingParenthesis = choiceListLooksClosed(parts.join(" "));
+  }
+
+  return normalizeWhitespace(`${requirementLabel} ${parts.join(" ")}`);
+}
+
 function buildMultiLineChoiceRequirementLines(snapshotLines) {
   const choiceLines = [];
 
   for (let index = 0; index < (snapshotLines ?? []).length; index += 1) {
     const currentLine = normalizeWhitespace(snapshotLines[index]);
-    if (!/\bor\b/i.test(currentLine)) {
-      continue;
-    }
-
     const requirementLabel = findNearbyRequirementChoiceLabel(snapshotLines, index);
     if (!requirementLabel) {
       continue;
     }
 
-    const currentWithoutPage = stripSnapshotPagePrefix(currentLine);
-    if (!/^\(/.test(currentWithoutPage)) {
+    const currentWithoutPage = stripChoiceListLine(currentLine);
+    const currentCourseCodes = extractCourseCodesFromLine(currentWithoutPage);
+    const hasChoiceListStart = CHOICE_LIST_START_PATTERN.test(currentWithoutPage);
+    const hasChoiceHeadingContext = hasChoiceRequirementContext(requirementLabel);
+    const startsHeadingBackedCommaList =
+      hasChoiceHeadingContext &&
+      currentCourseCodes.length >= 2 &&
+      /[,;]/.test(currentWithoutPage) &&
+      !choiceListContinuationLooksLikeAdjacentRequirement(currentWithoutPage);
+    const startsExplicitParentheticalChoice =
+      /^\(/.test(currentWithoutPage) && /\bor\b/i.test(currentWithoutPage);
+
+    if (!hasChoiceListStart && !startsHeadingBackedCommaList && !startsExplicitParentheticalChoice) {
       continue;
     }
 
-    choiceLines.push(`${requirementLabel} ${currentWithoutPage}`);
+    choiceLines.push(
+      buildChoiceListSourceLine(requirementLabel, currentLine, snapshotLines, index)
+    );
   }
 
   return choiceLines;
@@ -2446,24 +2563,99 @@ function isEquivalentNumberAliasLine(line, courseCodes) {
   return true;
 }
 
+function getChoiceRequirementGroupLabel(normalizedLine, courseCodes) {
+  const lineWithoutPage = stripChoiceListLine(normalizedLine);
+  const parentheticalChoiceIndex = lineWithoutPage.search(
+    /\s*\([^)]*\b(?:choose|select|or|one\s+of|one\s+from|one\s+course\s+from)\b/i
+  );
+  if (parentheticalChoiceIndex > 0) {
+    const prefix = normalizeWhitespace(lineWithoutPage.slice(0, parentheticalChoiceIndex));
+    if (
+      prefix &&
+      !extractCourseCodesFromLine(prefix).length &&
+      CHOICE_REQUIREMENT_LABEL_PATTERN.test(prefix)
+    ) {
+      return prefix;
+    }
+  }
+
+  const chooseListIndex = lineWithoutPage.search(
+    /\s*\(?\s*(?:choose(?:\s+(?:from|one))?|select|one\s+(?:course\s+)?from|one\s+of)\b/i
+  );
+  if (chooseListIndex > 0) {
+    const prefix = normalizeWhitespace(lineWithoutPage.slice(0, chooseListIndex));
+    if (
+      prefix &&
+      !extractCourseCodesFromLine(prefix).length &&
+      CHOICE_REQUIREMENT_LABEL_PATTERN.test(prefix)
+    ) {
+      return prefix.replace(/[:;,-]+$/g, "").trim();
+    }
+  }
+
+  return normalizedLine.length <= 120 ? normalizedLine : courseCodes.join(" or ");
+}
+
+function shouldSkipRawPartialChoiceLine(input) {
+  if (input.isCombinedChoiceLine || input.hasExplicitOr) {
+    return false;
+  }
+  if (!input.hasOwnChoiceContext) {
+    return true;
+  }
+
+  return (
+    CHOICE_LIST_START_PATTERN.test(stripChoiceListLine(input.normalizedLine)) &&
+    !/\)\s*$/.test(input.normalizedLine)
+  );
+}
+
 function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
   const parsedCourseCodeSet = new Set(parsedCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)));
   const seenGroupIds = new Set();
   const groups = [];
 
   const choiceSourceLines = [
-    ...buildMultiLineChoiceRequirementLines(snapshotLines ?? []),
-    ...(snapshotLines ?? []),
+    ...buildMultiLineChoiceRequirementLines(snapshotLines ?? []).map((line) => ({
+      line,
+      isCombinedChoiceLine: true,
+      nearbyRequirementLabel: "",
+    })),
+    ...(snapshotLines ?? []).map((line, index) => ({
+      line,
+      isCombinedChoiceLine: false,
+      nearbyRequirementLabel: findNearbyRequirementChoiceLabel(snapshotLines ?? [], index),
+    })),
   ];
 
-  for (const line of choiceSourceLines) {
+  for (const choiceSourceLine of choiceSourceLines) {
+    const line = choiceSourceLine.line;
     const normalizedLine = normalizeWhitespace(line);
-    if (!/\bor\b/i.test(normalizedLine)) {
+    const extractedCourseCodes = extractCourseCodesFromLine(normalizedLine);
+    const hasExplicitOr = /\bor\b/i.test(normalizedLine);
+    const hasOwnChoiceContext = hasChoiceRequirementContext(normalizedLine);
+    const nearbyHeadingIndicatesChoiceOrElective = hasChoiceRequirementContext(
+      choiceSourceLine.nearbyRequirementLabel
+    );
+    const hasChoiceContext = hasOwnChoiceContext || nearbyHeadingIndicatesChoiceOrElective;
+    const hasNonChoiceCourseListContext =
+      !hasExplicitOr && NON_CHOICE_COURSE_LIST_CONTEXT_PATTERN.test(normalizedLine);
+    const hasMultipleCourses = extractedCourseCodes.length >= 2;
+    if (
+      hasNonChoiceCourseListContext ||
+      (!hasExplicitOr && !(hasMultipleCourses && hasChoiceContext)) ||
+      shouldSkipRawPartialChoiceLine({
+        isCombinedChoiceLine: choiceSourceLine.isCombinedChoiceLine,
+        hasExplicitOr,
+        hasOwnChoiceContext,
+        normalizedLine,
+      })
+    ) {
       continue;
     }
 
-    const courseCodes = extractCourseCodesFromLine(normalizedLine).filter((courseCode) =>
-      parsedCourseCodeSet.has(courseCode)
+    const courseCodes = extractedCourseCodes.filter((courseCode) =>
+      parsedCourseCodeSet.has(courseCode) || (hasChoiceContext && hasMultipleCourses)
     );
     const credits = parseRequirementCreditAmount(normalizedLine);
     const categoryOptions = buildCategoryRequirementOptionsFromChoiceLine(
@@ -2483,6 +2675,7 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
       group = buildParsedRequirementGroup({
         id: `${owner.ownerId}:requirement-group:${slugify(courseCodes.join("-"))}`,
         label: courseCodes.join(" / "),
+        sourceHeading: normalizedLine,
         category: "course-alias",
         requirementType: "all_required",
         minCourses: 1,
@@ -2500,7 +2693,8 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
     } else {
       group = buildParsedRequirementGroup({
         id: `${owner.ownerId}:requirement-group:${slugify(courseCodes.join("-or-"))}`,
-        label: normalizedLine.length <= 120 ? normalizedLine : courseCodes.join(" or "),
+        label: getChoiceRequirementGroupLabel(normalizedLine, courseCodes),
+        sourceHeading: normalizedLine,
         category: "source-choice",
         requirementType: "choose_one",
         minCourses: 1,

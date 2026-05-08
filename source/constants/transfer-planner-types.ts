@@ -31,6 +31,8 @@ export type TransferPlannerRequirementCategoryOption = {
   sourceCategoryCode: string;
   title: string;
   credits: number;
+  creditMin?: number | null;
+  creditMax?: number | null;
   sourceText: string;
 };
 
@@ -116,6 +118,7 @@ export type TransferPlannerChecklistItem = {
   requirementGroup?: TransferPlannerRequirementGroup;
   selectedRequirementOptionIds?: string[];
   unselectedRequirementOptionIds?: string[];
+  scheduleSelectedRequirementOptions?: boolean;
 };
 
 export type TransferPlannerGeneralRequirementCategoryId =

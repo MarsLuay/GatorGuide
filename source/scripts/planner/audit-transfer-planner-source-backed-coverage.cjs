@@ -42,6 +42,7 @@ const ISSUE_TYPES = [
   "missing-compound-path",
   "missing-option-group",
   "missing-category-option",
+  "missing-credit-bucket",
   "false-required-promotion",
 ];
 
@@ -283,6 +284,7 @@ function buildQuarterPlan(plan, options = {}) {
     stayAtGrcStatuses: planner.buildRequirementStatuses(plan?.stayAtGrcChecklist ?? [], completedCourses),
     completedCourses,
     track: source.getTransferPlannerTrack(plan?.bestTrackId ?? null),
+    plannerCollegeId: options.plannerCollegeId ?? "uw",
     includeStayAtGrcCourses: options.includeStayAtGrcCourses ?? false,
     includeStemPrepCourses: options.includeStemPrepCourses ?? false,
     includeSummerQuarter: false,
@@ -1008,6 +1010,199 @@ function auditCivilEngineering(checks) {
     !chemFullLabels.includes("CHEM& 162") && !chemFullLabels.includes("CHEM& 163"),
     chemFullLabels.join(", "),
     "partial-compound-path"
+  );
+}
+
+function auditComputerEngineering(checks) {
+  const plan = resolveRuntimePlan("uw-seattle-computer-engineering", null);
+  const track = source.getTransferPlannerTrack(plan?.bestTrackId ?? null);
+  const quarterPlan = buildQuarterPlan(plan, {
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+  });
+  const labels = getVisiblePlannedLabels(quarterPlan);
+  const trueOptionAudit = planner.auditTrueOptionDetection({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const programmingAudit = trueOptionAudit.find(
+    (row) => row.requirement === "CSE 123 or CSE 143"
+  );
+  const requiredCoverageAudit = planner.auditRequiredMappedCourseCoverage({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const phys121Coverage = requiredCoverageAudit.find((row) => row.uwCourse === "PHYS 121");
+  const phys122Coverage = requiredCoverageAudit.find((row) => row.uwCourse === "PHYS 122");
+  const bucketAudit = planner.auditComputerEngineeringCreditBuckets({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const naturalScienceBucket = bucketAudit.find((row) =>
+    /10 additional credits approved natural science/i.test(row.requirement)
+  );
+  const mathScienceBucket = bucketAudit.find((row) =>
+    /3-6 additional Math\/Science/i.test(row.requirement)
+  );
+  const creditRange = planner.buildSuggestedQuarterRemainingCreditRange({
+    quarters: quarterPlan,
+    track,
+  });
+
+  addCheck(
+    checks,
+    "uw-computer-engineering:cse-123-or-cse-143-option-group",
+    "UW Computer Engineering models CSE 123 / CSE 143 as one true option group and defaults to CS 123",
+    programmingAudit?.detectedAsTrueOption === true &&
+      programmingAudit?.visibleOptionGroup === true &&
+      programmingAudit?.requiredCount === 1 &&
+      JSON.stringify(programmingAudit?.acceptedUwOptions ?? []) ===
+        JSON.stringify(["CSE 123", "CSE 143"]) &&
+      JSON.stringify(programmingAudit?.mappedGrcOptions ?? []) ===
+        JSON.stringify(["CS 123", "CS 145"]) &&
+      programmingAudit?.issue === null &&
+      labels.includes("CS 123") &&
+      !labels.includes("CS 145") &&
+      !requiredCoverageAudit.some(
+        (row) => row.uwCourse === "CSE 143" && row.issue === "missing-required-mapped-course"
+      ),
+    [
+      programmingAudit?.copyOnlyDebugText ?? "missing programming audit row",
+      `Labels: ${labels.join(", ")}`,
+      requiredCoverageAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+    ],
+    "missing-option-group"
+  );
+
+  addCheck(
+    checks,
+    "uw-computer-engineering:math-science-credit-buckets",
+    "UW Computer Engineering preserves and counts the approved Natural Science and Math/Science credit buckets",
+    naturalScienceBucket?.categoryListPlaceholderVisible === true &&
+      naturalScienceBucket?.plannedUnresolvedCredits === "10" &&
+      naturalScienceBucket?.issue === null &&
+      naturalScienceBucket?.mappedConcreteOptions?.includes("CHEM& 161") &&
+      naturalScienceBucket?.mappedConcreteOptions?.includes("PHYS& 223") &&
+      mathScienceBucket?.categoryListPlaceholderVisible === true &&
+      mathScienceBucket?.plannedUnresolvedCredits === "3-6" &&
+      mathScienceBucket?.issue === null &&
+      mathScienceBucket?.mappedConcreteOptions?.includes("MATH 238") &&
+      creditRange.scheduledMinRemainingCredits === 68 &&
+      creditRange.scheduledMaxRemainingCredits === 71,
+    [
+      naturalScienceBucket?.copyOnlyDebugText ?? "missing natural science bucket",
+      mathScienceBucket?.copyOnlyDebugText ?? "missing Math/Science bucket",
+      `Credit range: ${JSON.stringify(creditRange)}`,
+    ],
+    "missing-credit-bucket"
+  );
+
+  addCheck(
+    checks,
+    "uw-computer-engineering:phys121-source-backed-required",
+    "UW Computer Engineering marks PHYS 121 and PHYS 122 as source-backed required rows",
+    phys121Coverage?.visibleInPlan === true &&
+      phys121Coverage?.issue === null &&
+      JSON.stringify(phys121Coverage?.mappedGrcEquivalentPath ?? []) ===
+        JSON.stringify(["PHYS& 221"]) &&
+      phys122Coverage?.visibleInPlan === true &&
+      phys122Coverage?.issue === null &&
+      JSON.stringify(phys122Coverage?.mappedGrcEquivalentPath ?? []) ===
+        JSON.stringify(["PHYS& 222"]),
+    [
+      phys121Coverage?.copyOnlyDebugText ?? "missing PHYS 121 coverage",
+      phys122Coverage?.copyOnlyDebugText ?? "missing PHYS 122 coverage",
+    ],
+    "missing-detected-course"
+  );
+
+  for (const completedCourseCode of ["CS 123", "CS 145"]) {
+    const completedCourses = [
+      { code: completedCourseCode, label: completedCourseCode, credits: 5 },
+    ];
+    const completedQuarterPlan = buildQuarterPlan(plan, {
+      completedCourses,
+      plannerCollegeId: "uw",
+      includeStayAtGrcCourses: false,
+      includeStemPrepCourses: false,
+    });
+    const completedLabels = getVisiblePlannedLabels(completedQuarterPlan);
+    const completedProgrammingAudit = planner.auditTrueOptionDetection({
+      plan,
+      suggestedPlan: completedQuarterPlan,
+      completedCourses,
+      selectedRequirementOptionIdsByGroup: {},
+    }).find((row) => row.requirement === "CSE 123 or CSE 143");
+
+    addCheck(
+      checks,
+      `uw-computer-engineering:${completedCourseCode.toLowerCase().replace(/\s+/g, "-")}-satisfies-programming-option`,
+      `UW Computer Engineering completed ${completedCourseCode} satisfies the CSE 123/CSE 143 option group`,
+      completedProgrammingAudit?.satisfiedBy === "transcript-completed" &&
+        completedProgrammingAudit?.issue === null &&
+        !completedLabels.includes("CS 123") &&
+        !completedLabels.includes("CS 145"),
+      [
+        completedProgrammingAudit?.copyOnlyDebugText ?? "missing completed programming audit row",
+        `Labels: ${completedLabels.join(", ")}`,
+      ],
+      "missing-option-group"
+    );
+  }
+
+  const cseGroup = plan?.requirementGroups?.find((group) =>
+    /cse-123-or-cse-143/.test(group.id)
+  );
+  const cse143Option = cseGroup?.options.find((option) =>
+    (option.uwCourses ?? []).includes("CSE 143")
+  );
+  const selectedRequirementOptionIdsByGroup =
+    cseGroup?.id && cse143Option?.id
+      ? {
+          [cseGroup.id]: [cse143Option.id],
+        }
+      : {};
+  const selectedQuarterPlan = buildQuarterPlan(plan, {
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    selectedRequirementOptionIdsByGroup,
+  });
+  const selectedLabels = getVisiblePlannedLabels(selectedQuarterPlan);
+  const selectedCs141 = getVisiblePlannedCourses(selectedQuarterPlan).find(
+    (course) => course.label === "CS& 141"
+  );
+  const selectedProgrammingAudit = planner.auditTrueOptionDetection({
+    plan,
+    suggestedPlan: selectedQuarterPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup,
+  }).find((row) => row.requirement === "CSE 123 or CSE 143");
+
+  addCheck(
+    checks,
+    "uw-computer-engineering:selected-cse143-path",
+    "UW Computer Engineering selected CSE 143 path schedules CS 145 and its local prerequisite without CS 123",
+    Boolean(cseGroup) &&
+      Boolean(cse143Option) &&
+      selectedLabels.includes("CS 145") &&
+      selectedLabels.includes("CS& 141") &&
+      !selectedLabels.includes("CS 123") &&
+      selectedCs141?.sourceKind === "official-grc-track" &&
+      selectedCs141?.courseRole === "local_grc_prerequisite" &&
+      selectedProgrammingAudit?.satisfiedBy === "user-selected" &&
+      selectedProgrammingAudit?.issue === null,
+    [
+      selectedProgrammingAudit?.copyOnlyDebugText ?? "missing selected programming audit row",
+      `Labels: ${selectedLabels.join(", ")}`,
+      `CS& 141: ${JSON.stringify(selectedCs141 ?? null)}`,
+    ],
+    "missing-detected-course"
   );
 }
 
@@ -1931,7 +2126,15 @@ function auditEnvironmentalEngineering(checks) {
   const matrixAudit = trueOptionAudit.find((row) =>
     /matrix|linear algebra/i.test(row.requirement)
   );
+  const earthScienceAudit = trueOptionAudit.find((row) =>
+    /earth science elective/i.test(row.requirement)
+  );
   const requiredCoverageAudit = planner.auditRequiredMappedCourseCoverage({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const sourceScopeAudit = planner.auditSourceScope({
     plan,
     suggestedPlan: quarterPlan,
     completedCourses: [],
@@ -1944,6 +2147,30 @@ function auditEnvironmentalEngineering(checks) {
   const cee347Boundary = rowBoundaryAudit.find((row) =>
     row.parsedUwCourses.includes("CEE 347")
   );
+  const earthScienceBoundary = rowBoundaryAudit.find((row) =>
+    /earth science elective/i.test(row.parsedRequirementTitle)
+  );
+  const earthScienceAcceptedOptions = [
+    "ATMS 101",
+    "ATMS 211",
+    "ATMS 212",
+    "ESRM 100",
+    "ESRM 101",
+    "ESRM 210",
+    "ESS 106",
+    "ESS 201",
+    "ESS 211",
+    "ESS 212",
+    "NUTR 200",
+    "OCEAN 102",
+    "OCEAN 200",
+  ];
+  const earthScienceMappedOptions = [
+    "GEOL& 101",
+    "NATRS 100",
+    "NATRS 210",
+    "NUTR& 101",
+  ];
 
   addCheck(
     checks,
@@ -1983,6 +2210,45 @@ function auditEnvironmentalEngineering(checks) {
       ...mergedMatrixRows.map((row) => row.copyOnlyDebugText),
     ],
     "over-scheduled-alternatives"
+  );
+
+  addCheck(
+    checks,
+    "uw-enve:earth-science-elective-option",
+    "UW Environmental Engineering Earth science elective is one unresolved choose-one option group",
+    Boolean(earthScienceAudit) &&
+      earthScienceAcceptedOptions.every((courseCode) =>
+        earthScienceAudit.acceptedUwOptions.includes(courseCode)
+      ) &&
+      earthScienceMappedOptions.every((courseCode) =>
+        earthScienceAudit.mappedGrcOptions.includes(courseCode)
+      ) &&
+      earthScienceAudit.requiredCount === 1 &&
+      earthScienceAudit.visibleOptionGroup === true &&
+      earthScienceAudit.satisfiedBy === "none" &&
+      earthScienceAudit.issue === null &&
+      earthScienceMappedOptions.every((courseCode) => !labels.includes(courseCode)) &&
+      Boolean(earthScienceBoundary) &&
+      earthScienceBoundary.issue === null &&
+      sourceScopeAudit.filter((row) =>
+        ["ESS 212", "ESRM 101", "ESRM 210", "NUTR 200"].includes(row.uwCourse)
+      ).length === 4 &&
+      sourceScopeAudit
+        .filter((row) => ["ESS 212", "ESRM 101", "ESRM 210", "NUTR 200"].includes(row.uwCourse))
+        .every(
+          (row) =>
+            row.detectedRole === "option-list" &&
+            row.promotedToRequired === false &&
+            row.allowedToSchedule === false &&
+            row.issue === null
+        ),
+    [
+      earthScienceAudit?.copyOnlyDebugText ?? "Missing Earth science true-option audit.",
+      earthScienceBoundary?.copyOnlyDebugText ?? "Missing Earth science row-boundary audit.",
+      sourceScopeAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      `Planned labels: ${labels.join(", ")}`,
+    ].join("\n"),
+    "false-required-promotion"
   );
 
   addCheck(
@@ -2229,6 +2495,9 @@ function runRegressionChecks(targetPlanId) {
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-civil-engineering") {
     auditCivilEngineering(checks);
+  }
+  if (!targetPlanId || targetPlanId === "uw-seattle-computer-engineering") {
+    auditComputerEngineering(checks);
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-chemical-engineering") {
     auditChemicalEngineering(checks);
