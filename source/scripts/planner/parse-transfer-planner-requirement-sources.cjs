@@ -1383,6 +1383,105 @@ function buildCategoryRequirementOptionsFromChoiceLine(owner, normalizedLine, fa
   );
 }
 
+function stripSnapshotPagePrefix(line) {
+  return normalizeWhitespace(String(line ?? "").replace(/^\[Page\s+\d+\]\s*/i, ""));
+}
+
+function stripLeadingRequirementGlyphs(line) {
+  return normalizeWhitespace(
+    String(line ?? "")
+      .replace(/^[^A-Za-z0-9(\[]{1,12}\s*/u, "")
+      .replace(/^(?:[•●\-\u2023\u25B8\u1405]+\s*)+/u, "")
+  );
+}
+
+function looksLikeStandaloneRequirementLabelLine(line) {
+  const normalizedLine = stripLeadingRequirementGlyphs(stripSnapshotPagePrefix(line));
+  if (!normalizedLine) {
+    return false;
+  }
+  if (extractCourseCodesFromLine(normalizedLine).length > 0) {
+    return false;
+  }
+  if (/\b(?:students?|see|details?|list|technical electives?|provide|coursework)\b/i.test(normalizedLine)) {
+    return false;
+  }
+  if (!/\b(?:credits?|cr)\b/i.test(normalizedLine)) {
+    return false;
+  }
+  return /\b(?:programming|statistics|thermodynamics|matrix|linear algebra|differential equations|biology|chemistry|physics|economics|communication|composition|science|engineering|fundamentals|mechanics|calculus)\b/i.test(
+    normalizedLine
+  );
+}
+
+function looksLikeStandaloneRequirementTitleLine(line) {
+  const normalizedLine = stripLeadingRequirementGlyphs(stripSnapshotPagePrefix(line));
+  if (!normalizedLine) {
+    return false;
+  }
+  if (extractCourseCodesFromLine(normalizedLine).length > 0) {
+    return false;
+  }
+  if (/^\d+(?:-\d+)?\s*cr$/i.test(normalizedLine)) {
+    return false;
+  }
+  if (/\b(?:students?|see|details?|list|technical electives?|provide|coursework)\b/i.test(normalizedLine)) {
+    return false;
+  }
+  return /\b(?:programming|statistics|thermodynamics|matrix|linear algebra|differential equations|biology|chemistry|physics|economics|communication|composition|science|engineering|fundamentals|mechanics|calculus)\b/i.test(
+    normalizedLine
+  );
+}
+
+function findNearbyRequirementChoiceLabel(snapshotLines, choiceLineIndex) {
+  const startIndex = Math.max(0, choiceLineIndex - 5);
+  let creditLine = "";
+
+  for (let index = choiceLineIndex - 1; index >= startIndex; index -= 1) {
+    const line = normalizeWhitespace(snapshotLines[index]);
+    const lineWithoutPage = stripSnapshotPagePrefix(line);
+    if (/^\d+(?:-\d+)?\s*cr$/i.test(lineWithoutPage)) {
+      creditLine = lineWithoutPage;
+      continue;
+    }
+
+    if (looksLikeStandaloneRequirementLabelLine(line)) {
+      return stripSnapshotPagePrefix(line);
+    }
+
+    if (looksLikeStandaloneRequirementTitleLine(line) && creditLine) {
+      return normalizeWhitespace(`${stripSnapshotPagePrefix(line)} ${creditLine}`);
+    }
+  }
+
+  return "";
+}
+
+function buildMultiLineChoiceRequirementLines(snapshotLines) {
+  const choiceLines = [];
+
+  for (let index = 0; index < (snapshotLines ?? []).length; index += 1) {
+    const currentLine = normalizeWhitespace(snapshotLines[index]);
+    if (!/\bor\b/i.test(currentLine)) {
+      continue;
+    }
+
+    const requirementLabel = findNearbyRequirementChoiceLabel(snapshotLines, index);
+    if (!requirementLabel) {
+      continue;
+    }
+
+    const currentWithoutPage = stripSnapshotPagePrefix(currentLine);
+    if (!/^\(/.test(currentWithoutPage)) {
+      continue;
+    }
+
+    choiceLines.push(`${requirementLabel} ${currentWithoutPage}`);
+  }
+
+  return choiceLines;
+}
+
 function buildParsedRequirementOption(input) {
   const uwCourses = uniqueSorted(
     (input.uwCourses ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
@@ -2352,7 +2451,12 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
   const seenGroupIds = new Set();
   const groups = [];
 
-  for (const line of snapshotLines ?? []) {
+  const choiceSourceLines = [
+    ...buildMultiLineChoiceRequirementLines(snapshotLines ?? []),
+    ...(snapshotLines ?? []),
+  ];
+
+  for (const line of choiceSourceLines) {
     const normalizedLine = normalizeWhitespace(line);
     if (!/\bor\b/i.test(normalizedLine)) {
       continue;
@@ -2628,6 +2732,7 @@ function buildPdfPageLineTexts(textContent) {
         text,
         x: Number(transform[4] ?? 0),
         y: Number(transform[5] ?? 0),
+        width: Number(item.width ?? 0),
         height: Number(item.height ?? 0),
       };
     })
@@ -2665,9 +2770,47 @@ function buildPdfPageLineTexts(textContent) {
   }
 
   return lineGroups
-    .map((group) =>
-      normalizeWhitespace(group.items.sort((left, right) => left.x - right.x).map((item) => item.text).join(" "))
-    )
+    .flatMap((group) => {
+      const sortedItems = group.items.sort((left, right) => left.x - right.x);
+      const segmentGapThreshold = Math.max(36, Math.min(96, group.maxHeight * 5.5 || 48));
+      const segments = [];
+
+      for (const item of sortedItems) {
+        const currentSegment = segments[segments.length - 1];
+        if (!currentSegment) {
+          segments.push({
+            items: [item],
+            endX: item.x + Math.max(item.width, item.text.length * Math.max(group.maxHeight, 8) * 0.45),
+          });
+          continue;
+        }
+
+        const estimatedWidth = Math.max(
+          item.width,
+          item.text.length * Math.max(group.maxHeight, 8) * 0.45
+        );
+        if (
+          shouldStartNewPdfLineSegment({
+            currentSegment,
+            item,
+            segmentGapThreshold,
+          })
+        ) {
+          segments.push({
+            items: [item],
+            endX: item.x + estimatedWidth,
+          });
+          continue;
+        }
+
+        currentSegment.items.push(item);
+        currentSegment.endX = Math.max(currentSegment.endX, item.x + estimatedWidth);
+      }
+
+      return segments.map((segment) =>
+        normalizeWhitespace(segment.items.map((item) => item.text).join(" "))
+      );
+    })
     .filter(Boolean);
 }
 
@@ -3239,6 +3382,29 @@ function readSnapshot(ownerKey) {
     title: titleLine ? normalizeWhitespace(titleLine.replace(/^Title:\s*/, "")) : null,
     snapshotLines,
   };
+}
+
+function isPdfCreditMarkerText(value) {
+  return /^\d+(?:-\d+)?\s*cr$/i.test(normalizeWhitespace(value));
+}
+
+function shouldStartNewPdfLineSegment(input) {
+  const gap = input.item.x - input.currentSegment.endX;
+  if (gap > input.segmentGapThreshold) {
+    return true;
+  }
+
+  const previousItem = input.currentSegment.items[input.currentSegment.items.length - 1] ?? null;
+  if (
+    previousItem &&
+    isPdfCreditMarkerText(previousItem.text) &&
+    !isPdfCreditMarkerText(input.item.text) &&
+    gap > Math.max(18, input.segmentGapThreshold * 0.35)
+  ) {
+    return true;
+  }
+
+  return false;
 }
 
 function parseSnapshotSource(entry, originalError) {

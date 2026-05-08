@@ -39,6 +39,10 @@ const {
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,8}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/;
 const SOURCE_BACKED_REQUIRED_COURSE_SEMANTIC_RELATION_PATTERN =
   /\bCourse (?:equivalent to|overlaps with):\s*([^.]*)/i;
+const RUNTIME_REQUIRED_CORE_ROW_HINT_PATTERN =
+  /\b(?:intro(?:duction)?|principles|mechanics|systems?|case studies|balances|chemistry|physics|biology|calculus|linear algebra|differential equations|statistics|thermodynamics|programming|communication|composition|concept|tools|sustainability)\b/i;
+const RUNTIME_NON_REQUIRED_SOURCE_HINT_PATTERN =
+  /\b(?:choose|select|electives?|course list|technical elective|recommended|suggested|may count|study abroad|taken\s+[A-Z]{3})\b/i;
 
 function normalizeCourseCode(value) {
   return String(value ?? "").toUpperCase().replace(/\s+/g, " ").trim();
@@ -104,6 +108,26 @@ function compactCourseRegistryEntry(entry) {
   };
 }
 
+function shouldKeepRuntimeParsedRequirementAtomCandidate(candidate) {
+  const level = getCourseLevel(candidate.uwCourseCode);
+  if (level === null || level < 300) {
+    return true;
+  }
+  if (level >= 400) {
+    return false;
+  }
+
+  return (candidate.sourceLineHints ?? []).some((hint) => {
+    const text = String(hint ?? "").replace(/\s+/g, " ").trim();
+    return (
+      text &&
+      !RUNTIME_NON_REQUIRED_SOURCE_HINT_PATTERN.test(text) &&
+      !/\bor\b/i.test(text) &&
+      RUNTIME_REQUIRED_CORE_ROW_HINT_PATTERN.test(text)
+    );
+  });
+}
+
 function compactParsedRequirementSourceBlock(block) {
   return {
     id: block.id,
@@ -111,10 +135,7 @@ function compactParsedRequirementSourceBlock(block) {
     pathwayId: block.pathwayId,
     requirementCueLines: block.requirementCueLines,
     parsedRequirementAtomCandidates: (block.parsedRequirementAtomCandidates ?? [])
-      .filter((candidate) => {
-        const level = getCourseLevel(candidate.uwCourseCode);
-        return level === null || level < 300;
-      })
+      .filter(shouldKeepRuntimeParsedRequirementAtomCandidate)
       .map((candidate) => ({
         uwCourseCode: candidate.uwCourseCode,
         sourceLineHints: candidate.sourceLineHints,

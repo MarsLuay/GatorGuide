@@ -279,6 +279,7 @@ export type SuggestedQuarterCourseOptionGroup = {
   resolvedSatisfiedOptionIdsBeforeCap?: string[];
   droppedSatisfiedOptionIds?: string[];
   completedSatisfyingCourseCodes?: string[];
+  completedSatisfyingCourseCodesByOptionId?: Record<string, string[]>;
   scheduledSatisfyingCourseCodes?: string[];
   countedSatisfyingCourseCodes?: string[];
   candidateOptionSatisfactionSourcesById?: Record<string, SuggestedQuarterOptionSatisfactionSource[]>;
@@ -379,9 +380,11 @@ export type CategoryTranscriptSatisfactionAuditEntry = {
   chosenTranscriptSatisfier: string | null;
   chosenSatisfierAlreadyUsedByRequiredRow: boolean;
   genericCategoryRowScheduled: boolean;
+  visibleOptionStatusText: string;
   issue:
     | "duplicate-category-placeholder"
     | "no-unused-category-satisfier"
+    | "selected-category-status-missing-satisfier"
     | null;
   copyOnlyDebugText: string;
 };
@@ -404,7 +407,7 @@ export type OptionAllocationAuditEntry = {
 export type OptionTitleFallbackAuditEntry = {
   originalTitle: string;
   displayedTitle: string;
-  reason: "bad-generic-title" | "preserved-real-title";
+  reason: "bad-generic-title" | "preserved-real-title" | "forced-numbered-option-title";
   visibleOptionIndex: number;
   groupId: string;
   copyOnlyDebugText: string;
@@ -425,6 +428,17 @@ export type SourceScopeAuditEntry = {
   allowedToSchedule: boolean;
   reason: string;
   issue: "false-required-promotion" | null;
+  copyOnlyDebugText: string;
+};
+
+export type SourceRowBoundaryAuditEntry = {
+  major: string;
+  sourceUrl: string;
+  rawRowText: string;
+  parsedRequirementTitle: string;
+  parsedUwCourses: string[];
+  expectedRowSplit: boolean;
+  issue: "merged-adjacent-rows" | "missing-required-row" | null;
   copyOnlyDebugText: string;
 };
 
@@ -1201,6 +1215,97 @@ function shouldIncludeSourceBackedParsedRequiredCourseCandidate(candidate: {
       !SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN.test(line) &&
       !SOURCE_BACKED_CONTEXTLESS_DISTRIBUTION_LIST_PATTERN.test(line)
   );
+}
+
+function stripSourcePagePrefix(value: string | null | undefined) {
+  return String(value ?? "").replace(/^\s*\[Page\s+\d+\]\s*/i, "").replace(/\s+/g, " ").trim();
+}
+
+function getBestParsedRequirementCandidateLabel(candidate: {
+  uwCourseCode?: string | null;
+  title?: string | null;
+  sourceLineHints?: string[] | null;
+}) {
+  const courseCode = normalizeCourseCode(candidate.uwCourseCode ?? "");
+  const sourceLabel = (candidate.sourceLineHints ?? [])
+    .map((line) => stripSourcePagePrefix(line))
+    .find((line) => line && (!courseCode || line.includes(courseCode)));
+  return sourceLabel || String(candidate.title ?? candidate.uwCourseCode ?? courseCode).trim() || courseCode;
+}
+
+function sourceHintLooksLikeHiddenUnmappedRequiredCoreRow(input: {
+  hint: string;
+  uwCourseCode: string;
+}) {
+  const hint = stripSourcePagePrefix(input.hint);
+  if (!hint || SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN.test(hint)) {
+    return false;
+  }
+  if (/\b(?:choose|select|electives?|course list|technical elective|recommended|suggested|may count|study abroad|taken\s+[A-Z]{3})\b/i.test(hint)) {
+    return false;
+  }
+  if (/\bor\b/i.test(hint)) {
+    return false;
+  }
+  if (
+    !/\b(?:intro(?:duction)?|principles|mechanics|systems?|case studies|balances|chemistry|physics|biology|calculus|linear algebra|differential equations|statistics|thermodynamics|programming|communication|composition|concept|tools|sustainability)\b/i.test(
+      hint
+    )
+  ) {
+    return false;
+  }
+  return (
+    hint.toUpperCase().includes(`(${input.uwCourseCode})`) ||
+    hint.toUpperCase().includes(input.uwCourseCode)
+  );
+}
+
+function getAuditOnlyHiddenUnmappedRequiredUwRequirementLabels(
+  plan: TransferPlannerMajorPlan | null | undefined,
+  requiredUwCourseCodes: Set<string>
+) {
+  const labelsByCourseCode = new Map<string, string>();
+  if (!plan) {
+    return labelsByCourseCode;
+  }
+
+  const trueOptionUwCourseCodes = getTrueOptionUwCourseCodeSet(plan);
+  for (const block of getSourceBackedRequirementSourceBlocksForPlan(plan)) {
+    for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
+      const normalizedCourseCode = normalizeCourseCode(candidate.uwCourseCode ?? "");
+      if (
+        !normalizedCourseCode ||
+        labelsByCourseCode.has(normalizedCourseCode) ||
+        requiredUwCourseCodes.has(normalizedCourseCode) ||
+        trueOptionUwCourseCodes.has(normalizedCourseCode)
+      ) {
+        continue;
+      }
+      if (!shouldAllowSourceScopedRequiredUwCourse(plan, normalizedCourseCode)) {
+        continue;
+      }
+      if (getMappedGrcCourseCodesForRequiredUwCourse(plan, normalizedCourseCode).length) {
+        continue;
+      }
+      if (
+        !(candidate.sourceLineHints ?? []).some((hint) =>
+          sourceHintLooksLikeHiddenUnmappedRequiredCoreRow({
+            hint,
+            uwCourseCode: normalizedCourseCode,
+          })
+        )
+      ) {
+        continue;
+      }
+
+      labelsByCourseCode.set(
+        normalizedCourseCode,
+        getBestParsedRequirementCandidateLabel(candidate)
+      );
+    }
+  }
+
+  return labelsByCourseCode;
 }
 
 function getSourceBackedRequirementSourceBlocksForPlan(
@@ -12417,6 +12522,7 @@ function buildCompletedCategoryOptionSatisfaction(input: {
 }) {
   const optionIds: string[] = [];
   const courseCodes: string[] = [];
+  const courseCodesByOptionId: Record<string, string[]> = {};
 
   for (const option of input.optionGroup.options) {
     if (!isRequirementCategoryOption(option)) {
@@ -12436,11 +12542,13 @@ function buildCompletedCategoryOptionSatisfaction(input: {
 
     optionIds.push(option.id);
     courseCodes.push(chosenSatisfyingCourseCode);
+    courseCodesByOptionId[option.id] = [chosenSatisfyingCourseCode];
   }
 
   return {
     optionIds: getSuggestedScheduleUniqueIds(optionIds),
     courseCodes: sortCourseCodes(unique(courseCodes)),
+    courseCodesByOptionId,
   };
 }
 
@@ -12479,6 +12587,7 @@ type OptionGroupSatisfactionCandidateResolution = {
     SuggestedQuarterOptionSatisfactionSource[]
   >;
   completedSatisfyingCourseCodes: string[];
+  completedSatisfyingCourseCodesByOptionId: Record<string, string[]>;
   scheduledSatisfyingCourseCodes: string[];
   acceptedCourseCodes: string[];
   categoryOptionLabels: string[];
@@ -12558,6 +12667,18 @@ function filterOptionSatisfactionSourcesByIds(
   const optionIdSet = new Set(optionIds);
   return Object.fromEntries(
     Object.entries(sourcesByOptionId).filter(([optionId]) => optionIdSet.has(optionId))
+  );
+}
+
+function filterOptionCourseCodesByIds(
+  courseCodesByOptionId: Record<string, string[]>,
+  optionIds: string[]
+) {
+  const optionIdSet = new Set(optionIds);
+  return Object.fromEntries(
+    Object.entries(courseCodesByOptionId)
+      .filter(([optionId]) => optionIdSet.has(optionId))
+      .map(([optionId, courseCodes]) => [optionId, sortCourseCodes(courseCodes)])
   );
 }
 
@@ -12663,6 +12784,25 @@ function buildSuggestedQuarterOptionGroupSatisfactionCandidates(input: {
       ...categoryCompletedSatisfaction.courseCodes,
     ]
   );
+  const completedSatisfyingCourseCodesByOptionId: Record<string, string[]> = {};
+  for (const option of input.optionGroup.options) {
+    const courseCodesForOption = [
+      ...getRequirementOptionAllCourseCodes(option).filter((courseCode) =>
+        input.completedCourseCodes.has(courseCode)
+      ),
+      ...(categoryCompletedSatisfaction.courseCodesByOptionId[option.id] ?? []),
+    ];
+    const normalizedCourseCodes = sortCourseCodes(
+      unique(
+        courseCodesForOption
+          .map((courseCode) => normalizeCourseCode(courseCode))
+          .filter(Boolean)
+      )
+    );
+    if (normalizedCourseCodes.length) {
+      completedSatisfyingCourseCodesByOptionId[option.id] = normalizedCourseCodes;
+    }
+  }
   const scheduledSatisfyingCourseCodes = sortCourseCodes(
     [...input.scheduledCourseCodes].filter((courseCode) => acceptedCourseCodeSet.has(courseCode))
   );
@@ -12671,6 +12811,7 @@ function buildSuggestedQuarterOptionGroupSatisfactionCandidates(input: {
     candidateSatisfiedOptionIds,
     candidateOptionSatisfactionSourcesById,
     completedSatisfyingCourseCodes,
+    completedSatisfyingCourseCodesByOptionId,
     scheduledSatisfyingCourseCodes,
     acceptedCourseCodes,
     categoryOptionLabels: input.optionGroup.options
@@ -12934,6 +13075,10 @@ function buildAllocatedOptionGroupResolutionMap(input: {
       resolvedSatisfiedOptionIds,
       droppedSatisfiedOptionIds,
       completedSatisfyingCourseCodes: context.completedSatisfyingCourseCodes,
+      completedSatisfyingCourseCodesByOptionId: filterOptionCourseCodesByIds(
+        context.completedSatisfyingCourseCodesByOptionId,
+        resolvedSatisfiedOptionIds
+      ),
       scheduledSatisfyingCourseCodes: context.scheduledSatisfyingCourseCodes,
       countedSatisfyingCourseCodes: finalOptionCourseCodes,
       candidateOptionSatisfactionSourcesById: context.candidateOptionSatisfactionSourcesById,
@@ -12975,6 +13120,8 @@ function resolveSuggestedQuarterOptionGroupSatisfaction(input: {
       resolvedOptionGroup.resolvedSatisfiedOptionIdsBeforeCap ?? [],
     droppedSatisfiedOptionIds: resolvedOptionGroup.droppedSatisfiedOptionIds ?? [],
     completedSatisfyingCourseCodes: resolvedOptionGroup.completedSatisfyingCourseCodes ?? [],
+    completedSatisfyingCourseCodesByOptionId:
+      resolvedOptionGroup.completedSatisfyingCourseCodesByOptionId ?? {},
     scheduledSatisfyingCourseCodes: resolvedOptionGroup.scheduledSatisfyingCourseCodes ?? [],
     countedSatisfyingCourseCodes: resolvedOptionGroup.countedSatisfyingCourseCodes ?? [],
     candidateOptionSatisfactionSourcesById:
@@ -16002,8 +16149,17 @@ function isBadGenericOptionGroupTitle(title: string | null | undefined) {
 function getSuggestedQuarterOptionGroupDisplayTitle(input: {
   optionGroup: SuggestedQuarterCourseOptionGroup;
   visibleOptionIndex: number;
+  forceNumberedTitle?: boolean;
+  preserveOriginalTitle?: boolean;
 }) {
   const originalTitle = normalizeOptionGroupTitleForFallback(input.optionGroup.title);
+  if (input.forceNumberedTitle) {
+    return `Requirement Choice ${input.visibleOptionIndex}`;
+  }
+  if (input.preserveOriginalTitle && originalTitle) {
+    return originalTitle;
+  }
+
   return isBadGenericOptionGroupTitle(originalTitle)
     ? `Requirement Choice ${input.visibleOptionIndex}`
     : originalTitle;
@@ -16011,6 +16167,8 @@ function getSuggestedQuarterOptionGroupDisplayTitle(input: {
 
 export function auditOptionTitleFallback(input: {
   optionGroups: SuggestedQuarterCourseOptionGroup[];
+  forceNumberedTitles?: boolean;
+  preserveOriginalTitles?: boolean;
 }) {
   return input.optionGroups.map<OptionTitleFallbackAuditEntry>((optionGroup, index) => {
     const visibleOptionIndex = index + 1;
@@ -16018,9 +16176,14 @@ export function auditOptionTitleFallback(input: {
     const displayedTitle = getSuggestedQuarterOptionGroupDisplayTitle({
       optionGroup,
       visibleOptionIndex,
+      forceNumberedTitle: input.forceNumberedTitles,
+      preserveOriginalTitle: input.preserveOriginalTitles,
     });
-    const reason =
-      displayedTitle === originalTitle && !isBadGenericOptionGroupTitle(originalTitle)
+    const reason = input.forceNumberedTitles
+      ? "forced-numbered-option-title"
+      : input.preserveOriginalTitles && originalTitle
+        ? "preserved-real-title"
+      : displayedTitle === originalTitle && !isBadGenericOptionGroupTitle(originalTitle)
         ? "preserved-real-title"
         : "bad-generic-title";
 
@@ -16557,9 +16720,15 @@ export function auditCategoryTranscriptSatisfaction(input: {
           course.label === resolution.categoryOptionLabel &&
           extractCourseCodes(course.label).length === 0
       );
+    const visibleOptionStatusText = resolution.chosenTranscriptSatisfier
+      ? `Selected: ${resolution.categoryOptionLabel}, satisfied by ${resolution.chosenTranscriptSatisfier}`
+      : `Selected: ${resolution.categoryOptionLabel}`;
     const issue =
       resolution.chosenTranscriptSatisfier && genericCategoryRowScheduled
         ? "duplicate-category-placeholder"
+        : resolution.chosenTranscriptSatisfier &&
+            !visibleOptionStatusText.includes(resolution.chosenTranscriptSatisfier)
+          ? "selected-category-status-missing-satisfier"
         : !resolution.chosenTranscriptSatisfier &&
             resolution.completedCandidateCourses.length > 0 &&
             resolution.rejectedCandidateCourses.length > 0
@@ -16579,6 +16748,7 @@ export function auditCategoryTranscriptSatisfaction(input: {
       chosenSatisfierAlreadyUsedByRequiredRow:
         resolution.chosenSatisfierAlreadyUsedByRequiredRow,
       genericCategoryRowScheduled,
+      visibleOptionStatusText,
       issue,
       copyOnlyDebugText: [
         "[copy-only category transcript satisfaction audit]",
@@ -16603,6 +16773,7 @@ export function auditCategoryTranscriptSatisfaction(input: {
           resolution.chosenSatisfierAlreadyUsedByRequiredRow ? "yes" : "no"
         }`,
         `Generic category row scheduled: ${genericCategoryRowScheduled ? "yes" : "no"}`,
+        `Visible option status text: ${visibleOptionStatusText}`,
         `Issue: ${issue ?? "none"}`,
       ].join(" "),
     };
@@ -17003,6 +17174,121 @@ export function auditSourceScope(input: {
   return rows;
 }
 
+function parsedSourceRowLooksLikeMergedAdjacentRows(rawRowText: string) {
+  const text = stripSourcePagePrefix(rawRowText);
+  if (!text) {
+    return false;
+  }
+
+  return /\([^)]*\bor\b[^)]*\)\s*\d*(?:-\d+)?\s*cr\.?\s+[A-Z][^()]{2,120}\([A-Z]{1,8}(?:\s+[A-Z]{1,8})?\s+\d{3}/i.test(
+    text
+  );
+}
+
+function getParsedRequirementGroupUwCourses(
+  group: NonNullable<TransferPlannerChecklistItem["requirementGroup"]>
+) {
+  return unique(
+    (group.options ?? [])
+      .flatMap((option) => [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+        ...(option.displayCourseCodes ?? []),
+      ])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+  );
+}
+
+export function auditSourceRowBoundaries(input: {
+  plan?: TransferPlannerMajorPlan | null;
+}) {
+  if (!input.plan) {
+    return [] as SourceRowBoundaryAuditEntry[];
+  }
+
+  const major = input.plan.title ?? input.plan.id ?? "unknown";
+  const rows: SourceRowBoundaryAuditEntry[] = [];
+  const seenKeys = new Set<string>();
+  const requiredUwCourseCodes = getSourceBackedRequiredUwCourseCodeSet(input.plan);
+  const primarySourceUrl =
+    getTransferPlannerPrimaryDegreeRequirementsSource(
+      input.plan.id,
+      getSelectedPathwayId(input.plan)
+    )?.url ?? "unknown";
+
+  const pushRow = (row: Omit<SourceRowBoundaryAuditEntry, "copyOnlyDebugText">) => {
+    const key = `${row.sourceUrl}|${row.rawRowText}|${row.parsedUwCourses.join(",")}`;
+    if (seenKeys.has(key)) {
+      return;
+    }
+    seenKeys.add(key);
+    rows.push({
+      ...row,
+      copyOnlyDebugText: [
+        "[copy-only source row-boundary audit]",
+        `Major: ${row.major}`,
+        `Source URL: ${row.sourceUrl}`,
+        `Raw row text: ${row.rawRowText || "none"}`,
+        `Parsed requirement title: ${row.parsedRequirementTitle || "none"}`,
+        `Parsed UW courses: ${
+          row.parsedUwCourses.length ? row.parsedUwCourses.join(", ") : "none"
+        }`,
+        `Expected row split: ${row.expectedRowSplit ? "yes" : "no"}`,
+        `Issue: ${row.issue ?? "none"}`,
+      ].join(" "),
+    });
+  };
+
+  for (const block of getSourceBackedRequirementSourceBlocksForPlan(input.plan)) {
+    const sourceUrl = primarySourceUrl;
+
+    for (const group of block.parsedRequirementGroups ?? []) {
+      const rawRowText = String(group.sourceHeading ?? group.label ?? "").trim();
+      const parsedUwCourses = getParsedRequirementGroupUwCourses(group);
+      const expectedRowSplit = parsedSourceRowLooksLikeMergedAdjacentRows(rawRowText);
+      pushRow({
+        major,
+        sourceUrl,
+        rawRowText,
+        parsedRequirementTitle: String(group.label ?? "").trim(),
+        parsedUwCourses,
+        expectedRowSplit,
+        issue: expectedRowSplit ? "merged-adjacent-rows" : null,
+      });
+    }
+
+    const trueOptionUwCourseCodes = getTrueOptionUwCourseCodeSet(input.plan);
+    for (const candidate of block.parsedRequirementAtomCandidates ?? []) {
+      const uwCourseCode = normalizeCourseCode(candidate.uwCourseCode ?? "");
+      if (!uwCourseCode || trueOptionUwCourseCodes.has(uwCourseCode)) {
+        continue;
+      }
+      const rawRowText =
+        (candidate.sourceLineHints ?? []).find((hint) =>
+          sourceHintLooksLikeHiddenUnmappedRequiredCoreRow({ hint, uwCourseCode })
+        ) ?? "";
+      if (!rawRowText) {
+        continue;
+      }
+      const missingRequiredRow =
+        !requiredUwCourseCodes.has(uwCourseCode) &&
+        getMappedGrcCourseCodesForRequiredUwCourse(input.plan, uwCourseCode).length > 0;
+      pushRow({
+        major,
+        sourceUrl,
+        rawRowText,
+        parsedRequirementTitle: getBestParsedRequirementCandidateLabel(candidate),
+        parsedUwCourses: [uwCourseCode],
+        expectedRowSplit: false,
+        issue: missingRequiredRow ? "missing-required-row" : null,
+      });
+    }
+  }
+
+  return rows;
+}
+
 export function auditRequiredMappedCourseCoverage(input: {
   plan?: TransferPlannerMajorPlan | null;
   suggestedPlan: SuggestedQuarterPlan[];
@@ -17013,7 +17299,16 @@ export function auditRequiredMappedCourseCoverage(input: {
   }
 
   const requiredUwCourseCodes = getSourceBackedRequiredUwCourseCodeSet(input.plan);
-  const requirementLabels = getSourceBackedRequiredUwRequirementLabels(input.plan);
+  const auditOnlyHiddenRequirementLabels =
+    getAuditOnlyHiddenUnmappedRequiredUwRequirementLabels(input.plan, requiredUwCourseCodes);
+  const auditUwCourseCodes = new Set([
+    ...requiredUwCourseCodes,
+    ...auditOnlyHiddenRequirementLabels.keys(),
+  ]);
+  const requirementLabels = new Map([
+    ...getSourceBackedRequiredUwRequirementLabels(input.plan),
+    ...auditOnlyHiddenRequirementLabels,
+  ]);
   const visibleOrCompletedCourseCodes = getVisibleOrCompletedCourseCodeSet(input);
   const completedCourseCodes = new Set(
     (input.completedCourses ?? [])
@@ -17021,7 +17316,7 @@ export function auditRequiredMappedCourseCoverage(input: {
       .filter(Boolean)
   );
 
-  return [...requiredUwCourseCodes].sort().map((uwCourseCode) => {
+  return [...auditUwCourseCodes].sort().map((uwCourseCode) => {
     const mappedGrcEquivalentPath = getMappedGrcCourseCodesForRequiredUwCourse(
       input.plan as TransferPlannerMajorPlan,
       uwCourseCode
@@ -17200,13 +17495,14 @@ function resolveChecklistTrueOptionSatisfactionSource(input: {
     input.item,
     input.selectedRequirementOptionIdsByGroup
   );
-  if (selectedOptionIds.length) {
-    return hasExplicitPlannerSelectedRequirementOptionIds(
+  if (
+    selectedOptionIds.length &&
+    hasExplicitPlannerSelectedRequirementOptionIds(
       input.item,
       input.selectedRequirementOptionIdsByGroup
     )
-      ? "user-selected"
-      : "planner-defaulted";
+  ) {
+    return "user-selected";
   }
 
   for (const option of group.options ?? []) {
@@ -17214,6 +17510,10 @@ function resolveChecklistTrueOptionSatisfactionSource(input: {
     if (optionCourseCodes.some((courseCode) => input.completedCourseCodes.has(courseCode))) {
       return "transcript-completed";
     }
+  }
+
+  if (selectedOptionIds.length) {
+    return "planner-defaulted";
   }
 
   for (const option of group.options ?? []) {

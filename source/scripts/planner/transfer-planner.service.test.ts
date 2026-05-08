@@ -131,6 +131,7 @@ import {
   auditCompoundEquivalencyPaths,
   auditTrueOptionDetection,
   auditSourceScope,
+  auditSourceRowBoundaries,
   auditRequiredMappedCourseCoverage,
   auditRequirementRolePrecedence,
   auditCountedCourses,
@@ -1807,6 +1808,177 @@ test("Seattle Environmental Engineering now includes optional AUT25 degree-sheet
   assert.equal(grcCourseList.includes("ECON& 201"), true);
   assert.equal(grcCourseList.includes("MATH 240"), true);
   assert.equal(grcCourseList.includes("CHEM& 163"), true);
+});
+
+test("Seattle Environmental Engineering visible option groups use numbered requirement choice titles", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-environmental-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the Environmental Engineering runtime plan.");
+  const completedCourses: TranscriptCourseEntry[] = [];
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, completedCourses),
+    completedCourses,
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const optionTitleAudit = auditOptionTitleFallback({
+    optionGroups: collectVisibleOptionGroupsForTitleAudit(suggestedPlan),
+    forceNumberedTitles: true,
+  });
+
+  assert.deepEqual(
+    optionTitleAudit.map((entry) => entry.displayedTitle),
+    [
+      "Requirement Choice 1",
+      "Requirement Choice 2",
+      "Requirement Choice 3",
+      "Requirement Choice 4",
+      "Requirement Choice 5",
+    ]
+  );
+  assert.equal(
+    optionTitleAudit.every((entry) => entry.reason === "forced-numbered-option-title"),
+    true
+  );
+  assert.equal(
+    optionTitleAudit.some((entry) => /Di ff erential Equations|Thermodynamics/i.test(entry.originalTitle)),
+    true
+  );
+});
+
+test("Seattle Environmental Engineering parses programming and keeps CEE 347 out of Matrix/Linear Algebra", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-environmental-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the Environmental Engineering runtime plan.");
+  const completedCourses: TranscriptCourseEntry[] = [];
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, completedCourses),
+    completedCourses,
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedLabels = suggestedPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses.map((course) => course.label));
+  const trueOptionAudit = auditTrueOptionDetection({
+    plan: runtimePlan,
+    suggestedPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const programmingAudit = trueOptionAudit.find((entry) =>
+    /computer programming/i.test(entry.requirement)
+  );
+  const matrixAudit = trueOptionAudit.find((entry) =>
+    /matrix|linear algebra/i.test(entry.requirement)
+  );
+  const requiredCoverageAudit = auditRequiredMappedCourseCoverage({
+    plan: runtimePlan,
+    suggestedPlan,
+    completedCourses,
+  });
+  const cee347Coverage = requiredCoverageAudit.find((entry) => entry.uwCourse === "CEE 347");
+  const rowBoundaryAudit = auditSourceRowBoundaries({ plan: runtimePlan });
+  const cee347Boundary = rowBoundaryAudit.find((entry) =>
+    entry.parsedUwCourses.includes("CEE 347")
+  );
+
+  assert.ok(programmingAudit, "Expected Computer Programming true-option audit row.");
+  assert.deepEqual(programmingAudit.acceptedUwOptions, [
+    "AMATH 301",
+    "CSE 121",
+    "CSE 122",
+    "CSE 123",
+    "CSE 142",
+    "CSE 160",
+  ]);
+  assert.deepEqual(programmingAudit.mappedGrcOptions, [
+    "CS 121",
+    "CS 122",
+    "CS 123",
+    "CS& 141",
+    "ENGR 250",
+  ]);
+  assert.equal(programmingAudit.visibleOptionGroup, true);
+  assert.equal(programmingAudit.satisfiedBy, "none");
+  assert.equal(
+    ["ENGR 250", "CS 121", "CS 122", "CS 123", "CS& 141"].some((courseCode) =>
+      plannedLabels.includes(courseCode)
+    ),
+    false
+  );
+
+  assert.ok(matrixAudit, "Expected Matrix/Linear Algebra true-option audit row.");
+  assert.deepEqual(matrixAudit.acceptedUwOptions, ["AMATH 352", "MATH 208"]);
+  assert.deepEqual(matrixAudit.mappedGrcOptions, ["MATH 240"]);
+  assert.equal(matrixAudit.acceptedUwOptions.includes("CEE 347"), false);
+
+  assert.ok(cee347Coverage, "Expected CEE 347 hidden-unmapped coverage audit row.");
+  assert.equal(cee347Coverage.requirementType, "hidden-unmapped");
+  assert.equal(cee347Coverage.visibleInPlan, false);
+  assert.equal(cee347Coverage.hiddenReason?.includes("UW-only/unmapped"), true);
+  assert.equal(cee347Coverage.issue, null);
+  assert.ok(cee347Boundary, "Expected CEE 347 source row-boundary audit row.");
+  assert.equal(cee347Boundary.issue, null);
+  assert.equal(
+    rowBoundaryAudit.some(
+      (entry) =>
+        /Matrix\/Linear Algebra/i.test(entry.rawRowText) &&
+        entry.issue === "merged-adjacent-rows"
+    ),
+    false
+  );
+});
+
+test("Seattle Environmental Engineering programming option satisfies from completed CS 122", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan(
+    "uw-seattle-environmental-engineering"
+  );
+  assert.ok(runtimePlan, "Expected the Environmental Engineering runtime plan.");
+  const completedCourses: TranscriptCourseEntry[] = [
+    { code: "CS 122", label: "CS 122", credits: 5 },
+  ];
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, completedCourses),
+    completedCourses,
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-06T12:00:00.000Z"),
+  });
+  const plannedLabels = suggestedPlan
+    .filter((quarter) => quarter.phase === "planned")
+    .flatMap((quarter) => quarter.courses.map((course) => course.label));
+  const programmingAudit = auditTrueOptionDetection({
+    plan: runtimePlan,
+    suggestedPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup: {},
+  }).find((entry) => /computer programming/i.test(entry.requirement));
+
+  assert.ok(programmingAudit, "Expected Computer Programming true-option audit row.");
+  assert.equal(programmingAudit.satisfiedBy, "transcript-completed");
+  assert.equal(
+    ["ENGR 250", "CS 121", "CS 123", "CS& 141"].some((courseCode) =>
+      plannedLabels.includes(courseCode)
+    ),
+    false
+  );
 });
 
 test("Seattle ISE and MSE expose deeper degree-map data from the latest extraction pass", () => {
@@ -5495,17 +5667,20 @@ test("Materials NME transfer-only coverage resolves mapped requirements, options
   });
   const nmeOptionTitleAudit = auditOptionTitleFallback({
     optionGroups: collectVisibleOptionGroupsForTitleAudit(suggestedPlan),
+    forceNumberedTitles: true,
   });
   const nmeMathTitleAudit = nmeOptionTitleAudit.find((entry) =>
-    /Math Elective/i.test(entry.displayedTitle)
+    /math-elective/.test(entry.groupId)
   );
   const nmeScienceTitleAudit = nmeOptionTitleAudit.find((entry) =>
-    /Science Electives/i.test(entry.displayedTitle)
+    /science-electives/.test(entry.groupId)
   );
-  assert.equal(nmeMathTitleAudit?.displayedTitle, "One (1) Math Elective");
-  assert.equal(nmeMathTitleAudit?.reason, "preserved-real-title");
-  assert.equal(nmeScienceTitleAudit?.displayedTitle, "Two Science Electives");
-  assert.equal(nmeScienceTitleAudit?.reason, "preserved-real-title");
+  assert.equal(nmeMathTitleAudit?.displayedTitle, "Requirement Choice 1");
+  assert.equal(nmeMathTitleAudit?.originalTitle, "One (1) Math Elective");
+  assert.equal(nmeMathTitleAudit?.reason, "forced-numbered-option-title");
+  assert.equal(nmeScienceTitleAudit?.displayedTitle, "Requirement Choice 3");
+  assert.equal(nmeScienceTitleAudit?.originalTitle, "Two Science Electives");
+  assert.equal(nmeScienceTitleAudit?.reason, "forced-numbered-option-title");
   const nmeScienceAllocation = nmeOptionAllocationAudit.find((entry) =>
     /Science Electives/i.test(entry.groupTitle)
   );
@@ -6513,6 +6688,10 @@ test("Seattle Aeronautics selected NSc category option uses completed CHEM& 140 
 
   assert.ok(scienceChoiceGroup, "Expected completed CHEM& 140 to keep the option group visible.");
   assert.deepEqual(scienceChoiceGroup?.resolvedSatisfiedOptionIds, [categoryOption.id]);
+  assert.deepEqual(
+    scienceChoiceGroup?.completedSatisfyingCourseCodesByOptionId?.[categoryOption.id],
+    ["CHEM& 140"]
+  );
   assert.equal(plannedLabels.includes("ENGR& 114"), false);
   assert.equal(
     plannedLabels.some((label) => /5 credits of Natural Sciences \(NSc\)/i.test(label)),
@@ -6532,7 +6711,15 @@ test("Seattle Aeronautics selected NSc category option uses completed CHEM& 140 
   }).find((entry) => entry.groupId === scienceGroup.id);
   assert.equal(categoryTranscriptAudit?.chosenTranscriptSatisfier, "CHEM& 140");
   assert.equal(categoryTranscriptAudit?.genericCategoryRowScheduled, false);
+  assert.equal(
+    categoryTranscriptAudit?.visibleOptionStatusText,
+    "Selected: 5 credits of Natural Sciences (NSc), satisfied by CHEM& 140"
+  );
   assert.equal(categoryTranscriptAudit?.issue, null);
+  assert.match(
+    categoryTranscriptAudit?.copyOnlyDebugText ?? "",
+    /Visible option status text: Selected: 5 credits of Natural Sciences \(NSc\), satisfied by CHEM& 140/
+  );
 
   const satisfactionAudit = auditOptionGroupSatisfaction({
     plan: runtimePlan,
@@ -9780,6 +9967,7 @@ test("Seattle ECE Photonics transfer-only planning orders programming and restor
   );
   const optionTitleFallbackAudit = auditOptionTitleFallback({
     optionGroups: collectVisibleOptionGroupsForTitleAudit(quarterPlan),
+    forceNumberedTitles: true,
   });
   const transferProgrammingTitleAudit = optionTitleFallbackAudit.find((entry) =>
     /ece-transfer-programming-admission/.test(entry.groupId)
@@ -9789,10 +9977,10 @@ test("Seattle ECE Photonics transfer-only planning orders programming and restor
   );
   assert.equal(transferProgrammingTitleAudit?.originalTitle, "this requirement");
   assert.equal(transferProgrammingTitleAudit?.displayedTitle, "Requirement Choice 1");
-  assert.equal(transferProgrammingTitleAudit?.reason, "bad-generic-title");
+  assert.equal(transferProgrammingTitleAudit?.reason, "forced-numbered-option-title");
   assert.equal(preenrollProgrammingTitleAudit?.originalTitle, "this requirement");
   assert.equal(preenrollProgrammingTitleAudit?.displayedTitle, "Requirement Choice 2");
-  assert.equal(preenrollProgrammingTitleAudit?.reason, "bad-generic-title");
+  assert.equal(preenrollProgrammingTitleAudit?.reason, "forced-numbered-option-title");
   assert.equal(
     optionTitleFallbackAudit.some((entry) => entry.displayedTitle === "this requirement"),
     false
@@ -10454,15 +10642,17 @@ test("Seattle Civil Engineering transfer-only planning includes CHEM 152 and kee
   assert.deepEqual(computingPrompt.optionGroup.resolvedSatisfiedOptionIds ?? [], []);
   const civilOptionTitleAudit = auditOptionTitleFallback({
     optionGroups: collectVisibleOptionGroupsForTitleAudit(suggestedPlan),
+    forceNumberedTitles: true,
   });
   const civilComputingTitleAudit = civilOptionTitleAudit.find((entry) =>
     /civil-computing-programming/.test(entry.groupId)
   );
+  assert.match(civilComputingTitleAudit?.displayedTitle ?? "", /^Requirement Choice \d+$/);
   assert.equal(
-    civilComputingTitleAudit?.displayedTitle,
+    civilComputingTitleAudit?.originalTitle,
     "Computing/programming Engineering Fundamentals"
   );
-  assert.equal(civilComputingTitleAudit?.reason, "preserved-real-title");
+  assert.equal(civilComputingTitleAudit?.reason, "forced-numbered-option-title");
   const civilComputingAllocation = auditOptionAllocation({
     suggestedPlan,
     completedCourses,
@@ -11493,11 +11683,12 @@ test("Green River branch renders official runtime track choice slots as selectab
   );
   const accountingOptionTitleAudit = auditOptionTitleFallback({
     optionGroups: stableEconOptionGroups,
+    preserveOriginalTitles: true,
   });
   assert.deepEqual(
     accountingOptionTitleAudit.map((entry) => [entry.displayedTitle, entry.reason]),
     [
-      ["Requirement Choice 1", "bad-generic-title"],
+      ["Select one", "preserved-real-title"],
       ["Elective - select 5 credits", "preserved-real-title"],
     ]
   );
@@ -15560,18 +15751,22 @@ test("SBSE Business Option no-transcript planning classifies sequences and expos
     "Computation and Data Science elective: choose one approved course",
     "Business, Policy, and Economics elective: choose one approved course",
   ]);
-  const sbseOptionTitleAudit = auditOptionTitleFallback({ optionGroups: visibleOptionGroups });
+  const sbseOptionTitleAudit = auditOptionTitleFallback({
+    optionGroups: visibleOptionGroups,
+    forceNumberedTitles: true,
+  });
   assert.deepEqual(
     sbseOptionTitleAudit.map((entry) => [entry.displayedTitle, entry.reason]),
     [
-      [
-        "Computation and Data Science elective: choose one approved course",
-        "preserved-real-title",
-      ],
-      [
-        "Business, Policy, and Economics elective: choose one approved course",
-        "preserved-real-title",
-      ],
+      ["Requirement Choice 1", "forced-numbered-option-title"],
+      ["Requirement Choice 2", "forced-numbered-option-title"],
+    ]
+  );
+  assert.deepEqual(
+    sbseOptionTitleAudit.map((entry) => entry.originalTitle),
+    [
+      "Computation and Data Science elective: choose one approved course",
+      "Business, Policy, and Economics elective: choose one approved course",
     ]
   );
   assert.deepEqual(

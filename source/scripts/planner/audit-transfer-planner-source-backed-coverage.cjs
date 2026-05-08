@@ -1915,6 +1915,94 @@ function auditEcePhotonics(checks) {
   );
 }
 
+function auditEnvironmentalEngineering(checks) {
+  const plan = resolveRuntimePlan("uw-seattle-environmental-engineering", null);
+  const quarterPlan = buildQuarterPlan(plan);
+  const labels = getVisiblePlannedLabels(quarterPlan);
+  const trueOptionAudit = planner.auditTrueOptionDetection({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+    selectedRequirementOptionIdsByGroup: {},
+  });
+  const programmingAudit = trueOptionAudit.find((row) =>
+    /computer programming/i.test(row.requirement)
+  );
+  const matrixAudit = trueOptionAudit.find((row) =>
+    /matrix|linear algebra/i.test(row.requirement)
+  );
+  const requiredCoverageAudit = planner.auditRequiredMappedCourseCoverage({
+    plan,
+    suggestedPlan: quarterPlan,
+    completedCourses: [],
+  });
+  const cee347Coverage = requiredCoverageAudit.find((row) => row.uwCourse === "CEE 347");
+  const rowBoundaryAudit = planner.auditSourceRowBoundaries({ plan });
+  const mergedMatrixRows = rowBoundaryAudit.filter(
+    (row) => /Matrix\/Linear Algebra/i.test(row.rawRowText) && row.issue === "merged-adjacent-rows"
+  );
+  const cee347Boundary = rowBoundaryAudit.find((row) =>
+    row.parsedUwCourses.includes("CEE 347")
+  );
+
+  addCheck(
+    checks,
+    "uw-enve:programming-option",
+    "UW Environmental Engineering exposes Computer Programming as an unresolved true option",
+    Boolean(programmingAudit) &&
+      ["AMATH 301", "CSE 121", "CSE 122", "CSE 123", "CSE 142", "CSE 160"].every((courseCode) =>
+        programmingAudit.acceptedUwOptions.includes(courseCode)
+      ) &&
+      ["ENGR 250", "CS 121", "CS 122", "CS 123", "CS& 141"].every((courseCode) =>
+        programmingAudit.mappedGrcOptions.includes(courseCode)
+      ) &&
+      programmingAudit.visibleOptionGroup &&
+      programmingAudit.satisfiedBy === "none" &&
+      !["ENGR 250", "CS 121", "CS 122", "CS 123", "CS& 141"].some((courseCode) =>
+        labels.includes(courseCode)
+      ),
+    [
+      programmingAudit?.copyOnlyDebugText ?? "Missing programming true-option audit.",
+      `Planned labels: ${labels.join(", ")}`,
+    ],
+    "missing-option-group"
+  );
+
+  addCheck(
+    checks,
+    "uw-enve:matrix-row-boundary",
+    "UW Environmental Engineering Matrix/Linear Algebra no longer absorbs CEE 347",
+    Boolean(matrixAudit) &&
+      matrixAudit.acceptedUwOptions.includes("AMATH 352") &&
+      matrixAudit.acceptedUwOptions.includes("MATH 208") &&
+      !matrixAudit.acceptedUwOptions.includes("CEE 347") &&
+      matrixAudit.mappedGrcOptions.includes("MATH 240") &&
+      mergedMatrixRows.length === 0,
+    [
+      matrixAudit?.copyOnlyDebugText ?? "Missing matrix true-option audit.",
+      ...mergedMatrixRows.map((row) => row.copyOnlyDebugText),
+    ],
+    "over-scheduled-alternatives"
+  );
+
+  addCheck(
+    checks,
+    "uw-enve:cee-347-hidden-unmapped",
+    "UW Environmental Engineering keeps CEE 347 as a hidden unmapped core row",
+    Boolean(cee347Coverage) &&
+      cee347Coverage.requirementType === "hidden-unmapped" &&
+      cee347Coverage.visibleInPlan === false &&
+      cee347Coverage.issue === null &&
+      Boolean(cee347Boundary) &&
+      cee347Boundary?.issue === null,
+    [
+      cee347Coverage?.copyOnlyDebugText ?? "Missing CEE 347 required coverage audit.",
+      cee347Boundary?.copyOnlyDebugText ?? "Missing CEE 347 row-boundary audit.",
+    ],
+    "missing-detected-course"
+  );
+}
+
 function auditAeronauticsCategoryOptions(checks) {
   const plan = resolveRuntimePlan("uw-seattle-aeronautics-astronautics", null);
   const quarterPlan = buildQuarterPlan(plan);
@@ -2102,6 +2190,7 @@ function auditAeronauticsCategoryOptions(checks) {
         (row) =>
           row.chosenTranscriptSatisfier === "CHEM& 140" &&
           row.genericCategoryRowScheduled === false &&
+          /satisfied by CHEM& 140/i.test(row.visibleOptionStatusText ?? "") &&
           row.issue === null
       ) &&
       selectedCategoryTranscriptSatisfactionRow?.displayedProgress === "1/1" &&
@@ -2155,6 +2244,9 @@ function runRegressionChecks(targetPlanId) {
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-electrical-computer-engineering") {
     auditEcePhotonics(checks);
+  }
+  if (!targetPlanId || targetPlanId === "uw-seattle-environmental-engineering") {
+    auditEnvironmentalEngineering(checks);
   }
   if (!targetPlanId || targetPlanId === "uw-seattle-aeronautics-astronautics") {
     auditAeronauticsCategoryOptions(checks);
