@@ -47,6 +47,9 @@ import {
   type TransferPlannerStudentCourseEvaluation,
   type TransferPlannerTrack,
 } from "@/constants/transfer-planner-source/student-runtime";
+import {
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID,
+} from "@/constants/transfer-planner-source/computer-engineering-natural-science";
 import { useAppData } from "@/hooks/use-app-data";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import useBack from "@/hooks/use-back";
@@ -1852,6 +1855,9 @@ function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
   }
 
   const lower = normalized.toLowerCase();
+  const hasComputerEngineeringNaturalScience =
+    lower.includes("computer engineering natural science") ||
+    lower.includes("ce-approved natural science");
   const hasHumanities =
     lower.includes("humanit") ||
     lower.includes("fine arts") ||
@@ -1863,6 +1869,9 @@ function getSchedulePlaceholderRequirementLinkData(courseLabel: string) {
   const hasNaturalScience =
     lower.includes("natural science") || /\bnsc\b/i.test(lower) || /\bn\s*\d\b/i.test(normalized);
 
+  if (hasComputerEngineeringNaturalScience) {
+    return { tags: [COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID] as const };
+  }
   if (hasHumanities && hasSocialScience) {
     return { tags: ["AH", "SSC"] as const };
   }
@@ -2150,6 +2159,31 @@ function getSuggestedScheduleOptionCreditRange(option: SuggestedScheduleOption) 
 function getSuggestedScheduleOptionGroupSelectionTargetText(
   optionGroup: SuggestedScheduleOptionGroup
 ) {
+  if (isSuggestedScheduleCreditBasedOptionGroup(optionGroup)) {
+    const requiredCredits = Number(optionGroup.requiredCredits ?? 0);
+    const maxRequiredCredits = Number(
+      optionGroup.maxRequiredCredits ?? optionGroup.requiredCredits ?? 0
+    );
+    if (
+      Number.isFinite(requiredCredits) &&
+      requiredCredits > 0 &&
+      Number.isFinite(maxRequiredCredits) &&
+      maxRequiredCredits > 0 &&
+      maxRequiredCredits !== requiredCredits
+    ) {
+      return `Choose ${formatSuggestedScheduleCreditRange({
+        creditMin: requiredCredits,
+        creditMax: maxRequiredCredits,
+      })} from approved options`;
+    }
+    if (Number.isFinite(requiredCredits) && requiredCredits > 0) {
+      return `Choose at least ${formatSuggestedScheduleCreditRange({
+        creditMin: requiredCredits,
+        creditMax: requiredCredits,
+      })} from approved options`;
+    }
+  }
+
   const selectionCount = Math.max(
     1,
     Math.ceil(Number(optionGroup.selectionCount ?? 1) || 1)
@@ -2163,6 +2197,41 @@ function getSuggestedScheduleOptionGroupSelectedCount(
   optionGroup: SuggestedScheduleOptionGroup
 ) {
   return getSuggestedScheduleResolvedOptionIds(optionGroup).length;
+}
+
+function isSuggestedScheduleCreditBasedOptionGroup(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  return (
+    optionGroup.requirementType === "choose_credits" &&
+    Number.isFinite(Number(optionGroup.requiredCredits)) &&
+    Number(optionGroup.requiredCredits) > 0
+  );
+}
+
+function getSuggestedScheduleOptionGroupProgressText(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  if (isSuggestedScheduleCreditBasedOptionGroup(optionGroup)) {
+    return optionGroup.displayedCreditProgress || "0/0";
+  }
+
+  const selectionCount = getSuggestedScheduleOptionGroupRequiredSelectionCount(optionGroup);
+  const selectedCount = Math.min(
+    getSuggestedScheduleOptionGroupSelectedCount(optionGroup),
+    selectionCount
+  );
+  return `${selectedCount}/${selectionCount}`;
+}
+
+function getSuggestedScheduleOptionGroupInteractionSelectionCount(
+  optionGroup: SuggestedScheduleOptionGroup
+) {
+  if (isSuggestedScheduleCreditBasedOptionGroup(optionGroup)) {
+    return Math.max(1, optionGroup.options.length || 1);
+  }
+
+  return getSuggestedScheduleOptionGroupRequiredSelectionCount(optionGroup);
 }
 
 function getSuggestedScheduleResolvedOptionIds(optionGroup: SuggestedScheduleOptionGroup) {
@@ -2618,14 +2687,8 @@ function SuggestedScheduleOptionsBox({
           getSuggestedScheduleResolvedOptionIds(optionGroup)
         );
         const selectedOptionLabels = getSuggestedScheduleSelectedOptionLabels(optionGroup);
-        const selectionCount = Math.max(
-          1,
-          Math.ceil(Number(optionGroup.selectionCount ?? 1) || 1)
-        );
-        const selectedCount = Math.min(
-          getSuggestedScheduleOptionGroupSelectedCount(optionGroup),
-          selectionCount
-        );
+        const interactionSelectionCount =
+          getSuggestedScheduleOptionGroupInteractionSelectionCount(optionGroup);
         const isOptionGroupOpen = !closedOptionGroupIds.has(optionGroup.id);
         const optionGroupDisplayTitle = getSuggestedScheduleOptionGroupDisplayTitle({
           optionGroup,
@@ -2637,7 +2700,8 @@ function SuggestedScheduleOptionsBox({
         const optionGroupStatusText = selectedOptionLabels.length
           ? `${optionGroupStatusVerb}: ${selectedOptionLabels.join("; ")}`
           : getSuggestedScheduleOptionGroupSelectionTargetText(optionGroup);
-        const optionGroupProgressText = `${selectedCount}/${selectionCount}`;
+        const optionGroupProgressText =
+          getSuggestedScheduleOptionGroupProgressText(optionGroup);
         const optionGroupTranscriptSatisfierText =
           getSuggestedScheduleOptionGroupTranscriptSatisfierText(optionGroup);
 
@@ -2754,11 +2818,11 @@ function SuggestedScheduleOptionsBox({
                         onSelectRequirementOption(
                           optionGroup.id,
                           option.id,
-                          selectionCount,
+                          interactionSelectionCount,
                           optionGroup.selectedOptionIds
                         )
                       }
-                      accessibilityRole={selectionCount === 1 ? "radio" : "checkbox"}
+                      accessibilityRole={interactionSelectionCount === 1 ? "radio" : "checkbox"}
                       accessibilityState={{ checked: isSelected }}
                       className={`rounded-xl border px-3 py-2 flex-row items-start gap-2 ${
                         isSelected
@@ -2771,10 +2835,10 @@ function SuggestedScheduleOptionsBox({
                       <Ionicons
                         name={
                           isSelected
-                            ? selectionCount === 1
+                            ? interactionSelectionCount === 1
                               ? "radio-button-on"
                               : "checkbox"
-                            : selectionCount === 1
+                            : interactionSelectionCount === 1
                               ? "radio-button-off"
                               : "square-outline"
                         }

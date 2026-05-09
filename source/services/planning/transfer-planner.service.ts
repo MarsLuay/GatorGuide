@@ -1,6 +1,7 @@
 import {
   extractTransferPlannerCourseCodes,
   getTransferPlannerCanonicalCourse,
+  getTransferPlannerAllEquivalencyRules,
   getTransferPlannerGrcCourseAvailabilitySummary,
   getTransferPlannerGrcCourseList,
   getTransferPlannerGrcCourseLatestPublishedQuarters,
@@ -21,6 +22,15 @@ import {
   TransferPlannerStudentCourseEvaluation,
   TransferPlannerTrack,
 } from "@/constants/transfer-planner-source/student-runtime";
+import {
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL,
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_PARAM,
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL,
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_UW_COURSE_CODES,
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_PETITION_ONLY_NOTES,
+  isComputerEngineeringApprovedNaturalScienceCategory,
+  isComputerEngineeringApprovedNaturalScienceUwCourseCode,
+} from "@/constants/transfer-planner-source/computer-engineering-natural-science";
 const COURSE_CODE_PATTERN = /\b[A-Z]{2,6}&?\s*\d{3}(?:\.\d+)?[A-Z]?\b/g;
 const SOURCE_BACKED_UW_COURSE_WITH_CONTINUATION_PATTERN =
   /\b([A-Z]{2,6}&?)\s*(\d{3}(?:\.\d+)?[A-Z]?)\b/g;
@@ -276,6 +286,7 @@ export type SuggestedQuarterCourseOptionGroup = {
   requiredCredits?: number | null;
   maxRequiredCredits?: number | null;
   requirementType?: TransferPlannerRequirementType | null;
+  satisfactionMode?: "selection-count" | "credit-based";
   selectedOptionIds: string[];
   candidateSatisfiedOptionIds?: string[];
   resolvedSatisfiedOptionIds?: string[];
@@ -285,6 +296,10 @@ export type SuggestedQuarterCourseOptionGroup = {
   completedSatisfyingCourseCodesByOptionId?: Record<string, string[]>;
   scheduledSatisfyingCourseCodes?: string[];
   countedSatisfyingCourseCodes?: string[];
+  resolvedSatisfyingCreditMin?: number | null;
+  resolvedSatisfyingCreditMax?: number | null;
+  displayedCreditProgress?: string | null;
+  fullySatisfied?: boolean | null;
   candidateOptionSatisfactionSourcesById?: Record<string, SuggestedQuarterOptionSatisfactionSource[]>;
   optionSatisfactionSourcesById?: Record<string, SuggestedQuarterOptionSatisfactionSource[]>;
   selectionSource?: "student" | "default" | null;
@@ -305,10 +320,15 @@ export type SuggestedQuarterCourse = {
   availabilitySummary?: string | null;
   sourceKind?: SuggestedQuarterCourseSourceKind;
   optionGroup?: SuggestedQuarterCourseOptionGroup | null;
+  sourceRequirementGroupId?: string | null;
   visibilityScope?: SuggestedQuarterCourseVisibilityScope;
   isVisibleInGrcQuarterPlan?: boolean;
   isUwOnlyRequirement?: boolean;
-  courseRole?: "optional_stem_prep" | "local_grc_prerequisite" | null;
+  courseRole?:
+    | "optional_stem_prep"
+    | "local_grc_prerequisite"
+    | "unresolved-credit-bucket-remainder"
+    | null;
   canTestOut?: boolean | null;
   transfersOrSatisfiesUw?: boolean | null;
   satisfiesSourceBackedUwRequirement?: boolean | null;
@@ -329,6 +349,8 @@ export type OptionGroupSatisfactionAuditEntry = {
   groupId: string;
   requirement: string;
   requiredCount: number;
+  satisfactionMode: "selection-count" | "credit-based";
+  requiredCredits?: number | null;
   acceptedUwOptions: string[];
   acceptedOptions?: string[];
   mappedGrcOptions?: string[];
@@ -342,6 +364,8 @@ export type OptionGroupSatisfactionAuditEntry = {
   chosenTranscriptCategorySatisfier?: string | null;
   genericPlannedCategoryCredits?: number;
   resolvedSatisfiedCount: number;
+  resolvedSatisfyingCredits?: string | null;
+  fullySatisfied?: boolean | null;
   displayedProgress: string;
   satisfiedBy: string[];
   scheduledExtraCourses: string[];
@@ -375,11 +399,67 @@ export type ComputerEngineeringCreditBucketAuditEntry = {
   major: string;
   requirement: string;
   creditsRequired: string;
+  requiredCredits: string;
+  satisfactionMode: "selection-count" | "credit-based";
+  filterSource: string | null;
   mappedConcreteOptions: string[];
+  excludedGenericCategoryCourses: string[];
+  selectedConcreteOptions: string[];
+  selectedPlaceholder: boolean;
   categoryListPlaceholderVisible: boolean;
+  completedSatisfyingCourses: string[];
+  scheduledSatisfyingCourses: string[];
   satisfiedByTranscriptCourses: string[];
+  totalSatisfyingCredits: string;
+  displayedCreditProgress: string;
+  fullySatisfied: boolean;
+  remainingUnresolvedCredits: string;
+  remainingPlaceholderScheduled: boolean;
   plannedUnresolvedCredits: string;
-  issue: "missing-credit-bucket" | null;
+  issue:
+    | "missing-credit-bucket"
+    | "insufficient-credit-selection"
+    | "selection-count-used-for-credit-bucket"
+    | null;
+  copyOnlyDebugText: string;
+};
+
+export type ComputerEngineeringApprovedNaturalScienceTransferEntry = {
+  id: string;
+  sourceCourseLabel: string;
+  sourceCourseTitle: string | null;
+  sourceCourseCodes: string[];
+  targetOutcome: string;
+  uwEquivalentCourseCodes: string[];
+  inclusionReason: "approved-uw-equivalent" | "compound-path";
+  sourceRuleId: string;
+};
+
+export type ComputerEngineeringApprovedNaturalScienceAuditEntry = {
+  major: string;
+  officialSource: string;
+  uwApprovedCourse: string;
+  grcEquivalentPath: string[];
+  includedInFilter: boolean;
+  reason:
+    | "approved-uw-equivalent"
+    | "compound-path"
+    | "generic-category-only"
+    | "no-grc-equivalent"
+    | "petition-only";
+  copyOnlyDebugText: string;
+};
+
+export type TransferCategoryFilterAuditEntry = {
+  filter: string;
+  course: string;
+  uwEquivalent: string;
+  included: boolean;
+  reason:
+    | "approved-uw-equivalent"
+    | "compound-path"
+    | "generic-category-only"
+    | "petition-only";
   copyOnlyDebugText: string;
 };
 
@@ -2631,7 +2711,121 @@ function getRemainingChooseCreditsRangeForStatus(
   };
 }
 
+function getRemainingChooseCreditsRangeAfterSelectedOptions(input: {
+  status: TransferRequirementStatus;
+  optionGroup: SuggestedQuarterCourseOptionGroup | null | undefined;
+  selectedOptionIds: string[];
+  fallbackRange: {
+    creditAmount?: number | null;
+    creditMin?: number | null;
+    creditMax?: number | null;
+  };
+}) {
+  const optionGroup = input.optionGroup;
+  if (!optionGroup || !isSuggestedQuarterCreditBasedOptionGroup(optionGroup)) {
+    return input.fallbackRange;
+  }
+
+  const requiredCredits = getPositiveCreditAmount(optionGroup.requiredCredits);
+  if (requiredCredits === null) {
+    return input.fallbackRange;
+  }
+
+  const completedCredits = getPositiveCreditAmount(input.status.completedCredits) ?? 0;
+  const selectedCreditRange = getSuggestedQuarterOptionGroupSatisfyingCreditRange({
+    optionGroup,
+    optionIds: input.selectedOptionIds,
+  });
+  const selectedCredits = selectedCreditRange.creditMax ?? selectedCreditRange.creditMin ?? 0;
+  const remainingCredits = Math.max(0, requiredCredits - completedCredits - selectedCredits);
+
+  return {
+    creditAmount: remainingCredits,
+    creditMin: remainingCredits,
+    creditMax: remainingCredits,
+  };
+}
+
+function cleanCreditBucketRemainderCategoryLabel(label: string) {
+  const cleaned = String(label ?? "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/^\d+(?:\s*-\s*\d+)?\s+credits?\s+(?:of|from)\s+/i, "")
+    .replace(/^choose\s+(?:at\s+least\s+)?\d+(?:\s*-\s*\d+)?\s+credits?\s+(?:from|of)\s+/i, "")
+    .replace(/\s+remaining$/i, "")
+    .trim();
+
+  return cleaned || "approved credits";
+}
+
+function getCreditBucketRemainderCategoryLabel(input: {
+  status: TransferRequirementStatus;
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+}) {
+  const categoryOptionLabel =
+    input.optionGroup.options
+      .filter((option) => isRequirementCategoryOption(option))
+      .map((option) => getRequirementCategoryOptionLabel(option))
+      .find(Boolean) ?? null;
+  return cleanCreditBucketRemainderCategoryLabel(
+    categoryOptionLabel || input.optionGroup.title || input.status.item.title
+  );
+}
+
+function buildCreditBucketRemainderPlaceholderCourse(input: {
+  status: TransferRequirementStatus;
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+  remainingCredits: number;
+  guidanceSummary?: string | null;
+  priorityRank: number;
+  sourceOrder: number;
+}) {
+  const creditLabel = formatCreditValueForProgress(input.remainingCredits);
+  const categoryLabel = getCreditBucketRemainderCategoryLabel({
+    status: input.status,
+    optionGroup: input.optionGroup,
+  });
+  const isComputerEngineeringNaturalScienceRemainder = input.optionGroup.options.some(
+    (option) =>
+      isComputerEngineeringApprovedNaturalScienceCategory(
+        option.categoryOption?.category ?? option.categoryOption?.sourceCategoryCode
+      )
+  );
+  return {
+    label: `${creditLabel} credits of ${categoryLabel} remaining`,
+    type: "elective",
+    status: "planned",
+    sourceKind: "uw-major-requirement",
+    guidanceSummary: joinGuidanceSummaries(
+      input.guidanceSummary,
+      isComputerEngineeringNaturalScienceRemainder
+        ? `Use the ${COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL} filter in Transfer Category Equivalencies to find Green River courses whose UW equivalents are approved by the Allen School for this requirement. Official source: ${COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL}`
+        : "Use Transfer Category Equivalencies to find Green River courses approved for this requirement."
+    ),
+    sequenceGroup: null,
+    priorityRank: input.priorityRank,
+    sourceOrder: input.sourceOrder,
+    explicitCourseCodes: [],
+    prerequisiteCourseSets: [],
+    corequisiteCourseSets: [],
+    optionGroup: null,
+    sourceRequirementGroupId: input.optionGroup.id,
+    courseRole: "unresolved-credit-bucket-remainder",
+    creditAmount: input.remainingCredits,
+    creditMin: input.remainingCredits,
+    creditMax: input.remainingCredits,
+  } satisfies PendingSuggestedCourse;
+}
+
 function buildCategoryOptionGuidanceSummary(option: RequirementGroupOption) {
+  if (
+    isComputerEngineeringApprovedNaturalScienceCategory(
+      option.categoryOption?.category ?? option.categoryOption?.sourceCategoryCode
+    )
+  ) {
+    return `Use the ${COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL} filter in Transfer Category Equivalencies to find Green River courses whose UW equivalents are approved by the Allen School. Official source: ${COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL}`;
+  }
+
   const categoryCode = option.categoryOption?.sourceCategoryCode;
   if (!categoryCode) {
     return "Use the Transfer Category Equivalencies page to find eligible Green River courses.";
@@ -2850,6 +3044,18 @@ function buildSuggestedQuarterCourseOptionGroup(input: {
   if (!dedupedOptions.options.length) {
     return null;
   }
+  const categoryOptionIds = new Set(
+    dedupedOptions.options
+      .filter((option) => isRequirementCategoryOption(option))
+      .map((option) => option.id)
+  );
+  const concreteSelectedOptionIds = dedupedOptions.selectedOptionIds.filter(
+    (optionId) => !categoryOptionIds.has(optionId)
+  );
+  const selectedOptionIds =
+    group.requirementType === "choose_credits" && concreteSelectedOptionIds.length
+      ? concreteSelectedOptionIds
+      : dedupedOptions.selectedOptionIds;
 
   const selectionCount = getRequirementOptionSelectionCountForSuggestedOptions(
     input.item,
@@ -2864,7 +3070,11 @@ function buildSuggestedQuarterCourseOptionGroup(input: {
     requiredCredits: group.minCredits ?? null,
     maxRequiredCredits: group.maxCredits ?? group.minCredits ?? null,
     requirementType: group.requirementType,
-    selectedOptionIds: dedupedOptions.selectedOptionIds,
+    satisfactionMode:
+      group.requirementType === "choose_credits" && getPositiveCreditAmount(group.minCredits) !== null
+        ? "credit-based"
+        : "selection-count",
+    selectedOptionIds,
     selectionSource: input.selectionSource ?? null,
     options: dedupedOptions.options,
     isSelectionPrompt: input.isSelectionPrompt,
@@ -2933,10 +3143,14 @@ function getSelectedRequirementOptionEntriesForPlannerScheduling(input: {
     return [] as { option: RequirementGroupOption; optionId: string; optionIndex: number }[];
   }
 
-  return getSelectedRequirementOptionsForPlanner(
+  const selectedEntries = getSelectedRequirementOptionsForPlanner(
     input.item,
     selectedOptionGroup.selectedOptionIds
-  ).slice(0, selectedOptionGroup.selectionCount);
+  );
+
+  return isSuggestedQuarterCreditBasedOptionGroup(selectedOptionGroup)
+    ? selectedEntries
+    : selectedEntries.slice(0, selectedOptionGroup.selectionCount);
 }
 
 function unique<T>(items: T[]) {
@@ -2971,6 +3185,312 @@ export function normalizeCourseCode(value: string) {
 const UW_SEATTLE_CHEMICAL_ENGINEERING_PLAN_ID = "uw-seattle-chemical-engineering";
 const UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID = "uw-seattle-computer-engineering";
 const UW_SEATTLE_ENVIRONMENTAL_ENGINEERING_PLAN_ID = "uw-seattle-environmental-engineering";
+function getSpecificTargetCourseCodesForRule(rule: TransferPlannerEquivalencyRule) {
+  return sortCourseCodes(
+    (rule.targetCourseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean)
+      .filter(isSpecificTransferTargetCourseCode)
+  );
+}
+
+function getNormalizedRuleSourceCourseSets(rule: TransferPlannerEquivalencyRule) {
+  return (rule.sourceCourseSets ?? [])
+    .map((sourceCourseSet) =>
+      unique(sourceCourseSet.map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean))
+    )
+    .filter((sourceCourseSet) => sourceCourseSet.length > 0);
+}
+
+function getComputerEngineeringApprovedNaturalScienceRuleReason(
+  rule: TransferPlannerEquivalencyRule
+): ComputerEngineeringApprovedNaturalScienceTransferEntry["inclusionReason"] | null {
+  if (!rule.targetSchoolIds.includes("uw-seattle")) {
+    return null;
+  }
+  if (rule.isObsoleteSourceCourse || rule.acceptanceCategory === "no-credit" || rule.type === "no-credit") {
+    return null;
+  }
+
+  const specificTargets = getSpecificTargetCourseCodesForRule(rule);
+  const approvedTargets = specificTargets.filter(
+    isComputerEngineeringApprovedNaturalScienceUwCourseCode
+  );
+  if (!approvedTargets.length) {
+    return null;
+  }
+  if (
+    specificTargets.some(
+      (courseCode) => !isComputerEngineeringApprovedNaturalScienceUwCourseCode(courseCode)
+    )
+  ) {
+    return null;
+  }
+
+  const sourceCourseSets = getNormalizedRuleSourceCourseSets(rule);
+  if (!sourceCourseSets.length) {
+    return null;
+  }
+
+  return sourceCourseSets.some((sourceCourseSet) => sourceCourseSet.length > 1) ||
+    approvedTargets.length > 1
+    ? "compound-path"
+    : "approved-uw-equivalent";
+}
+
+function getComputerEngineeringApprovedNaturalScienceRuleScore(
+  rule: TransferPlannerEquivalencyRule
+) {
+  let score = 0;
+  if (rule.ruleStatus === "active") score += 8;
+  if (rule.sourceKind === "uw-green-river-equivalency-guide-derived") score += 4;
+  if (/\s\+\s/.test(rule.sourceCourseLabel ?? "")) score += 2;
+  if ((rule.plannerWarnings ?? []).length === 0) score += 1;
+  return score;
+}
+
+type ComputerEngineeringApprovedNaturalScienceTransferEntryWithScore =
+  ComputerEngineeringApprovedNaturalScienceTransferEntry & { ruleScore: number };
+
+function buildComputerEngineeringApprovedNaturalScienceTransferEntries() {
+  const entries: ComputerEngineeringApprovedNaturalScienceTransferEntryWithScore[] =
+    getTransferPlannerAllEquivalencyRules()
+    .flatMap<ComputerEngineeringApprovedNaturalScienceTransferEntryWithScore>((rule) => {
+      const inclusionReason = getComputerEngineeringApprovedNaturalScienceRuleReason(rule);
+      if (!inclusionReason) {
+        return [];
+      }
+
+      const sourceCourseSets = getNormalizedRuleSourceCourseSets(rule);
+      const approvedTargets = getSpecificTargetCourseCodesForRule(rule).filter(
+        isComputerEngineeringApprovedNaturalScienceUwCourseCode
+      );
+      return sourceCourseSets.map((sourceCourseSet) => ({
+        id: `ce-approved-natural-science:${rule.id}:${sourceCourseSet.join("-")}`,
+        sourceCourseLabel:
+          sourceCourseSet.length > 1
+            ? sourceCourseSet.join(" + ")
+            : String(rule.sourceCourseLabel ?? sourceCourseSet.join(" + ")).trim(),
+        sourceCourseTitle: rule.sourceCourseTitle ?? null,
+        sourceCourseCodes: sourceCourseSet,
+        targetOutcome: rule.targetOutcome,
+        uwEquivalentCourseCodes: approvedTargets,
+        inclusionReason,
+        sourceRuleId: rule.id,
+        ruleScore: getComputerEngineeringApprovedNaturalScienceRuleScore(rule),
+      }));
+    })
+    .sort((left, right) => {
+      const scoreDelta = right.ruleScore - left.ruleScore;
+      if (scoreDelta !== 0) return scoreDelta;
+      return left.sourceCourseLabel.localeCompare(right.sourceCourseLabel);
+    });
+
+  return uniqueBy(
+    entries.map(({ ruleScore: _ruleScore, ...entry }) => entry),
+    (entry) => `${entry.sourceCourseCodes.join("|")}||${entry.uwEquivalentCourseCodes.join("|")}`
+  ).sort((left, right) => left.sourceCourseLabel.localeCompare(right.sourceCourseLabel));
+}
+
+export function getComputerEngineeringApprovedNaturalScienceTransferEntries(): ComputerEngineeringApprovedNaturalScienceTransferEntry[] {
+  return buildComputerEngineeringApprovedNaturalScienceTransferEntries();
+}
+
+export function getComputerEngineeringApprovedNaturalScienceSourceCourseCodes() {
+  return sortCourseCodes(
+    getComputerEngineeringApprovedNaturalScienceTransferEntries().flatMap(
+      (entry) => entry.sourceCourseCodes
+    )
+  );
+}
+
+function getCompletedCourseCodesMatchingComputerEngineeringApprovedNaturalScience(input: {
+  completedCourses: TranscriptCourseEntry[];
+  campusId?: TransferPlannerMajorPlan["campusId"] | null;
+}) {
+  if (input.campusId !== "uw-seattle") {
+    return [] as string[];
+  }
+
+  const completedCourseCodes = normalizeCourseCodeIterable(
+    input.completedCourses.map((course) => course.code)
+  );
+  if (!completedCourseCodes.size) {
+    return [] as string[];
+  }
+
+  return sortCourseCodes(
+    getComputerEngineeringApprovedNaturalScienceTransferEntries()
+      .filter((entry) =>
+        entry.sourceCourseCodes.every((courseCode) => completedCourseCodes.has(courseCode))
+      )
+      .flatMap((entry) => entry.sourceCourseCodes)
+  );
+}
+
+function doesSourceCourseSetMatchInputCourseCodes(
+  sourceCourseCodes: string[],
+  inputCourseCodes?: Iterable<string> | null
+) {
+  const filterCourseCodes = normalizeCourseCodeIterable(inputCourseCodes ?? []);
+  if (!filterCourseCodes.size) {
+    return true;
+  }
+  return sourceCourseCodes.some((courseCode) => filterCourseCodes.has(courseCode));
+}
+
+function getComputerEngineeringApprovedNaturalScienceExcludedGenericCategoryRows(input?: {
+  courseCodes?: Iterable<string> | null;
+}) {
+  const includedKeys = new Set(
+    getComputerEngineeringApprovedNaturalScienceTransferEntries().map((entry) =>
+      entry.sourceCourseCodes.join("|")
+    )
+  );
+  const rows: TransferCategoryFilterAuditEntry[] = [];
+
+  for (const rule of getTransferPlannerAllEquivalencyRules()) {
+    if (!rule.targetSchoolIds.includes("uw-seattle")) continue;
+    if (rule.isObsoleteSourceCourse || rule.acceptanceCategory === "no-credit") continue;
+    if (
+      !getEvaluationTargetRequirementTags(rule).some((tag) => tag === "NSC" || tag === "NW")
+    ) {
+      continue;
+    }
+    if (getComputerEngineeringApprovedNaturalScienceRuleReason(rule)) continue;
+
+    const sourceCourseSets = getNormalizedRuleSourceCourseSets(rule);
+    for (const sourceCourseCodes of sourceCourseSets) {
+      if (includedKeys.has(sourceCourseCodes.join("|"))) continue;
+      if (!doesSourceCourseSetMatchInputCourseCodes(sourceCourseCodes, input?.courseCodes)) {
+        continue;
+      }
+      const course = sourceCourseCodes.join(" + ");
+      const uwEquivalent =
+        getSpecificTargetCourseCodesForRule(rule).join(", ") || rule.targetOutcome;
+      rows.push({
+        filter: COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL,
+        course,
+        uwEquivalent,
+        included: false,
+        reason: "generic-category-only",
+        copyOnlyDebugText: [
+          "[copy-only transfer-category-filter audit]",
+          `Filter: ${COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL}`,
+          `Course: ${course}`,
+          `UW equivalent: ${uwEquivalent}`,
+          "Included: no",
+          "Reason: generic-category-only",
+        ].join(" "),
+      });
+    }
+  }
+
+  return uniqueBy(rows, (row) => `${row.course}||${row.uwEquivalent}`).sort((left, right) =>
+    left.course.localeCompare(right.course)
+  );
+}
+
+export function auditComputerEngineeringApprovedNaturalScienceTransferCategoryFilter(input?: {
+  courseCodes?: Iterable<string> | null;
+}): TransferCategoryFilterAuditEntry[] {
+  const includedRows = getComputerEngineeringApprovedNaturalScienceTransferEntries()
+    .filter((entry) => doesSourceCourseSetMatchInputCourseCodes(entry.sourceCourseCodes, input?.courseCodes))
+    .map(
+      (entry) =>
+        ({
+          filter: COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL,
+          course: entry.sourceCourseCodes.join(" + "),
+          uwEquivalent: entry.uwEquivalentCourseCodes.join(", "),
+          included: true,
+          reason: entry.inclusionReason,
+          copyOnlyDebugText: [
+            "[copy-only transfer-category-filter audit]",
+            `Filter: ${COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_LABEL}`,
+            `Course: ${entry.sourceCourseCodes.join(" + ")}`,
+            `UW equivalent: ${entry.uwEquivalentCourseCodes.join(", ")}`,
+            "Included: yes",
+            `Reason: ${entry.inclusionReason}`,
+          ].join(" "),
+        }) satisfies TransferCategoryFilterAuditEntry
+    );
+
+  return [
+    ...includedRows,
+    ...getComputerEngineeringApprovedNaturalScienceExcludedGenericCategoryRows(input),
+  ];
+}
+
+export function auditComputerEngineeringApprovedNaturalScienceEquivalencies(): ComputerEngineeringApprovedNaturalScienceAuditEntry[] {
+  const mappedEntries = getComputerEngineeringApprovedNaturalScienceTransferEntries();
+  const mappedUwCodes = new Set(mappedEntries.flatMap((entry) => entry.uwEquivalentCourseCodes));
+  const includedRows = mappedEntries.map(
+    (entry) =>
+      ({
+        major: "Computer Engineering",
+        officialSource: COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL,
+        uwApprovedCourse: entry.uwEquivalentCourseCodes.join(", "),
+        grcEquivalentPath: entry.sourceCourseCodes,
+        includedInFilter: true,
+        reason: entry.inclusionReason,
+        copyOnlyDebugText: [
+          "[copy-only ce-approved-natural-science audit]",
+          "Major: Computer Engineering",
+          `Official source: ${COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL}`,
+          `UW approved course: ${entry.uwEquivalentCourseCodes.join(", ")}`,
+          `GRC equivalent/path: ${entry.sourceCourseCodes.join(" + ")}`,
+          "Included in CE-approved filter: yes",
+          `Reason: ${entry.inclusionReason}`,
+        ].join(" "),
+      }) satisfies ComputerEngineeringApprovedNaturalScienceAuditEntry
+  );
+  const missingRows = COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_UW_COURSE_CODES
+    .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter((courseCode) => !mappedUwCodes.has(courseCode))
+    .map(
+      (courseCode) =>
+        ({
+          major: "Computer Engineering",
+          officialSource: COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL,
+          uwApprovedCourse: courseCode,
+          grcEquivalentPath: [],
+          includedInFilter: false,
+          reason: "no-grc-equivalent",
+          copyOnlyDebugText: [
+            "[copy-only ce-approved-natural-science audit]",
+            "Major: Computer Engineering",
+            `Official source: ${COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL}`,
+            `UW approved course: ${courseCode}`,
+            "GRC equivalent/path: none",
+            "Included in CE-approved filter: no",
+            "Reason: no-grc-equivalent",
+          ].join(" "),
+        }) satisfies ComputerEngineeringApprovedNaturalScienceAuditEntry
+    );
+  const petitionRows = COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_PETITION_ONLY_NOTES.map(
+    (note) =>
+      ({
+        major: "Computer Engineering",
+        officialSource: COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL,
+        uwApprovedCourse: String(note),
+        grcEquivalentPath: [],
+        includedInFilter: false,
+        reason: "petition-only",
+        copyOnlyDebugText: [
+          "[copy-only ce-approved-natural-science audit]",
+          "Major: Computer Engineering",
+          `Official source: ${COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL}`,
+          `UW approved course: ${note}`,
+          "GRC equivalent/path: none",
+          "Included in CE-approved filter: no",
+          "Reason: petition-only",
+        ].join(" "),
+      }) satisfies ComputerEngineeringApprovedNaturalScienceAuditEntry
+  );
+
+  return [...includedRows, ...missingRows, ...petitionRows];
+}
+
 const COMPUTER_ENGINEERING_CREDIT_BUCKET_ROWS = [
   {
     groupIdSuffix: "approved-natural-science-10-credits",
@@ -3254,9 +3774,14 @@ function getCourseVisibilityScope(input: {
   plan?: TransferPlannerMajorPlan | null;
   isPrepCourse?: boolean;
   hasCategoryOption?: boolean;
+  courseRole?: SuggestedQuarterCourse["courseRole"];
 }): SuggestedQuarterCourseVisibilityScope {
   if (input.isPrepCourse) {
     return "visible-grc-optional-prep" satisfies SuggestedQuarterCourseVisibilityScope;
+  }
+
+  if (input.courseRole === "unresolved-credit-bucket-remainder") {
+    return "visible-grc-completable" satisfies SuggestedQuarterCourseVisibilityScope;
   }
 
   if (!isUwTransferPlannerPlan(input.plan)) {
@@ -3324,6 +3849,7 @@ function withSuggestedQuarterCourseVisibilityScope<
     plan: input.plan,
     isPrepCourse: input.isPrepCourse,
     hasCategoryOption,
+    courseRole: course.courseRole,
   });
 
   return {
@@ -4233,6 +4759,184 @@ function getSuggestedCourseCreditRangeFromValues(input: {
   };
 }
 
+function isSuggestedQuarterCreditBasedOptionGroup(
+  optionGroup: SuggestedQuarterCourseOptionGroup | null | undefined
+) {
+  return (
+    optionGroup?.requirementType === "choose_credits" &&
+    getPositiveCreditAmount(optionGroup.requiredCredits) !== null
+  );
+}
+
+function getSuggestedQuarterOptionGroupRequiredCreditRange(
+  optionGroup: SuggestedQuarterCourseOptionGroup | null | undefined
+) {
+  const creditMin = getPositiveCreditAmount(optionGroup?.requiredCredits);
+  const creditMax = getPositiveCreditAmount(optionGroup?.maxRequiredCredits) ?? creditMin;
+
+  return {
+    creditMin,
+    creditMax,
+  };
+}
+
+function getSuggestedQuarterCourseOptionCreditRange(option: SuggestedQuarterCourseOption) {
+  if (isRequirementCategoryOption(option)) {
+    return getRequirementCategoryOptionCreditRange(option);
+  }
+
+  return getSuggestedCourseCreditRangeFromValues({
+    creditAmount: option.creditAmount,
+    creditMin: option.creditMin,
+    creditMax: option.creditMax,
+  });
+}
+
+function getSuggestedQuarterCourseOptionCreditContribution(input: {
+  option: SuggestedQuarterCourseOption;
+  countedCourseCodes: Set<string>;
+}) {
+  if (!isRequirementCategoryOption(input.option)) {
+    const courseCodes = unique(
+      [
+        ...(input.option.courseCodes ?? []),
+        ...(input.option.courseLabels ?? []).flatMap((label) => extractCourseCodes(label)),
+      ]
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    );
+    const uncountedCourseCodes = courseCodes.filter(
+      (courseCode) => !input.countedCourseCodes.has(courseCode)
+    );
+    for (const courseCode of uncountedCourseCodes) {
+      input.countedCourseCodes.add(courseCode);
+    }
+
+    const canonicalCreditRange =
+      getCanonicalGrcCourseCreditRangeForCourseCodes(uncountedCourseCodes);
+    if (canonicalCreditRange) {
+      return canonicalCreditRange;
+    }
+
+    if (courseCodes.length && !uncountedCourseCodes.length) {
+      return {
+        creditAmount: 0,
+        creditMin: 0,
+        creditMax: 0,
+      };
+    }
+  }
+
+  return getSuggestedQuarterCourseOptionCreditRange(input.option);
+}
+
+function getSuggestedQuarterOptionGroupSatisfyingCreditRange(input: {
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+  optionIds: string[] | null | undefined;
+}) {
+  const optionIds = getSuggestedScheduleUniqueIds(input.optionIds);
+  if (!optionIds.length) {
+    return {
+      creditMin: 0,
+      creditMax: 0,
+    };
+  }
+
+  const optionById = new Map(input.optionGroup.options.map((option) => [option.id, option]));
+  const countedCourseCodes = new Set<string>();
+  let creditMin = 0;
+  let creditMax = 0;
+
+  for (const optionId of optionIds) {
+    const option = optionById.get(optionId);
+    if (!option) {
+      continue;
+    }
+
+    const range = getSuggestedQuarterCourseOptionCreditContribution({
+      option,
+      countedCourseCodes,
+    });
+    const minCredits = range.creditMin ?? range.creditAmount ?? range.creditMax ?? 0;
+    const maxCredits = range.creditMax ?? range.creditAmount ?? range.creditMin ?? 0;
+    creditMin += minCredits;
+    creditMax += maxCredits;
+  }
+
+  return {
+    creditMin,
+    creditMax,
+  };
+}
+
+function formatCreditValueForProgress(value: number | null | undefined) {
+  if (value == null || !Number.isFinite(value)) {
+    return "0";
+  }
+
+  return Number.isInteger(value) ? String(value) : String(Number(value.toFixed(2)));
+}
+
+function formatCreditRangeValueForProgress(
+  creditMin: number | null | undefined,
+  creditMax: number | null | undefined
+) {
+  if (
+    creditMin != null &&
+    creditMax != null &&
+    Number.isFinite(creditMin) &&
+    Number.isFinite(creditMax) &&
+    creditMin !== creditMax
+  ) {
+    return `${formatCreditValueForProgress(creditMin)}-${formatCreditValueForProgress(creditMax)}`;
+  }
+
+  return formatCreditValueForProgress(creditMin ?? creditMax ?? 0);
+}
+
+function formatSuggestedQuarterOptionGroupCreditProgress(input: {
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+  creditMin: number;
+  creditMax: number;
+}) {
+  const requiredRange = getSuggestedQuarterOptionGroupRequiredCreditRange(input.optionGroup);
+  const requiredLabel = formatCreditRangeValueForProgress(
+    requiredRange.creditMin,
+    requiredRange.creditMax
+  );
+  const resolvedLabel = formatCreditRangeValueForProgress(input.creditMin, input.creditMax);
+
+  return `${resolvedLabel}/${requiredLabel}`;
+}
+
+function getSuggestedQuarterOptionGroupCreditSatisfaction(input: {
+  optionGroup: SuggestedQuarterCourseOptionGroup;
+  optionIds?: string[] | null;
+}) {
+  const requiredRange = getSuggestedQuarterOptionGroupRequiredCreditRange(input.optionGroup);
+  const requiredCredits = requiredRange.creditMin ?? 0;
+  const resolvedRange = getSuggestedQuarterOptionGroupSatisfyingCreditRange({
+    optionGroup: input.optionGroup,
+    optionIds:
+      input.optionIds ??
+      getSuggestedQuarterCourseOptionGroupResolvedOptionIds(input.optionGroup),
+  });
+  const satisfyingCredits = resolvedRange.creditMax ?? resolvedRange.creditMin ?? 0;
+
+  return {
+    requiredCredits,
+    maxRequiredCredits: requiredRange.creditMax ?? requiredCredits,
+    creditMin: resolvedRange.creditMin,
+    creditMax: resolvedRange.creditMax,
+    displayedProgress: formatSuggestedQuarterOptionGroupCreditProgress({
+      optionGroup: input.optionGroup,
+      creditMin: resolvedRange.creditMin,
+      creditMax: resolvedRange.creditMax,
+    }),
+    fullySatisfied: requiredCredits > 0 && satisfyingCredits >= requiredCredits,
+  };
+}
+
 function getSuggestedQuarterCourseCreditRange(course: SuggestedQuarterCourse) {
   const range = getSuggestedCourseCreditRangeFromValues({
     creditAmount: course.creditAmount,
@@ -4267,6 +4971,12 @@ function isSuggestedQuarterOptionGroupResolved(
 ) {
   if (!optionGroup) {
     return true;
+  }
+
+  if (isSuggestedQuarterCreditBasedOptionGroup(optionGroup)) {
+    return getSuggestedQuarterOptionGroupCreditSatisfaction({
+      optionGroup,
+    }).fullySatisfied;
   }
 
   const selectionCount = Math.max(1, Math.ceil(Number(optionGroup.selectionCount ?? 1) || 1));
@@ -4371,10 +5081,13 @@ export function buildSuggestedQuarterRemainingCreditRange(input: {
       const courseCreditRange =
         course.optionGroup?.isSelectionPrompt &&
         !isSuggestedQuarterOptionGroupResolved(course.optionGroup)
-          ? {
-              creditMin: 0,
-              creditMax: rawCourseCreditRange.creditMax,
-            }
+          ? isSuggestedQuarterCreditBasedOptionGroup(course.optionGroup) &&
+            extractCourseCodes(course.label).length > 0
+            ? rawCourseCreditRange
+            : {
+                creditMin: 0,
+                creditMax: rawCourseCreditRange.creditMax,
+              }
           : rawCourseCreditRange;
       if (course.status === "completed") {
         completedCredits += courseCreditRange.creditMin;
@@ -7140,6 +7853,7 @@ function toSuggestedQuarterCourse(course: PendingSuggestedCourse): SuggestedQuar
     guidanceSummary: course.guidanceSummary,
     sourceKind: course.sourceKind,
     optionGroup: course.optionGroup,
+    sourceRequirementGroupId: course.sourceRequirementGroupId,
     visibilityScope: course.visibilityScope,
     isVisibleInGrcQuarterPlan: course.isVisibleInGrcQuarterPlan,
     isUwOnlyRequirement: course.isUwOnlyRequirement,
@@ -12481,6 +13195,14 @@ function getCompletedCourseCodesMatchingCategoryOption(input: {
   completedCourses: TranscriptCourseEntry[];
   campusId?: TransferPlannerMajorPlan["campusId"] | null;
 }) {
+  if (
+    isComputerEngineeringApprovedNaturalScienceCategory(
+      input.option.categoryOption?.category ?? input.option.categoryOption?.sourceCategoryCode
+    )
+  ) {
+    return getCompletedCourseCodesMatchingComputerEngineeringApprovedNaturalScience(input);
+  }
+
   const tag = normalizeGeneralEducationRequirementTag(input.option.categoryOption?.category);
   if (!tag || !input.campusId) {
     return [] as string[];
@@ -13080,12 +13802,86 @@ function getScheduledClaimCourseCodesForOption(input: {
   );
 }
 
+function allocateDisplayedCreditBasedOptionIdsForGroup(input: {
+  context: OptionGroupAllocationContext;
+  scheduledCourseCodes: Set<string>;
+  claimedScheduledCourseCodes: Set<string>;
+}) {
+  const { context } = input;
+  const requiredCredits =
+    getSuggestedQuarterOptionGroupRequiredCreditRange(context.optionGroup).creditMin ?? 0;
+  const candidateOptionIds = context.candidateSatisfiedOptionIds;
+  const selectedOptionIds: string[] = [];
+
+  const getSelectedCredits = () =>
+    getSuggestedQuarterOptionGroupSatisfyingCreditRange({
+      optionGroup: context.optionGroup,
+      optionIds: selectedOptionIds,
+    }).creditMax ?? 0;
+  const addOptionId = (optionId: string) => {
+    if (selectedOptionIds.includes(optionId)) {
+      return;
+    }
+    selectedOptionIds.push(optionId);
+  };
+  const addEligibleOptions = (options: string[]) => {
+    for (const optionId of options) {
+      addOptionId(optionId);
+      if (requiredCredits > 0 && getSelectedCredits() >= requiredCredits) {
+        break;
+      }
+    }
+  };
+
+  addEligibleOptions(
+    candidateOptionIds.filter((optionId) =>
+      optionSatisfactionCanBypassScheduledClaims(
+        context.candidateOptionSatisfactionSourcesById[optionId]
+      )
+    )
+  );
+  if (requiredCredits > 0 && getSelectedCredits() >= requiredCredits) {
+    return selectedOptionIds;
+  }
+
+  addEligibleOptions(
+    candidateOptionIds.filter((optionId) => {
+      const sources = context.candidateOptionSatisfactionSourcesById[optionId] ?? [];
+      if (optionSatisfactionCanBypassScheduledClaims(sources)) {
+        return false;
+      }
+
+      const scheduledClaimCourseCodes = getScheduledClaimCourseCodesForOption({
+        optionGroup: context.optionGroup,
+        optionId,
+        scheduledCourseCodes: input.scheduledCourseCodes,
+      });
+      return !(
+        scheduledClaimCourseCodes.length &&
+        scheduledClaimCourseCodes.every((courseCode) =>
+          input.claimedScheduledCourseCodes.has(courseCode)
+        )
+      );
+    })
+  );
+  if (requiredCredits > 0 && getSelectedCredits() >= requiredCredits) {
+    return selectedOptionIds;
+  }
+
+  addEligibleOptions(candidateOptionIds);
+  return selectedOptionIds;
+}
+
 function allocateDisplayedOptionIdsForGroup(input: {
   context: OptionGroupAllocationContext;
   scheduledCourseCodes: Set<string>;
   claimedScheduledCourseCodes: Set<string>;
 }) {
   const { context } = input;
+  if (isSuggestedQuarterCreditBasedOptionGroup(context.optionGroup)) {
+    return allocateDisplayedCreditBasedOptionIdsForGroup(input);
+  }
+
   const requiredCount = getSuggestedQuarterOptionGroupRequiredCount(context.optionGroup);
   const candidateOptionIds = context.candidateSatisfiedOptionIds;
   if (context.optionGroup.allowExtraResolvedSelections === true) {
@@ -13193,6 +13989,12 @@ function buildAllocatedOptionGroupResolutionMap(input: {
         input.consumedCompletedCourseCodesByGroupId?.get(context.optionGroup.id) ??
         new Set<string>(),
     });
+    const creditSatisfaction = isSuggestedQuarterCreditBasedOptionGroup(context.optionGroup)
+      ? getSuggestedQuarterOptionGroupCreditSatisfaction({
+          optionGroup: context.optionGroup,
+          optionIds: resolvedSatisfiedOptionIds,
+        })
+      : null;
 
     for (const optionId of resolvedSatisfiedOptionIds) {
       const sources = context.candidateOptionSatisfactionSourcesById[optionId] ?? [];
@@ -13222,6 +14024,11 @@ function buildAllocatedOptionGroupResolutionMap(input: {
       ),
       scheduledSatisfyingCourseCodes: context.scheduledSatisfyingCourseCodes,
       countedSatisfyingCourseCodes: finalOptionCourseCodes,
+      satisfactionMode: creditSatisfaction ? "credit-based" : "selection-count",
+      resolvedSatisfyingCreditMin: creditSatisfaction?.creditMin ?? null,
+      resolvedSatisfyingCreditMax: creditSatisfaction?.creditMax ?? null,
+      displayedCreditProgress: creditSatisfaction?.displayedProgress ?? null,
+      fullySatisfied: creditSatisfaction?.fullySatisfied ?? null,
       candidateOptionSatisfactionSourcesById: context.candidateOptionSatisfactionSourcesById,
       optionSatisfactionSourcesById: filterOptionSatisfactionSourcesByIds(
         context.candidateOptionSatisfactionSourcesById,
@@ -13265,6 +14072,10 @@ function resolveSuggestedQuarterOptionGroupSatisfaction(input: {
       resolvedOptionGroup.completedSatisfyingCourseCodesByOptionId ?? {},
     scheduledSatisfyingCourseCodes: resolvedOptionGroup.scheduledSatisfyingCourseCodes ?? [],
     countedSatisfyingCourseCodes: resolvedOptionGroup.countedSatisfyingCourseCodes ?? [],
+    resolvedSatisfyingCreditMin: resolvedOptionGroup.resolvedSatisfyingCreditMin ?? null,
+    resolvedSatisfyingCreditMax: resolvedOptionGroup.resolvedSatisfyingCreditMax ?? null,
+    displayedCreditProgress: resolvedOptionGroup.displayedCreditProgress ?? null,
+    fullySatisfied: resolvedOptionGroup.fullySatisfied ?? null,
     candidateOptionSatisfactionSourcesById:
       resolvedOptionGroup.candidateOptionSatisfactionSourcesById ?? {},
     optionSatisfactionSourcesById: resolvedOptionGroup.optionSatisfactionSourcesById ?? {},
@@ -13731,8 +14542,14 @@ function allocateQuarterCourses({
     course.explicitCourseCodes.some((courseCode) => /^ENGL(?:\b|&)/i.test(normalizeCourseCode(courseCode)));
   const isOptionGroupCourse = (course: PendingSuggestedCourse) =>
     Boolean(course.optionGroup);
+  const isCreditBucketRemainderCourse = (course: PendingSuggestedCourse) =>
+    course.courseRole === "unresolved-credit-bucket-remainder";
   const isMainPlannedCourse = (course: PendingSuggestedCourse) =>
-    (course.explicitCourseCodes.length > 0 || isOptionGroupCourse(course)) &&
+    (
+      course.explicitCourseCodes.length > 0 ||
+      isOptionGroupCourse(course) ||
+      isCreditBucketRemainderCourse(course)
+    ) &&
     !isEnglishGeneralEducationCourse(course);
   const getMainCourseCount = (items: PendingSuggestedCourse[]) =>
     items.filter((item) => isMainPlannedCourse(item)).length;
@@ -14178,10 +14995,11 @@ function buildRemainingSuggestedCourses(
             selectedEntry.option,
             selectedCourseLabels
           );
-          const remainingSelectedOptionCreditRange = getRemainingChooseCreditsRangeForStatus(
-            status,
-            selectedOptionCreditRange
-          );
+          const remainingSelectedOptionCreditRange =
+            isSuggestedQuarterCreditBasedOptionGroup(selectedOptionGroup) &&
+            !isRequirementCategoryOption(selectedEntry.option)
+              ? selectedOptionCreditRange
+              : getRemainingChooseCreditsRangeForStatus(status, selectedOptionCreditRange);
 
           if (!selectedCourseLabels.length && isRequirementCategoryOption(selectedEntry.option)) {
             const selectedCategoryLabel =
@@ -14258,7 +15076,55 @@ function buildRemainingSuggestedCourses(
           }
         }
 
-        if (selectedOptionEntries.length >= selectedOptionGroup.selectionCount) {
+        const selectedCreditSatisfaction = isSuggestedQuarterCreditBasedOptionGroup(
+          selectedOptionGroup
+        )
+          ? getSuggestedQuarterOptionGroupCreditSatisfaction({
+              optionGroup: selectedOptionGroup,
+              optionIds: selectedOptionEntries.map((entry) => entry.optionId),
+            })
+          : null;
+        const selectedCategoryOptionIds = new Set(getCategoryOptionIds(selectedOptionGroup));
+        const selectedPlaceholderOption = selectedOptionEntries.some((entry) =>
+          selectedCategoryOptionIds.has(entry.optionId)
+        );
+        if (
+          selectedCreditSatisfaction &&
+          !selectedCreditSatisfaction.fullySatisfied &&
+          selectedCreditSatisfaction.creditMax > 0 &&
+          !selectedPlaceholderOption
+        ) {
+          const remainingCreditRange = getRemainingChooseCreditsRangeAfterSelectedOptions({
+            status,
+            optionGroup: selectedOptionGroup,
+            selectedOptionIds: selectedOptionEntries.map((entry) => entry.optionId),
+            fallbackRange: getSuggestedQuarterCourseOptionGroupCreditRange(selectedOptionGroup),
+          });
+          const remainingCredits =
+            getPositiveCreditAmount(remainingCreditRange.creditMax) ??
+            getPositiveCreditAmount(remainingCreditRange.creditMin) ??
+            0;
+          if (remainingCredits > 0) {
+            addRemainingCourse(
+              buildCreditBucketRemainderPlaceholderCourse({
+                status,
+                optionGroup: selectedOptionGroup,
+                remainingCredits,
+                guidanceSummary,
+                priorityRank: REQUIREMENT_PRIORITY_RANK[section.bucket],
+                sourceOrder,
+              })
+            );
+          }
+          continue;
+        }
+        if (
+          selectedCreditSatisfaction?.fullySatisfied ||
+          (
+            !selectedCreditSatisfaction &&
+            selectedOptionEntries.length >= selectedOptionGroup.selectionCount
+          )
+        ) {
           continue;
         }
       }
@@ -14290,6 +15156,14 @@ function buildRemainingSuggestedCourses(
 
       for (const label of labelsForPlanner) {
         const explicitCourseCodes = shouldScheduleAsChoiceBucket ? [] : extractCourseCodes(label);
+        const promptCreditRange = promptOptionGroup
+          ? getRemainingChooseCreditsRangeAfterSelectedOptions({
+              status,
+              optionGroup: promptOptionGroup,
+              selectedOptionIds,
+              fallbackRange: getSuggestedQuarterCourseOptionGroupCreditRange(promptOptionGroup),
+            })
+          : null;
         const nextCourse: PendingSuggestedCourse = {
           label,
           type: isCoreCourseLabel(
@@ -14320,9 +15194,7 @@ function buildRemainingSuggestedCourses(
             explicitCourseCodes.flatMap((courseCode) => corequisiteCourseMap.get(courseCode) ?? [])
           ).map((courseSet) => [...courseSet]),
           optionGroup: promptOptionGroup,
-          ...(promptOptionGroup
-            ? getSuggestedQuarterCourseOptionGroupCreditRange(promptOptionGroup)
-            : {}),
+          ...(promptCreditRange ?? {}),
         };
 
         addRemainingCourse(nextCourse);
@@ -16091,6 +16963,14 @@ function buildIndependentSchedulingReasonForOptionExtras(input: {
 function getSuggestedQuarterOptionGroupResolvedSelectionCount(
   optionGroup: SuggestedQuarterCourseOptionGroup
 ) {
+  if (isSuggestedQuarterCreditBasedOptionGroup(optionGroup)) {
+    return (
+      getSuggestedQuarterOptionGroupCreditSatisfaction({
+        optionGroup,
+      }).creditMax ?? 0
+    );
+  }
+
   return getSuggestedQuarterCourseOptionGroupResolvedOptionIds(optionGroup).length;
 }
 
@@ -16454,13 +17334,26 @@ export function auditOptionGroupSatisfaction(input: {
       1,
       Math.ceil(Number(resolvedAuditOptionGroup.selectionCount ?? 1) || 1)
     );
-    const resolvedSatisfiedCount = Math.min(
-      getSuggestedQuarterCourseOptionGroupResolvedOptionIds(resolvedAuditOptionGroup).length,
-      requiredCount
-    );
     const resolvedDisplayedOptionIds =
       getSuggestedQuarterCourseOptionGroupResolvedOptionIds(resolvedAuditOptionGroup);
-    const displayedProgress = `${resolvedSatisfiedCount}/${requiredCount}`;
+    const satisfactionMode = isSuggestedQuarterCreditBasedOptionGroup(resolvedAuditOptionGroup)
+      ? "credit-based"
+      : "selection-count";
+    const creditSatisfaction =
+      satisfactionMode === "credit-based"
+        ? getSuggestedQuarterOptionGroupCreditSatisfaction({
+            optionGroup: resolvedAuditOptionGroup,
+            optionIds: resolvedDisplayedOptionIds,
+          })
+        : null;
+    const resolvedSatisfiedCount =
+      satisfactionMode === "credit-based"
+        ? resolvedDisplayedOptionIds.length
+        : Math.min(resolvedDisplayedOptionIds.length, requiredCount);
+    const displayedProgress =
+      creditSatisfaction?.displayedProgress ?? `${resolvedSatisfiedCount}/${requiredCount}`;
+    const fullySatisfied =
+      creditSatisfaction?.fullySatisfied ?? resolvedSatisfiedCount >= requiredCount;
     const acceptedUwOptions = getRequirementGroupAcceptedUwOptionLabels(group);
     const mappedGrcOptions = getRequirementGroupGrcOptionCourseCodes(group);
     const categoryOptions = getRequirementGroupCategoryOptionLabels(group);
@@ -16515,7 +17408,7 @@ export function auditOptionGroupSatisfaction(input: {
           !matchedCourseCodes.has(courseCode)
       )
     );
-    const shouldScheduleExtra = resolvedSatisfiedCount < requiredCount;
+    const shouldScheduleExtra = !fullySatisfied;
     const independentSchedulingReason = buildIndependentSchedulingReasonForOptionExtras({
       currentGroupId: groupId,
       scheduledExtraCourses,
@@ -16535,6 +17428,13 @@ export function auditOptionGroupSatisfaction(input: {
       (chosenTranscriptCategorySatisfier && genericPlannedCategoryCredits > 0
         ? "selected-category-already-satisfied-but-scheduled"
         : null) ??
+      (
+        satisfactionMode === "credit-based" &&
+        resolvedDisplayedOptionIds.length > 0 &&
+        !fullySatisfied
+          ? "insufficient-credit-selection"
+          : null
+      ) ??
       (scheduledExtraCourses.length > 0 && resolvedSatisfiedCount === 0
         ? "scheduled satisfying course not reflected in option progress"
         : null);
@@ -16543,6 +17443,8 @@ export function auditOptionGroupSatisfaction(input: {
       groupId,
       requirement: group.label || status.item.title,
       requiredCount,
+      satisfactionMode,
+      requiredCredits: creditSatisfaction?.requiredCredits ?? null,
       acceptedUwOptions,
       acceptedOptions: acceptedUwOptions,
       mappedGrcOptions,
@@ -16556,6 +17458,13 @@ export function auditOptionGroupSatisfaction(input: {
       chosenTranscriptCategorySatisfier,
       genericPlannedCategoryCredits,
       resolvedSatisfiedCount,
+      resolvedSatisfyingCredits: creditSatisfaction
+        ? formatCreditRangeValueForProgress(
+            creditSatisfaction.creditMin,
+            creditSatisfaction.creditMax
+          )
+        : null,
+      fullySatisfied,
       displayedProgress,
       satisfiedBy,
       scheduledExtraCourses,
@@ -16575,7 +17484,13 @@ export function auditOptionGroupSatisfaction(input: {
       copyOnlyDebugText: [
         "[copy-only option satisfaction resolver audit]",
         `Group id: ${groupId}`,
-        `Required count: ${requiredCount}`,
+        `Satisfaction mode: ${satisfactionMode}`,
+        `Required credits: ${creditSatisfaction?.requiredCredits ?? "none"}`,
+        `Required count: ${
+          satisfactionMode === "credit-based"
+            ? "ignored for credit-based groups"
+            : requiredCount
+        }`,
         `Accepted options: ${acceptedUwOptions.length ? acceptedUwOptions.join(", ") : "none"}`,
         `Mapped GRC options: ${mappedGrcOptions.length ? mappedGrcOptions.join(", ") : "none"}`,
         `Category options: ${categoryOptions.length ? categoryOptions.join(", ") : "none"}`,
@@ -16617,6 +17532,14 @@ export function auditOptionGroupSatisfaction(input: {
             ...(resolvedAuditOptionGroup.countedSatisfyingCourseCodes ?? []),
             ...resolvedDisplayedOptions,
           ]).join(", ") || "none"
+        }`,
+        `Resolved satisfying credits: ${
+          creditSatisfaction
+            ? formatCreditRangeValueForProgress(
+                creditSatisfaction.creditMin,
+                creditSatisfaction.creditMax
+              )
+            : "none"
         }`,
         `Resolved satisfied count: ${resolvedSatisfiedCount}`,
         `Displayed progress: ${displayedProgress}`,
@@ -17783,6 +18706,7 @@ export function auditComputerEngineeringCreditBuckets(input: {
   }
 
   const major = input.plan?.title ?? input.plan?.id ?? "Computer Engineering";
+  const visibleOptionGroupsById = collectSuggestedPlanOptionGroupsById(input.suggestedPlan);
   return COMPUTER_ENGINEERING_CREDIT_BUCKET_ROWS.map((row) => {
     const item = getComputerEngineeringCreditBucketItem({
       plan: input.plan as TransferPlannerMajorPlan,
@@ -17790,12 +18714,42 @@ export function auditComputerEngineeringCreditBuckets(input: {
     });
     const group = item?.requirementGroup ?? null;
     const groupId = group?.id ?? `${input.plan?.id}:requirement-group:${row.groupIdSuffix}`;
+    const visibleGroup = visibleOptionGroupsById.get(groupId) ?? null;
+    const satisfactionMode =
+      visibleGroup && isSuggestedQuarterCreditBasedOptionGroup(visibleGroup)
+        ? "credit-based"
+        : "selection-count";
     const mappedConcreteOptions = group ? getRequirementGroupMappedGrcOptionCodes(group) : [];
+    const filterSource =
+      row.groupIdSuffix === "approved-natural-science-10-credits"
+        ? COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_PARAM
+        : null;
+    const excludedGenericCategoryCourses =
+      filterSource === COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_PARAM
+        ? getComputerEngineeringApprovedNaturalScienceExcludedGenericCategoryRows()
+            .slice(0, 12)
+            .map((entry) => entry.course)
+        : [];
     const categoryOptionLabels = group
       ? group.options
           .filter((option) => option.optionKind === "category-option")
           .map((option) => getRequirementCategoryOptionLabel(option))
           .filter(Boolean)
+      : [];
+    const selectedOptionIds = visibleGroup
+      ? getSuggestedQuarterCourseOptionGroupResolvedOptionIds(visibleGroup)
+      : [];
+    const categoryOptionIds = visibleGroup
+      ? new Set(getCategoryOptionIds(visibleGroup))
+      : new Set<string>();
+    const selectedPlaceholder = selectedOptionIds.some((optionId) =>
+      categoryOptionIds.has(optionId)
+    );
+    const selectedConcreteOptionIds = selectedOptionIds.filter(
+      (optionId) => !categoryOptionIds.has(optionId)
+    );
+    const selectedConcreteOptions = visibleGroup
+      ? getRequirementOptionDisplayLabelsByIds(visibleGroup, selectedConcreteOptionIds)
       : [];
     const categoryListPlaceholderVisible = input.suggestedPlan
       .flatMap((quarter) => quarter.courses)
@@ -17814,26 +18768,91 @@ export function auditComputerEngineeringCreditBuckets(input: {
           completedCourses: input.completedCourses,
         })
       : [];
+    const creditSatisfaction =
+      visibleGroup && isSuggestedQuarterCreditBasedOptionGroup(visibleGroup)
+        ? getSuggestedQuarterOptionGroupCreditSatisfaction({
+            optionGroup: visibleGroup,
+            optionIds: selectedOptionIds,
+          })
+        : null;
+    const selectedPlaceholderRange =
+      visibleGroup && selectedPlaceholder
+        ? getSuggestedQuarterOptionGroupSatisfyingCreditRange({
+            optionGroup: visibleGroup,
+            optionIds: selectedOptionIds.filter((optionId) => categoryOptionIds.has(optionId)),
+          })
+        : null;
+    const requiredCredits = creditSatisfaction?.requiredCredits ?? null;
+    const remainingConcreteCredits =
+      requiredCredits !== null && !selectedPlaceholder
+        ? Math.max(0, requiredCredits - (creditSatisfaction?.creditMax ?? 0))
+        : null;
     const plannedRange = getPlannedCreditRangeForOptionGroup({
       suggestedPlan: input.suggestedPlan,
       groupId,
     });
-    const plannedUnresolvedCredits = formatCreditRangeForAudit(
-      plannedRange.creditMin,
-      plannedRange.creditMax
-    );
+    const remainingPlaceholderCourses = input.suggestedPlan
+      .filter((quarter) => quarter.phase === "planned" || quarter.phase === "current")
+      .flatMap((quarter) => quarter.courses)
+      .filter(
+        (course) =>
+          (course.sourceRequirementGroupId === groupId || course.optionGroup?.id === groupId) &&
+          course.courseRole === "unresolved-credit-bucket-remainder"
+      );
+    const remainingPlaceholderScheduled = remainingPlaceholderCourses.length > 0;
+    const remainingPlaceholderCredits = remainingPlaceholderCourses.reduce((total, course) => {
+      const range = getSuggestedQuarterCourseCreditRange(course);
+      return total + (range.creditMax || range.creditMin || 0);
+    }, 0);
+    const plannedUnresolvedCredits = selectedPlaceholderRange
+      ? formatCreditRangeForAudit(
+          selectedPlaceholderRange.creditMin,
+          selectedPlaceholderRange.creditMax
+        )
+      : remainingConcreteCredits !== null
+        ? formatCreditRangeForAudit(remainingConcreteCredits, remainingConcreteCredits)
+        : formatCreditRangeForAudit(plannedRange.creditMin, plannedRange.creditMax);
+    const completedSatisfyingCourses = visibleGroup?.completedSatisfyingCourseCodes ?? [];
+    const scheduledSatisfyingCourses = visibleGroup?.scheduledSatisfyingCourseCodes ?? [];
+    const totalSatisfyingCredits = creditSatisfaction
+      ? formatCreditRangeValueForProgress(creditSatisfaction.creditMin, creditSatisfaction.creditMax)
+      : "none";
+    const displayedCreditProgress =
+      creditSatisfaction?.displayedProgress ?? `0/${row.creditsRequired}`;
+    const fullySatisfied = creditSatisfaction?.fullySatisfied ?? false;
+    const remainingUnresolvedCredits =
+      remainingPlaceholderScheduled && remainingPlaceholderCredits > 0
+        ? formatCreditRangeForAudit(remainingPlaceholderCredits, remainingPlaceholderCredits)
+        : plannedUnresolvedCredits;
     const issue =
       !group || (!categoryListPlaceholderVisible && !satisfiedByTranscriptCourses.length)
         ? "missing-credit-bucket"
-        : null;
+        : satisfactionMode !== "credit-based"
+          ? "selection-count-used-for-credit-bucket"
+          : selectedConcreteOptionIds.length > 0 && !fullySatisfied && !remainingPlaceholderScheduled
+            ? "insufficient-credit-selection"
+            : null;
 
     return {
       major,
       requirement: row.requirement,
       creditsRequired: row.creditsRequired,
+      requiredCredits: row.creditsRequired,
+      satisfactionMode,
+      filterSource,
       mappedConcreteOptions,
+      excludedGenericCategoryCourses,
+      selectedConcreteOptions,
+      selectedPlaceholder,
       categoryListPlaceholderVisible,
+      completedSatisfyingCourses,
+      scheduledSatisfyingCourses,
       satisfiedByTranscriptCourses,
+      totalSatisfyingCredits,
+      displayedCreditProgress,
+      fullySatisfied,
+      remainingUnresolvedCredits,
+      remainingPlaceholderScheduled,
       plannedUnresolvedCredits,
       issue,
       copyOnlyDebugText: [
@@ -17841,15 +18860,38 @@ export function auditComputerEngineeringCreditBuckets(input: {
         `Major: ${major}`,
         `Requirement: ${row.requirement}`,
         `Credits required: ${row.creditsRequired}`,
+        `Required credits: ${row.creditsRequired}`,
+        `Satisfaction mode: ${satisfactionMode}`,
+        `Filter source: ${filterSource ?? "none"}`,
+        `Selected placeholder: ${selectedPlaceholder ? "yes" : "no"}`,
+        `Selected concrete options: ${
+          selectedConcreteOptions.length ? selectedConcreteOptions.join(", ") : "none"
+        }`,
         `Mapped concrete options: ${
           mappedConcreteOptions.length ? mappedConcreteOptions.join(", ") : "none"
+        }`,
+        `Excluded generic category courses: ${
+          excludedGenericCategoryCourses.length
+            ? excludedGenericCategoryCourses.join(", ")
+            : "none"
         }`,
         `Category/list placeholder visible: ${
           categoryListPlaceholderVisible ? "yes" : "no"
         }`,
+        `Completed satisfying courses: ${
+          completedSatisfyingCourses.length ? completedSatisfyingCourses.join(", ") : "none"
+        }`,
+        `Scheduled satisfying courses: ${
+          scheduledSatisfyingCourses.length ? scheduledSatisfyingCourses.join(", ") : "none"
+        }`,
         `Satisfied by transcript courses: ${
           satisfiedByTranscriptCourses.length ? satisfiedByTranscriptCourses.join(", ") : "none"
         }`,
+        `Total satisfying credits: ${totalSatisfyingCredits}`,
+        `Displayed credit progress: ${displayedCreditProgress}`,
+        `Fully satisfied: ${fullySatisfied ? "yes" : "no"}`,
+        `Remaining unresolved credits: ${remainingUnresolvedCredits}`,
+        `Remaining placeholder scheduled: ${remainingPlaceholderScheduled ? "yes" : "no"}`,
         `Planned unresolved credits: ${plannedUnresolvedCredits}`,
         `Issue: ${issue ?? "none"}`,
       ].join(" "),
@@ -18086,6 +19128,9 @@ export function auditRequirementRolePrecedence(input: {
 
 function getSuggestedCourseRequirementRoles(course: SuggestedQuarterCourse) {
   const roles: string[] = [];
+  if (course.courseRole === "unresolved-credit-bucket-remainder") {
+    return ["unresolved-credit-bucket-remainder"];
+  }
   if (
     course.sourceKind === "uw-major-requirement" &&
     course.optionGroup?.isSelectionPrompt !== true
@@ -18113,55 +19158,70 @@ function getSuggestedCourseRequirementRoles(course: SuggestedQuarterCourse) {
 export function auditCountedCourses(input: {
   suggestedPlan: SuggestedQuarterPlan[];
 }) {
-  const entriesByCourseCode = new Map<
+  const entriesByIdentityKey = new Map<
     string,
-    { credits: number; roles: string[]; rowCount: number; duplicateRows: string[] }
+    {
+      course: string;
+      credits: number;
+      roles: string[];
+      rowCount: number;
+      duplicateRows: string[];
+    }
   >();
 
   for (const course of input.suggestedPlan.flatMap((quarter) => quarter.courses)) {
     const courseCreditRange = getSuggestedQuarterCourseCreditRange(course);
     const fallbackCredits = courseCreditRange.creditMax || courseCreditRange.creditMin || 0;
-    const courseCodes = sortCourseCodes(
-      getSuggestedQuarterCourseCreditIdentityKeys(course)
-        .map((identityKey) => identityKey.match(/^grc:(.+)$/)?.[1] ?? "")
-        .filter(Boolean)
-    );
+    const identityEntries = getSuggestedQuarterCourseCreditIdentityKeys(course)
+      .map((identityKey) => {
+        const grcCourseCode = identityKey.match(/^grc:(.+)$/)?.[1] ?? null;
+        return {
+          identityKey,
+          course: grcCourseCode ?? course.label,
+          grcCourseCode,
+        };
+      })
+      .filter((entry) => entry.course);
     const roles = getSuggestedCourseRequirementRoles(course);
 
-    for (const courseCode of courseCodes) {
-      const credits = getCanonicalGrcCourseCreditAmount(courseCode) ?? fallbackCredits;
-      const existing = entriesByCourseCode.get(courseCode) ?? {
+    for (const entry of identityEntries) {
+      const credits = entry.grcCourseCode
+        ? getCanonicalGrcCourseCreditAmount(entry.grcCourseCode) ?? fallbackCredits
+        : fallbackCredits;
+      const existing = entriesByIdentityKey.get(entry.identityKey) ?? {
+        course: entry.course,
         credits,
         roles: [],
         rowCount: 0,
         duplicateRows: [],
       };
+      existing.course = entry.course;
       existing.credits = Math.max(existing.credits, credits);
       existing.roles = unique([...existing.roles, ...roles]);
       existing.rowCount += 1;
       existing.duplicateRows.push(course.label);
-      entriesByCourseCode.set(courseCode, existing);
+      entriesByIdentityKey.set(entry.identityKey, existing);
     }
   }
 
-  return [...entriesByCourseCode.entries()]
-    .sort(([left], [right]) => left.localeCompare(right))
-    .map(([course, entry]) => {
+  return [...entriesByIdentityKey.values()]
+    .sort((left, right) => left.course.localeCompare(right.course))
+    .map((entry) => {
       const countedOnce = true;
       const duplicateCountReason =
         entry.rowCount > 1
-          ? `Multiple planner roles share canonical course identity ${course}; credit is counted once.`
+          ? `Multiple planner roles share canonical course identity ${entry.course}; credit is counted once.`
           : null;
 
       return {
-        course,
+        course: entry.course,
         credits: entry.credits,
         requirementRoles: entry.roles,
         countedOnce,
         duplicateCountReason,
         copyOnlyDebugText: [
           "[copy-only counted course audit]",
-          `Course: ${course}`,
+          `Course: ${entry.course}`,
           `Credits: ${entry.credits}`,
           `Requirement roles: ${entry.roles.length ? entry.roles.join(", ") : "none"}`,
           `Counted once: ${countedOnce ? "yes" : "no"}`,

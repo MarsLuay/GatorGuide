@@ -21,6 +21,7 @@
     "planner:build-source-fingerprints": "node scripts/planner/build-transfer-planner-source-fingerprints.cjs",
     "planner:validate-source-pipeline": "node scripts/planner/verify-transfer-planner-source-pipeline.cjs",
     "planner:parse-equivalency-guide": "node scripts/planner/parse-transfer-planner-equivalency-guide.cjs",
+    "planner:extract-ce-natural-science": "node scripts/planner/computer-engineering-natural-science-source.cjs",
     "planner:ingest-grc-catalog": "node scripts/planner/ingest-grc-catalog.cjs",
     "planner:ingest-uw-catalog": "node scripts/planner/ingest-uw-catalog.cjs",
     "planner:build-course-metadata": "node scripts/planner/ingest-grc-catalog.cjs && node scripts/planner/ingest-uw-catalog.cjs && node scripts/planner/generate-transfer-planner-course-metadata.cjs",

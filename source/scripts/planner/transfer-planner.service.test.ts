@@ -126,6 +126,8 @@ import {
   auditCategoryOptionDetection,
   auditCategoryTranscriptSatisfaction,
   auditComputerEngineeringCreditBuckets,
+  auditComputerEngineeringApprovedNaturalScienceEquivalencies,
+  auditComputerEngineeringApprovedNaturalScienceTransferCategoryFilter,
   auditOptionTitleFallback,
   auditOptionCredits,
   auditOptionSelectionSources,
@@ -4468,6 +4470,327 @@ test("Seattle Computer Engineering models programming alternatives and missing M
     "10 credits of approved Computer Engineering Natural Science",
     "3-6 credits of approved Computer Engineering Math/Science",
   ]);
+});
+
+test("Seattle Computer Engineering Natural Science bucket is satisfied by credits, not option count", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+  const track = getTransferPlannerTrack(runtimePlan.bestTrackId ?? null);
+  const completedCourses: TranscriptCourseEntry[] = [];
+  const naturalScienceGroup = runtimePlan.requirementGroups?.find((group) =>
+    /approved-natural-science-10-credits/.test(group.id)
+  );
+  assert.ok(naturalScienceGroup, "Expected the CE approved natural science group.");
+
+  const findNaturalScienceOptionId = (predicate: (matches: string[]) => boolean) => {
+    const option = naturalScienceGroup.options.find((candidate) =>
+      predicate(candidate.grcMatches ?? [])
+    );
+    assert.ok(option?.id, "Expected a matching CE natural science option.");
+    return option.id;
+  };
+  const buildScenario = (selectedOptionIds?: string[]) => {
+    const selectedRequirementOptionIdsByGroup = selectedOptionIds
+      ? { [naturalScienceGroup.id]: selectedOptionIds }
+      : {};
+    const suggestedPlan = buildSuggestedQuarterPlan({
+      plan: runtimePlan,
+      ...buildStatuses(runtimePlan, completedCourses),
+      completedCourses,
+      track,
+      plannerCollegeId: "uw",
+      includeStayAtGrcCourses: false,
+      includeStemPrepCourses: false,
+      includeSummerQuarter: false,
+      selectedRequirementOptionIdsByGroup,
+      referenceDate: new Date("2026-05-08T12:00:00.000Z"),
+    });
+    const plannedLabels = suggestedPlan
+      .filter((quarter) => quarter.phase !== "completed")
+      .flatMap((quarter) => quarter.courses.map((course) => course.label));
+    const bucketAudit = auditComputerEngineeringCreditBuckets({
+      plan: runtimePlan,
+      suggestedPlan,
+      completedCourses,
+    }).find((entry) => /10 additional credits approved natural science/i.test(entry.requirement));
+    const optionAudit = auditOptionGroupSatisfaction({
+      plan: runtimePlan,
+      suggestedPlan,
+      completedCourses,
+      selectedRequirementOptionIdsByGroup,
+    }).find((entry) => /approved-natural-science-10-credits/.test(entry.groupId));
+    const remainderCourses = suggestedPlan
+      .filter((quarter) => quarter.phase !== "completed")
+      .flatMap((quarter) => quarter.courses)
+      .filter((course) => course.courseRole === "unresolved-credit-bucket-remainder");
+    assert.ok(bucketAudit, "Expected CE natural science credit bucket audit row.");
+    assert.ok(optionAudit, "Expected CE natural science option resolver audit row.");
+    return { suggestedPlan, plannedLabels, bucketAudit, optionAudit, remainderCourses };
+  };
+
+  const defaultScenario = buildScenario();
+  assert.equal(defaultScenario.bucketAudit.selectedPlaceholder, true);
+  assert.equal(defaultScenario.bucketAudit.displayedCreditProgress, "10/10");
+  assert.equal(defaultScenario.bucketAudit.plannedUnresolvedCredits, "10");
+  assert.equal(defaultScenario.bucketAudit.filterSource, "ce-approved-natural-science");
+  assert.equal(defaultScenario.bucketAudit.remainingPlaceholderScheduled, false);
+  assert.equal(defaultScenario.bucketAudit.issue, null);
+  assert.equal(defaultScenario.plannedLabels.includes("PHYS& 223"), false);
+  assert.equal(defaultScenario.remainderCourses.length, 0);
+  assert.equal(
+    buildSuggestedQuarterRemainingCreditRange({
+      quarters: defaultScenario.suggestedPlan,
+      track,
+    }).scheduledMinRemainingCredits,
+    68
+  );
+
+  const physScenario = buildScenario([
+    findNaturalScienceOptionId((matches) => matches.includes("PHYS& 223")),
+  ]);
+  assert.equal(physScenario.plannedLabels.includes("PHYS& 223"), true);
+  assert.equal(physScenario.bucketAudit.displayedCreditProgress, "5/10");
+  assert.equal(physScenario.bucketAudit.totalSatisfyingCredits, "5");
+  assert.equal(physScenario.bucketAudit.fullySatisfied, false);
+  assert.equal(physScenario.bucketAudit.plannedUnresolvedCredits, "5");
+  assert.equal(physScenario.bucketAudit.remainingUnresolvedCredits, "5");
+  assert.equal(physScenario.bucketAudit.remainingPlaceholderScheduled, true);
+  assert.equal(physScenario.bucketAudit.issue, null);
+  assert.equal(
+    physScenario.plannedLabels.includes(
+      "5 credits of approved Computer Engineering Natural Science remaining"
+    ),
+    true
+  );
+  assert.equal(physScenario.optionAudit.satisfactionMode, "credit-based");
+  assert.equal(physScenario.optionAudit.displayedProgress, "5/10");
+  assert.equal(physScenario.optionAudit.fullySatisfied, false);
+  assert.match(
+    physScenario.optionAudit.copyOnlyDebugText,
+    /Required count: ignored for credit-based groups/
+  );
+
+  const chem161Scenario = buildScenario([
+    findNaturalScienceOptionId((matches) => matches.includes("CHEM& 161")),
+  ]);
+  assert.equal(chem161Scenario.plannedLabels.includes("CHEM& 161"), true);
+  assert.equal(chem161Scenario.bucketAudit.displayedCreditProgress, "6/10");
+  assert.equal(chem161Scenario.bucketAudit.fullySatisfied, false);
+  assert.equal(chem161Scenario.bucketAudit.plannedUnresolvedCredits, "4");
+  assert.equal(chem161Scenario.bucketAudit.remainingUnresolvedCredits, "4");
+  assert.equal(chem161Scenario.bucketAudit.remainingPlaceholderScheduled, true);
+  assert.equal(chem161Scenario.bucketAudit.issue, null);
+  assert.equal(
+    chem161Scenario.plannedLabels.includes(
+      "4 credits of approved Computer Engineering Natural Science remaining"
+    ),
+    true
+  );
+  assert.equal(chem161Scenario.remainderCourses.length, 1);
+  assert.equal(chem161Scenario.remainderCourses[0]?.creditAmount, 4);
+  assert.equal(
+    chem161Scenario.remainderCourses[0]?.guidanceSummary,
+    "Use the CE-approved Natural Science filter in Transfer Category Equivalencies to find Green River courses whose UW equivalents are approved by the Allen School for this requirement. Official source: https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core"
+  );
+  assert.equal(
+    buildSuggestedQuarterRemainingCreditRange({
+      quarters: chem161Scenario.suggestedPlan,
+      track,
+    }).scheduledMinRemainingCredits,
+    68
+  );
+  const countedRemainder = auditCountedCourses({
+    suggestedPlan: chem161Scenario.suggestedPlan,
+  }).find(
+    (entry) =>
+      entry.course === "4 credits of approved Computer Engineering Natural Science remaining"
+  );
+  assert.ok(countedRemainder, "Expected counted-course audit for the CE remainder placeholder.");
+  assert.equal(countedRemainder.credits, 4);
+  assert.deepEqual(countedRemainder.requirementRoles, [
+    "unresolved-credit-bucket-remainder",
+  ]);
+  assert.equal(countedRemainder.countedOnce, true);
+  assert.equal(countedRemainder.duplicateCountReason, null);
+
+  const chemSequenceScenario = buildScenario([
+    findNaturalScienceOptionId(
+      (matches) => matches.includes("CHEM& 162") && matches.includes("CHEM& 163")
+    ),
+  ]);
+  assert.equal(chemSequenceScenario.plannedLabels.includes("CHEM& 162"), true);
+  assert.equal(chemSequenceScenario.plannedLabels.includes("CHEM& 163"), true);
+  assert.equal(chemSequenceScenario.bucketAudit.displayedCreditProgress, "12/10");
+  assert.equal(chemSequenceScenario.bucketAudit.fullySatisfied, true);
+  assert.equal(chemSequenceScenario.bucketAudit.remainingPlaceholderScheduled, false);
+  assert.equal(chemSequenceScenario.bucketAudit.issue, null);
+  assert.equal(chemSequenceScenario.remainderCourses.length, 0);
+
+  const chemAndPhysScenario = buildScenario([
+    findNaturalScienceOptionId((matches) => matches.includes("CHEM& 161")),
+    findNaturalScienceOptionId((matches) => matches.includes("PHYS& 223")),
+  ]);
+  assert.equal(chemAndPhysScenario.plannedLabels.includes("CHEM& 161"), true);
+  assert.equal(chemAndPhysScenario.plannedLabels.includes("PHYS& 223"), true);
+  assert.equal(chemAndPhysScenario.bucketAudit.displayedCreditProgress, "11/10");
+  assert.equal(chemAndPhysScenario.bucketAudit.fullySatisfied, true);
+  assert.equal(chemAndPhysScenario.bucketAudit.remainingPlaceholderScheduled, false);
+  assert.equal(chemAndPhysScenario.bucketAudit.issue, null);
+  assert.equal(chemAndPhysScenario.remainderCourses.length, 0);
+});
+
+test("Seattle Computer Engineering Natural Science filter uses Allen School approved UW equivalents", () => {
+  const {
+    extractComputerEngineeringApprovedNaturalScienceUwCourseCodesFromText,
+  } = require("./computer-engineering-natural-science-source.cjs");
+  const extractedSampleCodes =
+    extractComputerEngineeringApprovedNaturalScienceUwCourseCodesFromText(`
+      Computer Engineering Natural Science
+      Biology: 180, 200, 220
+      Chemistry: 142/145, 152/155, 162/165
+      Physics: 116/119 (but no credit for both 116 and 123), 123, 143, 224
+      Earth and Space Sciences: 311, 313
+      Astronomy: 301
+      Atmospheric Sciences: 301
+      Courses not included in the above list may require PHYS 121 and advisor review.
+      Computer Engineering Mathematics & Science
+    `);
+
+  assert.ok(extractedSampleCodes.includes("CHEM 142"));
+  assert.ok(extractedSampleCodes.includes("PHYS 123"));
+  assert.ok(extractedSampleCodes.includes("ESS 311"));
+  assert.equal(extractedSampleCodes.includes("PHYS 121"), false);
+
+  const filterAudit = auditComputerEngineeringApprovedNaturalScienceTransferCategoryFilter({
+    courseCodes: [
+      "CHEM& 161",
+      "CHEM& 162",
+      "CHEM& 163",
+      "PHYS& 223",
+      "BIOL& 211",
+      "BIOL& 212",
+      "BIOL& 213",
+      "ANTH& 205",
+    ],
+  });
+  const hasIncluded = (coursePattern: RegExp, uwPattern: RegExp) =>
+    filterAudit.some(
+      (entry) =>
+        entry.included === true &&
+        coursePattern.test(entry.course) &&
+        uwPattern.test(entry.uwEquivalent)
+    );
+
+  assert.ok(hasIncluded(/CHEM& 161/, /CHEM 142/));
+  assert.ok(hasIncluded(/CHEM& 162.*CHEM& 163/, /CHEM 152.*CHEM 162/));
+  assert.ok(hasIncluded(/PHYS& 223/, /PHYS 123/));
+  assert.ok(hasIncluded(/BIOL& 211.*BIOL& 212.*BIOL& 213/, /BIOL 180.*BIOL 200.*BIOL 220/));
+  assert.ok(
+    filterAudit.some(
+      (entry) =>
+        entry.included === false &&
+        entry.reason === "generic-category-only" &&
+        /ANTH& 205/.test(entry.course)
+    ),
+    "Expected generic NSc ANTH& 205 to be excluded from the CE-approved filter."
+  );
+
+  const sourceAudit = auditComputerEngineeringApprovedNaturalScienceEquivalencies();
+  assert.ok(
+    sourceAudit.some(
+      (entry) =>
+        entry.uwApprovedCourse === "CHEM 142" &&
+        entry.grcEquivalentPath.includes("CHEM& 161") &&
+        entry.includedInFilter
+    )
+  );
+  assert.ok(sourceAudit.some((entry) => entry.reason === "petition-only"));
+
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+  const track = getTransferPlannerTrack(runtimePlan.bestTrackId ?? null);
+  const completedCourses = [{ code: "ANTH& 205", label: "ANTH& 205", credits: 5 }];
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, completedCourses),
+    completedCourses,
+    track,
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    referenceDate: new Date("2026-05-08T12:00:00.000Z"),
+  });
+  const bucketAudit = auditComputerEngineeringCreditBuckets({
+    plan: runtimePlan,
+    suggestedPlan,
+    completedCourses,
+  }).find((entry) => /10 additional credits approved natural science/i.test(entry.requirement));
+
+  assert.ok(bucketAudit, "Expected CE Natural Science bucket audit.");
+  assert.equal(bucketAudit.filterSource, "ce-approved-natural-science");
+  assert.equal(bucketAudit.satisfiedByTranscriptCourses.includes("ANTH& 205"), false);
+  assert.equal(bucketAudit.completedSatisfyingCourses.includes("ANTH& 205"), false);
+});
+
+test("Seattle Computer Engineering Math/Science bucket uses credit progress for MATH 238", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
+  assert.ok(runtimePlan, "Expected the Seattle Computer Engineering runtime plan.");
+  const completedCourses: TranscriptCourseEntry[] = [];
+  const mathScienceGroup = runtimePlan.requirementGroups?.find((group) =>
+    /additional-math-science-3-6-credits/.test(group.id)
+  );
+  assert.ok(mathScienceGroup, "Expected the CE additional Math/Science group.");
+  const math238Option = mathScienceGroup.options.find((option) =>
+    (option.grcMatches ?? []).includes("MATH 238")
+  );
+  assert.ok(math238Option?.id, "Expected the MATH 238 option.");
+  const selectedRequirementOptionIdsByGroup = {
+    [mathScienceGroup.id]: [math238Option.id],
+  };
+  const suggestedPlan = buildSuggestedQuarterPlan({
+    plan: runtimePlan,
+    ...buildStatuses(runtimePlan, completedCourses),
+    completedCourses,
+    track: getTransferPlannerTrack(runtimePlan.bestTrackId ?? null),
+    plannerCollegeId: "uw",
+    includeStayAtGrcCourses: false,
+    includeStemPrepCourses: false,
+    includeSummerQuarter: false,
+    selectedRequirementOptionIdsByGroup,
+    referenceDate: new Date("2026-05-08T12:00:00.000Z"),
+  });
+  const plannedLabels = suggestedPlan
+    .filter((quarter) => quarter.phase !== "completed")
+    .flatMap((quarter) => quarter.courses.map((course) => course.label));
+  const remainderCourses = suggestedPlan
+    .filter((quarter) => quarter.phase !== "completed")
+    .flatMap((quarter) => quarter.courses)
+    .filter((course) => course.courseRole === "unresolved-credit-bucket-remainder");
+  const bucketAudit = auditComputerEngineeringCreditBuckets({
+    plan: runtimePlan,
+    suggestedPlan,
+    completedCourses,
+  }).find((entry) => /3-6 additional Math\/Science/i.test(entry.requirement));
+  const optionAudit = auditOptionGroupSatisfaction({
+    plan: runtimePlan,
+    suggestedPlan,
+    completedCourses,
+    selectedRequirementOptionIdsByGroup,
+  }).find((entry) => /additional-math-science-3-6-credits/.test(entry.groupId));
+
+  assert.ok(bucketAudit, "Expected CE Math/Science credit bucket audit row.");
+  assert.ok(optionAudit, "Expected CE Math/Science option resolver audit row.");
+  assert.equal(plannedLabels.includes("MATH 238"), true);
+  assert.equal(bucketAudit.displayedCreditProgress, "5/3-6");
+  assert.equal(bucketAudit.totalSatisfyingCredits, "5");
+  assert.equal(bucketAudit.fullySatisfied, true);
+  assert.equal(bucketAudit.remainingPlaceholderScheduled, false);
+  assert.equal(bucketAudit.issue, null);
+  assert.equal(remainderCourses.length, 0);
+  assert.equal(optionAudit.satisfactionMode, "credit-based");
+  assert.equal(optionAudit.displayedProgress, "5/3-6");
+  assert.equal(optionAudit.fullySatisfied, true);
 });
 
 test("Seattle Computer Engineering source-backed required-course summary stays aligned with the quarter planner", () => {
@@ -11535,6 +11858,30 @@ test("Transfer equivalency catalog supports multi-tag placeholder filters", () =
     equivalencyCatalogPage,
     /const isOpen =\s+isSearching \|\| \(tagOpenState\[tag\] \?\? \(selectedTags\.length > 0\)\);/
   );
+});
+
+test("Transfer equivalency catalog exposes the CE-approved Natural Science filter", () => {
+  const equivalencyCatalogPage = readFileSync(
+    "components/pages/TransferEquivalencyCatalogPage.tsx",
+    "utf8"
+  );
+  const transferPlannerPage = readFileSync("components/pages/TransferPlannerPage.tsx", "utf8");
+  const ceNaturalScienceSource = readFileSync(
+    "constants/transfer-planner-source/computer-engineering-natural-science.ts",
+    "utf8"
+  );
+
+  assert.match(equivalencyCatalogPage, /COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID/);
+  assert.match(equivalencyCatalogPage, /getComputerEngineeringApprovedNaturalScienceTransferEntries/);
+  assert.match(equivalencyCatalogPage, /Allen School CE-approved Natural Science/);
+  assert.match(transferPlannerPage, /COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_FILTER_ID/);
+  assert.match(transferPlannerPage, /computer engineering natural science/);
+  assert.match(
+    ceNaturalScienceSource,
+    /https:\/\/www\.cs\.washington\.edu\/academics\/undergraduate\/degree-requirements\/courses\/#core/
+  );
+  assert.match(ceNaturalScienceSource, /CHEM 142/);
+  assert.match(ceNaturalScienceSource, /PHYS 123/);
 });
 
 test("Transfer category equivalencies can constrain NSc rows to a selected major's source-backed course list", () => {

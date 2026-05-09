@@ -1719,6 +1719,10 @@ export function getTransferPlannerEquivalencyRulesForSourceCourse(
   );
 }
 
+export function getTransferPlannerAllEquivalencyRules() {
+  return [...TRANSFER_PLANNER_RUNTIME_EQUIVALENCY_RULE_REGISTRY];
+}
+
 export function getTransferPlannerStudentRuntimeMajorsForCampus(
   campusId: TransferPlannerCampusId
 ) {

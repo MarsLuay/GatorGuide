@@ -43,6 +43,8 @@ const ISSUE_TYPES = [
   "missing-option-group",
   "missing-category-option",
   "missing-credit-bucket",
+  "missing-ce-approved-filter",
+  "generic-category-used-as-ce-approved",
   "false-required-promotion",
 ];
 
@@ -1100,6 +1102,63 @@ function auditComputerEngineering(checks) {
       `Credit range: ${JSON.stringify(creditRange)}`,
     ],
     "missing-credit-bucket"
+  );
+
+  const ceApprovedFilterAudit =
+    planner.auditComputerEngineeringApprovedNaturalScienceTransferCategoryFilter({
+      courseCodes: [
+        "CHEM& 161",
+        "CHEM& 162",
+        "CHEM& 163",
+        "PHYS& 223",
+        "BIOL& 211",
+        "BIOL& 212",
+        "BIOL& 213",
+        "ANTH& 205",
+      ],
+    });
+  const ceApprovedSourceAudit =
+    planner.auditComputerEngineeringApprovedNaturalScienceEquivalencies();
+  const hasIncludedFilterCourse = (coursePattern, uwPattern) =>
+    ceApprovedFilterAudit.some(
+      (row) =>
+        row.included === true &&
+        coursePattern.test(row.course) &&
+        uwPattern.test(row.uwEquivalent)
+    );
+  const hasExcludedGenericCourse = (coursePattern) =>
+    ceApprovedFilterAudit.some(
+      (row) =>
+        row.included === false &&
+        row.reason === "generic-category-only" &&
+        coursePattern.test(row.course)
+    );
+
+  addCheck(
+    checks,
+    "uw-computer-engineering:ce-approved-natural-science-filter",
+    "UW Computer Engineering uses the Allen School CE-approved Natural Science filter instead of generic NSc/NW",
+    naturalScienceBucket?.filterSource === "ce-approved-natural-science" &&
+      hasIncludedFilterCourse(/CHEM& 161/, /CHEM 142/) &&
+      hasIncludedFilterCourse(/CHEM& 162.*CHEM& 163/, /CHEM 152.*CHEM 162/) &&
+      hasIncludedFilterCourse(/PHYS& 223/, /PHYS 123/) &&
+      hasIncludedFilterCourse(/BIOL& 211.*BIOL& 212.*BIOL& 213/, /BIOL 180.*BIOL 200.*BIOL 220/) &&
+      hasExcludedGenericCourse(/ANTH& 205/) &&
+      ceApprovedSourceAudit.some(
+        (row) => row.uwApprovedCourse === "CHEM 142" && row.includedInFilter === true
+      ) &&
+      ceApprovedSourceAudit.some(
+        (row) => row.reason === "petition-only" && row.includedInFilter === false
+      ),
+    [
+      naturalScienceBucket?.copyOnlyDebugText ?? "missing natural science bucket",
+      ceApprovedFilterAudit.map((row) => row.copyOnlyDebugText).join("\n"),
+      ceApprovedSourceAudit
+        .filter((row) => /CHEM 142|petition/i.test(row.copyOnlyDebugText))
+        .map((row) => row.copyOnlyDebugText)
+        .join("\n"),
+    ],
+    "missing-ce-approved-filter"
   );
 
   addCheck(

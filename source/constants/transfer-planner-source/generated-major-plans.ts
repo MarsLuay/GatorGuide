@@ -49,6 +49,11 @@ import {
   normalizeCategoryOptionRuntimePlan,
   resolveTransferPlannerStudentRuntimeMajorPlan as resolveCompactStudentRuntimeMajorPlan,
 } from "./student-runtime";
+import {
+  COMPUTER_ENGINEERING_APPROVED_MATH_SCIENCE_CATEGORY,
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_CATEGORY,
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL,
+} from "./computer-engineering-natural-science";
 import type {
   TransferPlannerDegreeMapBlock,
   TransferPlannerMajorPathwayEntry,
@@ -2247,7 +2252,7 @@ const UW_MSE_NME_REPLACEMENT_REASON =
 const UW_COMPUTER_ENGINEERING_DEGREE_REQUIREMENTS_SOURCE_URL =
   "https://www.cs.washington.edu/wp-content/uploads/2025/02/CompE_degreq_dec24v2.pdf";
 const UW_ALLEN_SCHOOL_COURSE_LIST_SOURCE_URL =
-  "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/";
+  COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_SOURCE_URL;
 
 function buildComputerEngineeringCategoryPlaceholderOption(input: {
   planId: string;
@@ -2297,13 +2302,13 @@ function buildKnownComputerEngineeringRequirementGroups(
       planId,
       id: "approved-natural-science-placeholder",
       title: "10 credits of approved Computer Engineering Natural Science",
-      category: "COMPE_APPROVED_NATURAL_SCIENCE",
+      category: COMPUTER_ENGINEERING_APPROVED_NATURAL_SCIENCE_CATEGORY,
       sourceCategoryCode: "Computer Engineering Natural Science",
       credits: 10,
       creditMin: 10,
       creditMax: 10,
       sourceText:
-        "Official Allen School Computer Engineering natural science list; keep as a category/list bucket unless a real Green River equivalent is source-backed.",
+        "Official Allen School Computer Engineering natural science list; use the CE-approved Natural Science filter for source-backed Green River equivalents.",
     }),
     buildRequirementOption({
       id: `${planId}:requirement-option:approved-natural-science-chem-142`,
@@ -2415,7 +2420,7 @@ function buildKnownComputerEngineeringRequirementGroups(
           planId,
           id: "additional-math-science-placeholder",
           title: "3-6 credits of approved Computer Engineering Math/Science",
-          category: "COMPE_APPROVED_MATH_SCIENCE",
+          category: COMPUTER_ENGINEERING_APPROVED_MATH_SCIENCE_CATEGORY,
           sourceCategoryCode: "Computer Engineering Math/Science",
           credits: 3,
           creditMin: 3,
