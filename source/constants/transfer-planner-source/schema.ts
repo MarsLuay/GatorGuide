@@ -28,8 +28,15 @@ export type TransferPlannerSourceManifestOwnerType =
 export type TransferPlannerSourceManifestRole =
   | "degree-requirements"
   | "admissions"
+  | "admission-prerequisite-source"
+  | "approved-course-list"
   | "curriculum"
+  | "elective-list"
+  | "non-schedulable-course-list"
   | "overview"
+  | "pathway-degree-sheet"
+  | "support-source"
+  | "upper-division-prerequisite-table"
   | "equivalency"
   | "catalog"
   | "worksheet"
@@ -56,12 +63,25 @@ export type TransferPlannerDiscoveredSourceRole =
   | "official-catalog"
   | "primary-degree-requirements"
   | "department-requirements"
+  | "approved-course-list"
+  | "elective-list"
+  | "upper-division-prerequisite-table"
+  | "non-schedulable-course-list"
+  | "support-source"
+  | "pathway-degree-sheet"
+  | "admission-prerequisite-source"
   | "admissions-preparation"
   | "sample-schedule"
   | "curriculum-map"
   | "transfer-equivalency"
   | "matched-grc-track"
   | "old-archival"
+  | "ignored";
+
+export type TransferPlannerSourceRoleStatus =
+  | "primary"
+  | "support"
+  | "non-schedulable"
   | "ignored";
 
 export type TransferPlannerSourceSectionAudit = {
@@ -347,6 +367,8 @@ export type TransferPlannerParsedRequirementSourceBlock = {
   sourceUrl: string;
   sourceLabel: string;
   sourceRole?: TransferPlannerDiscoveredSourceRole | string;
+  sourceRoleStatus?: TransferPlannerSourceRoleStatus | string;
+  canCreateSchedulableRows?: boolean;
   sourceSectionAudit?: TransferPlannerSourceSectionAudit | null;
   resolutionStrategy: TransferPlannerRequirementSourceResolutionStrategy;
   ok: boolean;
@@ -385,6 +407,8 @@ export type TransferPlannerRequirementSourceAdapterSummary = {
   countsByCampus: Record<string, number>;
   countsByResolutionStrategy: Record<string, number>;
   countsBySourceRole?: Record<string, number>;
+  countsBySourceRoleStatus?: Record<string, number>;
+  canCreateSchedulableRowCount?: number;
   qualityWarningCount: number;
   qualityNoteCount: number;
   countsByQualitySignalCode: Record<string, number>;

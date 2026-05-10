@@ -281,6 +281,43 @@ const LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
 const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
+const PATHWAY_SOURCE_CUE_PATTERN =
+  /\b(track|option|route|pathway|concentration|specialization)\b/i;
+const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
+  /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b/i;
+const APPROVED_COURSE_LIST_CUE_PATTERN =
+  /\bapproved\b.{0,60}\b(courses?|course list|list)\b|\b(courses?|course list|list)\b.{0,60}\bapproved\b/i;
+const ELECTIVE_LIST_CUE_PATTERN =
+  /\b(?:engineering|technical|departmental|major|science|natural science|approved)?\s*electives?\b.{0,50}\b(courses?|list|options?|page)\b|\b(courses?|list|options?)\b.{0,50}\belectives?\b|\/electives?(?:[-/]|$)/i;
+const UPPER_DIVISION_PREREQUISITE_CUE_PATTERN =
+  /\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b.{0,80}\bprereq(?:uisites?)?\b|\bprereq(?:uisites?)?\b.{0,80}\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b/i;
+const NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN =
+  /\b(course lists?|list of courses|courses by track|course descriptions?|all courses|course catalog|print courses?)\b|\/(?:courses?|course-list|course-lists|print\/courses)(?:[-/?#]|$)/i;
+const ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN =
+  /\b(?:admissions?|admission|apply|application)\b.{0,80}\bprereq(?:uisites?|uisite courses?)\b|\bprereq(?:uisites?|uisite courses?)\b.{0,80}\b(?:admissions?|admission|apply|application)\b/i;
+const SUPPORT_SOURCE_CUE_PATTERN =
+  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|polic(?:y|ies)|faq|frequently asked questions)\b/i;
+const PRIMARY_REQUIREMENT_CUE_PATTERN =
+  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
+const SOURCE_ROLE_STATUS_BY_ROLE = {
+  "official-catalog": "primary",
+  "primary-degree-requirements": "primary",
+  "department-requirements": "primary",
+  "pathway-degree-sheet": "primary",
+  "approved-course-list": "support",
+  "elective-list": "support",
+  "support-source": "support",
+  "admission-prerequisite-source": "support",
+  "admissions-preparation": "support",
+  "sample-schedule": "support",
+  "curriculum-map": "support",
+  "transfer-equivalency": "support",
+  "matched-grc-track": "support",
+  "upper-division-prerequisite-table": "non-schedulable",
+  "non-schedulable-course-list": "non-schedulable",
+  "old-archival": "ignored",
+  ignored: "ignored",
+};
 const GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN =
   /\b(graduate|ph\.?\s*d\.?|doctor(?:al|ate)?|m\.?\s*a\.?|master(?:'s)?)\b|\/(?:ma|phd|graduate)(?:[-/]|$)/i;
 const TRACK_CATALOG_SUPPLEMENTAL_SOURCE_PATTERN =
@@ -549,20 +586,59 @@ function selectRequirementSourceAdapter(entry) {
   );
 }
 
+function getRequirementSourceRoleStatus(sourceRole) {
+  return SOURCE_ROLE_STATUS_BY_ROLE[sourceRole] ?? "ignored";
+}
+
+function canRequirementSourceRoleCreateSchedulableRows(sourceRole) {
+  return getRequirementSourceRoleStatus(sourceRole) === "primary";
+}
+
+function canRequirementSourceCreateSchedulableRows(entry) {
+  return canRequirementSourceRoleCreateSchedulableRows(classifyRequirementSourceRole(entry));
+}
+
 function getSourceRoleScore(entry) {
-  if (classifyRequirementSourceRole(entry) === "official-catalog") {
-    return 6;
+  const discoveredRole = classifyRequirementSourceRole(entry);
+  switch (discoveredRole) {
+    case "official-catalog":
+    case "primary-degree-requirements":
+      return 6;
+    case "pathway-degree-sheet":
+      return 5;
+    case "department-requirements":
+    case "curriculum-map":
+      return 4;
+    case "approved-course-list":
+    case "elective-list":
+    case "support-source":
+    case "admission-prerequisite-source":
+    case "admissions-preparation":
+    case "sample-schedule":
+    case "overview":
+      return 2;
+    case "upper-division-prerequisite-table":
+    case "non-schedulable-course-list":
+      return 1;
+    case "transfer-equivalency":
+    case "matched-grc-track":
+    case "old-archival":
+      return 0;
+    case "ignored":
+      break;
+    default:
+      break;
   }
 
   switch (entry.role) {
     case "degree-requirements":
+    case "catalog":
       return 6;
+    case "pathway-degree-sheet":
     case "curriculum":
       return 5;
     case "worksheet":
       return 4;
-    case "catalog":
-      return 6;
     case "overview":
       return 2;
     default:
@@ -586,6 +662,17 @@ function classifyRequirementSourceRole(entry) {
 
   if (!searchable) {
     return "ignored";
+  }
+
+  const manifestRole = String(entry?.role ?? "");
+  if (manifestRole === "degree-requirements" || manifestRole === "curriculum" || manifestRole === "worksheet") {
+    return "primary-degree-requirements";
+  }
+  if (manifestRole === "catalog") {
+    return "official-catalog";
+  }
+  if (manifestRole === "pathway-degree-sheet") {
+    return "pathway-degree-sheet";
   }
 
   if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(String(entry?.url ?? ""))) {
@@ -612,12 +699,43 @@ function classifyRequirementSourceRole(entry) {
     return "curriculum-map";
   }
 
+  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "pathway-degree-sheet";
+  }
+
+  if (
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
+  ) {
+    return "primary-degree-requirements";
+  }
+
+  if (APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "approved-course-list";
+  }
+
+  if (ELECTIVE_LIST_CUE_PATTERN.test(searchable)) {
+    return "elective-list";
+  }
+
+  if (UPPER_DIVISION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
+    return "upper-division-prerequisite-table";
+  }
+
+  if (NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "non-schedulable-course-list";
+  }
+
+  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "admission-prerequisite-source";
+  }
+
   if (/\badmissions?\b|\bapply\b|\bapplication\b|\bpreparation\b|\bprerequisites?\b/.test(searchable)) {
     return "admissions-preparation";
   }
 
-  if (/\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bchecklist\b/.test(searchable)) {
-    return "primary-degree-requirements";
+  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "support-source";
   }
 
   if (/\brequirements?\b|\bundergraduate\b|\bmajor\b|\bprogram\b/.test(searchable)) {
@@ -1221,6 +1339,19 @@ function buildParsedRequirementAtomCandidates(owner, parsedCourseCodes, snapshot
     };
   });
 }
+
+const WORD_NUMBER_MAP = new Map([
+  ["one", 1],
+  ["two", 2],
+  ["three", 3],
+  ["four", 4],
+  ["five", 5],
+  ["six", 6],
+  ["seven", 7],
+  ["eight", 8],
+  ["nine", 9],
+  ["ten", 10],
+]);
 
 function parseRequirementCreditAmount(value) {
   const text = normalizeWhitespace(String(value ?? ""));
@@ -5424,6 +5555,7 @@ function isWeakParsedResult(entry, parsed) {
 
 function getParsedResultScore(entry, parsed) {
   return (
+    getSourceRoleScore(entry) * 60 +
     getParsedOwnerAlignmentScore(entry, parsed) * 100 +
     (parsed.courseCodes?.length ?? 0) * 12 +
     (parsed.requirementCueLines?.length ?? 0) * 3 +
@@ -5443,6 +5575,13 @@ function shouldAllowAlternateToReplaceBestSource(
   alternateParsed
 ) {
   if (!hasMeaningfulParsedContent(alternateParsed)) {
+    return false;
+  }
+
+  if (
+    canRequirementSourceCreateSchedulableRows(bestEntry) &&
+    !canRequirementSourceCreateSchedulableRows(alternateEntry)
+  ) {
     return false;
   }
 
@@ -5493,6 +5632,10 @@ function shouldMergeSupplementalAlternateSource(
   }
 
   if (getParsedOwnerAlignmentScore(alternateEntry, alternateParsed) < 2) {
+    return false;
+  }
+
+  if (!canRequirementSourceCreateSchedulableRows(alternateEntry)) {
     return false;
   }
 
@@ -5657,19 +5800,22 @@ function buildManifestParseSuccess(
   const snapshotPath =
     parsed.snapshotPath ??
     writeSnapshot(baseResult.ownerId, effectiveSourceUrl, parsed.title, parsed.snapshotLines);
-  const parsedRequirementAtomCandidates = buildParsedRequirementAtomCandidates(
-    baseResult,
-    parsedCourseCodes,
-    parsed.snapshotLines
-  );
-  const parsedDegreeMapBlockCandidates = buildParsedDegreeMapBlockCandidates(
-    baseResult,
-    parsedCourseCodes,
-    parsed.requirementCueLines,
-    parsed.chooseStatements,
-    parsed.pathwayLabels,
-    parsed.headings
-  );
+  const sourceRole = parsed.sourceRole ?? classifyRequirementSourceRole(effectiveEntry);
+  const sourceRoleStatus = getRequirementSourceRoleStatus(sourceRole);
+  const canCreateSchedulableRows = canRequirementSourceRoleCreateSchedulableRows(sourceRole);
+  const parsedRequirementAtomCandidates = canCreateSchedulableRows
+    ? buildParsedRequirementAtomCandidates(baseResult, parsedCourseCodes, parsed.snapshotLines)
+    : [];
+  const parsedDegreeMapBlockCandidates = canCreateSchedulableRows
+    ? buildParsedDegreeMapBlockCandidates(
+        baseResult,
+        parsedCourseCodes,
+        parsed.requirementCueLines,
+        parsed.chooseStatements,
+        parsed.pathwayLabels,
+        parsed.headings
+      )
+    : [];
 
   return {
     ...baseResult,
@@ -5678,7 +5824,9 @@ function buildManifestParseSuccess(
     adapterFamily: selectRequirementSourceAdapter(effectiveEntry).family,
     sourceUrl: effectiveSourceUrl,
     sourceLabel: effectiveSourceLabel,
-    sourceRole: parsed.sourceRole ?? classifyRequirementSourceRole(effectiveEntry),
+    sourceRole,
+    sourceRoleStatus,
+    canCreateSchedulableRows,
     sourceSectionAudit: parsed.sourceSectionAudit ?? null,
     resolutionStrategy,
     ok: true,
@@ -5739,6 +5887,8 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
       sourceUrl: entry.url,
       sourceLabel: entry.label,
       sourceRole: classifyRequirementSourceRole(entry),
+      sourceRoleStatus: getRequirementSourceRoleStatus(classifyRequirementSourceRole(entry)),
+      canCreateSchedulableRows: canRequirementSourceCreateSchedulableRows(entry),
       sourceSectionAudit: null,
       resolutionStrategy: "cached-snapshot",
       ok: false,
@@ -5876,6 +6026,8 @@ async function parseManifestEntry(entry, timeoutMs, options = {}) {
       sourceUrl: entry.url,
       sourceLabel: entry.label,
       sourceRole: classifyRequirementSourceRole(entry),
+      sourceRoleStatus: getRequirementSourceRoleStatus(classifyRequirementSourceRole(entry)),
+      canCreateSchedulableRows: canRequirementSourceCreateSchedulableRows(entry),
       sourceSectionAudit: null,
       resolutionStrategy: "primary-source",
       ok: false,
@@ -6100,6 +6252,13 @@ function buildParseReport(owners, options = {}) {
     countsByCampus: countBy(fullOwners, (owner) => owner.campusId),
     countsByResolutionStrategy: countBy(fullOwners, (owner) => owner.resolutionStrategy),
     countsBySourceRole: countBy(fullOwners, (owner) => owner.sourceRole ?? "ignored"),
+    countsBySourceRoleStatus: countBy(
+      fullOwners,
+      (owner) => owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner.sourceRole ?? "ignored")
+    ),
+    canCreateSchedulableRowCount: fullOwners.filter(
+      (owner) => owner.canCreateSchedulableRows !== false
+    ).length,
     withParsedCourseCodesCount: fullOwners.filter((owner) => owner.parsedUwCourseCodes.length > 0).length,
     withSourceOnlyCourseCodesCount: fullOwners.filter(
       (owner) => owner.sourceOnlyUwCourseCodes.length > 0
@@ -6265,6 +6424,9 @@ function writeGeneratedRequirementSourceAdapters(report) {
     sourceUrl: owner.sourceUrl,
     sourceLabel: owner.sourceLabel,
     sourceRole: owner.sourceRole,
+    sourceRoleStatus:
+      owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner.sourceRole ?? "ignored"),
+    canCreateSchedulableRows: owner.canCreateSchedulableRows !== false,
     sourceSectionAudit: owner.sourceSectionAudit,
     resolutionStrategy: owner.resolutionStrategy,
     ok: owner.ok,
@@ -6329,6 +6491,13 @@ function writeGeneratedRequirementSourceAdapters(report) {
     countsByCampus: countBy(fullOwners, (owner) => owner.campusId),
     countsByResolutionStrategy: countBy(fullOwners, (owner) => owner.resolutionStrategy),
     countsBySourceRole: countBy(fullOwners, (owner) => owner.sourceRole ?? "ignored"),
+    countsBySourceRoleStatus: countBy(
+      fullOwners,
+      (owner) => owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner.sourceRole ?? "ignored")
+    ),
+    canCreateSchedulableRowCount: fullOwners.filter(
+      (owner) => owner.canCreateSchedulableRows !== false
+    ).length,
     qualityWarningCount: fullOwners.reduce(
       (count, owner) =>
         count + owner.qualitySignals.filter((signal) => signal.severity === "warning").length,
@@ -6428,6 +6597,13 @@ function buildMarkdownReport(report) {
       .sort(([left], [right]) => left.localeCompare(right))
       .map(([sourceRole, count]) => `- ${sourceRole}: ${count}`),
     "",
+    "## Source Role Statuses",
+    "",
+    ...Object.entries(report.countsBySourceRoleStatus ?? {})
+      .sort(([left], [right]) => left.localeCompare(right))
+      .map(([sourceRoleStatus, count]) => `- ${sourceRoleStatus}: ${count}`),
+    `- can-create-schedulable-rows: ${report.canCreateSchedulableRowCount ?? 0}`,
+    "",
     "## Parser Quality Signals",
     "",
     ...Object.entries(report.countsByQualitySignalCode)
@@ -6523,6 +6699,14 @@ function buildMarkdownReport(report) {
         }
         lines.push(`- Parser type: ${owner.parserType}`);
         lines.push(`- Source role: ${owner.sourceRole ?? "ignored"}`);
+        lines.push(
+          `- Source role status: ${
+            owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner.sourceRole ?? "ignored")
+          }`
+        );
+        lines.push(
+          `- Can create schedulable rows: ${owner.canCreateSchedulableRows !== false ? "yes" : "no"}`
+        );
         lines.push(`- Parser adapter: ${owner.adapterId}`);
         lines.push(`- Resolution strategy: ${owner.resolutionStrategy}`);
         lines.push(`- Parse confidence: ${owner.parseConfidence}`);
@@ -6555,6 +6739,14 @@ function buildMarkdownReport(report) {
         lines.push(`- ${owner.ownerTitle}`);
         lines.push(`  - Source: ${owner.sourceUrl}`);
         lines.push(`  - Source role: ${owner.sourceRole ?? "ignored"}`);
+        lines.push(
+          `  - Source role status: ${
+            owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner.sourceRole ?? "ignored")
+          }`
+        );
+        lines.push(
+          `  - Can create schedulable rows: ${owner.canCreateSchedulableRows !== false ? "yes" : "no"}`
+        );
         lines.push(`  - Parser type: ${owner.parserType}`);
         if (owner.sourceSectionAudit?.line) {
           lines.push(`  - ${owner.sourceSectionAudit.line}`);
@@ -6571,6 +6763,11 @@ function buildMarkdownReport(report) {
         lines.push(`- ${owner.ownerTitle}`);
         lines.push(`  - Source: ${owner.sourceUrl}`);
         lines.push(`  - Source role: ${owner.sourceRole ?? "ignored"}`);
+        lines.push(
+          `  - Source role status: ${
+            owner.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner.sourceRole ?? "ignored")
+          }`
+        );
         lines.push(`  - Error: ${owner.error ?? "unknown error"}`);
       });
       lines.push("");
@@ -6657,7 +6854,9 @@ function parseHtmlSourceFromArtifactsForTest(entry, html) {
 module.exports = {
   buildHtmlLines,
   buildParseReport,
+  canRequirementSourceRoleCreateSchedulableRows,
   classifyRequirementSourceRole,
+  getRequirementSourceRoleStatus,
   parseHtmlSourceFromArtifactsForTest,
   scopeCatalogHtmlByAnchor,
 };

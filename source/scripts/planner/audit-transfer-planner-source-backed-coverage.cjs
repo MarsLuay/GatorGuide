@@ -53,6 +53,61 @@ const CONCRETE_UW_ONLY_PATTERN = /\b[A-Z]{2,8}\s*[123]\d{2}\b/i;
 const UPPER_DIVISION_UW_PATTERN = /\b[A-Z]{2,8}\s*[3-5]\d{2}\b/i;
 const SOURCE_BACKED_REQUIRED_COURSE_NON_REQUIREMENT_CUE_PATTERN =
   /\b(approved list|not required for transferring|electives?|general electives?|free electives?|replacement|course list|course lists|course evaluation|course evaluations|recommended|suggested|consider|first year students|suggested general education|suggested course pathways?|choose\s+(?:one|[0-9]+)|one\s+of|select(?:ed|ing)?|\d+\s+credits?\s+from|minimum\s+\d+\s+credits?[^.]{0,80}\bfrom)\b/i;
+const SCHEDULABLE_SOURCE_ROLES = new Set([
+  "degree-requirements",
+  "catalog",
+  "curriculum",
+  "worksheet",
+  "official-catalog",
+  "primary-degree-requirements",
+  "department-requirements",
+  "pathway-degree-sheet",
+]);
+const SOURCE_ROLE_STATUS_BY_ROLE = {
+  "degree-requirements": "primary",
+  catalog: "primary",
+  curriculum: "primary",
+  worksheet: "primary",
+  admissions: "support",
+  overview: "support",
+  equivalency: "support",
+  availability: "support",
+  other: "support",
+  "official-catalog": "primary",
+  "primary-degree-requirements": "primary",
+  "department-requirements": "primary",
+  "pathway-degree-sheet": "primary",
+  "approved-course-list": "support",
+  "elective-list": "support",
+  "support-source": "support",
+  "admission-prerequisite-source": "support",
+  "admissions-preparation": "support",
+  "sample-schedule": "support",
+  "curriculum-map": "support",
+  "transfer-equivalency": "support",
+  "matched-grc-track": "support",
+  "upper-division-prerequisite-table": "non-schedulable",
+  "non-schedulable-course-list": "non-schedulable",
+  "old-archival": "ignored",
+  ignored: "ignored",
+};
+
+function getSourceRoleStatus(role) {
+  return SOURCE_ROLE_STATUS_BY_ROLE[role] ?? "ignored";
+}
+
+function canSourceRoleCreateSchedulableRows(role) {
+  return SCHEDULABLE_SOURCE_ROLES.has(role);
+}
+
+function canParsedBlockCreateSchedulableRows(block) {
+  if (block?.canCreateSchedulableRows === false) {
+    return false;
+  }
+
+  const role = block?.sourceRole ?? null;
+  return !role || canSourceRoleCreateSchedulableRows(role);
+}
 
 const TRACK_IDS = {
   accountingAaa: "grc-associate-business-entrepreneurship-accounting-aaa",
@@ -373,6 +428,10 @@ function getGrcEquivalentsForUwCourses(uwCourseCodes) {
 }
 
 function buildParsedRequirementRows(block) {
+  if (!canParsedBlockCreateSchedulableRows(block)) {
+    return [];
+  }
+
   const rows = [];
   const groupsById = new Map((block.parsedRequirementGroups ?? []).map((group) => [group.id, group]));
 
@@ -522,6 +581,10 @@ function buildCoverageRowsForOwner(owner) {
         majorTitle: owner.title,
         campusId: owner.campusId,
         uwSourceUrl: primarySourceUrl,
+        detectedSourceRole: block.sourceRole ?? "ignored",
+        sourceRoleStatus: block.sourceRoleStatus ?? getSourceRoleStatus(block.sourceRole ?? "ignored"),
+        parserType: block.parserType ?? "unknown",
+        canCreateSchedulableRows: canParsedBlockCreateSchedulableRows(block),
         uwRequirementLabel: parsedRow.uwRequirementLabel,
         parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
         matchedGrcEquivalents: grcEquivalents,
@@ -532,6 +595,14 @@ function buildCoverageRowsForOwner(owner) {
         issueType,
         copyOnlyDebugText: [
           "[copy-only source-backed requirement audit]",
+          `Source URL: ${block.sourceUrl ?? primarySourceUrl ?? "unknown"}`,
+          `Owner id: ${owner.ownerId}`,
+          `Detected source role: ${block.sourceRole ?? "ignored"}`,
+          `Primary/support/non-schedulable status: ${
+            block.sourceRoleStatus ?? getSourceRoleStatus(block.sourceRole ?? "ignored")
+          }`,
+          `Parser type: ${block.parserType ?? "unknown"}`,
+          `Can create schedulable rows: ${canParsedBlockCreateSchedulableRows(block) ? "yes" : "no"}`,
           `UW requirement: ${parsedRow.uwRequirementLabel}`,
           `GRC equivalent: ${grcEquivalents.length ? grcEquivalents.join(", ") : "none"}`,
           `Visible in plan: ${visibleInTransferOnlyPlan ? "yes" : "no"}`,
@@ -681,9 +752,17 @@ function buildMechanicalSourceDiscoveryAuditLines() {
     return [
       "[source discovery audit]",
       "Major: Mechanical Engineering",
+      `Owner id: ${entry.ownerId ?? planId}`,
+      `Source URL: ${entry.url}`,
       `Candidate URL: ${entry.url}`,
+      `Detected source role: ${entry.role ?? "unknown"}`,
       `Source role: ${entry.role ?? "unknown"}`,
+      `Primary/support/non-schedulable status: ${getSourceRoleStatus(entry.role ?? "ignored")}`,
+      `Parser type: ${entry.parserType ?? "unknown"}`,
+      `Ranking score: ${getConfidenceScore(entry.confidence)}`,
       `Score: ${getConfidenceScore(entry.confidence)}`,
+      `Reason for role: ${reason}`,
+      `Can create schedulable rows: ${canSourceRoleCreateSchedulableRows(entry.role ?? "ignored") ? "yes" : "no"}`,
       `Used for parsing: ${parsedBlock ? "yes" : "no"}`,
       `Reason: ${reason}`,
       `Extracted Engineering Fundamentals: ${

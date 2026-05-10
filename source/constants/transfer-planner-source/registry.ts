@@ -868,13 +868,66 @@ function getLastValidatedOn(validationNotes: string[]) {
   return null;
 }
 
+const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
+  /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
+const UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN = /#(?:program|credential)-UG-[A-Z0-9-]+/i;
+const PATHWAY_SOURCE_CUE_PATTERN =
+  /\b(track|option|route|pathway|concentration|specialization)\b/i;
+const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
+  /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b/i;
+const APPROVED_COURSE_LIST_CUE_PATTERN =
+  /\bapproved\b.{0,60}\b(courses?|course list|list)\b|\b(courses?|course list|list)\b.{0,60}\bapproved\b/i;
+const ELECTIVE_LIST_CUE_PATTERN =
+  /\b(?:engineering|technical|departmental|major|science|natural science|approved)?\s*electives?\b.{0,50}\b(courses?|list|options?|page)\b|\b(courses?|list|options?)\b.{0,50}\belectives?\b|\/electives?(?:[-/]|$)/i;
+const UPPER_DIVISION_PREREQUISITE_CUE_PATTERN =
+  /\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b.{0,80}\bprereq(?:uisites?)?\b|\bprereq(?:uisites?)?\b.{0,80}\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b/i;
+const NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN =
+  /\b(course lists?|list of courses|courses by track|course descriptions?|all courses|course catalog|print courses?)\b|\/(?:courses?|course-list|course-lists|print\/courses)(?:[-/?#]|$)/i;
+const ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN =
+  /\b(?:admissions?|admission|apply|application)\b.{0,80}\bprereq(?:uisites?|uisite courses?)\b|\bprereq(?:uisites?|uisite courses?)\b.{0,80}\b(?:admissions?|admission|apply|application)\b/i;
+const SUPPORT_SOURCE_CUE_PATTERN =
+  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|polic(?:y|ies)|faq|frequently asked questions)\b/i;
+const PRIMARY_REQUIREMENT_CUE_PATTERN =
+  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
+
+function getSourceManifestRoleStatus(role: TransferPlannerSourceManifestRole) {
+  switch (role) {
+    case "degree-requirements":
+    case "catalog":
+    case "curriculum":
+    case "pathway-degree-sheet":
+    case "worksheet":
+      return "primary";
+    case "upper-division-prerequisite-table":
+    case "non-schedulable-course-list":
+      return "non-schedulable";
+    case "admission-prerequisite-source":
+    case "approved-course-list":
+    case "elective-list":
+    case "support-source":
+    case "admissions":
+    case "overview":
+    case "equivalency":
+    case "availability":
+    case "other":
+      return "support";
+  }
+}
+
+function canSourceManifestRoleCreateSchedulableRows(role: TransferPlannerSourceManifestRole) {
+  return getSourceManifestRoleStatus(role) === "primary";
+}
+
 function getSourceManifestRole(link: TransferPlannerSourceLink): TransferPlannerSourceManifestRole {
   const searchable = `${link.label} ${link.url}`.toLowerCase();
 
+  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "pathway-degree-sheet";
+  }
+
   if (
-    /degree requirements|major requirements|graduation requirements|degree structure|degree sheet|requirement sheet|checklist|requirements packet|degreq/.test(
-      searchable
-    )
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
   ) {
     return "degree-requirements";
   }
@@ -895,12 +948,36 @@ function getSourceManifestRole(link: TransferPlannerSourceLink): TransferPlanner
     return "catalog";
   }
 
+  if (APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "approved-course-list";
+  }
+
+  if (ELECTIVE_LIST_CUE_PATTERN.test(searchable)) {
+    return "elective-list";
+  }
+
+  if (UPPER_DIVISION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
+    return "upper-division-prerequisite-table";
+  }
+
+  if (NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "non-schedulable-course-list";
+  }
+
+  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "admission-prerequisite-source";
+  }
+
   if (/admission|admissions|apply|application|prerequisite/.test(searchable)) {
     return "admissions";
   }
 
   if (/curriculum/.test(searchable)) {
     return "curriculum";
+  }
+
+  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "support-source";
   }
 
   if (/overview|undergraduate|program|major/.test(searchable)) {
@@ -933,7 +1010,7 @@ function getSourceManifestParserType(
     return "pdf-worksheet";
   }
 
-  if (isPdf && (role === "degree-requirements" || role === "curriculum")) {
+  if (isPdf && (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet")) {
     return "pdf-degree-sheet";
   }
 
@@ -941,11 +1018,11 @@ function getSourceManifestParserType(
     return "generic-pdf";
   }
 
-  if (role === "degree-requirements") {
+  if (role === "degree-requirements" || role === "pathway-degree-sheet") {
     return "html-degree-page";
   }
 
-  if (role === "admissions") {
+  if (role === "admissions" || role === "admission-prerequisite-source") {
     return "html-admissions-page";
   }
 
@@ -972,15 +1049,20 @@ function getSourceManifestConfidence(
     parserType === "annual-schedule-pdf" ||
     parserType === "equivalency-guide" ||
     parserType === "html-degree-page" ||
-    parserType === "pdf-degree-sheet"
+    parserType === "pdf-degree-sheet" ||
+    role === "pathway-degree-sheet"
   ) {
     return "high";
   }
 
   if (
     role === "admissions" ||
+    role === "admission-prerequisite-source" ||
+    role === "approved-course-list" ||
     role === "curriculum" ||
+    role === "elective-list" ||
     role === "catalog" ||
+    role === "support-source" ||
     role === "worksheet" ||
     parserType === "html-admissions-page" ||
     parserType === "html-curriculum-page" ||
@@ -1000,20 +1082,26 @@ function getSourceManifestPrimaryScore(link: TransferPlannerSourceLink) {
 
   let score = 0;
   if (role === "degree-requirements") score += 100;
+  if (role === "pathway-degree-sheet") score += 92;
   if (role === "curriculum") score += 70;
   if (role === "catalog") score += 50;
+  if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable)) score += 35;
+  if (
+    UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable) &&
+    UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN.test(searchable)
+  ) {
+    score += 12;
+  }
   if (parserType === "pdf-degree-sheet") score += 20;
   if (/degree requirements|major requirements|graduation requirements/.test(searchable)) score += 25;
   if (/curriculum/.test(searchable)) score += 15;
   if (
-    (role === "degree-requirements" || role === "curriculum") &&
+    (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet") &&
     /\b(track|option|route|pathway|concentration|specialization)\b/.test(searchable)
   ) {
     score += 8;
   }
-  if (/\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//.test(searchable)) {
-    score -= 15;
-  }
+  if (!canSourceManifestRoleCreateSchedulableRows(role)) score -= 40;
   if (role === "admissions" || role === "equivalency" || role === "availability") score -= 40;
 
   return score;
@@ -1312,7 +1400,7 @@ function isBlockedPrimarySourceUrl(url: string) {
 }
 
 function isSafeFallbackPrimaryRole(role: TransferPlannerSourceManifestRole) {
-  return role !== "equivalency" && role !== "availability" && role !== "admissions";
+  return canSourceManifestRoleCreateSchedulableRows(role) || role === "overview" || role === "other";
 }
 
 function pickPrimaryDegreeRequirementsUrl(links: TransferPlannerSourceLink[]) {

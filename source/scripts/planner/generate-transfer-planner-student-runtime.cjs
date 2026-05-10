@@ -128,18 +128,40 @@ function shouldKeepRuntimeParsedRequirementAtomCandidate(candidate) {
   });
 }
 
+const RUNTIME_SCHEDULABLE_SOURCE_ROLES = new Set([
+  "official-catalog",
+  "primary-degree-requirements",
+  "department-requirements",
+  "pathway-degree-sheet",
+]);
+
+function canRuntimeSourceBlockCreateSchedulableRows(block) {
+  if (block.canCreateSchedulableRows === false) {
+    return false;
+  }
+
+  const sourceRole = block.sourceRole ?? null;
+  return !sourceRole || RUNTIME_SCHEDULABLE_SOURCE_ROLES.has(sourceRole);
+}
+
 function compactParsedRequirementSourceBlock(block) {
+  const canCreateSchedulableRows = canRuntimeSourceBlockCreateSchedulableRows(block);
   return {
     id: block.id,
     planId: block.planId,
     pathwayId: block.pathwayId,
+    sourceRole: block.sourceRole,
+    sourceRoleStatus: block.sourceRoleStatus,
+    canCreateSchedulableRows,
     requirementCueLines: block.requirementCueLines,
-    parsedRequirementAtomCandidates: (block.parsedRequirementAtomCandidates ?? [])
-      .filter(shouldKeepRuntimeParsedRequirementAtomCandidate)
-      .map((candidate) => ({
-        uwCourseCode: candidate.uwCourseCode,
-        sourceLineHints: candidate.sourceLineHints,
-      })),
+    parsedRequirementAtomCandidates: canCreateSchedulableRows
+      ? (block.parsedRequirementAtomCandidates ?? [])
+          .filter(shouldKeepRuntimeParsedRequirementAtomCandidate)
+          .map((candidate) => ({
+            uwCourseCode: candidate.uwCourseCode,
+            sourceLineHints: candidate.sourceLineHints,
+          }))
+      : [],
   };
 }
 
@@ -239,7 +261,13 @@ export type TransferPlannerRuntimeParsedRequirementAtomCandidate = Pick<
 
 export type TransferPlannerRuntimeParsedRequirementSourceBlock = Pick<
   TransferPlannerParsedRequirementSourceBlock,
-  "id" | "planId" | "pathwayId" | "requirementCueLines"
+  | "id"
+  | "planId"
+  | "pathwayId"
+  | "sourceRole"
+  | "sourceRoleStatus"
+  | "canCreateSchedulableRows"
+  | "requirementCueLines"
 > & {
   parsedRequirementAtomCandidates: TransferPlannerRuntimeParsedRequirementAtomCandidate[];
   parsedRequirementCourses?: TransferPlannerParsedRequirementSourceBlock["parsedRequirementCourses"];

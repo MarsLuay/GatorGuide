@@ -198,3 +198,170 @@ test("Weak-source deeper discovery runs only for low-confidence discovery contex
   assert.equal(strongResult.deeperDiscoveryEnabled, false);
   assert.deepEqual(strongInspectedUrls, [requirementsUrl]);
 });
+
+test("Allen School approved course lists are classified as support-only approved-course-list sources", () => {
+  const target = buildSbseTarget({
+    ownerKey: "uw-seattle-computer-engineering",
+    planId: "uw-seattle-computer-engineering",
+    title: "Computer Engineering",
+    label: "Computer Engineering",
+  });
+  const approvedListUrl =
+    "https://www.cs.washington.edu/academics/ugrad/current-students/degree/ce-approved-natural-science/";
+  const approvedListLabel = "Allen School approved CE Natural Science course list";
+  const candidate = discovery.scoreCandidate(target, {
+    url: approvedListUrl,
+    label: approvedListLabel,
+    pageTitle: "Approved Natural Science Courses for Computer Engineering",
+    sourceKind: "official-link",
+  });
+
+  assert.equal(candidate.sourceRole, "approved-course-list");
+  assert.equal(candidate.sourceRoleStatus, "support");
+  assert.equal(candidate.canCreateSchedulableRows, false);
+  assert.ok(candidate.score > 0, `Expected support source to retain positive value, got ${candidate.score}.`);
+  assert.equal(
+    parser.classifyRequirementSourceRole({
+      url: approvedListUrl,
+      label: approvedListLabel,
+      role: "other",
+      parserType: "generic-html",
+    }),
+    "approved-course-list"
+  );
+});
+
+test("ChemE/NME engineering elective lists are classified as support-only elective-list sources", () => {
+  const target = buildSbseTarget({
+    ownerKey: "uw-seattle-chemical-engineering",
+    planId: "uw-seattle-chemical-engineering",
+    title: "Chemical Engineering",
+    label: "Chemical Engineering",
+  });
+  const candidate = discovery.scoreCandidate(target, {
+    url: "https://www.cheme.washington.edu/undergraduate/engineering-electives",
+    label: "ChemE/NME engineering elective list",
+    pageTitle: "Chemical Engineering Elective Courses",
+    sourceKind: "official-link",
+  });
+
+  assert.equal(candidate.sourceRole, "elective-list");
+  assert.equal(candidate.sourceRoleStatus, "support");
+  assert.equal(candidate.canCreateSchedulableRows, false);
+  assert.ok(candidate.score > 0, `Expected elective support source to retain positive value, got ${candidate.score}.`);
+});
+
+test("Broad prerequisite and course-list pages are non-schedulable source roles", () => {
+  const target = buildSbseTarget({
+    ownerKey: "uw-seattle-computer-science",
+    planId: "uw-seattle-computer-science",
+    title: "Computer Science",
+    label: "Computer Science",
+  });
+  const prerequisiteTable = discovery.scoreCandidate(target, {
+    url: "https://www.cs.washington.edu/academics/ugrad/current-students/degree/cse-300-level-prerequisites",
+    label: "Allen School CSE 300-level prerequisite table",
+    pageTitle: "CSE 300-level prerequisite table",
+    sourceKind: "official-link",
+  });
+  const courseListRole = parser.classifyRequirementSourceRole({
+    url: "https://www.example.edu/undergraduate/print/courses",
+    label: "Undergraduate course list",
+    role: "other",
+    parserType: "generic-html",
+  });
+
+  assert.equal(prerequisiteTable.sourceRole, "upper-division-prerequisite-table");
+  assert.equal(prerequisiteTable.sourceRoleStatus, "non-schedulable");
+  assert.equal(prerequisiteTable.canCreateSchedulableRows, false);
+  assert.equal(courseListRole, "non-schedulable-course-list");
+});
+
+test("Primary degree requirement pages outrank official support lists", () => {
+  const target = buildSbseTarget({
+    ownerKey: "uw-seattle-computer-engineering",
+    planId: "uw-seattle-computer-engineering",
+    title: "Computer Engineering",
+    label: "Computer Engineering",
+  });
+  const degreeRequirements = discovery.scoreCandidate(target, {
+    url: "https://www.ece.uw.edu/academics/undergrad/degree-requirements/computer-engineering/",
+    label: "Computer Engineering degree requirements",
+    pageTitle: "Computer Engineering Degree Requirements",
+    sourceKind: "official-link",
+  });
+  const approvedList = discovery.scoreCandidate(target, {
+    url: "https://www.cs.washington.edu/academics/ugrad/current-students/degree/ce-approved-natural-science/",
+    label: "Allen School approved CE Natural Science course list",
+    pageTitle: "Approved Natural Science Courses for Computer Engineering",
+    sourceKind: "official-link",
+  });
+
+  assert.equal(degreeRequirements.sourceRole, "primary-degree-requirements");
+  assert.equal(approvedList.sourceRole, "approved-course-list");
+  assert.ok(degreeRequirements.score > approvedList.score);
+});
+
+test("Pathway degree sheets can outrank broad department pages for a specific pathway", () => {
+  const target = buildSbseTarget({
+    ownerKey: "uw-seattle-materials-science-engineering:pathway:nme-option",
+    planId: "uw-seattle-materials-science-engineering",
+    pathwayId: "nme-option",
+    title: "Materials Science and Engineering",
+    label: "Nanoscience and Molecular Engineering option",
+  });
+  const pathwaySheet = discovery.scoreCandidate(target, {
+    url: "https://mse.washington.edu/files/nanoscience-and-molecular-engineering-option-degree-sheet.pdf",
+    label: "Nanoscience and Molecular Engineering option degree sheet",
+    sourceKind: "official-link",
+  });
+  const broadDepartment = discovery.scoreCandidate(target, {
+    url: "https://mse.washington.edu/undergraduate/program",
+    label: "Materials Science and Engineering undergraduate program",
+    pageTitle: "Materials Science and Engineering Undergraduate Program",
+    sourceKind: "official-link",
+  });
+
+  assert.equal(pathwaySheet.sourceRole, "pathway-degree-sheet");
+  assert.equal(pathwaySheet.sourceRoleStatus, "primary");
+  assert.equal(pathwaySheet.canCreateSchedulableRows, true);
+  assert.ok(pathwaySheet.score > broadDepartment.score);
+});
+
+test("Official support sources are not downgraded to ignored", () => {
+  const target = buildSbseTarget({
+    ownerKey: "uw-seattle-environmental-engineering",
+    planId: "uw-seattle-environmental-engineering",
+    title: "Environmental Engineering",
+    label: "Environmental Engineering",
+  });
+  const supportSource = discovery.scoreCandidate(target, {
+    url: "https://cee.uw.edu/academics/undergraduate/advising",
+    label: "Environmental Engineering advising support",
+    pageTitle: "Environmental Engineering Advising",
+    sourceKind: "official-link",
+  });
+
+  assert.equal(supportSource.sourceRole, "support-source");
+  assert.equal(supportSource.sourceRoleStatus, "support");
+  assert.notEqual(supportSource.sourceRole, "ignored");
+});
+
+test("Admission prerequisite pages get a support-only admission-prerequisite-source role", () => {
+  const target = buildSbseTarget({
+    ownerKey: "uw-bothell-business-administration",
+    planId: "uw-bothell-business-administration",
+    title: "Business Administration",
+    label: "Business Administration",
+  });
+  const admissionPrerequisites = discovery.scoreCandidate(target, {
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+    label: "BBA admission prerequisite courses",
+    pageTitle: "Admission prerequisite courses",
+    sourceKind: "official-link",
+  });
+
+  assert.equal(admissionPrerequisites.sourceRole, "admission-prerequisite-source");
+  assert.equal(admissionPrerequisites.sourceRoleStatus, "support");
+  assert.equal(admissionPrerequisites.canCreateSchedulableRows, false);
+});

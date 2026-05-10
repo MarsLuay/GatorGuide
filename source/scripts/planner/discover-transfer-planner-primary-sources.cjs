@@ -73,6 +73,111 @@ const LEGACY_STUDENT_GENCAT_SOURCE_URL_PATTERN =
 const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
 const UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN = /#(?:program|credential)-UG-[A-Z0-9-]+/i;
+const PATHWAY_SOURCE_CUE_PATTERN =
+  /\b(track|option|route|pathway|concentration|specialization)\b/i;
+const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
+  /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b/i;
+const APPROVED_COURSE_LIST_CUE_PATTERN =
+  /\bapproved\b.{0,60}\b(courses?|course list|list)\b|\b(courses?|course list|list)\b.{0,60}\bapproved\b/i;
+const ELECTIVE_LIST_CUE_PATTERN =
+  /\b(?:engineering|technical|departmental|major|science|natural science|approved)?\s*electives?\b.{0,50}\b(courses?|list|options?|page)\b|\b(courses?|list|options?)\b.{0,50}\belectives?\b|\/electives?(?:[-/]|$)/i;
+const UPPER_DIVISION_PREREQUISITE_CUE_PATTERN =
+  /\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b.{0,80}\bprereq(?:uisites?)?\b|\bprereq(?:uisites?)?\b.{0,80}\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b/i;
+const NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN =
+  /\b(course lists?|list of courses|courses by track|course descriptions?|all courses|course catalog|print courses?)\b|\/(?:courses?|course-list|course-lists|print\/courses)(?:[-/?#]|$)/i;
+const ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN =
+  /\b(?:admissions?|admission|apply|application)\b.{0,80}\bprereq(?:uisites?|uisite courses?)\b|\bprereq(?:uisites?|uisite courses?)\b.{0,80}\b(?:admissions?|admission|apply|application)\b/i;
+const SUPPORT_SOURCE_CUE_PATTERN =
+  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|polic(?:y|ies)|faq|frequently asked questions)\b/i;
+const PRIMARY_REQUIREMENT_CUE_PATTERN =
+  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
+const SOURCE_ROLE_METADATA = {
+  "official-catalog": {
+    status: "primary",
+    canCreateSchedulableRows: true,
+    reason: "official UW General Catalog program page",
+  },
+  "primary-degree-requirements": {
+    status: "primary",
+    canCreateSchedulableRows: true,
+    reason: "primary degree requirements source role",
+  },
+  "department-requirements": {
+    status: "primary",
+    canCreateSchedulableRows: true,
+    reason: "department requirements source role",
+  },
+  "pathway-degree-sheet": {
+    status: "primary",
+    canCreateSchedulableRows: true,
+    reason: "pathway degree sheet source role",
+  },
+  "approved-course-list": {
+    status: "support",
+    canCreateSchedulableRows: false,
+    reason: "approved course list support source role",
+  },
+  "elective-list": {
+    status: "support",
+    canCreateSchedulableRows: false,
+    reason: "elective list support source role",
+  },
+  "upper-division-prerequisite-table": {
+    status: "non-schedulable",
+    canCreateSchedulableRows: false,
+    reason: "upper-division prerequisite table source role",
+  },
+  "non-schedulable-course-list": {
+    status: "non-schedulable",
+    canCreateSchedulableRows: false,
+    reason: "non-schedulable course list source role",
+  },
+  "support-source": {
+    status: "support",
+    canCreateSchedulableRows: false,
+    reason: "official support source role",
+  },
+  "admission-prerequisite-source": {
+    status: "support",
+    canCreateSchedulableRows: false,
+    reason: "admission prerequisite support source role",
+  },
+  "admissions-preparation": {
+    status: "support",
+    canCreateSchedulableRows: false,
+    reason: "admissions or preparation source role",
+  },
+  "sample-schedule": {
+    status: "support",
+    canCreateSchedulableRows: false,
+    reason: "sample schedule supports planning but is not requirement authority",
+  },
+  "curriculum-map": {
+    status: "support",
+    canCreateSchedulableRows: false,
+    reason: "curriculum map source role",
+  },
+  "transfer-equivalency": {
+    status: "support",
+    canCreateSchedulableRows: false,
+    reason: "transfer equivalency is not degree-requirement authority",
+  },
+  "matched-grc-track": {
+    status: "support",
+    canCreateSchedulableRows: false,
+    reason: "matched Green River track is not UW requirement authority",
+  },
+  "old-archival": {
+    status: "ignored",
+    canCreateSchedulableRows: false,
+    reason: "old or archival source role",
+  },
+  ignored: {
+    status: "ignored",
+    canCreateSchedulableRows: false,
+    reason: "ignored source role",
+  },
+};
 const STOP_TOKENS = new Set([
   "route",
   "option",
@@ -349,8 +454,7 @@ function isBlockedPrimarySourceCandidateUrl(url) {
   return (
     lower.includes("/saml/login") ||
     lower.includes("shibboleth.sso/login") ||
-    lower.includes("/wp-login") ||
-    lower.includes("/print/courses")
+    lower.includes("/wp-login")
   );
 }
 
@@ -391,6 +495,10 @@ function dedupeOfficialLinks(links) {
 function getOfficialLinkRole(link) {
   const searchable = `${link?.label ?? ""} ${link?.url ?? ""}`.toLowerCase();
 
+  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "pathway-degree-sheet";
+  }
+
   if (
     /degree requirements|major requirements|graduation requirements|degree structure|degree sheet|requirement sheet|checklist|requirements packet|degreq/.test(
       searchable
@@ -415,12 +523,36 @@ function getOfficialLinkRole(link) {
     return "catalog";
   }
 
+  if (APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "approved-course-list";
+  }
+
+  if (ELECTIVE_LIST_CUE_PATTERN.test(searchable)) {
+    return "elective-list";
+  }
+
+  if (UPPER_DIVISION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
+    return "upper-division-prerequisite-table";
+  }
+
+  if (NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "non-schedulable-course-list";
+  }
+
+  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "admission-prerequisite-source";
+  }
+
   if (/admission|admissions|apply|application|prerequisite/.test(searchable)) {
     return "admissions";
   }
 
   if (/curriculum/.test(searchable)) {
     return "curriculum";
+  }
+
+  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "support-source";
   }
 
   if (/overview|undergraduate|program|major/.test(searchable)) {
@@ -450,7 +582,7 @@ function getOfficialLinkParserType(link, role) {
     return "pdf-worksheet";
   }
 
-  if (isPdf && (role === "degree-requirements" || role === "curriculum")) {
+  if (isPdf && (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet")) {
     return "pdf-degree-sheet";
   }
 
@@ -458,11 +590,11 @@ function getOfficialLinkParserType(link, role) {
     return "generic-pdf";
   }
 
-  if (role === "degree-requirements") {
+  if (role === "degree-requirements" || role === "pathway-degree-sheet") {
     return "html-degree-page";
   }
 
-  if (role === "admissions") {
+  if (role === "admissions" || role === "admission-prerequisite-source") {
     return "html-admissions-page";
   }
 
@@ -479,6 +611,47 @@ function getOfficialLinkParserType(link, role) {
   }
 
   return "unknown";
+}
+
+function getSourceRoleMetadata(sourceRole) {
+  return SOURCE_ROLE_METADATA[sourceRole] ?? SOURCE_ROLE_METADATA.ignored;
+}
+
+function getSourceRoleStatus(sourceRole) {
+  return getSourceRoleMetadata(sourceRole).status;
+}
+
+function canSourceRoleCreateSchedulableRows(sourceRole) {
+  return getSourceRoleMetadata(sourceRole).canCreateSchedulableRows === true;
+}
+
+function getDiscoveryParserType(candidate, sourceRole) {
+  const normalizedUrl = String(candidate?.url ?? "").toLowerCase();
+  const isPdf = /\.pdf(?:$|[?#])/i.test(normalizedUrl);
+
+  switch (sourceRole) {
+    case "official-catalog":
+      return "catalog-page";
+    case "primary-degree-requirements":
+    case "pathway-degree-sheet":
+      return isPdf ? "pdf-degree-sheet" : "html-degree-page";
+    case "department-requirements":
+      return isPdf ? "generic-pdf" : "html-overview-page";
+    case "admission-prerequisite-source":
+    case "admissions-preparation":
+      return isPdf ? "generic-pdf" : "html-admissions-page";
+    case "curriculum-map":
+      return isPdf ? "pdf-degree-sheet" : "html-curriculum-page";
+    case "sample-schedule":
+    case "approved-course-list":
+    case "elective-list":
+    case "upper-division-prerequisite-table":
+    case "non-schedulable-course-list":
+    case "support-source":
+      return isPdf ? "generic-pdf" : "generic-html";
+    default:
+      return isPdf ? "generic-pdf" : "generic-html";
+  }
 }
 
 function classifySourceDiscoveryRole(candidate) {
@@ -525,12 +698,43 @@ function classifySourceDiscoveryRole(candidate) {
     return "curriculum-map";
   }
 
+  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "pathway-degree-sheet";
+  }
+
+  if (
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
+  ) {
+    return "primary-degree-requirements";
+  }
+
+  if (APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "approved-course-list";
+  }
+
+  if (ELECTIVE_LIST_CUE_PATTERN.test(searchable)) {
+    return "elective-list";
+  }
+
+  if (UPPER_DIVISION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
+    return "upper-division-prerequisite-table";
+  }
+
+  if (NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "non-schedulable-course-list";
+  }
+
+  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "admission-prerequisite-source";
+  }
+
   if (/\badmissions?\b|\bapply\b|\bapplication\b|\bpreparation\b|\bprerequisites?\b/.test(searchable)) {
     return "admissions-preparation";
   }
 
-  if (/\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bchecklist\b/.test(searchable)) {
-    return "primary-degree-requirements";
+  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "support-source";
   }
 
   if (/\brequirements?\b|\bundergraduate\b|\bmajor\b|\bprogram\b/.test(searchable)) {
@@ -547,6 +751,7 @@ function getOfficialPrimaryScore(link) {
 
   let score = 0;
   if (role === "degree-requirements") score += 100;
+  if (role === "pathway-degree-sheet") score += 92;
   if (role === "curriculum") score += 70;
   if (role === "catalog") score += 50;
   if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable)) score += 35;
@@ -560,18 +765,36 @@ function getOfficialPrimaryScore(link) {
   if (/degree requirements|major requirements|graduation requirements/.test(searchable)) score += 25;
   if (/curriculum/.test(searchable)) score += 15;
   if (
-    (role === "degree-requirements" || role === "curriculum") &&
+    (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet") &&
     /\b(track|option|route|pathway|concentration|specialization)\b/.test(searchable)
   ) {
     score += 8;
   }
-  if (role === "admissions" || role === "equivalency" || role === "availability") score -= 40;
+  if (
+    role === "admissions" ||
+    role === "admission-prerequisite-source" ||
+    role === "approved-course-list" ||
+    role === "elective-list" ||
+    role === "upper-division-prerequisite-table" ||
+    role === "non-schedulable-course-list" ||
+    role === "support-source" ||
+    role === "equivalency" ||
+    role === "availability"
+  ) {
+    score -= 40;
+  }
 
   return score;
 }
 
 function isSafeFallbackOfficialRole(role) {
-  return role === "degree-requirements" || role === "curriculum" || role === "overview" || role === "other";
+  return (
+    role === "degree-requirements" ||
+    role === "pathway-degree-sheet" ||
+    role === "curriculum" ||
+    role === "overview" ||
+    role === "other"
+  );
 }
 
 function pickUnderlyingPrimaryOfficialLink(links) {
@@ -1439,7 +1662,10 @@ function scoreCandidate(target, candidate) {
       score: -100,
       confidence: "low",
       sourceRole: "ignored",
-      reasons: ["authentication or course-list URL is not a primary degree-requirements source"],
+      sourceRoleStatus: "ignored",
+      parserType: getDiscoveryParserType(candidate, "ignored"),
+      canCreateSchedulableRows: false,
+      reasons: ["authentication URL is not a primary degree-requirements source"],
     };
   }
 
@@ -1462,49 +1688,60 @@ function scoreCandidate(target, candidate) {
 
   const sourceRoleRules = {
     "official-catalog": {
-      score: 34,
-      reason: "official UW General Catalog program page",
+      score: 32,
     },
     "primary-degree-requirements": {
-      score: 30,
-      reason: "primary degree requirements source role",
+      score: 34,
     },
     "department-requirements": {
-      score: 24,
-      reason: "department requirements source role",
+      score: 22,
+    },
+    "pathway-degree-sheet": {
+      score: 28,
+    },
+    "approved-course-list": {
+      score: 8,
+    },
+    "elective-list": {
+      score: 8,
+    },
+    "upper-division-prerequisite-table": {
+      score: 5,
+    },
+    "non-schedulable-course-list": {
+      score: 4,
+    },
+    "support-source": {
+      score: 6,
+    },
+    "admission-prerequisite-source": {
+      score: 6,
     },
     "admissions-preparation": {
       score: 4,
-      reason: "admissions or preparation source role",
     },
     "sample-schedule": {
       score: 2,
-      reason: "sample schedule supports planning but is not requirement authority",
     },
     "curriculum-map": {
       score: 8,
-      reason: "curriculum map source role",
     },
     "transfer-equivalency": {
       score: -30,
-      reason: "transfer equivalency is not degree-requirement authority",
     },
     "matched-grc-track": {
       score: -34,
-      reason: "matched Green River track is not UW requirement authority",
     },
     "old-archival": {
       score: -80,
-      reason: "old or archival source role",
     },
     ignored: {
       score: -60,
-      reason: "ignored source role",
     },
   };
   const sourceRoleRule = sourceRoleRules[sourceRole] ?? sourceRoleRules.ignored;
   score += sourceRoleRule.score;
-  addReason(reasons, sourceRoleRule.reason);
+  addReason(reasons, getSourceRoleMetadata(sourceRole).reason);
   if (
     sourceRole === "official-catalog" &&
     UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN.test(candidate.url)
@@ -1656,6 +1893,22 @@ function scoreCandidate(target, candidate) {
     addReason(reasons, "explicitly names the selected pathway or route");
   }
 
+  if (sourceRole === "pathway-degree-sheet" && target.pathwayId) {
+    score += 34;
+    addReason(reasons, "pathway degree sheet is scoped to the selected pathway");
+  }
+
+  if (
+    sourceRole === "department-requirements" &&
+    target.pathwayId &&
+    labelPhrase &&
+    labelPhrase !== majorPhrase &&
+    !matchesSpaceDelimitedSlug(candidateIdentityText, labelPhrase)
+  ) {
+    score -= 14;
+    addReason(reasons, "broad department page does not name the selected pathway");
+  }
+
   for (const token of target.keywordTokens) {
     if (tokenMatchesCandidateText(token, candidateIdentityText)) {
       matchedKeywordCount += 1;
@@ -1688,6 +1941,9 @@ function scoreCandidate(target, candidate) {
     score,
     confidence,
     sourceRole,
+    sourceRoleStatus: getSourceRoleStatus(sourceRole),
+    parserType: getDiscoveryParserType(candidate, sourceRole),
+    canCreateSchedulableRows: canSourceRoleCreateSchedulableRows(sourceRole),
     reasons: uniqueSorted(reasons),
     detectedYears: candidateYearInfo.detectedYears,
     latestDetectedYear: candidateYearInfo.latestDetectedYear,
@@ -1716,6 +1972,14 @@ function mergeCandidate(existing, incoming) {
     sourcePageUrl: winning.sourcePageUrl || existing.sourcePageUrl || incoming.sourcePageUrl || null,
     sourceKinds: uniqueSorted([...(existing.sourceKinds ?? []), ...(incoming.sourceKinds ?? [])]),
     sourceRole: winning.sourceRole || existing.sourceRole || incoming.sourceRole || "ignored",
+    sourceRoleStatus:
+      winning.sourceRoleStatus || existing.sourceRoleStatus || incoming.sourceRoleStatus || "ignored",
+    parserType: winning.parserType || existing.parserType || incoming.parserType || "unknown",
+    canCreateSchedulableRows: Boolean(
+      winning.canCreateSchedulableRows ??
+        existing.canCreateSchedulableRows ??
+        incoming.canCreateSchedulableRows
+    ),
     discoveryDepth: Math.min(
       existing.discoveryDepth ?? Number.POSITIVE_INFINITY,
       incoming.discoveryDepth ?? Number.POSITIVE_INFINITY
@@ -1768,6 +2032,9 @@ function addScoredCandidate(candidateMap, target, rawCandidate) {
     sourcePageUrl: rawCandidate.sourcePageUrl ?? null,
     sourceKinds: rawCandidate.sourceKind ? [rawCandidate.sourceKind] : [],
     sourceRole: scored.sourceRole,
+    sourceRoleStatus: scored.sourceRoleStatus,
+    parserType: scored.parserType,
+    canCreateSchedulableRows: scored.canCreateSchedulableRows,
     discoveryDepth: Number.isFinite(rawCandidate.discoveryDepth)
       ? rawCandidate.discoveryDepth
       : 0,
@@ -2030,12 +2297,27 @@ function buildSourceDiscoveryAuditLines(target, candidates, suggestion) {
     return [
       "[source discovery audit]",
       `Major id: ${target.planId ?? "unknown"}`,
+      `Owner id: ${target.ownerKey ?? target.planId ?? "unknown"}`,
       `Seed URL: ${candidate.sourcePageUrl ?? target.existingPrimaryUrl ?? "n/a"}`,
+      `Source URL: ${candidate.url}`,
       `Candidate URL: ${candidate.url}`,
       `Link text: ${candidate.anchorText || candidate.label || candidate.pageTitle || "n/a"}`,
+      `Detected source role: ${candidate.sourceRole ?? "ignored"}`,
       `Source role: ${candidate.sourceRole ?? "ignored"}`,
+      `Primary/support/non-schedulable status: ${
+        candidate.sourceRoleStatus ?? getSourceRoleStatus(candidate.sourceRole ?? "ignored")
+      }`,
+      `Parser type: ${candidate.parserType ?? getDiscoveryParserType(candidate, candidate.sourceRole ?? "ignored")}`,
       `Discovery depth: ${candidate.discoveryDepth ?? 0}`,
+      `Ranking score: ${candidate.score}`,
       `Score: ${candidate.score}`,
+      `Reason for role: ${getSourceRoleMetadata(candidate.sourceRole ?? "ignored").reason}`,
+      `Can create schedulable rows: ${
+        (candidate.canCreateSchedulableRows ??
+          canSourceRoleCreateSchedulableRows(candidate.sourceRole ?? "ignored"))
+          ? "yes"
+          : "no"
+      }`,
       `Used for parsing: ${usedForParsing ? "yes" : "no"}`,
       `Reason: ${(candidate.reasons ?? []).join("; ") || "no scoring reason recorded"}`,
     ].join(" ");
@@ -2446,11 +2728,14 @@ module.exports = {
   buildReplacementDecision,
   buildWeakExistingOwnerTargets,
   buildWeakExistingPrimarySignals,
+  canSourceRoleCreateSchedulableRows,
   classifySourceDiscoveryRole,
   compareScoredCandidates,
   extractAnchors,
   extractHeadings,
+  getDiscoveryParserType,
   getOfficialPrimaryScore,
+  getSourceRoleStatus,
   inspectPage,
   scoreCandidate,
   shouldRunDeeperDiscovery,

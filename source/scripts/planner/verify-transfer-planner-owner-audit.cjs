@@ -31,6 +31,17 @@ const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.json");
 const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.md");
+const SUPPORT_ONLY_PRIMARY_SOURCE_ROLES = new Set([
+  "admission-prerequisite-source",
+  "admissions",
+  "approved-course-list",
+  "availability",
+  "elective-list",
+  "equivalency",
+  "non-schedulable-course-list",
+  "support-source",
+  "upper-division-prerequisite-table",
+]);
 
 function getArgValue(flag) {
   const args = process.argv.slice(2);
@@ -551,6 +562,21 @@ function main() {
         "missing-primary-manifest-flag",
         "Source manifest entries exist, but none are marked as the primary degree-requirements link."
       );
+    } else {
+      const supportOnlyPrimaryEntry = effectiveManifestEntries.find(
+        (entry) =>
+          entry.isPrimaryDegreeRequirementsLink &&
+          SUPPORT_ONLY_PRIMARY_SOURCE_ROLES.has(entry.role)
+      );
+      if (supportOnlyPrimaryEntry) {
+        addIssue(
+          symptomIssues,
+          "error",
+          "support-source-marked-primary",
+          "A support-only or non-schedulable source role is marked as the primary degree-requirements link.",
+          `${supportOnlyPrimaryEntry.role}: ${supportOnlyPrimaryEntry.url}`
+        );
+      }
     }
 
     const parsedBlock =

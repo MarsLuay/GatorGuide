@@ -76,6 +76,16 @@ function normalizeLabel(owner) {
   );
 }
 
+function isSchedulablePrimarySuggestion(candidate) {
+  return (
+    candidate &&
+    candidate.confidence === "high" &&
+    candidate.canCreateSchedulableRows !== false &&
+    candidate.sourceRoleStatus !== "support" &&
+    candidate.sourceRoleStatus !== "non-schedulable"
+  );
+}
+
 function buildReviewOwnerKeySet(reviewQueue) {
   return new Set(
     (reviewQueue.campuses ?? []).flatMap((campus) =>
@@ -138,7 +148,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
 
   (discoveryReport.owners ?? [])
     .filter((owner) => !owner.existingPrimaryUrl)
-    .filter((owner) => owner?.suggestedPrimary?.confidence === "high")
+    .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .filter((owner) => {
       const blockedByReviewQueue = reviewOwnerKeys.has(owner.ownerKey);
       if (blockedByReviewQueue) {
@@ -167,7 +177,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
 
   (discoveryReport.weakExistingOwners ?? [])
     .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
-    .filter((owner) => owner?.suggestedPrimary?.confidence === "high")
+    .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .forEach((owner) => {
       const ownerId = buildOwnerId(owner.planId, owner.pathwayId ?? null);
       entriesByOwnerId.set(ownerId, {
