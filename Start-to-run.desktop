@@ -2,6 +2,6 @@
 Type=Application
 Name=Start Gator Guide
 Comment=Install dependencies, update Expo packages, and start Gator Guide
-Exec=sh -c 'launcher="$1"; if [ -n "$launcher" ]; then repo_dir="$(dirname "$launcher")"; else repo_dir="$(pwd)"; fi; cd "$repo_dir" && bash ./Start-to-run.sh; status=$?; if [ "$status" -ne 0 ]; then printf "\nGator Guide failed with exit code %s.\nPress Enter to close this window..." "$status"; read _; fi; exit "$status"' sh "%k"
+Exec=sh -c 'launcher="$1"; if [ -n "$launcher" ]; then repo_dir="$(dirname "$launcher")"; else repo_dir="$(pwd)"; fi; cd "$repo_dir" && bash ./Start-to-run.command; status=$?; if [ "$status" -ne 0 ]; then printf "\nGator Guide failed with exit code %s.\nPress Enter to close this window..." "$status"; read _; fi; exit "$status"' sh "%k"
 Terminal=true
 Categories=Development;

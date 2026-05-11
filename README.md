@@ -16,10 +16,6 @@ Gator Guide helps students:
 - Explore personalized schedule information.
 - Get reminders for applications and due dates.
 
-## Repo Layout
-
-- [source](source/README.md): Contains the bulk of the code: Expo/React Native app, UI, app services, planner tooling, and platform setup.
-
 ## Setup: Download and Run
 
 ### Quick start
