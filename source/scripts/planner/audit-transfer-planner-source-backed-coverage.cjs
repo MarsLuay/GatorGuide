@@ -8557,6 +8557,7 @@ function writeReports(report) {
     `- Blocking gate issues: ${report.summary.blockingGateIssueCount ?? actionableIssueRows.length}`,
     `- UW owners audited: ${report.summary.ownerCount}`,
     `- Requirement coverage rows: ${report.summary.requirementCoverageRowCount}`,
+    `- Requirement coverage issues: ${report.summary.requirementCoverageIssueCount ?? 0}`,
     `- Source scope audit rows: ${report.summary.sourceScopeAuditRowCount ?? 0}`,
     `- Source scope issues: ${report.summary.sourceScopeIssueCount ?? 0}`,
     `- Generated source seed audit rows: ${
@@ -9410,6 +9411,7 @@ function main() {
   const coverageRows = owners.flatMap(buildCoverageRowsForOwner);
   const protectedRows = buildProtectedRows(targetPlanId);
   const allRows = [...coverageRows, ...protectedRows];
+  const requirementCoverageIssueRows = allRows.filter((row) => row.issueType);
   const sourceScopeAuditRows = owners.flatMap(buildSourceScopeAuditRowsForOwner);
   const sourceScopeIssueRows = sourceScopeAuditRows.filter(
     (row) => row.issue && row.issue !== "none"
@@ -9562,6 +9564,7 @@ function main() {
     ...singleEquivalencyAuditRows,
   ]);
   const failedSourceScopeChecks =
+    requirementCoverageIssueRows.length +
     sourceScopeIssueRows.length +
     generatedSourceSeedIssueRows.length +
     generatedShapeIssueRows.length +
@@ -9589,6 +9592,7 @@ function main() {
     summary: {
       ownerCount: owners.length,
       requirementCoverageRowCount: allRows.length,
+      requirementCoverageIssueCount: requirementCoverageIssueRows.length,
       sourceScopeAuditRowCount: sourceScopeAuditRows.length,
       sourceScopeIssueCount: sourceScopeIssueRows.length,
       generatedSourceSeedAuditRowCount: generatedSourceSeedAuditRows.length,
@@ -9675,6 +9679,7 @@ function main() {
   );
   console.log(`UW owners audited: ${report.summary.ownerCount}`);
   console.log(`Requirement coverage rows: ${report.summary.requirementCoverageRowCount}`);
+  console.log(`Requirement coverage issues: ${report.summary.requirementCoverageIssueCount}`);
   console.log(`Source scope audit rows: ${report.summary.sourceScopeAuditRowCount}`);
   console.log(`Source scope issues: ${report.summary.sourceScopeIssueCount}`);
   console.log(`Generated source seed audit rows: ${report.summary.generatedSourceSeedAuditRowCount}`);
@@ -9761,6 +9766,10 @@ function main() {
   console.log(`Markdown report: ${OUTPUT_MD_PATH}`);
 
   if (!reportOnly && failedSourceScopeChecks) {
+    for (const row of requirementCoverageIssueRows.slice(0, 40)) {
+      console.error(`Requirement coverage audit failed: ${row.issueType}`);
+      console.error(`- ${row.copyOnlyDebugText}`);
+    }
     for (const row of sourceScopeIssueRows.slice(0, 40)) {
       console.error(`Source scope audit failed: ${row.issue}`);
       console.error(`- ${row.copyOnlyDebugText}`);
