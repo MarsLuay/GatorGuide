@@ -8,6 +8,7 @@ import {
   FIRESTORE_COLLECTIONS,
   FIRESTORE_USER_SUBCOLLECTIONS,
 } from '@/constants/schema';
+import { TRANSFER_PLANNER_LOCAL_ONLY_QUESTIONNAIRE_FIELDS } from '@/constants/planner-storage';
 import { COLLEGE_SCORECARD_CIP4_PROGRAMS } from '@/constants/college-scorecard-cip4';
 import { hasCollegeScorecardApiKey, isStubMode } from '@/services/app/config';
 import { errorLoggingService } from '@/services/logging/error-logging.service';
@@ -46,13 +47,9 @@ const SCORECARD_ENRICHED_FIELDS = [
   'latest.programs.cip_6_digit.code',
   'latest.programs.cip_6_digit.title',
 ].join(',');
-const LOCAL_ONLY_QUESTIONNAIRE_KEYS = new Set([
-  'completedCourses',
-  'transferPlannerCompletedCourses',
-  'transferPlannerTranscriptSource',
-  'transferPlannerTranscriptUploadedAt',
-  'transferPlannerTranscriptParserVersion',
-]);
+const LOCAL_ONLY_QUESTIONNAIRE_KEYS: ReadonlySet<string> = new Set(
+  TRANSFER_PLANNER_LOCAL_ONLY_QUESTIONNAIRE_FIELDS
+);
 
 const getCacheKey = (type: 'matches' | 'search' | 'details', payload: string) =>
   `college:${CACHE_VERSION}:${type}:${payload}`;

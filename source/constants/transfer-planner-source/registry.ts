@@ -23,6 +23,10 @@ import {
   TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
 } from "./primary-source-promotions.generated";
 import {
+  buildTransferPlannerOwnerId,
+  normalizeTransferPlannerPathwayId,
+} from "./pathway-id-normalization";
+import {
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY,
 } from "./requirement-diff-classifications.generated";
@@ -755,6 +759,89 @@ function toSourceLinks(links?: TransferPlannerLink[]) {
   );
 }
 
+const SOURCE_LINK_IDENTITY_STOP_TOKENS = new Set([
+  "and",
+  "the",
+  "of",
+  "in",
+  "for",
+  "major",
+  "program",
+  "degree",
+  "route",
+  "option",
+  "track",
+  "pathway",
+  "concentration",
+  "specialization",
+]);
+
+function buildSourceLinkIdentityTokens(...values: Array<string | null | undefined>) {
+  return unique(
+    values
+      .flatMap((value) =>
+        normalizeTransferPlannerText(value)
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, " ")
+          .split(" ")
+      )
+      .filter(
+        (token) =>
+          token.length >= 2 &&
+          !SOURCE_LINK_IDENTITY_STOP_TOKENS.has(token)
+      )
+  );
+}
+
+function sourceIdentityTokenMatches(token: string, candidateTokens: Set<string>) {
+  if (candidateTokens.has(token)) {
+    return true;
+  }
+
+  if (token.endsWith("ies") && candidateTokens.has(`${token.slice(0, -3)}y`)) {
+    return true;
+  }
+
+  if (token.endsWith("s") && token.length > 3 && candidateTokens.has(token.slice(0, -1))) {
+    return true;
+  }
+
+  return false;
+}
+
+function sourceLinkMatchesPathwayIdentity(
+  link: TransferPlannerSourceLink,
+  pathway: TransferPlannerMajorPathway
+) {
+  const pathwayTokens = buildSourceLinkIdentityTokens(pathway.id, pathway.label);
+  if (!pathwayTokens.length) {
+    return false;
+  }
+
+  const linkTokens = new Set(
+    buildSourceLinkIdentityTokens(link.label, link.url, link.note)
+  );
+  return pathwayTokens.every((token) =>
+    sourceIdentityTokenMatches(token, linkTokens)
+  );
+}
+
+function isPathwaySpecificSourceLink(link: TransferPlannerSourceLink) {
+  return PATHWAY_SOURCE_CUE_PATTERN.test(`${link.label} ${link.url}`);
+}
+
+function materializeMatchedPathwayParentSourceLink(link: TransferPlannerSourceLink) {
+  const searchable = `${link.label} ${link.url}`;
+  if (PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable)) {
+    return link;
+  }
+
+  return {
+    ...link,
+    label: `${link.label} major requirements`,
+  };
+}
+
 function getSourceManifestOwnerId(planId: string, pathwayId?: string | null) {
   return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
 }
@@ -772,6 +859,39 @@ const SUPPLEMENTAL_MANIFEST_SOURCE_LINKS_BY_OWNER_ID = new Map<
   string,
   TransferPlannerSourceLink[]
 >([
+  [
+    "uw-seattle-computer-science",
+    [
+      {
+        label: "Allen School CS-approved Natural Science course list",
+        url: "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
+        note:
+          "Supporting official Allen School source for Computer Science approved-science validation; keep support-scoped so approved-list courses do not become required schedule rows.",
+      },
+    ],
+  ],
+  [
+    "uw-seattle-computer-science:pathway:data-science-option",
+    [
+      {
+        label: "Allen School CS-approved Natural Science course list",
+        url: "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
+        note:
+          "Supporting official Allen School source for Computer Science approved-science validation; keep support-scoped so approved-list courses do not become required schedule rows.",
+      },
+    ],
+  ],
+  [
+    "uw-seattle-computer-engineering",
+    [
+      {
+        label: "Allen School CE-approved Natural Science course list",
+        url: "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core",
+        note:
+          "Supporting official Allen School source for the Computer Engineering Natural Science approved-course filter; use with UW-GRC equivalency rules, not generic NSc/NW tags.",
+      },
+    ],
+  ],
   [
     "uw-bothell-data-visualization-ba",
     [
@@ -857,13 +977,90 @@ function getLastValidatedOn(validationNotes: string[]) {
   return null;
 }
 
+const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
+  /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
+const UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN = /#(?:program|credential)-UG-[A-Z0-9-]+/i;
+const PATHWAY_SOURCE_CUE_PATTERN =
+  /\b(track|option|route|pathway|concentration|specialization)\b/i;
+const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
+  /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b|degreq/i;
+const APPROVED_COURSE_LIST_CUE_PATTERN =
+  /\bapproved\b.{0,60}\b(courses?|course list|list)\b|\b(courses?|course list|list)\b.{0,60}\bapproved\b/i;
+const ELECTIVE_LIST_CUE_PATTERN =
+  /\b(?:engineering|technical|departmental|major|science|natural science|approved)?\s*electives?\b.{0,50}\b(courses?|list|options?|page)\b|\b(courses?|list|options?)\b.{0,50}\belectives?\b|\/electives?(?:[-/]|$)/i;
+const UPPER_DIVISION_PREREQUISITE_CUE_PATTERN =
+  /\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b.{0,80}\bprereq(?:uisites?)?\b|\bprereq(?:uisites?)?\b.{0,80}\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b/i;
+const NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN =
+  /\b(course lists?|list of courses|courses by track|course descriptions?|all courses|course catalog|print courses?|suggested course pathways?|computing specializations?|capstones?)\b|\/(?:courses?|course-list|course-lists|print\/courses|capstones?|computing-specializations)(?:[-/?#]|$)/i;
+const ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN =
+  /\b(?:admissions?|admission|apply|application)\b.{0,80}\bprereq(?:uisites?|uisite courses?)\b|\bprereq(?:uisites?|uisite courses?)\b.{0,80}\b(?:admissions?|admission|apply|application)\b/i;
+const SUPPORT_SOURCE_CUE_PATTERN =
+  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
+const PRIMARY_REQUIREMENT_CUE_PATTERN =
+  /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
+
+function getSourceManifestRoleStatus(role: TransferPlannerSourceManifestRole) {
+  switch (role) {
+    case "degree-requirements":
+    case "catalog":
+    case "curriculum":
+    case "pathway-degree-sheet":
+    case "worksheet":
+      return "primary";
+    case "upper-division-prerequisite-table":
+    case "non-schedulable-course-list":
+      return "non-schedulable";
+    case "admission-prerequisite-source":
+    case "approved-course-list":
+    case "elective-list":
+    case "support-source":
+    case "admissions":
+    case "overview":
+    case "equivalency":
+    case "availability":
+    case "other":
+      return "support";
+  }
+}
+
+function canSourceManifestRoleCreateSchedulableRows(role: TransferPlannerSourceManifestRole) {
+  return getSourceManifestRoleStatus(role) === "primary";
+}
+
 function getSourceManifestRole(link: TransferPlannerSourceLink): TransferPlannerSourceManifestRole {
   const searchable = `${link.label} ${link.url}`.toLowerCase();
 
+  if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "pathway-degree-sheet";
+  }
+
+  if (APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "approved-course-list";
+  }
+
+  if (ELECTIVE_LIST_CUE_PATTERN.test(searchable)) {
+    return "elective-list";
+  }
+
+  if (UPPER_DIVISION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
+    return "upper-division-prerequisite-table";
+  }
+
+  if (NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "non-schedulable-course-list";
+  }
+
+  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "admission-prerequisite-source";
+  }
+
+  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "support-source";
+  }
+
   if (
-    /degree requirements|major requirements|graduation requirements|degree structure|degree sheet|requirement sheet|checklist|requirements packet|degreq/.test(
-      searchable
-    )
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
   ) {
     return "degree-requirements";
   }
@@ -922,7 +1119,7 @@ function getSourceManifestParserType(
     return "pdf-worksheet";
   }
 
-  if (isPdf && (role === "degree-requirements" || role === "curriculum")) {
+  if (isPdf && (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet")) {
     return "pdf-degree-sheet";
   }
 
@@ -930,11 +1127,11 @@ function getSourceManifestParserType(
     return "generic-pdf";
   }
 
-  if (role === "degree-requirements") {
+  if (role === "degree-requirements" || role === "pathway-degree-sheet") {
     return "html-degree-page";
   }
 
-  if (role === "admissions") {
+  if (role === "admissions" || role === "admission-prerequisite-source") {
     return "html-admissions-page";
   }
 
@@ -961,15 +1158,20 @@ function getSourceManifestConfidence(
     parserType === "annual-schedule-pdf" ||
     parserType === "equivalency-guide" ||
     parserType === "html-degree-page" ||
-    parserType === "pdf-degree-sheet"
+    parserType === "pdf-degree-sheet" ||
+    role === "pathway-degree-sheet"
   ) {
     return "high";
   }
 
   if (
     role === "admissions" ||
+    role === "admission-prerequisite-source" ||
+    role === "approved-course-list" ||
     role === "curriculum" ||
+    role === "elective-list" ||
     role === "catalog" ||
+    role === "support-source" ||
     role === "worksheet" ||
     parserType === "html-admissions-page" ||
     parserType === "html-curriculum-page" ||
@@ -989,20 +1191,26 @@ function getSourceManifestPrimaryScore(link: TransferPlannerSourceLink) {
 
   let score = 0;
   if (role === "degree-requirements") score += 100;
+  if (role === "pathway-degree-sheet") score += 92;
   if (role === "curriculum") score += 70;
   if (role === "catalog") score += 50;
+  if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable)) score += 35;
+  if (
+    UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable) &&
+    UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN.test(searchable)
+  ) {
+    score += 12;
+  }
   if (parserType === "pdf-degree-sheet") score += 20;
   if (/degree requirements|major requirements|graduation requirements/.test(searchable)) score += 25;
   if (/curriculum/.test(searchable)) score += 15;
   if (
-    (role === "degree-requirements" || role === "curriculum") &&
+    (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet") &&
     /\b(track|option|route|pathway|concentration|specialization)\b/.test(searchable)
   ) {
     score += 8;
   }
-  if (/\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//.test(searchable)) {
-    score -= 15;
-  }
+  if (!canSourceManifestRoleCreateSchedulableRows(role)) score -= 40;
   if (role === "admissions" || role === "equivalency" || role === "availability") score -= 40;
 
   return score;
@@ -1118,6 +1326,14 @@ function isLikelyStructuredPathwayLabel(label: string) {
     return false;
   }
   if (normalized.includes("?")) {
+    return false;
+  }
+  if (
+    /\binformal\b/i.test(normalized) ||
+    /\bconcentration areas?\b/i.test(normalized) ||
+    /^(?:explore|how do i|planning|what is the difference)\b/i.test(normalized) ||
+    /^b\.?\s*s\.?\s+with\b/i.test(normalized)
+  ) {
     return false;
   }
   if (normalized.split(/\s+/).length > 12) {
@@ -1301,7 +1517,7 @@ function isBlockedPrimarySourceUrl(url: string) {
 }
 
 function isSafeFallbackPrimaryRole(role: TransferPlannerSourceManifestRole) {
-  return role !== "equivalency" && role !== "availability" && role !== "admissions";
+  return canSourceManifestRoleCreateSchedulableRows(role) || role === "overview" || role === "other";
 }
 
 function pickPrimaryDegreeRequirementsUrl(links: TransferPlannerSourceLink[]) {
@@ -1567,11 +1783,20 @@ function getPathwaySources(
   plan: TransferPlannerMajorPlan,
   pathway: TransferPlannerMajorPathway
 ) {
+  const parentSourceLinks = getOwnerSourceLinks(plan.id, null, plan.officialLinks);
+  const pathwaySourceLinks = getOwnerSourceLinks(plan.id, pathway.id, pathway.officialLinks);
+  const matchingParentPathwayLinks = parentSourceLinks
+    .filter((link) => sourceLinkMatchesPathwayIdentity(link, pathway))
+    .map(materializeMatchedPathwayParentSourceLink);
+  const parentLinksForPathway = matchingParentPathwayLinks.length
+    ? [
+        ...matchingParentPathwayLinks,
+        ...parentSourceLinks.filter((link) => !isPathwaySpecificSourceLink(link)),
+      ]
+    : parentSourceLinks;
+
   return {
-    sourceLinks: dedupeLinks([
-      ...getOwnerSourceLinks(plan.id, null, plan.officialLinks),
-      ...getOwnerSourceLinks(plan.id, pathway.id, pathway.officialLinks),
-    ]),
+    sourceLinks: dedupeLinks([...parentLinksForPathway, ...pathwaySourceLinks]),
     validationNotes: [] as string[],
   };
 }
@@ -2055,6 +2280,80 @@ function isPresentDayGuideRuleId(guideRuleId: string | null | undefined) {
   );
 }
 
+function parsedRequirementSourceBlockBacksCourseAsSchedulableRequirement(
+  block: TransferPlannerParsedRequirementSourceBlock,
+  courseCode: string
+) {
+  if (!canParsedRequirementSourceBlockCreateRequiredScheduleRows(block)) {
+    return false;
+  }
+
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  if (!normalizedCourseCode) {
+    return false;
+  }
+
+  if (
+    (block.parsedRequirementAtomCandidates ?? []).some(
+      (candidate) => normalizeCourseCode(candidate.uwCourseCode) === normalizedCourseCode
+    )
+  ) {
+    return true;
+  }
+
+  if (
+    (block.parsedRequirementCourses ?? []).some(
+      (course) =>
+        normalizeCourseCode(course.normalizedCourseCode ?? course.courseCode) ===
+        normalizedCourseCode
+    )
+  ) {
+    return true;
+  }
+
+  return (block.parsedRequirementGroups ?? []).some((group) =>
+    (group.options ?? []).some((option) =>
+      [
+        ...(option.uwCourses ?? []),
+        ...(option.equivalentUwCourseCodes ?? []),
+        ...(option.displayCourseCodes ?? []),
+      ]
+        .map((code) => normalizeCourseCode(code))
+        .includes(normalizedCourseCode)
+    )
+  );
+}
+
+function parsedRequirementSourceBlockMatchesClassificationScope(
+  block: TransferPlannerParsedRequirementSourceBlock,
+  classification: TransferPlannerRequirementDiffClassificationEntry
+) {
+  if (block.planId !== classification.planId) {
+    return false;
+  }
+
+  const blockPathwayId = block.pathwayId ?? null;
+  const classificationPathwayId = classification.pathwayId ?? null;
+  return (
+    blockPathwayId === classificationPathwayId ||
+    (Boolean(classificationPathwayId) && blockPathwayId === null)
+  );
+}
+
+function isClassificationBackedBySchedulableParsedRequirementSource(
+  classification: TransferPlannerRequirementDiffClassificationEntry
+) {
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.some(
+    (block) =>
+      block.ok &&
+      parsedRequirementSourceBlockMatchesClassificationScope(block, classification) &&
+      parsedRequirementSourceBlockBacksCourseAsSchedulableRequirement(
+        block,
+        classification.sourceUwCourseCode
+      )
+  );
+}
+
 function shouldIncludeStudentFacingSourceBackedClassification(
   classification: TransferPlannerRequirementDiffClassificationEntry
 ) {
@@ -2071,6 +2370,10 @@ function shouldIncludeStudentFacingSourceBackedClassification(
   }
 
   if (!isPresentDayGuideRuleId(classification.guideRuleId)) {
+    return false;
+  }
+
+  if (!isClassificationBackedBySchedulableParsedRequirementSource(classification)) {
     return false;
   }
 
@@ -2310,7 +2613,7 @@ function buildDegreeMapBlockRegistry() {
   }
 
   for (const block of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS) {
-    if (!block.ok) {
+    if (!block.ok || !canParsedRequirementSourceBlockCreateRequiredScheduleRows(block)) {
       continue;
     }
 
@@ -2565,26 +2868,32 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
   entries: TransferPlannerSourceManifestEntry[],
   promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
 ) {
+  const canonicalPromotion = normalizeAutoPromotedPrimarySourceOwner(promotion);
   if (
     shouldSkipTransferPlannerAutoPromotedPrimarySource(
-      promotion.planId,
-      promotion.pathwayId,
-      promotion.url
+      canonicalPromotion.planId,
+      canonicalPromotion.pathwayId,
+      canonicalPromotion.url
     )
   ) {
     return;
   }
 
   const link: TransferPlannerSourceLink = {
-    label: promotion.label,
-    url: promotion.url,
+    label: canonicalPromotion.label,
+    url: canonicalPromotion.url,
   };
+  const role = getSourceManifestRole(link);
+  if (!isSafeFallbackPrimaryRole(role)) {
+    return;
+  }
+
   const existingEntry = entries.find(
-    (entry) => entry.ownerId === promotion.ownerId && entry.url === promotion.url
+    (entry) => entry.ownerId === canonicalPromotion.ownerId && entry.url === canonicalPromotion.url
   );
 
   for (const entry of entries) {
-    if (entry.ownerId === promotion.ownerId) {
+    if (entry.ownerId === canonicalPromotion.ownerId) {
       entry.isPrimaryDegreeRequirementsLink = false;
     }
   }
@@ -2594,30 +2903,29 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
     existingEntry.validationNotes = unique(
       compact([
         ...existingEntry.validationNotes,
-        `Auto-promoted from high-confidence discovery on ${promotion.generatedAt}.`,
+        `Auto-promoted from high-confidence discovery on ${canonicalPromotion.generatedAt}.`,
       ])
     );
     existingEntry.lastValidatedOn = getLastValidatedOn(existingEntry.validationNotes);
     return;
   }
 
-  const role = getSourceManifestRole(link);
   const parserType = getSourceManifestParserType(link, role);
   const validationNotes = [
-    `Auto-promoted from high-confidence discovery on ${promotion.generatedAt}.`,
+    `Auto-promoted from high-confidence discovery on ${canonicalPromotion.generatedAt}.`,
   ];
 
   entries.push({
-    id: `${promotion.ownerId}:source:auto-promoted-primary`,
-    ownerType: promotion.ownerType,
-    ownerId: promotion.ownerId,
-    ownerTitle: promotion.ownerTitle,
-    planId: promotion.planId,
-    pathwayId: promotion.pathwayId,
+    id: `${canonicalPromotion.ownerId}:source:auto-promoted-primary`,
+    ownerType: canonicalPromotion.ownerType,
+    ownerId: canonicalPromotion.ownerId,
+    ownerTitle: canonicalPromotion.ownerTitle,
+    planId: canonicalPromotion.planId,
+    pathwayId: canonicalPromotion.pathwayId,
     trackId: null,
-    campusId: promotion.campusId,
-    label: promotion.label,
-    url: promotion.url,
+    campusId: canonicalPromotion.campusId,
+    label: canonicalPromotion.label,
+    url: canonicalPromotion.url,
     role,
     parserType,
     confidence: getSourceManifestConfidence(role, parserType),
@@ -2628,23 +2936,48 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
   });
 }
 
+function normalizeAutoPromotedPrimarySourceOwner(
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
+) {
+  if (promotion.ownerType !== "pathway" || !promotion.planId || !promotion.pathwayId) {
+    return promotion;
+  }
+
+  const pathwayId = normalizeTransferPlannerPathwayId(
+    promotion.planId,
+    promotion.pathwayId
+  );
+  if (!pathwayId || pathwayId === promotion.pathwayId) {
+    return promotion;
+  }
+
+  const ownerId = buildTransferPlannerOwnerId(promotion.planId, pathwayId);
+  return {
+    ...promotion,
+    ownerId,
+    ownerKey: ownerId,
+    pathwayId,
+  };
+}
+
 function hasActiveSourceManifestOwner(
   promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
 ) {
-  switch (promotion.ownerType) {
+  const canonicalPromotion = normalizeAutoPromotedPrimarySourceOwner(promotion);
+  switch (canonicalPromotion.ownerType) {
     case "major":
       return (
-        TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.some((plan) => plan.id === promotion.ownerId) ||
+        TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.some((plan) => plan.id === canonicalPromotion.ownerId) ||
         SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES.some(
-          (entry) => entry.planId === promotion.ownerId
+          (entry) => entry.planId === canonicalPromotion.ownerId
         )
       );
     case "pathway":
       return (
-        TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.some((entry) => entry.id === promotion.ownerId) ||
+        TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.some((entry) => entry.id === canonicalPromotion.ownerId) ||
         SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES.some(
           (entry) =>
-            `${entry.planId}:pathway:${entry.pathwayId}` === promotion.ownerId
+            buildTransferPlannerOwnerId(entry.planId, entry.pathwayId) === canonicalPromotion.ownerId
         )
       );
     default:
@@ -2697,7 +3030,10 @@ function buildSourceManifestRegistry() {
       planId: pathway.planId,
       pathwayId: pathway.pathwayId,
       campusId: pathway.campusId,
-      links: pathway.sourceLinks,
+      links: dedupeLinks([
+        ...pathway.sourceLinks,
+        ...getSupplementalManifestSourceLinks(pathway.planId, pathway.pathwayId),
+      ]),
       validationNotes: pathway.validationNotes,
     });
   }
@@ -2951,9 +3287,46 @@ const VISIBLE_INTERNAL_SOURCE_GENERATED_BASE_PLAN_IDS = new Set(
     (planId) => !HIDDEN_SOURCE_GAP_PLAN_IDS.has(planId)
   )
 );
+
+function canParsedRequirementSourceBlockCreateRequiredScheduleRows(
+  block: TransferPlannerParsedRequirementSourceBlock
+) {
+  if (
+    block.canCreateScheduleRows === false ||
+    block.canCreateRequiredRows === false ||
+    block.canCreateSchedulableRows === false ||
+    block.supportOnly === true ||
+    block.nonSchedulable === true
+  ) {
+    return false;
+  }
+
+  if (["support", "non-schedulable", "ignored"].includes(String(block.sourceRoleStatus ?? ""))) {
+    return false;
+  }
+
+  return ![
+    "approved-course-list",
+    "elective-list",
+    "upper-division-prerequisite-table",
+    "non-schedulable-course-list",
+    "sample-schedule",
+    "support-source",
+    "admission-prerequisite-source",
+    "admissions-preparation",
+    "transfer-equivalency",
+    "matched-grc-track",
+    "old-archival",
+    "ignored",
+  ].includes(String(block.sourceRole ?? ""));
+}
+
 function getPlanMaterializationParsedRequirementSourceBlocks(planId: string) {
   return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.filter(
-    (entry) => entry.planId === planId && entry.ok
+    (entry) =>
+      entry.planId === planId &&
+      entry.ok &&
+      canParsedRequirementSourceBlockCreateRequiredScheduleRows(entry)
   );
 }
 

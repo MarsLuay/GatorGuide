@@ -2,7 +2,9 @@
 exclude_paths:
   - ".tmp/**"
   - "source/.tmp/**"
+  - "source/assets/**"
   - "source/dist/**"
+  - "source/docs/reference/**"
 engines:
   csslint:
     exclude_paths:

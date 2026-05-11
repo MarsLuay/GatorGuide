@@ -716,6 +716,20 @@ function unescapeXml(value) {
     .replace(/&amp;/g, "&");
 }
 
+function unescapeXmlPlainText(value) {
+  return String(value ?? "")
+    .replace(/&(apos|quot|gt|lt|amp);/g, (_entity, name) => {
+      if (name === "apos") return "'";
+      if (name === "quot") return '"';
+      if (name === "amp") return "&";
+      return "";
+    })
+    .split("<")
+    .join("")
+    .split(">")
+    .join("");
+}
+
 function getXmlAttribute(attributes, name) {
   const match = String(attributes ?? "").match(
     new RegExp(`(?:^|\\s)${name}="([^"]*)"`)
@@ -737,11 +751,33 @@ function extractTextRuns(xml) {
   let match;
 
   while ((match = textRegex.exec(text)) !== null) {
-    runs.push(unescapeXml(match[1]));
+    runs.push(unescapeXmlPlainText(match[1]));
   }
 
   if (runs.length) return runs.join("");
-  return unescapeXml(text.replace(/<[^>]*>/g, ""));
+  return unescapeXmlPlainText(stripXmlTagsToText(text));
+}
+
+function stripXmlTagsToText(value) {
+  const text = String(value ?? "");
+  let result = "";
+  let inTag = false;
+
+  for (const char of text) {
+    if (char === "<") {
+      inTag = true;
+      continue;
+    }
+    if (char === ">") {
+      inTag = false;
+      continue;
+    }
+    if (!inTag) {
+      result += char;
+    }
+  }
+
+  return result;
 }
 
 function columnName(columnIndex) {

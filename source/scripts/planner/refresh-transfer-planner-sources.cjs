@@ -24,6 +24,7 @@ const TS_NODE_TEST_COMPILER_OPTIONS = JSON.stringify({
   },
 });
 const NPX_BIN = process.platform === "win32" ? "npx.cmd" : "npx";
+const NPM_BIN = process.platform === "win32" ? "npm.cmd" : "npm";
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
 }
@@ -79,15 +80,15 @@ const REFRESH_SECTION_DEFINITIONS = [
   },
   {
     id: "requirement-parsing",
-    title: "Refresh: requirement parsing and fingerprints",
+    title: "Refresh: requirement parsing and fingerprint intelligence",
     description:
-      "Parse UW major requirement sources, rebuild source and parsed-fact fingerprints, and validate canonical source-pipeline invariants.",
+      "Parse UW major requirement sources, rebuild source and parsed-fact fingerprints, classify source changes, and validate canonical source-pipeline invariants.",
     steps: [
       {
         label: "Parse UW major requirement sources",
         include: (options) => !options.skipRequirementParse,
       },
-      { label: "Build source and parsed-fact fingerprints" },
+      { label: "Build source fingerprints and classify changes" },
       { label: "Validate source pipeline invariants" },
     ],
   },
@@ -130,7 +131,7 @@ const REFRESH_SECTION_DEFINITIONS = [
     id: "verification",
     title: "Refresh: verification suite",
     description:
-      "Run the owner audit, TypeScript typecheck, and planner tests after the refresh finishes.",
+      "Run source-registry audits, the owner audit, TypeScript typecheck, and planner tests after the refresh finishes.",
     steps: [
       {
         label: "Validate source pipeline invariants",
@@ -142,6 +143,27 @@ const REFRESH_SECTION_DEFINITIONS = [
       },
       {
         label: "Audit transfer planner owners",
+        include: (options) => !options.skipVerify || options.verifyOnly,
+      },
+      {
+        label: "Run parser extraction and source-discovery tests",
+        include: (options) => !options.skipVerify || options.verifyOnly,
+      },
+      {
+        label: "Audit source-backed runtime coverage (blocking)",
+        include: (options) => !options.skipVerify || options.verifyOnly,
+      },
+      {
+        label: "Run closed-loop auto-repair pass",
+        include: (options) =>
+          (!options.skipVerify || options.verifyOnly) && !options.skipAutoRepair,
+      },
+      {
+        label: "Audit generated source registry",
+        include: (options) => !options.skipVerify || options.verifyOnly,
+      },
+      {
+        label: "Audit UW-GRC mapping regressions",
         include: (options) => !options.skipVerify || options.verifyOnly,
       },
       {
@@ -273,6 +295,7 @@ function buildStepPlanFromArgs() {
   const skipRequirementParse = hasArg("--skip-requirement-parse");
   const skipDownloads = hasArg("--skip-downloads");
   const skipVerify = hasArg("--skip-verify");
+  const skipAutoRepair = hasArg("--skip-auto-repair");
   const forceRefreshDownloads = hasArg("--refresh-downloads");
   const onlySection = getArgValue("--only-section");
   const startSection = getArgValue("--start-section");
@@ -287,6 +310,7 @@ function buildStepPlanFromArgs() {
     skipRequirementParse,
     skipDownloads,
     skipVerify,
+    skipAutoRepair,
     forceRefreshDownloads,
     onlySection,
     startSection,
@@ -334,6 +358,10 @@ function runTsNode(scriptPath) {
     ],
     {
       env: {
+        NODE_OPTIONS: [process.env.NODE_OPTIONS, "--max-old-space-size=8192"]
+          .filter(Boolean)
+          .join(" "),
+        TS_NODE_TRANSPILE_ONLY: "true",
         TS_NODE_COMPILER_OPTIONS,
         TS_NODE_BASEURL: ".",
       },
@@ -359,6 +387,28 @@ function buildTargetPlanArgs(targetPlanId) {
   return targetPlanId ? ["--target-plan-id", targetPlanId] : [];
 }
 
+function runClosedLoopAutoRepair(options = {}) {
+  runCommand("node", [
+    "scripts/planner/build-transfer-planner-auto-repair-plan.cjs",
+    "--repair",
+    ...buildTargetPlanArgs(options.targetPlanId),
+  ]);
+}
+
+function runClosedLoopAutoRepairBeforeRethrow(error, options = {}) {
+  if (options.skipAutoRepair) {
+    throw error;
+  }
+
+  console.log("Verification found planner automation debt; running closed-loop auto-repair before failing.");
+  try {
+    runClosedLoopAutoRepair(options);
+  } catch (repairError) {
+    console.log(`Closed-loop auto-repair pass also failed: ${repairError.message}`);
+  }
+  throw error;
+}
+
 function sleep(delayMs) {
   return new Promise((resolve) => setTimeout(resolve, delayMs));
 }
@@ -375,9 +425,43 @@ function runVerification(runStepFn = runStep, options = {}) {
       ...buildTargetPlanArgs(options.targetPlanId),
     ])
   );
-  runStepFn("Audit transfer planner owners", () =>
+  runStepFn("Audit transfer planner owners", () => {
+    try {
+      runCommand("node", [
+        "scripts/planner/verify-transfer-planner-owner-audit.cjs",
+        ...buildTargetPlanArgs(options.targetPlanId),
+      ]);
+    } catch (error) {
+      runClosedLoopAutoRepairBeforeRethrow(error, options);
+    }
+  });
+  runStepFn("Run parser extraction and source-discovery tests", () =>
+    runCommand(NPM_BIN, ["run", "planner:test:parser"])
+  );
+  runStepFn("Audit source-backed runtime coverage (blocking)", () => {
+    try {
+      runCommand("node", [
+        "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
+        ...buildTargetPlanArgs(options.targetPlanId),
+      ]);
+    } catch (error) {
+      runClosedLoopAutoRepairBeforeRethrow(error, options);
+    }
+  });
+  if (!options.skipAutoRepair) {
+    runStepFn("Run closed-loop auto-repair pass", () => runClosedLoopAutoRepair(options));
+  }
+  runStepFn("Audit generated source registry", () =>
     runCommand("node", [
-      "scripts/planner/verify-transfer-planner-owner-audit.cjs",
+      "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
+      "--generated-registry-only",
+      ...buildTargetPlanArgs(options.targetPlanId),
+    ])
+  );
+  runStepFn("Audit UW-GRC mapping regressions", () =>
+    runCommand("node", [
+      "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
+      "--mapping-only",
       ...buildTargetPlanArgs(options.targetPlanId),
     ])
   );
@@ -466,6 +550,7 @@ async function main() {
     skipRequirementParse,
     skipDownloads,
     skipVerify,
+    skipAutoRepair,
     forceRefreshDownloads,
     onlySection,
     startSection,
@@ -499,6 +584,7 @@ async function main() {
           skipRequirementParse,
           skipDownloads,
           skipVerify,
+          skipAutoRepair,
           forceRefreshDownloads,
           onlySection,
           startSection,
@@ -642,7 +728,7 @@ async function main() {
           markSkipped("Parse UW major requirement sources", "--skip-requirement-parse");
         }
 
-        runTrackedStep("Build source and parsed-fact fingerprints", () =>
+        runTrackedStep("Build source fingerprints and classify changes", () =>
           runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"])
         );
         runTrackedStep("Validate source pipeline invariants", () =>
@@ -703,6 +789,7 @@ async function main() {
         if (!skipVerify || verifyOnly) {
           runVerification(runTrackedStep, {
             includePipelineValidation: verifyOnly,
+            skipAutoRepair,
             targetPlanId,
           });
         } else {

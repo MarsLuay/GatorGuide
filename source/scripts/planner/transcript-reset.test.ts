@@ -2,49 +2,76 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
+import {
+  TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD,
+  TRANSFER_PLANNER_LAST_SELECTED_PLAN_FIELD,
+  TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD,
+  TRANSFER_PLANNER_SELECTED_PATHWAY_BY_PLAN_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_PARSER_VERSION_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD,
+} from "@/constants/planner-storage";
 import { transcriptPlannerDebugService } from "@/services/dev/transcript-planner-debug.service";
 import { clearTransferPlannerTranscriptCache } from "@/services/planning/transfer-planner-cache.service";
 import { resetTranscriptState } from "@/services/planning/transcript-reset.service";
 
 test("Transcript cache reset removes transcript-derived completed planner courses", () => {
   const nextQuestionnaireAnswers = clearTransferPlannerTranscriptCache({
-    completedCourses: ["MATH& 151 Calculus I"],
-    transferPlannerCompletedCourses: [
+    [TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD]: ["MATH& 151 Calculus I"],
+    [TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD]: [
       {
         code: "MATH& 151",
         label: "MATH& 151 Calculus I",
       },
     ],
-    transferPlannerTranscriptSource: "file:///tmp/transcript.pdf",
-    transferPlannerTranscriptUploadedAt: "2026-04-21T01:02:03.000Z",
-    transferPlannerTranscriptParserVersion: 2,
+    [TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD]: "file:///tmp/transcript.pdf",
+    [TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD]: "2026-04-21T01:02:03.000Z",
+    [TRANSFER_PLANNER_TRANSCRIPT_PARSER_VERSION_FIELD]: 2,
     major: "Computer Science",
   });
 
-  assert.equal("completedCourses" in nextQuestionnaireAnswers, false);
-  assert.equal("transferPlannerCompletedCourses" in nextQuestionnaireAnswers, false);
-  assert.equal("transferPlannerTranscriptSource" in nextQuestionnaireAnswers, false);
-  assert.equal("transferPlannerTranscriptUploadedAt" in nextQuestionnaireAnswers, false);
-  assert.equal("transferPlannerTranscriptParserVersion" in nextQuestionnaireAnswers, false);
+  assert.equal(
+    TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD in nextQuestionnaireAnswers,
+    false
+  );
+  assert.equal(
+    TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD in nextQuestionnaireAnswers,
+    false
+  );
+  assert.equal(
+    TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD in nextQuestionnaireAnswers,
+    false
+  );
+  assert.equal(
+    TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD in nextQuestionnaireAnswers,
+    false
+  );
+  assert.equal(
+    TRANSFER_PLANNER_TRANSCRIPT_PARSER_VERSION_FIELD in nextQuestionnaireAnswers,
+    false
+  );
 });
 
 test("Transcript cache reset preserves unrelated planner preferences and profile data", () => {
   const nextQuestionnaireAnswers = clearTransferPlannerTranscriptCache({
-    completedCourses: ["ENGL& 101 English Composition"],
-    transferPlannerCompletedCourses: [
+    [TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD]: [
+      "ENGL& 101 English Composition",
+    ],
+    [TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD]: [
       {
         code: "ENGL& 101",
         label: "ENGL& 101 English Composition",
       },
     ],
-    transferPlannerTranscriptSource: "file:///tmp/transcript.pdf",
-    transferPlannerCurrentCoursesByPath: {
+    [TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD]: "file:///tmp/transcript.pdf",
+    [TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD]: {
       "uw-seattle::computer-science::base": ["CSE 123"],
     },
-    transferPlannerSelectedPathwayByPlan: {
+    [TRANSFER_PLANNER_SELECTED_PATHWAY_BY_PLAN_FIELD]: {
       "uw-seattle-computer-science": "base",
     },
-    transferPlannerLastSelectedPlan: {
+    [TRANSFER_PLANNER_LAST_SELECTED_PLAN_FIELD]: {
       collegeId: "uw",
       campusId: "uw-seattle",
       majorId: "uw-seattle-computer-science",
@@ -53,13 +80,19 @@ test("Transcript cache reset preserves unrelated planner preferences and profile
     gpa: "3.9",
   });
 
-  assert.deepEqual(nextQuestionnaireAnswers.transferPlannerCurrentCoursesByPath, {
-    "uw-seattle::computer-science::base": ["CSE 123"],
-  });
-  assert.deepEqual(nextQuestionnaireAnswers.transferPlannerSelectedPathwayByPlan, {
-    "uw-seattle-computer-science": "base",
-  });
-  assert.deepEqual(nextQuestionnaireAnswers.transferPlannerLastSelectedPlan, {
+  assert.deepEqual(
+    nextQuestionnaireAnswers[TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD],
+    {
+      "uw-seattle::computer-science::base": ["CSE 123"],
+    }
+  );
+  assert.deepEqual(
+    nextQuestionnaireAnswers[TRANSFER_PLANNER_SELECTED_PATHWAY_BY_PLAN_FIELD],
+    {
+      "uw-seattle-computer-science": "base",
+    }
+  );
+  assert.deepEqual(nextQuestionnaireAnswers[TRANSFER_PLANNER_LAST_SELECTED_PLAN_FIELD], {
     collegeId: "uw",
     campusId: "uw-seattle",
     majorId: "uw-seattle-computer-science",
@@ -114,15 +147,17 @@ test("Shared transcript reset clears transcript reference, planner cache, and de
       nextQuestionnaireAnswers =
         typeof answers === "function"
           ? answers({
-              completedCourses: ["MATH& 151 Calculus I"],
-              transferPlannerCompletedCourses: [
+              [TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD]: [
+                "MATH& 151 Calculus I",
+              ],
+              [TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD]: [
                 {
                   code: "MATH& 151",
                   label: "MATH& 151 Calculus I",
                 },
               ],
-              transferPlannerTranscriptSource: "file:///tmp/transcript.pdf",
-              transferPlannerCurrentCoursesByPath: {
+              [TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD]: "file:///tmp/transcript.pdf",
+              [TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD]: {
                 "uw-seattle::computer-science::base": ["CSE 123"],
               },
             })
@@ -133,12 +168,24 @@ test("Shared transcript reset clears transcript reference, planner cache, and de
   assert.deepEqual(deleteTranscriptCalls, ["student-1"]);
   assert.deepEqual(localUserPatches, [{ transcript: "" }]);
   assert.deepEqual(updateUserPatches, [{ transcript: "" }]);
-  assert.equal(nextQuestionnaireAnswers?.["completedCourses"], undefined);
-  assert.equal(nextQuestionnaireAnswers?.["transferPlannerCompletedCourses"], undefined);
-  assert.equal(nextQuestionnaireAnswers?.["transferPlannerTranscriptSource"], undefined);
-  assert.deepEqual(nextQuestionnaireAnswers?.["transferPlannerCurrentCoursesByPath"], {
-    "uw-seattle::computer-science::base": ["CSE 123"],
-  });
+  assert.equal(
+    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD],
+    undefined
+  );
+  assert.equal(
+    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD],
+    undefined
+  );
+  assert.equal(
+    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD],
+    undefined
+  );
+  assert.deepEqual(
+    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD],
+    {
+      "uw-seattle::computer-science::base": ["CSE 123"],
+    }
+  );
   assert.equal(transcriptPlannerDebugService.getLastTranscriptPlannerDebug(), null);
 });
 
@@ -159,23 +206,34 @@ test("Shared transcript reset still clears local transcript and planner cache wh
       nextQuestionnaireAnswers =
         typeof answers === "function"
           ? answers({
-              completedCourses: ["MATH& 151 Calculus I"],
-              transferPlannerCompletedCourses: [
+              [TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD]: [
+                "MATH& 151 Calculus I",
+              ],
+              [TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD]: [
                 {
                   code: "MATH& 151",
                   label: "MATH& 151 Calculus I",
                 },
               ],
-              transferPlannerTranscriptSource: "file:///tmp/transcript.pdf",
+              [TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD]: "file:///tmp/transcript.pdf",
             })
           : answers;
     },
   });
 
   assert.deepEqual(localUserPatches, [{ transcript: "" }]);
-  assert.equal(nextQuestionnaireAnswers?.["completedCourses"], undefined);
-  assert.equal(nextQuestionnaireAnswers?.["transferPlannerCompletedCourses"], undefined);
-  assert.equal(nextQuestionnaireAnswers?.["transferPlannerTranscriptSource"], undefined);
+  assert.equal(
+    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD],
+    undefined
+  );
+  assert.equal(
+    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD],
+    undefined
+  );
+  assert.equal(
+    nextQuestionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD],
+    undefined
+  );
 });
 
 test("Clear cache now and Remove Transcript both use the shared transcript reset logic", () => {

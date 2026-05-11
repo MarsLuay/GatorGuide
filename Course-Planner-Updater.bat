@@ -94,29 +94,29 @@ goto refreshModeMenu
 :runMaintenance
 set "ACTION_LABEL=Course planner maintenance"
 if "%HOSTED_BACK_TARGET%"=="" (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -RunPostChecks
 ) else (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -BackExitCode %BACK_EXIT_CODE%
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%
 )
 goto finish
 
 :runMaintenanceNoDownloads
 set "ACTION_LABEL=Course planner maintenance (skip downloads)"
 if "%HOSTED_BACK_TARGET%"=="" (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -RunPostChecks
 ) else (
-  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -BackExitCode %BACK_EXIT_CODE%
+  powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-maintenance.ps1" -SkipDownloads -NoPrompt -RunPostChecks -BackExitCode %BACK_EXIT_CODE%
 )
 goto finish
 
 :runRefresh
 set "ACTION_LABEL=Course planner refresh"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" -SkipVerify
 goto finish
 
 :runRefreshNoDownloads
 set "ACTION_LABEL=Course planner refresh (skip downloads)"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" -SkipDownloads
+powershell -NoProfile -ExecutionPolicy Bypass -File "%SCRIPT_ROOT%\run-transfer-planner-refresh.ps1" -SkipDownloads -SkipVerify
 goto finish
 
 :runCacheSummary

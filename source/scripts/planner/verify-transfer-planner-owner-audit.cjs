@@ -31,6 +31,17 @@ const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
 const OUTPUT_JSON_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.json");
 const OUTPUT_MD_PATH = path.resolve(TMP_DIR, "transfer-planner-owner-audit.md");
+const SUPPORT_ONLY_PRIMARY_SOURCE_ROLES = new Set([
+  "admission-prerequisite-source",
+  "admissions",
+  "approved-course-list",
+  "availability",
+  "elective-list",
+  "equivalency",
+  "non-schedulable-course-list",
+  "support-source",
+  "upper-division-prerequisite-table",
+]);
 
 function getArgValue(flag) {
   const args = process.argv.slice(2);
@@ -63,6 +74,14 @@ function buildOwnerKey(planId, pathwayId) {
 
 function buildParsedBlockOwnerId(planId, pathwayId) {
   return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
+}
+
+function buildParsedBlockPlanSourceKey(block) {
+  return `${block.planId}::${block.primarySourceUrl ?? block.sourceUrl}`;
+}
+
+function buildManifestPlanSourceKey(entry) {
+  return `${entry.planId ?? entry.ownerId}::${entry.url}`;
 }
 
 function normalizePathwayAliasLabel(planTitle, label) {
@@ -436,6 +455,12 @@ function main() {
   const parsedBlocksByOwnerId = new Map(
     TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.map((block) => [block.ownerId, block])
   );
+  const parsedBlocksByPlanSourceKey = new Map(
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.map((block) => [
+      buildParsedBlockPlanSourceKey(block),
+      block,
+    ])
+  );
 
   const owners = buildOwners(targetPlanId).map((owner) => {
     const symptomIssues = [];
@@ -551,11 +576,32 @@ function main() {
         "missing-primary-manifest-flag",
         "Source manifest entries exist, but none are marked as the primary degree-requirements link."
       );
+    } else {
+      const supportOnlyPrimaryEntry = effectiveManifestEntries.find(
+        (entry) =>
+          entry.isPrimaryDegreeRequirementsLink &&
+          SUPPORT_ONLY_PRIMARY_SOURCE_ROLES.has(entry.role)
+      );
+      if (supportOnlyPrimaryEntry) {
+        addIssue(
+          symptomIssues,
+          "error",
+          "support-source-marked-primary",
+          "A support-only or non-schedulable source role is marked as the primary degree-requirements link.",
+          `${supportOnlyPrimaryEntry.role}: ${supportOnlyPrimaryEntry.url}`
+        );
+      }
     }
 
+    const primaryManifestEntry = effectiveManifestEntries.find(
+      (entry) => entry.isPrimaryDegreeRequirementsLink
+    );
     const parsedBlock =
       parsedBlocksByOwnerId.get(owner.ownerId) ??
       aliasOwnerIds.map((aliasOwnerId) => parsedBlocksByOwnerId.get(aliasOwnerId)).find(Boolean) ??
+      (primaryManifestEntry
+        ? parsedBlocksByPlanSourceKey.get(buildManifestPlanSourceKey(primaryManifestEntry))
+        : null) ??
       null;
     if (!parsedBlock) {
       addIssue(

@@ -12,26 +12,27 @@ import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/An
 type LanguageOption = {
   key: Language;
   nativeLabel: string;
+  labelKey: string;
   direction?: "ltr" | "rtl";
 };
 
 const LANGUAGE_OPTIONS: readonly LanguageOption[] = [
-  { key: "English", nativeLabel: "English" },
-  { key: "Spanish", nativeLabel: "Espa\u00f1ol" },
-  { key: "Chinese (Simplified)", nativeLabel: "\u7b80\u4f53\u4e2d\u6587" },
-  { key: "Chinese (Traditional)", nativeLabel: "\u7e41\u9ad4\u4e2d\u6587" },
-  { key: "French", nativeLabel: "Fran\u00e7ais" },
-  { key: "German", nativeLabel: "Deutsch" },
-  { key: "Italian", nativeLabel: "Italiano" },
-  { key: "Japanese", nativeLabel: "\u65e5\u672c\u8a9e" },
-  { key: "Korean", nativeLabel: "\ud55c\uad6d\uc5b4" },
-  { key: "Portuguese", nativeLabel: "Portugu\u00eas" },
-  { key: "Russian", nativeLabel: "\u0420\u0443\u0441\u0441\u043a\u0438\u0439" },
-  { key: "Arabic", nativeLabel: "\u0627\u0644\u0639\u0631\u0628\u064a\u0629", direction: "rtl" },
-  { key: "Hindi", nativeLabel: "\u0939\u093f\u0928\u094d\u0926\u0940" },
-  { key: "Vietnamese", nativeLabel: "Ti\u1ebfng Vi\u1ec7t" },
-  { key: "Persian", nativeLabel: "\u0641\u0627\u0631\u0633\u06cc", direction: "rtl" },
-  { key: "Tagalog", nativeLabel: "Tagalog" },
+  { key: "English", nativeLabel: "English", labelKey: "language.English" },
+  { key: "Spanish", nativeLabel: "Espa\u00f1ol", labelKey: "language.Spanish" },
+  { key: "Chinese (Simplified)", nativeLabel: "\u7b80\u4f53\u4e2d\u6587", labelKey: "language.ChineseSimplified" },
+  { key: "Chinese (Traditional)", nativeLabel: "\u7e41\u9ad4\u4e2d\u6587", labelKey: "language.ChineseTraditional" },
+  { key: "French", nativeLabel: "Fran\u00e7ais", labelKey: "language.French" },
+  { key: "German", nativeLabel: "Deutsch", labelKey: "language.German" },
+  { key: "Italian", nativeLabel: "Italiano", labelKey: "language.Italian" },
+  { key: "Japanese", nativeLabel: "\u65e5\u672c\u8a9e", labelKey: "language.Japanese" },
+  { key: "Korean", nativeLabel: "\ud55c\uad6d\uc5b4", labelKey: "language.Korean" },
+  { key: "Portuguese", nativeLabel: "Portugu\u00eas", labelKey: "language.Portuguese" },
+  { key: "Russian", nativeLabel: "\u0420\u0443\u0441\u0441\u043a\u0438\u0439", labelKey: "language.Russian" },
+  { key: "Arabic", nativeLabel: "\u0627\u0644\u0639\u0631\u0628\u064a\u0629", labelKey: "language.Arabic", direction: "rtl" },
+  { key: "Hindi", nativeLabel: "\u0939\u093f\u0928\u094d\u0926\u0940", labelKey: "language.Hindi" },
+  { key: "Vietnamese", nativeLabel: "Ti\u1ebfng Vi\u1ec7t", labelKey: "language.Vietnamese" },
+  { key: "Persian", nativeLabel: "\u0641\u0627\u0631\u0633\u06cc", labelKey: "language.Persian", direction: "rtl" },
+  { key: "Tagalog", nativeLabel: "Tagalog", labelKey: "language.Tagalog" },
 ] as const;
 
 export default function LanguagePage() {
@@ -116,6 +117,8 @@ export default function LanguagePage() {
             {LANGUAGE_OPTIONS.map((lang) => {
               const isSelected = language === lang.key;
               const isNativeRTL = lang.direction === "rtl";
+              const displayLabel = t(lang.labelKey);
+              const isDisplayRTL = isPageRTL || (isNativeRTL && displayLabel === lang.nativeLabel);
 
               return (
                 <AnimatedCardPressable
@@ -140,7 +143,7 @@ export default function LanguagePage() {
                 >
                   <View
                     style={{
-                      flexDirection: isNativeRTL ? "row-reverse" : "row",
+                      flexDirection: isDisplayRTL ? "row-reverse" : "row",
                       alignItems: "center",
                     }}
                   >
@@ -150,19 +153,19 @@ export default function LanguagePage() {
                         style={{
                           fontSize: 17,
                           lineHeight: 24,
-                          textAlign: isNativeRTL ? "right" : "left",
-                          writingDirection: isNativeRTL ? "rtl" : "ltr",
+                          textAlign: isDisplayRTL ? "right" : "left",
+                          writingDirection: isDisplayRTL ? "rtl" : "ltr",
                         }}
                       >
-                        {lang.nativeLabel}
+                        {displayLabel}
                       </Text>
-                      {lang.nativeLabel !== lang.key ? (
+                      {displayLabel !== lang.key ? (
                         <Text
                           className={`${secondaryTextClass} mt-1`}
                           numberOfLines={2}
                           style={{
                             lineHeight: 20,
-                            textAlign: isNativeRTL ? "right" : "left",
+                            textAlign: isDisplayRTL ? "right" : "left",
                           }}
                         >
                           {lang.key}
@@ -172,8 +175,8 @@ export default function LanguagePage() {
 
                     <View
                       style={{
-                        marginLeft: isNativeRTL ? 0 : 12,
-                        marginRight: isNativeRTL ? 12 : 0,
+                        marginLeft: isDisplayRTL ? 0 : 12,
+                        marginRight: isDisplayRTL ? 12 : 0,
                       }}
                     >
                       {isSelected ? (

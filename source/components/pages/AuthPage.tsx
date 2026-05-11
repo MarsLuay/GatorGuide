@@ -15,6 +15,7 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
+import { AppButton } from "@/components/ui/AppButton";
 import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
 import { authService } from "@/services/auth/auth.service";
@@ -475,15 +476,6 @@ export default function AuthPage() {
   const heroPadding = isCompactWidth ? 18 : 22;
   const heroBadgeSize = isCompactWidth ? 80 : 96;
   const authCardMaxWidth = isWeb ? 560 : 500;
-  const actionButtonContentStyle = {
-    minHeight: isCompactWidth ? 52 : 56,
-    borderRadius: 18,
-    paddingHorizontal: isCompactWidth ? 16 : 18,
-  } as const;
-  const secondaryActionButtonContentStyle = {
-    ...actionButtonContentStyle,
-    minHeight: isCompactWidth ? 50 : 54,
-  } as const;
   const flatPanelBorderColor = isDark || isGreen ? "rgba(52, 211, 153, 0.20)" : "rgba(16, 185, 129, 0.16)";
   const flatPanelBackgroundColor = isDark
     ? "rgba(15, 23, 42, 0.58)"
@@ -492,17 +484,6 @@ export default function AuthPage() {
       : "rgba(255, 255, 255, 0.72)";
   const dividerColor = isDark || isGreen ? "rgba(148, 163, 184, 0.34)" : "rgba(16, 185, 129, 0.24)";
   const authCardClass = `${styles.cardBgClass} border rounded-[28px] ${isWeb ? "shadow-lg" : ""}`;
-  const primaryButtonBackgroundColor = isDark || isGreen ? "#10b981" : "#059669";
-  const primaryButtonBorderColor = isDark || isGreen ? "rgba(167, 243, 208, 0.20)" : "rgba(5, 150, 105, 0.24)";
-  const primaryButtonTextColor = "#ffffff";
-  const secondaryButtonBackgroundColor = isDark
-    ? "rgba(15, 23, 42, 0.82)"
-    : isGreen
-      ? "rgba(6, 78, 59, 0.82)"
-      : "#f0fdf4";
-  const secondaryButtonBorderColor = isDark || isGreen ? "rgba(52, 211, 153, 0.22)" : "rgba(16, 185, 129, 0.20)";
-  const secondaryButtonTextColor = styles.textColor;
-  const buttonIconColor = isDark || isGreen ? "#a7f3d0" : "#047857";
   const containerClass = isWeb 
     ? "flex-1 items-center justify-center px-4 py-12 min-h-screen"
     : "flex-1 items-center justify-center px-6";
@@ -725,33 +706,12 @@ export default function AuthPage() {
             returnKeyType="done"
           />
 
-          <AnimatedChipPressable
+          <AppButton
             onPress={handleSubmit}
             disabled={!isHydrated || !canSubmit || isSubmitting}
-            className="rounded-2xl"
-            containerStyle={{
-              width: "100%",
-            }}
-            style={{
-              ...actionButtonContentStyle,
-              alignItems: "center",
-              justifyContent: "center",
-              borderWidth: 1,
-              borderColor: primaryButtonBorderColor,
-              backgroundColor: primaryButtonBackgroundColor,
-            }}
-          >
-            <Text
-              style={{
-                color: primaryButtonTextColor,
-                fontSize: 15,
-                fontWeight: "700",
-                textAlign: "center",
-              }}
-            >
-              {isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccount") : t("auth.logIn")}
-            </Text>
-          </AnimatedChipPressable>
+            label={isSubmitting ? t("general.pleaseWait") : isSignUp ? t("auth.createAccount") : t("auth.logIn")}
+            style={{ width: "100%" }}
+          />
 
           {!isSignUp && (
             <View className="items-end">
@@ -790,100 +750,38 @@ export default function AuthPage() {
               marginTop: 16,
             }}
           >
-            <AnimatedChipPressable
+            <AppButton
               onPress={() => handleProviderSignIn("google")}
               disabled={!isHydrated}
-              className="rounded-2xl"
-              containerStyle={{
+              variant="secondary"
+              label={t("auth.continueWithGoogle")}
+              icon={(color) => <FontAwesome5 name="google" size={18} color={color} />}
+              style={{
                 flex: stackProviderButtons ? undefined : 1,
                 width: stackProviderButtons ? "100%" : undefined,
               }}
-              style={{
-                ...secondaryActionButtonContentStyle,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                borderWidth: 1,
-                borderColor: secondaryButtonBorderColor,
-                backgroundColor: secondaryButtonBackgroundColor,
-              }}
-            >
-              <View style={{ marginRight: 8 }}>
-                <FontAwesome5 name="google" size={18} color={buttonIconColor} />
-              </View>
-              <Text
-                style={{
-                  color: secondaryButtonTextColor,
-                  fontSize: 15,
-                  fontWeight: "600",
-                  textAlign: "center",
-                  flexShrink: 1,
-                }}
-              >
-                {t("auth.continueWithGoogle")}
-              </Text>
-            </AnimatedChipPressable>
-            <AnimatedChipPressable
+            />
+            <AppButton
               onPress={() => handleProviderSignIn("microsoft")}
               disabled={!isHydrated}
-              className="rounded-2xl"
-              containerStyle={{
+              variant="secondary"
+              label={t("auth.continueWithMicrosoft")}
+              icon={(color) => <FontAwesome5 name="microsoft" size={18} color={color} />}
+              style={{
                 flex: stackProviderButtons ? undefined : 1,
                 width: stackProviderButtons ? "100%" : undefined,
               }}
-              style={{
-                ...secondaryActionButtonContentStyle,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                borderWidth: 1,
-                borderColor: secondaryButtonBorderColor,
-                backgroundColor: secondaryButtonBackgroundColor,
-              }}
-            >
-              <View style={{ marginRight: 8 }}>
-                <FontAwesome5 name="microsoft" size={18} color={buttonIconColor} />
-              </View>
-              <Text
-                style={{
-                  color: secondaryButtonTextColor,
-                  fontSize: 15,
-                  fontWeight: "600",
-                  textAlign: "center",
-                  flexShrink: 1,
-                }}
-              >
-                {t("auth.continueWithMicrosoft")}
-              </Text>
-            </AnimatedChipPressable>
+            />
           </View>
 
           <View className="items-center mt-4">
-            <AnimatedChipPressable
+            <AppButton
               onPress={handleGuestSignIn}
               disabled={!isHydrated}
-              className="rounded-2xl"
-              containerStyle={{ width: "100%" }}
-              style={{
-                ...secondaryActionButtonContentStyle,
-                alignItems: "center",
-                justifyContent: "center",
-                borderWidth: 1,
-                borderColor: secondaryButtonBorderColor,
-                backgroundColor: secondaryButtonBackgroundColor,
-              }}
-            >
-              <Text
-                style={{
-                  color: secondaryButtonTextColor,
-                  fontSize: 15,
-                  fontWeight: "600",
-                  textAlign: "center",
-                }}
-              >
-                {t("auth.continueAsGuest")}
-              </Text>
-            </AnimatedChipPressable>
+              variant="secondary"
+              label={t("auth.continueAsGuest")}
+              style={{ width: "100%" }}
+            />
           </View>
 
           <View className="flex-row justify-center items-center mt-6">

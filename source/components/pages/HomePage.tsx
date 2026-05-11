@@ -18,6 +18,7 @@ import {
   deadlineCalendarService,
   type DeadlineCalendarEntry,
 } from "@/services/deadlines/deadline-calendar.service";
+import { TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD } from "@/constants/planner-storage";
 import { errorLoggingService } from "@/services/logging/error-logging.service";
 import {
   roadmapService,
@@ -31,8 +32,6 @@ type HomeTourStep = {
   x: number;
   y: number;
 };
-
-const TRANSFER_PLANNER_CURRENT_COURSES_FIELD = "transferPlannerCurrentCoursesByPath";
 
 const DESKTOP_HOME_MIN_WIDTH = 960;
 const PHONE_FALLBACK_ASPECT_RATIO = 1.5;
@@ -267,7 +266,8 @@ export default function HomePage() {
     [desktopRoadmap?.profileSnapshot.deadline]
   );
   const plannerCurrentCourses = useMemo(() => {
-    const rawValue = state.questionnaireAnswers?.[TRANSFER_PLANNER_CURRENT_COURSES_FIELD];
+    const rawValue =
+      state.questionnaireAnswers?.[TRANSFER_PLANNER_CURRENT_COURSES_BY_PATH_FIELD];
     if (!rawValue || typeof rawValue !== "object" || Array.isArray(rawValue)) {
       return [] as string[];
     }

@@ -24,22 +24,106 @@ export type TransferPlannerRequirementType =
   | "choose_one"
   | "choose_n"
   | "choose_credits"
-  | "sequence_choice";
+  | "sequence_choice"
+  | "approved_course_list"
+  | "approved_filter_list"
+  | "elective_list"
+  | "hidden_informational";
+
+export type TransferPlannerRequirementStructuralShape =
+  | "required-row"
+  | "option-group"
+  | "credit-bucket"
+  | "sequence-choice"
+  | "category-option"
+  | "compound-equivalency-path"
+  | "pathway-specific-requirement"
+  | "approved-course-list"
+  | "approved-filter-list"
+  | "elective-list"
+  | "hidden-informational-row";
+
+export type TransferPlannerRequirementSupportListShape =
+  | "approved-course-list"
+  | "approved-filter-list"
+  | "elective-list";
+
+export type TransferPlannerRequirementSupportList = {
+  id: string;
+  shape: TransferPlannerRequirementSupportListShape;
+  sourceUrl: string | null;
+  sourceRole: string | null;
+  listTitle: string;
+  filterKey?: string | null;
+  ownerId?: string | null;
+  majorId?: string | null;
+  pathwayId?: string | null;
+  officialSourceUrl?: string | null;
+  acceptedUwCourseCodes: string[];
+  approvedUwCourseGroups?: string[][];
+  mappedGrcCoursePaths?: string[][];
+  excludedGenericCategoryOnlyCourseCodes?: string[];
+  petitionOnlyNotes?: string[];
+  sourceBackedProgramApproval?: boolean | null;
+  generatedFilterId?: string | null;
+  sourceEvidenceLines?: string[];
+  sourceEvidenceHeadings?: string[];
+  sourceFingerprint?: string | null;
+  approvedListKey?: string | null;
+  supportOnly: true;
+  canCreateRequiredRow: false;
+  canCreateScheduleRow: boolean;
+  linkedPrimaryRequirementIds?: string[];
+};
+
+export type TransferPlannerRequirementSatisfactionMode =
+  | "selection-count"
+  | "credit-based";
 
 export type TransferPlannerRequirementCategoryOption = {
   category: string;
   sourceCategoryCode: string;
   title: string;
   credits: number;
+  creditMin?: number | null;
+  creditMax?: number | null;
   sourceText: string;
+  approvedListKey?: string | null;
+  programSpecific?: boolean | null;
+  genericCategoryTags?: string[];
+  programApprovedFilterKeys?: string[];
+  approvedUwEquivalentCodes?: string[];
+  sourceBackedProgramApproval?: boolean | null;
+};
+
+export type TransferPlannerSingleCourseEquivalencyEvidence = {
+  grcSourceCourse: string;
+  uwTargetCourse: string;
+  ruleId: string;
+  ruleType: string;
+  sourceKind?: string | null;
+  sourceRowText?: string | null;
+  sourceUrl?: string | null;
+  effectiveDateLabel?: string | null;
+  effectiveYearRanges?: {
+    startLabel: string;
+    endLabel?: string | null;
+    note?: string;
+  }[];
+  warnings?: string[];
+  restrictions?: string[];
 };
 
 export type TransferPlannerRequirementOption = {
   id?: string;
   optionKind?: "course" | "category-option";
+  requirementShape?: TransferPlannerRequirementStructuralShape | null;
+  sequencePathId?: string | null;
+  pathLabel?: string | null;
   displayCourseCodes?: string[];
   uwCourses: string[];
   equivalentUwCourseCodes?: string[];
+  conditionalLabCourses?: string[];
   credits?: number | null;
   creditMin?: number | null;
   creditMax?: number | null;
@@ -51,10 +135,24 @@ export type TransferPlannerRequirementOption = {
   sourceHeading?: string | null;
   sourceCategory?: string | null;
   grcMatches: string[];
+  equivalencyEvidence?: TransferPlannerSingleCourseEquivalencyEvidence[];
+  compoundComponents?: string[][];
   categoryOption?: TransferPlannerRequirementCategoryOption | null;
   constraints?: string[];
   notes?: string[];
   label: string;
+};
+
+export type TransferPlannerRequirementSequencePath = {
+  id: string;
+  label: string;
+  uwCourses: string[];
+  displayCourseCodes?: string[];
+  mappedGrcCourseCodes?: string[];
+  compoundComponents?: string[][];
+  conditionalLabCourses?: string[];
+  notes?: string[];
+  sourceText: string;
 };
 
 export type TransferPlannerRequirementGroup = {
@@ -63,12 +161,33 @@ export type TransferPlannerRequirementGroup = {
   category: string;
   subcategory?: string | null;
   requirementType: TransferPlannerRequirementType;
+  requirementShape?: TransferPlannerRequirementStructuralShape | null;
   minCourses?: number | null;
   maxCourses?: number | null;
+  selectionCount?: number | null;
+  requiredCount?: number | null;
   minCredits?: number | null;
   maxCredits?: number | null;
+  creditText?: string | null;
+  satisfactionMode?: TransferPlannerRequirementSatisfactionMode | null;
   sourceHeading?: string | null;
+  sourceRowText?: string | null;
+  sourceSection?: string | null;
+  sourceSectionRole?: string | null;
+  sourceSectionSchedulable?: boolean | null;
+  detectedOptionCue?: string | null;
+  sourceRole?: string | null;
+  sourceUrl?: string | null;
+  sourceScope?: string | null;
+  pathwayId?: string | null;
+  routeId?: string | null;
+  canCreateScheduleRow?: boolean | null;
+  supportOnly?: boolean | null;
+  approvedListKey?: string | null;
+  canCreatePlaceholder?: boolean | null;
+  programSpecific?: boolean | null;
   notes?: string[];
+  sequencePaths?: TransferPlannerRequirementSequencePath[];
   options: TransferPlannerRequirementOption[];
 };
 
@@ -108,6 +227,7 @@ export type TransferPlannerChecklistItem = {
   id: string;
   title: string;
   grcCourses: string[];
+  requirementShape?: TransferPlannerRequirementStructuralShape | null;
   alternatives?: string[][];
   note?: string;
   minCompletedCount?: number;
@@ -116,6 +236,17 @@ export type TransferPlannerChecklistItem = {
   requirementGroup?: TransferPlannerRequirementGroup;
   selectedRequirementOptionIds?: string[];
   unselectedRequirementOptionIds?: string[];
+  scheduleSelectedRequirementOptions?: boolean;
+  pathwayId?: string | null;
+  routeId?: string | null;
+  sourceUrl?: string | null;
+  sourceRole?: string | null;
+  sourceScope?: string | null;
+  sourceSection?: string | null;
+  generatedFromParser?: boolean;
+  manualOverride?: boolean;
+  canCreateScheduleRow?: boolean;
+  reason?: string | null;
 };
 
 export type TransferPlannerGeneralRequirementCategoryId =
@@ -188,11 +319,22 @@ export type TransferPlannerMajorPathway = {
   whyThisTrack?: string[];
   requirementGroups?: TransferPlannerRequirementGroup[];
   requirementReplacements?: TransferPlannerRequirementReplacement[];
+  supportLists?: TransferPlannerRequirementSupportList[];
 };
+
+export type TransferPlannerTrackTermRole =
+  | "required"
+  | "sample-only"
+  | "support-options"
+  | "remaining-credits";
 
 export type TransferPlannerTrackTerm = {
   label: string;
   courses: string[];
+  requirementRole?: TransferPlannerTrackTermRole;
+  sampleOnly?: boolean;
+  canCreateScheduleRows?: boolean;
+  notes?: string[];
 };
 
 export type TransferPlannerTrackSlotExpansion = {
@@ -228,6 +370,40 @@ export type TransferPlannerTrackGroupedChoice = {
   options: TransferPlannerTrackGroupedChoiceOption[];
 };
 
+export type TransferPlannerTrackCatalogCreditRange = {
+  minimumCredits?: number | null;
+  maximumCredits?: number | null;
+  sourceText?: string | null;
+  sourceKind?:
+    | "program-map-duration"
+    | "curriculum-map-description"
+    | "catalog-requirement-description";
+  isExact?: boolean | null;
+};
+
+export type TransferPlannerTrackSampleScheduleMetadata = {
+  scheduledMinCredits?: number | null;
+  scheduledMaxCredits?: number | null;
+  placeholderCredits?: number | null;
+  unresolvedOptionCredits?: number | null;
+  defaultOptionCredits?: number | null;
+  sampleOnlyCredits?: number | null;
+  exceedsCatalogMinimum?: boolean | null;
+  exceedsCatalogMaximum?: boolean | null;
+};
+
+export type TransferPlannerTrackCatalogOptionList = {
+  id: string;
+  label: string;
+  sourceHeading?: string | null;
+  sourceText?: string | null;
+  requiredCredits?: number | null;
+  selectionCount?: number | null;
+  supportOnly?: boolean | null;
+  courseLabels: string[];
+  courseCodes: string[];
+};
+
 export type TransferPlannerTrack = {
   id: string;
   code: string;
@@ -236,11 +412,14 @@ export type TransferPlannerTrack = {
   bestFor: string[];
   minimumCredits?: number | null;
   maximumCredits?: number | null;
+  catalogCreditRange?: TransferPlannerTrackCatalogCreditRange;
+  sampleSchedule?: TransferPlannerTrackSampleScheduleMetadata;
   terms: TransferPlannerTrackTerm[];
   notes: string[];
   officialLinks?: TransferPlannerLink[];
   catalogYears?: TransferPlannerTrackCatalogYear[];
   groupedChoices?: TransferPlannerTrackGroupedChoice[];
+  catalogOptionLists?: TransferPlannerTrackCatalogOptionList[];
 };
 
 export type TransferPlannerCourseAvailability =
@@ -281,6 +460,7 @@ export type TransferPlannerMajorPlan = {
   pathways?: TransferPlannerMajorPathway[];
   requirementGroups?: TransferPlannerRequirementGroup[];
   requirementReplacements?: TransferPlannerRequirementReplacement[];
+  supportLists?: TransferPlannerRequirementSupportList[];
 };
 
 export type TransferPlannerResolvedMajorPlan = TransferPlannerMajorPlan & {

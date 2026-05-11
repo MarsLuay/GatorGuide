@@ -66,6 +66,17 @@ const PATHWAY_KIND_PATTERN =
   /\b(option|track|route|pathway|certificate|concentration)\b/i;
 const SUPPLEMENTAL_OFFICIAL_LINKS_BY_OWNER_KEY = new Map([
   [
+    makePlanPathwayKey("uw-seattle-computer-engineering", null),
+    [
+      {
+        label: "Allen School CE-approved Natural Science course list",
+        url: "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core",
+        note:
+          "Supporting official Allen School source for the Computer Engineering Natural Science approved-course filter; use with UW-GRC equivalency rules, not generic NSc/NW tags.",
+      },
+    ],
+  ],
+  [
     makePlanPathwayKey("uw-bothell-business-administration", null),
     [
       {

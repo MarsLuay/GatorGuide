@@ -3,7 +3,9 @@ param(
   [switch]$NoOpenReports,
   [string]$OnlySection,
   [string]$StartSection,
-  [string]$TargetPlanId
+  [string]$TargetPlanId,
+  [switch]$SkipVerify,
+  [switch]$SkipAutoRepair
 )
 
 Set-StrictMode -Version Latest
@@ -24,9 +26,12 @@ $logPath = Join-Path $logDir "planner-refresh-$modeLabel-$timestamp.log"
 $sourceSummaryPath = Join-Path $tmpDir "transfer-planner-source-link-summary.md"
 $primarySourceGapPath = Join-Path $tmpDir "transfer-planner-primary-source-review-queue.md"
 $sourceGapPath = Join-Path $tmpDir "transfer-planner-source-gaps.md"
+$autoRepairPath = Join-Path $tmpDir "transfer-planner-auto-repair-plan.md"
 $sourceFingerprintPath = Join-Path $tmpDir "transfer-planner-source-fingerprints.md"
+$sourceChangeClassificationPath = Join-Path $tmpDir "transfer-planner-source-change-classification.md"
 $requirementDiffReportPath = Join-Path $tmpDir "transfer-planner-requirement-diff-promotion-report.md"
 $requirementSourceParsePath = Join-Path $tmpDir "transfer-planner-requirement-source-parse-report.md"
+$parserRecoveryPath = Join-Path $tmpDir "transfer-planner-parser-recovery-report.md"
 $ownerAuditPath = Join-Path $tmpDir "transfer-planner-owner-audit.md"
 $equivalencyGuidePath = Join-Path $tmpDir "transfer-planner-equivalency-guide-parse.md"
 $grcCatalogPath = Join-Path $tmpDir "transfer-planner-grc-catalog-ingest.md"
@@ -141,6 +146,12 @@ try {
   if ($TargetPlanId) {
     $refreshArgs += @("--target-plan-id", $TargetPlanId)
   }
+  if ($SkipVerify) {
+    $refreshArgs += "--skip-verify"
+  }
+  if ($SkipAutoRepair) {
+    $refreshArgs += "--skip-auto-repair"
+  }
 
   Invoke-LoggedCommand -FilePath "node" -Arguments $refreshArgs -Description "Run planner refresh pipeline"
 
@@ -160,9 +171,12 @@ try {
     $reportPaths = @(
       @{ Label = "source summary"; Path = $sourceSummaryPath },
       @{ Label = "source-gap automation report"; Path = $sourceGapPath },
+      @{ Label = "closed-loop auto-repair plan"; Path = $autoRepairPath },
       @{ Label = "source fingerprint report"; Path = $sourceFingerprintPath },
+      @{ Label = "source-change classification report"; Path = $sourceChangeClassificationPath },
       @{ Label = "primary-source source-gap report"; Path = $primarySourceGapPath },
       @{ Label = "requirement source parse report"; Path = $requirementSourceParsePath },
+      @{ Label = "parser auto-recovery report"; Path = $parserRecoveryPath },
       @{ Label = "requirement-diff promotion report"; Path = $requirementDiffReportPath },
       @{ Label = "owner audit report"; Path = $ownerAuditPath },
       @{ Label = "equivalency guide parse report"; Path = $equivalencyGuidePath },

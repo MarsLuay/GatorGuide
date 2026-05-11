@@ -19,6 +19,9 @@ import type {
   TransferPlannerMajorPathway,
   TransferPlannerRequirementGroup,
   TransferPlannerRequirementOption,
+  TransferPlannerRequirementSatisfactionMode,
+  TransferPlannerRequirementStructuralShape,
+  TransferPlannerRequirementSupportList,
   TransferPlannerResolvedMajorPlan,
   TransferPlannerTrack,
 } from "../transfer-planner-types";
@@ -29,6 +32,9 @@ import type {
   TransferPlannerSourceManifestEntry,
   TransferPlannerSourceSchoolId,
 } from "./schema";
+import {
+  getTransferPlannerProgramApprovedCourseFilterDefinition,
+} from "./program-approved-course-filters";
 
 export type {
   TransferPlannerCampus,
@@ -124,6 +130,19 @@ type TransferPlannerRuntimeSourceGapEntry = {
   } | null;
 };
 
+type TransferPlannerRuntimeParsedRequirementSourceScopeBlock = {
+  sourceRole?: string | null;
+  sourceRoleStatus?: string | null;
+  canCreateSchedulableRows?: boolean;
+  canCreateRequiredRows?: boolean;
+  canCreateOptionGroups?: boolean;
+  canCreateCreditBuckets?: boolean;
+  canCreateCategoryOptions?: boolean;
+  canCreateScheduleRows?: boolean;
+  supportOnly?: boolean;
+  nonSchedulable?: boolean;
+};
+
 const KNOWN_TRANSFER_PLANNER_SUBJECT_CODES = new Set(
   TRANSFER_PLANNER_RUNTIME_COMPACT_COURSE_REGISTRY.map((entry) =>
     String(entry.code ?? "").match(/^([A-Z&]+(?: [A-Z&]+)*)\s+\d/)
@@ -148,6 +167,54 @@ function uniqueBy<T>(values: T[], getKey: (value: T) => string) {
     result.push(value);
   }
   return result;
+}
+
+function getRuntimeRequirementStructuralShape(
+  input: {
+    requirementType?: string | null;
+    supportOnly?: boolean | null;
+    sourceRole?: string | null;
+    sourceSectionSchedulable?: boolean | null;
+    options?: TransferPlannerRequirementOption[] | null;
+  }
+): TransferPlannerRequirementStructuralShape {
+  const sourceRole = String(input.sourceRole ?? "");
+  if (sourceRole === "elective-list" || input.requirementType === "elective_list") {
+    return "elective-list";
+  }
+  if (input.requirementType === "approved_filter_list") {
+    return "approved-filter-list";
+  }
+  if (sourceRole === "approved-course-list" || input.requirementType === "approved_course_list") {
+    return "approved-course-list";
+  }
+  if (
+    input.supportOnly === true ||
+    sourceRole === "support-source"
+  ) {
+    return "hidden-informational-row";
+  }
+  if (
+    input.sourceSectionSchedulable === false ||
+    input.requirementType === "hidden_informational"
+  ) {
+    return "hidden-informational-row";
+  }
+  if (input.requirementType === "choose_credits") {
+    return "credit-bucket";
+  }
+  if (input.requirementType === "sequence_choice") {
+    return "sequence-choice";
+  }
+  if (
+    (input.options ?? []).some((option) => option.optionKind === "category-option" || option.categoryOption)
+  ) {
+    return "category-option";
+  }
+  if (input.requirementType === "choose_one" || input.requirementType === "choose_n") {
+    return "option-group";
+  }
+  return "required-row";
 }
 
 function getPlannerPathwayKey(planId: string, pathwayId?: string | null) {
@@ -297,6 +364,7 @@ function buildRuntimeCategoryRequirementOption(input: {
   return {
     id: `${input.groupId}:requirement-option:${optionSlug}`,
     optionKind: "category-option",
+    requirementShape: "category-option",
     displayCourseCodes: [],
     uwCourses: [],
     equivalentUwCourseCodes: [],
@@ -392,6 +460,19 @@ function buildRuntimeRequirementOption(input: {
   };
 }
 
+function formatRuntimeRequirementCreditText(
+  minCredits: number | null | undefined,
+  maxCredits: number | null | undefined
+) {
+  if (minCredits == null && maxCredits == null) {
+    return null;
+  }
+  if (minCredits != null && maxCredits != null && minCredits !== maxCredits) {
+    return `${minCredits}-${maxCredits}`;
+  }
+  return String(minCredits ?? maxCredits);
+}
+
 function buildRuntimeRequirementGroup(input: {
   ownerId: string;
   id: string;
@@ -410,6 +491,7 @@ function buildRuntimeRequirementGroup(input: {
     category: "source-choice",
     subcategory: null,
     requirementType: (input.maxCourses ?? input.minCourses ?? 1) === 1 ? "choose_one" : "choose_n",
+    requirementShape: "option-group",
     minCourses: input.minCourses ?? 1,
     maxCourses: input.maxCourses ?? input.minCourses ?? 1,
     minCredits: null,
@@ -454,7 +536,20 @@ function buildRuntimeChecklistItem(input: {
   requirementGroup?: TransferPlannerRequirementGroup;
   selectedRequirementOptionIds?: string[];
   scheduleSelectedRequirementOptions?: boolean;
+  sourceUrl?: string | null;
+  sourceRole?: string | null;
+  sourceScope?: string | null;
+  sourceSection?: string | null;
+  generatedFromParser?: boolean;
+  manualOverride?: boolean;
+  canCreateScheduleRow?: boolean;
+  requirementShape?: TransferPlannerRequirementStructuralShape | null;
+  reason?: string | null;
 }): TransferPlannerChecklistItem {
+  const requirementShape =
+    input.requirementShape ??
+    input.requirementGroup?.requirementShape ??
+    (input.canCreateScheduleRow === false ? "hidden-informational-row" : "required-row");
   return {
     id: input.id,
     title: input.title,
@@ -469,7 +564,77 @@ function buildRuntimeChecklistItem(input: {
     ...(input.scheduleSelectedRequirementOptions
       ? { scheduleSelectedRequirementOptions: true }
       : {}),
+    ...(input.sourceUrl !== undefined ? { sourceUrl: input.sourceUrl } : {}),
+    ...(input.sourceRole !== undefined ? { sourceRole: input.sourceRole } : {}),
+    ...(input.sourceScope !== undefined ? { sourceScope: input.sourceScope } : {}),
+    ...(input.sourceSection !== undefined ? { sourceSection: input.sourceSection } : {}),
+    ...(input.generatedFromParser !== undefined
+      ? { generatedFromParser: input.generatedFromParser }
+      : {}),
+    ...(input.manualOverride !== undefined ? { manualOverride: input.manualOverride } : {}),
+    ...(input.canCreateScheduleRow !== undefined
+      ? { canCreateScheduleRow: input.canCreateScheduleRow }
+      : {}),
+    ...(requirementShape ? { requirementShape } : {}),
+    ...(input.reason !== undefined ? { reason: input.reason } : {}),
   };
+}
+
+const RUNTIME_MANUAL_SEED_SCHEDULABLE_SOURCE_ROLES = new Set([
+  "degree-requirements",
+  "catalog",
+  "curriculum",
+  "worksheet",
+  "official-catalog",
+  "primary-degree-requirements",
+  "department-requirements",
+  "pathway-degree-sheet",
+]);
+
+function getRuntimeManualSeedSourceMetadata(
+  planId: string,
+  sourceSection: string,
+  reason: string
+): Pick<
+  TransferPlannerChecklistItem,
+  | "sourceUrl"
+  | "sourceRole"
+  | "sourceScope"
+  | "sourceSection"
+  | "generatedFromParser"
+  | "manualOverride"
+  | "canCreateScheduleRow"
+  | "reason"
+> {
+  const primarySource =
+    TRANSFER_PLANNER_RUNTIME_PRIMARY_DEGREE_SOURCES_BY_KEY[getPlannerPathwayKey(planId, null)] ??
+    null;
+  const sourceRole = primarySource?.role ?? null;
+  const canCreateScheduleRow =
+    primarySource?.isPrimaryDegreeRequirementsLink === true ||
+    RUNTIME_MANUAL_SEED_SCHEDULABLE_SOURCE_ROLES.has(String(sourceRole ?? ""));
+
+  return {
+    sourceUrl: primarySource?.url ?? null,
+    sourceRole,
+    sourceScope: canCreateScheduleRow ? "primary-schedulable-runtime-manual" : "unscoped-runtime-manual",
+    sourceSection,
+    generatedFromParser: false,
+    manualOverride: true,
+    canCreateScheduleRow,
+    reason,
+  };
+}
+
+function annotateRuntimeManualChecklistItems(
+  planId: string,
+  items: TransferPlannerChecklistItem[],
+  reason: string
+) {
+  return items.map((item) => ({
+    ...item,
+    ...getRuntimeManualSeedSourceMetadata(planId, item.title, reason),
+  }));
 }
 
 function buildUwSeattleEceRuntimeChecklist() {
@@ -571,18 +736,28 @@ function normalizeUwSeattleEceRuntimePlan<T extends TransferPlannerResolvedMajor
   }
 
   const checklist = buildUwSeattleEceRuntimeChecklist();
+  const applicationChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_ECE_PLAN_ID,
+    checklist.applicationChecklist,
+    "Manual runtime normalization for source-backed UW Seattle ECE transfer requirements."
+  );
+  const beforeEnrollmentChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_ECE_PLAN_ID,
+    checklist.beforeEnrollmentChecklist,
+    "Manual runtime normalization for source-backed UW Seattle ECE lower-division requirements."
+  );
   const grcCourseList = unique(
     [
-      ...checklist.applicationChecklist,
-      ...checklist.beforeEnrollmentChecklist,
+      ...applicationChecklist,
+      ...beforeEnrollmentChecklist,
     ].flatMap((item) => [item.grcCourses, ...(item.alternatives ?? [])].flat())
   ).map((courseCode) => normalizeCourseCode(courseCode));
 
   return {
     ...plan,
     bestTrackId: plan.bestTrackId ?? UW_SEATTLE_ECE_TRANSFER_TRACK_ID,
-    applicationChecklist: checklist.applicationChecklist,
-    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
+    applicationChecklist,
+    beforeEnrollmentChecklist,
     stayAtGrcChecklist: [],
     grcCourseList,
     requirementGroups: checklist.requirementGroups,
@@ -714,10 +889,20 @@ function normalizeUwSeattleMechanicalRuntimePlan<T extends TransferPlannerResolv
   }
 
   const checklist = buildUwSeattleMechanicalRuntimeChecklist();
+  const applicationChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_ME_PLAN_ID,
+    checklist.applicationChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Mechanical Engineering transfer requirements."
+  );
+  const beforeEnrollmentChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_ME_PLAN_ID,
+    checklist.beforeEnrollmentChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Mechanical Engineering lower-division requirements."
+  );
   const grcCourseList = unique(
     [
-      ...checklist.applicationChecklist,
-      ...checklist.beforeEnrollmentChecklist,
+      ...applicationChecklist,
+      ...beforeEnrollmentChecklist,
     ].flatMap((item) => [item.grcCourses, ...(item.alternatives ?? [])].flat())
   ).map((courseCode) => normalizeCourseCode(courseCode));
 
@@ -725,8 +910,8 @@ function normalizeUwSeattleMechanicalRuntimePlan<T extends TransferPlannerResolv
     ...plan,
     bestTrackId:
       plan.bestTrackId ?? UW_SEATTLE_CIVIL_MECHANICAL_TRANSFER_TRACK_ID,
-    applicationChecklist: checklist.applicationChecklist,
-    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
+    applicationChecklist,
+    beforeEnrollmentChecklist,
     stayAtGrcChecklist: [],
     grcCourseList,
     requirementGroups: [],
@@ -860,11 +1045,26 @@ function normalizeUwSeattleCivilRuntimePlan<T extends TransferPlannerResolvedMaj
   }
 
   const checklist = buildUwSeattleCivilRuntimeChecklist();
+  const applicationChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_CIVIL_PLAN_ID,
+    checklist.applicationChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Civil Engineering transfer requirements."
+  );
+  const beforeEnrollmentChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_CIVIL_PLAN_ID,
+    checklist.beforeEnrollmentChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Civil Engineering lower-division requirements."
+  );
+  const stayAtGrcChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_CIVIL_PLAN_ID,
+    checklist.stayAtGrcChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Civil Engineering support requirements."
+  );
   const grcCourseList = buildRuntimeGrcCourseListFromChecklists(
     [
-      ...checklist.applicationChecklist,
-      ...checklist.beforeEnrollmentChecklist,
-      ...checklist.stayAtGrcChecklist,
+      ...applicationChecklist,
+      ...beforeEnrollmentChecklist,
+      ...stayAtGrcChecklist,
     ],
     { onlyCanonicalGrcCourses: true }
   );
@@ -873,9 +1073,9 @@ function normalizeUwSeattleCivilRuntimePlan<T extends TransferPlannerResolvedMaj
     ...plan,
     bestTrackId:
       plan.bestTrackId ?? UW_SEATTLE_CIVIL_MECHANICAL_TRANSFER_TRACK_ID,
-    applicationChecklist: checklist.applicationChecklist,
-    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
-    stayAtGrcChecklist: checklist.stayAtGrcChecklist,
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist,
     grcCourseList,
     requirementGroups: checklist.requirementGroups,
     validationNotes: unique([
@@ -1064,11 +1264,26 @@ function normalizeUwSeattleBioengineeringRuntimePlan<T extends TransferPlannerMa
   }
 
   const checklist = buildUwSeattleBioengineeringRuntimeChecklist();
+  const applicationChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_BIOENGINEERING_PLAN_ID,
+    checklist.applicationChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Bioengineering transfer requirements."
+  );
+  const beforeEnrollmentChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_BIOENGINEERING_PLAN_ID,
+    checklist.beforeEnrollmentChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Bioengineering lower-division requirements."
+  );
+  const stayAtGrcChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_BIOENGINEERING_PLAN_ID,
+    checklist.stayAtGrcChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Bioengineering support requirements."
+  );
   const grcCourseList = buildRuntimeGrcCourseListFromChecklists(
     [
-      ...checklist.applicationChecklist,
-      ...checklist.beforeEnrollmentChecklist,
-      ...checklist.stayAtGrcChecklist,
+      ...applicationChecklist,
+      ...beforeEnrollmentChecklist,
+      ...stayAtGrcChecklist,
     ],
     { onlyCanonicalGrcCourses: true }
   );
@@ -1076,9 +1291,9 @@ function normalizeUwSeattleBioengineeringRuntimePlan<T extends TransferPlannerMa
   return refreshRuntimeMatchedTrackCopy(appendUwSeattleBioengineeringGeneralEducationSection({
     ...plan,
     bestTrackId: UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID,
-    applicationChecklist: checklist.applicationChecklist,
-    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
-    stayAtGrcChecklist: checklist.stayAtGrcChecklist,
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist,
     grcCourseList,
     requirementGroups: [],
     validationNotes: unique([
@@ -1151,11 +1366,26 @@ function normalizeUwSeattleChemicalEngineeringRuntimePlan<T extends TransferPlan
   }
 
   const checklist = buildUwSeattleChemicalEngineeringRuntimeChecklist();
+  const applicationChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_CHEMICAL_ENGINEERING_PLAN_ID,
+    checklist.applicationChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Chemical Engineering transfer requirements."
+  );
+  const beforeEnrollmentChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_CHEMICAL_ENGINEERING_PLAN_ID,
+    checklist.beforeEnrollmentChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Chemical Engineering lower-division requirements."
+  );
+  const stayAtGrcChecklist = annotateRuntimeManualChecklistItems(
+    UW_SEATTLE_CHEMICAL_ENGINEERING_PLAN_ID,
+    checklist.stayAtGrcChecklist,
+    "Manual runtime normalization for source-backed UW Seattle Chemical Engineering support requirements."
+  );
   const grcCourseList = buildRuntimeGrcCourseListFromChecklists(
     [
-      ...checklist.applicationChecklist,
-      ...checklist.beforeEnrollmentChecklist,
-      ...checklist.stayAtGrcChecklist,
+      ...applicationChecklist,
+      ...beforeEnrollmentChecklist,
+      ...stayAtGrcChecklist,
     ],
     { onlyCanonicalGrcCourses: true }
   );
@@ -1163,9 +1393,9 @@ function normalizeUwSeattleChemicalEngineeringRuntimePlan<T extends TransferPlan
   return refreshRuntimeMatchedTrackCopy({
     ...plan,
     bestTrackId: plan.bestTrackId ?? UW_SEATTLE_BIOENGINEERING_TRANSFER_TRACK_ID,
-    applicationChecklist: checklist.applicationChecklist,
-    beforeEnrollmentChecklist: checklist.beforeEnrollmentChecklist,
-    stayAtGrcChecklist: checklist.stayAtGrcChecklist,
+    applicationChecklist,
+    beforeEnrollmentChecklist,
+    stayAtGrcChecklist,
     grcCourseList,
     requirementGroups: [],
     validationNotes: unique([
@@ -1292,6 +1522,40 @@ function addCategoryOptionsToChecklistItems(
   });
 }
 
+function canParsedRequirementSourceBlockCreateCategoryOptions(
+  block: TransferPlannerRuntimeParsedRequirementSourceScopeBlock
+) {
+  if (
+    block.canCreateScheduleRows === false ||
+    block.canCreateCategoryOptions === false ||
+    block.canCreateOptionGroups === false ||
+    block.canCreateSchedulableRows === false ||
+    block.supportOnly === true ||
+    block.nonSchedulable === true
+  ) {
+    return false;
+  }
+
+  if (["support", "non-schedulable", "ignored"].includes(String(block.sourceRoleStatus ?? ""))) {
+    return false;
+  }
+
+  return ![
+    "approved-course-list",
+    "elective-list",
+    "upper-division-prerequisite-table",
+    "non-schedulable-course-list",
+    "sample-schedule",
+    "support-source",
+    "admission-prerequisite-source",
+    "admissions-preparation",
+    "transfer-equivalency",
+    "matched-grc-track",
+    "old-archival",
+    "ignored",
+  ].includes(String(block.sourceRole ?? ""));
+}
+
 export function normalizeCategoryOptionRuntimePlan<T extends TransferPlannerMajorPlan>(
   plan: T
 ): T {
@@ -1302,10 +1566,14 @@ export function normalizeCategoryOptionRuntimePlan<T extends TransferPlannerMajo
   const sourceLines = getTransferPlannerParsedRequirementSourceBlocks(
     plan.id,
     selectedPathwayId
-  ).flatMap((block) => [
-    ...(block.requirementCueLines ?? []),
-    ...((block as { chooseStatements?: string[] }).chooseStatements ?? []),
-  ]);
+  ).flatMap((block) =>
+    canParsedRequirementSourceBlockCreateCategoryOptions(block)
+      ? [
+          ...(block.requirementCueLines ?? []),
+          ...((block as { chooseStatements?: string[] }).chooseStatements ?? []),
+        ]
+      : []
+  );
 
   if (!sourceLines.length) {
     return plan;
@@ -1356,10 +1624,259 @@ export function normalizeCategoryOptionRuntimePlan<T extends TransferPlannerMajo
   };
 }
 
+function normalizeRequirementShapeForGroup(group: TransferPlannerRequirementGroup): TransferPlannerRequirementGroup {
+  const normalizedOptions = (group.options ?? []).map((option) => {
+    const isCategoryOption = option.optionKind === "category-option" || Boolean(option.categoryOption);
+    const requirementShape =
+      option.requirementShape ??
+      (isCategoryOption ? "category-option" : null);
+    if (!isCategoryOption) {
+      return requirementShape === option.requirementShape ? option : { ...option, requirementShape };
+    }
+    const normalizedOption = {
+      ...option,
+      optionKind: "category-option" as const,
+      requirementShape: "category-option" as const,
+      displayCourseCodes: [],
+      uwCourses: [],
+      equivalentUwCourseCodes: [],
+      grcMatches: [],
+    };
+    return (
+      option.optionKind === normalizedOption.optionKind &&
+      option.requirementShape === normalizedOption.requirementShape &&
+      (option.displayCourseCodes ?? []).length === 0 &&
+      (option.uwCourses ?? []).length === 0 &&
+      (option.equivalentUwCourseCodes ?? []).length === 0 &&
+      (option.grcMatches ?? []).length === 0
+    )
+      ? option
+      : normalizedOption;
+  });
+  const isSequenceChoice = group.requirementType === "sequence_choice";
+  const sequenceOptionsByPathId = new Map(
+    normalizedOptions
+      .filter((option) => option.sequencePathId)
+      .map((option) => [option.sequencePathId, option])
+  );
+  const sequenceOptionsByCourseSet = new Map(
+    normalizedOptions.map((option) => [unique(option.uwCourses ?? []).join("|"), option])
+  );
+  const normalizedSequencePaths = (group.sequencePaths ?? []).map((path) => {
+    const uwCourses = unique(path.uwCourses ?? []);
+    const matchingOption =
+      sequenceOptionsByPathId.get(path.id) ??
+      sequenceOptionsByCourseSet.get(uwCourses.join("|")) ??
+      null;
+    const mappedGrcCourseCodes = unique([
+      ...(path.mappedGrcCourseCodes ?? []),
+      ...(matchingOption?.grcMatches ?? []),
+    ]);
+    return {
+      ...path,
+      uwCourses,
+      displayCourseCodes: path.displayCourseCodes?.length ? unique(path.displayCourseCodes) : uwCourses,
+      mappedGrcCourseCodes,
+      compoundComponents: (path.compoundComponents ?? []).map(unique).filter((component) => component.length),
+      conditionalLabCourses: unique(path.conditionalLabCourses ?? []),
+      notes: unique(path.notes ?? []),
+    };
+  });
+  const normalizedSequenceOptions = isSequenceChoice
+    ? normalizedOptions.map((option) => {
+        const path = normalizedSequencePaths.find((candidate) => candidate.id === option.sequencePathId);
+        if (!path) {
+          return option;
+        }
+        return {
+          ...option,
+          pathLabel: option.pathLabel ?? path.label,
+          conditionalLabCourses: unique([
+            ...(option.conditionalLabCourses ?? []),
+            ...(path.conditionalLabCourses ?? []),
+          ]),
+          notes: unique([...(option.notes ?? []), ...(path.notes ?? [])]),
+        };
+      })
+    : normalizedOptions;
+  const isCreditBucket = group.requirementType === "choose_credits";
+  const minCredits = group.minCredits ?? null;
+  const hasMaxCredits = Object.prototype.hasOwnProperty.call(group, "maxCredits");
+  const maxCredits = hasMaxCredits ? group.maxCredits ?? null : minCredits ?? null;
+  const creditText =
+    group.creditText ?? (isCreditBucket ? formatRuntimeRequirementCreditText(minCredits, maxCredits) : null);
+  const satisfactionMode: TransferPlannerRequirementSatisfactionMode | null =
+    group.satisfactionMode ?? (isCreditBucket ? "credit-based" : null);
+  const requirementShape = isSequenceChoice
+    ? "sequence-choice"
+    : group.requirementShape ??
+      getRuntimeRequirementStructuralShape({
+        requirementType: group.requirementType,
+        supportOnly: group.supportOnly,
+        sourceRole: group.sourceRole,
+        sourceSectionSchedulable: group.sourceSectionSchedulable,
+        options: normalizedSequenceOptions,
+      });
+  const optionsChanged = normalizedSequenceOptions.some((option, index) => option !== group.options?.[index]);
+  const sequencePathsChanged =
+    normalizedSequencePaths.length !== (group.sequencePaths ?? []).length ||
+    normalizedSequencePaths.some((path, index) => path !== group.sequencePaths?.[index]);
+  if (
+    !optionsChanged &&
+    !sequencePathsChanged &&
+    group.requirementShape === requirementShape &&
+    group.minCredits === minCredits &&
+    group.maxCredits === maxCredits &&
+    group.creditText === creditText &&
+    group.satisfactionMode === satisfactionMode &&
+    (!isCreditBucket ||
+      (group.minCourses == null &&
+        group.maxCourses == null &&
+        group.selectionCount == null &&
+        group.requiredCount == null)) &&
+    (!isSequenceChoice ||
+      (group.minCourses === 1 &&
+        group.maxCourses === 1 &&
+        group.selectionCount === 1 &&
+        group.requiredCount === 1))
+  ) {
+    return group;
+  }
+  return {
+    ...group,
+    requirementShape,
+    minCourses: isCreditBucket ? null : isSequenceChoice ? 1 : group.minCourses ?? null,
+    maxCourses: isCreditBucket ? null : isSequenceChoice ? 1 : group.maxCourses ?? null,
+    selectionCount: isCreditBucket ? null : isSequenceChoice ? 1 : group.selectionCount ?? null,
+    requiredCount: isCreditBucket ? null : isSequenceChoice ? 1 : group.requiredCount ?? null,
+    minCredits,
+    maxCredits,
+    creditText,
+    satisfactionMode,
+    sequencePaths: normalizedSequencePaths,
+    options: normalizedSequenceOptions,
+  };
+}
+
+function normalizeRequirementShapeForChecklistItem(
+  item: TransferPlannerChecklistItem
+): TransferPlannerChecklistItem {
+  const requirementGroup = item.requirementGroup
+    ? normalizeRequirementShapeForGroup(item.requirementGroup)
+    : undefined;
+  const requirementShape =
+    item.requirementShape ??
+    requirementGroup?.requirementShape ??
+    (item.canCreateScheduleRow === false ? "hidden-informational-row" : "required-row");
+  const isSequenceChoice = requirementGroup?.requirementType === "sequence_choice";
+  const selectedSequenceOption =
+    isSequenceChoice
+      ? (requirementGroup.options ?? []).find((option) =>
+          (item.selectedRequirementOptionIds ?? []).includes(option.id ?? "")
+        ) ??
+        (requirementGroup.options ?? []).find((option) => (option.grcMatches ?? []).length > 0) ??
+        (requirementGroup.options ?? [])[0] ??
+        null
+      : null;
+  const selectedSequenceOptionIds =
+    selectedSequenceOption?.id ? [selectedSequenceOption.id] : [];
+  const unselectedSequenceOptionIds = isSequenceChoice
+    ? (requirementGroup?.options ?? [])
+        .map((option) => option.id)
+        .filter(
+          (optionId): optionId is string =>
+            Boolean(optionId && !selectedSequenceOptionIds.includes(optionId))
+        )
+    : [];
+  const sequenceGrcCourses = selectedSequenceOption
+    ? unique(selectedSequenceOption.grcMatches ?? [])
+    : [];
+  if (
+    requirementGroup === item.requirementGroup &&
+    item.requirementShape === requirementShape &&
+    (!isSequenceChoice ||
+      ((item.selectedRequirementOptionIds ?? []).length === selectedSequenceOptionIds.length &&
+        selectedSequenceOptionIds.every((optionId) =>
+          (item.selectedRequirementOptionIds ?? []).includes(optionId)
+        ) &&
+        (item.unselectedRequirementOptionIds ?? []).length === unselectedSequenceOptionIds.length &&
+        unselectedSequenceOptionIds.every((optionId) =>
+          (item.unselectedRequirementOptionIds ?? []).includes(optionId)
+        ) &&
+        item.grcCourses.length === sequenceGrcCourses.length &&
+        sequenceGrcCourses.every((courseCode) => item.grcCourses.includes(courseCode))))
+  ) {
+    return item;
+  }
+  return {
+    ...item,
+    requirementGroup,
+    requirementShape,
+    ...(isSequenceChoice
+      ? {
+          grcCourses: sequenceGrcCourses,
+          selectedRequirementOptionIds: selectedSequenceOptionIds.length
+            ? selectedSequenceOptionIds
+            : undefined,
+          unselectedRequirementOptionIds: unselectedSequenceOptionIds.length
+            ? unselectedSequenceOptionIds
+            : undefined,
+          minCompletedCount: 1,
+        }
+      : {}),
+  };
+}
+
+function normalizeRequirementShapesRuntimePlan<T extends TransferPlannerMajorPlan>(plan: T): T {
+  const selectedPathwayId =
+    "selectedPathwayId" in plan
+      ? ((plan as unknown as { selectedPathwayId?: string | null }).selectedPathwayId ?? null)
+      : undefined;
+  const supportLists = uniqueBy(
+    [
+      ...(plan.supportLists ?? []),
+      ...getRuntimeRequirementSupportListsForScope(plan.id, selectedPathwayId),
+    ].map(normalizeRuntimeRequirementSupportList),
+    (supportList) => supportList.id
+  );
+  return {
+    ...plan,
+    ...(supportLists.length ? { supportLists } : {}),
+    requirementGroups: (plan.requirementGroups ?? []).map(normalizeRequirementShapeForGroup),
+    applicationChecklist: (plan.applicationChecklist ?? []).map(normalizeRequirementShapeForChecklistItem),
+    beforeEnrollmentChecklist: (plan.beforeEnrollmentChecklist ?? []).map(
+      normalizeRequirementShapeForChecklistItem
+    ),
+    stayAtGrcChecklist: (plan.stayAtGrcChecklist ?? []).map(normalizeRequirementShapeForChecklistItem),
+    pathways: (plan.pathways ?? []).map((pathway) => ({
+      ...pathway,
+      requirementGroups: (pathway.requirementGroups ?? []).map(normalizeRequirementShapeForGroup),
+      applicationChecklist: (pathway.applicationChecklist ?? []).map(
+        normalizeRequirementShapeForChecklistItem
+      ),
+      beforeEnrollmentChecklist: (pathway.beforeEnrollmentChecklist ?? []).map(
+        normalizeRequirementShapeForChecklistItem
+      ),
+      stayAtGrcChecklist: (pathway.stayAtGrcChecklist ?? []).map(
+        normalizeRequirementShapeForChecklistItem
+      ),
+      supportLists: uniqueBy(
+        [
+          ...(pathway.supportLists ?? []),
+          ...getRuntimeRequirementSupportListsForScope(plan.id, pathway.id),
+        ].map(normalizeRuntimeRequirementSupportList),
+        (supportList) => supportList.id
+      ),
+    })),
+  };
+}
+
 function normalizeStudentRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(plan: T): T {
-  return normalizeCategoryOptionRuntimePlan(
-    normalizeUwSeattleChemicalEngineeringRuntimePlan(
-      normalizeUwSeattleBioengineeringRuntimePlan(plan)
+  return normalizeRequirementShapesRuntimePlan(
+    normalizeCategoryOptionRuntimePlan(
+      normalizeUwSeattleChemicalEngineeringRuntimePlan(
+        normalizeUwSeattleBioengineeringRuntimePlan(plan)
+      )
     )
   );
 }
@@ -1367,11 +1884,13 @@ function normalizeStudentRuntimeMajorPlan<T extends TransferPlannerMajorPlan>(pl
 function normalizeStudentRuntimeResolvedMajorPlan<T extends TransferPlannerResolvedMajorPlan>(
   plan: T
 ): T {
-  return normalizeCategoryOptionRuntimePlan(
-    normalizeUwSeattleChemicalEngineeringRuntimePlan(
-      normalizeUwSeattleBioengineeringRuntimePlan(
-        normalizeUwSeattleCivilRuntimePlan(
-          normalizeUwSeattleMechanicalRuntimePlan(normalizeUwSeattleEceRuntimePlan(plan))
+  return normalizeRequirementShapesRuntimePlan(
+    normalizeCategoryOptionRuntimePlan(
+      normalizeUwSeattleChemicalEngineeringRuntimePlan(
+        normalizeUwSeattleBioengineeringRuntimePlan(
+          normalizeUwSeattleCivilRuntimePlan(
+            normalizeUwSeattleMechanicalRuntimePlan(normalizeUwSeattleEceRuntimePlan(plan))
+          )
         )
       )
     )
@@ -1426,6 +1945,285 @@ export function normalizeTransferPlannerCourseCode(value: string) {
 
 function normalizeCourseCode(value: string | null | undefined) {
   return normalizeTransferPlannerCourseCode(String(value ?? ""));
+}
+
+function normalizeRuntimeSupportListCourseCodes(values: unknown) {
+  return unique(
+    (Array.isArray(values) ? values : [])
+      .map((courseCode) => normalizeCourseCode(String(courseCode ?? "")))
+      .filter(Boolean)
+  );
+}
+
+function getRuntimeSupportListContext(block: {
+  planId?: string | null;
+  ownerId?: string | null;
+  ownerTitle?: string | null;
+  sourceUrl?: string | null;
+  sourceLabel?: string | null;
+  primarySourceUrl?: string | null;
+  primarySourceLabel?: string | null;
+}) {
+  return [
+    block.planId,
+    block.ownerId,
+    block.ownerTitle,
+    block.sourceLabel,
+    block.sourceUrl,
+    block.primarySourceLabel,
+    block.primarySourceUrl,
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+}
+
+function inferRuntimeApprovedListKey(block: {
+  planId?: string | null;
+  ownerId?: string | null;
+  ownerTitle?: string | null;
+  sourceUrl?: string | null;
+  sourceLabel?: string | null;
+  primarySourceUrl?: string | null;
+  primarySourceLabel?: string | null;
+}) {
+  const context = getRuntimeSupportListContext(block);
+  if (
+    (block.planId === "uw-seattle-computer-engineering" ||
+      /\bcomputer engineering\b/.test(context)) &&
+    /\b(?:natural science|science)\b/.test(context)
+  ) {
+    return "computer-engineering-natural-science";
+  }
+  if (
+    (block.planId === "uw-seattle-computer-science" ||
+      /\b(?:computer science|allen school|data science)\b/.test(context)) &&
+    /\b(?:natural science|science)\b/.test(context)
+  ) {
+    return "computer-science-approved-science";
+  }
+  if (/\bapproved\b/.test(context) && /\belectives?\b/.test(context)) {
+    return `${slugifyRuntimeId(String(block.planId ?? block.ownerId ?? "unknown-owner"))}-approved-electives`;
+  }
+  return null;
+}
+
+function buildRuntimeRequirementSupportList(input: {
+  block: {
+    id?: string | null;
+    ownerId?: string | null;
+    planId?: string | null;
+    pathwayId?: string | null;
+    sourceUrl?: string | null;
+    sourceRole?: string | null;
+    sourceLabel?: string | null;
+    primarySourceUrl?: string | null;
+    primarySourceLabel?: string | null;
+  };
+  shape: TransferPlannerRequirementSupportList["shape"];
+  acceptedUwCourseCodes: string[];
+  approvedListKey?: string | null;
+}) {
+  const sourceUrl = input.block.sourceUrl ?? input.block.primarySourceUrl ?? null;
+  const listTitle =
+    input.block.sourceLabel ??
+    input.block.primarySourceLabel ??
+    (input.shape === "elective-list" ? "Elective list" : "Approved course list");
+  const filterDefinition = getTransferPlannerProgramApprovedCourseFilterDefinition(
+    input.approvedListKey
+  );
+  return {
+    id: `${input.block.id ?? slugifyRuntimeId(`${sourceUrl ?? listTitle}`)}:support-list:${input.shape}`,
+    shape: input.shape,
+    sourceUrl,
+    sourceRole: input.block.sourceRole ?? null,
+    listTitle,
+    filterKey: filterDefinition?.filterKey ?? input.approvedListKey ?? null,
+    ownerId: input.block.ownerId ?? input.block.planId ?? null,
+    majorId: input.block.planId ?? null,
+    pathwayId: input.block.pathwayId ?? null,
+    officialSourceUrl: filterDefinition?.officialSourceUrl ?? sourceUrl,
+    acceptedUwCourseCodes: filterDefinition
+      ? normalizeRuntimeSupportListCourseCodes(filterDefinition.approvedUwCourseCodes)
+      : input.acceptedUwCourseCodes,
+    approvedUwCourseGroups: filterDefinition?.approvedUwCourseGroups?.map((group) =>
+      normalizeRuntimeSupportListCourseCodes(group)
+    ),
+    petitionOnlyNotes: filterDefinition?.petitionOnlyNotes
+      ? [...filterDefinition.petitionOnlyNotes]
+      : undefined,
+    generatedFilterId: filterDefinition?.filterId ?? null,
+    sourceEvidenceLines: filterDefinition?.sourceEvidenceLines
+      ? [...filterDefinition.sourceEvidenceLines]
+      : undefined,
+    sourceEvidenceHeadings: filterDefinition?.sourceEvidenceHeadings
+      ? [...filterDefinition.sourceEvidenceHeadings]
+      : undefined,
+    sourceFingerprint: filterDefinition?.sourceFingerprint ?? null,
+    sourceBackedProgramApproval: Boolean(filterDefinition),
+    ...(input.approvedListKey ? { approvedListKey: input.approvedListKey } : {}),
+    supportOnly: true,
+    canCreateRequiredRow: false,
+    canCreateScheduleRow: false,
+    linkedPrimaryRequirementIds: [],
+  } satisfies TransferPlannerRequirementSupportList;
+}
+
+function buildRuntimeRequirementSupportLists(block: {
+  id?: string | null;
+  planId?: string | null;
+  ownerId?: string | null;
+  ownerTitle?: string | null;
+  sourceUrl?: string | null;
+  sourceLabel?: string | null;
+  primarySourceUrl?: string | null;
+  primarySourceLabel?: string | null;
+  sourceRole?: string | null;
+  approvedFilterUwCourseCodes?: string[];
+  electiveListUwCourseCodes?: string[];
+  supportOnlyUwCourseCodes?: string[];
+}) {
+  const lists: TransferPlannerRequirementSupportList[] = [];
+  const approvedCodes = normalizeRuntimeSupportListCourseCodes(
+    block.approvedFilterUwCourseCodes
+  );
+  const electiveCodes = normalizeRuntimeSupportListCourseCodes(block.electiveListUwCourseCodes);
+  const supportOnlyCodes = normalizeRuntimeSupportListCourseCodes(
+    block.supportOnlyUwCourseCodes
+  );
+  const usedCodes = new Set([...approvedCodes, ...electiveCodes]);
+  const remainingSupportOnlyCodes = supportOnlyCodes.filter((courseCode) => !usedCodes.has(courseCode));
+  const approvedListKey = inferRuntimeApprovedListKey(block);
+  const approvedFilterDefinition = getTransferPlannerProgramApprovedCourseFilterDefinition(
+    approvedListKey
+  );
+
+  if (approvedCodes.length || (approvedFilterDefinition && block.sourceRole === "approved-course-list")) {
+    lists.push(
+      buildRuntimeRequirementSupportList({
+        block,
+        shape: "approved-filter-list",
+        acceptedUwCourseCodes: approvedCodes,
+        approvedListKey,
+      })
+    );
+  }
+
+  if (electiveCodes.length) {
+    lists.push(
+      buildRuntimeRequirementSupportList({
+        block,
+        shape: "elective-list",
+        acceptedUwCourseCodes: electiveCodes,
+      })
+    );
+  }
+
+  if (remainingSupportOnlyCodes.length) {
+    const sourceRole = String(block.sourceRole ?? "");
+    const shape =
+      sourceRole === "elective-list"
+        ? "elective-list"
+        : sourceRole === "approved-course-list"
+          ? "approved-course-list"
+          : null;
+    if (shape) {
+      lists.push(
+        buildRuntimeRequirementSupportList({
+          block,
+          shape,
+          acceptedUwCourseCodes: remainingSupportOnlyCodes,
+          approvedListKey: shape === "approved-course-list" ? approvedListKey : null,
+        })
+      );
+    }
+  }
+
+  return lists;
+}
+
+function normalizeRuntimeRequirementSupportList(
+  supportList: TransferPlannerRequirementSupportList
+): TransferPlannerRequirementSupportList {
+  const filterDefinition = getTransferPlannerProgramApprovedCourseFilterDefinition(
+    supportList.approvedListKey ?? supportList.filterKey
+  );
+  return {
+    ...supportList,
+    filterKey: filterDefinition?.filterKey ?? supportList.filterKey ?? supportList.approvedListKey ?? null,
+    officialSourceUrl:
+      filterDefinition?.officialSourceUrl ?? supportList.officialSourceUrl ?? supportList.sourceUrl,
+    acceptedUwCourseCodes: normalizeRuntimeSupportListCourseCodes(
+      filterDefinition?.approvedUwCourseCodes ?? supportList.acceptedUwCourseCodes
+    ),
+    approvedUwCourseGroups:
+      filterDefinition?.approvedUwCourseGroups?.map((group) =>
+        normalizeRuntimeSupportListCourseCodes(group)
+      ) ?? supportList.approvedUwCourseGroups,
+    petitionOnlyNotes: filterDefinition?.petitionOnlyNotes
+      ? [...filterDefinition.petitionOnlyNotes]
+      : supportList.petitionOnlyNotes,
+    generatedFilterId:
+      filterDefinition?.filterId ?? supportList.generatedFilterId ?? null,
+    sourceEvidenceLines: filterDefinition?.sourceEvidenceLines
+      ? [...filterDefinition.sourceEvidenceLines]
+      : supportList.sourceEvidenceLines,
+    sourceEvidenceHeadings: filterDefinition?.sourceEvidenceHeadings
+      ? [...filterDefinition.sourceEvidenceHeadings]
+      : supportList.sourceEvidenceHeadings,
+    sourceFingerprint:
+      filterDefinition?.sourceFingerprint ?? supportList.sourceFingerprint ?? null,
+    sourceBackedProgramApproval:
+      filterDefinition ? true : supportList.sourceBackedProgramApproval ?? null,
+    supportOnly: true,
+    canCreateRequiredRow: false,
+    canCreateScheduleRow: false,
+    linkedPrimaryRequirementIds: supportList.linkedPrimaryRequirementIds ?? [],
+  };
+}
+
+function normalizeRuntimeParsedRequirementSourceBlock<
+  T extends {
+    supportLists?: TransferPlannerRequirementSupportList[];
+    approvedFilterUwCourseCodes?: string[];
+    electiveListUwCourseCodes?: string[];
+    supportOnlyUwCourseCodes?: string[];
+    parsedRequirementGroups?: TransferPlannerRequirementGroup[];
+  }
+>(block: T) {
+  const supportLists = (
+    block.supportLists?.length
+      ? block.supportLists
+      : buildRuntimeRequirementSupportLists(block)
+  ).map(normalizeRuntimeRequirementSupportList);
+  const parsedRequirementGroups = (block.parsedRequirementGroups ?? []).map(
+    normalizeRequirementShapeForGroup
+  );
+  const parsedGroupsChanged = parsedRequirementGroups.some(
+    (group, index) => group !== block.parsedRequirementGroups?.[index]
+  );
+
+  if (!supportLists.length && !parsedGroupsChanged) {
+    return block;
+  }
+
+  return {
+    ...block,
+    ...(supportLists.length ? { supportLists } : {}),
+    ...(parsedGroupsChanged ? { parsedRequirementGroups } : {}),
+  };
+}
+
+function getRuntimeRequirementSupportListsForScope(
+  planId: string,
+  pathwayId?: string | null
+) {
+  return uniqueBy(
+    getTransferPlannerParsedRequirementSourceBlocks(planId, pathwayId).flatMap(
+      (block) => block.supportLists ?? []
+    ),
+    (supportList) => supportList.id
+  );
 }
 
 function normalizeExtractedCourseSubject(rawSubject: string | null | undefined) {
@@ -1719,6 +2517,10 @@ export function getTransferPlannerEquivalencyRulesForSourceCourse(
   );
 }
 
+export function getTransferPlannerAllEquivalencyRules() {
+  return [...TRANSFER_PLANNER_RUNTIME_EQUIVALENCY_RULE_REGISTRY];
+}
+
 export function getTransferPlannerStudentRuntimeMajorsForCampus(
   campusId: TransferPlannerCampusId
 ) {
@@ -1806,7 +2608,7 @@ export function getTransferPlannerParsedRequirementSourceBlocks(
         : pathwayId === null
           ? !entry.pathwayId
           : entry.pathwayId === pathwayId)
-  );
+  ).map(normalizeRuntimeParsedRequirementSourceBlock);
 }
 
 function getChecklistReferenceCourses(plan: TransferPlannerMajorPlan) {

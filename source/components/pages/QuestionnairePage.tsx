@@ -3,8 +3,8 @@ import { View, Text, TextInput, ScrollView, useWindowDimensions } from "react-na
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
+import { AppButton } from "@/components/ui/AppButton";
 import { AnimatedChipPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
-import { GlassButton } from "@/components/ui/GlassButton";
 import { ROUTES } from "@/constants/routes";
 import { StateCard } from "@/components/ui/StateCard";
 import { useAppTheme } from "@/hooks/use-app-theme";
@@ -233,18 +233,6 @@ export default function QuestionnairePage() {
     fontSize: isTablet ? 16 : 15,
     lineHeight: 22,
   };
-  const footerButtonContentStyle = {
-    minHeight: isCompactPhone ? 52 : 58,
-    borderRadius: 18,
-    paddingHorizontal: isCompactPhone ? 16 : 18,
-  } as const;
-  const footerSecondaryButtonContentStyle = {
-    ...footerButtonContentStyle,
-    minHeight: isCompactPhone ? 50 : 56,
-  } as const;
-  const secondaryButtonIconColor = isDark || isGreen ? "#FFFFFF" : "#0f5132";
-  const primaryButtonIconColor = "#FFFFFF";
-
   const textClass = isDark ? "text-white" : isGreen ? "text-white" : isLight ? "text-emerald-900" : "text-gray-900";
   const secondaryTextClass = isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : isLight ? "text-emerald-700" : "text-gray-600";
   const cardBgClass = isDark
@@ -814,24 +802,22 @@ export default function QuestionnairePage() {
 
                 <View className={`mt-6 pt-6 border-t ${borderClass}`} style={{ gap: 12 }}>
                   <View style={{ flexDirection: isTablet ? "row" : "column", gap: 12 }}>
-                    <GlassButton
+                    <AppButton
                       onPress={() => {
                         void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                         handlePreviousQuestion();
                       }}
                       label={t("general.back")}
                       variant="secondary"
-                      icon={<MaterialIcons name="arrow-back" size={18} color={secondaryButtonIconColor} />}
-                      contentStyle={footerSecondaryButtonContentStyle}
+                      icon={(color) => <MaterialIcons name="arrow-back" size={18} color={color} />}
                       style={{
                         flex: isTablet ? 1 : undefined,
                         width: isTablet ? undefined : "100%",
-                        opacity: !isHydrated || isActionLocked || currentStep === 0 ? 0.6 : 1,
                       }}
                       disabled={!isHydrated || isActionLocked || currentStep === 0}
                     />
 
-                    <GlassButton
+                    <AppButton
                       onPress={() => {
                         void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                         void handleNext();
@@ -843,29 +829,30 @@ export default function QuestionnairePage() {
                             ? t("questionnaire.complete")
                             : t("questionnaire.next")
                       }
-                      icon={
+                      icon={(color) => (
                         <MaterialIcons
                           name={currentStep === questions.length - 1 ? "check-circle-outline" : "arrow-forward"}
                           size={18}
-                          color={primaryButtonIconColor}
+                          color={color}
                         />
-                      }
-                      contentStyle={footerButtonContentStyle}
-                      style={{ flex: isTablet ? 1 : undefined, width: isTablet ? undefined : "100%", opacity: !isHydrated || isActionLocked ? 0.6 : 1 }}
+                      )}
+                      style={{
+                        flex: isTablet ? 1 : undefined,
+                        width: isTablet ? undefined : "100%",
+                      }}
                       disabled={!isHydrated || isActionLocked}
                     />
                   </View>
 
-                  <GlassButton
+                  <AppButton
                     onPress={() => {
                       void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
                       void handleSaveAndExit();
                     }}
                     label={isActionLocked ? t("general.loading") : t("questionnaire.saveAndExit")}
                     variant="secondary"
-                    icon={<MaterialIcons name="save-alt" size={18} color={secondaryButtonIconColor} />}
-                    contentStyle={footerSecondaryButtonContentStyle}
-                    style={{ width: "100%", opacity: !isHydrated || isActionLocked ? 0.6 : 1 }}
+                    icon={(color) => <MaterialIcons name="save-alt" size={18} color={color} />}
+                    style={{ width: "100%" }}
                     disabled={!isHydrated || isActionLocked}
                   />
                 </View>

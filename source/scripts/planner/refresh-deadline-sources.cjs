@@ -266,13 +266,29 @@ function normalizeWhitespace(value) {
 function decodeHtml(value) {
   return normalizeWhitespace(
     String(value ?? "")
-      .replace(/&nbsp;/g, " ")
-      .replace(/&#160;/g, " ")
-      .replace(/&#8211;|&ndash;/g, "-")
-      .replace(/&#8212;|&mdash;/g, "-")
-      .replace(/&amp;/g, "&")
-      .replace(/&quot;/g, '"')
-      .replace(/&#39;/g, "'")
+      .replace(
+        /&(nbsp|#160|#8211|ndash|#8212|mdash|amp|quot|#39);/g,
+        (entity) => {
+          switch (entity) {
+            case "&nbsp;":
+            case "&#160;":
+              return " ";
+            case "&#8211;":
+            case "&ndash;":
+            case "&#8212;":
+            case "&mdash;":
+              return "-";
+            case "&amp;":
+              return "&";
+            case "&quot;":
+              return '"';
+            case "&#39;":
+              return "'";
+            default:
+              return entity;
+          }
+        }
+      )
   );
 }
 

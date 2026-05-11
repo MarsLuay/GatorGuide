@@ -15,6 +15,11 @@ const {
   TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS,
   getTransferPlannerPathwaysForPlan,
 } = require("../../constants/transfer-planner-source");
+const {
+  buildTransferPlannerOwnerId,
+  normalizeTransferPlannerOwnerId,
+  normalizeTransferPlannerPathwayId,
+} = require("../../constants/transfer-planner-source/pathway-id-normalization");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -41,6 +46,8 @@ const GENERATED_OUTPUT_PATH = path.resolve(
   "primary-source-promotions.generated.ts"
 );
 const WEAK_SOURCE_REPLACEMENT_REASON_PATTERN = /Replaces existing primary .*weak-source re-evaluation/i;
+const CLEAR_SUPPORT_ONLY_PROMOTION_PATTERN =
+  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
@@ -64,7 +71,34 @@ function runReviewQueue(discoverFirst) {
 }
 
 function buildOwnerId(planId, pathwayId) {
-  return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
+  return buildTransferPlannerOwnerId(planId, pathwayId);
+}
+
+function buildOwnerKey(owner) {
+  return normalizeTransferPlannerOwnerId(
+    owner?.ownerKey ?? owner?.ownerId ?? null,
+    owner?.planId ?? null,
+    owner?.pathwayId ?? null
+  );
+}
+
+function normalizePromotionEntry(entry) {
+  if (!entry || entry.ownerType !== "pathway") {
+    return entry;
+  }
+
+  const pathwayId = normalizeTransferPlannerPathwayId(entry.planId, entry.pathwayId);
+  if (!pathwayId) {
+    return entry;
+  }
+
+  const ownerId = buildOwnerId(entry.planId, pathwayId);
+  return {
+    ...entry,
+    ownerId,
+    ownerKey: ownerId,
+    pathwayId,
+  };
 }
 
 function normalizeLabel(owner) {
@@ -76,11 +110,24 @@ function normalizeLabel(owner) {
   );
 }
 
+function isSchedulablePrimarySuggestion(candidate) {
+  return (
+    candidate &&
+    candidate.confidence === "high" &&
+    candidate.canCreateSchedulableRows !== false &&
+    candidate.sourceRoleStatus === "primary"
+  );
+}
+
+function isClearlySupportOnlyPromotionEntry(entry) {
+  return CLEAR_SUPPORT_ONLY_PROMOTION_PATTERN.test(`${entry?.label ?? ""} ${entry?.url ?? ""}`);
+}
+
 function buildReviewOwnerKeySet(reviewQueue) {
   return new Set(
     (reviewQueue.campuses ?? []).flatMap((campus) =>
       (campus.entries ?? []).map(
-        (entry) => entry.ownerKey ?? buildOwnerId(entry.planId, entry.pathwayId ?? null)
+        (entry) => buildOwnerKey(entry)
       )
     )
   );
@@ -121,12 +168,14 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
   const activeOwnerIds = buildActiveOwnerIdSet();
   const entriesByOwnerId = new Map(
     (previousEntries ?? [])
+      .map(normalizePromotionEntry)
       .filter(
         (entry) =>
           !(entry.reasons ?? []).some((reason) =>
             WEAK_SOURCE_REPLACEMENT_REASON_PATTERN.test(String(reason ?? ""))
           )
       )
+      .filter((entry) => !isClearlySupportOnlyPromotionEntry(entry))
       .filter((entry) => activeOwnerIds.has(entry.ownerId))
       .map((entry) => [
         entry.ownerId,
@@ -138,22 +187,24 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
 
   (discoveryReport.owners ?? [])
     .filter((owner) => !owner.existingPrimaryUrl)
-    .filter((owner) => owner?.suggestedPrimary?.confidence === "high")
+    .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .filter((owner) => {
-      const blockedByReviewQueue = reviewOwnerKeys.has(owner.ownerKey);
+      const ownerKey = buildOwnerKey(owner);
+      const blockedByReviewQueue = reviewOwnerKeys.has(ownerKey);
       if (blockedByReviewQueue) {
-        skippedInReviewQueue.push(owner.ownerKey);
+        skippedInReviewQueue.push(ownerKey);
       }
       return !blockedByReviewQueue;
     })
     .forEach((owner) => {
-      const ownerId = buildOwnerId(owner.planId, owner.pathwayId ?? null);
+      const pathwayId = normalizeTransferPlannerPathwayId(owner.planId, owner.pathwayId ?? null);
+      const ownerId = buildOwnerId(owner.planId, pathwayId);
       entriesByOwnerId.set(ownerId, {
         ownerType: owner.ownerType,
         ownerId,
-        ownerKey: owner.ownerKey,
+        ownerKey: ownerId,
         planId: owner.planId,
-        pathwayId: owner.pathwayId ?? null,
+        pathwayId,
         ownerTitle: owner.title,
         campusId: owner.campusId,
         url: owner.suggestedPrimary.url,
@@ -167,15 +218,16 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
 
   (discoveryReport.weakExistingOwners ?? [])
     .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
-    .filter((owner) => owner?.suggestedPrimary?.confidence === "high")
+    .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .forEach((owner) => {
-      const ownerId = buildOwnerId(owner.planId, owner.pathwayId ?? null);
+      const pathwayId = normalizeTransferPlannerPathwayId(owner.planId, owner.pathwayId ?? null);
+      const ownerId = buildOwnerId(owner.planId, pathwayId);
       entriesByOwnerId.set(ownerId, {
         ownerType: owner.ownerType,
         ownerId,
-        ownerKey: owner.ownerKey,
+        ownerKey: ownerId,
         planId: owner.planId,
-        pathwayId: owner.pathwayId ?? null,
+        pathwayId,
         ownerTitle: owner.title,
         campusId: owner.campusId,
         url: owner.suggestedPrimary.url,

@@ -261,16 +261,23 @@ function auditTrack(track) {
 }
 
 function renderMarkdown(report) {
+  const escapeMarkdownTableCell = (value) =>
+    String(value ?? "")
+      .replace(/\\/g, "\\\\")
+      .replace(/\r?\n/g, " ")
+      .split("|")
+      .join("\\|");
+
   const issueRows = report.tracks.flatMap((track) =>
     track.issues.map(
       (issue) =>
-        `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${issue.groupedChoiceLabel.replace(/\|/g, "\\|")} | ${issue.code} | ${issue.message.replace(/\|/g, "\\|")} |`
+        `| ${track.code} | ${escapeMarkdownTableCell(track.title)} | ${escapeMarkdownTableCell(issue.groupedChoiceLabel)} | ${issue.code} | ${escapeMarkdownTableCell(issue.message)} |`
     )
   );
   const choiceRows = report.tracks.flatMap((track) =>
     track.chooseNChoices.map(
       (choice) =>
-        `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${choice.label.replace(/\|/g, "\\|")} | ${choice.selectionCount} | ${choice.requiredCredits ?? ""} | ${choice.optionLabels.join("; ").replace(/\|/g, "\\|")} | ${choice.defaultOptionLabels.join("; ").replace(/\|/g, "\\|")} | ${choice.groupedPlanRows.length} | ${choice.ungroupedPlannedOptionRows.length} |`
+        `| ${track.code} | ${escapeMarkdownTableCell(track.title)} | ${escapeMarkdownTableCell(choice.label)} | ${choice.selectionCount} | ${choice.requiredCredits ?? ""} | ${escapeMarkdownTableCell(choice.optionLabels.join("; "))} | ${escapeMarkdownTableCell(choice.defaultOptionLabels.join("; "))} | ${choice.groupedPlanRows.length} | ${choice.ungroupedPlannedOptionRows.length} |`
     )
   );
 

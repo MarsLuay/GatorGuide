@@ -20,8 +20,8 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { FormInput } from "@/components/ui/FormInput";
+import { AppButton } from "@/components/ui/AppButton";
 import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
-import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { GatorGuideMark } from "@/components/ui/GatorGuideMark";
 import { authService } from "@/services/auth/auth.service";
@@ -146,7 +146,7 @@ export default function ForgotPasswordPage() {
                 </View>
               </GlassCard>
 
-              <GlassButton
+              <AppButton
                 onPress={() => router.replace(ROUTES.login)}
                 label={t("auth.backToLogin")}
                 style={{ width: "100%", marginTop: 32 }}
@@ -227,11 +227,11 @@ export default function ForgotPasswordPage() {
                 returnKeyType="done"
               />
 
-              <GlassButton
+              <AppButton
                 onPress={handleSubmit}
                 disabled={!canSubmit}
                 label={t("auth.sendResetLink")}
-                style={{ width: "100%", marginTop: 8, opacity: !canSubmit ? 0.6 : 1 }}
+                style={{ width: "100%", marginTop: 8 }}
               />
               </View>
             </GlassCard>
