@@ -210,11 +210,18 @@ function auditTrack(track) {
 }
 
 function renderMarkdown(report) {
+  const escapeMarkdownTableCell = (value) =>
+    String(value ?? "")
+      .replace(/\\/g, "\\\\")
+      .replace(/\r?\n/g, " ")
+      .split("|")
+      .join("\\|");
+
   const rows = report.tracks
     .filter((track) => track.flags.length)
     .map(
       (track) =>
-        `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${track.displayKind} | ${track.displayCreditText} | ${track.scheduledMinRemainingCredits}-${track.scheduledMaxRemainingCredits} | ${track.catalogMinimumCredits ?? ""}-${track.catalogMaximumCredits ?? ""} | ${track.optionGroupKinds.join(", ")} | ${track.unresolvedPlaceholderLabels.join("; ").replace(/\|/g, "\\|")} | ${track.actionClassifications.join(", ")} | ${track.flags.join(", ")} |`
+        `| ${track.code} | ${escapeMarkdownTableCell(track.title)} | ${track.displayKind} | ${track.displayCreditText} | ${track.scheduledMinRemainingCredits}-${track.scheduledMaxRemainingCredits} | ${track.catalogMinimumCredits ?? ""}-${track.catalogMaximumCredits ?? ""} | ${track.optionGroupKinds.join(", ")} | ${escapeMarkdownTableCell(track.unresolvedPlaceholderLabels.join("; "))} | ${track.actionClassifications.join(", ")} | ${track.flags.join(", ")} |`
     );
 
   return [

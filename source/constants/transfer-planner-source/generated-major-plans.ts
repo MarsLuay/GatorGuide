@@ -5153,8 +5153,18 @@ function buildDerivedRuntimeComputingPrepChecklistItems(scope: {
     TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.find(
       (entry) =>
         entry.planId === scope.planId &&
-        (scope.pathwayId ? entry.pathwayId === scope.pathwayId : !entry.pathwayId)
-    ) ?? null;
+        (scope.pathwayId ? entry.pathwayId === scope.pathwayId : !entry.pathwayId) &&
+        canParsedRequirementSourceBlockCreateRequiredScheduleRows(entry)
+    ) ??
+    (scope.pathwayId
+      ? TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.find(
+          (entry) =>
+            entry.planId === scope.planId &&
+            !entry.pathwayId &&
+            canParsedRequirementSourceBlockCreateRequiredScheduleRows(entry)
+        )
+      : null) ??
+    null;
   const ownerTitle =
     relevantClassifications[0]?.majorTitle ??
     primaryParsedBlock?.ownerTitle ??

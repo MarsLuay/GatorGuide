@@ -8573,8 +8573,9 @@ function parseGrcTrackChoiceSlot(label: string): ParsedGrcTrackChoiceSlot | null
   }
 
   const extractedCourseCodes = extractCourseCodes(optionsText);
+  const compactCategoryText = optionsText.replace(/\s*\/\s*/g, "/");
   const hasOpenCourseCategory =
-    /\bany\s+[A-Z][A-Z&/]*(?:\s*\/\s*[A-Z][A-Z&/]*)*\s+course\b/i.test(optionsText) ||
+    /\bany\s+[A-Z][A-Z&/]{0,40}\s+course\b/i.test(compactCategoryText) ||
     /\b(?:program\s+)?elective\s*-\s*any\b/i.test(optionsText) ||
     /\bother\s+college(?:-|\s)level\b/i.test(optionsText);
   if (extractedCourseCodes.length < 2 && !hasOpenCourseCategory) {

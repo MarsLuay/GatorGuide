@@ -967,7 +967,7 @@ Source-generated from parsed UW requirement-source registries.
 - Capstone Option
 - In addition to the formal degree requirements, it is strongly recommended that every student gain a knowledge of computer programming . Introduction to Programming for Astronomical Applications (ASTR 300) is highly recommended to be taken prior to astronomy 400 level courses and UNIX knowledge is required for ASTR 480.
 - As a capstone sequence of hands-on research and dissemination of results, the following is highly recommended: ASTR 480, followed by either ASTR 481 or ASTR 499 or an REU project, and ending with ASTR 482. Furthermore, ASTR 480 &amp; ASTR 499 are highly recommended if you are planning to apply to graduate school.
-- Astronomy graduate admissions are always highly competitive, and often those students with the strongest backgrounds in physics, math, and research experience have the best chances of admission, other considerations being equal. Hence a strong preparation in physics is extremely important for students who plan to enter a graduate program. Most of our students major in physics as well as astronomy, especially since the additional requirements are modest. Also, it is highly beneficial for gaining admission to graduate school to have completed several credits of independent research (ASTR 499) with a faculty member. Approval from the faculty is required. Use the ASTR 499 Form to obtain Faculty approval and submit this form to astroadvising@uw.edu . Once the form is submitted you will be given an add code.
+- Astronomy graduate admissions are always highly competitive, and often those students with the strongest backgrounds in physics, math, and research experience have the best chances of admission, other considerations being equal. Hence a strong preparation in physics is extremely important for students who plan to enter a graduate program. Most of our students major in physics as well as astronomy, especially since the additional requirements are modest. Also, it is highly beneficial for gaining admission to graduate school to have completed several credits of independent research (ASTR 499) with a faculty member. Approval from the faculty is required. Use the ASTR 499 Form to obtain Faculty approval and submit this form to <astroadvising@uw.edu> . Once the form is submitted you will be given an add code.
 
 ##### Astronomy parsed official requirement cues
 
@@ -979,7 +979,7 @@ Source-generated from parsed UW requirement-source registries.
 - Capstone Option
 - In addition to the formal degree requirements, it is strongly recommended that every student gain a knowledge of computer programming . Introduction to Programming for Astronomical Applications (ASTR 300) is highly recommended to be taken prior to astronomy 400 level courses and UNIX knowledge is required for ASTR 480.
 - As a capstone sequence of hands-on research and dissemination of results, the following is highly recommended: ASTR 480, followed by either ASTR 481 or ASTR 499 or an REU project, and ending with ASTR 482. Furthermore, ASTR 480 &amp; ASTR 499 are highly recommended if you are planning to apply to graduate school.
-- Astronomy graduate admissions are always highly competitive, and often those students with the strongest backgrounds in physics, math, and research experience have the best chances of admission, other considerations being equal. Hence a strong preparation in physics is extremely important for students who plan to enter a graduate program. Most of our students major in physics as well as astronomy, especially since the additional requirements are modest. Also, it is highly beneficial for gaining admission to graduate school to have completed several credits of independent research (ASTR 499) with a faculty member. Approval from the faculty is required. Use the ASTR 499 Form to obtain Faculty approval and submit this form to astroadvising@uw.edu . Once the form is submitted you will be given an add code.
+- Astronomy graduate admissions are always highly competitive, and often those students with the strongest backgrounds in physics, math, and research experience have the best chances of admission, other considerations being equal. Hence a strong preparation in physics is extremely important for students who plan to enter a graduate program. Most of our students major in physics as well as astronomy, especially since the additional requirements are modest. Also, it is highly beneficial for gaining admission to graduate school to have completed several credits of independent research (ASTR 499) with a faculty member. Approval from the faculty is required. Use the ASTR 499 Form to obtain Faculty approval and submit this form to <astroadvising@uw.edu> . Once the form is submitted you will be given an add code.
 
 ##### Astronomy parsed choices and pathway notes
 
@@ -4461,7 +4461,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - Registration/Credit Policies
 - Diversity, Equity &amp; Inclusion
-- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at has-center@uw.edu .
+- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu> .
 - French Major Requirements
 - 50 credits total
 - FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303 (20 credits)
@@ -4474,7 +4474,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - Registration/Credit Policies
 - Diversity, Equity &amp; Inclusion
-- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at has-center@uw.edu .
+- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu> .
 - French Major Requirements
 - 50 credits total
 - FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303 (20 credits)
@@ -7116,7 +7116,7 @@ Source-generated from parsed UW requirement-source registries.
 - B.A. Mathematics - Standard Major Requirements | Department of Mathematics | University of Washington
 - B.A. Mathematics - Standard Major Requirements
 - 56 to 64 credits needed to complete the major. This information is for major planning only. For degree requirements, refer to your Degree Audit Reporting System (DARS). Meet with a Math adviser if completing MATH 334/335/336.
-- Note: Our major requirements have been updated to require MATH 200. However, if you have taken a significant number of upper-division math courses when you declare the Mathematics major prior to autumn quarter 2026, you can email advising@math.washington.edu to substitute the requirement with a different 200-level or higher MATH course not already being used for another requirement.
+- Note: Our major requirements have been updated to require MATH 200. However, if you have taken a significant number of upper-division math courses when you declare the Mathematics major prior to autumn quarter 2026, you can email <advising@math.washington.edu> to substitute the requirement with a different 200-level or higher MATH course not already being used for another requirement.
 - Core (28-36 credits)
 - Complete one of the following set of courses:
 - MATH 124 (5cr) – Calculus I
@@ -7129,7 +7129,7 @@ Source-generated from parsed UW requirement-source registries.
 - B.A. Mathematics - Standard Major Requirements | Department of Mathematics | University of Washington
 - B.A. Mathematics - Standard Major Requirements
 - 56 to 64 credits needed to complete the major. This information is for major planning only. For degree requirements, refer to your Degree Audit Reporting System (DARS). Meet with a Math adviser if completing MATH 334/335/336.
-- Note: Our major requirements have been updated to require MATH 200. However, if you have taken a significant number of upper-division math courses when you declare the Mathematics major prior to autumn quarter 2026, you can email advising@math.washington.edu to substitute the requirement with a different 200-level or higher MATH course not already being used for another requirement.
+- Note: Our major requirements have been updated to require MATH 200. However, if you have taken a significant number of upper-division math courses when you declare the Mathematics major prior to autumn quarter 2026, you can email <advising@math.washington.edu> to substitute the requirement with a different 200-level or higher MATH course not already being used for another requirement.
 - Core (28-36 credits)
 - Complete one of the following set of courses:
 - MATH 124 (5cr) – Calculus I
@@ -7692,7 +7692,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Norwegian parsed official source requirements
 
 - Diversity and Equity
-- First Year Norwegian 1 (NORW 101) is available only in the fall quarter. Because the core of the Norwegian major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Norwegian, schedule a placement test by emailing uwscand@uw.edu .
+- First Year Norwegian 1 (NORW 101) is available only in the fall quarter. Because the core of the Norwegian major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Norwegian, schedule a placement test by emailing <uwscand@uw.edu> .
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
 - Major Requirements
 - 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
@@ -7705,7 +7705,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Norwegian parsed official requirement cues
 
 - Diversity and Equity
-- First Year Norwegian 1 (NORW 101) is available only in the fall quarter. Because the core of the Norwegian major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Norwegian, schedule a placement test by emailing uwscand@uw.edu .
+- First Year Norwegian 1 (NORW 101) is available only in the fall quarter. Because the core of the Norwegian major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Norwegian, schedule a placement test by emailing <uwscand@uw.edu> .
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
 - Major Requirements
 - 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
@@ -8103,7 +8103,7 @@ Source-generated from parsed UW requirement-source registries.
 - 3 to 5 credits from any
 - 6 credits from:
 - Advanced Laboratory (6-8 credits),
-- After you complete your MyPlan and the exit survey, make arrangements to talk with an advisor in Physics Student Services . We can meet over zoom or in-person during a scheduled appointment or drop-in hours. We can also complete these steps over email ( physadvs@uw.edu ) as long as you are responsive.
+- After you complete your MyPlan and the exit survey, make arrangements to talk with an advisor in Physics Student Services . We can meet over zoom or in-person during a scheduled appointment or drop-in hours. We can also complete these steps over email ( <physadvs@uw.edu> ) as long as you are responsive.
 - AMath 301 *
 - AMath 401
 - Applied physics track
@@ -8116,7 +8116,7 @@ Source-generated from parsed UW requirement-source registries.
 - 3 to 5 credits from any
 - 6 credits from:
 - Advanced Laboratory (6-8 credits),
-- After you complete your MyPlan and the exit survey, make arrangements to talk with an advisor in Physics Student Services . We can meet over zoom or in-person during a scheduled appointment or drop-in hours. We can also complete these steps over email ( physadvs@uw.edu ) as long as you are responsive.
+- After you complete your MyPlan and the exit survey, make arrangements to talk with an advisor in Physics Student Services . We can meet over zoom or in-person during a scheduled appointment or drop-in hours. We can also complete these steps over email ( <physadvs@uw.edu> ) as long as you are responsive.
 - AMath 301 *
 - AMath 401
 - Applied physics track
@@ -8499,7 +8499,7 @@ Source-generated from parsed UW requirement-source registries.
 - Source-backed note: Auto-promoted source-backed Green River coverage gap on April 12, 2026.
 - Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes BIOL 118 under uw-grc-guide:0169:biology:bioland-241-242-5-5-formerly-ap-205-206. The planner was missing the source-backed Green River course path BIOL&amp; 241, BIOL&amp; 242 for this UW requirement.
 - Source-backed note: Guide-backed rule: uw-grc-guide:0169:biology:bioland-241-242-5-5-formerly-ap-205-206.
-- Source-backed note: Requirement cue lines: \[Page 2\] PUBLIC HEALTH - GLOBAL HEALTH MAJOR REQUIREMENTS Bachelor of Arts (BA) \[116 cr\] BA: Option in Global Health BA: Option in Health Education &amp; Promotion Bachelor of Science (BS) \[138 cr\] BS: Option in Global Health BS: Option Nutritional Sciences Any intro PH course G H 101 HSERV 100 Any intro PH course G H 101 NUTR 200 PH-GH Foundations, Core, and Portfolio INTEGRATED CORE: SEQUENCE \[ 20 cr \] --- SPH 380, 381, 480, 481 PUBLIC HEALTH FOUNDATION \[ 8 cr \] --- BIOST 310, EPI 320 STRUCTURAL RACISM \[ 5 cr \] --- SPH 389 PUBLIC HEALTH SERVICE LEARNING \[ 6 cr \] --- SPH 391 \[3 cr\] &amp; SPH 392 \[3 cr\] or SPH 396 \[6 cr\] SOCIAL &amp; BEHAVIORAL SCIENCES BREADTH \[ 15 cr \] Up to 5 credits per course in at least three departments from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, or SOC NATURAL SCIENCE \[ 10 cr \] One 5-credit course in BIOL and CHEM Select BIOL: BIOL 118, 180 or MICROM 301/302 Select CHEM: CHEM 120, 142, 145 PUBLIC HEALTH PORTFOLIO \[ 3 cr \] --- SPH 493 2 year-long sequences of intro science from: BIOL 180, 200, 220 \[15 cr\] + CHEM 142, 152, 162 \[15 cr\] + Organic Chemistry or Biochemistry \[10 cr\] \[ 20 credits total \] At least 9 cr from: NUTR 310 \[4\], 405 \[3\], 406 \[3\] , 411 \[3\], 420 \[3\], 466 (3) To complete 20 cr: NUTR 302 \[5\], + 400 \[1 cr; max 2 times\] 412 \[3\], 465 \[3\] 20 credits from courses identified to address competency areas in health economics, health promotion, and social justice. \[20 credits total \] 300-400 level courses to build competency areas in public health. 20 credits from courses identified to address competency areas in environment &amp; global health, health systems &amp; approaches to health, determinants of health, and regional &amp; area studies. \[ 20 credits total \] G H 305 \[3\], 401 \[3\], 402 \[3\] + 300 &amp; 400 level G H Prefix courses \[6 cr\] + 300 &amp; 400 level courses \[5 cr\] \[ 20 credits total \] HSERV 100 \[3\] + HSERV 204 \[3\] + 14 credits from courses identified to address competency areas in health economics, health promotion, and social justice. \[ 20 credits total \] HSERV 343 \[5\], 344 \[5\], 345 \[5\], SPH 495 \[5\] Public Health Internship 2 year-long sequences of intro science from: BIOL 180, 200, 220 \[15 cr\] + CHEM 142, 152, 162 \[15 cr\] + 10 additonal credits \[ 20 credits total \] 300-400 level courses to build competency areas in public health. 2 year-long sequences of intro science from: BIOL 180, 200, 220 \[15 cr\] + CHEM 142, 152, 162 \[15 cr\] + 10 additonal credits \[ 20 credits total \] G H 305 \[3\], 401 \[3\], 402 \[3\] + 300 &amp; 400 level G H Prefix courses \[6 cr\] + 300 &amp; 400 level courses \[5 cr\] SPECIFIC REQUIRED INTRO COURSE ELECTIVES * SELECTIVES * * See website or adviser for additional info
+- Source-backed note: Requirement cue lines: \[Page 2\] PUBLIC HEALTH - GLOBAL HEALTH MAJOR REQUIREMENTS Bachelor of Arts (BA) \[116 cr\] BA: Option in Global Health BA: Option in Health Education &amp; Promotion Bachelor of Science (BS) \[138 cr\] BS: Option in Global Health BS: Option Nutritional Sciences Any intro PH course G H 101 HSERV 100 Any intro PH course G H 101 NUTR 200 PH-GH Foundations, Core, and Portfolio INTEGRATED CORE: SEQUENCE \[ 20 cr \] --- SPH 380, 381, 480, 481 PUBLIC HEALTH FOUNDATION \[ 8 cr \] --- BIOST 310, EPI 320 STRUCTURAL RACISM \[ 5 cr \] --- SPH 389 PUBLIC HEALTH SERVICE LEARNING \[ 6 cr \] --- SPH 391 \[3 cr\] &amp; SPH 392 \[3 cr\] or SPH 396 \[6 cr\] SOCIAL &amp; BEHAVIORAL SCIENCES BREADTH \[ 15 cr \] Up to 5 credits per course in at least three departments from AAS, AES, AFRAM, AIS, ANTH, CHSTU, GEOG, POL S, PSYCH, or SOC NATURAL SCIENCE \[ 10 cr \] One 5-credit course in BIOL and CHEM Select BIOL: BIOL 118, 180 or MICROM 301/302 Select CHEM: CHEM 120, 142, 145 PUBLIC HEALTH PORTFOLIO \[ 3 cr \] --- SPH 493 2 year-long sequences of intro science from: BIOL 180, 200, 220 \[15 cr\] + CHEM 142, 152, 162 \[15 cr\] + Organic Chemistry or Biochemistry \[10 cr\] \[ 20 credits total \] At least 9 cr from: NUTR 310 \[4\], 405 \[3\], 406 \[3\] , 411 \[3\], 420 \[3\], 466 (3) To complete 20 cr: NUTR 302 \[5\], + 400 \[1 cr; max 2 times\] 412 \[3\], 465 \[3\] 20 credits from courses identified to address competency areas in health economics, health promotion, and social justice. \[20 credits total \] 300-400 level courses to build competency areas in public health. 20 credits from courses identified to address competency areas in environment &amp; global health, health systems &amp; approaches to health, determinants of health, and regional &amp; area studies. \[ 20 credits total \] G H 305 \[3\], 401 \[3\], 402 \[3\] + 300 &amp; 400 level G H Prefix courses \[6 cr\] + 300 &amp; 400 level courses \[5 cr\] \[ 20 credits total \] HSERV 100 \[3\] + HSERV 204 \[3\] + 14 credits from courses identified to address competency areas in health economics, health promotion, and social justice. \[ 20 credits total \] HSERV 343 \[5\], 344 \[5\], 345 \[5\], SPH 495 \[5\] Public Health Internship 2 year-long sequences of intro science from: BIOL 180, 200, 220 \[15 cr\] + CHEM 142, 152, 162 \[15 cr\] + 10 additonal credits \[ 20 credits total \] 300-400 level courses to build competency areas in public health. 2 year-long sequences of intro science from: BIOL 180, 200, 220 \[15 cr\] + CHEM 142, 152, 162 \[15 cr\] + 10 additonal credits \[ 20 credits total \] G H 305 \[3\], 401 \[3\], 402 \[3\] + 300 &amp; 400 level G H Prefix courses \[6 cr\] + 300 &amp; 400 level courses \[5 cr\] SPECIFIC REQUIRED INTRO COURSE ELECTIVES \* SELECTIVES \* \* See website or adviser for additional info
 - Source-backed note: Source parse confidence: high.
 - Source-backed note: Added the Green River course path BIOL&amp; 211, BIOL&amp; 212, BIOL&amp; 213 because the current planner rows did not expose it yet.
 - Source-backed note: Classification rationale: Parsed from the current primary degree page with high source-parse confidence. The official UW Green River equivalency guide includes BIOL 180 under uw-grc-guide:0168:biology:bioland-211-212-213-6-6-6-formerly-biol-201-202-203. The planner was missing the source-backed Green River course path BIOL&amp; 211, BIOL&amp; 212, BIOL&amp; 213 for this UW requirement.
@@ -9320,7 +9320,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Swedish parsed official source requirements
 
 - Diversity and Equity
-- First Year Swedish 1 (SWED 101) is available only in the fall quarter. Because the core of the Swedish major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Swedish, schedule a placement test by emailing uwscand@uw.edu .
+- First Year Swedish 1 (SWED 101) is available only in the fall quarter. Because the core of the Swedish major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Swedish, schedule a placement test by emailing <uwscand@uw.edu> .
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
 - Major Requirements
 - 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
@@ -9333,7 +9333,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Swedish parsed official requirement cues
 
 - Diversity and Equity
-- First Year Swedish 1 (SWED 101) is available only in the fall quarter. Because the core of the Swedish major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Swedish, schedule a placement test by emailing uwscand@uw.edu .
+- First Year Swedish 1 (SWED 101) is available only in the fall quarter. Because the core of the Swedish major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Swedish, schedule a placement test by emailing <uwscand@uw.edu> .
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
 - Major Requirements
 - 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).

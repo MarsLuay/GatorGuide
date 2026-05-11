@@ -12,13 +12,16 @@ const CE_NATURAL_SCIENCE_SUBJECTS = [
 
 function stripHtmlToText(value) {
   return String(value ?? "")
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ")
     .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
-    .replace(/&#8211;|&ndash;/gi, "-")
-    .replace(/&#8217;|&rsquo;/gi, "'")
+    .replace(/&(nbsp|amp|#8211|ndash|#8217|rsquo);/gi, (entity) => {
+      const normalized = entity.toLowerCase();
+      if (normalized === "&nbsp;") return " ";
+      if (normalized === "&amp;") return "&";
+      if (normalized === "&#8211;" || normalized === "&ndash;") return "-";
+      return "'";
+    })
     .replace(/\s+/g, " ")
     .trim();
 }

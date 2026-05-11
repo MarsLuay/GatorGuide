@@ -2920,12 +2920,15 @@ function getSequenceFallbackSubjectFromContext(snapshotLines, index, currentLine
 }
 
 function extractCourseCodesFromSequenceText(value, fallbackSubject = null) {
-  const text = normalizeSequenceSourceLine(value)
+  let text = normalizeSequenceSourceLine(value)
     .replace(
       /\b(?:standard|regular|honors?|accelerated|calculus-based|algebra-based)\s+sequence\s+(?=[A-Z&]{2,8}\s+\d{3})/gi,
       ""
-    )
-    .replace(/\b(?:choose|select)\s+one\s+sequence\s*:\s*/gi, "");
+    );
+  const sequenceChoicePrefix = text.match(/^\s*(?:choose|select)\s+one\s+sequence\s*:\s*/i);
+  if (sequenceChoicePrefix) {
+    text = text.slice(sequenceChoicePrefix[0].length);
+  }
   const explicitCourseCodes = uniqueInOrder(extractCourseCodesFromLine(text));
   const normalizedFallbackSubject = normalizeExtractedCourseSubject(fallbackSubject ?? "");
   if (!normalizedFallbackSubject) {

@@ -716,6 +716,10 @@ function unescapeXml(value) {
     .replace(/&amp;/g, "&");
 }
 
+function unescapeXmlPlainText(value) {
+  return unescapeXml(value).replace(/[<>]/g, "");
+}
+
 function getXmlAttribute(attributes, name) {
   const match = String(attributes ?? "").match(
     new RegExp(`(?:^|\\s)${name}="([^"]*)"`)
@@ -737,11 +741,11 @@ function extractTextRuns(xml) {
   let match;
 
   while ((match = textRegex.exec(text)) !== null) {
-    runs.push(unescapeXml(match[1]));
+    runs.push(unescapeXmlPlainText(match[1]));
   }
 
   if (runs.length) return runs.join("");
-  return unescapeXml(text.replace(/<[^>]*>/g, ""));
+  return unescapeXmlPlainText(text.replace(/<[^>]*>/g, ""));
 }
 
 function columnName(columnIndex) {

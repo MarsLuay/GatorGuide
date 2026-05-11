@@ -393,7 +393,7 @@ Source-generated from parsed UW requirement-source registries.
 - (330; CSS 173 or CSS 143 and corequisite CSSSKL 143; CSS 360)
 - (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 - (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
-- (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
+- (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
 - * A minimum grade of 2.7 in either course is required.
 - **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 - *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
@@ -406,7 +406,7 @@ Source-generated from parsed UW requirement-source registries.
 - (330; CSS 173 or CSS 143 and corequisite CSSSKL 143; CSS 360)
 - (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 - (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
-- (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
+- (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
 - * A minimum grade of 2.7 in either course is required.
 - **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 - *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
@@ -794,7 +794,7 @@ Source-generated from parsed UW requirement-source registries.
 - (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
 - (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 - (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
-- (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
+- (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
 - * A minimum grade of 2.7 in either course is required.
 - 10 credits
 - 10 credits – 2 courses from the list below:
@@ -807,7 +807,7 @@ Source-generated from parsed UW requirement-source registries.
 - (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
 - (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 - (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
-- (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
+- (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
 - * A minimum grade of 2.7 in either course is required.
 - 10 credits
 - 10 credits – 2 courses from the list below:
@@ -1403,7 +1403,7 @@ Source-generated from parsed UW requirement-source registries.
 - Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
 - This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
 - Declaring the IAC option
-- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
+- After admission into the general CSSE major, you can contact the advising office at <cssadv@uw.edu> to switch into the IAC option. Please include your name and student ID number.
 - Requirements
 
 ##### Computer Science &amp; Software Engineering parsed choices and pathway notes
@@ -1581,7 +1581,7 @@ Source-generated from parsed UW requirement-source registries.
 - Information Assurance and Cybersecurity (IAC) is a Computer Science &amp; Software Engineering pathway that covers the creation and management of safe and secure systems. All organizations—large or small, public or private—rely on secure systems for individual and organizational privacy and security. The IAC option prepares students to create, deploy, and manage systems that ensure the security of any organization.
 - This tri-campus pathway allows students to select from an approved list of courses offered from all three UW campuses: Bothell, Seattle, and Tacoma. The electives at each campus emphasize the strengths found in the programs offered there, and course topics include information assurance policy, secure coding, and networking and systems security.
 - Declaring the IAC option
-- After admission into the general CSSE major, you can contact the advising office at cssadv@uw.edu to switch into the IAC option. Please include your name and student ID number.
+- After admission into the general CSSE major, you can contact the advising office at <cssadv@uw.edu> to switch into the IAC option. Please include your name and student ID number.
 - Requirements
 
 ##### Computer Science &amp; Software Engineering: Information Assurance &amp; Cybersecurity (BS) parsed choices and pathway notes

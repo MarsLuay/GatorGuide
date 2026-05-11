@@ -365,6 +365,13 @@ function isGreenRiverAssociateTrack(track) {
   );
 }
 
+function escapeMarkdownTableCell(value) {
+  const escapedBackslashes = String(value ?? "")
+    .replace(/\\/g, "\\\\")
+    .replace(/\r?\n/g, " ");
+  return escapedBackslashes.split("|").join("\\|");
+}
+
 function renderMarkdownReport(report) {
   const issueRows = report.tracks.flatMap((track) =>
     track.issues.map((issue) => {
@@ -377,14 +384,14 @@ function renderMarkdownReport(report) {
               )
               .join("; ")
           : issue.message;
-      return `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${issue.code} | ${issue.generatorRule ?? ""} | ${details.replace(/\|/g, "\\|")} |`;
+      return `| ${track.code} | ${escapeMarkdownTableCell(track.title)} | ${issue.code} | ${issue.generatorRule ?? ""} | ${escapeMarkdownTableCell(details)} |`;
     })
   );
   const trackedRows = report.tracks
     .filter((track) => track.declaredTotalCredits || track.scheduledTotalCredits)
     .map(
       (track) =>
-        `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${track.declaredTotalCredits} | ${track.scheduledTotalCredits} | ${track.durationCappedPlaceholderCredits || ""} | ${formatCreditsByCategory(track.declaredCreditsByCategory) || "None"} | ${formatCreditsByCategory(track.scheduledCreditsByCategory) || "None"} |`
+        `| ${track.code} | ${escapeMarkdownTableCell(track.title)} | ${track.declaredTotalCredits} | ${track.scheduledTotalCredits} | ${track.durationCappedPlaceholderCredits || ""} | ${formatCreditsByCategory(track.declaredCreditsByCategory) || "None"} | ${formatCreditsByCategory(track.scheduledCreditsByCategory) || "None"} |`
     );
 
   return [

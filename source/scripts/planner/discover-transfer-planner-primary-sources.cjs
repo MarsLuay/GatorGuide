@@ -424,7 +424,7 @@ function isOfficialUwLinkedAssetUrl(parsedUrl, baseDomains) {
   const hostname = parsedUrl.hostname.toLowerCase();
   const pathname = parsedUrl.pathname.toLowerCase();
   return (
-    baseDomains.includes("washington.edu") &&
+    baseDomains.some((baseDomain) => baseDomain === "washington.edu") &&
     hostname === "s3-us-west-2.amazonaws.com" &&
     pathname.startsWith("/www-cse-public/")
   );

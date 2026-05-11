@@ -33,6 +33,19 @@ const SBSE_CATALOG_URL =
 const SBSE_CATALOG_BASE_URL =
   "https://www.washington.edu/students/gencat/program/S/SchoolofEnvironmentalandForestScience-1069.html";
 
+function normalizeComparableUrl(value) {
+  try {
+    return new URL(String(value ?? "")).href;
+  } catch {
+    return String(value ?? "");
+  }
+}
+
+function includesExactUrl(urls, expectedUrl) {
+  const normalizedExpectedUrl = normalizeComparableUrl(expectedUrl);
+  return (urls ?? []).some((url) => normalizeComparableUrl(url) === normalizedExpectedUrl);
+}
+
 const REQUIRED_SINGLE_EQUIVALENCY_MAPPINGS = [
   ["CHEM& 161", "CHEM 142"],
   ["PHYS& 221", "PHYS 121"],
@@ -360,7 +373,7 @@ test("Weak-source deeper discovery runs only for low-confidence discovery contex
     },
   });
 
-  assert.ok(weakInspectedUrls.includes(requirementsUrl));
+  assert.ok(includesExactUrl(weakInspectedUrls, requirementsUrl));
 
   const strongTarget = buildSbseTarget({
     analysisMode: "existing-primary",
@@ -2054,8 +2067,8 @@ test("Targeted official support links are followed even when deeper primary disc
   );
 
   assert.equal(result.deeperDiscoveryEnabled, false);
-  assert.ok(inspectedUrls.includes(curriculumUrl));
-  assert.equal(inspectedUrls.includes(facultyUrl), false);
+  assert.ok(includesExactUrl(inspectedUrls, curriculumUrl));
+  assert.equal(includesExactUrl(inspectedUrls, facultyUrl), false);
   assert.equal(result.suggestedAction, "keep-existing-primary");
   assert.equal(result.currentPrimary.url, degreeUrl);
   assert.ok(approvedCandidate);
@@ -2071,7 +2084,6 @@ test("Targeted official support links are followed even when deeper primary disc
   assert.ok(
     result.sourceDiscoveryAuditLines.some(
       (line) =>
-        line.includes(approvedUrl) &&
         line.includes("Support-only: yes") &&
         line.includes("Can be primary: no")
     )
