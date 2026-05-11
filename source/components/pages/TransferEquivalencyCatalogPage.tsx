@@ -36,6 +36,7 @@ import {
 } from "@/constants/transfer-planner-source/student-runtime";
 import type { TransferPlannerCampusId } from "@/constants/transfer-planner-types";
 import { ROUTES } from "@/constants/routes";
+import { TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD } from "@/constants/planner-storage";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
 import useBack from "@/hooks/use-back";
@@ -378,7 +379,7 @@ export default function TransferEquivalencyCatalogPage() {
 
     const rawCompletedCourses = shouldUseDetailedCompletedCourses
       ? storedDetailedTranscriptCourses
-      : state.questionnaireAnswers?.completedCourses;
+      : state.questionnaireAnswers?.[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD];
 
     return parseCompletedTranscriptCourses(rawCompletedCourses)
       .map((course) => course.code)

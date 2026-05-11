@@ -84,6 +84,70 @@ export type TransferPlannerSourceRoleStatus =
   | "non-schedulable"
   | "ignored";
 
+export type TransferPlannerRequirementSourceScope = {
+  canCreateRequiredRows: boolean;
+  canCreateOptionGroups: boolean;
+  canCreateCreditBuckets: boolean;
+  canCreateCategoryOptions: boolean;
+  canCreateApprovedFilters: boolean;
+  canCreateElectiveLists: boolean;
+  canCreateSequencingHints: boolean;
+  canCreateAdmissionPrepRows: boolean;
+  canCreateScheduleRows: boolean;
+  supportOnly: boolean;
+  nonSchedulable: boolean;
+};
+
+export type TransferPlannerRequirementStructuralShape =
+  | "required-row"
+  | "option-group"
+  | "credit-bucket"
+  | "sequence-choice"
+  | "category-option"
+  | "compound-equivalency-path"
+  | "pathway-specific-requirement"
+  | "approved-course-list"
+  | "approved-filter-list"
+  | "elective-list"
+  | "hidden-informational-row";
+
+export type TransferPlannerRequirementSupportListShape =
+  | "approved-course-list"
+  | "approved-filter-list"
+  | "elective-list";
+
+export type TransferPlannerRequirementSupportList = {
+  id: string;
+  shape: TransferPlannerRequirementSupportListShape;
+  sourceUrl: string | null;
+  sourceRole: TransferPlannerDiscoveredSourceRole | string | null;
+  listTitle: string;
+  filterKey?: string | null;
+  ownerId?: string | null;
+  majorId?: string | null;
+  pathwayId?: string | null;
+  officialSourceUrl?: string | null;
+  acceptedUwCourseCodes: string[];
+  approvedUwCourseGroups?: string[][];
+  mappedGrcCoursePaths?: string[][];
+  excludedGenericCategoryOnlyCourseCodes?: string[];
+  petitionOnlyNotes?: string[];
+  sourceBackedProgramApproval?: boolean | null;
+  generatedFilterId?: string | null;
+  sourceEvidenceLines?: string[];
+  sourceEvidenceHeadings?: string[];
+  sourceFingerprint?: string | null;
+  approvedListKey?: string | null;
+  supportOnly: true;
+  canCreateRequiredRow: false;
+  canCreateScheduleRow: boolean;
+  linkedPrimaryRequirementIds?: string[];
+};
+
+export type TransferPlannerRequirementSatisfactionMode =
+  | "selection-count"
+  | "credit-based";
+
 export type TransferPlannerSourceSectionAudit = {
   line: string;
   majorId?: string | null;
@@ -200,11 +264,24 @@ export type TransferPlannerRequirementSourceFingerprintEntry = {
   parserType: TransferPlannerSourceManifestParserType;
   sourceUrl: string;
   sourceLabel: string;
+  primarySourceUrl?: string;
+  primarySourceLabel?: string;
+  sourceRole?: TransferPlannerDiscoveredSourceRole | string | null;
+  sourceRoleStatus?: TransferPlannerSourceRoleStatus | string | null;
+  canCreateSchedulableRows?: boolean;
+  canCreateRequiredRows?: boolean;
+  canCreateScheduleRows?: boolean;
+  supportOnly?: boolean;
+  nonSchedulable?: boolean;
   ok: boolean;
   parseConfidence: TransferPlannerSourceManifestConfidence;
   parsedUwCourseCodeCount: number;
   sourceOnlyUwCourseCodeCount: number;
   structuredOnlyUwCourseCodeCount: number;
+  approvedFilterUwCourseCodeCount?: number;
+  electiveListUwCourseCodeCount?: number;
+  supportOnlyUwCourseCodeCount?: number;
+  supportListCount?: number;
   extractedHeadingCount: number;
   requirementCueLineCount: number;
   chooseStatementCount: number;
@@ -215,6 +292,9 @@ export type TransferPlannerRequirementSourceFingerprintEntry = {
   parsedUwCourseCodes: string[];
   sourceOnlyUwCourseCodes: string[];
   structuredOnlyUwCourseCodes: string[];
+  approvedFilterUwCourseCodes?: string[];
+  electiveListUwCourseCodes?: string[];
+  supportOnlyUwCourseCodes?: string[];
 };
 
 export type TransferPlannerRequirementSourceParserAdapterId =
@@ -236,17 +316,93 @@ export type TransferPlannerRequirementSourceResolutionStrategy =
 export type TransferPlannerRequirementParseQualitySignalSeverity = "note" | "warning";
 
 export type TransferPlannerRequirementParseQualitySignalCode =
+  | "no-parsed-uw-course-codes"
+  | "low-confidence-parsed-source"
   | "material-source-structured-drift"
   | "large-structured-only-course-gap"
   | "high-confidence-low-course-coverage"
   | "snapshot-fallback-used"
-  | "alternate-official-source-used";
+  | "alternate-official-source-used"
+  | "uw-mse-expected-course-option-missing"
+  | "uw-mse-requirement-course-metadata-missing";
 
 export type TransferPlannerRequirementParseQualitySignal = {
   severity: TransferPlannerRequirementParseQualitySignalSeverity;
   code: TransferPlannerRequirementParseQualitySignalCode;
   message: string;
   details: string | null;
+};
+
+export type TransferPlannerParserRecoveryBlockerType =
+  | "needs-new-parser-rule"
+  | "needs-deeper-discovery-rule"
+  | "source-unavailable"
+  | "source-official-but-ambiguous"
+  | "source-support-only";
+
+export type TransferPlannerParserRecoverySnapshot = {
+  parsedUwCourseCodeCount: number;
+  sourceOnlyUwCourseCodeCount: number;
+  structuredOnlyUwCourseCodeCount: number;
+  parsedRequirementGroupCount: number;
+  parsedRequirementAtomCandidateCount: number;
+  requirementCueLineCount: number;
+  chooseStatementCount: number;
+  parseConfidence: TransferPlannerSourceManifestConfidence | string;
+  qualitySignalCodes: string[];
+  qualityWarningCodes: string[];
+  qualityWarningCount: number;
+  sourceUrl: string | null;
+  sourceRole: TransferPlannerDiscoveredSourceRole | string | null;
+  sourceRoleStatus: TransferPlannerSourceRoleStatus | string;
+  sourceFingerprint: string;
+};
+
+export type TransferPlannerParserRecoveryAttempt = {
+  strategy: string;
+  status: string;
+  sourceUrl: string | null;
+  sourceLabel: string | null;
+  parserType: TransferPlannerSourceManifestParserType | string | null;
+  sourceRole: TransferPlannerDiscoveredSourceRole | string | null;
+  sourceRoleStatus: TransferPlannerSourceRoleStatus | string;
+  score: number | null;
+  reason: string | null;
+  parsedUwCourseCodeCount: number;
+  qualitySignalCodes: string[];
+  qualityWarningCodes: string[];
+  sourceEvidenceFingerprint: string;
+  error: string | null;
+};
+
+export type TransferPlannerParserRecoverySource = {
+  strategy: string;
+  sourceUrl: string;
+  sourceLabel: string;
+  sourceRole: TransferPlannerDiscoveredSourceRole | string | null;
+  parsedUwCourseCodeCount?: number;
+  acceptedUwCourseCodeCount?: number;
+  sourceEvidenceFingerprint: string;
+};
+
+export type TransferPlannerParserRecoveryMetadata = {
+  triggered: true;
+  triggerCodes: string[];
+  originalSourceUrl: string;
+  originalSourceLabel: string;
+  originalSourceFingerprint: string;
+  selectedStrategy: string | null;
+  selectedSourceUrl: string | null;
+  attemptedStrategies: string[];
+  attempts: TransferPlannerParserRecoveryAttempt[];
+  recoveredSources: TransferPlannerParserRecoverySource[];
+  supportSources: TransferPlannerParserRecoverySource[];
+  before: TransferPlannerParserRecoverySnapshot;
+  after: TransferPlannerParserRecoverySnapshot;
+  blockerType: TransferPlannerParserRecoveryBlockerType | null;
+  sourceUnavailable: boolean;
+  candidateCount: number;
+  succeeded: boolean;
 };
 
 export type TransferPlannerParsedRequirementAtomCandidate = {
@@ -257,6 +413,9 @@ export type TransferPlannerParsedRequirementAtomCandidate = {
   displayPhase: TransferPlannerRequirementPhase | null;
   phaseConfidence: "high" | "medium" | "low" | null;
   sourceLineHints: string[];
+  sourceSectionRole?: TransferPlannerParsedSourceSectionRole | string | null;
+  sourceSectionSchedulable?: boolean | null;
+  sourceSectionReason?: string | null;
 };
 
 export type TransferPlannerParsedDegreeMapBlockCandidate = {
@@ -271,22 +430,56 @@ export type TransferPlannerParsedRequirementType =
   | "choose_one"
   | "choose_n"
   | "choose_credits"
-  | "sequence_choice";
+  | "sequence_choice"
+  | "approved_course_list"
+  | "approved_filter_list"
+  | "elective_list"
+  | "hidden_informational";
 
 export type TransferPlannerParsedRequirementCategoryOption = {
   category: string;
   sourceCategoryCode: string;
   title: string;
   credits: number;
+  creditMin?: number | null;
+  creditMax?: number | null;
   sourceText: string;
+  approvedListKey?: string | null;
+  programSpecific?: boolean | null;
+  genericCategoryTags?: string[];
+  programApprovedFilterKeys?: string[];
+  approvedUwEquivalentCodes?: string[];
+  sourceBackedProgramApproval?: boolean | null;
+};
+
+export type TransferPlannerSingleCourseEquivalencyEvidence = {
+  grcSourceCourse: string;
+  uwTargetCourse: string;
+  ruleId: string;
+  ruleType: string;
+  sourceKind?: string | null;
+  sourceRowText?: string | null;
+  sourceUrl?: string | null;
+  effectiveDateLabel?: string | null;
+  effectiveYearRanges?: {
+    startLabel: string;
+    endLabel?: string | null;
+    note?: string;
+  }[];
+  warnings?: string[];
+  restrictions?: string[];
 };
 
 export type TransferPlannerParsedRequirementOption = {
   id?: string;
   optionKind?: "course" | "category-option";
+  requirementShape?: TransferPlannerRequirementStructuralShape | null;
+  sequencePathId?: string | null;
+  pathLabel?: string | null;
   displayCourseCodes?: string[];
   uwCourses: string[];
   equivalentUwCourseCodes?: string[];
+  conditionalLabCourses?: string[];
   credits?: number | null;
   creditMin?: number | null;
   creditMax?: number | null;
@@ -298,10 +491,24 @@ export type TransferPlannerParsedRequirementOption = {
   sourceHeading?: string | null;
   sourceCategory?: string | null;
   grcMatches: string[];
+  equivalencyEvidence?: TransferPlannerSingleCourseEquivalencyEvidence[];
+  compoundComponents?: string[][];
   categoryOption?: TransferPlannerParsedRequirementCategoryOption | null;
   constraints?: string[];
   notes?: string[];
   label: string;
+};
+
+export type TransferPlannerParsedRequirementSequencePath = {
+  id: string;
+  label: string;
+  uwCourses: string[];
+  displayCourseCodes?: string[];
+  mappedGrcCourseCodes?: string[];
+  compoundComponents?: string[][];
+  conditionalLabCourses?: string[];
+  notes?: string[];
+  sourceText: string;
 };
 
 export type TransferPlannerParsedRequirementGroup = {
@@ -310,13 +517,68 @@ export type TransferPlannerParsedRequirementGroup = {
   category: string;
   subcategory?: string | null;
   requirementType: TransferPlannerParsedRequirementType;
+  requirementShape?: TransferPlannerRequirementStructuralShape | null;
   minCourses?: number | null;
   maxCourses?: number | null;
+  selectionCount?: number | null;
+  requiredCount?: number | null;
   minCredits?: number | null;
   maxCredits?: number | null;
+  creditText?: string | null;
+  satisfactionMode?: TransferPlannerRequirementSatisfactionMode | null;
   sourceHeading?: string | null;
+  sourceRowText?: string | null;
+  sourceSection?: string | null;
+  sourceSectionRole?: TransferPlannerParsedSourceSectionRole | string | null;
+  sourceSectionSchedulable?: boolean | null;
+  detectedOptionCue?: string | null;
+  sourceRole?: TransferPlannerDiscoveredSourceRole | string | null;
+  sourceUrl?: string | null;
+  sourceScope?: string | null;
+  pathwayId?: string | null;
+  routeId?: string | null;
+  canCreateScheduleRow?: boolean | null;
+  supportOnly?: boolean | null;
+  approvedListKey?: string | null;
+  canCreatePlaceholder?: boolean | null;
+  programSpecific?: boolean | null;
   notes?: string[];
+  sequencePaths?: TransferPlannerParsedRequirementSequencePath[];
   options: TransferPlannerParsedRequirementOption[];
+};
+
+export type TransferPlannerParsedSourceSectionRole =
+  | "primary-requirement-section"
+  | "admission-prep-section"
+  | "upper-division-prerequisite-table"
+  | "approved-course-list"
+  | "elective-list"
+  | "non-schedulable-course-list"
+  | "support-metadata";
+
+export type TransferPlannerParserPrerequisiteFilterAuditRow = {
+  ownerId: string;
+  sourceUrl: string;
+  sectionTitle: string;
+  rawLine: string;
+  courseCodesExtracted: string[];
+  detectedSectionRole: TransferPlannerParsedSourceSectionRole | string;
+  schedulable: boolean;
+  reason: string;
+  issue: string;
+  copyOnlyDebugText: string;
+};
+
+export type TransferPlannerParserSequenceChoiceAuditRow = {
+  ownerId: string;
+  sourceUrl: string;
+  rawText: string;
+  detectedSequenceChoice: boolean;
+  sequencePaths: string[];
+  selectedDefaultPath: string | null;
+  emittedIndependentRequiredRows: boolean;
+  issue: "none" | "missed-sequence-choice" | "flattened-sequence-paths";
+  copyOnlyDebugText: string;
 };
 
 export type TransferPlannerParsedRequirementCourseOptionRole =
@@ -369,17 +631,40 @@ export type TransferPlannerParsedRequirementSourceBlock = {
   sourceRole?: TransferPlannerDiscoveredSourceRole | string;
   sourceRoleStatus?: TransferPlannerSourceRoleStatus | string;
   canCreateSchedulableRows?: boolean;
+  sourceScope?: TransferPlannerRequirementSourceScope;
+  sourceScopeAuditLines?: string[];
+  sourceSectionFilterAuditRows?: TransferPlannerParserPrerequisiteFilterAuditRow[];
+  sourceSectionFilterAuditLines?: string[];
+  parserSequenceChoiceAuditRows?: TransferPlannerParserSequenceChoiceAuditRow[];
+  parserSequenceChoiceAuditLines?: string[];
+  canCreateRequiredRows?: boolean;
+  canCreateOptionGroups?: boolean;
+  canCreateCreditBuckets?: boolean;
+  canCreateCategoryOptions?: boolean;
+  canCreateApprovedFilters?: boolean;
+  canCreateElectiveLists?: boolean;
+  canCreateSequencingHints?: boolean;
+  canCreateAdmissionPrepRows?: boolean;
+  canCreateScheduleRows?: boolean;
+  supportOnly?: boolean;
+  nonSchedulable?: boolean;
   sourceSectionAudit?: TransferPlannerSourceSectionAudit | null;
   resolutionStrategy: TransferPlannerRequirementSourceResolutionStrategy;
   ok: boolean;
   parseConfidence: TransferPlannerSourceManifestConfidence;
   parsedUwCourseCodes: string[];
+  requirementShape?: TransferPlannerRequirementStructuralShape | null;
+  approvedFilterUwCourseCodes?: string[];
+  electiveListUwCourseCodes?: string[];
+  supportOnlyUwCourseCodes?: string[];
+  supportLists?: TransferPlannerRequirementSupportList[];
   sourceOnlyUwCourseCodes: string[];
   structuredOnlyUwCourseCodes: string[];
   requirementCueLines: string[];
   chooseStatements: string[];
   pathwayLabels: string[];
   qualitySignals: TransferPlannerRequirementParseQualitySignal[];
+  parserRecovery?: TransferPlannerParserRecoveryMetadata;
   parsedRequirementAtomCandidates: TransferPlannerParsedRequirementAtomCandidate[];
   parsedDegreeMapBlockCandidates: TransferPlannerParsedDegreeMapBlockCandidate[];
   parsedRequirementGroups?: TransferPlannerParsedRequirementGroup[];
@@ -409,6 +694,12 @@ export type TransferPlannerRequirementSourceAdapterSummary = {
   countsBySourceRole?: Record<string, number>;
   countsBySourceRoleStatus?: Record<string, number>;
   canCreateSchedulableRowCount?: number;
+  canCreateRequiredRowCount?: number;
+  canCreateOptionGroupCount?: number;
+  canCreateApprovedFilterCount?: number;
+  canCreateElectiveListCount?: number;
+  supportOnlySourceCount?: number;
+  nonSchedulableSourceCount?: number;
   qualityWarningCount: number;
   qualityNoteCount: number;
   countsByQualitySignalCode: Record<string, number>;

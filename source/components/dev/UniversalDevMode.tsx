@@ -19,6 +19,11 @@ import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useOpportunities } from "@/hooks/use-opportunities";
 import { useResponsiveLayout } from "@/hooks/use-responsive-layout";
+import {
+  TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD,
+} from "@/constants/planner-storage";
 import { aiService } from "@/services/ai/ai.service";
 import {
   API_CONFIG,
@@ -641,6 +646,8 @@ export function UniversalDevMode() {
       },
       {}
     );
+    const legacyCompletedCourses =
+      state.questionnaireAnswers?.[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD];
 
     const notes = [
       "Sensitive route/query values are redacted for safer sharing.",
@@ -866,17 +873,18 @@ export function UniversalDevMode() {
         userTranscriptUrlKind: getTranscriptUrlKind(state.user?.transcript ?? null),
         userTranscriptUrlLength: state.user?.transcript ? state.user.transcript.length : null,
         storedTranscriptSource:
-          String(state.questionnaireAnswers?.transferPlannerTranscriptSource ?? "").trim() ||
-          null,
+          String(
+            state.questionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD] ?? ""
+          ).trim() || null,
         storedTranscriptUploadedAt:
-          String(state.questionnaireAnswers?.transferPlannerTranscriptUploadedAt ?? "").trim() ||
-          null,
-        completedCourseCount: Array.isArray(state.questionnaireAnswers?.completedCourses)
-          ? state.questionnaireAnswers.completedCourses.length
+          String(
+            state.questionnaireAnswers?.[TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD] ??
+              ""
+          ).trim() || null,
+        completedCourseCount: Array.isArray(legacyCompletedCourses)
+          ? legacyCompletedCourses.length
           : 0,
-        completedCoursePreview: getCompletedCoursePreview(
-          state.questionnaireAnswers?.completedCourses
-        ),
+        completedCoursePreview: getCompletedCoursePreview(legacyCompletedCourses),
         lastPlannerDebug: transcriptPlannerDebugService.getLastTranscriptPlannerDebug(),
         recentPlannerEvents: transcriptPlannerDebugService.getRecentTranscriptPlannerEvents(),
       },

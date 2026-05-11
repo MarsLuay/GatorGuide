@@ -50,4 +50,22 @@ export const TRANSFER_PLANNER_MANUAL_SOURCE_LINK_OVERRIDES: TransferPlannerManua
       mode: "replace",
       preferredPrimaryUrl: "https://www.tacoma.uw.edu/sias/cac/professional-track",
     },
+    // UW Seattle Slavic Languages & Literatures
+    // Use the undergraduate programs page as the owner-level source; the policies page is support-only.
+    {
+      planId: "uw-seattle-slavic-languages-and-literatures",
+      pathwayId: null,
+      mode: "replace",
+      preferredPrimaryUrl: "https://slavic.washington.edu/undergraduate-programs",
+      links: [
+        {
+          label: "UW Slavic Languages & Literatures undergraduate programs",
+          url: "https://slavic.washington.edu/undergraduate-programs",
+        },
+        {
+          label: "UW Slavic Languages & Literatures undergraduate policies",
+          url: "https://slavic.washington.edu/undergraduate-policies",
+        },
+      ],
+    },
   ];

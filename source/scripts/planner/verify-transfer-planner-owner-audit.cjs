@@ -76,6 +76,14 @@ function buildParsedBlockOwnerId(planId, pathwayId) {
   return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
 }
 
+function buildParsedBlockPlanSourceKey(block) {
+  return `${block.planId}::${block.primarySourceUrl ?? block.sourceUrl}`;
+}
+
+function buildManifestPlanSourceKey(entry) {
+  return `${entry.planId ?? entry.ownerId}::${entry.url}`;
+}
+
 function normalizePathwayAliasLabel(planTitle, label) {
   return normalizeTransferPlannerSemanticPathwayLabel(planTitle, label)
     .toLowerCase()
@@ -447,6 +455,12 @@ function main() {
   const parsedBlocksByOwnerId = new Map(
     TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.map((block) => [block.ownerId, block])
   );
+  const parsedBlocksByPlanSourceKey = new Map(
+    TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY.map((block) => [
+      buildParsedBlockPlanSourceKey(block),
+      block,
+    ])
+  );
 
   const owners = buildOwners(targetPlanId).map((owner) => {
     const symptomIssues = [];
@@ -579,9 +593,15 @@ function main() {
       }
     }
 
+    const primaryManifestEntry = effectiveManifestEntries.find(
+      (entry) => entry.isPrimaryDegreeRequirementsLink
+    );
     const parsedBlock =
       parsedBlocksByOwnerId.get(owner.ownerId) ??
       aliasOwnerIds.map((aliasOwnerId) => parsedBlocksByOwnerId.get(aliasOwnerId)).find(Boolean) ??
+      (primaryManifestEntry
+        ? parsedBlocksByPlanSourceKey.get(buildManifestPlanSourceKey(primaryManifestEntry))
+        : null) ??
       null;
     if (!parsedBlock) {
       addIssue(

@@ -126,6 +126,23 @@ function auditTrack(track) {
     0
   );
   const displayKind = range.minRemainingCredits === range.maxRemainingCredits ? "single" : "range";
+  const hasCatalogRange =
+    range.catalogMinimumCredits !== null &&
+    range.catalogMaximumCredits !== null &&
+    range.catalogMinimumCredits !== range.catalogMaximumCredits;
+  const hasOpenCatalogMinimum =
+    range.catalogMinimumCredits !== null && range.catalogMaximumCredits === null;
+  const hasExactCatalogCredits =
+    range.catalogMinimumCredits !== null &&
+    range.catalogMaximumCredits !== null &&
+    range.catalogMinimumCredits === range.catalogMaximumCredits;
+  const scheduledExceedsCatalogMaximum =
+    range.catalogMaximumCredits !== null &&
+    range.scheduledMaxRemainingCredits > range.catalogMaximumCredits;
+  const scheduledExceedsCatalogMinimum =
+    range.catalogMinimumCredits !== null &&
+    range.scheduledMaxRemainingCredits > range.catalogMinimumCredits;
+  const actionClassifications = [];
   const flags = [];
 
   if (range.hasUnresolvedOptions) {
@@ -134,14 +151,29 @@ function auditTrack(track) {
   if (displayKind === "range") {
     flags.push("range-display-needed");
   }
-  if (range.hasUnresolvedOptions && displayKind === "single") {
-    flags.push("single-display-with-unresolved-path");
+  if (hasCatalogRange && displayKind === "single") {
+    flags.push("range-collapsed");
+    actionClassifications.push("range-collapsed");
   }
-  if (
-    range.catalogMinimumCredits !== null &&
-    range.scheduledMaxRemainingCredits > range.catalogMinimumCredits
-  ) {
+  if (range.hasUnresolvedOptions && displayKind === "single" && !hasExactCatalogCredits) {
+    flags.push("single-display-with-unresolved-path");
+    actionClassifications.push("unresolved-option-rendered-as-fixed");
+  }
+  if (range.hasUnresolvedOptions && displayKind === "single" && hasExactCatalogCredits) {
+    actionClassifications.push("exact-catalog-credit-with-unresolved-options-preserved");
+  }
+  if (scheduledExceedsCatalogMinimum) {
     flags.push("scheduled-defaults-exceed-catalog-minimum");
+    actionClassifications.push(
+      scheduledExceedsCatalogMaximum
+        ? "default-exceeds-published-maximum"
+        : hasCatalogRange || hasOpenCatalogMinimum
+          ? "sample-default-above-published-minimum"
+          : "default-exceeds-exact-catalog-credit"
+    );
+  }
+  if (scheduledExceedsCatalogMaximum) {
+    flags.push("scheduled-defaults-exceed-catalog-maximum");
   }
 
   return {
@@ -160,6 +192,14 @@ function auditTrack(track) {
     displayKind,
     displayCreditText: formatRange(range.minRemainingCredits, range.maxRemainingCredits),
     hasUnresolvedOptions: range.hasUnresolvedOptions,
+    hasCatalogRange,
+    hasOpenCatalogMinimum,
+    hasExactCatalogCredits,
+    actionClassifications: [...new Set(actionClassifications)].sort(),
+    generatedSampleSchedule: track.sampleSchedule ?? null,
+    catalogCreditRange: track.catalogCreditRange ?? null,
+    unresolvedOptionCredits: range.unresolvedOptionCredits,
+    placeholderCredits: range.placeholderCredits,
     unresolvedOptionGroupIds: range.unresolvedOptionGroupIds,
     unresolvedPlaceholderLabels: range.unresolvedPlaceholderLabels,
     optionGroupKinds: getOptionGroupKinds(track),
@@ -174,7 +214,7 @@ function renderMarkdown(report) {
     .filter((track) => track.flags.length)
     .map(
       (track) =>
-        `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${track.displayKind} | ${track.displayCreditText} | ${track.scheduledMinRemainingCredits}-${track.scheduledMaxRemainingCredits} | ${track.catalogMinimumCredits ?? ""}-${track.catalogMaximumCredits ?? ""} | ${track.optionGroupKinds.join(", ")} | ${track.unresolvedPlaceholderLabels.join("; ").replace(/\|/g, "\\|")} | ${track.flags.join(", ")} |`
+        `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${track.displayKind} | ${track.displayCreditText} | ${track.scheduledMinRemainingCredits}-${track.scheduledMaxRemainingCredits} | ${track.catalogMinimumCredits ?? ""}-${track.catalogMaximumCredits ?? ""} | ${track.optionGroupKinds.join(", ")} | ${track.unresolvedPlaceholderLabels.join("; ").replace(/\|/g, "\\|")} | ${track.actionClassifications.join(", ")} | ${track.flags.join(", ")} |`
     );
 
   return [
@@ -184,11 +224,13 @@ function renderMarkdown(report) {
     `Green River tracks audited: ${report.summary.greenRiverTrackCount}`,
     `Tracks with unresolved options/placeholders: ${report.summary.tracksWithUnresolvedOptions}`,
     `Tracks needing range display: ${report.summary.tracksWithCreditRanges}`,
+    `Tracks with collapsed catalog ranges: ${report.summary.tracksWithCollapsedCatalogRanges}`,
     `Tracks with single display but unresolved path choices: ${report.summary.tracksWithSingleDisplayAndUnresolvedOptions}`,
     `Tracks where scheduled defaults exceed catalog minimum: ${report.summary.tracksWithScheduledDefaultsAboveCatalogMinimum}`,
+    `Tracks where scheduled defaults exceed catalog maximum: ${report.summary.tracksWithScheduledDefaultsAboveCatalogMaximum}`,
     "",
     rows.length
-      ? "| Code | Track | Display | Remaining credits | Scheduled credits | Catalog credits | Option kinds | Flexible placeholders | Flags |\n| --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |\n" +
+      ? "| Code | Track | Display | Remaining credits | Scheduled credits | Catalog credits | Option kinds | Flexible placeholders | Classifications | Flags |\n| --- | --- | --- | ---: | ---: | ---: | --- | --- | --- | --- |\n" +
           rows.join("\n")
       : "No remaining-credit range flags found.",
     "",
@@ -205,13 +247,20 @@ function main() {
       greenRiverTrackCount: greenRiverTracks.length,
       tracksWithUnresolvedOptions: tracks.filter((track) => track.hasUnresolvedOptions).length,
       tracksWithCreditRanges: tracks.filter((track) => track.displayKind === "range").length,
+      tracksWithCollapsedCatalogRanges: tracks.filter((track) =>
+        track.flags.includes("range-collapsed")
+      ).length,
       tracksWithSingleDisplayAndUnresolvedOptions: tracks.filter(
         (track) =>
           track.hasUnresolvedOptions &&
-          track.minRemainingCredits === track.maxRemainingCredits
+          track.minRemainingCredits === track.maxRemainingCredits &&
+          !track.hasExactCatalogCredits
       ).length,
       tracksWithScheduledDefaultsAboveCatalogMinimum: tracks.filter((track) =>
         track.flags.includes("scheduled-defaults-exceed-catalog-minimum")
+      ).length,
+      tracksWithScheduledDefaultsAboveCatalogMaximum: tracks.filter((track) =>
+        track.flags.includes("scheduled-defaults-exceed-catalog-maximum")
       ).length,
       flaggedTrackCount: flaggedTracks.length,
     },

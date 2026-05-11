@@ -37,6 +37,10 @@ const OUTPUT_MD_PATH = path.resolve(
 const DEFAULT_TIMEOUT_MS = 15000;
 const DEFAULT_CONCURRENCY = 4;
 const MAX_DISCOVERED_CANDIDATES_PER_OWNER = 6;
+const MAX_TARGETED_OFFICIAL_FOLLOW_CANDIDATES_PER_OWNER = 8;
+const MAX_RETAINED_PRIMARY_CANDIDATES_PER_OWNER = 8;
+const MAX_RETAINED_SUPPORT_CANDIDATES_PER_OWNER = 12;
+const MAX_RETAINED_NON_SCHEDULABLE_CANDIDATES_PER_OWNER = 6;
 const MAX_EXTRACTED_HEADINGS = 18;
 const MIN_PRIMARY_DISCOVERY_SCORE = 12;
 const MIN_HIGH_CONFIDENCE_SCORE = 28;
@@ -76,7 +80,7 @@ const UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN = /#(?:program|credential)-UG-[A-Z
 const PATHWAY_SOURCE_CUE_PATTERN =
   /\b(track|option|route|pathway|concentration|specialization)\b/i;
 const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
-  /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b/i;
+  /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b|degreq/i;
 const APPROVED_COURSE_LIST_CUE_PATTERN =
   /\bapproved\b.{0,60}\b(courses?|course list|list)\b|\b(courses?|course list|list)\b.{0,60}\bapproved\b/i;
 const ELECTIVE_LIST_CUE_PATTERN =
@@ -84,13 +88,17 @@ const ELECTIVE_LIST_CUE_PATTERN =
 const UPPER_DIVISION_PREREQUISITE_CUE_PATTERN =
   /\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b.{0,80}\bprereq(?:uisites?)?\b|\bprereq(?:uisites?)?\b.{0,80}\b(?:upper[-\s]?division|[34]00[-\s]?level|[34]00\s+level)\b/i;
 const NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN =
-  /\b(course lists?|list of courses|courses by track|course descriptions?|all courses|course catalog|print courses?)\b|\/(?:courses?|course-list|course-lists|print\/courses)(?:[-/?#]|$)/i;
+  /\b(course lists?|list of courses|courses by track|course descriptions?|all courses|course catalog|print courses?|suggested course pathways?|computing specializations?|capstones?)\b|\/(?:courses?|course-list|course-lists|print\/courses|capstones?|computing-specializations)(?:[-/?#]|$)/i;
 const ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN =
   /\b(?:admissions?|admission|apply|application)\b.{0,80}\bprereq(?:uisites?|uisite courses?)\b|\bprereq(?:uisites?|uisite courses?)\b.{0,80}\b(?:admissions?|admission|apply|application)\b/i;
 const SUPPORT_SOURCE_CUE_PATTERN =
-  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|polic(?:y|ies)|faq|frequently asked questions)\b/i;
+  /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 const PRIMARY_REQUIREMENT_CUE_PATTERN =
   /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
+const TARGETED_OFFICIAL_LINK_FOLLOW_CUE_PATTERN =
+  /\b(degree sheets?|requirements?|curriculum|approved courses?|approved electives?|course lists?|options?|pathways?|catalog|admissions? prerequisites?|prerequisite courses?)\b/i;
+const UNRELATED_OFFICIAL_LINK_FOLLOW_PATTERN =
+  /\b(faculty|people|staff|directory|news|events?|alumni|donat(?:e|ion|ions)?|giving|research|jobs?|careers?|calendar|parking|transportation|housing|visit|map|library|privacy|accessibility)\b|\/(?:faculty|people|staff|directory|news|events?|alumni|donate|giving|research|jobs?|careers?|calendar|parking|transportation|housing|visit|maps?|privacy|accessibility)(?:[/?#]|$)/i;
 const SOURCE_ROLE_METADATA = {
   "official-catalog": {
     status: "primary",
@@ -412,6 +420,16 @@ function getFallbackBaseDomains(campusId) {
   return FALLBACK_DISCOVERY_BASE_DOMAINS_BY_CAMPUS[campusId] ?? [];
 }
 
+function isOfficialUwLinkedAssetUrl(parsedUrl, baseDomains) {
+  const hostname = parsedUrl.hostname.toLowerCase();
+  const pathname = parsedUrl.pathname.toLowerCase();
+  return (
+    baseDomains.includes("washington.edu") &&
+    hostname === "s3-us-west-2.amazonaws.com" &&
+    pathname.startsWith("/www-cse-public/")
+  );
+}
+
 function isAllowedDiscoveryUrl(url, baseDomains) {
   try {
     const parsed = new URL(url);
@@ -435,7 +453,10 @@ function isAllowedDiscoveryUrl(url, baseDomains) {
     }
 
     const hostname = parsed.hostname.toLowerCase();
-    return hostnameMatchesBaseDomains(hostname, baseDomains);
+    return (
+      hostnameMatchesBaseDomains(hostname, baseDomains) ||
+      isOfficialUwLinkedAssetUrl(parsed, baseDomains)
+    );
   } catch {
     return false;
   }
@@ -464,6 +485,33 @@ function normalizeCandidateUrl(url) {
     return parsed.toString();
   } catch {
     return String(url ?? "").trim();
+  }
+}
+
+function getUrlSectionAnchor(url) {
+  try {
+    const hash = new URL(String(url ?? "")).hash;
+    return hash || null;
+  } catch {
+    const match = String(url ?? "").match(/#.+$/);
+    return match ? match[0] : null;
+  }
+}
+
+function preserveCandidateSectionAnchor(candidateUrl, finalUrl) {
+  const normalizedCandidateUrl = normalizeCandidateUrl(candidateUrl);
+  const normalizedFinalUrl = normalizeCandidateUrl(finalUrl || candidateUrl);
+  const sectionAnchor = getUrlSectionAnchor(normalizedCandidateUrl);
+  if (!sectionAnchor || !normalizedFinalUrl || getUrlSectionAnchor(normalizedFinalUrl)) {
+    return normalizedFinalUrl || normalizedCandidateUrl;
+  }
+
+  try {
+    const parsed = new URL(normalizedFinalUrl);
+    parsed.hash = sectionAnchor;
+    return parsed.toString();
+  } catch {
+    return `${normalizedFinalUrl}${sectionAnchor}`;
   }
 }
 
@@ -499,6 +547,30 @@ function getOfficialLinkRole(link) {
     return "pathway-degree-sheet";
   }
 
+  if (APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "approved-course-list";
+  }
+
+  if (ELECTIVE_LIST_CUE_PATTERN.test(searchable)) {
+    return "elective-list";
+  }
+
+  if (UPPER_DIVISION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
+    return "upper-division-prerequisite-table";
+  }
+
+  if (NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN.test(searchable)) {
+    return "non-schedulable-course-list";
+  }
+
+  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "admission-prerequisite-source";
+  }
+
+  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "support-source";
+  }
+
   if (
     /degree requirements|major requirements|graduation requirements|degree structure|degree sheet|requirement sheet|checklist|requirements packet|degreq/.test(
       searchable
@@ -523,36 +595,12 @@ function getOfficialLinkRole(link) {
     return "catalog";
   }
 
-  if (APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable)) {
-    return "approved-course-list";
-  }
-
-  if (ELECTIVE_LIST_CUE_PATTERN.test(searchable)) {
-    return "elective-list";
-  }
-
-  if (UPPER_DIVISION_PREREQUISITE_CUE_PATTERN.test(searchable)) {
-    return "upper-division-prerequisite-table";
-  }
-
-  if (NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN.test(searchable)) {
-    return "non-schedulable-course-list";
-  }
-
-  if (ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(searchable)) {
-    return "admission-prerequisite-source";
-  }
-
   if (/admission|admissions|apply|application|prerequisite/.test(searchable)) {
     return "admissions";
   }
 
   if (/curriculum/.test(searchable)) {
     return "curriculum";
-  }
-
-  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
-    return "support-source";
   }
 
   if (/overview|undergraduate|program|major/.test(searchable)) {
@@ -694,19 +742,8 @@ function classifySourceDiscoveryRole(candidate) {
     return "sample-schedule";
   }
 
-  if (/\bcurriculum(?: map)?\b|\bdegree map\b|\bfour-year plan\b/.test(searchable)) {
-    return "curriculum-map";
-  }
-
   if (PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) && PATHWAY_SOURCE_CUE_PATTERN.test(searchable)) {
     return "pathway-degree-sheet";
-  }
-
-  if (
-    PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
-    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
-  ) {
-    return "primary-degree-requirements";
   }
 
   if (APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable)) {
@@ -729,12 +766,23 @@ function classifySourceDiscoveryRole(candidate) {
     return "admission-prerequisite-source";
   }
 
+  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
+    return "support-source";
+  }
+
+  if (
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
+  ) {
+    return "primary-degree-requirements";
+  }
+
   if (/\badmissions?\b|\bapply\b|\bapplication\b|\bpreparation\b|\bprerequisites?\b/.test(searchable)) {
     return "admissions-preparation";
   }
 
-  if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
-    return "support-source";
+  if (/\bcurriculum(?: map)?\b|\bdegree map\b|\bfour-year plan\b/.test(searchable)) {
+    return "curriculum-map";
   }
 
   if (/\brequirements?\b|\bundergraduate\b|\bmajor\b|\bprogram\b/.test(searchable)) {
@@ -929,6 +977,118 @@ function buildIdentityAcronym(tokens) {
 
 function acronymMatchesText(acronym, text) {
   return acronym.length >= 3 && text.split(" ").includes(acronym);
+}
+
+function getUrlIdentityPathSlug(url) {
+  try {
+    return buildIdentitySlug(new URL(url).pathname.split("/").filter(Boolean).join(" "));
+  } catch {
+    return "";
+  }
+}
+
+function getCandidateIdentityText(candidate, combinedText = null) {
+  return slugifyForSearch(
+    combinedText ??
+      [
+        candidate?.url,
+        candidate?.label,
+        candidate?.anchorText,
+        candidate?.linkText,
+        candidate?.pageTitle,
+        ...(candidate?.pageHeadings ?? []),
+      ]
+        .filter(Boolean)
+        .join(" ")
+  );
+}
+
+function getIdentityOverlapScore(identityValue, candidate, combinedText = null) {
+  const tokens = buildIdentityTokens(identityValue);
+  if (!tokens.length) {
+    return 0;
+  }
+
+  const identitySlug = buildIdentitySlug(identityValue);
+  const pathSlug = getUrlIdentityPathSlug(candidate?.url);
+  const candidateIdentityText = getCandidateIdentityText(candidate, combinedText);
+  const matchedTokenCount = tokens.filter((token) =>
+    tokenMatchesCandidateText(token, candidateIdentityText)
+  ).length;
+  let score = Math.round((matchedTokenCount / tokens.length) * 70);
+
+  if (identitySlug && matchesHyphenDelimitedSlug(pathSlug, identitySlug)) {
+    score += 30;
+  } else if (tokens.length === 1 && pathSlug.split("-").includes(tokens[0])) {
+    score += 20;
+  }
+
+  const acronym = buildIdentityAcronym(tokens);
+  if (acronymMatchesText(acronym, candidateIdentityText)) {
+    score += 30;
+  }
+
+  return Math.min(100, score);
+}
+
+function getSameMajorIdentityScore(target, candidate, combinedText = null) {
+  return getIdentityOverlapScore(target?.title, candidate, combinedText);
+}
+
+function getPathwayIdentityScore(target, candidate, combinedText = null) {
+  const majorTitle = normalizeWhitespace(target?.title);
+  const pathwayLabel = normalizeWhitespace(target?.label);
+  if (!pathwayLabel || pathwayLabel === majorTitle) {
+    return 0;
+  }
+
+  return getIdentityOverlapScore(pathwayLabel, candidate, combinedText);
+}
+
+function isSameDepartmentUrl(sourceUrl, candidateUrl) {
+  if (!sourceUrl || !candidateUrl) {
+    return false;
+  }
+
+  try {
+    const source = new URL(sourceUrl);
+    const candidate = new URL(candidateUrl);
+    if (source.hostname.toLowerCase() === candidate.hostname.toLowerCase()) {
+      return true;
+    }
+
+    const sourceBaseDomain = getBaseDomains([source.href])[0] ?? "";
+    const candidateBaseDomain = getBaseDomains([candidate.href])[0] ?? "";
+    if (!sourceBaseDomain || sourceBaseDomain !== candidateBaseDomain) {
+      return false;
+    }
+
+    const genericSegments = new Set([
+      "academics",
+      "academic",
+      "undergraduate",
+      "students",
+      "student",
+      "programs",
+      "degrees",
+    ]);
+    const sourceSegments = source.pathname.split("/").filter(Boolean);
+    const candidateSegments = candidate.pathname.split("/").filter(Boolean);
+    const sourceDepartmentSegment = sourceSegments.find(
+      (segment) => !genericSegments.has(segment.toLowerCase())
+    );
+    const candidateDepartmentSegment = candidateSegments.find(
+      (segment) => !genericSegments.has(segment.toLowerCase())
+    );
+
+    return Boolean(
+      sourceDepartmentSegment &&
+        candidateDepartmentSegment &&
+        sourceDepartmentSegment.toLowerCase() === candidateDepartmentSegment.toLowerCase()
+    );
+  } catch {
+    return false;
+  }
 }
 
 function hasSelectedUndergraduateCatalogMajorCredential(target, candidate, candidateIdentityText) {
@@ -1842,6 +2002,11 @@ function scoreCandidate(target, candidate) {
     addReason(reasons, "hardcoded official source candidate for source-gap resolution");
   }
 
+  if (isSameDepartmentUrl(candidate.sourcePageUrl, candidate.url)) {
+    score += 4;
+    addReason(reasons, "stays on the same department or school page");
+  }
+
   const existingPrimaryHost = getHostnameOrEmpty(target.existingPrimaryUrl);
   const candidateHost = getHostnameOrEmpty(candidate.url);
   if (existingPrimaryHost && candidateHost && existingPrimaryHost === candidateHost) {
@@ -1964,21 +2129,42 @@ function mergeCandidate(existing, incoming) {
     ...winning,
     label: winning.label || existing.label || incoming.label || null,
     anchorText: winning.anchorText || existing.anchorText || incoming.anchorText || null,
+    linkText: winning.linkText || existing.linkText || incoming.linkText || null,
     pageTitle: winning.pageTitle || existing.pageTitle || incoming.pageTitle || null,
     pageHeadings: uniqueSorted([
       ...(existing.pageHeadings ?? []),
       ...(incoming.pageHeadings ?? []),
     ]),
     sourcePageUrl: winning.sourcePageUrl || existing.sourcePageUrl || incoming.sourcePageUrl || null,
+    discoveredFromUrl:
+      winning.discoveredFromUrl ||
+      existing.discoveredFromUrl ||
+      incoming.discoveredFromUrl ||
+      null,
     sourceKinds: uniqueSorted([...(existing.sourceKinds ?? []), ...(incoming.sourceKinds ?? [])]),
     sourceRole: winning.sourceRole || existing.sourceRole || incoming.sourceRole || "ignored",
     sourceRoleStatus:
       winning.sourceRoleStatus || existing.sourceRoleStatus || incoming.sourceRoleStatus || "ignored",
+    supportOnly: Boolean(winning.supportOnly ?? existing.supportOnly ?? incoming.supportOnly),
+    canBePrimary: Boolean(winning.canBePrimary ?? existing.canBePrimary ?? incoming.canBePrimary),
     parserType: winning.parserType || existing.parserType || incoming.parserType || "unknown",
     canCreateSchedulableRows: Boolean(
       winning.canCreateSchedulableRows ??
         existing.canCreateSchedulableRows ??
         incoming.canCreateSchedulableRows
+    ),
+    sectionAnchor:
+      winning.sectionAnchor || existing.sectionAnchor || incoming.sectionAnchor || null,
+    sameDepartment: Boolean(
+      winning.sameDepartment || existing.sameDepartment || incoming.sameDepartment
+    ),
+    sameMajorIdentityScore: Math.max(
+      existing.sameMajorIdentityScore ?? 0,
+      incoming.sameMajorIdentityScore ?? 0
+    ),
+    pathwayIdentityScore: Math.max(
+      existing.pathwayIdentityScore ?? 0,
+      incoming.pathwayIdentityScore ?? 0
     ),
     discoveryDepth: Math.min(
       existing.discoveryDepth ?? Number.POSITIVE_INFINITY,
@@ -2016,6 +2202,42 @@ function compareScoredCandidates(left, right) {
   return left.url.localeCompare(right.url);
 }
 
+function getCandidateLinkText(candidate) {
+  return normalizeWhitespace(
+    candidate?.linkText ?? candidate?.anchorText ?? candidate?.label ?? candidate?.pageTitle ?? ""
+  );
+}
+
+function buildCandidateDiscoveryMetadata(target, candidate) {
+  const sourceRole = candidate.sourceRole ?? classifySourceDiscoveryRole(candidate);
+  const sourceRoleStatus = candidate.sourceRoleStatus ?? getSourceRoleStatus(sourceRole);
+  const discoveredFromUrl =
+    candidate.discoveredFromUrl ?? candidate.sourcePageUrl ?? candidate.parentUrl ?? null;
+  const linkText = getCandidateLinkText(candidate) || null;
+  const combinedText = [
+    candidate.url,
+    candidate.label,
+    candidate.anchorText,
+    candidate.linkText,
+    candidate.pageTitle,
+    ...(candidate.pageHeadings ?? []),
+  ]
+    .filter(Boolean)
+    .join(" \n")
+    .toLowerCase();
+
+  return {
+    discoveredFromUrl,
+    linkText,
+    supportOnly: sourceRoleStatus === "support",
+    canBePrimary: canSourceRoleCreateSchedulableRows(sourceRole),
+    sectionAnchor: getUrlSectionAnchor(candidate.url),
+    sameDepartment: isSameDepartmentUrl(discoveredFromUrl, candidate.url),
+    sameMajorIdentityScore: getSameMajorIdentityScore(target, candidate, combinedText),
+    pathwayIdentityScore: getPathwayIdentityScore(target, candidate, combinedText),
+  };
+}
+
 function addScoredCandidate(candidateMap, target, rawCandidate) {
   const normalizedUrl = normalizeCandidateUrl(rawCandidate.url);
   if (!normalizedUrl) {
@@ -2023,18 +2245,32 @@ function addScoredCandidate(candidateMap, target, rawCandidate) {
   }
 
   const scored = scoreCandidate(target, { ...rawCandidate, url: normalizedUrl });
+  const metadata = buildCandidateDiscoveryMetadata(target, {
+    ...rawCandidate,
+    url: normalizedUrl,
+    sourceRole: scored.sourceRole,
+    sourceRoleStatus: scored.sourceRoleStatus,
+  });
   const mergedCandidate = {
     url: normalizedUrl,
     label: rawCandidate.label ?? null,
     anchorText: rawCandidate.anchorText ?? null,
+    linkText: metadata.linkText,
     pageTitle: rawCandidate.pageTitle ?? null,
     pageHeadings: rawCandidate.pageHeadings ?? [],
     sourcePageUrl: rawCandidate.sourcePageUrl ?? null,
+    discoveredFromUrl: metadata.discoveredFromUrl,
     sourceKinds: rawCandidate.sourceKind ? [rawCandidate.sourceKind] : [],
     sourceRole: scored.sourceRole,
     sourceRoleStatus: scored.sourceRoleStatus,
+    supportOnly: metadata.supportOnly,
+    canBePrimary: metadata.canBePrimary,
     parserType: scored.parserType,
     canCreateSchedulableRows: scored.canCreateSchedulableRows,
+    sectionAnchor: metadata.sectionAnchor,
+    sameDepartment: metadata.sameDepartment,
+    sameMajorIdentityScore: metadata.sameMajorIdentityScore,
+    pathwayIdentityScore: metadata.pathwayIdentityScore,
     discoveryDepth: Number.isFinite(rawCandidate.discoveryDepth)
       ? rawCandidate.discoveryDepth
       : 0,
@@ -2091,7 +2327,8 @@ function parseArgs() {
 
 function buildReplacementDecision(target, candidates) {
   const sortedCandidates = [...(candidates ?? [])].sort(compareScoredCandidates);
-  const topCandidate = sortedCandidates[0] ?? null;
+  const primaryCandidates = sortedCandidates.filter(isPrimaryEligibleCandidate);
+  const topCandidate = primaryCandidates[0] ?? null;
   if (!target.existingPrimaryUrl) {
     return {
       suggestedPrimary:
@@ -2108,7 +2345,7 @@ function buildReplacementDecision(target, candidates) {
   const currentPrimary =
     sortedCandidates.find((candidate) => candidate.url === target.existingPrimaryUrl) ?? null;
   const bestAlternative =
-    sortedCandidates.find((candidate) => candidate.url !== target.existingPrimaryUrl) ?? null;
+    primaryCandidates.find((candidate) => candidate.url !== target.existingPrimaryUrl) ?? null;
 
   if (!bestAlternative) {
     return {
@@ -2287,6 +2524,153 @@ function shouldRunDeeperDiscovery(target, candidateMap) {
   return Boolean(topCandidate && topCandidate.confidence !== "high");
 }
 
+function isPrimaryEligibleCandidate(candidate) {
+  return (
+    candidate &&
+    candidate.canCreateSchedulableRows !== false &&
+    candidate.canBePrimary !== false &&
+    candidate.sourceRoleStatus === "primary"
+  );
+}
+
+function isSupportCandidate(candidate) {
+  return candidate?.supportOnly === true || candidate?.sourceRoleStatus === "support";
+}
+
+function isNonSchedulableCandidate(candidate) {
+  return candidate?.sourceRoleStatus === "non-schedulable";
+}
+
+function isTargetedOfficialFollowRole(sourceRole) {
+  return new Set([
+    "official-catalog",
+    "primary-degree-requirements",
+    "department-requirements",
+    "pathway-degree-sheet",
+    "approved-course-list",
+    "elective-list",
+    "admission-prerequisite-source",
+    "admissions-preparation",
+    "curriculum-map",
+  ]).has(sourceRole);
+}
+
+function shouldFollowTargetedOfficialCandidate(candidate, target = null) {
+  if (!candidate || (candidate.discoveryDepth ?? 0) >= 2) {
+    return false;
+  }
+
+  if (candidate.pageTitle || /\.pdf(?:$|[?#])/i.test(candidate.url ?? "")) {
+    return false;
+  }
+
+  const sourceKinds = new Set(candidate.sourceKinds ?? []);
+  if (
+    !sourceKinds.has("discovered-anchor") &&
+    !sourceKinds.has("campus-major-index") &&
+    !sourceKinds.has("official-site-root")
+  ) {
+    return false;
+  }
+
+  if (candidate.sourceRole === "sample-schedule") {
+    return false;
+  }
+
+  const searchable = `${candidate.linkText ?? ""} ${candidate.anchorText ?? ""} ${
+    candidate.label ?? ""
+  } ${candidate.url ?? ""}`;
+  if (
+    UNRELATED_OFFICIAL_LINK_FOLLOW_PATTERN.test(searchable) &&
+    !APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable) &&
+    !ELECTIVE_LIST_CUE_PATTERN.test(searchable)
+  ) {
+    return false;
+  }
+
+  if (
+    candidate.sameDepartment &&
+    (candidate.sameMajorIdentityScore ?? 0) > 0 &&
+    (candidate.pathwayIdentityScore ?? 0) > 0
+  ) {
+    return true;
+  }
+
+  if (
+    candidate.sameDepartment &&
+    (candidate.sameMajorIdentityScore ?? 0) > 0 &&
+    hasMatchingDegreeRoute(`${target?.title ?? ""} ${target?.label ?? ""}`, searchable)
+  ) {
+    return true;
+  }
+
+  if (isTargetedOfficialFollowRole(candidate.sourceRole)) {
+    return true;
+  }
+
+  return TARGETED_OFFICIAL_LINK_FOLLOW_CUE_PATTERN.test(searchable);
+}
+
+function compareTargetedOfficialFollowCandidates(left, right) {
+  const leftSameDepartment = left.sameDepartment ? 1 : 0;
+  const rightSameDepartment = right.sameDepartment ? 1 : 0;
+  if (leftSameDepartment !== rightSameDepartment) {
+    return rightSameDepartment - leftSameDepartment;
+  }
+
+  const leftPrimary = isPrimaryEligibleCandidate(left) ? 1 : 0;
+  const rightPrimary = isPrimaryEligibleCandidate(right) ? 1 : 0;
+  if (leftPrimary !== rightPrimary) {
+    return rightPrimary - leftPrimary;
+  }
+
+  const leftSupport = isSupportCandidate(left) ? 1 : 0;
+  const rightSupport = isSupportCandidate(right) ? 1 : 0;
+  if (leftSupport !== rightSupport) {
+    return rightSupport - leftSupport;
+  }
+
+  const pathwayDelta = (right.pathwayIdentityScore ?? 0) - (left.pathwayIdentityScore ?? 0);
+  if (pathwayDelta !== 0) {
+    return pathwayDelta;
+  }
+
+  const majorDelta = (right.sameMajorIdentityScore ?? 0) - (left.sameMajorIdentityScore ?? 0);
+  if (majorDelta !== 0) {
+    return majorDelta;
+  }
+
+  return compareScoredCandidates(left, right);
+}
+
+function buildRetainedDiscoveryCandidates(sortedCandidates) {
+  const retainedByUrl = new Map();
+  const addCandidates = (candidates, limit) => {
+    for (const candidate of candidates.slice(0, limit)) {
+      retainedByUrl.set(candidate.url, candidate);
+    }
+  };
+
+  addCandidates(
+    sortedCandidates.filter(isPrimaryEligibleCandidate),
+    MAX_RETAINED_PRIMARY_CANDIDATES_PER_OWNER
+  );
+  addCandidates(
+    sortedCandidates.filter(isSupportCandidate),
+    MAX_RETAINED_SUPPORT_CANDIDATES_PER_OWNER
+  );
+  addCandidates(
+    sortedCandidates.filter(isNonSchedulableCandidate),
+    MAX_RETAINED_NON_SCHEDULABLE_CANDIDATES_PER_OWNER
+  );
+
+  if (!retainedByUrl.size) {
+    addCandidates(sortedCandidates, MAX_RETAINED_PRIMARY_CANDIDATES_PER_OWNER);
+  }
+
+  return [...retainedByUrl.values()].sort(compareScoredCandidates);
+}
+
 function buildSourceDiscoveryAuditLines(target, candidates, suggestion) {
   const usedUrl =
     suggestion.suggestedPrimary?.url ??
@@ -2299,14 +2683,23 @@ function buildSourceDiscoveryAuditLines(target, candidates, suggestion) {
       `Major id: ${target.planId ?? "unknown"}`,
       `Owner id: ${target.ownerKey ?? target.planId ?? "unknown"}`,
       `Seed URL: ${candidate.sourcePageUrl ?? target.existingPrimaryUrl ?? "n/a"}`,
+      `Discovered from: ${candidate.discoveredFromUrl ?? candidate.sourcePageUrl ?? "n/a"}`,
       `Source URL: ${candidate.url}`,
       `Candidate URL: ${candidate.url}`,
-      `Link text: ${candidate.anchorText || candidate.label || candidate.pageTitle || "n/a"}`,
+      `Link text: ${candidate.linkText || candidate.anchorText || candidate.label || candidate.pageTitle || "n/a"}`,
       `Detected source role: ${candidate.sourceRole ?? "ignored"}`,
+      `Detected role: ${candidate.sourceRole ?? "ignored"}`,
       `Source role: ${candidate.sourceRole ?? "ignored"}`,
       `Primary/support/non-schedulable status: ${
         candidate.sourceRoleStatus ?? getSourceRoleStatus(candidate.sourceRole ?? "ignored")
       }`,
+      `Support-only: ${candidate.supportOnly ? "yes" : "no"}`,
+      `Can be primary: ${candidate.canBePrimary ? "yes" : "no"}`,
+      `Anchor preserved: ${candidate.sectionAnchor ? "yes" : "no"}`,
+      `Section anchor: ${candidate.sectionAnchor ?? "n/a"}`,
+      `Same department: ${candidate.sameDepartment ? "yes" : "no"}`,
+      `Same major identity score: ${candidate.sameMajorIdentityScore ?? 0}`,
+      `Pathway identity score: ${candidate.pathwayIdentityScore ?? 0}`,
       `Parser type: ${candidate.parserType ?? getDiscoveryParserType(candidate, candidate.sourceRole ?? "ignored")}`,
       `Discovery depth: ${candidate.discoveryDepth ?? 0}`,
       `Ranking score: ${candidate.score}`,
@@ -2388,6 +2781,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
 
   for (const link of discoveryLinks) {
     const page = await inspectPageImpl(link.url, timeoutMs);
+    const pageCandidateUrl = preserveCandidateSectionAnchor(link.url, page.finalUrl || link.url);
     sourcePages.push({
       url: link.url,
       finalUrl: page.finalUrl,
@@ -2401,7 +2795,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     });
 
     addScoredCandidate(candidateMap, target, {
-      url: page.finalUrl || link.url,
+      url: pageCandidateUrl,
       label: link.label,
       pageTitle: page.title,
       pageHeadings: page.headings,
@@ -2416,7 +2810,9 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
       addScoredCandidate(candidateMap, target, {
         url: anchor.url,
         anchorText: anchor.text,
-        sourcePageUrl: page.finalUrl || link.url,
+        linkText: anchor.text,
+        sourcePageUrl: pageCandidateUrl,
+        discoveredFromUrl: pageCandidateUrl,
         sourceKind: "discovered-anchor",
         discoveryDepth: 1,
       });
@@ -2425,6 +2821,10 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
 
   for (const sourcePage of seedSourcePages) {
     const page = await inspectPageImpl(sourcePage.url, timeoutMs);
+    const pageCandidateUrl = preserveCandidateSectionAnchor(
+      sourcePage.url,
+      page.finalUrl || sourcePage.url
+    );
     sourcePages.push({
       url: sourcePage.url,
       finalUrl: page.finalUrl,
@@ -2445,7 +2845,9 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
       addScoredCandidate(candidateMap, target, {
         url: anchor.url,
         anchorText: anchor.text,
-        sourcePageUrl: page.finalUrl || sourcePage.url,
+        linkText: anchor.text,
+        sourcePageUrl: pageCandidateUrl,
+        discoveredFromUrl: pageCandidateUrl,
         discoveryDepth: 1,
         sourceKind:
           sourcePage.sourceKind === "official-site-root"
@@ -2456,6 +2858,83 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
   }
 
   const verifiedCandidateUrls = new Set();
+  const targetedOfficialFollowTargets = [...candidateMap.values()]
+    .filter(
+      (candidate) =>
+        !verifiedCandidateUrls.has(candidate.url) &&
+        shouldFollowTargetedOfficialCandidate(candidate, target)
+    )
+    .sort(compareTargetedOfficialFollowCandidates)
+    .slice(0, MAX_TARGETED_OFFICIAL_FOLLOW_CANDIDATES_PER_OWNER);
+
+  for (const candidate of targetedOfficialFollowTargets) {
+    verifiedCandidateUrls.add(candidate.url);
+    const page = await inspectPageImpl(candidate.url, timeoutMs);
+    const pageCandidateUrl = preserveCandidateSectionAnchor(candidate.url, page.finalUrl || candidate.url);
+    sourcePages.push({
+      url: candidate.url,
+      finalUrl: page.finalUrl,
+      ok: page.ok,
+      status: page.status,
+      contentType: page.contentType,
+      title: page.title,
+      headingCount: (page.headings ?? []).length,
+      error: page.error,
+      anchorCount: page.anchors.length,
+      sourceKind: "targeted-official-follow",
+      discoveredFromUrl: candidate.discoveredFromUrl ?? candidate.sourcePageUrl ?? null,
+    });
+
+    addScoredCandidate(candidateMap, target, {
+      url: pageCandidateUrl,
+      label: candidate.label,
+      anchorText: candidate.anchorText,
+      linkText: candidate.linkText,
+      pageTitle: page.title,
+      pageHeadings: page.headings,
+      sourcePageUrl: candidate.sourcePageUrl,
+      discoveredFromUrl: candidate.discoveredFromUrl ?? candidate.sourcePageUrl ?? null,
+      sourceKind: candidate.sourceKinds?.[0] ?? "discovered-anchor",
+      discoveryDepth: candidate.discoveryDepth ?? 1,
+    });
+
+    for (const anchor of page.anchors) {
+      if (!isAllowedDiscoveryUrl(anchor.url, baseDomains)) {
+        continue;
+      }
+
+      const rawAnchorCandidate = {
+        url: anchor.url,
+        anchorText: anchor.text,
+        linkText: anchor.text,
+        sourcePageUrl: pageCandidateUrl,
+        discoveredFromUrl: pageCandidateUrl,
+        sourceKind: "discovered-anchor",
+        discoveryDepth: Math.min(2, (candidate.discoveryDepth ?? 1) + 1),
+      };
+      const anchorRole = classifySourceDiscoveryRole(rawAnchorCandidate);
+      const searchable = `${anchor.text ?? ""} ${anchor.url ?? ""}`;
+      if (anchorRole === "sample-schedule") {
+        continue;
+      }
+      if (
+        !isTargetedOfficialFollowRole(anchorRole) &&
+        !TARGETED_OFFICIAL_LINK_FOLLOW_CUE_PATTERN.test(searchable)
+      ) {
+        continue;
+      }
+      if (
+        UNRELATED_OFFICIAL_LINK_FOLLOW_PATTERN.test(searchable) &&
+        !APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable) &&
+        !ELECTIVE_LIST_CUE_PATTERN.test(searchable)
+      ) {
+        continue;
+      }
+
+      addScoredCandidate(candidateMap, target, rawAnchorCandidate);
+    }
+  }
+
   const allowDeeperDiscovery = shouldRunDeeperDiscovery(target, candidateMap);
 
   for (let pass = 0; pass < MAX_DISCOVERY_VERIFICATION_PASSES; pass += 1) {
@@ -2481,13 +2960,16 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     for (const candidate of verifyTargets) {
       verifiedCandidateUrls.add(candidate.url);
       const page = await inspectPageImpl(candidate.url, timeoutMs);
+      const pageCandidateUrl = preserveCandidateSectionAnchor(candidate.url, page.finalUrl || candidate.url);
       addScoredCandidate(candidateMap, target, {
-        url: page.finalUrl || candidate.url,
+        url: pageCandidateUrl,
         label: candidate.label,
         anchorText: candidate.anchorText,
+        linkText: candidate.linkText,
         pageTitle: page.title,
         pageHeadings: page.headings,
         sourcePageUrl: candidate.sourcePageUrl,
+        discoveredFromUrl: candidate.discoveredFromUrl ?? candidate.sourcePageUrl ?? null,
         sourceKind: candidate.sourceKinds?.[0] ?? "discovered-anchor",
         discoveryDepth: candidate.discoveryDepth ?? 1,
       });
@@ -2499,7 +2981,9 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
         addScoredCandidate(candidateMap, target, {
           url: anchor.url,
           anchorText: anchor.text,
-          sourcePageUrl: page.finalUrl || candidate.url,
+          linkText: anchor.text,
+          sourcePageUrl: pageCandidateUrl,
+          discoveredFromUrl: pageCandidateUrl,
           sourceKind: "discovered-anchor",
           discoveryDepth: Math.min(2, (candidate.discoveryDepth ?? 1) + 1),
         });
@@ -2507,10 +2991,12 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     }
   }
 
-  const rescoredCandidates = [...candidateMap.values()]
-    .sort(compareScoredCandidates)
-    .slice(0, 8);
-  const suggestion = buildReplacementDecision(target, rescoredCandidates);
+  const sortedCandidates = [...candidateMap.values()].sort(compareScoredCandidates);
+  const retainedCandidates = buildRetainedDiscoveryCandidates(sortedCandidates);
+  const primaryCandidates = sortedCandidates.filter(isPrimaryEligibleCandidate);
+  const supportCandidates = sortedCandidates.filter(isSupportCandidate);
+  const nonSchedulableCandidates = sortedCandidates.filter(isNonSchedulableCandidate);
+  const suggestion = buildReplacementDecision(target, sortedCandidates);
 
   return {
     analysisMode: target.analysisMode,
@@ -2534,8 +3020,16 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     suggestedAction: suggestion.action,
     suggestedScoreDelta: suggestion.scoreDelta ?? null,
     deeperDiscoveryEnabled: allowDeeperDiscovery,
-    sourceDiscoveryAuditLines: buildSourceDiscoveryAuditLines(target, rescoredCandidates, suggestion),
-    topCandidates: rescoredCandidates,
+    targetedOfficialFollowCount: targetedOfficialFollowTargets.length,
+    sourceDiscoveryAuditLines: buildSourceDiscoveryAuditLines(target, retainedCandidates, suggestion),
+    topCandidates: retainedCandidates,
+    primaryCandidates: primaryCandidates.slice(0, MAX_RETAINED_PRIMARY_CANDIDATES_PER_OWNER),
+    supportCandidates: supportCandidates.slice(0, MAX_RETAINED_SUPPORT_CANDIDATES_PER_OWNER),
+    supplementalCandidates: supportCandidates.slice(0, MAX_RETAINED_SUPPORT_CANDIDATES_PER_OWNER),
+    nonSchedulableCandidates: nonSchedulableCandidates.slice(
+      0,
+      MAX_RETAINED_NON_SCHEDULABLE_CANDIDATES_PER_OWNER
+    ),
   };
 }
 
@@ -2585,6 +3079,13 @@ function writeMarkdownReport(report) {
       owner.topCandidates.slice(0, 3).forEach((candidate) => {
         lines.push(`  - ${candidate.url}`);
         lines.push(`    - source role: ${candidate.sourceRole ?? "ignored"}`);
+        lines.push(`    - support-only: ${candidate.supportOnly ? "yes" : "no"}`);
+        if (candidate.discoveredFromUrl) {
+          lines.push(`    - discovered from: ${candidate.discoveredFromUrl}`);
+        }
+        if (candidate.sectionAnchor) {
+          lines.push(`    - section anchor: ${candidate.sectionAnchor}`);
+        }
         lines.push(`    - discovery depth: ${candidate.discoveryDepth ?? 0}`);
         lines.push(`    - confidence: ${candidate.confidence}`);
         lines.push(`    - score: ${candidate.score}`);
@@ -2598,6 +3099,17 @@ function writeMarkdownReport(report) {
         lines.push(`  - ${auditLine}`);
       }
       if ((owner.sourceDiscoveryAuditLines ?? []).length) {
+        lines.push("");
+      }
+      if ((owner.supportCandidates ?? []).length) {
+        lines.push("  - Supplemental support candidates:");
+        owner.supportCandidates.slice(0, 5).forEach((candidate) => {
+          lines.push(`    - ${candidate.url}`);
+          lines.push(`      - source role: ${candidate.sourceRole ?? "ignored"}`);
+          lines.push(`      - link text: ${candidate.linkText ?? candidate.anchorText ?? candidate.label ?? "n/a"}`);
+          lines.push(`      - discovered from: ${candidate.discoveredFromUrl ?? "n/a"}`);
+          lines.push(`      - score: ${candidate.score}`);
+        });
         lines.push("");
       }
     });

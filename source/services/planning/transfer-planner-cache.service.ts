@@ -1,21 +1,25 @@
 import type { ParsedTranscriptCourse } from "@/services/documents/transcript-pdf.service";
 import type { UploadedFile } from "@/services/storage/storage.service";
+import {
+  TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_CACHE_FIELDS,
+  TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_EARNED_CREDITS_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_PARSER_VERSION_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD,
+  TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD,
+} from "@/constants/planner-storage";
 
-export const TRANSCRIPT_COURSES_FIELD = "transferPlannerCompletedCourses";
-export const TRANSCRIPT_SOURCE_FIELD = "transferPlannerTranscriptSource";
-export const TRANSCRIPT_UPLOADED_AT_FIELD = "transferPlannerTranscriptUploadedAt";
-export const TRANSCRIPT_PARSER_VERSION_FIELD = "transferPlannerTranscriptParserVersion";
-export const TRANSCRIPT_EARNED_CREDITS_FIELD = "transferPlannerTranscriptEarnedCredits";
+export const TRANSCRIPT_COURSES_FIELD = TRANSFER_PLANNER_TRANSCRIPT_COURSES_FIELD;
+export const TRANSCRIPT_SOURCE_FIELD = TRANSFER_PLANNER_TRANSCRIPT_SOURCE_FIELD;
+export const TRANSCRIPT_UPLOADED_AT_FIELD =
+  TRANSFER_PLANNER_TRANSCRIPT_UPLOADED_AT_FIELD;
+export const TRANSCRIPT_PARSER_VERSION_FIELD =
+  TRANSFER_PLANNER_TRANSCRIPT_PARSER_VERSION_FIELD;
+export const TRANSCRIPT_EARNED_CREDITS_FIELD =
+  TRANSFER_PLANNER_TRANSCRIPT_EARNED_CREDITS_FIELD;
 export const TRANSCRIPT_PARSER_VERSION = 2;
 export const TRANSCRIPT_ESTIMATED_CREDITS_PER_TERM = 15;
-
-const TRANSFER_PLANNER_TRANSCRIPT_CACHE_FIELDS = [
-  TRANSCRIPT_COURSES_FIELD,
-  TRANSCRIPT_SOURCE_FIELD,
-  TRANSCRIPT_UPLOADED_AT_FIELD,
-  TRANSCRIPT_PARSER_VERSION_FIELD,
-  TRANSCRIPT_EARNED_CREDITS_FIELD,
-] as const;
 
 type TranscriptTermName = "winter" | "spring" | "summer" | "fall";
 
@@ -321,7 +325,7 @@ export function clearTransferPlannerTranscriptCache(
     ...(questionnaireAnswers ?? {}),
   };
 
-  delete nextQuestionnaireAnswers["completedCourses"];
+  delete nextQuestionnaireAnswers[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD];
 
   for (const field of TRANSFER_PLANNER_TRANSCRIPT_CACHE_FIELDS) {
     delete nextQuestionnaireAnswers[field];
@@ -345,7 +349,9 @@ export function buildTransferPlannerTranscriptCachePatch(
 
   return {
     [TRANSCRIPT_COURSES_FIELD]: completedCourses,
-    completedCourses: completedCourses.map((course) => course.label),
+    [TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD]: completedCourses.map(
+      (course) => course.label
+    ),
     [TRANSCRIPT_SOURCE_FIELD]: document.url,
     [TRANSCRIPT_PARSER_VERSION_FIELD]: TRANSCRIPT_PARSER_VERSION,
     [TRANSCRIPT_UPLOADED_AT_FIELD]: document.uploadedAt || new Date().toISOString(),

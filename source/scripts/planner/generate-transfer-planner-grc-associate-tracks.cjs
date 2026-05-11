@@ -169,13 +169,31 @@ function parseCreditRangeFromText(value) {
     : {
         minimumCredits: exactCredits,
         maximumCredits: exactCredits,
-      };
+    };
 }
 
-function getProgramCreditRange(page, requirementProgram) {
+function parseCreditRangeFromSource(value, sourceKind) {
+  const range = parseCreditRangeFromText(value);
+  if (!range) {
+    return null;
+  }
+
+  return {
+    ...range,
+    sourceKind,
+    sourceText: stripHtml(value),
+    isExact:
+      range.maximumCredits !== null &&
+      range.minimumCredits !== null &&
+      range.minimumCredits === range.maximumCredits,
+  };
+}
+
+function getProgramCreditRange(page, program, requirementProgram) {
   return (
-    parseCreditRangeFromText(requirementProgram?.description) ??
-    parseCreditRangeFromText(page?.duration) ??
+    parseCreditRangeFromSource(requirementProgram?.description, "catalog-requirement-description") ??
+    parseCreditRangeFromSource(page?.duration, "program-map-duration") ??
+    parseCreditRangeFromSource(program?.description, "curriculum-map-description") ??
     null
   );
 }
@@ -223,6 +241,16 @@ function normalizeTrackCourseTerms(terms) {
   }));
 }
 
+function normalizeTrackCatalogOptionLists(optionLists) {
+  return (Array.isArray(optionLists) ? optionLists : [])
+    .map((optionList) => ({
+      ...optionList,
+      courseLabels: uniqueStrings(optionList?.courseLabels ?? []),
+      courseCodes: uniqueStrings((optionList?.courseCodes ?? []).map((code) => normalizeCourseCode(code))),
+    }))
+    .filter((optionList) => optionList.courseLabels.length || optionList.courseCodes.length);
+}
+
 function normalizeTrackGroupedChoices(groupedChoices) {
   return (Array.isArray(groupedChoices) ? groupedChoices : [])
     .map((choice) => ({
@@ -243,6 +271,7 @@ function normalizeTrackGroupedChoices(groupedChoices) {
 
 function normalizeGeneratedTrack(track) {
   const groupedChoices = normalizeTrackGroupedChoices(track?.groupedChoices);
+  const catalogOptionLists = normalizeTrackCatalogOptionLists(track?.catalogOptionLists);
   const minimumCredits = parsePositiveCreditNumber(track?.minimumCredits);
   const maximumCredits = parsePositiveCreditNumber(track?.maximumCredits);
   return {
@@ -251,6 +280,7 @@ function normalizeGeneratedTrack(track) {
     ...(maximumCredits !== null ? { maximumCredits } : {}),
     terms: normalizeTrackCourseTerms(track?.terms),
     ...(groupedChoices.length ? { groupedChoices } : {}),
+    ...(catalogOptionLists.length ? { catalogOptionLists } : {}),
   };
 }
 
@@ -503,6 +533,72 @@ function normalizeProgramRequirementMatchName(value) {
     .toLowerCase();
 }
 
+function inferProgramCredentialKey(value) {
+  const text = String(value ?? "").toLowerCase();
+  if (/\bcertificate\b|certificate of (?:completion|accomplishment|proficiency)/i.test(text)) {
+    return "certificate";
+  }
+  if (/\bbas\b|bachelor of applied science/i.test(text)) {
+    return "bas";
+  }
+  if (/\bacs-dta\/mrp\b|associate in computer science/i.test(text)) {
+    return "acs-dta/mrp";
+  }
+  if (/\bab-dta\/mrp\b|associate in business/i.test(text)) {
+    return "ab-dta/mrp";
+  }
+  if (/\bapren-dta\/mrp\b|pre-nursing/i.test(text)) {
+    return "apren-dta/mrp";
+  }
+  if (/\bam-dta\/mrp\b/i.test(text)) {
+    return "am-dta/mrp";
+  }
+  if (/\bam-dta\b|math education/i.test(text)) {
+    return "am-dta";
+  }
+  if (/\bast-2\/mrp\b|transfer track 2\/mrp/i.test(text)) {
+    return "ast-2/mrp";
+  }
+  if (/\bast-2\b|transfer track 2/i.test(text)) {
+    return "ast-2";
+  }
+  if (/\bast-1\b|transfer track 1/i.test(text)) {
+    return "ast-1";
+  }
+  if (/\baa-dta\b|direct transfer agreement|associate in arts-dta/i.test(text)) {
+    return "aa-dta";
+  }
+  if (/\baas-t\b/i.test(text)) {
+    return "aas-t";
+  }
+  if (/\baaa\b|associate in applied arts/i.test(text)) {
+    return "aaa";
+  }
+  if (/\baas\b|associate in applied science/i.test(text)) {
+    return "aas";
+  }
+  if (/\bafa\b|associate in fine arts/i.test(text)) {
+    return "afa";
+  }
+  return null;
+}
+
+function getPageCredentialKey(page) {
+  return inferProgramCredentialKey(
+    [page?.h1, page?.degree, page?.programType, page?.connectorProgramName].filter(Boolean).join(" | ")
+  );
+}
+
+function isCompatibleRequirementCredential(page, program) {
+  const pageCredential = getPageCredentialKey(page);
+  const programCredential = inferProgramCredentialKey(program?.name);
+  if (!pageCredential || !programCredential) {
+    return true;
+  }
+
+  return pageCredential === programCredential;
+}
+
 function getRequirementProgramForCurriculumMap(programs, page, curriculumProgramSummary) {
   const curriculumProgramId = Number(curriculumProgramSummary?.id ?? 0);
   const baseNames = uniqueStrings([
@@ -520,6 +616,7 @@ function getRequirementProgramForCurriculumMap(programs, page, curriculumProgram
   const candidates = programs
     .filter((program) => Number(program?.id ?? 0) !== curriculumProgramId)
     .filter((program) => !/\bcurriculum\s+map\b/i.test(String(program?.name ?? "")))
+    .filter((program) => isCompatibleRequirementCredential(page, program))
     .map((program) => ({
       program,
       normalizedName: normalizeProgramRequirementMatchName(program?.name),
@@ -646,7 +743,7 @@ function normalizeTrackNote(value) {
 }
 
 const TRACK_GUIDANCE_NON_EXPLICIT_PATTERN =
-  /\b(?:recommended|recommendation|suggest(?:ed|ion|ions)?|consider|discuss|students are responsible|best transferability|for (?:pure|applied) math majors|select one|choose one|of the following|distribution|elective|general education|of your choice|fun and useful|offered|see quarter)\b/i;
+  /\b(?:recommend|recommended|recommendation|suggest(?:ed|ion|ions)?|consider|discuss|students are responsible|best transferability|would be helpful|helpful for|for those interested|for (?:pure|applied) math majors|select one|choose one|of the following|distribution|elective|general education|of your choice|fun and useful|offered|see quarter)\b/i;
 const TRACK_HUMANITIES_PATTERN =
   /\b(?:arts?\s*(?:&|and)\s*humanities|humanities|fine arts|english distribution|humanities\/fine arts\/english distribution|a&h)\b/i;
 const TRACK_SOCIAL_SCIENCE_PATTERN = /\b(?:social science|social sciences|ssc)\b/i;
@@ -1173,6 +1270,10 @@ function collectLooseAdhocCourseLabels(core, handledAdhocIds) {
       continue;
     }
 
+    if (isRecommendationAdhoc(adhoc)) {
+      continue;
+    }
+
     labels.push(...extractTrackGuidanceLabels(note));
 
     const extractedCodes = shouldTreatTrackTextCourseCodesAsExplicit(note)
@@ -1196,6 +1297,12 @@ function collectLooseAdhocCourseLabels(core, handledAdhocIds) {
   }
 
   return labels;
+}
+
+function isRecommendationAdhoc(adhoc) {
+  return /\b(?:recommend|suggest|helpful|consider)\b/i.test(
+    [adhoc?.name, adhoc?.display, adhoc?.content].filter(Boolean).join(" ")
+  );
 }
 
 function extractTrackGuidanceLabels(value) {
@@ -1413,8 +1520,32 @@ function isNonPlannableGeneratedTrackCoreLabel(label) {
   return segments.some((segment) =>
     /^(?:notes?|program notes?|important notes?|transferability of credits|advising notes?)$/.test(
       segment
-    )
+    ) || isCatalogOptionListSegment(segment)
   );
+}
+
+function isCatalogOptionListSegment(normalized) {
+  return /^(?:list\s+[a-z0-9]+|approved(?:\s+\w+){0,4}\s+list|course list|courses? from list\s+[a-z0-9]+)$/.test(
+    normalized
+  ) || /\blist$/.test(normalized) ||
+    /^(?:foreign language|language sequence|(?:[\w&/-]+\s+)*electives?)$/.test(normalized);
+}
+
+function isCatalogOptionListCoreLabel(label) {
+  const normalized =
+    String(label ?? "")
+      .split(">")
+      .map((segment) =>
+        segment
+          .replace(/[:.]\s*$/g, "")
+          .replace(/\s+/g, " ")
+          .trim()
+          .toLowerCase()
+      )
+      .filter(Boolean)
+      .pop() ?? "";
+
+  return isCatalogOptionListSegment(normalized);
 }
 
 function getGeneratedTrackCoreElectivePlaceholder(label) {
@@ -1470,6 +1601,104 @@ function flattenProgramCores(cores, prefix = []) {
   return flattened;
 }
 
+function collectCatalogOptionListsFromCores(cores, trackId, prefix = []) {
+  const optionLists = [];
+
+  for (const core of [...(cores ?? [])].sort(
+    (left, right) => Number(left?.sort_order ?? 0) - Number(right?.sort_order ?? 0)
+  )) {
+    const labelParts = [...prefix, String(core?.name ?? "").trim()].filter(Boolean);
+    const label = labelParts.join(" > ");
+    const courseLabels = buildCourseEntries(core).map((course) => course.label);
+
+    if (isCatalogOptionListCoreLabel(label) && courseLabels.length) {
+      optionLists.push({
+        id: `official-grc-track-option-list:${slugify(trackId)}:${slugify(label)}`,
+        label,
+        sourceHeading: String(core?.name ?? "").trim() || label,
+        sourceText: normalizeTrackNote(core?.description) || null,
+        supportOnly: true,
+        courseLabels,
+        courseCodes: uniqueStrings(courseLabels.flatMap((courseLabel) => extractCourseCodes(courseLabel))),
+      });
+    }
+
+    if (Array.isArray(core?.children) && core.children.length) {
+      optionLists.push(...collectCatalogOptionListsFromCores(core.children, trackId, labelParts));
+    }
+  }
+
+  return optionLists;
+}
+
+function parseTermCreditAmount(label) {
+  const text = String(label ?? "").replace(/\s+/g, " ");
+  const match = text.match(/\((\d+(?:\.\d+)?)\s*credits?\)|\b(\d+(?:\.\d+)?)\s*credits?\b/i);
+  const amount = parsePositiveCreditNumber(match?.[1] ?? match?.[2]);
+  return amount;
+}
+
+function isGeneralEducationPlaceholderLabel(label) {
+  return Boolean(guidanceLabelKind(label) || TRACK_ELECTIVE_PATTERN.test(String(label ?? "")));
+}
+
+function isChoiceSlotLabel(label) {
+  return /\b(?:select|choose)\b/i.test(String(label ?? "")) && extractCourseCodes(label).length >= 2;
+}
+
+function buildTrackSampleScheduleMetadata(track, creditRange) {
+  const scheduledTermCredits = (track.terms ?? [])
+    .map((term) => parseTermCreditAmount(term.label))
+    .filter((credits) => credits !== null);
+  const scheduledCreditTotal = scheduledTermCredits.length
+    ? scheduledTermCredits.reduce((total, credits) => total + credits, 0)
+    : null;
+  const labels = (track.terms ?? []).flatMap((term) => term.courses ?? []);
+  const placeholderCredits =
+    labels.filter((label) => isGeneralEducationPlaceholderLabel(label)).length * 5;
+  const unresolvedOptionCredits = labels
+    .filter((label) => isChoiceSlotLabel(label))
+    .reduce((total, label) => total + (getCreditAmountFromText(label) ?? 5), 0);
+  const defaultOptionCredits = (track.groupedChoices ?? []).reduce((total, choice) => {
+    const optionById = new Map((choice.options ?? []).map((option) => [option.id, option]));
+    return (
+      total +
+      (choice.defaultOptionIds ?? []).reduce((defaultTotal, optionId) => {
+        const option = optionById.get(optionId);
+        const optionCredits =
+          option?.courseLabels?.reduce(
+            (labelTotal, label) => labelTotal + (getCreditAmountFromText(label) ?? 5),
+            0
+          ) ?? 0;
+        return defaultTotal + optionCredits;
+      }, 0)
+    );
+  }, 0);
+  const catalogMinimumCredits = parsePositiveCreditNumber(creditRange?.minimumCredits);
+  const catalogMaximumCredits = parsePositiveCreditNumber(creditRange?.maximumCredits);
+
+  return {
+    ...(scheduledCreditTotal !== null
+      ? {
+          scheduledMinCredits: scheduledCreditTotal,
+          scheduledMaxCredits: scheduledCreditTotal,
+        }
+      : {}),
+    placeholderCredits,
+    unresolvedOptionCredits,
+    defaultOptionCredits,
+    sampleOnlyCredits: Math.max(0, (scheduledCreditTotal ?? 0) - (catalogMinimumCredits ?? 0)),
+    exceedsCatalogMinimum:
+      scheduledCreditTotal !== null && catalogMinimumCredits !== null
+        ? scheduledCreditTotal > catalogMinimumCredits
+        : null,
+    exceedsCatalogMaximum:
+      scheduledCreditTotal !== null && catalogMaximumCredits !== null
+        ? scheduledCreditTotal > catalogMaximumCredits
+        : null,
+  };
+}
+
 function buildGeneratedTrackSummary(page) {
   return `${page.h1} curriculum map.`;
 }
@@ -1497,6 +1726,7 @@ function buildGeneratedTrackNotes(page, coreTerms) {
 }
 
 function buildTrackFromProgramPage(page, program, requirementProgram = null) {
+  const trackId = getGeneratedTrackId(page);
   const coreTerms = flattenProgramCores(program.cores ?? []).filter(
     (term) => term.courses.length || term.description
   );
@@ -1511,14 +1741,13 @@ function buildTrackFromProgramPage(page, program, requirementProgram = null) {
     throw new Error(`No curriculum-map terms were extracted for ${page.h1}.`);
   }
 
-  const trackId = getGeneratedTrackId(page);
   const groupedChoices = requirementProgram
     ? collectGroupedChoicesFromProgram(requirementProgram, trackId)
     : [];
   const groupedChoicesWithDefaults = attachGroupedChoiceDefaultOptions(groupedChoices, terms);
-  const creditRange = getProgramCreditRange(page, requirementProgram);
-
-  return {
+  const catalogOptionLists = collectCatalogOptionListsFromCores(program.cores ?? [], trackId);
+  const creditRange = getProgramCreditRange(page, program, requirementProgram);
+  const trackWithoutSampleMetadata = {
     id: trackId,
     code: inferTrackCode(page),
     title: cleanTrackTitle(page.h1),
@@ -1526,6 +1755,17 @@ function buildTrackFromProgramPage(page, program, requirementProgram = null) {
     bestFor: uniqueStrings([cleanTrackTitle(page.h1)]),
     ...(creditRange?.minimumCredits ? { minimumCredits: creditRange.minimumCredits } : {}),
     ...(creditRange?.maximumCredits ? { maximumCredits: creditRange.maximumCredits } : {}),
+    ...(creditRange
+      ? {
+          catalogCreditRange: {
+            minimumCredits: creditRange.minimumCredits,
+            maximumCredits: creditRange.maximumCredits,
+            sourceText: creditRange.sourceText,
+            sourceKind: creditRange.sourceKind,
+            isExact: creditRange.isExact,
+          },
+        }
+      : {}),
     terms,
     notes: buildGeneratedTrackNotes(page, coreTerms),
     officialLinks: [
@@ -1535,6 +1775,12 @@ function buildTrackFromProgramPage(page, program, requirementProgram = null) {
       },
     ],
     ...(groupedChoicesWithDefaults.length ? { groupedChoices: groupedChoicesWithDefaults } : {}),
+    ...(catalogOptionLists.length ? { catalogOptionLists } : {}),
+  };
+
+  return {
+    ...trackWithoutSampleMetadata,
+    sampleSchedule: buildTrackSampleScheduleMetadata(trackWithoutSampleMetadata, creditRange),
   };
 }
 

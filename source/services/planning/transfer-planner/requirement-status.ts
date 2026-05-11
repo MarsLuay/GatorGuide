@@ -1,0 +1,468 @@
+import type { TransferPlannerChecklistItem } from "@/constants/transfer-planner-source/student-runtime";
+
+import {
+  extractCourseCodes,
+  normalizeCourseCode,
+  type TranscriptCourseEntry,
+} from "./course-code";
+
+export type TransferRequirementStatus = {
+  item: TransferPlannerChecklistItem;
+  matched: boolean;
+  matchedCourses: TranscriptCourseEntry[];
+  explicitCourseCodes: string[];
+  requiredCompletedCount: number;
+  completedCredits?: number;
+  requiredCreditCount?: number | null;
+  maxCreditCount?: number | null;
+  creditProgressLabel?: string | null;
+};
+
+export type RequirementGroupOption =
+  NonNullable<TransferPlannerChecklistItem["requirementGroup"]>["options"][number];
+
+export type RequirementCourseOption = {
+  courseLabels: string[];
+  explicitCourseCodes: string[];
+  matchedCourses: TranscriptCourseEntry[];
+  requiredCompletedCount: number;
+  matched: boolean;
+  remainingCourseCodes: string[];
+  index: number;
+};
+
+function unique<T>(items: T[]) {
+  return Array.from(new Set(items));
+}
+
+function uniqueBy<T>(items: T[], getKey: (item: T) => string) {
+  const seen = new Set<string>();
+  const deduped: T[] = [];
+
+  for (const item of items) {
+    const key = getKey(item);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(item);
+  }
+
+  return deduped;
+}
+
+export function getChecklistChoiceLabels(item: TransferPlannerChecklistItem) {
+  return unique(
+    [item.grcCourses, ...(item.alternatives ?? [])]
+      .flat()
+      .map((label) => String(label ?? "").trim())
+      .filter(Boolean)
+  );
+}
+
+export function getRequirementOptionCourseLabels(option: RequirementGroupOption) {
+  if (option.optionKind === "category-option") {
+    return [] as string[];
+  }
+
+  const grcMatches = (option.grcMatches ?? [])
+    .map((label) => String(label ?? "").trim())
+    .filter(Boolean);
+  if (grcMatches.length) {
+    return unique(grcMatches);
+  }
+
+  return unique(
+    [...(option.uwCourses ?? []), ...(option.equivalentUwCourseCodes ?? [])]
+      .map((label) => String(label ?? "").trim())
+      .filter(Boolean)
+  );
+}
+
+export function getRequirementOptionSchedulableCourseLabels(
+  item: TransferPlannerChecklistItem,
+  option: RequirementGroupOption
+) {
+  if (
+    item.requirementGroup?.requirementType === "sequence_choice" &&
+    option.compoundComponents?.length
+  ) {
+    const compoundComponentLabels = uniqueBy(
+      option.compoundComponents
+        .map((component) =>
+          unique(
+            component
+              .map((courseCode) => normalizeCourseCode(courseCode))
+              .filter(Boolean)
+          )
+        )
+        .filter((component) => component.length > 0),
+      (component) => component.join("|")
+    ).map((component) => component.join(" + "));
+    const compoundComponentCodes = new Set(
+      option.compoundComponents
+        .flat()
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean)
+    );
+    const looseCourseLabels = getRequirementOptionCourseLabels(option).filter((label) => {
+      const labelCodes = extractCourseCodes(label)
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean);
+      return (
+        labelCodes.length === 0 ||
+        labelCodes.some((courseCode) => !compoundComponentCodes.has(courseCode))
+      );
+    });
+
+    return unique([...compoundComponentLabels, ...looseCourseLabels]);
+  }
+
+  return getRequirementOptionCourseLabels(option);
+}
+
+export function getRequirementOptionSelectionKey(item: TransferPlannerChecklistItem) {
+  return item.requirementGroup?.id ?? item.id;
+}
+
+export function normalizeSelectedRequirementOptionIds(value: unknown) {
+  const rawValues = Array.isArray(value) ? value : value == null ? [] : [value];
+  return unique(
+    rawValues
+      .map((entry) => String(entry ?? "").trim())
+      .filter(Boolean)
+  );
+}
+
+export function getRequirementOptionId(
+  item: TransferPlannerChecklistItem,
+  option: RequirementGroupOption,
+  optionIndex: number
+) {
+  return (
+    String(option.id ?? "").trim() ||
+    `${getRequirementOptionSelectionKey(item)}:requirement-option:${optionIndex + 1}`
+  );
+}
+
+export function getRequirementOptionCreditValue(option: RequirementGroupOption) {
+  const credits = option.credits ?? 0;
+  if (!Number.isFinite(credits) || credits <= 0) {
+    return 0;
+  }
+
+  const maxCredits = option.maxCredits ?? null;
+  if (maxCredits != null && Number.isFinite(maxCredits) && maxCredits > 0) {
+    return Math.min(credits, maxCredits);
+  }
+
+  return credits;
+}
+
+export function getChecklistCourseOptions(item: TransferPlannerChecklistItem) {
+  const baseOptions = [item.grcCourses, ...(item.alternatives ?? [])]
+    .map((courseLabels) =>
+      Array.from(
+        new Set(
+          courseLabels
+            .map((label) => String(label ?? "").trim())
+            .filter(Boolean)
+        )
+      )
+    )
+    .filter((courseLabels) => courseLabels.length > 0);
+
+  if (item.requirementGroup?.requirementType !== "choose_one") {
+    return baseOptions;
+  }
+
+  const hasMultiCourseGrcOption = (item.requirementGroup.options ?? []).some(
+    (option) =>
+      unique(
+        (option.grcMatches ?? []).flatMap((label) => extractCourseCodes(label))
+      ).length > 1
+  );
+  if (hasMultiCourseGrcOption) {
+    return baseOptions;
+  }
+
+  const allRequirementGroupOptionLabels = unique(
+    (item.requirementGroup.options ?? [])
+      .flatMap((option) => getRequirementOptionCourseLabels(option))
+      .map((label) => String(label ?? "").trim())
+      .filter(Boolean)
+  );
+  if (!allRequirementGroupOptionLabels.length) {
+    return baseOptions;
+  }
+
+  return uniqueBy(
+    [...baseOptions, allRequirementGroupOptionLabels],
+    (courseLabels) => courseLabels.join("||")
+  );
+}
+
+export function buildRequirementCourseOption(
+  item: TransferPlannerChecklistItem,
+  courseLabels: string[],
+  index: number,
+  completedByCode: Map<string, TranscriptCourseEntry>
+): RequirementCourseOption {
+  const explicitCourseCodes = unique(
+    courseLabels.flatMap((courseLabel) => extractCourseCodes(courseLabel))
+  );
+  const matchedCourses = explicitCourseCodes
+    .map((code) => completedByCode.get(code) ?? null)
+    .filter((course): course is TranscriptCourseEntry => !!course);
+  const requiredCompletedCount = explicitCourseCodes.length
+    ? Math.max(
+        1,
+        Math.min(item.minCompletedCount ?? explicitCourseCodes.length, explicitCourseCodes.length)
+      )
+    : 0;
+  const matchedCodes = new Set(matchedCourses.map((course) => course.code));
+  const remainingCourseCodes = explicitCourseCodes.filter((code) => !matchedCodes.has(code));
+
+  return {
+    courseLabels,
+    explicitCourseCodes,
+    matchedCourses,
+    requiredCompletedCount,
+    matched: requiredCompletedCount > 0 && matchedCourses.length >= requiredCompletedCount,
+    remainingCourseCodes,
+    index,
+  };
+}
+
+export function buildFullSequenceRequirementCourseOption(
+  courseLabels: string[],
+  index: number,
+  completedByCode: Map<string, TranscriptCourseEntry>
+): RequirementCourseOption {
+  const explicitCourseCodes = unique(
+    courseLabels.flatMap((courseLabel) => extractCourseCodes(courseLabel))
+  );
+  const matchedCourses = explicitCourseCodes
+    .map((code) => completedByCode.get(code) ?? null)
+    .filter((course): course is TranscriptCourseEntry => !!course);
+  const matchedCodes = new Set(matchedCourses.map((course) => course.code));
+
+  return {
+    courseLabels,
+    explicitCourseCodes,
+    matchedCourses,
+    requiredCompletedCount: explicitCourseCodes.length,
+    matched: explicitCourseCodes.length > 0 && matchedCourses.length >= explicitCourseCodes.length,
+    remainingCourseCodes: explicitCourseCodes.filter((code) => !matchedCodes.has(code)),
+    index,
+  };
+}
+
+export function buildSequenceChoiceRequirementStatus(
+  item: TransferPlannerChecklistItem,
+  completedByCode: Map<string, TranscriptCourseEntry>
+): TransferRequirementStatus | null {
+  const group = item.requirementGroup;
+  if (!group || group.requirementType !== "sequence_choice") {
+    return null;
+  }
+
+  const defaultOptionIds = new Set(
+    normalizeSelectedRequirementOptionIds(item.selectedRequirementOptionIds)
+  );
+  const sequenceOptions = (group.options ?? [])
+    .map((option, optionIndex) => {
+      const courseLabels = getRequirementOptionCourseLabels(option);
+      if (!courseLabels.length) {
+        return null;
+      }
+
+      return {
+        option,
+        optionId: getRequirementOptionId(item, option, optionIndex),
+        optionIndex,
+        status: buildFullSequenceRequirementCourseOption(
+          courseLabels,
+          optionIndex,
+          completedByCode
+        ),
+      };
+    })
+    .filter(
+      (
+        entry
+      ): entry is {
+        option: RequirementGroupOption;
+        optionId: string;
+        optionIndex: number;
+        status: RequirementCourseOption;
+      } => Boolean(entry)
+    );
+
+  if (!sequenceOptions.length) {
+    return null;
+  }
+
+  const selectedOption =
+    [...sequenceOptions].sort((left, right) => {
+      const matchedStatusDelta = Number(right.status.matched) - Number(left.status.matched);
+      if (matchedStatusDelta !== 0) return matchedStatusDelta;
+
+      const matchedDelta =
+        right.status.matchedCourses.length - left.status.matchedCourses.length;
+      if (matchedDelta !== 0) return matchedDelta;
+
+      const defaultDelta =
+        Number(defaultOptionIds.has(right.optionId)) - Number(defaultOptionIds.has(left.optionId));
+      if (defaultDelta !== 0) return defaultDelta;
+
+      const remainingDelta =
+        left.status.remainingCourseCodes.length - right.status.remainingCourseCodes.length;
+      if (remainingDelta !== 0) return remainingDelta;
+
+      const sizeDelta =
+        left.status.explicitCourseCodes.length - right.status.explicitCourseCodes.length;
+      if (sizeDelta !== 0) return sizeDelta;
+
+      return left.optionIndex - right.optionIndex;
+    })[0] ?? null;
+
+  if (!selectedOption) {
+    return null;
+  }
+
+  return {
+    item,
+    matched: selectedOption.status.matched,
+    matchedCourses: selectedOption.status.matchedCourses,
+    explicitCourseCodes: selectedOption.status.explicitCourseCodes,
+    requiredCompletedCount: selectedOption.status.requiredCompletedCount,
+  };
+}
+
+export function buildChooseCreditsRequirementStatus(
+  item: TransferPlannerChecklistItem,
+  completedByCode: Map<string, TranscriptCourseEntry>
+): TransferRequirementStatus | null {
+  const group = item.requirementGroup;
+  if (!group || group.requirementType !== "choose_credits") {
+    return null;
+  }
+
+  const explicitCourseCodes = unique(
+    (group.options ?? []).flatMap((option) =>
+      getRequirementOptionCourseLabels(option).flatMap((label) => extractCourseCodes(label))
+    )
+  );
+  const matchedCourses: TranscriptCourseEntry[] = [];
+  const usedCompletedCourseCodes = new Set<string>();
+  let completedCredits = 0;
+
+  for (const option of group.options ?? []) {
+    const optionCourseCodes = unique(
+      getRequirementOptionCourseLabels(option).flatMap((label) => extractCourseCodes(label))
+    );
+    const matchedOptionCourses = optionCourseCodes
+      .map((courseCode) => completedByCode.get(courseCode) ?? null)
+      .filter((course): course is TranscriptCourseEntry =>
+        Boolean(course && !usedCompletedCourseCodes.has(course.code))
+      );
+
+    if (!optionCourseCodes.length || matchedOptionCourses.length !== optionCourseCodes.length) {
+      continue;
+    }
+
+    for (const matchedCourse of matchedOptionCourses) {
+      usedCompletedCourseCodes.add(matchedCourse.code);
+      matchedCourses.push(matchedCourse);
+    }
+    completedCredits += getRequirementOptionCreditValue(option);
+  }
+
+  const requiredCreditCount = item.minCredits ?? group.minCredits ?? null;
+  const maxCreditCount = item.maxCredits ?? group.maxCredits ?? null;
+  const cappedCompletedCredits =
+    maxCreditCount != null && maxCreditCount > 0
+      ? Math.min(completedCredits, maxCreditCount)
+      : completedCredits;
+  const matched =
+    requiredCreditCount != null && requiredCreditCount > 0
+      ? cappedCompletedCredits >= requiredCreditCount
+      : true;
+  const creditProgressLabel =
+    requiredCreditCount != null && requiredCreditCount > 0
+      ? `${cappedCompletedCredits}/${requiredCreditCount} credits completed`
+      : maxCreditCount != null && maxCreditCount > 0
+        ? `${cappedCompletedCredits}/${maxCreditCount} credits counted`
+        : null;
+
+  return {
+    item,
+    matched,
+    matchedCourses,
+    explicitCourseCodes,
+    requiredCompletedCount: requiredCreditCount != null && requiredCreditCount > 0 ? 1 : 0,
+    completedCredits: cappedCompletedCredits,
+    requiredCreditCount,
+    maxCreditCount,
+    creditProgressLabel,
+  };
+}
+
+export function selectPreferredRequirementOption(options: RequirementCourseOption[]) {
+  return [...options].sort((left, right) => {
+    const matchedStatusDelta = Number(right.matched) - Number(left.matched);
+    if (matchedStatusDelta !== 0) return matchedStatusDelta;
+
+    const matchedDelta = right.matchedCourses.length - left.matchedCourses.length;
+    if (matchedDelta !== 0) return matchedDelta;
+
+    const remainingDelta = left.remainingCourseCodes.length - right.remainingCourseCodes.length;
+    if (remainingDelta !== 0) return remainingDelta;
+
+    const sizeDelta = left.explicitCourseCodes.length - right.explicitCourseCodes.length;
+    if (sizeDelta !== 0) return sizeDelta;
+
+    return left.index - right.index;
+  })[0] ?? null;
+}
+
+export function buildRequirementStatuses(
+  items: TransferPlannerChecklistItem[],
+  completedCourses: TranscriptCourseEntry[]
+) {
+  const completedByCode = new Map<string, TranscriptCourseEntry>();
+  for (const course of completedCourses) {
+    completedByCode.set(course.code, course);
+  }
+
+  return items.map<TransferRequirementStatus>((item) => {
+    const creditStatus = buildChooseCreditsRequirementStatus(item, completedByCode);
+    if (creditStatus) {
+      return creditStatus;
+    }
+
+    const sequenceStatus = buildSequenceChoiceRequirementStatus(item, completedByCode);
+    if (sequenceStatus) {
+      return sequenceStatus;
+    }
+
+    const selectedOption =
+      selectPreferredRequirementOption(
+        getChecklistCourseOptions(item).map((courseLabels, index) =>
+          buildRequirementCourseOption(item, courseLabels, index, completedByCode)
+        )
+      ) ??
+      buildRequirementCourseOption(item, item.grcCourses, 0, completedByCode);
+
+    return {
+      item,
+      matched: selectedOption.matched,
+      matchedCourses: selectedOption.matchedCourses,
+      explicitCourseCodes: selectedOption.explicitCourseCodes,
+      requiredCompletedCount: selectedOption.requiredCompletedCount,
+    };
+  });
+}
+
+export function countCompletedRequirements(statuses: TransferRequirementStatus[]) {
+  return statuses.filter((status) => status.matched).length;
+}

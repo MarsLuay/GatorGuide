@@ -46,6 +46,7 @@ import {
   PROFILE_QUESTIONNAIRE_FIELD_IDS,
   STORAGE_KEYS,
 } from "@/constants/schema";
+import { TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD } from "@/constants/planner-storage";
 import type { SearchableSelectOption } from "@/components/ui/SearchableSelect";
 import {
   buildDataExportPayload,
@@ -940,7 +941,10 @@ export default function ProfilePage() {
       });
       const transcriptGpa = review.userPatch.gpa;
       let nextReview = options?.omitCompletedCoursesReview
-        ? omitQuestionnaireReviewField(review, "completedCourses")
+        ? omitQuestionnaireReviewField(
+            review,
+            TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD
+          )
         : review;
 
       if (transcriptGpa) {

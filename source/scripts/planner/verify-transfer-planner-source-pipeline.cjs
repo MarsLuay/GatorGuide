@@ -27,6 +27,9 @@ const {
 const {
   TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
 } = require("../../constants/transfer-planner-source/source-fingerprints.generated");
+const {
+  getParseablePrimaryEntries,
+} = require("./parse-transfer-planner-requirement-sources.cjs");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -89,11 +92,23 @@ function buildReviewOwnerKeySet(reviewQueue) {
   );
 }
 
+function isSchedulablePrimarySuggestion(candidate) {
+  return (
+    candidate &&
+    candidate.confidence === "high" &&
+    candidate.canCreateSchedulableRows !== false &&
+    candidate.sourceRoleStatus !== "support" &&
+    candidate.sourceRole !== "support-source" &&
+    candidate.sourceRole !== "curriculum-map" &&
+    candidate.parserType !== "html-curriculum-page"
+  );
+}
+
 function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueue) {
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
   return (discoveryReport.owners ?? [])
     .filter((owner) => !owner.existingPrimaryUrl)
-    .filter((owner) => owner?.suggestedPrimary?.confidence === "high")
+    .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .filter((owner) => !reviewOwnerKeys.has(owner.ownerKey))
     .map((owner) => ({
       ownerId: buildOwnerId(owner.planId, owner.pathwayId ?? null),
@@ -106,7 +121,7 @@ function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQue
 function getEligibleWeakExistingReplacementOwners(discoveryReport) {
   return (discoveryReport.weakExistingOwners ?? [])
     .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
-    .filter((owner) => owner?.suggestedPrimary?.confidence === "high")
+    .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .map((owner) => ({
       ownerId: buildOwnerId(owner.planId, owner.pathwayId ?? null),
       ownerKey: owner.ownerKey,
@@ -148,6 +163,28 @@ function buildParseablePrimaryManifestOwnerMap() {
         PARSEABLE_PARSER_TYPES.has(entry.parserType)
     ).map((entry) => [entry.ownerId, entry])
   );
+}
+
+function buildParseableRequirementSourceManifestEntries() {
+  return getParseablePrimaryEntries();
+}
+
+function buildManifestParseKey(entry) {
+  return `${entry.ownerId}::${entry.url}`;
+}
+
+function buildReportParseKey(owner) {
+  return `${owner.ownerId}::${owner.primarySourceUrl ?? owner.sourceUrl}`;
+}
+
+function buildManifestPlanSourceKey(entry) {
+  return `${entry.planId ?? entry.ownerId}::${entry.url}`;
+}
+
+function buildReportPlanSourceKey(owner) {
+  return `${owner.planId ?? owner.ownerId?.split(":pathway:")[0] ?? owner.ownerId}::${
+    owner.primarySourceUrl ?? owner.sourceUrl
+  }`;
 }
 
 function compareSets(left, right) {
@@ -535,7 +572,14 @@ async function main() {
   );
   const primaryManifestOwners = buildPrimaryManifestOwnerMap();
   const parseablePrimaryManifestOwners = buildParseablePrimaryManifestOwnerMap();
+  const parseableRequirementSourceEntries = buildParseableRequirementSourceManifestEntries();
   const parsedOwnerIds = new Set((requirementParseReport.owners ?? []).map((owner) => owner.ownerId));
+  const parsedRequirementSourceKeys = new Set(
+    (requirementParseReport.owners ?? []).map(buildReportParseKey)
+  );
+  const parsedRequirementPlanSourceKeys = new Set(
+    (requirementParseReport.owners ?? []).map(buildReportPlanSourceKey)
+  );
   const requirementFingerprintOwnerIds = new Set(
     (TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS ?? []).map((entry) => entry.ownerId)
   );
@@ -645,23 +689,35 @@ async function main() {
     ),
     runCheck(
       "registry-parser-alignment",
-      "Canonical parseable primary owners align with parser input and parser output",
+      "Canonical parseable requirement sources align with parser input and parser output",
       () => {
-        const parseablePrimaryOwnerIds = [...parseablePrimaryManifestOwners.keys()];
-        const parserOutputDiff = compareSets(parseablePrimaryOwnerIds, parsedOwnerIds);
-        assert.equal(
-          requirementParseReport.totalOwners,
-          parseablePrimaryManifestOwners.size,
-          "Parse report owner count should match the canonical parseable primary-owner count."
+        const parseableRequirementSourceKeys =
+          parseableRequirementSourceEntries.map(buildManifestParseKey);
+        const parserOutputDiff = compareSets(
+          parseableRequirementSourceKeys,
+          parsedRequirementSourceKeys
+        );
+        const missingCurrentSourceCoverage = parseableRequirementSourceEntries.filter(
+          (entry) =>
+            !parsedRequirementSourceKeys.has(buildManifestParseKey(entry)) &&
+            !parsedRequirementPlanSourceKeys.has(buildManifestPlanSourceKey(entry))
+        );
+        assert.ok(
+          requirementParseReport.totalOwners >= parseablePrimaryManifestOwners.size,
+          "Parse report should cover at least the canonical parseable primary-owner count."
         );
         assert.deepEqual(
-          parserOutputDiff,
-          { leftOnly: [], rightOnly: [] },
-          `Registry/parser owner mismatch. registry-only=${parserOutputDiff.leftOnly.join(", ")} parsed-only=${parserOutputDiff.rightOnly.join(", ")}`
+          missingCurrentSourceCoverage.map(buildManifestParseKey),
+          [],
+          `Current parseable registry source(s) missing parser coverage: ${missingCurrentSourceCoverage
+            .map(buildManifestParseKey)
+            .join(", ")}`
         );
         return [
           `Canonical parseable primary owners: ${parseablePrimaryManifestOwners.size}`,
-          `Parsed owners: ${requirementParseReport.totalOwners}`,
+          `Parseable requirement sources: ${parseableRequirementSourceEntries.length}`,
+          `Parsed source blocks: ${requirementParseReport.totalOwners}`,
+          `Exact parser/registry source delta: registry-only=${parserOutputDiff.leftOnly.length}, parsed-only=${parserOutputDiff.rightOnly.length}`,
         ];
       }
     ),
@@ -947,6 +1003,11 @@ async function main() {
               label: "UW BA in Chemistry requirements",
               pageTitle: "BA Chemistry Degree Requirements",
               pageHeadings: ["Bachelor of Arts in Chemistry", "Degree Requirements"],
+              sourceRole: "primary-degree-requirements",
+              sourceRoleStatus: "primary",
+              supportOnly: false,
+              canBePrimary: true,
+              canCreateSchedulableRows: true,
               score: 64,
               confidence: "high",
               latestDetectedYear: null,
@@ -963,6 +1024,11 @@ async function main() {
             {
               url: "https://chem.washington.edu/sites/chem/files/documents/undergrad/acs2018.pdf",
               label: "BS Chemistry Checklist - ACS Certified (PDF)",
+              sourceRole: "primary-degree-requirements",
+              sourceRoleStatus: "primary",
+              supportOnly: false,
+              canBePrimary: true,
+              canCreateSchedulableRows: true,
               score: 28,
               confidence: "high",
               latestDetectedYear: 2018,

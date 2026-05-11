@@ -9,7 +9,7 @@ import {
   type TransferPlannerCampusId,
   type TransferPlannerChecklistItem,
   type TransferPlannerMajorPlan,
-} from "../../constants/transfer-planner-source";
+} from "../../constants/transfer-planner-source/index";
 
 type CampusDocConfig = {
   fileName: string;

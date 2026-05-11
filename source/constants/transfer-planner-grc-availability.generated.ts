@@ -24,6 +24,42 @@ export type TransferPlannerGrcCourseAvailabilityEntry = {
 };
 
 export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
+  "AA 410": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AA 411": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ACCT 110": {
     status: "published-in-latest-schedule",
     years: [
@@ -625,6 +661,330 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "AMATH 301": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 351": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 352": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 353": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 383": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 481": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 482": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 498": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 561": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 562": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 563": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 567": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 568": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 569": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 584": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 585": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "AMATH 586": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "AMES 100": {
     status: "published-in-latest-schedule",
     years: [
@@ -835,6 +1195,42 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "ANTH 233": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ANTH 318": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ANTH& 100": {
     status: "published-in-latest-schedule",
     years: [
@@ -1037,41 +1433,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "AP 102": {
-    status: "published-in-latest-schedule",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: [
-          "summer",
-          "fall",
-          "winter",
-          "spring"
-        ]
-      },
-      {
-        label: "2025-2026",
-        quarters: [
-          "fall",
-          "winter",
-          "spring"
-        ]
-      },
-      {
-        label: "2026-2027",
-        quarters: [
-          "fall",
-          "winter",
-          "spring"
-        ]
-      }
-    ],
-    latestPublishedQuarters: [
-      "fall",
-      "winter",
-      "spring"
-    ]
-  },
   "AP 103": {
     status: "published-in-latest-schedule",
     years: [
@@ -1233,6 +1594,114 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "spring"
     ]
+  },
+  "ARAB 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ARAB 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ARAB 203": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ARAB 205": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ARCHY 495": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ARCTIC 401": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "ART 105": {
     status: "published-in-latest-schedule",
@@ -2382,41 +2851,77 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "ASTR& 101": {
-    status: "published-in-latest-schedule",
+  "ASTR 313": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
-        quarters: [
-          "summer",
-          "fall",
-          "winter",
-          "spring"
-        ]
+        quarters: []
       },
       {
         label: "2025-2026",
-        quarters: [
-          "summer",
-          "fall",
-          "winter",
-          "spring"
-        ]
+        quarters: []
       },
       {
         label: "2026-2027",
-        quarters: [
-          "summer",
-          "fall",
-          "winter"
-        ]
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "summer",
-      "fall",
-      "winter"
-    ]
+    latestPublishedQuarters: []
+  },
+  "ASTR 480": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ASTR 481": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ASTR 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "ATECH 110": {
     status: "published-in-latest-schedule",
@@ -3022,6 +3527,456 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "ATMOS 220": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 301": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 310": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 321": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 340": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 341": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 350": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 358": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 370": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 380": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 431": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 441": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 442": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 451": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 452": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 458": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 480": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMOS 487": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMS 358": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMS 458": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMS 503": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMS 504": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMS 505": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMS 509": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ATMS 542": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "AVIA 103": {
     status: "published-in-latest-schedule",
@@ -4302,36 +5257,329 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
-  "BIOL 103": {
-    status: "published-in-latest-schedule",
+  "BBIO 471": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
-        quarters: [
-          "fall",
-          "winter",
-          "spring"
-        ]
+        quarters: []
       },
       {
         label: "2025-2026",
-        quarters: [
-          "fall",
-          "spring"
-        ]
+        quarters: []
       },
       {
         label: "2026-2027",
-        quarters: [
-          "fall",
-          "spring"
-        ]
+        quarters: []
       }
     ],
-    latestPublishedQuarters: [
-      "fall",
-      "spring"
-    ]
+    latestPublishedQuarters: []
+  },
+  "BBUS 215": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BCHEM 143": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BCHEM 144": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BE 405": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BEARTH 317": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BEARTH 318": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BEARTH 320": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BEARTH 321": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BES 301": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BES 312": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BES 316": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIMD 250": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOA 101": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOA 348": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOA 351": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOA 355": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOC 405": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "BIOL 110": {
     status: "published-in-latest-schedule",
@@ -4371,7 +5619,79 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "BIOL 111": {
+  "BIOL 161": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOL 162": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOL 240": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOL 340": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOL 475": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -4694,6 +6014,636 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "BIOST 310": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIOST 425": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 209": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 215": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 220": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 231": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 232": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 233": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 236": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 242": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 243": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 270": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 300": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 304": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 307": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 312": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 340": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 356": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 386": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 410": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 422": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 438": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 449": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 456": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 490": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BIS 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BISCLA 380": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BISCLA 384": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BISGWS 302": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BISGWS 303": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BISPSY 337": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BMATH 123": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BMATH 144": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BMATH 215": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BST 301": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "BTAC 100": {
     status: "published-in-latest-schedule",
@@ -5034,24 +6984,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "BTAC 115": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "BTAC 118": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -5337,60 +7269,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
-  "BTAC 147": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BTAC 148": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BTAC 149": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "BTAC 150": {
     status: "published-in-latest-schedule",
     years: [
@@ -5537,42 +7415,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "BTAC 154": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BTAC 155": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "BTAC 162": {
     status: "published-in-latest-schedule",
     years: [
@@ -5648,78 +7490,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
-  },
-  "BTAC 164": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BTAC 165": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BTAC 166": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BTAC 167": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
   },
   "BTAC 175": {
     status: "published-in-latest-schedule",
@@ -5938,60 +7708,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
-  "BTAC 187": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BTAC 188": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BTAC 189": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "BTAC 191": {
     status: "published-in-latest-schedule",
     years: [
@@ -6105,42 +7821,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
-  },
-  "BTAC 194": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "BTAC 195": {
-    status: "catalog-listed-not-in-latest-schedules",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
   },
   "BTAC 214": {
     status: "published-in-latest-schedule",
@@ -7398,6 +9078,78 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "BWRIT 132": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BWRIT 133": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BWRIT 134": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "BWRIT 135": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "CARDIO 102": {
     status: "published-in-latest-schedule",
     years: [
@@ -7796,6 +9548,762 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "CEE 307": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CEE 441": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CEE 442": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CEE 444": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CEE 445": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CEE 480": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 405": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 410": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 415": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 420": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 421": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 425": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 501": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 502": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 503": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 504": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 505": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 506": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 507": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CFRM 509": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 120": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 142": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 143": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 145": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 152": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 153": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 155": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 162": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 165": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 220": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 221": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 223": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 224": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 257": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 258": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 259": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 335": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 399": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 432": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 436": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 458": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEM 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "CHEM& 110": {
     status: "catalog-listed-not-in-latest-schedules",
     years: [
@@ -8126,8 +10634,98 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "CHEME 455": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHEME 460": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHID 450": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "CHIN 146": {
     status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHIN 342": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CHIN 442": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -8547,6 +11145,546 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "CLIT 250": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 251": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 252": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 320": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 321": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 322": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 323": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 360": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 361": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 362": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 400": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CLIT 450": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CM 311": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CM 320": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 271": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 273": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 274": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 275": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 302": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 303": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 304": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 310": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 311": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 312": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 313": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 314": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 315": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 320": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 321": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CMS 322": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "CMST 105": {
     status: "published-in-latest-schedule",
@@ -9081,6 +12219,186 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "COM 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "COM 231": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "COM 233": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "COM 234": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "COM 238": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "COM 500": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "COM 501": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "COM 591": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "COM 592": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "COM 594": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "COOP 171": {
     status: "published-in-latest-schedule",
@@ -10567,6 +13885,222 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "CSE 160": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSE 163": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSE 412": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSE 414": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSE 416": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSE 512": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSE 544": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSE 546": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSS 132": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSS 133": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSS 142": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "CSS 143": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "DANCE 101": {
     status: "published-in-latest-schedule",
     years: [
@@ -10674,6 +14208,564 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
   },
   "DANCE 204": {
     status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DANCE 530": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DISST 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 203": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 215": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 316": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 317": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 319": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 352": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 353": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 391": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 414": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 415": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 416": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 417": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 418": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 419": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 420": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 421": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 430": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 452": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 453": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 454": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 455": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 456": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 457": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 460": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 491": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 498": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 519": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "DRAMA 562": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -12279,6 +16371,60 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "ECFS 200": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECFS 320": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECFS 419": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ECON 100": {
     status: "published-in-latest-schedule",
     years: [
@@ -12316,6 +16462,330 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "ECON 230": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 235": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 300": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 400": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 401": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 405": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 410": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 411": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 424": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 432": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 481": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 482": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 483": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 484": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 485": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 486": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 487": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ECON 488": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "ECON& 201": {
     status: "published-in-latest-schedule",
@@ -12393,6 +16863,294 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "EDLPS 520": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDLPS 521": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDLPS 530": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDLPS 549": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDLPS 599": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDLPS 601": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDPSY 380": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDPSY 404": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDPSY 490": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDPSY 517": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDPSY 558": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDPSY 575": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDPSY 591": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDSPE 414": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDSPE 427": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDSPE 435": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "EDUC 210": {
     status: "published-in-latest-schedule",
     years: [
@@ -12420,6 +17178,28 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "spring"
     ]
+  },
+  "EDUC 240": {
+    status: "published-in-recent-history-not-latest",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "summer",
+          "fall",
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "EDUC 245": {
     status: "published-in-latest-schedule",
@@ -12456,6 +17236,96 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "EDUC 251": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDUC 280": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDUC 370": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDUC 472": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EDUC 473": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "EDUC& 101": {
     status: "published-in-recent-history-not-latest",
@@ -12695,6 +17565,114 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "EE 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EE 241": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EE 242": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EE 271": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EE 280": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "EE 393": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ENGL 105": {
     status: "published-in-latest-schedule",
     years: [
@@ -12800,24 +17778,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
-  },
-  "ENGL 120": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
   },
   "ENGL 126": {
     status: "published-in-latest-schedule",
@@ -12932,6 +17892,42 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "ENGL 131": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENGL 141": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "ENGL 160": {
     status: "published-in-latest-schedule",
@@ -13433,6 +18429,42 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
+  "ENGL 283": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENGL 284": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ENGL 335": {
     status: "published-in-latest-schedule",
     years: [
@@ -13470,6 +18502,132 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "ENGL 567": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENGL 570": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENGL 571": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENGL 572": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENGL 574": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENGL 575": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENGL 576": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "ENGL& 101": {
     status: "published-in-latest-schedule",
@@ -14042,6 +19200,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "ENGR 333": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ENGR& 104": {
     status: "published-in-latest-schedule",
     years: [
@@ -14253,6 +19429,42 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "ENVIR 235": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ENVIR 313": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "ERTECH 102": {
     status: "published-in-latest-schedule",
     years: [
@@ -14326,6 +19538,690 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "ESRM 235": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 101": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 204": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 205": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 211": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 213": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 230": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 310": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 311": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 312": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 313": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 314": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 315": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 316": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 400": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 401": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 404": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 418": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 426": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 427": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 431": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 433": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 441": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 447": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 449": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 454": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 455": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 456": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 457": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 463": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 469": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "ESS 482": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FHL 333": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FHL 430": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FHL 440": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FHL 470": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "FILM 101": {
     status: "published-in-latest-schedule",
@@ -14538,6 +20434,60 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "FISH 230": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FISH 270": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FISH 340": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "FRCH 193": {
     status: "published-in-latest-schedule",
     years: [
@@ -14728,7 +20678,151 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "FREN 203": {
+  "FRENCH 320": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FRENCH 376": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FRENCH 378": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "FRENCH 379": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GENOME 361": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GENOME 371": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GENOME 372": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GENOME 373": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GENOME 465": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -14802,8 +20896,8 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "GEOG 201": {
-    status: "catalog-listed-not-in-latest-schedules",
+  "GEOG 258": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -15035,42 +21129,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "GERM 201": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
-  "GERM 203": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "GERM& 121": {
     status: "published-in-latest-schedule",
     years: [
@@ -15215,7 +21273,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "GIS 100": {
+  "GERMAN 301": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -15233,7 +21291,7 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "GIS 150": {
+  "GERMAN 302": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -15251,7 +21309,43 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "GIS 160": {
+  "GERMAN 303": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GH 305": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GH 401": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -15270,6 +21364,276 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "GIS 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GIS 260": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GLITS 251": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GLITS 252": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GLITS 253": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GREEK 101": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GREEK 102": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GREEK 103": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GREEK 300": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GREEK 301": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GWSS 700": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "GWSS 701": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HCDE 231": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HCDE 411": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HCDE 417": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HCDE 419": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -15720,6 +22084,186 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "fall"
     ]
   },
+  "HSERV 343": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HSTAA 353": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HSTAS 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HSTAS 241": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HSTCMP 249": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HSTCMP 250": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HSTCMP 311": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HSTCMP 312": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HSTCMP 390": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "HSTLAC 482": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "HUMAN 100": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -15790,6 +22334,42 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
           "fall",
           "spring"
         ]
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "INDE 315": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "INDIV 493": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
       },
       {
         label: "2026-2027",
@@ -15928,6 +22508,204 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "INFO 330": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "INFO 351": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "INFO 371": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "INFO 430": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "INFO 474": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "IPM 506": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "IPM 509": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "IPM 510": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "IPM 511": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "IPM 512": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "IPM 514": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "IT 102": {
     status: "published-in-latest-schedule",
@@ -17366,28 +24144,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "JOURN 152": {
-    status: "published-in-recent-history-not-latest",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: [
-          "winter"
-        ]
-      },
-      {
-        label: "2025-2026",
-        quarters: [
-          "spring"
-        ]
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "JOURN 157": {
     status: "published-in-latest-schedule",
     years: [
@@ -17455,6 +24211,744 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "JSIS 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSIS 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSIS 203": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSIS 310": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSIS 495": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 200": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 207": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 210": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 215": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 241": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 242": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 243": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 355": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 365": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 410": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 494": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISA 495": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISB 255": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "JSISB 436": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "KAZAKH 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "KAZAKH 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "KAZAKH 203": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 301": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 302": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 303": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 341": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 352": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 353": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 404": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 405": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 406": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 407": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 435": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 454": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 474": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 475": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 501": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 502": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 503": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 504": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LARCH 507": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "LAS 190": {
     status: "published-in-latest-schedule",
@@ -17604,6 +25098,168 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "summer"
     ]
   },
+  "LATIN 101": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LATIN 102": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LATIN 103": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LATIN 300": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LATIN 301": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LING 233": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "LING 461": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MARBIO 270": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MARBIO 305": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "MATH 108": {
     status: "published-in-latest-schedule",
     years: [
@@ -17662,7 +25318,151 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "MATH 124": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 125": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "MATH 126": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 127": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 128": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 129": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 134": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 135": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 136": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -17717,6 +25517,60 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "MATH 207": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 208": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 209": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "MATH 238": {
     status: "published-in-latest-schedule",
@@ -17828,6 +25682,366 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "MATH 307": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 308": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 309": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 318": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 324": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 327": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 334": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 335": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 336": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 381": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 394": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 395": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 402": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 403": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 407": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 411": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 412": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 491": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 492": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MATH 493": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "MATH& 107": {
     status: "published-in-latest-schedule",
@@ -18659,6 +26873,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "MGMT 305": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "MGMT 320": {
     status: "published-in-latest-schedule",
     years: [
@@ -19085,6 +27317,438 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "fall",
       "spring"
     ]
+  },
+  "MSE 450": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 452": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 462": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 463": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 466": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 471": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 473": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 474": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 475": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 476": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 477": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 478": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 479": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 481": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 482": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 483": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 484": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 486": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 487": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 488": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 489": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 490": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 498": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MSE 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "MTX 100": {
     status: "published-in-latest-schedule",
@@ -20552,6 +29216,96 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "MUSIC 250": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MUSIC 251": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MUSIC 252": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MUSIC 388": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "MUSICP 494": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "NATRS 100": {
     status: "published-in-latest-schedule",
     years: [
@@ -21302,24 +30056,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
-  "NATRS 294": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
-  },
   "NATRS 300": {
     status: "published-in-latest-schedule",
     years: [
@@ -21866,6 +30602,168 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "OCEAN 102": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "OCEAN 200": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "OCEAN 230": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "OCEAN 270": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "OCEAN 295": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "OCEAN 330": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "OCEAN 370": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "OCEAN 423": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "OCEAN 450": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "OTA 100": {
     status: "published-in-latest-schedule",
@@ -22891,6 +31789,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "PHG 200": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "PHIL 102": {
     status: "published-in-latest-schedule",
     years: [
@@ -23345,6 +32261,1338 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "PHIL 330": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 332": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 335": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 340": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 342": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 350": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 360": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 405": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 406": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 407": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 408": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 409": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 410": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 411": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 412": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 413": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 414": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 415": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 416": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 417": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 418": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 422": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 426": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 430": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 431": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 433": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 436": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 437": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 438": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 440": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 441": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 442": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 445": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 446": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 448": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 449": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 450": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 453": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 455": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 459": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 460": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 463": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 464": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 465": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 466": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 467": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 470": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 471": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 472": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 473": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 474": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 479": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 481": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 482": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 483": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 486": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 490": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 510": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 514": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 520": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 522": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 526": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 538": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 540": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 545": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 550": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 556": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 560": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 563": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 564": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 565": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 566": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 570": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHIL 587": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "PHIL& 101": {
     status: "published-in-latest-schedule",
     years: [
@@ -23748,6 +33996,402 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "PHYS 121": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 122": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 123": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 141": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 142": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 143": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 225": {
+    status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 227": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 228": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 321": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 322": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 417": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 431": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 432": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 433": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 485": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 486": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 487": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 494": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 495": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 496": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "PHYS& 114": {
     status: "published-in-latest-schedule",
     years: [
@@ -23812,6 +34456,32 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
+  "PHYS& 116": {
+    status: "published-in-latest-schedule",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2025-2026",
+        quarters: [
+          "spring"
+        ]
+      },
+      {
+        label: "2026-2027",
+        quarters: [
+          "spring"
+        ]
+      }
+    ],
+    latestPublishedQuarters: [
+      "spring"
+    ]
+  },
   "PHYS& 154": {
     status: "planner-course-no-current-public-source",
     years: [
@@ -23831,6 +34501,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: []
   },
   "PHYS& 155": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PHYS& 156": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -24441,6 +35129,42 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter"
     ]
   },
+  "POLS 249": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "POLS 436": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "POLS& 101": {
     status: "published-in-latest-schedule",
     years: [
@@ -24665,6 +35389,114 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
+  "PORT 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PORT 203": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PORT 299": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PORT 301": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PORT 365": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PORT 366": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "PSYC 201": {
     status: "published-in-latest-schedule",
     years: [
@@ -24872,24 +35704,6 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "spring"
     ]
-  },
-  "PSYCH 210": {
-    status: "planner-course-no-current-public-source",
-    years: [
-      {
-        label: "2024-2025",
-        quarters: []
-      },
-      {
-        label: "2025-2026",
-        quarters: []
-      },
-      {
-        label: "2026-2027",
-        quarters: []
-      }
-    ],
-    latestPublishedQuarters: []
   },
   "PTA 101": {
     status: "published-in-recent-history-not-latest",
@@ -25651,7 +36465,187 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "SCI 100": {
+  "PUBPOL 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PUBPOL 302": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PUBPOL 313": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PUBPOL 321": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PUBPOL 402": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "PUBPOL 403": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "QSCI 291": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "QSCI 292": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "QSCI 381": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "QSCI 403": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "QSCI 482": {
     status: "planner-course-no-current-public-source",
     years: [
       {
@@ -26399,14 +37393,12 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "spring"
     ]
   },
-  "SOC 240": {
-    status: "published-in-recent-history-not-latest",
+  "SOC 221": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
-        quarters: [
-          "fall"
-        ]
+        quarters: []
       },
       {
         label: "2025-2026",
@@ -26419,8 +37411,8 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
-  "SOC 245": {
-    status: "catalog-listed-not-in-latest-schedules",
+  "SOC 225": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -26479,6 +37471,24 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     ],
     latestPublishedQuarters: []
   },
+  "SOC 266": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
   "SOC 271": {
     status: "published-in-latest-schedule",
     years: [
@@ -26508,6 +37518,168 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "summer",
       "winter"
     ]
+  },
+  "SOC 316": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 355": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 395": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 399": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 402": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 403": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 404": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 494": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOC 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "SOC& 101": {
     status: "published-in-latest-schedule",
@@ -26575,6 +37747,582 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
     latestPublishedQuarters: [
       "winter"
     ]
+  },
+  "SOCW 500": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 501": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 504": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 505": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 506": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 510": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 511": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 512": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 513": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 550": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 551": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 560": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 561": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 574": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCW 598": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 200": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 265": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 305": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 310": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 311": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 312": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 313": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 320": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 390": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 402": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 404": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 405": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 415": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 435": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 460": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 465": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SOCWF 495": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "SPAN 272": {
     status: "catalog-listed-not-in-latest-schedules",
@@ -26649,6 +38397,78 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
   },
   "SPAN 292": {
     status: "catalog-listed-not-in-latest-schedules",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPAN 310": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPAN 311": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPAN 312": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPAN 313": {
+    status: "planner-course-no-current-public-source",
     years: [
       {
         label: "2024-2025",
@@ -26848,6 +38668,1968 @@ export const TRANSFER_PLANNER_GRC_COURSE_AVAILABILITY = {
       "winter",
       "spring"
     ]
+  },
+  "SPH 391": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPH 392": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPH 396": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPH 495": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 250": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 261": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 303": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 305": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 306": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 320": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 371": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 425": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 461": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 551": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 552": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 555": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 591": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 601": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "SPHSC 602": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 221": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 290": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 302": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 303": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 311": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 390": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 394": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 395": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 403": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 416": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 425": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 435": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 451": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 491": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 492": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 493": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 509": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 512": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STAT 535": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STMATH 208": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STMATH 341": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STMATH 498": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "STMATH 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TBECON 220": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TBECON 221": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TBECON 421": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TBECON 422": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCE 307": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCHEM 142": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCRIM 409": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCRIM 490": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 101": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 141": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 142": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 143": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 437": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 445": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 450": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 452": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 460": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 461": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 465": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 491": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 498": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 499": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 540": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TCSS 543": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TECON 200": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TECON 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TECON 480": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TECON 496": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "THIST 150": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "THIST 151": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "THIST 200": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "THIST 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 481": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 497": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 510": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 520": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 530": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 540": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 550": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 560": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 570": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 580": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 590": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 700": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TINFO 702": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TMATH 116": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TMATH 120": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TMATH 124": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TMATH 125": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TMATH 126": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TMATH 208": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TMATH 324": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TME 221": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TME 222": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TME 223": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TPHYS 121": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TPHYS 122": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "TPHYS 123": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "URBAN 526": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "URBAN 549": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "URBAN 598": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "UYGUR 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "UYGUR 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "UYGUR 203": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "UZBEK 201": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "UZBEK 202": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
+  },
+  "UZBEK 203": {
+    status: "planner-course-no-current-public-source",
+    years: [
+      {
+        label: "2024-2025",
+        quarters: []
+      },
+      {
+        label: "2025-2026",
+        quarters: []
+      },
+      {
+        label: "2026-2027",
+        quarters: []
+      }
+    ],
+    latestPublishedQuarters: []
   },
   "WELD 107": {
     status: "published-in-latest-schedule",

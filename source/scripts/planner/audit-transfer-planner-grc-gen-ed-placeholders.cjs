@@ -127,6 +127,24 @@ function parsePublishedDurationCredits(track) {
   return match ? Number(match[1]) : null;
 }
 
+function getCatalogDurationLimitCredits(track) {
+  const maximumCredits = Number(track.maximumCredits);
+  if (Number.isFinite(maximumCredits) && maximumCredits > 0) {
+    return maximumCredits;
+  }
+
+  const minimumCredits = Number(track.minimumCredits);
+  if (
+    Number.isFinite(minimumCredits) &&
+    minimumCredits > 0 &&
+    Number(track.maximumCredits) === minimumCredits
+  ) {
+    return minimumCredits;
+  }
+
+  return null;
+}
+
 function buildDeclaredPlaceholderEntries(track) {
   return (track.terms ?? []).flatMap((term) =>
     (term.courses ?? []).flatMap((label) => {
@@ -153,6 +171,7 @@ function buildDeclaredPlaceholderEntries(track) {
 function buildScheduledPlaceholderEntries(track) {
   const quarterPlan = buildSuggestedQuarterPlan({
     plan: null,
+    plannerCollegeId: "grc",
     applicationStatuses: [],
     beforeEnrollmentStatuses: [],
     stayAtGrcStatuses: [],
@@ -236,11 +255,29 @@ function buildTrackAudit(track) {
   const declaredTotalCredits = sumCategoryCredits(declaredCreditsByCategory);
   const scheduledTotalCredits = sumCategoryCredits(scheduledCreditsByCategory);
   const publishedDurationCredits = parsePublishedDurationCredits(track);
+  const durationLimitCredits = publishedDurationCredits ?? getCatalogDurationLimitCredits(track);
+  const defaultScheduleExceedsDurationLimit =
+    durationLimitCredits !== null &&
+    typeof scheduledResult.plannedCredits === "number" &&
+    scheduledResult.plannedCredits > durationLimitCredits &&
+    scheduledTotalCredits < declaredTotalCredits;
+  const durationCappedPlaceholderCredits =
+    durationLimitCredits !== null &&
+    typeof scheduledResult.plannedCredits === "number" &&
+    scheduledResult.plannedCredits <= durationLimitCredits &&
+    scheduledTotalCredits < declaredTotalCredits
+      ? declaredTotalCredits - scheduledTotalCredits
+      : 0;
   const issues = [];
 
-  if (categoryMismatches.length) {
+  if (
+    categoryMismatches.length &&
+    durationCappedPlaceholderCredits === 0 &&
+    !defaultScheduleExceedsDurationLimit
+  ) {
     issues.push({
       code: "gen-ed-category-credit-mismatch",
+      generatorRule: "placeholder-category-preservation",
       message: "Declared gen-ed placeholder credits differ from scheduled placeholders.",
       categoryMismatches,
     });
@@ -249,15 +286,21 @@ function buildTrackAudit(track) {
   if (scheduledCreditsByCategory.ahOrSsc > declaredCreditsByCategory.ahOrSsc) {
     issues.push({
       code: "duplicate-flexible-breadth-slot",
+      generatorRule: "flexible-breadth-deduplication",
       message: "Scheduled flexible A&H/SSc placeholder credits exceed declared flexible credits.",
       declaredFlexibleCredits: declaredCreditsByCategory.ahOrSsc,
       scheduledFlexibleCredits: scheduledCreditsByCategory.ahOrSsc,
     });
   }
 
-  if (scheduledTotalCredits !== declaredTotalCredits) {
+  if (
+    scheduledTotalCredits !== declaredTotalCredits &&
+    durationCappedPlaceholderCredits === 0 &&
+    !defaultScheduleExceedsDurationLimit
+  ) {
     issues.push({
       code: "gen-ed-total-credit-mismatch",
+      generatorRule: "placeholder-credit-preservation",
       message: "Declared gen-ed placeholder total differs from scheduled placeholder total.",
       declaredTotalCredits,
       scheduledTotalCredits,
@@ -265,15 +308,31 @@ function buildTrackAudit(track) {
     });
   }
 
+  if (defaultScheduleExceedsDurationLimit) {
+    issues.push({
+      code: "default-schedule-exceeds-published-duration",
+      generatorRule: "default-exceeds-published-duration",
+      message:
+        "Non-placeholder/default planned credits already exceed the catalog credit limit; omitted gen-ed placeholders are not the cause.",
+      durationLimitCredits,
+      plannedCredits: scheduledResult.plannedCredits,
+      declaredTotalCredits,
+      scheduledTotalCredits,
+      suppressedPlaceholderCredits: declaredTotalCredits - scheduledTotalCredits,
+    });
+  }
+
   if (
-    publishedDurationCredits !== null &&
+    durationLimitCredits !== null &&
     typeof scheduledResult.plannedCredits === "number" &&
-    scheduledResult.plannedCredits - publishedDurationCredits === GENERAL_ED_PLACEHOLDER_CREDITS
+    scheduledResult.plannedCredits - durationLimitCredits === GENERAL_ED_PLACEHOLDER_CREDITS &&
+    scheduledTotalCredits >= declaredTotalCredits
   ) {
     issues.push({
       code: "planned-total-one-placeholder-over-published-duration",
+      generatorRule: "placeholder-over-published-duration",
       message: "Total planned credits exceed the published duration by one placeholder course.",
-      publishedDurationCredits,
+      publishedDurationCredits: durationLimitCredits,
       plannedCredits: scheduledResult.plannedCredits,
       differenceCredits: GENERAL_ED_PLACEHOLDER_CREDITS,
     });
@@ -285,9 +344,11 @@ function buildTrackAudit(track) {
     title: track.title,
     officialLinks: track.officialLinks ?? [],
     publishedDurationCredits,
+    durationLimitCredits,
     plannedCredits: scheduledResult.plannedCredits,
     declaredTotalCredits,
     scheduledTotalCredits,
+    durationCappedPlaceholderCredits,
     declaredCreditsByCategory,
     scheduledCreditsByCategory,
     declaredEntries,
@@ -316,14 +377,14 @@ function renderMarkdownReport(report) {
               )
               .join("; ")
           : issue.message;
-      return `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${issue.code} | ${details.replace(/\|/g, "\\|")} |`;
+      return `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${issue.code} | ${issue.generatorRule ?? ""} | ${details.replace(/\|/g, "\\|")} |`;
     })
   );
   const trackedRows = report.tracks
     .filter((track) => track.declaredTotalCredits || track.scheduledTotalCredits)
     .map(
       (track) =>
-        `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${track.declaredTotalCredits} | ${track.scheduledTotalCredits} | ${formatCreditsByCategory(track.declaredCreditsByCategory) || "None"} | ${formatCreditsByCategory(track.scheduledCreditsByCategory) || "None"} |`
+        `| ${track.code} | ${track.title.replace(/\|/g, "\\|")} | ${track.declaredTotalCredits} | ${track.scheduledTotalCredits} | ${track.durationCappedPlaceholderCredits || ""} | ${formatCreditsByCategory(track.declaredCreditsByCategory) || "None"} | ${formatCreditsByCategory(track.scheduledCreditsByCategory) || "None"} |`
     );
 
   return [
@@ -338,13 +399,13 @@ function renderMarkdownReport(report) {
     "## Issues",
     "",
     issueRows.length
-      ? "| Code | Track | Issue | Details |\n| --- | --- | --- | --- |\n" + issueRows.join("\n")
+      ? "| Code | Track | Issue | Generator rule | Details |\n| --- | --- | --- | --- | --- |\n" + issueRows.join("\n")
       : "No mismatches found.",
     "",
     "## Placeholder Credits",
     "",
     trackedRows.length
-      ? "| Code | Track | Declared | Scheduled | Declared by category | Scheduled by category |\n| --- | --- | ---: | ---: | --- | --- |\n" +
+      ? "| Code | Track | Declared | Scheduled | Duration-capped | Declared by category | Scheduled by category |\n| --- | --- | ---: | ---: | ---: | --- | --- |\n" +
           trackedRows.join("\n")
       : "No gen-ed placeholders found.",
     "",

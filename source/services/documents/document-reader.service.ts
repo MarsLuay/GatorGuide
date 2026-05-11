@@ -1,5 +1,6 @@
 import * as FileSystem from 'expo-file-system';
 import { Platform } from 'react-native';
+import { TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD } from '@/constants/planner-storage';
 import { aiGatewayService } from '@/services/ai/ai-gateway.service';
 import { isStubMode } from '@/services/app/config';
 
@@ -270,10 +271,12 @@ function buildReview(
   });
 
   addReviewItem(reviewItems, userPatch, questionnairePatch, {
-    id: 'completedCourses',
+    id: TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD,
     labelKey: 'profile.documentReaderFieldCompletedCourses',
     target: 'questionnaire',
-    currentValue: cleanText(questionnaire.completedCourses, 800) || null,
+    currentValue:
+      cleanText(questionnaire[TRANSFER_PLANNER_LEGACY_COMPLETED_COURSES_FIELD], 800) ||
+      null,
     suggestedValue: stringifyList(extraction.extractedFields.completedCourses?.value, '\n'),
     sourceSnippet: extraction.extractedFields.completedCourses?.sourceSnippet,
     confidence: extraction.extractedFields.completedCourses?.confidence,

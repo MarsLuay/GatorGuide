@@ -6,6 +6,7 @@ param(
   [string]$OnlySection,
   [string]$StartSection,
   [string]$TargetPlanId,
+  [switch]$SkipAutoRepair,
   [switch]$ShowCacheSummary,
   [switch]$ShowLaymansDiagnosis,
   [switch]$NoPrompt,
@@ -36,7 +37,10 @@ $plannerStatusScriptPath = Join-Path $projectRoot "scripts\planner\planner-statu
 $qaResultsRoot = Join-Path $projectRoot ".tools"
 $qaWebPath = Join-Path $qaResultsRoot "qa-web"
 $sourceGapReportPath = Join-Path $tmpDir "transfer-planner-source-gaps.json"
+$autoRepairReportPath = Join-Path $tmpDir "transfer-planner-auto-repair-plan.json"
 $requirementParseReportPath = Join-Path $tmpDir "transfer-planner-requirement-source-parse-report.json"
+$parserRecoveryReportPath = Join-Path $tmpDir "transfer-planner-parser-recovery-report.json"
+$sourceChangeClassificationReportPath = Join-Path $tmpDir "transfer-planner-source-change-classification.json"
 $requirementDiffReportPath = Join-Path $tmpDir "transfer-planner-requirement-diff-promotion-report.json"
 $ownerAuditReportPath = Join-Path $tmpDir "transfer-planner-owner-audit.json"
 $hardeningReportPath = Join-Path $tmpDir "transfer-planner-hardening-report.json"
@@ -84,7 +88,8 @@ function Get-RefreshTrackedPlan {
     [switch]$SkipDownloads,
     [string]$OnlySection,
     [string]$StartSection,
-    [string]$TargetPlanId
+    [string]$TargetPlanId,
+    [switch]$SkipAutoRepair
   )
 
   $arguments = @(
@@ -102,6 +107,9 @@ function Get-RefreshTrackedPlan {
   }
   if ($TargetPlanId) {
     $arguments += @("--target-plan-id", $TargetPlanId)
+  }
+  if ($SkipAutoRepair) {
+    $arguments += "--skip-auto-repair"
   }
 
   $rawOutput = @(& node @arguments 2>$null)
@@ -354,8 +362,8 @@ function Get-MaintenanceSectionCatalog {
       },
       [pscustomobject]@{
         Id = "requirement-parsing"
-        Title = "Refresh: requirement parsing and fingerprints"
-        Description = "Parse UW requirement sources and rebuild the source fingerprint reports."
+        Title = "Refresh: requirement parsing and fingerprint intelligence"
+        Description = "Parse UW requirement sources, rebuild source fingerprints, and classify source changes."
         Kind = "refresh"
         StepLabel = "Planner refresh"
       },
@@ -445,7 +453,9 @@ function Get-SectionArtifacts {
     "requirement-parsing" {
       return @(
         (Join-Path $tmpDir "transfer-planner-requirement-source-parse-report.json"),
-        (Join-Path $tmpDir "transfer-planner-source-fingerprints.json")
+        (Join-Path $tmpDir "transfer-planner-parser-recovery-report.json"),
+        (Join-Path $tmpDir "transfer-planner-source-fingerprints.json"),
+        (Join-Path $tmpDir "transfer-planner-source-change-classification.json")
       )
     }
     "schedule-cache" {
@@ -492,7 +502,13 @@ function Get-SectionArtifacts {
     }
     "verification" {
       return @(
-        (Join-Path $tmpDir "transfer-planner-owner-audit.json")
+        (Join-Path $tmpDir "transfer-planner-owner-audit.json"),
+        (Join-Path $tmpDir "transfer-planner-source-pipeline-validation.json"),
+        (Join-Path $tmpDir "transfer-planner-source-pipeline-validation.md"),
+        (Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.json"),
+        (Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.md"),
+        (Join-Path $tmpDir "transfer-planner-auto-repair-plan.json"),
+        (Join-Path $tmpDir "transfer-planner-auto-repair-plan.md")
       )
     }
     "playwright-chromium" {
@@ -1644,11 +1660,14 @@ function Write-Summary {
     }
   }
 
-  function Get-ChangedMajorRequirementOwnerCount {
+  function Get-ChangedMajorRequirementOwnerSummary {
     $fingerprintsPath = Join-Path $tmpDir "transfer-planner-source-fingerprints.json"
     $data = Read-JsonReport -Path $fingerprintsPath
     if (-not $data -or -not $data.requirementDiff) {
-      return "unknown"
+      return [pscustomobject]@{
+        Count = "unknown"
+        Majors = @()
+      }
     }
 
     $diff = $data.requirementDiff
@@ -1657,18 +1676,45 @@ function Write-Summary {
     if ($diff.changed) { foreach ($i in $diff.changed) { $items += $i } }
     if ($diff.removed) { foreach ($i in $diff.removed) { $items += $i } }
 
-    $uniqueMajors = New-Object System.Collections.Generic.HashSet[string]
+    $changedMajorsById = @{}
     foreach ($item in $items) {
       if ([string]::IsNullOrWhiteSpace($item.pathwayId) -and -not [string]::IsNullOrWhiteSpace($item.ownerId)) {
-        $uniqueMajors.Add($item.ownerId) | Out-Null
+        $ownerId = [string]$item.ownerId
+        $ownerTitle = [string]$item.ownerTitle
+        if ([string]::IsNullOrWhiteSpace($ownerTitle)) {
+          $ownerTitle = $ownerId
+        }
+
+        $changedMajorsById[$ownerId] = [pscustomobject]@{
+          OwnerId = $ownerId
+          Title = $ownerTitle
+        }
       }
     }
 
-    return $uniqueMajors.Count
+    $majors = @(
+      $changedMajorsById.GetEnumerator() |
+        Sort-Object { $_.Value.Title }, { $_.Value.OwnerId } |
+        ForEach-Object {
+          if ($_.Value.Title -eq $_.Value.OwnerId) {
+            $_.Value.OwnerId
+          } else {
+            "$($_.Value.Title) ($($_.Value.OwnerId))"
+          }
+        }
+    )
+
+    return [pscustomobject]@{
+      Count = $majors.Count
+      Majors = $majors
+    }
   }
 
   $sourceGapReport = Read-JsonReport -Path $sourceGapReportPath
+  $autoRepairReport = Read-JsonReport -Path $autoRepairReportPath
   $requirementParseReport = Read-JsonReport -Path $requirementParseReportPath
+  $parserRecoveryReport = Read-JsonReport -Path $parserRecoveryReportPath
+  $sourceChangeClassificationReport = Read-JsonReport -Path $sourceChangeClassificationReportPath
   $requirementDiffReport = Read-JsonReport -Path $requirementDiffReportPath
   $ownerAuditReport = Read-JsonReport -Path $ownerAuditReportPath
   $hardeningReport = Read-JsonReport -Path $hardeningReportPath
@@ -1699,6 +1745,28 @@ function Write-Summary {
 
   if ($ownerAuditReport -and (($ownerAuditReport.issueCounts.error -gt 0) -or ($ownerAuditReport.issueCounts.warning -gt 0))) {
     Add-RequiredAction -List $requiredActions -Message "Address owner-audit issues: fix missing/invalid primary sources, manifest gaps, and parser fallback warnings."
+  }
+
+  if ($autoRepairReport -and ($autoRepairReport.caseCount -gt 0)) {
+    Add-RequiredAction -List $requiredActions -Message "Use the closed-loop auto-repair plan: rerun or extend source discovery/parser/runtime repair rules until classified repair cases reaches 0."
+  }
+
+  if ($parserRecoveryReport -and ($parserRecoveryReport.unrecoveredOwnerCount -gt 0)) {
+    Add-RequiredAction -List $requiredActions -Message "Resolve parser auto-recovery blockers: extend discovery or parser rules until unrecovered parser-recovery owners reaches 0."
+  }
+
+  if ($sourceChangeClassificationReport -and ($sourceChangeClassificationReport.countsByActionStatus)) {
+    $needsDiscovery = 0
+    $needsParser = 0
+    if ($sourceChangeClassificationReport.countsByActionStatus.PSObject.Properties.Name -contains "needs-discovery-rule") {
+      $needsDiscovery = [int]$sourceChangeClassificationReport.countsByActionStatus.'needs-discovery-rule'
+    }
+    if ($sourceChangeClassificationReport.countsByActionStatus.PSObject.Properties.Name -contains "needs-parser-rule") {
+      $needsParser = [int]$sourceChangeClassificationReport.countsByActionStatus.'needs-parser-rule'
+    }
+    if (($needsDiscovery + $needsParser) -gt 0) {
+      Add-RequiredAction -List $requiredActions -Message "Resolve source-change classifications: extend discovery/parser automation for fingerprint changes marked needs-discovery-rule or needs-parser-rule."
+    }
   }
 
   if ($hardeningReport -and ($hardeningReport.outcome -ne "passed")) {
@@ -1752,6 +1820,7 @@ function Write-Summary {
     "## Run Flags",
     "",
     "- Skip downloads: $([string]$SkipDownloads)",
+    "- Skip auto-repair: $([string]$SkipAutoRepair)",
     "- Skip Windows QA: $([string]$SkipWindowsQa)",
     "- Skip Chromium install: $([string]$SkipChromiumInstall)",
     "- Selection mode: $script:selectedMaintenanceMode",
@@ -1775,10 +1844,35 @@ function Write-Summary {
     $summaryLines += "- Hidden source-gap owners: unavailable (source-gap report missing)."
   }
 
+  if ($autoRepairReport) {
+    $summaryLines += "- Closed-loop auto-repair cases: $($autoRepairReport.caseCount)"
+    $summaryLines += "- Closed-loop auto-repair affected owners/plans: $($autoRepairReport.ownerCount)/$($autoRepairReport.planCount)"
+    if ($autoRepairReport.repairAttempt) {
+      $summaryLines += "- Closed-loop auto-repair commands attempted/failed: $(@($autoRepairReport.repairAttempt.commands).Count)/$($autoRepairReport.repairAttempt.failedCommandCount)"
+    }
+  } else {
+    $summaryLines += "- Closed-loop auto-repair: unavailable (auto-repair plan missing)."
+  }
+
   if ($requirementParseReport) {
     $summaryLines += "- Requirement parser failures: $($requirementParseReport.failedCount)"
   } else {
     $summaryLines += "- Requirement parser failures: unavailable (parse report missing)."
+  }
+
+  if ($parserRecoveryReport) {
+    $summaryLines += "- Parser auto-recovery triggered/recovered/unrecovered: $($parserRecoveryReport.triggeredOwnerCount)/$($parserRecoveryReport.successfulOwnerCount)/$($parserRecoveryReport.unrecoveredOwnerCount)"
+  } else {
+    $summaryLines += "- Parser auto-recovery: unavailable (recovery report missing)."
+  }
+
+  if ($sourceChangeClassificationReport) {
+    $summaryLines += "- Source-change classifications: $($sourceChangeClassificationReport.totalChangeCount)"
+    if ($sourceChangeClassificationReport.countsByActionStatus) {
+      $summaryLines += "- Source-change action statuses: $($sourceChangeClassificationReport.countsByActionStatus | ConvertTo-Json -Compress)"
+    }
+  } else {
+    $summaryLines += "- Source-change classifications: unavailable (classification report missing)."
   }
 
   if ($requirementDiffReport) {
@@ -1837,7 +1931,10 @@ function Write-Summary {
     "- Planner log: $logPath",
     "- Green River public-material discovery: $(Join-Path $tmpDir 'transfer-planner-grc-public-materials.md')",
     "- Planner source-gap report: $(Join-Path $tmpDir 'transfer-planner-source-gaps.md')",
+    "- Planner auto-repair plan: $(Join-Path $tmpDir 'transfer-planner-auto-repair-plan.md')",
     "- Planner requirement parse report: $(Join-Path $tmpDir 'transfer-planner-requirement-source-parse-report.md')",
+    "- Planner parser auto-recovery report: $(Join-Path $tmpDir 'transfer-planner-parser-recovery-report.md')",
+    "- Planner source-change classification report: $(Join-Path $tmpDir 'transfer-planner-source-change-classification.md')",
     "- Planner diff classification report: $(Join-Path $tmpDir 'transfer-planner-requirement-diff-promotion-report.md')",
     "- Planner hardening report: $(Join-Path $tmpDir 'transfer-planner-hardening-report.md')",
     "- Planner source year coverage report: $(Join-Path $tmpDir 'transfer-planner-source-year-coverage.md')",
@@ -1847,9 +1944,19 @@ function Write-Summary {
     ""
   )
 
-  $changedMajorCount = Get-ChangedMajorRequirementOwnerCount
+  $changedMajorSummary = Get-ChangedMajorRequirementOwnerSummary
   $summaryLines += ""
-  $summaryLines += "How many majors changed? $changedMajorCount"
+  $summaryLines += "How many majors changed? $($changedMajorSummary.Count)"
+  $summaryLines += "Which majors changed?"
+  if ([string]$changedMajorSummary.Count -eq "unknown") {
+    $summaryLines += "- unknown"
+  } elseif (@($changedMajorSummary.Majors).Count -eq 0) {
+    $summaryLines += "- None."
+  } else {
+    foreach ($major in $changedMajorSummary.Majors) {
+      $summaryLines += "- $major"
+    }
+  }
 
   Set-Content -Path $summaryPath -Value ($summaryLines -join [Environment]::NewLine) -Encoding UTF8
 }
@@ -1868,7 +1975,10 @@ try {
   Assert-Command -CommandName "node" -FriendlyName "Node.js"
   Assert-Command -CommandName "npm.cmd" -FriendlyName "npm"
 
-  $refreshCatalogPlan = Get-RefreshTrackedPlan -SkipDownloads:$SkipDownloads -TargetPlanId $TargetPlanId
+  $refreshCatalogPlan = Get-RefreshTrackedPlan `
+    -SkipDownloads:$SkipDownloads `
+    -TargetPlanId $TargetPlanId `
+    -SkipAutoRepair:$SkipAutoRepair
   $maintenanceSectionCatalog = @(Get-MaintenanceSectionCatalog -RefreshPlanInfo $refreshCatalogPlan)
   if ($maintenanceSectionCatalog.Count -eq 0) {
     throw "No maintenance sections are available for the current launcher settings."
@@ -1972,7 +2082,8 @@ try {
       -SkipDownloads:$SkipDownloads `
       -OnlySection $refreshOnlySectionArg `
       -StartSection $refreshStartSectionArg `
-      -TargetPlanId $script:selectedMaintenanceTargetPlanId
+      -TargetPlanId $script:selectedMaintenanceTargetPlanId `
+      -SkipAutoRepair:$SkipAutoRepair
   } else {
     @{
       Count = 0
@@ -2021,6 +2132,9 @@ try {
   }
   if ($script:selectedMaintenanceTargetPlanId) {
     $refreshArgs += @("-TargetPlanId", $script:selectedMaintenanceTargetPlanId)
+  }
+  if ($SkipAutoRepair) {
+    $refreshArgs += "-SkipAutoRepair"
   }
 
   if ($selectionState.SelectedRefreshIds.Count -gt 0) {
