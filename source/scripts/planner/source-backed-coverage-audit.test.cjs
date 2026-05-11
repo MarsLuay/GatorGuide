@@ -114,3 +114,29 @@ test("Source-backed coverage audit classifies blocking maintainer failures", () 
     assert.doesNotMatch(result.recommendedFixPath, /generated-major-plans\.ts/, testCase.name);
   }
 });
+
+test("Source-backed coverage gate counts requirement coverage rows as blocking issues", () => {
+  const report = sourceBackedCoverageAudit.enrichSourceBackedCoverageReport({
+    generatedAt: "2026-05-11T00:00:00.000Z",
+    outcome: "failed",
+    summary: {
+      ownerCount: 1,
+      requirementCoverageRowCount: 1,
+    },
+    requirementCoverageRows: [
+      {
+        issueType: "missing-detected-course",
+        ownerId: "uw-seattle-computer-engineering",
+        generatedRuntimeRow: true,
+        visibleInTransferOnlyQuarterPlan: false,
+      },
+    ],
+  });
+
+  assert.equal(report.summary.blockingGate, "source-backed-runtime-coverage");
+  assert.equal(report.summary.blockingGateIssueCount, 1);
+  assert.deepEqual(report.summary.issueCountsBySuspectedLayer, { runtime: 1 });
+  assert.deepEqual(report.summary.issueCountsByActionableClass, {
+    "generated-row-exists-but-not-visible": 1,
+  });
+});
