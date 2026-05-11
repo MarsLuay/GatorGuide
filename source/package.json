@@ -34,7 +34,7 @@
     "planner:audit:source-backed-coverage": "node scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
     "planner:audit:generated-registry": "node scripts/planner/audit-transfer-planner-source-backed-coverage.cjs --generated-registry-only",
     "planner:audit:mapping": "node scripts/planner/audit-transfer-planner-source-backed-coverage.cjs --mapping-only",
-    "planner:test:parser": "node --test scripts/planner/source-discovery.test.cjs scripts/planner/parser-recovery.test.cjs scripts/planner/source-change-classification.test.cjs",
+    "planner:test:parser": "node --test scripts/planner/source-discovery.test.cjs scripts/planner/source-backed-coverage-audit.test.cjs scripts/planner/parser-recovery.test.cjs scripts/planner/source-change-classification.test.cjs",
     "planner:test:source-discovery": "node --test scripts/planner/source-discovery.test.cjs",
     "planner:refresh": "node scripts/planner/refresh-transfer-planner-sources.cjs",
     "planner:refresh-deadlines": "node scripts/planner/refresh-deadline-sources.cjs",

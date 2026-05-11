@@ -20,6 +20,12 @@ const source = require("../../constants/transfer-planner-source");
 const studentRuntime = require("../../constants/transfer-planner-source/student-runtime");
 const planner = require("../../services/planning/transfer-planner.service");
 const parser = require("./parse-transfer-planner-requirement-sources.cjs");
+const sourceBackedActionability = require("./source-backed-coverage-actionability.cjs");
+const {
+  SOURCE_BACKED_COVERAGE_GATE_LABEL,
+  HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES,
+  SOURCE_BACKED_COVERAGE_GATE_DESCRIPTION,
+} = sourceBackedActionability;
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -472,7 +478,7 @@ function getSuggestedFileForIssue(issueType) {
     case "list-promoted-to-required":
     case "support-list-scheduled":
     case "missing-list-shape":
-      return "source/constants/transfer-planner-source/generated-major-plans.ts";
+      return "source/scripts/planner/generate-transfer-planner-student-runtime.cjs";
     case "missing-approved-course-list-source":
     case "missing-elective-list-source":
       return "source/scripts/planner/discover-transfer-planner-primary-sources.cjs";
@@ -493,7 +499,7 @@ function getSuggestedFileForIssue(issueType) {
     case "fake-course-invented":
     case "category-option-invented-course":
     case "required-count-used-for-credit-bucket":
-      return "source/constants/transfer-planner-source/generated-major-plans.ts";
+      return "source/scripts/planner/generate-transfer-planner-student-runtime.cjs";
     case "unselected-option-scheduled":
     case "selected-option-not-scheduled":
     case "stale-selection":
@@ -510,6 +516,527 @@ function getSuggestedFileForIssue(issueType) {
     default:
       return "source/scripts/planner/audit-transfer-planner-source-backed-coverage.cjs";
   }
+}
+
+function getRowIssueType(row) {
+  if (row?.issueType) {
+    return row.issueType;
+  }
+  if (row?.issue && row.issue !== "none") {
+    return row.issue;
+  }
+  return null;
+}
+
+function hasAuditIssue(row) {
+  return Boolean(getRowIssueType(row));
+}
+
+function getActionableIssueClass(row) {
+  const issueType = getRowIssueType(row);
+  if (!issueType) {
+    return null;
+  }
+
+  if (issueType === "missing-detected-course") {
+    if (row.generatedRuntimeRow === false) {
+      return "source-course-parsed-not-generated";
+    }
+    if (row.visibleInTransferOnlyQuarterPlan === false || row.visibleInPlan === false) {
+      return "generated-row-exists-but-not-visible";
+    }
+    return "primary-required-course-missing-from-runtime";
+  }
+
+  if (
+    [
+      "generated-row-without-primary-source",
+      "hidden-row-as-required",
+      "hidden-informational-row-scheduled",
+    ].includes(issueType)
+  ) {
+    return "visible-row-lacks-source-evidence";
+  }
+
+  if (
+    [
+      "support-source-emitted-required-row",
+      "support-source-created-required-row",
+      "approved-list-source-created-required-row",
+      "approved-course-list-promoted-to-required",
+      "elective-list-promoted-to-required",
+      "support-source-generated-required-row",
+      "support-metadata-became-required",
+      "approved-list-generated-required-row",
+      "elective-list-generated-required-row",
+      "list-promoted-to-required",
+      "support-list-scheduled",
+      "elective-list-as-required",
+      "elective-list-generated-required-row",
+      "approved-course-list-promoted-to-required",
+      "non-schedulable-source-scheduled",
+      "non-schedulable-course-list-scheduled",
+      "upper-division-prerequisite-table-scheduled",
+    ].includes(issueType)
+  ) {
+    return "support-only-course-scheduled-as-required";
+  }
+
+  if (
+    [
+      "missing-credit-bucket",
+      "required-count-used-for-credit-bucket",
+      "flattened-credit-bucket",
+      "credit-bucket-as-count",
+    ].includes(issueType)
+  ) {
+    return "credit-bucket-lost-or-flattened";
+  }
+
+  if (
+    [
+      "placeholder-atom-scheduled",
+      "placeholder-promoted-to-required",
+      "false-required-sibling",
+      "false-required-promotion",
+      "fake-category-course",
+      "category-option-invented-course",
+    ].includes(issueType)
+  ) {
+    return "placeholder-scheduled-as-false-required";
+  }
+
+  if (
+    [
+      "missing-option-group",
+      "missed-option-group",
+      "option-group-disappears-after-refresh",
+      "missing-category-option",
+      "flattened-option-group",
+      "flattened-option",
+      "wrong-shape",
+      "missing-list-shape",
+      "missed-sequence-choice",
+      "flattened-sequence-choice",
+      "sequence-choice-flattened",
+      "flattened-sequence-paths",
+      "flattened-sequence-choice",
+    ].includes(issueType)
+  ) {
+    return "option-group-collapsed-to-single-course";
+  }
+
+  if (
+    [
+      "missing-equivalency",
+      "fake-equivalency",
+      "unsupported-substitution",
+      "stale-equivalency",
+      "missing-compound-path",
+      "partial-compound-path",
+      "over-expanded-compound-path",
+      "duplicate-compound-count",
+      "partial-compound-path-scheduled",
+      "missing-compound-component",
+      "duplicate-compound-component",
+      "over-scheduled-alternatives",
+      "unmapped-uw-only",
+    ].includes(issueType)
+  ) {
+    return "equivalent-grc-course-missing-or-over-selected";
+  }
+
+  if (
+    [
+      "parser-source-scope-violation",
+      "source-scope-contamination",
+      "unscoped-generated-seed",
+      "stale-manual-seed",
+      "pathway-leak",
+      "path-note-unscoped",
+      "generated-row-without-primary-source",
+      "prerequisite-table-emitted-requirement",
+      "course-list-emitted-requirement",
+    ].includes(issueType)
+  ) {
+    return "source-role-misclassified";
+  }
+
+  return issueType;
+}
+
+function getSuspectedLayerForActionableIssue(row) {
+  const issueType = getRowIssueType(row);
+  const actionableClass = getActionableIssueClass(row);
+  if (!issueType) {
+    return null;
+  }
+
+  if (
+    [
+      "missing-approved-course-list-source",
+      "missing-elective-list-source",
+      "source-role-misclassified",
+    ].includes(issueType) ||
+    actionableClass === "source-role-misclassified"
+  ) {
+    return "discovery";
+  }
+
+  if (
+    [
+      "parser-source-scope-violation",
+      "source-scope-contamination",
+      "prerequisite-table-emitted-requirement",
+      "course-list-emitted-requirement",
+      "missed-option-group",
+      "missing-option-group",
+      "missing-credit-bucket",
+      "missed-sequence-choice",
+      "unsafe-comma-list",
+      "flattened-sequence-paths",
+      "merged-adjacent-rows",
+      "false-required-promotion",
+      "approved-list-source-created-required-row",
+      "elective-list-promoted-to-required",
+      "approved-course-list-promoted-to-required",
+      "support-source-created-required-row",
+      "support-source-emitted-required-row",
+      "missing-category-option",
+    ].includes(issueType)
+  ) {
+    return "parser";
+  }
+
+  if (
+    actionableClass === "source-course-parsed-not-generated" ||
+    actionableClass === "primary-required-course-missing-from-runtime" ||
+    actionableClass === "credit-bucket-lost-or-flattened" ||
+    actionableClass === "option-group-collapsed-to-single-course" ||
+    actionableClass === "visible-row-lacks-source-evidence" ||
+    [
+      "unscoped-generated-seed",
+      "support-source-generated-required-row",
+      "support-metadata-became-required",
+      "approved-list-generated-required-row",
+      "elective-list-generated-required-row",
+      "generated-row-without-primary-source",
+      "stale-manual-seed",
+      "flattened-option-group",
+      "flattened-credit-bucket",
+      "flattened-sequence-choice",
+      "wrong-shape",
+      "credit-bucket-as-count",
+      "sequence-choice-flattened",
+      "missing-list-shape",
+      "missing-program-approved-filter",
+      "missing-approved-filter",
+      "missing-ce-approved-filter",
+    ].includes(issueType)
+  ) {
+    return "generator";
+  }
+
+  if (
+    actionableClass === "generated-row-exists-but-not-visible" ||
+    actionableClass === "placeholder-scheduled-as-false-required" ||
+    [
+      "unselected-option-scheduled",
+      "selected-option-not-scheduled",
+      "stale-selection",
+      "false-required-sibling",
+      "placeholder-atom-scheduled",
+      "non-selected-compound-option-scheduled",
+      "mixed-sequence-paths",
+      "standalone-lab-component-scheduled",
+      "placeholder-promoted-to-required",
+      "partial-compound-path-scheduled",
+      "missing-compound-component",
+      "duplicate-compound-component",
+    ].includes(issueType)
+  ) {
+    return "runtime";
+  }
+
+  if (actionableClass === "equivalent-grc-course-missing-or-over-selected") {
+    return "mapping";
+  }
+
+  if (actionableClass === "support-only-course-scheduled-as-required") {
+    return row.generatedArtifact || row.generatedFile || row.generatedRuntimeRow ? "generator" : "parser";
+  }
+
+  return "audit expectation";
+}
+
+function getRecommendedFixForLayer(layer, row) {
+  const issueType = getRowIssueType(row);
+  switch (layer) {
+    case "discovery":
+      return {
+        recommendedFixPath: "source/scripts/planner/discover-transfer-planner-primary-sources.cjs",
+        recommendedNonManualFix:
+          "Fix source discovery or manifest role selection so the official primary/support source is classified before parsing.",
+      };
+    case "parser":
+      return {
+        recommendedFixPath: "source/scripts/planner/parse-transfer-planner-requirement-sources.cjs",
+        recommendedNonManualFix:
+          "Fix parser extraction, row-boundary, or source-role rules, then regenerate planner artifacts.",
+      };
+    case "generator":
+      if (
+        [
+          "missing-program-approved-filter",
+          "missing-approved-filter",
+          "missing-ce-approved-filter",
+        ].includes(issueType)
+      ) {
+        return {
+          recommendedFixPath:
+            "source/scripts/planner/parse-transfer-planner-requirement-sources.cjs -> source/scripts/planner/generate-transfer-planner-student-runtime.cjs",
+          recommendedNonManualFix:
+            "Fix approved-list parsing or generated filter wiring so support lists constrain choices without creating required rows.",
+        };
+      }
+      return {
+        recommendedFixPath: "source/scripts/planner/generate-transfer-planner-student-runtime.cjs",
+        recommendedNonManualFix:
+          "Fix generated runtime shape/source metadata rules and rerun the generator; do not hand-edit generated planner data.",
+      };
+    case "runtime":
+      return {
+        recommendedFixPath: "source/services/planning/transfer-planner.service.ts",
+        recommendedNonManualFix:
+          "Fix runtime visibility, option selection, or scheduling logic so generated source-backed rows surface accurately.",
+      };
+    case "mapping":
+      return {
+        recommendedFixPath: "source/scripts/planner/parse-transfer-planner-equivalency-guide.cjs",
+        recommendedNonManualFix:
+          "Fix official UW-GRC equivalency parsing or mapping normalization, then regenerate planner metadata.",
+      };
+    default:
+      return {
+        recommendedFixPath: "source/scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",
+        recommendedNonManualFix:
+          "Review the audit expectation and tighten it only if the official source/runtime behavior is already correct.",
+      };
+  }
+}
+
+function parseOwnerId(ownerId) {
+  const owner = String(ownerId ?? "");
+  const [planId, pathwayId] = owner.split(":pathway:");
+  return {
+    planId: planId || null,
+    pathwayId: pathwayId || null,
+  };
+}
+
+function getPlanContextForAuditRow(row) {
+  const parsedOwner = parseOwnerId(row.ownerId);
+  const planId = row.planId ?? row.majorId ?? parsedOwner.planId;
+  const pathwayId = row.pathwayId ?? parsedOwner.pathwayId ?? null;
+  const plan = planId ? source.getTransferPlannerSourceGeneratedMajorPlan(planId) : null;
+  const pathway =
+    plan && pathwayId
+      ? (source.getTransferPlannerPathwaysForPlan(plan) ?? []).find(
+          (candidate) => candidate.id === pathwayId
+        )
+      : null;
+  return {
+    ownerId: row.ownerId ?? (planId ? buildOwnerId(planId, pathwayId) : "unknown"),
+    planId: planId ?? null,
+    campusId: row.campusId ?? plan?.campusId ?? null,
+    collegeId: row.collegeId ?? null,
+    majorTitle: row.majorTitle ?? plan?.title ?? null,
+    pathwayId,
+    pathwayTitle: row.pathwayTitle ?? pathway?.label ?? null,
+  };
+}
+
+function getAuditRowSourceUrl(row) {
+  return row.sourceUrl ?? row.uwSourceUrl ?? row.primarySourceUrl ?? row.primarySource ?? null;
+}
+
+function getAuditRowSourceRole(row) {
+  return row.sourceRole ?? row.detectedSourceRole ?? null;
+}
+
+function getGeneratedRowId(row) {
+  return (
+    row.generatedRowId ??
+    row.requirementId ??
+    row.requirementGroupId ??
+    row.requirementCourse ??
+    row.usedByRequirement ??
+    null
+  );
+}
+
+function getRuntimeVisibilityStatus(row) {
+  const parts = [];
+  if (typeof row.generatedRuntimeRow === "boolean") {
+    parts.push(`generated-row=${row.generatedRuntimeRow ? "yes" : "no"}`);
+  }
+  if (typeof row.visibleInTransferOnlyQuarterPlan === "boolean") {
+    parts.push(`student-visible=${row.visibleInTransferOnlyQuarterPlan ? "yes" : "no"}`);
+  }
+  if (typeof row.visibleInPlan === "boolean") {
+    parts.push(`student-visible=${row.visibleInPlan ? "yes" : "no"}`);
+  }
+  if (typeof row.visibleInTransferOnlyPlan === "boolean") {
+    parts.push(`student-visible=${row.visibleInTransferOnlyPlan ? "yes" : "no"}`);
+  }
+  if (typeof row.scheduled === "boolean") {
+    parts.push(`scheduled=${row.scheduled ? "yes" : "no"}`);
+  }
+  if (typeof row.canCreateScheduleRow === "boolean") {
+    parts.push(`can-create-schedule-row=${row.canCreateScheduleRow ? "yes" : "no"}`);
+  }
+  if (typeof row.canCreateSchedulableRows === "boolean") {
+    parts.push(`can-create-schedulable-rows=${row.canCreateSchedulableRows ? "yes" : "no"}`);
+  }
+  if (row.hiddenInternalReason) {
+    parts.push(`hidden-reason=${row.hiddenInternalReason}`);
+  }
+  return parts.length ? parts.join("; ") : "not reported";
+}
+
+function getParsedSourceEvidence(row) {
+  const parts = [
+    row.parsedSourceEvidence,
+    row.sourceSection,
+    row.sourceHeading,
+    row.sourceParserShape,
+    row.expectedParserShape,
+    row.uwRequirementLabel,
+    row.requirementTitle,
+    row.listTitle,
+    Array.isArray(row.sourceLineHints) ? row.sourceLineHints.join(" | ") : null,
+    row.rawRowText,
+    row.copyOnlyDebugText,
+  ]
+    .map((part) => String(part ?? "").replace(/\s+/g, " ").trim())
+    .filter(Boolean);
+  const evidence = parts.find(Boolean) ?? "not reported";
+  return evidence.length > 420 ? `${evidence.slice(0, 417)}...` : evidence;
+}
+
+function buildActionableAuditIssueMetadata(row, collectionName = "unknown") {
+  const issueType = getRowIssueType(row);
+  if (!issueType) {
+    return {};
+  }
+
+  const actionableIssueClass = getActionableIssueClass(row);
+  const suspectedLayer = getSuspectedLayerForActionableIssue(row);
+  const recommendation = getRecommendedFixForLayer(suspectedLayer, row);
+  const planContext = getPlanContextForAuditRow(row);
+  const metadata = {
+    blockingGate: SOURCE_BACKED_COVERAGE_GATE_LABEL,
+    auditCollection: collectionName,
+    issueTypeNormalized: issueType,
+    actionableIssueClass,
+    suspectedLayer,
+    recommendedFixPath: recommendation.recommendedFixPath,
+    recommendedNonManualFix: recommendation.recommendedNonManualFix,
+    planContext,
+    auditSourceUrl: getAuditRowSourceUrl(row),
+    auditSourceRole: getAuditRowSourceRole(row),
+    parsedSourceEvidence: getParsedSourceEvidence(row),
+    generatedRowId: getGeneratedRowId(row),
+    runtimeVisibilityStatus: getRuntimeVisibilityStatus(row),
+  };
+  const actionableText = [
+    "[actionable source-backed gate]",
+    `Class: ${actionableIssueClass}`,
+    `Layer: ${suspectedLayer}`,
+    `Generated row id: ${metadata.generatedRowId ?? "none"}`,
+    `Runtime visibility: ${metadata.runtimeVisibilityStatus}`,
+    `Recommended non-manual fix: ${metadata.recommendedFixPath}`,
+  ].join(" ");
+
+  if (
+    row.copyOnlyDebugText &&
+    !String(row.copyOnlyDebugText).includes("[actionable source-backed gate]")
+  ) {
+    metadata.copyOnlyDebugText = `${row.copyOnlyDebugText} ${actionableText}`;
+  }
+
+  return metadata;
+}
+
+const SOURCE_BACKED_AUDIT_ROW_COLLECTIONS = [
+  "requirementCoverageRows",
+  "sourceScopeAuditRows",
+  "generatedSourceSeedAuditRows",
+  "generatedShapeAuditRows",
+  "requirementShapeAuditRows",
+  "electiveApprovedListShapeAuditRows",
+  "creditCategoryShapeAuditRows",
+  "categoryMappingAuditRows",
+  "programApprovedFilterAuditRows",
+  "sequencePathwayShapeAuditRows",
+  "singleEquivalencyAuditRows",
+  "runtimeOptionResolutionAuditRows",
+  "runtimeCompoundSequenceAuditRows",
+  "requiredCoverageSequenceSuppressionAuditRows",
+  "runtimeCompoundSchedulingAuditRows",
+  "parserOptionExtractionAuditRows",
+  "parserCreditBucketAuditRows",
+  "parserCategoryOptionAuditRows",
+  "parserPrerequisiteFilterAuditRows",
+  "parserSequenceChoiceAuditRows",
+  "parserExtractionRegressionRows",
+  "sourceScopeRegressionRows",
+];
+
+function enrichAuditRowsInPlace(rows, collectionName) {
+  for (const row of rows ?? []) {
+    if (!hasAuditIssue(row)) {
+      continue;
+    }
+    Object.assign(row, buildActionableAuditIssueMetadata(row, collectionName));
+  }
+}
+
+function collectActionableIssueRows(report) {
+  return SOURCE_BACKED_AUDIT_ROW_COLLECTIONS.flatMap((collectionName) =>
+    (report[collectionName] ?? []).filter(hasAuditIssue)
+  );
+}
+
+function countBy(values) {
+  const counts = {};
+  for (const value of values.filter(Boolean)) {
+    counts[value] = (counts[value] ?? 0) + 1;
+  }
+  return Object.fromEntries(
+    Object.entries(counts).sort(([left], [right]) => left.localeCompare(right))
+  );
+}
+
+function enrichSourceBackedCoverageReport(report) {
+  for (const collectionName of SOURCE_BACKED_AUDIT_ROW_COLLECTIONS) {
+    enrichAuditRowsInPlace(report[collectionName] ?? [], collectionName);
+  }
+  const actionableIssueRows = collectActionableIssueRows(report);
+  report.summary = {
+    ...report.summary,
+    blockingGate: SOURCE_BACKED_COVERAGE_GATE_LABEL,
+    blockingGateDescription: SOURCE_BACKED_COVERAGE_GATE_DESCRIPTION,
+    blockingGateIssueCount: actionableIssueRows.length,
+    highRiskAuditCategories: HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES,
+    issueCountsBySuspectedLayer: countBy(
+      actionableIssueRows.map((row) => row.suspectedLayer ?? "audit expectation")
+    ),
+    issueCountsByActionableClass: countBy(
+      actionableIssueRows.map((row) => row.actionableIssueClass ?? getRowIssueType(row))
+    ),
+  };
+  return report;
 }
 
 function getCourseLevel(courseCode) {
@@ -7958,6 +8485,7 @@ function writeReports(report) {
   fs.writeFileSync(OUTPUT_JSON_PATH, `${JSON.stringify(report, null, 2)}\n`);
 
   const failedChecks = report.regressionChecks.filter((check) => check.status === "failed");
+  const actionableIssueRows = collectActionableIssueRows(report);
   const issueRows = report.requirementCoverageRows.filter((row) => row.issueType);
   const sourceScopeIssueRows = (report.sourceScopeAuditRows ?? []).filter(
     (row) => row.issue && row.issue !== "none"
@@ -8025,6 +8553,8 @@ function writeReports(report) {
     `Generated: ${report.generatedAt}`,
     "",
     `- Outcome: ${report.outcome}`,
+    `- Blocking gate: ${report.summary.blockingGate ?? SOURCE_BACKED_COVERAGE_GATE_LABEL}`,
+    `- Blocking gate issues: ${report.summary.blockingGateIssueCount ?? actionableIssueRows.length}`,
     `- UW owners audited: ${report.summary.ownerCount}`,
     `- Requirement coverage rows: ${report.summary.requirementCoverageRowCount}`,
     `- Source scope audit rows: ${report.summary.sourceScopeAuditRowCount ?? 0}`,
@@ -8134,6 +8664,63 @@ function writeReports(report) {
     ...Object.entries(report.summary.issueCountsByType).map(([issueType, count]) => `- ${issueType}: ${count}`),
     "",
   ];
+
+  if (report.summary.highRiskAuditCategories) {
+    lines.push("## Blocking Gate Scope", "");
+    for (const category of report.summary.highRiskAuditCategories) {
+      lines.push(`- ${category}`);
+    }
+    lines.push("");
+  }
+
+  if (report.summary.issueCountsBySuspectedLayer) {
+    lines.push("## Issues By Suspected Layer", "");
+    lines.push(
+      ...Object.entries(report.summary.issueCountsBySuspectedLayer).map(
+        ([layer, count]) => `- ${layer}: ${count}`
+      )
+    );
+    lines.push("");
+  }
+
+  if (report.summary.issueCountsByActionableClass) {
+    lines.push("## Issues By Actionable Class", "");
+    lines.push(
+      ...Object.entries(report.summary.issueCountsByActionableClass).map(
+        ([issueClass, count]) => `- ${issueClass}: ${count}`
+      )
+    );
+    lines.push("");
+  }
+
+  if (actionableIssueRows.length) {
+    lines.push("## Blocking Gate Issue Triage", "");
+    lines.push(
+      "| Layer | Class | Owner | Major | Source role | Source URL | Evidence | Generated row | Runtime visibility | Recommended fix |"
+    );
+    lines.push("| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |");
+    for (const row of actionableIssueRows.slice(0, 80)) {
+      lines.push(
+        `| ${escapeMarkdown(row.suspectedLayer ?? "audit expectation")} | ${escapeMarkdown(
+          row.actionableIssueClass ?? row.issueTypeNormalized ?? getRowIssueType(row) ?? "unknown"
+        )} | ${escapeMarkdown(row.planContext?.ownerId ?? row.ownerId ?? "unknown")} | ${escapeMarkdown(
+          row.planContext?.majorTitle ?? row.majorTitle ?? row.planId ?? row.majorId ?? "unknown"
+        )} | ${escapeMarkdown(row.auditSourceRole ?? "none")} | ${escapeMarkdown(
+          row.auditSourceUrl ?? "none"
+        )} | ${escapeMarkdown(row.parsedSourceEvidence ?? "not reported")} | ${escapeMarkdown(
+          row.generatedRowId ?? "none"
+        )} | ${escapeMarkdown(row.runtimeVisibilityStatus ?? "not reported")} | ${escapeMarkdown(
+          row.recommendedFixPath ?? "source/scripts/planner/audit-transfer-planner-source-backed-coverage.cjs"
+        )} |`
+      );
+    }
+    if (actionableIssueRows.length > 80) {
+      lines.push(
+        `| ... | ... | ... | ... | ... | ... | ... | ... | ... | ${actionableIssueRows.length - 80} additional blocking gate issues omitted from markdown sample. |`
+      );
+    }
+    lines.push("");
+  }
 
   if (report.summary.sourceScopeIssueCountsByType) {
     lines.push("## Source Scope Issue Counts", "");
@@ -8996,7 +9583,7 @@ function main() {
     parserSequenceChoiceIssueRows.length +
     parserExtractionRegressionIssueRows.length +
     failedRegressionChecks.length;
-  const report = {
+  const report = enrichSourceBackedCoverageReport({
     generatedAt: new Date().toISOString(),
     outcome: failedSourceScopeChecks ? "failed" : "passed",
     summary: {
@@ -9076,11 +9663,16 @@ function main() {
     sourceRoleCoverageRows,
     sourceScopeRegressionRows,
     regressionChecks,
-  };
+  });
 
   writeReports(report);
 
   console.log(`Source-backed coverage audit outcome: ${report.outcome}`);
+  console.log(`Blocking gate: ${report.summary.blockingGate}`);
+  console.log(`Blocking gate issues: ${report.summary.blockingGateIssueCount}`);
+  console.log(
+    `Issues by suspected layer: ${JSON.stringify(report.summary.issueCountsBySuspectedLayer)}`
+  );
   console.log(`UW owners audited: ${report.summary.ownerCount}`);
   console.log(`Requirement coverage rows: ${report.summary.requirementCoverageRowCount}`);
   console.log(`Source scope audit rows: ${report.summary.sourceScopeAuditRowCount}`);
@@ -9259,4 +9851,25 @@ function main() {
   }
 }
 
-main();
+if (require.main === module) {
+  main();
+}
+
+module.exports = {
+  SOURCE_BACKED_COVERAGE_GATE_LABEL,
+  HIGH_RISK_SOURCE_BACKED_AUDIT_CATEGORIES,
+  buildActionableSourceBackedCoverageIssueForTest(row, collectionName = "test") {
+    return {
+      ...row,
+      ...buildActionableAuditIssueMetadata(row, collectionName),
+    };
+  },
+  classifySourceBackedCoverageIssueForTest(row) {
+    return {
+      issueType: getRowIssueType(row),
+      actionableIssueClass: getActionableIssueClass(row),
+      suspectedLayer: getSuspectedLayerForActionableIssue(row),
+      ...getRecommendedFixForLayer(getSuspectedLayerForActionableIssue(row), row),
+    };
+  },
+};

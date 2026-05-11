@@ -755,7 +755,29 @@ function extractTextRuns(xml) {
   }
 
   if (runs.length) return runs.join("");
-  return unescapeXmlPlainText(text.replace(/<[^>]*>/g, ""));
+  return unescapeXmlPlainText(stripXmlTagsToText(text));
+}
+
+function stripXmlTagsToText(value) {
+  const text = String(value ?? "");
+  let result = "";
+  let inTag = false;
+
+  for (const char of text) {
+    if (char === "<") {
+      inTag = true;
+      continue;
+    }
+    if (char === ">") {
+      inTag = false;
+      continue;
+    }
+    if (!inTag) {
+      result += char;
+    }
+  }
+
+  return result;
 }
 
 function columnName(columnIndex) {

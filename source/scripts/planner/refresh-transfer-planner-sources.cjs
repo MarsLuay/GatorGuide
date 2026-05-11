@@ -150,7 +150,7 @@ const REFRESH_SECTION_DEFINITIONS = [
         include: (options) => !options.skipVerify || options.verifyOnly,
       },
       {
-        label: "Audit source-backed source scope",
+        label: "Audit source-backed runtime coverage (blocking)",
         include: (options) => !options.skipVerify || options.verifyOnly,
       },
       {
@@ -438,7 +438,7 @@ function runVerification(runStepFn = runStep, options = {}) {
   runStepFn("Run parser extraction and source-discovery tests", () =>
     runCommand(NPM_BIN, ["run", "planner:test:parser"])
   );
-  runStepFn("Audit source-backed source scope", () => {
+  runStepFn("Audit source-backed runtime coverage (blocking)", () => {
     try {
       runCommand("node", [
         "scripts/planner/audit-transfer-planner-source-backed-coverage.cjs",

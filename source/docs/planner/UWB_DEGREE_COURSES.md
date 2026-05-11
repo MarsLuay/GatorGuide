@@ -394,8 +394,8 @@ Source-generated from parsed UW requirement-source registries.
 - (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 - (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
 - (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
-- * A minimum grade of 2.7 in either course is required.
-- **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
+- \* A minimum grade of 2.7 in either course is required.
+- \*\*Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 - *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
 - *If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses):
 - 10 credits – Complete 2 courses from this list:
@@ -407,8 +407,8 @@ Source-generated from parsed UW requirement-source registries.
 - (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 - (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
 - (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
-- * A minimum grade of 2.7 in either course is required.
-- **Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
+- \* A minimum grade of 2.7 in either course is required.
+- \*\*Accounting Option students who add a Finance Concentration cannot count the following courses as Accounting Option electives:
 - *Accounting Option students who add a Finance Concentration cannot use the following courses as part of their Finance Concentration (i.e., no double-counting of courses):
 - *If you are an Accounting Option student with a Finance Concentration, you cannot use the following courses as part of your Finance Concentration (i.e., no double-counting of courses):
 - 10 credits – Complete 2 courses from this list:
@@ -795,7 +795,7 @@ Source-generated from parsed UW requirement-source registries.
 - (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 - (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
 - (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
-- * A minimum grade of 2.7 in either course is required.
+- \* A minimum grade of 2.7 in either course is required.
 - 10 credits
 - 10 credits – 2 courses from the list below:
 - 10 credits – Complete 2 courses from this list:
@@ -808,7 +808,7 @@ Source-generated from parsed UW requirement-source registries.
 - (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
 - (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
 - (CSS 142\* and corequisite CSSSKL 142; or CSE 142\*; or a minimum score of 4 on the AP Computer Science A exam)
-- * A minimum grade of 2.7 in either course is required.
+- \* A minimum grade of 2.7 in either course is required.
 - 10 credits
 - 10 credits – 2 courses from the list below:
 - 10 credits – Complete 2 courses from this list:
@@ -2137,8 +2137,8 @@ Source-generated from parsed UW requirement-source registries.
 ##### Electrical Engineering (BS) parsed official source requirements
 
 - College Level English Composition and Writing (15-20 credits)
-- * Admission prerequisite courses . Please visit our admissions page for more information.
-- * B WRIT 134 Composition (5) (or both B WRIT 132 (5) and 133 (5) or ENGL 131 Composition: Exposition (5))
+- \* Admission prerequisite courses . Please visit our admissions page for more information.
+- \* B WRIT 134 Composition (5) (or both B WRIT 132 (5) and 133 (5) or ENGL 131 Composition: Exposition (5))
 - B WRIT 135 Research Writing (5) or ENGL 141 The Research Paper (5)
 - CSS 301 Technical Writing for Computing Professionals (5)
 - Must complete a minimum of 180 credits, including admission prerequisites, with a minimum 2.0 cumulative GPA.
@@ -2149,8 +2149,8 @@ Source-generated from parsed UW requirement-source registries.
 ##### Electrical Engineering (BS) parsed official requirement cues
 
 - College Level English Composition and Writing (15-20 credits)
-- * Admission prerequisite courses . Please visit our admissions page for more information.
-- * B WRIT 134 Composition (5) (or both B WRIT 132 (5) and 133 (5) or ENGL 131 Composition: Exposition (5))
+- \* Admission prerequisite courses . Please visit our admissions page for more information.
+- \* B WRIT 134 Composition (5) (or both B WRIT 132 (5) and 133 (5) or ENGL 131 Composition: Exposition (5))
 - B WRIT 135 Research Writing (5) or ENGL 141 The Research Paper (5)
 - CSS 301 Technical Writing for Computing Professionals (5)
 - Must complete a minimum of 180 credits, including admission prerequisites, with a minimum 2.0 cumulative GPA.
@@ -2730,9 +2730,9 @@ Source-generated from parsed UW requirement-source registries.
 - STMATH / BEDUC 466: Fostering Geometric Reasoning
 - STMATH / BEDUC 467: Fostering Data, Graphical and Statistical Understanding
 - STMATH 493: Special Topics in Mathematics
-- * STMATH 498: Independent Study
-- * STMATH 499: Undergraduate Research
-- * STMATH 498/499 are variable-credit courses (1-5 credits). Up to 5 credits combined of STMATH 498/499 can count towards mathematics electives. The credits may be graded (4.0-scale) or ungraded (CR/NC; Credit / No-Credit). For information on registering for STMATH 498/499, contact your academic adviser .
+- \* STMATH 498: Independent Study
+- \* STMATH 499: Undergraduate Research
+- \* STMATH 498/499 are variable-credit courses (1-5 credits). Up to 5 credits combined of STMATH 498/499 can count towards mathematics electives. The credits may be graded (4.0-scale) or ungraded (CR/NC; Credit / No-Credit). For information on registering for STMATH 498/499, contact your academic adviser .
 - Mathematics-related courses that are not listed above are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count. For information on submitting a petition, contact your academic adviser .
 
 ##### Mathematics (BS) parsed official requirement cues
@@ -2740,9 +2740,9 @@ Source-generated from parsed UW requirement-source registries.
 - STMATH / BEDUC 466: Fostering Geometric Reasoning
 - STMATH / BEDUC 467: Fostering Data, Graphical and Statistical Understanding
 - STMATH 493: Special Topics in Mathematics
-- * STMATH 498: Independent Study
-- * STMATH 499: Undergraduate Research
-- * STMATH 498/499 are variable-credit courses (1-5 credits). Up to 5 credits combined of STMATH 498/499 can count towards mathematics electives. The credits may be graded (4.0-scale) or ungraded (CR/NC; Credit / No-Credit). For information on registering for STMATH 498/499, contact your academic adviser .
+- \* STMATH 498: Independent Study
+- \* STMATH 499: Undergraduate Research
+- \* STMATH 498/499 are variable-credit courses (1-5 credits). Up to 5 credits combined of STMATH 498/499 can count towards mathematics electives. The credits may be graded (4.0-scale) or ungraded (CR/NC; Credit / No-Credit). For information on registering for STMATH 498/499, contact your academic adviser .
 - Mathematics-related courses that are not listed above are considered on a case-by-case basis. If you have a syllabus, letter from the instructor, or other detailed description for the class you want to use as an elective, you can submit a petition to request for the course to count. For information on submitting a petition, contact your academic adviser .
 
 #### GRC Equivalent Courses

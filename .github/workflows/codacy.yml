@@ -38,21 +38,37 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Execute Codacy Analysis CLI and generate a SARIF output with the security issues identified during the analysis
-      - name: Run Codacy Analysis CLI
+      # Execute only the Codacy tools that publish useful GitHub code-scanning findings for this repo.
+      - name: Run Codacy Remark analysis
         uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
         with:
           # Check https://github.com/codacy/codacy-analysis-cli#project-token to get your project token from your Codacy repository
           # You can also omit the token and run the tools that support default configurations
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          tool: remark-lint
           verbose: true
-          output: results.sarif
+          output: results-remark-lint.sarif
           format: sarif
           # Adjust severity of non-security issues
           gh-code-scanning-compat: true
           # Force 0 exit code to allow SARIF file generation
           # This will handover control about PR rejection to the GitHub side
           max-allowed-issues: 2147483647
+
+      - name: Run Codacy Stylelint analysis
+        uses: codacy/codacy-analysis-cli-action@d840f886c4bd4edc059706d09c6a1586111c540b
+        with:
+          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+          tool: stylelint
+          verbose: true
+          output: results-stylelint.sarif
+          format: sarif
+          gh-code-scanning-compat: true
+          max-allowed-issues: 2147483647
+
+      - name: Merge SARIF results
+        run: |
+          jq -s '.[0] * { runs: (.[0].runs + .[1].runs) }' results-remark-lint.sarif results-stylelint.sarif > results.sarif
 
       # Upload the SARIF file generated in the previous step
       - name: Upload SARIF results file

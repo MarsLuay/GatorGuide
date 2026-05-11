@@ -2184,7 +2184,7 @@ test("Planner verify step plan includes parser, source-discovery, and source-sco
   assert.ok(
     stepPlan.labels.includes("Run parser extraction and source-discovery tests")
   );
-  assert.ok(stepPlan.labels.includes("Audit source-backed source scope"));
+  assert.ok(stepPlan.labels.includes("Audit source-backed runtime coverage (blocking)"));
   assert.ok(stepPlan.labels.includes("Audit generated source registry"));
   assert.ok(stepPlan.labels.includes("Audit UW-GRC mapping regressions"));
 });

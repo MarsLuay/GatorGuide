@@ -894,8 +894,8 @@ Source-generated from parsed UW requirement-source registries.
 - § A maximum of 5 credits of lower-division coursework (200-level) may be counted in the “LIST B” section of the Asian Studies-Japan Concentration.
 - §ASIAN 202
 - §ASIAN 205
-- * A maximum of 5 credits of lower-division coursework (200-level) may be allowed in the 30 credits of Korea/East Asia coursework in the Concentration.
-- ** A maximum of 5 credits at the lower division level may be counted toward the 35 credits comprising the Asian Option and the Thematic/Cross-Regional requirement.
+- \* A maximum of 5 credits of lower-division coursework (200-level) may be allowed in the 30 credits of Korea/East Asia coursework in the Concentration.
+- \*\* A maximum of 5 credits at the lower division level may be counted toward the 35 credits comprising the Asian Option and the Thematic/Cross-Regional requirement.
 - *A maximum of 5 credits of lower-division coursework (200-level) may be counted in the 30 credits constituting the distribution and specialization requirements
 - *ART H 212
 - *HSTAS 212
@@ -907,8 +907,8 @@ Source-generated from parsed UW requirement-source registries.
 - § A maximum of 5 credits of lower-division coursework (200-level) may be counted in the “LIST B” section of the Asian Studies-Japan Concentration.
 - §ASIAN 202
 - §ASIAN 205
-- * A maximum of 5 credits of lower-division coursework (200-level) may be allowed in the 30 credits of Korea/East Asia coursework in the Concentration.
-- ** A maximum of 5 credits at the lower division level may be counted toward the 35 credits comprising the Asian Option and the Thematic/Cross-Regional requirement.
+- \* A maximum of 5 credits of lower-division coursework (200-level) may be allowed in the 30 credits of Korea/East Asia coursework in the Concentration.
+- \*\* A maximum of 5 credits at the lower division level may be counted toward the 35 credits comprising the Asian Option and the Thematic/Cross-Regional requirement.
 - *A maximum of 5 credits of lower-division coursework (200-level) may be counted in the 30 credits constituting the distribution and specialization requirements
 - *ART H 212
 - *HSTAS 212
@@ -967,7 +967,7 @@ Source-generated from parsed UW requirement-source registries.
 - Capstone Option
 - In addition to the formal degree requirements, it is strongly recommended that every student gain a knowledge of computer programming . Introduction to Programming for Astronomical Applications (ASTR 300) is highly recommended to be taken prior to astronomy 400 level courses and UNIX knowledge is required for ASTR 480.
 - As a capstone sequence of hands-on research and dissemination of results, the following is highly recommended: ASTR 480, followed by either ASTR 481 or ASTR 499 or an REU project, and ending with ASTR 482. Furthermore, ASTR 480 &amp; ASTR 499 are highly recommended if you are planning to apply to graduate school.
-- Astronomy graduate admissions are always highly competitive, and often those students with the strongest backgrounds in physics, math, and research experience have the best chances of admission, other considerations being equal. Hence a strong preparation in physics is extremely important for students who plan to enter a graduate program. Most of our students major in physics as well as astronomy, especially since the additional requirements are modest. Also, it is highly beneficial for gaining admission to graduate school to have completed several credits of independent research (ASTR 499) with a faculty member. Approval from the faculty is required. Use the ASTR 499 Form to obtain Faculty approval and submit this form to <astroadvising@uw.edu> . Once the form is submitted you will be given an add code.
+- Astronomy graduate admissions are always highly competitive, and often those students with the strongest backgrounds in physics, math, and research experience have the best chances of admission, other considerations being equal. Hence a strong preparation in physics is extremely important for students who plan to enter a graduate program. Most of our students major in physics as well as astronomy, especially since the additional requirements are modest. Also, it is highly beneficial for gaining admission to graduate school to have completed several credits of independent research (ASTR 499) with a faculty member. Approval from the faculty is required. Use the ASTR 499 Form to obtain Faculty approval and submit this form to <astroadvising@uw.edu>. Once the form is submitted you will be given an add code.
 
 ##### Astronomy parsed official requirement cues
 
@@ -979,7 +979,7 @@ Source-generated from parsed UW requirement-source registries.
 - Capstone Option
 - In addition to the formal degree requirements, it is strongly recommended that every student gain a knowledge of computer programming . Introduction to Programming for Astronomical Applications (ASTR 300) is highly recommended to be taken prior to astronomy 400 level courses and UNIX knowledge is required for ASTR 480.
 - As a capstone sequence of hands-on research and dissemination of results, the following is highly recommended: ASTR 480, followed by either ASTR 481 or ASTR 499 or an REU project, and ending with ASTR 482. Furthermore, ASTR 480 &amp; ASTR 499 are highly recommended if you are planning to apply to graduate school.
-- Astronomy graduate admissions are always highly competitive, and often those students with the strongest backgrounds in physics, math, and research experience have the best chances of admission, other considerations being equal. Hence a strong preparation in physics is extremely important for students who plan to enter a graduate program. Most of our students major in physics as well as astronomy, especially since the additional requirements are modest. Also, it is highly beneficial for gaining admission to graduate school to have completed several credits of independent research (ASTR 499) with a faculty member. Approval from the faculty is required. Use the ASTR 499 Form to obtain Faculty approval and submit this form to <astroadvising@uw.edu> . Once the form is submitted you will be given an add code.
+- Astronomy graduate admissions are always highly competitive, and often those students with the strongest backgrounds in physics, math, and research experience have the best chances of admission, other considerations being equal. Hence a strong preparation in physics is extremely important for students who plan to enter a graduate program. Most of our students major in physics as well as astronomy, especially since the additional requirements are modest. Also, it is highly beneficial for gaining admission to graduate school to have completed several credits of independent research (ASTR 499) with a faculty member. Approval from the faculty is required. Use the ASTR 499 Form to obtain Faculty approval and submit this form to <astroadvising@uw.edu>. Once the form is submitted you will be given an add code.
 
 ##### Astronomy parsed choices and pathway notes
 
@@ -3092,9 +3092,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Early Childhood &amp; Family Studies parsed official source requirements
 
-- * route.menu_active_trails:thinstrip-menu
-- * route.menu_active_trails:main
-- * route.name.is_layout_builder_ui
+- \* route.menu_active_trails:thinstrip-menu
+- \* route.menu_active_trails:main
+- \* route.name.is_layout_builder_ui
 - Admission requirements and process
 - You can start the ECFS program in autumn quarter or winter quarter. For autumn quarter admission, apply March 1 - April 15. For winter quarter admission, apply September 1 - October 15. We recommend starting your application process as early as possible due to the different steps and requirements.
 - Requirements
@@ -3105,9 +3105,9 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Early Childhood &amp; Family Studies parsed official requirement cues
 
-- * route.menu_active_trails:thinstrip-menu
-- * route.menu_active_trails:main
-- * route.name.is_layout_builder_ui
+- \* route.menu_active_trails:thinstrip-menu
+- \* route.menu_active_trails:main
+- \* route.name.is_layout_builder_ui
 - Admission requirements and process
 - You can start the ECFS program in autumn quarter or winter quarter. For autumn quarter admission, apply March 1 - April 15. For winter quarter admission, apply September 1 - October 15. We recommend starting your application process as early as possible due to the different steps and requirements.
 - Requirements
@@ -3121,9 +3121,9 @@ Source-generated from parsed UW requirement-source registries.
 - If you are interested in the ECFS major, be sure to select the major on your UW Admissions application. We require ECFS 200 to be completed for a student to be fully-admitted to the major. Transfer students who select the ECFS major on their UW Admissions application will have a seat in ECFS 200 held for them.
 - One of the following (5)
 - One of the following (3-5)
-- * route.menu_active_trails:main
-- * route.menu_active_trails:thinstrip-menu
-- * route.name.is_layout_builder_ui
+- \* route.menu_active_trails:main
+- \* route.menu_active_trails:thinstrip-menu
+- \* route.name.is_layout_builder_ui
 
 #### GRC Equivalent Courses
 
@@ -4461,7 +4461,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - Registration/Credit Policies
 - Diversity, Equity &amp; Inclusion
-- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu> .
+- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu>.
 - French Major Requirements
 - 50 credits total
 - FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303 (20 credits)
@@ -4474,7 +4474,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - Registration/Credit Policies
 - Diversity, Equity &amp; Inclusion
-- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu> .
+- To obtain a Bachelor of Arts with a major in French Studies, 50 approved credits above French 203 are required. For questions on the French major please contact the Humanities Academic Services Center at <has-center@uw.edu>.
 - French Major Requirements
 - 50 credits total
 - FRENCH 203, FRENCH 301, FRENCH 302, FRENCH 303 (20 credits)
@@ -5203,7 +5203,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Human Centered Design &amp; Engineering parsed official source requirements
 
-- * Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
+- \* Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
 - *Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
 - *For students admitted to the university prior to Autumn 2023, the DIV requirement is 3 credits.
 - *If not applied towards core course requirements.
@@ -5216,7 +5216,7 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Human Centered Design &amp; Engineering parsed official requirement cues
 
-- * Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
+- \* Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
 - *Additional credit may not be earned for a course that overlaps in content with a previously completed course. See course catalog descriptions for specific credit allowances for overlapping courses.
 - *For students admitted to the university prior to Autumn 2023, the DIV requirement is 3 credits.
 - *If not applied towards core course requirements.
@@ -7692,7 +7692,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Norwegian parsed official source requirements
 
 - Diversity and Equity
-- First Year Norwegian 1 (NORW 101) is available only in the fall quarter. Because the core of the Norwegian major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Norwegian, schedule a placement test by emailing <uwscand@uw.edu> .
+- First Year Norwegian 1 (NORW 101) is available only in the fall quarter. Because the core of the Norwegian major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Norwegian, schedule a placement test by emailing <uwscand@uw.edu>.
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
 - Major Requirements
 - 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
@@ -7705,7 +7705,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Norwegian parsed official requirement cues
 
 - Diversity and Equity
-- First Year Norwegian 1 (NORW 101) is available only in the fall quarter. Because the core of the Norwegian major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Norwegian, schedule a placement test by emailing <uwscand@uw.edu> .
+- First Year Norwegian 1 (NORW 101) is available only in the fall quarter. Because the core of the Norwegian major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Norwegian, schedule a placement test by emailing <uwscand@uw.edu>.
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
 - Major Requirements
 - 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
@@ -8103,7 +8103,7 @@ Source-generated from parsed UW requirement-source registries.
 - 3 to 5 credits from any
 - 6 credits from:
 - Advanced Laboratory (6-8 credits),
-- After you complete your MyPlan and the exit survey, make arrangements to talk with an advisor in Physics Student Services . We can meet over zoom or in-person during a scheduled appointment or drop-in hours. We can also complete these steps over email ( <physadvs@uw.edu> ) as long as you are responsive.
+- After you complete your MyPlan and the exit survey, make arrangements to talk with an advisor in Physics Student Services . We can meet over zoom or in-person during a scheduled appointment or drop-in hours. We can also complete these steps over email (<physadvs@uw.edu>) as long as you are responsive.
 - AMath 301 *
 - AMath 401
 - Applied physics track
@@ -8116,7 +8116,7 @@ Source-generated from parsed UW requirement-source registries.
 - 3 to 5 credits from any
 - 6 credits from:
 - Advanced Laboratory (6-8 credits),
-- After you complete your MyPlan and the exit survey, make arrangements to talk with an advisor in Physics Student Services . We can meet over zoom or in-person during a scheduled appointment or drop-in hours. We can also complete these steps over email ( <physadvs@uw.edu> ) as long as you are responsive.
+- After you complete your MyPlan and the exit survey, make arrangements to talk with an advisor in Physics Student Services . We can meet over zoom or in-person during a scheduled appointment or drop-in hours. We can also complete these steps over email (<physadvs@uw.edu>) as long as you are responsive.
 - AMath 301 *
 - AMath 401
 - Applied physics track
@@ -9320,7 +9320,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Swedish parsed official source requirements
 
 - Diversity and Equity
-- First Year Swedish 1 (SWED 101) is available only in the fall quarter. Because the core of the Swedish major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Swedish, schedule a placement test by emailing <uwscand@uw.edu> .
+- First Year Swedish 1 (SWED 101) is available only in the fall quarter. Because the core of the Swedish major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Swedish, schedule a placement test by emailing <uwscand@uw.edu>.
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
 - Major Requirements
 - 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).
@@ -9333,7 +9333,7 @@ Source-generated from parsed UW requirement-source registries.
 ##### Swedish parsed official requirement cues
 
 - Diversity and Equity
-- First Year Swedish 1 (SWED 101) is available only in the fall quarter. Because the core of the Swedish major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Swedish, schedule a placement test by emailing <uwscand@uw.edu> .
+- First Year Swedish 1 (SWED 101) is available only in the fall quarter. Because the core of the Swedish major is building advanced linguistic skills over the course of three years, students should sign up for this class as early as possible. If you have previous experience studying Swedish, schedule a placement test by emailing <uwscand@uw.edu>.
 - Each of our majors has an option to pursue departmental honors . Students who are interested should meet with the undergraduate adviser to learn more about the requirements.
 - Major Requirements
 - 60 credits of which 25 are on the 300 level or above (As of Autumn, 2022).

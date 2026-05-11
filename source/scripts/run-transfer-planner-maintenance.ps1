@@ -43,6 +43,9 @@ $parserRecoveryReportPath = Join-Path $tmpDir "transfer-planner-parser-recovery-
 $sourceChangeClassificationReportPath = Join-Path $tmpDir "transfer-planner-source-change-classification.json"
 $requirementDiffReportPath = Join-Path $tmpDir "transfer-planner-requirement-diff-promotion-report.json"
 $ownerAuditReportPath = Join-Path $tmpDir "transfer-planner-owner-audit.json"
+$sourceBackedCoverageAuditReportPath = Join-Path $tmpDir "transfer-planner-source-backed-coverage-audit.json"
+$generatedRegistryAuditReportPath = Join-Path $tmpDir "transfer-planner-generated-registry-audit.json"
+$mappingAuditReportPath = Join-Path $tmpDir "transfer-planner-mapping-audit.json"
 $hardeningReportPath = Join-Path $tmpDir "transfer-planner-hardening-report.json"
 $sourceYearCoverageReportPath = Join-Path $tmpDir "transfer-planner-source-year-coverage.json"
 $deadlineRefreshReportPath = Join-Path $tmpDir "deadline-refresh-report.json"
@@ -1660,6 +1663,36 @@ function Write-Summary {
     }
   }
 
+  function Get-ReportValue {
+    param(
+      $Object,
+      [string]$Name,
+      $Default = $null
+    )
+
+    if ($null -eq $Object) {
+      return $Default
+    }
+
+    $property = $Object.PSObject.Properties[$Name]
+    if ($null -eq $property) {
+      return $Default
+    }
+
+    return $property.Value
+  }
+
+  function Get-ReportSummaryValue {
+    param(
+      $Report,
+      [string]$Name,
+      $Default = $null
+    )
+
+    $summary = Get-ReportValue -Object $Report -Name "summary" -Default $null
+    return Get-ReportValue -Object $summary -Name $Name -Default $Default
+  }
+
   function Get-ChangedMajorRequirementOwnerSummary {
     $fingerprintsPath = Join-Path $tmpDir "transfer-planner-source-fingerprints.json"
     $data = Read-JsonReport -Path $fingerprintsPath
@@ -1717,6 +1750,9 @@ function Write-Summary {
   $sourceChangeClassificationReport = Read-JsonReport -Path $sourceChangeClassificationReportPath
   $requirementDiffReport = Read-JsonReport -Path $requirementDiffReportPath
   $ownerAuditReport = Read-JsonReport -Path $ownerAuditReportPath
+  $sourceBackedCoverageAuditReport = Read-JsonReport -Path $sourceBackedCoverageAuditReportPath
+  $generatedRegistryAuditReport = Read-JsonReport -Path $generatedRegistryAuditReportPath
+  $mappingAuditReport = Read-JsonReport -Path $mappingAuditReportPath
   $hardeningReport = Read-JsonReport -Path $hardeningReportPath
   $sourceYearCoverageReport = Read-JsonReport -Path $sourceYearCoverageReportPath
   $deadlineRefreshReport = Read-JsonReport -Path $deadlineRefreshReportPath
@@ -1730,6 +1766,18 @@ function Write-Summary {
   )
 
   $requiredActions = [System.Collections.Generic.List[string]]::new()
+
+  if ($sourceBackedCoverageAuditReport -and ((Get-ReportValue -Object $sourceBackedCoverageAuditReport -Name "outcome" -Default "missing") -ne "passed")) {
+    Add-RequiredAction -List $requiredActions -Message "Clear the source-backed runtime coverage blocking gate: fix discovery/parser/generator/runtime/mapping automation until source-backed coverage issues are 0."
+  }
+
+  if ($generatedRegistryAuditReport -and ((Get-ReportValue -Object $generatedRegistryAuditReport -Name "outcome" -Default "missing") -ne "passed")) {
+    Add-RequiredAction -List $requiredActions -Message "Clear generated-registry audit failures after source-backed coverage is clean; repair generator/source metadata rules rather than generated data."
+  }
+
+  if ($mappingAuditReport -and ((Get-ReportValue -Object $mappingAuditReport -Name "outcome" -Default "missing") -ne "passed")) {
+    Add-RequiredAction -List $requiredActions -Message "Clear UW-GRC mapping audit failures by fixing official equivalency parsing or mapping normalization."
+  }
 
   if ($sourceGapReport -and $sourceGapReport.totalSourceGapOwners -gt 0) {
     Add-RequiredAction -List $requiredActions -Message "Resolve source gaps: add stronger official source discovery/parser support until hidden source-gap owners reaches 0."
@@ -1838,6 +1886,37 @@ function Write-Summary {
     ""
   )
 
+  if ($sourceBackedCoverageAuditReport) {
+    $summaryLines += "- Source-backed runtime coverage gate outcome: $((Get-ReportValue -Object $sourceBackedCoverageAuditReport -Name "outcome" -Default "unknown"))"
+    $summaryLines += "- Source-backed runtime coverage blocking issues: $((Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "blockingGateIssueCount" -Default "unknown"))"
+    $summaryLines += "- Source-backed owners audited: $((Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "ownerCount" -Default "unknown"))"
+    $sourceBackedLayerCounts = Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "issueCountsBySuspectedLayer" -Default $null
+    if ($sourceBackedLayerCounts) {
+      $summaryLines += "- Source-backed suspected layers: $($sourceBackedLayerCounts | ConvertTo-Json -Compress)"
+    }
+    $sourceBackedClassCounts = Get-ReportSummaryValue -Report $sourceBackedCoverageAuditReport -Name "issueCountsByActionableClass" -Default $null
+    if ($sourceBackedClassCounts) {
+      $summaryLines += "- Source-backed actionable classes: $($sourceBackedClassCounts | ConvertTo-Json -Compress)"
+    }
+  } else {
+    $summaryLines += "- Source-backed runtime coverage gate: unavailable (blocking audit report missing)."
+  }
+
+  if ($generatedRegistryAuditReport) {
+    $summaryLines += "- Generated-registry audit outcome: $((Get-ReportValue -Object $generatedRegistryAuditReport -Name "outcome" -Default "unknown"))"
+    $summaryLines += "- Generated-registry issues: $((Get-ReportSummaryValue -Report $generatedRegistryAuditReport -Name "generatedRegistryIssueCount" -Default "unknown"))"
+    $summaryLines += "- Generated-registry requirement shape issues: $((Get-ReportSummaryValue -Report $generatedRegistryAuditReport -Name "requirementShapeIssueCount" -Default "unknown"))"
+  } else {
+    $summaryLines += "- Generated-registry audit: unavailable (audit report missing)."
+  }
+
+  if ($mappingAuditReport) {
+    $summaryLines += "- UW-GRC mapping audit outcome: $((Get-ReportValue -Object $mappingAuditReport -Name "outcome" -Default "unknown"))"
+    $summaryLines += "- UW-GRC mapping issues: $((Get-ReportSummaryValue -Report $mappingAuditReport -Name "mappingRegressionIssueCount" -Default "unknown"))"
+  } else {
+    $summaryLines += "- UW-GRC mapping audit: unavailable (mapping audit report missing)."
+  }
+
   if ($sourceGapReport) {
     $summaryLines += "- Hidden source-gap owners: $($sourceGapReport.totalSourceGapOwners)"
   } else {
@@ -1936,6 +2015,9 @@ function Write-Summary {
     "- Planner parser auto-recovery report: $(Join-Path $tmpDir 'transfer-planner-parser-recovery-report.md')",
     "- Planner source-change classification report: $(Join-Path $tmpDir 'transfer-planner-source-change-classification.md')",
     "- Planner diff classification report: $(Join-Path $tmpDir 'transfer-planner-requirement-diff-promotion-report.md')",
+    "- Planner source-backed coverage audit: $(Join-Path $tmpDir 'transfer-planner-source-backed-coverage-audit.md')",
+    "- Planner generated-registry audit: $(Join-Path $tmpDir 'transfer-planner-generated-registry-audit.md')",
+    "- Planner UW-GRC mapping audit: $(Join-Path $tmpDir 'transfer-planner-mapping-audit.md')",
     "- Planner hardening report: $(Join-Path $tmpDir 'transfer-planner-hardening-report.md')",
     "- Planner source year coverage report: $(Join-Path $tmpDir 'transfer-planner-source-year-coverage.md')",
     "- Deadline refresh report: $(Join-Path $tmpDir 'deadline-refresh-report.md')",
