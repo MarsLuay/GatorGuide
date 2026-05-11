@@ -19,12 +19,22 @@ type PressAnimationConfig = {
   pressOutBounciness: number;
 };
 
+export const TOUCH_TARGET_MIN_SIZE = 48;
+export const COMPACT_CONTROL_HIT_SLOP = 8;
+
 type BaseAnimatedPressableProps = Omit<PressableProps, "style" | "children"> & {
   children: React.ReactNode;
   className?: string;
   containerClassName?: string;
   style?: StyleProp<ViewStyle>;
   containerStyle?: StyleProp<ViewStyle>;
+  enforceTouchTarget?: boolean;
+};
+
+type InternalBaseAnimatedPressableProps = BaseAnimatedPressableProps & {
+  animation: PressAnimationConfig;
+  touchTargetStyle?: ViewStyle;
+  defaultHitSlop?: PressableProps["hitSlop"];
 };
 
 export function usePressAnimation({
@@ -81,6 +91,32 @@ export function usePressAnimation({
   };
 }
 
+function getTouchTargetEnforcementStyle(
+  style: StyleProp<ViewStyle>,
+  touchTargetStyle: ViewStyle | undefined
+): ViewStyle | null {
+  if (!touchTargetStyle) return null;
+
+  const flattenedStyle = StyleSheet.flatten(style);
+  const enforcedStyle: ViewStyle = {};
+
+  if (
+    typeof touchTargetStyle.minWidth === "number" &&
+    (typeof flattenedStyle?.minWidth !== "number" || flattenedStyle.minWidth < touchTargetStyle.minWidth)
+  ) {
+    enforcedStyle.minWidth = touchTargetStyle.minWidth;
+  }
+
+  if (
+    typeof touchTargetStyle.minHeight === "number" &&
+    (typeof flattenedStyle?.minHeight !== "number" || flattenedStyle.minHeight < touchTargetStyle.minHeight)
+  ) {
+    enforcedStyle.minHeight = touchTargetStyle.minHeight;
+  }
+
+  return Object.keys(enforcedStyle).length ? enforcedStyle : null;
+}
+
 function BaseAnimatedPressable({
   children,
   animation,
@@ -88,12 +124,19 @@ function BaseAnimatedPressable({
   containerClassName,
   style,
   containerStyle,
+  touchTargetStyle,
+  defaultHitSlop,
+  enforceTouchTarget = true,
   disabled,
+  hitSlop,
   onPressIn,
   onPressOut,
   ...rest
-}: BaseAnimatedPressableProps & { animation: PressAnimationConfig }) {
+}: InternalBaseAnimatedPressableProps) {
   const { animatedStyle, handlePressInAnimation, handlePressOutAnimation } = usePressAnimation(animation);
+  const touchTargetEnforcementStyle = enforceTouchTarget
+    ? getTouchTargetEnforcementStyle(style, touchTargetStyle)
+    : null;
 
   const handlePressIn: PressableProps["onPressIn"] = useCallback(
     (event: GestureResponderEvent) => {
@@ -111,15 +154,17 @@ function BaseAnimatedPressable({
     [handlePressOutAnimation, onPressOut]
   );
 
+  // touch-audit-ignore: low-level animated primitive wraps RN Pressable and enforces shared touch targets.
   return (
     <Animated.View className={containerClassName} style={[animatedStyle, disabled ? styles.disabled : null, containerStyle]}>
       <Pressable
         {...rest}
         className={className}
         disabled={disabled}
+        hitSlop={hitSlop ?? defaultHitSlop}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        style={style}
+        style={[enforceTouchTarget ? touchTargetStyle : null, style, touchTargetEnforcementStyle]}
       >
         {children}
       </Pressable>
@@ -133,6 +178,7 @@ export function AnimatedCardPressable(props: SharedAnimatedPressableProps) {
   return (
     <BaseAnimatedPressable
       {...props}
+      touchTargetStyle={styles.touchTarget}
       animation={{
         pressedScale: 0.988,
         pressedOpacity: 0.98,
@@ -150,7 +196,8 @@ export function AnimatedIconPressable(props: SharedAnimatedPressableProps) {
   return (
     <BaseAnimatedPressable
       {...props}
-      hitSlop={props.hitSlop ?? 8}
+      touchTargetStyle={styles.iconTouchTarget}
+      defaultHitSlop={COMPACT_CONTROL_HIT_SLOP}
       animation={{
         pressedScale: 0.94,
         pressedOpacity: 0.78,
@@ -167,6 +214,7 @@ export function AnimatedChipPressable(props: SharedAnimatedPressableProps) {
   return (
     <BaseAnimatedPressable
       {...props}
+      touchTargetStyle={styles.touchTarget}
       animation={{
         pressedScale: 0.975,
         pressedOpacity: 0.92,
@@ -183,5 +231,15 @@ export function AnimatedChipPressable(props: SharedAnimatedPressableProps) {
 const styles = StyleSheet.create({
   disabled: {
     opacity: 0.55,
+  },
+  touchTarget: {
+    minWidth: TOUCH_TARGET_MIN_SIZE,
+    minHeight: TOUCH_TARGET_MIN_SIZE,
+  },
+  iconTouchTarget: {
+    minWidth: TOUCH_TARGET_MIN_SIZE,
+    minHeight: TOUCH_TARGET_MIN_SIZE,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

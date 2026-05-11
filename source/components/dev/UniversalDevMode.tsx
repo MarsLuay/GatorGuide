@@ -1094,6 +1094,7 @@ export function UniversalDevMode() {
         onRequestClose={() => setVisible(false)}
       >
         <View style={{ flex: 1, backgroundColor: "rgba(0,0,0,0.4)" }}>
+          {/* touch-audit-ignore: dev-only modal backdrop fills the screen and only dismisses the overlay. */}
           <Pressable
             style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0 }}
             onPress={() => setVisible(false)}
@@ -1128,6 +1129,7 @@ export function UniversalDevMode() {
                     {routeInfo.label} • {pathname}
                   </Text>
                 </View>
+                {/* touch-audit-ignore: dev-only overlay close control is hidden from production UI. */}
                 <Pressable onPress={() => setVisible(false)} style={{ padding: 4 }}>
                   <Ionicons name="close" size={22} color={secondaryTextColor} />
                 </Pressable>
@@ -1161,6 +1163,7 @@ export function UniversalDevMode() {
               </View>
 
               <View style={{ flexDirection: "row", flexWrap: "wrap", gap: 8, marginBottom: 10 }}>
+                {/* touch-audit-ignore: dev-only utility action is hidden from production UI. */}
                 <Pressable
                   onPress={() => void copyLog()}
                   style={{
@@ -1172,6 +1175,7 @@ export function UniversalDevMode() {
                 >
                   <Text style={{ color: actionTextColor, fontWeight: "700" }}>Copy Log</Text>
                 </Pressable>
+                {/* touch-audit-ignore: dev-only utility action is hidden from production UI. */}
                 <Pressable
                   onPress={() => void saveLog()}
                   style={{
@@ -1185,6 +1189,7 @@ export function UniversalDevMode() {
                 >
                   <Text style={{ color: textColor, fontWeight: "700" }}>Save Log</Text>
                 </Pressable>
+                {/* touch-audit-ignore: dev-only utility action is hidden from production UI. */}
                 <Pressable
                   onPress={() => void refreshSnapshot()}
                   style={{

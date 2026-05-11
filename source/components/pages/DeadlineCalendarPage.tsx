@@ -922,6 +922,7 @@ export default function DeadlineCalendarPage() {
 
                     return (
                       <View key={cell.key} style={wrapperStyle}>
+                        {/* touch-audit-ignore: calendar grid cell is a deliberately dense full-cell target sized by layout.dayCellMinHeight. */}
                         <Pressable
                           onPress={() => {
                             if (!hasItems) return;

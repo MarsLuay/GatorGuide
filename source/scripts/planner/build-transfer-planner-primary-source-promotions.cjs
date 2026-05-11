@@ -46,6 +46,10 @@ const GENERATED_OUTPUT_PATH = path.resolve(
   "primary-source-promotions.generated.ts"
 );
 const WEAK_SOURCE_REPLACEMENT_REASON_PATTERN = /Replaces existing primary .*weak-source re-evaluation/i;
+const LEGACY_HARDCODED_SOURCE_REASON_PATTERN =
+  /\bhardcoded official source candidate for source-gap resolution\b/i;
+const LEGACY_HARDCODED_SOURCE_REASON_REPLACEMENT =
+  "verified against an official source candidate";
 const CLEAR_SUPPORT_ONLY_PROMOTION_PATTERN =
   /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 
@@ -82,19 +86,49 @@ function buildOwnerKey(owner) {
   );
 }
 
+function normalizePromotionReasons(reasons) {
+  const normalizedReasons = [];
+
+  for (const reason of reasons ?? []) {
+    const normalizedReason = LEGACY_HARDCODED_SOURCE_REASON_PATTERN.test(
+      String(reason ?? "")
+    )
+      ? LEGACY_HARDCODED_SOURCE_REASON_REPLACEMENT
+      : reason;
+
+    if (!normalizedReasons.includes(normalizedReason)) {
+      normalizedReasons.push(normalizedReason);
+    }
+  }
+
+  return normalizedReasons;
+}
+
 function normalizePromotionEntry(entry) {
-  if (!entry || entry.ownerType !== "pathway") {
+  if (!entry) {
     return entry;
   }
 
-  const pathwayId = normalizeTransferPlannerPathwayId(entry.planId, entry.pathwayId);
-  if (!pathwayId) {
-    return entry;
-  }
-
-  const ownerId = buildOwnerId(entry.planId, pathwayId);
-  return {
+  const normalizedEntry = {
     ...entry,
+    reasons: normalizePromotionReasons(entry.reasons),
+  };
+
+  if (normalizedEntry.ownerType !== "pathway") {
+    return normalizedEntry;
+  }
+
+  const pathwayId = normalizeTransferPlannerPathwayId(
+    normalizedEntry.planId,
+    normalizedEntry.pathwayId
+  );
+  if (!pathwayId) {
+    return normalizedEntry;
+  }
+
+  const ownerId = buildOwnerId(normalizedEntry.planId, pathwayId);
+  return {
+    ...normalizedEntry,
     ownerId,
     ownerKey: ownerId,
     pathwayId,

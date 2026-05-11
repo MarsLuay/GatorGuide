@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { View, Text, ScrollView, useWindowDimensions, Linking, Image, Pressable, type DimensionValue } from "react-native";
+import { View, Text, ScrollView, useWindowDimensions, Linking, Image, type DimensionValue } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -14,6 +14,7 @@ import {
   AnimatedCardPressable,
   AnimatedChipPressable,
 } from "@/components/ui/AnimatedPressables";
+import { TouchIconButton } from "@/components/ui/TouchPrimitives";
 import {
   deadlineCalendarService,
   type DeadlineCalendarEntry,
@@ -496,7 +497,7 @@ export default function HomePage() {
     const isChecked = entry.isDone;
 
     return (
-      <Pressable
+      <TouchIconButton
         onPress={(event) => {
           event.stopPropagation();
           void handleToggleDeadlineEntry(entry);
@@ -505,7 +506,7 @@ export default function HomePage() {
         accessibilityRole="checkbox"
         accessibilityState={{ checked: isChecked, disabled: isPending }}
         accessibilityLabel={`${isChecked ? "Mark deadline unfinished" : "Mark deadline done"}: ${entry.title}`}
-        className={`w-11 h-11 rounded-xl border items-center justify-center ${
+        className={`w-12 h-12 rounded-xl border items-center justify-center ${
           isChecked
             ? "bg-emerald-500 border-emerald-500"
             : "bg-emerald-500/10 border-emerald-500/30"
@@ -517,7 +518,7 @@ export default function HomePage() {
           size={22}
           color={isChecked ? "#FFFFFF" : "#008f4e"}
         />
-      </Pressable>
+      </TouchIconButton>
     );
   };
 

@@ -3,15 +3,15 @@ import { useRouter } from "expo-router";
 import React, { useMemo, useState } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 
-import {
-  AnimatedCardPressable,
-  AnimatedChipPressable,
-  AnimatedIconPressable,
-} from "@/components/ui/AnimatedPressables";
+import { AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
 import {
   SearchableSelect,
   type SelectorOverlayStrategy,
 } from "@/components/ui/SearchableSelect";
+import {
+  TouchIconButton,
+  TouchOptionRow,
+} from "@/components/ui/TouchPrimitives";
 import { ROUTES } from "@/constants/routes";
 import {
   type TransferPlannerMajorPathway,
@@ -320,12 +320,14 @@ function PlannerTrackOverviewCard({
 
       <View className={`mt-4 border ${borderClass} rounded-2xl px-4 py-4`}>
         {trackOfficialLinkUrl ? (
-          <AnimatedIconPressable
+          <TouchIconButton
             onPress={() => void openExternalLink(trackOfficialLinkUrl)}
+            accessibilityRole="link"
+            accessibilityLabel={`Open ${headingText}`}
             className="self-start"
           >
             <Text className="text-emerald-500 underline font-semibold">{headingText}</Text>
-          </AnimatedIconPressable>
+          </TouchIconButton>
         ) : (
           <Text className={`${textClass} font-semibold`}>{headingText}</Text>
         )}
@@ -401,10 +403,10 @@ function GrcDegreeSpecificsSection({
 
   return (
     <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-      <AnimatedCardPressable
+      <TouchOptionRow
         onPress={() => setIsReferenceOpen((currentValue) => !currentValue)}
-        accessibilityRole="button"
-        accessibilityState={{ expanded: isReferenceOpen }}
+        expanded={isReferenceOpen}
+        accessibilityLabel={grcSpecificsTitle}
       >
         <View className="flex-row items-start justify-between gap-3">
           <View className="flex-1 min-w-0">
@@ -419,15 +421,15 @@ function GrcDegreeSpecificsSection({
             color="#9CA3AF"
           />
         </View>
-      </AnimatedCardPressable>
+      </TouchOptionRow>
 
       {isReferenceOpen ? (
         <View className="mt-5 gap-4">
           <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-            <AnimatedCardPressable
+            <TouchOptionRow
               onPress={() => setIsGrcClassesOpen((currentValue) => !currentValue)}
-              accessibilityRole="button"
-              accessibilityState={{ expanded: isGrcClassesOpen }}
+              expanded={isGrcClassesOpen}
+              accessibilityLabel={`GRC ${grcTrackTitle} ${grcClassesLabelSuffix}`}
             >
               <View className="flex-row items-start justify-between gap-3">
                 <View className="flex-1 min-w-0">
@@ -444,7 +446,7 @@ function GrcDegreeSpecificsSection({
                   color="#9CA3AF"
                 />
               </View>
-            </AnimatedCardPressable>
+            </TouchOptionRow>
 
             {isGrcClassesOpen ? (
               <View className="mt-4 gap-4">
@@ -768,20 +770,30 @@ export function TranscriptSummaryCard({
       </View>
 
       <View className="mt-3 flex-row items-center gap-2">
-        <AnimatedIconPressable onPress={onUpload} className="self-start">
+        <TouchIconButton
+          onPress={onUpload}
+          accessibilityLabel="Update transcript"
+          className="self-start"
+        >
           <Text className="text-emerald-500 text-sm font-medium">Update Transcript</Text>
-        </AnimatedIconPressable>
+        </TouchIconButton>
         <Text className={`${secondaryTextClass} text-sm text-emerald-500`}>|</Text>
-        <AnimatedIconPressable
+        <TouchIconButton
           onPress={onRemoveTranscript}
+          accessibilityLabel="Remove transcript"
           className="self-start"
         >
           <Text className="text-emerald-500 text-sm font-medium">Remove Transcript</Text>
-        </AnimatedIconPressable>
+        </TouchIconButton>
         <Text className={`${secondaryTextClass} text-sm text-emerald-500`}>|</Text>
-        <AnimatedIconPressable onPress={onOpenTranscriptLink} className="self-start">
+        <TouchIconButton
+          onPress={onOpenTranscriptLink}
+          accessibilityRole="link"
+          accessibilityLabel="Open transcript link"
+          className="self-start"
+        >
           <Text className="text-emerald-500 text-sm font-medium">Transcript Link</Text>
-        </AnimatedIconPressable>
+        </TouchIconButton>
       </View>
 
       {isAnalyzing ? (
@@ -797,13 +809,15 @@ export function TranscriptSummaryCard({
         <View className="mt-4 px-4 py-4 rounded-2xl bg-amber-500/10 border border-amber-500/20">
           <Text className="text-amber-500 font-semibold">Transcript needs another try</Text>
           <Text className={`${secondaryTextClass} text-sm mt-1`}>{errorMessage}</Text>
-          <AnimatedIconPressable
+          <TouchIconButton
             onPress={() => void openExternalLink(CTCLINK_UNOFFICIAL_TRANSCRIPT_URL)}
+            accessibilityRole="link"
+            accessibilityLabel="Open unofficial transcript in ctcLink"
             className="self-start"
             containerStyle={{ marginTop: 12 }}
           >
             <Text className="text-emerald-500 font-medium">Open unofficial transcript in ctcLink</Text>
-          </AnimatedIconPressable>
+          </TouchIconButton>
         </View>
       ) : null}
 
@@ -1038,10 +1052,10 @@ function TranscriptEvaluationReportCard({
 
   return (
     <View className={containerClass}>
-      <AnimatedCardPressable
+      <TouchOptionRow
         onPress={() => setIsEvaluationOpen((currentValue) => !currentValue)}
-        accessibilityRole="button"
-        accessibilityState={{ expanded: isEvaluationOpen }}
+        expanded={isEvaluationOpen}
+        accessibilityLabel="Transcript evaluation"
       >
         <View className="flex-row items-start justify-between gap-3">
           <View className="flex-1 min-w-0">
@@ -1063,7 +1077,7 @@ function TranscriptEvaluationReportCard({
             />
           </View>
         </View>
-      </AnimatedCardPressable>
+      </TouchOptionRow>
 
       {isEvaluationOpen ? (
         <>

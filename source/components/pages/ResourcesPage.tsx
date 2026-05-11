@@ -3,7 +3,6 @@ import {
   Alert,
   Linking,
   Platform,
-  Pressable,
   ScrollView,
   Text,
   TextInput,
@@ -27,6 +26,7 @@ import {
 } from "@/constants/transfer-equivalency-tags";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AnimatedCardPressable, AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
+import { TouchIconButton } from "@/components/ui/TouchPrimitives";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppLanguage } from "@/hooks/use-app-language";
 import { useAppData } from "@/hooks/use-app-data";
@@ -743,16 +743,19 @@ export default function ResourcesPage() {
             </Text>
           </AnimatedChipPressable>
         ) : null}
-        <Pressable
+        <TouchChip
           onPress={() => {
             void setOpportunityDone(item.opportunityId, !item.isDone);
           }}
+          accessibilityRole="checkbox"
+          accessibilityState={{ checked: item.isDone }}
+          accessibilityLabel={`${item.isDone ? t("resources.actionUndo") : t("resources.actionMarkDone")}: ${item.title}`}
           className={`px-4 py-2.5 rounded-xl border ${item.isDone ? `${inactiveButtonClass} ${borderClass}` : "bg-emerald-500 border-emerald-500"}`}
         >
           <Text className={`text-sm font-medium ${item.isDone ? textClass : "text-white"}`}>
             {item.isDone ? t("resources.actionUndo") : t("resources.actionMarkDone")}
           </Text>
-        </Pressable>
+        </TouchChip>
       </View>
     </View>
   );
@@ -968,13 +971,14 @@ export default function ResourcesPage() {
               <View className="flex-1" />
             )}
 
-            <Pressable
+            <TouchIconButton
               onPress={() => {
                 void setOpportunityDone(item.opportunityId, !item.isDone);
               }}
+              accessibilityLabel={`${item.isDone ? t("resources.actionUndo") : t("resources.actionMarkDone")}: ${item.title}`}
               accessibilityRole="checkbox"
               accessibilityState={{ checked: item.isDone }}
-              className={`w-11 h-11 rounded-xl border items-center justify-center ${
+              className={`w-12 h-12 rounded-xl border items-center justify-center ${
                 item.isDone
                   ? "bg-emerald-500 border-emerald-500"
                   : "bg-emerald-500/10 border-emerald-500/30"
@@ -985,7 +989,7 @@ export default function ResourcesPage() {
                 size={22}
                 color={item.isDone ? "#FFFFFF" : "#008f4e"}
               />
-            </Pressable>
+            </TouchIconButton>
           </View>
         </View>
       </View>

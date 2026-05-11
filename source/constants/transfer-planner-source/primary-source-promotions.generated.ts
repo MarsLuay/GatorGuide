@@ -52,7 +52,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-11T03:17:57.441Z"
+    "generatedAt": "2026-05-11T21:52:55.519Z"
   },
   {
     "ownerType": "major",
@@ -212,7 +212,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-11T03:17:57.441Z"
+    "generatedAt": "2026-05-11T21:52:55.519Z"
   },
   {
     "ownerType": "major",
@@ -1230,7 +1230,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://ischool.uw.edu/academics/informatics/curriculum after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-11T03:17:57.441Z"
+    "generatedAt": "2026-05-11T21:52:55.519Z"
   },
   {
     "ownerType": "major",
@@ -1327,7 +1327,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://marinebiology.uw.edu/wp-content/uploads/sites/31/2025/11/2025.10.21-Marbiol-Major-Sheet-.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-11T03:17:57.441Z"
+    "generatedAt": "2026-05-11T21:52:55.519Z"
   },
   {
     "ownerType": "major",
@@ -1459,7 +1459,7 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
       "verified against an official source candidate",
       "Replaces existing primary https://microbiology.washington.edu/sites/default/files/2025-10/Microbiology_Degree_UPDATED%20SPR%202025.pdf after weak-source re-evaluation."
     ],
-    "generatedAt": "2026-05-11T03:17:57.441Z"
+    "generatedAt": "2026-05-11T21:52:55.519Z"
   },
   {
     "ownerType": "major",
@@ -1649,30 +1649,6 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
   },
   {
     "ownerType": "major",
-    "ownerId": "uw-seattle-slavic-languages-and-literatures",
-    "ownerKey": "uw-seattle-slavic-languages-and-literatures",
-    "planId": "uw-seattle-slavic-languages-and-literatures",
-    "pathwayId": null,
-    "ownerTitle": "Slavic Languages & Literatures",
-    "campusId": "uw-seattle",
-    "url": "https://slavic.washington.edu/undergraduate-policies",
-    "label": "UW Slavic Languages & Literatures undergraduate policies",
-    "score": 52,
-    "confidence": "high",
-    "reasons": [
-      "already stored as an official source",
-      "matches major keyword \"literatures\"",
-      "matches major keyword \"slavic\"",
-      "matches multiple major keywords",
-      "official source text matches the selected major",
-      "page title fetched successfully",
-      "stays on an official UW domain",
-      "verified against an official source candidate"
-    ],
-    "generatedAt": "2026-04-16T19:30:35.305Z"
-  },
-  {
-    "ownerType": "major",
     "ownerId": "uw-seattle-south-asian-languages-and-cultures",
     "ownerKey": "uw-seattle-south-asian-languages-and-cultures",
     "planId": "uw-seattle-south-asian-languages-and-cultures",
@@ -1819,11 +1795,42 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
     "confidence": "high",
     "reasons": [
       "explicit major-requirements wording",
-      "hardcoded official source candidate for source-gap resolution",
+      "verified against an official source candidate",
       "matches major keyword \"communications\"",
       "stays on an official UW domain"
     ],
     "generatedAt": "2026-04-16T19:30:35.305Z"
+  },
+  {
+    "ownerType": "pathway",
+    "ownerId": "uw-tacoma-communications:pathway:professional-track",
+    "ownerKey": "uw-tacoma-communications:pathway:professional-track",
+    "planId": "uw-tacoma-communications",
+    "pathwayId": "professional-track",
+    "ownerTitle": "Communications (BA) - Professional Track",
+    "campusId": "uw-tacoma",
+    "url": "https://www.tacoma.uw.edu/sias/cac/professional-track",
+    "label": "PROFESSIONAL TRACK",
+    "score": 144,
+    "confidence": "high",
+    "reasons": [
+      "discovered from an official source page",
+      "explicit degree-requirements wording",
+      "explicitly names the selected pathway or route",
+      "matches major keyword \"communications\"",
+      "matches major keyword \"professional\"",
+      "matches multiple major keywords",
+      "matches the selected degree route",
+      "official source path matches the selected pathway",
+      "page title fetched successfully",
+      "primary degree requirements source role",
+      "specific bachelor route wording",
+      "stays on an official UW domain",
+      "stays on the current official department host",
+      "stays on the same department or school page",
+      "Replaces existing primary https://www.tacoma.uw.edu/sias/cac/communication after weak-source re-evaluation."
+    ],
+    "generatedAt": "2026-05-11T21:52:55.519Z"
   },
   {
     "ownerType": "major",

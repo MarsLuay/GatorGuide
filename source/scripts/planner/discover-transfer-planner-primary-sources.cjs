@@ -1552,6 +1552,37 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
 
       const parsedBlock = pickParsedRequirementSourceBlock(owner.planId, owner.pathwayId);
       if (!parsedBlock) {
+        if (
+          !owner.pathwayId ||
+          primarySourceMatchesPathwayIdentity(owner, existingPrimary, null)
+        ) {
+          continue;
+        }
+
+        targets.push(
+          buildOwnerTargetRecord({
+            analysisMode: "weak-existing-primary",
+            ownerType: owner.ownerType,
+            ownerKey: owner.ownerKey,
+            planId: owner.planId,
+            pathwayId: owner.pathwayId,
+            campusId: plan.campusId,
+            title: owner.title,
+            label: owner.label,
+            officialLinks: owner.officialLinks,
+            existingPrimary,
+            reevaluationSignals: [
+              {
+                code: "primary-source-misses-selected-pathway",
+                reason:
+                  "Current pathway primary source does not name the selected pathway, so discovery should compare it against sibling official pathway or track pages.",
+              },
+            ],
+            reevaluationContext: null,
+            parsedBlock: null,
+            pathwayCount: visiblePathways.length,
+          })
+        );
         continue;
       }
 

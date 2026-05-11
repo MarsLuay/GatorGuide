@@ -1,9 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
-import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
+import { TouchIconButton, TouchOptionRow } from "@/components/ui/TouchPrimitives";
 import { ROUTES } from "@/constants/routes";
 import {
   type TransferPlannerCampusId,
@@ -199,10 +199,9 @@ function SuggestedScheduleOptionsBox({
               isLight ? `bg-slate-50 ${borderClass}` : "bg-white/5 border-white/10"
             }`}
           >
-            <Pressable
+            <TouchOptionRow
               onPress={() => toggleOptionGroup(optionGroup.id)}
-              accessibilityRole="button"
-              accessibilityState={{ expanded: isOptionGroupOpen }}
+              expanded={isOptionGroupOpen}
               accessibilityLabel={`${isOptionGroupOpen ? "Close" : "Open"} options for ${
                 optionGroupDisplayTitle
               }`}
@@ -211,7 +210,6 @@ function SuggestedScheduleOptionsBox({
                   ? "bg-white border-emerald-500/30"
                   : "bg-emerald-500/10 border-emerald-500/20"
               }`}
-              hitSlop={8}
             >
               <View className="flex-1 min-w-0">
                 <Text selectable className={`${textClass} text-sm font-bold`}>
@@ -236,7 +234,7 @@ function SuggestedScheduleOptionsBox({
                   color="#059669"
                 />
               </View>
-            </Pressable>
+            </TouchOptionRow>
 
             <Text
               selectable
@@ -299,7 +297,7 @@ function SuggestedScheduleOptionsBox({
                     );
 
                   return (
-                    <Pressable
+                    <TouchOptionRow
                       key={option.id}
                       onPress={() =>
                         onSelectRequirementOption(
@@ -310,7 +308,8 @@ function SuggestedScheduleOptionsBox({
                         )
                       }
                       accessibilityRole={interactionSelectionCount === 1 ? "radio" : "checkbox"}
-                      accessibilityState={{ checked: isSelected }}
+                      checked={isSelected}
+                      accessibilityLabel={optionDisplayLabel}
                       className={`rounded-xl border px-3 py-2 flex-row items-start gap-2 ${
                         isSelected
                           ? "border-emerald-500/30 bg-emerald-500/10"
@@ -379,10 +378,10 @@ function SuggestedScheduleOptionsBox({
                           className={`${secondaryTextClass} text-xs font-medium`}
                           style={{ fontVariant: ["tabular-nums"] }}
                         >
-                          {formatSuggestedScheduleCreditRange(optionCreditRange)}
-                        </Text>
-                      ) : null}
-                    </Pressable>
+                        {formatSuggestedScheduleCreditRange(optionCreditRange)}
+                      </Text>
+                    ) : null}
+                    </TouchOptionRow>
                   );
                 })}
               </View>
@@ -732,14 +731,13 @@ export function SuggestedScheduleCard({
         {showOnlyUwEssentialClassesToggle || collegeId === "grc" ? (
           <View className="gap-2">
             {showOnlyUwEssentialClassesToggle ? (
-              <Pressable
+              <TouchOptionRow
                 onPress={onToggleOnlyUwEssentialClasses}
                 accessibilityRole="checkbox"
-                accessibilityState={{ checked: onlyUwEssentialClasses }}
+                checked={onlyUwEssentialClasses}
                 accessibilityLabel="Only show classes that transfer into UW on this track"
                 accessibilityHint="Hides nonessential Green River track classes while keeping prerequisite classes, official UW transfer admission guidance when applicable, and Gen-Eds that still unlock UW-required work."
                 className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
-                hitSlop={8}
               >
                 <Text className={`${secondaryTextClass} text-xs font-medium`}>
                   Classes for UW transfer only
@@ -749,16 +747,15 @@ export function SuggestedScheduleCard({
                   size={20}
                   color={onlyUwEssentialClasses ? "#008f4e" : "#9CA3AF"}
                 />
-              </Pressable>
+              </TouchOptionRow>
             ) : null}
-            <Pressable
+            <TouchOptionRow
               onPress={onToggleAllowStemPrepClasses}
               accessibilityRole="checkbox"
-              accessibilityState={{ checked: allowStemPrepClasses }}
+              checked={allowStemPrepClasses}
               accessibilityLabel="Allow STEM prep classes in quarter planning"
               accessibilityHint="Includes placement-dependent prep classes such as Precalculus I/II and general physics before Calculus I or Engineering Physics I."
               className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
-              hitSlop={8}
             >
               <Text className={`${secondaryTextClass} text-xs font-medium`}>
                 Allow STEM prep classes
@@ -768,15 +765,14 @@ export function SuggestedScheduleCard({
                 size={20}
                 color={allowStemPrepClasses ? "#008f4e" : "#9CA3AF"}
               />
-            </Pressable>
-            <Pressable
+            </TouchOptionRow>
+            <TouchOptionRow
               onPress={onToggleAllowSummerClasses}
               accessibilityRole="checkbox"
-              accessibilityState={{ checked: allowSummerClasses }}
+              checked={allowSummerClasses}
               accessibilityLabel="Allow summer classes in quarter planning"
               accessibilityHint="Includes summer quarter when building your future course plan."
               className={`border ${borderClass} rounded-xl px-3 py-2 flex-row items-center justify-center gap-2`}
-              hitSlop={8}
             >
               <Text className={`${secondaryTextClass} text-xs font-medium`}>
                 Allow summer classes
@@ -786,7 +782,7 @@ export function SuggestedScheduleCard({
                 size={20}
                 color={allowSummerClasses ? "#008f4e" : "#9CA3AF"}
               />
-            </Pressable>
+            </TouchOptionRow>
           </View>
         ) : null}
       </View>
@@ -840,15 +836,17 @@ export function SuggestedScheduleCard({
             {uwTransferMinimumRequirementSummary}
           </Text>
         ) : null}
-        <AnimatedIconPressable
+        <TouchIconButton
           onPress={() => void openExternalLink("https://greenriver.navigate.eab.com/")}
+          accessibilityRole="link"
+          accessibilityLabel="Schedule a meeting with a GRC advisor"
           className="mt-3 flex-row items-center gap-2"
         >
           <Ionicons name="calendar-outline" size={16} color="#059669" />
           <Text className="text-sm font-semibold text-emerald-600 underline">
             Schedule a meeting with a GRC advisor
           </Text>
-        </AnimatedIconPressable>
+        </TouchIconButton>
       </View>
 
       <View className="gap-4 mt-4">
@@ -906,161 +904,168 @@ export function SuggestedScheduleCard({
                     String(course.sourceKind ?? "").startsWith("official-grc")
                       ? "Required for this Green River program."
                       : null;
-
-                  return (
-                    <View
-                      key={`${quarter.label}-${courseSelectionKey || course.label}-${courseIndex}`}
-                      className={`px-3 py-3 rounded-2xl ${
-                        course.status === "completed"
+                  const courseCardKey = `${quarter.label}-${courseSelectionKey || course.label}-${courseIndex}`;
+                  const courseCardClassName = `px-3 py-3 rounded-2xl ${
+                    course.status === "completed"
+                      ? "bg-emerald-500/10 border border-emerald-500/20"
+                      : course.status === "current"
+                        ? "bg-sky-500/10 border border-sky-500/20"
+                        : isCoreVisual
                           ? "bg-emerald-500/10 border border-emerald-500/20"
-                          : course.status === "current"
-                            ? "bg-sky-500/10 border border-sky-500/20"
-                            : isCoreVisual
-                              ? "bg-emerald-500/10 border border-emerald-500/20"
-                              : plannedCourseContainerClass
-                      }`}
-                    >
-                      <View className="flex-row items-start justify-between gap-3">
-                        <View className="flex-row items-start flex-1 min-w-0">
-                          {course.status === "completed" ? (
-                            <Ionicons
-                              name="checkmark-circle"
-                              size={16}
-                              color="#008f4e"
-                              style={{ marginTop: 1, marginRight: 8 }}
-                            />
-                          ) : null}
-                          <View style={{ flex: 1 }}>
-                            {(() => {
-                              const courseTextClass = `text-sm font-medium ${
-                                course.status === "completed"
-                                  ? "text-emerald-500"
-                                  : course.status === "current"
-                                    ? "text-sky-400"
-                                    : isCoreVisual
-                                      ? "text-emerald-500"
-                                      : textClass
-                              }`;
-                              if (optionGroup) {
-                                const selectedOptions =
-                                  getSuggestedScheduleSelectedOptions(optionGroup);
-                                const selectedOptionLabels =
-                                  getSuggestedScheduleSelectedOptionLabels(optionGroup);
-                                const rawOptionGroupGuidanceSummary = removeGuidanceSummaryPrefixes(
-                                  course.guidanceSummary,
-                                  selectedOptions.map((option) => option.guidanceSummary)
-                                );
-                                const optionGroupGuidanceSummary =
-                                  isSuggestedScheduleGeneratedOptionSummary(
-                                    rawOptionGroupGuidanceSummary
-                                  )
-                                    ? null
-                                    : rawOptionGroupGuidanceSummary;
-
-                                return (
-                                  <View className="gap-1">
-                                    <Text className={courseTextClass}>
-                                      {optionGroup.isSelectionPrompt
-                                        ? scheduleOptionDisplayTitleById.get(optionGroup.id) ??
-                                          optionGroup.title
-                                        : courseDisplayLabel}
-                                    </Text>
-                                    <Text className={`${secondaryTextClass} text-xs`}>
-                                      {selectedOptionLabels.length
-                                        ? `Selected: ${selectedOptionLabels.join("; ")}`
-                                        : getSuggestedScheduleOptionGroupSelectionTargetText(
-                                            optionGroup
-                                          )}
-                                    </Text>
-                                    {grcProgramRequirementFlavorText ? (
-                                      <Text className={`${secondaryTextClass} text-xs`}>
-                                        {grcProgramRequirementFlavorText}
-                                      </Text>
-                                    ) : null}
-
-                                    {optionGroupGuidanceSummary ? (
-                                      <Text className={`${secondaryTextClass} text-xs`}>
-                                        {optionGroupGuidanceSummary}
-                                      </Text>
-                                    ) : null}
-                                  </View>
-                                );
-                              }
-                              const linkData = getSchedulePlaceholderRequirementLinkData(course.label);
-                              const linkCampusId =
-                                selectedCampusId ?? (collegeId === "grc" ? "uw-seattle" : null);
-
-                              if (!linkData || !linkCampusId) {
-                                return (
-                                  <Text className={courseTextClass}>
-                                    {courseDisplayLabel}
-                                  </Text>
-                                );
-                              }
-
-                              const params: Record<string, string> = {
-                                collegeId,
-                                campusId: linkCampusId,
-                              };
-                              if (linkData.tags.length) {
-                                params.tag = linkData.tags.join(",");
-                              }
-                              if (selectedMajorId) {
-                                params.majorId = selectedMajorId;
-                              }
-                              if (selectedPathwayId) {
-                                params.pathwayId = selectedPathwayId;
-                              }
+                          : plannedCourseContainerClass
+                  }`;
+                  const courseCardContent = (
+                    <View className="flex-row items-start justify-between gap-3">
+                      <View className="flex-row items-start flex-1 min-w-0">
+                        {course.status === "completed" ? (
+                          <Ionicons
+                            name="checkmark-circle"
+                            size={16}
+                            color="#008f4e"
+                            style={{ marginTop: 1, marginRight: 8 }}
+                          />
+                        ) : null}
+                        <View style={{ flex: 1 }}>
+                          {(() => {
+                            const courseTextClass = `text-sm font-medium ${
+                              course.status === "completed"
+                                ? "text-emerald-500"
+                                : course.status === "current"
+                                  ? "text-sky-400"
+                                  : isCoreVisual
+                                    ? "text-emerald-500"
+                                    : textClass
+                            }`;
+                            if (optionGroup) {
+                              const selectedOptions =
+                                getSuggestedScheduleSelectedOptions(optionGroup);
+                              const selectedOptionLabels =
+                                getSuggestedScheduleSelectedOptionLabels(optionGroup);
+                              const rawOptionGroupGuidanceSummary = removeGuidanceSummaryPrefixes(
+                                course.guidanceSummary,
+                                selectedOptions.map((option) => option.guidanceSummary)
+                              );
+                              const optionGroupGuidanceSummary =
+                                isSuggestedScheduleGeneratedOptionSummary(
+                                  rawOptionGroupGuidanceSummary
+                                )
+                                  ? null
+                                  : rawOptionGroupGuidanceSummary;
 
                               return (
-                                <Text
-                                  className={`${courseTextClass} underline`}
-                                  onPress={() =>
-                                    router.push({
-                                      pathname: ROUTES.transferEquivalencies,
-                                      params: {
-                                        ...params,
-                                        returnTo: ROUTES.transferPlanner,
-                                      },
-                                    })
-                                  }
-                                >
+                                <View className="gap-1">
+                                  <Text className={courseTextClass}>
+                                    {optionGroup.isSelectionPrompt
+                                      ? scheduleOptionDisplayTitleById.get(optionGroup.id) ??
+                                        optionGroup.title
+                                      : courseDisplayLabel}
+                                  </Text>
+                                  <Text className={`${secondaryTextClass} text-xs`}>
+                                    {selectedOptionLabels.length
+                                      ? `Selected: ${selectedOptionLabels.join("; ")}`
+                                      : getSuggestedScheduleOptionGroupSelectionTargetText(
+                                          optionGroup
+                                        )}
+                                  </Text>
+                                  {grcProgramRequirementFlavorText ? (
+                                    <Text className={`${secondaryTextClass} text-xs`}>
+                                      {grcProgramRequirementFlavorText}
+                                    </Text>
+                                  ) : null}
+
+                                  {optionGroupGuidanceSummary ? (
+                                    <Text className={`${secondaryTextClass} text-xs`}>
+                                      {optionGroupGuidanceSummary}
+                                    </Text>
+                                  ) : null}
+                                </View>
+                              );
+                            }
+                            const linkData = getSchedulePlaceholderRequirementLinkData(course.label);
+                            const linkCampusId =
+                              selectedCampusId ?? (collegeId === "grc" ? "uw-seattle" : null);
+
+                            if (!linkData || !linkCampusId) {
+                              return (
+                                <Text className={courseTextClass}>
                                   {courseDisplayLabel}
                                 </Text>
                               );
-                            })()}
-                            {!optionGroup && grcProgramRequirementFlavorText ? (
-                              <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                                {grcProgramRequirementFlavorText}
+                            }
+
+                            const params: Record<string, string> = {
+                              collegeId,
+                              campusId: linkCampusId,
+                            };
+                            if (linkData.tags.length) {
+                              params.tag = linkData.tags.join(",");
+                            }
+                            if (selectedMajorId) {
+                              params.majorId = selectedMajorId;
+                            }
+                            if (selectedPathwayId) {
+                              params.pathwayId = selectedPathwayId;
+                            }
+
+                            return (
+                              <Text
+                                className={`${courseTextClass} underline`}
+                                onPress={(event) => {
+                                  event.stopPropagation();
+                                  router.push({
+                                    pathname: ROUTES.transferEquivalencies,
+                                    params: {
+                                      ...params,
+                                      returnTo: ROUTES.transferPlanner,
+                                    },
+                                  });
+                                }}
+                              >
+                                {courseDisplayLabel}
                               </Text>
-                            ) : null}
-                            {!optionGroup && course.guidanceSummary ? (
-                              <Text className={`${secondaryTextClass} text-xs mt-1`}>
-                                {course.guidanceSummary}
-                              </Text>
-                            ) : null}
-                          </View>
+                            );
+                          })()}
+                          {!optionGroup && grcProgramRequirementFlavorText ? (
+                            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                              {grcProgramRequirementFlavorText}
+                            </Text>
+                          ) : null}
+                          {!optionGroup && course.guidanceSummary ? (
+                            <Text className={`${secondaryTextClass} text-xs mt-1`}>
+                              {course.guidanceSummary}
+                            </Text>
+                          ) : null}
                         </View>
-                        {shouldShowCurrentCourseCheckbox ? (
-                          <Pressable
-                            onPress={() => onToggleCurrentCourse(courseSelectionKey, course.label)}
-                            hitSlop={8}
-                            accessibilityRole="checkbox"
-                            accessibilityState={{ checked: isCurrentCourseSelected }}
-                            className="self-start"
-                          >
-                            <Ionicons
-                              name={
-                                isCurrentCourseSelected
-                                  ? "checkbox"
-                                  : "square-outline"
-                              }
-                              size={20}
-                              color={isCurrentCourseSelected ? "#008f4e" : "#9CA3AF"}
-                            />
-                          </Pressable>
-                        ) : null}
                       </View>
+                      {shouldShowCurrentCourseCheckbox ? (
+                        <Ionicons
+                          name={
+                            isCurrentCourseSelected
+                              ? "checkbox"
+                              : "square-outline"
+                          }
+                          size={20}
+                          color={isCurrentCourseSelected ? "#008f4e" : "#9CA3AF"}
+                          style={{ marginTop: 1 }}
+                        />
+                      ) : null}
+                    </View>
+                  );
+
+                  return shouldShowCurrentCourseCheckbox ? (
+                    <TouchOptionRow
+                      key={courseCardKey}
+                      onPress={() => onToggleCurrentCourse(courseSelectionKey, course.label)}
+                      accessibilityRole="checkbox"
+                      checked={isCurrentCourseSelected}
+                      accessibilityLabel={`Mark ${courseDisplayLabel} as a current course`}
+                      className={courseCardClassName}
+                    >
+                      {courseCardContent}
+                    </TouchOptionRow>
+                  ) : (
+                    <View key={courseCardKey} className={courseCardClassName}>
+                      {courseCardContent}
                     </View>
                   );
                 })

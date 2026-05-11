@@ -56,6 +56,8 @@
     "qa:windows:screenshots": "node .tools/windows-qa.mjs",
     "qa:windows:interactions": "node .tools/windows-interactions.mjs",
     "qa:windows:ci": "node scripts/qa/run-windows-qa.cjs",
+    "qa:mobile": "node scripts/qa/run-mobile-qa.cjs",
+    "qa:touch-targets": "node scripts/qa/audit-touch-targets.cjs",
     "assets:brand": "node scripts/assets/brand-assets.cjs",
     "assets:brand:verify": "node scripts/assets/brand-assets.cjs --check",
     "lint": "expo lint",

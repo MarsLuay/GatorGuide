@@ -55,6 +55,30 @@ function buildRecoveryEntryFixture(overrides = {}) {
   };
 }
 
+function buildParsedBlockFixture(entry, html, structuredCourseCodes = []) {
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+  const baseResult = buildRecoveryOwnerFixture({
+    ownerId: entry.ownerId,
+    ownerTitle: entry.ownerTitle,
+    planId: entry.planId,
+    pathwayId: entry.pathwayId ?? null,
+    campusId: entry.campusId,
+    primaryParserType: entry.parserType,
+    primarySourceUrl: entry.url,
+    primarySourceLabel: entry.label,
+    structuredUwCourseCodes: structuredCourseCodes,
+    supportLists: [],
+  });
+
+  return parser.buildManifestParseSuccessForTest(
+    baseResult,
+    structuredCourseCodes,
+    entry,
+    parsed,
+    "primary-source"
+  );
+}
+
 test("Parser recovery triggers on zero-course and low-confidence quality warnings", () => {
   const owner = buildRecoveryOwnerFixture();
   const signals = parser.buildParseQualitySignalsForTest(owner);
@@ -129,6 +153,139 @@ test("Parser recovery rejects sibling pages for a different pathway option", () 
 
   assert.equal(candidates.some((candidate) => /\/accounting$/.test(candidate.url)), false);
   assert.ok(candidates.some((candidate) => /finance-option\/requirements$/.test(candidate.url)));
+});
+
+test("Parser recovery treats promoted Tacoma track child pages as schedulable primary sources", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-communications:pathway:professional-track",
+    ownerTitle: "Communications (BA) - Professional Track",
+    sourceLabel: "Professional Track",
+    planId: "uw-tacoma-communications",
+    pathwayId: "professional-track",
+    campusId: "uw-tacoma",
+    role: "other",
+    parserType: "generic-html",
+    url: "https://www.tacoma.uw.edu/sias/cac/professional-track",
+    label: "Professional Track",
+  });
+  const sourceRole = parser.classifyRequirementSourceRole(entry);
+  const sourceScope = parser.buildRequirementSourceScope(sourceRole);
+
+  assert.equal(sourceRole, "primary-degree-requirements");
+  assert.equal(sourceScope.canCreateScheduleRows, true);
+});
+
+test("Parser keeps Tacoma Communications admission and track rows schedulable on primary pages", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-communications",
+    ownerTitle: "Communications (BA)",
+    sourceLabel: "Communications",
+    planId: "uw-tacoma-communications",
+    campusId: "uw-tacoma",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.tacoma.uw.edu/sias/cac/communication",
+    label: "Communication",
+  });
+  const html = `
+    <main>
+      <h2>Admission Requirements</h2>
+      <ul>
+        <li>TCOM 201 Media and Society OR</li>
+        <li>TCOM 230 Media Globalization and Citizenship</li>
+      </ul>
+      <h2>Degree Requirements</h2>
+      <p>Professional Track students complete TCOM 320 and TCOM 420.</p>
+    </main>
+  `;
+  const block = buildParsedBlockFixture(entry, html);
+  const auditRows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: entry.ownerId,
+    sourceUrl: entry.url,
+    sourceRole: block.sourceRole,
+    snapshotLines: parser.buildHtmlLines(html),
+  });
+
+  assert.ok(block.parsedUwCourseCodes.includes("TCOM 201"));
+  assert.ok(block.parsedUwCourseCodes.includes("TCOM 230"));
+  assert.ok(
+    auditRows.some(
+      (row) => row.courseCodesExtracted.includes("TCOM 201") && row.schedulable
+    )
+  );
+});
+
+test("Parser keeps UWB CSSE-style accordion elective requirement rows schedulable", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-csse:pathway:iac-option",
+    ownerTitle: "Computer Science & Software Engineering - Information Assurance & Cybersecurity Option",
+    sourceLabel: "Information Assurance & Cybersecurity Option",
+    planId: "uw-bothell-csse",
+    pathwayId: "iac-option",
+    campusId: "uw-bothell",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url: "https://www.uwb.edu/stem/undergraduate/majors/bscsse/options/iac",
+    label: "Information Assurance & Cybersecurity Option",
+  });
+  const html = `
+    <main>
+      <h2>Information Assurance & Cybersecurity Option Requirements</h2>
+      <p>Minimum 15 credits (3 courses) of elective coursework from the lists below.</p>
+      <div class="accordion">
+        <button>Cybersecurity electives</button>
+        <ul>
+          <li>CSS 337 Secure Systems</li>
+          <li>CSS 411 Network Security</li>
+          <li>INFO 314 Computer Networks and Distributed Applications</li>
+        </ul>
+      </div>
+    </main>
+  `;
+  const block = buildParsedBlockFixture(entry, html);
+  const auditRows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: entry.ownerId,
+    sourceUrl: entry.url,
+    sourceRole: block.sourceRole,
+    snapshotLines: parser.buildHtmlLines(html),
+  });
+
+  assert.ok(block.parsedUwCourseCodes.includes("CSS 337"));
+  assert.ok(block.parsedUwCourseCodes.includes("CSS 411"));
+  assert.ok(
+    auditRows.some((row) => row.courseCodesExtracted.includes("CSS 337") && row.schedulable)
+  );
+});
+
+test("Parser recovery carries UWB BBA-style prerequisite pages as support only", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-business-administration",
+    ownerTitle: "Business Administration",
+    sourceLabel: "Prerequisite Courses",
+    role: "admission-prerequisite-source",
+    parserType: "html-degree-page",
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses",
+    label: "Prerequisite Courses",
+  });
+  const html = `
+    <main>
+      <h2>Prerequisites for admission</h2>
+      <table>
+        <tr><th>Course</th><th>Title</th></tr>
+        <tr><td>B BUS 210</td><td>Financial Accounting</td></tr>
+        <tr><td>B BUS 211</td><td>Managerial Accounting</td></tr>
+      </table>
+    </main>
+  `;
+  const block = buildParsedBlockFixture(entry, html);
+
+  assert.equal(block.sourceRoleStatus, "support");
+  assert.equal(block.canCreateSchedulableRows, false);
+  assert.ok(block.supportOnlyUwCourseCodes.includes("BBUS 210"));
+  assert.equal(block.supportLists.length, 1);
+  assert.equal(block.supportLists[0].canCreateScheduleRow, false);
+  assert.deepEqual(block.supportLists[0].acceptedUwCourseCodes, ["BBUS 210", "BBUS 211"]);
 });
 
 test("Parser recovery rejects broad campus graduation pages as primary recovery", () => {

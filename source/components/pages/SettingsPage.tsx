@@ -23,11 +23,13 @@ import { SUPPORT_EMAIL, SUPPORT_MAILTO } from "@/constants/support";
 import { StateCard } from "@/components/ui/StateCard";
 import { StatusBanner } from "@/components/ui/StatusBanner";
 import { resetTranscriptState } from "@/services/planning/transcript-reset.service";
+import { AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
 import {
-  AnimatedCardPressable,
-  AnimatedChipPressable,
-  AnimatedIconPressable,
-} from "@/components/ui/AnimatedPressables";
+  TouchCard,
+  TouchIconButton,
+  TouchOptionRow,
+  TouchToggleRow,
+} from "@/components/ui/TouchPrimitives";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
@@ -614,21 +616,17 @@ export default function SettingsPage() {
   ) =>
     items.map((item, index) => {
       const isDisplay = item.type === "display";
-      const Wrapper = isDisplay ? View : item.type === "toggle" ? Pressable : AnimatedCardPressable;
-      const wrapperProps = isDisplay ? {} : { onPress: (item as { onPress: () => void }).onPress };
-
-      return (
-        <Wrapper
-          key={`${item.label}-${index}`}
-          {...wrapperProps}
-          className={`${flexDirection} px-4`}
-          style={{
-            alignItems: "center",
-            paddingVertical: options?.rowPaddingVertical ?? (useDesktopSettingsLayout ? 18 : 20),
-            borderBottomWidth: index !== items.length - 1 ? 1 : 0,
-            borderColor: index !== items.length - 1 ? dividerColor : "transparent",
-          }}
-        >
+      const rowClassName = `${flexDirection} px-4`;
+      const accessibilityLabel =
+        "value" in item && item.value ? `${item.label}, ${item.value}` : item.label;
+      const rowStyle = {
+        alignItems: "center" as const,
+        paddingVertical: options?.rowPaddingVertical ?? (useDesktopSettingsLayout ? 18 : 20),
+        borderBottomWidth: index !== items.length - 1 ? 1 : 0,
+        borderColor: index !== items.length - 1 ? dividerColor : "transparent",
+      };
+      const rowContent = (
+        <>
           <Ionicons name={item.icon} size={20} color={accentColor} />
 
           <View
@@ -678,7 +676,42 @@ export default function SettingsPage() {
               color={accessoryIconColor}
             />
           )}
-        </Wrapper>
+        </>
+      );
+
+      if (isDisplay) {
+        return (
+          <View key={`${item.label}-${index}`} className={rowClassName} style={rowStyle}>
+            {rowContent}
+          </View>
+        );
+      }
+
+      if (item.type === "toggle") {
+        return (
+          <TouchToggleRow
+            key={`${item.label}-${index}`}
+            checked={item.enabled}
+            onPress={item.onPress}
+            accessibilityLabel={item.label}
+            className={rowClassName}
+            style={rowStyle}
+          >
+            {rowContent}
+          </TouchToggleRow>
+        );
+      }
+
+      return (
+        <TouchOptionRow
+          key={`${item.label}-${index}`}
+          onPress={item.onPress}
+          accessibilityLabel={accessibilityLabel}
+          className={rowClassName}
+          style={rowStyle}
+        >
+          {rowContent}
+        </TouchOptionRow>
       );
     });
 
@@ -747,19 +780,15 @@ export default function SettingsPage() {
     }
   ) =>
     items.map((item, index) => {
-      const AdvancedRow = item.type === "toggle" ? Pressable : AnimatedCardPressable;
-
-      return (
-        <AdvancedRow
-          key={item.key}
-          onPress={item.onPress}
-          className={`${flexDirection} items-center px-4`}
-          style={{
-            paddingVertical: options?.rowPaddingVertical ?? 18,
-            borderTopWidth: index === 0 ? 0 : 1,
-            borderColor: dividerColor,
-          }}
-        >
+      const rowClassName = `${flexDirection} items-center px-4`;
+      const accessibilityLabel = item.danger ? `${item.label}. ${item.description}` : item.label;
+      const rowStyle = {
+        paddingVertical: options?.rowPaddingVertical ?? 18,
+        borderTopWidth: index === 0 ? 0 : 1,
+        borderColor: dividerColor,
+      };
+      const rowContent = (
+        <>
           <Ionicons name={item.icon} size={20} color={item.danger ? "#EF4444" : accentColor} />
           <View className={`flex-1 ${isRTL ? "mr-3" : "ml-3"}`}>
             <Text className={`${isRTL ? "text-right" : ""} ${item.danger ? dangerTextClass : textClass}`}>
@@ -777,7 +806,34 @@ export default function SettingsPage() {
           ) : (
             <Ionicons name={isRTL ? "chevron-back" : "chevron-forward"} size={22} color={accessoryIconColor} />
           )}
-        </AdvancedRow>
+        </>
+      );
+
+      if (item.type === "toggle") {
+        return (
+          <TouchToggleRow
+            key={item.key}
+            checked={!!item.enabled}
+            onPress={item.onPress}
+            accessibilityLabel={accessibilityLabel}
+            className={rowClassName}
+            style={rowStyle}
+          >
+            {rowContent}
+          </TouchToggleRow>
+        );
+      }
+
+      return (
+        <TouchOptionRow
+          key={item.key}
+          onPress={item.onPress}
+          accessibilityLabel={accessibilityLabel}
+          className={rowClassName}
+          style={rowStyle}
+        >
+          {rowContent}
+        </TouchOptionRow>
       );
     });
 
@@ -786,11 +842,11 @@ export default function SettingsPage() {
       const enabled = notificationPreferences[item.key];
 
       return (
-        <Pressable
+        <TouchToggleRow
           key={item.key}
+          checked={enabled}
           onPress={() => handleToggleNotificationPreference(item.key)}
-          accessibilityRole="switch"
-          accessibilityState={{ checked: enabled }}
+          accessibilityLabel={item.label}
           className={`${flexDirection} items-center`}
           style={{
             paddingVertical: 18,
@@ -805,7 +861,7 @@ export default function SettingsPage() {
           <View className={`w-12 h-6 rounded-full ${enabled ? "bg-emerald-500" : isDark ? "bg-gray-700" : isGreen ? "bg-emerald-700" : "bg-emerald-300"}`}>
             <View className={`w-5 h-5 bg-white rounded-full mt-0.5 ${enabled ? "ml-6" : "ml-0.5"}`} />
           </View>
-        </Pressable>
+        </TouchToggleRow>
       );
     });
 
@@ -857,6 +913,7 @@ export default function SettingsPage() {
               }}
               keyboardShouldPersistTaps="handled"
             >
+              {/* touch-audit-ignore: settings modal backdrop is a full-screen dismiss surface, not a product control. */}
               <Pressable
                 accessible={false}
                 disabled={!allowBackdropDismiss}
@@ -869,6 +926,7 @@ export default function SettingsPage() {
                   paddingBottom: modalBottomPadding,
                 }}
               >
+                {/* touch-audit-ignore: inner modal shell only stops backdrop dismissal so form controls can receive taps. */}
                 <Pressable
                   accessible={false}
                   onPress={(event) => event.stopPropagation()}
@@ -965,10 +1023,10 @@ export default function SettingsPage() {
       </View>
 
       <View className={desktopPanelClass} style={{ marginTop: 24 }}>
-        <AnimatedCardPressable
+        <TouchOptionRow
           onPress={toggleAdvancedSettings}
-          accessibilityRole="button"
-          accessibilityState={{ expanded: isAdvancedSettingsOpen }}
+          accessibilityLabel={t("settings.advanced")}
+          expanded={isAdvancedSettingsOpen}
         >
           <View className={`${flexDirection} items-start justify-between gap-4`}>
             <View className={`${flexDirection} items-start flex-1`}>
@@ -992,7 +1050,7 @@ export default function SettingsPage() {
               color={accessoryIconColor}
             />
           </View>
-        </AnimatedCardPressable>
+        </TouchOptionRow>
 
         {isAdvancedSettingsOpen ? (
           <View className={`${nestedPanelClass} rounded-2xl overflow-hidden`} style={{ marginTop: 20, maxHeight: 320 }}>
@@ -1022,25 +1080,27 @@ export default function SettingsPage() {
               flex: 1,
             }}
           >
-            <AnimatedCardPressable
+            <TouchCard
               onPress={handleLogout}
               disabled={!isHydrated}
+              accessibilityLabel={t("settings.logout")}
               className={`${nestedPanelClass} rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
               containerStyle={{ flex: 1 }}
             >
               <Ionicons name="log-out-outline" size={20} color="#EF4444" />
               <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.logout")}</Text>
-            </AnimatedCardPressable>
+            </TouchCard>
 
-            <AnimatedCardPressable
+            <TouchCard
               onPress={() => setShowDeleteConfirm(true)}
               disabled={!isHydrated}
+              accessibilityLabel={t("settings.deleteAccount")}
               className={`${nestedPanelClass} rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
               containerStyle={{ flex: 1 }}
             >
               <Ionicons name="trash-outline" size={20} color="#EF4444" />
               <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.deleteAccount")}</Text>
-            </AnimatedCardPressable>
+            </TouchCard>
           </View>
         </View>
       </View>
@@ -1100,10 +1160,10 @@ export default function SettingsPage() {
 
                 <View style={{ width: sectionCardWidth }}>
                   <View className={`${cardBgClass} border rounded-2xl overflow-hidden`}>
-                    <AnimatedCardPressable
+                    <TouchOptionRow
                       onPress={toggleAdvancedSettings}
-                      accessibilityRole="button"
-                      accessibilityState={{ expanded: isAdvancedSettingsOpen }}
+                      accessibilityLabel={t("settings.advanced")}
+                      expanded={isAdvancedSettingsOpen}
                       className="px-4 py-4"
                     >
                       <View className={`${flexDirection} items-start justify-between gap-3`}>
@@ -1128,7 +1188,7 @@ export default function SettingsPage() {
                           color={accessoryIconColor}
                         />
                       </View>
-                    </AnimatedCardPressable>
+                    </TouchOptionRow>
                     {isAdvancedSettingsOpen ? renderAdvancedRows(advancedMobileItems, { rowPaddingVertical: 20 }) : null}
                   </View>
                 </View>
@@ -1141,9 +1201,10 @@ export default function SettingsPage() {
                   marginTop: 24,
                 }}
               >
-                <AnimatedCardPressable
+                <TouchCard
                   onPress={handleLogout}
                   disabled={!isHydrated}
+                  accessibilityLabel={t("settings.logout")}
                   className={`${
                     isDark ? "bg-gray-900/80 border-gray-800" : isGreen ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200"
                   } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
@@ -1151,11 +1212,12 @@ export default function SettingsPage() {
                 >
                   <Ionicons name="log-out-outline" size={20} color="#EF4444" />
                   <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.logout")}</Text>
-                </AnimatedCardPressable>
+                </TouchCard>
 
-                <AnimatedCardPressable
+                <TouchCard
                   onPress={() => setShowDeleteConfirm(true)}
                   disabled={!isHydrated}
+                  accessibilityLabel={t("settings.deleteAccount")}
                   className={`${
                     isDark ? "bg-gray-900/80 border-gray-800" : isGreen ? "bg-emerald-900/90 border-emerald-800" : "bg-white border-emerald-200"
                   } border rounded-2xl px-4 py-5 ${flexDirection} items-center ${!isHydrated ? "opacity-60" : ""}`}
@@ -1163,7 +1225,7 @@ export default function SettingsPage() {
                 >
                   <Ionicons name="trash-outline" size={20} color="#EF4444" />
                   <Text className={`flex-1 ${isRTL ? "mr-3 text-right" : "ml-3"} ${dangerTextClass}`}>{t("settings.deleteAccount")}</Text>
-                </AnimatedCardPressable>
+                </TouchCard>
               </View>
 
               <Text className={`text-center text-sm ${isDark ? "text-gray-400" : isGreen ? "text-emerald-100" : "text-gray-500"} mt-4`}>
@@ -1172,14 +1234,15 @@ export default function SettingsPage() {
               <View className="mt-4 mb-2">
                 <View className={`${flexDirection} justify-center items-center`} style={{ flexWrap: "wrap" }}>
                   <Text className={`text-center text-sm ${secondaryTextClass} ${isRTL ? "ml-2" : "mr-2"}`}>{t("general.needHelpQuestion") ?? "Need Help?"}</Text>
-                  <AnimatedIconPressable
+                  <TouchIconButton
                     onPress={() => {
                       void openSupportEmail();
                     }}
                     accessibilityRole="link"
+                    accessibilityLabel={t("general.emailUs") ?? "Email Us!"}
                   >
                     <Text className={`text-sm ${isDark ? "text-emerald-200" : isGreen ? "text-emerald-100" : "text-emerald-600"} underline font-semibold`}>{t("general.emailUs") ?? "Email Us!"}</Text>
-                  </AnimatedIconPressable>
+                  </TouchIconButton>
                 </View>
               </View>
             </>

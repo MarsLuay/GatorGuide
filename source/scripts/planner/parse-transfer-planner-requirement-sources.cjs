@@ -717,6 +717,51 @@ function canRequirementSourceCreateSchedulableRows(entry) {
   return canRequirementSourceRoleCreateSchedulableRows(classifyRequirementSourceRole(entry));
 }
 
+const PRIMARY_REQUIREMENT_LINK_PARSER_TYPES = new Set([
+  "html-degree-page",
+  "html-curriculum-page",
+  "pdf-degree-sheet",
+  "pdf-worksheet",
+  "generic-html",
+]);
+
+function isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable) {
+  if (entry?.isPrimaryDegreeRequirementsLink !== true) {
+    return false;
+  }
+
+  const manifestRole = String(entry?.role ?? "");
+  if (
+    [
+      "approved-course-list",
+      "elective-list",
+      "upper-division-prerequisite-table",
+      "non-schedulable-course-list",
+      "admission-prerequisite-source",
+      "admissions",
+      "catalog",
+      "pathway-degree-sheet",
+    ].includes(manifestRole)
+  ) {
+    return false;
+  }
+
+  const url = String(entry?.url ?? "");
+  const parserType = String(entry?.parserType ?? "");
+  const ownerIsPathway = Boolean(entry?.pathwayId) || /:pathway:/.test(String(entry?.ownerId ?? ""));
+  const sourceLooksLikePathway =
+    PATHWAY_SOURCE_CUE_PATTERN.test(sourceSearchable) ||
+    /(?:^|[-/])(?:track|option|route|pathway|concentration|specialization)(?:[-/?#]|$)/i.test(url);
+  const sourceLooksLikeRequirements =
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+    /\b(?:curriculum|requirements?|degree|major|program|undergraduate)\b/i.test(searchable);
+
+  return (
+    (ownerIsPathway && sourceLooksLikePathway) ||
+    (sourceLooksLikeRequirements && PRIMARY_REQUIREMENT_LINK_PARSER_TYPES.has(parserType))
+  );
+}
+
 function getSourceRoleScore(entry) {
   const discoveredRole = classifyRequirementSourceRole(entry);
   switch (discoveredRole) {
@@ -854,6 +899,10 @@ function classifyRequirementSourceRole(entry) {
 
   if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
     return "support-source";
+  }
+
+  if (isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable)) {
+    return "primary-degree-requirements";
   }
 
   if (
@@ -1908,8 +1957,13 @@ function hasPrimaryRequirementSectionCue(text) {
 }
 
 function hasCreditBucketRequirementCue(text) {
-  return /\b(?:minimum(?:\s+of)?|at\s+least|min\.?)?\s*\d+(?:\s*(?:-|to)\s*\d+)?\s+(?:additional\s+)?credits?\s+(?:from|of)\b/i.test(
-    text
+  return (
+    /\b(?:minimum(?:\s+of)?|at\s+least|min\.?)?\s*\d+(?:\s*(?:-|to)\s*\d+)?\s+(?:additional\s+)?credits?(?:\s*\([^)]*\))?\s+(?:from|of)\b/i.test(
+      text
+    ) ||
+    /\b(?:minimum(?:\s+of)?|at\s+least|min\.?)?\s*\d+(?:\s*(?:-|to)\s*\d+)?\s+(?:additional\s+)?credits?\b.{0,80}\b(?:elective coursework|courses?)\b.{0,80}\b(?:from|below|lists?)\b/i.test(
+      text
+    )
   );
 }
 
@@ -1941,6 +1995,17 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
     /\b(?:choose|select|one\s+of|one\s+course\s+from|credits?\s+from)\b/i.test(text) &&
     primaryCue &&
     !prerequisiteCue;
+
+  if (
+    admissionCue &&
+    courseCodes.length === 0 &&
+    /\b(?:requirements?|prereq(?:uisites?)?|preparation)\b/i.test(text)
+  ) {
+    return {
+      sectionRole: "admission-prep-section",
+      reason: "admission or preparation requirement heading",
+    };
+  }
 
   if (prerequisiteCue) {
     if (
@@ -8761,6 +8826,14 @@ function shouldAcceptParserRecoveryOwner(beforeOwner, afterOwner, candidate) {
     return false;
   }
 
+  if (
+    (beforeOwner.canCreateSchedulableRows === false || beforeOwner.sourceRoleStatus !== "primary") &&
+    afterOwner.canCreateSchedulableRows !== false &&
+    afterOwner.sourceRoleStatus === "primary"
+  ) {
+    return true;
+  }
+
   if (beforeSnapshot.parsedUwCourseCodeCount === 0 && afterSnapshot.parsedUwCourseCodeCount > 0) {
     return true;
   }
@@ -9417,7 +9490,10 @@ function buildRequirementSupportListsFromMetadata(input) {
     const shape =
       sourceRole === "elective-list"
         ? "elective-list"
-        : sourceRole === "approved-course-list"
+        : sourceRole === "approved-course-list" ||
+          sourceRole === "admission-prerequisite-source" ||
+          sourceRole === "admissions-preparation" ||
+          sourceRole === "support-source"
           ? "approved-course-list"
           : null;
     if (shape) {
@@ -11459,6 +11535,7 @@ module.exports = {
   buildParserRecoveryReportForTest: buildParserRecoveryReport,
   buildGeneratedProgramApprovedCourseFiltersForTest: buildGeneratedProgramApprovedCourseFilters,
   buildParserRecoverySectionCandidatesForTest: buildParserRecoverySectionCandidates,
+  buildParserPrerequisiteFilterAuditRowsForTest: buildParserPrerequisiteFilterAuditRows,
   buildRequirementSourceScope,
   canRequirementSourceRoleCreateSchedulableRows,
   classifyRequirementSourceRole,

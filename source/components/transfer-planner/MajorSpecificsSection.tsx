@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import React, { useMemo, useState } from "react";
 import { Text, View } from "react-native";
 
-import { AnimatedCardPressable } from "@/components/ui/AnimatedPressables";
+import { TouchCard, TouchOptionRow } from "@/components/ui/TouchPrimitives";
 import {
   getTransferPlannerPrimaryDegreeRequirementsSource,
   type TransferPlannerResolvedMajorPlan,
@@ -162,10 +162,10 @@ export function MajorSpecificsSection({
 
   return (
     <View className={`border ${borderClass} rounded-2xl px-4 py-4 mt-4`}>
-      <AnimatedCardPressable
+      <TouchOptionRow
         onPress={() => setIsReferenceOpen((currentValue) => !currentValue)}
-        accessibilityRole="button"
-        accessibilityState={{ expanded: isReferenceOpen }}
+        expanded={isReferenceOpen}
+        accessibilityLabel="Major Specifics"
       >
         <View className="flex-row items-start justify-between gap-3">
           <View className="flex-1 min-w-0">
@@ -182,7 +182,7 @@ export function MajorSpecificsSection({
             color="#9CA3AF"
           />
         </View>
-      </AnimatedCardPressable>
+      </TouchOptionRow>
 
       {isReferenceOpen ? (
         <>
@@ -192,8 +192,10 @@ export function MajorSpecificsSection({
               <Text className={`${secondaryTextClass} text-sm`}>
                 This is the main UW page the planner should use for the full degree requirements for this major.
               </Text>
-              <AnimatedCardPressable
+              <TouchCard
                 onPress={() => void openExternalLink(primaryUwDegreeLink.url)}
+                accessibilityRole="link"
+                accessibilityLabel={`Open ${primaryUwDegreeLink.label}`}
                 className={`border ${borderClass} rounded-2xl px-4 py-4`}
               >
                 <Text className="text-emerald-500 font-semibold">
@@ -202,7 +204,7 @@ export function MajorSpecificsSection({
                 <Text className={`${secondaryTextClass} text-sm mt-1`}>
                   {primaryUwDegreeLink.url}
                 </Text>
-              </AnimatedCardPressable>
+              </TouchCard>
             </View>
           ) : null}
 
@@ -239,10 +241,10 @@ export function MajorSpecificsSection({
 
           <View className="mt-5 gap-4">
             <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-              <AnimatedCardPressable
+              <TouchOptionRow
                 onPress={() => setIsGrcClassesOpen((currentValue) => !currentValue)}
-                accessibilityRole="button"
-                accessibilityState={{ expanded: isGrcClassesOpen }}
+                expanded={isGrcClassesOpen}
+                accessibilityLabel={`GRC ${grcTrackTitle} Degree Classes`}
               >
                 <View className="flex-row items-start justify-between gap-3">
                   <View className="flex-1 min-w-0">
@@ -259,7 +261,7 @@ export function MajorSpecificsSection({
                     color="#9CA3AF"
                   />
                 </View>
-              </AnimatedCardPressable>
+              </TouchOptionRow>
 
               {isGrcClassesOpen ? (
                 <View className="mt-4 gap-4">
@@ -301,10 +303,10 @@ export function MajorSpecificsSection({
             </View>
 
             <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-              <AnimatedCardPressable
+              <TouchOptionRow
                 onPress={() => setIsUwClassesOpen((currentValue) => !currentValue)}
-                accessibilityRole="button"
-                accessibilityState={{ expanded: isUwClassesOpen }}
+                expanded={isUwClassesOpen}
+                accessibilityLabel={`UW ${plan.title} Degree Classes`}
               >
                 <View className="flex-row items-start justify-between gap-3">
                   <View className="flex-1 min-w-0">
@@ -323,7 +325,7 @@ export function MajorSpecificsSection({
                     color="#9CA3AF"
                   />
                 </View>
-              </AnimatedCardPressable>
+              </TouchOptionRow>
 
               {isUwClassesOpen ? (
                 <View className="mt-4 gap-4">
@@ -400,12 +402,12 @@ export function MajorSpecificsSection({
                   )}
 
                   <View className={`border ${borderClass} rounded-2xl px-4 py-4`}>
-                    <AnimatedCardPressable
+                    <TouchOptionRow
                       onPress={() =>
                         setIsUwCoursesConsideredOpen((currentValue) => !currentValue)
                       }
-                      accessibilityRole="button"
-                      accessibilityState={{ expanded: isUwCoursesConsideredOpen }}
+                      expanded={isUwCoursesConsideredOpen}
+                      accessibilityLabel="UW Courses Considered"
                     >
                       <View className="flex-row items-start justify-between gap-3">
                         <View className="flex-1 min-w-0">
@@ -422,7 +424,7 @@ export function MajorSpecificsSection({
                           color="#9CA3AF"
                         />
                       </View>
-                    </AnimatedCardPressable>
+                    </TouchOptionRow>
 
                     {isUwCoursesConsideredOpen ? (
                       <View className="mt-3 gap-2">

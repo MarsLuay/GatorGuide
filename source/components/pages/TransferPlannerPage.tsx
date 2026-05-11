@@ -3,8 +3,8 @@ import React from "react";
 import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
-import { AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
 import { StateCard } from "@/components/ui/StateCard";
+import { TouchIconButton } from "@/components/ui/TouchPrimitives";
 import { SuggestedScheduleCard } from "@/components/transfer-planner/SuggestedScheduleCard";
 import { TranscriptSummaryCard } from "@/components/transfer-planner/TranscriptSummaryCard";
 import { useTransferPlannerController } from "@/components/transfer-planner/useTransferPlannerController";
@@ -162,8 +162,9 @@ export default function TransferPlannerPage() {
           }}
         >
           <View className="gap-4">
-            <AnimatedIconPressable
+            <TouchIconButton
               onPress={handleGoBack}
+              accessibilityLabel={backLabel}
               className="flex-row items-center"
               containerStyle={{ alignSelf: "flex-start" }}
             >
@@ -175,7 +176,7 @@ export default function TransferPlannerPage() {
               <Text className={`${secondaryTextClass} ml-2`}>
                 {backLabel}
               </Text>
-            </AnimatedIconPressable>
+            </TouchIconButton>
 
             <View className="flex-row items-start">
               <View className="w-12 h-12 rounded-2xl bg-emerald-500/10 items-center justify-center mr-3">
@@ -326,17 +327,18 @@ export default function TransferPlannerPage() {
           ) : null}
 
           <View className="items-center pb-2">
-            <AnimatedIconPressable
+            <TouchIconButton
               onPress={() => {
                 void handleReportBug();
               }}
               accessibilityRole="link"
-              className="flex-row items-center justify-center rounded-2xl border border-emerald-500/25 bg-emerald-500/10 px-4 py-3"
+              accessibilityLabel="Report a bug in Course Planner"
+              className="flex-row items-center justify-center px-3"
             >
               <Text className="text-sm font-semibold text-emerald-600 underline">
-                Click here to report a bug in Course Planner
+                Report a Course Planner bug
               </Text>
-            </AnimatedIconPressable>
+            </TouchIconButton>
           </View>
 
         </View>

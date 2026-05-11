@@ -560,6 +560,7 @@ export default function AuthPage() {
           <View className="mb-4 border border-emerald-500/40 rounded-lg p-3">
             <View className="flex-row items-center justify-between">
               <Text className={`${styles.textClass} font-semibold text-sm`}>Onboarding/Auth Debug</Text>
+              {/* touch-audit-ignore: dev-only onboarding debug toggle is hidden from production UI. */}
               <Pressable onPress={() => setShowOnboardingDebugConsole((v) => !v)} className="px-3 py-1 rounded-lg bg-emerald-500">
                 <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>
                   {showOnboardingDebugConsole ? "Hide" : "Show"}
@@ -567,9 +568,11 @@ export default function AuthPage() {
               </Pressable>
             </View>
             <View className="flex-row gap-2 mt-2">
+              {/* touch-audit-ignore: dev-only debug log action is hidden from production UI. */}
               <Pressable onPress={copyOnboardingDebugLogs} className="px-3 py-1.5 rounded-lg bg-emerald-300">
                 <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>Copy Logs</Text>
               </Pressable>
+              {/* touch-audit-ignore: dev-only debug log action is hidden from production UI. */}
               <Pressable onPress={() => { void clearOnboardingDebugLogs(); }} className="px-3 py-1.5 rounded-lg bg-emerald-300">
                 <Text className={`${isDark ? "text-white" : "text-emerald-900"} text-xs font-semibold`}>Clear</Text>
               </Pressable>

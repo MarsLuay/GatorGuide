@@ -423,6 +423,7 @@ export function SearchableSelect({
       {open && overlayStrategy === "modal" && modalDropdownLayout ? (
         <Modal transparent visible animationType="none" onRequestClose={dismissDropdown}>
           <View style={{ flex: 1 }}>
+            {/* touch-audit-ignore: modal dropdown backdrop fills the viewport and only dismisses the menu. */}
             <Pressable
               onPress={dismissDropdown}
               style={{

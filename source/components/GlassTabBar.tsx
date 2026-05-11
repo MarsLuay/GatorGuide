@@ -297,6 +297,7 @@ function TabItem({
     });
   };
 
+  // touch-audit-ignore: navigation primitive owns a full-width tab item with app-sized tab bar padding.
   return (
     <Pressable
       style={[
