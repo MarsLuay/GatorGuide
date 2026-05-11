@@ -6,6 +6,10 @@ import type { TransferPlannerParsedRequirementSourceBlock } from "./schema";
 import { TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS } from "./bootstrap.generated";
 import { TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS } from "./primary-source-promotions.generated";
 import {
+  buildTransferPlannerOwnerId,
+  normalizeTransferPlannerPathwayId,
+} from "./pathway-id-normalization";
+import {
   hasTransferPlannerHtmlEntityLeak,
   labelMentionsDifferentTransferPlannerMajor,
   normalizeTransferPlannerText,
@@ -343,6 +347,13 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       label: "B.A. Ethics option",
     },
   ],
+  "uw-seattle-materials-science-engineering": [
+    {
+      pattern: /^(?:nanoscience and molecular engineering\s*)?\(?nme\)? option$/i,
+      id: "nme-option",
+      label: "NME Option",
+    },
+  ],
   "uw-seattle-philosophy": [
     {
       pattern: /^ethics$/i,
@@ -392,6 +403,9 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
   "uw-tacoma-arts-media-culture": [/^B\.?\s*A\.?\s+route$/i],
   "uw-tacoma-bachelor-of-arts-in-business-administration": [/^B\.?\s*A\.?\s+route$/i],
   "uw-tacoma-history": [/^global studies concentration$/i],
+  "uw-seattle-materials-science-engineering": [
+    /^final project and internship\/industrial option$/i,
+  ],
   "uw-seattle-speech-and-hearing-sciences": [
     /^(?:adult|pediatric) track$/i,
     /^speech language pathology$/i,
@@ -414,6 +428,7 @@ type AutoPromotedPathwaySupport = {
   ownerIds: Set<string>;
   pathwayIds: Set<string>;
   familyKeys: Set<string>;
+  entriesByPathwayId: Map<string, AutoPromotedPathwaySupportEntry>;
   entriesByIdentityKey: Map<string, AutoPromotedPathwaySupportEntry>;
 };
 
@@ -440,10 +455,20 @@ const AUTO_PROMOTED_PATHWAY_SUPPORT_BY_PLAN_ID = (() => {
       continue;
     }
 
+    const pathwayId = normalizeTransferPlannerPathwayId(entry.planId, entry.pathwayId);
+    if (!pathwayId) {
+      continue;
+    }
+
+    const ownerId = buildTransferPlannerOwnerId(entry.planId, pathwayId);
     const planTitle = PRIMARY_MAJOR_TITLES_BY_PLAN_ID.get(entry.planId) ?? entry.ownerTitle ?? "";
-    const pathwayLabel =
+    const parsedPathwayLabel =
       normalizeTransferPlannerSemanticPathwayLabel(planTitle, entry.ownerTitle) ||
-      buildFallbackPathwayLabel(entry.pathwayId);
+      buildFallbackPathwayLabel(pathwayId);
+    const pathwayLabel =
+      pathwayId === entry.pathwayId
+        ? parsedPathwayLabel
+        : buildFallbackPathwayLabel(pathwayId);
     const familyKey =
       getDerivedPathwaySimilarityKey(pathwayLabel, planTitle) ||
       buildDerivedPathwayIdentityKey(planTitle, pathwayLabel);
@@ -453,23 +478,30 @@ const AUTO_PROMOTED_PATHWAY_SUPPORT_BY_PLAN_ID = (() => {
         ownerIds: new Set<string>(),
         pathwayIds: new Set<string>(),
         familyKeys: new Set<string>(),
+        entriesByPathwayId: new Map<string, AutoPromotedPathwaySupportEntry>(),
         entriesByIdentityKey: new Map<string, AutoPromotedPathwaySupportEntry>(),
       } satisfies AutoPromotedPathwaySupport);
 
-    support.ownerIds.add(entry.ownerId);
-    support.pathwayIds.add(entry.pathwayId);
+    support.ownerIds.add(ownerId);
+    support.pathwayIds.add(pathwayId);
     if (familyKey) {
       support.familyKeys.add(familyKey);
     }
 
-    for (const candidate of [entry.pathwayId, pathwayLabel, entry.ownerTitle]) {
+    support.entriesByPathwayId.set(pathwayId, {
+      pathwayId,
+      label: pathwayLabel,
+      familyKey,
+    });
+
+    for (const candidate of [pathwayId, entry.pathwayId, pathwayLabel, entry.ownerTitle]) {
       const identityKey = buildDerivedPathwayIdentityKey(planTitle, candidate);
       if (!identityKey) {
         continue;
       }
 
       support.entriesByIdentityKey.set(identityKey, {
-        pathwayId: entry.pathwayId,
+        pathwayId,
         label: pathwayLabel,
         familyKey,
       });
@@ -480,6 +512,27 @@ const AUTO_PROMOTED_PATHWAY_SUPPORT_BY_PLAN_ID = (() => {
 
   return supportByPlanId;
 })();
+
+function buildAutoPromotedDerivedPathwaySeeds(plan: TransferPlannerMajorPlan) {
+  const support = AUTO_PROMOTED_PATHWAY_SUPPORT_BY_PLAN_ID.get(plan.id);
+  if (!support) {
+    return [] as TransferPlannerDerivedPathwaySeed[];
+  }
+
+  return [...support.entriesByPathwayId.values()].map((entry) => {
+    const canonicalPathway = canonicalizeBasePathwayDerivedIdentity(plan.id, {
+      id: entry.pathwayId,
+      label: entry.label || buildFallbackPathwayLabel(entry.pathwayId),
+      summary: "",
+    } as TransferPlannerMajorPathway);
+
+    return {
+      id: canonicalPathway.id,
+      label: normalizeMaterializedTransferPlannerPathwayLabel(canonicalPathway.label),
+      summary: "",
+    } satisfies TransferPlannerDerivedPathwaySeed;
+  });
+}
 
 function resolveAutoPromotedPathwaySupportEntry(
   plan: TransferPlannerMajorPlan,
@@ -2388,7 +2441,10 @@ export function materializeTransferPlannerPathways(
   const rawDerivedPathways = filterDerivedPathwaysToKnownBaseFamilies(
     plan,
     canonicalBasePathways,
-    buildDerivedPathwaySeeds(plan, canonicalBasePathways, parsedSourceBlocks)
+    [
+      ...buildAutoPromotedDerivedPathwaySeeds(plan),
+      ...buildDerivedPathwaySeeds(plan, canonicalBasePathways, parsedSourceBlocks),
+    ]
   );
   const preliminaryDerivedPathways = canonicalizeDerivedPathwaysAgainstSupportedBase(
     plan,

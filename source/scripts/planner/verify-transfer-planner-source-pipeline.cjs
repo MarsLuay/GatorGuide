@@ -28,6 +28,10 @@ const {
   TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
 } = require("../../constants/transfer-planner-source/source-fingerprints.generated");
 const {
+  buildTransferPlannerOwnerId,
+  normalizeTransferPlannerOwnerId,
+} = require("../../constants/transfer-planner-source/pathway-id-normalization");
+const {
   getParseablePrimaryEntries,
 } = require("./parse-transfer-planner-requirement-sources.cjs");
 
@@ -79,14 +83,22 @@ function uniqueSorted(values) {
 }
 
 function buildOwnerId(planId, pathwayId) {
-  return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
+  return buildTransferPlannerOwnerId(planId, pathwayId);
+}
+
+function buildOwnerKey(owner) {
+  return normalizeTransferPlannerOwnerId(
+    owner?.ownerKey ?? owner?.ownerId ?? null,
+    owner?.planId ?? null,
+    owner?.pathwayId ?? null
+  );
 }
 
 function buildReviewOwnerKeySet(reviewQueue) {
   return new Set(
     (reviewQueue.campuses ?? []).flatMap((campus) =>
       (campus.entries ?? []).map(
-        (entry) => entry.ownerKey ?? buildOwnerId(entry.planId, entry.pathwayId ?? null)
+        (entry) => buildOwnerKey(entry)
       )
     )
   );
@@ -109,10 +121,10 @@ function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQue
   return (discoveryReport.owners ?? [])
     .filter((owner) => !owner.existingPrimaryUrl)
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
-    .filter((owner) => !reviewOwnerKeys.has(owner.ownerKey))
+    .filter((owner) => !reviewOwnerKeys.has(buildOwnerKey(owner)))
     .map((owner) => ({
       ownerId: buildOwnerId(owner.planId, owner.pathwayId ?? null),
-      ownerKey: owner.ownerKey,
+      ownerKey: buildOwnerKey(owner),
       title: owner.title,
       promotedUrl: owner.suggestedPrimary.url,
     }));
@@ -124,7 +136,7 @@ function getEligibleWeakExistingReplacementOwners(discoveryReport) {
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .map((owner) => ({
       ownerId: buildOwnerId(owner.planId, owner.pathwayId ?? null),
-      ownerKey: owner.ownerKey,
+      ownerKey: buildOwnerKey(owner),
       title: owner.title,
       promotedUrl: owner.suggestedPrimary.url,
     }));
@@ -562,7 +574,7 @@ async function main() {
   );
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
   const sourceGapOwnerKeys = new Set(
-    (sourceGapReport.entries ?? []).map((entry) => entry.ownerKey)
+    (sourceGapReport.entries ?? []).map((entry) => buildOwnerKey(entry))
   );
   const promotedOwnerIds = new Set(
     (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).map((entry) => entry.ownerId)

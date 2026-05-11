@@ -5105,6 +5105,34 @@ test("Materials Science & Engineering only exposes the real NME Option pathway",
 
   assert.deepEqual(sourcePathways, [["nme-option", "NME Option"]]);
   assert.deepEqual(runtimePathways, [["nme-option", "NME Option"]]);
+  assert.ok(
+    getTransferPlannerPrimaryDegreeRequirementsSource(plan.id, "nme-option"),
+    "Expected the canonical MSE NME pathway to keep a primary requirement source."
+  );
+  assert.ok(
+    TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINT_REGISTRY.some(
+      (entry) => entry.ownerId === `${plan.id}:pathway:nme-option`
+    ),
+    "Expected the canonical MSE NME pathway to keep a requirement fingerprint."
+  );
+  assert.equal(
+    TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.some(
+      (entry) =>
+        entry.ownerId ===
+        `${plan.id}:pathway:nanoscience-and-molecular-engineering-nme-option`
+    ),
+    false,
+    "Expected the stale long MSE NME pathway id to stay out of the source manifest."
+  );
+  assert.equal(
+    TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINT_REGISTRY.some(
+      (entry) =>
+        entry.ownerId ===
+        `${plan.id}:pathway:nanoscience-and-molecular-engineering-nme-option`
+    ),
+    false,
+    "Expected the stale long MSE NME pathway id to stay out of requirement fingerprints."
+  );
   assert.deepEqual(collectSuspiciousStructuralPathways(getTransferPlannerPathwaysForPlan(plan)), []);
   assert.deepEqual(
     collectSuspiciousStructuralPathways(getTransferPlannerStudentRuntimePathwaysForPlan(runtimePlan)),
@@ -6495,4 +6523,3 @@ test.skip("Canonical course registry keeps new pathway-specific GRC references f
     "Expected canonical course registry to retain the Urban Studies GIS pathway course list."
   );
 });
-

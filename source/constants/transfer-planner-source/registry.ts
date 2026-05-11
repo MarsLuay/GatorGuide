@@ -23,6 +23,10 @@ import {
   TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS,
 } from "./primary-source-promotions.generated";
 import {
+  buildTransferPlannerOwnerId,
+  normalizeTransferPlannerPathwayId,
+} from "./pathway-id-normalization";
+import {
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATIONS,
   TRANSFER_PLANNER_REQUIREMENT_DIFF_CLASSIFICATION_SUMMARY,
 } from "./requirement-diff-classifications.generated";
@@ -753,6 +757,89 @@ function toSourceLinks(links?: TransferPlannerLink[]) {
       note: link.note,
     }))
   );
+}
+
+const SOURCE_LINK_IDENTITY_STOP_TOKENS = new Set([
+  "and",
+  "the",
+  "of",
+  "in",
+  "for",
+  "major",
+  "program",
+  "degree",
+  "route",
+  "option",
+  "track",
+  "pathway",
+  "concentration",
+  "specialization",
+]);
+
+function buildSourceLinkIdentityTokens(...values: Array<string | null | undefined>) {
+  return unique(
+    values
+      .flatMap((value) =>
+        normalizeTransferPlannerText(value)
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, " ")
+          .split(" ")
+      )
+      .filter(
+        (token) =>
+          token.length >= 2 &&
+          !SOURCE_LINK_IDENTITY_STOP_TOKENS.has(token)
+      )
+  );
+}
+
+function sourceIdentityTokenMatches(token: string, candidateTokens: Set<string>) {
+  if (candidateTokens.has(token)) {
+    return true;
+  }
+
+  if (token.endsWith("ies") && candidateTokens.has(`${token.slice(0, -3)}y`)) {
+    return true;
+  }
+
+  if (token.endsWith("s") && token.length > 3 && candidateTokens.has(token.slice(0, -1))) {
+    return true;
+  }
+
+  return false;
+}
+
+function sourceLinkMatchesPathwayIdentity(
+  link: TransferPlannerSourceLink,
+  pathway: TransferPlannerMajorPathway
+) {
+  const pathwayTokens = buildSourceLinkIdentityTokens(pathway.id, pathway.label);
+  if (!pathwayTokens.length) {
+    return false;
+  }
+
+  const linkTokens = new Set(
+    buildSourceLinkIdentityTokens(link.label, link.url, link.note)
+  );
+  return pathwayTokens.every((token) =>
+    sourceIdentityTokenMatches(token, linkTokens)
+  );
+}
+
+function isPathwaySpecificSourceLink(link: TransferPlannerSourceLink) {
+  return PATHWAY_SOURCE_CUE_PATTERN.test(`${link.label} ${link.url}`);
+}
+
+function materializeMatchedPathwayParentSourceLink(link: TransferPlannerSourceLink) {
+  const searchable = `${link.label} ${link.url}`;
+  if (PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable)) {
+    return link;
+  }
+
+  return {
+    ...link,
+    label: `${link.label} major requirements`,
+  };
 }
 
 function getSourceManifestOwnerId(planId: string, pathwayId?: string | null) {
@@ -1696,11 +1783,20 @@ function getPathwaySources(
   plan: TransferPlannerMajorPlan,
   pathway: TransferPlannerMajorPathway
 ) {
+  const parentSourceLinks = getOwnerSourceLinks(plan.id, null, plan.officialLinks);
+  const pathwaySourceLinks = getOwnerSourceLinks(plan.id, pathway.id, pathway.officialLinks);
+  const matchingParentPathwayLinks = parentSourceLinks
+    .filter((link) => sourceLinkMatchesPathwayIdentity(link, pathway))
+    .map(materializeMatchedPathwayParentSourceLink);
+  const parentLinksForPathway = matchingParentPathwayLinks.length
+    ? [
+        ...matchingParentPathwayLinks,
+        ...parentSourceLinks.filter((link) => !isPathwaySpecificSourceLink(link)),
+      ]
+    : parentSourceLinks;
+
   return {
-    sourceLinks: dedupeLinks([
-      ...getOwnerSourceLinks(plan.id, null, plan.officialLinks),
-      ...getOwnerSourceLinks(plan.id, pathway.id, pathway.officialLinks),
-    ]),
+    sourceLinks: dedupeLinks([...parentLinksForPathway, ...pathwaySourceLinks]),
     validationNotes: [] as string[],
   };
 }
@@ -2772,26 +2868,32 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
   entries: TransferPlannerSourceManifestEntry[],
   promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
 ) {
+  const canonicalPromotion = normalizeAutoPromotedPrimarySourceOwner(promotion);
   if (
     shouldSkipTransferPlannerAutoPromotedPrimarySource(
-      promotion.planId,
-      promotion.pathwayId,
-      promotion.url
+      canonicalPromotion.planId,
+      canonicalPromotion.pathwayId,
+      canonicalPromotion.url
     )
   ) {
     return;
   }
 
   const link: TransferPlannerSourceLink = {
-    label: promotion.label,
-    url: promotion.url,
+    label: canonicalPromotion.label,
+    url: canonicalPromotion.url,
   };
+  const role = getSourceManifestRole(link);
+  if (!isSafeFallbackPrimaryRole(role)) {
+    return;
+  }
+
   const existingEntry = entries.find(
-    (entry) => entry.ownerId === promotion.ownerId && entry.url === promotion.url
+    (entry) => entry.ownerId === canonicalPromotion.ownerId && entry.url === canonicalPromotion.url
   );
 
   for (const entry of entries) {
-    if (entry.ownerId === promotion.ownerId) {
+    if (entry.ownerId === canonicalPromotion.ownerId) {
       entry.isPrimaryDegreeRequirementsLink = false;
     }
   }
@@ -2801,30 +2903,29 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
     existingEntry.validationNotes = unique(
       compact([
         ...existingEntry.validationNotes,
-        `Auto-promoted from high-confidence discovery on ${promotion.generatedAt}.`,
+        `Auto-promoted from high-confidence discovery on ${canonicalPromotion.generatedAt}.`,
       ])
     );
     existingEntry.lastValidatedOn = getLastValidatedOn(existingEntry.validationNotes);
     return;
   }
 
-  const role = getSourceManifestRole(link);
   const parserType = getSourceManifestParserType(link, role);
   const validationNotes = [
-    `Auto-promoted from high-confidence discovery on ${promotion.generatedAt}.`,
+    `Auto-promoted from high-confidence discovery on ${canonicalPromotion.generatedAt}.`,
   ];
 
   entries.push({
-    id: `${promotion.ownerId}:source:auto-promoted-primary`,
-    ownerType: promotion.ownerType,
-    ownerId: promotion.ownerId,
-    ownerTitle: promotion.ownerTitle,
-    planId: promotion.planId,
-    pathwayId: promotion.pathwayId,
+    id: `${canonicalPromotion.ownerId}:source:auto-promoted-primary`,
+    ownerType: canonicalPromotion.ownerType,
+    ownerId: canonicalPromotion.ownerId,
+    ownerTitle: canonicalPromotion.ownerTitle,
+    planId: canonicalPromotion.planId,
+    pathwayId: canonicalPromotion.pathwayId,
     trackId: null,
-    campusId: promotion.campusId,
-    label: promotion.label,
-    url: promotion.url,
+    campusId: canonicalPromotion.campusId,
+    label: canonicalPromotion.label,
+    url: canonicalPromotion.url,
     role,
     parserType,
     confidence: getSourceManifestConfidence(role, parserType),
@@ -2835,23 +2936,48 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
   });
 }
 
+function normalizeAutoPromotedPrimarySourceOwner(
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
+) {
+  if (promotion.ownerType !== "pathway" || !promotion.planId || !promotion.pathwayId) {
+    return promotion;
+  }
+
+  const pathwayId = normalizeTransferPlannerPathwayId(
+    promotion.planId,
+    promotion.pathwayId
+  );
+  if (!pathwayId || pathwayId === promotion.pathwayId) {
+    return promotion;
+  }
+
+  const ownerId = buildTransferPlannerOwnerId(promotion.planId, pathwayId);
+  return {
+    ...promotion,
+    ownerId,
+    ownerKey: ownerId,
+    pathwayId,
+  };
+}
+
 function hasActiveSourceManifestOwner(
   promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number]
 ) {
-  switch (promotion.ownerType) {
+  const canonicalPromotion = normalizeAutoPromotedPrimarySourceOwner(promotion);
+  switch (canonicalPromotion.ownerType) {
     case "major":
       return (
-        TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.some((plan) => plan.id === promotion.ownerId) ||
+        TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.some((plan) => plan.id === canonicalPromotion.ownerId) ||
         SUPPLEMENTAL_PARSER_ONLY_MAJOR_SOURCES.some(
-          (entry) => entry.planId === promotion.ownerId
+          (entry) => entry.planId === canonicalPromotion.ownerId
         )
       );
     case "pathway":
       return (
-        TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.some((entry) => entry.id === promotion.ownerId) ||
+        TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.some((entry) => entry.id === canonicalPromotion.ownerId) ||
         SUPPLEMENTAL_PARSER_ONLY_PATHWAY_SOURCES.some(
           (entry) =>
-            `${entry.planId}:pathway:${entry.pathwayId}` === promotion.ownerId
+            buildTransferPlannerOwnerId(entry.planId, entry.pathwayId) === canonicalPromotion.ownerId
         )
       );
     default:

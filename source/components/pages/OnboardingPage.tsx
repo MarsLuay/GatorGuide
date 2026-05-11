@@ -11,7 +11,7 @@ import { useRouter } from "expo-router";
 import { ROUTES } from "@/constants/routes";
 import { ScreenBackground } from "@/components/layouts/ScreenBackground";
 import { AnimatedCardPressable } from "@/components/ui/AnimatedPressables";
-import { GlassButton } from "@/components/ui/GlassButton";
+import { AppButton } from "@/components/ui/AppButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import { useAppData } from "@/hooks/use-app-data";
@@ -568,7 +568,7 @@ export default function OnboardingPage() {
                     {introOutcomeText}
                   </Text>
 
-                  <GlassButton
+                  <AppButton
                     onPress={completeTour}
                     label={skipTourLabel}
                     variant="secondary"
@@ -904,17 +904,14 @@ export default function OnboardingPage() {
                       </Text>
 
                       <View className="flex-row justify-between mt-4" style={{ gap: 12 }}>
-                        <GlassButton
+                        <AppButton
                           onPress={onBack}
                           label={backLabel}
                           disabled={currentStep === 0}
                           variant="secondary"
-                          style={{
-                            flex: 1,
-                            opacity: currentStep === 0 ? 0.55 : 1,
-                          }}
+                          style={{ flex: 1 }}
                         />
-                        <GlassButton onPress={onNext} label={nextLabel} style={{ flex: 1 }} />
+                        <AppButton onPress={onNext} label={nextLabel} style={{ flex: 1 }} />
                       </View>
 
                       <View

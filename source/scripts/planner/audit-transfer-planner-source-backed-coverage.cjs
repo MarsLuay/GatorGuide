@@ -519,6 +519,8 @@ function getSuggestedFileForIssue(issueType) {
 }
 
 function getRowIssueType(row) {
+  return sourceBackedActionability.getRowIssueType(row);
+
   if (row?.issueType) {
     return row.issueType;
   }
@@ -529,10 +531,14 @@ function getRowIssueType(row) {
 }
 
 function hasAuditIssue(row) {
+  return sourceBackedActionability.hasAuditIssue(row);
+
   return Boolean(getRowIssueType(row));
 }
 
 function getActionableIssueClass(row) {
+  return sourceBackedActionability.getActionableIssueClass(row);
+
   const issueType = getRowIssueType(row);
   if (!issueType) {
     return null;
@@ -666,6 +672,8 @@ function getActionableIssueClass(row) {
 }
 
 function getSuspectedLayerForActionableIssue(row) {
+  return sourceBackedActionability.getSuspectedLayerForActionableIssue(row);
+
   const issueType = getRowIssueType(row);
   const actionableClass = getActionableIssueClass(row);
   if (!issueType) {
@@ -770,6 +778,8 @@ function getSuspectedLayerForActionableIssue(row) {
 }
 
 function getRecommendedFixForLayer(layer, row) {
+  return sourceBackedActionability.getRecommendedFixForLayer(layer, row);
+
   const issueType = getRowIssueType(row);
   switch (layer) {
     case "discovery":
@@ -925,6 +935,10 @@ function getParsedSourceEvidence(row) {
 }
 
 function buildActionableAuditIssueMetadata(row, collectionName = "unknown") {
+  return sourceBackedActionability.buildActionableAuditIssueMetadata(row, collectionName, {
+    planContextResolver: getPlanContextForAuditRow,
+  });
+
   const issueType = getRowIssueType(row);
   if (!issueType) {
     return {};
@@ -1003,6 +1017,8 @@ function enrichAuditRowsInPlace(rows, collectionName) {
 }
 
 function collectActionableIssueRows(report) {
+  return sourceBackedActionability.collectActionableIssueRows(report);
+
   return SOURCE_BACKED_AUDIT_ROW_COLLECTIONS.flatMap((collectionName) =>
     (report[collectionName] ?? []).filter(hasAuditIssue)
   );
@@ -1019,6 +1035,10 @@ function countBy(values) {
 }
 
 function enrichSourceBackedCoverageReport(report) {
+  return sourceBackedActionability.enrichSourceBackedCoverageReport(report, {
+    planContextResolver: getPlanContextForAuditRow,
+  });
+
   for (const collectionName of SOURCE_BACKED_AUDIT_ROW_COLLECTIONS) {
     enrichAuditRowsInPlace(report[collectionName] ?? [], collectionName);
   }

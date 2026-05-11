@@ -2,9 +2,8 @@ import React, { type ReactNode } from "react";
 import { ActivityIndicator, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useAppLanguage } from "@/hooks/use-app-language";
-import { useAppTheme } from "@/hooks/use-app-theme";
 import { useThemeStyles } from "@/hooks/use-theme-styles";
-import { AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
+import { AppButton } from "@/components/ui/AppButton";
 
 type StateCardVariant = "loading" | "empty" | "error" | "info";
 type IconName = keyof typeof Ionicons.glyphMap;
@@ -49,7 +48,6 @@ export function StateCard({
   children,
 }: StateCardProps) {
   const { t } = useAppLanguage();
-  const { isDark, isGreen } = useAppTheme();
   const { textClass, secondaryTextClass, cardBgClass, borderClass } = useThemeStyles();
 
   const resolvedTitle =
@@ -91,13 +89,12 @@ export function StateCard({
       {children ? <View className={`w-full ${resolvedMessage || resolvedTitle ? "mt-3" : ""}`}>{children}</View> : null}
 
       {actionLabel && onAction ? (
-        <AnimatedChipPressable
+        <AppButton
           onPress={onAction}
-          containerStyle={{ alignSelf: "stretch" }}
-          className={`${compact ? "mt-3 px-4 py-2" : "mt-4 px-5 py-3"} bg-emerald-500 rounded-xl items-center self-stretch`}
-        >
-          <Text className={`${isDark || isGreen ? "text-white" : "text-emerald-900"} font-semibold`}>{actionLabel}</Text>
-        </AnimatedChipPressable>
+          label={actionLabel}
+          style={{ alignSelf: "stretch", marginTop: compact ? 12 : 16 }}
+          contentStyle={compact ? { minHeight: 46, paddingVertical: 10 } : undefined}
+        />
       ) : null}
     </View>
   );

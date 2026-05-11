@@ -2163,6 +2163,241 @@ test("Discovered pathway PDFs can become primary candidates ahead of broad pathw
   assert.ok(result.suggestedPrimary.pathwayIdentityScore > 0);
 });
 
+test("Pathway discovery follows parent track links and chooses the matching child page", async () => {
+  const parentUrl = "https://www.tacoma.uw.edu/sias/cac/communication";
+  const professionalUrl = "https://www.tacoma.uw.edu/sias/cac/professional-track";
+  const researchUrl = "https://www.tacoma.uw.edu/sias/cac/research-track";
+  const policyUrl = "https://www.tacoma.uw.edu/sias/cac/communication-policies";
+  const target = buildSbseTarget({
+    ownerType: "pathway",
+    ownerKey: "uw-tacoma-communications:pathway:professional-track",
+    planId: "uw-tacoma-communications",
+    pathwayId: "professional-track",
+    campusId: "uw-tacoma",
+    title: "Communications (BA)",
+    label: "Professional track",
+    officialLinks: [{ label: "Communications major requirements", url: parentUrl }],
+  });
+  const inspectedUrls = [];
+
+  const result = await discovery.analyzeOwner(target, 1000, {
+    inspectPageImpl: async (url) => {
+      inspectedUrls.push(url);
+      if (url === parentUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "Communication major requirements",
+          headings: ["Communication major requirements", "Tracks"],
+          anchors: [
+            { url: professionalUrl, text: "Professional Track", sourceUrl: url },
+            { url: researchUrl, text: "Research Track", sourceUrl: url },
+            { url: policyUrl, text: "Communication policies and advising", sourceUrl: url },
+          ],
+          error: null,
+        };
+      }
+
+      if (url === professionalUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "Professional Track | Communication",
+          headings: ["Professional Track", "Professional Track major requirements"],
+          anchors: [],
+          error: null,
+        };
+      }
+
+      if (url === researchUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "Research Track | Communication",
+          headings: ["Research Track"],
+          anchors: [],
+          error: null,
+        };
+      }
+
+      return {
+        url,
+        ok: true,
+        status: 200,
+        finalUrl: url,
+        contentType: "text/html",
+        title: "Communication policies and advising",
+        headings: ["Communication policies and advising"],
+        anchors: [],
+        error: null,
+      };
+    },
+  });
+  const parentCandidate = result.primaryCandidates.find((candidate) => candidate.url === parentUrl);
+  const policyCandidate = result.supportCandidates.find((candidate) => candidate.url === policyUrl);
+
+  assert.ok(includesExactUrl(inspectedUrls, professionalUrl));
+  assert.equal(result.suggestedPrimary.url, professionalUrl);
+  assert.equal(result.suggestedPrimary.sourceRole, "primary-degree-requirements");
+  assert.ok(result.suggestedPrimary.score > parentCandidate.score);
+  assert.equal(policyCandidate.sourceRole, "support-source");
+  assert.equal(policyCandidate.supportOnly, true);
+  assert.equal(policyCandidate.canBePrimary, false);
+});
+
+test("Matching pathway child pages can replace broad weak pathway primaries", async () => {
+  const parentUrl = "https://www.tacoma.uw.edu/sias/cac/communication";
+  const professionalUrl = "https://www.tacoma.uw.edu/sias/cac/professional-track";
+  const target = buildSbseTarget({
+    analysisMode: "weak-existing-primary",
+    ownerType: "pathway",
+    ownerKey: "uw-tacoma-communications:pathway:professional-track",
+    planId: "uw-tacoma-communications",
+    pathwayId: "professional-track",
+    campusId: "uw-tacoma",
+    title: "Communications (BA)",
+    label: "Professional track",
+    officialLinks: [{ label: "Communications major requirements", url: parentUrl }],
+    existingPrimary: { label: "Communications major requirements", url: parentUrl },
+    reevaluationSignals: [
+      {
+        code: "primary-source-misses-selected-pathway",
+        reason: "Current pathway primary source does not name the selected pathway.",
+      },
+    ],
+  });
+
+  const result = await discovery.analyzeOwner(target, 1000, {
+    inspectPageImpl: async (url) => ({
+      url,
+      ok: true,
+      status: 200,
+      finalUrl: url,
+      contentType: "text/html",
+      title:
+        url === parentUrl
+          ? "Communication major requirements"
+          : "Professional Track | Communication",
+      headings:
+        url === parentUrl
+          ? ["Communication major requirements", "Tracks"]
+          : ["Professional Track", "Professional Track major requirements"],
+      anchors:
+        url === parentUrl
+          ? [{ url: professionalUrl, text: "Professional Track", sourceUrl: url }]
+          : [],
+      error: null,
+    }),
+  });
+
+  assert.equal(result.suggestedAction, "replace-existing-primary");
+  assert.equal(result.suggestedPrimary.url, professionalUrl);
+  assert.ok(result.suggestedScoreDelta > 0);
+});
+
+test("Tacoma missing-primary discovery can use the generic campus major index", async () => {
+  const indexUrl = "https://www.tacoma.uw.edu/admissions/majors-degrees";
+  const communicationUrl = "https://www.tacoma.uw.edu/sias/cac/communication";
+  const target = buildSbseTarget({
+    ownerKey: "uw-tacoma-communications",
+    planId: "uw-tacoma-communications",
+    campusId: "uw-tacoma",
+    title: "Communications (BA)",
+    label: "Communications (BA)",
+    officialLinks: [],
+  });
+  const inspectedUrls = [];
+
+  const result = await discovery.analyzeOwner(target, 1000, {
+    inspectPageImpl: async (url) => {
+      inspectedUrls.push(url);
+      if (url === indexUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "UW Tacoma majors and degrees",
+          headings: ["Majors and degrees"],
+          anchors: [
+            {
+              url: communicationUrl,
+              text: "Communication (major)",
+              sourceUrl: url,
+            },
+          ],
+          error: null,
+        };
+      }
+
+      return {
+        url,
+        ok: true,
+        status: 200,
+        finalUrl: url,
+        contentType: "text/html",
+        title: "Communication major requirements",
+        headings: ["Communication major requirements", "Professional Track", "Research Track"],
+        anchors: [],
+        error: null,
+      };
+    },
+  });
+
+  assert.ok(includesExactUrl(inspectedUrls, indexUrl));
+  assert.ok(includesExactUrl(inspectedUrls, communicationUrl));
+  assert.equal(result.suggestedPrimary.url, communicationUrl);
+  assert.equal(result.suggestedPrimary.sourceRole, "primary-degree-requirements");
+  assert.equal(result.suggestedAction, "add-missing-primary");
+});
+
+test("Pathway manifest sources prefer matching parent track links over sibling tracks", () => {
+  const primary = sourceRegistry.getTransferPlannerPrimaryDegreeRequirementsSource(
+    "uw-tacoma-arts-media-culture",
+    "film-and-media-track"
+  );
+
+  assert.equal(primary?.url, "https://www.tacoma.uw.edu/sias/cac/film-and-media-track");
+});
+
+test("Policy and advising pages stay support-only even with owner identity matches", () => {
+  const target = buildSbseTarget({
+    ownerKey: "uw-seattle-slavic-languages-and-literatures",
+    planId: "uw-seattle-slavic-languages-and-literatures",
+    title: "Slavic Languages & Literatures",
+    label: "Slavic Languages & Literatures",
+  });
+  const policyCandidate = discovery.scoreCandidate(target, {
+    url: "https://slavic.washington.edu/undergraduate-policies",
+    label: "UW Slavic Languages & Literatures undergraduate policies",
+    pageTitle: "Slavic Languages & Literatures undergraduate policies",
+    sourceKind: "official-link",
+  });
+  const advisingCandidate = discovery.scoreCandidate(target, {
+    url: "https://slavic.washington.edu/undergraduate-advising",
+    label: "Slavic Languages & Literatures undergraduate advising",
+    pageTitle: "Slavic Languages & Literatures undergraduate advising",
+    sourceKind: "official-link",
+  });
+
+  assert.equal(policyCandidate.sourceRole, "support-source");
+  assert.equal(policyCandidate.sourceRoleStatus, "support");
+  assert.equal(policyCandidate.canCreateSchedulableRows, false);
+  assert.equal(advisingCandidate.sourceRole, "support-source");
+  assert.equal(advisingCandidate.sourceRoleStatus, "support");
+  assert.equal(advisingCandidate.canCreateSchedulableRows, false);
+});
+
 test("Planner verify step plan includes parser, source-discovery, and source-scope gates", () => {
   const refreshScriptPath = path.resolve(
     __dirname,

@@ -19,8 +19,8 @@ import { useThemeStyles } from "@/hooks/use-theme-styles";
 import { useAppTheme } from "@/hooks/use-app-theme";
 import useBack from "@/hooks/use-back";
 import { FormInput } from "@/components/ui/FormInput";
+import { AppButton } from "@/components/ui/AppButton";
 import { AnimatedCardPressable, AnimatedIconPressable } from "@/components/ui/AnimatedPressables";
-import { GlassButton } from "@/components/ui/GlassButton";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { DocumentExtractionReviewCard } from "@/components/ui/DocumentExtractionReviewCard";
 import {
@@ -627,7 +627,7 @@ export default function ProfileSetupPage() {
                         paddingTop: 24,
                       }}
                     >
-                      <GlassButton
+                      <AppButton
                         onPress={() => {
                           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                           handleBack();
@@ -638,17 +638,17 @@ export default function ProfileSetupPage() {
                       />
 
                       {step < 3 ? (
-                        <GlassButton
+                        <AppButton
                           onPress={() => {
                             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                             handleNext();
                           }}
                           label={t("setup.next")}
-                          icon={<MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />}
+                          icon={(color) => <MaterialIcons name="arrow-forward" size={18} color={color} />}
                           style={{ flex: stackFooterActions ? undefined : 1 }}
                         />
                       ) : (
-                        <GlassButton
+                        <AppButton
                           onPress={() => {
                             if (isUploading) return;
                             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
@@ -656,7 +656,7 @@ export default function ProfileSetupPage() {
                           }}
                           disabled={isUploading}
                           label={isUploading ? `${t("setup.continue")}...` : t("setup.continue")}
-                          icon={<MaterialIcons name="arrow-forward" size={18} color={isDark ? "#FFFFFF" : "#000"} />}
+                          icon={(color) => <MaterialIcons name="arrow-forward" size={18} color={color} />}
                           style={{ flex: stackFooterActions ? undefined : 1 }}
                         />
                       )}

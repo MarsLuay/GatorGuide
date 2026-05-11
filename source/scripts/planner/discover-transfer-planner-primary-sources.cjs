@@ -23,6 +23,9 @@ const {
 const {
   getTransferPlannerManualSourceLinkOverride,
 } = require("../../constants/transfer-planner-source/manual-source-link-overrides");
+const {
+  buildTransferPlannerOwnerId,
+} = require("../../constants/transfer-planner-source/pathway-id-normalization");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -60,7 +63,7 @@ const FALLBACK_DISCOVERY_SOURCE_PAGES_BY_CAMPUS = {
     "https://advising.uw.edu/academic-planning/majors-and-minors/list-of-undergraduate-majors/",
   ],
   "uw-bothell": [],
-  "uw-tacoma": [],
+  "uw-tacoma": ["https://www.tacoma.uw.edu/admissions/majors-degrees"],
 };
 const OFFICIAL_UW_BASE_DOMAINS = uniqueSorted(
   Object.values(FALLBACK_DISCOVERY_BASE_DOMAINS_BY_CAMPUS).flat()
@@ -96,7 +99,7 @@ const SUPPORT_SOURCE_CUE_PATTERN =
 const PRIMARY_REQUIREMENT_CUE_PATTERN =
   /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
 const TARGETED_OFFICIAL_LINK_FOLLOW_CUE_PATTERN =
-  /\b(degree sheets?|requirements?|curriculum|approved courses?|approved electives?|course lists?|options?|pathways?|catalog|admissions? prerequisites?|prerequisite courses?)\b/i;
+  /\b(degree sheets?|requirements?|curriculum|approved courses?|approved electives?|course lists?|tracks?|options?|pathways?|concentrations?|specializations?|catalog|admissions? prerequisites?|prerequisite courses?)\b/i;
 const UNRELATED_OFFICIAL_LINK_FOLLOW_PATTERN =
   /\b(faculty|people|staff|directory|news|events?|alumni|donat(?:e|ion|ions)?|giving|research|jobs?|careers?|calendar|parking|transportation|housing|visit|map|library|privacy|accessibility)\b|\/(?:faculty|people|staff|directory|news|events?|alumni|donate|giving|research|jobs?|careers?|calendar|parking|transportation|housing|visit|maps?|privacy|accessibility)(?:[/?#]|$)/i;
 const SOURCE_ROLE_METADATA = {
@@ -257,42 +260,6 @@ const TARGETED_OFFICIAL_SOURCE_CANDIDATES = {
     {
       label: "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
       url: "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html#credential-68d16aa4cad998289e687fe1",
-    },
-  ],
-  "uw-tacoma-arts-media-culture:pathway:american-cultures-track": [
-    {
-      label: "UW Tacoma American Cultures track",
-      url: "https://www.tacoma.uw.edu/sias/cac/american-cultures-track",
-    },
-  ],
-  "uw-tacoma-arts-media-culture:pathway:comparative-arts-track": [
-    {
-      label: "UW Tacoma Comparative Arts track",
-      url: "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track",
-    },
-  ],
-  "uw-tacoma-arts-media-culture:pathway:film-media-track": [
-    {
-      label: "UW Tacoma Film and Media track",
-      url: "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
-    },
-  ],
-  "uw-tacoma-arts-media-culture:pathway:literature-track": [
-    {
-      label: "UW Tacoma Literature track",
-      url: "https://www.tacoma.uw.edu/sias/cac/literature-track",
-    },
-  ],
-  "uw-tacoma-arts-media-culture:pathway:visual-performing-arts-track": [
-    {
-      label: "UW Tacoma Visual and Performing Arts track",
-      url: "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
-    },
-  ],
-  "uw-tacoma-communications": [
-    {
-      label: "UW Tacoma Communications major requirements",
-      url: "https://www.tacoma.uw.edu/sias/cac/communication",
     },
   ],
   "uw-tacoma-environmental-sustainability:pathway:business-nonprofit-leadership-option": [
@@ -1045,6 +1012,41 @@ function getPathwayIdentityScore(target, candidate, combinedText = null) {
   return getIdentityOverlapScore(pathwayLabel, candidate, combinedText);
 }
 
+function isPathwayIdentityPrimaryPage(target, candidate, sourceRole, combinedText) {
+  if (target?.ownerType !== "pathway" || !target?.pathwayId) {
+    return false;
+  }
+
+  if (!["ignored", "department-requirements"].includes(sourceRole)) {
+    return false;
+  }
+
+  if (!PATHWAY_SOURCE_CUE_PATTERN.test(combinedText)) {
+    return false;
+  }
+
+  if (
+    SUPPORT_SOURCE_CUE_PATTERN.test(combinedText) ||
+    ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(combinedText)
+  ) {
+    return false;
+  }
+
+  const pathwayIdentityScore = getPathwayIdentityScore(target, candidate, combinedText);
+  if (pathwayIdentityScore < 70) {
+    return false;
+  }
+
+  const sourceKind = String(candidate?.sourceKind ?? "");
+  return (
+    sourceKind === "official-link" ||
+    sourceKind === "campus-major-index" ||
+    sourceKind === "official-site-root" ||
+    isSameDepartmentUrl(candidate?.sourcePageUrl, candidate?.url) ||
+    isSameDepartmentUrl(candidate?.discoveredFromUrl, candidate?.url)
+  );
+}
+
 function isSameDepartmentUrl(sourceUrl, candidateUrl) {
   if (!sourceUrl || !candidateUrl) {
     return false;
@@ -1300,6 +1302,21 @@ function buildOwnerTargetRecord({
   };
 }
 
+function buildPathwayDiscoveryLinks(plan, pathway, majorPrimary = null) {
+  const pathwayLinks = [...(pathway?.officialLinks ?? [])];
+  const parentLinks = [...(plan?.officialLinks ?? [])];
+  const majorPrimaryLink = majorPrimary?.url
+    ? [
+        {
+          label: majorPrimary.label ?? `${plan.title} primary degree requirements`,
+          url: majorPrimary.url,
+        },
+      ]
+    : [];
+
+  return dedupeOfficialLinks([...pathwayLinks, ...parentLinks, ...majorPrimaryLink]);
+}
+
 function pickParsedRequirementSourceBlock(planId, pathwayId = null) {
   const blocks = getTransferPlannerParsedRequirementSourceBlocks(planId, pathwayId);
   return (
@@ -1329,6 +1346,35 @@ function buildReevaluationSourceText(primarySource, parsedBlock) {
   ]
     .filter(Boolean)
     .join(" \n");
+}
+
+function primarySourceMatchesPathwayIdentity(owner, primarySource, parsedBlock) {
+  if (!owner?.pathwayId) {
+    return true;
+  }
+
+  const candidate = {
+    url: primarySource?.url ?? parsedBlock?.primarySourceUrl ?? parsedBlock?.sourceUrl ?? "",
+    label: primarySource?.label ?? parsedBlock?.primarySourceLabel ?? parsedBlock?.sourceLabel ?? "",
+  };
+  const combinedText = [
+    candidate.url,
+    candidate.label,
+  ]
+    .filter(Boolean)
+    .join(" \n")
+    .toLowerCase();
+
+  return getPathwayIdentityScore(
+    {
+      ownerType: "pathway",
+      pathwayId: owner.pathwayId,
+      title: owner.title,
+      label: owner.label,
+    },
+    candidate,
+    combinedText
+  ) > 0;
 }
 
 function buildWeakExistingPrimarySignals(params) {
@@ -1468,10 +1514,11 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
 
     const visiblePathways = getTransferPlannerPathwaysForPlan(plan);
     const runtimeBasePlan = getTransferPlannerStudentRuntimeMajorPlan(plan.id);
+    const majorPrimary = getTransferPlannerPrimaryDegreeRequirementsSource(plan.id, null);
     const owners = [
       {
         ownerType: "major",
-        ownerKey: plan.id,
+        ownerKey: buildTransferPlannerOwnerId(plan.id, null),
         planId: plan.id,
         pathwayId: null,
         title: plan.title,
@@ -1480,12 +1527,12 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
       },
       ...visiblePathways.map((pathway) => ({
         ownerType: "pathway",
-        ownerKey: `${plan.id}:pathway:${pathway.id}`,
+        ownerKey: buildTransferPlannerOwnerId(plan.id, pathway.id),
         planId: plan.id,
         pathwayId: pathway.id,
         title: `${plan.title} - ${pathway.label}`,
         label: pathway.label,
-        officialLinks: [...(pathway.officialLinks ?? [])],
+        officialLinks: buildPathwayDiscoveryLinks(plan, pathway, majorPrimary),
       })),
     ];
 
@@ -1529,6 +1576,14 @@ function buildWeakExistingOwnerTargets({ campusFilter, targetPlanId = null }) {
         trackRecommendationId: trackRecommendation?.trackId ?? null,
         noPublicClassificationCount,
       });
+      if (!primarySourceMatchesPathwayIdentity(owner, existingPrimary, parsedBlock)) {
+        weakSignals.triggered = true;
+        weakSignals.signals.push({
+          code: "primary-source-misses-selected-pathway",
+          reason:
+            "Current pathway primary source does not name the selected pathway, so discovery should compare it against sibling official pathway or track pages.",
+        });
+      }
 
       if (!weakSignals.triggered) {
         continue;
@@ -1576,7 +1631,7 @@ function buildOwnerTargets({ includeExisting, campusFilter, targetPlanId = null 
         buildOwnerTargetRecord({
           analysisMode: "missing-primary",
           ownerType: "major",
-          ownerKey: plan.id,
+          ownerKey: buildTransferPlannerOwnerId(plan.id, null),
           planId: plan.id,
           pathwayId: null,
           campusId: plan.campusId,
@@ -1599,13 +1654,13 @@ function buildOwnerTargets({ includeExisting, campusFilter, targetPlanId = null 
         buildOwnerTargetRecord({
           analysisMode: "missing-primary",
           ownerType: "pathway",
-          ownerKey: `${plan.id}:pathway:${pathway.id}`,
+          ownerKey: buildTransferPlannerOwnerId(plan.id, pathway.id),
           planId: plan.id,
           pathwayId: pathway.id,
           campusId: plan.campusId,
           title: `${plan.title} - ${pathway.label}`,
           label: pathway.label,
-          officialLinks: [...(pathway.officialLinks ?? [])],
+          officialLinks: buildPathwayDiscoveryLinks(plan, pathway, majorPrimary),
           existingPrimary: pathwayPrimary,
           pathwayCount: visiblePathways.length,
         })
@@ -1829,17 +1884,27 @@ function scoreCandidate(target, candidate) {
     };
   }
 
-  const sourceRole = classifySourceDiscoveryRole(candidate);
   const combinedText = [
     candidate.url,
     candidate.label,
     candidate.anchorText,
+    candidate.linkText,
     candidate.pageTitle,
     ...(candidate.pageHeadings ?? []),
   ]
     .filter(Boolean)
     .join(" \n")
     .toLowerCase();
+  let sourceRole = classifySourceDiscoveryRole(candidate);
+  const pathwayIdentityPrimaryPage = isPathwayIdentityPrimaryPage(
+    target,
+    candidate,
+    sourceRole,
+    combinedText
+  );
+  if (pathwayIdentityPrimaryPage) {
+    sourceRole = "primary-degree-requirements";
+  }
   const candidateIdentityText = slugifyForSearch(combinedText);
   const candidateYearInfo = buildCandidateYearInfo(candidate);
   const reasons = [];
@@ -1902,6 +1967,10 @@ function scoreCandidate(target, candidate) {
   const sourceRoleRule = sourceRoleRules[sourceRole] ?? sourceRoleRules.ignored;
   score += sourceRoleRule.score;
   addReason(reasons, getSourceRoleMetadata(sourceRole).reason);
+  if (pathwayIdentityPrimaryPage) {
+    score += 18;
+    addReason(reasons, "pathway-specific official child page matches the selected pathway");
+  }
   if (
     sourceRole === "official-catalog" &&
     UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN.test(candidate.url)
@@ -2365,7 +2434,8 @@ function buildReplacementDecision(target, candidates) {
   const currentPrimaryClearlyWrong =
     signalCodes.has("primary-url-looks-graduate-or-timeline") ||
     signalCodes.has("page-headings-look-graduate-or-timeline-heavy") ||
-    signalCodes.has("no-parsed-uw-course-codes");
+    signalCodes.has("no-parsed-uw-course-codes") ||
+    signalCodes.has("primary-source-misses-selected-pathway");
   const currentPrimaryLooksYearSpecific = signalCodes.has("primary-source-appears-year-specific");
   const replacementHasUndergradRequirementEvidence =
     replacementReasons.has("explicit degree-requirements wording") ||
@@ -2377,14 +2447,16 @@ function buildReplacementDecision(target, candidates) {
     replacementReasons.has("undergraduate-major-admission wording") ||
     replacementReasons.has("undergraduate path segment") ||
     replacementReasons.has("requirements path segment") ||
-    replacementReasons.has("specific bachelor route wording");
+    replacementReasons.has("specific bachelor route wording") ||
+    replacementReasons.has("pathway-specific official child page matches the selected pathway");
   const replacementHasStructuredRequirementPageEvidence =
     replacementReasons.has("checklist-style wording") ||
     replacementReasons.has("explicit degree-requirements wording") ||
     replacementReasons.has("explicit major-requirements wording") ||
     replacementReasons.has("graduation requirements wording") ||
     replacementReasons.has("program-requirements wording") ||
-    replacementReasons.has("specific bachelor route wording");
+    replacementReasons.has("specific bachelor route wording") ||
+    replacementReasons.has("pathway-specific official child page matches the selected pathway");
   const replacementHasStrongProgramMatch =
     !replacementReasons.has("candidate appears to describe a different degree route") &&
     (replacementReasons.has("official source path matches the selected pathway") ||
@@ -2580,10 +2652,17 @@ function shouldFollowTargetedOfficialCandidate(candidate, target = null) {
   const searchable = `${candidate.linkText ?? ""} ${candidate.anchorText ?? ""} ${
     candidate.label ?? ""
   } ${candidate.url ?? ""}`;
+  const pathwayTrackIdentityCandidate = Boolean(
+    candidate.sameDepartment &&
+      target?.ownerType === "pathway" &&
+      (candidate.pathwayIdentityScore ?? 0) > 0 &&
+      PATHWAY_SOURCE_CUE_PATTERN.test(searchable)
+  );
   if (
     UNRELATED_OFFICIAL_LINK_FOLLOW_PATTERN.test(searchable) &&
     !APPROVED_COURSE_LIST_CUE_PATTERN.test(searchable) &&
-    !ELECTIVE_LIST_CUE_PATTERN.test(searchable)
+    !ELECTIVE_LIST_CUE_PATTERN.test(searchable) &&
+    !pathwayTrackIdentityCandidate
   ) {
     return false;
   }
@@ -2593,6 +2672,10 @@ function shouldFollowTargetedOfficialCandidate(candidate, target = null) {
     (candidate.sameMajorIdentityScore ?? 0) > 0 &&
     (candidate.pathwayIdentityScore ?? 0) > 0
   ) {
+    return true;
+  }
+
+  if (pathwayTrackIdentityCandidate) {
     return true;
   }
 

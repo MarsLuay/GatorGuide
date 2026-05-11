@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { AnimatedChipPressable } from "@/components/ui/AnimatedPressables";
+import { AppButton } from "@/components/ui/AppButton";
 
 type DocumentExtractionReviewCardProps = {
   title: string;
@@ -90,23 +90,18 @@ export function DocumentExtractionReviewCard({
       ) : null}
 
       <View className="flex-row gap-3 mt-4">
-        <AnimatedChipPressable
+        <AppButton
           onPress={onDismiss}
-          containerStyle={{ flex: 1 }}
-          className={`${cardBgClass} border rounded-lg px-4 py-3 flex-1 items-center`}
-        >
-          <Text className={secondaryTextClass}>{dismissLabel}</Text>
-        </AnimatedChipPressable>
-        <AnimatedChipPressable
+          label={dismissLabel}
+          variant="secondary"
+          style={{ flex: 1 }}
+        />
+        <AppButton
           onPress={onApply}
           disabled={isApplying || !items.length}
-          containerStyle={{ flex: 1 }}
-          className={`rounded-lg px-4 py-3 flex-1 items-center ${items.length ? "bg-emerald-500" : "bg-emerald-200"}`}
-        >
-          <Text className={items.length ? "text-emerald-950 font-semibold" : "text-emerald-800"}>
-            {isApplying ? `${applyLabel}...` : applyLabel}
-          </Text>
-        </AnimatedChipPressable>
+          label={isApplying ? `${applyLabel}...` : applyLabel}
+          style={{ flex: 1 }}
+        />
       </View>
     </View>
   );

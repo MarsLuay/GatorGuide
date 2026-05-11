@@ -35,6 +35,10 @@ const GENERATED_OUTPUT_PATH = path.resolve(
   "transfer-planner-source",
   "source-fingerprints.generated.ts"
 );
+const {
+  normalizeTransferPlannerOwnerId,
+  normalizeTransferPlannerPathwayId,
+} = require("../../constants/transfer-planner-source/pathway-id-normalization");
 
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
@@ -130,7 +134,7 @@ function buildSourceFingerprintEntry(source) {
     url: source.url,
     finalUrl: source.finalUrl ?? null,
     labels: source.labels ?? [],
-    ownerIds: source.ownerIds ?? [],
+    ownerIds: normalizeSourceOwnerIds(source.ownerIds),
     kinds: source.kinds ?? [],
     ok: Boolean(source.ok),
     status: source.status ?? null,
@@ -146,6 +150,26 @@ function buildSourceFingerprintEntry(source) {
 
 function normalizeSourceUrlKey(value) {
   return String(value ?? "").trim();
+}
+
+function normalizeSourceOwnerId(value) {
+  const rawOwnerId = String(value ?? "").trim();
+  if (!rawOwnerId) {
+    return "";
+  }
+
+  const sourceOwnerKeyMatch = rawOwnerId.match(/^(.+?)::(.+)$/);
+  if (sourceOwnerKeyMatch) {
+    const [, planId, pathwayId] = sourceOwnerKeyMatch;
+    const normalizedPathwayId = normalizeTransferPlannerPathwayId(planId, pathwayId);
+    return normalizedPathwayId ? `${planId}::${normalizedPathwayId}` : planId;
+  }
+
+  return normalizeTransferPlannerOwnerId(rawOwnerId);
+}
+
+function normalizeSourceOwnerIds(values) {
+  return uniqueSorted((values ?? []).map(normalizeSourceOwnerId).filter(Boolean));
 }
 
 function mergeUniqueStrings(existing, values) {
@@ -225,7 +249,7 @@ function buildRequirementBackedSourceFingerprintEntry(owner) {
     url: owner.sourceUrl,
     finalUrl: owner.sourceUrl,
     labels: [owner.sourceLabel].filter(Boolean),
-    ownerIds: [owner.ownerId].filter(Boolean),
+    ownerIds: normalizeSourceOwnerIds([owner.ownerId]),
     kinds: [owner.pathwayId ? "pathway" : "major"],
     ok: Boolean(owner.ok),
     status: null,
@@ -270,7 +294,7 @@ function addRequirementBackedSourceFingerprints(sourceFingerprints, requirementO
     }
 
     entry.labels = mergeUniqueStrings(entry.labels, [owner.sourceLabel]);
-    entry.ownerIds = mergeUniqueStrings(entry.ownerIds, [owner.ownerId]);
+    entry.ownerIds = mergeUniqueStrings(entry.ownerIds, normalizeSourceOwnerIds([owner.ownerId]));
     entry.kinds = mergeUniqueStrings(entry.kinds, [owner.pathwayId ? "pathway" : "major"]);
   }
 
@@ -391,7 +415,7 @@ function compareFingerprints(previousEntries, currentEntries, keyName, hashName)
 
 function collectSourceDiffOwnerIds(entries) {
   return uniqueSorted(
-    (entries ?? []).flatMap((entry) => entry.ownerIds ?? []).map((ownerId) => String(ownerId ?? "").trim())
+    (entries ?? []).flatMap((entry) => normalizeSourceOwnerIds(entry.ownerIds ?? []))
   );
 }
 

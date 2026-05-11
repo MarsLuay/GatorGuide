@@ -1359,10 +1359,10 @@ export const TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS: TransferPlannerPrimaryS
   },
   {
     "ownerType": "pathway",
-    "ownerId": "uw-seattle-materials-science-engineering:pathway:nanoscience-and-molecular-engineering-nme-option",
-    "ownerKey": "uw-seattle-materials-science-engineering:pathway:nanoscience-and-molecular-engineering-nme-option",
+    "ownerId": "uw-seattle-materials-science-engineering:pathway:nme-option",
+    "ownerKey": "uw-seattle-materials-science-engineering:pathway:nme-option",
     "planId": "uw-seattle-materials-science-engineering",
-    "pathwayId": "nanoscience-and-molecular-engineering-nme-option",
+    "pathwayId": "nme-option",
     "ownerTitle": "Materials Science & Engineering - Nanoscience and Molecular Engineering (NME) Option",
     "campusId": "uw-seattle",
     "url": "https://mse.washington.edu/student/applied-masters",
