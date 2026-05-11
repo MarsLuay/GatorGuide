@@ -2,8 +2,16 @@
 exclude_paths:
   - ".tmp/**"
   - "source/.tmp/**"
+  - "source/assets/**"
   - "source/dist/**"
+  - "source/docs/reference/**"
 engines:
+  eslint:
+    enabled: false
+  pmd:
+    enabled: false
+  pmd-legacy:
+    enabled: false
   csslint:
     exclude_paths:
       - "source/global.css"

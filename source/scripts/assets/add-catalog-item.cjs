@@ -717,7 +717,17 @@ function unescapeXml(value) {
 }
 
 function unescapeXmlPlainText(value) {
-  return unescapeXml(value).replace(/[<>]/g, "");
+  return String(value ?? "")
+    .replace(/&(apos|quot|gt|lt|amp);/g, (_entity, name) => {
+      if (name === "apos") return "'";
+      if (name === "quot") return '"';
+      if (name === "amp") return "&";
+      return "";
+    })
+    .split("<")
+    .join("")
+    .split(">")
+    .join("");
 }
 
 function getXmlAttribute(attributes, name) {

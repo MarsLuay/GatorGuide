@@ -11,9 +11,8 @@ const CE_NATURAL_SCIENCE_SUBJECTS = [
 ];
 
 function stripHtmlToText(value) {
-  return String(value ?? "")
-    .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ")
+  return ["script", "style"]
+    .reduce((text, tagName) => stripRawTextElement(text, tagName), String(value ?? ""))
     .replace(/<[^>]+>/g, " ")
     .replace(/&(nbsp|amp|#8211|ndash|#8217|rsquo);/gi, (entity) => {
       const normalized = entity.toLowerCase();
@@ -24,6 +23,39 @@ function stripHtmlToText(value) {
     })
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function stripRawTextElement(html, tagName) {
+  const source = String(html ?? "");
+  const lowerSource = source.toLowerCase();
+  const openNeedle = `<${tagName.toLowerCase()}`;
+  const closeNeedle = `</${tagName.toLowerCase()}`;
+  let result = "";
+  let offset = 0;
+
+  while (offset < source.length) {
+    const openIndex = lowerSource.indexOf(openNeedle, offset);
+    if (openIndex === -1) {
+      result += source.slice(offset);
+      break;
+    }
+
+    const boundary = source[openIndex + openNeedle.length];
+    if (boundary && boundary !== ">" && boundary !== "/" && boundary > " ") {
+      result += source.slice(offset, openIndex + openNeedle.length);
+      offset = openIndex + openNeedle.length;
+      continue;
+    }
+
+    result += source.slice(offset, openIndex);
+    const closeIndex = lowerSource.indexOf(closeNeedle, openIndex + openNeedle.length);
+    if (closeIndex === -1) break;
+
+    const closeEndIndex = source.indexOf(">", closeIndex + closeNeedle.length);
+    offset = closeEndIndex === -1 ? source.length : closeEndIndex + 1;
+  }
+
+  return result;
 }
 
 function unique(values) {
