@@ -2432,6 +2432,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "Humanities",
           "Elective or General Education"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (40 credits)",
+        "courses": [
+          "40 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -2473,8 +2483,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 130,
+      "scheduledMaxCredits": 130,
       "placeholderCredits": 55,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -2541,6 +2551,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "S 3 - Social Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (40 credits)",
+        "courses": [
+          "40 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -2684,8 +2704,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 130,
+      "scheduledMaxCredits": 130,
       "placeholderCredits": 40,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -2759,6 +2779,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "S 3 - Social Science",
           "ART 240"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (13 credits)",
+        "courses": [
+          "13 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -2774,8 +2804,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 35,
       "unresolvedOptionCredits": 10,
       "defaultOptionCredits": 0,
@@ -2850,6 +2880,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "S 3 - Social Science",
           "ART 219 or ART 199"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (5 credits)",
+        "courses": [
+          "5 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -2865,8 +2905,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 98,
-      "scheduledMaxCredits": 98,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 30,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -2937,6 +2977,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "courses": [
           "ART 123"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (13 credits)",
+        "courses": [
+          "13 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -2952,8 +3002,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 35,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -3026,6 +3076,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "S 3 - Social Science",
           "Select one: ART 106, ART 107, ART 111, ART 119, ART 255, ART 256, ART 257"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (13 credits)",
+        "courses": [
+          "13 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -3041,8 +3101,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 45,
       "unresolvedOptionCredits": 10,
       "defaultOptionCredits": 0,
@@ -3103,6 +3163,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "courses": [
           "N 3 - Natural Science List A or List B",
           "S 3 - Social Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (28 credits)",
+        "courses": [
+          "28 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -3216,8 +3286,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 75,
-      "scheduledMaxCredits": 75,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 35,
       "unresolvedOptionCredits": 5,
       "defaultOptionCredits": 0,
@@ -5750,24 +5820,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     },
     "terms": [
       {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "MATH& 146 or MATH 256",
-          "PSYC& 100",
-          "PSYC& 200",
-          "NUTR& 101",
-          "BIOL& 241",
-          "BIOL& 242",
-          "BIOL& 211 or BIOL& 160",
-          "CMST& 101",
-          "CMST& 210",
-          "CMST& 220",
-          "CMST& 230",
-          "CMST& 240"
-        ]
-      },
-      {
         "label": "Fall Quarter",
         "courses": [
           "PNURSE 102",
@@ -5795,6 +5847,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "PNURSE 125",
           "PNURSE 126",
           "PNURSE 127"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (15 credits)",
+        "courses": [
+          "15 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -5906,12 +5968,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 15,
+      "scheduledMaxCredits": 15,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -5932,20 +5996,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "MATH& 146 or MATH 256",
-          "PSYC& 100",
-          "PSYC& 200",
-          "NUTR& 101",
-          "BIOL& 160 or BIOL& 211",
-          "BIOL& 241",
-          "BIOL& 242",
-          "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230, CMST& 240"
-        ]
-      },
       {
         "label": "Spring 1 (9 credits)",
         "courses": [
@@ -5989,6 +6039,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "PNURSE 125",
           "PNURSE 126",
           "PNURSE 127"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (45 credits)",
+        "courses": [
+          "45 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -6100,10 +6160,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 45,
-      "scheduledMaxCredits": 45,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
       "placeholderCredits": 0,
-      "unresolvedOptionCredits": 5,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
       "exceedsCatalogMinimum": false,
@@ -6128,24 +6188,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "MATH& 146 or MATH 256",
-          "PSYC& 100",
-          "PSYC& 200",
-          "NUTR& 101",
-          "BIOL& 160 or BIOL& 211",
-          "BIOL& 241",
-          "BIOL& 242",
-          "CMST& 101",
-          "CMST& 210",
-          "CMST& 220",
-          "CMST& 230",
-          "CMST& 240"
-        ]
-      },
       {
         "label": "Summer 1 (9 credits)",
         "courses": [
@@ -6189,6 +6231,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "PNURSE 125",
           "PNURSE 126",
           "PNURSE 127"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (45 credits)",
+        "courses": [
+          "45 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -6300,8 +6352,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 45,
-      "scheduledMaxCredits": 45,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -6328,12 +6380,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "Select one: AP 103, BIOL& 175, BIOL& 241, MATH 70 - Pre-Algebra, ENGL& 101. - must be taken prior to the start of the program"
-        ]
-      },
       {
         "label": "Fall 1",
         "courses": [
@@ -6422,7 +6468,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     ],
     "sampleSchedule": {
       "placeholderCredits": 0,
-      "unresolvedOptionCredits": 5,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
       "exceedsCatalogMinimum": null,
@@ -6447,12 +6493,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "Select one: AP 103, BIOL& 175, BIOL& 241, MATH 70 - Pre-Algebra, ENGL& 101. - must be taken prior to the start of the program"
-        ]
-      },
       {
         "label": "Spring 1 (12 credits)",
         "courses": [
@@ -6534,6 +6574,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "OTA 241",
           "OTA 246"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (15 credits)",
+        "courses": [
+          "15 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -6550,10 +6600,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 105,
+      "scheduledMaxCredits": 105,
       "placeholderCredits": 0,
-      "unresolvedOptionCredits": 5,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
       "exceedsCatalogMinimum": false,
@@ -6578,15 +6628,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "AP 103",
-          "AP 104 or BIOL& 241",
-          "BIOL& 242",
-          "ENGL& 101"
-        ]
-      },
       {
         "label": "Fall 1",
         "courses": [
@@ -6876,6 +6917,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "CHEM& 140",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -6974,6 +7021,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "PHYS& 114",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -7660,6 +7713,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "PHYS& 114",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -7709,6 +7768,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "MATH 240",
           "PHYS& 223",
           "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (8-9 credits)",
+        "courses": [
+          "8-9 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -7862,13 +7931,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 94,
-      "scheduledMaxCredits": 94,
+      "scheduledMinCredits": 102,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 15,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 5,
-      "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": false,
+      "sampleOnlyCredits": 1,
+      "exceedsCatalogMinimum": true,
       "exceedsCatalogMaximum": false
     }
   },
@@ -7896,6 +7965,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "PHYS& 114",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -8154,6 +8229,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "PHYS& 114",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -8655,6 +8736,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "MATH& 142",
           "CHEM& 140",
           "MATH& 151"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -8721,7 +8808,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 92,
+      "scheduledMinCredits": 91,
       "scheduledMaxCredits": 92,
       "placeholderCredits": 20,
       "unresolvedOptionCredits": 0,
@@ -8991,14 +9078,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology, AAS-Air Traffic Control Track"
     ],
-    "minimumCredits": 90,
+    "minimumCredits": 97,
     "maximumCredits": 97,
     "catalogCreditRange": {
-      "minimumCredits": 90,
+      "minimumCredits": 97,
       "maximumCredits": 97,
       "sourceText": "90-97 Credits The Aviation Technology Associate of Applied Science program at Green River College prepares students for entry level jobs as commercial pilots, air traffic controllers, airline dispatchers, or aviation managers. Students choose one of the four option tracks dependent on their future career desires. All students experience a little of each track option in order to help them make a decision and to have a well-rounded education in aviation. This program directly transfers into the Bachelor of Applied Science - Aeronautical Science degree program. Option 1: Commercial Pilot Track (97 credits) - Throughout the commercial pilot program students will be required to get their Private Pilot License, Instrument Rating, and Commercial Pilot License. Students must complete their flight hours at a Part 141 flight school, the cost for the flight hours is in addition to the tuition and fees for this program. Graduates of Green River College's Commercial Pilot program may be eligible for the Restricted Airline Transport Pilot (R-ATP) certificate at 1,000 hours total time provided they completed their Commercial and Instrument Flight training and certification at an approved GRC Part 141 flight school. Students will need to obtain a valid 1st class medical certificate prior to starting their flight training. To find an Aviation Medical Examiner (AME) in your area go to https://www.faa.gov/pilots/amelocator For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Commercial Pilot Track Curriculum Map Option 2: Air Traffic Control Track (91 credits) - Green River Aviation is one of 36 institutions selected by the FAA for the Collegiate Training Initiative (CTI) program. The CTI program establishes an official partnership between the FAA and select aviation education programs. Green River recommends its students to the FAA for hire as air traffic controllers, granting students an advantage in the extremely competitive hiring process. Successful program completion and selection by the FAA can potentially feed directly into air traffic controller training at the FAA Academy in Oklahoma City, Oklahoma. There are additional requirements students must meet beyond acceptance to Green River's Aviation Technology program to participate in the CTI program. Go to www.faa.gov/jobs/students/schools for more information. Completing the ATC degree does not assure the FAA will hire the Green River AT-CTI graduate. Green River College has no influence over the FAA hiring process. Students will need to obtain a valid 2nd class medical certificate prior to working as an Air Traffic Controller. To find an Aviation Medical Examiner (AME) in your area go to www.faa.gov/jobs/students/schools For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Air Traffic Control Track Curriculum Map Option 3: Airline Dispatch Track (91 credits) - Administered under CFR Title 14, Part 65, students completing this track will be eligible to test for the FAA Aircraft Dispatchers Certificate. Students must be at least 21 years of age on or before the completion of the course in order to qualify for the dispatch test. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Airline Dispatch Track Curriculum Map Option 4: Aviation Management Track (90 credits) - This option track prepares students for entry level jobs at airports or airlines of all sizes across the United States. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Aviation Management Track Curriculum Map If you took aviation courses while in high school please refer to District Classes Eligible for GRC for credit eligibility. Program Website: Aviation Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/index.html Contact: George Comollo - gcomollo@greenriver.edu - 253-931-6577",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -9049,6 +9136,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "AVIA 286",
           "N 1 - Natural Science List A (Lab)"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (6 credits)",
+        "courses": [
+          "6 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9064,13 +9161,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 91,
-      "scheduledMaxCredits": 91,
+      "scheduledMinCredits": 97,
+      "scheduledMaxCredits": 97,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 1,
-      "exceedsCatalogMinimum": true,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
       "exceedsCatalogMaximum": false
     }
   },
@@ -9082,14 +9179,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology, AAS-Airline Dispatch Track"
     ],
-    "minimumCredits": 90,
+    "minimumCredits": 97,
     "maximumCredits": 97,
     "catalogCreditRange": {
-      "minimumCredits": 90,
+      "minimumCredits": 97,
       "maximumCredits": 97,
       "sourceText": "90-97 Credits The Aviation Technology Associate of Applied Science program at Green River College prepares students for entry level jobs as commercial pilots, air traffic controllers, airline dispatchers, or aviation managers. Students choose one of the four option tracks dependent on their future career desires. All students experience a little of each track option in order to help them make a decision and to have a well-rounded education in aviation. This program directly transfers into the Bachelor of Applied Science - Aeronautical Science degree program. Option 1: Commercial Pilot Track (97 credits) - Throughout the commercial pilot program students will be required to get their Private Pilot License, Instrument Rating, and Commercial Pilot License. Students must complete their flight hours at a Part 141 flight school, the cost for the flight hours is in addition to the tuition and fees for this program. Graduates of Green River College's Commercial Pilot program may be eligible for the Restricted Airline Transport Pilot (R-ATP) certificate at 1,000 hours total time provided they completed their Commercial and Instrument Flight training and certification at an approved GRC Part 141 flight school. Students will need to obtain a valid 1st class medical certificate prior to starting their flight training. To find an Aviation Medical Examiner (AME) in your area go to https://www.faa.gov/pilots/amelocator For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Commercial Pilot Track Curriculum Map Option 2: Air Traffic Control Track (91 credits) - Green River Aviation is one of 36 institutions selected by the FAA for the Collegiate Training Initiative (CTI) program. The CTI program establishes an official partnership between the FAA and select aviation education programs. Green River recommends its students to the FAA for hire as air traffic controllers, granting students an advantage in the extremely competitive hiring process. Successful program completion and selection by the FAA can potentially feed directly into air traffic controller training at the FAA Academy in Oklahoma City, Oklahoma. There are additional requirements students must meet beyond acceptance to Green River's Aviation Technology program to participate in the CTI program. Go to www.faa.gov/jobs/students/schools for more information. Completing the ATC degree does not assure the FAA will hire the Green River AT-CTI graduate. Green River College has no influence over the FAA hiring process. Students will need to obtain a valid 2nd class medical certificate prior to working as an Air Traffic Controller. To find an Aviation Medical Examiner (AME) in your area go to www.faa.gov/jobs/students/schools For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Air Traffic Control Track Curriculum Map Option 3: Airline Dispatch Track (91 credits) - Administered under CFR Title 14, Part 65, students completing this track will be eligible to test for the FAA Aircraft Dispatchers Certificate. Students must be at least 21 years of age on or before the completion of the course in order to qualify for the dispatch test. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Airline Dispatch Track Curriculum Map Option 4: Aviation Management Track (90 credits) - This option track prepares students for entry level jobs at airports or airlines of all sizes across the United States. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Aviation Management Track Curriculum Map If you took aviation courses while in high school please refer to District Classes Eligible for GRC for credit eligibility. Program Website: Aviation Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/index.html Contact: George Comollo - gcomollo@greenriver.edu - 253-931-6577",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -9140,6 +9237,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "ENGL& 101",
           "N 1 - Natural Science List A (Lab)"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (6 credits)",
+        "courses": [
+          "6 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9155,13 +9262,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 91,
-      "scheduledMaxCredits": 91,
+      "scheduledMinCredits": 97,
+      "scheduledMaxCredits": 97,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 1,
-      "exceedsCatalogMinimum": true,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
       "exceedsCatalogMaximum": false
     }
   },
@@ -9173,14 +9280,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology, AAS-Aviation Management Track"
     ],
-    "minimumCredits": 90,
+    "minimumCredits": 97,
     "maximumCredits": 97,
     "catalogCreditRange": {
-      "minimumCredits": 90,
+      "minimumCredits": 97,
       "maximumCredits": 97,
       "sourceText": "90-97 Credits The Aviation Technology Associate of Applied Science program at Green River College prepares students for entry level jobs as commercial pilots, air traffic controllers, airline dispatchers, or aviation managers. Students choose one of the four option tracks dependent on their future career desires. All students experience a little of each track option in order to help them make a decision and to have a well-rounded education in aviation. This program directly transfers into the Bachelor of Applied Science - Aeronautical Science degree program. Option 1: Commercial Pilot Track (97 credits) - Throughout the commercial pilot program students will be required to get their Private Pilot License, Instrument Rating, and Commercial Pilot License. Students must complete their flight hours at a Part 141 flight school, the cost for the flight hours is in addition to the tuition and fees for this program. Graduates of Green River College's Commercial Pilot program may be eligible for the Restricted Airline Transport Pilot (R-ATP) certificate at 1,000 hours total time provided they completed their Commercial and Instrument Flight training and certification at an approved GRC Part 141 flight school. Students will need to obtain a valid 1st class medical certificate prior to starting their flight training. To find an Aviation Medical Examiner (AME) in your area go to https://www.faa.gov/pilots/amelocator For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Commercial Pilot Track Curriculum Map Option 2: Air Traffic Control Track (91 credits) - Green River Aviation is one of 36 institutions selected by the FAA for the Collegiate Training Initiative (CTI) program. The CTI program establishes an official partnership between the FAA and select aviation education programs. Green River recommends its students to the FAA for hire as air traffic controllers, granting students an advantage in the extremely competitive hiring process. Successful program completion and selection by the FAA can potentially feed directly into air traffic controller training at the FAA Academy in Oklahoma City, Oklahoma. There are additional requirements students must meet beyond acceptance to Green River's Aviation Technology program to participate in the CTI program. Go to www.faa.gov/jobs/students/schools for more information. Completing the ATC degree does not assure the FAA will hire the Green River AT-CTI graduate. Green River College has no influence over the FAA hiring process. Students will need to obtain a valid 2nd class medical certificate prior to working as an Air Traffic Controller. To find an Aviation Medical Examiner (AME) in your area go to www.faa.gov/jobs/students/schools For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Air Traffic Control Track Curriculum Map Option 3: Airline Dispatch Track (91 credits) - Administered under CFR Title 14, Part 65, students completing this track will be eligible to test for the FAA Aircraft Dispatchers Certificate. Students must be at least 21 years of age on or before the completion of the course in order to qualify for the dispatch test. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Airline Dispatch Track Curriculum Map Option 4: Aviation Management Track (90 credits) - This option track prepares students for entry level jobs at airports or airlines of all sizes across the United States. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Aviation Management Track Curriculum Map If you took aviation courses while in high school please refer to District Classes Eligible for GRC for credit eligibility. Program Website: Aviation Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/index.html Contact: George Comollo - gcomollo@greenriver.edu - 253-931-6577",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -9230,6 +9337,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "N 1 - Natural Science List A (Lab)",
           "MATH& 107"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (7 credits)",
+        "courses": [
+          "7 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9245,8 +9362,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 97,
+      "scheduledMaxCredits": 97,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -9263,14 +9380,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Aviation Technology, AAS-Commercial Pilot Track"
     ],
-    "minimumCredits": 90,
+    "minimumCredits": 97,
     "maximumCredits": 97,
     "catalogCreditRange": {
-      "minimumCredits": 90,
+      "minimumCredits": 97,
       "maximumCredits": 97,
       "sourceText": "90-97 Credits The Aviation Technology Associate of Applied Science program at Green River College prepares students for entry level jobs as commercial pilots, air traffic controllers, airline dispatchers, or aviation managers. Students choose one of the four option tracks dependent on their future career desires. All students experience a little of each track option in order to help them make a decision and to have a well-rounded education in aviation. This program directly transfers into the Bachelor of Applied Science - Aeronautical Science degree program. Option 1: Commercial Pilot Track (97 credits) - Throughout the commercial pilot program students will be required to get their Private Pilot License, Instrument Rating, and Commercial Pilot License. Students must complete their flight hours at a Part 141 flight school, the cost for the flight hours is in addition to the tuition and fees for this program. Graduates of Green River College's Commercial Pilot program may be eligible for the Restricted Airline Transport Pilot (R-ATP) certificate at 1,000 hours total time provided they completed their Commercial and Instrument Flight training and certification at an approved GRC Part 141 flight school. Students will need to obtain a valid 1st class medical certificate prior to starting their flight training. To find an Aviation Medical Examiner (AME) in your area go to https://www.faa.gov/pilots/amelocator For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Commercial Pilot Track Curriculum Map Option 2: Air Traffic Control Track (91 credits) - Green River Aviation is one of 36 institutions selected by the FAA for the Collegiate Training Initiative (CTI) program. The CTI program establishes an official partnership between the FAA and select aviation education programs. Green River recommends its students to the FAA for hire as air traffic controllers, granting students an advantage in the extremely competitive hiring process. Successful program completion and selection by the FAA can potentially feed directly into air traffic controller training at the FAA Academy in Oklahoma City, Oklahoma. There are additional requirements students must meet beyond acceptance to Green River's Aviation Technology program to participate in the CTI program. Go to www.faa.gov/jobs/students/schools for more information. Completing the ATC degree does not assure the FAA will hire the Green River AT-CTI graduate. Green River College has no influence over the FAA hiring process. Students will need to obtain a valid 2nd class medical certificate prior to working as an Air Traffic Controller. To find an Aviation Medical Examiner (AME) in your area go to www.faa.gov/jobs/students/schools For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Air Traffic Control Track Curriculum Map Option 3: Airline Dispatch Track (91 credits) - Administered under CFR Title 14, Part 65, students completing this track will be eligible to test for the FAA Aircraft Dispatchers Certificate. Students must be at least 21 years of age on or before the completion of the course in order to qualify for the dispatch test. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Airline Dispatch Track Curriculum Map Option 4: Aviation Management Track (90 credits) - This option track prepares students for entry level jobs at airports or airlines of all sizes across the United States. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Aviation Management Track Curriculum Map If you took aviation courses while in high school please refer to District Classes Eligible for GRC for credit eligibility. Program Website: Aviation Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/index.html Contact: George Comollo - gcomollo@greenriver.edu - 253-931-6577",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -9323,6 +9440,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "ENGL& 101",
           "N 1 - Natural Science List A (Lab)"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (3 credits)",
+        "courses": [
+          "3 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9338,13 +9465,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 94,
-      "scheduledMaxCredits": 94,
+      "scheduledMinCredits": 97,
+      "scheduledMaxCredits": 97,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 4,
-      "exceedsCatalogMinimum": true,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
       "exceedsCatalogMaximum": false
     }
   },
@@ -9555,6 +9682,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "CMST 105",
           "CMST 106"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (10-17 credits)",
+        "courses": [
+          "10-17 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9634,12 +9771,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 10,
+      "scheduledMaxCredits": 17,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -9872,7 +10011,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 101,
+      "scheduledMinCredits": 96,
       "scheduledMaxCredits": 101,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
@@ -10162,13 +10301,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     },
     "terms": [
       {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
-      {
         "label": "Quarter 1 (16 credits)",
         "courses": [
           "NATRS 100",
@@ -10224,6 +10356,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "NATRS 210",
           "NATRS 286"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (10 credits)",
+        "courses": [
+          "10 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -10239,8 +10381,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 101,
-      "scheduledMaxCredits": 101,
+      "scheduledMinCredits": 111,
+      "scheduledMaxCredits": 111,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -10267,13 +10409,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
       {
         "label": "Quarter 1 (16 credits)",
         "courses": [
@@ -10332,6 +10467,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "NATRS 262",
           "NATRS 263"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (8 credits)",
+        "courses": [
+          "8 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -10347,8 +10492,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 111,
-      "scheduledMaxCredits": 111,
+      "scheduledMinCredits": 119,
+      "scheduledMaxCredits": 119,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -10375,13 +10520,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": false
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
       {
         "label": "Quarter 1 (16 credits)",
         "courses": [
@@ -10493,13 +10631,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": false
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
       {
         "label": "Quarter 1 (16 credits)",
         "courses": [
@@ -10614,13 +10745,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     },
     "terms": [
       {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
-      {
         "label": "Quarter 1 (16 credits)",
         "courses": [
           "NATRS 100",
@@ -10677,6 +10801,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "NATRS 210",
           "NATRS 286"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (15 credits)",
+        "courses": [
+          "15 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -10692,8 +10826,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 101,
-      "scheduledMaxCredits": 101,
+      "scheduledMinCredits": 116,
+      "scheduledMaxCredits": 116,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -10920,6 +11054,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "WST 177",
           "WST 188"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (1 credits)",
+        "courses": [
+          "1 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -10935,8 +11079,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 89,
-      "scheduledMaxCredits": 89,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -11008,6 +11152,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "label": "Quarter 6",
         "courses": [
           "WELD 196"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (34-44 credits)",
+        "courses": [
+          "34-44 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -11107,12 +11261,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 34,
+      "scheduledMaxCredits": 44,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -11290,6 +11446,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "N 1 - Natural Science List A (Lab)",
           "Humanities or Social Science",
           "Natural Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -11470,8 +11636,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 15,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -11545,6 +11711,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "ACCT 212",
           "BUS& 101",
           "CMST& 101"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -11725,8 +11901,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -11801,6 +11977,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "ECON& 202",
           "POLS& 200",
           "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (85 credits)",
+        "courses": [
+          "85 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -11981,8 +12167,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 95,
-      "scheduledMaxCredits": 95,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -12021,6 +12207,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230, CMST& 240, N 1 - Natural Science List A (Lab), MATH& 146, MATH 256, H 1 - Humanities/Fine Arts/English, S 1 - Social Science",
           "Humanities or Social Science",
           "Natural Science"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12062,6 +12254,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "MGMT 400",
           "MGMT 425"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (115 credits)",
+        "courses": [
+          "115 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12078,8 +12280,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 65,
-      "scheduledMaxCredits": 65,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 15,
       "unresolvedOptionCredits": 10,
       "defaultOptionCredits": 0,
@@ -12113,6 +12315,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "Select one: ENGL 126, ENGL 127, ENGL 128, ENGL& 235, ENGL 335, MATH& 141, MATH 147, MATH& 151",
           "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230",
           "Select one: PHIL 102, PHIL 111, PHIL 112, PHIL& 115, PHIL 206, PHIL 243, BUS& 101, BUS 181, BUS 121, ACCT 110, ACCT& 201, S 1 - Social Science, N 1 - Natural Science List A (Lab), MATH& 146, MATH 256"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12162,6 +12370,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "BUS 405",
           "BUS 490"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12178,12 +12396,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 15,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -12211,6 +12431,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "Select one: ENGL 126, ENGL 127, ENGL 128, ENGL& 235",
           "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230, CMST& 240, H 1 - Humanities/Fine Arts/English, H 2 - Humanities/Fine Arts/English, N 1 - Natural Science List A (Lab), N 3 - Natural Science List A or List B, S 1 - Social Science, S 2 - Social Science, CRC 314, CRC 324, CRC 350, CRC 414, CRC 360, CRC 361, CRC 450, CRC 451",
           "Elective or General Education"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12257,6 +12483,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "courses": [
           "Elective or General Education"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (92 credits)",
+        "courses": [
+          "92 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12274,8 +12510,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 88,
-      "scheduledMaxCredits": 88,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 25,
       "unresolvedOptionCredits": 10,
       "defaultOptionCredits": 0,
@@ -12292,31 +12528,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
     "bestFor": [
       "Early Childhood Education: Infant and Child Mental Health"
     ],
-    "minimumCredits": 3,
-    "maximumCredits": 5,
+    "minimumCredits": 180,
+    "maximumCredits": 180,
     "catalogCreditRange": {
-      "minimumCredits": 3,
-      "maximumCredits": 5,
+      "minimumCredits": 180,
+      "maximumCredits": 180,
       "sourceText": "180 Credits Green River College's Bachelor of Applied Science (BAS) in Early Childhood Education: Infant and Child Mental Health (ICMH) will provide graduates with skills and abilities to examine the foundations of development and the importance of relationships to the social and emotional well-being of infants, toddlers, and young children as well as quality relationships and environments that foster growth in all developmental domains-social and emotional, cognitive/linguistic, and physical. It is designed to provide relevant training to those working with vulnerable families and children including early care and education providers, home visitors, child health providers, early interventionists, and other related fields. The specialized training in infant/child mental health will enable these individuals to work better with children and families, responding to the emerging needs of the diverse populations that they serve. The BAS in Early Childhood-ICMH enables individuals with applied associate degrees in Early Childhood Education to combine their lower-division technical or transfer preparation courses with upper-division credits. The result is a unique, specialized, BAS degree. The BAS in Early Childhood-ICMH also combines the breadth and academic rigor required for students who wish to continue their studies at the Master's level. For a curriculum map or suggested sequence of courses go to Early Childhood Education: Infant and Child Mental Health, BAS Curriculum Map . Entry Requirements: The entry requirements for the BAS in Infant Child Mental Health provide access to students from both academic transfer and career and technical programs. These entry requirements also ensure that prospective students are prepared for success once they enter the program. Entry requirements are: AAA, AAS or AAS-T degree with a cumulative GPA of 2.5 or better AA, AS degree or higher with cumulative GPA of 2.5 or better Completion of 30 credits in ECE with no single class lower than 2.0 to include: EDUC& 115 - Child Development (5 credits) EDUC& 130 - Guiding Behavior (3 credits) EDUC& 204 - Inclusive Education Diversity Course (3-5 credits) 5 credits in practicum/field experience or permission of program director. Completion of these courses will provide the foundation necessary for seamless entry into the BAS in Early Childhood-ICMH and will be included in the 180 credit requirement. Contacts: Leslie Kessler, lkessler@greenriver.edu , Andee Church, achurch@greenriver.edu , Roberta Kim, rkim@greenriver.edu Program Website: Early Childhood Education | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/index.html Graduation Requirement Completion of an associate degree or higher from a regionally accredited college or university.",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "EDUC& 115",
-          "EDUC& 130",
-          "EDUC& 204",
-          "D 1 - Diversity",
-          "ENGL& 101",
-          "Select one: ENGL 126, ENGL 127, ENGL 128, H 1 - Humanities/Fine Arts/English",
-          "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230, CMST& 240, S 1 - Social Science, S 2 - Social Science, N 1 - Natural Science List A (Lab), N 3 - Natural Science List A or List B",
-          "Humanities or Social Science",
-          "Natural Science",
-          "Elective or General Education"
-        ]
-      },
       {
         "label": "Quarter 1",
         "courses": [
@@ -12364,6 +12585,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "ECED 445",
           "ECED 450"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12380,12 +12611,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "placeholderCredits": 25,
-      "unresolvedOptionCredits": 10,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
+      "placeholderCredits": 0,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -12428,6 +12661,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "MATH 108",
           "Humanities or Social Science",
           "Natural Science"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12479,6 +12718,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "IT 490",
           "Humanities or Social Science",
           "Natural Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (88 credits)",
+        "courses": [
+          "88 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -12529,8 +12778,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 92,
-      "scheduledMaxCredits": 92,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 55,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -12579,6 +12828,12 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "MATH 108",
           "Humanities or Social Science",
           "Natural Science"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12631,6 +12886,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "Humanities or Social Science",
           "Natural Science"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (88 credits)",
+        "courses": [
+          "88 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12680,8 +12945,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 92,
-      "scheduledMaxCredits": 92,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 55,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -12708,15 +12973,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "ENGL 335",
-          "Select one: ENGL 126, ENGL 127, ENGL 128, ENGL& 235, CMST& 210, CMST& 220, CMST& 230, MATH& 141, MATH 147, H 1 - Humanities/Fine Arts/English, H 2 - Humanities/Fine Arts/English, H 3 - Humanities/Fine Arts/English, N 1 - Natural Science List A (Lab), N 2 - Natural Science List A, N 3 - Natural Science List A or List B, S 1 - Social Science, S 2 - Social Science",
-          "Elective or General Education"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -12763,6 +13019,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "SDEV 486",
           "Elective or General Education"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12779,10 +13045,10 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
-      "placeholderCredits": 40,
-      "unresolvedOptionCredits": 5,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
+      "placeholderCredits": 30,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
       "exceedsCatalogMinimum": false,
@@ -12807,14 +13073,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "Humanities or Social Science",
-          "Natural Science"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -12865,6 +13123,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "Natural Science",
           "Elective or General Education"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (85 credits)",
+        "courses": [
+          "85 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12881,9 +13149,9 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 95,
-      "scheduledMaxCredits": 95,
-      "placeholderCredits": 50,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
+      "placeholderCredits": 40,
       "unresolvedOptionCredits": 15,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
@@ -12909,17 +13177,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL 128",
-          "NATRS 161",
-          "NATRS 180",
-          "NATRS 182",
-          "NATRS 192",
-          "NATRS 293"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -12984,6 +13241,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "NATRS 495",
           "NATRS 496"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (77 credits)",
+        "courses": [
+          "77 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -13001,8 +13268,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 89,
-      "scheduledMaxCredits": 89,
+      "scheduledMinCredits": 166,
+      "scheduledMaxCredits": 166,
       "placeholderCredits": 40,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -13029,17 +13296,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL 128",
-          "NATRS 161",
-          "NATRS 180",
-          "NATRS 182",
-          "NATRS 192",
-          "NATRS 293"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -13100,6 +13356,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "NATRS 495",
           "NATRS 496"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (81 credits)",
+        "courses": [
+          "81 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -13117,8 +13383,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 171,
+      "scheduledMaxCredits": 171,
       "placeholderCredits": 40,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -13152,6 +13418,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "BTAC 100",
           "BTAC 110"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (20-25 credits)",
+        "courses": [
+          "20-25 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -13167,12 +13443,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 20,
+      "scheduledMaxCredits": 25,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -13655,13 +13933,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "Business Management: Entrepreneurship"
     ],
     "minimumCredits": 30,
-    "maximumCredits": 35,
+    "maximumCredits": 30,
     "catalogCreditRange": {
       "minimumCredits": 30,
-      "maximumCredits": 35,
+      "maximumCredits": 30,
       "sourceText": "30-35 Credits The Entrepreneurship Certificate at Green River College is a comprehensive program designed to equip students with the essential knowledge and skills of an entrepreneur. Spanning 30 credits, this certificate provides a solid foundation in key areas of business, including entrepreneurship, marketing, accounting, and technology tools crucial for business operations. Whether you aim to launch a startup, run a small business, or bring innovative ideas to an existing organization, this program will prepare you for success in the dynamic world of entrepreneurship. Contacts: Sean McKeague, sean.mckeague@greenriver.edu , Daniel deWolff, daniel.dewolff@greenriver.edu Program Website: Business Management | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/index.html Program Outcomes Develop Business Plans: Create detailed and viable business plans that outline strategies for product development, marketing, and financial sustainability. Understand Core Business Concepts: Demonstrate a solid understanding of fundamental business principles, including management, marketing, and financial accounting. Implement Marketing Strategies: Apply introductory marketing principles to effectively promote products or services. Manage Financial Records: Utilize accounting software like QuickBooks and perform essential financial accounting tasks to manage business finances. Utilize Business Technologies: Use Microsoft Excel at an introductory or advanced level to analyze data and support business decision-making processes. Navigate the Entrepreneurial Ecosystem: Identify and leverage resources, networks, and support systems available to entrepreneurs.",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -13706,7 +13984,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 5,
       "exceedsCatalogMinimum": true,
-      "exceedsCatalogMaximum": false
+      "exceedsCatalogMaximum": true
     }
   },
   {
@@ -14141,17 +14419,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "EDUC& 115",
           "EDUC& 130"
         ]
-      },
-      {
-        "label": "Specialization",
-        "courses": [
-          "ECED& 132",
-          "ECED& 134",
-          "ECED& 137",
-          "ECED& 138",
-          "ECED& 139",
-          "EDUC& 136"
-        ]
       }
     ],
     "notes": [
@@ -14165,6 +14432,31 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       {
         "label": "Early Childhood Education Certificate of Specialization curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/certificate-of-specialization.html"
+      }
+    ],
+    "catalogOptionLists": [
+      {
+        "id": "official-grc-track-option-list:grc-certificate-education-law-social-science-early-childhood-education-certificate-of-specialization:specialization",
+        "label": "Specialization",
+        "sourceHeading": "Specialization",
+        "sourceText": "Each one of these specialization course leads to its own certificate. Students should work with their advisor to create an individualized plan.",
+        "supportOnly": true,
+        "courseLabels": [
+          "ECED& 132",
+          "ECED& 134",
+          "ECED& 137",
+          "ECED& 138",
+          "ECED& 139",
+          "EDUC& 136"
+        ],
+        "courseCodes": [
+          "ECED& 132",
+          "ECED& 134",
+          "ECED& 137",
+          "ECED& 138",
+          "ECED& 139",
+          "EDUC& 136"
+        ]
       }
     ],
     "sampleSchedule": {
@@ -14303,6 +14595,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "MATH& 131",
           "MATH& 132"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (1 credits)",
+        "courses": [
+          "1 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -14391,8 +14693,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 46,
-      "scheduledMaxCredits": 46,
+      "scheduledMinCredits": 47,
+      "scheduledMaxCredits": 47,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -14474,12 +14776,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Admission Requirements",
-        "courses": [
-          "Must be at least 18 years old Valid photo ID (driver's license or any state-issued photo ID) Must pass a National, Washington State Patrol and DSHS Background Check Required immunizations Uniform, text book and class supplies Liability Insurance"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -14922,6 +15218,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
         "courses": [
           "9/1/2024"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (60 credits)",
+        "courses": [
+          "60 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -14938,12 +15244,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 60,
+      "scheduledMaxCredits": 60,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -14964,17 +15272,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "IT 114",
-          "IT 131",
-          "IT 160",
-          "IT 190",
-          "IT 210",
-          "IT 224"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -15265,17 +15562,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "IT 114",
-          "IT 131",
-          "IT 160",
-          "IT 190",
-          "IT 210",
-          "IT 224"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -15719,6 +16005,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "CARP 115",
           "Select one: CARP 162, CARP 163"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (23 credits)",
+        "courses": [
+          "23 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -15734,12 +16030,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 23,
+      "scheduledMaxCredits": 23,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 5,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -15780,6 +16078,16 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
           "CARP 115",
           "Choose 2 of the following courses (8 credits): CARP 162, CARP 163, CARP 164, CARP 171"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (13 credits)",
+        "courses": [
+          "13 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -15795,12 +16103,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 13,
+      "scheduledMaxCredits": 13,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 8,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -15855,7 +16165,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_TRACKS: TransferPlannerTrack[] = [
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 46,
+      "scheduledMinCredits": 41,
       "scheduledMaxCredits": 46,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
@@ -16294,6 +16604,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
+            "label": "UW Bothell BBA curriculum hub",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
             "label": "UW Bothell Entrepreneurship concentration major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/entrepreneurship",
             "visibility": "visible",
@@ -16320,15 +16637,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Accounting Option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
+            "label": "UW Bothell Finance option and concentration major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
-          },
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "management-concentration",
+        "label": "Management concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
           {
-            "label": "UW Bothell Finance option and concentration major requirements",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
+            "label": "UW Bothell Management concentration major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/management",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -16352,13 +16688,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [
-          {
-            "label": "Accounting Option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
           {
             "label": "UW Bothell Marketing option and concentration major requirements",
             "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
@@ -16393,6 +16722,50 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "sourceConfidence": "high"
           }
         ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "retail-management-concentration",
+        "label": "Retail Management concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Bothell Retail Management concentration major requirements",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "technology-and-innovation-management-concentration",
+        "label": "Technology and Innovation Management concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -16479,7 +16852,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bothell Finance option and concentration",
+        "label": "Scoped section: Finance Option and Concentration",
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option",
         "visibility": "visible",
         "status": "verified",
@@ -16555,8 +16928,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Bothell Leadership and Strategic Innovation option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/leadership",
+            "label": "Accounting Option",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -16614,8 +16987,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Bothell Marketing option and concentration",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
+            "label": "Accounting Option",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -16673,8 +17046,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Bothell Supply Chain Management option",
-            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain",
+            "label": "Accounting Option",
+            "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -16732,7 +17105,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Bothell Chemistry curriculum",
+            "label": "Scoped section: B.S. in Chemistry (general option) requirements",
             "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
             "visibility": "visible",
             "status": "verified",
@@ -16791,7 +17164,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Bothell Chemistry curriculum",
+            "label": "Scoped section: B.S. in Chemistry (general option) requirements",
             "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
             "visibility": "visible",
             "status": "verified",
@@ -16850,7 +17223,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Bothell Chemistry curriculum",
+            "label": "Scoped section: B.S. in Chemistry (general option) requirements",
             "url": "https://www.uwb.edu/stem/undergraduate/majors/chemistry/curriculum",
             "visibility": "visible",
             "status": "verified",
@@ -16948,7 +17321,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bothell CSSE curriculum",
+        "label": "Scoped section: This page contains information on the curriculum of the Bachelor of Science in Computer Science & Software Engineering (",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/bscsse/curriculum",
         "visibility": "visible",
         "status": "verified",
@@ -17095,6 +17468,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Bothell major planning worksheet - Data Visualization (BA)",
+        "url": "https://admissions.uwb.edu/register/mpw-DataVis-BA",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -17124,6 +17504,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "label": "Data Visualization (BS)",
         "url": "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      },
+      {
+        "label": "UW Bothell major planning worksheet - Data Visualization (BS)",
+        "url": "https://admissions.uwb.edu/register/mpw-DataVis-BS",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -17301,7 +17688,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "medium"
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -17361,7 +17748,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bothell Electrical Engineering curriculum",
+        "label": "Scoped section: The Electrical Engineering curriculum is ABET accredited and students need to complete major requirements and meet learn",
         "url": "https://www.uwb.edu/stem/undergraduate/majors/electrical/curriculum",
         "visibility": "visible",
         "status": "verified",
@@ -17811,7 +18198,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "medium"
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -17843,7 +18230,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "medium"
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -17855,58 +18242,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "full-time-track",
-        "label": "Full-Time track",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell RN to BSN overview",
-            "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "full-time-track-students-graduate-in",
-        "label": "Full-Time Track Students Graduate in",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Bothell RN to BSN overview",
-            "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "part-time-track",
         "label": "Part-Time track",
         "summary": "",
@@ -17916,8 +18251,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Bothell RN to BSN overview",
-            "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview",
+            "label": "Student Requirements",
+            "url": "https://www.uwb.edu/nhs/undergraduate/rn-bsn/requirements",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "medium"
@@ -18158,60 +18493,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "african-american-studies-concentration",
-        "label": "African American Studies Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW American Ethnic Studies degree requirements",
-            "url": "https://aes.washington.edu/ba-american-ethnic-studies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "asian-american-pia-studies-concentration",
-        "label": "Asian American/PIA Studies Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW American Ethnic Studies degree requirements",
-            "url": "https://aes.washington.edu/ba-american-ethnic-studies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
         "id": "chicano-a-studies-concentration",
-        "label": "Chicano/a Studies Concentration",
+        "label": "Chicano/a Studies concentration",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -18219,33 +18502,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW American Ethnic Studies degree requirements",
-            "url": "https://aes.washington.edu/ba-american-ethnic-studies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "comparative-american-ethnic-studies-concentration",
-        "label": "Comparative American Ethnic Studies Concentration",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW American Ethnic Studies degree requirements",
+            "label": "Scoped section: Students choose one of four concentrations to help customize their studies: African American Studies, Asian American/Pac",
             "url": "https://aes.washington.edu/ba-american-ethnic-studies",
             "visibility": "visible",
             "status": "verified",
@@ -18470,7 +18727,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [],
+    "officialLinks": [
+      {
+        "label": "UW Aquatic Conservation and Ecology major requirements",
+        "url": "https://fish.uw.edu/students/undergraduate-program/bachelor-of-science/major-requirements/",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      }
+    ],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -18544,8 +18809,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "b-a-route",
-        "label": "B.A. route",
+        "id": "extent-and-quality-of-relevant-3-area-of-concentration-selective-courses-from",
+        "label": "extent and quality of relevant 3 Area of Concentration selective courses from",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -18587,8 +18852,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "b-a-route",
-        "label": "B.A. route",
+        "id": "with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
+        "label": "With Honors (Completion of Departmental Honors Requirements in the Major) Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -18630,8 +18895,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "b-a-route",
-        "label": "B.A. route",
+        "id": "with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
+        "label": "With Honors (Completion of Departmental Honors Requirements in the Major) Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -18737,6 +19002,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
+      },
+      {
+        "id": "japan-concentration",
+        "label": "Japan Concentration",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Asian Studies Major Courses Autumn 2019",
+            "url": "https://jsis.washington.edu/wordpress/wp-content/uploads/2019/06/Asian-Studies-Courses-Autumn-2019rev.pdf",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
       }
     ]
   },
@@ -18781,7 +19072,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "degree requirements",
+            "label": "Scoped section: Personal Statement. This statement will consist of a brief (500 – 1000 words) description of the student’s interest and",
             "url": "https://astro.washington.edu/undergraduate-program",
             "visibility": "visible",
             "status": "verified",
@@ -18962,6 +19253,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
+      },
+      {
+        "id": "recommended-preparation-option",
+        "label": "Recommended Preparation option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Biology page",
+            "url": "https://www.washington.edu/students/gencat/program/S/Biology-112.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
       }
     ]
   },
@@ -18985,7 +19302,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/options/",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "medium"
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -19057,8 +19374,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Chemical Engineering curriculum",
-            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum",
+            "label": "Engineering Electives",
+            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19250,7 +19567,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "url": "https://classics.washington.edu/ba-classics",
         "visibility": "visible",
         "status": "verified",
-        "sourceConfidence": "medium"
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -19301,15 +19618,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW General Catalog Communication requirements",
-            "url": "https://www.washington.edu/students/gencat/program/S/Communication-1035.html",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -19383,7 +19692,86 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "chid-study-abroad-program-option",
+        "label": "Chid Study Abroad Program Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Comparative History of Ideas requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "local-global-engagements-option",
+        "label": "Local/Global Engagements Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Comparative History of Ideas requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "or-encounters-across-cultures-option",
+        "label": "Or Encounters Across Cultures Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Comparative History of Ideas requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/ComparativeHistoryofIdeas-202.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-comparative-literature",
@@ -19447,7 +19835,138 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "a-general-and-cross-regional-course-of-study-track",
+        "label": "A General and Cross-Regional Course of Study track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Comparative Religion requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "history-of-religions-eastern-emphasis-track",
+        "label": "History of Religions-Eastern Emphasis track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Comparative Religion requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "history-of-religions-western-emphasis-track",
+        "label": "History of Religions-Western Emphasis track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Comparative Religion requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "religion-and-society-track",
+        "label": "Religion and Society track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Comparative Religion requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "they-can-concentrate-in-one-of-five-countries-regions-track",
+        "label": "They Can Concentrate in One of Five Countries/Regions track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Comparative Religion requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/JacksonSchoolofInternationalStudies-190.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-computational-finance-and-risk-management",
@@ -19481,8 +20000,26 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "risk-management-option",
-        "label": "Risk management option",
+        "id": "computing-option",
+        "label": "Computing option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "data-science",
+        "label": "Data Science",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19490,7 +20027,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW General Catalog Computational Finance and Risk Management requirements",
+            "label": "Scoped section: Data Science continues to be a growing area of study within Computational Finance and the sciences in general. It incorp",
             "url": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
             "visibility": "visible",
             "status": "verified",
@@ -19564,15 +20101,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "Allen School CS-approved Natural Science course list",
-        "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
+        "label": "Computer Science",
+        "url": "https://s3-us-west-2.amazonaws.com/www-cse-public/ugrad/curriculum/CS__Fall23.pdf",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
       },
       {
-        "label": "Computer Science",
-        "url": "https://s3-us-west-2.amazonaws.com/www-cse-public/ugrad/curriculum/CS__Fall23.pdf",
+        "label": "Scoped section: Paul G. Allen School of Computer Science & Engineering",
+        "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -19596,15 +20133,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Allen School CS-approved Natural Science course list",
-            "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
+            "label": "Computer Science – Data Science Option",
+            "url": "https://s3-us-west-2.amazonaws.com/www-cse-public/ugrad/curriculum/CS_DS_degreq_fall23.pdf",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           },
           {
-            "label": "Computer Science – Data Science Option",
-            "url": "https://s3-us-west-2.amazonaws.com/www-cse-public/ugrad/curriculum/CS_DS_degreq_fall23.pdf",
+            "label": "Scoped section: CSE Core Courses",
+            "url": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -19653,8 +20190,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "project-option",
-        "label": "Project Option",
+        "id": "early-admission-option",
+        "label": "Early Admission Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Construction Management Elective Courses (24-33 credits to meet required total)",
+            "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "freshmen-direct-option",
+        "label": "Freshmen Direct Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19679,8 +20242,60 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "whyThisTrack": []
       },
       {
+        "id": "project-option",
+        "label": "Project Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Choose thesis, project, or course-only option (0-9 credits):",
+            "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "thesis-option",
         "label": "Thesis Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Choose thesis, project, or course-only option (0-9 credits):",
+            "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "upper-division-admission-option",
+        "label": "Upper-Division Admission Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -19736,7 +20351,86 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "1-general-core-track",
+        "label": "(1) General Core track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Dance requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "2-creative-studies-track",
+        "label": "(2) Creative Studies track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Dance requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "with-honors-completion-of-departmental-honors-requirements-in-the-major-track",
+        "label": "With Honors (Completion of Departmental Honors Requirements in the Major) track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Dance requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Dance-133.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-danish",
@@ -19800,7 +20494,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
+        "label": "With Honors (Completion of Departmental Honors Requirements in the Major) Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Completion Requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-disability-studies",
@@ -19928,7 +20649,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "credential-overview-option",
+        "label": "Credential Overview option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Degree requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/EarthandSpaceSciences-1068.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-economics",
@@ -19969,7 +20717,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Degree requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Economics-135.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -20043,7 +20799,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "social-studies",
+        "label": "Social Studies",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: The Bachelor of Arts in Education, Communities and Organizations major provides students with a solid foundation in lear",
+            "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-electrical-computer-engineering",
@@ -20059,7 +20842,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "beforeEnrollmentChecklist": [],
     "stayAtGrcChecklist": [],
     "advisorFlags": [],
-    "officialLinks": [],
+    "officialLinks": [
+      {
+        "label": "UW ECE degree requirements",
+        "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
+      }
+    ],
     "degreeMapSections": [],
     "validationNotes": [],
     "grcCourseList": [],
@@ -20069,14 +20860,22 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "machine-learning-pathway",
-        "label": "Machine Learning Pathway",
+        "id": "control-systems-pathway",
+        "label": "Control Systems Pathway",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW ECE degree requirements",
+            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -20094,7 +20893,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW ECE degree requirements",
+            "url": "https://www.ece.uw.edu/academics/bachelor-of-science/bsece/degree-requirements/",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -20198,6 +21005,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
+            "label": "English Composition Requirement",
+            "url": "https://english.washington.edu/english-composition-strategies",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
             "label": "UW English LLC option requirements",
             "url": "https://english.washington.edu/english-language-literature-and-culture-option",
             "visibility": "visible",
@@ -20257,7 +21071,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW General Catalog Environmental Design and Sustainability requirements",
+            "label": "Scoped section: Project Option (12 credits): Choose from the following:",
             "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
             "visibility": "visible",
             "status": "verified",
@@ -20369,26 +21183,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": [
-      {
-        "id": "wildlife-conservation",
-        "label": "Wildlife Conservation",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      }
-    ]
+    "pathways": []
   },
   {
     "id": "uw-seattle-environmental-studies",
@@ -20420,7 +21215,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
+        "label": "With Honors (Completion of Departmental Honors Requirements in the Major) Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Environmental Studies requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/ProgramontheEnvironment-1070.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-european-studies",
@@ -20599,7 +21421,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
+        "label": "With Honors (Completion of Departmental Honors Requirements in the Major) Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog GWSS requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Gender%2CWomen%2CandSexualityStudies-298.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-geography",
@@ -20617,8 +21466,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Geography B.A. major requirements",
-        "url": "https://geography.washington.edu/ba-geography",
+        "label": "B.A. in Geography: Data Science Option",
+        "url": "https://geography.washington.edu/ba-geography-data-science-option",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -20641,6 +21490,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "geography-major-data-science-option",
+        "label": "Geography Major Data Science Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "B.A. in Geography: Data Science Option major requirements",
+            "url": "https://geography.washington.edu/ba-geography-data-science-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "mapping-and-society-track",
         "label": "Mapping and Society track",
         "summary": "",
@@ -20652,13 +21527,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "UW Geography B.A. major requirements",
             "url": "https://geography.washington.edu/ba-geography",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
-          {
-            "label": "UW Geography courses by track",
-            "url": "https://geography.washington.edu/courses-track",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -20705,7 +21573,44 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "b-a-cultural-studies-option",
+        "label": "B.A. Cultural Studies option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "b-a-route",
+        "label": "B.A. route",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-global-literary-studies",
@@ -20927,8 +21832,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Degree requirements",
-            "url": "https://www.hcde.washington.edu/bs/requirements",
+            "label": "Degree Requirements: Before Autumn 2024",
+            "url": "https://www.hcde.washington.edu/bs/requirements/pre-2024",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -20975,7 +21880,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
+        "label": "With Honors (Completion of Departmental Honors Requirements in the Major) Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Studies Individualized Studies requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/GeneralStudies-185.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-industrial-systems-engineering",
@@ -21050,8 +21982,93 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Informatics curriculum",
+            "label": "Scoped section: Informatics major requirements",
             "url": "https://ischool.uw.edu/academics/informatics/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "data-science-option",
+        "label": "Data Science Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Academics",
+            "url": "https://ischool.uw.edu/programs/informatics/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "Scoped section: Informatics major requirements",
+            "url": "https://ischool.uw.edu/academics/informatics/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "other-approved-data-science-elective-option",
+        "label": "Other Approved Data Science Elective Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Informatics courses can also be understood as informing a variety of focus areas, which are lenses that frame different",
+            "url": "https://ischool.uw.edu/academics/informatics/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "other-data-science-electives-option",
+        "label": "Other Data Science Electives Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Academics",
+            "url": "https://ischool.uw.edu/programs/informatics/curriculum",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -21320,7 +22337,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW General Catalog Landscape Architecture requirements",
+            "label": "Scoped section: Project Option (12 credits): Choose from the following:",
             "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
             "visibility": "visible",
             "status": "verified",
@@ -21557,22 +22574,14 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "final-project-and-internship-industrial-option",
-        "label": "Final project and internship/industrial option",
+        "id": "nanoscience-and-molecular-engineering-nme-option",
+        "label": "Nanoscience and Molecular Engineering (NME) Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Materials Science degree requirements",
-            "url": "https://mse.washington.edu/current/undergrad/courses",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -21771,8 +22780,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Bachelor of Arts - Music, Instrumental Option",
-        "url": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
+        "label": "Bachelor of Arts - Sample Course Sequence (PDF)",
+        "url": "https://music.washington.edu/sites/music/files/documents/sample_ba_inst.pdf",
         "visibility": "visible",
         "status": "verified",
         "sourceConfidence": "high"
@@ -21787,8 +22796,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "instrumental-option",
-        "label": "Instrumental Option",
+        "id": "music-theory-option",
+        "label": "Music Theory Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -21796,8 +22805,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Bachelor of Arts - Music, Instrumental Option",
-            "url": "https://music.washington.edu/bachelor-arts-music-instrumental-option",
+            "label": "Scoped section: Bachelor of Arts - Music, Music Theory Option",
+            "url": "https://music.washington.edu/bachelor-arts-music-music-theory-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "voice-option",
+        "label": "Voice Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Music, Voice Option",
+            "url": "https://music.washington.edu/bachelor-arts-music-voice-option",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -22185,6 +23220,58 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "applied-physics-track",
+        "label": "Applied Physics track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Applied Physics Track (addl. 34-43 credits)",
+            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "comprehensive-physics-track",
+        "label": "Comprehensive Physics track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Comprehensive Track (addl. 38-46 credits)",
+            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "comprehensive-track",
         "label": "Comprehensive track",
         "summary": "",
@@ -22194,7 +23281,33 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Physics B.S. Degree Requirements",
+            "label": "Scoped section: Comprehensive Track (addl. 38-46 credits)",
+            "url": "https://phys.washington.edu/physics-bs-degree-requirements",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "teaching-physics-track",
+        "label": "Teaching Physics track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Teaching Physics Track (addl. 41-43 credits)",
             "url": "https://phys.washington.edu/physics-bs-degree-requirements",
             "visibility": "visible",
             "status": "verified",
@@ -22276,6 +23389,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "international-security-option",
+        "label": "International Security Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "International Security Option (PDF)",
+            "url": "https://www.polisci.washington.edu/sites/polisci/files/documents/security_option-aut-2024.pdf",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "political-economy-option",
         "label": "Political Economy Option",
         "summary": "",
@@ -22286,7 +23425,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "officialLinks": [
           {
             "label": "UW Political Science major declaration and requirements",
-            "url": "https://www.polisci.washington.edu/sites/polisci/files/documents/major_info_sheet_autumn2020-rev_oct_2020.pdf",
+            "url": "https://www.polisci.washington.edu/political-science-major-declaration-and-requirements",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -22474,12 +23613,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Slavic Languages & Literatures undergraduate policies",
-        "url": "https://slavic.washington.edu/undergraduate-policies"
-      },
-      {
         "label": "UW Slavic Languages & Literatures undergraduate programs",
-        "url": "https://slavic.washington.edu/undergraduate-programs"
+        "url": "https://slavic.washington.edu/undergraduate-programs",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "high"
       }
     ],
     "degreeMapSections": [],
@@ -22489,7 +23627,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "eastern-european-languages-literature-and-culture",
+        "label": "Eastern European Languages, Literature, and Culture",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Slavic Languages & Literatures undergraduate programs",
+            "url": "https://slavic.washington.edu/undergraduate-programs",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-social-welfare",
@@ -22521,7 +23686,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "a-two-year-full-time-program-option",
+        "label": "A Two-Year Full-Time Program Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Social Welfare requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/SocialWork-779.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-sociology",
@@ -22553,7 +23745,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "with-honors-completion-of-departmental-honors-requirements-in-the-major-option",
+        "label": "With Honors (Completion of Departmental Honors Requirements in the Major) Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Sociology requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/Sociology-293.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-south-asian-languages-and-cultures",
@@ -22649,7 +23868,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "with-honors-completion-of-departmental-honors-requirements-in-the-major-track",
+        "label": "With Honors (Completion of Departmental Honors Requirements in the Major) track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Speech and Hearing Sciences requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/SpeechandHearingSciences-296.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-statistics",
@@ -22692,8 +23938,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Statistics B.S. major requirements",
-            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+            "label": "Double Majors",
+            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "data-science-track",
+        "label": "Data Science track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Double Majors",
+            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -22718,8 +23990,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Statistics B.S. major requirements",
-            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/major",
+            "label": "Double Majors",
+            "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -22766,7 +24038,34 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "business-option",
+        "label": "Business Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "BSE Majors Considering the Switch to the SBSE Major",
+            "url": "https://sefs.uw.edu/students/undergraduate/sbse-major/bse-requirements/upcoming-changes-to-the-bse-major",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-seattle-swedish",
@@ -22848,24 +24147,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma Arts, Media and Culture - American Cultures Track",
-        "url": "https://www.tacoma.uw.edu/sias/cac/american-cultures-track"
-      },
-      {
-        "label": "UW Tacoma Arts, Media and Culture - Comparative Arts Track",
-        "url": "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track"
-      },
-      {
-        "label": "UW Tacoma Arts, Media and Culture - Film and Media Track",
-        "url": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track"
-      },
-      {
-        "label": "UW Tacoma Arts, Media and Culture - Literature Track",
-        "url": "https://www.tacoma.uw.edu/sias/cac/literature-track"
-      },
-      {
-        "label": "UW Tacoma Arts, Media and Culture - Visual and Performing Arts Track",
-        "url": "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track"
+        "label": "UW Tacoma Arts, Media and Culture overview",
+        "url": "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
+        "visibility": "visible",
+        "status": "verified",
+        "sourceConfidence": "medium"
       }
     ],
     "degreeMapSections": [],
@@ -22877,14 +24163,126 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "film-and-media-track",
-        "label": "Film and Media track",
+        "id": "american-cultures-track",
+        "label": "American Cultures Track",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Foundation (5 credits)",
+            "url": "https://www.tacoma.uw.edu/sias/cac/american-cultures-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "comparative-arts-track",
+        "label": "Comparative Arts Track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Comparative Arts Track degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/comparative-arts-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "film-and-media-track",
+        "label": "Film and Media Track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW Tacoma Arts, Media and Culture - Film and Media Track",
+            "url": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "literature-track",
+        "label": "Literature Track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Literature Track degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/literature-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "visual-and-performing-arts-track",
+        "label": "Visual and Performing Arts Track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Foundation (5 credits)",
+            "url": "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -22912,7 +24310,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma BABA design and courses",
+        "label": "Scoped section: Accounting focuses on recording and reporting financial transactions and students in this option develop the financial a",
         "url": "https://www.tacoma.uw.edu/business/design-courses-baba",
         "visibility": "visible",
         "status": "verified",
@@ -22944,7 +24342,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "advisorFlags": [],
     "officialLinks": [
       {
-        "label": "UW Tacoma Biomedical Sciences overview",
+        "label": "Scoped section: Core courses (39 credits)",
         "url": "https://www.tacoma.uw.edu/sias/sam/biomedical-sciences",
         "visibility": "visible",
         "status": "verified",
@@ -23016,14 +24414,48 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "research-track",
-        "label": "RESEARCH TRACK",
+        "id": "professional-track",
+        "label": "Professional Track",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Professional Track degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/professional-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "research-track",
+        "label": "Research Track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Research Track degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/research-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -23067,6 +24499,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "bioinformatics-option-20-credits",
+        "label": "Bioinformatics Option (20 credits):",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "course-option",
         "label": "Course Option",
         "summary": "",
@@ -23080,9 +24530,27 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "high"
+            "sourceConfidence": "medium"
           }
         ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "cybersecurity-option-20-credits",
+        "label": "Cybersecurity Option (20 credits):",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -23167,7 +24635,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma CSS B.S. program details",
+            "label": "Scoped section: The CSS Schedule Planning Grid (PDF) shows a sample pathway to complete the B.S. in Computer Science & Systems degree. W",
             "url": "https://www.tacoma.uw.edu/set/programs/undergrad/css/bs",
             "visibility": "visible",
             "status": "verified",
@@ -23328,11 +24796,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma B.A. in Education overview",
-            "url": "https://www.tacoma.uw.edu/soe/bachelor-arts-education",
+            "label": "BA in Education - K-8 Elementary Education w/TELL (2026-2027)",
+            "url": "https://www.tacoma.uw.edu/sites/default/files/2026-02/bachelor-of-arts-in-education-with-dual-endorsement-ell.pdf",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "medium"
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -23378,6 +24846,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "bioinformatics-option-20-credits",
+        "label": "Bioinformatics Option (20 credits):",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "course-option",
         "label": "Course Option",
         "summary": "",
@@ -23391,9 +24877,27 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "high"
+            "sourceConfidence": "medium"
           }
         ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "cybersecurity-option-20-credits",
+        "label": "Cybersecurity Option (20 credits):",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -23435,7 +24939,26 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": []
+    "pathways": [
+      {
+        "id": "list-h-additional-courses-for-geoscience-option",
+        "label": "List H: Additional Courses for Geoscience Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      }
+    ]
   },
   {
     "id": "uw-tacoma-environmental-sustainability",
@@ -23478,7 +25001,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma Environmental Communication option",
+            "label": "Scoped section: Environmental Communication Option",
             "url": "https://www.tacoma.uw.edu/sias/sam/environmental-communication-option",
             "visibility": "visible",
             "status": "verified",
@@ -23502,15 +25025,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Environmental Sustainability overview",
-            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -23528,41 +25043,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Environmental Sustainability overview",
-            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      },
-      {
-        "id": "pre-environmental-education-option",
-        "label": "Pre-Environmental Education Option",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma Environmental Sustainability overview",
-            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-sustainability",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          }
-        ],
+        "officialLinks": [],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -23606,6 +25087,58 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
+        "id": "ethnic-studies-option",
+        "label": "Ethnic Studies Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Ethnic Studies Option",
+            "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-studies-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "gender-studies-option",
+        "label": "Gender Studies Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Gender Studies Option",
+            "url": "https://www.tacoma.uw.edu/sias/socs/gender-studies-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
         "id": "labor-studies-option",
         "label": "Labor Studies Option",
         "summary": "",
@@ -23615,11 +25148,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma Ethnic, Gender and Labor Studies overview",
-            "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
+            "label": "Labor Studies Option",
+            "url": "https://www.tacoma.uw.edu/sias/socs/labor-studies-option",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "medium"
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -23704,7 +25237,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "General History Option major requirements",
+            "url": "https://www.tacoma.uw.edu/sias/socs/general-history-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -23833,6 +25374,84 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
       {
         "id": "culture-and-society-option",
         "label": "Culture and Society Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "global-history-option",
+        "label": "Global History Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "labor-and-social-movements-option",
+        "label": "Labor and Social Movements Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Interdisciplinary Arts and Sciences individually designed major",
+            "url": "https://www.washington.edu/students/gencat/program/T/SocialSciences-1132.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "medium"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "to-fulfill-this-option",
+        "label": "To fulfill this option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -24053,32 +25672,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
-      },
-      {
-        "id": "option-one-10-credits-of-upper-division-foreign-language-300",
-        "label": "Option One: 10 credits of upper-division foreign language (300",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [
-          {
-            "label": "UW Tacoma PP&E overview",
-            "url": "https://www.tacoma.uw.edu/sias/socs/politics-philosophy-and-economics-ppe",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "medium"
-          }
-        ],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
       }
     ]
   },
@@ -24257,8 +25850,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma Sustainable Urban Development overview",
-            "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+            "label": "BA in Urban Studies",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -24348,8 +25941,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma Urban Studies overview",
-            "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+            "label": "BA in Sustainable Urban Development",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -24374,8 +25967,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "UW Tacoma Urban Studies overview",
-            "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
+            "label": "BA in Sustainable Urban Development",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -24425,7 +26018,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "pathways": [
       {
         "id": "creative-writing-track",
-        "label": "CREATIVE WRITING TRACK",
+        "label": "Creative Writing Track",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
@@ -24433,11 +26026,63 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Writing Studies",
-            "url": "https://www.tacoma.uw.edu/sias/cac/writing-studies",
+            "label": "Creative Writing Track degree requirements",
+            "url": "https://www.tacoma.uw.edu/sias/cac/creative-writing-track",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "medium"
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "technical-communication-track",
+        "label": "Technical Communication Track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Technical Communication Track",
+            "url": "https://www.tacoma.uw.edu/sias/cac/technical-communication-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
+      },
+      {
+        "id": "writing-and-social-change-track",
+        "label": "Writing and Social Change Track",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "RHETORIC, WRITING AND SOCIAL CHANGE TRACK",
+            "url": "https://www.tacoma.uw.edu/sias-new/cac-new/rhetoric-writing-and-social-change-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],

@@ -2407,6 +2407,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "Humanities",
           "Elective or General Education"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (40 credits)",
+        "courses": [
+          "40 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -2448,8 +2458,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 130,
+      "scheduledMaxCredits": 130,
       "placeholderCredits": 55,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -2516,6 +2526,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6 (15 credits)",
         "courses": [
           "S 3 - Social Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (40 credits)",
+        "courses": [
+          "40 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -2659,8 +2679,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 130,
+      "scheduledMaxCredits": 130,
       "placeholderCredits": 40,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -2734,6 +2754,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "S 3 - Social Science",
           "ART 240"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (13 credits)",
+        "courses": [
+          "13 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -2749,8 +2779,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 35,
       "unresolvedOptionCredits": 10,
       "defaultOptionCredits": 0,
@@ -2825,6 +2855,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "S 3 - Social Science",
           "ART 219 or ART 199"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (5 credits)",
+        "courses": [
+          "5 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -2840,8 +2880,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 98,
-      "scheduledMaxCredits": 98,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 30,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -2912,6 +2952,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "ART 123"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (13 credits)",
+        "courses": [
+          "13 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -2927,8 +2977,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 35,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -3001,6 +3051,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "S 3 - Social Science",
           "Select one: ART 106, ART 107, ART 111, ART 119, ART 255, ART 256, ART 257"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (13 credits)",
+        "courses": [
+          "13 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -3016,8 +3076,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 45,
       "unresolvedOptionCredits": 10,
       "defaultOptionCredits": 0,
@@ -3078,6 +3138,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "N 3 - Natural Science List A or List B",
           "S 3 - Social Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (28 credits)",
+        "courses": [
+          "28 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -3191,8 +3261,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 75,
-      "scheduledMaxCredits": 75,
+      "scheduledMinCredits": 103,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 35,
       "unresolvedOptionCredits": 5,
       "defaultOptionCredits": 0,
@@ -5725,24 +5795,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     },
     "terms": [
       {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "MATH& 146 or MATH 256",
-          "PSYC& 100",
-          "PSYC& 200",
-          "NUTR& 101",
-          "BIOL& 241",
-          "BIOL& 242",
-          "BIOL& 211 or BIOL& 160",
-          "CMST& 101",
-          "CMST& 210",
-          "CMST& 220",
-          "CMST& 230",
-          "CMST& 240"
-        ]
-      },
-      {
         "label": "Fall Quarter",
         "courses": [
           "PNURSE 102",
@@ -5770,6 +5822,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PNURSE 125",
           "PNURSE 126",
           "PNURSE 127"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (15 credits)",
+        "courses": [
+          "15 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -5881,12 +5943,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 15,
+      "scheduledMaxCredits": 15,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -5907,20 +5971,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "MATH& 146 or MATH 256",
-          "PSYC& 100",
-          "PSYC& 200",
-          "NUTR& 101",
-          "BIOL& 160 or BIOL& 211",
-          "BIOL& 241",
-          "BIOL& 242",
-          "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230, CMST& 240"
-        ]
-      },
       {
         "label": "Spring 1 (9 credits)",
         "courses": [
@@ -5964,6 +6014,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PNURSE 125",
           "PNURSE 126",
           "PNURSE 127"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (45 credits)",
+        "courses": [
+          "45 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -6075,10 +6135,10 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 45,
-      "scheduledMaxCredits": 45,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
       "placeholderCredits": 0,
-      "unresolvedOptionCredits": 5,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
       "exceedsCatalogMinimum": false,
@@ -6103,24 +6163,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "MATH& 146 or MATH 256",
-          "PSYC& 100",
-          "PSYC& 200",
-          "NUTR& 101",
-          "BIOL& 160 or BIOL& 211",
-          "BIOL& 241",
-          "BIOL& 242",
-          "CMST& 101",
-          "CMST& 210",
-          "CMST& 220",
-          "CMST& 230",
-          "CMST& 240"
-        ]
-      },
       {
         "label": "Summer 1 (9 credits)",
         "courses": [
@@ -6164,6 +6206,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PNURSE 125",
           "PNURSE 126",
           "PNURSE 127"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (45 credits)",
+        "courses": [
+          "45 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -6275,8 +6327,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 45,
-      "scheduledMaxCredits": 45,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -6303,12 +6355,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "Select one: AP 103, BIOL& 175, BIOL& 241, MATH 70 - Pre-Algebra, ENGL& 101. - must be taken prior to the start of the program"
-        ]
-      },
       {
         "label": "Fall 1",
         "courses": [
@@ -6397,7 +6443,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     ],
     "sampleSchedule": {
       "placeholderCredits": 0,
-      "unresolvedOptionCredits": 5,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
       "exceedsCatalogMinimum": null,
@@ -6422,12 +6468,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "Select one: AP 103, BIOL& 175, BIOL& 241, MATH 70 - Pre-Algebra, ENGL& 101. - must be taken prior to the start of the program"
-        ]
-      },
       {
         "label": "Spring 1 (12 credits)",
         "courses": [
@@ -6509,6 +6549,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "OTA 241",
           "OTA 246"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (15 credits)",
+        "courses": [
+          "15 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -6525,10 +6575,10 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 105,
+      "scheduledMaxCredits": 105,
       "placeholderCredits": 0,
-      "unresolvedOptionCredits": 5,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
       "exceedsCatalogMinimum": false,
@@ -6553,15 +6603,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "AP 103",
-          "AP 104 or BIOL& 241",
-          "BIOL& 242",
-          "ENGL& 101"
-        ]
-      },
       {
         "label": "Fall 1",
         "courses": [
@@ -6851,6 +6892,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CHEM& 140",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -6949,6 +6996,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PHYS& 114",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -7635,6 +7688,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PHYS& 114",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -7684,6 +7743,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH 240",
           "PHYS& 223",
           "2 C - Humanities/Fine Arts/English or Social Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (8-9 credits)",
+        "courses": [
+          "8-9 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -7837,13 +7906,13 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 94,
-      "scheduledMaxCredits": 94,
+      "scheduledMinCredits": 102,
+      "scheduledMaxCredits": 103,
       "placeholderCredits": 15,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 5,
-      "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": false,
+      "sampleOnlyCredits": 1,
+      "exceedsCatalogMinimum": true,
       "exceedsCatalogMaximum": false
     }
   },
@@ -7871,6 +7940,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PHYS& 114",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -8129,6 +8204,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "PHYS& 114",
           "MATH& 141",
           "MATH& 142"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -8630,6 +8711,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH& 142",
           "CHEM& 140",
           "MATH& 151"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -8696,7 +8783,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 92,
+      "scheduledMinCredits": 91,
       "scheduledMaxCredits": 92,
       "placeholderCredits": 20,
       "unresolvedOptionCredits": 0,
@@ -8966,14 +9053,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "bestFor": [
       "Aviation Technology, AAS-Air Traffic Control Track"
     ],
-    "minimumCredits": 90,
+    "minimumCredits": 97,
     "maximumCredits": 97,
     "catalogCreditRange": {
-      "minimumCredits": 90,
+      "minimumCredits": 97,
       "maximumCredits": 97,
       "sourceText": "90-97 Credits The Aviation Technology Associate of Applied Science program at Green River College prepares students for entry level jobs as commercial pilots, air traffic controllers, airline dispatchers, or aviation managers. Students choose one of the four option tracks dependent on their future career desires. All students experience a little of each track option in order to help them make a decision and to have a well-rounded education in aviation. This program directly transfers into the Bachelor of Applied Science - Aeronautical Science degree program. Option 1: Commercial Pilot Track (97 credits) - Throughout the commercial pilot program students will be required to get their Private Pilot License, Instrument Rating, and Commercial Pilot License. Students must complete their flight hours at a Part 141 flight school, the cost for the flight hours is in addition to the tuition and fees for this program. Graduates of Green River College's Commercial Pilot program may be eligible for the Restricted Airline Transport Pilot (R-ATP) certificate at 1,000 hours total time provided they completed their Commercial and Instrument Flight training and certification at an approved GRC Part 141 flight school. Students will need to obtain a valid 1st class medical certificate prior to starting their flight training. To find an Aviation Medical Examiner (AME) in your area go to https://www.faa.gov/pilots/amelocator For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Commercial Pilot Track Curriculum Map Option 2: Air Traffic Control Track (91 credits) - Green River Aviation is one of 36 institutions selected by the FAA for the Collegiate Training Initiative (CTI) program. The CTI program establishes an official partnership between the FAA and select aviation education programs. Green River recommends its students to the FAA for hire as air traffic controllers, granting students an advantage in the extremely competitive hiring process. Successful program completion and selection by the FAA can potentially feed directly into air traffic controller training at the FAA Academy in Oklahoma City, Oklahoma. There are additional requirements students must meet beyond acceptance to Green River's Aviation Technology program to participate in the CTI program. Go to www.faa.gov/jobs/students/schools for more information. Completing the ATC degree does not assure the FAA will hire the Green River AT-CTI graduate. Green River College has no influence over the FAA hiring process. Students will need to obtain a valid 2nd class medical certificate prior to working as an Air Traffic Controller. To find an Aviation Medical Examiner (AME) in your area go to www.faa.gov/jobs/students/schools For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Air Traffic Control Track Curriculum Map Option 3: Airline Dispatch Track (91 credits) - Administered under CFR Title 14, Part 65, students completing this track will be eligible to test for the FAA Aircraft Dispatchers Certificate. Students must be at least 21 years of age on or before the completion of the course in order to qualify for the dispatch test. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Airline Dispatch Track Curriculum Map Option 4: Aviation Management Track (90 credits) - This option track prepares students for entry level jobs at airports or airlines of all sizes across the United States. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Aviation Management Track Curriculum Map If you took aviation courses while in high school please refer to District Classes Eligible for GRC for credit eligibility. Program Website: Aviation Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/index.html Contact: George Comollo - gcomollo@greenriver.edu - 253-931-6577",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -9024,6 +9111,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "AVIA 286",
           "N 1 - Natural Science List A (Lab)"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (6 credits)",
+        "courses": [
+          "6 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9039,13 +9136,13 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 91,
-      "scheduledMaxCredits": 91,
+      "scheduledMinCredits": 97,
+      "scheduledMaxCredits": 97,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 1,
-      "exceedsCatalogMinimum": true,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
       "exceedsCatalogMaximum": false
     }
   },
@@ -9057,14 +9154,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "bestFor": [
       "Aviation Technology, AAS-Airline Dispatch Track"
     ],
-    "minimumCredits": 90,
+    "minimumCredits": 97,
     "maximumCredits": 97,
     "catalogCreditRange": {
-      "minimumCredits": 90,
+      "minimumCredits": 97,
       "maximumCredits": 97,
       "sourceText": "90-97 Credits The Aviation Technology Associate of Applied Science program at Green River College prepares students for entry level jobs as commercial pilots, air traffic controllers, airline dispatchers, or aviation managers. Students choose one of the four option tracks dependent on their future career desires. All students experience a little of each track option in order to help them make a decision and to have a well-rounded education in aviation. This program directly transfers into the Bachelor of Applied Science - Aeronautical Science degree program. Option 1: Commercial Pilot Track (97 credits) - Throughout the commercial pilot program students will be required to get their Private Pilot License, Instrument Rating, and Commercial Pilot License. Students must complete their flight hours at a Part 141 flight school, the cost for the flight hours is in addition to the tuition and fees for this program. Graduates of Green River College's Commercial Pilot program may be eligible for the Restricted Airline Transport Pilot (R-ATP) certificate at 1,000 hours total time provided they completed their Commercial and Instrument Flight training and certification at an approved GRC Part 141 flight school. Students will need to obtain a valid 1st class medical certificate prior to starting their flight training. To find an Aviation Medical Examiner (AME) in your area go to https://www.faa.gov/pilots/amelocator For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Commercial Pilot Track Curriculum Map Option 2: Air Traffic Control Track (91 credits) - Green River Aviation is one of 36 institutions selected by the FAA for the Collegiate Training Initiative (CTI) program. The CTI program establishes an official partnership between the FAA and select aviation education programs. Green River recommends its students to the FAA for hire as air traffic controllers, granting students an advantage in the extremely competitive hiring process. Successful program completion and selection by the FAA can potentially feed directly into air traffic controller training at the FAA Academy in Oklahoma City, Oklahoma. There are additional requirements students must meet beyond acceptance to Green River's Aviation Technology program to participate in the CTI program. Go to www.faa.gov/jobs/students/schools for more information. Completing the ATC degree does not assure the FAA will hire the Green River AT-CTI graduate. Green River College has no influence over the FAA hiring process. Students will need to obtain a valid 2nd class medical certificate prior to working as an Air Traffic Controller. To find an Aviation Medical Examiner (AME) in your area go to www.faa.gov/jobs/students/schools For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Air Traffic Control Track Curriculum Map Option 3: Airline Dispatch Track (91 credits) - Administered under CFR Title 14, Part 65, students completing this track will be eligible to test for the FAA Aircraft Dispatchers Certificate. Students must be at least 21 years of age on or before the completion of the course in order to qualify for the dispatch test. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Airline Dispatch Track Curriculum Map Option 4: Aviation Management Track (90 credits) - This option track prepares students for entry level jobs at airports or airlines of all sizes across the United States. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Aviation Management Track Curriculum Map If you took aviation courses while in high school please refer to District Classes Eligible for GRC for credit eligibility. Program Website: Aviation Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/index.html Contact: George Comollo - gcomollo@greenriver.edu - 253-931-6577",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -9115,6 +9212,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL& 101",
           "N 1 - Natural Science List A (Lab)"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (6 credits)",
+        "courses": [
+          "6 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9130,13 +9237,13 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 91,
-      "scheduledMaxCredits": 91,
+      "scheduledMinCredits": 97,
+      "scheduledMaxCredits": 97,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 1,
-      "exceedsCatalogMinimum": true,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
       "exceedsCatalogMaximum": false
     }
   },
@@ -9148,14 +9255,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "bestFor": [
       "Aviation Technology, AAS-Aviation Management Track"
     ],
-    "minimumCredits": 90,
+    "minimumCredits": 97,
     "maximumCredits": 97,
     "catalogCreditRange": {
-      "minimumCredits": 90,
+      "minimumCredits": 97,
       "maximumCredits": 97,
       "sourceText": "90-97 Credits The Aviation Technology Associate of Applied Science program at Green River College prepares students for entry level jobs as commercial pilots, air traffic controllers, airline dispatchers, or aviation managers. Students choose one of the four option tracks dependent on their future career desires. All students experience a little of each track option in order to help them make a decision and to have a well-rounded education in aviation. This program directly transfers into the Bachelor of Applied Science - Aeronautical Science degree program. Option 1: Commercial Pilot Track (97 credits) - Throughout the commercial pilot program students will be required to get their Private Pilot License, Instrument Rating, and Commercial Pilot License. Students must complete their flight hours at a Part 141 flight school, the cost for the flight hours is in addition to the tuition and fees for this program. Graduates of Green River College's Commercial Pilot program may be eligible for the Restricted Airline Transport Pilot (R-ATP) certificate at 1,000 hours total time provided they completed their Commercial and Instrument Flight training and certification at an approved GRC Part 141 flight school. Students will need to obtain a valid 1st class medical certificate prior to starting their flight training. To find an Aviation Medical Examiner (AME) in your area go to https://www.faa.gov/pilots/amelocator For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Commercial Pilot Track Curriculum Map Option 2: Air Traffic Control Track (91 credits) - Green River Aviation is one of 36 institutions selected by the FAA for the Collegiate Training Initiative (CTI) program. The CTI program establishes an official partnership between the FAA and select aviation education programs. Green River recommends its students to the FAA for hire as air traffic controllers, granting students an advantage in the extremely competitive hiring process. Successful program completion and selection by the FAA can potentially feed directly into air traffic controller training at the FAA Academy in Oklahoma City, Oklahoma. There are additional requirements students must meet beyond acceptance to Green River's Aviation Technology program to participate in the CTI program. Go to www.faa.gov/jobs/students/schools for more information. Completing the ATC degree does not assure the FAA will hire the Green River AT-CTI graduate. Green River College has no influence over the FAA hiring process. Students will need to obtain a valid 2nd class medical certificate prior to working as an Air Traffic Controller. To find an Aviation Medical Examiner (AME) in your area go to www.faa.gov/jobs/students/schools For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Air Traffic Control Track Curriculum Map Option 3: Airline Dispatch Track (91 credits) - Administered under CFR Title 14, Part 65, students completing this track will be eligible to test for the FAA Aircraft Dispatchers Certificate. Students must be at least 21 years of age on or before the completion of the course in order to qualify for the dispatch test. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Airline Dispatch Track Curriculum Map Option 4: Aviation Management Track (90 credits) - This option track prepares students for entry level jobs at airports or airlines of all sizes across the United States. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Aviation Management Track Curriculum Map If you took aviation courses while in high school please refer to District Classes Eligible for GRC for credit eligibility. Program Website: Aviation Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/index.html Contact: George Comollo - gcomollo@greenriver.edu - 253-931-6577",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -9205,6 +9312,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 1 - Natural Science List A (Lab)",
           "MATH& 107"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (7 credits)",
+        "courses": [
+          "7 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9220,8 +9337,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 97,
+      "scheduledMaxCredits": 97,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -9238,14 +9355,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "bestFor": [
       "Aviation Technology, AAS-Commercial Pilot Track"
     ],
-    "minimumCredits": 90,
+    "minimumCredits": 97,
     "maximumCredits": 97,
     "catalogCreditRange": {
-      "minimumCredits": 90,
+      "minimumCredits": 97,
       "maximumCredits": 97,
       "sourceText": "90-97 Credits The Aviation Technology Associate of Applied Science program at Green River College prepares students for entry level jobs as commercial pilots, air traffic controllers, airline dispatchers, or aviation managers. Students choose one of the four option tracks dependent on their future career desires. All students experience a little of each track option in order to help them make a decision and to have a well-rounded education in aviation. This program directly transfers into the Bachelor of Applied Science - Aeronautical Science degree program. Option 1: Commercial Pilot Track (97 credits) - Throughout the commercial pilot program students will be required to get their Private Pilot License, Instrument Rating, and Commercial Pilot License. Students must complete their flight hours at a Part 141 flight school, the cost for the flight hours is in addition to the tuition and fees for this program. Graduates of Green River College's Commercial Pilot program may be eligible for the Restricted Airline Transport Pilot (R-ATP) certificate at 1,000 hours total time provided they completed their Commercial and Instrument Flight training and certification at an approved GRC Part 141 flight school. Students will need to obtain a valid 1st class medical certificate prior to starting their flight training. To find an Aviation Medical Examiner (AME) in your area go to https://www.faa.gov/pilots/amelocator For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Commercial Pilot Track Curriculum Map Option 2: Air Traffic Control Track (91 credits) - Green River Aviation is one of 36 institutions selected by the FAA for the Collegiate Training Initiative (CTI) program. The CTI program establishes an official partnership between the FAA and select aviation education programs. Green River recommends its students to the FAA for hire as air traffic controllers, granting students an advantage in the extremely competitive hiring process. Successful program completion and selection by the FAA can potentially feed directly into air traffic controller training at the FAA Academy in Oklahoma City, Oklahoma. There are additional requirements students must meet beyond acceptance to Green River's Aviation Technology program to participate in the CTI program. Go to www.faa.gov/jobs/students/schools for more information. Completing the ATC degree does not assure the FAA will hire the Green River AT-CTI graduate. Green River College has no influence over the FAA hiring process. Students will need to obtain a valid 2nd class medical certificate prior to working as an Air Traffic Controller. To find an Aviation Medical Examiner (AME) in your area go to www.faa.gov/jobs/students/schools For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Air Traffic Control Track Curriculum Map Option 3: Airline Dispatch Track (91 credits) - Administered under CFR Title 14, Part 65, students completing this track will be eligible to test for the FAA Aircraft Dispatchers Certificate. Students must be at least 21 years of age on or before the completion of the course in order to qualify for the dispatch test. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Airline Dispatch Track Curriculum Map Option 4: Aviation Management Track (90 credits) - This option track prepares students for entry level jobs at airports or airlines of all sizes across the United States. For a curriculum map or suggested sequence of courses go to Aviation Technology, AAS-Aviation Management Track Curriculum Map If you took aviation courses while in high school please refer to District Classes Eligible for GRC for credit eligibility. Program Website: Aviation Technology | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/trades-industrial-tech-aviation-natural-resources/aviation-technology/index.html Contact: George Comollo - gcomollo@greenriver.edu - 253-931-6577",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -9298,6 +9415,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ENGL& 101",
           "N 1 - Natural Science List A (Lab)"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (3 credits)",
+        "courses": [
+          "3 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9313,13 +9440,13 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 94,
-      "scheduledMaxCredits": 94,
+      "scheduledMinCredits": 97,
+      "scheduledMaxCredits": 97,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
-      "sampleOnlyCredits": 4,
-      "exceedsCatalogMinimum": true,
+      "sampleOnlyCredits": 0,
+      "exceedsCatalogMinimum": false,
       "exceedsCatalogMaximum": false
     }
   },
@@ -9530,6 +9657,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CMST 105",
           "CMST 106"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (10-17 credits)",
+        "courses": [
+          "10-17 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -9609,12 +9746,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 10,
+      "scheduledMaxCredits": 17,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -9847,7 +9986,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 101,
+      "scheduledMinCredits": 96,
       "scheduledMaxCredits": 101,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
@@ -10137,13 +10276,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     },
     "terms": [
       {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
-      {
         "label": "Quarter 1 (16 credits)",
         "courses": [
           "NATRS 100",
@@ -10199,6 +10331,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "NATRS 210",
           "NATRS 286"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (10 credits)",
+        "courses": [
+          "10 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -10214,8 +10356,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 101,
-      "scheduledMaxCredits": 101,
+      "scheduledMinCredits": 111,
+      "scheduledMaxCredits": 111,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -10242,13 +10384,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
       {
         "label": "Quarter 1 (16 credits)",
         "courses": [
@@ -10307,6 +10442,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "NATRS 262",
           "NATRS 263"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (8 credits)",
+        "courses": [
+          "8 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -10322,8 +10467,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 111,
-      "scheduledMaxCredits": 111,
+      "scheduledMinCredits": 119,
+      "scheduledMaxCredits": 119,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -10350,13 +10495,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": false
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
       {
         "label": "Quarter 1 (16 credits)",
         "courses": [
@@ -10468,13 +10606,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": false
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
       {
         "label": "Quarter 1 (16 credits)",
         "courses": [
@@ -10589,13 +10720,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     },
     "terms": [
       {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "CMST& 220"
-        ]
-      },
-      {
         "label": "Quarter 1 (16 credits)",
         "courses": [
           "NATRS 100",
@@ -10652,6 +10776,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "NATRS 210",
           "NATRS 286"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (15 credits)",
+        "courses": [
+          "15 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -10667,8 +10801,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 101,
-      "scheduledMaxCredits": 101,
+      "scheduledMinCredits": 116,
+      "scheduledMaxCredits": 116,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -10895,6 +11029,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "WST 177",
           "WST 188"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (1 credits)",
+        "courses": [
+          "1 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -10910,8 +11054,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 89,
-      "scheduledMaxCredits": 89,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -10983,6 +11127,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "label": "Quarter 6",
         "courses": [
           "WELD 196"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (34-44 credits)",
+        "courses": [
+          "34-44 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -11082,12 +11236,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 34,
+      "scheduledMaxCredits": 44,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -11265,6 +11421,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "N 1 - Natural Science List A (Lab)",
           "Humanities or Social Science",
           "Natural Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -11445,8 +11611,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 15,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -11520,6 +11686,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ACCT 212",
           "BUS& 101",
           "CMST& 101"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -11700,8 +11876,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -11776,6 +11952,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ECON& 202",
           "POLS& 200",
           "N 1 - Natural Science List A (Lab)"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (85 credits)",
+        "courses": [
+          "85 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -11956,8 +12142,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 95,
-      "scheduledMaxCredits": 95,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -11996,6 +12182,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230, CMST& 240, N 1 - Natural Science List A (Lab), MATH& 146, MATH 256, H 1 - Humanities/Fine Arts/English, S 1 - Social Science",
           "Humanities or Social Science",
           "Natural Science"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12037,6 +12229,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MGMT 400",
           "MGMT 425"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (115 credits)",
+        "courses": [
+          "115 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12053,8 +12255,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 65,
-      "scheduledMaxCredits": 65,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 15,
       "unresolvedOptionCredits": 10,
       "defaultOptionCredits": 0,
@@ -12088,6 +12290,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "Select one: ENGL 126, ENGL 127, ENGL 128, ENGL& 235, ENGL 335, MATH& 141, MATH 147, MATH& 151",
           "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230",
           "Select one: PHIL 102, PHIL 111, PHIL 112, PHIL& 115, PHIL 206, PHIL 243, BUS& 101, BUS 181, BUS 121, ACCT 110, ACCT& 201, S 1 - Social Science, N 1 - Natural Science List A (Lab), MATH& 146, MATH 256"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12137,6 +12345,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BUS 405",
           "BUS 490"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12153,12 +12371,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
       "placeholderCredits": 5,
       "unresolvedOptionCredits": 15,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -12186,6 +12406,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "Select one: ENGL 126, ENGL 127, ENGL 128, ENGL& 235",
           "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230, CMST& 240, H 1 - Humanities/Fine Arts/English, H 2 - Humanities/Fine Arts/English, N 1 - Natural Science List A (Lab), N 3 - Natural Science List A or List B, S 1 - Social Science, S 2 - Social Science, CRC 314, CRC 324, CRC 350, CRC 414, CRC 360, CRC 361, CRC 450, CRC 451",
           "Elective or General Education"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12232,6 +12458,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "Elective or General Education"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (92 credits)",
+        "courses": [
+          "92 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12249,8 +12485,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 88,
-      "scheduledMaxCredits": 88,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 25,
       "unresolvedOptionCredits": 10,
       "defaultOptionCredits": 0,
@@ -12267,31 +12503,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
     "bestFor": [
       "Early Childhood Education: Infant and Child Mental Health"
     ],
-    "minimumCredits": 3,
-    "maximumCredits": 5,
+    "minimumCredits": 180,
+    "maximumCredits": 180,
     "catalogCreditRange": {
-      "minimumCredits": 3,
-      "maximumCredits": 5,
+      "minimumCredits": 180,
+      "maximumCredits": 180,
       "sourceText": "180 Credits Green River College's Bachelor of Applied Science (BAS) in Early Childhood Education: Infant and Child Mental Health (ICMH) will provide graduates with skills and abilities to examine the foundations of development and the importance of relationships to the social and emotional well-being of infants, toddlers, and young children as well as quality relationships and environments that foster growth in all developmental domains-social and emotional, cognitive/linguistic, and physical. It is designed to provide relevant training to those working with vulnerable families and children including early care and education providers, home visitors, child health providers, early interventionists, and other related fields. The specialized training in infant/child mental health will enable these individuals to work better with children and families, responding to the emerging needs of the diverse populations that they serve. The BAS in Early Childhood-ICMH enables individuals with applied associate degrees in Early Childhood Education to combine their lower-division technical or transfer preparation courses with upper-division credits. The result is a unique, specialized, BAS degree. The BAS in Early Childhood-ICMH also combines the breadth and academic rigor required for students who wish to continue their studies at the Master's level. For a curriculum map or suggested sequence of courses go to Early Childhood Education: Infant and Child Mental Health, BAS Curriculum Map . Entry Requirements: The entry requirements for the BAS in Infant Child Mental Health provide access to students from both academic transfer and career and technical programs. These entry requirements also ensure that prospective students are prepared for success once they enter the program. Entry requirements are: AAA, AAS or AAS-T degree with a cumulative GPA of 2.5 or better AA, AS degree or higher with cumulative GPA of 2.5 or better Completion of 30 credits in ECE with no single class lower than 2.0 to include: EDUC& 115 - Child Development (5 credits) EDUC& 130 - Guiding Behavior (3 credits) EDUC& 204 - Inclusive Education Diversity Course (3-5 credits) 5 credits in practicum/field experience or permission of program director. Completion of these courses will provide the foundation necessary for seamless entry into the BAS in Early Childhood-ICMH and will be included in the 180 credit requirement. Contacts: Leslie Kessler, lkessler@greenriver.edu , Andee Church, achurch@greenriver.edu , Roberta Kim, rkim@greenriver.edu Program Website: Early Childhood Education | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/index.html Graduation Requirement Completion of an associate degree or higher from a regionally accredited college or university.",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "EDUC& 115",
-          "EDUC& 130",
-          "EDUC& 204",
-          "D 1 - Diversity",
-          "ENGL& 101",
-          "Select one: ENGL 126, ENGL 127, ENGL 128, H 1 - Humanities/Fine Arts/English",
-          "Select one: CMST& 101, CMST& 210, CMST& 220, CMST& 230, CMST& 240, S 1 - Social Science, S 2 - Social Science, N 1 - Natural Science List A (Lab), N 3 - Natural Science List A or List B",
-          "Humanities or Social Science",
-          "Natural Science",
-          "Elective or General Education"
-        ]
-      },
       {
         "label": "Quarter 1",
         "courses": [
@@ -12339,6 +12560,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "ECED 445",
           "ECED 450"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12355,12 +12586,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "placeholderCredits": 25,
-      "unresolvedOptionCredits": 10,
+      "scheduledMinCredits": 90,
+      "scheduledMaxCredits": 90,
+      "placeholderCredits": 0,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -12403,6 +12636,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH 108",
           "Humanities or Social Science",
           "Natural Science"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12454,6 +12693,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "IT 490",
           "Humanities or Social Science",
           "Natural Science"
+        ]
+      },
+      {
+        "label": "Remaining catalog requirements (88 credits)",
+        "courses": [
+          "88 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
         ]
       }
     ],
@@ -12504,8 +12753,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 92,
-      "scheduledMaxCredits": 92,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 55,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -12554,6 +12803,12 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH 108",
           "Humanities or Social Science",
           "Natural Science"
+        ],
+        "requirementRole": "sample-only",
+        "sampleOnly": true,
+        "canCreateScheduleRows": false,
+        "notes": [
+          "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row."
         ]
       },
       {
@@ -12606,6 +12861,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "Humanities or Social Science",
           "Natural Science"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (88 credits)",
+        "courses": [
+          "88 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12655,8 +12920,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 92,
-      "scheduledMaxCredits": 92,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
       "placeholderCredits": 55,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -12683,15 +12948,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "ENGL 335",
-          "Select one: ENGL 126, ENGL 127, ENGL 128, ENGL& 235, CMST& 210, CMST& 220, CMST& 230, MATH& 141, MATH 147, H 1 - Humanities/Fine Arts/English, H 2 - Humanities/Fine Arts/English, H 3 - Humanities/Fine Arts/English, N 1 - Natural Science List A (Lab), N 2 - Natural Science List A, N 3 - Natural Science List A or List B, S 1 - Social Science, S 2 - Social Science",
-          "Elective or General Education"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -12738,6 +12994,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "SDEV 486",
           "Elective or General Education"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (90 credits)",
+        "courses": [
+          "90 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12754,10 +13020,10 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
-      "placeholderCredits": 40,
-      "unresolvedOptionCredits": 5,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
+      "placeholderCredits": 30,
+      "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
       "exceedsCatalogMinimum": false,
@@ -12782,14 +13048,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL& 101",
-          "Humanities or Social Science",
-          "Natural Science"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -12840,6 +13098,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "Natural Science",
           "Elective or General Education"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (85 credits)",
+        "courses": [
+          "85 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12856,9 +13124,9 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 95,
-      "scheduledMaxCredits": 95,
-      "placeholderCredits": 50,
+      "scheduledMinCredits": 180,
+      "scheduledMaxCredits": 180,
+      "placeholderCredits": 40,
       "unresolvedOptionCredits": 15,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
@@ -12884,17 +13152,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL 128",
-          "NATRS 161",
-          "NATRS 180",
-          "NATRS 182",
-          "NATRS 192",
-          "NATRS 293"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -12959,6 +13216,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "NATRS 495",
           "NATRS 496"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (77 credits)",
+        "courses": [
+          "77 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -12976,8 +13243,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 89,
-      "scheduledMaxCredits": 89,
+      "scheduledMinCredits": 166,
+      "scheduledMaxCredits": 166,
       "placeholderCredits": 40,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -13004,17 +13271,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "ENGL 128",
-          "NATRS 161",
-          "NATRS 180",
-          "NATRS 182",
-          "NATRS 192",
-          "NATRS 293"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -13075,6 +13331,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "NATRS 495",
           "NATRS 496"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (81 credits)",
+        "courses": [
+          "81 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -13092,8 +13358,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 90,
-      "scheduledMaxCredits": 90,
+      "scheduledMinCredits": 171,
+      "scheduledMaxCredits": 171,
       "placeholderCredits": 40,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -13127,6 +13393,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "BTAC 100",
           "BTAC 110"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (20-25 credits)",
+        "courses": [
+          "20-25 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -13142,12 +13418,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 20,
+      "scheduledMaxCredits": 25,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -13630,13 +13908,13 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "Business Management: Entrepreneurship"
     ],
     "minimumCredits": 30,
-    "maximumCredits": 35,
+    "maximumCredits": 30,
     "catalogCreditRange": {
       "minimumCredits": 30,
-      "maximumCredits": 35,
+      "maximumCredits": 30,
       "sourceText": "30-35 Credits The Entrepreneurship Certificate at Green River College is a comprehensive program designed to equip students with the essential knowledge and skills of an entrepreneur. Spanning 30 credits, this certificate provides a solid foundation in key areas of business, including entrepreneurship, marketing, accounting, and technology tools crucial for business operations. Whether you aim to launch a startup, run a small business, or bring innovative ideas to an existing organization, this program will prepare you for success in the dynamic world of entrepreneurship. Contacts: Sean McKeague, sean.mckeague@greenriver.edu , Daniel deWolff, daniel.dewolff@greenriver.edu Program Website: Business Management | https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/business-entrepreneurship/business-management/index.html Program Outcomes Develop Business Plans: Create detailed and viable business plans that outline strategies for product development, marketing, and financial sustainability. Understand Core Business Concepts: Demonstrate a solid understanding of fundamental business principles, including management, marketing, and financial accounting. Implement Marketing Strategies: Apply introductory marketing principles to effectively promote products or services. Manage Financial Records: Utilize accounting software like QuickBooks and perform essential financial accounting tasks to manage business finances. Utilize Business Technologies: Use Microsoft Excel at an introductory or advanced level to analyze data and support business decision-making processes. Navigate the Entrepreneurial Ecosystem: Identify and leverage resources, networks, and support systems available to entrepreneurs.",
       "sourceKind": "catalog-requirement-description",
-      "isExact": false
+      "isExact": true
     },
     "terms": [
       {
@@ -13681,7 +13959,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 5,
       "exceedsCatalogMinimum": true,
-      "exceedsCatalogMaximum": false
+      "exceedsCatalogMaximum": true
     }
   },
   {
@@ -14116,17 +14394,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "EDUC& 115",
           "EDUC& 130"
         ]
-      },
-      {
-        "label": "Specialization",
-        "courses": [
-          "ECED& 132",
-          "ECED& 134",
-          "ECED& 137",
-          "ECED& 138",
-          "ECED& 139",
-          "EDUC& 136"
-        ]
       }
     ],
     "notes": [
@@ -14140,6 +14407,31 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       {
         "label": "Early Childhood Education Certificate of Specialization curriculum map",
         "url": "https://www.greenriver.edu/students/academics/areas-of-interest/program-maps/education-law-social-science/early-childhood-education/certificate-of-specialization.html"
+      }
+    ],
+    "catalogOptionLists": [
+      {
+        "id": "official-grc-track-option-list:grc-certificate-education-law-social-science-early-childhood-education-certificate-of-specialization:specialization",
+        "label": "Specialization",
+        "sourceHeading": "Specialization",
+        "sourceText": "Each one of these specialization course leads to its own certificate. Students should work with their advisor to create an individualized plan.",
+        "supportOnly": true,
+        "courseLabels": [
+          "ECED& 132",
+          "ECED& 134",
+          "ECED& 137",
+          "ECED& 138",
+          "ECED& 139",
+          "EDUC& 136"
+        ],
+        "courseCodes": [
+          "ECED& 132",
+          "ECED& 134",
+          "ECED& 137",
+          "ECED& 138",
+          "ECED& 139",
+          "EDUC& 136"
+        ]
       }
     ],
     "sampleSchedule": {
@@ -14278,6 +14570,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "MATH& 131",
           "MATH& 132"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (1 credits)",
+        "courses": [
+          "1 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -14366,8 +14668,8 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 46,
-      "scheduledMaxCredits": 46,
+      "scheduledMinCredits": 47,
+      "scheduledMaxCredits": 47,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
@@ -14449,12 +14751,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Admission Requirements",
-        "courses": [
-          "Must be at least 18 years old Valid photo ID (driver's license or any state-issued photo ID) Must pass a National, Washington State Patrol and DSHS Background Check Required immunizations Uniform, text book and class supplies Liability Insurance"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -14897,6 +15193,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
         "courses": [
           "9/1/2024"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (60 credits)",
+        "courses": [
+          "60 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -14913,12 +15219,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 60,
+      "scheduledMaxCredits": 60,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -14939,17 +15247,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "IT 114",
-          "IT 131",
-          "IT 160",
-          "IT 190",
-          "IT 210",
-          "IT 224"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -15240,17 +15537,6 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       "isExact": true
     },
     "terms": [
-      {
-        "label": "Entry Requirements",
-        "courses": [
-          "IT 114",
-          "IT 131",
-          "IT 160",
-          "IT 190",
-          "IT 210",
-          "IT 224"
-        ]
-      },
       {
         "label": "Quarter 1 (15 credits)",
         "courses": [
@@ -15694,6 +15980,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CARP 115",
           "Select one: CARP 162, CARP 163"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (23 credits)",
+        "courses": [
+          "23 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -15709,12 +16005,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 23,
+      "scheduledMaxCredits": 23,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 5,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -15755,6 +16053,16 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
           "CARP 115",
           "Choose 2 of the following courses (8 credits): CARP 162, CARP 163, CARP 164, CARP 171"
         ]
+      },
+      {
+        "label": "Remaining catalog requirements (13 credits)",
+        "courses": [
+          "13 credits of remaining catalog requirements"
+        ],
+        "requirementRole": "remaining-credits",
+        "notes": [
+          "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved."
+        ]
       }
     ],
     "notes": [
@@ -15770,12 +16078,14 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
+      "scheduledMinCredits": 13,
+      "scheduledMaxCredits": 13,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 8,
       "defaultOptionCredits": 0,
       "sampleOnlyCredits": 0,
-      "exceedsCatalogMinimum": null,
-      "exceedsCatalogMaximum": null
+      "exceedsCatalogMinimum": false,
+      "exceedsCatalogMaximum": false
     }
   },
   {
@@ -15830,7 +16140,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
       }
     ],
     "sampleSchedule": {
-      "scheduledMinCredits": 46,
+      "scheduledMinCredits": 41,
       "scheduledMaxCredits": 46,
       "placeholderCredits": 0,
       "unresolvedOptionCredits": 0,
@@ -16081,7 +16391,7 @@ export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACKS: TransferPlannerTra
 ];
 
 export const TRANSFER_PLANNER_GENERATED_GRC_ASSOCIATE_TRACK_SUMMARY: { generatedAt: string; currentCatalogId: number; currentCatalogName: string; programMapPageCount: number; officialAssociateTrackCount: number; officialSupportedProgramCount: number; connectedAssociateTrackCount: number; connectedSupportedProgramCount: number; generatedTrackCount: number; } = {
-  "generatedAt": "2026-05-11T06:05:08.731Z",
+  "generatedAt": "2026-05-12T21:34:25.449Z",
   "currentCatalogId": 11,
   "currentCatalogName": "2025-2026 Catalog",
   "programMapPageCount": 147,

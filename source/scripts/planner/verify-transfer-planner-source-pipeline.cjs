@@ -28,6 +28,9 @@ const {
   TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS,
 } = require("../../constants/transfer-planner-source/source-fingerprints.generated");
 const {
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS,
+} = require("../../constants/transfer-planner-source/requirement-source-adapters.generated");
+const {
   buildTransferPlannerOwnerId,
   normalizeTransferPlannerOwnerId,
 } = require("../../constants/transfer-planner-source/pathway-id-normalization");
@@ -104,6 +107,24 @@ function buildReviewOwnerKeySet(reviewQueue) {
   );
 }
 
+function getDiscoveryReportTargetPlanId(discoveryReport) {
+  return discoveryReport?.targetPlanId ?? null;
+}
+
+function getValidationScopedDiscoveryOwners(discoveryReport, fieldName) {
+  const owners = discoveryReport?.[fieldName] ?? [];
+  const targetPlanId = getDiscoveryReportTargetPlanId(discoveryReport);
+  if (!targetPlanId) {
+    return owners;
+  }
+
+  return owners.filter((owner) => owner?.planId === targetPlanId);
+}
+
+function getValidationScopedDiscoveryOwnerCount(discoveryReport) {
+  return getValidationScopedDiscoveryOwners(discoveryReport, "owners").length;
+}
+
 function isSchedulablePrimarySuggestion(candidate) {
   return (
     candidate &&
@@ -118,7 +139,7 @@ function isSchedulablePrimarySuggestion(candidate) {
 
 function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQueue) {
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
-  return (discoveryReport.owners ?? [])
+  return getValidationScopedDiscoveryOwners(discoveryReport, "owners")
     .filter((owner) => !owner.existingPrimaryUrl)
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .filter((owner) => !reviewOwnerKeys.has(buildOwnerKey(owner)))
@@ -131,7 +152,7 @@ function getEligibleMissingPrimaryAutoPromotionOwners(discoveryReport, reviewQue
 }
 
 function getEligibleWeakExistingReplacementOwners(discoveryReport) {
-  return (discoveryReport.weakExistingOwners ?? [])
+  return getValidationScopedDiscoveryOwners(discoveryReport, "weakExistingOwners")
     .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
     .map((owner) => ({
@@ -185,18 +206,25 @@ function buildManifestParseKey(entry) {
   return `${entry.ownerId}::${entry.url}`;
 }
 
-function buildReportParseKey(owner) {
-  return `${owner.ownerId}::${owner.primarySourceUrl ?? owner.sourceUrl}`;
+function buildReportParseKeys(owner) {
+  return uniqueSorted(
+    [owner.primarySourceUrl, owner.sourceUrl, ...(owner.coveredSourceUrls ?? [])].map((sourceUrl) =>
+      sourceUrl ? `${owner.ownerId}::${sourceUrl}` : null
+    )
+  );
 }
 
 function buildManifestPlanSourceKey(entry) {
   return `${entry.planId ?? entry.ownerId}::${entry.url}`;
 }
 
-function buildReportPlanSourceKey(owner) {
-  return `${owner.planId ?? owner.ownerId?.split(":pathway:")[0] ?? owner.ownerId}::${
-    owner.primarySourceUrl ?? owner.sourceUrl
-  }`;
+function buildReportPlanSourceKeys(owner) {
+  const planId = owner.planId ?? owner.ownerId?.split(":pathway:")[0] ?? owner.ownerId;
+  return uniqueSorted(
+    [owner.primarySourceUrl, owner.sourceUrl, ...(owner.coveredSourceUrls ?? [])].map((sourceUrl) =>
+      planId && sourceUrl ? `${planId}::${sourceUrl}` : null
+    )
+  );
 }
 
 function compareSets(left, right) {
@@ -587,10 +615,16 @@ async function main() {
   const parseableRequirementSourceEntries = buildParseableRequirementSourceManifestEntries();
   const parsedOwnerIds = new Set((requirementParseReport.owners ?? []).map((owner) => owner.ownerId));
   const parsedRequirementSourceKeys = new Set(
-    (requirementParseReport.owners ?? []).map(buildReportParseKey)
+    (requirementParseReport.owners ?? []).flatMap(buildReportParseKeys)
   );
   const parsedRequirementPlanSourceKeys = new Set(
-    (requirementParseReport.owners ?? []).map(buildReportPlanSourceKey)
+    (requirementParseReport.owners ?? []).flatMap(buildReportPlanSourceKeys)
+  );
+  const generatedParsedRequirementSourceKeys = new Set(
+    (TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS ?? []).flatMap(buildReportParseKeys)
+  );
+  const generatedParsedRequirementPlanSourceKeys = new Set(
+    (TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS ?? []).flatMap(buildReportPlanSourceKeys)
   );
   const requirementFingerprintOwnerIds = new Set(
     (TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS ?? []).map((entry) => entry.ownerId)
@@ -602,12 +636,12 @@ async function main() {
       "Missing-primary discovery owners partition cleanly into eligible auto-promotions and review-queue owners",
       () => {
         assert.equal(
-          discoveryReport.ownerCount,
+          getValidationScopedDiscoveryOwnerCount(discoveryReport),
           eligibleMissingPrimaryAutoPromotionOwners.length + reviewQueue.totalReviewOwners,
           "Discovery owner count should equal eligible auto-promotions plus review-queue owners."
         );
         return [
-          `Discovery owners: ${discoveryReport.ownerCount}`,
+          `Discovery owners: ${getValidationScopedDiscoveryOwnerCount(discoveryReport)}`,
           `Eligible missing-primary auto-promotions: ${eligibleMissingPrimaryAutoPromotionOwners.length}`,
           `Eligible weak-existing replacements: ${eligibleWeakExistingReplacementOwners.length}`,
           `Review-queue owners: ${reviewQueue.totalReviewOwners}`,
@@ -630,6 +664,11 @@ async function main() {
       "eligible-discoveries-promoted",
       "Eligible high-confidence discoveries are promoted unless they remain in the review queue",
       () => {
+        const targetPlanId = getDiscoveryReportTargetPlanId(discoveryReport);
+        if (targetPlanId) {
+          return `Skipped canonical promotion check for target-scoped discovery report: ${targetPlanId}`;
+        }
+
         const missingPromotions = eligibleAutoPromotionOwners.filter(
           (owner) => !promotedOwnerIds.has(owner.ownerId)
         );
@@ -705,6 +744,7 @@ async function main() {
       () => {
         const parseableRequirementSourceKeys =
           parseableRequirementSourceEntries.map(buildManifestParseKey);
+        const canonicalParseableSourceKeyCount = new Set(parseableRequirementSourceKeys).size;
         const parserOutputDiff = compareSets(
           parseableRequirementSourceKeys,
           parsedRequirementSourceKeys
@@ -714,9 +754,17 @@ async function main() {
             !parsedRequirementSourceKeys.has(buildManifestParseKey(entry)) &&
             !parsedRequirementPlanSourceKeys.has(buildManifestPlanSourceKey(entry))
         );
-        assert.ok(
-          requirementParseReport.totalOwners >= parseablePrimaryManifestOwners.size,
-          "Parse report should cover at least the canonical parseable primary-owner count."
+        const missingGeneratedSourceCoverage = parseableRequirementSourceEntries.filter(
+          (entry) =>
+            !generatedParsedRequirementSourceKeys.has(buildManifestParseKey(entry)) &&
+            !generatedParsedRequirementPlanSourceKeys.has(buildManifestPlanSourceKey(entry))
+        );
+        assert.equal(
+          canonicalParseableSourceKeyCount - missingCurrentSourceCoverage.length,
+          canonicalParseableSourceKeyCount,
+          `Parse report should cover every canonical parseable source owner/url, allowing canonicalized duplicate owner/source blocks: ${missingCurrentSourceCoverage
+            .map(buildManifestParseKey)
+            .join(", ")}`
         );
         assert.deepEqual(
           missingCurrentSourceCoverage.map(buildManifestParseKey),
@@ -725,10 +773,19 @@ async function main() {
             .map(buildManifestParseKey)
             .join(", ")}`
         );
+        assert.deepEqual(
+          missingGeneratedSourceCoverage.map(buildManifestParseKey),
+          [],
+          `Generated parsed-source registry missing parser coverage: ${missingGeneratedSourceCoverage
+            .map(buildManifestParseKey)
+            .join(", ")}`
+        );
         return [
           `Canonical parseable primary owners: ${parseablePrimaryManifestOwners.size}`,
           `Parseable requirement sources: ${parseableRequirementSourceEntries.length}`,
+          `Canonical parseable owner/source keys: ${canonicalParseableSourceKeyCount}`,
           `Parsed source blocks: ${requirementParseReport.totalOwners}`,
+          `Generated parsed source blocks: ${TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.length}`,
           `Exact parser/registry source delta: registry-only=${parserOutputDiff.leftOnly.length}, parsed-only=${parserOutputDiff.rightOnly.length}`,
         ];
       }

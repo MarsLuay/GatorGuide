@@ -105,7 +105,17 @@ function findNonResidencyCreditMatch(normalizedText, pattern) {
   return null;
 }
 
-function parseCreditRangeFromText(value) {
+function collectNonResidencyCreditMatches(normalizedText, pattern) {
+  const matches = [];
+  for (const match of normalizedText.matchAll(pattern)) {
+    if (!hasResidencyCreditContext(normalizedText, match)) {
+      matches.push(match);
+    }
+  }
+  return matches;
+}
+
+function parseCreditRangeFromTextLegacy(value) {
   const normalized = stripHtml(value)
     .replace(/\bquarter[-\s]*credits?\b/gi, "credits")
     .replace(/\s+/g, " ")
@@ -170,6 +180,86 @@ function parseCreditRangeFromText(value) {
         minimumCredits: exactCredits,
         maximumCredits: exactCredits,
     };
+}
+
+function parseCreditRangeFromText(value) {
+  const normalized = stripHtml(value)
+    .replace(/\bquarter[-\s]*credits?\b/gi, "credits")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!normalized || !/\bcredits?\b/i.test(normalized)) {
+    return null;
+  }
+
+  const degreeCompletionRangeMatch = findNonResidencyCreditMatch(
+    normalized,
+    /\b(?:to earn this degree[^.]{0,180}?complete|students must complete|must complete)\s+(\d+(?:\.\d+)?)\s*[-\u2013\u2014]\s*(\d+(?:\.\d+)?)\s*credits?\b/gi
+  );
+  if (degreeCompletionRangeMatch) {
+    const left = parsePositiveCreditNumber(degreeCompletionRangeMatch[1]);
+    const right = parsePositiveCreditNumber(degreeCompletionRangeMatch[2]);
+    if (left !== null && right !== null) {
+      return {
+        minimumCredits: Math.min(left, right),
+        maximumCredits: Math.max(left, right),
+      };
+    }
+  }
+
+  const candidates = [];
+  const addCandidate = (match, minimumCredits, maximumCredits, priority) => {
+    if (minimumCredits === null) {
+      return;
+    }
+    candidates.push({
+      index: Number(match?.index ?? Number.MAX_SAFE_INTEGER),
+      priority,
+      minimumCredits,
+      maximumCredits,
+    });
+  };
+
+  for (const match of collectNonResidencyCreditMatches(
+    normalized,
+    /\b(?:minimum(?:\s+of)?\s+)?(\d+(?:\.\d+)?)\s*[-\u2013\u2014]\s*(\d+(?:\.\d+)?)\s*credits?\b/gi
+  )) {
+    const left = parsePositiveCreditNumber(match[1]);
+    const right = parsePositiveCreditNumber(match[2]);
+    if (left !== null && right !== null) {
+      addCandidate(match, Math.min(left, right), Math.max(left, right), 0);
+    }
+  }
+
+  for (const match of collectNonResidencyCreditMatches(
+    normalized,
+    /\b(?:minimum(?:\s+of)?|at least)\s+(\d+(?:\.\d+)?)\s*credits?\b/gi
+  )) {
+    addCandidate(match, parsePositiveCreditNumber(match[1]), null, 1);
+  }
+
+  for (const match of collectNonResidencyCreditMatches(
+    normalized,
+    /\b(?:complete|must complete|students must complete|to earn this degree[^.]{0,80}complete)\s+(\d+(?:\.\d+)?)\s*credits?\b/gi
+  )) {
+    addCandidate(match, parsePositiveCreditNumber(match[1]), null, 2);
+  }
+
+  for (const match of collectNonResidencyCreditMatches(
+    normalized,
+    /\b(\d+(?:\.\d+)?)\s*credits?\b/gi
+  )) {
+    const exactCredits = parsePositiveCreditNumber(match[1]);
+    addCandidate(match, exactCredits, exactCredits, 3);
+  }
+
+  candidates.sort((left, right) => left.index - right.index || left.priority - right.priority);
+  const candidate = candidates[0] ?? null;
+  return candidate
+    ? {
+        minimumCredits: candidate.minimumCredits,
+        maximumCredits: candidate.maximumCredits,
+      }
+    : null;
 }
 
 function parseCreditRangeFromSource(value, sourceKind) {
@@ -1518,7 +1608,7 @@ function isNonPlannableGeneratedTrackCoreLabel(label) {
     .filter(Boolean);
 
   return segments.some((segment) =>
-    /^(?:notes?|program notes?|important notes?|transferability of credits|advising notes?)$/.test(
+    /^(?:notes?|program notes?|important notes?|transferability of credits|advising notes?|entry requirements?|admission requirements?)$/.test(
       segment
     ) || isCatalogOptionListSegment(segment)
   );
@@ -1528,7 +1618,7 @@ function isCatalogOptionListSegment(normalized) {
   return /^(?:list\s+[a-z0-9]+|approved(?:\s+\w+){0,4}\s+list|course list|courses? from list\s+[a-z0-9]+)$/.test(
     normalized
   ) || /\blist$/.test(normalized) ||
-    /^(?:foreign language|language sequence|(?:[\w&/-]+\s+)*electives?)$/.test(normalized);
+    /^(?:foreign language|language sequence|specialization|specializations|(?:[\w&/-]+\s+)*electives?)$/.test(normalized);
 }
 
 function isCatalogOptionListCoreLabel(label) {
@@ -1583,6 +1673,7 @@ function flattenProgramCores(cores, prefix = []) {
     const electivePlaceholder = getGeneratedTrackCoreElectivePlaceholder(label);
     const courses = electivePlaceholder ? [electivePlaceholder] : collectCoreCourseLabels(core);
     const plannerEligible = !isNonPlannableGeneratedTrackCoreLabel(label);
+    const sampleOnly = /^quarter\s+0\b/i.test(label);
 
     if (label || courses.length) {
       flattened.push({
@@ -1590,6 +1681,16 @@ function flattenProgramCores(cores, prefix = []) {
         courses,
         description: normalizeTrackNote(core.description),
         plannerEligible,
+        ...(sampleOnly
+          ? {
+              requirementRole: "sample-only",
+              sampleOnly: true,
+              canCreateScheduleRows: false,
+              notes: [
+                "Quarter 0 is preparatory sample-map guidance and is not counted as a required catalog row.",
+              ],
+            }
+          : {}),
       });
     }
 
@@ -1638,6 +1739,24 @@ function parseTermCreditAmount(label) {
   return amount;
 }
 
+function parseTermCreditRange(label) {
+  const range = parseCreditRangeFromText(label);
+  if (range) {
+    return {
+      creditMin: range.minimumCredits,
+      creditMax: range.maximumCredits ?? range.minimumCredits,
+    };
+  }
+
+  const amount = parseTermCreditAmount(label);
+  return amount === null
+    ? null
+    : {
+        creditMin: amount,
+        creditMax: amount,
+      };
+}
+
 function isGeneralEducationPlaceholderLabel(label) {
   return Boolean(guidanceLabelKind(label) || TRACK_ELECTIVE_PATTERN.test(String(label ?? "")));
 }
@@ -1646,12 +1765,97 @@ function isChoiceSlotLabel(label) {
   return /\b(?:select|choose)\b/i.test(String(label ?? "")) && extractCourseCodes(label).length >= 2;
 }
 
+function estimateGeneratedTermCreditRange(term) {
+  const labelRange = parseTermCreditRange(term?.label);
+  if (labelRange) {
+    return labelRange;
+  }
+
+  const courseCount = (term?.courses ?? []).filter((course) => String(course ?? "").trim()).length;
+  if (!courseCount) {
+    return null;
+  }
+
+  const estimatedCredits = courseCount * 5;
+  return {
+    creditMin: estimatedCredits,
+    creditMax: estimatedCredits,
+  };
+}
+
+function estimateGeneratedTermsCreditRange(terms) {
+  let creditMin = 0;
+  let creditMax = 0;
+  let foundCredits = false;
+
+  for (const term of terms ?? []) {
+    if (
+      term?.sampleOnly === true ||
+      term?.canCreateScheduleRows === false ||
+      term?.requirementRole === "sample-only"
+    ) {
+      continue;
+    }
+
+    const range = estimateGeneratedTermCreditRange(term);
+    if (!range) {
+      continue;
+    }
+    foundCredits = true;
+    creditMin += range.creditMin;
+    creditMax += range.creditMax;
+  }
+
+  return foundCredits ? { creditMin, creditMax } : null;
+}
+
+function formatCreditRangeForGeneratedLabel(creditMin, creditMax) {
+  return creditMin === creditMax ? String(creditMin) : `${creditMin}-${creditMax}`;
+}
+
+function materializeRemainingCatalogRequirementPlaceholderTerm(terms, creditRange) {
+  const catalogMinimumCredits = parsePositiveCreditNumber(creditRange?.minimumCredits);
+  if (catalogMinimumCredits === null) {
+    return terms;
+  }
+
+  const catalogMaximumCredits =
+    parsePositiveCreditNumber(creditRange?.maximumCredits) ?? catalogMinimumCredits;
+  const estimatedRange = estimateGeneratedTermsCreditRange(terms);
+  const scheduledMaxCredits = estimatedRange?.creditMax ?? 0;
+  if (scheduledMaxCredits >= catalogMinimumCredits) {
+    return terms;
+  }
+
+  const remainingMinCredits = Math.max(0, catalogMinimumCredits - scheduledMaxCredits);
+  const remainingMaxCredits = Math.max(remainingMinCredits, catalogMaximumCredits - scheduledMaxCredits);
+  if (remainingMaxCredits <= 0) {
+    return terms;
+  }
+
+  const rangeText = formatCreditRangeForGeneratedLabel(remainingMinCredits, remainingMaxCredits);
+  return [
+    ...terms,
+    {
+      label: `Remaining catalog requirements (${rangeText} credits)`,
+      courses: [`${rangeText} credits of remaining catalog requirements`],
+      requirementRole: "remaining-credits",
+      notes: [
+        "Generated from the catalog credit range because the structured curriculum map leaves part of the required range unresolved.",
+      ],
+    },
+  ];
+}
+
 function buildTrackSampleScheduleMetadata(track, creditRange) {
-  const scheduledTermCredits = (track.terms ?? [])
-    .map((term) => parseTermCreditAmount(term.label))
+  const scheduledTermCreditRanges = (track.terms ?? [])
+    .map((term) => parseTermCreditRange(term.label))
     .filter((credits) => credits !== null);
-  const scheduledCreditTotal = scheduledTermCredits.length
-    ? scheduledTermCredits.reduce((total, credits) => total + credits, 0)
+  const scheduledMinCreditTotal = scheduledTermCreditRanges.length
+    ? scheduledTermCreditRanges.reduce((total, credits) => total + credits.creditMin, 0)
+    : null;
+  const scheduledMaxCreditTotal = scheduledTermCreditRanges.length
+    ? scheduledTermCreditRanges.reduce((total, credits) => total + credits.creditMax, 0)
     : null;
   const labels = (track.terms ?? []).flatMap((term) => term.courses ?? []);
   const placeholderCredits =
@@ -1678,23 +1882,23 @@ function buildTrackSampleScheduleMetadata(track, creditRange) {
   const catalogMaximumCredits = parsePositiveCreditNumber(creditRange?.maximumCredits);
 
   return {
-    ...(scheduledCreditTotal !== null
+    ...(scheduledMinCreditTotal !== null
       ? {
-          scheduledMinCredits: scheduledCreditTotal,
-          scheduledMaxCredits: scheduledCreditTotal,
+          scheduledMinCredits: scheduledMinCreditTotal,
+          scheduledMaxCredits: scheduledMaxCreditTotal,
         }
       : {}),
     placeholderCredits,
     unresolvedOptionCredits,
     defaultOptionCredits,
-    sampleOnlyCredits: Math.max(0, (scheduledCreditTotal ?? 0) - (catalogMinimumCredits ?? 0)),
+    sampleOnlyCredits: Math.max(0, (scheduledMaxCreditTotal ?? 0) - (catalogMinimumCredits ?? 0)),
     exceedsCatalogMinimum:
-      scheduledCreditTotal !== null && catalogMinimumCredits !== null
-        ? scheduledCreditTotal > catalogMinimumCredits
+      scheduledMaxCreditTotal !== null && catalogMinimumCredits !== null
+        ? scheduledMaxCreditTotal > catalogMinimumCredits
         : null,
     exceedsCatalogMaximum:
-      scheduledCreditTotal !== null && catalogMaximumCredits !== null
-        ? scheduledCreditTotal > catalogMaximumCredits
+      scheduledMaxCreditTotal !== null && catalogMaximumCredits !== null
+        ? scheduledMaxCreditTotal > catalogMaximumCredits
         : null,
   };
 }
@@ -1730,23 +1934,28 @@ function buildTrackFromProgramPage(page, program, requirementProgram = null) {
   const coreTerms = flattenProgramCores(program.cores ?? []).filter(
     (term) => term.courses.length || term.description
   );
-  const terms = coreTerms
+  const rawTerms = coreTerms
     .filter((term) => term.plannerEligible !== false)
     .map((term) => ({
       label: term.label,
       courses: term.courses.length ? term.courses : [term.description],
+      ...(term.requirementRole ? { requirementRole: term.requirementRole } : {}),
+      ...(term.sampleOnly === true ? { sampleOnly: true } : {}),
+      ...(term.canCreateScheduleRows === false ? { canCreateScheduleRows: false } : {}),
+      ...(term.notes?.length ? { notes: term.notes } : {}),
     }));
 
-  if (!terms.length) {
+  if (!rawTerms.length) {
     throw new Error(`No curriculum-map terms were extracted for ${page.h1}.`);
   }
 
   const groupedChoices = requirementProgram
     ? collectGroupedChoicesFromProgram(requirementProgram, trackId)
     : [];
-  const groupedChoicesWithDefaults = attachGroupedChoiceDefaultOptions(groupedChoices, terms);
   const catalogOptionLists = collectCatalogOptionListsFromCores(program.cores ?? [], trackId);
   const creditRange = getProgramCreditRange(page, program, requirementProgram);
+  const terms = materializeRemainingCatalogRequirementPlaceholderTerm(rawTerms, creditRange);
+  const groupedChoicesWithDefaults = attachGroupedChoiceDefaultOptions(groupedChoices, terms);
   const trackWithoutSampleMetadata = {
     id: trackId,
     code: inferTrackCode(page),
@@ -1965,7 +2174,17 @@ ${serializeExport(
   );
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  buildTrackFromProgramPage,
+  estimateGeneratedTermsCreditRange,
+  materializeRemainingCatalogRequirementPlaceholderTerm,
+  parseCreditRangeFromText,
+  parseTermCreditRange,
+};

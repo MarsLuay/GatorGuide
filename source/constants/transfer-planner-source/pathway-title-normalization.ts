@@ -79,8 +79,11 @@ function repairTransferPlannerLooseHtmlEntityArtifacts(value: string | null | un
     .replace(/â€˜|â€™/g, "'")
     .replace(/â€œ|â€�/g, '"')
     .replace(
-      /(^|[\s([{,;:])(?:and\s+|amp\s+|&\s*|#\s*)?(160|8211|8212|8216|8217|8220|8221)(?=$|[\s)\]},;:!?])/gi,
-      (match, prefix, entity) => `${prefix}${LOOSE_HTML_ENTITY_ARTIFACT_MAP[String(entity)] ?? entity}`
+      /(^|[\s([{,;:])(?:(?:and\s+|amp\s+|&\s*|#\s*)(160)|(?:and\s+|amp\s+|&\s*|#\s*)?(8211|8212|8216|8217|8220|8221))(?=$|[\s)\]},;:!?])/gi,
+      (match, prefix, explicitNbspEntity, punctuationEntity) => {
+        const entity = explicitNbspEntity ?? punctuationEntity;
+        return `${prefix}${LOOSE_HTML_ENTITY_ARTIFACT_MAP[String(entity)] ?? entity}`;
+      }
     );
 }
 
@@ -246,20 +249,45 @@ export function labelMentionsDifferentTransferPlannerMajor(
       continue;
     }
 
-    if (
-      normalizedLabel === normalizedTitle ||
-      normalizedLabel.startsWith(`${normalizedTitle} - `) ||
-      normalizedLabel.startsWith(`${normalizedTitle}: `)
-    ) {
-      return true;
+    const otherPlanTokens = buildTransferPlannerTitleSignatureTokens(title);
+    const normalizedTitleVariants = Array.from(
+      new Set(
+        [
+          normalizedTitle,
+          normalizedTitle.replace(/\s*\([^)]*\)\s*$/, ""),
+        ].filter(Boolean)
+      )
+    );
+    for (const titleVariant of normalizedTitleVariants) {
+      if (
+        normalizedLabel === titleVariant ||
+        normalizedLabel.startsWith(`${titleVariant} - `) ||
+        normalizedLabel.startsWith(`${titleVariant}: `)
+      ) {
+        return true;
+      }
+
+      const normalizedTitleWordCount = titleVariant.split(/\s+/).filter(Boolean).length;
+      const titlePathwayPrefixPattern = new RegExp(
+        `^${titleVariant.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s+(?:option|track|route|pathway|certificate|concentration)\\b`,
+        "i"
+      );
+      if (normalizedTitleWordCount >= 2 && titlePathwayPrefixPattern.test(normalizedLabel)) {
+        return true;
+      }
     }
 
-    const otherPlanTokens = buildTransferPlannerTitleSignatureTokens(title);
     if (!otherPlanTokens.length) {
       continue;
     }
 
-    const minimumMatches = otherPlanTokens.length >= 3 ? 2 : 1;
+    const looksLikeStandalonePathwayLabel =
+      /\b(?:option|track|route|pathway|certificate|concentration)\b/i.test(normalizedLabel) &&
+      !/(?:\s[-\u2013\u2014:]\s|\|)|\bmajor\b/i.test(normalizedLabel);
+    const minimumMatches =
+      looksLikeStandalonePathwayLabel && otherPlanTokens.length === 1
+        ? 2
+        : Math.min(2, otherPlanTokens.length);
     const overlapCount = otherPlanTokens.filter((token) => labelTokens.has(token)).length;
     if (overlapCount >= minimumMatches) {
       return true;

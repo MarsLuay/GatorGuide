@@ -157,6 +157,19 @@ function isClearlySupportOnlyPromotionEntry(entry) {
   return CLEAR_SUPPORT_ONLY_PROMOTION_PATTERN.test(`${entry?.label ?? ""} ${entry?.url ?? ""}`);
 }
 
+function isGraduateOnlyPromotionEntry(entry) {
+  const text = `${entry?.label ?? ""} ${entry?.url ?? ""} ${entry?.ownerTitle ?? ""}`;
+  const ownerText = `${entry?.ownerTitle ?? ""}`.toLowerCase();
+  if (/\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral)\b/i.test(ownerText)) {
+    return false;
+  }
+  return (
+    (/\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral)\b/i.test(text) ||
+      /\/(?:student\/)?(?:applied-masters|masters?|graduate|amp)(?:[-/?#]|$)/i.test(text)) &&
+    !/\b(?:undergrad(?:uate)?|bachelor|b\.?\s*s\.?|b\.?\s*a\.?)\b|\/undergrad(?:uate)?(?:[-/?#]|$)/i.test(text)
+  );
+}
+
 function buildReviewOwnerKeySet(reviewQueue) {
   return new Set(
     (reviewQueue.campuses ?? []).flatMap((campus) =>
@@ -210,6 +223,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
           )
       )
       .filter((entry) => !isClearlySupportOnlyPromotionEntry(entry))
+      .filter((entry) => !isGraduateOnlyPromotionEntry(entry))
       .filter((entry) => activeOwnerIds.has(entry.ownerId))
       .map((entry) => [
         entry.ownerId,

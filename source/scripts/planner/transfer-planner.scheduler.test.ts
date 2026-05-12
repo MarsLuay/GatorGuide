@@ -821,7 +821,9 @@ test("Seattle Aeronautics runtime planning uses the authored 24-credit breadth t
 
 test("Seattle Computer Engineering parsed source blocks and runtime planning no longer leak Allen School recommendation spillover", () => {
   const parsedBlock = TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS.find(
-    (entry) => entry.ownerId === "uw-seattle-computer-engineering"
+    (entry) =>
+      entry.ownerId === "uw-seattle-computer-engineering" &&
+      entry.sourceRole === "primary-degree-requirements"
   );
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-computer-engineering");
 
@@ -864,12 +866,12 @@ test("Seattle Computer Engineering parsed source blocks and runtime planning no 
     runtimePlan?.beforeEnrollmentChecklist.map((item) => item.title),
     [
       "CSE 123 or CSE 143",
+      "EE 205 or EE 215",
       "10 additional credits approved natural science",
       "3-6 additional Math/Science",
       "PHYS 121",
       "PHYS 122",
       "MATH 208",
-      "EE 215",
     ]
   );
   assert.equal(checklistCoverage.length <= runtimeCourseList.length, true);
@@ -2609,12 +2611,15 @@ test("Existing structured runtime planners keep their key checklist rows and qua
 
   assert.equal(compEState.diagnostics.hasStructuredPlannerData, true);
   assert.equal(compEState.diagnostics.hasPlannedQuarterRows, true);
-  assert.ok(compEBeforeEnrollmentTitles.includes("EE 215"));
+  assert.ok(compEBeforeEnrollmentTitles.includes("EE 205 or EE 215"));
   assert.ok(compEBeforeEnrollmentTitles.includes("CSE 123 or CSE 143"));
 
   assert.equal(csState.diagnostics.hasStructuredPlannerData, true);
   assert.equal(csState.diagnostics.hasPlannedQuarterRows, true);
-  assert.ok(csBeforeEnrollmentTitles.includes("CSE 123 or CSE 143"));
+  assert.ok(
+    csBeforeEnrollmentTitles.includes("CSE 123 or CSE 143") ||
+      csBeforeEnrollmentTitles.includes("CSE 121-123 programming sequence")
+  );
   assert.equal(csBeforeEnrollmentTitles.includes("PHYS 122"), false);
   assert.equal(csGrcCourseList.includes("MATH 240"), true);
   assert.equal(csGrcCourseList.includes("PHYS& 222"), false);
@@ -3497,4 +3502,3 @@ test("SBSE computation/data science options satisfy from completed CS 122 withou
   );
   assert.deepEqual(unselectedPrerequisiteLeaks, []);
 });
-

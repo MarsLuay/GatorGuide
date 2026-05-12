@@ -1938,6 +1938,20 @@ const CANONICAL_COURSE_BY_SCOPE_AND_CODE = new Map<string, (typeof TRANSFER_PLAN
 );
 const GRC_PREREQUISITE_CLOSURE_CACHE = new Map<string, Set<string>>();
 
+function isCanonicalGrcCourseLabel(label: string) {
+  const courseCodes = extractReferenceCourseCodes(label);
+  return (
+    courseCodes.length > 0 &&
+    courseCodes.every((courseCode) =>
+      CANONICAL_GRC_COURSE_BY_CODE.has(normalizeCourseCode(courseCode))
+    )
+  );
+}
+
+function filterCanonicalGrcCourseLabels(labels: string[]) {
+  return uniqueReferenceCourseLabels(labels).filter(isCanonicalGrcCourseLabel);
+}
+
 function getTransitiveGrcDependencyCourseCodes(courseCode: string) {
   const normalizedCourseCode = normalizeCourseCode(courseCode);
   const cached = GRC_PREREQUISITE_CLOSURE_CACHE.get(normalizedCourseCode);
@@ -3231,6 +3245,41 @@ function buildKnownComputerEngineeringRequirementGroups(
       ],
     }),
     buildRequirementGroup({
+      id: `${planId}:requirement-group:ee-205-or-ee-215`,
+      label: "EE 205 or EE 215",
+      category: "computer_engineering_circuits",
+      subcategory: "ee_205_or_ee_215",
+      requirementType: "choose_one",
+      minCourses: 1,
+      maxCourses: 1,
+      sourceHeading: "EE 205 Intro to Signal Conditioning (4) OR EE 215 Intro to Electrical Engineering",
+      notes: [
+        `Source: ${UW_COMPUTER_ENGINEERING_DEGREE_REQUIREMENTS_SOURCE_URL}`,
+        "Default Green River path is ENGR& 204 for EE 215; EE 205 is preserved as the UW-only source option because no current source-backed Green River equivalent is mapped.",
+        "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way.",
+      ],
+      options: [
+        buildRequirementOption({
+          id: `${planId}:requirement-option:ee-205`,
+          uwCourses: ["EE 205"],
+          grcMatches: [],
+          credits: 4,
+          label: "EE 205",
+          constraints: ["uw_only_no_current_grc_equivalent"],
+          notes: [
+            "No current source-backed Green River equivalent is mapped for EE 205.",
+          ],
+        }),
+        buildRequirementOption({
+          id: `${planId}:requirement-option:ee-215`,
+          uwCourses: ["EE 215"],
+          grcMatches: ["ENGR& 204"],
+          credits: 4,
+          label: "EE 215",
+        }),
+      ],
+    }),
+    buildRequirementGroup({
       id: `${planId}:requirement-group:approved-natural-science-10-credits`,
       label: "10 additional credits approved natural science",
       category: "computer_engineering_credit_bucket",
@@ -4450,6 +4499,7 @@ function shouldMaterializeParsedRequirementGroup(
   if (block.planId === UW_SEATTLE_COMPUTER_ENGINEERING_PLAN_ID) {
     return (
       group.category === "computer_engineering_programming" ||
+      group.category === "computer_engineering_circuits" ||
       group.category === "computer_engineering_credit_bucket"
     );
   }
@@ -4816,6 +4866,10 @@ function getRequirementGroupOptionGrcMatches(group: TransferPlannerRequirementGr
   return uniqueReferenceCourseLabels((group.options ?? []).flatMap((option) => option.grcMatches));
 }
 
+function getRequirementOptionMappedGrcLabels(option: TransferPlannerRequirementOption) {
+  return uniqueReferenceCourseLabels(option.grcMatches ?? []);
+}
+
 function getRequirementOptionCourseLabels(option: TransferPlannerRequirementOption) {
   if (option.optionKind === "category-option") {
     return [] as string[];
@@ -4927,6 +4981,13 @@ function getRequirementGroupMinCompletedCount(group: TransferPlannerRequirementG
   return group.requirementType === "choose_one" ? 1 : undefined;
 }
 
+function isUwOnlyNoCurrentGrcEquivalentOption(option: TransferPlannerRequirementOption) {
+  return (
+    !(option.grcMatches ?? []).some((label) => String(label ?? "").trim()) &&
+    (option.constraints ?? []).includes("uw_only_no_current_grc_equivalent")
+  );
+}
+
 function buildRequirementGroupChecklistItem(
   group: TransferPlannerRequirementGroup
 ): TransferPlannerChecklistItem | null {
@@ -4944,26 +5005,12 @@ function buildRequirementGroupChecklistItem(
     return null;
   }
 
-  const allOptionMatches = getRequirementGroupOptionGrcMatches(group);
-  const allOptionLabels = allOptionMatches.length
-    ? allOptionMatches
-    : getRequirementGroupOptionPlannerLabels(group);
+  const allOptionLabels = getRequirementGroupOptionPlannerLabels(group);
+  const allOptionGrcLabels = getRequirementGroupOptionGrcMatches(group);
   const selectedOptions = getSelectedRequirementGroupOptions(group);
   const selectedMatches = uniqueReferenceCourseLabels(
     selectedOptions.flatMap((option) => option.grcMatches)
   );
-  const selectedLabels = selectedMatches.length
-    ? selectedMatches
-    : getSelectedRequirementGroupPlannerLabels(group);
-  const selectedEquivalentLabels =
-    selectedOptions.length === 1
-      ? uniqueReferenceCourseLabels(
-          selectedOptions.flatMap((option) => [
-            ...(option.uwCourses ?? []),
-            ...(option.equivalentUwCourseCodes ?? []),
-          ])
-        ).filter((label) => !selectedLabels.includes(label))
-      : [];
   const selectedRequirementOptionIds = selectedOptions
     .map((option) => option.id)
     .filter((optionId): optionId is string => Boolean(optionId));
@@ -4976,31 +5023,34 @@ function buildRequirementGroupChecklistItem(
   let alternatives: string[][] | undefined;
 
   if (group.requirementType === "choose_one") {
-    if (shouldAutoSelectRequirementGroupOption(group) && selectedLabels.length > 0) {
-      grcCourses = selectedLabels;
+    if (shouldAutoSelectRequirementGroupOption(group) && selectedMatches.length > 0) {
+      grcCourses = selectedMatches;
       alternatives = (group.options ?? [])
         .filter((option) => !selectedOptions.some((selectedOption) => selectedOption.id === option.id))
-        .map((option) => uniqueReferenceCourseLabels(getRequirementOptionCourseLabels(option)))
+        .filter((option) => !isUwOnlyNoCurrentGrcEquivalentOption(option))
+        .map((option) => getRequirementOptionMappedGrcLabels(option))
         .filter((optionMatches) => optionMatches.length > 0);
     } else {
-      grcCourses = allOptionLabels;
+      grcCourses = allOptionGrcLabels;
     }
   } else if (group.requirementType === "all_required" || group.requirementType === "sequence_choice") {
-    grcCourses = selectedLabels.length ? selectedLabels : allOptionLabels;
-    alternatives = selectedEquivalentLabels.map((label) => [label]);
+    grcCourses = selectedMatches.length ? selectedMatches : allOptionGrcLabels;
   } else if (
     group.requirementType === "choose_credits" &&
     shouldScheduleSelectedRequirementGroupOptionsByDefault(group) &&
-    selectedLabels.length
+    selectedMatches.length
   ) {
-    grcCourses = selectedLabels;
+    grcCourses = selectedMatches;
   } else {
-    grcCourses = allOptionLabels;
+    grcCourses = allOptionGrcLabels;
   }
 
-  if (!grcCourses.length && !(alternatives ?? []).length) {
+  if (!grcCourses.length && !(alternatives ?? []).length && !allOptionLabels.length) {
     return null;
   }
+
+  const sourceMetadata = getRequirementGroupChecklistSourceMetadata(group);
+  const hasMappedGrcCourses = grcCourses.length > 0 || (alternatives ?? []).length > 0;
 
   return sanitizeChecklistItem({
     id: group.id.split(":").pop() ?? group.id,
@@ -5021,7 +5071,14 @@ function buildRequirementGroupChecklistItem(
       : undefined,
     scheduleSelectedRequirementOptions:
       shouldScheduleSelectedRequirementGroupOptionsByDefault(group) || undefined,
-    ...getRequirementGroupChecklistSourceMetadata(group),
+    ...sourceMetadata,
+    ...(hasMappedGrcCourses
+      ? {}
+      : {
+          canCreateScheduleRow: false,
+          reason:
+            "Parser requirement group is visible from the official UW source, but no mapped Green River course is currently available for scheduling.",
+        }),
   });
 }
 
@@ -5833,11 +5890,12 @@ function collectPlannerCourseLabels(scope: {
     ])
   );
 
-  if (checklistLabels.length) {
-    return checklistLabels;
+  const checklistGrcLabels = filterCanonicalGrcCourseLabels(checklistLabels);
+  if (checklistGrcLabels.length) {
+    return checklistGrcLabels;
   }
 
-  return uniqueReferenceCourseLabels([...(scope.grcCourseList ?? [])]);
+  return filterCanonicalGrcCourseLabels([...(scope.grcCourseList ?? [])]);
 }
 
 function buildReferenceLabelByCode(labels: string[]) {
@@ -6205,7 +6263,7 @@ function applyAutoTrackRecommendation<T extends {
   }
 ): T {
   const primaryTrackMatchCourseList = options?.trackMatchCourseList?.length
-    ? uniqueReferenceCourseLabels(options.trackMatchCourseList)
+    ? filterCanonicalGrcCourseLabels(options.trackMatchCourseList)
     : collectPlannerCourseLabels(scope);
   const autoTrack = getTransferPlannerAutoMatchedTrackRecommendation(
     primaryTrackMatchCourseList,
@@ -6215,7 +6273,7 @@ function applyAutoTrackRecommendation<T extends {
     }
   ) ?? (options?.fallbackTrackMatchCourseList?.length
     ? getTransferPlannerAutoMatchedTrackRecommendation(
-        uniqueReferenceCourseLabels(options.fallbackTrackMatchCourseList),
+        filterCanonicalGrcCourseLabels(options.fallbackTrackMatchCourseList),
         scope.bestTrackId ?? null,
         {
           majorTitle: options?.majorTitle ?? scope.title ?? scope.label ?? null,
@@ -6263,8 +6321,8 @@ function applyAutoTrackRecommendationFromStudentVisibleList<T extends {
   } = {}
 ): T {
   const visibleCourseList = options.studentVisibleCourseList?.length
-    ? uniqueReferenceCourseLabels(options.studentVisibleCourseList)
-    : uniqueReferenceCourseLabels([
+    ? filterCanonicalGrcCourseLabels(options.studentVisibleCourseList)
+    : filterCanonicalGrcCourseLabels([
         ...(scope.grcCourseList ?? []),
         ...getChecklistReferenceCoursesFromItems([
           ...(scope.applicationChecklist ?? []),
@@ -6953,17 +7011,31 @@ function buildChecklistForPhase(
   baseItems: TransferPlannerChecklistItem[],
   pathwayId?: string | null
 ) {
+  const parserRequirementGroupItems = getRequirementGroupChecklistItemsForPhase(
+    planId,
+    phase,
+    pathwayId
+  );
+
   const allItemsForKey = REQUIREMENTS_BY_KEY.get(makePathwayPlanKey(planId, pathwayId)) ?? [];
   const items = allItemsForKey.filter((entry) => entry.displayPhase === phase);
 
   if (!allItemsForKey.length) {
-    return baseItems.map((item) => sanitizeChecklistItem(item));
+    return parserRequirementGroupItems.length
+      ? appendUniqueChecklistItems(
+          parserRequirementGroupItems,
+          baseItems.map((item) => sanitizeChecklistItem(item))
+        )
+      : baseItems.map((item) => sanitizeChecklistItem(item));
   }
 
-  return orderByBaseIds(
+  const structuredItems = orderByBaseIds(
     items.map(buildChecklistItem),
     baseItems.map((item) => item.id)
   );
+  return parserRequirementGroupItems.length
+    ? appendUniqueChecklistItems(parserRequirementGroupItems, structuredItems)
+    : structuredItems;
 }
 
 function buildDegreeMapSections(
@@ -7222,13 +7294,18 @@ function buildAutomaticChecklistForPhase(
   phase: TransferPlannerRequirementPhase,
   pathwayId?: string | null
 ) {
+  const parserRequirementGroupItems = getRequirementGroupChecklistItemsForPhase(
+    planId,
+    phase,
+    pathwayId
+  );
   const supportedCourseCodes = new Set(
     buildAutomaticCourseList(planId, pathwayId).map((code) => normalizeCourseCode(code))
   );
   const seenSignatures = new Set<string>();
   const runtimeItems: TransferPlannerChecklistItem[] = [];
 
-  for (const item of getRequirementGroupChecklistItemsForPhase(planId, phase, pathwayId)) {
+  for (const item of parserRequirementGroupItems) {
     const signature = buildChecklistItemSignature(item);
     if (seenSignatures.has(signature)) {
       continue;
@@ -7393,9 +7470,10 @@ function buildStudentVisibleAutomaticCourseList(scope: {
   stayAtGrcChecklist: TransferPlannerChecklistItem[];
 }) {
   const checklistCourseList = collectPlannerCourseLabels(scope);
+  const baseGrcCourseList = filterCanonicalGrcCourseLabels(scope.grcCourseList ?? []);
   return orderStringsByBase(
-    uniqueReferenceCourseLabels([...(scope.grcCourseList ?? []), ...checklistCourseList]),
-    scope.grcCourseList ?? []
+    filterCanonicalGrcCourseLabels([...baseGrcCourseList, ...checklistCourseList]),
+    baseGrcCourseList
   );
 }
 
@@ -7470,10 +7548,11 @@ function buildStudentVisibleTrackMatchCourseList(scope: {
     ...(scope.beforeEnrollmentChecklist ?? []),
     ...(scope.stayAtGrcChecklist ?? []),
   ]);
+  const baseGrcCourseList = filterCanonicalGrcCourseLabels(scope.grcCourseList ?? []);
 
   return orderStringsByBase(
-    uniqueReferenceCourseLabels([...(scope.grcCourseList ?? []), ...checklistSeedCourseList]),
-    scope.grcCourseList ?? []
+    filterCanonicalGrcCourseLabels([...baseGrcCourseList, ...checklistSeedCourseList]),
+    baseGrcCourseList
   );
 }
 
@@ -8245,7 +8324,7 @@ export function getTransferPlannerGrcCourseList(
 ) {
   if (!plan) return [] as string[];
 
-  return uniqueReferenceCourseLabels([
+  return filterCanonicalGrcCourseLabels([
     ...(plan.grcCourseList ?? []),
     ...getChecklistReferenceCourses(plan),
   ]);

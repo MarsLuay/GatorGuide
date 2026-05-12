@@ -1400,7 +1400,9 @@ test.skip("Generated planner output keeps support-only classes out of before-enr
   );
   const compEPhys122 = compEPlan.beforeEnrollmentChecklist.find((entry) => entry.id === "phys122");
   const compEMath208 = compEPlan.beforeEnrollmentChecklist.find((entry) => entry.id === "math208");
-  const compEEe215 = compEPlan.beforeEnrollmentChecklist.find((entry) => entry.id === "engr204");
+  const compEEe215 = compEPlan.beforeEnrollmentChecklist.find(
+    (entry) => entry.id === "ee-205-or-ee-215"
+  );
   const eceEe215 = ecePlan.beforeEnrollmentChecklist.find((entry) => entry.id === "engr204");
   const bothellCompEEe215 = bothellCompEPlan?.stayAtGrcChecklist.find(
     (entry) => entry.id === "bothell-compe-circuits"
@@ -1421,9 +1423,21 @@ test.skip("Generated planner output keeps support-only classes out of before-enr
   assert.equal(compEMath208?.title, "MATH 208");
   assert.match(compEMath208?.note ?? "", /needed to complete the degree either way/i);
   assert.doesNotMatch(compEMath208?.title ?? "", /head start/i);
-  assert.equal(compEEe215?.title, "EE 215");
+  assert.equal(compEEe215?.title, "EE 205 or EE 215");
+  assert.deepEqual(
+    compEEe215?.requirementGroup?.options.find((option) =>
+      option.uwCourses.includes("EE 205")
+    )?.grcMatches,
+    []
+  );
+  assert.deepEqual(
+    compEEe215?.requirementGroup?.options.find((option) =>
+      option.uwCourses.includes("EE 215")
+    )?.grcMatches,
+    ["ENGR& 204"]
+  );
   assert.match(compEEe215?.note ?? "", /needed to complete the degree either way/i);
-  assert.equal(compEPlan.stayAtGrcChecklist.some((entry) => entry.id === "engr204"), false);
+  assert.equal(compEPlan.stayAtGrcChecklist.some((entry) => entry.id === "ee-205-or-ee-215"), false);
   assert.equal(eceEe215?.title, "EE 215");
   assert.match(eceEe215?.note ?? "", /needed to complete the degree either way/i);
   assert.equal(ecePlan.stayAtGrcChecklist.some((entry) => entry.id === "engr204"), false);

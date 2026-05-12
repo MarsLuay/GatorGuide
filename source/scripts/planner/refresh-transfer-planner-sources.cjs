@@ -14,7 +14,10 @@ const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-requirement-source-parse-report.json"
 );
-const TS_NODE_COMPILER_OPTIONS = JSON.stringify({ module: "CommonJS" });
+const TS_NODE_COMPILER_OPTIONS = JSON.stringify({
+  module: "Node16",
+  moduleResolution: "node16",
+});
 const TS_NODE_TEST_COMPILER_OPTIONS = JSON.stringify({
   module: "Node16",
   moduleResolution: "node16",

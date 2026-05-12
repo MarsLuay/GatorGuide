@@ -627,6 +627,7 @@ export type TransferPlannerParsedRequirementSourceBlock = {
   adapterId: TransferPlannerRequirementSourceParserAdapterId;
   adapterFamily: string;
   sourceUrl: string;
+  coveredSourceUrls?: string[];
   sourceLabel: string;
   sourceRole?: TransferPlannerDiscoveredSourceRole | string;
   sourceRoleStatus?: TransferPlannerSourceRoleStatus | string;

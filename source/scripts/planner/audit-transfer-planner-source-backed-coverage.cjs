@@ -1613,8 +1613,11 @@ function getVisiblePlannedLabels(quarterPlan) {
 
 function getVisibleCourseCodeSet(quarterPlan) {
   return new Set(
-    getVisiblePlannedLabels(quarterPlan)
-      .flatMap((label) => extractCourseCodes(label))
+    getVisiblePlannedCourses(quarterPlan)
+      .flatMap((course) => [
+        ...extractCourseCodes(course.label),
+        ...(course.optionGroup?.options ?? []).flatMap((option) => option.courseCodes ?? []),
+      ])
       .map(normalizeCourseCode)
       .filter(Boolean)
   );
@@ -5761,6 +5764,9 @@ function formatGroupCardinality(group, fallbackOptionCount = null) {
 
 function getHiddenReason(input) {
   if (!input.grcEquivalents.length) {
+    if (input.representedRuntimeUwOnlyOption) {
+      return "UW-only source option is represented; no source-backed Green River equivalent is currently mapped.";
+    }
     return "No source-backed Green River equivalent is currently mapped.";
   }
   if (!input.generatedRuntimeRow) {
@@ -5775,6 +5781,9 @@ function getHiddenReason(input) {
 function classifyCoverageIssue(input) {
   if (input.groupedChoiceMax != null && input.visibleCourseCodes.length > input.groupedChoiceMax) {
     return "over-scheduled-alternatives";
+  }
+  if (input.representedRuntimeUwOnlyOption) {
+    return null;
   }
   if (!input.grcEquivalents.length && input.parsedUwCourseCodes.some(isLowerDivisionCourseCode)) {
     return "unmapped-uw-only";
@@ -5800,17 +5809,28 @@ function buildCoverageRowsForOwner(owner) {
     buildParsedRequirementRows(block).map((parsedRow) => {
       const grcEquivalents = getGrcEquivalentsForUwCourses(parsedRow.parsedUwCourseCodes);
       const generatedRuntimeRow =
-        grcEquivalents.length > 0 &&
-        grcEquivalents.some((courseCode) => generatedRuntimeCourseCodes.has(normalizeCourseCode(courseCode)));
+        grcEquivalents.length > 0
+          ? grcEquivalents.some((courseCode) => generatedRuntimeCourseCodes.has(normalizeCourseCode(courseCode)))
+          : parsedRow.parsedUwCourseCodes.some((courseCode) =>
+              visibleCourseCodeSet.has(normalizeCourseCode(courseCode))
+            );
       const visibleCourseCodes = grcEquivalents.filter((courseCode) =>
         visibleCourseCodeSet.has(normalizeCourseCode(courseCode))
       );
-      const visibleInTransferOnlyPlan = visibleCourseCodes.length > 0;
+      const visibleUwOnlyCourseCodes = !grcEquivalents.length
+        ? parsedRow.parsedUwCourseCodes.filter((courseCode) =>
+            visibleCourseCodeSet.has(normalizeCourseCode(courseCode))
+          )
+        : [];
+      const representedRuntimeUwOnlyOption = visibleUwOnlyCourseCodes.length > 0;
+      const visibleInTransferOnlyPlan =
+        visibleCourseCodes.length > 0 || representedRuntimeUwOnlyOption;
       const groupedChoiceMax = parseGroupedChoiceMax(parsedRow.groupedChoiceCardinality);
       const hiddenReason = getHiddenReason({
         grcEquivalents,
         generatedRuntimeRow,
         visibleInTransferOnlyPlan,
+        representedRuntimeUwOnlyOption,
       });
       const issueType = classifyCoverageIssue({
         parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
@@ -5819,6 +5839,7 @@ function buildCoverageRowsForOwner(owner) {
         visibleInTransferOnlyPlan,
         groupedChoiceMax,
         visibleCourseCodes,
+        representedRuntimeUwOnlyOption,
       });
 
       return {
@@ -5835,6 +5856,8 @@ function buildCoverageRowsForOwner(owner) {
         uwRequirementLabel: parsedRow.uwRequirementLabel,
         parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
         matchedGrcEquivalents: grcEquivalents,
+        visibleUwOnlyCourseCodes,
+        representedRuntimeUwOnlyOption,
         generatedRuntimeRow,
         visibleInTransferOnlyQuarterPlan: visibleInTransferOnlyPlan,
         hiddenInternalReason: hiddenReason,
@@ -5875,16 +5898,27 @@ function buildProtectedRequirementRows(planId, pathwayId, rows) {
   return rows.map(([uwRequirementLabel, parsedUwCourseCodes, grcEquivalents, cardinality]) => {
     const normalizedGrcEquivalents = uniqueSorted(grcEquivalents.map(normalizeCourseCode));
     const generatedRuntimeRow =
-      normalizedGrcEquivalents.length > 0 &&
-      normalizedGrcEquivalents.some((courseCode) => generatedRuntimeCourseCodes.has(courseCode));
+      normalizedGrcEquivalents.length > 0
+        ? normalizedGrcEquivalents.some((courseCode) => generatedRuntimeCourseCodes.has(courseCode))
+        : parsedUwCourseCodes.some((courseCode) =>
+            visibleCourseCodeSet.has(normalizeCourseCode(courseCode))
+          );
     const visibleCourseCodes = normalizedGrcEquivalents.filter((courseCode) =>
       visibleCourseCodeSet.has(courseCode)
     );
-    const visibleInTransferOnlyPlan = visibleCourseCodes.length > 0;
+    const visibleUwOnlyCourseCodes = !normalizedGrcEquivalents.length
+      ? parsedUwCourseCodes
+          .map(normalizeCourseCode)
+          .filter((courseCode) => visibleCourseCodeSet.has(courseCode))
+      : [];
+    const representedRuntimeUwOnlyOption = visibleUwOnlyCourseCodes.length > 0;
+    const visibleInTransferOnlyPlan =
+      visibleCourseCodes.length > 0 || representedRuntimeUwOnlyOption;
     const hiddenReason = getHiddenReason({
       grcEquivalents: normalizedGrcEquivalents,
       generatedRuntimeRow,
       visibleInTransferOnlyPlan,
+      representedRuntimeUwOnlyOption,
     });
     const issueType = classifyCoverageIssue({
       parsedUwCourseCodes,
@@ -5893,6 +5927,7 @@ function buildProtectedRequirementRows(planId, pathwayId, rows) {
       visibleInTransferOnlyPlan,
       groupedChoiceMax: parseGroupedChoiceMax(cardinality),
       visibleCourseCodes,
+      representedRuntimeUwOnlyOption,
     });
 
     return {
@@ -5905,6 +5940,8 @@ function buildProtectedRequirementRows(planId, pathwayId, rows) {
       uwRequirementLabel,
       parsedUwCourseCodes: uniqueSorted(parsedUwCourseCodes.map(normalizeCourseCode)),
       matchedGrcEquivalents: normalizedGrcEquivalents,
+      visibleUwOnlyCourseCodes,
+      representedRuntimeUwOnlyOption,
       generatedRuntimeRow,
       visibleInTransferOnlyQuarterPlan: visibleInTransferOnlyPlan,
       hiddenInternalReason: hiddenReason,

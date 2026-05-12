@@ -329,6 +329,7 @@ function compactParsedRequirementSourceBlock(block) {
     primarySourceUrl: block.primarySourceUrl,
     primarySourceLabel: block.primarySourceLabel,
     sourceUrl: block.sourceUrl,
+    coveredSourceUrls: nonEmptyArray(block.coveredSourceUrls),
     sourceLabel: block.sourceLabel,
     sourceRole: block.sourceRole,
     sourceRoleStatus: block.sourceRoleStatus,
@@ -354,6 +355,8 @@ function compactParsedRequirementSourceBlock(block) {
     supportLists: nonEmptyArray(
       supportLists.length ? supportLists : buildRuntimeRequirementSupportLists(block)
     ),
+    parsedRequirementCourses: nonEmptyArray(block.parsedRequirementCourses),
+    parsedDegreeMapBlockCandidates: nonEmptyArray(block.parsedDegreeMapBlockCandidates),
     parsedRequirementGroups: nonEmptyArray(block.parsedRequirementGroups),
     parsedRequirementAtomCandidates: canCreateSchedulableRows
       ? (block.parsedRequirementAtomCandidates ?? [])
@@ -471,6 +474,7 @@ export type TransferPlannerRuntimeParsedRequirementSourceBlock = Pick<
   | "primarySourceUrl"
   | "primarySourceLabel"
   | "sourceUrl"
+  | "coveredSourceUrls"
   | "sourceLabel"
   | "sourceRole"
   | "sourceRoleStatus"

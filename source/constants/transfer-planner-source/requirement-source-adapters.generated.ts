@@ -6,93 +6,88 @@ import type {
   TransferPlannerRequirementSourceAdapterSummary,
 } from "./schema";
 
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_0 } = require("./requirement-source-adapters.generated/blocks-000.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_1 } = require("./requirement-source-adapters.generated/blocks-001.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_2 } = require("./requirement-source-adapters.generated/blocks-002.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_3 } = require("./requirement-source-adapters.generated/blocks-003.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_4 } = require("./requirement-source-adapters.generated/blocks-004.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_5 } = require("./requirement-source-adapters.generated/blocks-005.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_6 } = require("./requirement-source-adapters.generated/blocks-006.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_7 } = require("./requirement-source-adapters.generated/blocks-007.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8 } = require("./requirement-source-adapters.generated/blocks-008.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9 } = require("./requirement-source-adapters.generated/blocks-009.generated");
-const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_10 } = require("./requirement-source-adapters.generated/blocks-010.generated");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_0 } = require("./requirement-source-adapters.generated/blocks-000.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_1 } = require("./requirement-source-adapters.generated/blocks-001.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_2 } = require("./requirement-source-adapters.generated/blocks-002.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_3 } = require("./requirement-source-adapters.generated/blocks-003.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_4 } = require("./requirement-source-adapters.generated/blocks-004.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_5 } = require("./requirement-source-adapters.generated/blocks-005.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_6 } = require("./requirement-source-adapters.generated/blocks-006.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_7 } = require("./requirement-source-adapters.generated/blocks-007.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8 } = require("./requirement-source-adapters.generated/blocks-008.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9 } = require("./requirement-source-adapters.generated/blocks-009.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_10 } = require("./requirement-source-adapters.generated/blocks-010.generated.ts");
+const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_11 } = require("./requirement-source-adapters.generated/blocks-011.generated.ts");
 
 export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
-  "generatedAt": "2026-05-11T22:24:35.220Z",
-  "totalOwners": 413,
-  "okCount": 413,
+  "generatedAt": "2026-05-12T23:14:21.067Z",
+  "totalOwners": 465,
+  "okCount": 465,
   "failedCount": 0,
-  "parsedRequirementSourceBlockCount": 413,
-  "parsedRequirementAtomCandidateCount": 8418,
-  "parsedDegreeMapBlockCandidateCount": 949,
-  "parsedRequirementGroupCount": 1926,
-  "parsedRequirementCourseCount": 235,
-  "snapshotFallbackCount": 6,
+  "parsedRequirementSourceBlockCount": 465,
+  "parsedRequirementAtomCandidateCount": 11217,
+  "parsedDegreeMapBlockCandidateCount": 668,
+  "parsedRequirementGroupCount": 2376,
+  "parsedRequirementCourseCount": 10561,
+  "snapshotFallbackCount": 59,
   "countsByAdapterId": {
-    "uw-seattle-html-degree-page": 119,
-    "uw-bothell-html-degree-page": 102,
-    "generic-official-html-page": 52,
-    "uw-seattle-catalog-page": 68,
-    "generic-official-pdf-degree-sheet": 19,
-    "uw-tacoma-html-degree-page": 40,
+    "uw-seattle-html-degree-page": 123,
+    "uw-bothell-html-degree-page": 88,
+    "generic-official-html-page": 50,
+    "generic-official-pdf-degree-sheet": 22,
+    "uw-seattle-catalog-page": 114,
+    "uw-tacoma-html-degree-page": 49,
     "uw-bothell-pdf-worksheet": 3,
-    "uw-tacoma-catalog-page": 10
+    "uw-tacoma-catalog-page": 16
   },
   "countsByAdapterFamily": {
-    "UW Seattle HTML degree pages": 119,
-    "UW Bothell HTML degree pages": 102,
-    "Generic official HTML pages": 52,
-    "UW Seattle catalog pages": 68,
-    "Generic official PDF degree sheets": 19,
-    "UW Tacoma HTML degree pages": 40,
+    "UW Seattle HTML degree pages": 123,
+    "UW Bothell HTML degree pages": 88,
+    "Generic official HTML pages": 50,
+    "Generic official PDF degree sheets": 22,
+    "UW Seattle catalog pages": 114,
+    "UW Tacoma HTML degree pages": 49,
     "UW Bothell PDF worksheets": 3,
-    "UW Tacoma catalog pages": 10
+    "UW Tacoma catalog pages": 16
   },
   "countsByCampus": {
-    "uw-seattle": 241,
-    "uw-bothell": 107,
-    "uw-tacoma": 65
+    "uw-seattle": 294,
+    "uw-bothell": 93,
+    "uw-tacoma": 78
   },
   "countsByResolutionStrategy": {
-    "primary-source": 404,
-    "alternate-official-source": 3,
-    "cached-snapshot": 6
+    "primary-source": 392,
+    "cached-snapshot": 59,
+    "alternate-official-source": 14
   },
   "countsBySourceRole": {
-    "primary-degree-requirements": 169,
-    "department-requirements": 98,
-    "ignored": 49,
-    "official-catalog": 80,
-    "approved-course-list": 3,
-    "pathway-degree-sheet": 1,
-    "support-source": 8,
-    "non-schedulable-course-list": 5
+    "primary-degree-requirements": 302,
+    "department-requirements": 36,
+    "official-catalog": 125,
+    "approved-course-list": 1,
+    "pathway-degree-sheet": 1
   },
   "countsBySourceRoleStatus": {
-    "primary": 348,
-    "ignored": 49,
-    "support": 11,
-    "non-schedulable": 5
+    "primary": 464,
+    "support": 1
   },
-  "canCreateSchedulableRowCount": 348,
-  "canCreateRequiredRowCount": 348,
-  "canCreateOptionGroupCount": 348,
-  "canCreateApprovedFilterCount": 3,
+  "canCreateSchedulableRowCount": 464,
+  "canCreateRequiredRowCount": 464,
+  "canCreateOptionGroupCount": 464,
+  "canCreateApprovedFilterCount": 1,
   "canCreateElectiveListCount": 0,
-  "supportOnlySourceCount": 11,
-  "nonSchedulableSourceCount": 54,
-  "qualityWarningCount": 201,
-  "qualityNoteCount": 9,
+  "supportOnlySourceCount": 1,
+  "nonSchedulableSourceCount": 0,
+  "qualityWarningCount": 143,
+  "qualityNoteCount": 73,
   "countsByQualitySignalCode": {
-    "material-source-structured-drift": 119,
-    "large-structured-only-course-gap": 29,
-    "high-confidence-low-course-coverage": 45,
-    "alternate-official-source-used": 3,
-    "no-parsed-uw-course-codes": 6,
-    "snapshot-fallback-used": 6,
-    "uw-mse-expected-course-option-missing": 1,
-    "low-confidence-parsed-source": 1
+    "snapshot-fallback-used": 59,
+    "material-source-structured-drift": 73,
+    "large-structured-only-course-gap": 31,
+    "high-confidence-low-course-coverage": 17,
+    "no-parsed-uw-course-codes": 20,
+    "alternate-official-source-used": 14,
+    "low-confidence-parsed-source": 2
   }
 } as TransferPlannerRequirementSourceAdapterSummary;
 
@@ -107,7 +102,8 @@ const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS_RAW: unknown[] = ([] as 
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_7,
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_8,
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9,
-  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_10
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_10,
+  TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_11
 );
 
 export const TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCKS =

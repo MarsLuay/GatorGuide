@@ -50,6 +50,7 @@ export type TransferPlannerRuntimeParsedRequirementSourceBlock = Pick<
   | "primarySourceUrl"
   | "primarySourceLabel"
   | "sourceUrl"
+  | "coveredSourceUrls"
   | "sourceLabel"
   | "sourceRole"
   | "sourceRoleStatus"

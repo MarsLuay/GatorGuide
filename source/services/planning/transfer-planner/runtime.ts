@@ -3238,6 +3238,13 @@ function getCategoryOptionAuditDescriptor(text: string | null | undefined) {
   return CATEGORY_OPTION_AUDIT_PATTERNS.find((entry) => entry.pattern.test(normalized)) ?? null;
 }
 
+function isUwOnlyNoCurrentGrcEquivalentOption(option: RequirementGroupOption) {
+  return (
+    !(option.grcMatches ?? []).some((label) => String(label ?? "").trim()) &&
+    (option.constraints ?? []).includes("uw_only_no_current_grc_equivalent")
+  );
+}
+
 function buildSuggestedQuarterCourseOption(
   item: TransferPlannerChecklistItem,
   option: RequirementGroupOption,
@@ -3259,11 +3266,15 @@ function buildSuggestedQuarterCourseOption(
     };
   }
 
-  if (!(option.grcMatches ?? []).some((label) => String(label ?? "").trim())) {
+  const isUwOnlyNoCurrentGrcEquivalent = isUwOnlyNoCurrentGrcEquivalentOption(option);
+  if (
+    !(option.grcMatches ?? []).some((label) => String(label ?? "").trim()) &&
+    !isUwOnlyNoCurrentGrcEquivalent
+  ) {
     return null;
   }
 
-  const courseLabels = getRequirementOptionCourseLabels(option);
+  const courseLabels = getRequirementOptionSchedulableCourseLabels(item, option);
   const courseCodes = unique(courseLabels.flatMap((label) => extractCourseCodes(label)));
   const label =
     getRequirementOptionDisplayLabel(option) ||
@@ -3283,7 +3294,9 @@ function buildSuggestedQuarterCourseOption(
     courseCodes,
     atomicCoursePath: shouldTreatRequirementOptionAsAtomicCoursePath(option),
     categoryOption: null,
-    guidanceSummary: buildTransferEquivalencyGuidanceSummary(courseCodes, campusId),
+    guidanceSummary: isUwOnlyNoCurrentGrcEquivalent
+      ? "No current source-backed Green River equivalent is mapped for this UW-only option."
+      : buildTransferEquivalencyGuidanceSummary(courseCodes, campusId),
     ...getRequirementOptionCanonicalGrcCreditRange(option, courseLabels),
   };
 }
@@ -3307,7 +3320,8 @@ function getSuggestedQuarterCourseOptionDeduplicationKey(
     return `course-codes:${normalizedCourseCodes.join("|")}`;
   }
 
-  return `course-labels:${option.courseLabels
+  const displayLabels = option.courseLabels.length ? option.courseLabels : [option.label];
+  return `course-labels:${displayLabels
     .map((label) => String(label ?? "").replace(/\s+/g, " ").trim().toLowerCase())
     .filter(Boolean)
     .sort()
@@ -5705,6 +5719,15 @@ export function buildSuggestedQuarterRemainingCreditRange(input: {
   const catalogMaximumCredits = getPositiveCreditAmount(input.track?.maximumCredits);
   const hasUnresolvedOptions =
     unresolvedOptionGroupIds.size > 0 || unresolvedPlaceholderLabels.size > 0;
+  const hasCatalogRange =
+    catalogMinimumCredits !== null &&
+    catalogMaximumCredits !== null &&
+    catalogMinimumCredits !== catalogMaximumCredits;
+  const hasGeneratedGrcTrack = isGreenRiverGeneratedTrack(input.track);
+  const unresolvedCreditSpread = Math.max(
+    0,
+    unresolvedOptionCredits + placeholderCredits
+  );
   let minRemainingCredits = mainScheduledMinRemainingCredits;
   let maxRemainingCredits = mainScheduledMaxRemainingCredits;
 
@@ -5731,9 +5754,55 @@ export function buildSuggestedQuarterRemainingCreditRange(input: {
     maxRemainingCredits = catalogMaximumRemainingCredits;
   }
 
+  if (creditBucketMode === "combined" && hasGeneratedGrcTrack && hasCatalogRange) {
+    minRemainingCredits = catalogMinimumRemainingCredits ?? minRemainingCredits;
+    maxRemainingCredits = catalogMaximumRemainingCredits ?? maxRemainingCredits;
+  } else if (
+    creditBucketMode === "combined" &&
+    hasGeneratedGrcTrack &&
+    catalogMaximumRemainingCredits !== null &&
+    maxRemainingCredits > catalogMaximumRemainingCredits
+  ) {
+    minRemainingCredits = catalogMinimumRemainingCredits ?? catalogMaximumRemainingCredits;
+    maxRemainingCredits = catalogMaximumRemainingCredits;
+  } else if (
+    creditBucketMode === "combined" &&
+    hasUnresolvedOptions &&
+    catalogMaximumRemainingCredits === null &&
+    maxRemainingCredits <= minRemainingCredits &&
+    unresolvedCreditSpread > 0
+  ) {
+    maxRemainingCredits = minRemainingCredits + unresolvedCreditSpread;
+  }
+
   if (maxRemainingCredits < minRemainingCredits) {
     maxRemainingCredits = minRemainingCredits;
   }
+
+  const returnedMainScheduledMinRemainingCredits =
+    creditBucketMode === "combined" &&
+    hasGeneratedGrcTrack &&
+    catalogMaximumRemainingCredits !== null
+      ? Math.min(mainScheduledMinRemainingCredits, catalogMaximumRemainingCredits)
+      : mainScheduledMinRemainingCredits;
+  const returnedMainScheduledMaxRemainingCredits =
+    creditBucketMode === "combined" &&
+    hasGeneratedGrcTrack &&
+    catalogMaximumRemainingCredits !== null
+      ? Math.min(mainScheduledMaxRemainingCredits, catalogMaximumRemainingCredits)
+      : mainScheduledMaxRemainingCredits;
+  const returnedScheduledMinRemainingCredits =
+    creditBucketMode === "combined" &&
+    hasGeneratedGrcTrack &&
+    catalogMaximumRemainingCredits !== null
+      ? Math.min(scheduledMinRemainingCredits, catalogMaximumRemainingCredits)
+      : scheduledMinRemainingCredits;
+  const returnedScheduledMaxRemainingCredits =
+    creditBucketMode === "combined" &&
+    hasGeneratedGrcTrack &&
+    catalogMaximumRemainingCredits !== null
+      ? Math.min(scheduledMaxRemainingCredits, catalogMaximumRemainingCredits)
+      : scheduledMaxRemainingCredits;
 
   return {
     minRemainingCredits,
@@ -5744,13 +5813,13 @@ export function buildSuggestedQuarterRemainingCreditRange(input: {
         : null,
     mainMinRemainingCredits: minRemainingCredits,
     mainMaxRemainingCredits: maxRemainingCredits,
-    mainScheduledMinRemainingCredits,
-    mainScheduledMaxRemainingCredits,
+    mainScheduledMinRemainingCredits: returnedMainScheduledMinRemainingCredits,
+    mainScheduledMaxRemainingCredits: returnedMainScheduledMaxRemainingCredits,
     stemPrepCredits,
     localPrerequisiteCredits,
     hiddenUwOnlyCredits,
-    scheduledMinRemainingCredits,
-    scheduledMaxRemainingCredits,
+    scheduledMinRemainingCredits: returnedScheduledMinRemainingCredits,
+    scheduledMaxRemainingCredits: returnedScheduledMaxRemainingCredits,
     unresolvedOptionCredits,
     placeholderCredits,
     completedCredits,
@@ -8185,6 +8254,29 @@ function getPositiveCreditAmount(value: unknown) {
   return Number.isFinite(credits) && credits > 0 ? credits : null;
 }
 
+function inferSuggestedCourseCreditRangeFromLabel(label: string) {
+  const rangeMatch = String(label ?? "").match(
+    /\b(\d+(?:\.\d+)?)\s*[-\u2013\u2014]\s*(\d+(?:\.\d+)?)\s+credits?\b/i
+  );
+  if (!rangeMatch) {
+    return null;
+  }
+
+  const left = getPositiveCreditAmount(rangeMatch[1]);
+  const right = getPositiveCreditAmount(rangeMatch[2]);
+  if (left === null || right === null) {
+    return null;
+  }
+
+  const creditMin = Math.min(left, right);
+  const creditMax = Math.max(left, right);
+  return {
+    creditAmount: creditMin === creditMax ? creditMin : null,
+    creditMin,
+    creditMax,
+  };
+}
+
 function inferSuggestedCourseCreditAmount(
   label: string,
   explicitCourseCodes: string[] = []
@@ -9068,6 +9160,18 @@ function getResolvedTrackSupplementalCourseLabels(input: {
 
     for (const label of term.courses) {
       const normalizedSlotLabel = normalizeGrcTrackSlotLabel(label);
+      if (term.requirementRole === "remaining-credits") {
+        const normalizedLabelKey = normalizedSlotLabel.toLowerCase();
+        if (normalizedSlotLabel && !seenLabels.has(normalizedLabelKey)) {
+          seenLabels.add(normalizedLabelKey);
+          supplementalCourseSlots.push({
+            kind: "label",
+            label: normalizedSlotLabel,
+          });
+        }
+        continue;
+      }
+
       const groupedChoicesForLabel = getGrcTrackGroupedChoicesForLabel(
         normalizedSlotLabel,
         groupedChoices
@@ -9211,14 +9315,15 @@ function buildTrackSupplementalSuggestedCourses(input: {
     creditMax?: number | null;
   }): PendingSuggestedCourse => {
     const explicitCourseCodes = extractCourseCodes(args.label);
+    const inferredCreditRange = inferSuggestedCourseCreditRangeFromLabel(args.label);
     const inferredCreditAmount = inferSuggestedCourseCreditAmount(
       args.label,
       explicitCourseCodes
     );
     const creditRange = getSuggestedCourseCreditRangeFromValues({
-      creditAmount: args.creditAmount ?? inferredCreditAmount,
-      creditMin: args.creditMin ?? inferredCreditAmount,
-      creditMax: args.creditMax ?? inferredCreditAmount,
+      creditAmount: args.creditAmount ?? inferredCreditRange?.creditAmount ?? inferredCreditAmount,
+      creditMin: args.creditMin ?? inferredCreditRange?.creditMin ?? inferredCreditAmount,
+      creditMax: args.creditMax ?? inferredCreditRange?.creditMax ?? inferredCreditAmount,
     });
 
     return {
@@ -16028,7 +16133,9 @@ function getPlannerActionableCourseCodesForRequirementStatus(input: {
       campusId: input.campusId,
       plan: input.plan,
     }).flatMap((entry) =>
-      getRequirementOptionCourseLabels(entry.option).flatMap((label) => extractCourseCodes(label))
+      getRequirementOptionSchedulableCourseLabels(status.item, entry.option).flatMap((label) =>
+        extractCourseCodes(label)
+      )
     )
   );
 }

@@ -608,6 +608,26 @@ test("Pathway degree sheets can outrank broad department pages for a specific pa
   assert.ok(pathwaySheet.score > broadDepartment.score);
 });
 
+test("Graduate-only pages are ignored for undergraduate source discovery", () => {
+  const target = buildSbseTarget({
+    ownerKey: "uw-seattle-materials-science-engineering",
+    planId: "uw-seattle-materials-science-engineering",
+    title: "Materials Science & Engineering",
+    label: "Materials Science & Engineering",
+  });
+  const graduateCandidate = discovery.scoreCandidate(target, {
+    url: "https://mse.washington.edu/student/applied-masters",
+    label: "Master's program students",
+    pageTitle: "Applied Master's Program",
+    pageHeadings: ["Applied Master's program", "Graduation requirements"],
+  });
+
+  assert.equal(graduateCandidate.sourceRole, "ignored");
+  assert.equal(graduateCandidate.sourceRoleStatus, "ignored");
+  assert.equal(graduateCandidate.canCreateSchedulableRows, false);
+  assert.ok(graduateCandidate.score < 0);
+});
+
 test("Official support sources are not downgraded to ignored", () => {
   const target = buildSbseTarget({
     ownerKey: "uw-seattle-environmental-engineering",
@@ -644,6 +664,377 @@ test("Admission prerequisite pages get a support-only admission-prerequisite-sou
   assert.equal(admissionPrerequisites.sourceRole, "admission-prerequisite-source");
   assert.equal(admissionPrerequisites.sourceRoleStatus, "support");
   assert.equal(admissionPrerequisites.canCreateSchedulableRows, false);
+});
+
+test("Zero-course overview primaries are weak even when the label contains bachelor wording", () => {
+  const signals = discovery.buildWeakExistingPrimarySignals({
+    primarySource: {
+      label: "UW Bothell Bachelor of Economics overview",
+      url: "https://www.uwb.edu/business/undergraduate/bachelor-of-economics",
+    },
+    parsedBlock: {
+      ok: true,
+      extractedTitle: "Bachelor of Economics",
+      extractedHeadings: ["Bachelor of Economics"],
+      parsedUwCourseCodes: [],
+      qualitySignals: [],
+      requirementCueLines: [],
+      chooseStatements: [],
+    },
+    runtimeGrcCourseCount: 0,
+    bestTrackId: null,
+    trackRecommendationId: null,
+    noPublicClassificationCount: 0,
+  });
+
+  assert.equal(signals.triggered, true);
+  assert.ok(signals.signals.some((signal) => signal.code === "no-parsed-uw-course-codes"));
+  assert.ok(signals.signals.some((signal) => signal.code === "primary-looks-overview-only"));
+});
+
+test("Zero-course requirement primaries are weak even without overview wording", () => {
+  const signals = discovery.buildWeakExistingPrimarySignals({
+    primarySource: {
+      label: "RN to BSN degree requirements",
+      url: "https://www.uwb.edu/nhs/undergraduate/rn-bsn/requirements",
+    },
+    parsedBlock: {
+      ok: true,
+      extractedTitle: "RN to BSN Degree Requirements",
+      extractedHeadings: ["RN to BSN Degree Requirements"],
+      parsedUwCourseCodes: [],
+      qualitySignals: [],
+      requirementCueLines: ["Degree Requirements", "Complete the following program requirements."],
+      chooseStatements: [],
+    },
+    runtimeGrcCourseCount: 0,
+    bestTrackId: null,
+    trackRecommendationId: null,
+    noPublicClassificationCount: 0,
+  });
+
+  assert.equal(signals.triggered, true);
+  assert.ok(signals.signals.some((signal) => signal.code === "no-parsed-uw-course-codes"));
+  assert.equal(
+    signals.signals.some((signal) => signal.code === "primary-looks-overview-only"),
+    false
+  );
+});
+
+test("Weak overview primaries can promote same-program curriculum child pages", async () => {
+  const overviewUrl =
+    "https://www.uwb.edu/business/undergraduate/bachelor-of-economics";
+  const curriculumUrl =
+    "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum";
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "weak-existing-primary",
+    ownerType: "major",
+    ownerKey: "uw-bothell-economics",
+    planId: "uw-bothell-economics",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Economics",
+    label: "Economics",
+    officialLinks: [
+      {
+        label: "UW Bothell Bachelor of Economics overview",
+        url: overviewUrl,
+      },
+    ],
+    existingPrimary: {
+      label: "UW Bothell Bachelor of Economics overview",
+      url: overviewUrl,
+    },
+    reevaluationSignals: [
+      {
+        code: "no-parsed-uw-course-codes",
+        reason: "Parsed source block produced zero UW course codes.",
+      },
+      {
+        code: "primary-looks-overview-only",
+        reason: "Current primary is an overview page.",
+      },
+    ],
+    reevaluationContext: {
+      parsedUwCourseCodeCount: 0,
+      currentSourceLatestYear: null,
+    },
+    parsedBlock: {
+      primarySourceUrl: overviewUrl,
+      sourceUrl: overviewUrl,
+      extractedTitle: "Bachelor of Economics",
+      extractedHeadings: ["Bachelor of Economics"],
+      parsedUwCourseCodes: [],
+      qualitySignals: [],
+    },
+    pathwayCount: 0,
+  });
+  const inspectedUrls = [];
+
+  const result = await discovery.analyzeOwner(target, 1000, {
+    inspectPageImpl: async (url) => {
+      inspectedUrls.push(url);
+      if (url === overviewUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "Bachelor of Economics",
+          headings: ["Bachelor of Economics"],
+          anchors: [{ url: curriculumUrl, text: "Curriculum", sourceUrl: url }],
+          error: null,
+        };
+      }
+
+      return {
+        url,
+        ok: true,
+        status: 200,
+        finalUrl: url,
+        contentType: "text/html",
+        title: "Bachelor of Economics Curriculum",
+        headings: ["Bachelor of Economics Curriculum", "Requirements", "Core Courses"],
+        anchors: [],
+        error: null,
+      };
+    },
+  });
+
+  assert.ok(includesExactUrl(inspectedUrls, curriculumUrl));
+  assert.equal(result.suggestedAction, "replace-existing-primary");
+  assert.equal(result.suggestedPrimary?.url, curriculumUrl);
+  assert.equal(result.suggestedPrimary?.sourceRole, "primary-degree-requirements");
+  assert.equal(result.suggestedPrimary?.sourceRoleStatus, "primary");
+  assert.equal(result.suggestedPrimary?.parserType, "html-curriculum-page");
+  assert.equal(result.suggestedPrimary?.canCreateSchedulableRows, true);
+  assert.ok(
+    result.suggestedPrimary?.reasons.includes(
+      "same-program curriculum child can replace a zero-course overview primary"
+    )
+  );
+});
+
+test("Zero-course primaries can promote same-program sibling requirement pages", () => {
+  const overviewUrl = "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview";
+  const requirementUrl = "https://www.uwb.edu/nhs/undergraduate/rn-bsn/degree-requirements";
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "weak-existing-primary",
+    ownerType: "major",
+    ownerKey: "uw-bothell-nursing-rn-to-bsn",
+    planId: "uw-bothell-nursing-rn-to-bsn",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Nursing RN to BSN",
+    label: "Nursing RN to BSN",
+    officialLinks: [{ label: "RN to BSN overview", url: overviewUrl }],
+    existingPrimary: { label: "RN to BSN overview", url: overviewUrl },
+    reevaluationSignals: [
+      {
+        code: "no-parsed-uw-course-codes",
+        reason: "Parsed source block produced zero UW course codes.",
+      },
+    ],
+    reevaluationContext: {
+      parsedUwCourseCodeCount: 0,
+      hasStrongRequirementCue: true,
+      currentSourceLatestYear: null,
+    },
+    parsedBlock: {
+      primarySourceUrl: overviewUrl,
+      sourceUrl: overviewUrl,
+      extractedTitle: "RN to BSN Overview",
+      extractedHeadings: ["Degree Requirements"],
+      requirementCueLines: ["Degree Requirements"],
+      parsedUwCourseCodes: [],
+      qualitySignals: [],
+    },
+    pathwayCount: 0,
+  });
+  const currentInput = {
+    url: overviewUrl,
+    label: "RN to BSN overview",
+    pageTitle: "RN to BSN Overview",
+    sourceKind: "official-link",
+  };
+  const current = { ...currentInput, ...discovery.scoreCandidate(target, currentInput) };
+  const requirementInput = {
+    url: requirementUrl,
+    label: "Degree requirements",
+    pageTitle: "RN to BSN Degree Requirements",
+    pageHeadings: ["RN to BSN Degree Requirements", "Courses"],
+    sourceKind: "discovered-anchor",
+  };
+  const requirementPage = {
+    ...requirementInput,
+    ...discovery.scoreCandidate(target, requirementInput),
+  };
+  const decision = discovery.buildReplacementDecision(target, [current, requirementPage]);
+
+  assert.equal(requirementPage.sourceRole, "primary-degree-requirements");
+  assert.ok(
+    requirementPage.reasons.includes(
+      "same-program requirement source can replace a zero-course primary"
+    )
+  );
+  assert.equal(decision.action, "replace-existing-primary");
+  assert.equal(decision.suggestedPrimary?.url, requirementUrl);
+});
+
+test("Zero-course primaries can promote linked same-program worksheets", () => {
+  const overviewUrl = "https://www.uwb.edu/nhs/undergraduate/rn-bsn/overview";
+  const worksheetUrl = "https://admissions.uwb.edu/register/mpw-RN-BSN";
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "weak-existing-primary",
+    ownerType: "major",
+    ownerKey: "uw-bothell-nursing-rn-to-bsn",
+    planId: "uw-bothell-nursing-rn-to-bsn",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Nursing RN to BSN",
+    label: "Nursing RN to BSN",
+    officialLinks: [{ label: "RN to BSN overview", url: overviewUrl }],
+    existingPrimary: { label: "RN to BSN overview", url: overviewUrl },
+    reevaluationSignals: [
+      {
+        code: "no-parsed-uw-course-codes",
+        reason: "Parsed source block produced zero UW course codes.",
+      },
+    ],
+    reevaluationContext: {
+      parsedUwCourseCodeCount: 0,
+      hasStrongRequirementCue: true,
+      currentSourceLatestYear: null,
+    },
+    parsedBlock: {
+      primarySourceUrl: overviewUrl,
+      sourceUrl: overviewUrl,
+      extractedTitle: "RN to BSN Overview",
+      extractedHeadings: ["Degree Requirements"],
+      requirementCueLines: ["Degree Requirements"],
+      parsedUwCourseCodes: [],
+      qualitySignals: [],
+    },
+    pathwayCount: 0,
+  });
+  const currentInput = {
+    url: overviewUrl,
+    label: "RN to BSN overview",
+    pageTitle: "RN to BSN Overview",
+    sourceKind: "official-link",
+  };
+  const current = { ...currentInput, ...discovery.scoreCandidate(target, currentInput) };
+  const worksheetInput = {
+    url: worksheetUrl,
+    label: "Nursing RN to BSN major planning worksheet",
+    pageTitle: "Nursing RN to BSN Major Planning Worksheet",
+    pageHeadings: ["Nursing RN to BSN Major Planning Worksheet", "Degree Requirements"],
+    sourceKind: "discovered-anchor",
+  };
+  const worksheet = { ...worksheetInput, ...discovery.scoreCandidate(target, worksheetInput) };
+  const decision = discovery.buildReplacementDecision(target, [current, worksheet]);
+
+  assert.equal(worksheet.sourceRole, "primary-degree-requirements");
+  assert.ok(
+    worksheet.reasons.includes(
+      "same-program requirement source can replace a zero-course primary"
+    )
+  );
+  assert.equal(decision.action, "replace-existing-primary");
+  assert.equal(decision.suggestedPrimary?.url, worksheetUrl);
+});
+
+test("Pathway hub pages can promote matching child option and concentration sources", async () => {
+  const hubUrl =
+    "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/options";
+  const financeUrl =
+    "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option";
+  const accountingUrl =
+    "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/accounting";
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "weak-existing-primary",
+    ownerType: "pathway",
+    ownerKey: "uw-bothell-business-administration:pathway:finance-option-and-concentration",
+    planId: "uw-bothell-business-administration",
+    pathwayId: "finance-option-and-concentration",
+    campusId: "uw-bothell",
+    title: "Business Administration - Finance option and concentration",
+    label: "Finance option and concentration",
+    officialLinks: [{ label: "BBA options hub", url: hubUrl }],
+    existingPrimary: { label: "BBA options hub", url: hubUrl },
+    reevaluationSignals: [
+      {
+        code: "primary-source-misses-selected-pathway",
+        reason: "Current pathway primary source does not name the selected pathway.",
+      },
+    ],
+    reevaluationContext: {
+      parsedUwCourseCodeCount: 0,
+      hasStrongRequirementCue: true,
+      currentSourceLatestYear: null,
+    },
+    parsedBlock: {
+      primarySourceUrl: hubUrl,
+      sourceUrl: hubUrl,
+      extractedTitle: "Business Administration options",
+      extractedHeadings: ["Options and Concentrations"],
+      requirementCueLines: ["Choose an option or concentration."],
+      parsedUwCourseCodes: [],
+      qualitySignals: [],
+    },
+    pathwayCount: 8,
+  });
+  const inspectedUrls = [];
+
+  const result = await discovery.analyzeOwner(target, 1000, {
+    inspectPageImpl: async (url) => {
+      inspectedUrls.push(url);
+      if (url === hubUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "Business Administration options and concentrations",
+          headings: ["Options and Concentrations"],
+          anchors: [
+            { url: financeUrl, text: "Finance option", sourceUrl: url },
+            { url: accountingUrl, text: "Accounting option", sourceUrl: url },
+          ],
+          error: null,
+        };
+      }
+
+      return {
+        url,
+        ok: true,
+        status: 200,
+        finalUrl: url,
+        contentType: "text/html",
+        title: url === financeUrl ? "Finance Option and Concentration" : "Accounting Option",
+        headings:
+          url === financeUrl
+            ? ["Finance Option and Concentration", "Major Requirements"]
+            : ["Accounting Option", "Major Requirements"],
+        anchors: [],
+        error: null,
+      };
+    },
+  });
+
+  assert.ok(includesExactUrl(inspectedUrls, financeUrl));
+  assert.equal(result.suggestedAction, "replace-existing-primary");
+  assert.equal(result.suggestedPrimary?.url, financeUrl);
+  assert.equal(result.suggestedPrimary?.sourceRole, "primary-degree-requirements");
+  assert.equal(result.suggestedPrimary?.sourceRoleStatus, "primary");
+  assert.equal(result.suggestedPrimary?.canCreateSchedulableRows, true);
+  assert.ok(
+    result.suggestedPrimary?.reasons.includes(
+      "same-program option/concentration child source matches the selected pathway"
+    )
+  );
 });
 
 test("Approved-course-list source scope emits support metadata without required rows", () => {
@@ -1188,6 +1579,7 @@ test("Parser rule registry exposes reusable pattern rules", () => {
   const ruleIds = parser.getParserRuleRegistryForTest().map((rule) => rule.id);
 
   assert.ok(ruleIds.includes("option-replacement-group"));
+  assert.ok(ruleIds.includes("sectioned-course-group"));
   assert.ok(ruleIds.includes("credit-bucket"));
   assert.ok(ruleIds.includes("sequence-or-either-or"));
   assert.ok(ruleIds.includes("support-source-filter"));
@@ -1282,6 +1674,169 @@ test("Parser extracts option replacement groups from section headings instead of
       .every((row) => row.schedulable === true),
     "Expected NME 220 evidence rows to stay schedulable under the option-replacement rule."
   );
+});
+
+test("Parser prefers focused pathway child HTML over merging a broad parent source", () => {
+  const entry = {
+    ownerType: "pathway",
+    ownerId: "uw-seattle-materials-science-engineering:pathway:nme-option",
+    ownerTitle: "Materials Science & Engineering - Nanoscience and Molecular Engineering (NME) Option",
+    planId: "uw-seattle-materials-science-engineering",
+    pathwayId: "nme-option",
+    campusId: "uw-seattle",
+    label: "UW Materials Science degree requirements",
+    url: "https://mse.washington.edu/current/undergrad/courses",
+    role: "non-schedulable-course-list",
+    parserType: "generic-html",
+  };
+  const baseParsed = {
+    title: "MSE undergraduate courses",
+    headings: ["MSE undergraduate courses"],
+    courseCodes: Array.from({ length: 110 }, (_, index) => `MSE ${400 + index}`),
+    requirementCueLines: [
+      "NME Option students complete all MSE degree requirements except the 15 credit Technical Elective requirement.",
+    ],
+    chooseStatements: [],
+    pathwayLabels: ["Nanoscience and Molecular Engineering (NME) Option"],
+    snapshotLines: [
+      "NME Option students complete all MSE degree requirements except the 15 credit Technical Elective requirement.",
+      "MSE technical electives",
+    ],
+  };
+  const childCandidate = {
+    url: "https://mse.washington.edu/current/undergrad/nmeoption",
+    label: "Nanoscience & Molecular Engineering Option Requirements",
+    type: "general",
+    sameProgramRequirementLink: true,
+  };
+  const childParsed = {
+    title: "Nanoscience and Molecular Engineering (NME) Option",
+    headings: ["Nanoscience and Molecular Engineering (NME) Option"],
+    courseCodes: ["NME 220", "BIOEN 423", "MSE 452", "ENGR 321"],
+    requirementCueLines: [
+      "Students complete all MSE degree requirements except the 15 credit Technical Elective requirement.",
+      "In place of the 15 credit Technical Elective requirement, NME Option students complete the 19 credit NME Core and Elective Requirements below.",
+    ],
+    chooseStatements: [],
+    pathwayLabels: ["Nanoscience and Molecular Engineering (NME) Option"],
+    snapshotLines: [
+      "Nanoscience and Molecular Engineering (NME) Option",
+      "Students complete all MSE degree requirements except the 15 credit Technical Elective requirement. In place of the 15 credit Technical Elective requirement, NME Option students complete the 19 credit NME Core and Elective Requirements below.",
+      "NME core (4 credits)",
+      "NME 220",
+      "NME electives (15 credits required)",
+      "BIOEN 423",
+      "MSE 452",
+      "ENGR 321",
+    ],
+  };
+
+  assert.equal(
+    parser.shouldPreferSupplementalHtmlSourceForTest(entry, baseParsed, childCandidate, childParsed),
+    true
+  );
+});
+
+test("Parser extracts sectioned course groups from source headings without a plan id hardcode", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Sectioned course fixture",
+    planId: "uw-seattle-sectioned-course-fixture",
+    ownerId: "uw-seattle-sectioned-course-fixture",
+    ownerTitle: "Sectioned Course Fixture",
+    courseCodes: ["AA 260", "BIOEN 215", "NME 220", "MSE 450", "MSE 499", "AMATH 352", "ENGR 321"],
+    snapshotLines: [
+      "Engineering Fundamentals requirements",
+      "8 Credits of Engineering Fundamentals Electives selected from the following list:",
+      "AA 260",
+      "Thermodynamics (4 Credits)",
+      "BIOEN 215",
+      "Introduction to Bioengineering Problem Solving (3 Credits)",
+      "NME 220",
+      "Introduction to Molecular and Nanoscale Principles (4 credits)",
+      "Required core courses",
+      "Technical electives: 15 credits total",
+      "A minimum of 6 credits in MSE 400-level courses listed below are required.",
+      "MSE 450",
+      "Magnetism, Magnetic Materials, and Related Technologies",
+      "3",
+      "MSE 499",
+      "Senior Project",
+      "3-5",
+      "Other technical electives",
+      "A maximum of 9 credits in 400-level courses in the following departments will satisfy the technical electives requirement.",
+      "A MATH 352",
+      "Applied Linear Algebra & Numerical Analysis",
+      "3",
+      "ENGR 321",
+      "Engineering Internship (can count a maximum of 4 cr. towards degree)",
+      "1-2",
+      "Undergraduate advising",
+    ],
+  });
+  const engineeringGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /Engineering Fundamentals Electives/i.test(group.label)
+  );
+  const mseTechnicalGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /MSE 400-level courses/i.test(group.label)
+  );
+  const outsideTechnicalGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /maximum of 9 credits/i.test(group.label)
+  );
+  const engr321 = outsideTechnicalGroup?.options.find((option) =>
+    option.uwCourses.includes("ENGR 321")
+  );
+
+  assert.ok(engineeringGroup, "Expected the engineering fundamentals list to become a credit group.");
+  assert.equal(engineeringGroup.requirementType, "choose_credits");
+  assert.equal(engineeringGroup.minCredits, 8);
+  assert.ok(engineeringGroup.options.some((option) => option.uwCourses.includes("AA 260")));
+  assert.ok(engineeringGroup.options.some((option) => option.uwCourses.includes("NME 220")));
+
+  assert.ok(mseTechnicalGroup, "Expected the MSE 400-level list to become a credit group.");
+  assert.equal(mseTechnicalGroup.minCredits, 6);
+  assert.equal(mseTechnicalGroup.maxCredits, null);
+  assert.ok(mseTechnicalGroup.options.some((option) => option.uwCourses.includes("MSE 450")));
+  assert.equal(
+    mseTechnicalGroup.options.find((option) => option.uwCourses.includes("MSE 499"))?.creditText,
+    "3-5"
+  );
+
+  assert.ok(outsideTechnicalGroup, "Expected the outside technical electives list to become a capped credit group.");
+  assert.equal(outsideTechnicalGroup.minCredits, 0);
+  assert.equal(outsideTechnicalGroup.maxCredits, 9);
+  assert.equal(engr321?.creditText, "1-2");
+  assert.ok(engr321?.constraints.includes("max_degree_counting_credits:4"));
+});
+
+test("Parser ignores graduate sectioned course lists for undergraduate requirement groups", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    url: "https://mse.washington.edu/student/applied-masters",
+    label: "Applied Master's Program",
+    planId: "uw-seattle-sectioned-course-fixture",
+    ownerId: "uw-seattle-sectioned-course-fixture",
+    ownerTitle: "Sectioned Course Fixture",
+    courseCodes: ["MSE 570", "MSE 571"],
+    snapshotLines: [
+      "Applied Master's Program",
+      "All of the 36 required course credits outlined below must be at the 400-level or above to count toward graduate credits.",
+      "Elective courses",
+      "9 credits of elective courses selected from the following list:",
+      "MSE 570",
+      "Graduate Tutorial in Materials Science and Engineering",
+      "MSE 571",
+      "Graduate Tutorial in Materials Science and Engineering",
+    ],
+  });
+
+  assert.equal(
+    parsedBlock.parsedRequirementGroups.some((group) =>
+      group.options.some((option) => option.uwCourses.includes("MSE 570"))
+    ),
+    false
+  );
+  assert.equal(parsedBlock.parsedRequirementCourses.length, 0);
 });
 
 test("Parser extracts split either-or course rows as alternatives without a major-specific branch", () => {

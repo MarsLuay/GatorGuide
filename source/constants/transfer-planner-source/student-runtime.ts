@@ -2624,7 +2624,9 @@ export function getTransferPlannerGrcCourseList(
 ) {
   if (!plan) return [] as string[];
   return unique([...(plan.grcCourseList ?? []), ...getChecklistReferenceCourses(plan)])
+    .flatMap((courseLabel) => extractTransferPlannerCourseCodes(courseLabel))
     .map((courseCode) => normalizeCourseCode(courseCode))
+    .filter((courseCode) => Boolean(getTransferPlannerCanonicalCourse("grc", courseCode)))
     .filter(Boolean);
 }
 

@@ -270,7 +270,7 @@ const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
     .map((match) => match?.[1] ?? null)
     .filter(Boolean)
 );
-for (const supplementalSubject of ["ATMS"]) {
+for (const supplementalSubject of ["ATMS", "BSE", "ENTRE"]) {
   KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.add(supplementalSubject);
 }
 const UW_COURSE_METADATA_BY_CODE = new Map(
@@ -291,7 +291,6 @@ const TITLE_PATTERN = /<title[^>]*>([\s\S]*?)<\/title>/i;
 const HEADING_PATTERN = /<h([1-4])[^>]*>([\s\S]*?)<\/h\1>/gi;
 const HTML_LINK_PATTERN = /<a\b[^>]*href=(?:"([^"]+)"|'([^']+)')[^>]*>([\s\S]*?)<\/a>/gi;
 const HTML_TAG_PATTERN = /<[^>]+>/g;
-const PDF_LINK_PATTERN = /href=(?:"([^"]+\.pdf(?:\?[^"]*)?)"|'([^']+\.pdf(?:\?[^']*)?)')/gi;
 const SUPPLEMENTAL_HTML_LINK_PATTERN =
   /\b(curriculum|requirements?|degree requirements?|major requirements?|prerequisites?|prereq|worksheet|checklist|plan of study|program of study|study plan|sample plan|track|option|concentration|specialization|route|pathway|b\.?\s*a\.?|b\.?\s*s\.?|bachelor(?:'s)?|major(?: in)?|undergraduate studies?)\b/i;
 const HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN =
@@ -310,6 +309,8 @@ const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
   /\/\/(?:www\.)?washington\.edu\/students\/gencat\/program\//i;
 const PATHWAY_SOURCE_CUE_PATTERN =
   /\b(track|option|route|pathway|concentration|specialization)\b/i;
+const PATHWAY_HUB_SOURCE_CUE_PATTERN =
+  /\b(curriculum|degree requirements?|major requirements?|program requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)\b|\/(?:curriculum|requirements?|degree-requirements?|major-requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)(?:[/?#-]|$)/i;
 const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
   /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b|degreq/i;
 const APPROVED_COURSE_LIST_CUE_PATTERN =
@@ -372,6 +373,8 @@ const PARSER_RECOVERY_BLOCKER_TYPES = new Set([
 ]);
 const REQUIREMENT_FRIENDLY_HINT_PATTERN =
   /\b(required|requirements?|prereq|prerequisite|complete|completed|admission|degree requirements?|credits?|engineering fundamentals|mathematics|sciences|written\s*&\s*oral communication|english composition|areas of inquiry|choose from the following|select one sequence|prior to the start of|before the start of|continuation requirements?)\b/i;
+const SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN =
+  /\b(?:selected from the following list|courses? listed below|listed below are required|following departments|technical electives?|engineering fundamentals electives?|science electives?|math elective|core and elective requirements?)\b/i;
 const DIRECT_REQUIREMENT_COURSE_SEQUENCE_HINT_PATTERN =
   /\*?[A-Z&]+(?:\s+[A-Z&]+)?\s+\d{3}[A-Za-z]?\s*,\s*\d{3}[A-Za-z]?\s*,\s*\d{3}[A-Za-z]?(?:\s+(?:or|and)\s+\d{3}[A-Za-z]?\s*,\s*\d{3}[A-Za-z]?\s*,\s*\d{3}[A-Za-z]?)?\s*\(\s*\d+\s*\)/i;
 const CROSS_MAJOR_SCOPE_PATTERN =
@@ -457,6 +460,12 @@ const REQUIREMENT_SOURCE_ADAPTERS = [
     family: "UW Bothell catalog pages",
     matches: (entry) => entry.campusId === "uw-bothell" && entry.parserType === "catalog-page",
     parse: parseHtmlSource,
+  },
+  {
+    id: "generic-official-docx-degree-sheet",
+    family: "Generic official DOCX degree sheets",
+    matches: (entry) => isDocxSourceUrl(entry.url),
+    parse: parseDocxSource,
   },
   {
     id: "uw-bothell-pdf-worksheet",
@@ -725,18 +734,133 @@ const PRIMARY_REQUIREMENT_LINK_PARSER_TYPES = new Set([
   "generic-html",
 ]);
 
-function isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable) {
-  if (entry?.isPrimaryDegreeRequirementsLink !== true) {
+const TACOMA_PRIMARY_PROGRAM_PARSER_TYPES = new Set([
+  "generic-html",
+  "html-curriculum-page",
+  "html-degree-page",
+  "html-overview-page",
+]);
+const TACOMA_PRIMARY_PROGRAM_ACRONYM_TOKEN_ALIASES = [
+  {
+    pattern: /\bcomputer science and systems\b/i,
+    tokens: ["css"],
+  },
+  {
+    pattern: /\bethnic gender and labor studies\b/i,
+    tokens: ["egls"],
+  },
+  {
+    pattern: /\bpolitics philosophy and economics\b/i,
+    tokens: ["ppe"],
+  },
+  {
+    pattern: /\bsustainable urban development\b/i,
+    tokens: ["sud"],
+  },
+];
+
+function urlLooksLikeOfficialTacomaSource(value) {
+  try {
+    const parsedUrl = new URL(String(value ?? ""));
+    return /(?:^|\.)tacoma\.uw\.edu$/i.test(parsedUrl.hostname);
+  } catch {
+    return false;
+  }
+}
+
+function titleScopeTokensMatchSource(tokens, sourceSearchable) {
+  const uniqueTokens = uniqueSorted(tokens ?? []);
+  if (!uniqueTokens.length) {
+    return true;
+  }
+
+  const tokenOverlapCount = uniqueTokens.filter((token) => sourceSearchable.includes(token)).length;
+  return tokenOverlapCount >= Math.max(1, Math.min(2, uniqueTokens.length));
+}
+
+function getTacomaPrimaryProgramBaseTitle(entry) {
+  return normalizeWhitespace(String(entry?.ownerTitle ?? "").split(/\s[-\u2013\u2014]\s/)[0] ?? "");
+}
+
+function getTacomaPrimaryProgramAcronymTokens(entry) {
+  const baseTitle = getTacomaPrimaryProgramBaseTitle(entry);
+  return TACOMA_PRIMARY_PROGRAM_ACRONYM_TOKEN_ALIASES.flatMap((alias) =>
+    alias.pattern.test(baseTitle) ? alias.tokens : []
+  );
+}
+
+function getTacomaPrimaryProgramIdentityTokenGroups(entry) {
+  const baseTitle = getTacomaPrimaryProgramBaseTitle(entry);
+  return [
+    getTitleScopeTokens(entry),
+    baseTitle ? getTitleScopeTokens({ ...entry, ownerTitle: baseTitle, sourceLabel: "" }) : [],
+    getTacomaPrimaryProgramAcronymTokens(entry),
+  ].filter((tokens) => tokens.length > 0);
+}
+
+function isTacomaPrimaryProgramPage(entry, sourceSearchable, searchable) {
+  if (entry?.campusId !== "uw-tacoma" || !entry?.isPrimaryDegreeRequirementsLink) {
     return false;
   }
 
+  const parserType = String(entry?.parserType ?? "");
+  if (!TACOMA_PRIMARY_PROGRAM_PARSER_TYPES.has(parserType)) {
+    return false;
+  }
+
+  if (!urlLooksLikeOfficialTacomaSource(entry?.url)) {
+    return false;
+  }
+
+  const identityTokenGroups = getTacomaPrimaryProgramIdentityTokenGroups(entry);
+  const hasOwnerIdentityMatch =
+    identityTokenGroups.length === 0 ||
+    identityTokenGroups.some((tokens) => titleScopeTokensMatchSource(tokens, sourceSearchable));
+  const hasProgramCue =
+    /\b(?:bachelor|b\.?\s*a\.?|b\.?\s*s\.?|major|degree|program|requirements?|overview|track|option|route|concentration)\b/i.test(
+      searchable
+    );
+
+  return hasOwnerIdentityMatch && hasProgramCue;
+}
+
+function hasTacomaParsedPrimaryRequirementEvidence(parsed) {
+  const parsedCourseCodes = parsed?.courseCodes ?? [];
+  const evidenceLines = [
+    ...(parsed?.requirementCueLines ?? []),
+    ...(parsed?.chooseStatements ?? []),
+    ...(parsed?.pathwayLabels ?? []),
+  ].join(" ");
+
+  return (
+    parsedCourseCodes.length > 0 ||
+    (parsed?.pathwayLabels ?? []).length > 0 ||
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(evidenceLines) ||
+    /\b(admission requirements?|degree requirements?|graduation requirements?|students? choose\b.{0,80}\b(?:options?|tracks?|routes?|pathways?)|core courses?|preparatory courses?)\b/i.test(
+      evidenceLines
+    )
+  );
+}
+
+function shouldUseTacomaMetadataPrimaryRole(entry, parsedSourceRole, metadataSourceRole, parsed) {
+  if (entry?.campusId !== "uw-tacoma" || metadataSourceRole !== "primary-degree-requirements") {
+    return false;
+  }
+
+  if (getRequirementSourceRoleStatus(parsedSourceRole ?? metadataSourceRole) === "primary") {
+    return false;
+  }
+
+  return hasTacomaParsedPrimaryRequirementEvidence(parsed);
+}
+
+function isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable) {
   const manifestRole = String(entry?.role ?? "");
   if (
     [
       "approved-course-list",
       "elective-list",
       "upper-division-prerequisite-table",
-      "non-schedulable-course-list",
       "admission-prerequisite-source",
       "admissions",
       "catalog",
@@ -749,16 +873,36 @@ function isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchabl
   const url = String(entry?.url ?? "");
   const parserType = String(entry?.parserType ?? "");
   const ownerIsPathway = Boolean(entry?.pathwayId) || /:pathway:/.test(String(entry?.ownerId ?? ""));
+  if (
+    /\b(?:admissions?|apply|application|preparation|prereq(?:uisites?)?)\b/i.test(sourceSearchable) ||
+    SUPPORT_SOURCE_CUE_PATTERN.test(sourceSearchable)
+  ) {
+    return false;
+  }
+
   const sourceLooksLikePathway =
     PATHWAY_SOURCE_CUE_PATTERN.test(sourceSearchable) ||
     /(?:^|[-/])(?:track|option|route|pathway|concentration|specialization)(?:[-/?#]|$)/i.test(url);
+  const sourceLooksLikeDegreeProgram =
+    /\b(?:bachelor|bachelors?|b\.?\s*a\.?|b\.?\s*s\.?|ba|bs|bba)\b/i.test(sourceSearchable) ||
+    /(?:^|\/)b(?:a|s|ba)[-/]/i.test(url);
   const sourceLooksLikeRequirements =
     PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
-    /\b(?:curriculum|requirements?|degree|major|program|undergraduate)\b/i.test(searchable);
+    /\b(?:curriculum|requirements?|degree|major|program)\b/i.test(searchable);
+  const ownerTitleTokens = getTitleScopeTokens(entry);
+  const ownerTitleTokenOverlapCount = ownerTitleTokens.filter((token) =>
+    sourceSearchable.includes(token)
+  ).length;
+  const sourceLooksLikeOwnerDegreeProgram =
+    !sourceLooksLikePathway &&
+    sourceLooksLikeDegreeProgram &&
+    ownerTitleTokenOverlapCount >= Math.max(1, Math.min(2, ownerTitleTokens.length));
 
   return (
-    (ownerIsPathway && sourceLooksLikePathway) ||
-    (sourceLooksLikeRequirements && PRIMARY_REQUIREMENT_LINK_PARSER_TYPES.has(parserType))
+    (ownerIsPathway && (sourceLooksLikePathway || sourceLooksLikeDegreeProgram)) ||
+    sourceLooksLikeOwnerDegreeProgram ||
+    (sourceLooksLikeRequirements && PRIMARY_REQUIREMENT_LINK_PARSER_TYPES.has(parserType)) ||
+    isTacomaPrimaryProgramPage(entry, sourceSearchable, searchable)
   );
 }
 
@@ -824,6 +968,10 @@ function classifyRequirementSourceRole(entry) {
     return "ignored";
   }
 
+  if (entry?.isPrimaryDegreeRequirementsLink && isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable)) {
+    return "primary-degree-requirements";
+  }
+
   const manifestRole = String(entry?.role ?? "");
   if (manifestRole === "approved-course-list") {
     return "approved-course-list";
@@ -833,6 +981,12 @@ function classifyRequirementSourceRole(entry) {
   }
   if (manifestRole === "upper-division-prerequisite-table") {
     return "upper-division-prerequisite-table";
+  }
+  if (
+    manifestRole === "non-schedulable-course-list" &&
+    isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable)
+  ) {
+    return "primary-degree-requirements";
   }
   if (manifestRole === "non-schedulable-course-list") {
     return "non-schedulable-course-list";
@@ -889,6 +1043,10 @@ function classifyRequirementSourceRole(entry) {
     return "upper-division-prerequisite-table";
   }
 
+  if (isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable)) {
+    return "primary-degree-requirements";
+  }
+
   if (NON_SCHEDULABLE_COURSE_LIST_CUE_PATTERN.test(searchable)) {
     return "non-schedulable-course-list";
   }
@@ -899,10 +1057,6 @@ function classifyRequirementSourceRole(entry) {
 
   if (SUPPORT_SOURCE_CUE_PATTERN.test(searchable)) {
     return "support-source";
-  }
-
-  if (isMaterializedPrimaryRequirementLink(entry, sourceSearchable, searchable)) {
-    return "primary-degree-requirements";
   }
 
   if (
@@ -1014,6 +1168,7 @@ function getStructuredUwCourseCodes(manifestEntry) {
     )
       .flatMap((block) => block.uwCourseCodes ?? [])
       .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter((courseCode) => isRecognizedExtractedUwCourseCode(courseCode))
       .filter(Boolean)
   );
 }
@@ -1093,6 +1248,12 @@ function normalizeExtractedCourseCode(rawSubject, rawNumber) {
   return `${subject} ${number}`;
 }
 
+function isRecognizedExtractedUwCourseCode(courseCode) {
+  const normalizedCourseCode = normalizeCourseCode(courseCode);
+  const match = normalizedCourseCode.match(/^([A-Z&]+(?: [A-Z&]+)*) (\d{3}[A-Z]?)$/);
+  return Boolean(match && normalizeExtractedCourseCode(match[1], match[2]));
+}
+
 function extractRelevantRequirementLines(lines, headings) {
   const normalizedHeadings = new Set(headings.map((heading) => normalizeWhitespace(heading)));
   const relevantLineIndexes = new Set();
@@ -1103,17 +1264,21 @@ function extractRelevantRequirementLines(lines, headings) {
       continue;
     }
 
+    const hasSectionedCourseListCue = SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(line);
     if (
       TRANSFER_CREDIT_NOISE_PATTERN.test(line) ||
       normalizedHeadings.has(line) ||
       REQUIREMENT_CUE_PATTERN.test(line) ||
       REQUIREMENT_FRIENDLY_HINT_PATTERN.test(line) ||
-      STRUCTURAL_REQUIREMENT_PATTERN.test(line)
+      STRUCTURAL_REQUIREMENT_PATTERN.test(line) ||
+      hasSectionedCourseListCue
     ) {
       if (TRANSFER_CREDIT_NOISE_PATTERN.test(line)) {
         continue;
       }
-      const forwardWindow = STRUCTURAL_REQUIREMENT_PATTERN.test(line)
+      const forwardWindow = hasSectionedCourseListCue
+        ? 90
+        : STRUCTURAL_REQUIREMENT_PATTERN.test(line)
         ? 14
         : REQUIREMENT_FRIENDLY_HINT_PATTERN.test(line)
           ? 14
@@ -1156,7 +1321,11 @@ function extractExplicitCourseCodesFromLine(line) {
     .map((match) => {
       const subject = normalizeExtractedCourseSubject(match[1]);
       const explicitCode = normalizeExtractedCourseCode(match[1], match[2]);
-      if (!subject || !explicitCode) {
+      if (
+        !subject ||
+        !explicitCode ||
+        isCourseCodeMatchImmediatelyFollowedByLevel(normalizedLine, match)
+      ) {
         return null;
       }
       return {
@@ -1180,6 +1349,9 @@ function extractExplicitCourseCodesFromLine(line) {
     const trailingSegment = normalizedLine.slice(currentMatchEnd, nextMatchStart);
 
     for (const numberMatch of trailingSegment.matchAll(COURSE_NUMBER_CONTINUATION_PATTERN)) {
+      if (isCourseCodeMatchImmediatelyFollowedByLevel(trailingSegment, numberMatch)) {
+        continue;
+      }
       const continuationCode = normalizeExtractedCourseCode(subject, numberMatch[1]);
       if (continuationCode) {
         extractedCourseCodes.push(continuationCode);
@@ -1200,13 +1372,24 @@ function extractExplicitCourseCodesFromLine(line) {
     );
     for (const aliasMatch of normalizedLine.matchAll(aliasPattern)) {
       const explicitCode = normalizeExtractedCourseCode(rawAlias, aliasMatch[1]);
-      if (explicitCode) {
+      if (explicitCode && !isCourseCodeMatchImmediatelyFollowedByLevel(normalizedLine, aliasMatch)) {
         extractedCourseCodes.push(explicitCode);
       }
     }
   }
 
   return uniqueSorted(extractedCourseCodes);
+}
+
+function isCourseCodeMatchImmediatelyFollowedByLevel(line, match) {
+  const matchText = match?.[0] ?? "";
+  const matchIndex = match?.index;
+  if (!matchText || matchIndex == null) {
+    return false;
+  }
+
+  const trailingText = String(line ?? "").slice(matchIndex + matchText.length);
+  return /^\s*(?:-\s*)?level\b/i.test(trailingText);
 }
 
 function extractCourseCodesFromLine(line) {
@@ -1667,7 +1850,7 @@ function extractSafeKnownSubjectCourseClusterCodesFromLines(entry, lines) {
       continue;
     }
 
-    for (const courseCode of extractCourseCodesFromLine(line)) {
+    for (const courseCode of extractCourseCodesFromRequirementLine(line)) {
       if (isSafeKnownSubjectCourseClusterLine(entry, lines, index, courseCode)) {
         recoveredCodes.push(courseCode);
       }
@@ -1679,7 +1862,9 @@ function extractSafeKnownSubjectCourseClusterCodesFromLines(entry, lines) {
 
 function extractCourseCodesFromLines(lines, headings, entry = null) {
   return uniqueSorted([
-    ...extractRelevantRequirementLines(lines, headings).flatMap((line) => extractCourseCodesFromLine(line)),
+    ...extractRelevantRequirementLines(lines, headings).flatMap((line) =>
+      extractCourseCodesFromRequirementLine(line)
+    ),
     ...extractSafeKnownSubjectCourseClusterCodesFromLines(entry, lines),
   ]);
 }
@@ -1922,8 +2107,29 @@ function getCourseLevelSummary(courseCodes) {
   };
 }
 
+function isCourseCodeLevelReference(text, courseCode) {
+  const subject = getCourseCodeSubject(courseCode);
+  const level = getParsedCourseLevel(courseCode);
+  if (!subject || level == null) {
+    return false;
+  }
+  const escapedSubject = subject.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+");
+  return new RegExp(`\\b${escapedSubject}\\s+${level}\\s*[-\\s]*level\\b`, "i").test(
+    text
+  );
+}
+
 function normalizeSourceSectionLine(line) {
   return normalizeWhitespace(stripChoiceListLine(line));
+}
+
+function extractCourseCodesFromRequirementLine(line) {
+  const normalizedLine = normalizeWhitespace(line);
+  return uniqueSorted(
+    extractCourseCodesFromLine(normalizedLine).filter(
+      (courseCode) => !isCourseCodeLevelReference(normalizedLine, courseCode)
+    )
+  );
 }
 
 function hasPrerequisiteOnlyCue(text) {
@@ -1951,7 +2157,7 @@ function hasElectiveListSectionCue(text) {
 }
 
 function hasPrimaryRequirementSectionCue(text) {
-  return /\b(?:graduation requirements?|degree requirements?|major requirements?|completion requirements?|required courses?|fundamentals|mathematics|natural sciences?|physics|chemistry|biology|calculus|composition|data and society|core and electives|areas of inquiry|engineering fundamentals|mathematics\s*&\s*natural sciences|written\s*&\s*oral communication)\b/i.test(
+  return /\b(?:graduation requirements?|degree requirements?|major requirements?|completion requirements?|core requirements?|elective requirements?|general education requirements?|required courses?|fundamentals|mathematics|natural sciences?|physics|chemistry|biology|calculus|composition|data and society|core and electives|areas of inquiry|engineering fundamentals|mathematics\s*&\s*natural sciences|written\s*&\s*oral communication)\b|^requirements?$/i.test(
     text
   );
 }
@@ -1973,6 +2179,14 @@ function hasAdmissionPrepSectionCue(text) {
   );
 }
 
+function hasAdmissionPrepHeadingCue(text) {
+  return (
+    /\b(?:admissions?|application|apply|prereq(?:uisites?)?|before applying|before admission|prior to admission|pre-major)\b/i.test(
+      text
+    ) || /^recommended preparation$/i.test(text)
+  );
+}
+
 function sectionRoleCanCreateScheduleRows(sectionRole) {
   return (
     sectionRole === "primary-requirement-section" ||
@@ -1982,7 +2196,9 @@ function sectionRoleCanCreateScheduleRows(sectionRole) {
 
 function classifySourceSectionRoleForLine(line, inheritedRole = null) {
   const text = normalizeSourceSectionLine(line);
-  const courseCodes = extractCourseCodesFromLine(text);
+  const courseCodes = extractCourseCodesFromLine(text).filter(
+    (courseCode) => !isCourseCodeLevelReference(text, courseCode)
+  );
   const levelSummary = getCourseLevelSummary(courseCodes);
   const prerequisiteCue = hasPrerequisiteOnlyCue(text);
   const approvedCourseListCue = hasApprovedCourseListSectionCue(text);
@@ -1997,7 +2213,7 @@ function classifySourceSectionRoleForLine(line, inheritedRole = null) {
     !prerequisiteCue;
 
   if (
-    admissionCue &&
+    hasAdmissionPrepHeadingCue(text) &&
     courseCodes.length === 0 &&
     /\b(?:requirements?|prereq(?:uisites?)?|preparation)\b/i.test(text)
   ) {
@@ -2150,7 +2366,7 @@ function buildParserPrerequisiteFilterAuditRows(input) {
       continue;
     }
 
-    const courseCodes = uniqueSorted(extractCourseCodesFromLine(normalizedLine));
+    const courseCodes = extractCourseCodesFromRequirementLine(normalizedLine);
     const explicit = classifySourceSectionRoleForLine(normalizedLine, currentRole);
     const lineLooksLikeHeading =
       courseCodes.length === 0 &&
@@ -2160,7 +2376,7 @@ function buildParserPrerequisiteFilterAuditRows(input) {
         hasElectiveListSectionCue(normalizedLine) ||
         parserRules.hasOptionReplacementRequirementCue(normalizedLine) ||
         hasPrimaryRequirementSectionCue(normalizedLine) ||
-        hasAdmissionPrepSectionCue(normalizedLine));
+        hasAdmissionPrepHeadingCue(normalizedLine));
 
     if (lineLooksLikeHeading) {
       currentSectionTitle = normalizedLine;
@@ -2257,14 +2473,27 @@ function findSourceSectionAuditRowForText(text, auditRows) {
   if (!normalizedText) {
     return null;
   }
+
+  const isInformativeAuditText = (value) =>
+    value.length >= 18 &&
+    !/^\d+(?:\s*(?:-|to)\s*\d+)?$/.test(value) &&
+    !/^(?:credits?|course #|course name|total)$/i.test(value);
+
   return (
     (auditRows ?? []).find(
       (row) => normalizeWhitespace(row.rawLine) === normalizedText
     ) ??
     (auditRows ?? []).find(
-      (row) =>
-        normalizeWhitespace(row.rawLine).includes(normalizedText) ||
-        normalizedText.includes(normalizeWhitespace(row.rawLine))
+      (row) => {
+        const rowText = normalizeWhitespace(row.rawLine);
+        return isInformativeAuditText(normalizedText) && rowText.includes(normalizedText);
+      }
+    ) ??
+    (auditRows ?? []).find(
+      (row) => {
+        const rowText = normalizeWhitespace(row.rawLine);
+        return isInformativeAuditText(rowText) && normalizedText.includes(rowText);
+      }
     ) ??
     null
   );
@@ -3855,109 +4084,6 @@ function buildParsedRequirementCoursesFromGroups(groups) {
   return courses;
 }
 
-function buildKnownMaterialsScienceRequiredRequirementCourses(owner) {
-  if (owner.planId !== "uw-seattle-materials-science-engineering" || owner.pathwayId) {
-    return [];
-  }
-
-  const planId = owner.planId;
-  const sourceCategory = "UW MSE B.S. degree requirements";
-  const rows = [
-    {
-      sourceHeading: "Mathematics requirements",
-      category: "mathematics",
-      requirementGroupId: `${planId}:requirement-group:math-required-calculus`,
-      requirementType: "all_required",
-      entries: [
-        { courseCode: "MATH 124", title: "Calculus with Analytic Geometry I", credits: 5 },
-        { courseCode: "MATH 125", title: "Calculus with Analytic Geometry II", credits: 5 },
-        { courseCode: "MATH 126", title: "Calculus with Analytic Geometry III", credits: 5 },
-      ],
-    },
-    {
-      sourceHeading: "Natural Science requirements",
-      category: "natural_science",
-      requirementGroupId: `${planId}:requirement-group:chemistry-sequence`,
-      requirementType: "sequence_choice",
-      entries: [
-        { courseCode: "CHEM 142", title: "General Chemistry", credits: 5, optionRole: "required" },
-        { courseCode: "CHEM 152", title: "General Chemistry", credits: 5, optionRole: "required" },
-        { courseCode: "CHEM 143", title: "Honors General Chemistry", credits: 5, optionRole: "alias" },
-        { courseCode: "CHEM 153", title: "Honors General Chemistry", credits: 5, optionRole: "alias" },
-        { courseCode: "CHEM 145", title: "Honors General Chemistry", credits: 5, optionRole: "alias" },
-        { courseCode: "CHEM 155", title: "Honors General Chemistry", credits: 5, optionRole: "alias" },
-      ],
-    },
-    {
-      sourceHeading: "Natural Science requirements",
-      category: "natural_science",
-      requirementGroupId: `${planId}:requirement-group:physics-sequence`,
-      requirementType: "all_required",
-      entries: [
-        { courseCode: "PHYS 121", title: "Mechanics", credits: 5 },
-        { courseCode: "PHYS 141", title: "Mechanics honors alternative", credits: 5, optionRole: "alias" },
-        { courseCode: "PHYS 122", title: "Electromagnetism", credits: 5 },
-        { courseCode: "PHYS 142", title: "Electromagnetism honors alternative", credits: 5, optionRole: "alias" },
-        { courseCode: "PHYS 123", title: "Waves", credits: 5 },
-        { courseCode: "PHYS 143", title: "Waves honors alternative", credits: 5, optionRole: "alias" },
-      ],
-    },
-    {
-      sourceHeading: "Engineering Fundamentals requirements",
-      category: "engineering_fundamentals",
-      requirementGroupId: `${planId}:requirement-group:engineering-fundamentals-required`,
-      requirementType: "all_required",
-      entries: [
-        { courseCode: "MSE 170", title: "Fundamentals of Materials Science", credits: 4 },
-        { courseCode: "AA 210", title: "Engineering Statics", credits: 4 },
-        { courseCode: "CEE 220", title: "Introduction to Mechanics of Materials", credits: 4 },
-      ],
-    },
-    {
-      sourceHeading: "Required MSE core courses",
-      category: "mse_core",
-      requirementGroupId: `${planId}:requirement-group:mse-core-required`,
-      requirementType: "all_required",
-      entries: [
-        { courseCode: "MSE 311", title: "Integrated Undergraduate Lab I", credits: 3 },
-        { courseCode: "MSE 312", title: "Integrated Undergraduate Lab II", credits: 3 },
-        { courseCode: "MSE 313", title: "Integrated Undergraduate Lab III", credits: 3 },
-        { courseCode: "MSE 321", title: "Thermodynamics and Phase Equilibrium", credits: 4 },
-        { courseCode: "MSE 331", title: "Crystallography and Structure", credits: 3 },
-        { courseCode: "MSE 399", title: "Undergraduate Research Seminar", credits: 1 },
-        { courseCode: "MSE 310", title: "Introduction to Materials Science and Engineering", credits: 3 },
-        { courseCode: "MSE 322", title: "Kinetics and Microstructural Evolution", credits: 4 },
-        { courseCode: "MSE 342", title: "Materials Processing I", credits: 3 },
-        { courseCode: "MSE 351", title: "Electronic Properties of Materials", credits: 3 },
-        { courseCode: "MSE 333", title: "Materials Characterization", credits: 3 },
-        { courseCode: "MSE 352", title: "Functional Properties of Materials I", credits: 3 },
-        { courseCode: "MSE 362", title: "Mechanical Behavior of Materials I", credits: 3 },
-        { courseCode: "MSE 442", title: "Materials Processing II", credits: 3 },
-        { courseCode: "MSE 493", title: "Design in Materials Engineering I", credits: 1 },
-        { courseCode: "MSE 494", title: "Design in Materials Engineering II", credits: 2 },
-        { courseCode: "MSE 431", title: "Failure Analysis and Durability of Materials", credits: 3 },
-        { courseCode: "MSE 495", title: "Design in Materials Engineering III", credits: 3 },
-      ],
-    },
-  ];
-
-  return rows.flatMap((row) =>
-    row.entries
-      .map((entry) =>
-        buildParsedRequirementCourse({
-          ...entry,
-          category: row.category,
-          requirementGroupId: row.requirementGroupId,
-          requirementType: row.requirementType,
-          optionRole: entry.optionRole ?? "required",
-          sourceHeading: row.sourceHeading,
-          sourceCategory,
-        })
-      )
-      .filter(Boolean)
-  );
-}
-
 function isSectionedOptionCourseBoundary(line) {
   const normalizedLine = normalizeWhitespace(line);
   if (!normalizedLine) {
@@ -3966,7 +4092,7 @@ function isSectionedOptionCourseBoundary(line) {
 
   return (
     /^\[Supplemental official source\]/i.test(normalizedLine) ||
-    /^(?:B\.S\. degree requirements|Undergraduate advising|MSE Capstone|Tuition and scholarships|Contact\b|Log in|Privacy|Terms)$/i.test(
+    /^(?:B\.S\. degree requirements|Undergraduate advising|(?:[A-Z& ]+\s+)?Capstone|Tuition and scholarships|Contact\b|Log in|Privacy|Terms)$/i.test(
       normalizedLine
     ) ||
     /\b(?:admission|requirements?)\b/i.test(normalizedLine) &&
@@ -4030,6 +4156,23 @@ function getNearbySectionCourseCredits(snapshotLines, courseLineIndex, courseCod
         };
       }
     }
+    const inlineRange =
+      /\bcredits?\b/i.test(candidate) &&
+      !/\bmaximum\s+of\b|\bmax(?:imum)?\b.{0,30}\b(?:allowed|towards?\s+degree|toward\s+degree|count)\b/i.test(candidate)
+      ? parseRequirementCreditRange(candidate)
+      : null;
+    if (inlineRange) {
+      const creditText =
+        inlineRange.maxCredits && inlineRange.maxCredits !== inlineRange.minCredits
+          ? `${inlineRange.minCredits}-${inlineRange.maxCredits}`
+          : String(inlineRange.minCredits);
+      return {
+        credits: inlineRange.minCredits,
+        creditMin: inlineRange.minCredits,
+        creditMax: inlineRange.maxCredits ?? inlineRange.minCredits,
+        creditText,
+      };
+    }
     if (sourceLineStartsWithCourseCode(candidate) || isSectionedOptionCourseBoundary(candidate)) {
       break;
     }
@@ -4086,8 +4229,11 @@ function collectSectionedOptionCourseOptions(owner, snapshotLines, startIndex, e
     const creditRange = getNearbySectionCourseCredits(snapshotLines, index, courseCodes[0]);
     const notes = [];
     const constraints = [];
-    if (/\bmaximum of\s+(\d+)\s+credits?\s+allowed\b/i.test(title ?? "")) {
-      const maxCredits = Number.parseFloat(title.match(/\bmaximum of\s+(\d+)\s+credits?\s+allowed\b/i)?.[1] ?? "");
+    const maxDegreeCountingCreditMatch = (title ?? "").match(
+      /\bmaximum\s+of\s+(\d+)\s+(?:credits?|cr\.?)\b.{0,50}\b(?:allowed|towards?\s+degree|toward\s+degree|count)\b/i
+    );
+    if (maxDegreeCountingCreditMatch) {
+      const maxCredits = Number.parseFloat(maxDegreeCountingCreditMatch[1] ?? "");
       if (Number.isFinite(maxCredits)) {
         constraints.push(`max_degree_counting_credits:${maxCredits}`);
         notes.push(`${courseCodes[0]} can count a maximum of ${maxCredits} credits toward the degree.`);
@@ -4214,391 +4360,347 @@ function buildParserRuleRequirementReplacements(owner, snapshotLines) {
   ];
 }
 
-function buildKnownMaterialsScienceRequirementCourses(owner, parsedRequirementGroups) {
-  if (owner.planId !== "uw-seattle-materials-science-engineering") {
-    return [];
+function isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines = [], index = 0) {
+  const sourceContext = [
+    owner?.sourceUrl,
+    owner?.primarySourceUrl,
+    owner?.sourceLabel,
+    owner?.primarySourceLabel,
+  ].filter(Boolean).join(" ");
+  if (
+    GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(sourceContext) &&
+    !/\bundergrad(?:uate)?\b/i.test(sourceContext)
+  ) {
+    return true;
   }
 
+  const localLines = (snapshotLines ?? [])
+    .slice(Math.max(0, index - 24), Math.min((snapshotLines ?? []).length, index + 8))
+    .map((line) => normalizeWhitespace(stripChoiceListLine(line)))
+    .filter(Boolean);
+  for (let lineIndex = localLines.length - 1; lineIndex >= 0; lineIndex -= 1) {
+    const line = localLines[lineIndex];
+    if (/^\[Supplemental official source\]/i.test(line) || /^Title:/i.test(line)) {
+      return (
+        GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(line) &&
+        !/\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(line)
+      );
+    }
+  }
+
+  const localText = localLines.join(" ");
+  return (
+    /\b(?:graduate credits?|graduate degree|master(?:'s|s)? program|m\.?\s*s\.?|ph\.?\s*d\.?|thesis\/non-thesis)\b/i.test(
+      localText
+    ) && !/\bundergrad(?:uate)?|bachelor|b\.?\s*s\.?\b/i.test(localText)
+  );
+}
+
+function parseSectionedCourseRequiredCount(line) {
+  const normalizedLine = normalizeWhitespace(line).toLowerCase();
+  const leadingWordMatch = normalizedLine.match(
+    /^(one|two|three|four|five|six|seven|eight|nine|ten)(?:\s*\(\s*(\d+)\s*\))?\s+.+?\belectives?\b/
+  );
+  if (leadingWordMatch) {
+    const parentheticalCount = Number.parseInt(leadingWordMatch[2] ?? "", 10);
+    if (Number.isFinite(parentheticalCount) && parentheticalCount > 0) {
+      return parentheticalCount;
+    }
+    return WORD_NUMBER_MAP.get(leadingWordMatch[1]) ?? 1;
+  }
+
+  const leadingNumberMatch = normalizedLine.match(/^(\d+)\s+.+?\belectives?\b/);
+  if (leadingNumberMatch && !/\bcredits?\b/i.test(normalizedLine)) {
+    const count = Number.parseInt(leadingNumberMatch[1], 10);
+    return Number.isFinite(count) && count > 0 ? count : null;
+  }
+
+  return null;
+}
+
+function normalizeSectionedCourseGroupLabel(line) {
+  const cleaned = normalizeWhitespace(stripChoiceListLine(line))
+    .replace(/[:.]+$/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!cleaned) {
+    return "Sectioned course group";
+  }
+  return cleaned.length <= 120 ? cleaned : normalizeWhitespace(cleaned.slice(0, 120));
+}
+
+function buildSectionedCourseCategory(line) {
+  const cleaned = normalizeWhitespace(line)
+    .replace(/\b(?:a\s+)?(?:minimum|maximum)\s+of\s+\d+(?:\.\d+)?\s+credits?\b/gi, "")
+    .replace(/\b\d+(?:\.\d+)?\s+credits?(?:\s+total|\s+required)?\b/gi, "")
+    .replace(/\b(?:selected from the following list|courses? listed below|listed below are required|the following departments|will satisfy|requirement|requirements|required)\b/gi, "")
+    .replace(/[:.]+$/g, "")
+    .trim();
+  return slugify(cleaned || line).replace(/-/g, "_") || "sectioned_course_group";
+}
+
+function hasUpcomingSectionedCourseRows(snapshotLines, startIndex, minimumCount = 2) {
+  let courseRowCount = 0;
+  for (
+    let index = startIndex + 1;
+    index < Math.min((snapshotLines ?? []).length, startIndex + 95);
+    index += 1
+  ) {
+    const line = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
+    if (!line) {
+      continue;
+    }
+    if (isSectionedOptionCourseBoundary(line)) {
+      break;
+    }
+    if (sourceLineStartsWithCourseCode(line)) {
+      courseRowCount += 1;
+      if (courseRowCount >= minimumCount) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+function getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input = {}) {
+  if (isGraduateOrAppliedMastersRequirementContext(owner, snapshotLines, index)) {
+    return null;
+  }
+
+  const rawLine = normalizeWhitespace(stripChoiceListLine(snapshotLines?.[index] ?? ""));
+  const previousMeaningfulLine = (snapshotLines ?? [])
+    .slice(Math.max(0, index - 3), index)
+    .map((line) => normalizeWhitespace(stripChoiceListLine(line)))
+    .filter(Boolean)
+    .at(-1);
+  if (
+    !rawLine ||
+    sourceLineStartsWithCourseCode(rawLine) ||
+    (previousMeaningfulLine &&
+      sourceLineStartsWithCourseCode(previousMeaningfulLine) &&
+      /\(\s*\d+(?:\.\d+)?\s*(?:credits?|cr\.?)\s*\)/i.test(rawLine)) ||
+    (extractCourseCodesFromLine(rawLine).length && !/\b\d{3}[-\s]*level\b/i.test(rawLine))
+  ) {
+    return null;
+  }
+  if (/^\d+(?:\s*(?:-|to)\s*\d+)?$/.test(rawLine) || /^TOTAL\b/i.test(rawLine)) {
+    return null;
+  }
+  if (/\bcredits?\s+total\b/i.test(rawLine) && !/\b(?:selected|following|listed below|minimum|maximum)\b/i.test(rawLine)) {
+    return null;
+  }
+
+  const optionAcronym = input.optionAcronym ?? null;
+  if (
+    optionAcronym &&
+    new RegExp(`\\b${optionAcronym}\\b`, "i").test(rawLine) &&
+    /\b(?:core|electives?)\b/i.test(rawLine)
+  ) {
+    return null;
+  }
+
+  const requiredCount = parseSectionedCourseRequiredCount(rawLine);
+  const minimumCreditMatch = rawLine.match(/\bminimum\s+of\s+(\d+(?:\.\d+)?)\s+credits?\b/i);
+  const maximumCreditMatch = rawLine.match(/\bmaximum\s+of\s+(\d+(?:\.\d+)?)\s+credits?\b/i);
+  const exactCreditRange = parseSectionHeadingCreditRange(rawLine);
+  const hasCourseListCue =
+    SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(rawLine) ||
+    /\belectives?\b/i.test(rawLine) ||
+    /\bfollowing\s+departments\b/i.test(rawLine);
+  if (!hasCourseListCue) {
+    return null;
+  }
+
+  const minimumRows = requiredCount === 1 ? 1 : 2;
+  if (!hasUpcomingSectionedCourseRows(snapshotLines, index, minimumRows)) {
+    return null;
+  }
+
+  const label = normalizeSectionedCourseGroupLabel(rawLine);
+  const category = buildSectionedCourseCategory(rawLine);
+  if (maximumCreditMatch) {
+    const maxCredits = Number.parseFloat(maximumCreditMatch[1]);
+    if (Number.isFinite(maxCredits)) {
+      return {
+        label,
+        category,
+        requirementType: "choose_credits",
+        minCredits: 0,
+        maxCredits,
+        creditText: `0-${maxCredits}`,
+        detectedOptionCue: "sectioned credit maximum",
+      };
+    }
+  }
+  if (minimumCreditMatch) {
+    const minCredits = Number.parseFloat(minimumCreditMatch[1]);
+    if (Number.isFinite(minCredits)) {
+      return {
+        label,
+        category,
+        requirementType: "choose_credits",
+        minCredits,
+        maxCredits: null,
+        creditText: `${minCredits}+`,
+        detectedOptionCue: "sectioned credit minimum",
+      };
+    }
+  }
+  if (exactCreditRange && /\bcredits?\b/i.test(rawLine)) {
+    return {
+      label,
+      category,
+      requirementType: "choose_credits",
+      minCredits: exactCreditRange.minCredits,
+      maxCredits: exactCreditRange.maxCredits ?? exactCreditRange.minCredits,
+      creditText:
+        exactCreditRange.maxCredits && exactCreditRange.maxCredits !== exactCreditRange.minCredits
+          ? `${exactCreditRange.minCredits}-${exactCreditRange.maxCredits}`
+          : String(exactCreditRange.minCredits),
+      detectedOptionCue: "sectioned credit list",
+    };
+  }
+  if (requiredCount) {
+    return {
+      label,
+      category,
+      requirementType: "choose_n",
+      minCourses: requiredCount,
+      maxCourses: requiredCount,
+      selectionCount: requiredCount,
+      requiredCount,
+      detectedOptionCue: "sectioned choice list",
+    };
+  }
+
+  return null;
+}
+
+function isSectionedCourseListBoundary(owner, snapshotLines, index, hasCollectedCourses, input = {}) {
+  const line = normalizeWhitespace(stripChoiceListLine(snapshotLines?.[index] ?? ""));
+  if (!line) {
+    return false;
+  }
+  if (isSectionedOptionCourseBoundary(line)) {
+    return true;
+  }
+  if (!hasCollectedCourses || sourceLineStartsWithCourseCode(line)) {
+    return false;
+  }
+  if (/^\d+(?:\s*(?:-|to)\s*\d+)?$/.test(line)) {
+    return false;
+  }
+  if (/^TOTAL\b/i.test(line)) {
+    return true;
+  }
+  if (getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, input)) {
+    return true;
+  }
+  return (
+    line.length <= 120 &&
+    /\b(?:requirements?|electives?|core courses?|required\b.{0,40}\bcourses?|advising|admission|polic(?:y|ies)|contact|tuition|scholarships?|capstone|labs?|research|graduation|sample schedules?)\b/i.test(
+      line
+    ) &&
+    !/\b(?:credits?\)|prereq|offered|maximum of)\b/i.test(line)
+  );
+}
+
+function getSectionedCourseListEndIndex(owner, snapshotLines, startIndex, input = {}) {
+  let hasCollectedCourses = false;
+  for (let index = startIndex + 1; index < (snapshotLines ?? []).length; index += 1) {
+    const line = normalizeWhitespace(stripChoiceListLine(snapshotLines[index]));
+    if (sourceLineStartsWithCourseCode(line)) {
+      hasCollectedCourses = true;
+      continue;
+    }
+    if (isSectionedCourseListBoundary(owner, snapshotLines, index, hasCollectedCourses, input)) {
+      return index;
+    }
+  }
+
+  return (snapshotLines ?? []).length;
+}
+
+function buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines) {
+  const replacement = parserRules.detectOptionReplacement({
+    owner,
+    snapshotLines,
+    sourceUrl: owner.sourceUrl ?? owner.primarySourceUrl ?? null,
+  });
+  const descriptorInput = {
+    optionAcronym: replacement?.optionAcronym ?? null,
+  };
+  const groups = [];
+  const seenGroupIds = new Set();
+
+  for (let index = 0; index < (snapshotLines ?? []).length; index += 1) {
+    const descriptor = getSectionedCourseHeadingDescriptor(owner, snapshotLines, index, descriptorInput);
+    if (!descriptor) {
+      continue;
+    }
+
+    const sourceHeading = normalizeSectionedCourseGroupLabel(snapshotLines[index]);
+    const endIndex = getSectionedCourseListEndIndex(owner, snapshotLines, index, descriptorInput);
+    const options = collectSectionedOptionCourseOptions(owner, snapshotLines, index, endIndex, {
+      category: descriptor.category,
+      sectionHeading: sourceHeading,
+      sourceHeading,
+    });
+    if (options.length < 1) {
+      continue;
+    }
+
+    const groupId = `${owner.ownerId}:requirement-group:${slugify(
+      `${descriptor.label}-${descriptor.requirementType}-${descriptor.minCredits ?? descriptor.minCourses ?? "options"}-${descriptor.maxCredits ?? descriptor.maxCourses ?? "open"}`
+    )}`;
+    if (seenGroupIds.has(groupId)) {
+      continue;
+    }
+
+    const group = buildParsedRequirementGroup({
+      id: groupId,
+      label: descriptor.label,
+      category: descriptor.category,
+      subcategory: descriptor.category,
+      requirementType: descriptor.requirementType,
+      minCourses: descriptor.minCourses,
+      maxCourses: descriptor.maxCourses,
+      selectionCount: descriptor.selectionCount,
+      requiredCount: descriptor.requiredCount,
+      minCredits: descriptor.minCredits,
+      maxCredits: descriptor.maxCredits,
+      creditText: descriptor.creditText,
+      sourceHeading,
+      sourceRowText: sourceHeading,
+      detectedOptionCue: descriptor.detectedOptionCue,
+      notes: [
+        "Parsed from a source section heading and the following course rows.",
+      ],
+      options,
+    });
+    if (!group.options.length) {
+      continue;
+    }
+    seenGroupIds.add(groupId);
+    groups.push(group);
+    index = Math.max(index, endIndex - 1);
+  }
+
+  return groups;
+}
+
+function buildSourceDerivedRequirementCourses(parsedRequirementGroups) {
   return uniqueBy(
-    [
-      ...(owner.pathwayId ? [] : buildKnownMaterialsScienceRequiredRequirementCourses(owner)),
-      ...buildParsedRequirementCoursesFromGroups(parsedRequirementGroups),
-    ],
+    buildParsedRequirementCoursesFromGroups(parsedRequirementGroups),
     (course) =>
       `${course.requirementGroupId}::${course.normalizedCourseCode}::${course.optionRole}`
   );
 }
 
-function buildKnownMaterialsScienceRequirementReplacements(owner, snapshotLines) {
+function buildSourceDerivedRequirementReplacements(owner, snapshotLines) {
   return buildParserRuleRequirementReplacements(owner, snapshotLines);
-}
-
-function hasParsedCourseCodes(parsedCourseCodeSet, courseCodes) {
-  return courseCodes.every((courseCode) => parsedCourseCodeSet.has(normalizeCourseCode(courseCode)));
-}
-
-function buildKnownMaterialsScienceRequirementGroups(owner, parsedCourseCodes, snapshotLines = []) {
-  if (owner.planId !== "uw-seattle-materials-science-engineering") {
-    return [];
-  }
-
-  const parsedCourseCodeSet = new Set(parsedCourseCodes.map((courseCode) => normalizeCourseCode(courseCode)));
-  const planId = owner.planId;
-  const groups = [];
-  const addGroup = (group) => {
-    const parsedGroup = buildParsedRequirementGroup(group);
-    if (parsedGroup.options.length > 0) {
-      groups.push(parsedGroup);
-    }
-  };
-
-  if (hasParsedCourseCodes(parsedCourseCodeSet, ["AMATH 301", "CSE 142", "CSE 122"])) {
-    addGroup({
-      id: `${planId}:requirement-group:scientific-computing`,
-      label: "Scientific computing",
-      category: "engineering-fundamentals",
-      requirementType: "choose_one",
-      minCourses: 1,
-      maxCourses: 1,
-      options: [
-        {
-          id: `${planId}:requirement-option:amath-301`,
-          uwCourses: ["AMATH 301"],
-          credits: 4,
-          label: "AMATH 301 - Beginning Scientific Computing",
-        },
-        {
-          id: `${planId}:requirement-option:cse-142`,
-          uwCourses: ["CSE 142"],
-          credits: 4,
-          label: "CSE 142 - Computer Programming I",
-        },
-        {
-          id: `${planId}:requirement-option:cse-122`,
-          uwCourses: ["CSE 122"],
-          credits: 4,
-          label: "CSE 122 - Intro to Computer Programming II",
-        },
-      ],
-    });
-  }
-
-  if (parsedCourseCodeSet.has("MATH 207") || parsedCourseCodeSet.has("MATH 307")) {
-    addGroup({
-      id: `${planId}:requirement-group:math-207`,
-      label: "MATH 207 Differential Equations",
-      category: "mathematics",
-      requirementType: "all_required",
-      minCourses: 1,
-      maxCourses: 1,
-      options: [
-        {
-          id: `${planId}:requirement-option:math-207`,
-          uwCourses: ["MATH 207"],
-          equivalentUwCourseCodes: ["MATH 307"],
-          credits: 3,
-          label: "MATH 207 (or MATH 307)",
-        },
-      ],
-    });
-  }
-
-  if (parsedCourseCodeSet.has("MATH 208") || parsedCourseCodeSet.has("MATH 308")) {
-    addGroup({
-      id: `${planId}:requirement-group:math-208`,
-      label: "MATH 208 Matrix Algebra",
-      category: "mathematics",
-      requirementType: "all_required",
-      minCourses: 1,
-      maxCourses: 1,
-      options: [
-        {
-          id: `${planId}:requirement-option:math-208`,
-          uwCourses: ["MATH 208"],
-          equivalentUwCourseCodes: ["MATH 308"],
-          credits: 3,
-          label: "MATH 208 (or MATH 308)",
-        },
-      ],
-    });
-  }
-
-  const mathElectiveOptions = [
-    {
-      displayCourseCodes: ["IND E 315"],
-      uwCourses: ["INDE 315"],
-      title: "Probability and Statistics for Engineers",
-      department: "INDE",
-      label: "IND E 315",
-      notes: ["IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both."],
-      constraints: ["no_double_count:math_elective_or_engineering_fundamentals"],
-    },
-    {
-      displayCourseCodes: ["MATH 209"],
-      uwCourses: ["MATH 209"],
-      equivalentUwCourseCodes: ["MATH 309"],
-      title: "Linear Analysis",
-      label: "MATH 209 (or MATH 309)",
-    },
-    {
-      displayCourseCodes: ["MATH 224"],
-      uwCourses: ["MATH 224"],
-      equivalentUwCourseCodes: ["MATH 324"],
-      title: "Advanced Multivariable Calculus I",
-      label: "MATH 224 (or MATH 324)",
-    },
-    { displayCourseCodes: ["MATH 318"], uwCourses: ["MATH 318"], title: "Advanced Linear Algebra Tools and Applications", label: "MATH 318" },
-    { displayCourseCodes: ["STAT 390"], uwCourses: ["STAT 390"], title: "Probability and Statistics in Engineering & Science", credits: 4, label: "STAT 390" },
-  ];
-  if (mathElectiveOptions.length) {
-    addGroup({
-      id: `${planId}:requirement-group:math-elective`,
-      label: "One (1) Math Elective",
-      category: "math-elective",
-      sourceHeading: "One (1) Math Elective",
-      requirementType: "choose_n",
-      minCourses: 1,
-      maxCourses: 1,
-      options: mathElectiveOptions.map((option, index) => ({
-        id: `${planId}:requirement-option:math-elective-${index + 1}`,
-        credits: option.credits ?? 3,
-        creditText: String(option.credits ?? 3),
-        sourceHeading: "One (1) Math Elective",
-        sourceCategory: "Mathematics requirements",
-        ...option,
-      })),
-    });
-  }
-
-  const scienceElectiveOptions = [
-    { uwCourses: ["BIOL 180"], credits: 5, title: "Introductory Biology", label: "BIOL 180" },
-    { uwCourses: ["BIOL 200"], credits: 5, title: "Introductory Biology", label: "BIOL 200" },
-    {
-      uwCourses: ["CHEM 162"],
-      equivalentUwCourseCodes: ["CHEM 153", "CHEM 155"],
-      credits: 5,
-      title: "General Chemistry",
-      label: "CHEM 162 (or CHEM 153 or CHEM 155)",
-    },
-    { uwCourses: ["CHEM 165"], credits: 5, title: "Honors General Chemistry", label: "CHEM 165" },
-    { uwCourses: ["CHEM 223"], credits: 4, title: "Organic Chemistry - Short Program", label: "CHEM 223" },
-    { uwCourses: ["CHEM 224"], credits: 4, title: "Organic Chemistry - Short Program", label: "CHEM 224" },
-    { uwCourses: ["CHEM 237"], credits: 4, title: "Organic Chemistry", label: "CHEM 237" },
-    { uwCourses: ["CHEM 238"], credits: 4, title: "Organic Chemistry", label: "CHEM 238" },
-    { uwCourses: ["CHEM 312"], credits: 3, title: "Inorganic Chemistry", label: "CHEM 312", notes: ["Students who have completed CHEM 165 can have CHEM 312 waived. See adviser."] },
-    { uwCourses: ["CHEM 317"], credits: 4, title: "Inorganic Chemistry Lab", label: "CHEM 317" },
-    { uwCourses: ["CHEM 335"], credits: 4, title: "Honors Organic Chemistry", label: "CHEM 335" },
-    { uwCourses: ["CHEM 336"], credits: 4, title: "Honors Organic Chemistry", label: "CHEM 336" },
-    { uwCourses: ["CHEM 452"], credits: 3, title: "Physical Chemistry for Biochemists I", label: "CHEM 452" },
-    { uwCourses: ["CHEM 455"], credits: 3, title: "Physical Chemistry", label: "CHEM 455" },
-    { uwCourses: ["CHEM 456"], credits: 3, title: "Physical Chemistry", label: "CHEM 456" },
-    { uwCourses: ["PHYS 224"], credits: 3, title: "Thermal Physics", label: "PHYS 224" },
-    { uwCourses: ["PHYS 225"], credits: 3, title: "Introduction to Quantum Mechanics", label: "PHYS 225" },
-    { uwCourses: ["PHYS 227"], credits: 4, title: "Elementary Mathematical Physics", label: "PHYS 227" },
-    { uwCourses: ["PHYS 228"], credits: 4, title: "Elementary Mathematical Physics", label: "PHYS 228" },
-  ];
-  if (scienceElectiveOptions.length) {
-    addGroup({
-      id: `${planId}:requirement-group:science-electives`,
-      label: "Two Science Electives",
-      category: "science-elective",
-      sourceHeading: "Two Science Electives",
-      requirementType: "choose_n",
-      minCourses: 2,
-      maxCourses: 2,
-      options: scienceElectiveOptions.map((option) => ({
-        id: `${planId}:requirement-option:science-elective-${slugify(
-          [...option.uwCourses, ...(option.equivalentUwCourseCodes ?? [])].join("-")
-        )}`,
-        creditText: String(option.credits),
-        sourceHeading: "Two Science Electives",
-        sourceCategory: "Natural Science requirements",
-        ...option,
-      })),
-    });
-  }
-
-  const engineeringFundamentalOptions = [
-    { displayCourseCodes: ["AA 260"], uwCourses: ["AA 260"], credits: 4, title: "Thermodynamics", department: "AA", label: "AA 260" },
-    { displayCourseCodes: ["BIOEN 215"], uwCourses: ["BIOEN 215"], credits: 3, title: "Introduction to Bioengineering Problem Solving", department: "BIOEN", label: "BIOEN 215" },
-    { displayCourseCodes: ["BSE 201"], uwCourses: ["BSE 201"], credits: 3, title: "Introduction to Pulp, Paper, and Bioproducts", department: "BSE", label: "BSE 201" },
-    { displayCourseCodes: ["CHEM E 355"], uwCourses: ["CHEME 355"], credits: 3, title: "Biological Frameworks for Engineers", department: "CHEME", label: "CHEM E 355" },
-    { displayCourseCodes: ["CSE 123"], uwCourses: ["CSE 123"], credits: 4, title: "Computer Programming III", department: "CSE", label: "CSE 123" },
-    { displayCourseCodes: ["CSE 143"], uwCourses: ["CSE 143"], credits: 4, title: "Computer Programming II", department: "CSE", label: "CSE 143" },
-    { displayCourseCodes: ["CSE 160"], uwCourses: ["CSE 160"], credits: 4, title: "Data Programming", department: "CSE", label: "CSE 160" },
-    { displayCourseCodes: ["CSE 164"], uwCourses: ["CSE 164"], credits: 4, title: "Intermediate Data Programming", department: "CSE", label: "CSE 164" },
-    { displayCourseCodes: ["CSE 180"], uwCourses: ["CSE 180"], credits: 4, title: "Introduction to Data Science", department: "CSE", label: "CSE 180" },
-    { displayCourseCodes: ["E E 215"], uwCourses: ["EE 215"], credits: 4, title: "Fundamentals of Electrical Engineering", department: "EE", label: "E E 215" },
-    { displayCourseCodes: ["ENGR 101"], uwCourses: ["ENGR 101"], credits: 1, title: "Engineering Exploration", department: "ENGR", label: "ENGR 101", notes: ["Open to DTC students only."] },
-    { displayCourseCodes: ["ENGR 333"], uwCourses: ["ENGR 333"], credits: 4, title: "Advanced Technical Communication in the Engineering Workplace", department: "ENGR", label: "ENGR 333" },
-    { displayCourseCodes: ["ENGR 490"], uwCourses: ["ENGR 490"], credits: 2, title: "Engineering Leadership", department: "ENGR", label: "ENGR 490" },
-    { displayCourseCodes: ["IND E 250"], uwCourses: ["INDE 250"], credits: 4, title: "Engineering Economy", department: "INDE", label: "IND E 250" },
-    {
-      displayCourseCodes: ["IND E 315"],
-      uwCourses: ["INDE 315"],
-      credits: 3,
-      title: "Probability and Statistics for Engineers",
-      department: "INDE",
-      label: "IND E 315",
-      constraints: ["no_double_count:math_elective_or_engineering_fundamentals"],
-      notes: ["IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both."],
-    },
-    { displayCourseCodes: ["M E 123"], uwCourses: ["ME 123"], credits: 4, title: "Intro to Visualization & Computer-Aided Design", department: "ME", label: "M E 123" },
-    { displayCourseCodes: ["M E 230"], uwCourses: ["ME 230"], credits: 4, title: "Kinematics and Dynamics", department: "ME", label: "M E 230" },
-    {
-      displayCourseCodes: ["NME 220"],
-      uwCourses: ["NME 220"],
-      credits: 4,
-      title: "Introduction to Molecular and Nanoscale Principles",
-      department: "NME",
-      label: "NME 220",
-      constraints: ["not_eligible_for_nme_option"],
-      notes: ["NME 220 is not eligible as an Engineering Fundamentals elective for NME Option students."],
-    },
-  ];
-  if (engineeringFundamentalOptions.length) {
-    addGroup({
-      id: `${planId}:requirement-group:engineering-fundamentals-electives`,
-      label: "8 Credits of Engineering Fundamentals Electives",
-      category: "engineering_fundamentals",
-      subcategory: "engineering_fundamentals_electives",
-      requirementType: "choose_credits",
-      minCredits: 8,
-      sourceHeading: "8 Credits of Engineering Fundamentals Electives selected from the following list",
-      notes: [
-        "IND E 315 may count in the Math elective category or the Engineering Fundamentals elective category, but not both.",
-        "NME 220 is not eligible as an Engineering Fundamentals elective for NME Option students.",
-      ],
-      options: engineeringFundamentalOptions.map((option) => ({
-        id: `${planId}:requirement-option:engineering-fundamentals-${slugify(option.uwCourses.join("-"))}`,
-        creditText: String(option.credits),
-        sourceHeading: "8 Credits of Engineering Fundamentals Electives selected from the following list",
-        sourceCategory: "Engineering Fundamentals requirements",
-        ...option,
-      })),
-    });
-  }
-
-  const mseTechnicalElectiveOptions = [
-    { uwCourses: ["MSE 450"], credits: 3, title: "Magnetism, Magnetic Materials, and Related Technologies" },
-    { uwCourses: ["MSE 452"], credits: 3, title: "Functional Properties of Materials II" },
-    { uwCourses: ["MSE 462"], credits: 3, title: "Mechanical Behavior of Materials II" },
-    { uwCourses: ["MSE 463"], credits: 3, title: "Corrosion and Wear of Materials" },
-    { uwCourses: ["MSE 466"], credits: 3, title: "Energy Materials, Devices, and Systems" },
-    { uwCourses: ["MSE 471"], credits: 3, title: "Introduction to Polymer Science and Engineering" },
-    { uwCourses: ["MSE 473"], credits: 3, title: "Noncrystalline State" },
-    { uwCourses: ["MSE 474"], credits: 3, title: "Nanocomposite Materials" },
-    { uwCourses: ["MSE 475"], credits: 3, title: "Intro to Composite Materials" },
-    { uwCourses: ["MSE 476"], credits: 3, title: "Introduction to Optoelectronic Materials" },
-    { uwCourses: ["MSE 477"], credits: 3, title: "Data Science and Materials Informatics" },
-    { uwCourses: ["MSE 478"], credits: 3, title: "Material and Device Modeling" },
-    { uwCourses: ["MSE 479"], credits: 3, title: "Big Data for Materials Science" },
-    { uwCourses: ["MSE 481"], credits: 3, title: "Science and Technology of Nanostructures" },
-    { uwCourses: ["MSE 482"], credits: 3, title: "Biomaterials/Nanomaterials in Tissue Engineering" },
-    { uwCourses: ["MSE 483"], credits: 3, title: "Nanomedicine" },
-    { uwCourses: ["MSE 484"], credits: 3, title: "Electronic and Optoelectronic Polymers" },
-    { uwCourses: ["MSE 486"], credits: 3, title: "Fundamentals of Integrated Circuit Technology" },
-    { uwCourses: ["MSE 487"], credits: 3, title: "Composites Engineering, Production, and Maintenance" },
-    { uwCourses: ["MSE 488"], credits: 3, title: "Materials In Manufacturing" },
-    { uwCourses: ["MSE 489"], credits: 3, title: "Additive Manufacturing: Materials, Processes, and Applications" },
-    { uwCourses: ["MSE 490"], credits: 3, title: "Composite Materials in Manufacturing" },
-    { uwCourses: ["MSE 498"], credits: 3, creditMin: 3, creditMax: 4, creditText: "3-4", title: "Special Topics" },
-    { uwCourses: ["MSE 499"], credits: 3, creditMin: 3, creditMax: 5, creditText: "3-5", title: "Senior Project" },
-  ].map((option) => ({
-    displayCourseCodes: option.uwCourses,
-    department: "MSE",
-    label: option.uwCourses[0],
-    ...option,
-  }));
-  if (mseTechnicalElectiveOptions.length) {
-    addGroup({
-      id: `${planId}:requirement-group:mse-400-level-technical-electives`,
-      label: "MSE 400-level Technical Electives",
-      category: "technical_electives",
-      subcategory: "mse_400_level",
-      requirementType: "choose_credits",
-      minCredits: 6,
-      sourceHeading: "A minimum of 6 credits in MSE 400-level courses listed below are required",
-      notes: ["MSE 500-level courses, except seminar, may satisfy the MSE technical elective minimum."],
-      options: mseTechnicalElectiveOptions.map((option) => ({
-        id: `${planId}:requirement-option:mse-technical-elective-${slugify(option.uwCourses.join("-"))}`,
-        creditText: option.creditText ?? String(option.credits),
-        sourceHeading: "A minimum of 6 credits in MSE 400-level courses listed below are required",
-        sourceCategory: "Technical electives: 15 credits total",
-        ...option,
-      })),
-    });
-  }
-
-  const outsideMseTechnicalElectiveOptions = [
-    { displayCourseCodes: ["A MATH 352"], uwCourses: ["AMATH 352"], credits: 3, department: "AMATH", title: "Applied Linear Algebra & Numerical Analysis", label: "A MATH 352" },
-    { displayCourseCodes: ["A MATH 353"], uwCourses: ["AMATH 353"], credits: 3, department: "AMATH", title: "Partial Differential Equations and Waves", label: "A MATH 353" },
-    { displayCourseCodes: ["A MATH 383"], uwCourses: ["AMATH 383"], credits: 3, department: "AMATH", title: "Introduction to Continuous Math Modeling", label: "A MATH 383" },
-    { displayCourseCodes: ["A MATH 401"], uwCourses: ["AMATH 401"], credits: 3, department: "AMATH", title: "Vector Calculus and Complex Variables", label: "A MATH 401" },
-    { displayCourseCodes: ["A MATH 403"], uwCourses: ["AMATH 403"], credits: 3, department: "AMATH", title: "Methods for Partial Differential Equations", label: "A MATH 403" },
-    { displayCourseCodes: ["BIOC 405"], uwCourses: ["BIOC 405"], credits: 3, department: "BIOC", title: "Introduction to Biochemistry", label: "BIOC 405" },
-    { displayCourseCodes: ["BIOC 406"], uwCourses: ["BIOC 406"], credits: 3, department: "BIOC", title: "Introduction to Biochemistry", label: "BIOC 406" },
-    { displayCourseCodes: ["CHEM 312"], uwCourses: ["CHEM 312"], credits: 3, department: "CHEM", title: "Inorganic Chemistry", label: "CHEM 312" },
-    { displayCourseCodes: ["CHEM 455"], uwCourses: ["CHEM 455"], credits: 3, department: "CHEM", title: "Physical Chemistry", label: "CHEM 455" },
-    { displayCourseCodes: ["CHEM 456"], uwCourses: ["CHEM 456"], credits: 3, department: "CHEM", title: "Physical Chemistry", label: "CHEM 456" },
-    { displayCourseCodes: ["CHEM 457"], uwCourses: ["CHEM 457"], credits: 3, department: "CHEM", title: "Physical Chemistry", label: "CHEM 457" },
-    { displayCourseCodes: ["CHEM E 341"], uwCourses: ["CHEME 341"], credits: 3, department: "CHEME", title: "Energy and Environment", label: "CHEM E 341" },
-    {
-      displayCourseCodes: ["ENGR 321"],
-      uwCourses: ["ENGR 321"],
-      credits: 2,
-      creditMin: 1,
-      creditMax: 2,
-      creditText: "1-2",
-      maxCredits: 4,
-      department: "ENGR",
-      title: "Engineering Internship",
-      label: "ENGR 321",
-      constraints: ["max_degree_counting_credits:4"],
-      notes: ["ENGR 321 can count a maximum of 4 credits toward the degree."],
-    },
-    { displayCourseCodes: ["ENVIR 480"], uwCourses: ["ENVIR 480"], credits: 5, department: "ENVIR", title: "Sustainability Studio", label: "ENVIR 480" },
-    { displayCourseCodes: ["PHYS 321"], uwCourses: ["PHYS 321"], credits: 4, department: "PHYS", title: "Electromagnetism", label: "PHYS 321" },
-    { displayCourseCodes: ["PHYS 324"], uwCourses: ["PHYS 324"], credits: 4, department: "PHYS", title: "Quantum Mechanics", label: "PHYS 324" },
-    { displayCourseCodes: ["PHYS 325"], uwCourses: ["PHYS 325"], credits: 4, department: "PHYS", title: "Quantum Mechanics", label: "PHYS 325" },
-    { displayCourseCodes: ["PHYS 334"], uwCourses: ["PHYS 334"], credits: 3, department: "PHYS", title: "Electric Circuits Laboratory", label: "PHYS 334" },
-    { displayCourseCodes: ["PHYS 335"], uwCourses: ["PHYS 335"], credits: 3, department: "PHYS", title: "Electric Circuits Laboratory", label: "PHYS 335" },
-    { displayCourseCodes: ["PHYS 434"], uwCourses: ["PHYS 434"], credits: 3, department: "PHYS", title: "Application of Computers to Physical Measurement", label: "PHYS 434" },
-    { displayCourseCodes: ["PHYS 441"], uwCourses: ["PHYS 441"], credits: 4, department: "PHYS", title: "Quantum Mechanics", label: "PHYS 441" },
-    { displayCourseCodes: ["ENTRE 370"], uwCourses: ["ENTRE 370"], credits: 4, department: "ENTRE", title: "Introduction to Entrepreneurship", label: "ENTRE 370" },
-    { displayCourseCodes: ["ENTRE 440"], uwCourses: ["ENTRE 440"], credits: 2, department: "ENTRE", title: "Business Plan Practicum", label: "ENTRE 440" },
-  ];
-  if (outsideMseTechnicalElectiveOptions.length) {
-    addGroup({
-      id: `${planId}:requirement-group:outside-mse-technical-electives`,
-      label: "Outside-MSE Technical Electives",
-      category: "technical_electives",
-      subcategory: "outside_mse_approved",
-      requirementType: "choose_credits",
-      minCredits: 0,
-      maxCredits: 9,
-      creditText: "0-9 credits",
-      sourceHeading: "A maximum of 9 credits in 400-level courses in the following departments will satisfy the technical electives requirement",
-      notes: [
-        "A maximum of 9 credits in approved outside-MSE courses may satisfy the technical electives requirement.",
-        "500-level courses from approved outside departments may satisfy the outside technical elective requirement, but require adviser or manual audit update.",
-        "Any outside course not listed requires a Course Substitution Petition Form.",
-      ],
-      options: outsideMseTechnicalElectiveOptions.map((option) => ({
-        id: `${planId}:requirement-option:outside-mse-technical-elective-${slugify(option.uwCourses.join("-"))}`,
-        creditText: option.creditText ?? String(option.credits),
-        sourceHeading: "A maximum of 9 credits in 400-level courses in the following departments will satisfy the technical electives requirement",
-        sourceCategory: "Other technical electives",
-        ...option,
-      })),
-    });
-  }
-
-  for (const group of buildSectionedOptionRequirementGroups(owner, snapshotLines)) {
-    addGroup(group);
-  }
-
-  return groups;
 }
 
 function isEquivalentNumberAliasLine(line, courseCodes) {
@@ -4906,7 +5008,7 @@ function buildGenericChoiceRequirementGroups(owner, parsedCourseCodes, snapshotL
     const line = choiceSourceLine.line;
     const normalizedLine = normalizeWhitespace(line);
     const optionExtractionLine = stripNonOptionCourseEvidenceFromChoiceLine(normalizedLine);
-    const extractedCourseCodes = extractCourseCodesFromLine(optionExtractionLine);
+    const extractedCourseCodes = extractCourseCodesFromRequirementLine(optionExtractionLine);
     const hasExplicitOr = /\bor\b/i.test(optionExtractionLine);
     const hasOwnChoiceContext = hasChoiceRequirementContext(normalizedLine);
     const hasOwnStrongChoiceContext = hasStrongChoiceRequirementContext(normalizedLine);
@@ -5262,14 +5364,9 @@ function buildGenericCreditBucketRequirementGroups(owner, snapshotLines) {
 }
 
 function buildParsedRequirementGroups(owner, parsedCourseCodes, snapshotLines) {
-  const knownGroups = buildKnownMaterialsScienceRequirementGroups(owner, parsedCourseCodes, snapshotLines);
-  if (owner.planId === "uw-seattle-materials-science-engineering") {
-    return knownGroups;
-  }
-
   return uniqueBy(
     [
-      ...knownGroups,
+      ...buildSourceDerivedSectionedCourseRequirementGroups(owner, snapshotLines),
       ...buildSectionedOptionRequirementGroups(owner, snapshotLines),
       ...buildSplitEitherOrRequirementGroups(owner, parsedCourseCodes, snapshotLines),
       ...buildGenericCreditBucketRequirementGroups(owner, snapshotLines),
@@ -5295,6 +5392,9 @@ function getTitleScopeTokens(entry) {
     "bothell",
     "campus",
     "catalog",
+    "course",
+    "courses",
+    "curriculum",
     "degree",
     "major",
     "of",
@@ -5318,6 +5418,98 @@ function getTitleScopeTokens(entry) {
       .split(" ")
       .filter((token) => token.length >= 4 && !STOPWORDS.has(token))
   ).slice(0, 8);
+}
+
+const PROGRAM_ACRONYM_STOPWORDS = new Set([
+  "a",
+  "and",
+  "b",
+  "bachelor",
+  "bachelors",
+  "ba",
+  "bothell",
+  "bs",
+  "campus",
+  "curriculum",
+  "degree",
+  "for",
+  "in",
+  "major",
+  "of",
+  "official",
+  "overview",
+  "page",
+  "program",
+  "requirements",
+  "s",
+  "seattle",
+  "tacoma",
+  "the",
+  "to",
+  "undergraduate",
+  "university",
+  "uw",
+  "washington",
+  "with",
+]);
+const EXCLUDED_PROGRAM_ACRONYM_TOKENS = new Set([
+  "aa",
+  "aab",
+  "aas",
+  "ba",
+  "bas",
+  "bba",
+  "bfa",
+  "bs",
+  "bse",
+  "bsn",
+  "ma",
+  "mba",
+  "mfa",
+  "ms",
+]);
+
+function getOwnerProgramAcronymTokens(entry) {
+  const rawTitle = normalizeWhitespace(getPrimaryMajorTitle(entry) || entry?.ownerTitle || "");
+  if (!rawTitle) {
+    return [];
+  }
+
+  const explicitAcronyms = [...rawTitle.matchAll(/\(([A-Z][A-Z0-9&\s/-]{1,12})\)/g)]
+    .map((match) => normalizeMatcherText(match[1]).replace(/\s+/g, ""))
+    .filter(
+      (token) =>
+        token.length >= 2 &&
+        token.length <= 8 &&
+        !EXCLUDED_PROGRAM_ACRONYM_TOKENS.has(token)
+    );
+  const titleWords = normalizeMatcherText(rawTitle)
+    .split(" ")
+    .filter(
+      (token) =>
+        token.length >= 2 &&
+        !PROGRAM_ACRONYM_STOPWORDS.has(token) &&
+        !EXCLUDED_PROGRAM_ACRONYM_TOKENS.has(token)
+    );
+  const titleAcronym = titleWords.map((token) => token[0]).join("");
+
+  return uniqueSorted(
+    [...explicitAcronyms, titleAcronym].filter(
+      (token) =>
+        token.length >= 2 &&
+        token.length <= 8 &&
+        !EXCLUDED_PROGRAM_ACRONYM_TOKENS.has(token)
+    )
+  );
+}
+
+function getNormalizedTokenMatches(normalizedText, tokens) {
+  const textTokens = new Set(String(normalizedText ?? "").split(/\s+/).filter(Boolean));
+  return uniqueSorted((tokens ?? []).filter((token) => textTokens.has(token)));
+}
+
+function getOwnerProgramAcronymMatches(entry, normalizedText) {
+  return getNormalizedTokenMatches(normalizedText, getOwnerProgramAcronymTokens(entry));
 }
 
 const PRIMARY_MAJOR_TITLES_BY_PLAN_ID = new Map(
@@ -5455,6 +5647,329 @@ function findOwnerHtmlSectionRange(entry, lines, anchorIndex) {
     startIndex: Math.max(0, sectionStartIndex - 2),
     endIndex: Math.max(sectionStartIndex, sectionEndIndex),
   };
+}
+
+const PATHWAY_SCOPE_IDENTITY_STOPWORDS = new Set([
+  "and",
+  "ba",
+  "bachelor",
+  "bs",
+  "certificate",
+  "concentration",
+  "degree",
+  "major",
+  "of",
+  "option",
+  "pathway",
+  "program",
+  "route",
+  "track",
+  "with",
+]);
+
+function stripPathwayHeadingPrefix(line) {
+  return normalizeTransferPlannerText(line)
+    .replace(/^[A-Z]\.\s+/i, "")
+    .replace(/^\(?\d+[\).]\s+/i, "")
+    .replace(/^(?:[ivxlcdm]+)[\).]\s+/i, "")
+    .trim();
+}
+
+function getSelectedPathwayScopeLabels(entry) {
+  if (!entry?.pathwayId) {
+    return [];
+  }
+
+  const majorTitle = getPrimaryMajorTitle(entry);
+  const pathwayIdLabel = String(entry.pathwayId).replace(/[-_]+/g, " ");
+  const rawLabels = [
+    pathwayIdLabel,
+    normalizeTransferPlannerSemanticPathwayLabel(majorTitle, entry.ownerTitle),
+    normalizeTransferPlannerSemanticPathwayLabel(majorTitle, entry.sourceLabel),
+    normalizeTransferPlannerSemanticPathwayLabel(majorTitle, entry.label),
+  ];
+  const pathwayIdTokens = normalizeMatcherText(pathwayIdLabel)
+    .split(" ")
+    .filter((token) => token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token));
+
+  return uniqueInOrder(
+    rawLabels
+      .map((label) => stripPathwayHeadingPrefix(label))
+      .filter((label) => {
+        const tokens = normalizeMatcherText(label)
+          .split(" ")
+          .filter(
+            (token) =>
+              token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
+          );
+        if (!tokens.length) {
+          return false;
+        }
+
+        return (
+          PATHWAY_LABEL_CUE_PATTERN.test(label) ||
+          tokens.some((token) => pathwayIdTokens.includes(token))
+        );
+      })
+  );
+}
+
+function getSelectedPathwayScopeTokenGroups(entry) {
+  return uniqueBy(
+    getSelectedPathwayScopeLabels(entry)
+      .map((label) =>
+        normalizeMatcherText(label)
+          .split(" ")
+          .filter(
+            (token) =>
+              token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
+          )
+      )
+      .filter((tokens) => tokens.length > 0)
+      .sort((left, right) => right.length - left.length),
+    (tokens) => tokens.join(" ")
+  );
+}
+
+function normalizedLineContainsToken(normalizedLine, token) {
+  return new RegExp(`\\b${escapeRegex(token)}\\b`, "i").test(normalizedLine);
+}
+
+function lineMatchesSelectedPathwayIdentity(entry, line) {
+  const normalizedLine = normalizeMatcherText(line);
+  if (!normalizedLine) {
+    return false;
+  }
+
+  return getSelectedPathwayScopeTokenGroups(entry).some((tokens) => {
+    const tokenMatches = tokens.filter((token) =>
+      normalizedLineContainsToken(normalizedLine, token)
+    ).length;
+    const requiredMatches = tokens.length <= 2 ? tokens.length : 2;
+    return tokenMatches >= Math.max(1, requiredMatches);
+  });
+}
+
+function isLikelyPathwayChoiceContextLine(line) {
+  const normalized = normalizeTransferPlannerText(line);
+  if (
+    !normalized ||
+    extractCourseCodesFromLine(normalized).length > 0 ||
+    normalized.split(/\s+/).length > 24
+  ) {
+    return false;
+  }
+
+  return /\b(?:choose|select|formal|options?|tracks?|routes?|pathways?|concentrations?)\b/i.test(
+    normalized
+  );
+}
+
+function isLikelyPeerPathwayHtmlSectionStartLine(line) {
+  const normalized = stripPathwayHeadingPrefix(line);
+  const normalizedMatcherText = normalizeMatcherText(normalized);
+  if (
+    !normalizedMatcherText ||
+    NOISY_SOURCE_LINE_PATTERN.test(normalized) ||
+    extractCourseCodesFromLine(normalized).length > 0 ||
+    PATHWAY_SECTION_BOUNDARY_PATTERN.test(normalized)
+  ) {
+    return false;
+  }
+
+  const wordCount = normalizedMatcherText.split(" ").length;
+  if (wordCount > 12) {
+    return false;
+  }
+
+  if (/\b(?:choose|select|following|formal)\b/i.test(normalized)) {
+    return false;
+  }
+
+  const startsWithEnumerator = /^[A-Z]\.\s+|^\(?\d+[\).]\s+/i.test(
+    normalizeTransferPlannerText(line)
+  );
+  const hasPathwayCue = PATHWAY_LABEL_CUE_PATTERN.test(normalized);
+  const isUppercaseHeading =
+    /[A-Z]/.test(normalized) && normalized === normalized.toUpperCase();
+
+  return Boolean(
+    hasPathwayCue ||
+      startsWithEnumerator ||
+      (isUppercaseHeading && wordCount <= 8)
+  );
+}
+
+const BARE_PATHWAY_SECTION_SUBHEADING_PATTERN =
+  /\b(?:admission|admissions|application|apply|capstone|checklist|core|course|courses|coursework|credits?|curriculum|degree|electives?|internship|major|minor|overview|prereq|prerequisite|program|requirements?|sample|schedule|student|students|worksheet)\b/i;
+
+function isLikelyBarePathwayHtmlSectionHeading(line) {
+  const normalized = stripPathwayHeadingPrefix(line);
+  const matcherText = normalizeMatcherText(normalized);
+  if (
+    !matcherText ||
+    NOISY_SOURCE_LINE_PATTERN.test(normalized) ||
+    extractCourseCodesFromLine(normalized).length > 0 ||
+    PATHWAY_SECTION_BOUNDARY_PATTERN.test(normalized) ||
+    PATHWAY_LABEL_CUE_PATTERN.test(normalized) ||
+    BARE_PATHWAY_SECTION_SUBHEADING_PATTERN.test(normalized) ||
+    /[.;:]$/.test(normalized)
+  ) {
+    return false;
+  }
+
+  const words = matcherText.split(" ").filter(Boolean);
+  if (!words.length || words.length > 5) {
+    return false;
+  }
+
+  const visibleWords = normalized.split(/\s+/).filter(Boolean);
+  const meaningfulVisibleWords = visibleWords.filter((word) => !/^(?:and|&|of|the)$/i.test(word));
+  if (!meaningfulVisibleWords.length) {
+    return false;
+  }
+
+  return meaningfulVisibleWords.every((word) =>
+    /^[A-Z0-9&][A-Za-z0-9&/()'-]*$/.test(word)
+  );
+}
+
+function lineLooksLikeSiblingBarePathwaySection(entry, line) {
+  return (
+    entry?.pathwayId &&
+    isLikelyBarePathwayHtmlSectionHeading(line) &&
+    !lineMatchesSelectedPathwayIdentity(entry, line)
+  );
+}
+
+function isLikelySelectedPathwayHtmlSectionStartLine(entry, line) {
+  if (!entry?.pathwayId || !lineMatchesSelectedPathwayIdentity(entry, line)) {
+    return false;
+  }
+
+  const normalized = stripPathwayHeadingPrefix(line);
+  const normalizedMatcherText = normalizeMatcherText(normalized);
+  if (
+    !normalizedMatcherText ||
+    NOISY_SOURCE_LINE_PATTERN.test(normalized) ||
+    extractCourseCodesFromLine(normalized).length > 0 ||
+    PATHWAY_SECTION_BOUNDARY_PATTERN.test(normalized)
+  ) {
+    return false;
+  }
+
+  const wordCount = normalizedMatcherText.split(" ").length;
+  if (wordCount > 12) {
+    return false;
+  }
+
+  const startsWithEnumerator = /^[A-Z]\.\s+|^\(?\d+[\).]\s+/i.test(
+    normalizeTransferPlannerText(line)
+  );
+  const hasPathwayCue = PATHWAY_LABEL_CUE_PATTERN.test(normalized);
+  const isUppercaseHeading =
+    /[A-Z]/.test(normalized) && normalized === normalized.toUpperCase();
+
+  return Boolean(
+    hasPathwayCue ||
+      startsWithEnumerator ||
+      isUppercaseHeading ||
+      wordCount <= 6 ||
+      isLikelyBarePathwayHtmlSectionHeading(line)
+  );
+}
+
+function parsedMentionsSelectedPathwaySection(entry, parsed) {
+  return (parsed?.snapshotLines ?? []).some((line) =>
+    isLikelySelectedPathwayHtmlSectionStartLine(entry, line)
+  );
+}
+
+function findPathwayHtmlSectionRange(entry, lines) {
+  if (!entry?.pathwayId || !Array.isArray(lines) || lines.length < 4) {
+    return null;
+  }
+
+  const peerStartIndexes = lines
+    .map((line, index) => ({
+      index,
+      selected: isLikelySelectedPathwayHtmlSectionStartLine(entry, line),
+      peer:
+        isLikelyPeerPathwayHtmlSectionStartLine(line) ||
+        lineLooksLikeSiblingBarePathwaySection(entry, line),
+    }))
+    .filter((candidate) => candidate.selected || candidate.peer);
+  const selectedStartIndexes = peerStartIndexes
+    .filter((candidate) => candidate.selected)
+    .map((candidate) => candidate.index);
+  const hasSiblingPathwaySection = peerStartIndexes.some((candidate) => !candidate.selected);
+
+  if (!selectedStartIndexes.length || !hasSiblingPathwaySection) {
+    return null;
+  }
+
+  for (const selectedStartIndex of selectedStartIndexes) {
+    let endIndex = Math.min(lines.length - 1, selectedStartIndex + 220);
+    const forwardLimit = Math.min(lines.length - 1, selectedStartIndex + 220);
+
+    for (let index = selectedStartIndex + 1; index <= forwardLimit; index += 1) {
+      const line = normalizeWhitespace(lines[index]);
+      if (!line) {
+        continue;
+      }
+
+      const isSiblingPathwayStart =
+        (isLikelyPeerPathwayHtmlSectionStartLine(line) ||
+          lineLooksLikeSiblingBarePathwaySection(entry, line)) &&
+        !isLikelySelectedPathwayHtmlSectionStartLine(entry, line);
+      if (isSiblingPathwayStart) {
+        endIndex = Math.max(selectedStartIndex, index - 1);
+        break;
+      }
+
+      if (
+        index > selectedStartIndex + 2 &&
+        (PATHWAY_SECTION_BOUNDARY_PATTERN.test(line) ||
+          /^Back to Top\b/i.test(line) ||
+          (HTML_SECTION_BOUNDARY_LINE_PATTERN.test(line) &&
+            !isLikelySelectedPathwayHtmlSectionStartLine(entry, line)))
+      ) {
+        endIndex = Math.max(selectedStartIndex, index - 1);
+        break;
+      }
+    }
+
+    const sectionLines = lines.slice(selectedStartIndex, endIndex + 1);
+    if (!sectionLines.some((line) => extractCourseCodesFromLine(line).length > 0)) {
+      continue;
+    }
+
+    let startIndex = selectedStartIndex;
+    for (
+      let index = selectedStartIndex - 1;
+      index >= Math.max(0, selectedStartIndex - 3);
+      index -= 1
+    ) {
+      const line = lines[index];
+      if (
+        extractCourseCodesFromLine(line).length > 0 ||
+        isLikelyPeerPathwayHtmlSectionStartLine(line)
+      ) {
+        break;
+      }
+      if (isLikelyPathwayChoiceContextLine(line)) {
+        startIndex = index;
+        break;
+      }
+    }
+
+    return {
+      startIndex,
+      endIndex,
+    };
+  }
+
+  return null;
 }
 
 function buildPdfPageLineTexts(textContent) {
@@ -5789,6 +6304,11 @@ function scopeCatalogHtmlByAnchor(entry, html) {
 }
 
 function scopeHtmlLines(entry, title, headings, lines) {
+  const pathwaySectionRange = findPathwayHtmlSectionRange(entry, lines);
+  if (pathwaySectionRange) {
+    return lines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
+  }
+
   const titleTokens = getTitleScopeTokens(entry);
   if (!titleTokens.length || lines.length <= 20) {
     return lines;
@@ -5869,13 +6389,13 @@ function scopeHtmlLines(entry, title, headings, lines) {
 
   if (
     !ownerSectionRange &&
-    /\b(course #|course name|credits?|cr\.?|electives?|offered|prereq|prerequisite)\b/.test(
+    (/\b(course #|course name|credits?|cr\.?|requirements?|electives?|offered|prereq|prerequisite)\b/.test(
       scopedTableTailText
-    )
+    ) || SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(scopedTableTailText))
   ) {
     const continuationTail = lines.slice(
       initialEndIndex + 1,
-      Math.min(lines.length, initialEndIndex + 121)
+      Math.min(lines.length, initialEndIndex + 501)
     );
     let continuationCourseCount = 0;
     let quietLineCount = 0;
@@ -5887,9 +6407,10 @@ function scopeHtmlLines(entry, title, headings, lines) {
       }
 
       const lineCourseCodes = extractCourseCodesFromLine(line);
-      const hasTableSignal = /\b(course #|course name|credits?|cr\.?|electives?|offered|prereq|prerequisite)\b/i.test(
-        line
-      );
+      const hasTableSignal =
+        /\b(course #|course name|credits?|cr\.?|requirements?|electives?|offered|prereq|prerequisite)\b/i.test(
+          line
+        ) || SECTIONED_COURSE_LIST_REQUIREMENT_PATTERN.test(line);
 
       if (
         continuationCourseCount >= 4 &&
@@ -5915,7 +6436,7 @@ function scopeHtmlLines(entry, title, headings, lines) {
 
       quietLineCount += 1;
       endIndex = initialEndIndex + offset + 1;
-      if (quietLineCount >= 8) {
+      if (quietLineCount >= 16) {
         break;
       }
     }
@@ -6435,6 +6956,22 @@ function isDocxSourceUrl(url) {
   return /\.docx(?:$|[?#])/i.test(String(url ?? ""));
 }
 
+function isPdfSourceUrl(url) {
+  return /\.pdf(?:$|[?#])/i.test(String(url ?? ""));
+}
+
+function isLinkedDocumentSourceUrl(url) {
+  return isPdfSourceUrl(url) || isDocxSourceUrl(url);
+}
+
+function getLinkedDocumentParserType(url, label = "") {
+  if (/\b(?:worksheet|check\s*list|checklist)\b/i.test(label)) {
+    return "pdf-worksheet";
+  }
+
+  return "pdf-degree-sheet";
+}
+
 const DOCX_BLOCK_END_TAGS = new Set(["/w:p", "/w:tr", "/w:tbl", "/w:sectpr", "/w:tc"]);
 
 function extractDocxText(xml) {
@@ -6663,7 +7200,13 @@ function extractRequirementCueLines(lines) {
 
 function extractChooseStatements(lines) {
   return lines
-    .filter((line) => /\b(choose|select|one of the following|two of the following)\b/i.test(line))
+    .filter(
+      (line) =>
+        /\b(choose|select|one of the following|two of the following)\b/i.test(line) ||
+        /\b(?:two|three|four|five|six|seven|eight|nine|ten|\d+)\s+(?:formal\s+)?(?:concentrations?|tracks?|options?|routes?|pathways?)\b\s*:/i.test(
+          line
+        )
+    )
     .slice(0, 20);
 }
 
@@ -6732,7 +7275,9 @@ function lineHasNearbyCourseList(lines, index) {
 }
 
 function normalizeSectionPathwayCandidate(entry, rawLine, pathwayKind) {
-  const normalizedLine = normalizeTransferPlannerText(rawLine);
+  const normalizedLine = normalizeTransferPlannerText(rawLine)
+    .replace(/^[A-Z]\.\s+/i, "")
+    .replace(/^\d+\)\s+/i, "");
   if (!normalizedLine || pathwayLabelMentionsDifferentMajor(entry, normalizedLine)) {
     return "";
   }
@@ -6762,9 +7307,19 @@ function normalizeSectionPathwayCandidate(entry, rawLine, pathwayKind) {
 function getDeclaredPathwayChoice(lines) {
   for (const line of lines) {
     const normalized = normalizeTransferPlannerText(line);
-    const match = normalized.match(
-      /\b(?:choose|select)\s+one\s+of\s+(?:(\d+)|([a-z]+))\s+(concentration|track|option|route|pathway)s?\b/i
-    );
+    const match =
+      normalized.match(
+        /\b(?:choose|select)\s+one\s+of\s+(?:(\d+)|([a-z]+))\s+(?:formal\s+)?(concentration|track|option|route|pathway)s?\b/i
+      ) ??
+      normalized.match(
+        /\b(?:choose|select)\s+from\s+(?:(\d+)|([a-z]+))\s+(?:formal\s+)?(concentration|track|option|route|pathway)s?\b/i
+      ) ??
+      normalized.match(
+        /\b(?:have|has|offer|offers|include|includes)\s+(?:(\d+)|([a-z]+))\s+(?:formal\s+)?(concentration|track|option|route|pathway)s?\s+to\s+choose\s+from\b/i
+      ) ??
+      normalized.match(
+        /\b(?:(\d+)|([a-z]+))\s+(?:formal\s+)?(concentration|track|option|route|pathway)s?\b\s*:/i
+      );
     if (!match) {
       continue;
     }
@@ -6798,6 +7353,20 @@ function isDeclaredPathwaySectionContextLine(line, pathwayKind) {
         normalized
       )
     );
+  }
+
+  if (
+    new RegExp(
+      `\\b(?:choose|select)\\s+(?:one\\s+of\\s+)?(?:(?:\\d+|[a-z]+)\\s+)?(?:formal\\s+)?${pathwayKind}s?\\b`,
+      "i"
+    ).test(normalized) ||
+    new RegExp(
+      `\\b(?:\\d+|[a-z]+)\\s+(?:formal\\s+)?${pathwayKind}s?\\b.*\\bchoose\\s+from\\b`,
+      "i"
+    ).test(normalized) ||
+    new RegExp(`\\b${pathwayKind}s?\\b.*\\bchoose\\s+one\\b`, "i").test(normalized)
+  ) {
+    return true;
   }
 
   return new RegExp(
@@ -7034,7 +7603,12 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
   const fullLowerDivisionCount = getParsedLowerDivisionCourseCount(fullParsed);
   const fullSubjects = getParsedCourseSubjects(fullParsed);
   const scopedSubjects = getParsedCourseSubjects(scopedParsed);
+  const scopedMentionsSelectedPathwaySection = parsedMentionsSelectedPathwaySection(
+    entry,
+    scopedParsed
+  );
   const enrichedScopedParsed =
+    !scopedMentionsSelectedPathwaySection &&
     !isLegacyStudentCatalogSource(entry) &&
     ["html-degree-page", "html-curriculum-page"].includes(entry.parserType)
       ? buildFocusedScopedHtmlOverflowParsed(fullParsed, scopedParsed)
@@ -7050,6 +7624,13 @@ function selectPreferredHtmlParsed(entry, fullParsed, scopedParsed) {
   );
 
   if (fullAlignment < 2 && scopedAlignment >= 2) {
+    return enrichedScopedParsed;
+  }
+
+  if (
+    scopedMentionsSelectedPathwaySection &&
+    scopedCourseCount >= 1
+  ) {
     return enrichedScopedParsed;
   }
 
@@ -7130,44 +7711,58 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
           new Set([...visitedUrls, normalizedEntryUrl])
         )
       : [];
+  const preferredHtmlSource = linkedSupplementalSources.find(({ candidate, parsed }) =>
+    shouldPreferSupplementalHtmlSource(entry, htmlParsed, candidate, parsed)
+  );
+  if (preferredHtmlSource) {
+    return preferredHtmlSource.parsed;
+  }
   const mergedHtmlParsed = mergeParsedSources(
     htmlParsed,
     linkedSupplementalSources,
     entry.parserType
   );
-  const linkedPdfSources =
+  const linkedDocumentSources =
     allowLinkedRecovery && normalizedEntryUrl
-      ? await parseSupplementalPdfSources(
+      ? await parseSupplementalDocumentSources(
           entry,
           html,
           timeoutMs,
           new Set([...visitedUrls, normalizedEntryUrl])
         )
       : [];
-  const preferredPdfSource = linkedPdfSources.find(({ candidate, parsed }) =>
-    shouldPreferSupplementalPdfSource(entry, mergedHtmlParsed, candidate, parsed)
+  const preferredDocumentSource = linkedDocumentSources.find(({ candidate, parsed }) =>
+    shouldPreferSupplementalDocumentSource(entry, mergedHtmlParsed, candidate, parsed)
   );
 
-  if (preferredPdfSource) {
-    return preferredPdfSource.parsed;
+  if (preferredDocumentSource) {
+    return preferredDocumentSource.parsed;
   }
 
-  const shouldFollowLinkedPdf =
+  const shouldFollowLinkedDocument =
     mergedHtmlParsed.courseCodes.length === 0 &&
-    (/\b(download|checklist|worksheet|type:\s*pdf)\b/i.test((htmlParsed.snapshotLines ?? []).join(" ")) ||
+    (/\b(download|checklist|worksheet|type:\s*(?:pdf|docx?))\b/i.test((htmlParsed.snapshotLines ?? []).join(" ")) ||
       /\/file\//i.test(entry.url));
 
-  if (!shouldFollowLinkedPdf) {
+  if (!shouldFollowLinkedDocument) {
     return mergedHtmlParsed;
   }
 
-  const pdfLinks = uniqueSorted(
-    [...String(html ?? "").matchAll(PDF_LINK_PATTERN)]
-      .map((match) => match[1] ?? match[2] ?? null)
-      .filter(Boolean)
-      .map((href) => {
+  const documentLinks = uniqueSorted(
+    [...String(html ?? "").matchAll(HTML_LINK_PATTERN)]
+      .map((match) => ({
+        href: normalizeWhitespace(match[1] ?? match[2] ?? ""),
+        label: stripHtml(match[3]),
+      }))
+      .filter(({ href }) => href && isLinkedDocumentSourceUrl(href))
+      .map(({ href, label }) => {
         try {
-          return new URL(href, entry.url).href;
+          const url = new URL(href, entry.url).href;
+          return {
+            url,
+            label,
+            parserType: getLinkedDocumentParserType(url, label),
+          };
         } catch {
           return null;
         }
@@ -7175,41 +7770,38 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
       .filter(Boolean)
   );
 
-  for (const pdfUrl of pdfLinks.slice(0, 2)) {
+  for (const documentLink of documentLinks.slice(0, 2)) {
     try {
-      const pdfParsed = await parsePdfSource(
-        { ...entry, url: pdfUrl, parserType: "pdf-degree-sheet" },
-        timeoutMs
-      );
+      const documentParsed = await parseLinkedDocumentSource(entry, documentLink, timeoutMs);
       const htmlScore =
         mergedHtmlParsed.courseCodes.length * 100 +
         mergedHtmlParsed.requirementCueLines.length * 10 +
         mergedHtmlParsed.chooseStatements.length * 5;
-      const pdfScore =
-        pdfParsed.courseCodes.length * 100 +
-        pdfParsed.requirementCueLines.length * 10 +
-        pdfParsed.chooseStatements.length * 5;
+      const documentScore =
+        documentParsed.courseCodes.length * 100 +
+        documentParsed.requirementCueLines.length * 10 +
+        documentParsed.chooseStatements.length * 5;
 
-      if (pdfScore > htmlScore) {
+      if (documentScore > htmlScore) {
         return {
-          ...pdfParsed,
-          headings: uniqueSorted([...mergedHtmlParsed.headings, ...pdfParsed.headings]).slice(0, 20),
+          ...documentParsed,
+          headings: uniqueSorted([...mergedHtmlParsed.headings, ...documentParsed.headings]).slice(0, 20),
           requirementCueLines: uniqueSorted([
             ...mergedHtmlParsed.requirementCueLines,
-            ...pdfParsed.requirementCueLines,
+            ...documentParsed.requirementCueLines,
           ]).slice(0, 30),
           chooseStatements: uniqueSorted([
             ...mergedHtmlParsed.chooseStatements,
-            ...pdfParsed.chooseStatements,
+            ...documentParsed.chooseStatements,
           ]).slice(0, 20),
           pathwayLabels: uniqueSorted([
             ...mergedHtmlParsed.pathwayLabels,
-            ...pdfParsed.pathwayLabels,
+            ...documentParsed.pathwayLabels,
           ]).slice(0, 20),
         };
       }
     } catch {
-      // Keep the primary HTML parse result if linked PDF recovery fails.
+      // Keep the primary HTML parse result if linked document recovery fails.
     }
   }
 
@@ -7235,10 +7827,14 @@ async function parseDocxSource(entry, timeoutMs) {
     pathwayLabels,
     courseCodes,
     snapshotLines: lines.slice(0, 1200),
-    parseConfidence: buildParseConfidence(courseCodes, requirementCueLines, "pdf-degree-sheet"),
+    parseConfidence: buildParseConfidence(
+      courseCodes,
+      requirementCueLines,
+      entry.parserType ?? "pdf-degree-sheet"
+    ),
     resolvedSourceUrl: entry.url,
     resolvedSourceLabel: entry.label,
-    resolvedParserType: "pdf-degree-sheet",
+    resolvedParserType: entry.parserType ?? "pdf-degree-sheet",
     sourceRole: classifyRequirementSourceRole(entry),
   };
 }
@@ -7446,7 +8042,7 @@ function getSameProgramPathPrefix(url) {
     }
 
     const pathname = parsedUrl.pathname.replace(/\/+$/, "");
-    if (/(?:^|\/)(?:admissions?|curriculum|degree-requirements?|major-requirements?|requirements?|prerequisites?|checklist|worksheet)$/i.test(pathname)) {
+    if (/(?:^|\/)(?:admissions?|overview|curriculum|degree-requirements?|major-requirements?|requirements?|prerequisites?|checklist|worksheet|tracks?|options?|routes?|pathways?|concentrations?|specializations?)$/i.test(pathname)) {
       return pathname.replace(/\/[^/]+$/, "");
     }
 
@@ -7477,6 +8073,33 @@ function isSameProgramRequirementLink(baseUrl, resolvedUrl, linkText, highSignal
     return (
       resolvedPath.startsWith(`${basePrefix}/`) &&
       HIGH_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText)
+    );
+  } catch {
+    return false;
+  }
+}
+
+function isSameProgramSpecializationHubLink(baseUrl, resolvedUrl, linkText) {
+  if (!SPECIALIZATION_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText)) {
+    return false;
+  }
+
+  try {
+    const base = new URL(baseUrl);
+    const resolved = new URL(resolvedUrl);
+    if (base.origin !== resolved.origin) {
+      return false;
+    }
+
+    const basePrefix = getSameProgramPathPrefix(base.href).replace(/\/+$/, "");
+    const resolvedPath = resolved.pathname.replace(/\/+$/, "");
+    if (!basePrefix || basePrefix === "/" || resolvedPath === basePrefix) {
+      return false;
+    }
+
+    return (
+      PATHWAY_HUB_SOURCE_CUE_PATTERN.test(base.pathname) &&
+      resolvedPath.startsWith(`${basePrefix}/`)
     );
   } catch {
     return false;
@@ -7584,12 +8207,18 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
         highSignal
       ) ||
       sameOriginHighSignalRequirementDocumentLink;
+    const sameProgramSpecializationLink = isSameProgramSpecializationHubLink(
+      baseUrl,
+      resolvedUrl,
+      linkText
+    );
 
     if (
       titleTokens.length > 0 &&
       !exactTitleMatch &&
       titleTokenOverlapCount < 1 &&
       !sameProgramRequirementLink &&
+      !sameProgramSpecializationLink &&
       !sameOriginHighSignalRequirementDocumentLink
     ) {
       continue;
@@ -7602,7 +8231,7 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
     const degreeProgramSignal = LOW_SIGNAL_SUPPLEMENTAL_HTML_LINK_PATTERN.test(linkText);
     const type = highSignal
       ? "general"
-      : specializationSignal
+      : specializationSignal || sameProgramSpecializationLink
         ? "specialized"
         : degreeProgramSignal
           ? "general"
@@ -7638,6 +8267,9 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
     if (sameProgramRequirementLink) {
       score += 12;
     }
+    if (sameProgramSpecializationLink) {
+      score += 12;
+    }
     if (sameOriginHighSignalRequirementDocumentLink) {
       score += 12;
     }
@@ -7657,6 +8289,7 @@ function extractSupplementalHtmlLinkCandidates(entry, html) {
         score,
         type,
         sameProgramRequirementLink,
+        sameProgramSpecializationLink,
       });
     }
   }
@@ -7679,7 +8312,7 @@ function isHistoricalSupplementalPdfLabel(label) {
   );
 }
 
-function extractSupplementalPdfLinkCandidates(entry, html) {
+function extractSupplementalDocumentLinkCandidates(entry, html) {
   const baseUrl = normalizeUrlForComparison(entry.url);
   if (!baseUrl) {
     return [];
@@ -7697,7 +8330,12 @@ function extractSupplementalPdfLinkCandidates(entry, html) {
     const href = normalizeWhitespace(match[1] ?? match[2] ?? "");
     const label = stripHtml(match[3]);
 
-    if (!href || !label || !/\.pdf(?:$|[?#])/i.test(href) || /^(?:#|javascript:|mailto:|tel:)/i.test(href)) {
+    if (
+      !href ||
+      !label ||
+      !isLinkedDocumentSourceUrl(href) ||
+      /^(?:#|javascript:|mailto:|tel:)/i.test(href)
+    ) {
       continue;
     }
 
@@ -7718,16 +8356,27 @@ function extractSupplementalPdfLinkCandidates(entry, html) {
     const titleTokenOverlapCount = titleTokens.filter((token) =>
       normalizedLinkText.includes(token)
     ).length;
+    const hasDocumentRequirementSignal =
+      /\b(requirements?|degree|curriculum|worksheet|checklist|plan of study|program of study|study plan|sample plan)\b/i.test(
+        `${label} ${href}`
+      );
+    const titleAcronymMatches = hasDocumentRequirementSignal
+      ? getOwnerProgramAcronymMatches(entry, normalizedLinkText)
+      : [];
+    const titleAcronymMatch = titleAcronymMatches.length > 0;
     const sameProgramRequirementLink = isSameProgramRequirementLink(
       baseUrl,
       resolvedUrl,
       `${label} ${resolvedUrl}`,
-      /\b(requirements?|degree|curriculum|worksheet|checklist|plan of study|program of study|study plan|sample plan)\b/i.test(
-        `${label} ${href}`
-      )
+      hasDocumentRequirementSignal
     );
 
-    if (!exactTitleMatch && titleTokenOverlapCount < 2 && !sameProgramRequirementLink) {
+    if (
+      !exactTitleMatch &&
+      !titleAcronymMatch &&
+      titleTokenOverlapCount < 2 &&
+      !sameProgramRequirementLink
+    ) {
       continue;
     }
 
@@ -7736,8 +8385,11 @@ function extractSupplementalPdfLinkCandidates(entry, html) {
     if (exactTitleMatch) {
       score += 30;
     }
+    if (titleAcronymMatch) {
+      score += titleAcronymMatches.some((token) => token.length >= 4) ? 26 : 20;
+    }
     score += titleTokenOverlapCount * 8;
-    if (/\b(requirements?|degree|curriculum|worksheet|checklist)\b/i.test(`${label} ${href}`)) {
+    if (hasDocumentRequirementSignal) {
       score += 12;
     }
     if (/\/wp-content\/uploads\//i.test(resolvedUrl)) {
@@ -7754,13 +8406,16 @@ function extractSupplementalPdfLinkCandidates(entry, html) {
     if (!existing || score > existing.score || (score === existing.score && linkIndex < existing.linkIndex)) {
       candidatesByUrl.set(resolvedUrl, {
         url: resolvedUrl,
-          label,
-          score,
-          exactTitleMatch,
-          sameProgramRequirementLink,
-          historical,
-          linkIndex,
-        });
+        label,
+        parserType: getLinkedDocumentParserType(resolvedUrl, label),
+        score,
+        exactTitleMatch,
+        titleAcronymMatch,
+        titleAcronymMatches,
+        sameProgramRequirementLink,
+        historical,
+        linkIndex,
+      });
     }
   }
 
@@ -7832,6 +8487,7 @@ async function parseSupplementalHtmlSources(entry, html, timeoutMs, visitedUrls)
 
       const supplementalSource = {
         kind: candidate.type,
+        candidate,
         entry: {
           label: candidate.label,
           url: candidate.url,
@@ -7895,55 +8551,260 @@ function getParsedDegreeSheetSignalScore(parsed) {
   return score;
 }
 
-function shouldPreferSupplementalPdfSource(entry, baseParsed, candidate, pdfParsed) {
-  if (!candidate?.exactTitleMatch || candidate?.historical || !hasMeaningfulParsedContent(pdfParsed)) {
-    return false;
+function isPathwayOwnerEntry(entry) {
+  return Boolean(entry?.pathwayId) || /:pathway:/.test(String(entry?.ownerId ?? ""));
+}
+
+function getPathwayIdentityTokens(entry) {
+  if (!isPathwayOwnerEntry(entry)) {
+    return [];
   }
 
-  const pdfEntry = {
-    ...entry,
-    url: candidate.url,
-    label: candidate.label,
-    parserType: "pdf-degree-sheet",
+  const genericTokens = new Set([
+    "base",
+    "concentration",
+    "default",
+    "major",
+    "option",
+    "pathway",
+    "route",
+    "specialization",
+    "standard",
+    "track",
+  ]);
+  const baseTitleTokens = new Set(normalizeMatcherText(getPrimaryMajorTitle(entry)).split(" "));
+  const ownerDescriptor = String(entry?.ownerTitle ?? "")
+    .split(/\s+[-–—:]\s+/)
+    .slice(1)
+    .join(" ");
+  const rawText = [
+    entry?.pathwayId,
+    ownerDescriptor,
+    entry?.sourceLabel,
+    entry?.label,
+  ]
+    .filter(Boolean)
+    .join(" ");
+  const acronymTokens = [...rawText.matchAll(/\b[A-Z0-9&]{2,8}\b/g)].map((match) =>
+    match[0].toLowerCase()
+  );
+  const wordTokens = normalizeMatcherText(rawText)
+    .split(" ")
+    .filter(
+      (token) =>
+        token.length >= 3 &&
+        !genericTokens.has(token) &&
+        !baseTitleTokens.has(token)
+    );
+
+  return uniqueInOrder([...acronymTokens, ...wordTokens]);
+}
+
+function getSupplementalHtmlPathwayIdentityScore(entry, candidate, parsed) {
+  const pathwayTokens = getPathwayIdentityTokens(entry);
+  if (!pathwayTokens.length) {
+    return {
+      score: 0,
+      pathwayTokens,
+      matchedTokens: [],
+    };
+  }
+
+  const candidateText = normalizeMatcherText(
+    [
+      candidate?.label,
+      candidate?.url,
+      parsed?.title,
+      ...(parsed?.headings ?? []).slice(0, 8),
+      ...(parsed?.pathwayLabels ?? []).slice(0, 8),
+      ...(parsed?.snapshotLines ?? []).slice(0, 24),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+  const matchedTokens = pathwayTokens.filter((token) => candidateText.includes(token));
+  const compactPathwayId = normalizeMatcherText(entry?.pathwayId ?? "").replace(/\s+/g, "");
+  const compactCandidateText = candidateText.replace(/\s+/g, "");
+  let score = matchedTokens.length * 6;
+
+  if (compactPathwayId && compactCandidateText.includes(compactPathwayId)) {
+    score += 10;
+  }
+  if (matchedTokens.some((token) => token.length <= 4)) {
+    score += 4;
+  }
+  if (
+    matchedTokens.length >= Math.min(2, pathwayTokens.length) &&
+    /\b(?:option|track|route|pathway|concentration|specialization|requirements?|curriculum)\b/.test(
+      candidateText
+    )
+  ) {
+    score += 6;
+  }
+
+  return {
+    score,
+    pathwayTokens,
+    matchedTokens,
   };
-  const pdfAlignment = getParsedOwnerAlignmentScore(pdfEntry, pdfParsed);
-  if (pdfAlignment < 2) {
+}
+
+function hasFocusedPathwayRequirementSignal(entry, candidate, parsed) {
+  const sampledText = normalizeMatcherText(
+    [
+      candidate?.label,
+      parsed?.title,
+      ...(parsed?.headings ?? []).slice(0, 8),
+      ...(parsed?.requirementCueLines ?? []).slice(0, 12),
+      ...(parsed?.snapshotLines ?? []).slice(0, 32),
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+  if (!sampledText) {
     return false;
   }
-
-  const pdfCourseCount = pdfParsed.courseCodes?.length ?? 0;
-  if (pdfCourseCount < 4) {
-    return false;
-  }
-
-  const pdfSignalScore = getParsedDegreeSheetSignalScore(pdfParsed);
-  const baseSignalScore = getParsedDegreeSheetSignalScore(baseParsed);
-  const pdfSourceRole = classifyRequirementSourceRole(pdfEntry);
-  const baseCourseCount = baseParsed.courseCodes?.length ?? 0;
 
   if (
-    candidate.exactTitleMatch &&
-    ["pathway-degree-sheet", "primary-degree-requirements"].includes(pdfSourceRole) &&
-    pdfSignalScore >= 4 &&
-    baseCourseCount >= pdfCourseCount * 2
+    parserRules.detectOptionReplacement({
+      owner: entry,
+      snapshotLines: parsed?.snapshotLines ?? [],
+      sourceUrl: candidate?.url ?? entry?.url ?? null,
+    })
   ) {
     return true;
   }
 
-  if (pdfSignalScore >= Math.max(4, baseSignalScore + 2)) {
+  return (
+    /\b(?:degree|major|program|curriculum|requirements?)\b/.test(sampledText) &&
+    /\b(?:option|track|route|pathway|concentration|specialization|core|electives?)\b/.test(
+      sampledText
+    ) &&
+    ((parsed?.courseCodes ?? []).length >= 3 || (parsed?.requirementCueLines ?? []).length >= 2)
+  );
+}
+
+function shouldPreferSupplementalHtmlSource(entry, baseParsed, candidate, htmlParsed) {
+  if (!isPathwayOwnerEntry(entry) || !candidate || !hasMeaningfulParsedContent(htmlParsed)) {
+    return false;
+  }
+
+  const candidateEntry = {
+    ...entry,
+    role: undefined,
+    url: candidate.url,
+    label: candidate.label,
+  };
+  const sourceRole = classifyRequirementSourceRole(candidateEntry);
+  if (!canRequirementSourceRoleCreateSchedulableRows(sourceRole)) {
+    return false;
+  }
+  if (
+    GRADUATE_SUPPLEMENTAL_SOURCE_PATTERN.test(`${candidate.label ?? ""} ${candidate.url ?? ""}`) &&
+    !/\bundergrad(?:uate)?\b/i.test(`${candidate.label ?? ""} ${candidate.url ?? ""}`)
+  ) {
+    return false;
+  }
+
+  const courseCount = htmlParsed.courseCodes?.length ?? 0;
+  if (courseCount < 3) {
+    return false;
+  }
+
+  const identity = getSupplementalHtmlPathwayIdentityScore(entry, candidate, htmlParsed);
+  if (identity.score < 12 || identity.matchedTokens.length < 1) {
+    return false;
+  }
+
+  const parsedAlignmentScore = getParsedOwnerAlignmentScore(candidateEntry, htmlParsed);
+  if (parsedAlignmentScore < 2) {
+    return false;
+  }
+  if (!hasFocusedPathwayRequirementSignal(candidateEntry, candidate, htmlParsed)) {
+    return false;
+  }
+
+  const baseCourseCount = baseParsed.courseCodes?.length ?? 0;
+  if (baseCourseCount === 0 || candidate.type === "specialized" || candidate.sameProgramRequirementLink) {
+    return true;
+  }
+  if (courseCount <= Math.max(80, Math.floor(baseCourseCount * 0.8))) {
     return true;
   }
 
-  return pdfCourseCount >= Math.max(6, Math.floor(baseCourseCount * 0.35));
+  const childSignalScore = getParsedDegreeSheetSignalScore(htmlParsed);
+  const baseSignalScore = getParsedDegreeSheetSignalScore(baseParsed);
+  return childSignalScore >= baseSignalScore + 2 && courseCount <= Math.max(120, baseCourseCount);
 }
 
-async function parseSupplementalPdfSources(entry, html, timeoutMs, visitedUrls) {
-  const candidates = extractSupplementalPdfLinkCandidates(entry, html);
+function shouldPreferSupplementalDocumentSource(entry, baseParsed, candidate, documentParsed) {
+  const hasStrongDocumentIdentity = Boolean(
+    candidate?.exactTitleMatch || candidate?.titleAcronymMatch || candidate?.sameProgramRequirementLink
+  );
+  if (!hasStrongDocumentIdentity || candidate?.historical || !hasMeaningfulParsedContent(documentParsed)) {
+    return false;
+  }
+
+  const documentEntry = {
+    ...entry,
+    url: candidate.url,
+    label: candidate.label,
+    parserType: candidate.parserType ?? getLinkedDocumentParserType(candidate.url, candidate.label),
+  };
+  const documentAlignment = getParsedOwnerAlignmentScore(documentEntry, documentParsed);
+  if (documentAlignment < 2) {
+    return false;
+  }
+
+  const documentCourseCount = documentParsed.courseCodes?.length ?? 0;
+  if (documentCourseCount < 4) {
+    return false;
+  }
+
+  const documentSignalScore = getParsedDegreeSheetSignalScore(documentParsed);
+  const baseSignalScore = getParsedDegreeSheetSignalScore(baseParsed);
+  const documentSourceRole = classifyRequirementSourceRole(documentEntry);
+  const baseCourseCount = baseParsed.courseCodes?.length ?? 0;
+
+  if (
+    hasStrongDocumentIdentity &&
+    ["pathway-degree-sheet", "primary-degree-requirements"].includes(documentSourceRole) &&
+    documentSignalScore >= 4 &&
+    baseCourseCount >= documentCourseCount * 2
+  ) {
+    return true;
+  }
+
+  if (documentSignalScore >= Math.max(4, baseSignalScore + 2)) {
+    return true;
+  }
+
+  return documentCourseCount >= Math.max(6, Math.floor(baseCourseCount * 0.35));
+}
+
+async function parseLinkedDocumentSource(entry, candidate, timeoutMs) {
+  const candidateEntry = {
+    ...entry,
+    role: undefined,
+    url: candidate.url,
+    label: candidate.label,
+    parserType: candidate.parserType ?? getLinkedDocumentParserType(candidate.url, candidate.label),
+  };
+
+  if (isDocxSourceUrl(candidateEntry.url)) {
+    return parseDocxSource(candidateEntry, timeoutMs);
+  }
+
+  return parsePdfSource(candidateEntry, timeoutMs);
+}
+
+async function parseSupplementalDocumentSources(entry, html, timeoutMs, visitedUrls) {
+  const candidates = extractSupplementalDocumentLinkCandidates(entry, html);
   if (!candidates.length) {
     return [];
   }
 
-  const parsedPdfSources = [];
+  const parsedDocumentSources = [];
 
   for (const candidate of candidates) {
     if (visitedUrls.has(candidate.url)) {
@@ -7951,16 +8812,7 @@ async function parseSupplementalPdfSources(entry, html, timeoutMs, visitedUrls) 
     }
 
     try {
-      const parsed = await parsePdfSource(
-        {
-          ...entry,
-          role: undefined,
-          url: candidate.url,
-          label: candidate.label,
-          parserType: "pdf-degree-sheet",
-        },
-        timeoutMs
-      );
+      const parsed = await parseLinkedDocumentSource(entry, candidate, timeoutMs);
 
       if (!hasMeaningfulParsedContent(parsed)) {
         continue;
@@ -7971,7 +8823,7 @@ async function parseSupplementalPdfSources(entry, html, timeoutMs, visitedUrls) 
           ...entry,
           url: candidate.url,
           label: candidate.label,
-          parserType: "pdf-degree-sheet",
+          parserType: candidate.parserType ?? getLinkedDocumentParserType(candidate.url, candidate.label),
         },
         parsed
       );
@@ -7979,16 +8831,16 @@ async function parseSupplementalPdfSources(entry, html, timeoutMs, visitedUrls) 
         continue;
       }
 
-      parsedPdfSources.push({
+      parsedDocumentSources.push({
         candidate,
         parsed,
       });
     } catch {
-      // Keep the main page parse if a linked official PDF fails.
+      // Keep the main page parse if a linked official document fails.
     }
   }
 
-  return parsedPdfSources;
+  return parsedDocumentSources;
 }
 
 function getParsedOwnerAlignmentScore(entry, parsed) {
@@ -8251,13 +9103,17 @@ function shouldTriggerParserRecovery(owner) {
   return getParserRecoveryTriggerCodes(owner).length > 0;
 }
 
-function getParserRecoveryCandidateParserType(entry, candidateUrl) {
-  if (/\.pdf(?:$|[?#])/i.test(candidateUrl)) {
-    return "pdf-degree-sheet";
+function getParserRecoveryCandidateParserType(entry, candidateUrl, candidateLabel = "") {
+  if (isLinkedDocumentSourceUrl(candidateUrl)) {
+    return getLinkedDocumentParserType(candidateUrl, candidateLabel);
   }
 
-  if (isDocxSourceUrl(candidateUrl)) {
-    return "generic-html";
+  if (/\/curriculum(?:[/?#]|$)|\bcurriculum\b/i.test(candidateUrl)) {
+    return "html-curriculum-page";
+  }
+
+  if (/\/(?:degree|major)-requirements?(?:[/?#]|$)|\brequirements?\b/i.test(candidateUrl)) {
+    return "html-degree-page";
   }
 
   if (["html-degree-page", "html-curriculum-page", "html-overview-page", "generic-html"].includes(entry.parserType)) {
@@ -8268,7 +9124,7 @@ function getParserRecoveryCandidateParserType(entry, candidateUrl) {
 }
 
 function isParserRecoveryNoisyLink(label, url) {
-  return /\b(apply|canvas|calendar|directory|map|myuw|library|tools|about|news|faculty|staff|contact|privacy|accessibility|terms|alumni|events|parking|transportation|research|housing|student life|jobs|visit|give|get involved|minor|certificate|graduate|scholarships?|course evaluations?|study abroad)\b/i.test(
+  return /\b(apply|canvas|calendar|directory|map|myuw|library|tools|about|news|faculty|staff|contact|privacy|accessibility|terms|alumni|events|parking|transportation|research|housing|student life|jobs|visit|give|get involved|minors?|certificates?|graduate|scholarships?|course evaluations?|study abroad)\b/i.test(
     `${label ?? ""} ${url ?? ""}`
   );
 }
@@ -8301,6 +9157,42 @@ function isSameOriginChildOrSiblingPage(baseUrl, resolvedUrl) {
   }
 }
 
+function isDifferentProgramSiblingPage(baseUrl, resolvedUrl) {
+  try {
+    const base = new URL(baseUrl);
+    const resolved = new URL(resolvedUrl);
+    if (base.origin !== resolved.origin) {
+      return false;
+    }
+
+    const baseSegments = base.pathname.split("/").filter(Boolean);
+    const resolvedSegments = resolved.pathname.split("/").filter(Boolean);
+    const sharedPrefixLength = baseSegments.findIndex(
+      (segment, index) => resolvedSegments[index] !== segment
+    );
+    const divergenceIndex =
+      sharedPrefixLength === -1
+        ? Math.min(baseSegments.length, resolvedSegments.length)
+        : sharedPrefixLength;
+    const parentSegment = baseSegments[divergenceIndex - 1];
+    const baseDivergentSegment = baseSegments[divergenceIndex] ?? "";
+    const resolvedDivergentSegment = resolvedSegments[divergenceIndex] ?? "";
+    const divergentCredentialPrograms =
+      parentSegment === "undergraduate" &&
+      /^(?:bachelor|bachelors?|ba|bs|bba|major|minor)[-_]/i.test(baseDivergentSegment) &&
+      /^(?:bachelor|bachelors?|ba|bs|bba|major|minor)[-_]/i.test(resolvedDivergentSegment);
+
+    return (
+      divergenceIndex > 0 &&
+      (["majors", "programs", "degrees"].includes(parentSegment) || divergentCredentialPrograms) &&
+      Boolean(baseSegments[divergenceIndex]) &&
+      Boolean(resolvedSegments[divergenceIndex])
+    );
+  } catch {
+    return false;
+  }
+}
+
 function getParserRecoveryLinkSignals(entry, resolvedUrl, label) {
   const linkText = `${label ?? ""} ${resolvedUrl ?? ""}`;
   const normalizedLinkText = normalizeMatcherText(linkText);
@@ -8327,6 +9219,11 @@ function getParserRecoveryLinkSignals(entry, resolvedUrl, label) {
     linkText,
     highSignal || documentSignal
   );
+  const sameProgramSpecializationLink = isSameProgramSpecializationHubLink(
+    entry.url,
+    resolvedUrl,
+    linkText
+  );
   const sameOriginChildOrSiblingPage = isSameOriginChildOrSiblingPage(entry.url, resolvedUrl);
 
   return {
@@ -8337,6 +9234,7 @@ function getParserRecoveryLinkSignals(entry, resolvedUrl, label) {
     documentSignal,
     supportSignal,
     sameProgramRequirementLink,
+    sameProgramSpecializationLink,
     sameOriginChildOrSiblingPage,
   };
 }
@@ -8434,6 +9332,9 @@ function scoreParserRecoveryLinkCandidate(entry, resolvedUrl, label) {
   if (signals.sameProgramRequirementLink) {
     score += 16;
   }
+  if (signals.sameProgramSpecializationLink) {
+    score += 14;
+  }
   if (signals.sameOriginChildOrSiblingPage) {
     score += 8;
   }
@@ -8508,14 +9409,34 @@ function extractParserRecoveryLinkCandidates(entry, html) {
     if (parserRecoveryCandidateConflictsWithPathway(entry, label, resolvedUrl)) {
       continue;
     }
+    if (
+      isDifferentProgramSiblingPage(entry.url, resolvedUrl) &&
+      !signals.sameProgramRequirementLink &&
+      !signals.sameProgramSpecializationLink &&
+      !signals.exactTitleMatch
+    ) {
+      continue;
+    }
+    if (
+      !entry.pathwayId &&
+      signals.pathwaySignal &&
+      !signals.exactTitleMatch &&
+      !PRIMARY_REQUIREMENT_CUE_PATTERN.test(`${label ?? ""} ${resolvedUrl ?? ""}`)
+    ) {
+      continue;
+    }
     const hasOwnerIdentitySignal =
       signals.exactTitleMatch ||
       signals.titleTokenOverlapCount > 0 ||
       signals.sameProgramRequirementLink ||
-      signals.sameOriginChildOrSiblingPage;
+      signals.sameProgramSpecializationLink ||
+      (signals.sameOriginChildOrSiblingPage && signals.titleTokenOverlapCount > 0);
     const hasRelevantSignal =
       hasOwnerIdentitySignal ||
-      signals.supportSignal ||
+      (signals.supportSignal &&
+        (signals.sameProgramRequirementLink ||
+          signals.exactTitleMatch ||
+          signals.titleTokenOverlapCount > 0)) ||
       (signals.documentSignal && hasOwnerIdentitySignal);
 
     if (!hasRelevantSignal || score < 12) {
@@ -8527,7 +9448,7 @@ function extractParserRecoveryLinkCandidates(entry, html) {
       role: undefined,
       url: resolvedUrl,
       label,
-      parserType: getParserRecoveryCandidateParserType(entry, resolvedUrl),
+      parserType: getParserRecoveryCandidateParserType(entry, resolvedUrl, label),
     };
     const strategy = buildParserRecoveryCandidateStrategy(candidateEntry, signals);
     const sourceRole = classifyRequirementSourceRole(candidateEntry);
@@ -9406,6 +10327,10 @@ function getSupportListContext(input) {
 
 function inferApprovedListKeyFromSupportMetadata(input) {
   const context = getSupportListContext(input);
+  // Temporary source-rule bridge: CE/CS approved-list support pages still need
+  // stable list keys before runtime generation. Remove these plan checks once
+  // support-list extraction derives approvedListKey from official owner/link
+  // identity plus the source section heading instead of parser-side program ids.
   if (
     (input.planId === "uw-seattle-computer-engineering" ||
       /\bcomputer engineering\b/.test(context)) &&
@@ -9545,7 +10470,16 @@ function buildManifestParseSuccess(
           label: effectiveSourceLabel,
           parserType: effectiveParserType,
         };
-  const sourceRole = parsed.sourceRole ?? classifyRequirementSourceRole(effectiveEntry);
+  const metadataSourceRole = classifyRequirementSourceRole(effectiveEntry);
+  const parsedSourceRole = parsed.sourceRole ?? null;
+  const sourceRole = shouldUseTacomaMetadataPrimaryRole(
+    effectiveEntry,
+    parsedSourceRole,
+    metadataSourceRole,
+    parsed
+  )
+    ? metadataSourceRole
+    : parsedSourceRole ?? metadataSourceRole;
   const sourceRoleStatus = getRequirementSourceRoleStatus(sourceRole);
   const sourceScope = buildRequirementSourceScope(sourceRole);
   const allInitialParsedCourseCodes = uniqueSorted(
@@ -9633,13 +10567,10 @@ function buildManifestParseSuccess(
     };
   });
   const parsedRequirementCourses = sourceScope.canCreateRequiredRows
-    ? buildKnownMaterialsScienceRequirementCourses(
-        baseResult,
-        parsedRequirementGroups
-      )
+    ? buildSourceDerivedRequirementCourses(parsedRequirementGroups)
     : [];
   const parsedRequirementReplacements = sourceScope.canCreateRequiredRows
-    ? buildKnownMaterialsScienceRequirementReplacements(
+    ? buildSourceDerivedRequirementReplacements(
         { ...baseResult, sourceUrl: effectiveSourceUrl },
         parsed.snapshotLines ?? []
       )
@@ -10036,7 +10967,11 @@ function shouldParseRequirementSourceEntry(entry) {
     return true;
   }
 
-  return PARSEABLE_SUPPORT_SOURCE_ROLES.has(classifyRequirementSourceRole(entry));
+  const sourceRole = classifyRequirementSourceRole(entry);
+  return (
+    getRequirementSourceRoleStatus(sourceRole) === "primary" ||
+    PARSEABLE_SUPPORT_SOURCE_ROLES.has(sourceRole)
+  );
 }
 
 function getParseablePrimaryEntries(targetPlanId = null) {
@@ -10059,6 +10994,10 @@ function countBy(values, getKey) {
   }, {});
 }
 
+// Temporary QA fixture: this audit enumerates the official MSE option/elective
+// courses so source-derived section parsing cannot silently drop them. Remove it
+// once source-rule coverage can compare parsed section headings against the
+// official table rows directly, without a per-program expected-course list.
 const UW_MSE_EXPECTED_OPTION_COURSES = [
   "AA 260",
   "BIOEN 215",
@@ -10179,8 +11118,89 @@ function buildUwMseCourseExtractionAuditForOwner(owner) {
   };
 }
 
+function getParsedOwnerDedupeKey(owner) {
+  const ownerId = String(owner?.ownerId ?? "").trim();
+  const sourceUrl = normalizeUrlForComparison(owner?.sourceUrl);
+  return ownerId && sourceUrl ? `${ownerId} ${sourceUrl}` : null;
+}
+
+function getParsedOwnerDedupeScore(owner) {
+  const sourceUrl = normalizeUrlForComparison(owner?.sourceUrl);
+  const primarySourceUrl = normalizeUrlForComparison(owner?.primarySourceUrl);
+  const sourceRoleStatus =
+    owner?.sourceRoleStatus ?? getRequirementSourceRoleStatus(owner?.sourceRole ?? "ignored");
+  const warningCount = (owner?.qualitySignals ?? []).filter(
+    (signal) => signal.severity === "warning"
+  ).length;
+
+  let score = 0;
+  if (owner?.ok) {
+    score += 1000;
+  }
+  if (sourceUrl && primarySourceUrl && sourceUrl === primarySourceUrl) {
+    score += 250;
+  }
+  if (owner?.resolutionStrategy === "primary-source") {
+    score += 100;
+  }
+  if (sourceRoleStatus === "primary") {
+    score += 50;
+  } else if (sourceRoleStatus === "support") {
+    score += 20;
+  }
+  score += Math.min(100, (owner?.parsedRequirementCourses ?? []).length);
+  score += Math.min(50, (owner?.parsedRequirementGroups ?? []).length * 2);
+  score -= warningCount * 10;
+  return score;
+}
+
+function getParsedOwnerCoveredSourceUrls(owner) {
+  return uniqueSorted([
+    ...(owner?.coveredSourceUrls ?? []),
+    owner?.primarySourceUrl,
+    owner?.sourceUrl,
+  ]);
+}
+
+function mergeParsedOwnerCanonicalSourceCoverage(left, right) {
+  const selected =
+    getParsedOwnerDedupeScore(left) >= getParsedOwnerDedupeScore(right) ? left : right;
+  return {
+    ...selected,
+    coveredSourceUrls: uniqueSorted([
+      ...getParsedOwnerCoveredSourceUrls(left),
+      ...getParsedOwnerCoveredSourceUrls(right),
+    ]),
+  };
+}
+
+function dedupeParsedOwnersByCanonicalSource(owners) {
+  const bestByKey = new Map();
+  const unkeyedOwners = [];
+
+  for (const owner of owners ?? []) {
+    const key = getParsedOwnerDedupeKey(owner);
+    if (!key) {
+      unkeyedOwners.push(owner);
+      continue;
+    }
+
+    const current = bestByKey.get(key);
+    if (!current) {
+      bestByKey.set(key, {
+        ...owner,
+        coveredSourceUrls: getParsedOwnerCoveredSourceUrls(owner),
+      });
+    } else {
+      bestByKey.set(key, mergeParsedOwnerCanonicalSourceCoverage(current, owner));
+    }
+  }
+
+  return [...bestByKey.values(), ...unkeyedOwners];
+}
+
 function buildUwMseCourseExtractionAudit(owners) {
-  const owner = (owners ?? []).find(
+  const owner = dedupeParsedOwnersByCanonicalSource(owners).find(
     (entry) =>
       entry.planId === "uw-seattle-materials-science-engineering" && !entry.pathwayId
   );
@@ -10192,14 +11212,15 @@ function buildUwMseCourseExtractionAudit(owners) {
 }
 
 function mergeParsedOwners(previousOwners, nextOwners, targetPlanId) {
-  if (!targetPlanId) {
-    return [...nextOwners].sort((left, right) => left.ownerTitle.localeCompare(right.ownerTitle));
-  }
+  const mergedOwners = targetPlanId
+    ? [...(previousOwners ?? []).filter((owner) => owner?.planId !== targetPlanId), ...nextOwners]
+    : [...nextOwners];
 
-  return [...(previousOwners ?? []).filter((owner) => owner?.planId !== targetPlanId), ...nextOwners].sort(
+  return dedupeParsedOwnersByCanonicalSource(mergedOwners).sort(
     (left, right) =>
       left.ownerTitle.localeCompare(right.ownerTitle) ||
-      String(left.ownerId ?? "").localeCompare(String(right.ownerId ?? ""))
+      String(left.ownerId ?? "").localeCompare(String(right.ownerId ?? "")) ||
+      String(left.sourceUrl ?? "").localeCompare(String(right.sourceUrl ?? ""))
   );
 }
 
@@ -10569,6 +11590,7 @@ function writeGeneratedRequirementSourceAdapters(report) {
     adapterId: owner.adapterId,
     adapterFamily: owner.adapterFamily,
     sourceUrl: owner.sourceUrl,
+    coveredSourceUrls: (owner.coveredSourceUrls ?? []).length ? owner.coveredSourceUrls : undefined,
     sourceLabel: owner.sourceLabel,
     sourceRole: owner.sourceRole,
     sourceRoleStatus:
@@ -10705,7 +11727,7 @@ function writeGeneratedRequirementSourceAdapters(report) {
     "",
     ...chunkModules.map(
       (chunkModule) =>
-        `const { ${chunkModule.exportName} } = require("./requirement-source-adapters.generated/${chunkModule.fileStem}");`
+        `const { ${chunkModule.exportName} } = require("./requirement-source-adapters.generated/${chunkModule.fileStem}.ts");`
     ),
     "",
     `export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = ${JSON.stringify(
@@ -11044,6 +12066,10 @@ function extractComputerEngineeringMathScienceExtraCodes(owner) {
 }
 
 function buildComputerEngineeringMathScienceGeneratedFilter(report, generatedFiltersByKey, generatedAt) {
+  // Temporary compatibility bridge: CE exposes a combined Math/Science runtime
+  // filter whose extra math rows are source-derived but not yet emitted as a
+  // first-class approved-list source. Remove this once official support-list
+  // extraction can materialize combined filters from source headings alone.
   const naturalScienceFilter = generatedFiltersByKey.get("computer-engineering-natural-science");
   if (!naturalScienceFilter) {
     return null;
@@ -11521,16 +12547,27 @@ function parseHtmlSourceFromArtifactsForTest(entry, html) {
       : scopeHtmlLines(entry, title, headings, lines);
   const scopedHeadings =
     catalogScope?.scoped && catalogScope.headings?.length ? catalogScope.headings : headings;
-  return buildHtmlParsedResult(entry, title, scopedHeadings, scopedLines, {
-    sourceRole: classifyRequirementSourceRole(entry),
-    sourceSectionAudit: catalogScope?.sectionAudit ?? null,
-  });
+  const sourceRole = classifyRequirementSourceRole(entry);
+  return selectPreferredHtmlParsed(
+    entry,
+    buildHtmlParsedResult(entry, title, headings, lines, {
+      sourceRole,
+      sourceSectionAudit: catalogScope?.sectionAudit ?? null,
+    }),
+    scopedLines === lines
+      ? null
+      : buildHtmlParsedResult(entry, title, scopedHeadings, scopedLines, {
+          sourceRole,
+          sourceSectionAudit: catalogScope?.sectionAudit ?? null,
+        })
+  );
 }
 
 module.exports = {
   buildHtmlLines,
   buildManifestParseSuccessForTest: buildManifestParseSuccess,
   buildParseReport,
+  buildParsedRequirementGroupsForTest: buildParsedRequirementGroups,
   buildParseQualitySignalsForTest: buildParseQualitySignals,
   buildParserRecoveryReportForTest: buildParserRecoveryReport,
   buildGeneratedProgramApprovedCourseFiltersForTest: buildGeneratedProgramApprovedCourseFilters,
@@ -11539,7 +12576,11 @@ module.exports = {
   buildRequirementSourceScope,
   canRequirementSourceRoleCreateSchedulableRows,
   classifyRequirementSourceRole,
+  extractCourseCodesFromLineForTest: extractCourseCodesFromLine,
+  extractCourseCodesFromRequirementLineForTest: extractCourseCodesFromRequirementLine,
   extractParserRecoveryLinkCandidatesForTest: extractParserRecoveryLinkCandidates,
+  extractSupplementalDocumentLinkCandidatesForTest: extractSupplementalDocumentLinkCandidates,
+  getStructuredUwCourseCodesForTest: getStructuredUwCourseCodes,
   getParseablePrimaryEntries,
   getParserRuleRegistryForTest: parserRules.getParserRuleRegistry,
   getRequirementSourceRoleStatus,
@@ -11547,6 +12588,8 @@ module.exports = {
   parseHtmlSourceFromArtifactsForTest,
   scopeCatalogHtmlByAnchor,
   shouldParseRequirementSourceEntry,
+  shouldPreferSupplementalDocumentSourceForTest: shouldPreferSupplementalDocumentSource,
+  shouldPreferSupplementalHtmlSourceForTest: shouldPreferSupplementalHtmlSource,
   shouldTriggerParserRecoveryForTest: shouldTriggerParserRecovery,
 };
 

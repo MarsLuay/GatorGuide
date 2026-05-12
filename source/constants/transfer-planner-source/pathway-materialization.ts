@@ -1,4 +1,5 @@
 import type {
+  TransferPlannerLink,
   TransferPlannerMajorPathway,
   TransferPlannerMajorPlan,
 } from "../transfer-planner-types";
@@ -21,6 +22,7 @@ export type TransferPlannerDerivedPathwaySeed = {
   id: string;
   label: string;
   summary: string;
+  officialLinks?: TransferPlannerLink[];
 };
 
 const DERIVED_PATHWAY_LABEL_PATTERN =
@@ -41,6 +43,113 @@ const DERIVED_PATHWAY_SMALL_WORDS = new Set([
   "the",
   "to",
   "with",
+]);
+const DERIVED_PATHWAY_SOURCE_LINK_STOPWORDS = new Set([
+  ...DERIVED_PATHWAY_SMALL_WORDS,
+  "arts",
+  "ba",
+  "bachelor",
+  "bs",
+  "culture",
+  "degree",
+  "major",
+  "media",
+  "of",
+  "option",
+  "pathway",
+  "program",
+  "requirements",
+  "route",
+  "school",
+  "studies",
+  "tacoma",
+  "track",
+  "university",
+  "uw",
+  "washington",
+]);
+
+function uniqueDerivedPathwaySourceLinks(links: TransferPlannerLink[]) {
+  return Array.from(
+    new Map(
+      links.map((link) => [`${link.url}||${link.label}||${link.note ?? ""}`, link])
+    ).values()
+  );
+}
+
+function buildDerivedPathwaySourceLinkTokens(...values: Array<string | null | undefined>) {
+  return Array.from(
+    new Set(
+      values
+        .flatMap((value) =>
+          normalizeTransferPlannerText(value)
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, " ")
+            .split(/\s+/)
+        )
+        .filter(
+          (token) =>
+            token.length >= 2 && !DERIVED_PATHWAY_SOURCE_LINK_STOPWORDS.has(token)
+        )
+    )
+  );
+}
+
+function derivedPathwaySourceTokenMatches(token: string, candidateTokens: Set<string>) {
+  return (
+    candidateTokens.has(token) ||
+    (token.endsWith("ies") && candidateTokens.has(`${token.slice(0, -3)}y`)) ||
+    (token.endsWith("s") && token.length > 3 && candidateTokens.has(token.slice(0, -1)))
+  );
+}
+
+function isDerivedPathwaySpecificSourceLink(link: TransferPlannerLink) {
+  return DERIVED_PATHWAY_KIND_PATTERN.test(`${link.label} ${link.url}`);
+}
+
+function sourceLinkMatchesDerivedPathway(
+  link: TransferPlannerLink,
+  pathway: Pick<TransferPlannerMajorPathway, "id" | "label">
+) {
+  const pathwayTokens = buildDerivedPathwaySourceLinkTokens(pathway.id, pathway.label);
+  if (!pathwayTokens.length) {
+    return false;
+  }
+
+  const linkTokens = new Set(
+    buildDerivedPathwaySourceLinkTokens(link.label, link.url, link.note)
+  );
+  return pathwayTokens.every((token) =>
+    derivedPathwaySourceTokenMatches(token, linkTokens)
+  );
+}
+
+function getDerivedPathwayOfficialLinks(
+  plan: TransferPlannerMajorPlan,
+  pathway: Pick<TransferPlannerMajorPathway, "id" | "label">
+) {
+  const officialLinks = plan.officialLinks ?? [];
+  const pathwaySpecificLinks = officialLinks.filter(isDerivedPathwaySpecificSourceLink);
+  const matchingPathwayLinks = pathwaySpecificLinks.filter((link) =>
+    sourceLinkMatchesDerivedPathway(link, pathway)
+  );
+
+  if (matchingPathwayLinks.length) {
+    return uniqueDerivedPathwaySourceLinks(matchingPathwayLinks);
+  }
+
+  return pathwaySpecificLinks.length ? [] : officialLinks;
+}
+const PATHWAY_CHOICE_COUNT_BY_WORD = new Map([
+  ["two", 2],
+  ["three", 3],
+  ["four", 4],
+  ["five", 5],
+  ["six", 6],
+  ["seven", 7],
+  ["eight", 8],
+  ["nine", 9],
+  ["ten", 10],
 ]);
 const DERIVED_PATHWAY_ACRONYMS = new Set([
   "CECL",
@@ -361,11 +470,34 @@ const DERIVED_PATHWAY_ALIASES_BY_PLAN: Partial<
       label: "B.A. Ethics option",
     },
   ],
+  "uw-tacoma-environmental-sustainability": [
+    {
+      pattern:
+        /^(?:business(?:\/|\s+and\s+)nonprofit(?:\s+(?:environmental sustainability|leadership))?)(?: option)?$/i,
+      id: "business-nonprofit-leadership-option",
+      label: "Business and Nonprofit Leadership option",
+    },
+    {
+      pattern: /^(?:(?:pre-)?environmental education|education)(?: option)?$/i,
+      id: "education-option",
+      label: "Education option",
+    },
+    {
+      pattern: /^(?:environmental communication|communication)(?: option)?$/i,
+      id: "environmental-communication-option",
+      label: "Environmental Communication option",
+    },
+    {
+      pattern: /^(?:environmental policy and law|policy and law)(?: option)?$/i,
+      id: "policy-law-option",
+      label: "Policy and Law option",
+    },
+  ],
   "uw-tacoma-history": [
     {
       pattern: /^general history option$/i,
-      id: "global-history-option",
-      label: "Global History option",
+      id: "general-history-option",
+      label: "General History option",
     },
   ],
   "uw-tacoma-sustainable-urban-development": [
@@ -414,6 +546,7 @@ const DERIVED_PATHWAY_EXCLUDED_LABEL_PATTERNS_BY_PLAN: Partial<Record<string, Re
 const PRIMARY_MAJOR_TITLES_BY_PLAN_ID = new Map(
   TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS.map((plan) => [plan.id, plan.title] as const)
 );
+const SOURCE_LINE_DIFFERENT_MAJOR_CACHE = new Map<string, boolean>();
 const AUTO_PROMOTED_PRIMARY_SOURCE_OWNER_IDS = new Set(
   (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).map((entry) => entry.ownerId)
 );
@@ -836,11 +969,21 @@ function sourceLineMentionsDifferentMajor(
   planTitle: string | null | undefined,
   value: string | null | undefined
 ) {
-  return labelMentionsDifferentTransferPlannerMajor(
+  const normalizedPlanTitle = normalizeTransferPlannerText(planTitle);
+  const normalizedValue = normalizeTransferPlannerText(value);
+  const cacheKey = `${planId}\u0000${normalizedPlanTitle}\u0000${normalizedValue}`;
+  const cached = SOURCE_LINE_DIFFERENT_MAJOR_CACHE.get(cacheKey);
+  if (cached != null) {
+    return cached;
+  }
+
+  const result = labelMentionsDifferentTransferPlannerMajor(
     planId,
-    value,
+    normalizedValue,
     getPlanTitlesForCrossMajorDetection(planId, planTitle)
   );
+  SOURCE_LINE_DIFFERENT_MAJOR_CACHE.set(cacheKey, result);
+  return result;
 }
 
 function toDerivedPathwayId(value: string) {
@@ -1474,9 +1617,13 @@ function extractDerivedPathwayCandidateFromLine(
     return credentialPathwayCandidate;
   }
 
+  const shouldCheckForForeignMajor =
+    /(?:\s[-\u2013\u2014:]\s|\|)/.test(normalized) ||
+    /\bmajor\b/i.test(normalized) ||
+    (normalized.length <= 160 && DERIVED_PATHWAY_LABEL_PATTERN.test(normalized));
   if (
-    sourceLineMentionsDifferentMajor(planId, planTitle, value) &&
-    (/(?:\s[-\u2013\u2014:]\s|\|)/.test(normalized) || /\bmajor\b/i.test(normalized))
+    shouldCheckForForeignMajor &&
+    sourceLineMentionsDifferentMajor(planId, planTitle, normalized)
   ) {
     return null;
   }
@@ -1591,6 +1738,81 @@ function splitDerivedPathwayChoiceValues(value: string) {
     .filter(Boolean);
 }
 
+function getDerivedPathwayChoiceCount(value: string | null | undefined) {
+  const normalized = normalizeDerivedPathwayText(value);
+  const match = normalized.match(
+    /\b(?:(\d+)|(two|three|four|five|six|seven|eight|nine|ten))\s+(?:formal\s+)?(?:concentrations?|tracks?|options?|routes?|pathways?)\b/i
+  );
+  if (!match) {
+    return null;
+  }
+
+  const numericCount = match[1] ? Number(match[1]) : null;
+  const wordCount = PATHWAY_CHOICE_COUNT_BY_WORD.get(String(match[2] ?? "").toLowerCase()) ?? null;
+  const count = numericCount ?? wordCount;
+  return count != null && Number.isFinite(count) && count >= 2 && count <= 10 ? count : null;
+}
+
+function getDerivedPathwayChoiceKind(value: string | null | undefined) {
+  const normalized = normalizeDerivedPathwayText(value);
+  const match = normalized.match(
+    /\b(concentration|track|option|route|pathway)s?\b/i
+  );
+
+  return (match?.[1]?.toLowerCase() ?? null) as
+    | "option"
+    | "track"
+    | "route"
+    | null;
+}
+
+function lineLooksLikeDerivedPathwayChoiceStatement(value: string | null | undefined) {
+  const normalized = normalizeDerivedPathwayText(value);
+  return (
+    /\b(?:concentrations?|tracks?|options?|routes?|pathways?)\b[^:]{0,40}:/i.test(normalized) ||
+    /\bchoice of [^.]{0,80}?(?:options?|tracks?|routes?|pathways?)\s+(?:in|between)\b/i.test(normalized) ||
+    /\bchoose\s+[^:]{2,120}\s*:/i.test(normalized)
+  );
+}
+
+function splitDerivedPathwayChoiceListValues(
+  value: string,
+  expectedCount: number | null = null
+) {
+  const normalized = normalizeDerivedPathwayText(value).replace(/\s+\.\s*$/, "");
+  if (!normalized) {
+    return [];
+  }
+
+  if (normalized.includes(";")) {
+    const parts = normalized
+      .split(/\s*;\s*/g)
+      .map((entry) => normalizeDerivedPathwayText(entry))
+      .filter(Boolean);
+
+    if (expectedCount && parts.length < expectedCount) {
+      for (let index = 0; index < parts.length && parts.length < expectedCount; index += 1) {
+        const commaIndex = parts[index].indexOf(",");
+        if (commaIndex <= 0) {
+          continue;
+        }
+
+        const left = normalizeDerivedPathwayText(parts[index].slice(0, commaIndex));
+        const right = normalizeDerivedPathwayText(parts[index].slice(commaIndex + 1));
+        if (!left || !right) {
+          continue;
+        }
+
+        parts.splice(index, 1, left, right);
+      }
+    }
+
+    return parts;
+  }
+
+  return splitDerivedPathwayChoiceValues(normalized);
+}
+
 function extractDerivedPathwayCandidatesFromChoiceStatement(
   planId: string,
   planTitle: string,
@@ -1598,12 +1820,14 @@ function extractDerivedPathwayCandidatesFromChoiceStatement(
   defaultKind: "option" | "track" | "route" | null
 ) {
   const normalized = normalizeDerivedPathwayText(value);
-  if (!normalized) {
+  if (!normalized || !lineLooksLikeDerivedPathwayChoiceStatement(normalized)) {
     return [] as Array<{ id: string; label: string }>;
   }
 
+  const expectedCount = getDerivedPathwayChoiceCount(normalized);
+  const effectiveDefaultKind = defaultKind ?? getDerivedPathwayChoiceKind(normalized);
   const tails = [
-    normalized.match(/\b(?:options?|tracks?|routes?|pathways?)\b[^:]{0,40}:\s*([^.;]+?)(?:\.\s*|$)/i)?.[1],
+    normalized.match(/\b(?:options?|tracks?|routes?|pathways?)\b[^:]{0,40}:\s*([^.\n]+?)(?:\.\s*|$)/i)?.[1],
     normalized.match(
       /\bchoice of [^.]{0,80}?(?:options?|tracks?|routes?|pathways?)\s+(?:in|between)\s+(.+?)(?:\.\s*|$)/i
     )?.[1],
@@ -1612,12 +1836,12 @@ function extractDerivedPathwayCandidatesFromChoiceStatement(
 
   const results: Array<{ id: string; label: string }> = [];
   for (const tail of tails) {
-    for (const candidate of splitDerivedPathwayChoiceValues(tail)) {
+    for (const candidate of splitDerivedPathwayChoiceListValues(tail, expectedCount)) {
       const resolved = canonicalizeDerivedPathwayCandidate(
         planId,
         planTitle,
         candidate,
-        defaultKind
+        effectiveDefaultKind
       );
       if (resolved) {
         results.push(resolved);
@@ -1646,7 +1870,15 @@ function buildDerivedPathwaySeeds(
 
   function buildSeedsFromBlocks(sourceBlocks: TransferPlannerParsedRequirementSourceBlock[]) {
     const defaultKind = inferDerivedPathwayKind(plan.id, sourceBlocks);
-    const choiceStatements = sourceBlocks.flatMap((block) => block.chooseStatements ?? []);
+    const sourceChoiceLines = sourceBlocks.flatMap((block) => [
+      ...(block.chooseStatements ?? []),
+      ...(block.requirementCueLines ?? []).filter(
+        (line) =>
+          getDerivedPathwayChoiceCount(line) != null ||
+          lineLooksLikeDerivedPathwayChoiceStatement(line)
+      ),
+    ]);
+    const choiceStatements = [...new Set(sourceChoiceLines)];
     const rawSourceLines = sourceBlocks.flatMap((block) => [
       block.ownerTitle,
       ...(block.requirementCueLines ?? []),
@@ -1680,6 +1912,18 @@ function buildDerivedPathwaySeeds(
     }
 
     for (const line of rawSourceLines) {
+      for (const candidate of extractDerivedPathwayCandidatesFromChoiceStatement(
+        plan.id,
+        plan.title,
+        line,
+        defaultKind
+      )) {
+        const similarityKey = getDerivedPathwaySimilarityKey(candidate.label, plan.title);
+        if (similarityKey) {
+          supportedRawCandidateFamilies.add(similarityKey);
+        }
+      }
+
       const candidate = extractDerivedPathwayCandidateFromLine(plan.id, plan.title, line, defaultKind);
       const similarityKey = candidate
         ? getDerivedPathwaySimilarityKey(candidate.label, plan.title)
@@ -1811,6 +2055,17 @@ function buildDerivedPathwaySeeds(
     }
 
     for (const line of orderedSourceLines) {
+      const choiceCandidates = extractDerivedPathwayCandidatesFromChoiceStatement(
+        plan.id,
+        plan.title,
+        line,
+        defaultKind
+      );
+      if (choiceCandidates.length) {
+        choiceCandidates.forEach((candidate) => pushSeed(candidate));
+        continue;
+      }
+
       const credentialCandidates = extractDerivedCredentialPathwayCandidatesFromLine(
         plan.title,
         line
@@ -1828,6 +2083,15 @@ function buildDerivedPathwaySeeds(
         !isSuspiciousStructuralPathwayLabel(seed.label) &&
         !isPlanExcludedDerivedPathway(plan.id, seed)
     );
+    const namedOptionOrTrackSeedCount = seeds.filter(
+      (seed) =>
+        !/^(?:ba|bs)-route$/i.test(seed.id) &&
+        !isCredentialScopedDerivedPathway(seed) &&
+        /\b(?:option|track|concentration|pathway|route)\b/i.test(seed.label)
+    ).length;
+    const pathwaySeeds = namedOptionOrTrackSeedCount >= 2
+      ? seeds.filter((seed) => !/^(?:ba|bs)-route$/i.test(seed.id))
+      : seeds;
     const blockHasNestedHonorsContext = sourceBlocks.some((block) =>
       [...(block.requirementCueLines ?? []), ...(block.chooseStatements ?? [])].some((line) =>
         /\bdepartmental honors?\b|\bhonors program\b/i.test(normalizeDerivedPathwayText(line))
@@ -1835,18 +2099,18 @@ function buildDerivedPathwaySeeds(
     );
 
     if (!blockHasNestedHonorsContext) {
-      return seeds;
+      return pathwaySeeds;
     }
 
     const baseSupportKeys = new Set(
       basePathways.map((pathway) => getPathwayMaterializationSupportKey(plan, pathway)).filter(Boolean)
     );
-    const trackSeedCount = seeds.filter((seed) => /\btrack\b/i.test(seed.label)).length;
+    const trackSeedCount = pathwaySeeds.filter((seed) => /\btrack\b/i.test(seed.label)).length;
     if (trackSeedCount < 2) {
-      return seeds;
+      return pathwaySeeds;
     }
 
-    return seeds.filter((seed) => {
+    return pathwaySeeds.filter((seed) => {
       if (!/\boption\b/i.test(seed.label) || /\bhonors\b/i.test(seed.label)) {
         return true;
       }
@@ -2401,7 +2665,12 @@ function mergeDerivedAndSourceBackedBasePathways(
       id: pathway.id,
       label: normalizeMaterializedTransferPlannerPathwayLabel(pathway.label),
       summary: pathway.summary,
-      officialLinks: plan.officialLinks,
+      officialLinks:
+        pathway.officialLinks ??
+        getDerivedPathwayOfficialLinks(plan, {
+          id: pathway.id,
+          label: pathway.label,
+        }),
     });
   }
 

@@ -38,6 +38,8 @@ import {
   EXPECTED_UW_TRANSFER_ADMISSION_REQUIREMENT_LINES,
   extractCourseCodes,
   getAllChecklistItems,
+  getCompactRuntimeGrcCourseList,
+  getCompactRuntimeMajorPlan,
   getCurrentTransferPlannerGrcCatalogYearLabel,
   getDuplicateSortedValues,
   getGeneratedMetadataGapEntriesForCourse,
@@ -194,6 +196,206 @@ test("Bothell Data Visualization rows keep the shared overview as primary while 
       `Expected ${planId} to keep a source-backed track recommendation once the overview surfaced multiple lower-division signals.`
     );
   }
+});
+
+function collectParsedRequirementSourceCoverageUrls(
+  blocks: TransferPlannerParsedRequirementSourceBlock[]
+) {
+  return uniqueSorted(
+    blocks.flatMap((block) => [
+      block.primarySourceUrl,
+      block.sourceUrl,
+      ...(block.coveredSourceUrls ?? []),
+    ]).filter((url): url is string => Boolean(url))
+  );
+}
+
+test("Generated parsed-source registry covers parseable primary, worksheet, and recovered document URLs", () => {
+  const expectedCoverageByPlanId = {
+    "uw-bothell-biology": [
+      "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum",
+    ],
+    "uw-bothell-data-visualization-ba": [
+      "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+      "https://admissions.uwb.edu/register/mpw-DataVis-BA",
+    ],
+    "uw-bothell-data-visualization-bs": [
+      "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+      "https://admissions.uwb.edu/register/mpw-DataVis-BS",
+    ],
+    "uw-seattle-marine-biology": [
+      "https://marinebiology.uw.edu/students/marine-biology-major/major-requirements/",
+      "https://marinebiology.uw.edu/wp-content/uploads/sites/31/2026/05/2026.5.7-Marbiol-Major-Sheet.pdf",
+    ],
+  } as const;
+
+  for (const [planId, expectedUrls] of Object.entries(expectedCoverageByPlanId)) {
+    const manifestUrls = getTransferPlannerSourceManifestEntriesForPlan(planId, null).map(
+      (entry) => entry.url
+    );
+    const blocks = getTransferPlannerParsedRequirementSourceBlocks(planId, null);
+    const coverageUrls = collectParsedRequirementSourceCoverageUrls(blocks);
+
+    assert.ok(blocks.length > 0, `Expected generated parsed-source blocks for ${planId}.`);
+    assert.ok(
+      blocks.some(
+        (block) =>
+          block.sourceRoleStatus === "primary" && (block.parsedUwCourseCodes ?? []).length > 0
+      ),
+      `Expected ${planId} to have a primary parsed block with UW course codes.`
+    );
+
+    for (const expectedUrl of expectedUrls) {
+      assert.ok(
+        manifestUrls.includes(expectedUrl),
+        `Expected ${planId} manifest to register ${expectedUrl}.`
+      );
+      assert.ok(
+        coverageUrls.includes(expectedUrl),
+        `Expected ${planId} generated parsed-source coverage to include ${expectedUrl}.`
+      );
+    }
+  }
+});
+
+test("Parser requirement groups are the primary planner and runtime row source when present", () => {
+  const bothellEconomicsSourcePlan = sourceGeneratedBothellPlans.find(
+    (plan) => plan.id === "uw-bothell-economics"
+  );
+  const bothellCsseRuntimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-bothell-csse");
+  const economicsParsedGroups = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-bothell-economics",
+    null
+  ).flatMap((block) => block.parsedRequirementGroups ?? []);
+  const csseParsedGroups = getTransferPlannerParsedRequirementSourceBlocks(
+    "uw-bothell-csse",
+    null
+  ).flatMap((block) => block.parsedRequirementGroups ?? []);
+
+  assert.ok(bothellEconomicsSourcePlan, "Expected Bothell Economics source-generated plan.");
+  assert.ok(bothellCsseRuntimePlan, "Expected Bothell CSSE runtime plan.");
+  assert.ok(economicsParsedGroups.length, "Expected Bothell Economics parsed requirement groups.");
+  assert.ok(csseParsedGroups.length, "Expected Bothell CSSE parsed requirement groups.");
+
+  const economicsRows = bothellEconomicsSourcePlan?.beforeEnrollmentChecklist ?? [];
+  assert.ok(
+    economicsRows.some((item) => item.generatedFromParser && item.requirementGroup),
+    "Expected source-generated Economics rows to come from parsed requirement groups."
+  );
+  assert.deepEqual(
+    economicsRows
+      .filter((item) => item.sourceScope === "generated-source-backed-fallback")
+      .map((item) => item.id),
+    [],
+    "Structured source-backed fallback rows should not be emitted when parser groups exist."
+  );
+  assert.deepEqual(
+    economicsRows
+      .filter((item) => (item.grcCourses ?? []).length > 0 && !item.generatedFromParser)
+      .map((item) => `${item.id}:${item.title}`),
+    [],
+    "Source-generated requirement rows should be parser-group rows when parser groups exist."
+  );
+
+  const csseRows = bothellCsseRuntimePlan?.beforeEnrollmentChecklist ?? [];
+  assert.ok(
+    csseRows.some((item) => item.generatedFromParser && item.requirementGroup),
+    "Expected runtime CSSE rows to come from parsed requirement groups."
+  );
+  const firstStructuredRuntimeRowIndex = csseRows.findIndex(
+    (item) => (item.grcCourses ?? []).length > 0 && !item.generatedFromParser
+  );
+  const lastParserRuntimeRowIndex = csseRows.reduce(
+    (lastIndex, item, index) =>
+      item.generatedFromParser && item.requirementGroup ? index : lastIndex,
+    -1
+  );
+  assert.ok(
+    lastParserRuntimeRowIndex >= 0 &&
+      (firstStructuredRuntimeRowIndex === -1 ||
+        lastParserRuntimeRowIndex < firstStructuredRuntimeRowIndex),
+    "Runtime parser group rows should be emitted before any structured fallback rows."
+  );
+});
+
+test("UW-only parser requirement rows stay visible without seeding GRC availability rows", () => {
+  const sourcePlan = sourceGeneratedBothellPlans.find(
+    (plan) => plan.id === "uw-bothell-economics"
+  );
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-bothell-economics");
+  const compactRuntimePlan = getCompactRuntimeMajorPlan("uw-bothell-economics");
+  const findUwOnlyEconomicsRow = (plan: TransferPlannerMajorPlan | null | undefined) =>
+    plan?.beforeEnrollmentChecklist.find((item) =>
+      (item.requirementGroup?.options ?? []).some((option) =>
+        (option.uwCourses ?? []).includes("BBECN 300")
+      )
+    ) ?? null;
+
+  const sourceRow = findUwOnlyEconomicsRow(sourcePlan);
+  const runtimeRow = findUwOnlyEconomicsRow(runtimePlan);
+  const compactRuntimeRow = findUwOnlyEconomicsRow(compactRuntimePlan);
+
+  assert.ok(sourceRow, "Expected the source-generated Economics UW-only row to remain visible.");
+  assert.ok(runtimeRow, "Expected the runtime Economics UW-only row to remain visible.");
+  assert.ok(compactRuntimeRow, "Expected the compact runtime Economics UW-only row to remain visible.");
+  assert.equal(sourceRow?.generatedFromParser, true);
+  assert.equal(runtimeRow?.generatedFromParser, true);
+  assert.equal(compactRuntimeRow?.generatedFromParser, true);
+  assert.deepEqual(sourceRow?.grcCourses, []);
+  assert.deepEqual(runtimeRow?.grcCourses, []);
+  assert.deepEqual(compactRuntimeRow?.grcCourses, []);
+  assert.equal(sourceRow?.canCreateScheduleRow, false);
+  assert.equal(runtimeRow?.canCreateScheduleRow, false);
+  assert.equal(compactRuntimeRow?.canCreateScheduleRow, false);
+  assert.equal(
+    runtimeRow?.requirementGroup?.options.some((option) =>
+      (option.uwCourses ?? []).includes("BBECN 300")
+    ),
+    true,
+    "Expected the official UW option to remain on the visible requirement group."
+  );
+
+  const grcCourseCodes = new Set(
+    getTransferPlannerGrcCourseList(runtimePlan)
+      .flatMap((label) => extractCourseCodes(label))
+      .map((courseCode) => normalizeCourseCode(courseCode))
+  );
+  const compactGrcCourseCodes = new Set(
+    getCompactRuntimeGrcCourseList(compactRuntimePlan)
+      .flatMap((label) => extractCourseCodes(label))
+      .map((courseCode) => normalizeCourseCode(courseCode))
+  );
+  for (const uwOnlyCode of [
+    "BBECN 300",
+    "BMATH 144",
+    "STMATH 114",
+    "STMATH 124",
+    "STMATH 125",
+    "STMATH 126",
+  ]) {
+    assert.equal(
+      grcCourseCodes.has(uwOnlyCode),
+      false,
+      `Did not expect UW-only ${uwOnlyCode} to seed the Green River course/availability list.`
+    );
+    assert.equal(
+      compactGrcCourseCodes.has(uwOnlyCode),
+      false,
+      `Did not expect UW-only ${uwOnlyCode} to seed the compact Green River course/availability list.`
+    );
+  }
+
+  const uwRequirementSummary = buildSourceBackedRequiredCourseSummaryEntries(runtimePlan, {
+    mode: "uw",
+  })
+    .filter((entry) => entry.kind === "choice-bucket")
+    .map((entry) => entry.text)
+    .join("\n");
+  assert.match(
+    uwRequirementSummary,
+    /\bBBECN\s+300\b/,
+    "Expected source-backed summaries to keep the official UW requirement option visible."
+  );
 });
 
 test("Prompt 2 source discovery keeps multi-route roots from being replaced by single-route pages", () => {
@@ -5010,6 +5212,232 @@ test("Semantic duplicate pathway labels collapse to one canonical visible route"
     [
       ["china-concentration", "China Concentration"],
       ["japan-concentration", "Japan Concentration"],
+    ]
+  );
+});
+
+test("Broad option-list sentences materialize every named pathway without splitting commas inside labels", () => {
+  const plan: TransferPlannerMajorPlan = {
+    id: "synthetic-tacoma-history-options",
+    campusId: "uw-tacoma",
+    title: "History (BA)",
+    shortTitle: "History",
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [],
+    pathways: [],
+  };
+  const parsedBlocks: TransferPlannerParsedRequirementSourceBlock[] = [
+    {
+      id: "synthetic-tacoma-history-options:source-block:test",
+      ownerId: "synthetic-tacoma-history-options",
+      ownerTitle: "History (BA)",
+      planId: plan.id,
+      pathwayId: null,
+      campusId: "uw-tacoma",
+      primaryParserType: "html-degree-page",
+      primarySourceUrl: "https://example.edu/history",
+      primarySourceLabel: "History degree requirements",
+      parserType: "html-degree-page",
+      adapterId: "uw-tacoma-html-degree-page",
+      adapterFamily: "Synthetic Tacoma HTML degree page",
+      sourceUrl: "https://example.edu/history",
+      sourceLabel: "History degree requirements",
+      resolutionStrategy: "primary-source",
+      ok: true,
+      parseConfidence: "high",
+      parsedUwCourseCodes: [],
+      sourceOnlyUwCourseCodes: [],
+      structuredOnlyUwCourseCodes: [],
+      requirementCueLines: [
+        "Five options: General History, Arts, Culture and Society; Global History; Labor and Social Movements; Power, Gender and Identity.",
+      ],
+      chooseStatements: [],
+      pathwayLabels: [],
+      qualitySignals: [],
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
+      snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
+      error: null,
+    },
+  ];
+
+  const materialized = materializeTransferPlannerPathways(plan, plan.pathways ?? [], parsedBlocks);
+
+  assert.deepEqual(
+    materialized.map((pathway) => [pathway.id, pathway.label] as const),
+    [
+      ["general-history-option", "General History Option"],
+      ["arts-culture-and-society-option", "Arts, Culture and Society Option"],
+      ["global-history-option", "Global History Option"],
+      ["labor-and-social-movements-option", "Labor and Social Movements Option"],
+      ["power-gender-and-identity-option", "Power, Gender and Identity Option"],
+    ]
+  );
+});
+
+test("Derived Tacoma pathway source links keep only the matching parent track link", () => {
+  const americanCulturesUrl = "https://www.tacoma.uw.edu/sias/cac/american-cultures-track";
+  const filmAndMediaUrl = "https://www.tacoma.uw.edu/sias/cac/film-and-media-track";
+  const plan: TransferPlannerMajorPlan = {
+    id: "synthetic-tacoma-amc-links",
+    campusId: "uw-tacoma",
+    title: "Arts, Media and Culture (BA)",
+    shortTitle: "AMC",
+    coverage: "partial",
+    summary: "",
+    bestTrackId: null,
+    recommendedTrackSummary: "",
+    whyThisTrack: [],
+    applicationChecklist: [],
+    beforeEnrollmentChecklist: [],
+    stayAtGrcChecklist: [],
+    advisorFlags: [],
+    officialLinks: [
+      {
+        label: "UW Tacoma Arts, Media and Culture - American Cultures Track",
+        url: americanCulturesUrl,
+      },
+      {
+        label: "UW Tacoma Arts, Media and Culture - Film and Media Track",
+        url: filmAndMediaUrl,
+      },
+    ],
+    pathways: [],
+  };
+  const parsedBlocks: TransferPlannerParsedRequirementSourceBlock[] = [
+    {
+      id: "synthetic-tacoma-amc-links:source-block:test",
+      ownerId: plan.id,
+      ownerTitle: plan.title,
+      planId: plan.id,
+      pathwayId: null,
+      campusId: "uw-tacoma",
+      primaryParserType: "html-degree-page",
+      primarySourceUrl: "https://example.edu/amc",
+      primarySourceLabel: "Arts, Media and Culture",
+      parserType: "html-degree-page",
+      adapterId: "uw-tacoma-html-degree-page",
+      adapterFamily: "Synthetic Tacoma HTML degree page",
+      sourceUrl: "https://example.edu/amc",
+      sourceLabel: "Arts, Media and Culture",
+      resolutionStrategy: "primary-source",
+      ok: true,
+      parseConfidence: "high",
+      parsedUwCourseCodes: [],
+      sourceOnlyUwCourseCodes: [],
+      structuredOnlyUwCourseCodes: [],
+      requirementCueLines: ["Arts, Media & Culture majors have three tracks to choose from:"],
+      chooseStatements: ["Arts, Media & Culture majors have three tracks to choose from:"],
+      pathwayLabels: ["American Cultures Track", "Film and Media Track", "Literature Track"],
+      qualitySignals: [],
+      parsedRequirementAtomCandidates: [],
+      parsedDegreeMapBlockCandidates: [],
+      snapshotPath: null,
+      usedSnapshotFallback: false,
+      snapshotFallbackReason: null,
+      error: null,
+    },
+  ];
+
+  const materialized = materializeTransferPlannerPathways(plan, plan.pathways ?? [], parsedBlocks);
+  const linksByPathwayId = new Map(
+    materialized.map((pathway) => [
+      pathway.id,
+      (pathway.officialLinks ?? []).map((link) => link.url),
+    ])
+  );
+
+  assert.deepEqual(linksByPathwayId.get("american-cultures-track"), [americanCulturesUrl]);
+  assert.deepEqual(linksByPathwayId.get("film-and-media-track"), [filmAndMediaUrl]);
+  assert.deepEqual(linksByPathwayId.get("literature-track"), []);
+});
+
+test("Pathway-specific Tacoma source links stay off broad major manifest entries", () => {
+  const amcMajorUrls = TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    (entry) => entry.ownerId === "uw-tacoma-arts-media-culture"
+  ).map((entry) => entry.url);
+  const filmPathwayUrls = TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    (entry) => entry.ownerId === "uw-tacoma-arts-media-culture:pathway:film-and-media-track"
+  ).map((entry) => entry.url);
+
+  assert.equal(amcMajorUrls.some((url) => /-track(?:$|[/?#])/i.test(url)), false);
+  assert.ok(filmPathwayUrls.some((url) => /film-and-media-track(?:$|[/?#])/i.test(url)));
+  assert.equal(filmPathwayUrls.some((url) => /american-cultures-track(?:$|[/?#])/i.test(url)), false);
+});
+
+test("Tacoma clean track pathways infer sibling source pages from broad official pages", () => {
+  const researchEntries = TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    (entry) => entry.ownerId === "uw-tacoma-communications:pathway:research-track"
+  );
+  const structuralTrackUrls = TRANSFER_PLANNER_SOURCE_MANIFEST_REGISTRY.filter(
+    (entry) =>
+      entry.ownerId ===
+      "uw-tacoma-communications:pathway:you-need-to-complete-60-credits-track"
+  ).map((entry) => entry.url);
+
+  assert.ok(
+    researchEntries.some(
+      (entry) =>
+        entry.url === "https://www.tacoma.uw.edu/sias/cac/research-track" &&
+        entry.isPrimaryDegreeRequirementsLink
+    )
+  );
+  assert.equal(
+    structuralTrackUrls.some((url) => /you-need-to-complete-60-credits-track/i.test(url)),
+    false
+  );
+});
+
+test("Tacoma Environmental Sustainability pathway aliases collapse to four canonical options", () => {
+  assert.ok(
+    sourceGeneratedTacomaEnvSustainabilityPlan,
+    "Expected Tacoma Environmental Sustainability source-generated plan."
+  );
+
+  const materialized = materializeTransferPlannerPathways(
+    sourceGeneratedTacomaEnvSustainabilityPlan,
+    sourceGeneratedTacomaEnvSustainabilityPlan.pathways ?? [],
+    getTransferPlannerParsedRequirementSourceBlocks("uw-tacoma-environmental-sustainability")
+  );
+
+  assert.deepEqual(
+    materialized
+      .map((pathway) => [pathway.id, pathway.label] as const)
+      .sort((left, right) => left[0].localeCompare(right[0])),
+    [
+      ["business-nonprofit-leadership-option", "Business and Nonprofit Leadership option"],
+      ["education-option", "Education option"],
+      ["environmental-communication-option", "Environmental Communication option"],
+      ["policy-law-option", "Policy and Law option"],
+    ]
+  );
+});
+
+test("Tacoma EGLS materialization keeps only the three declared broad-page options", () => {
+  assert.ok(sourceGeneratedTacomaEglsPlan, "Expected Tacoma EGLS source-generated plan.");
+
+  const materialized = materializeTransferPlannerPathways(
+    sourceGeneratedTacomaEglsPlan,
+    sourceGeneratedTacomaEglsPlan.pathways ?? [],
+    getTransferPlannerParsedRequirementSourceBlocks("uw-tacoma-ethnic-gender-and-labor-studies")
+  );
+
+  assert.deepEqual(
+    materialized.map((pathway) => [pathway.id, pathway.label] as const),
+    [
+      ["ethnic-studies-option", "Ethnic Studies Option"],
+      ["gender-studies-option", "Gender Studies Option"],
+      ["labor-studies-option", "Labor Studies Option"],
     ]
   );
 });

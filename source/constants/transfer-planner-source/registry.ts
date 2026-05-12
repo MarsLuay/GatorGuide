@@ -842,6 +842,78 @@ function materializeMatchedPathwayParentSourceLink(link: TransferPlannerSourceLi
   };
 }
 
+function isOfficialTacomaSourceLink(link: TransferPlannerSourceLink) {
+  try {
+    const parsedUrl = new URL(String(link.url ?? ""));
+    return /(?:^|\.)tacoma\.uw\.edu$/i.test(parsedUrl.hostname);
+  } catch {
+    return false;
+  }
+}
+
+function isCleanTacomaTrackPathwayForSiblingInference(pathway: TransferPlannerMajorPathway) {
+  const pathwayId = String(pathway.id ?? "");
+  const label = normalizeTransferPlannerText(pathway.label);
+  return (
+    /^[a-z0-9]+(?:-[a-z0-9]+){0,5}-track$/i.test(pathwayId) &&
+    !/\d/.test(pathwayId) &&
+    /\btrack\b/i.test(label) &&
+    !/\b(?:choose|complete|credits?|depending|minimum|need|required|requirements?|students?)\b/i.test(label)
+  );
+}
+
+function buildTacomaSiblingPathwaySourceUrl(
+  parentLink: TransferPlannerSourceLink,
+  pathway: TransferPlannerMajorPathway
+) {
+  if (!isOfficialTacomaSourceLink(parentLink) || isPathwaySpecificSourceLink(parentLink)) {
+    return null;
+  }
+
+  try {
+    const parsedUrl = new URL(parentLink.url);
+    const pathname = parsedUrl.pathname.replace(/\/+$/, "");
+    if (!pathname || pathname === "/") {
+      return null;
+    }
+
+    parsedUrl.pathname = `${pathname.replace(/\/[^/]+$/, "")}/${pathway.id}`;
+    parsedUrl.search = "";
+    parsedUrl.hash = "";
+    return parsedUrl.toString();
+  } catch {
+    return null;
+  }
+}
+
+function inferTacomaSiblingPathwaySourceLinks(
+  plan: TransferPlannerMajorPlan,
+  pathway: TransferPlannerMajorPathway,
+  parentSourceLinks: TransferPlannerSourceLink[],
+  pathwaySourceLinks: TransferPlannerSourceLink[]
+) {
+  if (
+    plan.campusId !== "uw-tacoma" ||
+    !isCleanTacomaTrackPathwayForSiblingInference(pathway) ||
+    parentSourceLinks.some((link) => sourceLinkMatchesPathwayIdentity(link, pathway)) ||
+    pathwaySourceLinks.some((link) => sourceLinkMatchesPathwayIdentity(link, pathway))
+  ) {
+    return [];
+  }
+
+  return dedupeLinks(
+    parentSourceLinks
+      .map((link) => buildTacomaSiblingPathwaySourceUrl(link, pathway))
+      .filter((url): url is string => Boolean(url))
+      .map((url) => ({
+        label: `${normalizeTransferPlannerText(pathway.label)} degree requirements`,
+        url,
+        note:
+          "Inferred Tacoma sibling track page from the official broad program source and pathway slug.",
+      }))
+  );
+}
+
 function getSourceManifestOwnerId(planId: string, pathwayId?: string | null) {
   return pathwayId ? `${planId}:pathway:${pathwayId}` : planId;
 }
@@ -1785,20 +1857,49 @@ function getPathwaySources(
 ) {
   const parentSourceLinks = getOwnerSourceLinks(plan.id, null, plan.officialLinks);
   const pathwaySourceLinks = getOwnerSourceLinks(plan.id, pathway.id, pathway.officialLinks);
+  const broadParentSourceLinks = parentSourceLinks.filter(
+    (link) => !isPathwaySpecificSourceLink(link)
+  );
   const matchingParentPathwayLinks = parentSourceLinks
     .filter((link) => sourceLinkMatchesPathwayIdentity(link, pathway))
     .map(materializeMatchedPathwayParentSourceLink);
+  const inferredTacomaSiblingLinks = inferTacomaSiblingPathwaySourceLinks(
+    plan,
+    pathway,
+    parentSourceLinks,
+    pathwaySourceLinks
+  );
   const parentLinksForPathway = matchingParentPathwayLinks.length
     ? [
         ...matchingParentPathwayLinks,
-        ...parentSourceLinks.filter((link) => !isPathwaySpecificSourceLink(link)),
+        ...broadParentSourceLinks,
       ]
-    : parentSourceLinks;
+    : broadParentSourceLinks.length < parentSourceLinks.length
+      ? broadParentSourceLinks
+      : parentSourceLinks;
 
   return {
-    sourceLinks: dedupeLinks([...parentLinksForPathway, ...pathwaySourceLinks]),
+    sourceLinks: dedupeLinks([
+      ...inferredTacomaSiblingLinks,
+      ...parentLinksForPathway,
+      ...pathwaySourceLinks,
+    ]),
     validationNotes: [] as string[],
   };
+}
+
+function filterPathwaySpecificLinksForMajorManifest(
+  planId: string,
+  links: TransferPlannerSourceLink[]
+) {
+  const registryPathways = TRANSFER_PLANNER_MAJOR_PATHWAY_REGISTRY.filter(
+    (pathway) => pathway.planId === planId
+  );
+  if (!registryPathways.length) {
+    return links;
+  }
+
+  return links.filter((link) => !isPathwaySpecificSourceLink(link));
 }
 
 function addPlanChecklistCourses(
@@ -2992,16 +3093,17 @@ function buildSourceManifestRegistry() {
   );
 
   for (const plan of TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS) {
+    const ownerSourceLinks = dedupeLinks([
+      ...getOwnerSourceLinks(plan.id, null, plan.officialLinks),
+      ...getSupplementalManifestSourceLinks(plan.id, null),
+    ]);
     pushSourceManifestEntries(entries, {
       ownerType: "major",
       ownerId: plan.id,
       ownerTitle: plan.title,
       planId: plan.id,
       campusId: plan.campusId,
-      links: dedupeLinks([
-        ...getOwnerSourceLinks(plan.id, null, plan.officialLinks),
-        ...getSupplementalManifestSourceLinks(plan.id, null),
-      ]),
+      links: filterPathwaySpecificLinksForMajorManifest(plan.id, ownerSourceLinks),
       validationNotes: [],
     });
   }

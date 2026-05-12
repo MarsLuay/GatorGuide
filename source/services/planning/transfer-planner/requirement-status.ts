@@ -50,9 +50,19 @@ function uniqueBy<T>(items: T[], getKey: (item: T) => string) {
 }
 
 export function getChecklistChoiceLabels(item: TransferPlannerChecklistItem) {
-  return unique(
+  const mappedLabels = unique(
     [item.grcCourses, ...(item.alternatives ?? [])]
       .flat()
+      .map((label) => String(label ?? "").trim())
+      .filter(Boolean)
+  );
+  if (mappedLabels.length) {
+    return mappedLabels;
+  }
+
+  return unique(
+    (item.requirementGroup?.options ?? [])
+      .flatMap((option) => getRequirementOptionCourseLabels(option))
       .map((label) => String(label ?? "").trim())
       .filter(Boolean)
   );
@@ -77,10 +87,34 @@ export function getRequirementOptionCourseLabels(option: RequirementGroupOption)
   );
 }
 
+export function getRequirementOptionMappedGrcCourseLabels(option: RequirementGroupOption) {
+  if (option.optionKind === "category-option") {
+    return [] as string[];
+  }
+
+  return unique(
+    (option.grcMatches ?? [])
+      .map((label) => String(label ?? "").trim())
+      .filter(Boolean)
+  );
+}
+
+function isUwOnlyNoCurrentGrcEquivalentOption(option: RequirementGroupOption) {
+  return (
+    !(option.grcMatches ?? []).some((label) => String(label ?? "").trim()) &&
+    (option.constraints ?? []).includes("uw_only_no_current_grc_equivalent")
+  );
+}
+
 export function getRequirementOptionSchedulableCourseLabels(
   item: TransferPlannerChecklistItem,
   option: RequirementGroupOption
 ) {
+  if (isUwOnlyNoCurrentGrcEquivalentOption(option)) {
+    return [];
+  }
+
+  const mappedGrcCourseLabels = getRequirementOptionMappedGrcCourseLabels(option);
   if (
     item.requirementGroup?.requirementType === "sequence_choice" &&
     option.compoundComponents?.length
@@ -103,7 +137,7 @@ export function getRequirementOptionSchedulableCourseLabels(
         .map((courseCode) => normalizeCourseCode(courseCode))
         .filter(Boolean)
     );
-    const looseCourseLabels = getRequirementOptionCourseLabels(option).filter((label) => {
+    const looseCourseLabels = mappedGrcCourseLabels.filter((label) => {
       const labelCodes = extractCourseCodes(label)
         .map((courseCode) => normalizeCourseCode(courseCode))
         .filter(Boolean);
@@ -116,7 +150,7 @@ export function getRequirementOptionSchedulableCourseLabels(
     return unique([...compoundComponentLabels, ...looseCourseLabels]);
   }
 
-  return getRequirementOptionCourseLabels(option);
+  return mappedGrcCourseLabels;
 }
 
 export function getRequirementOptionSelectionKey(item: TransferPlannerChecklistItem) {
@@ -170,8 +204,17 @@ export function getChecklistCourseOptions(item: TransferPlannerChecklistItem) {
     )
     .filter((courseLabels) => courseLabels.length > 0);
 
+  const requirementGroupOptionLabels = unique(
+    (item.requirementGroup?.options ?? [])
+      .flatMap((option) => getRequirementOptionCourseLabels(option))
+      .map((label) => String(label ?? "").trim())
+      .filter(Boolean)
+  );
+
   if (item.requirementGroup?.requirementType !== "choose_one") {
-    return baseOptions;
+    return baseOptions.length || !requirementGroupOptionLabels.length
+      ? baseOptions
+      : [requirementGroupOptionLabels];
   }
 
   const hasMultiCourseGrcOption = (item.requirementGroup.options ?? []).some(
@@ -184,18 +227,12 @@ export function getChecklistCourseOptions(item: TransferPlannerChecklistItem) {
     return baseOptions;
   }
 
-  const allRequirementGroupOptionLabels = unique(
-    (item.requirementGroup.options ?? [])
-      .flatMap((option) => getRequirementOptionCourseLabels(option))
-      .map((label) => String(label ?? "").trim())
-      .filter(Boolean)
-  );
-  if (!allRequirementGroupOptionLabels.length) {
+  if (!requirementGroupOptionLabels.length) {
     return baseOptions;
   }
 
   return uniqueBy(
-    [...baseOptions, allRequirementGroupOptionLabels],
+    [...baseOptions, requirementGroupOptionLabels],
     (courseLabels) => courseLabels.join("||")
   );
 }

@@ -82,6 +82,8 @@ const UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN =
 const UW_GENERAL_CATALOG_MAJOR_ANCHOR_PATTERN = /#(?:program|credential)-UG-[A-Z0-9-]+/i;
 const PATHWAY_SOURCE_CUE_PATTERN =
   /\b(track|option|route|pathway|concentration|specialization)\b/i;
+const PATHWAY_HUB_SOURCE_CUE_PATTERN =
+  /\b(curriculum|degree requirements?|major requirements?|program requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)\b|\/(?:curriculum|requirements?|degree-requirements?|major-requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)(?:[/?#-]|$)/i;
 const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
   /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b|degreq/i;
 const APPROVED_COURSE_LIST_CUE_PATTERN =
@@ -643,13 +645,14 @@ function canSourceRoleCreateSchedulableRows(sourceRole) {
 function getDiscoveryParserType(candidate, sourceRole) {
   const normalizedUrl = String(candidate?.url ?? "").toLowerCase();
   const isPdf = /\.pdf(?:$|[?#])/i.test(normalizedUrl);
+  const isCurriculumHtml = /\/curriculum(?:[/?#]|$)|\bcurriculum\b/i.test(normalizedUrl);
 
   switch (sourceRole) {
     case "official-catalog":
       return "catalog-page";
     case "primary-degree-requirements":
     case "pathway-degree-sheet":
-      return isPdf ? "pdf-degree-sheet" : "html-degree-page";
+      return isPdf ? "pdf-degree-sheet" : isCurriculumHtml ? "html-curriculum-page" : "html-degree-page";
     case "department-requirements":
       return isPdf ? "generic-pdf" : "html-overview-page";
     case "admission-prerequisite-source":
@@ -1093,6 +1096,237 @@ function isSameDepartmentUrl(sourceUrl, candidateUrl) {
   }
 }
 
+function getSameProgramDiscoveryPathPrefix(url) {
+  try {
+    const parsedUrl = new URL(url);
+    const segments = parsedUrl.pathname.split("/").filter(Boolean);
+    const credentialSegmentIndex = segments.findIndex((segment) =>
+      /^(?:bachelor|bachelors?|ba|bs|bba|b-a|b-s|major)[-_]/i.test(segment)
+    );
+    if (credentialSegmentIndex >= 0) {
+      return `/${segments.slice(0, credentialSegmentIndex + 1).join("/")}`;
+    }
+
+    const pathname = parsedUrl.pathname.replace(/\/+$/, "");
+    if (
+      /(?:^|\/)(?:admissions?|overview|curriculum|degree-requirements?|major-requirements?|requirements?|prerequisites?|checklist|worksheet|tracks?|options?|routes?|pathways?|concentrations?|specializations?)$/i.test(
+        pathname
+      )
+    ) {
+      return pathname.replace(/\/[^/]+$/, "");
+    }
+
+    return pathname;
+  } catch {
+    return "";
+  }
+}
+
+function isSameProgramChildPage(baseUrl, candidateUrl) {
+  try {
+    const base = new URL(baseUrl);
+    const candidate = new URL(candidateUrl);
+    if (base.origin !== candidate.origin) {
+      return false;
+    }
+
+    const basePrefix = getSameProgramDiscoveryPathPrefix(base.href).replace(/\/+$/, "");
+    const candidatePath = candidate.pathname.replace(/\/+$/, "");
+    return Boolean(
+      basePrefix &&
+        basePrefix !== "/" &&
+        candidatePath !== basePrefix &&
+        candidatePath.startsWith(`${basePrefix}/`)
+    );
+  } catch {
+    return false;
+  }
+}
+
+function isSameProgramChildOrSiblingPage(baseUrl, candidateUrl) {
+  if (isSameProgramChildPage(baseUrl, candidateUrl)) {
+    return true;
+  }
+
+  try {
+    const base = new URL(baseUrl);
+    const candidate = new URL(candidateUrl);
+    if (base.origin !== candidate.origin) {
+      return false;
+    }
+
+    const basePrefix = getSameProgramDiscoveryPathPrefix(base.href).replace(/\/+$/, "");
+    const candidatePrefix = getSameProgramDiscoveryPathPrefix(candidate.href).replace(/\/+$/, "");
+    return Boolean(
+      basePrefix &&
+        candidatePrefix &&
+        basePrefix !== "/" &&
+        basePrefix === candidatePrefix &&
+        base.pathname.replace(/\/+$/, "") !== candidate.pathname.replace(/\/+$/, "")
+    );
+  } catch {
+    return false;
+  }
+}
+
+function hasZeroParsedCourseReevaluationSignal(target) {
+  if (Number.isFinite(target?.reevaluationContext?.parsedUwCourseCodeCount)) {
+    return target.reevaluationContext.parsedUwCourseCodeCount === 0;
+  }
+
+  return (target?.reevaluationSignals ?? []).some(
+    (signal) => String(signal?.code ?? "") === "no-parsed-uw-course-codes"
+  );
+}
+
+function isZeroCoursePrimaryWithRequirementCues(target) {
+  return Boolean(
+    target?.analysisMode === "weak-existing-primary" &&
+      target?.existingPrimaryUrl &&
+      hasZeroParsedCourseReevaluationSignal(target) &&
+      (target?.reevaluationContext?.hasStrongRequirementCue === true ||
+        (target?.reevaluationSignals ?? []).some(
+          (signal) => String(signal?.code ?? "") === "no-parsed-uw-course-codes"
+        ))
+  );
+}
+
+function hasSameProgramReplacementRequirementCue(combinedText) {
+  return (
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(combinedText) ||
+    PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(combinedText) ||
+    /\b(?:curriculum|worksheet|checklist|degree sheet|requirement sheet|requirements packet|major planning worksheet|program of study|plan of study|study plan)\b/i.test(
+      combinedText
+    ) ||
+    /\/(?:requirements?|curriculum|degree-requirements?|major-requirements?|worksheets?|checklists?)(?:[-/?#]|$)/i.test(
+      combinedText
+    ) ||
+    /\.pdf(?:\b|[?#])/i.test(combinedText)
+  );
+}
+
+function isSameProgramPathwayHubChildSourceCandidate(
+  target,
+  candidate,
+  sourceRole,
+  combinedText
+) {
+  if (target?.ownerType !== "pathway" || !target?.pathwayId) {
+    return false;
+  }
+
+  if (
+    ![
+      "primary-degree-requirements",
+      "department-requirements",
+      "pathway-degree-sheet",
+      "curriculum-map",
+      "ignored",
+    ].includes(sourceRole)
+  ) {
+    return false;
+  }
+
+  if (
+    ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(combinedText) ||
+    SUPPORT_SOURCE_CUE_PATTERN.test(combinedText) ||
+    APPROVED_COURSE_LIST_CUE_PATTERN.test(combinedText) ||
+    ELECTIVE_LIST_CUE_PATTERN.test(combinedText) ||
+    /\b(?:sample schedule|four[-\s]?year plan|degree map)\b/i.test(combinedText)
+  ) {
+    return false;
+  }
+
+  const baseUrls = [
+    candidate?.sourcePageUrl,
+    candidate?.discoveredFromUrl,
+    target?.existingPrimaryUrl,
+  ].filter(Boolean);
+  const sameProgramHubPath = baseUrls.some(
+    (baseUrl) =>
+      PATHWAY_HUB_SOURCE_CUE_PATTERN.test(baseUrl) &&
+      isSameProgramChildOrSiblingPage(baseUrl, candidate?.url)
+  );
+  if (!sameProgramHubPath) {
+    return false;
+  }
+
+  const pathwayIdentityScore = getPathwayIdentityScore(target, candidate, combinedText);
+  if (pathwayIdentityScore <= 0) {
+    return false;
+  }
+
+  if (hasConflictingDegreeRoute(`${target.title} ${target.label}`, combinedText)) {
+    return false;
+  }
+
+  return PATHWAY_SOURCE_CUE_PATTERN.test(combinedText) || pathwayIdentityScore >= 50;
+}
+
+function isSameProgramZeroCourseReplacementCandidate(
+  target,
+  candidate,
+  sourceRole,
+  combinedText
+) {
+  if (!isZeroCoursePrimaryWithRequirementCues(target)) {
+    return false;
+  }
+
+  if (
+    ![
+      "primary-degree-requirements",
+      "department-requirements",
+      "pathway-degree-sheet",
+      "curriculum-map",
+      "admissions-preparation",
+      "ignored",
+    ].includes(sourceRole)
+  ) {
+    return false;
+  }
+
+  if (!hasSameProgramReplacementRequirementCue(combinedText)) {
+    return false;
+  }
+
+  if (
+    ADMISSION_PREREQUISITE_SOURCE_CUE_PATTERN.test(combinedText) ||
+    SUPPORT_SOURCE_CUE_PATTERN.test(combinedText) ||
+    /\b(?:sample schedule|four[-\s]?year plan|degree map)\b/i.test(combinedText)
+  ) {
+    return false;
+  }
+
+  const sameProgramPath = isSameProgramChildOrSiblingPage(target.existingPrimaryUrl, candidate?.url);
+  const sameMajorIdentityScore = getSameMajorIdentityScore(target, candidate, combinedText);
+  const pathwayIdentityScore = getPathwayIdentityScore(target, candidate, combinedText);
+  const worksheetOrDocumentCue =
+    PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(combinedText) ||
+    /\b(?:worksheet|checklist|degree sheet|requirement sheet|requirements packet)\b/i.test(
+      combinedText
+    ) ||
+    /\.pdf(?:\b|[?#])/i.test(combinedText);
+
+  if (!sameProgramPath && !(worksheetOrDocumentCue && sameMajorIdentityScore > 0)) {
+    return false;
+  }
+
+  if (hasConflictingDegreeRoute(`${target.title} ${target.label}`, combinedText)) {
+    return false;
+  }
+
+  if (
+    target?.ownerType === "pathway" &&
+    PATHWAY_SOURCE_CUE_PATTERN.test(combinedText) &&
+    pathwayIdentityScore <= 0
+  ) {
+    return false;
+  }
+
+  return sameProgramPath || sameMajorIdentityScore > 0 || pathwayIdentityScore > 0;
+}
+
 function hasSelectedUndergraduateCatalogMajorCredential(target, candidate, candidateIdentityText) {
   if (
     target.ownerType !== "major" ||
@@ -1353,28 +1587,31 @@ function primarySourceMatchesPathwayIdentity(owner, primarySource, parsedBlock) 
     return true;
   }
 
-  const candidate = {
-    url: primarySource?.url ?? parsedBlock?.primarySourceUrl ?? parsedBlock?.sourceUrl ?? "",
-    label: primarySource?.label ?? parsedBlock?.primarySourceLabel ?? parsedBlock?.sourceLabel ?? "",
+  const target = {
+    ownerType: "pathway",
+    pathwayId: owner.pathwayId,
+    title: owner.title,
+    label: owner.label,
   };
-  const combinedText = [
-    candidate.url,
-    candidate.label,
-  ]
-    .filter(Boolean)
-    .join(" \n")
-    .toLowerCase();
-
-  return getPathwayIdentityScore(
+  const candidates = [
     {
-      ownerType: "pathway",
-      pathwayId: owner.pathwayId,
-      title: owner.title,
-      label: owner.label,
+      url: primarySource?.url ?? parsedBlock?.primarySourceUrl ?? "",
+      label: primarySource?.label ?? parsedBlock?.primarySourceLabel ?? "",
     },
-    candidate,
-    combinedText
-  ) > 0;
+    {
+      url: parsedBlock?.sourceUrl ?? "",
+      label: parsedBlock?.sourceLabel ?? "",
+    },
+  ];
+
+  return candidates.some((candidate) => {
+    const combinedText = [candidate.url, candidate.label]
+      .filter(Boolean)
+      .join(" \n")
+      .toLowerCase();
+
+    return getPathwayIdentityScore(target, candidate, combinedText) > 0;
+  });
 }
 
 function buildWeakExistingPrimarySignals(params) {
@@ -1389,12 +1626,17 @@ function buildWeakExistingPrimarySignals(params) {
   const signals = [];
   const sourceText = buildReevaluationSourceText(primarySource, parsedBlock);
   const hasStrongRequirementCue = SOURCE_REQUIREMENT_CUE_PATTERN.test(sourceText);
+  const hasDedicatedRequirementCue =
+    PRIMARY_REQUIREMENT_CUE_PATTERN.test(sourceText) ||
+    /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b|\brequirements packet\b|\bdegreq\b/i.test(
+      sourceText
+    );
   const hasWeakPrimaryUrl = SOURCE_WEAK_PRIMARY_URL_PATTERN.test(primarySource?.url ?? "");
   const hasWeakHeadings = SOURCE_WEAK_PRIMARY_HEADING_PATTERN.test(
     (parsedBlock?.extractedHeadings ?? []).join(" \n")
   );
   const hasOverviewOnlyCue =
-    SOURCE_OVERVIEW_ONLY_PATTERN.test(sourceText) && !hasStrongRequirementCue;
+    SOURCE_OVERVIEW_ONLY_PATTERN.test(sourceText) && !hasDedicatedRequirementCue;
   const qualityWarningCodes = (parsedBlock?.qualitySignals ?? [])
     .filter((signal) => signal?.severity === "warning")
     .map((signal) => signal.code)
@@ -1482,9 +1724,13 @@ function buildWeakExistingPrimarySignals(params) {
   const downstreamWeak =
     safeIntentionalEmpty || qualityWarningCodes.length > 0 || parsedUwCourseCodeCount === 0;
   const sourceWeak = hasWeakPrimaryUrl || (hasWeakHeadings && !hasStrongRequirementCue) || hasOverviewOnlyCue;
+  const zeroCourseRequirementPrimary = parsedUwCourseCodeCount === 0 && hasStrongRequirementCue;
 
   return {
-    triggered: (downstreamWeak && sourceWeak) || yearSpecificRequirementSource,
+    triggered:
+      (downstreamWeak && sourceWeak) ||
+      zeroCourseRequirementPrimary ||
+      yearSpecificRequirementSource,
     signals,
     context: {
       runtimeGrcCourseCount,
@@ -1738,25 +1984,28 @@ function buildDiscoveryReport(owners, weakExistingOwners, options = {}) {
 
   return {
     generatedAt: new Date().toISOString(),
-    ownerCount: scopedOwners.length,
-    missingPrimaryOwnerCount: scopedOwners.filter((owner) => !owner.existingPrimaryUrl).length,
-    highConfidenceSuggestionCount: scopedOwners.filter(
+    ownerCount: mergedOwners.length,
+    missingPrimaryOwnerCount: mergedOwners.filter((owner) => !owner.existingPrimaryUrl).length,
+    highConfidenceSuggestionCount: mergedOwners.filter(
       (owner) => owner.suggestedPrimary?.confidence === "high"
     ).length,
-    mediumConfidenceSuggestionCount: scopedOwners.filter(
+    mediumConfidenceSuggestionCount: mergedOwners.filter(
       (owner) => owner.suggestedPrimary?.confidence === "medium"
     ).length,
-    noSuggestionCount: scopedOwners.filter((owner) => !owner.suggestedPrimary).length,
-    weakExistingOwnerCount: scopedWeakExistingOwners.length,
-    highConfidenceReplacementCount: scopedWeakExistingOwners.filter(
+    noSuggestionCount: mergedOwners.filter((owner) => !owner.suggestedPrimary).length,
+    weakExistingOwnerCount: mergedWeakExistingOwners.length,
+    highConfidenceReplacementCount: mergedWeakExistingOwners.filter(
       (owner) => owner.suggestedAction === "replace-existing-primary"
     ).length,
-    reviewReplacementCount: scopedWeakExistingOwners.filter(
+    reviewReplacementCount: mergedWeakExistingOwners.filter(
       (owner) => owner.reviewCandidate && owner.suggestedAction !== "replace-existing-primary"
     ).length,
-    keepExistingPrimaryCount: scopedWeakExistingOwners.filter(
+    keepExistingPrimaryCount: mergedWeakExistingOwners.filter(
       (owner) => owner.suggestedAction === "keep-existing-primary"
     ).length,
+    targetPlanId: options.targetPlanId ?? null,
+    targetOwnerCount: scopedOwners.length,
+    targetWeakExistingOwnerCount: scopedWeakExistingOwners.length,
     owners: mergedOwners,
     weakExistingOwners: mergedWeakExistingOwners,
   };
@@ -1902,6 +2151,29 @@ function getHostnameOrEmpty(url) {
   }
 }
 
+function isGraduateOnlyCandidateForUndergraduateTarget(target, combinedText) {
+  const targetText = `${target?.title ?? ""} ${target?.label ?? ""}`.toLowerCase();
+  const targetIsGraduate =
+    /\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral)\b/i.test(
+      targetText
+    );
+  if (targetIsGraduate) {
+    return false;
+  }
+
+  const candidateIsGraduate =
+    /\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral)\b/i.test(
+      combinedText
+    ) || /\/(?:student\/)?(?:applied-masters|masters?|graduate|amp)(?:[-/?#]|$)/i.test(combinedText);
+  if (!candidateIsGraduate) {
+    return false;
+  }
+
+  return !/\b(?:undergrad(?:uate)?|bachelor|b\.?\s*s\.?|b\.?\s*a\.?)\b|\/undergrad(?:uate)?(?:[-/?#]|$)/i.test(
+    combinedText
+  );
+}
+
 function scoreCandidate(target, candidate) {
   if (isBlockedPrimarySourceCandidateUrl(candidate.url)) {
     return {
@@ -1926,7 +2198,37 @@ function scoreCandidate(target, candidate) {
     .filter(Boolean)
     .join(" \n")
     .toLowerCase();
+
+  if (isGraduateOnlyCandidateForUndergraduateTarget(target, combinedText)) {
+    return {
+      score: -100,
+      confidence: "low",
+      sourceRole: "ignored",
+      sourceRoleStatus: "ignored",
+      parserType: getDiscoveryParserType(candidate, "ignored"),
+      canCreateSchedulableRows: false,
+      reasons: ["graduate-only source does not match undergraduate owner"],
+    };
+  }
+
   let sourceRole = classifySourceDiscoveryRole(candidate);
+  const sameProgramZeroCourseReplacement =
+    isSameProgramZeroCourseReplacementCandidate(
+      target,
+      candidate,
+      sourceRole,
+      combinedText
+    );
+  const sameProgramPathwayHubChildSource =
+    isSameProgramPathwayHubChildSourceCandidate(
+      target,
+      candidate,
+      sourceRole,
+      combinedText
+    );
+  if (sameProgramZeroCourseReplacement || sameProgramPathwayHubChildSource) {
+    sourceRole = "primary-degree-requirements";
+  }
   const pathwayIdentityPrimaryPage = isPathwayIdentityPrimaryPage(
     target,
     candidate,
@@ -2001,6 +2303,26 @@ function scoreCandidate(target, candidate) {
   if (pathwayIdentityPrimaryPage) {
     score += 18;
     addReason(reasons, "pathway-specific official child page matches the selected pathway");
+  }
+  if (sameProgramZeroCourseReplacement) {
+    score += 22;
+    addReason(
+      reasons,
+      "same-program requirement source can replace a zero-course primary"
+    );
+    if (/\bcurriculum\b|\/curriculum(?:[/?#]|$)/i.test(combinedText)) {
+      addReason(
+        reasons,
+        "same-program curriculum child can replace a zero-course overview primary"
+      );
+    }
+  }
+  if (sameProgramPathwayHubChildSource) {
+    score += 20;
+    addReason(
+      reasons,
+      "same-program option/concentration child source matches the selected pathway"
+    );
   }
   if (
     sourceRole === "official-catalog" &&
@@ -2462,11 +2784,11 @@ function buildReplacementDecision(target, candidates) {
     (target.reevaluationSignals ?? []).map((signal) => String(signal?.code ?? "").trim())
   );
   const replacementReasons = new Set(bestAlternative.reasons ?? []);
+  const currentPrimaryMissesSelectedPathway = signalCodes.has("primary-source-misses-selected-pathway");
   const currentPrimaryClearlyWrong =
     signalCodes.has("primary-url-looks-graduate-or-timeline") ||
     signalCodes.has("page-headings-look-graduate-or-timeline-heavy") ||
-    signalCodes.has("no-parsed-uw-course-codes") ||
-    signalCodes.has("primary-source-misses-selected-pathway");
+    signalCodes.has("no-parsed-uw-course-codes");
   const currentPrimaryLooksYearSpecific = signalCodes.has("primary-source-appears-year-specific");
   const replacementHasUndergradRequirementEvidence =
     replacementReasons.has("explicit degree-requirements wording") ||
@@ -2479,6 +2801,9 @@ function buildReplacementDecision(target, candidates) {
     replacementReasons.has("undergraduate path segment") ||
     replacementReasons.has("requirements path segment") ||
     replacementReasons.has("specific bachelor route wording") ||
+    replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
+    replacementReasons.has("same-program curriculum child can replace a zero-course overview primary") ||
+    replacementReasons.has("same-program option/concentration child source matches the selected pathway") ||
     replacementReasons.has("pathway-specific official child page matches the selected pathway");
   const replacementHasStructuredRequirementPageEvidence =
     replacementReasons.has("checklist-style wording") ||
@@ -2487,7 +2812,19 @@ function buildReplacementDecision(target, candidates) {
     replacementReasons.has("graduation requirements wording") ||
     replacementReasons.has("program-requirements wording") ||
     replacementReasons.has("specific bachelor route wording") ||
+    replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
+    replacementReasons.has("same-program curriculum child can replace a zero-course overview primary") ||
+    replacementReasons.has("same-program option/concentration child source matches the selected pathway") ||
     replacementReasons.has("pathway-specific official child page matches the selected pathway");
+  const replacementHasExplicitRequirementEvidence =
+    replacementReasons.has("explicit degree-requirements wording") ||
+    replacementReasons.has("explicit major-requirements wording") ||
+    replacementReasons.has("graduation requirements wording") ||
+    replacementReasons.has("program-requirements wording") ||
+    replacementReasons.has("major-admissions-requirements wording") ||
+    replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
+    replacementReasons.has("same-program curriculum child can replace a zero-course overview primary") ||
+    replacementReasons.has("same-program option/concentration child source matches the selected pathway");
   const replacementHasStrongProgramMatch =
     !replacementReasons.has("candidate appears to describe a different degree route") &&
     (replacementReasons.has("official source path matches the selected pathway") ||
@@ -2497,10 +2834,16 @@ function buildReplacementDecision(target, candidates) {
       replacementReasons.has("official source text matches the selected major") ||
       replacementReasons.has("official source acronym matches the selected major") ||
       replacementReasons.has("explicitly names the selected major") ||
-      replacementReasons.has("explicitly names the selected pathway or route"));
+      replacementReasons.has("explicitly names the selected pathway or route") ||
+      replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
+      replacementReasons.has("same-program option/concentration child source matches the selected pathway"));
   const staysOnDepartmentHost = replacementReasons.has(
     "stays on the current official department host"
   );
+  const staysInTrustedReplacementScope =
+    staysOnDepartmentHost ||
+    replacementReasons.has("same-program requirement source can replace a zero-course primary") ||
+    replacementReasons.has("same-program option/concentration child source matches the selected pathway");
   const currentSourceLatestYear = Number.isFinite(target?.reevaluationContext?.currentSourceLatestYear)
     ? target.reevaluationContext.currentSourceLatestYear
     : currentPrimary?.latestDetectedYear ?? null;
@@ -2530,6 +2873,11 @@ function buildReplacementDecision(target, candidates) {
   ]
     .filter(Boolean)
     .join(" \n");
+  const pathwaySpecificReplacementCanFixMiss =
+    currentPrimaryMissesSelectedPathway &&
+    replacementHasExplicitRequirementEvidence &&
+    bestAlternative.sourceRole !== "official-catalog" &&
+    !/\bminor\b/i.test(replacementCombinedText);
   const replacementIsSingleRouteForMultiPathwayMajor =
     isSingleDegreeRouteCandidateForMultiPathwayMajor(
       target,
@@ -2543,10 +2891,15 @@ function buildReplacementDecision(target, candidates) {
       : MIN_CLEAR_REPLACEMENT_SCORE_DELTA;
   const shouldReplace =
     target.analysisMode === "weak-existing-primary" &&
-    (currentPrimaryClearlyWrong || betterSiblingByYear || strongerCurrentDegreePageReplacement) &&
+    (
+      currentPrimaryClearlyWrong ||
+      betterSiblingByYear ||
+      strongerCurrentDegreePageReplacement ||
+      pathwaySpecificReplacementCanFixMiss
+    ) &&
     replacementHasUndergradRequirementEvidence &&
     replacementHasStrongProgramMatch &&
-    staysOnDepartmentHost &&
+    staysInTrustedReplacementScope &&
     !replacementIsSingleRouteForMultiPathwayMajor &&
     bestAlternative.confidence === "high" &&
     bestAlternative.score >= MIN_HIGH_CONFIDENCE_SCORE &&

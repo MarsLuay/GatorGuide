@@ -18,6 +18,24 @@ const PARSER_RULE_REGISTRY = [
     confidence: "high-with-source-heading-and-course-section",
   },
   {
+    id: "sectioned-course-group",
+    appliesTo: {
+      sourceRoles: ["primary-degree-requirements", "department-requirements", "pathway-degree-sheet"],
+      pageTypes: ["html-degree-page", "pdf-degree-sheet", "generic-html"],
+    },
+    detector: {
+      cues: [
+        "selected from the following list",
+        "courses listed below",
+        "minimum of ... credits",
+        "maximum of ... credits",
+        "one/two electives",
+      ],
+    },
+    extractor: "extractSectionedCourseRequirementGroup",
+    confidence: "high-with-section-heading-and-course-rows",
+  },
+  {
     id: "credit-bucket",
     appliesTo: {
       sourceRoles: ["primary-degree-requirements", "department-requirements", "official-catalog"],

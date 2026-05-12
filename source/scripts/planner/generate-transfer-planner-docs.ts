@@ -1,15 +1,19 @@
-import { writeFileSync } from "fs";
-import path from "path";
+const { writeFileSync } = require("fs");
+const path = require("path");
 
-import {
+const {
   getTransferPlannerGrcCourseList,
   getTransferPlannerGrcCourseListGuidance,
   getTransferPlannerMajorsForCampus,
   getTransferPlannerTrack,
-  type TransferPlannerCampusId,
-  type TransferPlannerChecklistItem,
-  type TransferPlannerMajorPlan,
-} from "../../constants/transfer-planner-source/index";
+} = require("../../constants/transfer-planner-source/index");
+
+type TransferPlannerCampusId =
+  import("../../constants/transfer-planner-source/index").TransferPlannerCampusId;
+type TransferPlannerChecklistItem =
+  import("../../constants/transfer-planner-source/index").TransferPlannerChecklistItem;
+type TransferPlannerMajorPlan =
+  import("../../constants/transfer-planner-source/index").TransferPlannerMajorPlan;
 
 type CampusDocConfig = {
   fileName: string;

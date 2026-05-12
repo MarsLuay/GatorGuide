@@ -162,7 +162,7 @@ function normalizeSourceOwnerId(value) {
   if (sourceOwnerKeyMatch) {
     const [, planId, pathwayId] = sourceOwnerKeyMatch;
     const normalizedPathwayId = normalizeTransferPlannerPathwayId(planId, pathwayId);
-    return normalizedPathwayId ? `${planId}::${normalizedPathwayId}` : planId;
+    return normalizeTransferPlannerOwnerId("", planId, normalizedPathwayId);
   }
 
   return normalizeTransferPlannerOwnerId(rawOwnerId);

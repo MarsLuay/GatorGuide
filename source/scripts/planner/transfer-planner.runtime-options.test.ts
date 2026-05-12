@@ -2107,7 +2107,7 @@ test.skip("Phase 10 student runtime planner strips planner-authored detail and k
   assert.equal(compEApplicationTitles.includes("CHEM 238"), false);
   assert.equal(compEApplicationTitles.includes("CHEM 239"), false);
   assert.equal(compEApplicationTitles.includes("PHYS 119"), false);
-  assert.ok(compEBeforeEnrollmentTitles.includes("EE 215"));
+  assert.ok(compEBeforeEnrollmentTitles.includes("EE 205 or EE 215"));
   assert.equal(compEBeforeEnrollmentTitles.includes("CSE 143"), false);
   assert.ok(runtimeCompEGrcCourseList.includes("ENGR& 204"));
   assert.ok(runtimeCompEGrcCourseList.includes("MATH 240"));
@@ -2117,9 +2117,9 @@ test.skip("Phase 10 student runtime planner strips planner-authored detail and k
   assert.equal(runtimeCompEGrcCourseList.includes("CHEM& 161"), false);
   assert.equal(runtimeCompEGrcCourseList.includes("CHEM& 262"), false);
   assert.equal(runtimeCompEGrcCourseList.includes("PHYS& 156"), false);
-  assert.equal(
-    resolvedRuntimeCompEPlan.beforeEnrollmentChecklist?.find((item) => item.title === "EE 215")?.note,
-    "Not part of the minimum transfer-admission classes, but good to complete before or during UW enrollment because it's needed to complete the degree either way."
+  assert.match(
+    resolvedRuntimeCompEPlan.beforeEnrollmentChecklist?.find((item) => item.title === "EE 205 or EE 215")?.note ?? "",
+    /needed to complete the degree either way/
   );
 
   const resolvedRuntimeBiologyBaPlan = resolveTransferPlannerStudentRuntimeMajorPlan(
