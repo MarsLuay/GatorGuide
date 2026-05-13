@@ -232,7 +232,7 @@ Source-generated from parsed UW requirement-source registries.
 
 - [UW Bothell BBA admissions hub](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions) - Supporting admissions context only. Use this alongside the dedicated route pages rather than as a blanket degree-requirements replacement.
 - [UW Bothell BBA curriculum hub](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum) - Supporting route hub only. Keep the dedicated option and concentration pages as the stronger requirement sources for specific BBA pathways.
-- [UW Bothell BBA curriculum hub](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum) - Source used for parser-backed UW requirement extraction.
+- [UW Bothell BBA curriculum hub](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum) - Cached snapshot used for parser-backed UW requirement extraction.
 - [UW Bothell BBA how to apply](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/how-to-apply) - Supporting admissions process context only. Do not treat this page as a degree-requirements source.
 - [UW Bothell BBA prerequisite courses](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/admissions/prerequisite-courses) - Supporting admissions prerequisite context only. Keep lower-division requirement extraction conservative and route-specific.
 
@@ -240,64 +240,79 @@ Source-generated from parsed UW requirement-source registries.
 
 - Examine the many management challenges facing modern business organizations and how to use the tools needed to deal with a complex and rapidly changing environment. Areas of study include entrepreneurship, leadership and decision making, conflict resolution, human resources, and managing employees. Graduates often pursue careers in consulting or as leaders in the private or public sector. Learn more about the Management concentration .
 - Learn more about admissions requirements as well as how to apply .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
 
 ##### Business Administration (BA) parsed official requirement cues
 
 - Learn more about admissions requirements as well as how to apply .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
 
 ##### Business Administration (BA) parsed official requirement cues
 
 - Learn more about admissions requirements as well as how to apply .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
 
 ##### Business Administration (BA) parsed official requirement cues
 
 - Learn more about admissions requirements as well as how to apply .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
 
 ##### Business Administration (BA) parsed official requirement cues
 
 - Learn more about admissions requirements as well as how to apply .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
 
 ##### Business Administration (BA) parsed official requirement cues
 
 - Learn more about admissions requirements as well as how to apply .
-
-##### Business Administration (BA) parsed choices and pathway notes
-
-- Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
 
 ##### Business Administration (BA) parsed official requirement cues
 
 - Learn more about admissions requirements as well as how to apply .
-
-##### Business Administration (BA) parsed choices and pathway notes
-
-- Prepares students for careers in operations, logistics, purchasing and distribution. Students learn about the production, shipment and distribution of products, understanding sales, inventory and other crucial aspects of businesses. Learn more about the Supply Chain Management option .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
 
 ##### Business Administration (BA) parsed official requirement cues
 
-- Prerequisite Courses
-- Accounting Option
-- Leadership &amp; Strategic Innovation Option
-- Marketing Option and Concentration
-- Supply Chain Management Option
-- Entrepreneurship Concentration
-- Finance Option and Concentration
-- Management Concentration
-- Management Information Systems (MIS) Concentration
-- Retail Management Concentration
+- Learn more about admissions requirements as well as how to apply .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
 
-##### Business Administration (BA) parsed choices and pathway notes
+##### Business Administration (BA) parsed official requirement cues
 
-- Business students may specialize in one of four options or choose from one of eight concentrations and a self-directed concentration.
+- Learn more about admissions requirements as well as how to apply .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Learn more about admissions requirements as well as how to apply .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- Note: Built from a cached official snapshot because fetch failed.
+
+##### Business Administration (BA) parsed official requirement cues
+
+- Examine the many management challenges facing modern business organizations and how to use the tools needed to deal with a complex and rapidly changing environment. Areas of study include entrepreneurship, leadership and decision making, conflict resolution, human resources, and managing employees. Graduates often pursue careers in consulting or as leaders in the private or public sector. Learn more about the Management concentration .
+- Learn the technical and business skills required to solve business problems in technology-based environments. You’ll learn to conduct structured and informal analyses to design and improve applications and systems, from e-commerce storefronts to enterprise applications. MIS students complete courses in both Business and Computing Software Systems (CSS). Learn more about the MIS concentration .
+- Learn to develop and implement coordinated marketing programs to successfully manage a company’s relationship with its target customers in order to meet its strategic goals in a competitive environment. Graduates go on to work in brand management, sales, marketing research and consulting, and entrepreneurial ventures. Learn more about the Marketing concentration .
+- The Retail Management concentration provides students with a solid foundation of theory important to the retail management discipline. Specifically, students will acquire an interdisciplinary knowledge of merchandise acquisition, strategic retail promotion, retail operations and supply chain management. They will also gain an understanding of cutting edge uses of technology in retail management and gain the mindset necessary to find and apply new applications for technologies in the retail context as these new technologies emerge. Students will have the opportunity to apply their learning through real world class projects, and gain experience and exposure to the retail industry through strategic partnerships with important retailers in the area. Engagement with this key industry through the Retail Management Concentration provides numerous opportunities for students and helps to prepare them to become leaders in the retail industry. Learn more about the Retail Management concentration .
+- TIM helps students understand the nature of innovation, the relationship between strategic leadership and innovation, and how organizations use technology and new product development processes to successfully manage change. After graduation, students apply their knowledge in industries such as engineering, computing, telecommunications and biotechnology. Learn more about the TIM concentration .
 - The Self-Directed Concentration allows students to create their own interdisciplinary concentration. The new Concentration combines four upper-division (i.e., 300-400-level) courses from two (or more) academic areas into a new area of study that does not already exist in the School of Business or UW Bothell. A Self-Directed Concentration may be a good choice for students creating their own career niche or wavering between two existing concentrations/options. The Self-Directed Concentration is NOT meant to allow students to pick and choose a handful of classes without developing a clear goal. Students interested in the Self-Directed Concentration should make an appointment with their Academic Advisor to find out about the declaration and approval process.
-- Accounting Option
+- Learn more about admissions requirements as well as how to apply .
+- Note: Built from a cached official snapshot because fetch failed.
+
+##### Business Administration (BA) parsed choices and pathway notes
+
+- The Self-Directed Concentration allows students to create their own interdisciplinary concentration. The new Concentration combines four upper-division (i.e., 300-400-level) courses from two (or more) academic areas into a new area of study that does not already exist in the School of Business or UW Bothell. A Self-Directed Concentration may be a good choice for students creating their own career niche or wavering between two existing concentrations/options. The Self-Directed Concentration is NOT meant to allow students to pick and choose a handful of classes without developing a clear goal. Students interested in the Self-Directed Concentration should make an appointment with their Academic Advisor to find out about the declaration and approval process.
 - and entrepreneurial ventures. Learn more about the Marketing concentration
-- and entrepreneurial ventures. Learn more about the Marketing option
-- Entrepreneurship Concentration
-- Finance Option and Concentration
-- idea competition and live business plan competitions. Learn more about the Entrepreneurship concentration
-- Management Concentration
-- Management Information Systems (MIS) Concentration
+- Note: Built from a cached official snapshot because fetch failed.
 
 #### GRC Equivalent Courses
 
@@ -307,15 +322,17 @@ Source-generated from parsed UW requirement-source registries.
 
 - Required before enrollment: MATH&amp; 148 -> `MATH& 148`
 - Source-backed note: Parser confidence: medium.
+- Source-backed note: Used cached official snapshot fallback: fetch failed
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-01-business-administration-ba-parsed-official-source-requirements.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-02-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-03-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-04-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-05-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-06-business-administration-ba-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-07-business-administration-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-07-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-08-business-administration-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-10-parsed-09-business-administration-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-90-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration:source-degree-map:structured:uw-bothell-business-administration-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
 
@@ -390,6 +407,8 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam) -> `CS& 141`. complete at least 1 course from this set
 - Required before enrollment: (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173) -> `CS 145`. complete at least 1 course from this set
 - Required before enrollment: (330; CSS 173 or CSS 143 and corequisite CSSSKL 143; CSS 360). complete at least 1 course from this set
+- Required before enrollment: CSS 475 – Database Systems (CSS 360 or B IMD 351). complete at least 1 course from this set
+- Required before enrollment: CSS 478 – Usability &amp; User-Centered Design (CSS 360 or B IMD 351). complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration-accounting:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
@@ -605,33 +624,35 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [UW Bothell Supply Chain Management option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain)
-- [UW Bothell Supply Chain Management option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain) - Source used for parser-backed UW requirement extraction.
+- [UW Bothell Supply Chain Management option](https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/supply-chain) - Cached snapshot used for parser-backed UW requirement extraction.
 
 ##### Business Administration: Supply Chain Management (BA) parsed official source requirements
 
-- (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
-- (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
-- (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
-- (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
-- * A minimum grade of 2.7 in either course is required.
-- 10 credits
-- 10 credits – 2 courses from the list below:
-- 10 credits – Complete 2 courses from this list:
-- 30 credits
-- 30 Credits
+- Supply Chain Management Option - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+- Note: Built from a cached official snapshot because fetch failed.
 
 ##### Business Administration: Supply Chain Management (BA) parsed official requirement cues
 
-- (*Note: Students in the process of completing a course will not be considered for the Supply Chain Management Option until the course has been completed. Talk with an advisor for more information).
-- (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173)
-- (CSS 142 and corequisite CSSSKL 142; CSE 122; or CSE 142)
-- (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam)
-- * A minimum grade of 2.7 in either course is required.
-- 10 credits
-- 10 credits – 2 courses from the list below:
-- 10 credits – Complete 2 courses from this list:
-- 30 credits
-- 30 Credits
+- Supply Chain Management Option - School of Business
+- Prerequisite Courses
+- Accounting Option
+- Leadership &amp; Strategic Innovation Option
+- Marketing Option and Concentration
+- Supply Chain Management Option
+- Entrepreneurship Concentration
+- Finance Option and Concentration
+- Management Concentration
+- Management Information Systems (MIS) Concentration
+- Note: Built from a cached official snapshot because fetch failed.
 
 ##### Business Administration: Supply Chain Management (BA) parsed choices and pathway notes
 
@@ -645,6 +666,7 @@ Source-generated from parsed UW requirement-source registries.
 - Marketing Option and Concentration
 - Only counts when approved for concentration; see your advisor before registering.
 - Requirements to declare the concentration
+- Note: Built from a cached official snapshot because fetch failed.
 
 #### GRC Equivalent Courses
 
@@ -664,6 +686,7 @@ Source-generated from parsed UW requirement-source registries.
 - Required before enrollment: (CSS 142* and corequisite CSSSKL 142; or CSE 142*; or a minimum score of 4 on the AP Computer Science A exam) -> `CS& 141`. complete at least 1 course from this set
 - Required before enrollment: (CSS 133; CSS 143 and corequisite CSSSKL 143; CSE 143; CSS 162; or CSS 173) -> `CS 145`. complete at least 1 course from this set
 - Source-backed note: Parser confidence: high.
+- Source-backed note: Used cached official snapshot fallback: fetch failed
 - Source-backed note: Parsed degree-map block candidate: uw-bothell-business-administration-supply-chain-management:source-degree-map:.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.

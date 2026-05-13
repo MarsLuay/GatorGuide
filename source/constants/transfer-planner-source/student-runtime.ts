@@ -169,6 +169,25 @@ function uniqueBy<T>(values: T[], getKey: (value: T) => string) {
   return result;
 }
 
+function getRuntimeRequirementSupportListSemanticKey(
+  supportList: TransferPlannerRequirementSupportList
+) {
+  const approvedListKey = supportList.approvedListKey ?? supportList.filterKey ?? "";
+  if (
+    approvedListKey &&
+    (supportList.shape === "approved-filter-list" || supportList.shape === "approved-course-list")
+  ) {
+    return `approved:${supportList.sourceUrl ?? ""}:${approvedListKey}`;
+  }
+  return supportList.id || `${supportList.shape}:${supportList.sourceUrl ?? ""}:${supportList.listTitle ?? ""}`;
+}
+
+function uniqueRuntimeRequirementSupportLists(
+  supportLists: TransferPlannerRequirementSupportList[]
+) {
+  return uniqueBy(supportLists, getRuntimeRequirementSupportListSemanticKey);
+}
+
 function getRuntimeRequirementStructuralShape(
   input: {
     requirementType?: string | null;
@@ -2191,11 +2210,13 @@ function normalizeRuntimeParsedRequirementSourceBlock<
     parsedRequirementGroups?: TransferPlannerRequirementGroup[];
   }
 >(block: T) {
-  const supportLists = (
-    block.supportLists?.length
-      ? block.supportLists
-      : buildRuntimeRequirementSupportLists(block)
-  ).map(normalizeRuntimeRequirementSupportList);
+  const supportLists = uniqueRuntimeRequirementSupportLists(
+    (
+      block.supportLists?.length
+        ? block.supportLists
+        : buildRuntimeRequirementSupportLists(block)
+    ).map(normalizeRuntimeRequirementSupportList)
+  );
   const parsedRequirementGroups = (block.parsedRequirementGroups ?? []).map(
     normalizeRequirementShapeForGroup
   );
@@ -2218,11 +2239,10 @@ function getRuntimeRequirementSupportListsForScope(
   planId: string,
   pathwayId?: string | null
 ) {
-  return uniqueBy(
+  return uniqueRuntimeRequirementSupportLists(
     getTransferPlannerParsedRequirementSourceBlocks(planId, pathwayId).flatMap(
       (block) => block.supportLists ?? []
-    ),
-    (supportList) => supportList.id
+    )
   );
 }
 

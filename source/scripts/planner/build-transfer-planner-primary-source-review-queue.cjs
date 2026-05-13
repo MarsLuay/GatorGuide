@@ -16,6 +16,7 @@ const OUTPUT_MD_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-primary-source-review-queue.md"
 );
+const discovery = require("./discover-transfer-planner-primary-sources.cjs");
 
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
@@ -46,21 +47,52 @@ function normalizeCampusLabel(campusId) {
   }
 }
 
-function pickTopGapCandidates(owner) {
-  return (owner.topCandidates ?? [])
-    .filter((candidate) => candidate.confidence !== "high")
-    .slice(0, 3)
-    .map((candidate) => ({
-      url: candidate.url,
-      label: candidate.label ?? null,
-      score: candidate.score,
-      confidence: candidate.confidence,
-      reasons: candidate.reasons ?? [],
-    }));
+function normalizeReviewCandidate(candidate) {
+  if (!candidate) {
+    return null;
+  }
+
+  return {
+    url: candidate.url,
+    label:
+      candidate.label ||
+      candidate.anchorText ||
+      candidate.linkText ||
+      candidate.pageTitle ||
+      null,
+    score: candidate.score,
+    confidence: candidate.confidence,
+    sourceRole: candidate.sourceRole ?? null,
+    parserType: candidate.parserType ?? null,
+    reasons: candidate.reasons ?? [],
+  };
 }
 
-function buildOwnerSourceGapEntry(owner) {
-  const hasMediumSuggestion = owner?.suggestedPrimary?.confidence === "medium";
+function isReviewablePrimaryCandidate(candidate) {
+  return (
+    candidate &&
+    !discovery.isAutoPromotablePrimaryCandidate(candidate) &&
+    (candidate.confidence === "high" || candidate.confidence === "medium")
+  );
+}
+
+function pickOwnerReviewCandidate(owner) {
+  const candidate = owner?.suggestedPrimary ?? owner?.reviewCandidate ?? null;
+  return isReviewablePrimaryCandidate(candidate) ? candidate : null;
+}
+
+function pickTopGapCandidates(owner) {
+  return (owner.topCandidates ?? [])
+    .filter((candidate) => !discovery.isAutoPromotablePrimaryCandidate(candidate))
+    .slice(0, 3)
+    .map(normalizeReviewCandidate)
+    .filter(Boolean);
+}
+
+function buildOwnerSourceGapEntry(owner, reviewCandidate = null) {
+  const candidate = reviewCandidate ?? pickOwnerReviewCandidate(owner);
+  const hasHighSafetyReview = candidate?.confidence === "high";
+  const hasMediumSuggestion = candidate?.confidence === "medium";
   return {
     ownerType: owner.ownerType,
     ownerKey: owner.ownerKey,
@@ -68,19 +100,13 @@ function buildOwnerSourceGapEntry(owner) {
     pathwayId: owner.pathwayId,
     title: owner.title,
     campusId: owner.campusId,
-    status: hasMediumSuggestion ? "medium-confidence" : "needs-source-automation",
-    suggestedPrimary: hasMediumSuggestion
-      ? {
-          url: owner.suggestedPrimary.url,
-          label:
-            owner.suggestedPrimary.label ||
-            owner.suggestedPrimary.anchorText ||
-            owner.suggestedPrimary.pageTitle ||
-            null,
-          score: owner.suggestedPrimary.score,
-          confidence: owner.suggestedPrimary.confidence,
-          reasons: owner.suggestedPrimary.reasons ?? [],
-        }
+    status: hasHighSafetyReview
+      ? "high-confidence-needs-review"
+      : hasMediumSuggestion
+        ? "medium-confidence"
+        : "needs-source-automation",
+    suggestedPrimary: hasHighSafetyReview || hasMediumSuggestion
+      ? normalizeReviewCandidate(candidate)
       : null,
     candidateCount: owner.candidateCount ?? 0,
     officialLinkCount: (owner.officialLinks ?? []).length,
@@ -89,12 +115,19 @@ function buildOwnerSourceGapEntry(owner) {
 }
 
 function buildQueue(report) {
+  const highSafetyReviewOwners = [];
   const mediumOwners = [];
   const unresolvedOwners = [];
 
   for (const owner of report.owners ?? []) {
-    if (owner?.suggestedPrimary?.confidence === "medium") {
-      mediumOwners.push(buildOwnerSourceGapEntry(owner));
+    const reviewCandidate = pickOwnerReviewCandidate(owner);
+    if (reviewCandidate?.confidence === "high") {
+      highSafetyReviewOwners.push(buildOwnerSourceGapEntry(owner, reviewCandidate));
+      continue;
+    }
+
+    if (reviewCandidate?.confidence === "medium") {
+      mediumOwners.push(buildOwnerSourceGapEntry(owner, reviewCandidate));
       continue;
     }
 
@@ -103,8 +136,20 @@ function buildQueue(report) {
     }
   }
 
-  const allReviewOwners = [...mediumOwners, ...unresolvedOwners].sort((left, right) =>
-    left.title.localeCompare(right.title)
+  for (const owner of report.weakExistingOwners ?? []) {
+    const reviewCandidate = pickOwnerReviewCandidate(owner);
+    if (reviewCandidate?.confidence === "high") {
+      highSafetyReviewOwners.push(buildOwnerSourceGapEntry(owner, reviewCandidate));
+      continue;
+    }
+
+    if (reviewCandidate?.confidence === "medium") {
+      mediumOwners.push(buildOwnerSourceGapEntry(owner, reviewCandidate));
+    }
+  }
+
+  const allReviewOwners = [...highSafetyReviewOwners, ...mediumOwners, ...unresolvedOwners].sort(
+    (left, right) => left.title.localeCompare(right.title)
   );
 
   const campuses = ["uw-seattle", "uw-bothell", "uw-tacoma"].map((campusId) => {
@@ -113,6 +158,9 @@ function buildQueue(report) {
       campusId,
       campusLabel: normalizeCampusLabel(campusId),
       totalReviewOwners: entries.length,
+      highConfidenceNeedsReviewCount: entries.filter(
+        (owner) => owner.status === "high-confidence-needs-review"
+      ).length,
       mediumConfidenceCount: entries.filter((owner) => owner.status === "medium-confidence").length,
       unresolvedCount: entries.filter((owner) => owner.status === "needs-source-automation").length,
       entries,
@@ -122,6 +170,7 @@ function buildQueue(report) {
   return {
     generatedAt: report.generatedAt,
     totalReviewOwners: allReviewOwners.length,
+    highConfidenceNeedsReviewCount: highSafetyReviewOwners.length,
     mediumConfidenceCount: mediumOwners.length,
     unresolvedCount: unresolvedOwners.length,
     campuses,
@@ -135,6 +184,7 @@ function writeMarkdown(queue) {
     `Generated: ${queue.generatedAt}`,
     "",
     `- Total source-gap owners: ${queue.totalReviewOwners}`,
+    `- High-confidence suggestions needing review: ${queue.highConfidenceNeedsReviewCount}`,
     `- Medium-confidence suggestions: ${queue.mediumConfidenceCount}`,
     `- Needs source automation: ${queue.unresolvedCount}`,
     "",
@@ -149,10 +199,30 @@ function writeMarkdown(queue) {
     }
 
     lines.push(`## ${campus.campusLabel}`, "");
-      lines.push(`- Source-gap owners: ${campus.totalReviewOwners}`);
+    lines.push(`- Source-gap owners: ${campus.totalReviewOwners}`);
+    lines.push(`- High-confidence suggestions needing review: ${campus.highConfidenceNeedsReviewCount}`);
     lines.push(`- Medium-confidence suggestions: ${campus.mediumConfidenceCount}`);
     lines.push(`- Needs source automation: ${campus.unresolvedCount}`);
     lines.push("");
+
+    const highReviewEntries = campus.entries.filter(
+      (entry) => entry.status === "high-confidence-needs-review"
+    );
+    if (highReviewEntries.length) {
+      lines.push("### High-confidence suggestions needing review", "");
+      for (const entry of highReviewEntries) {
+        lines.push(`#### ${entry.title}`);
+        lines.push("");
+        lines.push(`- Suggested primary: ${entry.suggestedPrimary?.url ?? "none"}`);
+        lines.push(`- Score: ${entry.suggestedPrimary?.score ?? "n/a"}`);
+        lines.push(`- Parser type: ${entry.suggestedPrimary?.parserType ?? "n/a"}`);
+        lines.push(`- Source role: ${entry.suggestedPrimary?.sourceRole ?? "n/a"}`);
+        lines.push(`- Why: ${(entry.suggestedPrimary?.reasons ?? []).join("; ") || "No reasons captured."}`);
+        lines.push(`- Official links scanned: ${entry.officialLinkCount}`);
+        lines.push(`- Candidate URLs inspected: ${entry.candidateCount}`);
+        lines.push("");
+      }
+    }
 
     const mediumEntries = campus.entries.filter((entry) => entry.status === "medium-confidence");
     if (mediumEntries.length) {
@@ -215,6 +285,7 @@ function main() {
   writeMarkdown(queue);
 
   console.log(`Source-gap owners: ${queue.totalReviewOwners}`);
+  console.log(`High-confidence suggestions needing review: ${queue.highConfidenceNeedsReviewCount}`);
   console.log(`Medium-confidence suggestions: ${queue.mediumConfidenceCount}`);
   console.log(`Needs source automation: ${queue.unresolvedCount}`);
   console.log(`JSON report: ${OUTPUT_JSON_PATH}`);

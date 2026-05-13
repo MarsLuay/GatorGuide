@@ -5520,6 +5520,11 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Italian parsed official requirement cues
 
+- Major Requirements
+- Minor Requirements
+
+##### Italian parsed official requirement cues
+
 - Diversity, Equity &amp; Inclusion
 - Major Requirements
 - Minor Requirements
@@ -5543,6 +5548,7 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-08-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-09-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-10-italian-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-84-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-85-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-86-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-87-italian-parsed-official-requirement-cues.
@@ -5552,8 +5558,8 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-91-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-92-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-93-italian-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-94-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-100-italian-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-94-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-95-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-96-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-97-italian-parsed-official-requirement-cues.
@@ -5575,6 +5581,7 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-112-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-113-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-114-italian-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-115-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-12-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-13-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-14-italian-parsed-official-requirement-cues.
@@ -5647,7 +5654,6 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-81-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-82-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-83-italian-parsed-official-requirement-cues.
-- Source-backed note: Parsed degree-map block candidate: uw-seattle-italian:source-degree-map:structured:uw-seattle-italian-degree-map-10-parsed-84-italian-parsed-official-requirement-cues.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 
 
@@ -6689,9 +6695,8 @@ Source-generated from parsed UW requirement-source registries.
 ##### Links Used
 
 - [Bachelor of Arts - Sample Course Sequence (PDF)](https://music.washington.edu/sites/music/files/documents/sample_ba_inst.pdf)
-- [Bachelor of Arts - Sample Course Sequence (PDF)](https://music.washington.edu/sites/music/files/documents/sample_ba_inst.pdf) - Alternate official source used for parser-backed UW requirement extraction.
+- [Bachelor of Arts - Sample Course Sequence (PDF)](https://music.washington.edu/sites/music/files/documents/sample_ba_inst.pdf) - Source used for parser-backed UW requirement extraction.
 - [UW Bachelor of Arts - Music, Instrumental Option](https://music.washington.edu/bachelor-arts-music-instrumental-option)
-- [UW Bachelor of Arts - Music, Instrumental Option](https://music.washington.edu/bachelor-arts-music-instrumental-option) - Primary source used for parser-backed UW requirement extraction.
 
 ##### Music, B.A. parsed official source requirements
 
@@ -8213,6 +8218,15 @@ Source-generated from parsed UW requirement-source registries.
 
 - A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe.
 - Admission Requirements
+- Area-related humanities and social science courses (20 credits): May apply up to 10 credits of upper-division South Asian language courses in addition to those used for requirement #1.
+- ASIAN 498 Special Topics (when related to South Asia)
+- Asian Languages &amp; Literature
+- B.A. in South Asian Languages and Cultures
+
+##### South Asian Languages &amp; Cultures parsed official requirement cues
+
+- A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe.
+- Admission Requirements
 - Minimum 20 credits of college coursework (or department-approved equivalent) in the intended primary language of concentration. The most recent course completed in the intended primary language of concentration must be taken through the UW, with a minimum 2.5 grade.
 - Note : Students entering the junior year without two years of the appropriate foreign language are not able to complete the degree requirements in two years unless they take accelerated courses through the UW during summer quarter.
 - Degree Requirements
@@ -8239,6 +8253,7 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-south-asian-languages-and-cultures:source-degree-map:structured:uw-seattle-south-asian-languages-and-cultures-degree-map-10-parsed-07-south-asian-languages-and-cultures-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-south-asian-languages-and-cultures:source-degree-map:structured:uw-seattle-south-asian-languages-and-cultures-degree-map-10-parsed-08-south-asian-languages-and-cultures-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-south-asian-languages-and-cultures:source-degree-map:structured:uw-seattle-south-asian-languages-and-cultures-degree-map-10-parsed-09-south-asian-languages-and-cultures-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-seattle-south-asian-languages-and-cultures:source-degree-map:structured:uw-seattle-south-asian-languages-and-cultures-degree-map-10-parsed-10-south-asian-languages-and-cultures-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-seattle-south-asian-languages-and-cultures:source-degree-map:structured:uw-seattle-south-asian-languages-and-cultures-degree-map-90-requirement-cues.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 

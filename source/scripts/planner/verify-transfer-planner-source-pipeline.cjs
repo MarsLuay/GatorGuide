@@ -89,6 +89,10 @@ function buildOwnerId(planId, pathwayId) {
   return buildTransferPlannerOwnerId(planId, pathwayId);
 }
 
+function getPlanIdFromOwnerId(ownerId) {
+  return String(ownerId ?? "").split(":pathway:")[0] || null;
+}
+
 function buildOwnerKey(owner) {
   return normalizeTransferPlannerOwnerId(
     owner?.ownerKey ?? owner?.ownerId ?? null,
@@ -97,14 +101,21 @@ function buildOwnerKey(owner) {
   );
 }
 
+function getReviewQueueEntries(reviewQueue) {
+  return (reviewQueue.campuses ?? []).flatMap((campus) => campus.entries ?? []);
+}
+
+function getValidationScopedReviewQueueEntries(reviewQueue, targetPlanId = null) {
+  const entries = getReviewQueueEntries(reviewQueue);
+  if (!targetPlanId) {
+    return entries;
+  }
+
+  return entries.filter((entry) => entry?.planId === targetPlanId);
+}
+
 function buildReviewOwnerKeySet(reviewQueue) {
-  return new Set(
-    (reviewQueue.campuses ?? []).flatMap((campus) =>
-      (campus.entries ?? []).map(
-        (entry) => buildOwnerKey(entry)
-      )
-    )
-  );
+  return new Set(getReviewQueueEntries(reviewQueue).map((entry) => buildOwnerKey(entry)));
 }
 
 function getDiscoveryReportTargetPlanId(discoveryReport) {
@@ -216,6 +227,19 @@ function buildReportParseKeys(owner) {
 
 function buildManifestPlanSourceKey(entry) {
   return `${entry.planId ?? entry.ownerId}::${entry.url}`;
+}
+
+function summarizeParseableRequirementSourceEntry(entry) {
+  return {
+    ownerId: entry.ownerId,
+    planId: entry.planId ?? null,
+    pathwayId: entry.pathwayId ?? null,
+    ownerType: entry.ownerType ?? null,
+    url: entry.url,
+    role: entry.role ?? null,
+    parserType: entry.parserType ?? null,
+    isPrimaryDegreeRequirementsLink: Boolean(entry.isPrimaryDegreeRequirementsLink),
+  };
 }
 
 function buildReportPlanSourceKeys(owner) {
@@ -601,6 +625,11 @@ async function main() {
     eligibleAutoPromotionOwners.map((owner) => owner.ownerKey)
   );
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
+  const targetPlanId = getDiscoveryReportTargetPlanId(discoveryReport);
+  const validationScopedReviewOwnerCount = getValidationScopedReviewQueueEntries(
+    reviewQueue,
+    targetPlanId
+  ).length;
   const sourceGapOwnerKeys = new Set(
     (sourceGapReport.entries ?? []).map((entry) => buildOwnerKey(entry))
   );
@@ -629,6 +658,40 @@ async function main() {
   const requirementFingerprintOwnerIds = new Set(
     (TRANSFER_PLANNER_REQUIREMENT_SOURCE_FINGERPRINTS ?? []).map((entry) => entry.ownerId)
   );
+  const promotedSourceEntries = TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? [];
+  const missingPromotedParsedOwners = promotedSourceEntries.filter(
+    (entry) => !parsedOwnerIds.has(entry.ownerId)
+  );
+  const missingPromotedFingerprintOwners = promotedSourceEntries.filter(
+    (entry) => !requirementFingerprintOwnerIds.has(entry.ownerId)
+  );
+  const fingerprintOwnerDiff = compareSets([...parsedOwnerIds], [...requirementFingerprintOwnerIds]);
+  let registryParserAlignmentRepair = {
+    needed: false,
+    targetPlanIds: [],
+    missingCurrentSourceCoverage: [],
+    missingGeneratedSourceCoverage: [],
+  };
+  const promotedOwnerCoverageRepair = {
+    needed: missingPromotedParsedOwners.length > 0 || missingPromotedFingerprintOwners.length > 0,
+    targetPlanIds: uniqueSorted(
+      [...missingPromotedParsedOwners, ...missingPromotedFingerprintOwners].map(
+        (entry) => entry.planId ?? getPlanIdFromOwnerId(entry.ownerId)
+      )
+    ),
+    missingParsedOwnerIds: missingPromotedParsedOwners.map((entry) => entry.ownerId).sort(),
+    missingFingerprintOwnerIds: missingPromotedFingerprintOwners
+      .map((entry) => entry.ownerId)
+      .sort(),
+  };
+  const fingerprintAlignmentRepair = {
+    needed:
+      sourceFingerprintReport.totalRequirementSourceFingerprints !== requirementParseReport.totalOwners ||
+      fingerprintOwnerDiff.leftOnly.length > 0 ||
+      fingerprintOwnerDiff.rightOnly.length > 0,
+    parsedOnlyOwnerIds: fingerprintOwnerDiff.leftOnly,
+    fingerprintOnlyOwnerIds: fingerprintOwnerDiff.rightOnly,
+  };
 
   const checks = [
     runCheck(
@@ -637,14 +700,14 @@ async function main() {
       () => {
         assert.equal(
           getValidationScopedDiscoveryOwnerCount(discoveryReport),
-          eligibleMissingPrimaryAutoPromotionOwners.length + reviewQueue.totalReviewOwners,
+          eligibleMissingPrimaryAutoPromotionOwners.length + validationScopedReviewOwnerCount,
           "Discovery owner count should equal eligible auto-promotions plus review-queue owners."
         );
         return [
           `Discovery owners: ${getValidationScopedDiscoveryOwnerCount(discoveryReport)}`,
           `Eligible missing-primary auto-promotions: ${eligibleMissingPrimaryAutoPromotionOwners.length}`,
           `Eligible weak-existing replacements: ${eligibleWeakExistingReplacementOwners.length}`,
-          `Review-queue owners: ${reviewQueue.totalReviewOwners}`,
+          `Review-queue owners: ${validationScopedReviewOwnerCount}`,
         ];
       }
     ),
@@ -759,6 +822,20 @@ async function main() {
             !generatedParsedRequirementSourceKeys.has(buildManifestParseKey(entry)) &&
             !generatedParsedRequirementPlanSourceKeys.has(buildManifestPlanSourceKey(entry))
         );
+        const missingCoverageEntries = [
+          ...missingCurrentSourceCoverage,
+          ...missingGeneratedSourceCoverage,
+        ];
+        registryParserAlignmentRepair = {
+          needed: missingCoverageEntries.length > 0,
+          targetPlanIds: uniqueSorted(missingCoverageEntries.map((entry) => entry.planId)),
+          missingCurrentSourceCoverage: missingCurrentSourceCoverage.map(
+            summarizeParseableRequirementSourceEntry
+          ),
+          missingGeneratedSourceCoverage: missingGeneratedSourceCoverage.map(
+            summarizeParseableRequirementSourceEntry
+          ),
+        };
         assert.equal(
           canonicalParseableSourceKeyCount - missingCurrentSourceCoverage.length,
           canonicalParseableSourceKeyCount,
@@ -794,24 +871,18 @@ async function main() {
       "promoted-owners-parsed-and-fingerprinted",
       "Promoted owners appear in parser output and requirement fingerprints",
       () => {
-        const missingParsedOwners = (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).filter(
-          (entry) => !parsedOwnerIds.has(entry.ownerId)
-        );
-        const missingFingerprintOwners = (TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS ?? []).filter(
-          (entry) => !requirementFingerprintOwnerIds.has(entry.ownerId)
-        );
         assert.deepEqual(
-          missingParsedOwners.map((entry) => entry.ownerId),
+          missingPromotedParsedOwners.map((entry) => entry.ownerId),
           [],
-          `Promoted owners missing parsed blocks: ${missingParsedOwners
+          `Promoted owners missing parsed blocks: ${missingPromotedParsedOwners
             .map((entry) => entry.ownerId)
             .slice(0, 12)
             .join(", ")}`
         );
         assert.deepEqual(
-          missingFingerprintOwners.map((entry) => entry.ownerId),
+          missingPromotedFingerprintOwners.map((entry) => entry.ownerId),
           [],
-          `Promoted owners missing requirement fingerprints: ${missingFingerprintOwners
+          `Promoted owners missing requirement fingerprints: ${missingPromotedFingerprintOwners
             .map((entry) => entry.ownerId)
             .slice(0, 12)
             .join(", ")}`
@@ -823,7 +894,6 @@ async function main() {
       "fingerprint-alignment",
       "Requirement fingerprint coverage stays aligned with parsed requirement owners",
       () => {
-        const fingerprintOwnerDiff = compareSets([...parsedOwnerIds], [...requirementFingerprintOwnerIds]);
         assert.equal(
           sourceFingerprintReport.totalRequirementSourceFingerprints,
           requirementParseReport.totalOwners,
@@ -1314,6 +1384,11 @@ async function main() {
       parseablePrimaryOwnerCount: parseablePrimaryManifestOwners.size,
       parsedOwnerCount: parsedOwnerIds.size,
       requirementFingerprintOwnerCount: requirementFingerprintOwnerIds.size,
+    },
+    autoRepair: {
+      registryParserAlignment: registryParserAlignmentRepair,
+      promotedOwnerCoverage: promotedOwnerCoverageRepair,
+      fingerprintAlignment: fingerprintAlignmentRepair,
     },
     checks,
   };

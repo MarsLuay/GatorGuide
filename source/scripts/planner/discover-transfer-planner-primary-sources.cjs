@@ -47,6 +47,7 @@ const MAX_RETAINED_NON_SCHEDULABLE_CANDIDATES_PER_OWNER = 6;
 const MAX_EXTRACTED_HEADINGS = 18;
 const MIN_PRIMARY_DISCOVERY_SCORE = 12;
 const MIN_HIGH_CONFIDENCE_SCORE = 28;
+const MIN_AUTO_PROMOTION_SCORE = 50;
 const MIN_CLEAR_REPLACEMENT_SCORE_DELTA = 10;
 const MIN_STALE_YEAR_REPLACEMENT_SCORE_DELTA = 4;
 const MAX_DISCOVERY_VERIFICATION_PASSES = 2;
@@ -69,7 +70,7 @@ const OFFICIAL_UW_BASE_DOMAINS = uniqueSorted(
   Object.values(FALLBACK_DISCOVERY_BASE_DOMAINS_BY_CAMPUS).flat()
 );
 const SOURCE_REQUIREMENT_CUE_PATTERN =
-  /\b(degree requirements?|major requirements?|graduation requirements?|major admissions requirements?|program requirements?|curriculum|checklist|prerequisites?|bachelor(?:\s+of)?|undergraduate major admission|undergraduate program)\b/i;
+  /\b(degree requirements?|major requirements?|graduation requirements?|major admissions requirements?|program requirements?|curriculum|worksheet|checklist|prerequisites?|bachelor(?:\s+of)?|undergraduate major admission|undergraduate program)\b/i;
 const SOURCE_WEAK_PRIMARY_URL_PATTERN =
   /(?:\/|^)(timeline(?:-and-requirements)?|graduate(?:-program|-admissions)?|phd|research|faculty|news|about)(?:[-/?#]|$)/i;
 const SOURCE_WEAK_PRIMARY_HEADING_PATTERN =
@@ -84,6 +85,14 @@ const PATHWAY_SOURCE_CUE_PATTERN =
   /\b(track|option|route|pathway|concentration|specialization)\b/i;
 const PATHWAY_HUB_SOURCE_CUE_PATTERN =
   /\b(curriculum|degree requirements?|major requirements?|program requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)\b|\/(?:curriculum|requirements?|degree-requirements?|major-requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)(?:[/?#-]|$)/i;
+const PATHWAY_HUB_TERMINAL_SEGMENT_PATTERN =
+  /^(?:curriculum|requirements?|degree-requirements?|major-requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)$/i;
+const PATHWAY_HUB_STRICT_TERMINAL_SEGMENT_PATTERN =
+  /^(?:curriculum|tracks|options|routes|pathways|concentrations|specializations)$/i;
+const PATHWAY_HUB_STRICT_LABEL_PATTERN =
+  /\b(curriculum|tracks|options|routes|pathways|concentrations|specializations)\b/i;
+const PATHWAY_HUB_ANCHOR_SEGMENT_PATTERN =
+  /^(?:curriculum|requirements?|degree-requirements?|major-requirements?|tracks?|options?|routes?|pathways?|concentrations?|specializations?)$/i;
 const PATHWAY_DEGREE_SHEET_CUE_PATTERN =
   /\b(degree sheet|requirement sheet|requirements packet|checklist|worksheet|plan of study|study plan)\b|degreq/i;
 const APPROVED_COURSE_LIST_CUE_PATTERN =
@@ -100,8 +109,26 @@ const SUPPORT_SOURCE_CUE_PATTERN =
   /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
 const PRIMARY_REQUIREMENT_CUE_PATTERN =
   /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
+const AUTO_PROMOTION_STRONG_SOURCE_ROLES = new Set([
+  "official-catalog",
+  "primary-degree-requirements",
+  "pathway-degree-sheet",
+]);
+const AUTO_PROMOTION_STRONG_PARSER_TYPES = new Set([
+  "catalog-page",
+  "html-degree-page",
+  "html-curriculum-page",
+  "pdf-degree-sheet",
+  "pdf-worksheet",
+]);
+const AUTO_PROMOTION_AUTHORITY_CUE_PATTERN =
+  /\b(degree requirements?|major requirements?|graduation requirements?|program requirements?|curriculum|worksheet|checklist|degree sheet|requirement sheet|requirements packet|major planning worksheet|program of study|plan of study|study plan|degreq)\b|\/(?:requirements?|curriculum|degree-requirements?|major-requirements?|worksheets?|checklists?)(?:[-/?#]|$)|\.(?:pdf|docx)(?:[?#]|$)/i;
+const AUTO_PROMOTION_OVERVIEW_PARSER_TYPES = new Set([
+  "generic-html",
+  "html-overview-page",
+]);
 const TARGETED_OFFICIAL_LINK_FOLLOW_CUE_PATTERN =
-  /\b(degree sheets?|requirements?|curriculum|approved courses?|approved electives?|course lists?|tracks?|options?|pathways?|concentrations?|specializations?|catalog|admissions? prerequisites?|prerequisite courses?)\b/i;
+  /\b(degree sheets?|requirements?|curriculum|worksheets?|checklists?|plans? of study|study plans?|approved courses?|approved electives?|course lists?|tracks?|options?|pathways?|concentrations?|specializations?|catalog|admissions? prerequisites?|prerequisite courses?)\b/i;
 const UNRELATED_OFFICIAL_LINK_FOLLOW_PATTERN =
   /\b(faculty|people|staff|directory|news|events?|alumni|donat(?:e|ion|ions)?|giving|research|jobs?|careers?|calendar|parking|transportation|housing|visit|map|library|privacy|accessibility)\b|\/(?:faculty|people|staff|directory|news|events?|alumni|donate|giving|research|jobs?|careers?|calendar|parking|transportation|housing|visit|maps?|privacy|accessibility)(?:[/?#]|$)/i;
 const SOURCE_ROLE_METADATA = {
@@ -509,6 +536,42 @@ function dedupeOfficialLinks(links) {
   );
 }
 
+function uniqueByUrl(candidates) {
+  return Array.from(
+    new Map(
+      (Array.isArray(candidates) ? candidates : [])
+        .filter((candidate) => candidate?.url)
+        .map((candidate) => [String(candidate.url), candidate])
+    ).values()
+  );
+}
+
+function isLinkedDocumentCandidateUrl(url) {
+  return /\.(?:pdf|docx)(?:$|[?#])/i.test(String(url ?? ""));
+}
+
+function isPdfCandidateUrl(url) {
+  return /\.pdf(?:$|[?#])/i.test(String(url ?? ""));
+}
+
+function isDocxCandidateUrl(url) {
+  return /\.docx(?:$|[?#])/i.test(String(url ?? ""));
+}
+
+function isWorksheetDocumentCandidate(candidateOrLink) {
+  return /\b(?:worksheet|check\s*list|checklist)\b/i.test(
+    [
+      candidateOrLink?.label,
+      candidateOrLink?.anchorText,
+      candidateOrLink?.linkText,
+      candidateOrLink?.pageTitle,
+      candidateOrLink?.url,
+    ]
+      .filter(Boolean)
+      .join(" ")
+  );
+}
+
 function getOfficialLinkRole(link) {
   const searchable = `${link?.label ?? ""} ${link?.url ?? ""}`.toLowerCase();
 
@@ -581,7 +644,9 @@ function getOfficialLinkRole(link) {
 
 function getOfficialLinkParserType(link, role) {
   const normalizedUrl = String(link?.url ?? "").toLowerCase();
-  const isPdf = normalizedUrl.endsWith(".pdf");
+  const isPdf = isPdfCandidateUrl(normalizedUrl);
+  const isDocument = isPdf || isDocxCandidateUrl(normalizedUrl);
+  const isWorksheetDocument = isDocument && isWorksheetDocumentCandidate(link);
 
   if (role === "availability") {
     return "annual-schedule-pdf";
@@ -595,15 +660,15 @@ function getOfficialLinkParserType(link, role) {
     return "catalog-page";
   }
 
-  if (isPdf && role === "worksheet") {
+  if (isDocument && (role === "worksheet" || isWorksheetDocument)) {
     return "pdf-worksheet";
   }
 
-  if (isPdf && (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet")) {
+  if (isDocument && (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet")) {
     return "pdf-degree-sheet";
   }
 
-  if (isPdf) {
+  if (isDocument) {
     return "generic-pdf";
   }
 
@@ -644,7 +709,8 @@ function canSourceRoleCreateSchedulableRows(sourceRole) {
 
 function getDiscoveryParserType(candidate, sourceRole) {
   const normalizedUrl = String(candidate?.url ?? "").toLowerCase();
-  const isPdf = /\.pdf(?:$|[?#])/i.test(normalizedUrl);
+  const isDocument = isLinkedDocumentCandidateUrl(normalizedUrl);
+  const isWorksheetDocument = isDocument && isWorksheetDocumentCandidate(candidate);
   const isCurriculumHtml = /\/curriculum(?:[/?#]|$)|\bcurriculum\b/i.test(normalizedUrl);
 
   switch (sourceRole) {
@@ -652,24 +718,126 @@ function getDiscoveryParserType(candidate, sourceRole) {
       return "catalog-page";
     case "primary-degree-requirements":
     case "pathway-degree-sheet":
-      return isPdf ? "pdf-degree-sheet" : isCurriculumHtml ? "html-curriculum-page" : "html-degree-page";
+      return isWorksheetDocument ? "pdf-worksheet" : isDocument ? "pdf-degree-sheet" : isCurriculumHtml ? "html-curriculum-page" : "html-degree-page";
     case "department-requirements":
-      return isPdf ? "generic-pdf" : "html-overview-page";
+      return isDocument ? "generic-pdf" : "html-overview-page";
     case "admission-prerequisite-source":
     case "admissions-preparation":
-      return isPdf ? "generic-pdf" : "html-admissions-page";
+      return isDocument ? "generic-pdf" : "html-admissions-page";
     case "curriculum-map":
-      return isPdf ? "pdf-degree-sheet" : "html-curriculum-page";
+      return isWorksheetDocument ? "pdf-worksheet" : isDocument ? "pdf-degree-sheet" : "html-curriculum-page";
     case "sample-schedule":
     case "approved-course-list":
     case "elective-list":
     case "upper-division-prerequisite-table":
     case "non-schedulable-course-list":
     case "support-source":
-      return isPdf ? "generic-pdf" : "generic-html";
+      return isDocument ? "generic-pdf" : "generic-html";
     default:
-      return isPdf ? "generic-pdf" : "generic-html";
+      return isDocument ? "generic-pdf" : "generic-html";
   }
+}
+
+function normalizeDiscoveryCandidateForPromotion(candidate) {
+  if (!candidate) {
+    return null;
+  }
+
+  const sourceRole = candidate.sourceRole ?? classifySourceDiscoveryRole(candidate);
+  const sourceRoleStatus = candidate.sourceRoleStatus ?? getSourceRoleStatus(sourceRole);
+  const parserType = candidate.parserType ?? getDiscoveryParserType(candidate, sourceRole);
+  const canCreateSchedulableRows =
+    candidate.canCreateSchedulableRows ?? canSourceRoleCreateSchedulableRows(sourceRole);
+  const score = Number.isFinite(candidate.score) ? candidate.score : Number.NEGATIVE_INFINITY;
+  const confidence =
+    candidate.confidence ??
+    (score >= MIN_HIGH_CONFIDENCE_SCORE ? "high" : score >= MIN_PRIMARY_DISCOVERY_SCORE ? "medium" : "low");
+
+  return {
+    ...candidate,
+    score,
+    confidence,
+    sourceRole,
+    sourceRoleStatus,
+    parserType,
+    canCreateSchedulableRows,
+    reasons: candidate.reasons ?? [],
+  };
+}
+
+function buildDurablePromotionAuthorityText(candidate) {
+  return [
+    candidate?.url,
+    candidate?.label,
+    candidate?.anchorText,
+    candidate?.linkText,
+    candidate?.pageTitle,
+  ]
+    .filter(Boolean)
+    .join(" \n");
+}
+
+function hasDurablePromotionAuthorityCue(candidate) {
+  return AUTO_PROMOTION_AUTHORITY_CUE_PATTERN.test(
+    buildDurablePromotionAuthorityText(candidate)
+  );
+}
+
+function hasPathwayChildPromotionAuthorityCue(candidate) {
+  const durableText = buildDurablePromotionAuthorityText(candidate);
+  const headingText = (candidate?.pageHeadings ?? []).filter(Boolean).join(" \n");
+  return PATHWAY_SOURCE_CUE_PATTERN.test(durableText) &&
+    AUTO_PROMOTION_AUTHORITY_CUE_PATTERN.test(headingText);
+}
+
+function hasStrongPromotionIdentity(candidate) {
+  const reasons = new Set(candidate?.reasons ?? []);
+  return (
+    reasons.has("official source path matches the selected pathway") ||
+    reasons.has("official source path matches the selected major") ||
+    reasons.has("official source text matches the selected pathway") ||
+    reasons.has("official source acronym matches the selected pathway") ||
+    reasons.has("official source text matches the selected major") ||
+    reasons.has("official source acronym matches the selected major") ||
+    reasons.has("explicitly names the selected major") ||
+    reasons.has("explicitly names the selected pathway or route") ||
+    reasons.has("same-program requirement source can replace a zero-course primary") ||
+    reasons.has("same-program curriculum child can replace a zero-course overview primary") ||
+    reasons.has("same-program option/concentration child source matches the selected pathway") ||
+    reasons.has("pathway-specific official child page matches the selected pathway")
+  );
+}
+
+function isAutoPromotablePrimaryCandidate(candidate) {
+  const normalizedCandidate = normalizeDiscoveryCandidateForPromotion(candidate);
+  if (!normalizedCandidate) {
+    return false;
+  }
+
+  if (
+    normalizedCandidate.confidence !== "high" ||
+    normalizedCandidate.score < MIN_AUTO_PROMOTION_SCORE ||
+    normalizedCandidate.canCreateSchedulableRows === false ||
+    normalizedCandidate.sourceRoleStatus !== "primary" ||
+    !AUTO_PROMOTION_STRONG_SOURCE_ROLES.has(normalizedCandidate.sourceRole) ||
+    !AUTO_PROMOTION_STRONG_PARSER_TYPES.has(normalizedCandidate.parserType)
+  ) {
+    return false;
+  }
+
+  if (normalizedCandidate.sourceRole === "official-catalog") {
+    return hasStrongPromotionIdentity(normalizedCandidate);
+  }
+
+  if (
+    AUTO_PROMOTION_OVERVIEW_PARSER_TYPES.has(normalizedCandidate.parserType) ||
+    (!hasDurablePromotionAuthorityCue(normalizedCandidate) &&
+      !hasPathwayChildPromotionAuthorityCue(normalizedCandidate))
+  ) {
+    return false;
+  }
+
+  return hasStrongPromotionIdentity(normalizedCandidate);
 }
 
 function classifySourceDiscoveryRole(candidate) {
@@ -742,6 +910,7 @@ function classifySourceDiscoveryRole(candidate) {
 
   if (
     PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+    PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) ||
     /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
   ) {
     return "primary-degree-requirements";
@@ -770,6 +939,7 @@ function getOfficialPrimaryScore(link) {
   let score = 0;
   if (role === "degree-requirements") score += 100;
   if (role === "pathway-degree-sheet") score += 92;
+  if (role === "worksheet") score += 84;
   if (role === "curriculum") score += 70;
   if (role === "catalog") score += 50;
   if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable)) score += 35;
@@ -780,8 +950,10 @@ function getOfficialPrimaryScore(link) {
     score += 12;
   }
   if (parserType === "pdf-degree-sheet") score += 20;
+  if (parserType === "pdf-worksheet") score += 18;
   if (/degree requirements|major requirements|graduation requirements/.test(searchable)) score += 25;
   if (/curriculum/.test(searchable)) score += 15;
+  if (/\b(?:worksheet|checklist|plan of study|study plan)\b/.test(searchable)) score += 18;
   if (
     (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet") &&
     /\b(track|option|route|pathway|concentration|specialization)\b/.test(searchable)
@@ -810,6 +982,7 @@ function isSafeFallbackOfficialRole(role) {
     role === "degree-requirements" ||
     role === "pathway-degree-sheet" ||
     role === "curriculum" ||
+    role === "worksheet" ||
     role === "overview" ||
     role === "other"
   );
@@ -1122,6 +1295,151 @@ function getSameProgramDiscoveryPathPrefix(url) {
   }
 }
 
+function slugifyForUrlPath(value) {
+  return slugifyForSearch(value).replace(/\s+/g, "-");
+}
+
+function cleanPathwaySlugVariant(slug) {
+  return String(slug ?? "")
+    .replace(/-(?:and|or)$/i, "")
+    .replace(/-{2,}/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function addPathwaySlugVariant(variants, value) {
+  const slug = cleanPathwaySlugVariant(slugifyForUrlPath(value));
+  if (!slug || slug.length < 2) {
+    return;
+  }
+
+  const compoundOptionConcentration =
+    /-(?:option-and-concentration|concentration-and-option)$/i.test(slug);
+  if (!compoundOptionConcentration) {
+    variants.push(slug);
+  }
+
+  const reductions = [
+    slug.replace(/-option-and-concentration$/i, "-option"),
+    slug.replace(/-concentration-and-option$/i, "-option"),
+    slug.replace(/-(?:option|concentration|track|pathway|route|specialization)$/i, ""),
+  ]
+    .map(cleanPathwaySlugVariant)
+    .filter((candidate) => candidate && candidate !== slug);
+  variants.push(...reductions);
+}
+
+function buildPathwaySlugVariants(target) {
+  const variants = [];
+  addPathwaySlugVariant(variants, target?.pathwayId);
+  addPathwaySlugVariant(variants, target?.label);
+
+  const label = String(target?.label ?? "");
+  for (const match of label.matchAll(/\(([^)]+)\)/g)) {
+    const acronym = slugifyForUrlPath(match[1]);
+    if (!acronym || acronym.length < 2 || acronym.length > 8) {
+      continue;
+    }
+    variants.push(acronym);
+    if (/\boption\b/i.test(label)) {
+      variants.push(`${acronym}-option`);
+    }
+    if (/\bconcentration\b/i.test(label)) {
+      variants.push(`${acronym}-concentration`);
+    }
+    if (/\btrack\b/i.test(label)) {
+      variants.push(`${acronym}-track`);
+    }
+  }
+
+  return uniqueSorted(variants).slice(0, 8);
+}
+
+function buildHubChildCandidateUrls(hubUrl, pathwaySlugVariants) {
+  try {
+    const parsedUrl = new URL(hubUrl);
+    const pathSegments = parsedUrl.pathname.split("/").filter(Boolean);
+    const lastSegment = pathSegments[pathSegments.length - 1] ?? "";
+    const isHubUrl =
+      PATHWAY_HUB_STRICT_TERMINAL_SEGMENT_PATTERN.test(lastSegment) ||
+      PATHWAY_HUB_STRICT_LABEL_PATTERN.test(hubUrl);
+    if (!isHubUrl || !pathSegments.length) {
+      return [];
+    }
+
+    const childBaseSegments = PATHWAY_HUB_TERMINAL_SEGMENT_PATTERN.test(lastSegment)
+      ? pathSegments.slice(0, -1)
+      : pathSegments;
+    if (!childBaseSegments.length) {
+      return [];
+    }
+
+    const urls = [];
+    for (const slug of pathwaySlugVariants) {
+      const childUrl = new URL(parsedUrl.href);
+      childUrl.pathname = `/${[...childBaseSegments, slug].join("/")}`;
+      childUrl.search = "";
+      childUrl.hash = "";
+      urls.push(childUrl.toString());
+
+      if (PATHWAY_HUB_ANCHOR_SEGMENT_PATTERN.test(lastSegment)) {
+        const anchorUrl = new URL(parsedUrl.href);
+        anchorUrl.search = "";
+        anchorUrl.hash = slug;
+        urls.push(anchorUrl.toString());
+      }
+    }
+
+    return uniqueSorted(urls);
+  } catch {
+    return [];
+  }
+}
+
+function buildInferredPathwayHubChildSourceCandidates(target, links) {
+  if (target?.ownerType !== "pathway" || !target?.pathwayId) {
+    return [];
+  }
+
+  const pathwaySlugVariants = buildPathwaySlugVariants(target);
+  if (!pathwaySlugVariants.length) {
+    return [];
+  }
+
+  const candidates = [];
+  for (const link of links ?? []) {
+    const hubUrl = normalizeCandidateUrl(link?.url);
+    const searchable = `${link?.label ?? ""} ${hubUrl ?? ""}`;
+    if (
+      !hubUrl ||
+      (!PATHWAY_HUB_STRICT_LABEL_PATTERN.test(searchable) &&
+        !PATHWAY_HUB_STRICT_TERMINAL_SEGMENT_PATTERN.test(
+          new URL(hubUrl).pathname.split("/").filter(Boolean).at(-1) ?? ""
+        ))
+    ) {
+      continue;
+    }
+
+    for (const url of buildHubChildCandidateUrls(hubUrl, pathwaySlugVariants)) {
+      if (url === hubUrl) {
+        continue;
+      }
+      candidates.push({
+        url,
+        label: `${target.label} inferred option/concentration requirements`,
+        anchorText: target.label,
+        linkText: target.label,
+        sourcePageUrl: hubUrl,
+        discoveredFromUrl: hubUrl,
+        sourceKind: "inferred-hub-child-candidate",
+        discoveryDepth: 1,
+        requiresVerification: true,
+      });
+    }
+  }
+
+  return uniqueByUrl(candidates).slice(0, 12);
+}
+
 function isSameProgramChildPage(baseUrl, candidateUrl) {
   try {
     const base = new URL(baseUrl);
@@ -1201,7 +1519,7 @@ function hasSameProgramReplacementRequirementCue(combinedText) {
     /\/(?:requirements?|curriculum|degree-requirements?|major-requirements?|worksheets?|checklists?)(?:[-/?#]|$)/i.test(
       combinedText
     ) ||
-    /\.pdf(?:\b|[?#])/i.test(combinedText)
+    /\.(?:pdf|docx)(?:\b|[?#])/i.test(combinedText)
   );
 }
 
@@ -1306,7 +1624,7 @@ function isSameProgramZeroCourseReplacementCandidate(
     /\b(?:worksheet|checklist|degree sheet|requirement sheet|requirements packet)\b/i.test(
       combinedText
     ) ||
-    /\.pdf(?:\b|[?#])/i.test(combinedText);
+    /\.(?:pdf|docx)(?:\b|[?#])/i.test(combinedText);
 
   if (!sameProgramPath && !(worksheetOrDocumentCue && sameMajorIdentityScore > 0)) {
     return false;
@@ -1663,8 +1981,8 @@ function buildWeakExistingPrimarySignals(params) {
   const currentSourceLatestYear = currentSourceYears[currentSourceYears.length - 1] ?? null;
   const yearSpecificRequirementSource = Boolean(
     currentSourceLatestYear !== null &&
-      (/\.pdf(?:$|[?#])/i.test(primarySource?.url ?? "") ||
-        /\b(checklist|degree requirements?|major requirements?|graduation requirements?|program requirements?|curriculum|degree sheet|requirement sheet)\b/i.test(
+      (isLinkedDocumentCandidateUrl(primarySource?.url) ||
+        /\b(worksheet|checklist|degree requirements?|major requirements?|graduation requirements?|program requirements?|curriculum|degree sheet|requirement sheet)\b/i.test(
           sourceText
         ))
   );
@@ -2346,7 +2664,7 @@ function scoreCandidate(target, candidate) {
     { pattern: /\bbachelor of arts\b|\bbachelor of science\b|\bb\.a\.\b|\bb\.s\.\b/, score: 10, reason: "specific bachelor route wording" },
     { pattern: /\/undergraduate(?:[-/]|$)/, score: 10, reason: "undergraduate path segment" },
     { pattern: /\/(?:degree|major)-requirements?(?:[-/]|$)/, score: 10, reason: "requirements path segment" },
-    { pattern: /\.pdf(\?|$)/, score: 6, reason: "pdf degree-sheet candidate" },
+    { pattern: /\.(?:pdf|docx)(?:[?#]|$)/, score: 6, reason: "document degree-sheet candidate" },
   ];
 
   const negativeRules = [
@@ -2422,6 +2740,11 @@ function scoreCandidate(target, candidate) {
   if (candidate.sourceKind === "targeted-official-candidate") {
     score += 4;
     addReason(reasons, "hardcoded official source candidate for source-gap resolution");
+  }
+
+  if (candidate.sourceKind === "inferred-hub-child-candidate") {
+    score += 4;
+    addReason(reasons, "inferred from an official option/concentration hub");
   }
 
   if (isSameDepartmentUrl(candidate.sourcePageUrl, candidate.url)) {
@@ -2538,8 +2861,16 @@ function scoreCandidate(target, candidate) {
 }
 
 function mergeCandidate(existing, incoming) {
+  const incomingVerifiesExistingInference =
+    existing.requiresVerification === true && incoming.verified === true;
+  const existingVerifiesIncomingInference =
+    incoming.requiresVerification === true && existing.verified === true;
   const useIncoming =
-    (incoming.score ?? Number.NEGATIVE_INFINITY) > (existing.score ?? Number.NEGATIVE_INFINITY);
+    incomingVerifiesExistingInference
+      ? true
+      : existingVerifiesIncomingInference
+        ? false
+        : (incoming.score ?? Number.NEGATIVE_INFINITY) > (existing.score ?? Number.NEGATIVE_INFINITY);
   const winning = useIncoming ? incoming : existing;
   const mergedDetectedYears = extractDetectedYears(
     existing.detectedYears ?? [],
@@ -2575,6 +2906,10 @@ function mergeCandidate(existing, incoming) {
         existing.canCreateSchedulableRows ??
         incoming.canCreateSchedulableRows
     ),
+    requiresVerification: Boolean(
+      winning.requiresVerification ?? existing.requiresVerification ?? incoming.requiresVerification
+    ),
+    verified: Boolean(winning.verified || existing.verified || incoming.verified),
     sectionAnchor:
       winning.sectionAnchor || existing.sectionAnchor || incoming.sectionAnchor || null,
     sameDepartment: Boolean(
@@ -2667,6 +3002,11 @@ function addScoredCandidate(candidateMap, target, rawCandidate) {
   }
 
   const scored = scoreCandidate(target, { ...rawCandidate, url: normalizedUrl });
+  const requiresVerification = rawCandidate.requiresVerification === true;
+  const verified =
+    rawCandidate.verified === true ||
+    !requiresVerification ||
+    Boolean(rawCandidate.pageTitle || (rawCandidate.pageHeadings ?? []).length);
   const metadata = buildCandidateDiscoveryMetadata(target, {
     ...rawCandidate,
     url: normalizedUrl,
@@ -2689,6 +3029,8 @@ function addScoredCandidate(candidateMap, target, rawCandidate) {
     canBePrimary: metadata.canBePrimary,
     parserType: scored.parserType,
     canCreateSchedulableRows: scored.canCreateSchedulableRows,
+    requiresVerification,
+    verified,
     sectionAnchor: metadata.sectionAnchor,
     sameDepartment: metadata.sameDepartment,
     sameMajorIdentityScore: metadata.sameMajorIdentityScore,
@@ -2707,9 +3049,15 @@ function addScoredCandidate(candidateMap, target, rawCandidate) {
   candidateMap.set(normalizedUrl, current ? mergeCandidate(current, mergedCandidate) : mergedCandidate);
 }
 
-async function mapWithConcurrency(items, worker, concurrency) {
+async function mapWithConcurrency(items, worker, concurrency, options = {}) {
   const results = new Array(items.length);
   let nextIndex = 0;
+  let completedCount = 0;
+  const progressLabel = options.progressLabel ?? null;
+  const describeItem =
+    typeof options.describeItem === "function"
+      ? options.describeItem
+      : (_item, index) => `item ${index + 1}`;
 
   async function runWorker() {
     while (true) {
@@ -2719,6 +3067,15 @@ async function mapWithConcurrency(items, worker, concurrency) {
         return;
       }
       results[currentIndex] = await worker(items[currentIndex], currentIndex);
+      completedCount += 1;
+      if (progressLabel) {
+        console.log(
+          `[${completedCount}/${items.length}] ${progressLabel} - ${describeItem(
+            items[currentIndex],
+            currentIndex
+          )}`
+        );
+      }
     }
   }
 
@@ -2860,7 +3217,7 @@ function buildReplacementDecision(target, candidates) {
     replacementHasStrongProgramMatch &&
     replacementHasStructuredRequirementPageEvidence &&
     staysOnDepartmentHost &&
-    !bestAlternative.url.toLowerCase().includes(".pdf") &&
+    !isLinkedDocumentCandidateUrl(bestAlternative.url) &&
     !replacementReasons.has("overview wording") &&
     !replacementReasons.has("graduate-program wording") &&
     !replacementReasons.has("timeline wording");
@@ -2903,6 +3260,7 @@ function buildReplacementDecision(target, candidates) {
     !replacementIsSingleRouteForMultiPathwayMajor &&
     bestAlternative.confidence === "high" &&
     bestAlternative.score >= MIN_HIGH_CONFIDENCE_SCORE &&
+    isAutoPromotablePrimaryCandidate(bestAlternative) &&
     scoreDelta >= minimumReplacementScoreDelta;
 
   if (shouldReplace) {
@@ -2983,10 +3341,17 @@ function shouldRunDeeperDiscovery(target, candidateMap) {
 function isPrimaryEligibleCandidate(candidate) {
   return (
     candidate &&
+    (candidate.requiresVerification !== true || candidate.verified === true) &&
     candidate.canCreateSchedulableRows !== false &&
     candidate.canBePrimary !== false &&
     candidate.sourceRoleStatus === "primary"
   );
+}
+
+function describeDiscoveryTarget(target) {
+  const ownerKey = target?.ownerKey ?? target?.planId ?? "unknown-owner";
+  const title = target?.title ?? target?.label ?? "";
+  return title ? `${ownerKey} (${title})` : ownerKey;
 }
 
 function isSupportCandidate(candidate) {
@@ -3016,7 +3381,7 @@ function shouldFollowTargetedOfficialCandidate(candidate, target = null) {
     return false;
   }
 
-  if (candidate.pageTitle || /\.pdf(?:$|[?#])/i.test(candidate.url ?? "")) {
+  if (candidate.pageTitle || isLinkedDocumentCandidateUrl(candidate.url)) {
     return false;
   }
 
@@ -3024,7 +3389,9 @@ function shouldFollowTargetedOfficialCandidate(candidate, target = null) {
   if (
     !sourceKinds.has("discovered-anchor") &&
     !sourceKinds.has("campus-major-index") &&
-    !sourceKinds.has("official-site-root")
+    !sourceKinds.has("official-site-root") &&
+    !sourceKinds.has("targeted-official-candidate") &&
+    !sourceKinds.has("inferred-hub-child-candidate")
   ) {
     return false;
   }
@@ -3228,6 +3595,10 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
     });
   }
 
+  for (const candidate of buildInferredPathwayHubChildSourceCandidates(target, discoveryLinks)) {
+    addScoredCandidate(candidateMap, target, candidate);
+  }
+
   for (const candidate of TARGETED_OFFICIAL_SOURCE_CANDIDATES[target.ownerKey] ?? []) {
     addScoredCandidate(candidateMap, target, {
       ...candidate,
@@ -3269,6 +3640,12 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
       sourceKind: "official-link",
       discoveryDepth: 0,
     });
+
+    for (const inferredCandidate of buildInferredPathwayHubChildSourceCandidates(target, [
+      { url: pageCandidateUrl, label: link.label ?? page.title ?? target.label },
+    ])) {
+      addScoredCandidate(candidateMap, target, inferredCandidate);
+    }
 
     for (const anchor of page.anchors) {
       if (!isAllowedDiscoveryUrl(anchor.url, baseDomains)) {
@@ -3363,7 +3740,17 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
       discoveredFromUrl: candidate.discoveredFromUrl ?? candidate.sourcePageUrl ?? null,
       sourceKind: candidate.sourceKinds?.[0] ?? "discovered-anchor",
       discoveryDepth: candidate.discoveryDepth ?? 1,
+      requiresVerification: candidate.requiresVerification === true,
     });
+
+    for (const inferredCandidate of buildInferredPathwayHubChildSourceCandidates(target, [
+      {
+        url: pageCandidateUrl,
+        label: candidate.linkText ?? candidate.anchorText ?? candidate.label ?? page.title ?? target.label,
+      },
+    ])) {
+      addScoredCandidate(candidateMap, target, inferredCandidate);
+    }
 
     for (const anchor of page.anchors) {
       if (!isAllowedDiscoveryUrl(anchor.url, baseDomains)) {
@@ -3414,7 +3801,7 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
         (candidate) =>
           !verifiedCandidateUrls.has(candidate.url) &&
           !candidate.pageTitle &&
-          !candidate.url.toLowerCase().includes(".pdf") &&
+          !isLinkedDocumentCandidateUrl(candidate.url) &&
           (candidate.discoveryDepth ?? 0) < 2 &&
           candidate.score >= 8
       )
@@ -3439,7 +3826,17 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
         discoveredFromUrl: candidate.discoveredFromUrl ?? candidate.sourcePageUrl ?? null,
         sourceKind: candidate.sourceKinds?.[0] ?? "discovered-anchor",
         discoveryDepth: candidate.discoveryDepth ?? 1,
+        requiresVerification: candidate.requiresVerification === true,
       });
+
+      for (const inferredCandidate of buildInferredPathwayHubChildSourceCandidates(target, [
+        {
+          url: pageCandidateUrl,
+          label: candidate.linkText ?? candidate.anchorText ?? candidate.label ?? page.title ?? target.label,
+        },
+      ])) {
+        addScoredCandidate(candidateMap, target, inferredCandidate);
+      }
 
       for (const anchor of page.anchors) {
         if (!isAllowedDiscoveryUrl(anchor.url, baseDomains)) {
@@ -3672,12 +4069,20 @@ async function main() {
   const owners = await mapWithConcurrency(
     targets,
     (target) => analyzeOwner(target, DEFAULT_TIMEOUT_MS),
-    DEFAULT_CONCURRENCY
+    DEFAULT_CONCURRENCY,
+    {
+      progressLabel: "primary source owners discovered",
+      describeItem: describeDiscoveryTarget,
+    }
   );
   const weakExistingOwners = await mapWithConcurrency(
     weakExistingTargets,
     (target) => analyzeOwner(target, DEFAULT_TIMEOUT_MS),
-    DEFAULT_CONCURRENCY
+    DEFAULT_CONCURRENCY,
+    {
+      progressLabel: "weak primary owners re-evaluated",
+      describeItem: describeDiscoveryTarget,
+    }
   );
 
   const report = buildDiscoveryReport(owners, weakExistingOwners, {
@@ -3716,6 +4121,7 @@ module.exports = {
   getOfficialPrimaryScore,
   getSourceRoleStatus,
   inspectPage,
+  isAutoPromotablePrimaryCandidate,
   scoreCandidate,
   shouldRunDeeperDiscovery,
 };

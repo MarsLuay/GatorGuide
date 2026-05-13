@@ -830,7 +830,7 @@ function isPathwaySpecificSourceLink(link: TransferPlannerSourceLink) {
   return PATHWAY_SOURCE_CUE_PATTERN.test(`${link.label} ${link.url}`);
 }
 
-function materializeMatchedPathwayParentSourceLink(link: TransferPlannerSourceLink) {
+function materializeMatchedPathwayRequirementSourceLink(link: TransferPlannerSourceLink) {
   const searchable = `${link.label} ${link.url}`;
   if (PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable)) {
     return link;
@@ -1071,6 +1071,14 @@ const SUPPORT_SOURCE_CUE_PATTERN =
 const PRIMARY_REQUIREMENT_CUE_PATTERN =
   /\bdegree requirements?\b|\bmajor requirements?\b|\bgraduation requirements?\b|\bprogram requirements?\b|\bdegree structure\b|\brequirements packet\b|\bdegreq\b/i;
 
+function isLinkedDocumentSourceUrl(url: unknown) {
+  return /\.(?:pdf|docx)(?:$|[?#])/i.test(String(url ?? ""));
+}
+
+function isWorksheetSourceLink(link: TransferPlannerSourceLink) {
+  return /\b(?:worksheet|check\s*list|checklist)\b/i.test(`${link.label} ${link.url}`);
+}
+
 function getSourceManifestRoleStatus(role: TransferPlannerSourceManifestRole) {
   switch (role) {
     case "degree-requirements":
@@ -1173,7 +1181,8 @@ function getSourceManifestParserType(
   role: TransferPlannerSourceManifestRole
 ): TransferPlannerSourceManifestParserType {
   const normalizedUrl = String(link.url ?? "").toLowerCase();
-  const isPdf = normalizedUrl.endsWith(".pdf");
+  const isDocument = isLinkedDocumentSourceUrl(normalizedUrl);
+  const isWorksheetDocument = isDocument && isWorksheetSourceLink(link);
 
   if (role === "availability") {
     return "annual-schedule-pdf";
@@ -1187,15 +1196,15 @@ function getSourceManifestParserType(
     return "catalog-page";
   }
 
-  if (isPdf && role === "worksheet") {
+  if (isDocument && (role === "worksheet" || isWorksheetDocument)) {
     return "pdf-worksheet";
   }
 
-  if (isPdf && (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet")) {
+  if (isDocument && (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet")) {
     return "pdf-degree-sheet";
   }
 
-  if (isPdf) {
+  if (isDocument) {
     return "generic-pdf";
   }
 
@@ -1264,6 +1273,7 @@ function getSourceManifestPrimaryScore(link: TransferPlannerSourceLink) {
   let score = 0;
   if (role === "degree-requirements") score += 100;
   if (role === "pathway-degree-sheet") score += 92;
+  if (role === "worksheet") score += 84;
   if (role === "curriculum") score += 70;
   if (role === "catalog") score += 50;
   if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable)) score += 35;
@@ -1274,8 +1284,10 @@ function getSourceManifestPrimaryScore(link: TransferPlannerSourceLink) {
     score += 12;
   }
   if (parserType === "pdf-degree-sheet") score += 20;
+  if (parserType === "pdf-worksheet") score += 18;
   if (/degree requirements|major requirements|graduation requirements/.test(searchable)) score += 25;
   if (/curriculum/.test(searchable)) score += 15;
+  if (/\b(?:worksheet|checklist|plan of study|study plan)\b/.test(searchable)) score += 18;
   if (
     (role === "degree-requirements" || role === "curriculum" || role === "pathway-degree-sheet") &&
     /\b(track|option|route|pathway|concentration|specialization)\b/.test(searchable)
@@ -1860,9 +1872,15 @@ function getPathwaySources(
   const broadParentSourceLinks = parentSourceLinks.filter(
     (link) => !isPathwaySpecificSourceLink(link)
   );
+  const matchingPathwayLinks = pathwaySourceLinks
+    .filter((link) => sourceLinkMatchesPathwayIdentity(link, pathway))
+    .map(materializeMatchedPathwayRequirementSourceLink);
+  const remainingPathwayLinks = pathwaySourceLinks.filter(
+    (link) => !sourceLinkMatchesPathwayIdentity(link, pathway)
+  );
   const matchingParentPathwayLinks = parentSourceLinks
     .filter((link) => sourceLinkMatchesPathwayIdentity(link, pathway))
-    .map(materializeMatchedPathwayParentSourceLink);
+    .map(materializeMatchedPathwayRequirementSourceLink);
   const inferredTacomaSiblingLinks = inferTacomaSiblingPathwaySourceLinks(
     plan,
     pathway,
@@ -1880,9 +1898,10 @@ function getPathwaySources(
 
   return {
     sourceLinks: dedupeLinks([
+      ...matchingPathwayLinks,
       ...inferredTacomaSiblingLinks,
       ...parentLinksForPathway,
-      ...pathwaySourceLinks,
+      ...remainingPathwayLinks,
     ]),
     validationNotes: [] as string[],
   };

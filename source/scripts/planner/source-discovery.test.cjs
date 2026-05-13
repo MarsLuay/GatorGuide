@@ -24,8 +24,16 @@ const studentRuntime = require("../../constants/transfer-planner-source/student-
 const planner = require("../../services/planning/transfer-planner.service");
 const programApprovedFilters = require("../../constants/transfer-planner-source/program-approved-course-filters");
 const {
+  isSuspiciousStructuralPathwayId,
+  isSuspiciousStructuralPathwayLabel,
+  materializeTransferPlannerPathways,
+} = require("../../constants/transfer-planner-source/pathway-materialization");
+const {
   normalizeTransferPlannerCourseCode,
 } = require("../../constants/transfer-planner-source/course-code-normalization");
+const {
+  labelMentionsDifferentTransferPlannerMajor,
+} = require("../../constants/transfer-planner-source/pathway-title-normalization");
 
 const SBSE_PLAN_ID = "uw-seattle-sustainable-bioresource-systems-engineering";
 const SBSE_CATALOG_URL =
@@ -945,6 +953,278 @@ test("Zero-course primaries can promote linked same-program worksheets", () => {
   assert.equal(decision.suggestedPrimary?.url, worksheetUrl);
 });
 
+test("Same-program leaf pages without durable requirement identity are review-only", () => {
+  const curriculumUrl = "https://www.uwb.edu/stem/undergraduate/majors/biology/curriculum";
+  const fhlUrl = "https://www.uwb.edu/stem/undergraduate/majors/biology/fhl";
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "weak-existing-primary",
+    ownerType: "major",
+    ownerKey: "uw-bothell-biology",
+    planId: "uw-bothell-biology",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Biology",
+    label: "Biology",
+    officialLinks: [{ label: "UW Bothell Biology curriculum", url: curriculumUrl }],
+    existingPrimary: { label: "UW Bothell Biology curriculum", url: curriculumUrl },
+    reevaluationSignals: [
+      {
+        code: "no-parsed-uw-course-codes",
+        reason: "Parsed source block produced zero UW course codes.",
+      },
+    ],
+    reevaluationContext: {
+      parsedUwCourseCodeCount: 0,
+      hasStrongRequirementCue: true,
+      currentSourceLatestYear: null,
+    },
+    pathwayCount: 0,
+  });
+  const current = {
+    url: curriculumUrl,
+    label: "UW Bothell Biology curriculum",
+    pageTitle: "Biology curriculum",
+    sourceKind: "official-link",
+    ...discovery.scoreCandidate(target, {
+      url: curriculumUrl,
+      label: "UW Bothell Biology curriculum",
+      pageTitle: "Biology curriculum",
+      sourceKind: "official-link",
+    }),
+    score: 50,
+  };
+  const fhlInput = {
+    url: fhlUrl,
+    label: "Friday Harbor Laboratories",
+    pageTitle: "Friday Harbor Laboratories",
+    pageHeadings: ["Biology Major Requirements", "Friday Harbor Laboratories"],
+    sourceKind: "official-link",
+  };
+  const fhlCandidate = { ...fhlInput, ...discovery.scoreCandidate(target, fhlInput) };
+  const decision = discovery.buildReplacementDecision(target, [current, fhlCandidate]);
+
+  assert.equal(fhlCandidate.confidence, "high");
+  assert.equal(fhlCandidate.sourceRole, "primary-degree-requirements");
+  assert.equal(discovery.isAutoPromotablePrimaryCandidate(fhlCandidate), false);
+  assert.equal(decision.action, "keep-existing-primary");
+  assert.equal(decision.reviewCandidate?.url, fhlUrl);
+});
+
+test("Tacoma broad overview pages stay out of auto-promotion", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "missing-primary",
+    ownerType: "major",
+    ownerKey: "uw-tacoma-arts-media-culture",
+    planId: "uw-tacoma-arts-media-culture",
+    pathwayId: null,
+    campusId: "uw-tacoma",
+    title: "Arts, Media and Culture",
+    label: "Arts, Media and Culture",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 4,
+  });
+  const overviewInput = {
+    url: "https://www.tacoma.uw.edu/sias/cac/arts-media-culture",
+    label: "Arts, Media and Culture major",
+    pageTitle: "Arts, Media and Culture",
+    pageHeadings: ["Arts, Media and Culture", "Degree Options"],
+    sourceKind: "campus-major-index",
+  };
+  const overview = { ...overviewInput, ...discovery.scoreCandidate(target, overviewInput) };
+
+  assert.equal(overview.confidence, "high");
+  assert.equal(overview.sourceRole, "department-requirements");
+  assert.equal(discovery.isAutoPromotablePrimaryCandidate(overview), false);
+});
+
+test("Durable Bothell Electrical Engineering worksheets remain auto-promotable", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "missing-primary",
+    ownerType: "major",
+    ownerKey: "uw-bothell-electrical-engineering",
+    planId: "uw-bothell-electrical-engineering",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Electrical Engineering",
+    label: "Electrical Engineering",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 0,
+  });
+  const worksheetInput = {
+    url: "https://www.uwb.edu/stem/undergraduate/majors/electrical-engineering/electrical-engineering-major-planning-worksheet.pdf",
+    label: "Electrical Engineering major planning worksheet",
+    pageTitle: "Electrical Engineering Major Planning Worksheet",
+    sourceKind: "official-link",
+  };
+  const worksheet = { ...worksheetInput, ...discovery.scoreCandidate(target, worksheetInput) };
+
+  assert.equal(worksheet.confidence, "high");
+  assert.equal(worksheet.sourceRole, "primary-degree-requirements");
+  assert.equal(discovery.isAutoPromotablePrimaryCandidate(worksheet), true);
+});
+
+test("Sentence-fragment pathway labels are rejected while real options stay materializable", () => {
+  for (const value of [
+    "You need to complete 60 credits track",
+    "They can concentrate in one of five countries/regions track",
+    "And Risk Management concentration (54 credits)",
+    "Extent and quality of relevant 3 area of concentration selective courses from",
+    "Credential Overview option",
+    "Recommended Preparation option",
+    "With Honors completion of departmental honors requirements in the major option",
+    "Especially those who broaden into the related Control Systems pathway",
+  ]) {
+    assert.equal(
+      isSuspiciousStructuralPathwayLabel(value),
+      true,
+      `Expected ${value} to be treated as a structural/prose label.`
+    );
+    assert.equal(
+      isSuspiciousStructuralPathwayId(
+        value
+          .toLowerCase()
+          .replace(/&/g, " and ")
+          .replace(/[^a-z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+      ),
+      true,
+      `Expected ${value} to be treated as a structural/prose id.`
+    );
+  }
+
+  const plan = {
+    id: "synthetic-prose-pathways",
+    campusId: "uw-seattle",
+    title: "Synthetic Major",
+    shortTitle: "Synthetic Major",
+    officialLinks: [],
+    pathways: [
+      {
+        id: "you-need-to-complete-60-credits-track",
+        label: "You need to complete 60 credits track",
+      },
+      { id: "credential-overview-option", label: "Credential Overview option" },
+      { id: "course-option", label: "Course Option" },
+      { id: "gis-option", label: "GIS option" },
+    ],
+  };
+
+  assert.equal(isSuspiciousStructuralPathwayId("course-option"), false);
+  assert.equal(isSuspiciousStructuralPathwayLabel("GIS option"), false);
+  assert.deepEqual(
+    materializeTransferPlannerPathways(plan, plan.pathways, []).map((pathway) => [
+      pathway.id,
+      pathway.label,
+    ]),
+    [
+      ["course-option", "Course Option"],
+      ["gis-option", "GIS option"],
+    ]
+  );
+});
+
+test("Parser pathway extraction drops prose fragments before source adapters are generated", () => {
+  const entry = {
+    id: "synthetic-ece:primary",
+    ownerId: "synthetic-ece",
+    ownerTitle: "Electrical and Computer Engineering",
+    sourceLabel: "Electrical and Computer Engineering requirements",
+    planId: "synthetic-ece",
+    pathwayId: null,
+    campusId: "uw-seattle",
+    parserType: "html-degree-page",
+    url: "https://example.edu/ece/requirements",
+    label: "Electrical and Computer Engineering requirements",
+    isPrimaryDegreeRequirementsLink: true,
+    ownerType: "major",
+  };
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    entry,
+    `
+      <h1>Electrical and Computer Engineering Requirements</h1>
+      <h2>Especially those who broaden into the related Control Systems pathway</h2>
+      <p>EE 215, EE 233, EE 235</p>
+      <h2>Photonics Pathway</h2>
+      <p>EE 361, EE 436, EE 437</p>
+    `
+  );
+
+  assert.equal(
+    parsed.pathwayLabels.some((label) => /especially those who/i.test(label)),
+    false
+  );
+  assert.ok(parsed.pathwayLabels.some((label) => /photonics pathway/i.test(label)));
+});
+
+test("Cross-major title detection blocks Sustainable Urban Development labels for Urban Studies", () => {
+  const titlesByPlanId = {
+    "uw-tacoma-urban-studies": "Urban Studies",
+    "uw-tacoma-sustainable-urban-development": "Sustainable Urban Development",
+    "uw-bothell-business-administration": "Business Administration",
+    "uw-bothell-business-administration-accounting": "Business Administration: Accounting",
+  };
+
+  assert.equal(
+    labelMentionsDifferentTransferPlannerMajor(
+      "uw-tacoma-urban-studies",
+      "BA in Sustainable Urban Development",
+      titlesByPlanId
+    ),
+    true
+  );
+  assert.equal(
+    labelMentionsDifferentTransferPlannerMajor(
+      "uw-tacoma-urban-studies",
+      "Urban Studies GIS option",
+      titlesByPlanId
+    ),
+    false
+  );
+  assert.equal(
+    labelMentionsDifferentTransferPlannerMajor(
+      "uw-bothell-business-administration",
+      "Business Administration Accounting option",
+      titlesByPlanId
+    ),
+    false
+  );
+});
+
+test("DOCX major planning worksheets are primary parseable document candidates", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "missing-primary",
+    ownerType: "major",
+    ownerKey: "uw-bothell-business-administration",
+    planId: "uw-bothell-business-administration",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Business Administration",
+    label: "Business Administration",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 0,
+  });
+  const overview = discovery.scoreCandidate(target, {
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration",
+    label: "Business Administration overview",
+    pageTitle: "Business Administration",
+    sourceKind: "official-link",
+  });
+  const worksheet = discovery.scoreCandidate(target, {
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/bba-major-planning-worksheet.docx",
+    label: "Business Administration major planning worksheet",
+    sourceKind: "discovered-anchor",
+  });
+
+  assert.equal(worksheet.sourceRole, "primary-degree-requirements");
+  assert.equal(worksheet.sourceRoleStatus, "primary");
+  assert.equal(worksheet.parserType, "pdf-worksheet");
+  assert.equal(worksheet.canCreateSchedulableRows, true);
+  assert.ok(worksheet.score > overview.score);
+});
+
 test("Pathway hub pages can promote matching child option and concentration sources", async () => {
   const hubUrl =
     "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/options";
@@ -1033,6 +1313,104 @@ test("Pathway hub pages can promote matching child option and concentration sour
   assert.ok(
     result.suggestedPrimary?.reasons.includes(
       "same-program option/concentration child source matches the selected pathway"
+    )
+  );
+});
+
+test("Pathway hub discovery infers and verifies child option URLs when hub anchors are absent", async () => {
+  const hubUrl =
+    "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/options";
+  const financeUrl =
+    "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/finance-option";
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "weak-existing-primary",
+    ownerType: "pathway",
+    ownerKey: "uw-bothell-business-administration:pathway:finance-option-and-concentration",
+    planId: "uw-bothell-business-administration",
+    pathwayId: "finance-option-and-concentration",
+    campusId: "uw-bothell",
+    title: "Business Administration - Finance option and concentration",
+    label: "Finance option and concentration",
+    officialLinks: [{ label: "BBA options hub", url: hubUrl }],
+    existingPrimary: { label: "BBA options hub", url: hubUrl },
+    reevaluationSignals: [
+      {
+        code: "primary-source-misses-selected-pathway",
+        reason: "Current pathway primary source does not name the selected pathway.",
+      },
+    ],
+    reevaluationContext: {
+      parsedUwCourseCodeCount: 0,
+      hasStrongRequirementCue: true,
+      currentSourceLatestYear: null,
+    },
+    parsedBlock: {
+      primarySourceUrl: hubUrl,
+      sourceUrl: hubUrl,
+      extractedTitle: "Business Administration options",
+      extractedHeadings: ["Options and Concentrations"],
+      requirementCueLines: ["Choose an option or concentration."],
+      parsedUwCourseCodes: [],
+      qualitySignals: [],
+    },
+    pathwayCount: 8,
+  });
+  const inspectedUrls = [];
+
+  const result = await discovery.analyzeOwner(target, 1000, {
+    inspectPageImpl: async (url) => {
+      inspectedUrls.push(url);
+      if (url === hubUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "Business Administration options and concentrations",
+          headings: ["Options and Concentrations"],
+          anchors: [],
+          error: null,
+        };
+      }
+
+      if (url === financeUrl) {
+        return {
+          url,
+          ok: true,
+          status: 200,
+          finalUrl: url,
+          contentType: "text/html",
+          title: "Finance Option and Concentration",
+          headings: ["Finance Option and Concentration", "Major Requirements"],
+          anchors: [],
+          error: null,
+        };
+      }
+
+      return {
+        url,
+        ok: false,
+        status: 404,
+        finalUrl: url,
+        contentType: "text/html",
+        title: "Page not found",
+        headings: ["Page not found"],
+        anchors: [],
+        error: "not found",
+      };
+    },
+  });
+
+  assert.ok(includesExactUrl(inspectedUrls, financeUrl));
+  assert.equal(result.suggestedAction, "replace-existing-primary");
+  assert.equal(result.suggestedPrimary?.url, financeUrl);
+  assert.equal(result.suggestedPrimary?.sourceRole, "primary-degree-requirements");
+  assert.equal(result.suggestedPrimary?.sourceRoleStatus, "primary");
+  assert.equal(result.suggestedPrimary?.verified, true);
+  assert.ok(
+    result.suggestedPrimary?.reasons.includes(
+      "inferred from an official option/concentration hub"
     )
   );
 });

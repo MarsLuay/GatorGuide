@@ -761,7 +761,12 @@ function uniqueRequirementSupportLists(
   const seen = new Set<string>();
   const uniqueSupportLists: TransferPlannerRequirementSupportList[] = [];
   for (const supportList of supportLists) {
-    const key = supportList.id || `${supportList.shape}:${supportList.sourceUrl}:${supportList.listTitle}`;
+    const approvedListKey = supportList.approvedListKey ?? supportList.filterKey ?? "";
+    const key =
+      approvedListKey &&
+      (supportList.shape === "approved-filter-list" || supportList.shape === "approved-course-list")
+        ? `approved:${supportList.sourceUrl ?? ""}:${approvedListKey}`
+        : supportList.id || `${supportList.shape}:${supportList.sourceUrl}:${supportList.listTitle}`;
     if (seen.has(key)) continue;
     seen.add(key);
     uniqueSupportLists.push(supportList);

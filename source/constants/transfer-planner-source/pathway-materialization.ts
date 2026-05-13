@@ -328,13 +328,30 @@ const DERIVED_PATHWAY_GENERIC_LABEL_PATTERNS = [
   /^route\s+name\s+is\s+layout\s+builder\s+ui\b/i,
   /\bmenu[_-]?active[_-]?trails\b/i,
   /\blayout[_-]?builder[_-]?ui\b/i,
+  /^you\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^they\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^and\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^extent and quality\b/i,
+  /^credential overview\b/i,
+  /^recommended preparation\b/i,
+  /^with honors\b.*\bdepartmental honors\b.*\b(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^especially those who\b.*\bpathway\b/i,
+  /\bcompletion of departmental honors requirements in the major\b/i,
 ];
 const DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS = [
   /^(?:option|track|route|pathway|certificate|concentration)$/i,
   /^students?-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^you-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^they-.*-(?:option|track|route|pathway|certificate|concentration)\b/i,
+  /^and-.*-(?:option|track|route|pathway|certificate|concentration)(?:-|$)/i,
   /^if-you-enrolled-.*-option\b/i,
   /^the-.*-(?:option|track|route|pathway|certificate|concentration)-.*-(?:is|prepares)\b/i,
   /^and-.*-(?:option|track|route|pathway|certificate|concentration)-.*-(?:is|prepares)\b/i,
+  /^extent-and-quality\b/i,
+  /^credential-overview-(?:option|track|route|pathway|certificate|concentration)$/i,
+  /^recommended-preparation-(?:option|track|route|pathway|certificate|concentration)$/i,
+  /^with-honors-.*departmental-honors.*-(?:option|track|route|pathway|certificate|concentration)$/i,
+  /^especially-those-who-.*-pathway$/i,
   /^\d+-of-the-\d+-credits-required-for-the-concentration$/i,
   /^\d+-second-.*-language-.*-concentration$/i,
   /^courses-by-track$/i,
@@ -2705,7 +2722,10 @@ export function materializeTransferPlannerPathways(
   parsedSourceBlocks: TransferPlannerParsedRequirementSourceBlock[]
 ): TransferPlannerMajorPathway[] {
   const canonicalBasePathways = canonicalizeBasePathwaysAgainstAutoPromotions(plan, basePathways).filter(
-    (pathway) => !isPlanExcludedDerivedPathway(plan.id, pathway)
+    (pathway) =>
+      !isPlanExcludedDerivedPathway(plan.id, pathway) &&
+      !isSuspiciousStructuralPathwayId(pathway.id) &&
+      !isSuspiciousStructuralPathwayLabel(pathway.label)
   );
   const rawDerivedPathways = filterDerivedPathwaysToKnownBaseFamilies(
     plan,

@@ -36,6 +36,12 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Arts, Media and Culture (BA) parsed official requirement cues
 
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- For a BA in Arts, Media &amp; Culture, you need to complete 60 credits, which must include a minimum of 30 credits of upper-division (300–400 level) courses, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+
+##### Arts, Media and Culture (BA) parsed official requirement cues
+
 - Arts, Media &amp; Culture majors have five tracks to choose from:
 - LITERATURE TRACK
 - FILM AND MEDIA TRACK
@@ -65,6 +71,7 @@ On To Do list.
 - Required before enrollment: Source-backed major preparation. note: Current official source-backed requirements exist for this major, but the lower-division Green River checklist mapping is still expanding.
 - Source-backed note: Parser confidence: medium.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-01-arts-media-and-culture-ba-parsed-official-source-structure.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-10-parsed-02-arts-media-and-culture-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-arts-media-culture:source-degree-map:structured:uw-tacoma-arts-media-culture-degree-map-90-requirement-cues.
 - Source-backed note: Parsed requirement cues extracted from the current official source.
 - Source-backed note: Parsed choice statements and pathway notes extracted from the current official source.
@@ -1101,6 +1108,24 @@ Source-generated from parsed UW requirement-source registries.
 
 ##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
 
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Admission Requirements
+- ADMISSION REQUIREMENTS
+- DEGREE REQUIREMENTS
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+
+##### Ethnic, Gender and Labor Studies (BA) parsed choices and pathway notes
+
+- A minimum of 45 lower-division credits is required before declaring the major. To declare the Ethnic, Gender and Labor Studies major, students should reach out to the major advisor .
+- Ethnic Studies Option
+- Ethnic, Gender and Labor Studies
+- Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
+- For a BA in Ethnic, Gender and Labor Studies, students must complete 60 major credits, as well as the UWT general education and graduation requirements totaling a minimum of 180 credits.
+- Gender Studies Option
+
+##### Ethnic, Gender and Labor Studies (BA) parsed official requirement cues
+
 - Ethnic, Gender and Labor Studies | Department of Social Sciences | University of Washington Tacoma
 - Department of Social Sciences
 - Global Studies Concentration
@@ -1132,6 +1157,8 @@ On To Do list.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-03-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-04-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-05-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-06-ethnic-gender-and-labor-studies-ba-parsed-official-requirement-cues.
+- Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-10-parsed-07-ethnic-gender-and-labor-studies-ba-parsed-choices-and-pathway-notes.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-90-requirement-cues.
 - Source-backed note: Parsed degree-map block candidate: uw-tacoma-ethnic-gender-and-labor-studies:source-degree-map:structured:uw-tacoma-ethnic-gender-and-labor-studies-degree-map-91-planning-notes.
 - Source-backed note: Parsed requirement cues extracted from the current official source.

@@ -18517,6 +18517,32 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
+      },
+      {
+        "id": "honors-thesis-option",
+        "label": "Honors Thesis Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Degree Requirements",
+            "url": "https://aes.washington.edu/ba-american-ethnic-studies",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
       }
     ]
   },
@@ -18816,7 +18842,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW BA in Architectural Studies curriculum PDF",
+            "url": "https://arch.be.uw.edu/wp-content/uploads/sites/5/2024/01/BA-Arch-Studies_20240124.pdf",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -19312,26 +19346,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "bankIds": [],
     "plannerNote": "",
     "sourceType": "master-generated",
-    "pathways": [
-      {
-        "id": "b-a-route",
-        "label": "B.A. route",
-        "summary": "",
-        "applicationChecklist": [],
-        "beforeEnrollmentChecklist": [],
-        "stayAtGrcChecklist": [],
-        "advisorFlags": [],
-        "officialLinks": [],
-        "degreeMapSections": [],
-        "validationNotes": [],
-        "grcCourseList": [],
-        "grcCourseListGuidance": "",
-        "plannerNote": "",
-        "bestTrackId": null,
-        "recommendedTrackSummary": "",
-        "whyThisTrack": []
-      }
-    ]
+    "pathways": []
   },
   {
     "id": "uw-seattle-chemical-engineering",
@@ -19374,8 +19389,8 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Engineering Electives",
-            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum/electives.html",
+            "label": "Optional focus areas",
+            "url": "https://www.cheme.washington.edu/undergraduate_students/curriculum/optionalfocusareas",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -20007,7 +20022,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "UW General Catalog Computational Finance and Risk Management requirements",
+            "url": "https://www.washington.edu/students/gencat/program/S/AppliedMathematics-208.html",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -20199,7 +20222,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: Construction Management Elective Courses (24-33 credits to meet required total)",
+            "label": "Scoped section: Choose thesis, project, or course-only option (0-9 credits):",
             "url": "https://www.washington.edu/students/gencat/program/S/ConstructionManagement-52.html",
             "visibility": "visible",
             "status": "verified",
@@ -20810,11 +20833,11 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: The Bachelor of Arts in Education, Communities and Organizations major provides students with a solid foundation in lear",
+            "label": "Scoped section: Credentials in the overarching Curriculum and Instruction program range between 45-48 credits. All credentials feature c",
             "url": "https://www.washington.edu/students/gencat/program/S/CollegeofEducation-351.html",
             "visibility": "visible",
             "status": "verified",
-            "sourceConfidence": "medium"
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -21007,13 +21030,6 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "English Composition Requirement",
             "url": "https://english.washington.edu/english-composition-strategies",
-            "visibility": "visible",
-            "status": "verified",
-            "sourceConfidence": "high"
-          },
-          {
-            "label": "UW English LLC option requirements",
-            "url": "https://english.washington.edu/english-language-literature-and-culture-option",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -22008,15 +22024,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Academics",
-            "url": "https://ischool.uw.edu/programs/informatics/curriculum",
+            "label": "Scoped section: Informatics major requirements",
+            "url": "https://ischool.uw.edu/academics/informatics/curriculum",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
           },
           {
             "label": "Scoped section: Informatics major requirements",
-            "url": "https://ischool.uw.edu/academics/informatics/curriculum",
+            "url": "https://ischool.uw.edu/programs/informatics/curriculum",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -22069,6 +22085,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "Academics",
             "url": "https://ischool.uw.edu/programs/informatics/curriculum",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "Scoped section: Informatics courses can also be understood as informing a variety of focus areas, which are lenses that frame different",
+            "url": "https://ischool.uw.edu/academics/informatics/curriculum",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -22337,7 +22360,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: Project Option (12 credits): Choose from the following:",
+            "label": "Scoped section: Honors Options Available: Students may apply for admission to the Bachelor of Landscape Architecture Honors option. See",
             "url": "https://www.washington.edu/students/gencat/program/S/LandscapeArchitecture-53.html",
             "visibility": "visible",
             "status": "verified",
@@ -23229,7 +23252,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: Applied Physics Track (addl. 34-43 credits)",
+            "label": "Scoped section: Biological Physics Track (addl. 48-56 credits)",
             "url": "https://phys.washington.edu/physics-bs-degree-requirements",
             "visibility": "visible",
             "status": "verified",
@@ -23307,7 +23330,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Scoped section: Teaching Physics Track (addl. 41-43 credits)",
+            "label": "Scoped section: Biological Physics Track (addl. 48-56 credits)",
             "url": "https://phys.washington.edu/physics-bs-degree-requirements",
             "visibility": "visible",
             "status": "verified",
@@ -23938,7 +23961,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Double Majors",
+            "label": "Scoped section: Any double majors in CSE/Stat (independently of track) can request that 2C credits of ENGR 321 (engineering internship)",
             "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
             "visibility": "visible",
             "status": "verified",
@@ -23964,7 +23987,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Double Majors",
+            "label": "Scoped section: Any double majors in CSE/Stat (independently of track) can request that 2C credits of ENGR 321 (engineering internship)",
             "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
             "visibility": "visible",
             "status": "verified",
@@ -23990,7 +24013,7 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
-            "label": "Double Majors",
+            "label": "Scoped section: Any double majors in CSE/Stat (independently of track) can request that 2C credits of ENGR 321 (engineering internship)",
             "url": "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
             "visibility": "visible",
             "status": "verified",
@@ -24224,6 +24247,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
+            "label": "LITERATURE TRACK",
+            "url": "https://www.tacoma.uw.edu/sias/cac/literature-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
             "label": "UW Tacoma Arts, Media and Culture - Film and Media Track",
             "url": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
             "visibility": "visible",
@@ -24275,6 +24305,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
         "officialLinks": [
+          {
+            "label": "FILM AND MEDIA TRACK",
+            "url": "https://www.tacoma.uw.edu/sias/cac/film-and-media-track",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
           {
             "label": "Scoped section: Foundation (5 credits)",
             "url": "https://www.tacoma.uw.edu/sias/cac/visual-and-performing-arts-track",
@@ -24846,14 +24883,22 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
     "sourceType": "master-generated",
     "pathways": [
       {
-        "id": "bioinformatics-option-20-credits",
-        "label": "Bioinformatics Option (20 credits):",
+        "id": "bioinformatics-option",
+        "label": "Bioinformatics Option",
         "summary": "",
         "applicationChecklist": [],
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Program of Study: Major: Electrical Engineering",
+            "url": "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html#program-UG-TEE-MAJOR",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -24948,7 +24993,15 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "beforeEnrollmentChecklist": [],
         "stayAtGrcChecklist": [],
         "advisorFlags": [],
-        "officialLinks": [],
+        "officialLinks": [
+          {
+            "label": "Scoped section: Electives for the General Environmental Science Option (29 credits)",
+            "url": "https://www.tacoma.uw.edu/sias/sam/environmental-science",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          }
+        ],
         "degreeMapSections": [],
         "validationNotes": [],
         "grcCourseList": [],
@@ -25052,6 +25105,24 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "bestTrackId": null,
         "recommendedTrackSummary": "",
         "whyThisTrack": []
+      },
+      {
+        "id": "pre-environmental-education-option",
+        "label": "Pre-Environmental Education Option",
+        "summary": "",
+        "applicationChecklist": [],
+        "beforeEnrollmentChecklist": [],
+        "stayAtGrcChecklist": [],
+        "advisorFlags": [],
+        "officialLinks": [],
+        "degreeMapSections": [],
+        "validationNotes": [],
+        "grcCourseList": [],
+        "grcCourseListGuidance": "",
+        "plannerNote": "",
+        "bestTrackId": null,
+        "recommendedTrackSummary": "",
+        "whyThisTrack": []
       }
     ]
   },
@@ -25101,6 +25172,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Tacoma Ethnic, Gender and Labor Studies overview",
+            "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -25127,6 +25205,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Tacoma Ethnic, Gender and Labor Studies overview",
+            "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
           }
         ],
         "degreeMapSections": [],
@@ -25150,6 +25235,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "Labor Studies Option",
             "url": "https://www.tacoma.uw.edu/sias/socs/labor-studies-option",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "UW Tacoma Ethnic, Gender and Labor Studies overview",
+            "url": "https://www.tacoma.uw.edu/sias/socs/ethnic-gender-and-labor-studies",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"
@@ -25850,6 +25942,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
         "advisorFlags": [],
         "officialLinks": [
           {
+            "label": "BA in Sustainable Urban Development",
+            "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
             "label": "BA in Urban Studies",
             "url": "https://www.tacoma.uw.edu/urban-studies/ba-urban-studies",
             "visibility": "visible",
@@ -25943,6 +26042,13 @@ export const TRANSFER_PLANNER_BOOTSTRAP_ALL_MAJOR_PLANS: TransferPlannerMajorPla
           {
             "label": "BA in Sustainable Urban Development",
             "url": "https://www.tacoma.uw.edu/urban-studies/ba-sustainable-urban-development",
+            "visibility": "visible",
+            "status": "verified",
+            "sourceConfidence": "high"
+          },
+          {
+            "label": "BS in Urban Design",
+            "url": "https://www.tacoma.uw.edu/urban-studies/bs-urban-design",
             "visibility": "visible",
             "status": "verified",
             "sourceConfidence": "high"

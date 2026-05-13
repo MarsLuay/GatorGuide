@@ -14,6 +14,10 @@ const REQUIREMENT_PARSE_REPORT_PATH = path.resolve(
   TMP_DIR,
   "transfer-planner-requirement-source-parse-report.json"
 );
+const SOURCE_PIPELINE_VALIDATION_REPORT_PATH = path.resolve(
+  TMP_DIR,
+  "transfer-planner-source-pipeline-validation.json"
+);
 const TS_NODE_COMPILER_OPTIONS = JSON.stringify({
   module: "Node16",
   moduleResolution: "node16",
@@ -51,6 +55,14 @@ function getArgValue(flag) {
   }
 
   return String(nextValue).trim() || null;
+}
+
+function readJsonIfExists(filePath) {
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
 const REFRESH_SECTION_DEFINITIONS = [
@@ -412,6 +424,121 @@ function runClosedLoopAutoRepairBeforeRethrow(error, options = {}) {
   throw error;
 }
 
+function getSourcePipelineAutoRepairPlan() {
+  const report = readJsonIfExists(SOURCE_PIPELINE_VALIDATION_REPORT_PATH);
+  const registryRepair = report?.autoRepair?.registryParserAlignment ?? null;
+  const promotedRepair = report?.autoRepair?.promotedOwnerCoverage ?? null;
+  const fingerprintRepair = report?.autoRepair?.fingerprintAlignment ?? null;
+  const targetPlanIds = new Set();
+  let shouldRunParser = false;
+  let shouldRunFingerprintRefresh = false;
+
+  if (registryRepair?.needed) {
+    shouldRunParser = true;
+    shouldRunFingerprintRefresh = true;
+    for (const planId of registryRepair.targetPlanIds ?? []) {
+      if (planId) targetPlanIds.add(String(planId));
+    }
+  }
+
+  if (promotedRepair?.needed) {
+    if ((promotedRepair.missingParsedOwnerIds ?? []).length > 0) {
+      shouldRunParser = true;
+      for (const planId of promotedRepair.targetPlanIds ?? []) {
+        if (planId) targetPlanIds.add(String(planId));
+      }
+    }
+    if ((promotedRepair.missingFingerprintOwnerIds ?? []).length > 0) {
+      shouldRunFingerprintRefresh = true;
+    }
+  }
+
+  if (fingerprintRepair?.needed) {
+    shouldRunFingerprintRefresh = true;
+  }
+
+  if (!shouldRunParser && !shouldRunFingerprintRefresh) {
+    return null;
+  }
+
+  return {
+    registryRepair,
+    promotedRepair,
+    fingerprintRepair,
+    shouldRunParser,
+    shouldRunFingerprintRefresh,
+    targetPlanIds: [...targetPlanIds].sort((left, right) => left.localeCompare(right)),
+  };
+}
+
+function runRequirementParserRepairForPlans(targetPlanIds) {
+  if (!fs.existsSync(REQUIREMENT_PARSE_REPORT_PATH) || targetPlanIds.length === 0) {
+    console.log(
+      "Source-pipeline repair is running a full requirement parse because no parse baseline or target plan list was available."
+    );
+    runCommand("node", ["scripts/planner/parse-transfer-planner-requirement-sources.cjs"]);
+    return;
+  }
+
+  for (const planId of targetPlanIds) {
+    console.log(`Source-pipeline repair is refreshing requirement sources for ${planId}.`);
+    runCommand("node", [
+      "scripts/planner/parse-transfer-planner-requirement-sources.cjs",
+      "--target-plan-id",
+      planId,
+    ]);
+  }
+}
+
+function runSourcePipelineValidationWithAutoParseRepair(options = {}) {
+  try {
+    runCommand("node", ["scripts/planner/verify-transfer-planner-source-pipeline.cjs"]);
+    return;
+  } catch (error) {
+    if (options.skipAutoRepair) {
+      throw error;
+    }
+
+    const repairPlan = getSourcePipelineAutoRepairPlan();
+    if (!repairPlan) {
+      throw error;
+    }
+
+    if (repairPlan.registryRepair?.needed) {
+      const missingCurrentCount =
+        repairPlan.registryRepair.missingCurrentSourceCoverage?.length ?? 0;
+      const missingGeneratedCount =
+        repairPlan.registryRepair.missingGeneratedSourceCoverage?.length ?? 0;
+      console.log(
+        `Source-pipeline parser coverage drift detected: ${missingCurrentCount} current and ${missingGeneratedCount} generated owner/source pair(s) need parser coverage.`
+      );
+    }
+    if (repairPlan.promotedRepair?.needed) {
+      console.log(
+        `Source-pipeline promoted-owner coverage drift detected: ${(repairPlan.promotedRepair.missingParsedOwnerIds ?? []).length} parsed block(s) and ${(repairPlan.promotedRepair.missingFingerprintOwnerIds ?? []).length} fingerprint(s) need refresh.`
+      );
+    }
+    if (repairPlan.fingerprintRepair?.needed) {
+      console.log(
+        `Source-pipeline fingerprint drift detected: ${(repairPlan.fingerprintRepair.parsedOnlyOwnerIds ?? []).length} parsed-only owner(s), ${(repairPlan.fingerprintRepair.fingerprintOnlyOwnerIds ?? []).length} fingerprint-only owner(s).`
+      );
+    }
+
+    if (repairPlan.shouldRunParser) {
+      console.log(
+        `Targeted parser repair plan(s): ${
+          repairPlan.targetPlanIds.length ? repairPlan.targetPlanIds.join(", ") : "full parse"
+        }`
+      );
+      runRequirementParserRepairForPlans(repairPlan.targetPlanIds);
+    }
+    if (repairPlan.shouldRunFingerprintRefresh) {
+      runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"]);
+    }
+    runCommand("node", ["scripts/planner/verify-transfer-planner-source-pipeline.cjs"]);
+  }
+}
+
 function sleep(delayMs) {
   return new Promise((resolve) => setTimeout(resolve, delayMs));
 }
@@ -419,7 +546,7 @@ function sleep(delayMs) {
 function runVerification(runStepFn = runStep, options = {}) {
   if (options.includePipelineValidation) {
     runStepFn("Validate source pipeline invariants", () =>
-      runCommand("node", ["scripts/planner/verify-transfer-planner-source-pipeline.cjs"])
+      runSourcePipelineValidationWithAutoParseRepair(options)
     );
   }
   runStepFn("Refresh requirement-diff classification report", () =>
@@ -735,7 +862,10 @@ async function main() {
           runCommand("node", ["scripts/planner/build-transfer-planner-source-fingerprints.cjs"])
         );
         runTrackedStep("Validate source pipeline invariants", () =>
-          runCommand("node", ["scripts/planner/verify-transfer-planner-source-pipeline.cjs"])
+          runSourcePipelineValidationWithAutoParseRepair({
+            skipAutoRepair,
+            targetPlanId,
+          })
         );
         return;
       }

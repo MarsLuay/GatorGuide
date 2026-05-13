@@ -20,6 +20,7 @@ const {
   normalizeTransferPlannerOwnerId,
   normalizeTransferPlannerPathwayId,
 } = require("../../constants/transfer-planner-source/pathway-id-normalization");
+const discovery = require("./discover-transfer-planner-primary-sources.cjs");
 
 const REPO_ROOT = path.resolve(__dirname, "..", "..");
 const TMP_DIR = path.resolve(REPO_ROOT, ".tmp");
@@ -145,12 +146,7 @@ function normalizeLabel(owner) {
 }
 
 function isSchedulablePrimarySuggestion(candidate) {
-  return (
-    candidate &&
-    candidate.confidence === "high" &&
-    candidate.canCreateSchedulableRows !== false &&
-    candidate.sourceRoleStatus === "primary"
-  );
+  return discovery.isAutoPromotablePrimaryCandidate(candidate);
 }
 
 function isClearlySupportOnlyPromotionEntry(entry) {
@@ -225,6 +221,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
       .filter((entry) => !isClearlySupportOnlyPromotionEntry(entry))
       .filter((entry) => !isGraduateOnlyPromotionEntry(entry))
       .filter((entry) => activeOwnerIds.has(entry.ownerId))
+      .filter((entry) => discovery.isAutoPromotablePrimaryCandidate(entry))
       .map((entry) => [
         entry.ownerId,
         {

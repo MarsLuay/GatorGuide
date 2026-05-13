@@ -205,7 +205,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-12T23:14:21.067Z",
+    "generatedAt": "2026-05-13T02:54:36.962Z",
     "sourceFingerprint": "1d5aff43ae078c2e8dd9121633d9aaa430235c21dcdb36f20413b5746db900f6"
   },
   {
@@ -214,10 +214,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "label": "CE-approved Natural Science",
     "ownerIds": [
       "uw-seattle-computer-engineering",
-      "uw-seattle-electrical-computer-engineering:pathway:computing-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:especially-those-who-broaden-into-the-related-control-systems-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:integrated-systems-pathway",
-      "uw-seattle-electrical-computer-engineering:pathway:quantum-technologies-pathway"
+      "uw-seattle-electrical-computer-engineering:pathway:integrated-systems-pathway"
     ],
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core",
@@ -409,165 +406,47 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-12T23:14:21.067Z",
-    "sourceFingerprint": "800a32b38453b9965298f5cc1bb08c2be46fd66e402a36b3027a84de4b08023b"
+    "generatedAt": "2026-05-13T02:54:36.962Z",
+    "sourceFingerprint": "cf0b09b480135577466b28f7b14c714c46030a6868df3a4daa70996811069158"
   },
   {
     "filterId": "CS_APPROVED_SCIENCE",
     "filterKey": "computer-science-approved-science",
     "label": "CS-approved Science",
     "ownerIds": [
+      "uw-seattle-computer-science",
+      "uw-seattle-computer-science:pathway:data-science-option",
+      "uw-seattle-informatics:pathway:data-science-option",
       "uw-seattle-statistics:pathway:data-science-track"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://stat.uw.edu/academics/undergraduate/statistics-bs/application",
-    "sourceUrl": "https://asian.washington.edu/ba-south-asian-languages-and-cultures",
-    "sourceRole": "primary-degree-requirements",
+    "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
+    "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
+    "sourceRole": "approved-course-list",
     "approvedUwCourseCodes": [
-      "ANTH 316",
-      "ANTH 352",
-      "ASIAN 210",
-      "ASIAN 223",
-      "ASIAN 301",
-      "ASIAN 494",
-      "ASIAN 498",
-      "BENG 101",
-      "BENG 102",
-      "BENG 103",
-      "BENG 201",
-      "BENG 202",
-      "BENG 203",
-      "BENG 301",
-      "BENG 302",
-      "BENG 303",
-      "BENG 499",
-      "CHID 120",
-      "HINDI 101",
-      "HINDI 102",
-      "HINDI 103",
-      "HINDI 201",
-      "HINDI 202",
-      "HINDI 203",
-      "HINDI 301",
-      "HINDI 302",
-      "HINDI 303",
-      "HINDI 317",
-      "HINDI 321",
-      "HINDI 323",
-      "HINDI 324",
-      "HINDI 417",
-      "HINDI 421",
-      "HINDI 422",
-      "HINDI 423",
-      "HINDI 424",
-      "HINDI 431",
-      "HINDI 499",
-      "HSTAS 202",
-      "HSTAS 303",
-      "HSTAS 317",
-      "HSTAS 401",
-      "HSTAS 402",
-      "HSTAS 403",
-      "HSTAS 404",
-      "HSTAS 408",
-      "HSTAS 409",
-      "JSIS 203",
-      "JSISA 202",
-      "JSISA 206",
-      "JSISA 210",
-      "JSISA 316",
-      "JSISA 317",
-      "JSISA 340",
-      "JSISA 409",
-      "JSISA 417",
-      "JSISB 406",
-      "JSISB 432",
-      "POLS 340",
-      "POLS 417",
-      "POLS 432",
-      "RELIG 120",
-      "RELIG 202",
-      "RELIG 211",
-      "RELIG 352",
-      "RELIG 354",
-      "RELIG 356",
-      "SASIA 203",
-      "SASIA 206",
-      "SASIA 225",
-      "SASIA 254",
-      "SASIA 316",
-      "SASIA 498",
-      "SNKRT 101",
-      "SNKRT 102",
-      "SNKRT 103",
-      "SNKRT 201",
-      "SNKRT 202",
-      "SNKRT 203",
-      "SNKRT 205",
-      "SNKRT 311",
-      "SNKRT 312",
-      "SNKRT 313",
-      "SNKRT 494",
-      "SNKRT 495",
-      "SNKRT 499",
-      "URDU 101",
-      "URDU 102",
-      "URDU 103",
-      "URDU 201",
-      "URDU 202",
-      "URDU 203",
-      "URDU 301",
-      "URDU 302",
-      "URDU 303",
-      "URDU 321",
-      "URDU 322",
-      "URDU 323",
-      "URDU 324",
-      "URDU 421",
-      "URDU 422",
-      "URDU 423",
-      "URDU 424",
-      "URDU 499"
+      "BIOL 162",
+      "BIOL 180",
+      "CHEM 142",
+      "CHEM 143",
+      "CHEM 145",
+      "PHYS 116",
+      "PHYS 119",
+      "PHYS 121",
+      "PHYS 141"
     ],
     "approvedUwCourseGroups": [
       [
-        "ANTH 316",
-        "JSISA 316"
+        "PHYS 121",
+        "PHYS 141"
       ],
       [
-        "HSTAS 202",
-        "JSISA 202"
+        "CHEM 142",
+        "CHEM 143",
+        "CHEM 145"
       ],
       [
-        "HSTAS 317",
-        "JSISA 317"
-      ],
-      [
-        "HSTAS 404",
-        "HSTAS 409",
-        "JSISA 409"
-      ],
-      [
-        "JSISA 340",
-        "POLS 340"
-      ],
-      [
-        "JSISB 406",
-        "JSISB 432",
-        "POLS 432"
-      ],
-      [
-        "JSISA 417",
-        "POLS 417"
-      ],
-      [
-        "CHID 120",
-        "RELIG 120"
-      ],
-      [
-        "ANTH 352",
-        "RELIG 352",
-        "RELIG 356"
+        "PHYS 116",
+        "PHYS 119"
       ]
     ],
     "genericCategoryTags": [
@@ -584,48 +463,17 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "allowEquivalencyRulesWithAdditionalTargets": true,
     "generatedFromOfficialSupportSource": true,
     "sourceEvidenceHeadings": [
-      "A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe."
+      "Computer Science Natural Science Requirement"
     ],
     "sourceEvidenceLines": [
-      "A B.A. in South Asian Languages and Cultures combines advanced language study in one or more South Asian languages (Bengali, Hindi, Sanskrit, Urdu), along with courses on the literatures and cultures of South Asia. Students benefit from the exceptional depth of coursework taught by leading scholars in these languages, and they expand their studies with curriculum in South Asian studies from across the humanities and social sciences. Many students pair this major with a major in a professional field (e.g., engineering, business, informatics, computer science), giving them an advantage in these fields as the importance of South Asian business, entertainment, medicine and technology organizations continues to grow. Alumni, as multilingual professionals with in-demand skills, find an advantage entering business and nonprofit work, STEM fields, graduate programs, and more across the globe.",
-      "Bengali: BENG 101, BENG 102, BENG 103, BENG 201, BENG 202, BENG 203, BENG 301, BENG 302, BENG 303, BENG 499",
-      "Hindi: HINDI 101, HINDI 102, HINDI 103, HINDI 201, HINDI 202, HINDI 203, HINDI 301, HINDI 302, HINDI 303, HINDI 317, HINDI 321, HINDI 323, HINDI 324, HINDI 417, HINDI 421, HINDI 422, HINDI 423, HINDI 424, HINDI 431, HINDI 499",
-      "Sanskrit : SNKRT 101, SNKRT 102, SNKRT 103, SNKRT 201, SNKRT 202, SNKRT 203, SNKRT 205, SNKRT 311, SNKRT 312, SNKRT 313, SNKRT 494, SNKRT 495, SNKRT 499",
-      "Urdu: URDU 101, URDU 102, URDU 103, URDU 201, URDU 202, URDU 203, URDU 301, URDU 302, URDU 303, URDU 321, URDU 322, URDU 323, URDU 324, URDU 421, URDU 422, URDU 423, URDU 424, URDU 499",
-      "S ASIA 203 Love and War in Classical Indian Literature",
-      "S ASIA 206 Modern Literature of South Asia",
-      "S ASIA 225 Indian Philosophical Literature",
-      "S ASIA 254 Fairies, Genies, and Monsters: The Romance Genre in India",
-      "ASIAN 210 Asian War Epics: Working through Many Mahabharatas",
-      "ASIAN 223 Buddhist Literature",
-      "S ASIA 316 Postcolonial Literature of South Asia",
-      "ASIAN 301 Songs of the Saints of India",
-      "ASIAN 494 Ramayana in Comparative Perspective",
-      "ASIAN 498 Special Topics (when related to South Asia)",
-      "S ASIA 498 Special Topics in Languages and Cultures of South Asia",
-      "ANTH 316/JSIS A 316 Modern South Asia",
-      "HSTAS 202/JSIS A 202 Introduction to South Asian History, 1500-Present",
-      "HSTAS 303 Divided Lands/Divided Lives: An Environmental History of South Asia",
-      "HSTAS 317/JSIS A 317 History by Bollywood: Colonial India through Film",
-      "HSTAS 401 History of Ancient India",
-      "HSTAS 402 History of Medieval and Mughal India",
-      "HSTAS 403 History of Modern India to 1900",
-      "HSTAS 404/JSIS A 409 History of Twentieth-Century India",
-      "HSTAS 408 Fabulous Gurus and Fake Fakirs: Religious Reform in Colonial India",
-      "JSIS 203 Rise of Asia",
-      "JSIS A 206 Contemporary India and Pakistan",
-      "JSIS A 340/POL S 340 Politics of India, Pakistan, and South Asia",
-      "JSIS B 406/POL S 432 Political Islam and Islamic Fundamentalism",
-      "JSIS A 417/POL S 417 Political Economy of India",
-      "NEAR E 229/JSIS A 210 Introduction to Islamic Civilization",
-      "NEAR E 230/RELIG 211 Introduction to Muslim Beliefs and Practices",
-      "RELIG 120/CHID 120 Yoga: Past and Present",
-      "RELIG 202 Introduction to World Religions: Eastern Traditions",
-      "RELIG 352 Hinduism",
-      "RELIG 354 Buddhism",
-      "RELIG 356/ANTH 352 Buddhism and Society: The Theravada Buddhist Tradition in South and Southeast Asia"
+      "Computer Science Natural Science Requirement",
+      "Physics 121/141",
+      "Chemistry 142, 143 or 145",
+      "Biology 180",
+      "Biology 162 (AP credit)",
+      "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-12T23:14:21.067Z",
-    "sourceFingerprint": "2f1b3dfdf841bc5e021f72d39581a873bdf1e9a35a3e36691a22f912fa9d4b65"
+    "generatedAt": "2026-05-13T02:54:36.962Z",
+    "sourceFingerprint": "a0c61e0659d6d96103e40779bea6d55aa235cba48ca6dbaa7199c2a11e6770d4"
   }
 ] as const;

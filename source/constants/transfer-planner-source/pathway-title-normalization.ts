@@ -133,6 +133,30 @@ function getTransferPlannerPlanTitle(
   return String(titleRecord[planId] ?? "");
 }
 
+function getNormalizedTransferPlannerPlanTitleVariants(title: string | null | undefined) {
+  const normalizedTitle = normalizeTransferPlannerText(title).toLowerCase();
+  return Array.from(
+    new Set(
+      [
+        normalizedTitle,
+        normalizedTitle.replace(/\s*\([^)]*\)\s*$/, ""),
+      ].filter(Boolean)
+    )
+  );
+}
+
+function containsNormalizedPlanTitlePhrase(
+  normalizedLabel: string,
+  normalizedTitleVariant: string
+) {
+  if (!normalizedLabel || !normalizedTitleVariant) {
+    return false;
+  }
+
+  const escapedTitle = normalizedTitleVariant.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`(?:^| )${escapedTitle}(?:$| )`, "i").test(normalizedLabel);
+}
+
 export function buildTransferPlannerTitleSignatureTokens(value: string | null | undefined) {
   return tokenizeTransferPlannerText(value).filter(
     (token) => token.length >= 4 && !TITLE_SIGNATURE_STOPWORDS.has(token)
@@ -234,6 +258,44 @@ export function labelMentionsDifferentTransferPlannerMajor(
       getTransferPlannerPlanTitle(titlesByPlanId, currentPlanId)
     )
   );
+  const currentTitleVariants = getNormalizedTransferPlannerPlanTitleVariants(
+    getTransferPlannerPlanTitle(titlesByPlanId, currentPlanId)
+  );
+
+  for (const [planId, title] of getTransferPlannerPlanTitleEntries(titlesByPlanId)) {
+    if (planId === currentPlanId) {
+      continue;
+    }
+
+    for (const titleVariant of getNormalizedTransferPlannerPlanTitleVariants(title)) {
+      const normalizedTitleWordCount = titleVariant.split(/\s+/).filter(Boolean).length;
+      if (normalizedTitleWordCount < 2) {
+        continue;
+      }
+
+      const sharesCurrentTitleFamily = currentTitleVariants.some(
+        (currentVariant) =>
+          titleVariant === currentVariant ||
+          titleVariant.startsWith(`${currentVariant} `) ||
+          currentVariant.startsWith(`${titleVariant} `)
+      );
+      if (sharesCurrentTitleFamily) {
+        continue;
+      }
+
+      const otherPlanTokens = buildTransferPlannerTitleSignatureTokens(title);
+      if (
+        otherPlanTokens.every((token) => currentPlanTokens.has(token)) ||
+        !otherPlanTokens.some((token) => !currentPlanTokens.has(token))
+      ) {
+        continue;
+      }
+
+      if (containsNormalizedPlanTitlePhrase(normalizedLabel, titleVariant)) {
+        return true;
+      }
+    }
+  }
 
   if ([...currentPlanTokens].some((token) => labelTokens.has(token))) {
     return false;
@@ -250,14 +312,7 @@ export function labelMentionsDifferentTransferPlannerMajor(
     }
 
     const otherPlanTokens = buildTransferPlannerTitleSignatureTokens(title);
-    const normalizedTitleVariants = Array.from(
-      new Set(
-        [
-          normalizedTitle,
-          normalizedTitle.replace(/\s*\([^)]*\)\s*$/, ""),
-        ].filter(Boolean)
-      )
-    );
+    const normalizedTitleVariants = getNormalizedTransferPlannerPlanTitleVariants(title);
     for (const titleVariant of normalizedTitleVariants) {
       if (
         normalizedLabel === titleVariant ||

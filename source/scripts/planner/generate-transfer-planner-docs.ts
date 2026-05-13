@@ -309,7 +309,7 @@ function formatMajor(plan: TransferPlannerMajorPlan) {
 
 function buildCampusDoc(campusId: TransferPlannerCampusId) {
   const config = CAMPUS_DOCS[campusId];
-  const plans = getTransferPlannerMajorsForCampus(campusId);
+  const plans: TransferPlannerMajorPlan[] = getTransferPlannerMajorsForCampus(campusId);
 
   const lines = [
     config.heading,

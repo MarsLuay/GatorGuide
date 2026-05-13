@@ -24,6 +24,10 @@ const {
   normalizeTransferPlannerSemanticPathwayLabel,
   normalizeTransferPlannerText,
 } = require("../../constants/transfer-planner-source/pathway-title-normalization");
+const {
+  isSuspiciousStructuralPathwayId,
+  isSuspiciousStructuralPathwayLabel,
+} = require("../../constants/transfer-planner-source/pathway-materialization");
 let TRANSFER_PLANNER_GENERATED_COURSE_METADATA = [];
 try {
   ({ TRANSFER_PLANNER_GENERATED_COURSE_METADATA } = require("../../constants/transfer-planner-source/course-metadata.generated"));
@@ -1061,6 +1065,7 @@ function classifyRequirementSourceRole(entry) {
 
   if (
     PRIMARY_REQUIREMENT_CUE_PATTERN.test(searchable) ||
+    PATHWAY_DEGREE_SHEET_CUE_PATTERN.test(searchable) ||
     /\bdegree sheet\b|\brequirement sheet\b|\bchecklist\b/.test(searchable)
   ) {
     return "primary-degree-requirements";
@@ -5731,6 +5736,50 @@ function getSelectedPathwayScopeTokenGroups(entry) {
   );
 }
 
+function getStrictSelectedPathwayScopeLabels(entry) {
+  if (!entry?.pathwayId) {
+    return [];
+  }
+
+  const majorTitle = getPrimaryMajorTitle(entry);
+  const pathwayIdLabel = String(entry.pathwayId).replace(/[-_]+/g, " ");
+  const rawLabels = [
+    pathwayIdLabel,
+    normalizeTransferPlannerSemanticPathwayLabel(majorTitle, entry.ownerTitle),
+  ];
+
+  return uniqueInOrder(
+    rawLabels
+      .map((label) => stripPathwayHeadingPrefix(label))
+      .filter((label) => {
+        const tokens = normalizeMatcherText(label)
+          .split(" ")
+          .filter(
+            (token) =>
+              token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
+          );
+        return tokens.length > 0 || PATHWAY_LABEL_CUE_PATTERN.test(label);
+      })
+  );
+}
+
+function getStrictSelectedPathwayScopeTokenGroups(entry) {
+  return uniqueBy(
+    getStrictSelectedPathwayScopeLabels(entry)
+      .map((label) =>
+        normalizeMatcherText(label)
+          .split(" ")
+          .filter(
+            (token) =>
+              token.length >= 3 && !PATHWAY_SCOPE_IDENTITY_STOPWORDS.has(token)
+          )
+      )
+      .filter((tokens) => tokens.length > 0)
+      .sort((left, right) => right.length - left.length),
+    (tokens) => tokens.join(" ")
+  );
+}
+
 function normalizedLineContainsToken(normalizedLine, token) {
   return new RegExp(`\\b${escapeRegex(token)}\\b`, "i").test(normalizedLine);
 }
@@ -5742,6 +5791,21 @@ function lineMatchesSelectedPathwayIdentity(entry, line) {
   }
 
   return getSelectedPathwayScopeTokenGroups(entry).some((tokens) => {
+    const tokenMatches = tokens.filter((token) =>
+      normalizedLineContainsToken(normalizedLine, token)
+    ).length;
+    const requiredMatches = tokens.length <= 2 ? tokens.length : 2;
+    return tokenMatches >= Math.max(1, requiredMatches);
+  });
+}
+
+function lineMatchesStrictSelectedPathwayIdentity(entry, line) {
+  const normalizedLine = normalizeMatcherText(line);
+  if (!normalizedLine) {
+    return false;
+  }
+
+  return getStrictSelectedPathwayScopeTokenGroups(entry).some((tokens) => {
     const tokenMatches = tokens.filter((token) =>
       normalizedLineContainsToken(normalizedLine, token)
     ).length;
@@ -5885,6 +5949,123 @@ function parsedMentionsSelectedPathwaySection(entry, parsed) {
   );
 }
 
+function isPathwayHtmlSectionSiblingStart(entry, line) {
+  return (
+    (isLikelyPeerPathwayHtmlSectionStartLine(line) ||
+      lineLooksLikeSiblingBarePathwaySection(entry, line)) &&
+    !isLikelySelectedPathwayHtmlSectionStartLine(entry, line)
+  );
+}
+
+function findPathwayHtmlSectionEndIndex(entry, lines, selectedStartIndex) {
+  let endIndex = Math.min(lines.length - 1, selectedStartIndex + 220);
+  const forwardLimit = Math.min(lines.length - 1, selectedStartIndex + 220);
+
+  for (let index = selectedStartIndex + 1; index <= forwardLimit; index += 1) {
+    const line = normalizeWhitespace(lines[index]);
+    if (!line) {
+      continue;
+    }
+
+    if (isPathwayHtmlSectionSiblingStart(entry, line)) {
+      endIndex = Math.max(selectedStartIndex, index - 1);
+      break;
+    }
+
+    if (
+      index > selectedStartIndex + 2 &&
+      (PATHWAY_SECTION_BOUNDARY_PATTERN.test(line) ||
+        /^Back to Top\b/i.test(line) ||
+        (HTML_SECTION_BOUNDARY_LINE_PATTERN.test(line) &&
+          !isLikelySelectedPathwayHtmlSectionStartLine(entry, line)))
+    ) {
+      endIndex = Math.max(selectedStartIndex, index - 1);
+      break;
+    }
+  }
+
+  return endIndex;
+}
+
+function findPathwayHtmlSectionStartIndex(entry, lines, selectedStartIndex) {
+  let startIndex = selectedStartIndex;
+  for (
+    let index = selectedStartIndex - 1;
+    index >= Math.max(0, selectedStartIndex - 3);
+    index -= 1
+  ) {
+    const line = lines[index];
+    if (
+      extractCourseCodesFromLine(line).length > 0 ||
+      isLikelyPeerPathwayHtmlSectionStartLine(line)
+    ) {
+      break;
+    }
+    if (isLikelyPathwayChoiceContextLine(line)) {
+      startIndex = index;
+      break;
+    }
+  }
+
+  return startIndex;
+}
+
+function buildNestedPathwayHtmlSectionScope(entry, lines, peerStartIndexes) {
+  const strictSelectedStartIndexes = peerStartIndexes
+    .filter(
+      (candidate) =>
+        candidate.selected && lineMatchesStrictSelectedPathwayIdentity(entry, lines[candidate.index])
+    )
+    .map((candidate) => candidate.index);
+
+  if (!strictSelectedStartIndexes.length) {
+    return null;
+  }
+
+  for (const selectedStartIndex of strictSelectedStartIndexes) {
+    const selectedEndIndex = findPathwayHtmlSectionEndIndex(entry, lines, selectedStartIndex);
+    const selectedLines = lines.slice(selectedStartIndex, selectedEndIndex + 1);
+    if (!selectedLines.some((line) => extractCourseCodesFromLine(line).length > 0)) {
+      continue;
+    }
+
+    for (
+      let parentStartIndex = selectedStartIndex - 1;
+      parentStartIndex >= Math.max(0, selectedStartIndex - 220);
+      parentStartIndex -= 1
+    ) {
+      const parentLine = lines[parentStartIndex];
+      const isLooseSelectedParent =
+        isLikelySelectedPathwayHtmlSectionStartLine(entry, parentLine) &&
+        !lineMatchesStrictSelectedPathwayIdentity(entry, parentLine);
+      if (!isLooseSelectedParent) {
+        continue;
+      }
+
+      const firstNestedPeer = peerStartIndexes
+        .map((candidate) => candidate.index)
+        .filter((index) => index > parentStartIndex)
+        .sort((left, right) => left - right)[0];
+      const parentEndIndex =
+        firstNestedPeer && firstNestedPeer <= selectedStartIndex
+          ? firstNestedPeer - 1
+          : selectedStartIndex - 1;
+      const parentLines = lines.slice(parentStartIndex, parentEndIndex + 1);
+      if (!parentLines.some((line) => extractCourseCodesFromLine(line).length > 0)) {
+        continue;
+      }
+
+      return {
+        startIndex: parentStartIndex,
+        endIndex: selectedEndIndex,
+        lines: uniqueInOrder([...parentLines, ...selectedLines]),
+      };
+    }
+  }
+
+  return null;
+}
+
 function findPathwayHtmlSectionRange(entry, lines) {
   if (!entry?.pathwayId || !Array.isArray(lines) || lines.length < 4) {
     return null;
@@ -5908,60 +6089,18 @@ function findPathwayHtmlSectionRange(entry, lines) {
     return null;
   }
 
+  const nestedScope = buildNestedPathwayHtmlSectionScope(entry, lines, peerStartIndexes);
+  if (nestedScope) {
+    return nestedScope;
+  }
+
   for (const selectedStartIndex of selectedStartIndexes) {
-    let endIndex = Math.min(lines.length - 1, selectedStartIndex + 220);
-    const forwardLimit = Math.min(lines.length - 1, selectedStartIndex + 220);
-
-    for (let index = selectedStartIndex + 1; index <= forwardLimit; index += 1) {
-      const line = normalizeWhitespace(lines[index]);
-      if (!line) {
-        continue;
-      }
-
-      const isSiblingPathwayStart =
-        (isLikelyPeerPathwayHtmlSectionStartLine(line) ||
-          lineLooksLikeSiblingBarePathwaySection(entry, line)) &&
-        !isLikelySelectedPathwayHtmlSectionStartLine(entry, line);
-      if (isSiblingPathwayStart) {
-        endIndex = Math.max(selectedStartIndex, index - 1);
-        break;
-      }
-
-      if (
-        index > selectedStartIndex + 2 &&
-        (PATHWAY_SECTION_BOUNDARY_PATTERN.test(line) ||
-          /^Back to Top\b/i.test(line) ||
-          (HTML_SECTION_BOUNDARY_LINE_PATTERN.test(line) &&
-            !isLikelySelectedPathwayHtmlSectionStartLine(entry, line)))
-      ) {
-        endIndex = Math.max(selectedStartIndex, index - 1);
-        break;
-      }
-    }
-
+    const endIndex = findPathwayHtmlSectionEndIndex(entry, lines, selectedStartIndex);
     const sectionLines = lines.slice(selectedStartIndex, endIndex + 1);
     if (!sectionLines.some((line) => extractCourseCodesFromLine(line).length > 0)) {
       continue;
     }
-
-    let startIndex = selectedStartIndex;
-    for (
-      let index = selectedStartIndex - 1;
-      index >= Math.max(0, selectedStartIndex - 3);
-      index -= 1
-    ) {
-      const line = lines[index];
-      if (
-        extractCourseCodesFromLine(line).length > 0 ||
-        isLikelyPeerPathwayHtmlSectionStartLine(line)
-      ) {
-        break;
-      }
-      if (isLikelyPathwayChoiceContextLine(line)) {
-        startIndex = index;
-        break;
-      }
-    }
+    const startIndex = findPathwayHtmlSectionStartIndex(entry, lines, selectedStartIndex);
 
     return {
       startIndex,
@@ -6306,7 +6445,7 @@ function scopeCatalogHtmlByAnchor(entry, html) {
 function scopeHtmlLines(entry, title, headings, lines) {
   const pathwaySectionRange = findPathwayHtmlSectionRange(entry, lines);
   if (pathwaySectionRange) {
-    return lines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
+    return pathwaySectionRange.lines ?? lines.slice(pathwaySectionRange.startIndex, pathwaySectionRange.endIndex + 1);
   }
 
   const titleTokens = getTitleScopeTokens(entry);
@@ -6697,6 +6836,121 @@ function readSnapshot(ownerKey, sourceUrl = null) {
     readSnapshotFile(getSnapshotPath(ownerKey), sourceUrl) ??
     findSnapshotBySourceUrl(sourceUrl)
   );
+}
+
+function escapeSyntheticHtmlAttribute(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function escapeSyntheticHtmlText(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function getSnapshotHrefValue(line) {
+  const match = String(line ?? "").match(/\bhref\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s>]+))/i);
+  return normalizeWhitespace(match?.[1] ?? match?.[2] ?? match?.[3] ?? "");
+}
+
+function isSnapshotLinkLabelNoise(line) {
+  const normalized = normalizeWhitespace(line);
+  return (
+    !normalized ||
+    /^<\/?[a-z][^>]*>?$/i.test(normalized) ||
+    /^(?:class|style|target|rel|aria-[\w-]+|data-[\w-]+|id|title)\s*=/i.test(normalized) ||
+    /^(?:href|src)\s*=/i.test(normalized) ||
+    /^[<>/]+$/.test(normalized)
+  );
+}
+
+function findSnapshotLinkLabel(snapshotLines, hrefIndex, href) {
+  const sameLine = normalizeWhitespace(
+    stripHtml(String(snapshotLines[hrefIndex] ?? "").replace(/\bhref\s*=\s*(?:"[^"]+"|'[^']+'|[^\s>]+)/i, " "))
+  );
+  if (!isSnapshotLinkLabelNoise(sameLine) && sameLine.length >= 4) {
+    return sameLine;
+  }
+
+  const labelParts = [];
+  for (
+    let index = hrefIndex + 1;
+    index < Math.min(snapshotLines.length, hrefIndex + 7);
+    index += 1
+  ) {
+    const candidate = normalizeWhitespace(stripHtml(snapshotLines[index]));
+    if (isSnapshotLinkLabelNoise(candidate)) {
+      continue;
+    }
+    labelParts.push(candidate);
+    if (candidate.length >= 8) {
+      break;
+    }
+  }
+
+  return normalizeWhitespace(labelParts.join(" ")) || href;
+}
+
+function buildSyntheticSnapshotLinkHtml(snapshotLines) {
+  const anchors = [];
+  for (let index = 0; index < (snapshotLines ?? []).length; index += 1) {
+    const href = getSnapshotHrefValue(snapshotLines[index]);
+    if (!href || /^(?:#|javascript:|mailto:|tel:)/i.test(href)) {
+      continue;
+    }
+
+    const label = findSnapshotLinkLabel(snapshotLines, index, href);
+    anchors.push(
+      `<a href="${escapeSyntheticHtmlAttribute(href)}">${escapeSyntheticHtmlText(label)}</a>`
+    );
+  }
+
+  return anchors.join("\n");
+}
+
+function readParserRecoverySnapshot(entry, owner = {}) {
+  if (Array.isArray(owner.snapshotLines) && owner.snapshotLines.length) {
+    return {
+      snapshotPath: owner.snapshotPath ?? null,
+      sourceUrl: owner.sourceUrl ?? entry.url,
+      title: owner.extractedTitle ?? null,
+      snapshotLines: owner.snapshotLines,
+    };
+  }
+
+  if (owner.snapshotPath && fs.existsSync(owner.snapshotPath)) {
+    const snapshot =
+      readSnapshotFile(owner.snapshotPath, owner.sourceUrl ?? entry.url) ??
+      readSnapshotFile(owner.snapshotPath);
+    if (snapshot?.snapshotLines?.length) {
+      return snapshot;
+    }
+  }
+
+  return readSnapshot(entry.ownerId, owner.sourceUrl ?? entry.url);
+}
+
+function buildParserRecoveryArtifactsFromSnapshot(entry, owner = {}) {
+  const snapshot = readParserRecoverySnapshot(entry, owner);
+  const snapshotLines = snapshot?.snapshotLines ?? [];
+  if (!snapshotLines.length) {
+    return null;
+  }
+
+  const syntheticLinkHtml = buildSyntheticSnapshotLinkHtml(snapshotLines);
+  return {
+    html: [snapshotLines.join("\n"), syntheticLinkHtml].filter(Boolean).join("\n"),
+    title: owner.extractedTitle ?? snapshot.title ?? owner.sourceLabel ?? entry.label ?? null,
+    headings: owner.extractedHeadings ?? [],
+    lines: snapshotLines,
+    snapshotPath: snapshot.snapshotPath ?? owner.snapshotPath ?? null,
+    fromSnapshot: true,
+  };
 }
 
 function isPdfCreditMarkerText(value) {
@@ -7269,6 +7523,26 @@ function normalizeCanonicalExtractedPathwayLabel(entry, line) {
   return normalized || normalizeTransferPlannerText(line);
 }
 
+function slugifyExtractedPathwayLabel(value) {
+  return normalizeTransferPlannerText(value)
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function isSuspiciousParsedPathwayLabel(value) {
+  const normalized = normalizeTransferPlannerText(value);
+  if (!normalized) {
+    return false;
+  }
+
+  return (
+    isSuspiciousStructuralPathwayLabel(normalized) ||
+    isSuspiciousStructuralPathwayId(slugifyExtractedPathwayLabel(normalized))
+  );
+}
+
 function lineHasNearbyCourseList(lines, index) {
   const lookaheadLines = lines.slice(index + 1, index + 5);
   return lookaheadLines.some((line) => extractCourseCodesFromLine(line).length > 0);
@@ -7301,7 +7575,8 @@ function normalizeSectionPathwayCandidate(entry, rawLine, pathwayKind) {
   const labelWithKind = PATHWAY_LABEL_CUE_PATTERN.test(normalizedLine)
     ? normalizedLine
     : `${normalizedLine} ${pathwayKind}`;
-  return normalizeCanonicalExtractedPathwayLabel(entry, labelWithKind);
+  const normalizedLabel = normalizeCanonicalExtractedPathwayLabel(entry, labelWithKind);
+  return isSuspiciousParsedPathwayLabel(normalizedLabel) ? "" : normalizedLabel;
 }
 
 function getDeclaredPathwayChoice(lines) {
@@ -7431,6 +7706,9 @@ function extractPathwayLabels(entry, lines, headings) {
     if (!normalized || NOISY_SOURCE_LINE_PATTERN.test(normalized)) {
       return false;
     }
+    if (isSuspiciousParsedPathwayLabel(normalized)) {
+      return false;
+    }
     if (
       /^(?:\[?\s*supplemental official source\b|learn more|about|apply)\b/i.test(normalized) ||
       /^(?:download|click here to join|joining the)\b/i.test(normalized) ||
@@ -7495,7 +7773,8 @@ function buildParseConfidence(parsedCourseCodes, requirementCueLines, parserType
   if (
     parsedCourseCodes.length >= 2 ||
     requirementCueLines.length >= 4 ||
-    parserType === "pdf-degree-sheet"
+    parserType === "pdf-degree-sheet" ||
+    parserType === "pdf-worksheet"
   ) {
     return "medium";
   }
@@ -7671,7 +7950,7 @@ async function parseHtmlSource(entry, timeoutMs, options = {}) {
     return parseDocxSource(
       {
         ...entry,
-        parserType: "pdf-degree-sheet",
+        parserType: getLinkedDocumentParserType(entry.url, entry.label),
       },
       timeoutMs
     );
@@ -9481,12 +9760,19 @@ function extractParserRecoveryLinkCandidates(entry, html) {
     .slice(0, PARSER_RECOVERY_MAX_LINK_CANDIDATES);
 }
 
+function isParserRecoveryPathwaySectionBoundaryLine(line) {
+  return /^(?:[A-Z][\w&'./-]+(?:\s+[A-Z][\w&'./-]+){0,8}\s+)?(?:Track|Option|Concentration|Pathway)(?:\s+(?:Degree|Major|Program|Curriculum|Requirements?|Courses?|Plan|Checklist))*$/i.test(
+    normalizeWhitespace(line)
+  );
+}
+
 function isParserRecoverySectionBoundaryLine(line) {
   return (
     HTML_SECTION_BOUNDARY_LINE_PATTERN.test(line) ||
     /^(?:Bachelor|Minor|Master|Doctor|Program of Study|Degree Requirements|Major Requirements|Admissions?|Application|Sample|Suggested Plan|Courses?)\b/i.test(
       line
-    )
+    ) ||
+    isParserRecoveryPathwaySectionBoundaryLine(line)
   );
 }
 
@@ -9538,7 +9824,10 @@ function buildParserRecoverySectionCandidates(entry, artifacts) {
 
     let endIndex = Math.min(lines.length, index + 220);
     for (let nextIndex = index + 1; nextIndex < endIndex; nextIndex += 1) {
-      if (nextIndex > index + 12 && isParserRecoverySectionBoundaryLine(lines[nextIndex])) {
+      if (
+        (nextIndex > index + 12 || isParserRecoveryPathwaySectionBoundaryLine(lines[nextIndex])) &&
+        isParserRecoverySectionBoundaryLine(lines[nextIndex])
+      ) {
         endIndex = nextIndex;
         break;
       }
@@ -9579,7 +9868,7 @@ function buildParserRecoverySectionCandidates(entry, artifacts) {
 function buildParserRecoveryCandidateEntry(entry, candidate) {
   return {
     ...entry,
-    role: undefined,
+    role: candidate.strategy === "section-scoping-recovery" ? entry.role : undefined,
     url: candidate.url,
     label: candidate.label,
     parserType: candidate.parserType,
@@ -9799,12 +10088,35 @@ function normalizeRecoveredSupportList(owner, supportList, sourceOwner) {
   };
 }
 
+function getSupportMergeApprovedListKeys(owner) {
+  const keys = new Set(
+    (owner.supportLists ?? [])
+      .map((supportList) => supportList.approvedListKey ?? supportList.filterKey ?? null)
+      .filter(Boolean)
+  );
+  const inferredKey = inferApprovedListKeyFromSupportMetadata(owner);
+  if (inferredKey) {
+    keys.add(inferredKey);
+  }
+  return keys;
+}
+
+function shouldMergeRecoveredSupportList(owner, supportList) {
+  const approvedListKey = supportList.approvedListKey ?? supportList.filterKey ?? null;
+  if (!approvedListKey) {
+    return true;
+  }
+
+  const targetKeys = getSupportMergeApprovedListKeys(owner);
+  return !targetKeys.size || targetKeys.has(approvedListKey);
+}
+
 function mergeRecoveredSupportSources(owner, supportOwners) {
   const recoveredSupportLists = supportOwners.flatMap((supportOwner) =>
     (supportOwner.supportLists ?? []).map((supportList) =>
       normalizeRecoveredSupportList(owner, supportList, supportOwner)
     )
-  );
+  ).filter((supportList) => shouldMergeRecoveredSupportList(owner, supportList));
 
   if (!recoveredSupportLists.length) {
     return owner;
@@ -9895,23 +10207,46 @@ async function recoverParsedOwnerFromWarnings(owner, baseResult, structuredCours
     try {
       artifacts = await getHtmlSourceArtifacts(entry.url, timeoutMs);
     } catch (error) {
-      recovery.sourceUnavailable = true;
-      recovery.attempts.push(
-        buildParserRecoveryAttemptRecord(
-          {
-            strategy: "source-artifact-recovery",
-            url: entry.url,
-            label: entry.label,
-            parserType: entry.parserType,
-            sourceRole: beforeOwner.sourceRole,
-            sourceRoleStatus: beforeOwner.sourceRoleStatus,
-            score: null,
-            reason: "refetch source HTML for parser recovery",
-          },
-          "source-unavailable",
-          { error: error?.message ?? String(error) }
-        )
-      );
+      artifacts = buildParserRecoveryArtifactsFromSnapshot(entry, beforeOwner);
+      if (artifacts) {
+        recovery.attempts.push(
+          buildParserRecoveryAttemptRecord(
+            {
+              strategy: "source-artifact-recovery",
+              url: entry.url,
+              label: entry.label,
+              parserType: entry.parserType,
+              sourceRole: beforeOwner.sourceRole,
+              sourceRoleStatus: beforeOwner.sourceRoleStatus,
+              score: null,
+              reason: "reuse cached source snapshot for parser recovery",
+            },
+            "snapshot-artifacts-used",
+            {
+              error: error?.message ?? String(error),
+              snapshotLines: artifacts.lines,
+            }
+          )
+        );
+      } else {
+        recovery.sourceUnavailable = true;
+        recovery.attempts.push(
+          buildParserRecoveryAttemptRecord(
+            {
+              strategy: "source-artifact-recovery",
+              url: entry.url,
+              label: entry.label,
+              parserType: entry.parserType,
+              sourceRole: beforeOwner.sourceRole,
+              sourceRoleStatus: beforeOwner.sourceRoleStatus,
+              score: null,
+              reason: "refetch source HTML for parser recovery",
+            },
+            "source-unavailable",
+            { error: error?.message ?? String(error) }
+          )
+        );
+      }
     }
   }
 
@@ -10373,6 +10708,19 @@ function buildRequirementSupportListFromMetadata(input) {
   };
 }
 
+function getRequirementSupportListSemanticKey(supportList) {
+  const shape = String(supportList.shape ?? "");
+  const sourceUrl = String(supportList.sourceUrl ?? "");
+  const approvedListKey = String(supportList.approvedListKey ?? supportList.filterKey ?? "");
+  if (
+    approvedListKey &&
+    (shape === "approved-filter-list" || shape === "approved-course-list")
+  ) {
+    return `approved:${sourceUrl}:${approvedListKey}`;
+  }
+  return supportList.id || `${shape}:${sourceUrl}:${supportList.listTitle ?? ""}`;
+}
+
 function buildRequirementSupportListsFromMetadata(input) {
   const approvedCodes = uniqueSorted(
     (input.approvedFilterUwCourseCodes ?? []).map((courseCode) => normalizeCourseCode(courseCode))
@@ -10433,7 +10781,7 @@ function buildRequirementSupportListsFromMetadata(input) {
     }
   }
 
-  return supportLists;
+  return uniqueBy(supportLists, getRequirementSupportListSemanticKey);
 }
 
 function buildManifestParseSuccess(
@@ -10984,6 +11332,62 @@ function getParseablePrimaryEntries(targetPlanId = null) {
       shouldParseRequirementSourceEntry(entry) &&
       PARSEABLE_PARSER_TYPES.has(entry.parserType)
   ).sort((left, right) => left.ownerTitle.localeCompare(right.ownerTitle));
+}
+
+function normalizeManifestUrlForDedupe(value) {
+  try {
+    const parsed = new URL(String(value ?? ""));
+    const normalizedPathname = parsed.pathname.replace(/\/+$/, "") || "/";
+    return `${parsed.origin}${normalizedPathname}${parsed.search}${parsed.hash}`;
+  } catch {
+    return normalizeWhitespace(String(value ?? ""));
+  }
+}
+
+function getParseableManifestEntryDedupeKey(entry) {
+  const ownerId = entry.ownerId ?? `${entry.planId ?? ""}:${entry.pathwayId ?? ""}`;
+  return [
+    ownerId,
+    normalizeManifestUrlForDedupe(entry.url),
+    entry.parserType ?? "",
+    classifyRequirementSourceRole(entry),
+  ].join("\u0000");
+}
+
+function compareParseableManifestEntryPriority(left, right) {
+  const primaryDelta =
+    Number(Boolean(right.isPrimaryDegreeRequirementsLink)) -
+    Number(Boolean(left.isPrimaryDegreeRequirementsLink));
+  if (primaryDelta !== 0) {
+    return primaryDelta;
+  }
+
+  const leftStatus = getRequirementSourceRoleStatus(classifyRequirementSourceRole(left));
+  const rightStatus = getRequirementSourceRoleStatus(classifyRequirementSourceRole(right));
+  const rolePriority = { primary: 3, support: 2, "non-schedulable": 1, ignored: 0 };
+  const roleDelta = (rolePriority[rightStatus] ?? 0) - (rolePriority[leftStatus] ?? 0);
+  if (roleDelta !== 0) {
+    return roleDelta;
+  }
+
+  return String(left.id ?? "").localeCompare(String(right.id ?? ""));
+}
+
+function dedupeParseablePrimaryEntries(entries) {
+  const entriesByKey = new Map();
+  for (const entry of entries ?? []) {
+    const key = getParseableManifestEntryDedupeKey(entry);
+    const existing = entriesByKey.get(key);
+    if (!existing || compareParseableManifestEntryPriority(existing, entry) > 0) {
+      entriesByKey.set(key, entry);
+    }
+  }
+
+  return [...entriesByKey.values()].sort((left, right) =>
+    left.ownerTitle.localeCompare(right.ownerTitle) ||
+    String(left.ownerId ?? "").localeCompare(String(right.ownerId ?? "")) ||
+    String(left.url ?? "").localeCompare(String(right.url ?? ""))
+  );
 }
 
 function countBy(values, getKey) {
@@ -12480,9 +12884,15 @@ async function main() {
     effectiveTargetPlanId = null;
   }
 
-  const manifestEntries = getParseablePrimaryEntries(effectiveTargetPlanId);
+  const rawManifestEntries = getParseablePrimaryEntries(effectiveTargetPlanId);
+  const manifestEntries = dedupeParseablePrimaryEntries(rawManifestEntries);
   const previousReport = effectiveTargetPlanId ? readJsonIfExists(OUTPUT_JSON_PATH) : null;
   console.log(`Parsing ${manifestEntries.length} planner requirement source(s)...`);
+  if (manifestEntries.length !== rawManifestEntries.length) {
+    console.log(
+      `Skipped ${rawManifestEntries.length - manifestEntries.length} duplicate requirement source entr${rawManifestEntries.length - manifestEntries.length === 1 ? "y" : "ies"} by owner, URL, parser type, and source role.`
+    );
+  }
   if (effectiveTargetPlanId) {
     console.log(`Target plan scope: ${effectiveTargetPlanId}`);
   }
@@ -12571,6 +12981,7 @@ module.exports = {
   buildParseQualitySignalsForTest: buildParseQualitySignals,
   buildParserRecoveryReportForTest: buildParserRecoveryReport,
   buildGeneratedProgramApprovedCourseFiltersForTest: buildGeneratedProgramApprovedCourseFilters,
+  buildParserRecoveryArtifactsFromSnapshotForTest: buildParserRecoveryArtifactsFromSnapshot,
   buildParserRecoverySectionCandidatesForTest: buildParserRecoverySectionCandidates,
   buildParserPrerequisiteFilterAuditRowsForTest: buildParserPrerequisiteFilterAuditRows,
   buildRequirementSourceScope,

@@ -175,6 +175,81 @@ test("Parser recovery treats linked DOCX worksheets as real document candidates"
   assert.equal(worksheet.signals.documentSignal, true);
 });
 
+test("Role-less DOCX worksheets are parseable primary requirement sources", () => {
+  const entry = buildRecoveryEntryFixture({
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/bba-major-planning-worksheet.docx",
+    label: "Business Administration major planning worksheet",
+    parserType: "pdf-worksheet",
+    role: undefined,
+    isPrimaryDegreeRequirementsLink: false,
+  });
+
+  assert.equal(parser.classifyRequirementSourceRole(entry), "primary-degree-requirements");
+  assert.equal(parser.shouldParseRequirementSourceEntry(entry), true);
+});
+
+test("Parser recovery rebuilds split snapshot href lines into linked document candidates", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerTitle: "Business Administration",
+    sourceLabel: "Business Administration overview",
+    parserType: "html-degree-page",
+  });
+  const artifacts = parser.buildParserRecoveryArtifactsFromSnapshotForTest(entry, {
+    ...buildRecoveryOwnerFixture(),
+    snapshotLines: [
+      "Business Administration",
+      "<a",
+      'href="/business/undergraduate/bachelor-of-business-administration/bba-major-planning-worksheet.docx"',
+      'target="_blank"',
+      "Business Administration major planning worksheet",
+      "</a>",
+    ],
+  });
+  const candidates = parser.extractParserRecoveryLinkCandidatesForTest(entry, artifacts.html);
+  const worksheet = candidates.find((candidate) => /\.docx$/i.test(candidate.url));
+
+  assert.ok(worksheet);
+  assert.equal(worksheet.strategy, "linked-official-document-recovery");
+  assert.equal(worksheet.parserType, "pdf-worksheet");
+  assert.equal(worksheet.sourceRoleStatus, "primary");
+});
+
+test("Parser recovery builds scoped section candidates from cached snapshot lines", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-nursing-rn-to-bsn:pathway:part-time-track",
+    ownerTitle: "Nursing RN-to-BSN - Part-Time Track",
+    planId: "uw-bothell-nursing-rn-to-bsn",
+    pathwayId: "part-time-track",
+    campusId: "uw-bothell",
+    url: "https://www.uwb.edu/nhs/undergraduate/bsn",
+    label: "RN-to-BSN",
+  });
+  const artifacts = parser.buildParserRecoveryArtifactsFromSnapshotForTest(entry, {
+    ...buildRecoveryOwnerFixture({
+      ownerId: entry.ownerId,
+      ownerTitle: entry.ownerTitle,
+      planId: entry.planId,
+      pathwayId: entry.pathwayId,
+      sourceUrl: entry.url,
+      sourceLabel: entry.label,
+      extractedTitle: "RN-to-BSN",
+    }),
+    snapshotLines: [
+      "Program overview",
+      "Part-Time Track Degree Requirements",
+      "Complete BNURS 360, BNURS 407, and BNURS 420.",
+      "Choose BNURS 460 or BNURS 470.",
+      "Full-Time Track Degree Requirements",
+      "Complete BNURS 350 and BNURS 430.",
+    ],
+  });
+  const candidates = parser.buildParserRecoverySectionCandidatesForTest(entry, artifacts);
+
+  assert.ok(candidates.length > 0);
+  assert.ok(candidates[0].sectionLines.some((line) => line.includes("BNURS 360")));
+  assert.equal(candidates[0].sectionLines.some((line) => line.includes("BNURS 350")), false);
+});
+
 test("Supplemental linked document recovery includes DOCX and worksheet PDFs", () => {
   const entry = buildRecoveryEntryFixture({
     ownerTitle: "Business Administration",
@@ -1075,6 +1150,64 @@ test("Parser scopes nested bare option accordion sections to the selected pathwa
   assert.ok(block.parsedUwCourseCodes.includes("BBUS 451"));
   assert.equal(block.parsedUwCourseCodes.includes("BBUS 320"), false);
   assert.equal(block.parsedUwCourseCodes.includes("BBUS 470"), false);
+});
+
+test("Parser keeps parent option requirements while scoping nested concentration accordions", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId:
+      "uw-bothell-business-administration-marketing:pathway:finance-option-and-concentration",
+    ownerTitle: "Business Administration: Marketing (BA) - Finance Option and Concentration",
+    sourceLabel: "Marketing Option and Concentration",
+    planId: "uw-bothell-business-administration-marketing",
+    pathwayId: "finance-option-and-concentration",
+    campusId: "uw-bothell",
+    role: "degree-requirements",
+    parserType: "html-degree-page",
+    url:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/marketing",
+    label: "Marketing Option and Concentration",
+  });
+  const html = `
+    <main>
+      <h1>Marketing Option and Concentration</h1>
+      <p>Marketing option students complete the following required courses.</p>
+      <ul>
+        <li>BBUS 320 Marketing Management</li>
+        <li>BBUS 421 Marketing Research</li>
+      </ul>
+      <h2>Optional Concentrations</h2>
+      <div class="accordion">
+        <button>Entrepreneurship Concentration</button>
+        <div>
+          <ul>
+            <li>BBUS 443 Entrepreneurship Seminar</li>
+          </ul>
+        </div>
+        <button>Finance Option and Concentration</button>
+        <div>
+          <h3>Finance Concentration Courses</h3>
+          <ul>
+            <li>BBUS 451 Financial Policy and Planning</li>
+            <li>BBUS 454 Investments</li>
+          </ul>
+        </div>
+        <button>MIS Concentration</button>
+        <div>
+          <ul>
+            <li>BBUS 466 Information Systems Analysis</li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+
+  assert.ok(parsed.courseCodes.includes("BBUS 320"));
+  assert.ok(parsed.courseCodes.includes("BBUS 421"));
+  assert.ok(parsed.courseCodes.includes("BBUS 451"));
+  assert.ok(parsed.courseCodes.includes("BBUS 454"));
+  assert.equal(parsed.courseCodes.includes("BBUS 443"), false);
+  assert.equal(parsed.courseCodes.includes("BBUS 466"), false);
 });
 
 test("Parser recovery carries UWB BBA-style prerequisite pages as support only", () => {
