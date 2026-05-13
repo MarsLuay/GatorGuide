@@ -205,7 +205,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-13T02:54:36.962Z",
+    "generatedAt": "2026-05-13T04:34:05.193Z",
     "sourceFingerprint": "1d5aff43ae078c2e8dd9121633d9aaa430235c21dcdb36f20413b5746db900f6"
   },
   {
@@ -213,8 +213,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "filterKey": "computer-engineering-natural-science",
     "label": "CE-approved Natural Science",
     "ownerIds": [
-      "uw-seattle-computer-engineering",
-      "uw-seattle-electrical-computer-engineering:pathway:integrated-systems-pathway"
+      "uw-seattle-computer-engineering"
     ],
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#core",
@@ -406,8 +405,8 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-13T02:54:36.962Z",
-    "sourceFingerprint": "cf0b09b480135577466b28f7b14c714c46030a6868df3a4daa70996811069158"
+    "generatedAt": "2026-05-13T04:34:05.193Z",
+    "sourceFingerprint": "63bb19a0f0ae9912e7fb817e7dad76cd3386794d8219b3cba06186f2b48d2934"
   },
   {
     "filterId": "CS_APPROVED_SCIENCE",
@@ -416,8 +415,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "ownerIds": [
       "uw-seattle-computer-science",
       "uw-seattle-computer-science:pathway:data-science-option",
-      "uw-seattle-informatics:pathway:data-science-option",
-      "uw-seattle-statistics:pathway:data-science-track"
+      "uw-tacoma-computer-science-and-systems-ba"
     ],
     "campusId": "uw-seattle",
     "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
@@ -473,7 +471,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-13T02:54:36.962Z",
-    "sourceFingerprint": "a0c61e0659d6d96103e40779bea6d55aa235cba48ca6dbaa7199c2a11e6770d4"
+    "generatedAt": "2026-05-13T04:34:05.193Z",
+    "sourceFingerprint": "f11af524907c47d3cc9082f03baaa84d374f921f138313d4598775a9bda363d2"
   }
 ] as const;

@@ -1065,6 +1065,30 @@ test("Durable Bothell Electrical Engineering worksheets remain auto-promotable",
   assert.equal(discovery.isAutoPromotablePrimaryCandidate(worksheet), true);
 });
 
+test("Auto-promotion rejects explicit different-major catalog anchors", () => {
+  assert.equal(
+    discovery.isAutoPromotablePrimaryCandidate({
+      ownerTitle: "Computer Engineering - Cybersecurity Option",
+      planId: "uw-tacoma-computer-engineering",
+      pathwayId: "cybersecurity-option",
+      url: "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html#program-UG-T%20CIVE-MAJOR",
+      label: "Program of Study: Major: Civil Engineering",
+      score: 87,
+      confidence: "high",
+      sourceRole: "official-catalog",
+      parserType: "catalog-page",
+      canCreateSchedulableRows: true,
+      sourceRoleStatus: "primary",
+      reasons: [
+        "official catalog URL includes a major-specific anchor",
+        "official UW General Catalog program page",
+        "official source text matches the selected major",
+      ],
+    }),
+    false
+  );
+});
+
 test("Sentence-fragment pathway labels are rejected while real options stay materializable", () => {
   for (const value of [
     "You need to complete 60 credits track",

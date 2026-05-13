@@ -127,6 +127,31 @@ const AUTO_PROMOTION_OVERVIEW_PARSER_TYPES = new Set([
   "generic-html",
   "html-overview-page",
 ]);
+const AUTO_PROMOTION_TITLE_STOPWORDS = new Set([
+  "and",
+  "arts",
+  "b",
+  "ba",
+  "bachelor",
+  "bs",
+  "concentration",
+  "degree",
+  "major",
+  "of",
+  "option",
+  "pathway",
+  "program",
+  "route",
+  "science",
+  "sciences",
+  "study",
+  "the",
+  "track",
+  "uw",
+  "washington",
+]);
+const EXPLICIT_PROGRAM_TITLE_PATTERN =
+  /\b(?:program\s+of\s+study\s*:\s*)?(?:major|degree|program)\s*:\s*([^\n|;]+)/gi;
 const TARGETED_OFFICIAL_LINK_FOLLOW_CUE_PATTERN =
   /\b(degree sheets?|requirements?|curriculum|worksheets?|checklists?|plans? of study|study plans?|approved courses?|approved electives?|course lists?|tracks?|options?|pathways?|concentrations?|specializations?|catalog|admissions? prerequisites?|prerequisite courses?)\b/i;
 const UNRELATED_OFFICIAL_LINK_FOLLOW_PATTERN =
@@ -808,6 +833,63 @@ function hasStrongPromotionIdentity(candidate) {
   );
 }
 
+function getAutoPromotionTitleTokens(value) {
+  return slugifyForSearch(value)
+    .split(/\s+/)
+    .filter((token) => token.length >= 3 && !AUTO_PROMOTION_TITLE_STOPWORDS.has(token));
+}
+
+function getPromotionOwnerBaseTitle(candidate) {
+  return normalizeWhitespace(candidate?.ownerTitle ?? candidate?.title ?? candidate?.label ?? "")
+    .replace(/\s+-\s+.+$/, "")
+    .replace(/\s*\([^)]*\)\s*$/, "");
+}
+
+function extractExplicitProgramTitles(candidate) {
+  const text = [
+    candidate?.label,
+    candidate?.anchorText,
+    candidate?.linkText,
+    candidate?.pageTitle,
+    ...(candidate?.pageHeadings ?? []),
+  ]
+    .filter(Boolean)
+    .join("\n");
+  const titles = [];
+  for (const match of text.matchAll(EXPLICIT_PROGRAM_TITLE_PATTERN)) {
+    const title = normalizeWhitespace(match[1])
+      .replace(/\s+-\s+.+$/, "")
+      .replace(/\s*\([^)]*\)\s*$/, "");
+    if (title) {
+      titles.push(title);
+    }
+  }
+  return uniqueSorted(titles);
+}
+
+function hasConflictingAutoPromotionProgramTitle(candidate) {
+  const ownerTokens = getAutoPromotionTitleTokens(getPromotionOwnerBaseTitle(candidate));
+  if (!ownerTokens.length) {
+    return false;
+  }
+
+  const ownerTokenSet = new Set(ownerTokens);
+  for (const explicitTitle of extractExplicitProgramTitles(candidate)) {
+    const candidateTokens = getAutoPromotionTitleTokens(explicitTitle);
+    if (candidateTokens.length < 2) {
+      continue;
+    }
+    const candidateTokenSet = new Set(candidateTokens);
+    const candidateWithinOwner = candidateTokens.every((token) => ownerTokenSet.has(token));
+    const ownerWithinCandidate = ownerTokens.every((token) => candidateTokenSet.has(token));
+    if (!candidateWithinOwner && !ownerWithinCandidate) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function isAutoPromotablePrimaryCandidate(candidate) {
   const normalizedCandidate = normalizeDiscoveryCandidateForPromotion(candidate);
   if (!normalizedCandidate) {
@@ -822,6 +904,10 @@ function isAutoPromotablePrimaryCandidate(candidate) {
     !AUTO_PROMOTION_STRONG_SOURCE_ROLES.has(normalizedCandidate.sourceRole) ||
     !AUTO_PROMOTION_STRONG_PARSER_TYPES.has(normalizedCandidate.parserType)
   ) {
+    return false;
+  }
+
+  if (hasConflictingAutoPromotionProgramTitle(normalizedCandidate)) {
     return false;
   }
 
