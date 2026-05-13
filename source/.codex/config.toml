@@ -1,0 +1,20 @@
+# .codex/config.toml
+
+model = "gpt-5.5"
+model_reasoning_effort = "high"
+
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+web_search = "live"
+
+[features]
+goals = true
+multi_agent = true
+shell_snapshot = true
+prevent_idle_sleep = true
+undo = true
+
+[agents]
+max_threads = 5
+max_depth = 1
+job_max_runtime_seconds = 1800
