@@ -19,13 +19,13 @@ const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_9 } = require("./
 const { TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_CHUNK_10 } = require("./requirement-source-adapters.generated/blocks-010.generated.ts");
 
 export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
-  "generatedAt": "2026-05-13T04:34:05.193Z",
+  "generatedAt": "2026-05-13T04:57:10.447Z",
   "totalOwners": 416,
   "okCount": 415,
   "failedCount": 1,
   "parsedRequirementSourceBlockCount": 416,
   "parsedRequirementAtomCandidateCount": 6528,
-  "parsedDegreeMapBlockCandidateCount": 745,
+  "parsedDegreeMapBlockCandidateCount": 750,
   "parsedRequirementGroupCount": 1189,
   "parsedRequirementCourseCount": 5668,
   "snapshotFallbackCount": 406,
@@ -79,13 +79,13 @@ export const TRANSFER_PLANNER_REQUIREMENT_SOURCE_ADAPTER_SUMMARY = {
   "canCreateElectiveListCount": 1,
   "supportOnlySourceCount": 4,
   "nonSchedulableSourceCount": 1,
-  "qualityWarningCount": 516,
+  "qualityWarningCount": 506,
   "qualityNoteCount": 406,
   "countsByQualitySignalCode": {
     "snapshot-fallback-used": 406,
-    "material-source-structured-drift": 188,
-    "large-structured-only-course-gap": 156,
-    "high-confidence-low-course-coverage": 52,
+    "material-source-structured-drift": 184,
+    "large-structured-only-course-gap": 152,
+    "high-confidence-low-course-coverage": 50,
     "no-parsed-uw-course-codes": 67,
     "low-confidence-parsed-source": 52,
     "uw-mse-expected-course-option-missing": 1

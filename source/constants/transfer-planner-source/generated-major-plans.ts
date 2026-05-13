@@ -718,6 +718,74 @@ function uniqueById<T extends { id: string }>(values: T[]) {
   return uniqueValues;
 }
 
+function normalizeRequirementGroupSemanticText(value: string | null | undefined) {
+  return sanitizePlannerOwnedText(value).toLowerCase().replace(/\s+/g, " ");
+}
+
+function getRequirementGroupOptionSemanticKey(option: TransferPlannerRequirementOption) {
+  const categoryOption = option.categoryOption;
+  return [
+    option.optionKind,
+    normalizeRequirementGroupSemanticText(option.label),
+    (option.displayCourseCodes ?? []).map(normalizeCourseCode).sort().join(","),
+    (option.uwCourses ?? []).map(normalizeCourseCode).sort().join(","),
+    (option.equivalentUwCourseCodes ?? []).map(normalizeCourseCode).sort().join(","),
+    categoryOption
+      ? [
+          normalizeRequirementGroupSemanticText(categoryOption.sourceCategoryCode),
+          normalizeRequirementGroupSemanticText(categoryOption.category),
+          categoryOption.creditMin ?? categoryOption.credits ?? "",
+          categoryOption.creditMax ?? categoryOption.credits ?? "",
+        ].join("/")
+      : "",
+  ].join("|");
+}
+
+function getRequirementGroupSemanticKey(group: TransferPlannerRequirementGroup) {
+  const optionKey = (group.options ?? [])
+    .map(getRequirementGroupOptionSemanticKey)
+    .sort()
+    .join(";");
+  return [
+    normalizeRequirementGroupSemanticText(group.label),
+    group.requirementType,
+    group.minCredits ?? "",
+    group.maxCredits ?? "",
+    group.requiredCount ?? "",
+    group.selectionCount ?? "",
+    optionKey,
+  ].join("::");
+}
+
+function uniqueRequirementGroupsForPathwayScope(
+  groups: TransferPlannerRequirementGroup[],
+  pathwayId?: string | null
+) {
+  if (!pathwayId) {
+    return uniqueById(groups);
+  }
+
+  const groupsBySemanticKey = new Map<string, TransferPlannerRequirementGroup>();
+  const orderedKeys: string[] = [];
+  for (const group of groups) {
+    const semanticKey = getRequirementGroupSemanticKey(group);
+    const existing = groupsBySemanticKey.get(semanticKey) ?? null;
+    if (!existing) {
+      groupsBySemanticKey.set(semanticKey, group);
+      orderedKeys.push(semanticKey);
+      continue;
+    }
+
+    const existingMatchesPathway = existing.pathwayId === pathwayId;
+    const candidateMatchesPathway = group.pathwayId === pathwayId;
+    if (!existingMatchesPathway && candidateMatchesPathway) {
+      groupsBySemanticKey.set(semanticKey, group);
+    }
+  }
+
+  return uniqueById(orderedKeys.map((key) => groupsBySemanticKey.get(key)!));
+}
+
 function compact<T>(values: Array<T | null | undefined | false>) {
   return values.filter(Boolean) as T[];
 }
@@ -4402,6 +4470,23 @@ function buildKnownSbseRequirementGroups(planId: string, _pathwayId?: string | n
   ];
 }
 
+function getRequirementGroupSupersessionText(group: TransferPlannerRequirementGroup) {
+  return [
+    group.id,
+    group.label,
+    group.sourceHeading,
+    group.sourceRowText,
+    ...(group.options ?? []).flatMap((option) => [
+      option.label,
+      ...(option.displayCourseCodes ?? []),
+      ...(option.uwCourses ?? []),
+      ...(option.equivalentUwCourseCodes ?? []),
+    ]),
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
 function isSupersededSbseRequirementGroup(
   planId: string,
   group: TransferPlannerRequirementGroup
@@ -4410,7 +4495,28 @@ function isSupersededSbseRequirementGroup(
     return false;
   }
 
-  return group.id.endsWith(":cse-123-or-cse-143");
+  if (group.id.endsWith(":cse-123-or-cse-143")) {
+    return true;
+  }
+
+  if (
+    group.requirementType !== "choose_one" ||
+    (group.options ?? []).some((option) => option.categoryOption)
+  ) {
+    return false;
+  }
+
+  const text = getRequirementGroupSupersessionText(group);
+  const includesAll = (courseCodes: string[]) =>
+    courseCodes.every((courseCode) =>
+      new RegExp(`\\b${courseCode.replace(/\s+/g, "\\s*")}\\b`, "i").test(text)
+    );
+
+  return (
+    includesAll(["MATH 124", "MATH 125", "MATH 126"]) ||
+    includesAll(["CHEM 142", "CHEM 152", "CHEM 162"]) ||
+    includesAll(["PHYS 121", "PHYS 122"])
+  );
 }
 
 function filterStaleSbseBusinessPolicyEconomicsCourseCodes(
@@ -4534,9 +4640,12 @@ function getParsedRequirementGroupsFromBlock(
   const parsedRequirementGroups = (block as {
     parsedRequirementGroups?: TransferPlannerRequirementGroup[];
   }).parsedRequirementGroups;
+  const safeParsedRequirementGroups = (parsedRequirementGroups ?? []).filter(
+    (group) => !isSupersededSbseRequirementGroup(block.planId, group)
+  );
   const parsedOrKnownGroups =
     block.planId === UW_SEATTLE_SBSE_PLAN_ID
-      ? []
+      ? safeParsedRequirementGroups
       : block.planId === "uw-seattle-materials-science-engineering"
       ? parsedRequirementGroups && parsedRequirementGroups.length
         ? parsedRequirementGroups.filter((group) => knownMaterialsScienceGroupIds.has(group.id))
@@ -4544,10 +4653,12 @@ function getParsedRequirementGroupsFromBlock(
       : parsedRequirementGroups && parsedRequirementGroups.length
         ? parsedRequirementGroups
         : knownMaterialsScienceGroups;
+  const knownSbseGroups = buildKnownSbseRequirementGroups(block.planId, block.pathwayId);
   const rawGroups = uniqueById([
+    ...(block.planId === UW_SEATTLE_SBSE_PLAN_ID ? knownSbseGroups : []),
     ...parsedOrKnownGroups,
     ...buildKnownComputerEngineeringRequirementGroups(block.planId),
-    ...buildKnownSbseRequirementGroups(block.planId, block.pathwayId),
+    ...(block.planId === UW_SEATTLE_SBSE_PLAN_ID ? [] : knownSbseGroups),
   ]).filter((group) => !isSupersededSbseRequirementGroup(block.planId, group));
 
   return rawGroups
@@ -4611,7 +4722,7 @@ function applyRequirementGroupPathwayRestrictions(
 }
 
 function getRequirementGroupsForScope(planId: string, pathwayId?: string | null) {
-  return uniqueById(
+  return uniqueRequirementGroupsForPathwayScope(
     getAutomaticScopeKeys(planId, pathwayId)
       .flatMap((scopeKey) => {
         const [scopePlanId, scopePathwayId = ""] = scopeKey.split("::");
@@ -4623,7 +4734,8 @@ function getRequirementGroupsForScope(planId: string, pathwayId?: string | null)
       })
       .flatMap(getParsedRequirementGroupsFromBlock)
       .map((group) => applyRequirementGroupPathwayRestrictions(group, pathwayId))
-      .filter((group) => group.options.length > 0)
+      .filter((group) => group.options.length > 0),
+    pathwayId
   );
 }
 
@@ -7984,12 +8096,15 @@ function mergePlannerPathwayWithPlan(
   visiblePathways = materializePlanPathways(plan)
 ): TransferPlannerResolvedMajorPlan {
   const trackMetadata = getPathwayScopedTrackMetadata(plan, pathway);
-  const mergedRequirementGroups = uniqueById([
-    ...(plan.requirementGroups ?? []).map((group) =>
-      applyRequirementGroupPathwayRestrictions(group, pathway.id)
-    ).filter((group) => group.options.length > 0),
-    ...(pathway.requirementGroups ?? []),
-  ]);
+  const mergedRequirementGroups = uniqueRequirementGroupsForPathwayScope(
+    [
+      ...(plan.requirementGroups ?? []).map((group) =>
+        applyRequirementGroupPathwayRestrictions(group, pathway.id)
+      ).filter((group) => group.options.length > 0),
+      ...(pathway.requirementGroups ?? []),
+    ],
+    pathway.id
+  );
   const nmeSourceIncompleteWarnings = buildMaterialsScienceNmeSourceIncompleteWarnings(
     plan.id,
     pathway.id,

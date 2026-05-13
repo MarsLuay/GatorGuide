@@ -3271,11 +3271,62 @@ function buildGeneratedShapeAuditGroupRow(input) {
   };
 }
 
+function getGeneratedShapeAuditGroupSupersessionText(group) {
+  return [
+    group?.id,
+    group?.label,
+    group?.sourceHeading,
+    group?.sourceRowText,
+    ...((group?.options ?? []).flatMap((option) => [
+      option.label,
+      ...(option.displayCourseCodes ?? []),
+      ...(option.uwCourses ?? []),
+      ...(option.equivalentUwCourseCodes ?? []),
+    ])),
+  ]
+    .filter(Boolean)
+    .join(" ");
+}
+
+function generatedShapeAuditGroupMentionsAllCourses(group, courseCodes) {
+  const text = getGeneratedShapeAuditGroupSupersessionText(group);
+  return courseCodes.every((courseCode) =>
+    new RegExp(`\\b${courseCode.replace(/\s+/g, "\\s*")}\\b`, "i").test(text)
+  );
+}
+
+function isIntentionallySupersededGeneratedShapeAuditGroup(owner, group) {
+  if (owner.planId !== "uw-seattle-sustainable-bioresource-systems-engineering") {
+    return false;
+  }
+  if (
+    group?.requirementType !== "choose_one" ||
+    (group?.options ?? []).some((option) => option.categoryOption)
+  ) {
+    return false;
+  }
+  return (
+    generatedShapeAuditGroupMentionsAllCourses(group, ["MATH 124", "MATH 125", "MATH 126"]) ||
+    generatedShapeAuditGroupMentionsAllCourses(group, ["CHEM 142", "CHEM 152", "CHEM 162"]) ||
+    generatedShapeAuditGroupMentionsAllCourses(group, ["PHYS 121", "PHYS 122"])
+  );
+}
+
 function getSupportMetadataParserShape(block) {
   if ((block.approvedFilterUwCourseCodes ?? []).length) {
     return "approved-list/support metadata";
   }
+  if (
+    (block.supportLists ?? []).some((supportList) =>
+      ["approved-filter-list", "approved-course-list"].includes(String(supportList.shape ?? ""))
+    )
+  ) {
+    return "approved-list/support metadata";
+  }
   if ((block.electiveListUwCourseCodes ?? []).length) {
+    return "elective-list/support metadata";
+  }
+  if ((block.supportLists ?? []).some((supportList) => supportList.shape === "elective-list")) {
     return "elective-list/support metadata";
   }
   return "hidden/support metadata";
@@ -3287,10 +3338,15 @@ function getSupportMetadataCodes(block) {
       ...(block.approvedFilterUwCourseCodes ?? []),
       ...(block.electiveListUwCourseCodes ?? []),
       ...(block.supportOnlyUwCourseCodes ?? []),
+      ...((block.supportLists ?? []).flatMap((supportList) => supportList.acceptedUwCourseCodes ?? [])),
     ]
       .map(normalizeCourseCode)
       .filter(Boolean)
   );
+}
+
+function blockHasSupportMetadata(block) {
+  return getSupportMetadataCodes(block).length > 0 || (block.supportLists ?? []).length > 0;
 }
 
 function buildGeneratedShapeAuditSupportRow(owner, block, compactBlock, seedRowsForOwner) {
@@ -3382,6 +3438,9 @@ function buildGeneratedShapeAuditRowsForOwner(owner, seedRowsForOwner = []) {
       if (!parsedGroupHasGeneratedShapeAuditSurface(parsedGroup)) {
         continue;
       }
+      if (isIntentionallySupersededGeneratedShapeAuditGroup(owner, parsedGroup)) {
+        continue;
+      }
       rows.push(
         buildGeneratedShapeAuditGroupRow({
           owner,
@@ -3395,7 +3454,7 @@ function buildGeneratedShapeAuditRowsForOwner(owner, seedRowsForOwner = []) {
 
     if (
       isBlockSupportOnly(block) &&
-      getSupportMetadataCodes(block).length > 0 &&
+      blockHasSupportMetadata(block) &&
       !((block.parsedRequirementGroups ?? []).some(parsedGroupHasGeneratedShapeAuditSurface))
     ) {
       rows.push(

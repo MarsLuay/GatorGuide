@@ -2823,8 +2823,57 @@ test("Generated registry keeps Computer Engineering approved science as an appro
   assert.equal(supportList.canCreateRequiredRow, false);
   assert.equal(supportList.canCreateScheduleRow, false);
   assert.ok(supportList.acceptedUwCourseCodes.length > 0);
+  assert.ok(
+    (supportBlock.approvedFilterUwCourseCodes ?? []).length > 0,
+    "Expected compact approved-list block to carry approved filter codes, not only nested support metadata."
+  );
+  assert.ok((supportBlock.approvedFilterUwCourseCodes ?? []).includes("PHYS 123"));
   assert.ok(naturalScienceBucket, "Expected primary CE Natural Science bucket to reference the filter key.");
   assert.equal(naturalScienceBucket.requirementType, "choose_credits");
+});
+
+test("Generated registry keeps SBSE pathway source groups without reintroducing unsafe sequence choices", () => {
+  const sourceGroups = getSourceGeneratedRequirementGroups(SBSE_PLAN_ID, "business-option");
+  const runtimeGroups = getCompactRuntimeRequirementGroups(SBSE_PLAN_ID, "business-option");
+  const diversityBucket = sourceGroups.find((group) =>
+    /5 credits of Diversity/i.test(group.label ?? "")
+  );
+  const socialScienceBucket = sourceGroups.find((group) =>
+    /10 credits of Social Sciences/i.test(group.label ?? "")
+  );
+  const statisticsOption = sourceGroups.find((group) =>
+    /QSCI 381/i.test(`${group.label ?? ""} ${group.sourceHeading ?? ""}`)
+  );
+  const unsafeMathChoice = sourceGroups.find(
+    (group) =>
+      group.requirementType === "choose_one" &&
+      /MATH 124/i.test(group.label ?? "") &&
+      /MATH 125/i.test(group.label ?? "") &&
+      /MATH 126/i.test(group.label ?? "")
+  );
+  const knownMathSequence = sourceGroups.find((group) =>
+    group.id.endsWith(":sbse-math-124-125-126-sequence")
+  );
+
+  assert.equal(diversityBucket?.requirementType, "choose_credits");
+  assert.equal(diversityBucket?.minCredits, 5);
+  assert.equal(
+    diversityBucket?.options?.[0]?.categoryOption?.sourceCategoryCode,
+    "DIV"
+  );
+  assert.equal(socialScienceBucket?.requirementType, "choose_credits");
+  assert.equal(socialScienceBucket?.minCredits, 10);
+  assert.equal(
+    socialScienceBucket?.options?.[0]?.categoryOption?.sourceCategoryCode,
+    "SSc"
+  );
+  assert.equal(statisticsOption?.requirementType, "choose_one");
+  assert.ok(knownMathSequence, "Expected curated SBSE math sequence to remain materialized.");
+  assert.equal(unsafeMathChoice, undefined);
+  assert.ok(
+    runtimeGroups.some((group) => group.id === diversityBucket?.id),
+    "Expected compact runtime to retain the source-backed SBSE Diversity bucket."
+  );
 });
 
 test("Generated registry keeps Computer Science Data Science requirements pathway-scoped", () => {

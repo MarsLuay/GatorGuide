@@ -2201,6 +2201,23 @@ function normalizeRuntimeRequirementSupportList(
   };
 }
 
+function getRuntimeApprovedFilterCodesFromSupportLists(
+  supportLists: TransferPlannerRequirementSupportList[]
+) {
+  return normalizeRuntimeSupportListCourseCodes(
+    supportLists
+      .filter((supportList) => supportList.shape === "approved-filter-list")
+      .flatMap((supportList) => supportList.acceptedUwCourseCodes ?? [])
+  );
+}
+
+function runtimeStringArraysEqual(left: string[], right: string[]) {
+  if (left.length !== right.length) {
+    return false;
+  }
+  return left.every((value, index) => value === right[index]);
+}
+
 function normalizeRuntimeParsedRequirementSourceBlock<
   T extends {
     supportLists?: TransferPlannerRequirementSupportList[];
@@ -2217,6 +2234,14 @@ function normalizeRuntimeParsedRequirementSourceBlock<
         : buildRuntimeRequirementSupportLists(block)
     ).map(normalizeRuntimeRequirementSupportList)
   );
+  const approvedFilterUwCourseCodes = normalizeRuntimeSupportListCourseCodes([
+    ...(block.approvedFilterUwCourseCodes ?? []),
+    ...getRuntimeApprovedFilterCodesFromSupportLists(supportLists),
+  ]);
+  const approvedFilterCodesChanged = !runtimeStringArraysEqual(
+    approvedFilterUwCourseCodes,
+    normalizeRuntimeSupportListCourseCodes(block.approvedFilterUwCourseCodes)
+  );
   const parsedRequirementGroups = (block.parsedRequirementGroups ?? []).map(
     normalizeRequirementShapeForGroup
   );
@@ -2224,12 +2249,13 @@ function normalizeRuntimeParsedRequirementSourceBlock<
     (group, index) => group !== block.parsedRequirementGroups?.[index]
   );
 
-  if (!supportLists.length && !parsedGroupsChanged) {
+  if (!supportLists.length && !approvedFilterCodesChanged && !parsedGroupsChanged) {
     return block;
   }
 
   return {
     ...block,
+    ...(approvedFilterUwCourseCodes.length ? { approvedFilterUwCourseCodes } : {}),
     ...(supportLists.length ? { supportLists } : {}),
     ...(parsedGroupsChanged ? { parsedRequirementGroups } : {}),
   };

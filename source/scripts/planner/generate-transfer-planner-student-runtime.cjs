@@ -36,6 +36,7 @@ const {
   TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY,
   TRANSFER_PLANNER_SOURCE_GAP_REGISTRY,
   TRANSFER_PLANNER_TRACKS,
+  getTransferPlannerProgramApprovedCourseFilterDefinition,
   getTransferPlannerPrimaryDegreeRequirementsSource,
   getTransferPlannerStudentRuntimeMajorsForCampus,
   getTransferPlannerStudentRuntimePathwaysForPlan,
@@ -249,13 +250,42 @@ function buildRuntimeRequirementSupportList({ block, shape, acceptedUwCourseCode
     block.sourceLabel ??
     block.primarySourceLabel ??
     (shape === "elective-list" ? "Elective list" : "Approved course list");
+  const filterDefinition = getTransferPlannerProgramApprovedCourseFilterDefinition(approvedListKey);
   return {
     id: `${block.id ?? slugifyRuntimeId(`${sourceUrl ?? listTitle}`)}:support-list:${shape}`,
     shape,
     sourceUrl,
     sourceRole: block.sourceRole ?? null,
     listTitle,
-    acceptedUwCourseCodes,
+    filterKey: filterDefinition?.filterKey ?? approvedListKey ?? null,
+    ownerId: block.ownerId ?? block.planId ?? null,
+    majorId: block.planId ?? null,
+    pathwayId: block.pathwayId ?? null,
+    officialSourceUrl: filterDefinition?.officialSourceUrl ?? sourceUrl,
+    acceptedUwCourseCodes: uniqueStrings(
+      (filterDefinition?.approvedUwCourseCodes ?? acceptedUwCourseCodes ?? []).map(normalizeCourseCode)
+    ),
+    ...(filterDefinition?.approvedUwCourseGroups
+      ? {
+          approvedUwCourseGroups: filterDefinition.approvedUwCourseGroups.map((group) =>
+            uniqueStrings(group.map(normalizeCourseCode))
+          ),
+        }
+      : {}),
+    ...(filterDefinition?.petitionOnlyNotes
+      ? { petitionOnlyNotes: [...filterDefinition.petitionOnlyNotes] }
+      : {}),
+    ...(filterDefinition?.filterId ? { generatedFilterId: filterDefinition.filterId } : {}),
+    ...(filterDefinition?.sourceEvidenceLines
+      ? { sourceEvidenceLines: [...filterDefinition.sourceEvidenceLines] }
+      : {}),
+    ...(filterDefinition?.sourceEvidenceHeadings
+      ? { sourceEvidenceHeadings: [...filterDefinition.sourceEvidenceHeadings] }
+      : {}),
+    ...(filterDefinition?.sourceFingerprint
+      ? { sourceFingerprint: filterDefinition.sourceFingerprint }
+      : {}),
+    ...(filterDefinition ? { sourceBackedProgramApproval: true } : {}),
     ...(approvedListKey ? { approvedListKey } : {}),
     supportOnly: true,
     canCreateRequiredRow: false,
@@ -317,9 +347,91 @@ function buildRuntimeRequirementSupportLists(block) {
   return lists;
 }
 
+function getRuntimeRequirementSupportListKey(supportList) {
+  const shape = String(supportList.shape ?? "");
+  const sourceUrl = String(supportList.sourceUrl ?? "");
+  const approvedListKey = String(supportList.approvedListKey ?? supportList.filterKey ?? "");
+  if (
+    approvedListKey &&
+    (shape === "approved-filter-list" || shape === "approved-course-list")
+  ) {
+    return `approved:${sourceUrl}:${approvedListKey}`;
+  }
+  return supportList.id || `${shape}:${sourceUrl}:${supportList.listTitle ?? ""}`;
+}
+
+function normalizeRuntimeRequirementSupportList(supportList) {
+  const filterDefinition = getTransferPlannerProgramApprovedCourseFilterDefinition(
+    supportList.approvedListKey ?? supportList.filterKey
+  );
+  return {
+    ...supportList,
+    filterKey: filterDefinition?.filterKey ?? supportList.filterKey ?? supportList.approvedListKey ?? null,
+    officialSourceUrl:
+      filterDefinition?.officialSourceUrl ?? supportList.officialSourceUrl ?? supportList.sourceUrl,
+    acceptedUwCourseCodes: uniqueStrings(
+      (filterDefinition?.approvedUwCourseCodes ?? supportList.acceptedUwCourseCodes ?? []).map(
+        normalizeCourseCode
+      )
+    ),
+    ...(filterDefinition?.approvedUwCourseGroups
+      ? {
+          approvedUwCourseGroups: filterDefinition.approvedUwCourseGroups.map((group) =>
+            uniqueStrings(group.map(normalizeCourseCode))
+          ),
+        }
+      : supportList.approvedUwCourseGroups
+        ? { approvedUwCourseGroups: supportList.approvedUwCourseGroups }
+        : {}),
+    ...(filterDefinition?.petitionOnlyNotes
+      ? { petitionOnlyNotes: [...filterDefinition.petitionOnlyNotes] }
+      : supportList.petitionOnlyNotes
+        ? { petitionOnlyNotes: supportList.petitionOnlyNotes }
+        : {}),
+    generatedFilterId: filterDefinition?.filterId ?? supportList.generatedFilterId ?? null,
+    ...(filterDefinition?.sourceEvidenceLines
+      ? { sourceEvidenceLines: [...filterDefinition.sourceEvidenceLines] }
+      : supportList.sourceEvidenceLines
+        ? { sourceEvidenceLines: supportList.sourceEvidenceLines }
+        : {}),
+    ...(filterDefinition?.sourceEvidenceHeadings
+      ? { sourceEvidenceHeadings: [...filterDefinition.sourceEvidenceHeadings] }
+      : supportList.sourceEvidenceHeadings
+        ? { sourceEvidenceHeadings: supportList.sourceEvidenceHeadings }
+        : {}),
+    sourceFingerprint:
+      filterDefinition?.sourceFingerprint ?? supportList.sourceFingerprint ?? null,
+    sourceBackedProgramApproval:
+      filterDefinition ? true : supportList.sourceBackedProgramApproval ?? null,
+    supportOnly: true,
+    canCreateRequiredRow: false,
+    canCreateScheduleRow: false,
+    linkedPrimaryRequirementIds: supportList.linkedPrimaryRequirementIds ?? [],
+  };
+}
+
+function getApprovedFilterCodesFromSupportLists(supportLists) {
+  return uniqueStrings(
+    supportLists
+      .filter((supportList) => supportList.shape === "approved-filter-list")
+      .flatMap((supportList) => supportList.acceptedUwCourseCodes ?? [])
+      .map(normalizeCourseCode)
+  );
+}
+
 function compactParsedRequirementSourceBlock(block) {
   const canCreateSchedulableRows = canRuntimeSourceBlockCreateSchedulableRows(block);
-  const supportLists = Array.isArray(block.supportLists) ? block.supportLists : [];
+  const sourceSupportLists = Array.isArray(block.supportLists) ? block.supportLists : [];
+  const supportLists = uniqueBy(
+    (sourceSupportLists.length ? sourceSupportLists : buildRuntimeRequirementSupportLists(block)).map(
+      normalizeRuntimeRequirementSupportList
+    ),
+    getRuntimeRequirementSupportListKey
+  );
+  const approvedFilterUwCourseCodes = uniqueStrings([
+    ...(block.approvedFilterUwCourseCodes ?? []),
+    ...getApprovedFilterCodesFromSupportLists(supportLists),
+  ].map(normalizeCourseCode));
   return {
     id: block.id,
     ownerId: block.ownerId,
@@ -349,12 +461,10 @@ function compactParsedRequirementSourceBlock(block) {
     requirementShape: block.requirementShape,
     requirementCueLines: block.requirementCueLines,
     parsedUwCourseCodes: nonEmptyArray(block.parsedUwCourseCodes),
-    approvedFilterUwCourseCodes: nonEmptyArray(block.approvedFilterUwCourseCodes),
+    approvedFilterUwCourseCodes: nonEmptyArray(approvedFilterUwCourseCodes),
     electiveListUwCourseCodes: nonEmptyArray(block.electiveListUwCourseCodes),
     supportOnlyUwCourseCodes: nonEmptyArray(block.supportOnlyUwCourseCodes),
-    supportLists: nonEmptyArray(
-      supportLists.length ? supportLists : buildRuntimeRequirementSupportLists(block)
-    ),
+    supportLists: nonEmptyArray(supportLists),
     parsedRequirementCourses: nonEmptyArray(block.parsedRequirementCourses),
     parsedDegreeMapBlockCandidates: nonEmptyArray(block.parsedDegreeMapBlockCandidates),
     parsedRequirementGroups: nonEmptyArray(block.parsedRequirementGroups),
