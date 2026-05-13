@@ -6738,13 +6738,17 @@ function buildParsedDegreeMapBlockCandidates(
   ];
 }
 
-function writeSnapshot(ownerKey, sourceUrl, title, lines) {
+function writeSnapshot(ownerKey, sourceUrl, title, lines, metadata = {}) {
   ensureDir(SNAPSHOT_DIR);
   const outputPath = getSnapshotPath(ownerKey, sourceUrl);
+  const headings = uniqueInOrder(
+    (metadata.headings ?? []).map((heading) => normalizeWhitespace(heading)).filter(Boolean)
+  ).slice(0, 40);
   const body = [
     `Owner: ${ownerKey}`,
     `Source: ${sourceUrl}`,
     `Title: ${title || ""}`,
+    `Headings: ${JSON.stringify(headings)}`,
     "",
     ...lines,
   ].join("\n");
@@ -6773,6 +6777,29 @@ function getSourceUrlWithoutHash(sourceUrl) {
   return normalizedSourceUrl ? normalizedSourceUrl.replace(/#.*$/, "") : null;
 }
 
+function parseSnapshotHeadingMetadata(value) {
+  const rawValue = String(value ?? "").trim();
+  if (!rawValue) {
+    return [];
+  }
+
+  try {
+    const parsed = JSON.parse(rawValue);
+    if (Array.isArray(parsed)) {
+      return uniqueInOrder(parsed.map((heading) => normalizeWhitespace(heading)).filter(Boolean));
+    }
+  } catch {
+    // Older or manually captured snapshots may not use JSON metadata.
+  }
+
+  return uniqueInOrder(
+    rawValue
+      .split(/\s*\|\s*/)
+      .map((heading) => normalizeWhitespace(heading))
+      .filter(Boolean)
+  );
+}
+
 function readSnapshotFile(snapshotPath, expectedSourceUrl = null) {
   if (!fs.existsSync(snapshotPath)) {
     return null;
@@ -6792,6 +6819,7 @@ function readSnapshotFile(snapshotPath, expectedSourceUrl = null) {
   }
 
   const titleLine = rawLines.find((line) => line.startsWith("Title:"));
+  const headingsLine = rawLines.find((line) => line.startsWith("Headings:"));
   const bodyStartIndex = rawLines.findIndex((line, index) => index <= 6 && line.trim() === "");
   const snapshotLines = rawLines
     .slice(bodyStartIndex >= 0 ? bodyStartIndex + 1 : 0)
@@ -6807,6 +6835,10 @@ function readSnapshotFile(snapshotPath, expectedSourceUrl = null) {
     snapshotPath,
     sourceUrl,
     title: titleLine ? normalizeWhitespace(titleLine.replace(/^Title:\s*/, "")) : null,
+    hasHeadingMetadata: Boolean(headingsLine),
+    headings: headingsLine
+      ? parseSnapshotHeadingMetadata(headingsLine.replace(/^Headings:\s*/, ""))
+      : [],
     snapshotLines,
   };
 }
@@ -6946,7 +6978,9 @@ function buildParserRecoveryArtifactsFromSnapshot(entry, owner = {}) {
   return {
     html: [snapshotLines.join("\n"), syntheticLinkHtml].filter(Boolean).join("\n"),
     title: owner.extractedTitle ?? snapshot.title ?? owner.sourceLabel ?? entry.label ?? null,
-    headings: owner.extractedHeadings ?? [],
+    headings: (owner.extractedHeadings ?? []).length
+      ? owner.extractedHeadings
+      : snapshot.headings ?? [],
     lines: snapshotLines,
     snapshotPath: snapshot.snapshotPath ?? owner.snapshotPath ?? null,
     fromSnapshot: true,
@@ -6984,7 +7018,8 @@ function parseSnapshotSource(entry, originalError) {
 
   const requirementCueLines = extractRequirementCueLines(snapshot.snapshotLines);
   const chooseStatements = extractChooseStatements(snapshot.snapshotLines);
-  const pathwayLabels = extractPathwayLabels(entry, snapshot.snapshotLines, []);
+  const headings = snapshot.headings ?? [];
+  const pathwayLabels = extractPathwayLabels(entry, snapshot.snapshotLines, headings);
   const courseCodes = filterParsedCourseCodesByHints(
     entry,
     snapshot.snapshotLines,
@@ -6993,7 +7028,8 @@ function parseSnapshotSource(entry, originalError) {
 
   return {
     title: snapshot.title,
-    headings: [],
+    headings,
+    snapshotHasHeadingMetadata: snapshot.hasHeadingMetadata,
     requirementCueLines,
     chooseStatements,
     pathwayLabels,
@@ -10972,7 +11008,9 @@ function buildManifestParseSuccess(
   );
   const snapshotPath =
     parsed.snapshotPath ??
-    writeSnapshot(baseResult.ownerId, effectiveSourceUrl, parsed.title, parsed.snapshotLines);
+    writeSnapshot(baseResult.ownerId, effectiveSourceUrl, parsed.title, parsed.snapshotLines, {
+      headings: parsed.headings,
+    });
   const canCreateSchedulableRows = sourceScope.canCreateScheduleRows;
   const parsedRequirementGroupCourseCodeSet = new Set(
     extractParsedRequirementGroupCourseCodes(parsedRequirementGroups).map((courseCode) =>
@@ -11058,6 +11096,7 @@ function buildManifestParseSuccess(
     parsedRequirementReplacements,
     parseConfidence: parsed.parseConfidence,
     snapshotPath,
+    snapshotHasHeadingMetadata: parsed.snapshotHasHeadingMetadata,
     usedSnapshotFallback: Boolean(parsed.usedSnapshotFallback),
     snapshotFallbackReason: parsed.snapshotFallbackReason ?? null,
     error: null,
@@ -11934,6 +11973,20 @@ function buildParseQualitySignals(owner) {
       "snapshot-fallback-used",
       "Parsing relied on a cached snapshot after a live-source failure.",
       owner.snapshotFallbackReason ?? null
+    );
+  }
+
+  if (
+    owner.usedSnapshotFallback &&
+    canScheduleFromSource &&
+    owner.snapshotHasHeadingMetadata === false
+  ) {
+    addQualitySignal(
+      signals,
+      "note",
+      "snapshot-fallback-heading-context-missing",
+      "Cached snapshot fallback did not include source heading metadata, which limits section-scoped parser validation.",
+      `snapshot=${owner.snapshotPath ?? "n/a"}; requirement-cues=${owner.requirementCueLines?.length ?? 0}; choose-statements=${owner.chooseStatements?.length ?? 0}`
     );
   }
 
@@ -12997,6 +13050,7 @@ module.exports = {
   getRequirementSourceRoleStatus,
   mergeRecoveredSupportSourcesForTest: mergeRecoveredSupportSources,
   parseHtmlSourceFromArtifactsForTest,
+  readSnapshotFileForTest: readSnapshotFile,
   scopeCatalogHtmlByAnchor,
   shouldParseRequirementSourceEntry,
   shouldPreferSupplementalDocumentSourceForTest: shouldPreferSupplementalDocumentSource,

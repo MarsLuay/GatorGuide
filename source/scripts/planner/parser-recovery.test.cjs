@@ -1,4 +1,7 @@
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const os = require("node:os");
+const path = require("node:path");
 const test = require("node:test");
 
 const parser = require("./parse-transfer-planner-requirement-sources.cjs");
@@ -133,6 +136,102 @@ test("Parser recovery triggers on zero-course and low-confidence quality warning
   assert.ok(signalCodes.includes("no-parsed-uw-course-codes"));
   assert.ok(signalCodes.includes("low-confidence-parsed-source"));
   assert.equal(parser.shouldTriggerParserRecoveryForTest({ ...owner, qualitySignals: signals }), true);
+});
+
+test("Snapshot fallback quality audit classifies missing heading context", () => {
+  const owner = buildRecoveryOwnerFixture({
+    usedSnapshotFallback: true,
+    snapshotPath: "cached-snapshot.txt",
+    snapshotHasHeadingMetadata: false,
+    snapshotFallbackReason: "fetch failed",
+    extractedHeadings: [],
+    requirementCueLines: ["Degree Requirements"],
+    chooseStatements: ["Choose one course from the following."],
+  });
+  const signals = parser.buildParseQualitySignalsForTest(owner);
+  const signalCodes = signals.map((signal) => signal.code);
+
+  assert.ok(signalCodes.includes("snapshot-fallback-used"));
+  assert.ok(signalCodes.includes("snapshot-fallback-heading-context-missing"));
+});
+
+test("Snapshot fallback quality audit accepts present-but-empty heading metadata", () => {
+  const owner = buildRecoveryOwnerFixture({
+    usedSnapshotFallback: true,
+    snapshotPath: "cached-snapshot.txt",
+    snapshotHasHeadingMetadata: true,
+    snapshotFallbackReason: "fetch failed",
+    extractedHeadings: [],
+    requirementCueLines: ["Degree Requirements"],
+    chooseStatements: [],
+  });
+  const signals = parser.buildParseQualitySignalsForTest(owner);
+  const signalCodes = signals.map((signal) => signal.code);
+
+  assert.ok(signalCodes.includes("snapshot-fallback-used"));
+  assert.equal(signalCodes.includes("snapshot-fallback-heading-context-missing"), false);
+});
+
+test("Snapshot reader preserves optional heading metadata", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "gg-snapshot-"));
+  const snapshotPath = path.join(tempDir, "snapshot.txt");
+
+  fs.writeFileSync(
+    snapshotPath,
+    [
+      "Owner: fixture",
+      "Source: https://example.edu/requirements",
+      "Title: Fixture Requirements",
+      'Headings: ["Core Requirements","Electives"]',
+      "",
+      "Core Requirements",
+      "Complete CSS 301.",
+      "",
+    ].join("\n")
+  );
+
+  try {
+    const snapshot = parser.readSnapshotFileForTest(
+      snapshotPath,
+      "https://example.edu/requirements"
+    );
+
+    assert.deepEqual(snapshot.headings, ["Core Requirements", "Electives"]);
+    assert.equal(snapshot.hasHeadingMetadata, true);
+    assert.deepEqual(snapshot.snapshotLines, ["Core Requirements", "Complete CSS 301."]);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test("Snapshot reader marks legacy snapshots without heading metadata", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "gg-snapshot-"));
+  const snapshotPath = path.join(tempDir, "snapshot.txt");
+
+  fs.writeFileSync(
+    snapshotPath,
+    [
+      "Owner: fixture",
+      "Source: https://example.edu/requirements",
+      "Title: Fixture Requirements",
+      "",
+      "Core Requirements",
+      "Complete CSS 301.",
+      "",
+    ].join("\n")
+  );
+
+  try {
+    const snapshot = parser.readSnapshotFileForTest(
+      snapshotPath,
+      "https://example.edu/requirements"
+    );
+
+    assert.equal(snapshot.hasHeadingMetadata, false);
+    assert.deepEqual(snapshot.headings, []);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
 });
 
 test("Parser recovery finds linked official requirement documents", () => {

@@ -833,6 +833,33 @@ function hasStrongPromotionIdentity(candidate) {
   );
 }
 
+function getDiscoveryConfidence(score) {
+  return score >= MIN_HIGH_CONFIDENCE_SCORE
+    ? "high"
+    : score >= MIN_PRIMARY_DISCOVERY_SCORE
+      ? "medium"
+      : "low";
+}
+
+function calibrateDiscoveryConfidence(target, sourceRole, score, evidence = {}) {
+  const baseConfidence = getDiscoveryConfidence(score);
+  if (baseConfidence !== "high") {
+    return baseConfidence;
+  }
+
+  if (
+    target?.ownerType === "pathway" &&
+    target?.pathwayId &&
+    sourceRole === "department-requirements" &&
+    evidence.broadDepartmentMissesSelectedPathway === true &&
+    evidence.hasPathwaySpecificEvidence !== true
+  ) {
+    return "medium";
+  }
+
+  return baseConfidence;
+}
+
 function getAutoPromotionTitleTokens(value) {
   return slugifyForSearch(value)
     .split(/\s+/)
@@ -1776,6 +1803,7 @@ function scoreIdentityMatch(target, candidate, combinedText) {
   const labelAcronymMatched = acronymMatchesText(labelAcronym, candidateIdentityText);
   const reasons = [];
   let score = 0;
+  let pathwayIdentityMatched = false;
 
   if (hasConflictingDegreeRoute(`${target.title} ${target.label}`, combinedText)) {
     score -= 18;
@@ -1784,15 +1812,18 @@ function scoreIdentityMatch(target, candidate, combinedText) {
 
   if (target.ownerType === "pathway" && (labelSlugInPath || singleLabelTokenExactPath)) {
     score += 34;
+    pathwayIdentityMatched = true;
     reasons.push("official source path matches the selected pathway");
   } else if (ownerSlugInPath || singleOwnerTokenExactPath) {
     score += 32;
     reasons.push("official source path matches the selected major");
   } else if (target.ownerType === "pathway" && labelTokens.length >= 2 && labelTokensMatched) {
     score += 26;
+    pathwayIdentityMatched = true;
     reasons.push("official source text matches the selected pathway");
   } else if (target.ownerType === "pathway" && labelAcronymMatched) {
     score += 32;
+    pathwayIdentityMatched = true;
     reasons.push("official source acronym matches the selected pathway");
   } else if (ownerTokens.length >= 2 && ownerTokensMatched) {
     score += 32;
@@ -1815,6 +1846,7 @@ function scoreIdentityMatch(target, candidate, combinedText) {
   return {
     score,
     reasons,
+    pathwayIdentityMatched,
   };
 }
 
@@ -2647,6 +2679,8 @@ function scoreCandidate(target, candidate) {
   const reasons = [];
   let score = 0;
   let matchedKeywordCount = 0;
+  let hasPathwaySpecificEvidence = false;
+  let broadDepartmentMissesSelectedPathway = false;
 
   const sourceRoleRules = {
     "official-catalog": {
@@ -2706,6 +2740,7 @@ function scoreCandidate(target, candidate) {
   addReason(reasons, getSourceRoleMetadata(sourceRole).reason);
   if (pathwayIdentityPrimaryPage) {
     score += 18;
+    hasPathwaySpecificEvidence = true;
     addReason(reasons, "pathway-specific official child page matches the selected pathway");
   }
   if (sameProgramZeroCourseReplacement) {
@@ -2723,6 +2758,7 @@ function scoreCandidate(target, candidate) {
   }
   if (sameProgramPathwayHubChildSource) {
     score += 20;
+    hasPathwaySpecificEvidence = true;
     addReason(
       reasons,
       "same-program option/concentration child source matches the selected pathway"
@@ -2784,6 +2820,9 @@ function scoreCandidate(target, candidate) {
 
   const identityMatch = scoreIdentityMatch(target, candidate, combinedText);
   score += identityMatch.score;
+  if (identityMatch.pathwayIdentityMatched) {
+    hasPathwaySpecificEvidence = true;
+  }
   for (const reason of identityMatch.reasons) {
     addReason(reasons, reason);
   }
@@ -2886,11 +2925,13 @@ function scoreCandidate(target, candidate) {
     matchesSpaceDelimitedSlug(candidateIdentityText, labelPhrase)
   ) {
     score += 6;
+    hasPathwaySpecificEvidence = true;
     addReason(reasons, "explicitly names the selected pathway or route");
   }
 
   if (sourceRole === "pathway-degree-sheet" && target.pathwayId) {
     score += 34;
+    hasPathwaySpecificEvidence = true;
     addReason(reasons, "pathway degree sheet is scoped to the selected pathway");
   }
 
@@ -2902,6 +2943,7 @@ function scoreCandidate(target, candidate) {
     !matchesSpaceDelimitedSlug(candidateIdentityText, labelPhrase)
   ) {
     score -= 14;
+    broadDepartmentMissesSelectedPathway = true;
     addReason(reasons, "broad department page does not name the selected pathway");
   }
 
@@ -2931,7 +2973,10 @@ function scoreCandidate(target, candidate) {
     addReason(reasons, "stays on an official UW domain");
   }
 
-  const confidence = score >= 28 ? "high" : score >= 14 ? "medium" : "low";
+  const confidence = calibrateDiscoveryConfidence(target, sourceRole, score, {
+    broadDepartmentMissesSelectedPathway,
+    hasPathwaySpecificEvidence,
+  });
 
   return {
     score,
@@ -4203,6 +4248,7 @@ module.exports = {
   compareScoredCandidates,
   extractAnchors,
   extractHeadings,
+  getDiscoveryConfidenceForTest: getDiscoveryConfidence,
   getDiscoveryParserType,
   getOfficialPrimaryScore,
   getSourceRoleStatus,

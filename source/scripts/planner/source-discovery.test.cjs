@@ -268,6 +268,14 @@ test("UW General Catalog URLs with a major-specific anchor receive extra score",
   );
 });
 
+test("Discovery confidence uses the primary discovery threshold boundary", () => {
+  assert.equal(discovery.getDiscoveryConfidenceForTest(11), "low");
+  assert.equal(discovery.getDiscoveryConfidenceForTest(12), "medium");
+  assert.equal(discovery.getDiscoveryConfidenceForTest(13), "medium");
+  assert.equal(discovery.getDiscoveryConfidenceForTest(27), "medium");
+  assert.equal(discovery.getDiscoveryConfidenceForTest(28), "high");
+});
+
 test("SBSE discovery includes the anchored UW General Catalog source as official-catalog", async () => {
   const inspectedUrls = [];
   const target = buildSbseTarget({
@@ -614,6 +622,31 @@ test("Pathway degree sheets can outrank broad department pages for a specific pa
   assert.equal(pathwaySheet.sourceRoleStatus, "primary");
   assert.equal(pathwaySheet.canCreateSchedulableRows, true);
   assert.ok(pathwaySheet.score > broadDepartment.score);
+});
+
+test("Pathway-ambiguous department pages cannot be high-confidence discoveries", () => {
+  const target = buildSbseTarget({
+    ownerType: "pathway",
+    ownerKey: "uw-seattle-statistics:pathway:data-science-track",
+    planId: "uw-seattle-statistics",
+    pathwayId: "data-science-track",
+    title: "Statistics - Data Science track",
+    label: "Data Science track",
+  });
+
+  const broadDepartment = discovery.scoreCandidate(target, {
+    url: "https://stat.uw.edu/academics/undergraduate/statistics-bs/double-major-and-double-degree",
+    label: "Statistics undergraduate program",
+    pageTitle: "Statistics BS double major and double degree",
+    sourceKind: "official-link",
+  });
+
+  assert.equal(broadDepartment.sourceRole, "department-requirements");
+  assert.ok(broadDepartment.score >= 28);
+  assert.equal(broadDepartment.confidence, "medium");
+  assert.ok(
+    broadDepartment.reasons.includes("broad department page does not name the selected pathway")
+  );
 });
 
 test("Graduate-only pages are ignored for undergraduate source discovery", () => {
