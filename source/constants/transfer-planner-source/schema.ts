@@ -200,6 +200,10 @@ export type TransferPlannerPrimarySourcePromotionEntry = {
   campusId: Exclude<TransferPlannerSourceSchoolId, "grc">;
   url: string;
   label: string;
+  sourceRole?: TransferPlannerDiscoveredSourceRole | string | null;
+  sourceRoleStatus?: TransferPlannerSourceRoleStatus | string | null;
+  parserType?: TransferPlannerSourceManifestParserType | string | null;
+  canCreateSchedulableRows?: boolean | null;
   score: number;
   confidence: "high";
   reasons: string[];
@@ -217,6 +221,7 @@ export type TransferPlannerSourceGapEntry = {
     TransferPlannerSourceCoverageStatus,
     "source-unfindable" | "parser-unsupported"
   >;
+  reviewStatus?: "high-confidence-needs-review" | "medium-confidence" | "needs-source-automation" | null;
   studentVisibility: "hidden";
   sourceGapReason: string;
   generatedAt: string;
@@ -226,7 +231,7 @@ export type TransferPlannerSourceGapEntry = {
     url: string;
     label: string | null;
     score: number;
-    confidence: "medium";
+    confidence: "high" | "medium";
     reasons: string[];
   } | null;
   sourceDiscoveryAttempts: Array<{
@@ -322,6 +327,7 @@ export type TransferPlannerRequirementParseQualitySignalCode =
   | "large-structured-only-course-gap"
   | "high-confidence-low-course-coverage"
   | "snapshot-fallback-used"
+  | "snapshot-fallback-heading-context-missing"
   | "alternate-official-source-used"
   | "uw-mse-expected-course-option-missing"
   | "uw-mse-requirement-course-metadata-missing";

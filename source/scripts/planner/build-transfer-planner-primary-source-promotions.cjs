@@ -53,6 +53,9 @@ const LEGACY_HARDCODED_SOURCE_REASON_REPLACEMENT =
   "verified against an official source candidate";
 const CLEAR_SUPPORT_ONLY_PROMOTION_PATTERN =
   /\b(advising|adviser|advisor|support sources?|student resources?|student support|forms?|petitions?|policies|policy[-\s]*(?:procedures?|resources?|forms?)|faq|frequently asked questions)\b/i;
+const SOURCE_GENERATED_PLANS_BY_ID = new Map(
+  TRANSFER_PLANNER_SOURCE_GENERATED_MAJOR_PLANS.map((plan) => [plan.id, plan])
+);
 
 function hasArg(flag) {
   return process.argv.slice(2).includes(flag);
@@ -146,7 +149,13 @@ function normalizeLabel(owner) {
 }
 
 function isSchedulablePrimarySuggestion(candidate) {
-  return discovery.isAutoPromotablePrimaryCandidate(candidate);
+  return (
+    discovery.isAutoPromotablePrimaryCandidate(candidate) &&
+    candidate?.canCreateSchedulableRows !== false &&
+    candidate?.sourceRoleStatus !== "support" &&
+    candidate?.sourceRole !== "support-source" &&
+    candidate?.sourceRole !== "curriculum-map"
+  );
 }
 
 function isClearlySupportOnlyPromotionEntry(entry) {
@@ -163,6 +172,78 @@ function isGraduateOnlyPromotionEntry(entry) {
     (/\b(?:graduate|masters?|master(?:'s)?|m\.?\s*s\.?|m\.?\s*a\.?|ph\.?\s*d\.?|doctoral)\b/i.test(text) ||
       /\/(?:student\/)?(?:applied-masters|masters?|graduate|amp)(?:[-/?#]|$)/i.test(text)) &&
     !/\b(?:undergrad(?:uate)?|bachelor|b\.?\s*s\.?|b\.?\s*a\.?)\b|\/undergrad(?:uate)?(?:[-/?#]|$)/i.test(text)
+  );
+}
+
+function normalizePromotionUrlForComparison(value) {
+  try {
+    const url = new URL(String(value ?? ""));
+    url.hash = "";
+    url.search = "";
+    url.pathname = url.pathname.replace(/\/+$/u, "");
+    return url.toString().toLowerCase();
+  } catch {
+    return String(value ?? "")
+      .trim()
+      .replace(/[?#].*$/u, "")
+      .replace(/\/+$/u, "")
+      .toLowerCase();
+  }
+}
+
+function getSingleSpecializedPlanOfficialUrl(plan) {
+  if (!plan || !String(plan.title ?? "").includes(":")) {
+    return null;
+  }
+
+  const urls = Array.from(
+    new Set(
+      (plan.officialLinks ?? [])
+        .map((link) => normalizePromotionUrlForComparison(link?.url))
+        .filter(Boolean)
+    )
+  );
+
+  return urls.length === 1 ? urls[0] : null;
+}
+
+function previousPromotionMatchesSpecializedPlanSource(entry) {
+  if (entry?.ownerType !== "pathway") {
+    return true;
+  }
+
+  const officialUrl = getSingleSpecializedPlanOfficialUrl(
+    SOURCE_GENERATED_PLANS_BY_ID.get(entry.planId)
+  );
+  if (!officialUrl) {
+    return true;
+  }
+
+  const entryUrl = normalizePromotionUrlForComparison(entry.url);
+  return !entryUrl || entryUrl === officialUrl;
+}
+
+function suggestedPrimaryMatchesSpecializedPlanSource(owner) {
+  const officialUrl = getSingleSpecializedPlanOfficialUrl(
+    SOURCE_GENERATED_PLANS_BY_ID.get(owner?.planId)
+  );
+  if (!officialUrl) {
+    return true;
+  }
+
+  const suggestedUrl = normalizePromotionUrlForComparison(owner?.suggestedPrimary?.url);
+  return !suggestedUrl || suggestedUrl === officialUrl;
+}
+
+function currentPrimaryCannotCreateSchedulableRows(owner) {
+  const currentPrimary = owner?.currentPrimary ?? null;
+  return Boolean(
+    currentPrimary &&
+      (
+        currentPrimary.sourceRoleStatus !== "primary" ||
+        currentPrimary.canCreateSchedulableRows === false ||
+        currentPrimary.canBePrimary === false
+      )
   );
 }
 
@@ -220,8 +301,10 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
       )
       .filter((entry) => !isClearlySupportOnlyPromotionEntry(entry))
       .filter((entry) => !isGraduateOnlyPromotionEntry(entry))
+      .filter((entry) => previousPromotionMatchesSpecializedPlanSource(entry))
       .filter((entry) => activeOwnerIds.has(entry.ownerId))
       .filter((entry) => discovery.isAutoPromotablePrimaryCandidate(entry))
+      .filter((entry) => !reviewOwnerKeys.has(buildOwnerKey(entry)))
       .map((entry) => [
         entry.ownerId,
         {
@@ -233,6 +316,7 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
   (discoveryReport.owners ?? [])
     .filter((owner) => !owner.existingPrimaryUrl)
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
+    .filter((owner) => suggestedPrimaryMatchesSpecializedPlanSource(owner))
     .filter((owner) => {
       const ownerKey = buildOwnerKey(owner);
       const blockedByReviewQueue = reviewOwnerKeys.has(ownerKey);
@@ -254,6 +338,11 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
         campusId: owner.campusId,
         url: owner.suggestedPrimary.url,
         label: normalizeLabel(owner),
+        sourceRole: owner.suggestedPrimary.sourceRole ?? null,
+        sourceRoleStatus: owner.suggestedPrimary.sourceRoleStatus ?? null,
+        parserType: owner.suggestedPrimary.parserType ?? null,
+        canCreateSchedulableRows:
+          owner.suggestedPrimary.canCreateSchedulableRows ?? null,
         score: owner.suggestedPrimary.score,
         confidence: "high",
         reasons: owner.suggestedPrimary.reasons ?? [],
@@ -262,8 +351,22 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
     });
 
   (discoveryReport.weakExistingOwners ?? [])
+    .concat(
+      (discoveryReport.owners ?? []).filter(
+        (owner) => owner?.existingPrimaryUrl && owner?.suggestedAction === "replace-existing-primary"
+      )
+    )
     .filter((owner) => owner?.suggestedAction === "replace-existing-primary")
     .filter((owner) => isSchedulablePrimarySuggestion(owner?.suggestedPrimary))
+    .filter((owner) => suggestedPrimaryMatchesSpecializedPlanSource(owner))
+    .filter((owner) => {
+      const ownerKey = buildOwnerKey(owner);
+      const blockedByReviewQueue = reviewOwnerKeys.has(ownerKey);
+      if (blockedByReviewQueue && !currentPrimaryCannotCreateSchedulableRows(owner)) {
+        skippedInReviewQueue.push(ownerKey);
+      }
+      return !blockedByReviewQueue || currentPrimaryCannotCreateSchedulableRows(owner);
+    })
     .forEach((owner) => {
       const pathwayId = normalizeTransferPlannerPathwayId(owner.planId, owner.pathwayId ?? null);
       const ownerId = buildOwnerId(owner.planId, pathwayId);
@@ -277,6 +380,11 @@ function buildPromotionReport(discoveryReport, reviewQueue, previousEntries) {
         campusId: owner.campusId,
         url: owner.suggestedPrimary.url,
         label: normalizeLabel(owner),
+        sourceRole: owner.suggestedPrimary.sourceRole ?? null,
+        sourceRoleStatus: owner.suggestedPrimary.sourceRoleStatus ?? null,
+        parserType: owner.suggestedPrimary.parserType ?? null,
+        canCreateSchedulableRows:
+          owner.suggestedPrimary.canCreateSchedulableRows ?? null,
         score: owner.suggestedPrimary.score,
         confidence: "high",
         reasons: [

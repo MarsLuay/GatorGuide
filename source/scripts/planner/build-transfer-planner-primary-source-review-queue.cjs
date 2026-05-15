@@ -71,7 +71,11 @@ function normalizeReviewCandidate(candidate) {
 function isReviewablePrimaryCandidate(candidate) {
   return (
     candidate &&
-    !discovery.isAutoPromotablePrimaryCandidate(candidate) &&
+    (
+      !discovery.isAutoPromotablePrimaryCandidate(candidate) ||
+      candidate.parserType === "html-curriculum-page" ||
+      candidate.sourceRole === "curriculum-map"
+    ) &&
     (candidate.confidence === "high" || candidate.confidence === "medium")
   );
 }

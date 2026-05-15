@@ -37,6 +37,9 @@ import {
   type TransferPlannerProgramApprovedCourseFilterDefinition,
 } from "@/constants/transfer-planner-source/program-approved-course-filters";
 import {
+  getTransferPlannerCampusGeneralEducationRequirement,
+} from "@/constants/transfer-planner-source/campus-general-education.generated";
+import {
   COURSE_CODE_PATTERN,
   extractCourseCodes,
   getCurrentTransferPlannerGrcCatalogYearLabel,
@@ -2257,10 +2260,6 @@ function getChoiceOnlyChecklistCourseCodeSet(plan: TransferPlannerMajorPlan | nu
     ...(plan.beforeEnrollmentChecklist ?? []),
     ...(plan.stayAtGrcChecklist ?? []),
   ]) {
-    if (!shouldAllowSourceScopedRequiredChecklistItem(plan, item)) {
-      continue;
-    }
-
     const choiceLabels = [
       ...(shouldTreatChecklistItemPrimaryCoursesAsRequired(item) ? [] : item.grcCourses ?? []),
       ...(item.alternatives ?? []).flat(),
@@ -2333,10 +2332,7 @@ export function buildSourceBackedRequiredCourseCodes(
       const mapsToSourceBackedRequiredUwCourse = requiredEquivalentUwCourseCodes.some((targetCourseCode) =>
         requiredUwCourseCodes.has(targetCourseCode)
       );
-      if (
-        choiceOnlyCourseCodes.has(normalizedCourseCode) &&
-        !mapsToSourceBackedRequiredUwCourse
-      ) {
+      if (choiceOnlyCourseCodes.has(normalizedCourseCode)) {
         continue;
       }
       if (
@@ -2736,6 +2732,14 @@ function getPlannerDefaultRequirementOptionIdsForScheduling(input: {
   item: TransferPlannerChecklistItem;
   plan?: TransferPlannerMajorPlan | null;
 }) {
+  const group = input.item.requirementGroup ?? null;
+  if (
+    group &&
+    (group.options ?? []).some((option) => isRequirementCategoryOption(option))
+  ) {
+    return [] as string[];
+  }
+
   // Generated selected option ids are the planner's deterministic default.
   // User selections still override them before this helper is consulted.
   return normalizeSelectedRequirementOptionIds(input.item.selectedRequirementOptionIds);
@@ -4868,6 +4872,21 @@ function buildPreparatoryTrackCourseCodeSet(track: TransferPlannerTrack | null |
   }
 
   const preparatoryCourseCodes = new Set<string>();
+  const schedulableCourseCodes = new Set<string>();
+
+  for (const term of track.terms) {
+    if (PREPARATORY_TRACK_TERM_LABEL_PATTERN.test(String(term.label ?? "").trim())) {
+      continue;
+    }
+
+    if (term.sampleOnly || term.canCreateScheduleRows === false) {
+      continue;
+    }
+
+    for (const courseCode of term.courses.flatMap((label) => extractCourseCodes(label))) {
+      schedulableCourseCodes.add(normalizeCourseCode(courseCode));
+    }
+  }
 
   for (const term of track.terms) {
     if (!PREPARATORY_TRACK_TERM_LABEL_PATTERN.test(String(term.label ?? "").trim())) {
@@ -4889,7 +4908,11 @@ function buildPreparatoryTrackCourseCodeSet(track: TransferPlannerTrack | null |
     }
   }
 
-  return preparatoryCourseCodes;
+  return new Set(
+    [...preparatoryCourseCodes]
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter((courseCode) => courseCode && !schedulableCourseCodes.has(courseCode))
+  );
 }
 
 export function getPreparatoryTrackCourseCodeSet(
@@ -6031,10 +6054,7 @@ export function buildSourceBackedRequiredCourseDescriptors(
       ) {
         continue;
       }
-      if (
-        choiceOnlyCourseCodes.has(normalizedCourseCode) &&
-        !mapsToSourceBackedRequiredUwCourse
-      ) {
+      if (choiceOnlyCourseCodes.has(normalizedCourseCode)) {
         continue;
       }
       if (
@@ -6570,15 +6590,7 @@ export function buildSourceBackedRequiredCourseSummaryEntries(
       if (
         !normalizedCourseCode ||
         seenCourseCodes.has(normalizedCourseCode) ||
-        (
-          choiceOnlyCourseCodes.has(normalizedCourseCode) &&
-          !courseMapsToSourceBackedRequiredUwCourse({
-            courseCode: normalizedCourseCode,
-            plan,
-            campusId: plan.campusId,
-            requiredUwCourseCodes,
-          })
-        )
+          choiceOnlyCourseCodes.has(normalizedCourseCode)
       ) {
         continue;
       }
@@ -8392,6 +8404,10 @@ function buildCompletedQuarterPlans(
   const campusId = input?.campusId ?? null;
   const requirementStatuses = input?.requirementStatuses ?? [];
   const requirementTargets = buildSourceBackedGeneralEducationRequirementTargets(input?.plan);
+  const completedCoverageRequirementTargets =
+    requirementTargets.nscCredits !== null && requirementTargets.nscCredits > 30
+      ? { ...requirementTargets, nscCredits: null }
+      : requirementTargets;
   const hasRequirementTargets = hasGeneralEducationRequirementTargets(requirementTargets);
   const requirementRelationText =
     getSourceBackedMajorGeneralEducationRequirementRelationText(input?.plan);
@@ -8439,9 +8455,12 @@ function buildCompletedQuarterPlans(
       return `This covers ${completedSscCredits}/${requirementTargets.sscCredits} SSc credits ${requirementRelationText}.`;
     }
 
-    if (requirementTargets.nscCredits !== null && requirementTags.has("NSC")) {
-      completedNscCredits = Math.min(completedNscCredits + creditAmount, requirementTargets.nscCredits);
-      return `This covers ${completedNscCredits}/${requirementTargets.nscCredits} NSc credits ${requirementRelationText}.`;
+    if (completedCoverageRequirementTargets.nscCredits !== null && requirementTags.has("NSC")) {
+      completedNscCredits = Math.min(
+        completedNscCredits + creditAmount,
+        completedCoverageRequirementTargets.nscCredits
+      );
+      return `This covers ${completedNscCredits}/${completedCoverageRequirementTargets.nscCredits} NSc credits ${requirementRelationText}.`;
     }
 
     return null;
@@ -9901,6 +9920,28 @@ const EMPTY_GENERAL_ED_REQUIREMENT_TARGETS: GeneralEducationRequirementTargets =
 function createEmptyGeneralEducationRequirementTargets(): GeneralEducationRequirementTargets {
   return {
     ...EMPTY_GENERAL_ED_REQUIREMENT_TARGETS,
+  };
+}
+
+function getCampusGeneralEducationRequirementForPlan(
+  plan: TransferPlannerMajorPlan | null | undefined
+) {
+  const sourcePlan = getGeneralEducationRequirementTargetSourcePlan(plan) ?? plan;
+  return getTransferPlannerCampusGeneralEducationRequirement(sourcePlan?.campusId ?? null, {
+    planId: sourcePlan?.id ?? null,
+  });
+}
+
+function createCampusGeneralEducationRequirementTargets(
+  plan: TransferPlannerMajorPlan | null | undefined
+): GeneralEducationRequirementTargets {
+  const campusRequirement = getCampusGeneralEducationRequirementForPlan(plan);
+  if (!campusRequirement) {
+    return createEmptyGeneralEducationRequirementTargets();
+  }
+
+  return {
+    ...campusRequirement.targets,
   };
 }
 
@@ -12212,12 +12253,102 @@ function joinSourceBackedGeneralEducationCategoryLabels(
   return `${labels.slice(0, -1).join(", ")}, and ${labels[labels.length - 1]}`;
 }
 
+function getGeneralEducationItemCategoryId(
+  item: TransferPlannerGeneralRequirementSection["items"][number]
+): SourceBackedGeneralEducationCategoryId | null {
+  if (item.id === "ah" || item.id === "ah-range") return "ah";
+  if (item.id === "ssc" || item.id === "ssc-range") return "ssc";
+  if (item.id === "nsc" || item.id === "nsc-range") return "nsc";
+  if (item.id === "div" || item.id === "overlapping-div") return "div";
+  if (item.id.startsWith("additional-") || item.id === "areas-of-inquiry-total") return null;
+
+  const normalizedLabel = normalizeGeneralEducationSignalText(item.label);
+  if (/^additional\b/.test(normalizedLabel) || /^areas? of inquiry\b/.test(normalizedLabel)) {
+    return null;
+  }
+  if (/\barts?\s*&\s*humanities\b|\barts?\s+and\s+humanities\b/.test(normalizedLabel)) {
+    return "ah";
+  }
+  if (/\bsocial sciences?\b/.test(normalizedLabel)) {
+    return "ssc";
+  }
+  if (/\bnatural sciences?\b/.test(normalizedLabel)) {
+    return "nsc";
+  }
+  if (/\bdiversity\b/.test(normalizedLabel)) {
+    return "div";
+  }
+
+  return null;
+}
+
+function getGeneralEducationItemFixedCredits(
+  item: TransferPlannerGeneralRequirementSection["items"][number]
+) {
+  const match = item.valueText.match(/\b(\d+(?:\.\d+)?)\s*credits?\b/i);
+  const parsed = Number.parseFloat(match?.[1] ?? "");
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function buildCampusGeneralEducationRequirementItems(
+  plan: TransferPlannerMajorPlan | null | undefined
+): TransferPlannerGeneralRequirementSection["items"] {
+  const campusRequirement = getCampusGeneralEducationRequirementForPlan(plan);
+  if (!campusRequirement) {
+    return [];
+  }
+
+  return campusRequirement.items.map((item) => ({
+    id: item.id,
+    label: item.label,
+    valueText: item.valueText ?? formatSourceBackedGeneralEducationCreditCount(item.credits),
+    note: item.note ?? (item.overlapsWithAreaOfInquiry
+      ? "May also apply to an Area of Inquiry requirement."
+      : undefined),
+    sourceKind: "source-backed-major" as const,
+  }));
+}
+
+function mergeSourceBackedGeneralEducationRequirementItems(
+  primaryItems: TransferPlannerGeneralRequirementSection["items"],
+  fallbackItems: TransferPlannerGeneralRequirementSection["items"]
+) {
+  const mergedItems = [...primaryItems];
+
+  for (const fallbackItem of fallbackItems) {
+    const fallbackCategoryId = getGeneralEducationItemCategoryId(fallbackItem);
+    const fallbackCredits = getGeneralEducationItemFixedCredits(fallbackItem);
+    const existingIndex = mergedItems.findIndex((item) => {
+      if (item.id === fallbackItem.id) return true;
+      const itemCategoryId = getGeneralEducationItemCategoryId(item);
+      return Boolean(itemCategoryId && itemCategoryId === fallbackCategoryId);
+    });
+
+    if (existingIndex === -1) {
+      mergedItems.push(fallbackItem);
+      continue;
+    }
+
+    const existingItem = mergedItems[existingIndex];
+    const existingCredits = getGeneralEducationItemFixedCredits(existingItem);
+    if (
+      fallbackCredits !== null &&
+      existingCredits !== null &&
+      fallbackCredits > existingCredits
+    ) {
+      mergedItems[existingIndex] = fallbackItem;
+    }
+  }
+
+  return mergedItems;
+}
+
 function buildSourceBackedMajorGeneralEducationRequirementItems(
   plan: TransferPlannerMajorPlan | null | undefined
 ): TransferPlannerGeneralRequirementSection["items"] {
   const structure = buildParsedSourceBackedGeneralEducationStructure(plan);
   if (!structure.descriptors.length || structure.hasConflict) {
-    return [];
+    return buildCampusGeneralEducationRequirementItems(plan);
   }
 
   const fixedCreditsByCategory = new Map<SourceBackedGeneralEducationCategoryId, number>();
@@ -12315,9 +12446,51 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
 
     items.push(item);
   };
+  const getAdditionalFlexibleDisplayCredits = (
+    descriptor: Extract<SourceBackedGeneralEducationDescriptor, { kind: "additional-flexible" }>
+  ) => {
+    const planningCategories = getSourceBackedPlanningCategories(descriptor.categories);
+    const planningCategoryKey = planningCategories.join("-");
+    const inferredCredits =
+      additionalFlexibleByCategoryKey.get(planningCategoryKey) ?? descriptor.credits;
+    const fixedCreditsForAdditionalBucket = planningCategories.reduce(
+      (totalCredits, category) => totalCredits + (fixedCreditsByCategory.get(category) ?? 0),
+      0
+    );
+    const reachesTotalCreditBucket =
+      /\b(?:to\s+reach|reach(?:ing)?|toward)\b[^.;]{0,48}\btotal\b/i.test(
+        descriptor.sourceLine
+      );
+
+    return reachesTotalCreditBucket &&
+      fixedCreditsForAdditionalBucket > 0 &&
+      descriptor.credits > fixedCreditsForAdditionalBucket
+      ? descriptor.credits - fixedCreditsForAdditionalBucket
+      : inferredCredits;
+  };
 
   for (const descriptor of structure.descriptors) {
     if (descriptor.kind === "area-total") {
+      const isRepresentedByExpandedCategories = structure.descriptors.some((entry) => {
+        if (entry.kind !== "additional-flexible") {
+          return false;
+        }
+
+        const planningCategories = getSourceBackedPlanningCategories(entry.categories);
+        const fixedCreditsForBucket = planningCategories.reduce(
+          (totalCredits, category) => totalCredits + (fixedCreditsByCategory.get(category) ?? 0),
+          0
+        );
+        return (
+          fixedCreditsForBucket > 0 &&
+          fixedCreditsForBucket + getAdditionalFlexibleDisplayCredits(entry) ===
+            descriptor.totalCredits
+        );
+      });
+      if (isRepresentedByExpandedCategories) {
+        continue;
+      }
+
       if (isAggregateAreaTotalCoveredByFlexibleBucket(descriptor, structure)) {
         continue;
       }
@@ -12389,6 +12562,7 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
     }
 
     if (descriptor.kind === "additional-flexible") {
+      const displayCredits = getAdditionalFlexibleDisplayCredits(descriptor);
       pushItem({
         id: `additional-${descriptor.categories.join("-")}`,
         label:
@@ -12398,7 +12572,7 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
                 descriptor.categories,
                 "slash"
               )}`,
-        valueText: formatSourceBackedGeneralEducationCreditCount(descriptor.credits),
+        valueText: formatSourceBackedGeneralEducationCreditCount(displayCredits),
         sourceKind: "source-backed-major",
       });
       continue;
@@ -12542,7 +12716,10 @@ function buildSourceBackedMajorGeneralEducationRequirementItems(
     });
   }
 
-  return items;
+  return mergeSourceBackedGeneralEducationRequirementItems(
+    items,
+    buildCampusGeneralEducationRequirementItems(plan)
+  );
 }
 
 export function buildSourceBackedMajorGeneralEducationRequirementSection(
@@ -12556,8 +12733,8 @@ export function buildSourceBackedMajorGeneralEducationRequirementSection(
 
   return {
     id: "source-backed-major-general-education",
-    title: "Major Required Gen-Eds",
-    summary: `Source-backed major-specific general education targets from ${getGeneralEducationPlanTitle(
+    title: "Required Gen-Eds",
+    summary: `Source-backed general education targets from official campus and major materials for ${getGeneralEducationPlanTitle(
       plan
     )}.`,
     campusId: sourcePlan.campusId,
@@ -12570,8 +12747,12 @@ export function buildSourceBackedMajorGeneralEducationRequirementSection(
 export function buildSourceBackedGeneralEducationRequirementTargets(
   plan: TransferPlannerMajorPlan | null | undefined
 ): GeneralEducationRequirementTargets {
-  return buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
+  const sourceBackedTargets = buildSourceBackedGeneralEducationRequirementTargetsFromStructure(
     buildParsedSourceBackedGeneralEducationStructure(plan)
+  );
+  return mergeGeneralEducationRequirementTargets(
+    sourceBackedTargets,
+    createCampusGeneralEducationRequirementTargets(plan)
   );
 }
 
@@ -13632,6 +13813,25 @@ function getRequirementOptionAllCourseCodes(option: RequirementGroupOption | Sug
       .map((courseCode) => normalizeCourseCode(courseCode))
       .filter(Boolean)
   );
+}
+
+function mergeGeneralEducationRequirementTargets(
+  primaryTargets: GeneralEducationRequirementTargets,
+  fallbackTargets: GeneralEducationRequirementTargets
+): GeneralEducationRequirementTargets {
+  const mergeCredits = (primaryCredits: number | null, fallbackCredits: number | null) => {
+    if (primaryCredits === null) return fallbackCredits;
+    if (fallbackCredits === null) return primaryCredits;
+    return Math.max(primaryCredits, fallbackCredits);
+  };
+
+  return {
+    ahCredits: mergeCredits(primaryTargets.ahCredits, fallbackTargets.ahCredits),
+    sscCredits: mergeCredits(primaryTargets.sscCredits, fallbackTargets.sscCredits),
+    nscCredits: mergeCredits(primaryTargets.nscCredits, fallbackTargets.nscCredits),
+    breadthCredits: mergeCredits(primaryTargets.breadthCredits, fallbackTargets.breadthCredits),
+    electiveCredits: mergeCredits(primaryTargets.electiveCredits, fallbackTargets.electiveCredits),
+  };
 }
 
 function getRequirementOptionMatchedCourseCodes(
@@ -18448,10 +18648,16 @@ export function auditRuntimeOptionResolution(input: {
         selectionSource: selectionResolution.selectionSource,
         campusId: input.plan.campusId,
       });
-    const scheduledOptionIds = getSuggestedPlanScheduledOptionIdsForGroup({
+    const scheduledOptionIds = getSuggestedScheduleUniqueIds([
+      ...getSuggestedPlanScheduledOptionIdsForGroup({
       groupId,
       suggestedPlan: input.suggestedPlan,
-    });
+      }),
+      ...getSuggestedCourseOptionIdsScheduledByCourses({
+        optionGroup: auditOptionGroup,
+        scheduledCourseCodes,
+      }),
+    ]);
     const visibleOptionGroup = displayedOptionGroupsById.get(groupId) ?? null;
     const expectedOptionIds = selectionResolution.selectedOptionIds;
     const expectedOptionIdSet = new Set(expectedOptionIds);

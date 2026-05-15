@@ -933,6 +933,10 @@ export function isSuspiciousStructuralPathwayId(value: string | null | undefined
     return false;
   }
 
+  if (/^(?:ba|bs)-option-family:[a-z0-9][a-z0-9-]*$/i.test(normalized)) {
+    return false;
+  }
+
   return DERIVED_PATHWAY_STRUCTURAL_ID_PATTERNS.some((pattern) => pattern.test(normalized));
 }
 
@@ -2253,6 +2257,20 @@ function sourceLineContainsPathwayFamily(
   return matchedTokenCount >= requiredTokenCount;
 }
 
+function sourceLineSupportsPathwayFamily(
+  plan: TransferPlannerMajorPlan,
+  pathway: Pick<TransferPlannerMajorPathway, "id" | "label">,
+  line: string | null | undefined
+) {
+  if (!sourceLineContainsPathwayFamily(plan, pathway, line)) {
+    return false;
+  }
+
+  const pathwayCredentialScope = getPathwayCredentialScope(pathway);
+  const lineCredentialScope = getPathwayCredentialScope({ id: "", label: line ?? "" });
+  return !pathwayCredentialScope || !lineCredentialScope || pathwayCredentialScope === lineCredentialScope;
+}
+
 function filterUnsupportedBasePathways(
   plan: TransferPlannerMajorPlan,
   basePathways: TransferPlannerMajorPathway[],
@@ -2358,7 +2376,7 @@ function filterUnsupportedBasePathways(
           ...(block.pathwayLabels ?? []),
           ...(block.requirementCueLines ?? []),
           ...(block.chooseStatements ?? []),
-        ].some((line) => sourceLineContainsPathwayFamily(plan, pathway, line))
+        ].some((line) => sourceLineSupportsPathwayFamily(plan, pathway, line))
       );
     });
 
@@ -2550,6 +2568,24 @@ function isCredentialScopedDerivedPathway(pathway: Pick<TransferPlannerDerivedPa
   return /^(?:ba|bs)-(?:route|option-family(?::|$))/i.test(pathway.id);
 }
 
+function getPathwayCredentialScope(
+  pathway: Pick<TransferPlannerMajorPathway | TransferPlannerDerivedPathwaySeed, "id" | "label">
+) {
+  const idText = normalizeTransferPlannerText(pathway.id).toLowerCase();
+  const labelText = normalizeDerivedPathwayText(pathway.label).toLowerCase();
+  const combinedText = `${idText} ${labelText}`;
+
+  if (/\bb\.?\s*s\.?\b|\bbachelor\s+of\s+science\b|\bbs[-:\s]/i.test(combinedText)) {
+    return "bs";
+  }
+
+  if (/\bb\.?\s*a\.?\b|\bbachelor\s+of\s+arts\b|\bba[-:\s]/i.test(combinedText)) {
+    return "ba";
+  }
+
+  return null;
+}
+
 function canonicalizeDerivedPathwaysAgainstSupportedBase(
   plan: TransferPlannerMajorPlan,
   supportedBasePathways: TransferPlannerMajorPathway[],
@@ -2644,14 +2680,26 @@ function hasDedicatedSourceBackedPathwayBlock(
     return true;
   }
 
+  if (
+    parsedSourceBlocks.some(
+      (block) =>
+        block.pathwayId === pathway.id &&
+        Boolean(
+          block.parsedUwCourseCodes?.length ||
+            block.requirementCueLines?.length ||
+            block.chooseStatements?.length ||
+            block.pathwayLabels?.length
+        )
+    )
+  ) {
+    return true;
+  }
+
   return parsedSourceBlocks.some(
     (block) =>
-      block.pathwayId === pathway.id &&
-      Boolean(
-        block.parsedUwCourseCodes?.length ||
-          block.requirementCueLines?.length ||
-          block.chooseStatements?.length ||
-          block.pathwayLabels?.length
+      !block.pathwayId &&
+      (block.pathwayLabels ?? []).some((line) =>
+        sourceLineSupportsPathwayFamily(plan, pathway, line)
       )
   );
 }
@@ -2664,7 +2712,7 @@ function mergeDerivedAndSourceBackedBasePathways(
 ) {
   const materializedPathwaysById = new Map<string, TransferPlannerMajorPathway>();
   const materializedOrder: string[] = [];
-  const representedFamilies = new Set<string>();
+  const representedFamilyCredentialScopes = new Map<string, Set<string | null>>();
   const pushMaterializedPathway = (pathway: TransferPlannerMajorPathway) => {
     if (!materializedPathwaysById.has(pathway.id)) {
       materializedOrder.push(pathway.id);
@@ -2673,7 +2721,9 @@ function mergeDerivedAndSourceBackedBasePathways(
     materializedPathwaysById.set(pathway.id, pathway);
     const supportKey = getPathwayMaterializationSupportKey(plan, pathway);
     if (supportKey) {
-      representedFamilies.add(supportKey);
+      const credentialScopes = representedFamilyCredentialScopes.get(supportKey) ?? new Set<string | null>();
+      credentialScopes.add(getPathwayCredentialScope(pathway));
+      representedFamilyCredentialScopes.set(supportKey, credentialScopes);
     }
   };
 
@@ -2703,8 +2753,17 @@ function mergeDerivedAndSourceBackedBasePathways(
     }
 
     const supportKey = getPathwayMaterializationSupportKey(plan, pathway);
-    if (supportKey && representedFamilies.has(supportKey)) {
-      continue;
+    if (supportKey) {
+      const representedCredentialScopes = representedFamilyCredentialScopes.get(supportKey) ?? null;
+      const credentialScope = getPathwayCredentialScope(pathway);
+      if (
+        representedCredentialScopes &&
+        (representedCredentialScopes.has(credentialScope) ||
+          !credentialScope ||
+          representedCredentialScopes.has(null))
+      ) {
+        continue;
+      }
     }
 
     pushMaterializedPathway({

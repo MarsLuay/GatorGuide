@@ -1093,6 +1093,28 @@ test("Seattle art sibling-choice families now recover the art-history track with
     assert.deepEqual(plan.grcCourseList, expectedCoursePool);
   }
 
+  const artHistoryCreditBucket = runtimeArtPlan.beforeEnrollmentChecklist.find(
+    (item) => item.requirementShape === "credit-bucket" && /art history/i.test(item.title)
+  );
+  assert.ok(
+    artHistoryCreditBucket,
+    "Expected Seattle Art to preserve the source-backed art-history credit bucket instead of flattening it away."
+  );
+  assert.deepEqual(artHistoryCreditBucket?.grcCourses, []);
+
+  const artHistoryBuckets = runtimeArtHistoryPlan.beforeEnrollmentChecklist.filter(
+    (item) => item.requirementShape === "credit-bucket" && /ART H/i.test(item.title)
+  );
+  assert.equal(
+    artHistoryBuckets.length,
+    4,
+    "Expected Seattle Art History to preserve each source-backed ART H credit bucket."
+  );
+  assert.ok(
+    artHistoryBuckets.every((item) => item.grcCourses.length === 0),
+    "Art History ART H credit buckets should not invent concrete Green River courses."
+  );
+
   const runtimeRecommendation = getTransferPlannerAutoMatchedTrackRecommendation(
     runtimeArtPlan.grcCourseList ?? []
   );
@@ -1104,6 +1126,48 @@ test("Seattle art sibling-choice families now recover the art-history track with
   );
   assert.ok(runtimeGeographyPlan, "Expected a Seattle Geography runtime planner row.");
   assert.equal(runtimeGeographyPlan.bestTrackId, null);
+});
+
+test("Seattle Asian Languages preserves language and approved-list credit buckets from the source page", () => {
+  assert.ok(seattleAsianLanguagesPlan, "Expected a Seattle Asian Languages source-generated planner row.");
+
+  const runtimePlan = resolveTransferPlannerStudentRuntimeMajorPlan(
+    getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-asian-languages-and-cultures"),
+    null
+  );
+  assert.ok(runtimePlan, "Expected a Seattle Asian Languages runtime planner row.");
+
+  const creditBuckets =
+    runtimePlan.requirementGroups?.filter((group) => group.requirementType === "choose_credits") ?? [];
+  assert.equal(creditBuckets.length, 4);
+
+  const primaryLanguageBucket = creditBuckets.find((group) =>
+    /15 credits Primary Language/i.test(group.label)
+  );
+  assert.ok(primaryLanguageBucket, "Expected the source-backed 15-credit primary language bucket.");
+  assert.equal(primaryLanguageBucket?.options.length, 0);
+
+  const approvedCourseBucket = creditBuckets.find((group) =>
+    /5 credits Literature, Culture, Linguistics/i.test(group.label)
+  );
+  assert.ok(approvedCourseBucket, "Expected the 5-credit approved course list bucket.");
+  assert.match(approvedCourseBucket?.label ?? "", /approved courses$/i);
+  assert.equal(approvedCourseBucket?.options.length, 22);
+
+  const electiveBucket = creditBuckets.find((group) =>
+    /10 credits Literature, Culture, Linguistics/i.test(group.label)
+  );
+  assert.ok(electiveBucket, "Expected the 10-credit approved electives bucket.");
+  assert.equal(electiveBucket?.options.length, 40);
+
+  const flexibleBucket = creditBuckets.find((group) =>
+    /30 Credits Language, Literature, Culture, Linguistics/i.test(group.label)
+  );
+  assert.ok(flexibleBucket, "Expected the 30-credit flexible AL&L bucket.");
+  assert.equal(flexibleBucket?.options.length, 0);
+
+  const fiveCreditBuckets = creditBuckets.filter((group) => group.minCredits === 5 && group.maxCredits === 5);
+  assert.equal(fiveCreditBuckets.length, 1, "Expected no duplicate 5-credit placeholder bucket.");
 });
 
 test("Seattle quantitative partial-major batch now lands as detailed structured planner rows", () => {
@@ -2396,6 +2460,32 @@ test("Major-specific breadth targets stay intact after the CADR section hides at
   assert.equal(diagnostics.hasSourceBackedTargets, true);
 });
 
+test("Tacoma campus gen-ed source fills AOI minimums for major pages that do not repeat them", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-tacoma-electrical-engineering");
+  assert.ok(runtimePlan, "Expected the Tacoma Electrical Engineering runtime plan.");
+
+  const section = buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan);
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
+    ahCredits: 10,
+    sscCredits: 10,
+    nscCredits: 10,
+    breadthCredits: null,
+    electiveCredits: null,
+  });
+  assert.ok(section, "Expected Tacoma campus-backed gen-ed summary items.");
+  assert.deepEqual(
+    section?.items.map((entry) => `${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`),
+    [
+      "Areas of Inquiry: 40 credits total (Includes no fewer than 10 credits in each area of study.)",
+      "Arts & Humanities: 10 credits",
+      "Social Sciences: 10 credits",
+      "Natural Sciences: 10 credits",
+      "Diversity: 5 credits",
+    ]
+  );
+});
+
 test("Materials NME breadth renders the shared A&H/SSc/DIV bucket without inventing A&H 24", () => {
   const sourcePlan = getRequiredPlan("uw-seattle-materials-science-engineering");
   const nmePlan = resolveTransferPlannerMajorPlan(sourcePlan, "nme-option");
@@ -2999,18 +3089,48 @@ test("Bothell Applied Computing category-first breadth lines recover separate A&
   assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
     ahCredits: 15,
     sscCredits: 15,
-    nscCredits: null,
+    nscCredits: 15,
     breadthCredits: null,
     electiveCredits: null,
   });
   assert.ok(section, "Expected Applied Computing source-backed gen-ed summary items.");
   assert.deepEqual(
     section?.items.map((entry) => `${entry.label}: ${entry.valueText}`),
-    ["Arts & Humanities: 15 credits", "Social Sciences: 15 credits", "Diversity: 5 credits"]
+    [
+      "Arts & Humanities: 15 credits",
+      "Social Sciences: 15 credits",
+      "Diversity: 5 credits",
+      "Natural Sciences: 15 credits",
+    ]
   );
   assert.equal(
     section?.items.some((entry) => /Arts & Humanities \/ Social Sciences/i.test(entry.label)),
     false
+  );
+});
+
+test("Bothell campus gen-ed source fills AOI targets for major pages that do not repeat them", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-bothell-electrical-engineering");
+  assert.ok(runtimePlan, "Expected the Electrical Engineering runtime plan.");
+
+  const section = buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan);
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
+    ahCredits: 15,
+    sscCredits: 15,
+    nscCredits: 15,
+    breadthCredits: null,
+    electiveCredits: null,
+  });
+  assert.ok(section, "Expected Bothell campus-backed gen-ed summary items.");
+  assert.deepEqual(
+    section?.items.map((entry) => `${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`),
+    [
+      "Arts & Humanities: 15 credits",
+      "Social Sciences: 15 credits",
+      "Natural Sciences: 15 credits",
+      "Diversity: 5 credits (May also apply to an Area of Inquiry requirement.)",
+    ]
   );
 });
 
@@ -3024,8 +3144,8 @@ test("Computer Engineering Areas-of-Inquiry range targets surface as summary ite
   assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
     ahCredits: 10,
     sscCredits: 10,
-    nscCredits: null,
-    breadthCredits: 10,
+    nscCredits: 40,
+    breadthCredits: 4,
     electiveCredits: null,
   });
   assert.ok(section, "Expected Computer Engineering to expose structured ranged summary items.");
@@ -3034,29 +3154,57 @@ test("Computer Engineering Areas-of-Inquiry range targets surface as summary ite
     [
       "Diversity: 5 credits",
       "Areas of Inquiry: 30 credits total",
-      "Arts & Humanities: 10-20 credits (Within the 30 credits Areas of Inquiry total.)",
-      "Social Sciences: 10-20 credits (Within the 30 credits Areas of Inquiry total.)",
+      "Arts & Humanities: 10 credits",
+      "Social Sciences: 10 credits",
+      "Natural Sciences: 40 credits",
+      "Additional Arts & Humanities / Social Sciences: 4 credits",
     ]
   );
   assert.equal(diagnostics.hasSourceBackedTargets, true);
   assert.ok(diagnostics.sourceBackedSummarySection);
 });
 
-test("Seattle Jewish Studies does not invent major-specific gen-ed targets from 300-400-level elective prose", () => {
+test("Seattle Mechanical Engineering expands A&H/SSc reach-total gen-ed text into the additional remainder", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-mechanical-engineering");
+  assert.ok(runtimePlan, "Expected the Mechanical Engineering runtime plan.");
+
+  const section = buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan);
+
+  assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
+    ahCredits: 10,
+    sscCredits: 10,
+    nscCredits: 40,
+    breadthCredits: 4,
+    electiveCredits: null,
+  });
+  assert.ok(section, "Expected Mechanical Engineering to expose Engineering gen-ed targets.");
+  assert.deepEqual(
+    section?.items.map((entry) => `${entry.label}: ${entry.valueText}${entry.note ? ` (${entry.note})` : ""}`),
+    [
+      "Arts & Humanities: 10 credits",
+      "Social Sciences: 10 credits",
+      "Additional Arts & Humanities / Social Sciences: 4 credits",
+      "Natural Sciences: 40 credits",
+      "Diversity: 5 credits (May also apply to an Area of Inquiry requirement.)",
+    ]
+  );
+});
+
+test("Seattle Jewish Studies uses college-level gen-ed targets without using 300-400-level elective prose", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-jewish-studies");
   assert.ok(runtimePlan, "Expected the Jewish Studies runtime plan.");
 
   const diagnostics = buildGeneralEducationRequirementLayerDiagnostics(runtimePlan);
 
   assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
-    ahCredits: null,
-    sscCredits: null,
-    nscCredits: null,
+    ahCredits: 20,
+    sscCredits: 20,
+    nscCredits: 20,
     breadthCredits: null,
-    electiveCredits: null,
+    electiveCredits: 15,
   });
-  assert.equal(buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan), null);
-  assert.equal(diagnostics.hasSourceBackedTargets, false);
+  assert.ok(buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan));
+  assert.equal(diagnostics.hasSourceBackedTargets, true);
 });
 
 test("Seattle Aeronautics does not misread the science-core NSc option as a 5-credit general-education target", () => {
@@ -3143,6 +3291,46 @@ test("Seattle Aeronautics preserves mixed course/category science option choices
   assert.ok(satisfactionAudit, "Expected option satisfaction audit row for A&A science choice.");
   assert.equal(satisfactionAudit?.displayedProgress, "0/1");
   assert.match(satisfactionAudit?.copyOnlyDebugText ?? "", /Category options: .*Natural Sciences/);
+});
+
+test("Seattle Aeronautics does not promote elective credit-cap notes into checklist choices", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
+  assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
+
+  const visibleChecklistText = [
+    ...(runtimePlan.beforeEnrollmentChecklist ?? []),
+    ...(runtimePlan.stayAtGrcChecklist ?? []),
+  ]
+    .map((item) => `${item.title} ${item.sourceSection ?? ""}`)
+    .join("\n");
+
+  assert.doesNotMatch(
+    visibleChecklistText,
+    /\bAA 499\b.*\bENGR 321\b|\bENGR 321\b.*\bAA 499\b/i,
+    "A&A research/internship credit-cap note should remain source evidence, not a standalone choice row."
+  );
+});
+
+test("Seattle Aeronautics maps the single CHEM 142 source row without promoting the full chemistry sequence", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-aeronautics-astronautics");
+  assert.ok(runtimePlan, "Expected the Aeronautics runtime plan.");
+
+  const visibleCourseLabels = new Set(
+    [
+      ...(runtimePlan.beforeEnrollmentChecklist ?? []),
+      ...(runtimePlan.stayAtGrcChecklist ?? []),
+      ...(runtimePlan.grcCourseList ?? []).map((title) => ({ title })),
+    ].map((item) => item.title)
+  );
+
+  assert.ok(
+    visibleCourseLabels.has("CHEM& 161"),
+    "A&A should keep the Green River equivalent for the UW CHEM 142 requirement."
+  );
+  assert.ok(
+    !visibleCourseLabels.has("CHEM& 162") && !visibleCourseLabels.has("CHEM& 163"),
+    "A&A should not use the full Green River chemistry sequence unless the source requires CHEM 152/162 too."
+  );
 });
 
 test("Seattle Aeronautics category science option can satisfy from an unused NSc transcript course", () => {
@@ -3493,11 +3681,11 @@ test("Seattle American Ethnic Studies now keeps official transfer policy separat
     );
 
   assert.deepEqual(diagnostics.sourceBackedTargets, {
-    ahCredits: null,
-    sscCredits: null,
-    nscCredits: null,
+    ahCredits: 20,
+    sscCredits: 20,
+    nscCredits: 20,
     breadthCredits: null,
-    electiveCredits: null,
+    electiveCredits: 15,
   });
   assert.deepEqual(diagnostics.plannerGuidanceTargets, {
     ahCredits: null,
@@ -3506,33 +3694,26 @@ test("Seattle American Ethnic Studies now keeps official transfer policy separat
     breadthCredits: null,
     electiveCredits: null,
   });
-  assert.equal(diagnostics.hasSourceBackedTargets, false);
-  assert.equal(sourceBackedSection, null);
+  assert.equal(diagnostics.hasSourceBackedTargets, true);
+  assert.deepEqual(
+    sourceBackedSection?.items.map((entry) => `${entry.label}: ${entry.valueText}`),
+    [
+      "Arts & Humanities: 20 credits",
+      "Social Sciences: 20 credits",
+      "Natural Sciences: 20 credits",
+      "Additional Areas of Inquiry: 15 credits",
+      "Diversity: 5 credits",
+    ]
+  );
   assert.equal(generalRequirementSection?.plannerUsage, "summary-only");
   assert.deepEqual(
     generalRequirementSection?.items.map((entry) => `${entry.label}: ${entry.valueText}`),
     EXPECTED_UW_TRANSFER_ADMISSION_REQUIREMENT_LINES
   );
-  assert.ok(humanitiesPlaceholders.length >= 3);
-  assert.ok(naturalSciencePlaceholders.length >= 3);
-  assert.ok(socialSciencePlaceholders.length >= 2);
-  assert.ok(sharedBreadthPlaceholders.length >= 0);
-  assert.match(
-    humanitiesPlaceholders[0]?.course.guidanceSummary ?? "",
-    /A&H credits from the official matched Green River associate pathway map for American Ethnic Studies\./i
-  );
-  assert.match(
-    humanitiesPlaceholders[humanitiesPlaceholders.length - 1]?.course.guidanceSummary ?? "",
-    /not an official UW transfer admission requirement\./i
-  );
-  assert.match(
-    naturalSciencePlaceholders[0]?.course.guidanceSummary ?? "",
-    /NSc credits from the official matched Green River associate pathway map for American Ethnic Studies\./i
-  );
-  assert.match(
-    socialSciencePlaceholders[0]?.course.guidanceSummary ?? "",
-    /SSc credits from the official matched Green River associate pathway map for American Ethnic Studies\./i
-  );
+  assert.equal(humanitiesPlaceholders.length, 0);
+  assert.equal(naturalSciencePlaceholders.length, 0);
+  assert.equal(socialSciencePlaceholders.length, 0);
+  assert.equal(sharedBreadthPlaceholders.length, 0);
   assert.equal(
     fullQuarterPlan
       .filter((quarter) => quarter.phase === "planned")
@@ -3547,12 +3728,6 @@ test("Seattle American Ethnic Studies now keeps official transfer policy separat
       .some((label) => /^5 credits of /i.test(label)),
     false
   );
-  if (sharedBreadthPlaceholders.length > 0) {
-    assert.match(
-      sharedBreadthPlaceholders[0]?.guidanceSummary ?? "",
-      /additional A&H\/SSc credits from the official matched Green River associate pathway map for American Ethnic Studies\./i
-    );
-  }
 });
 
 test("Seattle American Ethnic Studies materializes the four official concentration pathways", () => {

@@ -108,6 +108,7 @@ function buildParsedSourceScopeFixture({
   label = "Requirement source",
   courseCodes = ["CHEM 142", "BIOL 180"],
   snapshotLines = null,
+  headings = [label],
   planId = "uw-seattle-scope-fixture-engineering",
   pathwayId = null,
   ownerId = null,
@@ -141,7 +142,7 @@ function buildParsedSourceScopeFixture({
   };
   const parsed = {
     title: label,
-    headings: [label],
+    headings,
     requirementCueLines: lines,
     chooseStatements: [],
     pathwayLabels: [],
@@ -199,6 +200,134 @@ function getCompactRuntimeRequirementGroups(planId, pathwayId = null) {
     )
   );
 }
+
+test("PDF checklist extraction preserves two-column numbered sections", () => {
+  const ordered = parser.orderPdfLineSegmentsForTest([
+    { text: "1) Mathematics (MATH)", x: 40, y: 700 },
+    { text: "6) Biochemistry (BIOC)", x: 320, y: 700 },
+    { text: "Regular or Honors Calculus", x: 52, y: 680 },
+    { text: "ï‚¨ 405 (3)", x: 332, y: 680 },
+    { text: "ï‚¨ 124 (5)", x: 52, y: 660 },
+    { text: "ï‚¨ 406 (3)", x: 332, y: 660 },
+    { text: "ï‚¨ 125 (5)", x: 52, y: 640 },
+    { text: "7) Physical Chemistry (CHEM)", x: 320, y: 640 },
+    { text: "ï‚¨ 126 (5)", x: 52, y: 620 },
+    { text: "ï‚¨ 452 (3)", x: 332, y: 620 },
+    { text: "2) General Chemistry (CHEM)", x: 40, y: 600 },
+    { text: "ï‚¨ 453 (3)", x: 332, y: 600 },
+    { text: "ï‚¨ 142 (5) ï‚¨ 145 (5) ï‚¨ 143 (6)", x: 52, y: 580 },
+    { text: "8) Science Electives", x: 320, y: 580 },
+  ]).map((segment) => segment.text);
+
+  assert.deepEqual(ordered.slice(0, 7), [
+    "1) Mathematics (MATH)",
+    "Regular or Honors Calculus",
+    "ï‚¨ 124 (5)",
+    "ï‚¨ 125 (5)",
+    "ï‚¨ 126 (5)",
+    "2) General Chemistry (CHEM)",
+    "ï‚¨ 142 (5) ï‚¨ 145 (5) ï‚¨ 143 (6)",
+  ]);
+  assert.deepEqual(ordered.slice(7), [
+    "6) Biochemistry (BIOC)",
+    "ï‚¨ 405 (3)",
+    "ï‚¨ 406 (3)",
+    "7) Physical Chemistry (CHEM)",
+    "ï‚¨ 452 (3)",
+    "ï‚¨ 453 (3)",
+    "8) Science Electives",
+  ]);
+});
+
+test("PDF checklist parser carries numbered subject headings into bare course rows", () => {
+  const entry = {
+    parserType: "pdf-degree-sheet",
+    label: "BA Biochemistry Checklist",
+    url: "https://example.edu/biochemistry-checklist.pdf",
+  };
+  const codes = parser.extractCourseCodesFromLinesForTest(
+    [
+      "1) Mathematics (MATH)",
+      "Regular or Honors Calculus",
+      "ï‚¨ 124 (5)",
+      "ï‚¨ 134 (5)",
+      "ï‚¨ 125 (5)",
+      "ï‚¨ 135 (5)",
+      "ï‚¨ 126 (5)",
+      "ï‚¨ 136 (5)",
+      "3) Organic Chemistry (CHEM)",
+      "Regular or Honors",
+      "ï‚¨ 237 (4)",
+      "ï‚¨ 335 (4)",
+      "ï‚¨ 238 (4)",
+      "ï‚¨ 336 (4)",
+      "Laboratory",
+      "ï‚¨ 241 (3)",
+      "ï‚¨ 346 (3)",
+    ],
+    [],
+    entry
+  );
+
+  assert.ok(codes.includes("MATH 124"));
+  assert.ok(codes.includes("MATH 134"));
+  assert.ok(codes.includes("CHEM 237"));
+  assert.ok(codes.includes("CHEM 346"));
+  assert.ok(!codes.includes("CHEM 124"));
+});
+
+test("PDF checklist parser materializes regular honors and accelerated sequence columns", () => {
+  const entry = {
+    parserType: "pdf-degree-sheet",
+    label: "BA Biochemistry Checklist",
+    url: "https://example.edu/biochemistry-checklist.pdf",
+  };
+  const snapshotLines = [
+    "1) Mathematics (MATH)",
+    "Regular or Honors Calculus",
+    "ï‚¨ 124 (5)",
+    "ï‚¨ 134 (5)",
+    "ï‚¨ 125 (5)",
+    "ï‚¨ 135 (5)",
+    "ï‚¨ 126 (5)",
+    "ï‚¨ 136 (5)",
+    "2) General Chemistry (CHEM)",
+    "Regular or Honors or Accelerated",
+    "ï‚¨ 142 (5) ï‚¨ 145 (5) ï‚¨ 143 (6)",
+    "ï‚¨ 152 (5) ï‚¨ 155 (5) ï‚¨ 153 (6)",
+    "ï‚¨ 162 (5) ï‚¨ 165 (5)",
+    "3) Organic Chemistry (CHEM)",
+    "Regular or Honors",
+    "ï‚¨ 237 (4)",
+    "ï‚¨ 335 (4)",
+    "ï‚¨ 238 (4)",
+    "ï‚¨ 336 (4)",
+    "ï‚¨ 239 (4)",
+    "ï‚¨ 337 (4)",
+  ];
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    {
+      ownerId: "uw-seattle-biochemistry",
+      sourceRole: "primary-degree-requirements",
+      sourceUrl: entry.url,
+    },
+    parser.extractCourseCodesFromLinesForTest(snapshotLines, [], entry),
+    snapshotLines
+  );
+  const sequenceGroups = groups.filter((group) => group.requirementType === "sequence_choice");
+
+  const paths = sequenceGroups.flatMap((group) =>
+    group.sequencePaths.map((path) => path.uwCourses.join(">"))
+  );
+
+  assert.ok(paths.includes("MATH 124>MATH 125>MATH 126"));
+  assert.ok(paths.includes("MATH 134>MATH 135>MATH 136"));
+  assert.ok(paths.includes("CHEM 142>CHEM 152>CHEM 162"));
+  assert.ok(paths.includes("CHEM 145>CHEM 155>CHEM 165"));
+  assert.ok(paths.includes("CHEM 143>CHEM 153"));
+  assert.ok(paths.some((path) => path.startsWith("CHEM 237>CHEM 238>CHEM 239")));
+  assert.ok(paths.some((path) => path.startsWith("CHEM 335>CHEM 336>CHEM 337")));
+});
 
 function getCompactRuntimePlan(planId, pathwayId = null) {
   return studentRuntime.resolveTransferPlannerMajorPlan(
@@ -1282,6 +1411,248 @@ test("DOCX major planning worksheets are primary parseable document candidates",
   assert.ok(worksheet.score > overview.score);
 });
 
+test("Business major discovery penalizes sibling bachelor degree routes", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "weak-existing-primary",
+    ownerType: "major",
+    ownerKey: "uw-bothell-business-administration",
+    planId: "uw-bothell-business-administration",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Business Administration",
+    label: "Business Administration",
+    officialLinks: [],
+    existingPrimary: {
+      label: "UW Bothell Bachelor of Business Administration curriculum",
+      url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+    },
+    pathwayCount: 8,
+  });
+  const businessCurriculum = discovery.scoreCandidate(target, {
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+    label: "UW Bothell Bachelor of Business Administration curriculum",
+    pageTitle: "Bachelor of Business Administration Curriculum",
+    pageHeadings: ["Bachelor of Business Administration Curriculum", "Requirements"],
+    sourceKind: "official-link",
+  });
+  const economicsCurriculum = discovery.scoreCandidate(target, {
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
+    label: "UW Bothell Bachelor of Economics curriculum",
+    pageTitle: "Bachelor of Economics Curriculum",
+    pageHeadings: ["Bachelor of Economics Curriculum", "Requirements"],
+    sourceKind: "discovered-anchor",
+    sourcePageUrl:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/curriculum",
+  });
+
+  assert.ok(
+    economicsCurriculum.reasons.includes(
+      "candidate appears to describe a different degree route"
+    )
+  );
+  assert.ok(economicsCurriculum.score < businessCurriculum.score);
+});
+
+test("Catalog credential discovery prefers the matching pathway credential anchor over sibling anchors", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "weak-existing-primary",
+    ownerType: "pathway",
+    ownerKey: "uw-seattle-atmospheric-and-climate-science:pathway:bs-option-family:climate",
+    planId: "uw-seattle-atmospheric-and-climate-science",
+    pathwayId: "bs-option-family:climate",
+    campusId: "uw-seattle",
+    title: "Atmospheric and Climate Science - B.S. Climate option",
+    label: "B.S. Climate option",
+    officialLinks: [],
+    existingPrimary: {
+      label: "Program of Study: Major: Atmospheric and Climate Science",
+      url: "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
+    },
+    pathwayCount: 4,
+  });
+  const sharedPageHeadings = [
+    "Bachelor of Science degree with a major in Atmospheric and Climate Science: Chemistry",
+    "Bachelor of Science degree with a major in Atmospheric and Climate Science: Climate",
+    "Bachelor of Science degree with a major in Atmospheric and Climate Science: Data Science",
+    "Bachelor of Science degree with a major in Atmospheric and Climate Science: Meteorology",
+  ];
+  const climateCredential = discovery.scoreCandidate(target, {
+    url: "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#credential-66eb4f7fc6df171928f9a3fb",
+    anchorText: "Bachelor of Science degree with a major in Atmospheric and Climate Science: Climate",
+    pageHeadings: sharedPageHeadings,
+    sourceKind: "discovered-anchor",
+    sourcePageUrl:
+      "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
+  });
+  const dataScienceCredential = discovery.scoreCandidate(target, {
+    url: "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#credential-66eb4be55e1578ddb9e20fcc",
+    anchorText: "Bachelor of Science degree with a major in Atmospheric and Climate Science: Data Science",
+    pageHeadings: sharedPageHeadings,
+    sourceKind: "discovered-anchor",
+    sourcePageUrl:
+      "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
+  });
+  const majorAnchor = discovery.scoreCandidate(target, {
+    url: "https://www.washington.edu/students/gencat/program/S/AtmosphericandClimateScience-1067.html#program-UG-ATMOS-MAJOR",
+    anchorText: "Program of Study: Major: Atmospheric and Climate Science",
+    pageHeadings: sharedPageHeadings,
+    sourceKind: "official-link",
+  });
+
+  assert.ok(climateCredential.score > dataScienceCredential.score);
+  assert.ok(climateCredential.score > majorAnchor.score);
+});
+
+test("Catalog credential anchor parser scopes to the selected credential only", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="credential-alpha">
+      <h4 class="expanded" id="credential-alpha">Bachelor of Arts degree with a major in Example: Alpha</h4>
+    </div>
+    <div id="credential-alpha-block" class="inner-block">
+      <div class="credentialCompletionRequirements">
+        <b>Completion Requirements</b>
+        <p>55 credits</p>
+        <ol>
+          <li>Core courses (20 credits): ANTH 201; one from STAT 220 or STAT 311</li>
+          <li>Option courses: include 20 credits from courses approved for the Alpha option.</li>
+        </ol>
+      </div>
+      <div class="backToTop"><a href="#top">Back to Top</a></div>
+    </div>
+    <div class="expandableGroup" data-expand="credential-beta">
+      <h4 class="expanded" id="credential-beta">Bachelor of Arts degree with a major in Example: Beta</h4>
+    </div>
+    <div id="credential-beta-block" class="inner-block">
+      <div class="credentialCompletionRequirements">
+        <b>Completion Requirements</b>
+        <ol>
+          <li>Option courses: include BIO A 351 or BIO A 355 and 15 credits from the Beta option.</li>
+        </ol>
+      </div>
+    </div>
+  `;
+  const scope = parser.scopeCatalogHtmlByAnchor(
+    {
+      campusId: "uw-seattle",
+      planId: "uw-seattle-example",
+      ownerTitle: "Example - B.A. Alpha option",
+      label: "B.A. Alpha option",
+      role: "catalog",
+      parserType: "catalog-page",
+      url: "https://www.washington.edu/students/gencat/program/S/Example.html#credential-alpha",
+    },
+    html
+  );
+  const scopedText = scope?.lines?.join(" ") ?? "";
+
+  assert.equal(scope?.scoped, true);
+  assert.match(scopedText, /Alpha option/);
+  assert.doesNotMatch(scopedText, /Beta option/);
+  assert.match(scope?.sectionAudit?.stopBoundary ?? "", /credential-beta/);
+});
+
+test("Catalog program anchor parser stops major scope before child credential sections", () => {
+  const html = `
+    <div class="expandableGroup" data-expand="program-UG-ACMS-MAJOR">
+      <h3 class="expanded" id="program-UG-ACMS-MAJOR">Program of Study: Major: Applied and Computational Mathematical Sciences</h3>
+    </div>
+    <div id="program-UG-ACMS-MAJOR-block" class="inner-block">
+      <div class="programsOfStudy">
+        <span>This program of study leads to the following credentials:</span>
+        <ul>
+          <li>Bachelor of Science degree with a major in Applied and Computational Math Sciences: Data Science and Statistics</li>
+          <li>Bachelor of Science degree with a major in Applied and Computational Math Sciences: Discrete Mathematics and Algorithms</li>
+        </ul>
+      </div>
+      <div class="programRecommendedPrep">
+        <b>Recommended Preparation</b>
+        <p>MATH 124, MATH 125, MATH 126; CSE 123 or CSE 143.</p>
+      </div>
+      <div class="programAdmissionRequirements">
+        <b>Admission Requirements</b>
+        <p>Minimum Course Requirements: MATH 208 and AMATH 352.</p>
+      </div>
+      <div class="continuationPolicy"><b>Continuation Policy</b></div>
+      <div class="expandableGroup" data-expand="credential-67e1c469f30b814dcb572f9e">
+        <h4 class="expanded" id="credential-67e1c469f30b814dcb572f9e">Bachelor of Science degree with a major in Applied and Computational Math Sciences: Data Science and Statistics</h4>
+      </div>
+      <div id="credential-67e1c469f30b814dcb572f9e-block" class="inner-block">
+        <div class="credentialOverview"><b>Credential Overview</b></div>
+        <div class="programCompletionRequirements">
+          <b>Completion Requirements</b>
+          <p>Machine Learning: STAT 435 or CFRM 421.</p>
+        </div>
+      </div>
+    </div>
+  `;
+  const scope = parser.scopeCatalogHtmlByAnchor(
+    {
+      campusId: "uw-seattle",
+      ownerType: "major",
+      planId: "uw-seattle-applied-and-computational-mathematical-sciences",
+      ownerTitle: "Applied & Computational Mathematical Sciences (ACMS)",
+      label: "Applied & Computational Mathematical Sciences (ACMS)",
+      role: "catalog",
+      parserType: "catalog-page",
+      url: "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html#program-UG-ACMS-MAJOR",
+    },
+    html
+  );
+  const scopedText = scope?.lines?.join(" ") ?? "";
+
+  assert.equal(scope?.scoped, true);
+  assert.match(scopedText, /Recommended Preparation/);
+  assert.match(scopedText, /Admission Requirements/);
+  assert.match(scopedText, /Data Science and Statistics/);
+  assert.doesNotMatch(scopedText, /Machine Learning/);
+  assert.match(scope?.sectionAudit?.stopBoundary ?? "", /Data Science and Statistics/);
+
+  const scopedLines = parser.scopeHtmlLinesForTest(
+    {
+      campusId: "uw-seattle",
+      ownerType: "major",
+      planId: "uw-seattle-applied-and-computational-mathematical-sciences",
+      ownerTitle: "Applied and Computational Mathematical Sciences",
+      label: "Applied and Computational Mathematical Sciences",
+      role: "degree-requirements",
+      parserType: "html-degree-page",
+      url: "https://www.washington.edu/students/gencat/program/S/AppliedandComputationalMathSciences-994.html",
+    },
+    "Applied and Computational Math Sciences",
+    ["Program of Study: Major: Applied and Computational Mathematical Sciences"],
+    [
+      "Applied and Computational Math Sciences",
+      "Program of Study: Major: Applied and Computational Mathematical Sciences",
+      "This program of study leads to the following credentials:",
+      "Bachelor of Science degree with a major in Applied and Computational Math Sciences: Data Science and Statistics",
+      "Bachelor of Science degree with a major in Applied and Computational Math Sciences: Discrete Mathematics and Algorithms",
+      "Recommended Preparation",
+      "MATH 124, MATH 125, MATH 126; CSE 123 or CSE 143.",
+      "Admission Requirements",
+      "Minimum Course Requirements: MATH 208 and AMATH 352.",
+      "Minimum grade requirements: Minimum 2.0 grade for each course required for admission.",
+      "Determining Factors: Factors considered include performance in degree-related courses.",
+      "When to Apply: Applications are accepted twice each year.",
+      "Entering Transfers. Admission is capacity constrained.",
+      "Transfer applicants must submit a departmental application.",
+      "Minimum 30 graded college credits completed by the University transfer application deadline.",
+      "Minimum Course Requirements: MATH 208 and AMATH 352.",
+      "Minimum grade requirements: Minimum 2.0 grade for each course required for admission.",
+      "Determining Factors: Factors considered include performance in degree-related courses.",
+      "When to Apply: Application deadlines are published by the department.",
+      "Continuation Policy",
+      "Bachelor of Science degree with a major in Applied and Computational Math Sciences: Data Science and Statistics",
+      "Credential Overview",
+      "Completion Requirements",
+      "Machine Learning: STAT 435 or CFRM 421.",
+    ]
+  );
+  const scopedLineText = scopedLines.join(" ");
+
+  assert.match(scopedLineText, /Admission Requirements/);
+  assert.doesNotMatch(scopedLineText, /Machine Learning/);
+});
+
 test("Pathway hub pages can promote matching child option and concentration sources", async () => {
   const hubUrl =
     "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/options";
@@ -2244,6 +2615,40 @@ test("Parser extracts sectioned course groups from source headings without a pla
   assert.ok(engr321?.constraints.includes("max_degree_counting_credits:4"));
 });
 
+test("Parser uses extracted heading metadata to keep sectioned source rows under the correct heading", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "A&A degree requirements",
+    planId: "uw-seattle-heading-metadata-fixture",
+    ownerId: "uw-seattle-heading-metadata-fixture",
+    ownerTitle: "Heading Metadata Fixture",
+    courseCodes: ["MATH 124", "CHEM 142", "AA 301"],
+    headings: [
+      "Mathematics (27 credits)",
+      "Sciences (25 credits)",
+      "A&A Core Courses (50 credits)",
+    ],
+    snapshotLines: [
+      "Mathematics (27 credits)",
+      "MATH 124 Calculus with Analytic Geometry I (5)",
+      "Sciences (25 credits)",
+      "CHEM 142 General Chemistry (5)",
+      "A&A Core Courses (50 credits)",
+      "AA 301 Compressible Aerodynamics (4)",
+    ],
+  });
+
+  const rowsByCode = new Map(
+    parsedBlock.sourceSectionFilterAuditRows.flatMap((row) =>
+      row.courseCodesExtracted.map((courseCode) => [courseCode, row])
+    )
+  );
+
+  assert.equal(rowsByCode.get("MATH 124")?.sectionTitle, "Mathematics (27 credits)");
+  assert.equal(rowsByCode.get("CHEM 142")?.sectionTitle, "Sciences (25 credits)");
+  assert.equal(rowsByCode.get("AA 301")?.sectionTitle, "A&A Core Courses (50 credits)");
+});
+
 test("Parser ignores graduate sectioned course lists for undergraduate requirement groups", () => {
   const parsedBlock = buildParsedSourceScopeFixture({
     sourceRole: "primary-degree-requirements",
@@ -2455,6 +2860,22 @@ test("Generated registry preserves A&A mixed course/category option shape", () =
   );
 });
 
+test("Generated registry preserves A&A sectioned elective row credits from source text", () => {
+  const runtimeGroups = getCompactRuntimeRequirementGroups("uw-seattle-aeronautics-astronautics");
+  const technicalElectives = runtimeGroups.find((group) =>
+    /A&A Technical Electives/i.test(group.label ?? group.sourceHeading ?? "")
+  );
+  assert.ok(technicalElectives, "Expected the A&A technical electives group.");
+
+  const creditsByCourse = new Map(
+    (technicalElectives.options ?? []).flatMap((option) =>
+      (option.uwCourses ?? []).map((courseCode) => [courseCode, option.credits])
+    )
+  );
+  assert.equal(creditsByCourse.get("AA 516"), 3);
+  assert.equal(creditsByCourse.get("AA 532"), 3);
+});
+
 test("Category mapping keeps generic NSc separate from program-approved science filters", () => {
   const aaPlan = getCompactRuntimePlan("uw-seattle-aeronautics-astronautics");
   const cePlan = getCompactRuntimePlan("uw-seattle-computer-engineering");
@@ -2609,6 +3030,10 @@ test("Parser extracts generic category credit buckets without concrete course op
     label: "Generic Areas of Inquiry",
     courseCodes: [],
     snapshotLines: [
+      "Areas of Inquiry Requirements (24 credits)",
+      "Arts and Humanities - A&H (10)",
+      "Social Sciences - SSc (10)",
+      "5 additional diversity credits are required and can overlap with other areas of inquiry requirements - DIV",
       "5 credits of A&H or SSc",
       "minimum 10 credits of NSc",
       "15 credits from approved electives",
@@ -2622,6 +3047,15 @@ test("Parser extracts generic category credit buckets without concrete course op
   );
   const approvedElectiveBucket = parsedBlock.parsedRequirementGroups.find((group) =>
     /approved electives/i.test(group.sourceRowText ?? "")
+  );
+  const artsBucket = parsedBlock.parsedRequirementGroups.find((group) =>
+    /Arts and Humanities - A&H/i.test(group.sourceRowText ?? "")
+  );
+  const socialBucket = parsedBlock.parsedRequirementGroups.find((group) =>
+    /Social Sciences - SSc/i.test(group.sourceRowText ?? "")
+  );
+  const diversityBucket = parsedBlock.parsedRequirementGroups.find((group) =>
+    /additional diversity credits/i.test(group.sourceRowText ?? "")
   );
 
   assert.equal(ahSscBucket?.requirementType, "choose_credits");
@@ -2653,6 +3087,476 @@ test("Parser extracts generic category credit buckets without concrete course op
   assert.equal(approvedElectiveBucket?.satisfactionMode, "credit-based");
   assert.match(approvedElectiveBucket?.approvedListKey ?? "", /approved-electives/);
   assert.equal(approvedElectiveBucket?.canCreatePlaceholder, true);
+  assert.equal(artsBucket?.minCredits, 10);
+  assert.equal(artsBucket?.options[0]?.categoryOption?.sourceCategoryCode, "A&H");
+  assert.equal(socialBucket?.minCredits, 10);
+  assert.equal(socialBucket?.options[0]?.categoryOption?.sourceCategoryCode, "SSc");
+  assert.equal(diversityBucket?.minCredits, 5);
+  assert.equal(diversityBucket?.options[0]?.categoryOption?.sourceCategoryCode, "DIV");
+});
+
+test("Parser keeps approved-list credit buckets that also name concrete courses", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Anthropology Indigenous Archaeology option",
+    planId: "uw-seattle-anthropology",
+    ownerId: "uw-seattle-anthropology:pathway:ba-option-family:indigenous-archaeology",
+    courseCodes: ["AIS 102"],
+    snapshotLines: [
+      "Option courses: Requirements for the general anthropology major, as shown above, to include AIS 102, three courses from the approved Indigenous Archaeology (IA) core list, and 15 credits from courses approved for the IA elective list.",
+    ],
+  });
+  const optionBucket = parsedBlock.parsedRequirementGroups.find((group) =>
+    /Indigenous Archaeology/i.test(group.sourceRowText ?? "")
+  );
+
+  assert.equal(optionBucket?.requirementType, "choose_credits");
+  assert.equal(optionBucket?.minCredits, 15);
+  assert.match(optionBucket?.approvedListKey ?? "", /approved/);
+});
+
+test("Parser ignores admission decision prose with approved-list credit text", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Architectural Studies PDF",
+    planId: "uw-seattle-architectural-studies",
+    ownerId: "uw-seattle-architectural-studies",
+    courseCodes: [],
+    snapshotLines: [
+      "Admission decisions are based on an applicant's academic",
+      "performance and potential, extent and quality of relevant",
+      "experience, and personal motivation. Completion of Year Two approved lists (minimum 9cr)",
+      "requirements does not guarantee admission.",
+    ],
+  });
+
+  assert.equal(
+    parsedBlock.parsedRequirementGroups.some((group) =>
+      /does not guarantee admission|personal motivation/i.test(group.sourceRowText ?? group.label ?? "")
+    ),
+    false
+  );
+});
+
+test("Parser builds requirement groups from sectioned credit course lists", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "American Indian Studies degree requirements",
+    planId: "uw-seattle-american-indian-studies",
+    ownerId: "uw-seattle-american-indian-studies",
+    courseCodes: ["AIS 102", "AIS 103", "AIS 170", "AIS 202"],
+    headings: ["1. Introductory courses", "2. Content courses"],
+    snapshotLines: [
+      "1. Introductory courses",
+      "10 credits/both courses:",
+      "AIS 102 Introduction to American Indian Studies",
+      "AIS 103 The Indigenous Pacific Northwest",
+      "2. Content courses",
+      "10 credits, two courses selected from:",
+      "AIS 170 American Indian Art and Aesthetics",
+      "AIS 202 Introduction to American Indian Contemporary and Social Issues",
+      "3. Concentrations",
+      "25 credits total, 5 credits minimum chosen from each concentration",
+      "Governance Concentration Courses:",
+      "AIS 212 Indigenous Leaders and Activists",
+      "AIS 230 Contemporary Indian Gaming and Casinos",
+      "Environment and Health Concentration Courses:",
+      "AIS 306 Contemporary Indigenous Environmental Issues",
+      "AIS 307 Indigenous Literature and the Environment",
+    ],
+  });
+  const contentGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /selected from/i.test(group.sourceRowText ?? group.label ?? "")
+  );
+  assert.equal(contentGroup?.requirementType, "choose_credits");
+  assert.equal(contentGroup?.minCredits, 10);
+  assert.deepEqual(
+    new Set(contentGroup?.options.flatMap((option) => option.uwCourses)),
+    new Set(["AIS 170", "AIS 202"])
+  );
+});
+
+test("Parser extracts following-list course and credit groups without leaking adjacent headings into titles", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Asian Studies South Asia Concentration",
+    planId: "uw-seattle-asian-studies",
+    ownerId: "uw-seattle-asian-studies:pathway:south-asia-concentration",
+    ownerTitle: "Asian Studies - South Asia Concentration",
+    courseCodes: [
+      "JSISA 206",
+      "JSISA 202",
+      "HSTAS 202",
+      "HSTAS 201",
+      "JSISA 303",
+      "HSTAS 303",
+      "JSISA 316",
+      "ANTH 316",
+      "JSISA 339",
+      "ANTH 339",
+      "JSISA 340",
+      "POL S 340",
+      "JSISA 341",
+      "ANTH 341",
+      "JSISA 417",
+      "POL S 417",
+      "JSISA 438",
+      "GEOG 438",
+      "JSISA 461",
+      "JSISA 485",
+      "RELIG 352",
+      "RELIG 354",
+      "RELIG 356",
+      "RELIG 456",
+      "HSTAS 401",
+      "HSTAS 402",
+      "HSTAS 403",
+      "HSTAS 404",
+    ],
+    headings: ["Coursework Requirements"],
+    snapshotLines: [
+      "Coursework Requirements",
+      "One South Asia history course from the following list",
+      "JSIS A 206 Contemporary India & Pakistan",
+      "JSIS A/HSTAS 202 South Asian History 1500-present",
+      "HSTAS 201 South Asian History pre-history to 1500",
+      "A minimum of ten credits from the following list of core South Asia courses",
+      "JSIS A/HSTAS 303 - Divided Lands/Divided Lives: An Environmental History of South Asia",
+      "JSIS A/ANTH 316 - Modern South Asia",
+      "JSIS A/ANTH 339 - Social Movements in Contemporary India",
+      "JSIS A/POL S 340 - Politics of India, Pakistan, and South Asia",
+      "JSIS A/ANTH 341 - Political Violence and the Post-Colonial State in South Asia",
+      "JSIS A/POL S 417 - Political Economy of India",
+      "JSIS A/ GEOG 438 - Social and Political Geographies of South Asia",
+      "JSIS A 461 - Ramayana in Comparative Perspective",
+      "JSIS A 485 - Special Topics on South Asia",
+      "RELIG 352 - Hinduism",
+      "RELIG 354 - Buddhism",
+      "RELIG 356 - Buddhism & Society: The Theravada Buddhist Tradition in South & SE Asia",
+      "RELIG 456 - Perceptions of the Feminine Divine in Hinduism",
+      "HSTAS 401 - History of Ancient India",
+      "HSTAS 402 - History of Medieval and Mughal India",
+      "HSTAS 403 - History of Modern India",
+      "HSTAS 404 - History of Twentieth-Century India",
+      "Electives - 25 credits from the list of approved South Asia electives, found below.",
+    ],
+  });
+
+  const historyGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /South Asia history course/i.test(group.label)
+  );
+  const coreGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /core South Asia courses/i.test(group.label)
+  );
+
+  assert.equal(historyGroup?.requirementType, "choose_n");
+  assert.equal(historyGroup?.requiredCount, 1);
+  assert.deepEqual(
+    new Set(historyGroup?.options.flatMap((option) => [...option.uwCourses, ...option.equivalentUwCourseCodes])),
+    new Set(["JSISA 206", "JSISA 202", "HSTAS 202", "HSTAS 201"])
+  );
+  assert.doesNotMatch(
+    historyGroup?.options.find((option) => option.uwCourses.includes("HSTAS 201"))?.title ?? "",
+    /minimum of ten credits/i
+  );
+
+  assert.equal(coreGroup?.requirementType, "choose_credits");
+  assert.equal(coreGroup?.minCredits, 10);
+  assert.ok(coreGroup?.options.some((option) => option.uwCourses.includes("JSISA 303")));
+  assert.ok(coreGroup?.options.some((option) => option.equivalentUwCourseCodes.includes("GEOG 438")));
+  assert.ok(coreGroup?.options.some((option) => option.uwCourses.includes("HSTAS 404")));
+});
+
+test("Parser materializes split heading credit course lists", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Astronomy Undergraduate Program",
+    planId: "uw-seattle-astronomy",
+    ownerId: "uw-seattle-astronomy",
+    ownerTitle: "Astronomy",
+    courseCodes: [
+      "MATH 207",
+      "MATH 208",
+      "AMATH 352",
+      "MATH 209",
+      "AMATH 353",
+      "MATH 224",
+      "MATH 326",
+      "ASTR 300",
+      "ASTR 302",
+      "ASTR 321",
+      "ASTR 324",
+      "ASTR 322",
+      "ASTR 323",
+      "PHYS 323",
+      "PHYS 324",
+      "PHYS 325",
+      "PHYS 328",
+      "PHYS 331",
+      "PHYS 335",
+      "PHYS 421",
+      "PHYS 422",
+      "PHYS 423",
+      "PHYS 431",
+      "PHYS 432",
+      "PHYS 433",
+      "PHYS 434",
+    ],
+    headings: ["Degree Requirements"],
+    snapshotLines: [
+      "Degree Requirements",
+      "Mathematics Electives",
+      "6 credits, from:",
+      "Mathematics 207",
+      "Ordinary Differential Equations",
+      "3",
+      "Mathematics 208",
+      "or Applied Mathematics 352",
+      "Linear Algebra",
+      "3",
+      "Mathematics 209",
+      "or Applied Mathematics 353",
+      "Partial Differential Equations & Fourier Analysis",
+      "3",
+      "Mathematics 224",
+      "Advanced Multi-variable Calculus",
+      "3",
+      "Mathematics 326",
+      "Advanced Calculus",
+      "3",
+      "Core Astronomy",
+      "12 credits",
+      "Astronomy 300 or Astronomy 302",
+      "Astronomy Computing or Python for Astronomy",
+      "3",
+      "Astronomy 321 or Astronomy 324",
+      "Solar System or Intro. to Astrostatistics & Machine Learning",
+      "3",
+      "Astronomy 322",
+      "Contents of Our Galaxy",
+      "3",
+      "Astronomy 323",
+      "Extragalactic Astronomy & Cosmology",
+      "3",
+      "Physics Electives",
+      "6 credits, from:",
+      "Physics 323",
+      "Electromagnetism III",
+      "4",
+      "Physics 324",
+      "Quantum Mechanics I",
+      "4",
+      "Physics 325",
+      "Quantum Mechanics II",
+      "4",
+      "Physics 328",
+      "Statistical Physics",
+      "3",
+      "Physics 331",
+      "Optics Lab.",
+      "3",
+      "Physics 335",
+      "Electric Circuits Lab.",
+      "3",
+      "Physics 421",
+      "Atomic & Molecular Physics",
+      "3",
+      "Physics 422",
+      "Nuclear & Elementary Particle Physics",
+      "3",
+      "Physics 423",
+      "Solid State Physics",
+      "3",
+      "Physics 431 or 432 or 433",
+      "Modern Physics Lab.",
+      "3",
+      "Physics 434",
+      "Application of Computers to Physical Measurement & Data Acquisition",
+      "3",
+      "The minimum grade point to fulfill the above requirements is 2.00 in every course.",
+    ],
+  });
+
+  const mathElectives = parsedBlock.parsedRequirementGroups.find((group) =>
+    /Mathematics Electives/i.test(group.label)
+  );
+  const coreAstronomy = parsedBlock.parsedRequirementGroups.find((group) =>
+    /Core Astronomy/i.test(group.label)
+  );
+  const physicsElectives = parsedBlock.parsedRequirementGroups.find((group) =>
+    /Physics Electives/i.test(group.label)
+  );
+
+  assert.equal(mathElectives?.requirementType, "choose_credits");
+  assert.equal(mathElectives?.minCredits, 6);
+  assert.ok(mathElectives?.options.some((option) => option.uwCourses.includes("MATH 207")));
+  assert.ok(
+    mathElectives?.options.some(
+      (option) =>
+        option.uwCourses.includes("MATH 208") &&
+        option.equivalentUwCourseCodes.includes("AMATH 352")
+    )
+  );
+  assert.ok(
+    mathElectives?.options.some(
+      (option) =>
+        option.uwCourses.includes("MATH 209") &&
+        option.equivalentUwCourseCodes.includes("AMATH 353")
+    )
+  );
+  assert.ok(mathElectives?.options.some((option) => option.uwCourses.includes("MATH 326")));
+
+  assert.equal(coreAstronomy?.requirementType, "choose_credits");
+  assert.equal(coreAstronomy?.minCredits, 12);
+  assert.ok(
+    coreAstronomy?.options.some(
+      (option) =>
+        option.uwCourses.includes("ASTR 300") &&
+        option.equivalentUwCourseCodes.includes("ASTR 302")
+    )
+  );
+  assert.ok(
+    coreAstronomy?.options.some(
+      (option) =>
+        option.uwCourses.includes("ASTR 321") &&
+        option.equivalentUwCourseCodes.includes("ASTR 324")
+    )
+  );
+  assert.ok(coreAstronomy?.options.some((option) => option.uwCourses.includes("ASTR 323")));
+  assert.equal(
+    parsedBlock.parsedRequirementGroups.some((group) => group.label === "Astronomy 300 or Astronomy 302"),
+    false
+  );
+
+  assert.equal(physicsElectives?.requirementType, "choose_credits");
+  assert.equal(physicsElectives?.minCredits, 6);
+  assert.ok(physicsElectives?.options.some((option) => option.uwCourses.includes("PHYS 335")));
+  assert.ok(physicsElectives?.options.some((option) => option.uwCourses.includes("PHYS 421")));
+  assert.ok(
+    physicsElectives?.options.some(
+      (option) =>
+        option.uwCourses.includes("PHYS 431") &&
+        option.equivalentUwCourseCodes.includes("PHYS 432") &&
+        option.equivalentUwCourseCodes.includes("PHYS 433")
+    )
+  );
+  assert.ok(physicsElectives?.options.some((option) => option.uwCourses.includes("PHYS 434")));
+  assert.equal(
+    parsedBlock.parsedRequirementGroups.some((group) => group.label === "Physics 431 or 432 or 433"),
+    false
+  );
+});
+
+test("Parser keeps catalog option requirements scoped and preserves leading one-of course codes", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "official-catalog",
+    label: "Atmospheric and Climate Science Data Science option",
+    planId: "uw-seattle-atmospheric-and-climate-science",
+    ownerId: "uw-seattle-atmospheric-and-climate-science:pathway:bs-option-family:data-science",
+    ownerTitle: "Atmospheric and Climate Science - B.S. Data Science option",
+    courseCodes: [
+      "STAT 390",
+      "QSCI 381",
+      "ATMOS 220",
+      "ATMOS 301",
+      "ATMOS 321",
+      "ATMOS 340",
+      "ATMOS 341",
+      "ATMOS 370",
+      "ATMOS 431",
+      "CSE 123",
+      "CSE 143",
+      "CSE 163",
+      "CSE 416",
+      "STAT 416",
+      "STAT 435",
+      "INFO 371",
+      "ESS 469",
+      "CSE 414",
+      "INFO 430",
+      "MATH 124",
+      "MATH 125",
+      "MATH 126",
+      "MATH 134",
+      "MATH 135",
+      "MATH 136",
+      "PHYS 121",
+      "PHYS 122",
+      "PHYS 123",
+      "PHYS 141",
+      "PHYS 142",
+      "PHYS 143",
+    ],
+    headings: ["Bachelor of Science degree with a major in Atmospheric and Climate Science: Data Science"],
+    snapshotLines: [
+      "Bachelor of Science degree with a major in Atmospheric and Climate Science: Data Science",
+      "Completion Requirements",
+      "Foundation requirements (30 credits): MATH 124, MATH 125, MATH 126 (or MATH 134, MATH 135, MATH 136); PHYS 121, PHYS 122, PHYS 123 (or PHYS 141, PHYS 142, PHYS 143)",
+      "Core requirements (27-28 credits): STAT 390 (or Q SCI 381 for options in meteorology, climate, chemistry); ATMOS 220 (1 credit), ATMOS 301, ATMOS 321, ATMOS 340, ATMOS 341, ATMOS 370, ATMOS 431.",
+      "Additional Completion Requirements",
+      "Option specific credits (28-39 credits)",
+      "Requirements (28-39 credits):",
+      "one of CSE 123, CSE 143, or CSE 163",
+      "one of CSE 416/STAT 416, STAT 435, INFO 371, or ESS 469",
+      "CSE 414 or INFO 430",
+      "Back to Top",
+    ],
+  });
+
+  const coreGroups = parsedBlock.parsedRequirementGroups.filter((group) =>
+    /Core requirements/i.test(group.label)
+  );
+  const programmingGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /CSE 123/i.test(group.label)
+  );
+  const statisticsGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /CSE 416/i.test(group.label)
+  );
+  const sequenceGroups = parsedBlock.parsedRequirementGroups.filter(
+    (group) => group.requirementType === "sequence_choice"
+  );
+  const sequencePathSets = sequenceGroups.map((group) =>
+    group.sequencePaths.map((path) => path.uwCourses)
+  );
+
+  assert.equal(coreGroups.length, 1);
+  assert.equal(coreGroups[0].requirementType, "choose_credits");
+  assert.equal(coreGroups[0].minCredits, 27);
+  assert.ok(coreGroups[0].options.some((option) => option.uwCourses.includes("STAT 390")));
+  assert.ok(coreGroups[0].options.some((option) => option.uwCourses.includes("ATMOS 431")));
+
+  assert.ok(programmingGroup, "Expected leading CSE 123 to stay in the one-of programming row.");
+  assert.deepEqual(
+    new Set(programmingGroup.options.flatMap((option) => option.uwCourses)),
+    new Set(["CSE 123", "CSE 143", "CSE 163"])
+  );
+  assert.ok(statisticsGroup?.options.some((option) => option.uwCourses.includes("CSE 416")));
+  assert.deepEqual(
+    sequencePathSets.find((paths) =>
+      paths.some((path) => path.includes("MATH 124")) &&
+      paths.some((path) => path.includes("MATH 134"))
+    ),
+    [
+      ["MATH 124", "MATH 125", "MATH 126"],
+      ["MATH 134", "MATH 135", "MATH 136"],
+    ]
+  );
+  assert.deepEqual(
+    sequencePathSets.find((paths) =>
+      paths.some((path) => path.includes("PHYS 121")) &&
+      paths.some((path) => path.includes("PHYS 141"))
+    ),
+    [
+      ["PHYS 121", "PHYS 122", "PHYS 123"],
+      ["PHYS 141", "PHYS 142", "PHYS 143"],
+    ]
+  );
+  assert.equal(
+    parsedBlock.parsedRequirementGroups.some((group) =>
+      /^Foundation requirements/i.test(group.label) && group.requirementType === "choose_credits"
+    ),
+    false
+  );
 });
 
 test("Parser does not reclassify Environmental Earth science course lists as generic categories", () => {
@@ -2754,6 +3658,241 @@ test("Parser filters prerequisite-only and course-list sections from schedulable
   assert.ok(
     blockedRows.every((row) => /Schedulable: no/.test(row.copyOnlyDebugText))
   );
+});
+
+test("Parser treats credit-limit course notes as support metadata", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Aeronautics & Astronautics Degree Requirements",
+    planId: "uw-seattle-aeronautics-astronautics",
+    ownerId: "uw-seattle-aeronautics-astronautics",
+    courseCodes: ["AA 499", "ENGR 321"],
+    headings: ["A&A Technical Electives (15 credits)"],
+    snapshotLines: [
+      "A&A Technical Electives (15 credits)",
+      "A A 499 Undergraduate Research *",
+      "ENGR 321 Engineering Internship Education *",
+      "Up to 6 credits combined from A A 499 and ENGR 321 may be applied toward technical electives",
+    ],
+  });
+  const supportNoteRow = parsedBlock.sourceSectionFilterAuditRows.find((row) =>
+    /Up to 6 credits combined/i.test(row.rawLine)
+  );
+
+  assert.ok(supportNoteRow, "Expected the credit-limit footnote to be audited.");
+  assert.equal(supportNoteRow.schedulable, false);
+  assert.equal(supportNoteRow.detectedSectionRole, "support-metadata");
+  assert.deepEqual(supportNoteRow.courseCodesExtracted, ["AA 499", "ENGR 321"]);
+});
+
+test("Parser materializes sectioned technical electives as a credit option group", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Aeronautics & Astronautics Degree Requirements",
+    planId: "uw-seattle-aeronautics-astronautics",
+    ownerId: "uw-seattle-aeronautics-astronautics",
+    courseCodes: ["AA 402", "AA 405", "AA 499", "ENGR 321"],
+    headings: ["A&A Technical Electives (15 credits)"],
+    snapshotLines: [
+      "A&A Technical Electives (15 credits)",
+      "Choose from the following:",
+      "A A 402 Viscous Fluid Mechanics (3)",
+      "A A 405 Introduction to Aerospace Plasmas (3)",
+      "A A 499 Undergraduate Research *",
+      "ENGR 321 Engineering Internship Education *",
+      "Up to 6 credits combined from A A 499 and ENGR 321 may be applied toward technical electives",
+    ],
+  });
+
+  const technicalElectiveGroup = parsedBlock.parsedRequirementGroups.find((group) =>
+    /Technical Electives/i.test(group.label)
+  );
+  const optionCodes = (technicalElectiveGroup?.options ?? []).flatMap((option) => option.uwCourses);
+
+  assert.ok(technicalElectiveGroup, "Expected the technical elective heading to become a requirement group.");
+  assert.equal(technicalElectiveGroup.requirementType, "choose_credits");
+  assert.equal(technicalElectiveGroup.minCredits, 15);
+  assert.deepEqual(optionCodes, ["AA 402", "AA 405", "AA 499", "ENGR 321"]);
+});
+
+test("Parser materializes course-code credit buckets with course options", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Art Degree Requirements",
+    planId: "uw-seattle-art",
+    ownerId: "uw-seattle-art",
+    courseCodes: ["ART 400", "ART 440", "ART 453", "ART 494"],
+    headings: ["Core courses"],
+    snapshotLines: ["10 credits from ART 400, ART 440, ART 453, ART 494"],
+  });
+
+  const creditBucket = parsedBlock.parsedRequirementGroups.find((group) =>
+    /10 credits from ART 400/i.test(group.label)
+  );
+  const optionCodes = (creditBucket?.options ?? []).flatMap((option) => option.uwCourses);
+
+  assert.ok(creditBucket, "Expected explicit course-code credit bucket to become a requirement group.");
+  assert.equal(creditBucket.requirementType, "choose_credits");
+  assert.equal(creditBucket.minCredits, 10);
+  assert.deepEqual(optionCodes, ["ART 400", "ART 440", "ART 453", "ART 494"]);
+});
+
+test("Parser normalizes spaced subject aliases before credit-bucket dedupe", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Art History Degree Requirements",
+    planId: "uw-seattle-art-history",
+    ownerId: "uw-seattle-art-history",
+    courseCodes: ["ARTH 200", "ARTH 201", "ARTH 202"],
+    headings: ["Completion Requirements"],
+    snapshotLines: ["10 credits from ART H 200, ART H 201, ART H 202"],
+  });
+
+  const creditBucket = parsedBlock.parsedRequirementGroups.find((group) =>
+    /10 credits from ART H 200/i.test(group.label)
+  );
+  const optionCodes = (creditBucket?.options ?? []).flatMap((option) => option.uwCourses);
+
+  assert.ok(creditBucket, "Expected the Art History credit bucket to become a requirement group.");
+  assert.equal(creditBucket.requirementType, "choose_credits");
+  assert.deepEqual(optionCodes, ["ARTH 200", "ARTH 201", "ARTH 202"]);
+});
+
+test("Parser materializes subject-prefix elective buckets as program-specific filters", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Art History Degree Requirements",
+    planId: "uw-seattle-art-history",
+    ownerId: "uw-seattle-art-history",
+    ownerTitle: "Art History",
+    courseCodes: ["ARTH 200", "ARTH 273", "ARTH 400"],
+    headings: ["Completion Requirements"],
+    snapshotLines: [
+      "10 credits from ART H electives to include any ART H courses listed above or other courses with an ART H prefix (10 credits)",
+    ],
+  });
+
+  const prefixBucket = parsedBlock.parsedRequirementGroups.find(
+    (group) => group.approvedListKey === "uw-seattle-art-history-arth-prefix-courses"
+  );
+  const categoryOption = prefixBucket?.options?.[0]?.categoryOption;
+  const supportList = parsedBlock.supportLists?.find(
+    (list) => list.approvedListKey === "uw-seattle-art-history-arth-prefix-courses"
+  );
+
+  assert.ok(prefixBucket, "Expected the ART H prefix elective row to become a credit bucket.");
+  assert.equal(prefixBucket.requirementType, "choose_credits");
+  assert.equal(prefixBucket.programSpecific, true);
+  assert.equal(prefixBucket.approvedListKey, "uw-seattle-art-history-arth-prefix-courses");
+  assert.equal(categoryOption?.programSpecific, true);
+  assert.equal(categoryOption?.approvedListKey, "uw-seattle-art-history-arth-prefix-courses");
+  assert.ok(
+    supportList?.acceptedUwCourseCodes?.includes("ARTH 200"),
+    "Expected the generated support list to include ARTH metadata courses."
+  );
+  assert.ok(
+    supportList?.acceptedUwCourseCodes?.includes("ARTH 494"),
+    "Expected the generated support list to include upper-division ARTH metadata courses."
+  );
+
+  const generatedFilters = parser.buildGeneratedProgramApprovedCourseFiltersForTest({
+    owners: [parsedBlock],
+  });
+  const generatedFilter = generatedFilters.find(
+    (filter) => filter.filterKey === "uw-seattle-art-history-arth-prefix-courses"
+  );
+  assert.ok(generatedFilter, "Expected the prefix support list to generate a program-approved filter.");
+  assert.ok(generatedFilter.approvedUwCourseCodes.includes("ARTH 419"));
+  assert.ok(generatedFilter.approvedUwCourseCodes.includes("ARTH 273"));
+  assert.equal(generatedFilter.approvedUwCourseCodes.includes("BIOL 162"), false);
+});
+
+test("Parser splits same-subject comma course-list rows into separate options", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Asian Languages and Cultures",
+    planId: "uw-seattle-asian-languages-and-cultures",
+    ownerId: "uw-seattle-asian-languages-and-cultures",
+    ownerTitle: "Asian Languages & Cultures",
+    courseCodes: ["ASIAN 204", "JAPAN 431", "JAPAN 432", "JAPAN 433"],
+    headings: ["II. Elective courses"],
+    snapshotLines: [
+      "1) 10 credits Literature, Culture, Linguistics: Complete two courses from the approved list of electives",
+      "ASIAN 204 Literature and Culture of China from Tradition to Modernity",
+      "JAPAN 431, 432, 433 Readings in Modern Japanese Literature",
+    ],
+  });
+
+  const electiveBucket = parsedBlock.parsedRequirementGroups.find((group) =>
+    /approved list of electives/i.test(group.label)
+  );
+  const optionCodes = (electiveBucket?.options ?? []).flatMap((option) => option.uwCourses);
+
+  assert.ok(electiveBucket, "Expected the approved elective list to become a credit bucket.");
+  assert.deepEqual(optionCodes, ["ASIAN 204", "JAPAN 431", "JAPAN 432", "JAPAN 433"]);
+});
+
+test("Parser materializes colon course-list credit buckets", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Art Degree Requirements",
+    planId: "uw-seattle-art",
+    ownerId: "uw-seattle-art",
+    courseCodes: ["ART 101", "ART 140", "ART 190"],
+    headings: ["Core courses"],
+    snapshotLines: [
+      "15 credits introductory art classes: ART 101, ART 140, ART 190",
+    ],
+  });
+
+  const introBucket = parsedBlock.parsedRequirementGroups.find((group) =>
+    /introductory art classes/i.test(group.label)
+  );
+  const optionCodes = (introBucket?.options ?? []).flatMap((option) => option.uwCourses);
+
+  assert.ok(introBucket, "Expected colon-separated introductory art list to become a credit group.");
+  assert.equal(introBucket.requirementType, "choose_credits");
+  assert.equal(introBucket.minCredits, 15);
+  assert.deepEqual(optionCodes, ["ART 101", "ART 140", "ART 190"]);
+});
+
+test("Parser splits semicolon-separated credit buckets and suppresses duplicate choice groups", () => {
+  const parsedBlock = buildParsedSourceScopeFixture({
+    sourceRole: "primary-degree-requirements",
+    label: "Art Degree Requirements",
+    planId: "uw-seattle-art",
+    ownerId: "uw-seattle-art",
+    courseCodes: ["ART 300", "ART 301", "ART 400", "ART 450"],
+    headings: ["Concentrations"],
+    snapshotLines: [
+      "Interdisciplinary Visual Art: 5-credit additional introductory ART class; 20 credits from ART 300, ART 301; 5 credits from the following: ART 400, ART 450",
+    ],
+  });
+
+  const creditBuckets = parsedBlock.parsedRequirementGroups.filter(
+    (group) => group.requirementType === "choose_credits"
+  );
+  const choiceGroups = parsedBlock.parsedRequirementGroups.filter(
+    (group) => group.requirementType === "choose_one"
+  );
+  const twentyCreditBucket = creditBuckets.find((group) => group.minCredits === 20);
+  const fiveCreditCourseBucket = creditBuckets.find(
+    (group) =>
+      group.minCredits === 5 &&
+      (group.options ?? []).some((option) => option.uwCourses.includes("ART 400"))
+  );
+
+  assert.ok(twentyCreditBucket, "Expected the 20-credit concentration course list to become a bucket.");
+  assert.deepEqual(
+    (twentyCreditBucket.options ?? []).flatMap((option) => option.uwCourses),
+    ["ART 300", "ART 301"]
+  );
+  assert.ok(fiveCreditCourseBucket, "Expected the 5-credit following-list segment to become a bucket.");
+  assert.deepEqual(
+    (fiveCreditCourseBucket.options ?? []).flatMap((option) => option.uwCourses),
+    ["ART 400", "ART 450"]
+  );
+  assert.deepEqual(choiceGroups, []);
 });
 
 test("Generated registry keeps Computer Science approved science list as support metadata", () => {

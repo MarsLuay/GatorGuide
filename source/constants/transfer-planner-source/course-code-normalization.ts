@@ -11,6 +11,7 @@ const KNOWN_TRANSFER_PLANNER_SUBJECT_CODES = new Set(
 const EXPLICIT_SPACED_SUBJECT_ALIASES = new Map<string, string>([
   ["A A", "AA"],
   ["A MATH", "AMATH"],
+  ["ART H", "ARTH"],
   ["CHEM E", "CHEME"],
   ["E E", "EE"],
   ["IND E", "INDE"],

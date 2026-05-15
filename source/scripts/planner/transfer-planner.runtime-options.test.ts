@@ -1631,7 +1631,7 @@ test("Seattle Aeronautics selected NSc category option uses completed CHEM& 140 
   const selectedRequirementOptionIdsByGroup = {
     [scienceGroup.id]: [categoryOption.id],
   };
-  const completedCourses = buildTranscriptCourses("CHEM& 140", "CHEM& 161");
+  const completedCourses = buildTranscriptCourses("CHEM& 140");
   const statuses = buildStatuses(runtimePlan, completedCourses);
   const noTranscriptPlan = buildSuggestedQuarterPlan({
     plan: runtimePlan,
@@ -1948,7 +1948,9 @@ test("Seattle American Ethnic Studies runtime keeps source-backed support bundle
     "Writing-heavy humanities support",
   ]);
   assert.ok(runtimeCourseList.includes("AMES 100"));
-  assert.ok(runtimeCourseList.includes("HUMAN 100"));
+  assert.ok(
+    (runtimePlan.stayAtGrcChecklist ?? []).some((item) => item.grcCourses.includes("HUMAN 100"))
+  );
   assert.ok(runtimeCourseList.includes("ENGL& 101"));
   assert.equal(runtimeCourseList.includes("CS 121"), false);
 

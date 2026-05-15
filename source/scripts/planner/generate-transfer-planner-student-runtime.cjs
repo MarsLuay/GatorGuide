@@ -100,6 +100,16 @@ function uniqueStrings(values) {
   return Array.from(new Set(values.map(normalizeCourseCode).filter(Boolean)));
 }
 
+function uniqueLabels(values) {
+  return Array.from(
+    new Set(
+      values
+        .map((value) => String(value ?? "").replace(/\s+/g, " ").trim())
+        .filter(Boolean)
+    )
+  );
+}
+
 const generatedRuntimeValueFiles = [];
 
 function getRuntimeExportFileStem(name) {
@@ -479,10 +489,71 @@ function compactParsedRequirementSourceBlock(block) {
   };
 }
 
+function getSourceBackedDegreeMapSections(planId, pathwayId = null) {
+  return TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGISTRY
+    .filter(
+      (block) =>
+        block.ok &&
+        block.planId === planId &&
+        (block.pathwayId ?? null) === (pathwayId ?? null) &&
+        canRuntimeSourceBlockCreateSchedulableRows(block)
+    )
+    .flatMap((block) => {
+      const candidates = (block.parsedDegreeMapBlockCandidates ?? []).length
+        ? block.parsedDegreeMapBlockCandidates
+        : [
+            {
+              id: `${block.ownerId}:parsed-official-source-requirements`,
+              title: `${block.ownerTitle} parsed official source requirements`,
+              uwCourseCodes: block.parsedUwCourseCodes ?? [],
+            },
+          ];
+
+      return candidates.map((candidate, index) => {
+        const sourceCourseCodes = uniqueStrings(candidate.uwCourseCodes ?? []);
+        const items = uniqueLabels(sourceCourseCodes);
+
+        return {
+          id: `source-backed-${slugifyRuntimeId(candidate.id ?? `${block.ownerId}-${index}`)}`,
+          title: candidate.title || `${block.ownerTitle} official source requirements`,
+          items,
+          note: block.usedSnapshotFallback
+            ? `Built from a cached official snapshot${block.snapshotFallbackReason ? ` because ${block.snapshotFallbackReason}` : ""}.`
+            : "Parsed from the official UW source. Courses shown here may not all have a mapped Green River scheduling equivalent yet.",
+        };
+      });
+    })
+    .filter((section) => section.items.length > 0);
+}
+
+function mergeRuntimeDegreeMapSections(existingSections, sourceBackedSections) {
+  return uniqueBy(
+    [...(existingSections ?? []), ...sourceBackedSections],
+    (section) => section.id
+  );
+}
+
+function attachSourceBackedDegreeMapSectionsToPlan(plan) {
+  const sourceBackedSections = getSourceBackedDegreeMapSections(plan.id, null);
+  const pathways = (plan.pathways ?? []).map((pathway) => ({
+    ...pathway,
+    degreeMapSections: mergeRuntimeDegreeMapSections(
+      pathway.degreeMapSections,
+      getSourceBackedDegreeMapSections(plan.id, pathway.id)
+    ),
+  }));
+
+  return {
+    ...plan,
+    degreeMapSections: mergeRuntimeDegreeMapSections(plan.degreeMapSections, sourceBackedSections),
+    ...(pathways.length ? { pathways } : {}),
+  };
+}
+
 const runtimeMajorPlans = uniqueBy(
   TRANSFER_PLANNER_CAMPUSES.flatMap((campus) =>
     getTransferPlannerStudentRuntimeMajorsForCampus(campus.id)
-  ),
+  ).map(attachSourceBackedDegreeMapSectionsToPlan),
   (plan) => plan.id
 );
 

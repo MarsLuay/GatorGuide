@@ -85,7 +85,7 @@ import type {
 const EXPLICIT_COURSE_CODE_PATTERN =
   /\b([A-Za-z&]{2,8}|[A-Za-z&]{1,4}(?:\s+[A-Za-z&]{1,4}))\s+(\d{3}(?:\.\d+)?[A-Za-z]?)\b/g;
 const COURSE_NUMBER_CONTINUATION_PATTERN =
-  /(?:^|[,(;/]\s*|\b(?:or|and)\s+)(\d{3}(?:\.\d+)?[A-Za-z]?)(?=$|[\s,);/]|(?:\s*(?:or|and)\b))/gi;
+  /(?:^|[,(;/&]\s*|\b(?:or|and)\s+)(\d{3}(?:\.\d+)?[A-Za-z]?)(?=$|[\s,);/&]|(?:\s*(?:or|and)\b))/gi;
 const INVALID_EXTRACTED_COURSE_SUBJECTS = new Set([
   "APPLY",
   "AND",
@@ -183,6 +183,9 @@ const KNOWN_UW_EXTRACTED_COURSE_SUBJECTS = new Set(
     .map((match) => match?.[1] ?? null)
     .filter(Boolean)
 );
+for (const supplementalSubject of ["THLEAD", "TSTAT"]) {
+  KNOWN_UW_EXTRACTED_COURSE_SUBJECTS.add(supplementalSubject);
+}
 const SOURCE_BACKED_INTENTIONALLY_SKIPPED_VALIDATION_NOTE_PATTERN =
   /Auto-promotion was intentionally skipped/i;
 const SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN =
@@ -662,8 +665,17 @@ export function extractTransferPlannerCourseCodes(value: string) {
   return extractCourseCodes(value);
 }
 
+function stripHistoricalCourseCodeAliases(value: string) {
+  return String(value ?? "")
+    .replace(/\((?:formerly|previously|formerly known as|renumbered from)[^)]*\)/gi, "")
+    .replace(
+      /\b(?:formerly|previously|formerly known as|renumbered from)\s+[A-Z&]{1,8}(?:\s+[A-Z&]{1,8})?\s+\d{3}(?:\.\d+)?[A-Z]?\b/gi,
+      ""
+    );
+}
+
 function extractCourseCodesFromList(values: string[]) {
-  return unique(values.flatMap((value) => extractCourseCodes(value)));
+  return unique(values.flatMap((value) => extractCourseCodes(stripHistoricalCourseCodeAliases(value))));
 }
 
 function unique<T>(values: T[]) {
@@ -1157,6 +1169,10 @@ function getSourceManifestRole(link: TransferPlannerSourceLink): TransferPlanner
     return "worksheet";
   }
 
+  if (UW_GENERAL_CATALOG_PROGRAM_URL_PATTERN.test(searchable)) {
+    return "catalog";
+  }
+
   if (/catalog/.test(searchable)) {
     return "catalog";
   }
@@ -1229,6 +1245,78 @@ function getSourceManifestParserType(
   }
 
   return "unknown";
+}
+
+function isTransferPlannerSourceManifestParserType(
+  value: unknown
+): value is TransferPlannerSourceManifestParserType {
+  return (
+    value === "html-degree-page" ||
+    value === "html-admissions-page" ||
+    value === "html-curriculum-page" ||
+    value === "html-overview-page" ||
+    value === "catalog-page" ||
+    value === "equivalency-guide" ||
+    value === "pdf-degree-sheet" ||
+    value === "pdf-worksheet" ||
+    value === "annual-schedule-pdf" ||
+    value === "generic-html" ||
+    value === "generic-pdf" ||
+    value === "unknown"
+  );
+}
+
+function getAutoPromotedSourceManifestRole(
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number],
+  fallbackRole: TransferPlannerSourceManifestRole
+): TransferPlannerSourceManifestRole {
+  switch (promotion.sourceRole) {
+    case "official-catalog":
+      return "catalog";
+    case "primary-degree-requirements":
+    case "department-requirements":
+      return "degree-requirements";
+    case "pathway-degree-sheet":
+      return "pathway-degree-sheet";
+    case "approved-course-list":
+      return "approved-course-list";
+    case "elective-list":
+      return "elective-list";
+    case "upper-division-prerequisite-table":
+      return "upper-division-prerequisite-table";
+    case "non-schedulable-course-list":
+      return "non-schedulable-course-list";
+    case "support-source":
+      return "support-source";
+    case "admission-prerequisite-source":
+    case "admissions-preparation":
+      return "admission-prerequisite-source";
+    case "curriculum-map":
+      return "curriculum";
+    case "transfer-equivalency":
+    case "matched-grc-track":
+      return "equivalency";
+    case "sample-schedule":
+    case "old-archival":
+    case "ignored":
+    case null:
+    case undefined:
+      return fallbackRole;
+    default:
+      return fallbackRole;
+  }
+}
+
+function getAutoPromotedSourceManifestParserType(
+  promotion: (typeof TRANSFER_PLANNER_PRIMARY_SOURCE_PROMOTIONS)[number],
+  link: TransferPlannerSourceLink,
+  role: TransferPlannerSourceManifestRole
+): TransferPlannerSourceManifestParserType {
+  if (isTransferPlannerSourceManifestParserType(promotion.parserType)) {
+    return promotion.parserType;
+  }
+
+  return getSourceManifestParserType(link, role);
 }
 
 function getSourceManifestConfidence(
@@ -3003,10 +3091,12 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
     label: canonicalPromotion.label,
     url: canonicalPromotion.url,
   };
-  const role = getSourceManifestRole(link);
+  const fallbackRole = getSourceManifestRole(link);
+  const role = getAutoPromotedSourceManifestRole(canonicalPromotion, fallbackRole);
   if (!isSafeFallbackPrimaryRole(role)) {
     return;
   }
+  const parserType = getAutoPromotedSourceManifestParserType(canonicalPromotion, link, role);
 
   const existingEntry = entries.find(
     (entry) => entry.ownerId === canonicalPromotion.ownerId && entry.url === canonicalPromotion.url
@@ -3020,6 +3110,9 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
 
   if (existingEntry) {
     existingEntry.isPrimaryDegreeRequirementsLink = true;
+    existingEntry.role = role;
+    existingEntry.parserType = parserType;
+    existingEntry.confidence = getSourceManifestConfidence(role, parserType);
     existingEntry.validationNotes = unique(
       compact([
         ...existingEntry.validationNotes,
@@ -3030,7 +3123,6 @@ function upsertAutoPromotedPrimarySourceManifestEntry(
     return;
   }
 
-  const parserType = getSourceManifestParserType(link, role);
   const validationNotes = [
     `Auto-promoted from high-confidence discovery on ${canonicalPromotion.generatedAt}.`,
   ];

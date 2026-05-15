@@ -833,6 +833,52 @@ test("Architectural Design automatically drops unsafe suggested-course spillover
   const requiredCourseCodes = buildSourceBackedRequiredCourseCodes(runtimePlan);
   assert.equal(requiredCourseCodes.includes("MATH& 148"), false);
   assert.equal(requiredCourseCodes.includes("ENGL& 101"), true);
+
+  const beforeEnrollmentTitles = runtimePlan.beforeEnrollmentChecklist.map((item) => item.title);
+  for (const courseCode of ["ARCH 200", "ARCH 201", "ARCH 350", "ARCH 351", "ARCH 352"]) {
+    assert.equal(
+      beforeEnrollmentTitles.includes(`UW prep target: ${courseCode}`),
+      true,
+      `Expected Architectural Design to expose source-backed UW-only prerequisite ${courseCode}.`
+    );
+  }
+  for (const courseCode of ["ARCH 150", "ARCH 151", "ARCH 251", "QSCI 291"]) {
+    assert.equal(
+      beforeEnrollmentTitles.includes(`UW prep target: ${courseCode}`),
+      false,
+      `Did not expect Architectural Design to promote prep/gen-ed option ${courseCode}.`
+    );
+  }
+});
+
+test("Architectural Studies keeps Year Two prerequisites without promoting Year Three curriculum rows", () => {
+  const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-architectural-studies");
+  assert.ok(runtimePlan, "Expected the Seattle Architectural Studies runtime plan.");
+
+  const visibleTitles = [
+    ...(runtimePlan.applicationChecklist ?? []),
+    ...(runtimePlan.beforeEnrollmentChecklist ?? []),
+    ...(runtimePlan.stayAtGrcChecklist ?? []),
+  ].map((item) => item.title);
+
+  for (const courseCode of ["ARCH 200", "ARCH 231", "ARCH 350", "ARCH 351", "ARCH 352"]) {
+    assert.equal(
+      visibleTitles.includes(`UW prep target: ${courseCode}`),
+      true,
+      `Expected Architectural Studies to expose source-backed Year Two prerequisite ${courseCode}.`
+    );
+  }
+  for (const courseCode of ["ARCH 332", "ARCH 361", "ARCH 362", "ARCH 431", "ARCH 468", "ARCH 469"]) {
+    assert.equal(
+      visibleTitles.includes(`UW prep target: ${courseCode}`),
+      false,
+      `Did not expect Architectural Studies to promote post-admission curriculum row ${courseCode}.`
+    );
+  }
+
+  const grcCourseList = getTransferPlannerGrcCourseList(runtimePlan);
+  assert.equal(grcCourseList.includes("MATH& 148"), false);
+  assert.equal(grcCourseList.includes("MATH& 151"), false);
 });
 
 test("Runtime computing-sequence recovery uses shared guide-backed evidence without leaking optional engineering lists", () => {
@@ -1147,21 +1193,21 @@ test("GRC-only Accounting AAA preserves exact catalog credits with unresolved ch
   assert.equal(range.hasUnresolvedOptions, true);
 });
 
-test("Seattle Education Studies keeps mixed conflicting catalog gen-ed structures unsupported until a single coherent major-specific target is isolated", () => {
+test("Seattle Education Studies falls back to generated College of Education gen-ed targets", () => {
   const runtimePlan = getTransferPlannerStudentRuntimeMajorPlan("uw-seattle-education-studies");
   assert.ok(runtimePlan, "Expected the Education Studies runtime plan.");
 
   const diagnostics = buildGeneralEducationRequirementLayerDiagnostics(runtimePlan);
 
   assert.deepEqual(buildSourceBackedGeneralEducationRequirementTargets(runtimePlan), {
-    ahCredits: null,
-    sscCredits: null,
-    nscCredits: null,
+    ahCredits: 15,
+    sscCredits: 15,
+    nscCredits: 15,
     breadthCredits: null,
-    electiveCredits: null,
+    electiveCredits: 15,
   });
-  assert.equal(buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan), null);
-  assert.equal(diagnostics.hasSourceBackedTargets, false);
+  assert.ok(buildSourceBackedMajorGeneralEducationRequirementSection(runtimePlan));
+  assert.equal(diagnostics.hasSourceBackedTargets, true);
 });
 
 test("Seattle Aeronautics fixed source-backed gen-ed targets still render as simple major summary items", () => {
@@ -1177,6 +1223,8 @@ test("Seattle Aeronautics fixed source-backed gen-ed targets still render as sim
       "Arts & Humanities: 10 credits",
       "Social Sciences: 10 credits",
       "Additional Arts & Humanities / Social Sciences: 4 credits",
+      "Natural Sciences: 40 credits",
+      "Diversity: 5 credits",
     ]
   );
 });

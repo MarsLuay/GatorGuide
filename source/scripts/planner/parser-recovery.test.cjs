@@ -118,6 +118,235 @@ test("Course-code parser keeps real course codes near generic level prose", () =
   );
 });
 
+test("Course-code parser expands same-subject plus-separated course numbers", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("B CHEM 143+144 General Chemistry I/Lab (6)"),
+    ["BCHEM 143", "BCHEM 144"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("B CHEM 143+144 General Chemistry I/Lab (6) (or CHEM 142 (5))"),
+    ["BCHEM 143", "BCHEM 144", "CHEM 142"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("CHEM 142 + 152 are required for this option."),
+    ["CHEM 142", "CHEM 152"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("BIOEN 401 & 402 are the research capstone sequence."),
+    ["BIOEN 401", "BIOEN 402"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest(
+      "Precalculus (TMATH 115 & 116 or TMATH 120 at UW Tacoma; Precalculus I & II at most community colleges)"
+    ),
+    ["TMATH 115", "TMATH 116", "TMATH 120"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest(
+      "Both BPHYS 114+117 and BPHYS 115+118: General Physics I and II + Labs"
+    ),
+    ["BPHYS 114", "BPHYS 115", "BPHYS 117", "BPHYS 118"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest(
+      "The third course in the series is BPHYS 116+119 (General Physics III + Lab) or BPHYS 123."
+    ),
+    ["BPHYS 116", "BPHYS 119", "BPHYS 123"]
+  );
+});
+
+test("Parser keeps prerequisite options scoped by owner acronym", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-information-technology",
+    ownerTitle: "Information Technology (BS)",
+    planId: "uw-tacoma-information-technology",
+    campusId: "uw-tacoma",
+    parserType: "html-overview-page",
+    url: "https://www.tacoma.uw.edu/set/programs/undergrad/it",
+    label: "UW Tacoma Information Technology requirements",
+    sourceLabel: "UW Tacoma Information Technology requirements",
+  });
+  const html = `
+    <main>
+      <h2>Admission Requirements</h2>
+      <p>Prerequisites</p>
+      <p>Precalculus (TMATH 115 & 116 or TMATH 120 at UW Tacoma; Precalculus I & II at most community colleges)</p>
+      <p>Introduction to Programming (TCSS 142)</p>
+      <p>UW Tacoma students can take either TCSS 141 - Programming for All or TCSS 142 - Introduction to Programming to satisfy the programming prerequisite for the IT major. TCSS 141 is offered at the UW Tacoma campus only.</p>
+      <h2>Curriculum Details</h2>
+      <p>TINFO 200 Programming II for Information Technology and Systems</p>
+      <p>TINFO 210 Foundations of Information Management</p>
+    </main>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+
+  assert.ok(parsed.courseCodes.includes("TMATH 116"));
+  assert.ok(parsed.courseCodes.includes("TMATH 120"));
+  assert.ok(parsed.courseCodes.includes("TCSS 141"));
+  assert.ok(parsed.courseCodes.includes("TCSS 142"));
+});
+
+test("Course-code parser recovers compact known course subjects from PDF text", () => {
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("CSS342: Data Structures, Algorithms, & Discrete Math I"),
+    ["CSS 342"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("BEE425 (Microprocessor System Design) or CSS422 (Hardware & Computer Organization)"),
+    ["BEE 425", "CSS 422"]
+  );
+  assert.deepEqual(
+    parser.extractCourseCodesFromLineForTest("B ENGR494, BENGR495, and BENGR496 must be taken in consecutive quarters."),
+    ["BENGR 494", "BENGR 495", "BENGR 496"]
+  );
+});
+
+test("PDF degree-sheet recovery keeps direct course rows outside dense subject clusters", () => {
+  const lines = [
+    "Mechanical Engineering Curriculum",
+    "General education and additional courses: 39 credits",
+    "Cross Campus Enrollment - after",
+    "CSS 112: Intro to Programming for Scientific",
+    "earning 15 credits at your home",
+    "Applications",
+  ];
+  assert.deepEqual(
+    parser.extractCourseCodesFromLinesForTest(
+      lines,
+      [],
+      {
+        parserType: "pdf-degree-sheet",
+        label: "UW Bothell Mechanical Engineering curriculum PDF",
+        url: "https://www.uwb.edu/stem/wp-content/uploads/sites/31/example.pdf",
+      }
+    ),
+    ["CSS 112"]
+  );
+});
+
+test("Legacy catalog scoping keeps the full selected program block", () => {
+  const html = `
+    <h2>Undergraduate Programs</h2>
+    <ul>
+      <li>Program of Study: Major: Civil Engineering</li>
+      <li>Bachelor of Science in Civil Engineering degree</li>
+      <li>Program of Study: Major: Computer Engineering</li>
+      <li>Bachelor of Science degree with a major in Computer Engineering</li>
+      <li>Program of Study: Major: Electrical Engineering</li>
+      <li>Bachelor of Science in Electrical Engineering degree</li>
+    </ul>
+    <h3>Program of Study: Major: Civil Engineering</h3>
+    <p>TCE 304 (3)</p>
+    <p>Back to Top</p>
+    <p>Catalog overview</p>
+    <p>Admissions overview</p>
+    <p>School information</p>
+    <p>Undergraduate programs</p>
+    <p>Advising notes</p>
+    <p>Academic standards</p>
+    <p>Campus resources</p>
+    <p>Program notes</p>
+    <p>Transfer notes</p>
+    <p>Degree overview</p>
+    <h3>Program of Study: Major: Computer Engineering</h3>
+    <p>Admission Requirements</p>
+    <p>TMATH 124, TMATH 125, and TMATH 126</p>
+    <p>TMATH 207</p>
+    <h4>Bachelor of Science degree with a major in Computer Engineering</h4>
+    <p>Required Core Courses: 101 credits</p>
+    <p>TCSS 342 (5)</p>
+    <p>TCES 230 (5)</p>
+    <p>TEE 451 (5)</p>
+    <p>Back to Top</p>
+    <h3>Program of Study: Major: Electrical Engineering</h3>
+    <p>TEE 225 (5)</p>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    {
+      ownerId: "uw-tacoma-computer-engineering",
+      ownerTitle: "Computer Engineering",
+      planId: "uw-tacoma-computer-engineering",
+      campusId: "uw-tacoma",
+      parserType: "catalog-page",
+      url: "https://www.washington.edu/students/gencat/program/T/SchoolofEngineeringandTechnology-1023.html",
+      label: "UW Tacoma catalog Computer Engineering",
+    },
+    html
+  );
+
+  assert.ok(parsed.courseCodes.includes("TMATH 207"));
+  assert.ok(parsed.courseCodes.includes("TCSS 342"));
+  assert.ok(parsed.courseCodes.includes("TCES 230"));
+  assert.ok(parsed.courseCodes.includes("TEE 451"));
+  assert.ok(!parsed.courseCodes.includes("TCE 304"));
+  assert.ok(!parsed.courseCodes.includes("TEE 225"));
+});
+
+test("Focused HTML degree pages keep full requirement pages", () => {
+  const html = `
+    <title>Undergraduate Degree Requirements - UW Bioengineering</title>
+    <h1>Undergraduate Degree Requirements</h1>
+    <h2>TOTAL CREDITS FOR DEGREE = 180</h2>
+    <h4>Engineering Fundamentals (72 credits)</h4>
+    <h4>Mathematics (24 credits)</h4>
+    <p>MATH 124, 125, 126 Calculus with Analytic Geometry I, II, III</p>
+    <p>MATH 207 or AMATH 351 Introduction to Differential Equations</p>
+    <p>MATH 208 or AMATH 352 Matrix Algebra with Applications</p>
+    <h4>Natural Science (44 credits)</h4>
+    <p>CHEM 142, 152, 162 General Chemistry</p>
+    <p>PHYS 121 Mechanics, with Lab</p>
+    <p>PHYS 122 Electromagnetism and Oscillatory Motion, with Lab</p>
+    <p>BIOL 180, 200, 220 Introductory Biology</p>
+    <h4>Programming - Choose one option (4 credits)</h4>
+    <p>AMATH 301 Beginning Scientific Computing</p>
+    <p>CSE 121 or 160 plus BIOEN 217</p>
+    <h4>Bioengineering Core (37 credits)</h4>
+    <p>BIOEN 215 Bioengineering Problem Solving</p>
+    <p>BIOEN 315 Biochemical and Molecular Bioengineering</p>
+    <p>BIOEN 316 Biomedical Signals and Sensors</p>
+    <p>BIOEN 317 Biomedical Signals and Sensors Lab</p>
+    <p>BIOEN 325 Biotransport I</p>
+    <p>BIOEN 326 Solid and Gel Mechanics</p>
+    <p>BIOEN 327 Fluids and Biomaterials Lab</p>
+    <p>BIOEN 335 Biotransport II</p>
+    <p>BIOEN 336 Bioengineering Systems and Control</p>
+    <p>BIOEN 337 Mass Transport and Systems Lab</p>
+    <p>BIOEN 345 Failure Analysis of Human Physiology with Lab</p>
+    <p>BIOEN 400 Fundamentals of Bioengineering Design</p>
+    <h4>Bioengineering Senior Elective Courses (15 credits)</h4>
+    <p>BIOEN 407 Bioengineering Nepal</p>
+    <p>BIOEN 415 Bioconjugate Engineering</p>
+    <p>BIOEN 420 Medical Imaging</p>
+    <p>BIOEN 423 Introduction to Synthetic Biology</p>
+    <p>BIOEN 424 Advanced Systems and Synthetic Biology</p>
+    <p>BIOEN 425 Laboratory Methods in Synthetic Biology</p>
+    <p>BIOEN 436 Quantitative Physiology</p>
+    <h4>Bioengineering Senior Capstone (Choose one track) (10 credits)</h4>
+    <p>BIOEN 401 and BIOEN 402</p>
+    <p>BIOEN 404 and BIOEN 405</p>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(
+    {
+      ownerId: "uw-seattle-bioengineering",
+      ownerTitle: "Bioengineering",
+      planId: "uw-seattle-bioengineering",
+      campusId: "uw-seattle",
+      parserType: "html-degree-page",
+      url: "https://bioe.uw.edu/academic-programs/undergraduate/undergraduate-degree-requirements/",
+      label: "UW Bioengineering undergraduate degree requirements",
+    },
+    html
+  );
+
+  assert.ok(parsed.courseCodes.includes("MATH 124"));
+  assert.ok(parsed.courseCodes.includes("MATH 126"));
+  assert.ok(parsed.courseCodes.includes("BIOEN 315"));
+  assert.ok(parsed.courseCodes.includes("BIOEN 345"));
+  assert.ok(parsed.courseCodes.includes("BIOEN 400"));
+  assert.ok(parsed.courseCodes.includes("BIOEN 424"));
+  assert.ok(parsed.courseCodes.includes("BIOEN 405"));
+});
+
 test("Structured UW course code reader filters prose-derived level references", () => {
   const courseCodes = parser.getStructuredUwCourseCodesForTest({
     planId: "uw-bothell-csse",
@@ -401,6 +630,309 @@ test("Supplemental linked document recovery accepts official Bothell STEM acrony
   assert.equal(eeChecklist.exactTitleMatch, false);
   assert.equal(eeChecklist.titleAcronymMatch, true);
   assert.deepEqual(eeChecklist.titleAcronymMatches, ["ee"]);
+});
+
+test("Supplemental HTML recovery follows same-program approved elective pages", () => {
+  const entry = buildRecoveryEntryFixture({
+    id: "uw-bothell-health-studies:primary",
+    ownerId: "uw-bothell-health-studies",
+    ownerTitle: "Health Studies (BA)",
+    planId: "uw-bothell-health-studies",
+    campusId: "uw-bothell",
+    parserType: "html-overview-page",
+    url: "https://www.uwb.edu/nhs/undergraduate/health-studies/overview",
+    label: "UW Bothell Health Studies overview",
+    sourceLabel: "UW Bothell Health Studies overview",
+  });
+  const html = `
+    <main>
+      <a href="/nhs/undergraduate/health-studies/overview/hs-electives">
+        Health Studies Elective webpage
+      </a>
+      <a href="/nhs/undergraduate/global-health-minor/gh-electives">
+        Global Health electives
+      </a>
+    </main>
+  `;
+  const candidates = parser.extractSupplementalHtmlLinkCandidatesForTest(entry, html);
+  const healthElectives = candidates.find((candidate) => /hs-electives$/.test(candidate.url));
+  const globalHealthMinor = candidates.find((candidate) => /global-health-minor/.test(candidate.url));
+
+  assert.ok(healthElectives);
+  assert.equal(healthElectives.type, "general");
+  assert.equal(healthElectives.sameProgramRequirementLink, true);
+  assert.equal(globalHealthMinor, undefined);
+});
+
+test("Approved elective HTML pages keep multi-school course sections", () => {
+  const entry = buildRecoveryEntryFixture({
+    id: "uw-bothell-health-studies:electives",
+    ownerId: "uw-bothell-health-studies",
+    ownerTitle: "Health Studies (BA)",
+    planId: "uw-bothell-health-studies",
+    campusId: "uw-bothell",
+    parserType: "html-overview-page",
+    url: "https://www.uwb.edu/nhs/undergraduate/health-studies/overview/hs-electives",
+    label: "Health Studies Elective webpage",
+    sourceLabel: "Health Studies Elective webpage",
+  });
+  const html = `
+    <main>
+      <h1>Health Studies Electives</h1>
+      <h2>Approved electives</h2>
+      <h3>School of Nursing & Health Studies</h3>
+      <table>
+        <tr><th>Course</th><th>Interest area</th></tr>
+        <tr><td>BHLTH 179 Interpersonal Communication</td><td>Health & Society</td></tr>
+        <tr><td>BHLTH 196 Prep to Work with Communities</td><td>Community Health</td></tr>
+        <tr><td>BHLTH 198 Physical Activity, Nutrition, & Health</td><td>Health & Life Sciences</td></tr>
+        <tr><td>BHLTH 201 Intro to Global Health</td><td>Health & Society</td></tr>
+      </table>
+      <h3>School of Science, Technology, Engineering & Mathematics</h3>
+      <table>
+        <tr><th>Course</th><th>Interest area</th></tr>
+        <tr><td>BBIO 180 Intro Biology I</td><td>Health & Life Sciences</td></tr>
+        <tr><td>BCHEM 143/144 Chemistry I with Lab</td><td>Health & Life Sciences</td></tr>
+      </table>
+    </main>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+
+  assert.ok(parsed.courseCodes.includes("BHLTH 179"));
+  assert.ok(parsed.courseCodes.includes("BBIO 180"));
+  assert.ok(parsed.courseCodes.includes("BCHEM 143"));
+  assert.ok(parsed.courseCodes.includes("BCHEM 144"));
+});
+
+test("Parser source-section roles do not let elective prose block core course rows", () => {
+  const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-bothell-applied-computing",
+    sourceUrl: "https://www.uwb.edu/stem/undergraduate/majors/applied-computing/curriculum",
+    snapshotLines: [
+      "General education courses",
+      "In general, these general education courses can overlap with the Second Discipline and Elective courses for your major.",
+      "Core courses",
+      "CSS 301: Technical Writing",
+      "CSS 340: Applied Algorithmics; or",
+      "CSS 342: Advanced Data Structures, Algorithms, and Discrete Mathematics I; or",
+      "CSS 350: Management for Computing Professionals; or",
+      "B BUS 300: Organizational Behavior, Ethics, and Inclusivity",
+      "CSS 360: Software Engineering",
+      "CSS 421: Hardware and Operating Systems",
+    ],
+  });
+  const rowsByRawLine = new Map(rows.map((row) => [row.rawLine, row]));
+
+  for (const rawLine of [
+    "CSS 301: Technical Writing",
+    "CSS 340: Applied Algorithmics; or",
+    "CSS 350: Management for Computing Professionals; or",
+    "B BUS 300: Organizational Behavior, Ethics, and Inclusivity",
+    "CSS 360: Software Engineering",
+    "CSS 421: Hardware and Operating Systems",
+  ]) {
+    assert.equal(rowsByRawLine.get(rawLine)?.schedulable, true, rawLine);
+  }
+});
+
+test("Parser does not turn IPR overlap policy text into a sectioned course list", () => {
+  const groups = parser.buildParsedRequirementGroupsForTest(
+    {
+      ownerId: "uw-bothell-psychology",
+      ownerTitle: "Psychology (BA)",
+      planId: "uw-bothell-psychology",
+      campusId: "uw-bothell",
+      sourceUrl: "https://www.uwb.edu/ias/undergraduate/majors/psychology",
+    },
+    ["BISPSY 337", "BISPSY 343", "BISPSY 348", "BISPSY 350"],
+    [
+      "Interdisciplinary Practice & Reflection (IPR): The IPR requirement can overlap with the 70 credits of major coursework, or it can be completed through elective credits. Please see the IPR webpage for course options.",
+      "Upper Division Credit Policy: A maximum of 35 credits earned in 100- and 200-level courses may apply toward the major. Remaining credits must be earned in upper division courses (300-level and above).",
+      "A. Psychology core courses",
+      "BISPSY 337 Risk and Resilience (not offered regularly)",
+      "BISPSY 343 Community Psychology (Autumn Quarter)",
+      "BISPSY 348 Cultural Psychology (Winter Quarter)",
+      "BISPSY 350 Intergroup Relations (Spring Quarter)",
+    ]
+  );
+
+  assert.equal(
+    groups.some(
+      (group) =>
+        group.requirementType === "choose_credits" &&
+        group.minCredits === 70 &&
+        JSON.stringify(group.options).includes("BISPSY 337")
+    ),
+    false
+  );
+});
+
+test("Primary sources expose approved source-section courses as support lists", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-seattle-mechanical-engineering",
+    ownerTitle: "Mechanical Engineering",
+    planId: "uw-seattle-mechanical-engineering",
+    campusId: "uw-seattle",
+    parserType: "html-degree-page",
+    url: "https://www.me.washington.edu/students/ug/requirements",
+    label: "UW Seattle Mechanical Engineering requirements",
+    sourceLabel: "UW Seattle Mechanical Engineering requirements",
+  });
+  const html = `
+    <main>
+      <h1>Mechanical Engineering requirements</h1>
+      <h2>Engineering fundamentals</h2>
+      <p>AA 210</p>
+      <p>CEE 220</p>
+      <h2>From the list of approved 400-level ME courses</h2>
+      <p>ME 402</p>
+      <p>Additive Manufacturing: Materials, Processing and Applications</p>
+      <p>ME 406</p>
+      <p>Corrosion and Surface Treatment of Materials</p>
+    </main>
+  `;
+  const block = buildParsedBlockFixture(entry, html);
+  const supportList = block.supportLists.find((list) =>
+    /approved 400-level ME courses/i.test(list.listTitle)
+  );
+
+  assert.ok(block.parsedUwCourseCodes.includes("AA 210"));
+  assert.ok(supportList);
+  assert.equal(supportList.canCreateScheduleRow, false);
+  assert.deepEqual(supportList.acceptedUwCourseCodes, ["ME 402", "ME 406"]);
+});
+
+test("UW Bothell admissions planning worksheets are admission prerequisite sources", () => {
+  const sourceRole = parser.classifyRequirementSourceRole({
+    ownerId: "uw-bothell-data-visualization-ba",
+    ownerTitle: "Data Visualization (BA)",
+    role: "worksheet",
+    parserType: "html-degree-page",
+    label: "UW Bothell major planning worksheet - Data Visualization (BA)",
+    url: "https://admissions.uwb.edu/register/mpw-DataVis-BA",
+  });
+
+  assert.equal(sourceRole, "admission-prerequisite-source");
+});
+
+test("Focused degree scoping keeps nearby matching prerequisite sections", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-bothell-data-visualization-bs",
+    ownerTitle: "Data Visualization (BS)",
+    planId: "uw-bothell-data-visualization-bs",
+    campusId: "uw-bothell",
+    parserType: "html-degree-page",
+    url: "https://www.uwb.edu/ias/undergraduate/majors/data-visualization",
+    label: "Data Visualization",
+    sourceLabel: "Data Visualization",
+  });
+  const html = `
+    <main>
+      <h1>Data Visualization</h1>
+      <h2>Plan your degree</h2>
+      <p>Prerequisites</p>
+      <p>Bachelor of Arts Prerequisites</p>
+      <p>ENGL 131</p>
+      <p>B MATH 123</p>
+      <p>Bachelor of Science Prerequisites</p>
+      <p>B WRIT 134 or ENGL 131</p>
+      <p>BIS 215 or B MATH 215 or B BUS 215 or STAT 220</p>
+      <p>STMATH 124 or MATH 124</p>
+      <h3>Bachelor of Science Degree Requirements</h3>
+      <p>Data Visualization Core Courses</p>
+      <p>B DATA 200 Introduction to Data Studies</p>
+      <p>B DATA 232 Introduction to Data Visualization</p>
+      <p>Either STMATH 125 or MATH 125 Calculus 2</p>
+    </main>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+
+  for (const courseCode of ["ENGL 131", "BMATH 215", "STMATH 124", "BDATA 200", "BDATA 232"]) {
+    assert.ok(parsed.courseCodes.includes(courseCode), courseCode);
+  }
+});
+
+test("Focused compact degree pages keep full official course lists", () => {
+  const entry = buildRecoveryEntryFixture({
+    ownerId: "uw-tacoma-mathematics",
+    ownerTitle: "Mathematics (BS)",
+    planId: "uw-tacoma-mathematics",
+    campusId: "uw-tacoma",
+    parserType: "html-overview-page",
+    url: "https://www.tacoma.uw.edu/sias/sam/mathematics",
+    label: "Mathematics",
+    sourceLabel: "Mathematics",
+  });
+  const courseLines = [
+    "TMATH 124 Calculus with Analytic Geometry I",
+    "TMATH 125 Calculus with Analytic Geometry II",
+    "TMATH 126 Calculus with Analytic Geometry III",
+    "TMATH 207 Introduction to Differential Equations",
+    "TMATH 208 Matrix Algebra with Applications",
+    "TMATH 224 Multivariable Calculus",
+    "TMATH 300 Foundations of Mathematical Reasoning",
+    "TMATH 350 Mathematics Research Seminar",
+    "TMATH 402 Introduction to Abstract Algebra I",
+    "TMATH 424 Introduction to Real Analysis I",
+    "TMATH 403 Introduction to Abstract Algebra II",
+    "TMATH 425 Introduction to Real Analysis II",
+    "TMATH 210 Intermediate Statistics with Applications",
+    "TMATH 390 Probability and Statistics in Engineering and Science",
+    "TMATH 412 Cryptography OR TCSS 487 Cryptography",
+    "TME 311 Computational Physical Modeling II",
+    "TESC 430 Environmental Modeling",
+    "TSTAT 280 Applied Data Science",
+    "TMATH 302 Mathematics and Social Justice",
+    "TMATH 450 Mathematics Capstone",
+  ];
+  const html = `
+    <main>
+      <h1>Mathematics</h1>
+      <h2>Bachelor of Science</h2>
+      <p>Core courses (49 credits)</p>
+      ${courseLines.map((line) => `<p>${line}</p>`).join("\n")}
+      <h3>ADMISSION REQUIREMENTS</h3>
+      <p>A minimum of 45 lower-division credits is required before declaring the major.</p>
+      <h3>DEGREE REQUIREMENTS</h3>
+      <p>For a BS in Mathematics, students must complete 79 major credits.</p>
+    </main>
+  `;
+  const parsed = parser.parseHtmlSourceFromArtifactsForTest(entry, html);
+
+  for (const courseCode of ["TMATH 124", "TMATH 300", "TMATH 402", "TMATH 425", "TCSS 487", "TMATH 450"]) {
+    assert.ok(parsed.courseCodes.includes(courseCode), courseCode);
+  }
+});
+
+test("Parser recognizes Tacoma Healthcare Leadership THLEAD course subjects", () => {
+  assert.deepEqual(parser.extractCourseCodesFromLineForTest("THLEAD 350 Critical Analysis and Writing"), [
+    "THLEAD 350",
+  ]);
+  assert.deepEqual(parser.extractCourseCodesFromLineForTest("TSTAT 280 Applied Data Science"), [
+    "TSTAT 280",
+  ]);
+});
+
+test("Tacoma elective placeholders do not block later sample-plan course rows", () => {
+  const rows = parser.buildParserPrerequisiteFilterAuditRowsForTest({
+    ownerId: "uw-tacoma-healthcare-leadership",
+    sourceUrl: "https://www.tacoma.uw.edu/nursing/healthcare-leadership-sample-program-plan",
+    snapshotLines: [
+      "Spring",
+      "T ELEC 2",
+      "UWT Elective Course",
+      "Winter",
+      "THLEAD 406",
+      "Health Informatics II",
+      "Spring",
+      "THLEAD 480",
+      "Healthcare Leadership Fieldwork",
+    ],
+  });
+  const rowsByRawLine = new Map(rows.map((row) => [row.rawLine, row]));
+
+  assert.equal(rowsByRawLine.get("THLEAD 406")?.schedulable, true);
+  assert.equal(rowsByRawLine.get("THLEAD 480")?.schedulable, true);
 });
 
 test("Parser can prefer acronym-matched rich degree checklists over shallow HTML sources", () => {

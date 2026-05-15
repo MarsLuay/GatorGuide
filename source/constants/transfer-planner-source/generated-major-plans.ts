@@ -1199,6 +1199,38 @@ function compareGuideRules(
   return left.id.localeCompare(right.id);
 }
 
+function getConcreteGuideTargetCourseCodes(rule: {
+  targetCourseCodes?: string[] | null;
+}) {
+  return uniquePlannerStrings(
+    (rule.targetCourseCodes ?? [])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter((courseCode) => courseCode && !/\b[1-4]XX\b/i.test(courseCode))
+      .filter((courseCode) => !/^STRONGER\b/i.test(courseCode))
+  );
+}
+
+function canUseGuideRuleForSourceBackedRequirement(
+  rule: {
+    targetCourseCodes?: string[] | null;
+  },
+  requestedTargetCourseCode: string,
+  sourceRequirementCourseCodes: Set<string>
+) {
+  const normalizedRequestedTargetCourseCode = normalizeCourseCode(requestedTargetCourseCode);
+  const concreteTargetCourseCodes = getConcreteGuideTargetCourseCodes(rule);
+  if (concreteTargetCourseCodes.length <= 1) {
+    return true;
+  }
+  if (!concreteTargetCourseCodes.includes(normalizedRequestedTargetCourseCode)) {
+    return true;
+  }
+
+  return concreteTargetCourseCodes.every((courseCode) =>
+    sourceRequirementCourseCodes.has(courseCode)
+  );
+}
+
 const GUIDE_RULES_BY_ID = new Map(
   TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY.map((rule) => [rule.id, rule])
 );
@@ -1329,7 +1361,15 @@ for (const parsedSource of TRANSFER_PLANNER_PARSED_REQUIREMENT_SOURCE_BLOCK_REGI
 
     const candidateRules = [
       ...(GUIDE_RULES_BY_TARGET_COURSE_CODE.get(parsedCourseCode) ?? []),
-    ].sort(compareGuideRules);
+    ]
+      .filter((rule) =>
+        canUseGuideRuleForSourceBackedRequirement(
+          rule,
+          parsedCourseCode,
+          parsedCourseCodeSet
+        )
+      )
+      .sort(compareGuideRules);
     const topRule = candidateRules[0];
     if (!topRule) continue;
 
@@ -1519,11 +1559,30 @@ function shouldSkipDegreeMapGuideCourseForNonRequirementCue(
   ]);
 
   return candidateLines.some((line) => {
-    if (!SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN.test(String(line ?? ""))) {
+    const text = String(line ?? "");
+    if (
+      !SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN.test(text) &&
+      !/\bincluding\b.{0,120}\bor\b/i.test(text)
+    ) {
       return false;
     }
 
-    return extractReferenceCourseCodes(line).includes(normalizedUwCourseCode);
+    const referenceCourseCodes = extractReferenceCourseCodes(line);
+    if (referenceCourseCodes.includes(normalizedUwCourseCode)) {
+      return true;
+    }
+
+    const courseNumber = getCourseCatalogNumber(normalizedUwCourseCode);
+    const coursePrefix = getSourceBackedFallbackCoursePrefix(normalizedUwCourseCode);
+    return Boolean(
+      courseNumber &&
+        coursePrefix &&
+        new RegExp(`\\b${courseNumber.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i").test(text) &&
+        referenceCourseCodes.some(
+          (referenceCourseCode) =>
+            getSourceBackedFallbackCoursePrefix(referenceCourseCode) === coursePrefix
+        )
+    );
   });
 }
 
@@ -1569,9 +1628,20 @@ for (const block of TRANSFER_PLANNER_DEGREE_MAP_BLOCK_REGISTRY) {
       continue;
     }
 
+    const blockCourseCodeSet = new Set(
+      (block.uwCourseCodes ?? []).map((courseCode) => normalizeCourseCode(courseCode)).filter(Boolean)
+    );
     const topRule = [
       ...(GUIDE_RULES_BY_TARGET_COURSE_CODE.get(normalizedUwCourseCode) ?? []),
-    ].sort(compareGuideRules)[0];
+    ]
+      .filter((rule) =>
+        canUseGuideRuleForSourceBackedRequirement(
+          rule,
+          normalizedUwCourseCode,
+          blockCourseCodeSet
+        )
+      )
+      .sort(compareGuideRules)[0];
     if (!topRule) {
       continue;
     }
@@ -2586,6 +2656,20 @@ function isLowerDivisionSourceBackedFallbackCode(code: string) {
   return level !== null && level < 300;
 }
 
+function isDisplayableSourceBackedFallbackCode(
+  code: string,
+  candidate?: TransferPlannerParsedRequirementAtomCandidate | null
+) {
+  const level = getSourceBackedFallbackCourseLevel(code);
+  if (level === null) {
+    return false;
+  }
+  if (level < 300) {
+    return true;
+  }
+  return level < 400 && Boolean(candidate && hasStrongRequiredSourceBackedFallbackCue(candidate));
+}
+
 function shouldExcludeSourceBackedFallbackCode(scope: {
   code: string;
   requirementCueLines: string[];
@@ -2634,6 +2718,35 @@ function shouldExcludeSourceBackedFallbackCode(scope: {
   return false;
 }
 
+function hasGuideBackedGreenRiverPath(targetCourseCode: string) {
+  return Boolean(getPreferredGuideRuleWithSourceSets(targetCourseCode));
+}
+
+function hasStrongRequiredSourceBackedFallbackCue(candidate: TransferPlannerParsedRequirementAtomCandidate) {
+  if (candidate.sourceSectionSchedulable === false) {
+    return false;
+  }
+
+  const combinedCueText = uniquePlannerStrings(candidate.sourceLineHints ?? []).join(" ");
+  if (!combinedCueText) {
+    return false;
+  }
+
+  if (
+    SOURCE_BACKED_NON_REQUIREMENT_CUE_PATTERN.test(combinedCueText) ||
+    /\bincluding\b.{0,120}\bor\b/i.test(combinedCueText)
+  ) {
+    return false;
+  }
+
+  return (
+    /\b\d+(?:\.\d+)?\s*cr\b/i.test(combinedCueText) ||
+    /\b(?:all applicants must also complete|must complete|required|prereq(?:uisite)?(?:s)?|required courses?)\b/i.test(
+      combinedCueText
+    )
+  );
+}
+
 function getDominantSourceBackedFallbackPhase(
   entries: TransferPlannerRequirementDiffClassificationEntry[],
   parsedCandidates: TransferPlannerParsedRequirementAtomCandidate[],
@@ -2663,9 +2776,10 @@ function addFallbackChecklistItemForPhase(
   phase: TransferPlannerRequirementPhase,
   item: TransferPlannerChecklistItem
 ) {
-  // Keep UW-only guidance placeholders out of the student planner until there is a
-  // source-backed GRC course path we can actually show.
-  if (!getChecklistReferenceCoursesFromItems([item]).length) {
+  const hasCourseReference =
+    getChecklistReferenceCoursesFromItems([item]).length > 0 ||
+    extractReferenceCourseCodes(item.title).length > 0;
+  if (!hasCourseReference) {
     return;
   }
 
@@ -4678,7 +4792,20 @@ function getParsedRequirementGroupsFromBlock(
           canParsedRequirementSourceBlockCreateRequiredScheduleRows(block),
       })
     )
-    .filter((group) => group.options.length > 0);
+    .filter((group) => shouldRetainRequirementGroupForRuntime(group));
+}
+
+function shouldRetainRequirementGroupForRuntime(group: TransferPlannerRequirementGroup) {
+  if ((group.options ?? []).length > 0) {
+    return true;
+  }
+
+  return (
+    group.requirementType === "choose_credits" &&
+    group.canCreatePlaceholder === true &&
+    group.minCredits != null &&
+    group.minCredits > 0
+  );
 }
 
 function applyRequirementGroupPathwayRestrictions(
@@ -4734,7 +4861,7 @@ function getRequirementGroupsForScope(planId: string, pathwayId?: string | null)
       })
       .flatMap(getParsedRequirementGroupsFromBlock)
       .map((group) => applyRequirementGroupPathwayRestrictions(group, pathwayId))
-      .filter((group) => group.options.length > 0),
+      .filter((group) => shouldRetainRequirementGroupForRuntime(group)),
     pathwayId
   );
 }
@@ -5162,7 +5289,18 @@ function buildRequirementGroupChecklistItem(
     grcCourses = allOptionGrcLabels;
   }
 
-  if (!grcCourses.length && !(alternatives ?? []).length && !allOptionLabels.length) {
+  const isVisibleCreditBucketPlaceholder =
+    group.requirementType === "choose_credits" &&
+    group.canCreatePlaceholder === true &&
+    group.minCredits != null &&
+    group.minCredits > 0;
+
+  if (
+    !isVisibleCreditBucketPlaceholder &&
+    !grcCourses.length &&
+    !(alternatives ?? []).length &&
+    !allOptionLabels.length
+  ) {
     return null;
   }
 
@@ -5762,6 +5900,7 @@ function buildStrictSourceBackedFallbackChecklists(scope: {
   planId: string;
   pathwayId?: string | null;
   includeParsedCandidates: boolean;
+  strongParsedCandidatesOnly?: boolean;
 }) {
   const classifications = getRequirementDiffClassificationsForScope(scope.planId, scope.pathwayId);
   const supportsStrictFallback =
@@ -5782,6 +5921,14 @@ function buildStrictSourceBackedFallbackChecklists(scope: {
     const codeIdentity = getSourceBackedFallbackCodeIdentity(normalizedCode);
     if (!normalizedCode || !codeIdentity) {
       continue;
+    }
+    if (scope.strongParsedCandidatesOnly) {
+      if (
+        !hasStrongRequiredSourceBackedFallbackCue(candidate) ||
+        hasGuideBackedGreenRiverPath(normalizedCode)
+      ) {
+        continue;
+      }
     }
 
     const existing = candidateByCode.get(codeIdentity) ?? null;
@@ -5876,12 +6023,20 @@ function buildStrictSourceBackedFallbackChecklists(scope: {
       classificationRecord?.displayCode,
       codeIdentity
     );
-    if (!isLowerDivisionSourceBackedFallbackCode(normalizedCode)) {
+    const classification = classificationRecord?.classification ?? null;
+    const candidate = candidateRecord?.candidate ?? null;
+    if (
+      scope.strongParsedCandidatesOnly &&
+      (!candidate ||
+        !hasStrongRequiredSourceBackedFallbackCue(candidate) ||
+        hasGuideBackedGreenRiverPath(normalizedCode))
+    ) {
+      continue;
+    }
+    if (!isDisplayableSourceBackedFallbackCode(normalizedCode, candidate)) {
       continue;
     }
 
-    const classification = classificationRecord?.classification ?? null;
-    const candidate = candidateRecord?.candidate ?? null;
     const requirementCueLines = uniquePlannerStrings([
       ...(candidate?.sourceLineHints ?? []),
       ...(classification ? getRequirementCueLinesFromClassification(classification) : []),
@@ -5962,10 +6117,15 @@ function applyStrictSourceBackedFallback<T extends {
 }>(scope: T, pathwayId?: string | null): T {
   const hasExistingChecklistCoverage = hasAnyChecklistItems(scope);
   const hasExistingCourseListCoverage = Boolean(scope.grcCourseList?.length);
+  const shouldTryStrongSupplementalFallback =
+    hasExistingChecklistCoverage || hasExistingCourseListCoverage;
   const fallbackChecklists = buildStrictSourceBackedFallbackChecklists({
     planId: scope.id,
     pathwayId,
-    includeParsedCandidates: !hasExistingChecklistCoverage && !hasExistingCourseListCoverage,
+    includeParsedCandidates:
+      (!hasExistingChecklistCoverage && !hasExistingCourseListCoverage) ||
+      shouldTryStrongSupplementalFallback,
+    strongParsedCandidatesOnly: shouldTryStrongSupplementalFallback,
   });
 
   if (
@@ -7462,13 +7622,40 @@ function buildAutomaticCoursePoolChecklistItems(scope: {
   beforeEnrollmentChecklist?: TransferPlannerChecklistItem[];
   stayAtGrcChecklist?: TransferPlannerChecklistItem[];
 }) {
-  if (hasAnyChecklistItems(scope)) {
-    return buildEmptyChecklistItemsByPhase();
-  }
-
-  const automaticCourseList = uniqueReferenceCourseLabels(scope.automaticCourseList).filter(
-    (label) => extractReferenceCourseCodes(label).length > 0
+  const existingChecklistItems = [
+    ...(scope.applicationChecklist ?? []),
+    ...(scope.beforeEnrollmentChecklist ?? []),
+    ...(scope.stayAtGrcChecklist ?? []),
+  ];
+  const existingCoverage = new Set(
+    getChecklistCoverageCourseCodes(existingChecklistItems)
   );
+  const existingChoiceCoverage = new Set(
+    existingChecklistItems.flatMap((item) => {
+      const hasUnselectedOptions = (item.unselectedRequirementOptionIds ?? []).length > 0;
+      const requirementType = item.requirementGroup?.requirementType ?? null;
+      if (
+        !hasUnselectedOptions ||
+        (requirementType !== "choose_one" && requirementType !== "sequence_choice")
+      ) {
+        return [];
+      }
+
+      return [...(item.grcCourses ?? []), ...(item.alternatives ?? []).flat()]
+        .flatMap(extractReferenceCourseCodes)
+        .map((courseCode) => normalizeCourseCode(courseCode))
+        .filter(Boolean);
+    })
+  );
+  const automaticCourseList = uniqueReferenceCourseLabels(scope.automaticCourseList)
+    .filter((label) => extractReferenceCourseCodes(label).length > 0)
+    .filter((label) =>
+      extractReferenceCourseCodes(label).some(
+        (courseCode) =>
+          !existingCoverage.has(normalizeCourseCode(courseCode)) &&
+          !existingChoiceCoverage.has(normalizeCourseCode(courseCode))
+      )
+    );
   if (!automaticCourseList.length) {
     return buildEmptyChecklistItemsByPhase();
   }
@@ -7586,10 +7773,70 @@ function buildStudentVisibleAutomaticCourseList(scope: {
   beforeEnrollmentChecklist: TransferPlannerChecklistItem[];
   stayAtGrcChecklist: TransferPlannerChecklistItem[];
 }) {
+  const checklistItems = [
+    ...(scope.applicationChecklist ?? []),
+    ...(scope.beforeEnrollmentChecklist ?? []),
+    ...(scope.stayAtGrcChecklist ?? []),
+  ];
+  const selectedChoiceCourseCodes = new Set<string>();
+  const unselectedChoiceCourseCodes = new Set<string>();
+
+  for (const item of checklistItems) {
+    const group = item.requirementGroup;
+    if (
+      !group ||
+      (group.requirementType !== "choose_one" && group.requirementType !== "sequence_choice")
+    ) {
+      continue;
+    }
+
+    const selectedOptionIds = new Set(item.selectedRequirementOptionIds ?? []);
+    const unselectedOptionIds = new Set(item.unselectedRequirementOptionIds ?? []);
+    if (!selectedOptionIds.size || !unselectedOptionIds.size) {
+      continue;
+    }
+
+    for (const option of group.options ?? []) {
+      const optionId = option.id ?? "";
+      if (!optionId) {
+        continue;
+      }
+
+      const targetSet = selectedOptionIds.has(optionId)
+        ? selectedChoiceCourseCodes
+        : unselectedOptionIds.has(optionId)
+          ? unselectedChoiceCourseCodes
+          : null;
+      if (!targetSet) {
+        continue;
+      }
+
+      for (const courseCode of getRequirementOptionCourseLabels(option)) {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        if (normalizedCourseCode) {
+          targetSet.add(normalizedCourseCode);
+        }
+      }
+    }
+  }
+
+  const suppressUnselectedChoices = (labels: string[]) =>
+    labels.filter((label) =>
+      extractReferenceCourseCodes(label).some((courseCode) => {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        return (
+          !unselectedChoiceCourseCodes.has(normalizedCourseCode) ||
+          selectedChoiceCourseCodes.has(normalizedCourseCode)
+        );
+      })
+    );
+
   const checklistCourseList = collectPlannerCourseLabels(scope);
   const baseGrcCourseList = filterCanonicalGrcCourseLabels(scope.grcCourseList ?? []);
   return orderStringsByBase(
-    filterCanonicalGrcCourseLabels([...baseGrcCourseList, ...checklistCourseList]),
+    suppressUnselectedChoices(
+      filterCanonicalGrcCourseLabels([...baseGrcCourseList, ...checklistCourseList])
+    ),
     baseGrcCourseList
   );
 }
@@ -7805,19 +8052,27 @@ function buildStudentRuntimePathway(
       ...prunedBeforeEnrollmentChecklist,
     ])
   );
-  const automaticCourseList = orderStringsByBase(
-    uniqueReferenceCourseLabels([
-      ...structuredCourseSeed,
-      ...buildAutomaticCourseList(basePlan.id, basePathway.id),
-    ]),
-    structuredCourseSeed
+  const automaticCourseList = applyRequirementGroupSelectionsToCourseList(
+    orderStringsByBase(
+      uniqueReferenceCourseLabels([
+        ...structuredCourseSeed,
+        ...buildAutomaticCourseList(basePlan.id, basePathway.id),
+      ]),
+      structuredCourseSeed
+    ),
+    basePlan.id,
+    basePathway.id
   );
-  const automaticTrackMatchCourseList = orderStringsByBase(
-    uniqueReferenceCourseLabels([
-      ...structuredCourseSeed,
-      ...buildAutomaticTrackMatchCourseList(basePlan.id, basePathway.id),
-    ]),
-    structuredCourseSeed
+  const automaticTrackMatchCourseList = applyRequirementGroupSelectionsToCourseList(
+    orderStringsByBase(
+      uniqueReferenceCourseLabels([
+        ...structuredCourseSeed,
+        ...buildAutomaticTrackMatchCourseList(basePlan.id, basePathway.id),
+      ]),
+      structuredCourseSeed
+    ),
+    basePlan.id,
+    basePathway.id
   );
   const studentVisibleCourseList = buildStudentVisibleAutomaticCourseList({
     grcCourseList: automaticCourseList,
@@ -8032,17 +8287,152 @@ function buildStudentRuntimePlan(basePlan: TransferPlannerMajorPlan): TransferPl
   );
 }
 
+function suppressUnselectedChoiceCourseLabels(
+  labels: string[],
+  checklistItems: TransferPlannerChecklistItem[]
+) {
+  const selectedChoiceCourseCodes = new Set<string>();
+  const unselectedChoiceCourseCodes = new Set<string>();
+
+  for (const item of checklistItems) {
+    const group = item.requirementGroup;
+    if (
+      !group ||
+      (group.requirementType !== "choose_one" && group.requirementType !== "sequence_choice")
+    ) {
+      continue;
+    }
+
+    const selectedOptionIds = new Set(item.selectedRequirementOptionIds ?? []);
+    const unselectedOptionIds = new Set(item.unselectedRequirementOptionIds ?? []);
+    if (!selectedOptionIds.size || !unselectedOptionIds.size) {
+      continue;
+    }
+
+    for (const option of group.options ?? []) {
+      const optionId = option.id ?? "";
+      if (!optionId) {
+        continue;
+      }
+
+      const targetSet = selectedOptionIds.has(optionId)
+        ? selectedChoiceCourseCodes
+        : unselectedOptionIds.has(optionId)
+          ? unselectedChoiceCourseCodes
+          : null;
+      if (!targetSet) {
+        continue;
+      }
+
+      for (const courseCode of getRequirementOptionCourseLabels(option)) {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        if (normalizedCourseCode) {
+          targetSet.add(normalizedCourseCode);
+        }
+      }
+    }
+  }
+
+  if (!unselectedChoiceCourseCodes.size) {
+    return labels;
+  }
+
+  return labels.filter((label) =>
+    extractReferenceCourseCodes(label).some((courseCode) => {
+      const normalizedCourseCode = normalizeCourseCode(courseCode);
+      return (
+        !unselectedChoiceCourseCodes.has(normalizedCourseCode) ||
+        selectedChoiceCourseCodes.has(normalizedCourseCode)
+      );
+    })
+  );
+}
+
+function filterChecklistItemsAgainstUnselectedChoices(
+  items: TransferPlannerChecklistItem[],
+  checklistItemsForSelections: TransferPlannerChecklistItem[]
+) {
+  const selectedChoiceCourseCodes = new Set<string>();
+  const unselectedChoiceCourseCodes = new Set<string>();
+
+  for (const item of checklistItemsForSelections) {
+    const group = item.requirementGroup;
+    if (
+      !group ||
+      (group.requirementType !== "choose_one" && group.requirementType !== "sequence_choice")
+    ) {
+      continue;
+    }
+
+    const selectedOptionIds = new Set(item.selectedRequirementOptionIds ?? []);
+    const unselectedOptionIds = new Set(item.unselectedRequirementOptionIds ?? []);
+    if (!selectedOptionIds.size || !unselectedOptionIds.size) {
+      continue;
+    }
+
+    for (const option of group.options ?? []) {
+      const optionId = option.id ?? "";
+      if (!optionId) {
+        continue;
+      }
+
+      const targetSet = selectedOptionIds.has(optionId)
+        ? selectedChoiceCourseCodes
+        : unselectedOptionIds.has(optionId)
+          ? unselectedChoiceCourseCodes
+          : null;
+      if (!targetSet) {
+        continue;
+      }
+
+      for (const courseCode of getRequirementOptionCourseLabels(option)) {
+        const normalizedCourseCode = normalizeCourseCode(courseCode);
+        if (normalizedCourseCode) {
+          targetSet.add(normalizedCourseCode);
+        }
+      }
+    }
+  }
+
+  if (!unselectedChoiceCourseCodes.size) {
+    return items;
+  }
+
+  return items.filter((item) => {
+    if (item.requirementGroup) {
+      return true;
+    }
+
+    const itemCourseCodes = getChecklistReferenceCoursesFromItems([item])
+      .map((courseCode) => normalizeCourseCode(courseCode))
+      .filter(Boolean);
+    return !(
+      itemCourseCodes.length > 0 &&
+      itemCourseCodes.every(
+        (courseCode) =>
+          unselectedChoiceCourseCodes.has(courseCode) &&
+          !selectedChoiceCourseCodes.has(courseCode)
+      )
+    );
+  });
+}
+
 function materializePlannerPathway(pathway: TransferPlannerMajorPathway): TransferPlannerMajorPathway {
+  const checklistItems = [
+    ...(pathway.applicationChecklist ?? []),
+    ...(pathway.beforeEnrollmentChecklist ?? []),
+    ...(pathway.stayAtGrcChecklist ?? []),
+  ];
+
   return {
     ...pathway,
-    grcCourseList: uniqueReferenceCourseLabels([
-      ...(pathway.grcCourseList ?? []),
-      ...getChecklistReferenceCoursesFromItems([
-        ...(pathway.applicationChecklist ?? []),
-        ...(pathway.beforeEnrollmentChecklist ?? []),
-        ...(pathway.stayAtGrcChecklist ?? []),
+    grcCourseList: suppressUnselectedChoiceCourseLabels(
+      uniqueReferenceCourseLabels([
+        ...(pathway.grcCourseList ?? []),
+        ...getChecklistReferenceCoursesFromItems(checklistItems),
       ]),
-    ]),
+      checklistItems
+    ),
     advisorFlags: sanitizePlannerOwnedStrings(pathway.advisorFlags ?? []),
     officialLinks: uniquePlannerLinks(pathway.officialLinks ?? []),
     validationNotes: sanitizePlannerOwnedStrings(pathway.validationNotes ?? []),
@@ -8076,16 +8466,25 @@ function materializePlanPathways(plan: TransferPlannerMajorPlan, includeHiddenSo
 }
 
 function materializePlanReferenceCourses(plan: TransferPlannerMajorPlan): TransferPlannerMajorPlan {
+  const checklistItems = [
+    ...(plan.applicationChecklist ?? []),
+    ...(plan.beforeEnrollmentChecklist ?? []),
+    ...(plan.stayAtGrcChecklist ?? []),
+  ];
+
   return {
     ...plan,
     applicationChecklist: normalizeChecklistItems(plan.applicationChecklist),
     beforeEnrollmentChecklist: normalizeChecklistItems(plan.beforeEnrollmentChecklist),
     stayAtGrcChecklist: normalizeChecklistItems(plan.stayAtGrcChecklist),
     pathways: materializePlanPathways(plan),
-    grcCourseList: uniqueReferenceCourseLabels([
-      ...(plan.grcCourseList ?? []),
-      ...getChecklistReferenceCourses(plan),
-    ]),
+    grcCourseList: suppressUnselectedChoiceCourseLabels(
+      uniqueReferenceCourseLabels([
+        ...(plan.grcCourseList ?? []),
+        ...getChecklistReferenceCoursesFromItems(checklistItems),
+      ]),
+      checklistItems
+    ),
     supportLists: uniqueRequirementSupportLists(plan.supportLists ?? []),
   };
 }
@@ -8110,26 +8509,43 @@ function mergePlannerPathwayWithPlan(
     pathway.id,
     mergedRequirementGroups
   );
+  const applicationChecklist = appendUniqueChecklistItems(
+    plan.applicationChecklist ?? [],
+    pathway.applicationChecklist ?? []
+  )
+    .map((item) => applyChecklistItemPathwayRestrictions(item, pathway.id))
+    .filter((item): item is TransferPlannerChecklistItem => Boolean(item));
+  const beforeEnrollmentChecklist = appendUniqueChecklistItems(
+    plan.beforeEnrollmentChecklist ?? [],
+    pathway.beforeEnrollmentChecklist ?? []
+  )
+    .map((item) => applyChecklistItemPathwayRestrictions(item, pathway.id))
+    .filter((item): item is TransferPlannerChecklistItem => Boolean(item));
+  const stayAtGrcChecklist = appendUniqueChecklistItems(
+    plan.stayAtGrcChecklist ?? [],
+    pathway.stayAtGrcChecklist ?? []
+  )
+    .map((item) => applyChecklistItemPathwayRestrictions(item, pathway.id))
+    .filter((item): item is TransferPlannerChecklistItem => Boolean(item));
+  const selectionScopedChecklistItems = [
+    ...applicationChecklist,
+    ...beforeEnrollmentChecklist,
+    ...stayAtGrcChecklist,
+  ];
   const mergedPlan = materializePlanReferenceCourses({
     ...plan,
-    applicationChecklist: appendUniqueChecklistItems(
-      plan.applicationChecklist ?? [],
-      pathway.applicationChecklist ?? []
-    )
-      .map((item) => applyChecklistItemPathwayRestrictions(item, pathway.id))
-      .filter((item): item is TransferPlannerChecklistItem => Boolean(item)),
-    beforeEnrollmentChecklist: appendUniqueChecklistItems(
-      plan.beforeEnrollmentChecklist ?? [],
-      pathway.beforeEnrollmentChecklist ?? []
-    )
-      .map((item) => applyChecklistItemPathwayRestrictions(item, pathway.id))
-      .filter((item): item is TransferPlannerChecklistItem => Boolean(item)),
-    stayAtGrcChecklist: appendUniqueChecklistItems(
-      plan.stayAtGrcChecklist ?? [],
-      pathway.stayAtGrcChecklist ?? []
-    )
-      .map((item) => applyChecklistItemPathwayRestrictions(item, pathway.id))
-      .filter((item): item is TransferPlannerChecklistItem => Boolean(item)),
+    applicationChecklist: filterChecklistItemsAgainstUnselectedChoices(
+      applicationChecklist,
+      selectionScopedChecklistItems
+    ),
+    beforeEnrollmentChecklist: filterChecklistItemsAgainstUnselectedChoices(
+      beforeEnrollmentChecklist,
+      selectionScopedChecklistItems
+    ),
+    stayAtGrcChecklist: filterChecklistItemsAgainstUnselectedChoices(
+      stayAtGrcChecklist,
+      selectionScopedChecklistItems
+    ),
     advisorFlags: sanitizePlannerOwnedStrings([
       ...(plan.advisorFlags ?? []),
       ...(pathway.advisorFlags ?? []),

@@ -188,19 +188,7 @@ function getSuspectedLayerForActionableIssue(row) {
 
   if (
     [
-      "missing-approved-course-list-source",
-      "missing-elective-list-source",
-      "source-role-misclassified",
-    ].includes(issueType) ||
-    actionableClass === "source-role-misclassified"
-  ) {
-    return "discovery";
-  }
-
-  if (
-    [
       "parser-source-scope-violation",
-      "source-scope-contamination",
       "prerequisite-table-emitted-requirement",
       "course-list-emitted-requirement",
       "missed-option-group",
@@ -220,6 +208,17 @@ function getSuspectedLayerForActionableIssue(row) {
     ].includes(issueType)
   ) {
     return "parser";
+  }
+
+  if (
+    [
+      "missing-approved-course-list-source",
+      "missing-elective-list-source",
+      "source-role-misclassified",
+    ].includes(issueType) ||
+    actionableClass === "source-role-misclassified"
+  ) {
+    return "discovery";
   }
 
   if (

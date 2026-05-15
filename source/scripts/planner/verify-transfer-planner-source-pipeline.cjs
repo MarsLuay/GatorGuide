@@ -626,10 +626,21 @@ async function main() {
   );
   const reviewOwnerKeys = buildReviewOwnerKeySet(reviewQueue);
   const targetPlanId = getDiscoveryReportTargetPlanId(discoveryReport);
-  const validationScopedReviewOwnerCount = getValidationScopedReviewQueueEntries(
+  const validationScopedDiscoveryOwnerKeys = new Set(
+    getValidationScopedDiscoveryOwners(discoveryReport, "owners").map((owner) =>
+      buildOwnerKey(owner)
+    )
+  );
+  const validationScopedReviewEntries = getValidationScopedReviewQueueEntries(
     reviewQueue,
     targetPlanId
-  ).length;
+  );
+  const validationScopedMissingPrimaryReviewOwnerKeys = new Set(
+    validationScopedReviewEntries
+      .filter((entry) => validationScopedDiscoveryOwnerKeys.has(buildOwnerKey(entry)))
+      .map((entry) => buildOwnerKey(entry))
+  );
+  const validationScopedReviewOwnerCount = validationScopedReviewEntries.length;
   const sourceGapOwnerKeys = new Set(
     (sourceGapReport.entries ?? []).map((entry) => buildOwnerKey(entry))
   );
@@ -700,7 +711,8 @@ async function main() {
       () => {
         assert.equal(
           getValidationScopedDiscoveryOwnerCount(discoveryReport),
-          eligibleMissingPrimaryAutoPromotionOwners.length + validationScopedReviewOwnerCount,
+          eligibleMissingPrimaryAutoPromotionOwners.length +
+            validationScopedMissingPrimaryReviewOwnerKeys.size,
           "Discovery owner count should equal eligible auto-promotions plus review-queue owners."
         );
         return [
@@ -708,6 +720,7 @@ async function main() {
           `Eligible missing-primary auto-promotions: ${eligibleMissingPrimaryAutoPromotionOwners.length}`,
           `Eligible weak-existing replacements: ${eligibleWeakExistingReplacementOwners.length}`,
           `Review-queue owners: ${validationScopedReviewOwnerCount}`,
+          `Missing-primary review owners: ${validationScopedMissingPrimaryReviewOwnerKeys.size}`,
         ];
       }
     ),
@@ -748,9 +761,9 @@ async function main() {
     ),
     runCheck(
       "review-queue-aligned-with-source-gaps",
-      "Review queue and source-gap report point at the same unresolved owners",
+      "Missing-primary review queue and source-gap report point at the same unresolved owners",
       () => {
-        const setDiff = compareSets(reviewOwnerKeys, sourceGapOwnerKeys);
+        const setDiff = compareSets(validationScopedMissingPrimaryReviewOwnerKeys, sourceGapOwnerKeys);
         assert.deepEqual(
           setDiff,
           { leftOnly: [], rightOnly: [] },

@@ -161,13 +161,44 @@ function getAnyOwnerSnapshotSearchText(owner) {
 }
 
 function selectOwner(report, input) {
+  const candidates = selectOwners(report, input);
+  if (candidates.length === 1) {
+    return candidates[0];
+  }
+
+  const directMajor = candidates.filter(
+    (owner) => owner.ownerId === input.targetPlanId && owner.pathwayId == null
+  );
+  if (directMajor.length === 1) {
+    return directMajor[0];
+  }
+  const primaryDirectMajor = directMajor.filter(
+    (owner) =>
+      owner.sourceRoleStatus === "primary" ||
+      owner.canCreateSchedulableRows === true ||
+      owner.sourceScope?.canCreateScheduleRows === true
+  );
+  if (primaryDirectMajor.length === 1) {
+    return primaryDirectMajor[0];
+  }
+
+  const candidateLabels = candidates
+    .slice(0, 12)
+    .map((owner) => `- ${owner.ownerId}${owner.pathwayId ? ` (${owner.pathwayId})` : ""}`)
+    .join("\n");
+  throw new Error(
+    `Multiple owners matched ${input.targetPlanId}. Pass --owner-id, --pathway-id, or --all-owners.\n${candidateLabels}`
+  );
+}
+
+function selectOwners(report, input) {
   const owners = Array.isArray(report.owners) ? report.owners : [];
   if (input.ownerId) {
     const owner = owners.find((candidate) => candidate.ownerId === input.ownerId);
     if (!owner) {
       throw new Error(`No owner found for --owner-id ${input.ownerId}.`);
     }
-    return owner;
+    return [owner];
   }
 
   if (!input.targetPlanId) {
@@ -183,23 +214,7 @@ function selectOwner(report, input) {
     throw new Error(`No owner found for --target-plan-id ${input.targetPlanId}.`);
   }
 
-  const directMajor = candidates.filter(
-    (owner) => owner.ownerId === input.targetPlanId && owner.pathwayId == null
-  );
-  if (directMajor.length === 1) {
-    return directMajor[0];
-  }
-  if (candidates.length === 1) {
-    return candidates[0];
-  }
-
-  const candidateLabels = candidates
-    .slice(0, 12)
-    .map((owner) => `- ${owner.ownerId}${owner.pathwayId ? ` (${owner.pathwayId})` : ""}`)
-    .join("\n");
-  throw new Error(
-    `Multiple owners matched ${input.targetPlanId}. Pass --owner-id or --pathway-id.\n${candidateLabels}`
-  );
+  return candidates;
 }
 
 function main() {
@@ -220,11 +235,15 @@ function main() {
     expectAnyOwnerSnapshotContains: splitValues(getArgValues("--expect-any-owner-snapshot-contains")),
     expectResolutionStrategy: getArgValue("--expect-resolution-strategy"),
     expectNoQualityWarnings: hasArg("--expect-no-quality-warnings"),
+    allOwners: hasArg("--all-owners"),
     reportPath: path.resolve(SOURCE_ROOT, getArgValue("--report") ?? DEFAULT_REPORT_PATH),
   };
 
   const report = readReport(input.reportPath);
-  const owner = selectOwner(report, input);
+  const selectedOwners = input.allOwners ? selectOwners(report, input) : [selectOwner(report, input)];
+  let hadFailures = false;
+
+  for (const owner of selectedOwners) {
   const parsedCodes = new Set((owner.parsedUwCourseCodes ?? []).map(normalizeCourseCode));
   const parsedCodeList = [...parsedCodes];
   const failures = [];
@@ -320,10 +339,15 @@ function main() {
     for (const failure of failures) {
       console.error(`- ${failure}`);
     }
-    process.exit(1);
+    hadFailures = true;
+  } else {
+    console.log("Source assertion passed.");
+  }
   }
 
-  console.log("Source assertion passed.");
+  if (hadFailures) {
+    process.exit(1);
+  }
 }
 
 main();

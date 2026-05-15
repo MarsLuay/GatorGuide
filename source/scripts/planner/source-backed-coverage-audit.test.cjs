@@ -99,6 +99,28 @@ test("Source-backed coverage audit classifies blocking maintainer failures", () 
       expectedLayer: "mapping",
       expectedFixPath: /parse-transfer-planner-equivalency-guide\.cjs/,
     },
+    {
+      name: "course-list section emitted as requirement points at parser emission gate",
+      row: {
+        issue: "course-list-emitted-requirement",
+        ownerId: "uw-seattle-jewish-studies",
+        detectedSectionRole: "elective-list",
+        rawLine: "RELIG 145",
+      },
+      expectedClass: "source-role-misclassified",
+      expectedLayer: "parser",
+      expectedFixPath: /parse-transfer-planner-requirement-sources\.cjs/,
+    },
+    {
+      name: "source-scope contamination stays discovery/source-selection work",
+      row: {
+        issue: "source-scope-contamination",
+        ownerId: "uw-seattle-computer-science:pathway:data-science-option",
+      },
+      expectedClass: "source-role-misclassified",
+      expectedLayer: "discovery",
+      expectedFixPath: /discover-transfer-planner-primary-sources\.cjs/,
+    },
   ];
 
   for (const testCase of cases) {

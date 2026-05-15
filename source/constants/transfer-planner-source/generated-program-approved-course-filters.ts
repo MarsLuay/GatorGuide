@@ -205,7 +205,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-13T04:57:10.447Z",
+    "generatedAt": "2026-05-15T02:25:39.502Z",
     "sourceFingerprint": "1d5aff43ae078c2e8dd9121633d9aaa430235c21dcdb36f20413b5746db900f6"
   },
   {
@@ -405,7 +405,7 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "ATMOS: 301, 321, 370, 380, 451, 452, 460.",
       "Check with a CSE adviser about courses that are not included in this list, but which require Physics 121, Chemistry 142/145, Biology 180 as a pre-requisite."
     ],
-    "generatedAt": "2026-05-13T04:57:10.447Z",
+    "generatedAt": "2026-05-15T02:25:39.502Z",
     "sourceFingerprint": "63bb19a0f0ae9912e7fb817e7dad76cd3386794d8219b3cba06186f2b48d2934"
   },
   {
@@ -414,12 +414,11 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
     "label": "CS-approved Science",
     "ownerIds": [
       "uw-seattle-computer-science",
-      "uw-seattle-computer-science:pathway:data-science-option",
-      "uw-tacoma-computer-science-and-systems-ba"
+      "uw-seattle-computer-science:pathway:data-science-option"
     ],
     "campusId": "uw-seattle",
-    "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
-    "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/#natural-science",
+    "officialSourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
+    "sourceUrl": "https://www.cs.washington.edu/academics/undergraduate/degree-requirements/courses/",
     "sourceRole": "approved-course-list",
     "approvedUwCourseCodes": [
       "BIOL 162",
@@ -471,7 +470,266 @@ export const TRANSFER_PLANNER_GENERATED_PROGRAM_APPROVED_COURSE_FILTERS = [
       "Biology 162 (AP credit)",
       "Physics 116 *and* Physics 119 – generally from AP credit. If you have not taken science, PHYS 121 is recommended as Phys 116 is the 3rd course in a series."
     ],
-    "generatedAt": "2026-05-13T04:57:10.447Z",
-    "sourceFingerprint": "f11af524907c47d3cc9082f03baaa84d374f921f138313d4598775a9bda363d2"
+    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "sourceFingerprint": "9a1bee58f7ba9b0bce2ce340a1f7d62d36ff989ed42e85ddbf3d48135bd08da0"
+  },
+  {
+    "filterId": "UW_BOTHELL_EDUCATIONAL_STUDIES_ELEMENTARY_EDUCATION_UNITED_STATES_GOVERNMENT_OR_CIVICS_GEOGRAPHY_OR_ECONOMICS_COURSE_APPROVED_COURSES",
+    "filterKey": "uw-bothell-educational-studies-elementary-education-united-states-government-or-civics-geography-or-economics-course-approved-courses",
+    "label": "Uw Bothell Educational Studies Elementary Education United States Government Or Civics Geography Or Economics Course Approved Courses",
+    "ownerIds": [
+      "uw-bothell-educational-studies-elementary-education"
+    ],
+    "campusId": "uw-bothell",
+    "officialSourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+    "sourceUrl": "https://www.uwb.edu/education/undergraduate/elementary-education/degree-requirements",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "BEDUC 205",
+      "BEDUC 210",
+      "BEDUC 300",
+      "BEDUC 310"
+    ],
+    "aliases": [
+      "uw-bothell-educational-studies-elementary-education-united-states-government-or-civics-geography-or-economics-course-approved-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Elementary Education Endorsement Academic Breadth Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Elementary Education Endorsement Academic Breadth Courses",
+      "B EDUC 205 Education & Equity in the United States (DIV, SSc)",
+      "B EDUC 210 Teaching & Learning in a Multicultural Society (DIV, SSc)",
+      "B EDUC 300 Research & Educational Knowledge (W)",
+      "B EDUC 310 Theories of Learning, Culture & Identity (SSc)"
+    ],
+    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "sourceFingerprint": "64e889a7f3e91537a630b58898f6fed74773bec24506209ba57329e32b40ae85"
+  },
+  {
+    "filterId": "UW_BOTHELL_PHYSICS_BA_SELECT_FROM_THE_APPROVED_LIST_OF_BPHYS_COURSES",
+    "filterKey": "uw-bothell-physics-ba-select-from-the-approved-list-of-bphys-courses",
+    "label": "Uw Bothell Physics Ba Select From The Approved List Of Bphys Courses",
+    "ownerIds": [
+      "uw-bothell-physics-ba",
+      "uw-bothell-physics-ba:pathway:ba-route"
+    ],
+    "campusId": "uw-bothell",
+    "officialSourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+    "sourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ENGL 131"
+    ],
+    "aliases": [
+      "uw-bothell-physics-ba-select-from-the-approved-list-of-bphys-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Core Courses",
+      "Mathematics",
+      "Physics",
+      "Biology",
+      "Chemistry"
+    ],
+    "sourceEvidenceLines": [
+      "Core Courses",
+      "Mathematics",
+      "Physics",
+      "Biology",
+      "Chemistry",
+      "English Composition (C) – 5 credits"
+    ],
+    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "sourceFingerprint": "d43d7b1e131f07e7f0e075f79588a1a43586a404b44f432c0cdfb65fd6d9849b"
+  },
+  {
+    "filterId": "UW_BOTHELL_PHYSICS_BS_SELECT_FROM_THE_APPROVED_LIST_OF_BPHYS_COURSES",
+    "filterKey": "uw-bothell-physics-bs-select-from-the-approved-list-of-bphys-courses",
+    "label": "Uw Bothell Physics Bs Select From The Approved List Of Bphys Courses",
+    "ownerIds": [
+      "uw-bothell-physics-bs"
+    ],
+    "campusId": "uw-bothell",
+    "officialSourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+    "sourceUrl": "https://www.uwb.edu/stem/undergraduate/majors/physics/curriculum",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ENGL 131"
+    ],
+    "aliases": [
+      "uw-bothell-physics-bs-select-from-the-approved-list-of-bphys-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Core Courses",
+      "Mathematics",
+      "Physics",
+      "Biology",
+      "Chemistry"
+    ],
+    "sourceEvidenceLines": [
+      "Core Courses",
+      "Mathematics",
+      "Physics",
+      "Biology",
+      "Chemistry",
+      "English Composition (C) – 5 credits"
+    ],
+    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "sourceFingerprint": "078a630917eda1f0443915840674c95c290594831558cb025b9cb1b7edd9dea9"
+  },
+  {
+    "filterId": "UW_SEATTLE_ART_HISTORY_ARTH_PREFIX_COURSES",
+    "filterKey": "uw-seattle-art-history-arth-prefix-courses",
+    "label": "Uw Seattle Art History Arth Prefix Courses",
+    "ownerIds": [
+      "uw-seattle-art-history"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+    "sourceUrl": "https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html",
+    "sourceRole": "official-catalog",
+    "approvedUwCourseCodes": [
+      "ARTH 200",
+      "ARTH 201",
+      "ARTH 202",
+      "ARTH 203",
+      "ARTH 204",
+      "ARTH 206",
+      "ARTH 209",
+      "ARTH 212",
+      "ARTH 214",
+      "ARTH 220",
+      "ARTH 233",
+      "ARTH 270",
+      "ARTH 272",
+      "ARTH 273",
+      "ARTH 290",
+      "ARTH 309",
+      "ARTH 310",
+      "ARTH 311",
+      "ARTH 312",
+      "ARTH 314",
+      "ARTH 333",
+      "ARTH 361",
+      "ARTH 373",
+      "ARTH 380",
+      "ARTH 381",
+      "ARTH 390",
+      "ARTH 391",
+      "ARTH 400",
+      "ARTH 412",
+      "ARTH 413",
+      "ARTH 414",
+      "ARTH 419",
+      "ARTH 435",
+      "ARTH 471",
+      "ARTH 473",
+      "ARTH 484",
+      "ARTH 488",
+      "ARTH 491",
+      "ARTH 492",
+      "ARTH 494"
+    ],
+    "aliases": [
+      "uw-seattle-art-history-arth-prefix-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "10 credits of ARTH prefix courses"
+    ],
+    "sourceEvidenceLines": [
+      "10 credits of ARTH prefix courses",
+      "Parsed approved course codes from https://www.washington.edu/students/gencat/program/S/Art+ArtHistory+Design-105.html."
+    ],
+    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "sourceFingerprint": "10cb8e2446563043920af81f278b4ca494c5f78d43d948ac0055f59edd97da5f"
+  },
+  {
+    "filterId": "UW_SEATTLE_BUSINESS_ADMINISTRATION_THERE_IS_NO_NEED_TO_SUBMIT_FOSTER_COURSES_ALL_APPROVED_COURSES_ARE_LISTED_ON_THE_BUSINESS_MINOR_WEBSITE_UNDER_CURRICULUM",
+    "filterKey": "uw-seattle-business-administration-there-is-no-need-to-submit-foster-courses-all-approved-courses-are-listed-on-the-business-minor-website-under-curriculum",
+    "label": "Uw Seattle Business Administration There Is No Need To Submit Foster Courses All Approved Courses Are Listed On The Business Minor Website Under Curriculum",
+    "ownerIds": [
+      "uw-seattle-business-administration:pathway:ba-route"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+    "sourceUrl": "https://foster.uw.edu/academics/degree-programs/undergraduate-programs/curriculum/",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ACCTG 215"
+    ],
+    "petitionOnlyNotes": [
+      "Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree from the Foster School. Meet with an academic adviser in the Undergraduate Program Office to clarify your educational and career goals and make long-range plans to achieve them once you have been accepted to the Foster School."
+    ],
+    "aliases": [
+      "uw-seattle-business-administration-there-is-no-need-to-submit-foster-courses-all-approved-courses-are-listed-on-the-business-minor-website-under-curriculum"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "Required Courses"
+    ],
+    "sourceEvidenceLines": [
+      "Required Courses",
+      "Below is information about the credit requirements for the Bachelor of Arts in Business Administration (BABA) degree from the Foster School. Meet with an academic adviser in the Undergraduate Program Office to clarify your educational and career goals and make long-range plans to achieve them once you have been accepted to the Foster School.",
+      "ACCTG 215 (Financial Accounting)"
+    ],
+    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "sourceFingerprint": "3c256ef768c1d775596fc2847aed4dfd39c35c0481fd0a20449813e5a4719460"
+  },
+  {
+    "filterId": "UW_SEATTLE_MECHANICAL_ENGINEERING_FROM_THE_LIST_OF_APPROVED_400_LEVEL_ME_COURSES",
+    "filterKey": "uw-seattle-mechanical-engineering-from-the-list-of-approved-400-level-me-courses",
+    "label": "Uw Seattle Mechanical Engineering From The List Of Approved 400 Level Me Courses",
+    "ownerIds": [
+      "uw-seattle-mechanical-engineering"
+    ],
+    "campusId": "uw-seattle",
+    "officialSourceUrl": "https://www.me.washington.edu/students/ug/requirements",
+    "sourceUrl": "https://www.me.washington.edu/students/ug/requirements",
+    "sourceRole": "primary-degree-requirements",
+    "approvedUwCourseCodes": [
+      "ENGR 321",
+      "ME 402",
+      "ME 406",
+      "ME 410",
+      "ME 411",
+      "ME 412",
+      "ME 419",
+      "ME 425",
+      "ME 426",
+      "ME 430",
+      "ME 431",
+      "ME 440",
+      "ME 442",
+      "ME 445",
+      "ME 450",
+      "ME 460",
+      "ME 461",
+      "ME 469",
+      "ME 470",
+      "ME 471",
+      "ME 473",
+      "ME 477",
+      "ME 478",
+      "ME 480",
+      "ME 498",
+      "ME 499"
+    ],
+    "aliases": [
+      "uw-seattle-mechanical-engineering-from-the-list-of-approved-400-level-me-courses"
+    ],
+    "generatedFromOfficialSupportSource": true,
+    "sourceEvidenceHeadings": [
+      "From the list of approved 400-level ME courses"
+    ],
+    "sourceEvidenceLines": [
+      "From the list of approved 400-level ME courses",
+      "Parsed approved course codes from https://www.me.washington.edu/students/ug/requirements."
+    ],
+    "generatedAt": "2026-05-15T02:25:39.502Z",
+    "sourceFingerprint": "0a83dde1955edd1cd8d62e9bfaa10b40c31414509d333f1655a8f63d2c234afe"
   }
 ] as const;

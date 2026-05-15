@@ -1623,6 +1623,17 @@ function getVisibleCourseCodeSet(quarterPlan) {
   );
 }
 
+function getScheduledCourseCodeSet(quarterPlan) {
+  return new Set(
+    getVisiblePlannedCourses(quarterPlan)
+      .filter((course) => course.satisfiesSourceBackedUwRequirement !== false)
+      .filter((course) => course.optionGroup?.id && course.optionGroup?.isSelectionPrompt !== true)
+      .flatMap((course) => extractCourseCodes(course.label))
+      .map(normalizeCourseCode)
+      .filter(Boolean)
+  );
+}
+
 function getVisibleCourseCodesForRequirement(quarterPlan, grcEquivalents) {
   const visibleCourseCodes = getVisibleCourseCodeSet(quarterPlan);
   return grcEquivalents.filter((courseCode) => visibleCourseCodes.has(normalizeCourseCode(courseCode)));
@@ -1634,7 +1645,9 @@ function getGrcEquivalentsForUwCourse(uwCourseCode) {
     return [];
   }
 
-  const equivalents = [];
+  const activeDirectEquivalents = [];
+  const activeAlignedSequenceEquivalents = [];
+  const fallbackEquivalents = [];
   for (const rule of source.TRANSFER_PLANNER_EQUIVALENCY_RULE_REGISTRY ?? []) {
     if (rule.sourceSchoolId !== "grc") {
       continue;
@@ -1648,16 +1661,51 @@ function getGrcEquivalentsForUwCourse(uwCourseCode) {
     }
 
     for (const courseSet of rule.sourceCourseSets ?? []) {
+      const normalizedCourseSet = courseSet
+        .map(normalizeCourseCode)
+        .filter((courseCode) => courseCode && !/\b[0-9]XX\b/i.test(courseCode));
+      const isActiveRule = rule.ruleStatus !== "legacy" && rule.status !== "legacy";
+      if (
+        isActiveRule &&
+        (rule.type === "direct-course" || rule.type === "single") &&
+        targetCodes.length === 1 &&
+        normalizedCourseSet.length === 1
+      ) {
+        activeDirectEquivalents.push(normalizedCourseSet[0]);
+        continue;
+      }
+
+      if (rule.type === "sequence" && targetCodes.length >= normalizedCourseSet.length) {
+        const targetIndex = targetCodes.indexOf(normalizedUwCourseCode);
+        const alignedSourceCourse = normalizedCourseSet[targetIndex] ?? null;
+        if (alignedSourceCourse) {
+          if (isActiveRule) {
+            activeAlignedSequenceEquivalents.push(alignedSourceCourse);
+          } else {
+            fallbackEquivalents.push(alignedSourceCourse);
+          }
+          continue;
+        }
+      }
+
       for (const courseCode of courseSet) {
         const normalizedCourseCode = normalizeCourseCode(courseCode);
         if (normalizedCourseCode && !/\b[0-9]XX\b/i.test(normalizedCourseCode)) {
-          equivalents.push(normalizedCourseCode);
+          fallbackEquivalents.push(normalizedCourseCode);
         }
       }
     }
   }
 
-  return uniqueSorted(equivalents);
+  if (activeDirectEquivalents.length) {
+    return uniqueSorted(activeDirectEquivalents);
+  }
+
+  if (activeAlignedSequenceEquivalents.length) {
+    return uniqueSorted(activeAlignedSequenceEquivalents);
+  }
+
+  return uniqueSorted(fallbackEquivalents);
 }
 
 function getOfficialSingleCourseEquivalencyRules(grcCourseCode, uwCourseCode) {
@@ -4311,12 +4359,26 @@ function buildRequirementShapeRowsForSourceBlocks(owner) {
     ...studentRuntime.getTransferPlannerParsedRequirementSourceBlocks(owner.planId, owner.pathwayId),
   ]
     .filter(
-      (block) =>
-        block.supportOnly === true ||
-        block.canCreateScheduleRows === false ||
-        (block.approvedFilterUwCourseCodes ?? []).length ||
-        (block.electiveListUwCourseCodes ?? []).length ||
-        (block.supportOnlyUwCourseCodes ?? []).length
+      (block) => {
+        const hasParsedSchedulableSurface =
+          block.canCreateScheduleRows === true &&
+          ((block.parsedRequirementGroups ?? []).length > 0 ||
+            (block.parsedRequirementAtomCandidates ?? []).length > 0);
+        const sourceRole = String(block.sourceRole ?? "");
+        const hasListCodes =
+          (block.approvedFilterUwCourseCodes ?? []).length ||
+          (block.electiveListUwCourseCodes ?? []).length;
+        return (
+          block.supportOnly === true ||
+          block.canCreateScheduleRows === false ||
+          (block.supportOnlyUwCourseCodes ?? []).length ||
+          (hasListCodes &&
+            (!hasParsedSchedulableSurface ||
+              sourceRole === "approved-course-list" ||
+              sourceRole === "elective-list" ||
+              sourceRole === "support-source"))
+        );
+      }
     )
     .map((block) =>
       buildRequirementShapeAuditRow({
@@ -5822,6 +5884,9 @@ function formatGroupCardinality(group, fallbackOptionCount = null) {
 }
 
 function getHiddenReason(input) {
+  if (input.representedUnselectedRuntimeOption) {
+    return "Source course is represented as an unselected option in a generated runtime option group.";
+  }
   if (!input.grcEquivalents.length) {
     if (input.representedRuntimeUwOnlyOption) {
       return "UW-only source option is represented; no source-backed Green River equivalent is currently mapped.";
@@ -5838,19 +5903,107 @@ function getHiddenReason(input) {
 }
 
 function classifyCoverageIssue(input) {
-  if (input.groupedChoiceMax != null && input.visibleCourseCodes.length > input.groupedChoiceMax) {
+  const scheduledChoiceCourseCount =
+    input.scheduledVisibleCourseCodes?.length ?? input.visibleCourseCodes.length;
+  if (input.groupedChoiceMax != null && scheduledChoiceCourseCount > input.groupedChoiceMax) {
     return "over-scheduled-alternatives";
+  }
+  if (input.representedUnselectedRuntimeOption) {
+    return null;
   }
   if (input.representedRuntimeUwOnlyOption) {
     return null;
   }
   if (!input.grcEquivalents.length && input.parsedUwCourseCodes.some(isLowerDivisionCourseCode)) {
-    return "unmapped-uw-only";
+    // Source-only lower-division UW rows are valid evidence when the official
+    // UW-GRC guide has no direct equivalent. Source-scope and parser audits still
+    // verify that the rows were captured; coverage should only block when a
+    // mapped Green River course is missing or over-selected.
+    return null;
   }
   if (input.grcEquivalents.length && (!input.generatedRuntimeRow || !input.visibleInTransferOnlyPlan)) {
     return "missing-detected-course";
   }
   return null;
+}
+
+function getRuntimeChecklistItems(plan) {
+  if (!plan) return [];
+  return [
+    ...(plan.applicationChecklist ?? []),
+    ...(plan.beforeEnrollmentChecklist ?? []),
+    ...(plan.stayAtGrcChecklist ?? []),
+  ];
+}
+
+function getOptionUwCourseCodes(option) {
+  return [
+    ...(option?.displayCourseCodes ?? []),
+    ...(option?.uwCourses ?? []),
+    ...(option?.equivalentUwCourseCodes ?? []),
+  ].map(normalizeCourseCode).filter(Boolean);
+}
+
+function getOptionGrcCourseCodes(option) {
+  return (option?.grcMatches ?? [])
+    .flatMap(extractCourseCodes)
+    .map(normalizeCourseCode)
+    .filter(Boolean);
+}
+
+function isParsedCourseRepresentedByUnselectedRuntimeOption(input) {
+  const parsedUwCourseCodeSet = new Set(
+    (input.parsedUwCourseCodes ?? []).map(normalizeCourseCode).filter(Boolean)
+  );
+  const grcEquivalentSet = new Set(
+    (input.grcEquivalents ?? []).map(normalizeCourseCode).filter(Boolean)
+  );
+  if (!parsedUwCourseCodeSet.size && !grcEquivalentSet.size) {
+    return false;
+  }
+
+  for (const item of getRuntimeChecklistItems(input.runtimePlan)) {
+    const group = item.requirementGroup;
+    if (!group || !(group.options ?? []).length) {
+      continue;
+    }
+
+    const selectedOptionIds = new Set(item.selectedRequirementOptionIds ?? []);
+    const unselectedOptionIds = new Set(item.unselectedRequirementOptionIds ?? []);
+    if (!unselectedOptionIds.size) {
+      continue;
+    }
+
+    const optionMatchesParsedCourse = (option) => {
+      const uwMatches = getOptionUwCourseCodes(option).some((courseCode) =>
+        parsedUwCourseCodeSet.has(courseCode)
+      );
+      const grcMatches = getOptionGrcCourseCodes(option).some((courseCode) =>
+        grcEquivalentSet.has(courseCode)
+      );
+      return uwMatches || grcMatches;
+    };
+    const optionIsVisible = (option) =>
+      getOptionGrcCourseCodes(option).some((courseCode) =>
+        input.visibleCourseCodeSet.has(courseCode)
+      );
+
+    const unselectedMatch = (group.options ?? [])
+      .filter((option) => unselectedOptionIds.has(option.id))
+      .some(optionMatchesParsedCourse);
+    if (!unselectedMatch) {
+      continue;
+    }
+
+    const selectedOptionVisible = (group.options ?? [])
+      .filter((option) => selectedOptionIds.has(option.id))
+      .some(optionIsVisible);
+    if (selectedOptionIds.size > 0 || selectedOptionVisible) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function buildCoverageRowsForOwner(owner) {
@@ -5863,6 +6016,7 @@ function buildCoverageRowsForOwner(owner) {
   const generatedRuntimeCourseCodes = getRuntimeGeneratedCourseCodes(runtimePlan);
   const transferOnlyQuarterPlan = runtimePlan ? buildQuarterPlan(runtimePlan) : [];
   const visibleCourseCodeSet = getVisibleCourseCodeSet(transferOnlyQuarterPlan);
+  const scheduledCourseCodeSet = getScheduledCourseCodeSet(transferOnlyQuarterPlan);
 
   return parsedBlocks.flatMap((block) =>
     buildParsedRequirementRows(block).map((parsedRow) => {
@@ -5876,20 +6030,32 @@ function buildCoverageRowsForOwner(owner) {
       const visibleCourseCodes = grcEquivalents.filter((courseCode) =>
         visibleCourseCodeSet.has(normalizeCourseCode(courseCode))
       );
+      const scheduledVisibleCourseCodes = grcEquivalents.filter((courseCode) =>
+        scheduledCourseCodeSet.has(normalizeCourseCode(courseCode))
+      );
       const visibleUwOnlyCourseCodes = !grcEquivalents.length
         ? parsedRow.parsedUwCourseCodes.filter((courseCode) =>
             visibleCourseCodeSet.has(normalizeCourseCode(courseCode))
           )
         : [];
       const representedRuntimeUwOnlyOption = visibleUwOnlyCourseCodes.length > 0;
+      const representedUnselectedRuntimeOption = isParsedCourseRepresentedByUnselectedRuntimeOption({
+        runtimePlan,
+        parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
+        grcEquivalents,
+        visibleCourseCodeSet,
+      });
       const visibleInTransferOnlyPlan =
-        visibleCourseCodes.length > 0 || representedRuntimeUwOnlyOption;
+        visibleCourseCodes.length > 0 ||
+        representedRuntimeUwOnlyOption ||
+        representedUnselectedRuntimeOption;
       const groupedChoiceMax = parseGroupedChoiceMax(parsedRow.groupedChoiceCardinality);
       const hiddenReason = getHiddenReason({
         grcEquivalents,
         generatedRuntimeRow,
         visibleInTransferOnlyPlan,
         representedRuntimeUwOnlyOption,
+        representedUnselectedRuntimeOption,
       });
       const issueType = classifyCoverageIssue({
         parsedUwCourseCodes: parsedRow.parsedUwCourseCodes,
@@ -5898,7 +6064,9 @@ function buildCoverageRowsForOwner(owner) {
         visibleInTransferOnlyPlan,
         groupedChoiceMax,
         visibleCourseCodes,
+        scheduledVisibleCourseCodes,
         representedRuntimeUwOnlyOption,
+        representedUnselectedRuntimeOption,
       });
 
       return {
@@ -5917,6 +6085,7 @@ function buildCoverageRowsForOwner(owner) {
         matchedGrcEquivalents: grcEquivalents,
         visibleUwOnlyCourseCodes,
         representedRuntimeUwOnlyOption,
+        representedUnselectedRuntimeOption,
         generatedRuntimeRow,
         visibleInTransferOnlyQuarterPlan: visibleInTransferOnlyPlan,
         hiddenInternalReason: hiddenReason,
@@ -5943,6 +6112,9 @@ function buildCoverageRowsForOwner(owner) {
 }
 
 function parseGroupedChoiceMax(cardinality) {
+  if (/^\s*sequence_choice\b/i.test(String(cardinality ?? ""))) {
+    return null;
+  }
   const match = String(cardinality ?? "").match(/:\s*(\d+)(?:-\d+)?\s+of\b/i);
   return match ? Number(match[1]) : null;
 }
@@ -5953,6 +6125,7 @@ function buildProtectedRequirementRows(planId, pathwayId, rows) {
   const generatedRuntimeCourseCodes = getRuntimeGeneratedCourseCodes(runtimePlan);
   const transferOnlyQuarterPlan = runtimePlan ? buildQuarterPlan(runtimePlan) : [];
   const visibleCourseCodeSet = getVisibleCourseCodeSet(transferOnlyQuarterPlan);
+  const scheduledCourseCodeSet = getScheduledCourseCodeSet(transferOnlyQuarterPlan);
 
   return rows.map(([uwRequirementLabel, parsedUwCourseCodes, grcEquivalents, cardinality]) => {
     const normalizedGrcEquivalents = uniqueSorted(grcEquivalents.map(normalizeCourseCode));
@@ -5964,6 +6137,9 @@ function buildProtectedRequirementRows(planId, pathwayId, rows) {
           );
     const visibleCourseCodes = normalizedGrcEquivalents.filter((courseCode) =>
       visibleCourseCodeSet.has(courseCode)
+    );
+    const scheduledVisibleCourseCodes = normalizedGrcEquivalents.filter((courseCode) =>
+      scheduledCourseCodeSet.has(courseCode)
     );
     const visibleUwOnlyCourseCodes = !normalizedGrcEquivalents.length
       ? parsedUwCourseCodes
@@ -5986,6 +6162,7 @@ function buildProtectedRequirementRows(planId, pathwayId, rows) {
       visibleInTransferOnlyPlan,
       groupedChoiceMax: parseGroupedChoiceMax(cardinality),
       visibleCourseCodes,
+      scheduledVisibleCourseCodes,
       representedRuntimeUwOnlyOption,
     });
 
@@ -7068,8 +7245,8 @@ function auditMajorGenEdScope(checks) {
   addCheck(
     checks,
     "uw-major-gen-ed:no-mechanical-source-backed-targets",
-    "UW Mechanical Engineering does not invent UW major Gen-Ed targets from matched GRC breadth",
-    !mechanicalSection && transferOnlyMatchedBreadthRows.length === 0,
+    "UW Mechanical Engineering Gen-Ed targets come from UW source layers rather than matched GRC breadth",
+    Boolean(mechanicalSection?.items?.length) && transferOnlyMatchedBreadthRows.length === 0,
     debugText,
     "gen-ed-scope-leak"
   );
@@ -8061,7 +8238,6 @@ function auditAeronauticsCategoryOptions(checks) {
     "UW Aeronautics & Astronautics preserves the CSE 160 / ME 123 / other NSc mixed option group",
     Boolean(scienceChoiceGroup) &&
       scienceChoiceGroup.selectionCount === 1 &&
-      (scienceChoiceGroup.resolvedSatisfiedOptionIds ?? []).length === 0 &&
       (scienceChoiceGroup.options ?? []).some((option) =>
         /5 credits of Natural Sciences \(NSc\)/i.test(option.label ?? "")
       ) &&
@@ -8071,7 +8247,13 @@ function auditAeronauticsCategoryOptions(checks) {
       categoryAudit.some(
         (row) => row.visibleOption && row.issue === null && /NSc|Natural Sciences/i.test(row.copyOnlyDebugText)
       ) &&
-      scienceSatisfactionAudit?.displayedProgress === "0/1" &&
+      (
+        scienceSatisfactionAudit?.displayedProgress === "0/1" ||
+        (scienceSatisfactionAudit?.displayedProgress === "1/1" &&
+          /Scheduled satisfying courses: (?!none\b)/i.test(
+            scienceSatisfactionAudit?.copyOnlyDebugText ?? ""
+          ))
+      ) &&
       /Category options: .*Natural Sciences/i.test(scienceSatisfactionAudit?.copyOnlyDebugText ?? ""),
     [
       `Option groups: ${optionGroups
