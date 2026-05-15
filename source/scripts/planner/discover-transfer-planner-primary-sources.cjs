@@ -1370,6 +1370,25 @@ function getBachelorRouteTokenSetsFromValue(value) {
   return routeTokenSets;
 }
 
+function getBachelorRouteTokenSetsFromUrl(value) {
+  const rawUrl = String(value ?? "");
+  if (!rawUrl) {
+    return [];
+  }
+
+  try {
+    const parsed = new URL(rawUrl);
+    return parsed.pathname
+      .split("/")
+      .filter((segment) => /\bbachelor\b/i.test(segment))
+      .flatMap((segment) =>
+        getBachelorRouteTokenSetsFromValue(segment.replace(/[-_]+/g, " "))
+      );
+  } catch {
+    return [];
+  }
+}
+
 function getCandidateBachelorRouteTokenSets(candidate) {
   const values = isCatalogCredentialAnchorCandidate(candidate)
     ? [candidate?.url, candidate?.label, candidate?.anchorText, candidate?.linkText, candidate?.pageTitle]
@@ -1381,7 +1400,10 @@ function getCandidateBachelorRouteTokenSets(candidate) {
         candidate?.pageTitle,
         ...(candidate?.pageHeadings ?? []),
       ];
-  return values.flatMap(getBachelorRouteTokenSetsFromValue);
+  return [
+    ...getBachelorRouteTokenSetsFromUrl(candidate?.url),
+    ...values.flatMap(getBachelorRouteTokenSetsFromValue),
+  ];
 }
 
 function isCatalogCredentialAnchorCandidate(candidate) {
@@ -1426,6 +1448,25 @@ function hasConflictingDegreeRoute(targetText, candidateText) {
     return false;
   }
   return [...candidateDegrees].some((token) => !targetDegrees.has(token));
+}
+
+function candidateConflictsWithTargetDegreeRoute(target, candidate) {
+  const targetText = [target?.title, target?.label].filter(Boolean).join(" ");
+  const candidateText = [
+    candidate?.url,
+    candidate?.label,
+    candidate?.anchorText,
+    candidate?.linkText,
+    candidate?.pageTitle,
+    ...(candidate?.pageHeadings ?? []),
+  ]
+    .filter(Boolean)
+    .join(" \n");
+
+  return (
+    hasConflictingBachelorProgramRoute(target, candidate) ||
+    hasConflictingDegreeRoute(targetText, candidateText)
+  );
 }
 
 function escapeRegex(value) {
@@ -3622,7 +3663,9 @@ function parseArgs() {
 
 function buildReplacementDecision(target, candidates) {
   const sortedCandidates = [...(candidates ?? [])].sort(compareScoredCandidates);
-  const primaryCandidates = sortedCandidates.filter(isPrimaryEligibleCandidate);
+  const primaryCandidates = sortedCandidates.filter((candidate) =>
+    isPrimaryEligibleCandidateForTarget(candidate, target)
+  );
   const topCandidate = primaryCandidates[0] ?? null;
   if (!target.existingPrimaryUrl) {
     return {
@@ -3892,6 +3935,13 @@ function isPrimaryEligibleCandidate(candidate) {
     candidate.canCreateSchedulableRows !== false &&
     candidate.canBePrimary !== false &&
     candidate.sourceRoleStatus === "primary"
+  );
+}
+
+function isPrimaryEligibleCandidateForTarget(candidate, target) {
+  return (
+    isPrimaryEligibleCandidate(candidate) &&
+    !candidateConflictsWithTargetDegreeRoute(target, candidate)
   );
 }
 
@@ -4442,7 +4492,9 @@ async function analyzeOwner(target, timeoutMs, options = {}) {
 
   const sortedCandidates = [...candidateMap.values()].sort(compareScoredCandidates);
   const retainedCandidates = buildRetainedDiscoveryCandidates(sortedCandidates);
-  const primaryCandidates = sortedCandidates.filter(isPrimaryEligibleCandidate);
+  const primaryCandidates = sortedCandidates.filter((candidate) =>
+    isPrimaryEligibleCandidateForTarget(candidate, target)
+  );
   const supportCandidates = sortedCandidates.filter(isSupportCandidate);
   const nonSchedulableCandidates = sortedCandidates.filter(isNonSchedulableCandidate);
   const suggestion = buildReplacementDecision(target, sortedCandidates);

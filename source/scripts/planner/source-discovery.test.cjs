@@ -1453,6 +1453,169 @@ test("Business major discovery penalizes sibling bachelor degree routes", () => 
   assert.ok(economicsCurriculum.score < businessCurriculum.score);
 });
 
+test("Business major discovery will not suggest sibling bachelor routes as missing primaries", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "missing-primary",
+    ownerType: "major",
+    ownerKey: "uw-bothell-business-administration-finance",
+    planId: "uw-bothell-business-administration-finance",
+    pathwayId: null,
+    campusId: "uw-bothell",
+    title: "Business Administration: Finance (BA)",
+    label: "Business Administration: Finance (BA)",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 0,
+  });
+  const economicsCurriculum = {
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
+    label: "Curriculum",
+    pageTitle: "Curriculum - School of Business",
+    pageHeadings: [
+      "Curriculum",
+      "Degree Requirements",
+      "General Education Requirements",
+    ],
+    sourceKind: "discovered-anchor",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parserType: "html-curriculum-page",
+    canCreateSchedulableRows: true,
+    canBePrimary: true,
+    score: 82,
+    confidence: "medium",
+    reasons: [
+      "curriculum wording",
+      "explicit degree-requirements wording",
+      "matches major keyword \"business\"",
+      "primary degree requirements source role",
+    ],
+  };
+  const financePage = {
+    url: "https://www.uwb.edu/business/undergraduate/business-administration/finance",
+    label: "Finance",
+    sourceKind: "discovered-anchor",
+    sourceRole: "department-requirements",
+    sourceRoleStatus: "primary",
+    parserType: "html-degree-page",
+    canCreateSchedulableRows: true,
+    canBePrimary: true,
+    score: 81,
+    confidence: "high",
+    reasons: [
+      "department requirements source role",
+      "matches major keyword \"administration\"",
+      "matches major keyword \"business\"",
+      "matches major keyword \"finance\"",
+      "official source path matches the selected major",
+    ],
+  };
+
+  const decision = discovery.buildReplacementDecision(target, [
+    economicsCurriculum,
+    financePage,
+  ]);
+
+  assert.equal(decision.action, "add-missing-primary");
+  assert.equal(decision.suggestedPrimary?.url, financePage.url);
+});
+
+test("Business pathway discovery will not infer concentration sources from sibling bachelor hubs", () => {
+  const target = discovery.buildOwnerTargetRecord({
+    analysisMode: "missing-primary",
+    ownerType: "pathway",
+    ownerKey:
+      "uw-bothell-business-administration-finance:pathway:retail-management-concentration",
+    planId: "uw-bothell-business-administration-finance",
+    pathwayId: "retail-management-concentration",
+    campusId: "uw-bothell",
+    title: "Business Administration: Finance (BA) - Retail Management Concentration",
+    label: "Retail Management Concentration",
+    officialLinks: [],
+    existingPrimary: null,
+    pathwayCount: 1,
+  });
+  const economicsRetail = {
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum#retail-management",
+    label: "Retail Management Concentration inferred option/concentration requirements",
+    anchorText: "Retail Management Concentration",
+    linkText: "Retail Management Concentration",
+    pageTitle: "Curriculum - School of Business",
+    pageHeadings: [
+      "Curriculum",
+      "Degree Requirements",
+      "General Education Requirements",
+    ],
+    sourcePageUrl:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
+    discoveredFromUrl:
+      "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/curriculum",
+    sourceKind: "inferred-hub-child-candidate",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parserType: "html-curriculum-page",
+    canCreateSchedulableRows: true,
+    canBePrimary: true,
+    requiresVerification: true,
+    verified: true,
+    score: 146,
+    confidence: "high",
+    reasons: [
+      "explicit degree-requirements wording",
+      "explicitly names the selected pathway or route",
+      "same-program option/concentration child source matches the selected pathway",
+    ],
+  };
+  const economicsRetailChildPage = {
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-economics/retail-management-concentration#content",
+    label: "Retail Management Concentration",
+    anchorText: "Retail Management Concentration",
+    linkText: "Retail Management Concentration",
+    sourceKind: "discovered-anchor",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parserType: "html-degree-page",
+    canCreateSchedulableRows: true,
+    canBePrimary: true,
+    score: 123,
+    confidence: "high",
+    reasons: [
+      "explicitly names the selected pathway or route",
+      "official source path matches the selected pathway",
+      "same-program option/concentration child source matches the selected pathway",
+    ],
+  };
+  const bbaRetail = {
+    url: "https://www.uwb.edu/business/undergraduate/bachelor-of-business-administration/retail",
+    label: "Retail Management Concentration",
+    pageTitle: "Retail Management Concentration",
+    sourceKind: "discovered-anchor",
+    sourceRole: "primary-degree-requirements",
+    sourceRoleStatus: "primary",
+    parserType: "html-degree-page",
+    canCreateSchedulableRows: true,
+    canBePrimary: true,
+    score: 117,
+    confidence: "high",
+    reasons: [
+      "explicitly names the selected pathway or route",
+      "matches major keyword \"administration\"",
+      "matches major keyword \"business\"",
+      "matches major keyword \"retail\"",
+      "same-program option/concentration child source matches the selected pathway",
+    ],
+  };
+
+  const decision = discovery.buildReplacementDecision(target, [
+    economicsRetail,
+    economicsRetailChildPage,
+    bbaRetail,
+  ]);
+
+  assert.equal(decision.action, "add-missing-primary");
+  assert.equal(decision.suggestedPrimary?.url, bbaRetail.url);
+});
+
 test("Catalog credential discovery prefers the matching pathway credential anchor over sibling anchors", () => {
   const target = discovery.buildOwnerTargetRecord({
     analysisMode: "weak-existing-primary",
